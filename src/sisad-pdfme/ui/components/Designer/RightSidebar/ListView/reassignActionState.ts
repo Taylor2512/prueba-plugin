@@ -38,25 +38,24 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
   const visibleByConfig = input.reassignVisible && input.assignmentModalVisible;
 
   const action = resolveDesignerActionState('reassign-recipient', {
-    hasHandler: input.hasHandler,
+    hasHandler: true,
     selectionCount: selectedCount,
     canEditStructure,
     visibleByConfig,
   });
 
-  const canOpenAction = action.visible && action.enabled && input.hasAssignableRecipients;
-
+  const showButton = canEditStructure && action.visible && selectedCount > 0;
   // Para el hint se evalúan las mismas puertas con selección hipotética (1).
   const gates = resolveDesignerActionState('reassign-recipient', {
-    hasHandler: input.hasHandler,
+    hasHandler: true,
     selectionCount: 1,
     canEditStructure,
     visibleByConfig,
   });
 
   return {
-    showButton: canOpenAction,
-    buttonDisabled: canOpenAction && input.bulkRecipientDisabled,
+    showButton,
+    buttonDisabled: showButton && (input.bulkRecipientDisabled || !action.enabled || !input.hasAssignableRecipients || !input.hasHandler),
     showSelectionHint:
       selectedCount === 0 && gates.visible && gates.enabled,
     selectionHintLabel: selectedCount === 0 ? 'Selecciona campos' : null,

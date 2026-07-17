@@ -140,7 +140,7 @@ const DetailHeaderCard = ({
       <SidebarSurfaceHeader
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}detail-header-card`,
-          'relative overflow-hidden rounded-[1rem] border-slate-200/70 bg-white/96 shadow-[0_1px_3px_rgba(15,23,42,0.04)] backdrop-blur-[4px] py-1.5',
+          'relative overflow-hidden rounded-[1rem] border border-slate-200/70 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.04)] backdrop-blur-[4px] py-1.5',
           className,
         )}
         leading={leading || <Badge color={leadingColor} />}

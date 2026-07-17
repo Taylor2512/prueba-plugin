@@ -1,24 +1,13 @@
 {
-  "created": "2026-07-15",
-  "package": "sisad-pdfme-action-ui-dedup-task-pack",
-  "files": [
-    "README.md",
-    "ai/checklists/button-action-contract-checklist.md",
-    "ai/context/action-map-context.md",
-    "ai/prompts/codex-next-pass-actions-ui-dedup.md",
-    "ai/reports/deep-ui-action-audit-2026-07-15.md",
-    "ai/task-cards/active/TASK-ACTIONS-001-button-action-contract-audit.md",
-    "ai/task-cards/active/TASK-ACTIONS-002-commandbus-action-registry-unification.md",
-    "ai/task-cards/active/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md",
-    "ai/task-cards/active/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md",
-    "ai/task-cards/active/TASK-DETAIL-015-access-state-label-sync.md",
-    "ai/task-cards/active/TASK-QA-015-action-coverage-regression-suite.md",
-    "ai/task-cards/active/TASK-UI-015-right-left-rail-collapse-polish.md",
-    "ai/task-cards/backlog/TASK-RUNTIME-015-config-hook-visibility-action-map.md",
-    "ai/task-cards/backlog/TASK-UI-016-zoom-toolbar-contract.md",
-    "docs/03-designer/11-action-contract.md",
-    "docs/09-theming/06-tailwind3-selector-dedup-plan.md",
-    "scripts/audit-buttons-actions.mjs",
-    "scripts/css-active-selector-audit.mjs"
+  "generatedAt": "2026-07-16",
+  "unitTestFiles": 23,
+  "playwrightSpecFiles": 15,
+  "totalAutomatedFiles": 38,
+  "matrixCases": 157,
+  "sourceContext": [
+    "codigo-frontend-sisad—pdmfe(47).md",
+    "documentacion-sisad—pdmfe-web(41).md",
+    "styles-sisad—pdmfe(51).md",
+    "ESPECIFICACION_FUNCIONAL_COMPLETA_SISAD_PDFME.md"
   ]
 }

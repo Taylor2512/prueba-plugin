@@ -192,11 +192,14 @@ const SelectableSortableContainer = ({
 
           if (selectionCommands?.selectSchemasByIds) {
             selectionCommands.selectSchemasByIds(rangeIds, {
-              mode: intent.isToggle ? 'toggle' : 'replace',
+              mode: intent.isToggle ? 'add' : 'replace',
               origin: 'field-list',
             });
           } else {
             onEdit(id);
+          }
+          if (!intent.isToggle) {
+            setRangeAnchorId(id);
           }
           return;
         }

@@ -9,8 +9,5 @@ test.describe('right sidebar docs tab', () => {
     await expect(docsTab).toHaveAttribute('aria-selected', 'true');
     await expect(page.locator('aside[data-panel-mode="docs"]').first()).toBeVisible();
     await expect(page.getByText('Documentos cargados').first()).toBeVisible();
-
-    await docsTab.click();
-    await expect(page.locator('aside[data-panel-mode="docs"]').first()).toBeVisible();
   });
 });

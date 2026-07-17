@@ -5,12 +5,13 @@
  * por Preview) se deriva del RecipientRegistry compartido: el prop
  * `activeRecipientId` es override puntual; si falta, manda el registry/config.
  */
-import { cloneDeep, getInputFromTemplate } from '@sisad-pdfme/common';
-import React, { useContext, useMemo, useRef } from 'react';
+import { getInputFromTemplate } from '@sisad-pdfme/common';
+import React, { useContext, useRef } from 'react';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import Form from '../ui/Form.js';
 import Viewer from '../ui/Viewer.js';
 import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
+import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
 import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
 import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
 import { useRecipientRegistry } from '../recipients/useRecipientRegistry.js';
@@ -58,25 +59,27 @@ export const SisadPdfmeForm = ({
       ? { activeRecipientId: effectiveActiveRecipientId, isGlobalView }
       : { isGlobalView };
 
-  const runtimeConfig = useMemo(() => {
-    return {
-      containerRef,
-      mode: 'form' as const,
-      template: template as any,
-      inputs: Array.isArray(values) && values.length > 0 ? values : getInputFromTemplate(template as any),
-      onTemplateChange: () => undefined,
-      onPageChange: () => undefined,
-      options: {
-        ...resolvedConfig.runtimeOptions,
-        designerEngine: resolvedConfig.designerEngine,
-        // Preview lee `options.collaboration` para filtrar schemas por recipient.
-        collaboration: collaborationOptions,
-      },
-      plugins: flatSchemaPlugins,
-      runtime: { Designer: Form as any, Form: Form as any, Viewer: Viewer as any },
-      onInputChange,
-    };
-  }, [isGlobalView, onInputChange, recipientFilterEnabled, effectiveActiveRecipientId, resolvedConfig, template, values]);
-  usePdfmeRuntimeInstance(runtimeConfig as any);
+  const runtimeConfig: UsePdfmeRuntimeInstanceConfig = {
+    containerRef,
+    mode: 'form',
+    template: template as UsePdfmeRuntimeInstanceConfig['template'],
+    inputs:
+      Array.isArray(values) && values.length > 0
+        ? values
+        : getInputFromTemplate(template as UsePdfmeRuntimeInstanceConfig['template']),
+    onTemplateChange: () => undefined,
+    onPageChange: () => undefined,
+    options: {
+      ...resolvedConfig.runtimeOptions,
+      designerEngine: resolvedConfig.designerEngine,
+      // Preview lee `options.collaboration` para filtrar schemas por recipient.
+      collaboration: collaborationOptions,
+    },
+    plugins: flatSchemaPlugins,
+    runtime: { Designer: Form, Form, Viewer },
+    onInputChange,
+  };
+
+  usePdfmeRuntimeInstance(runtimeConfig);
   return <div ref={containerRef} data-sisad-pdfme-root="form" />;
 };

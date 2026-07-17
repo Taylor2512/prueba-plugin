@@ -326,11 +326,6 @@ const FIELD_LABEL = mergeClassNames(
   'inline-flex min-h-3.5 items-center font-medium text-slate-500',
 );
 
-const HELP = mergeClassNames(
-  DESIGNER_CLASSNAME + 'schema-config-help',
-  'mt-0.5 text-[0.625rem] leading-tight text-slate-500',
-);
-
 const INLINE_CHECKS = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-config-inline-checks',
   'flex flex-wrap gap-x-1 gap-y-1',

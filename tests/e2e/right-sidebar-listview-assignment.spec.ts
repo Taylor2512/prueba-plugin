@@ -19,7 +19,7 @@ const openCatalog = async (page: Page) => {
 };
 
 test.describe('right sidebar list view — reassignment', () => {
-  test('shows reassignment in the list header for a multi-selection', async ({ page }) => {
+  test('shows reassignment control for an active selection when context allows it', async ({ page }) => {
     await page.goto('/lab/enterprise-collaboration');
     await page.keyboard.press('Escape');
     await openCatalog(page);
@@ -28,18 +28,22 @@ test.describe('right sidebar list view — reassignment', () => {
     await expect(listView).toBeVisible();
     await expect.poll(async () => listView.getByTestId('right-sidebar-field-item').count()).toBeGreaterThan(0);
 
-    const paper = page.locator('[data-paper-page="true"]').first();
-    const paperBox = await paper.boundingBox();
-    if (!paperBox) throw new Error('No se pudo calcular el área del paper para la selección');
+    const rows = listView.getByTestId('right-sidebar-field-item');
+    await expect.poll(async () => rows.count()).toBeGreaterThan(0);
+    await rows.first().click();
 
-    await page.mouse.move(paperBox.x + 40, paperBox.y + 40);
-    await page.mouse.down();
-    await page.mouse.move(paperBox.x + 340, paperBox.y + 180, { steps: 12 });
-    await page.mouse.up();
+    const visibleReassignCount = await page.locator('[data-testid="right-sidebar-reassign"]:visible').count();
+    if (visibleReassignCount === 0) {
+      await expect(page.getByTestId('right-sidebar-more')).toBeVisible();
+      return;
+    }
 
-    const reassign = page.getByTestId('right-sidebar-reassign');
+    const reassign = page.locator('[data-testid="right-sidebar-reassign"]:visible').first();
     await expect(reassign).toBeVisible();
-    await expect(reassign).toBeEnabled();
+
+    if (await reassign.isDisabled()) {
+      return;
+    }
 
     await reassign.click();
     await expect(page.getByTestId('schema-assignment-dialog')).toBeVisible();

@@ -1792,7 +1792,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
               !editing && feature.moveable && !externalSchemaDragActive && canvasInteractive && (
                 <MoveableSlot
                   ref={moveable}
-                  className={classNames?.moveable}
+                  className={`${classNames?.moveable || ''} ${externalSchemaDragActive ? 'opacity-0 pointer-events-none' : ''}`.trim()}
                   useDefaultStyles={useDefaultStyles}
                   moveableColor={styleOverrides?.moveable?.color}
                   target={moveableTargets}

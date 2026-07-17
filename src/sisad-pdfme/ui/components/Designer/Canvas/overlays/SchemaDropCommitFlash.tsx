@@ -5,7 +5,7 @@
  * la posición del paper y la conversión mm→px. No altera el modelo de datos.
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { mergeClassNames } from '../../shared/className.js';
 
 /**
@@ -36,6 +36,18 @@ const SchemaDropCommitFlash = ({
   ownerColor,
   icon,
 }: SchemaDropCommitFlashProps) => {
+  const [entering, setEntering] = useState(false);
+  const [exiting, setExiting] = useState(false);
+  useEffect(() => {
+    if (!paperRect) return undefined;
+    const enterFrame = requestAnimationFrame(() => setEntering(true));
+    const exitTimer = window.setTimeout(() => setExiting(true), 110);
+    return () => {
+      cancelAnimationFrame(enterFrame);
+      window.clearTimeout(exitTimer);
+    };
+  }, [paperRect]);
+
   if (!paperRect) return null;
   const scale = Number.isFinite(zoom) && zoom > 0 ? zoom : 1;
   const left = paperRect.left + xMm * MM_TO_PX * scale;
@@ -44,7 +56,12 @@ const SchemaDropCommitFlash = ({
   return (
     <div
       className={mergeClassNames(
-        'sisad-pdfme-schema-drop-commit-flash fixed z-[10000] pointer-events-none -translate-x-1/2 -translate-y-1/2 [animation:schema-drop-commit-flash-enter_180ms_cubic-bezier(0.16,1,0.3,1)_both]',
+        'sisad-pdfme-schema-drop-commit-flash fixed z-[10000] pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-[opacity,transform] duration-75 ease-[cubic-bezier(0.16,1,0.3,1)]',
+        exiting
+          ? 'opacity-0 scale-[0.96]'
+          : entering
+            ? 'opacity-100 scale-[1.08]'
+            : 'opacity-0 scale-[0.62]',
       )}
       style={
         {

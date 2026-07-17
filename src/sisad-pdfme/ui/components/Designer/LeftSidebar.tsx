@@ -1178,10 +1178,12 @@ const LeftSidebar = ({
     variant === 'compact'
       ? mergeClassNames(
           `${DESIGNER_CLASSNAME}left-sidebar-compact`,
-          'min-w-[var(--sisad-pdfme-ls-rail-width)]',
+          '!min-w-[var(--sisad-pdfme-ls-rail-width)]',
           sidebarExpanded
-            ? 'w-[clamp(11.5rem,_13.5vw,_13.5rem)] max-w-[clamp(11.5rem,_13.5vw,_13.5rem)] max-[48rem]:w-[15rem] max-[48rem]:overflow-visible'
-            : 'w-[var(--sisad-pdfme-ls-rail-width)] max-w-[var(--sisad-pdfme-ls-rail-width)] overflow-hidden',
+            ? resolvedPresentation === 'overlay'
+              ? '!w-[12.5rem] !max-w-[12.5rem] max-[48rem]:!w-[15rem] max-[48rem]:!max-w-[15rem] max-[48rem]:overflow-visible'
+              : '!w-[13.25rem] !max-w-[13.25rem] max-[48rem]:!w-[15rem] max-[48rem]:!max-w-[15rem] max-[48rem]:overflow-visible'
+            : '!w-[var(--sisad-pdfme-ls-rail-width)] !min-w-[var(--sisad-pdfme-ls-rail-width)] !max-w-[var(--sisad-pdfme-ls-rail-width)] overflow-hidden',
         )
       : '',
     detached ? `${DESIGNER_CLASSNAME}left-sidebar-detached` : '',
@@ -1796,7 +1798,8 @@ const LeftSidebar = ({
         labelCollapsed="Abrir catálogo de campos"
         onToggle={() => setSidebarExpanded((prev) => !prev)}
         className={mergeClassNames(
-          'absolute right-[0.5rem] top-[0.875rem] z-[90] [transition:right_220ms_var(--wix-ease-out),_border-color_var(--transition-fast),_color_var(--transition-fast),_opacity_150ms_ease,_transform_220ms_var(--wix-ease-out)]',
+          'absolute z-[90] [transition:right_220ms_var(--wix-ease-out),_top_220ms_var(--wix-ease-out),_border-color_var(--transition-fast),_color_var(--transition-fast),_opacity_150ms_ease,_transform_220ms_var(--wix-ease-out)]',
+          sidebarExpanded ? 'right-[0.5rem] top-[0.875rem]' : 'right-[0.125rem] top-[0.5rem]',
           'hover:bg-slate-50 hover:text-slate-700',
           sidebarExpanded ? '' : 'shadow-sm',
         )}

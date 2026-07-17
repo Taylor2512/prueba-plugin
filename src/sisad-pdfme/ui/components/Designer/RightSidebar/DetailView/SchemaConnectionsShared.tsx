@@ -13,7 +13,7 @@ import { mergeClassNames } from '../../shared/className.js';
 
 const PAIR_EDITOR_ROOT = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-config-pair-editor',
-  'flex flex-col gap-1.5 rounded-[0.95rem] border border-slate-200/70 bg-white/96 p-1.5 shadow-[0_1px_3px_rgba(15,23,42,0.04)]',
+  'flex flex-col gap-1.5 rounded-[0.95rem] border border-slate-200/70 bg-white p-1.5 shadow-[0_1px_3px_rgba(15,23,42,0.04)]',
 );
 
 const PAIR_EDITOR_HEAD = mergeClassNames(
@@ -23,7 +23,7 @@ const PAIR_EDITOR_HEAD = mergeClassNames(
 
 const PAIR_EDITOR_TITLE = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-config-pair-editor-title',
-  'text-[0.75rem] font-bold leading-tight text-slate-900',
+  'text-[0.75rem] font-semibold leading-tight text-slate-900',
 );
 
 const PAIR_EDITOR_HELP = mergeClassNames(
@@ -58,22 +58,22 @@ const SECTION_HEAD_MAIN = mergeClassNames(
 
 const SECTION_ICON = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-config-section-icon',
-  'inline-flex h-[1.125rem] w-[1.125rem] flex-none items-center justify-center rounded-md border border-slate-200/60 bg-white text-slate-600 shadow-none',
+  'inline-flex h-[1.125rem] w-[1.125rem] flex-none items-center justify-center rounded-md border border-slate-200/70 bg-slate-50 text-slate-700 shadow-none',
 );
 
 const SECTION_TITLE = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-config-section-title',
-  'text-[0.75rem] font-bold leading-tight text-slate-700',
+  'text-[0.75rem] font-semibold leading-tight text-slate-900',
 );
 
 const SECTION_STATE = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-config-section-state',
-  'inline-flex items-center rounded-full border border-slate-200/70 bg-slate-50/80 px-1.5 py-[0.14rem] text-[0.5625rem] font-semibold leading-none text-slate-600 data-[active=true]:border-[var(--color-primary-30)] data-[active=true]:bg-[var(--color-primary-200-20)] data-[active=true]:text-[var(--color-primary)]',
+  'inline-flex items-center rounded-full border border-slate-200/70 bg-slate-50 px-1.5 py-[0.14rem] text-[0.5625rem] font-semibold leading-none text-slate-700 data-[active=true]:border-[var(--color-primary-30)] data-[active=true]:bg-[var(--color-primary-200-20)] data-[active=true]:text-[var(--color-primary)]',
 );
 
 export const SCHEMA_CONFIG_COLLAPSE = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-config-collapse',
-  'overflow-hidden rounded-[0.625rem] border border-slate-200/60 bg-white transition-[background,border-color]',
+  'overflow-hidden rounded-[0.625rem] border border-slate-200/70 bg-white transition-[background,border-color]',
   '[&_.ant-collapse-item]:overflow-hidden [&_.ant-collapse-item]:rounded-[0.625rem] [&_.ant-collapse-item]:border-0 [&_.ant-collapse-item]:bg-transparent',
   '[&_.ant-collapse-item>.ant-collapse-header]:px-[0.5rem] [&_.ant-collapse-item>.ant-collapse-header]:py-[0.375rem]',
   '[&_.ant-collapse-item>.ant-collapse-content]:border-t [&_.ant-collapse-item>.ant-collapse-content]:border-slate-200/70',

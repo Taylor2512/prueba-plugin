@@ -1299,7 +1299,7 @@ const TemplateEditor = ({
     ? Math.max(0, safeCanvasWidth - rightSidebarWidth)
     : 0;
   const sizeExcSidebars = {
-    width: sidebarOpen ? safeContentWidth : safeCanvasWidth,
+    width: shouldReserveRightSidebarSpace ? safeContentWidth : safeCanvasWidth,
     height: safeCanvasHeight,
   };
   const usableCanvasWidth = Math.max(1, sizeExcSidebars.width - 24);
@@ -1609,7 +1609,7 @@ const TemplateEditor = ({
     (
       ids: string[],
       options?: {
-        mode?: 'replace' | 'toggle';
+        mode?: 'replace' | 'toggle' | 'add';
       },
     ) => {
       const normalizedIds = [...new Set(ids.map((id) => String(id || '').trim()).filter(Boolean))];
@@ -1641,6 +1641,29 @@ const TemplateEditor = ({
 
       if (mode === 'replace') {
         setActiveElements((prev) => (areActiveElementsEqual(prev, nextElements) ? prev : nextElements));
+        setHoveringSchemaId(null);
+        return;
+      }
+
+      if (mode === 'add') {
+        setActiveElements((prev) => {
+          const keyed = new Map<string, HTMLElement>();
+          prev.forEach((element) => {
+            const identity = resolveSchemaIdentityFromElement(element);
+            const key = String(identity.schemaUid || identity.schemaId || element.id || '').trim();
+            if (key) keyed.set(key, element);
+          });
+
+          nextElements.forEach((element) => {
+            const identity = resolveSchemaIdentityFromElement(element);
+            const key = String(identity.schemaUid || identity.schemaId || element.id || '').trim();
+            if (!key) return;
+            keyed.set(key, element);
+          });
+
+          const merged = [...keyed.values()];
+          return areActiveElementsEqual(prev, merged) ? prev : merged;
+        });
         setHoveringSchemaId(null);
         return;
       }
@@ -4055,7 +4078,7 @@ const TemplateEditor = ({
           }>
           {!leftSidebarDetached ? leftSidebarNode : null}
           <div
-            className={`${DESIGNER_CLASSNAME}stage`}
+            className={`${DESIGNER_CLASSNAME}stage ${shouldReserveRightSidebarSpace ? 'pr-[calc(var(--sisad-pdfme-rs-width)_+_0.875rem)]' : ''}`}
             data-left-sidebar={leftSidebarVisible ? 'visible' : 'hidden'}
             data-left-sidebar-mode={shouldReserveLeftSidebarSpace ? 'docked' : 'overlay'}
             data-left-sidebar-variant={leftSidebarVariant}
@@ -4115,6 +4138,7 @@ const TemplateEditor = ({
             documentStatus={isIdle ? 'Listo' : 'Editando'}
             onSave={() => onSaveTemplate(visibleTemplate)}
             onExport={exportTemplateExternal}
+            sidebarOpen={sidebarOpen}
             featureToggles={{
               grid: canvasFeatureToggles.grid,
               guides: canvasFeatureToggles.guides,

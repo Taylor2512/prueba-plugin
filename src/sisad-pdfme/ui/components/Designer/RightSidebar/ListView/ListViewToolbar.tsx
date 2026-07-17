@@ -5,8 +5,7 @@
  * filter, clear filter action, mass rename action and optional bulk recipient
  * assignment action for collaborative workflows.
  */
-import React, { useContext } from 'react';
-import { Button, Dropdown, Input, Select, Tooltip } from 'antd';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Layers, Search, Users, MoreHorizontal, PencilLine, Eraser } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
@@ -26,6 +25,9 @@ type Option = { value: string; label: string };
 
 const resolveAriaLabel = (value: React.ReactNode | undefined, fallback: string) =>
   typeof value === 'string' && value.trim() ? value : fallback;
+
+const normalizeOptionLabel = (label: React.ReactNode, fallback: string) =>
+  typeof label === 'string' && label.trim() ? label : fallback;
 
 
 /**
@@ -117,6 +119,37 @@ const ListViewToolbar = ({
   const isDense = useDefaultStyles !== false;
   const isCompactDensity = densityMode !== 'comfortable';
   const isMinimalDensity = densityMode === 'minimal';
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+  const moreMenuRef = useRef<HTMLDivElement | null>(null);
+  const optionMap = useMemo(() => {
+    const map = new Map<string, string>();
+    schemaTypes.forEach((option) => {
+      map.set(option.value, normalizeOptionLabel(option.label, option.value));
+    });
+    return map;
+  }, [schemaTypes]);
+
+  useEffect(() => {
+    if (!isMoreMenuOpen) return;
+
+    const onPointerDown = (event: MouseEvent) => {
+      const target = event.target as Node | null;
+      if (!target) return;
+      if (moreMenuRef.current?.contains(target)) return;
+      setIsMoreMenuOpen(false);
+    };
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMoreMenuOpen(false);
+    };
+
+    document.addEventListener('mousedown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isMoreMenuOpen]);
 
   return (
     <div
@@ -155,79 +188,82 @@ const ListViewToolbar = ({
               isDense && 'shrink-0',
             )}>
               {reassignActionState.showButton ? (
-                <Tooltip title="Reasignar responsable" placement="top">
-                  <Button
-                    type="text"
-                    size="small"
-                    disabled={reassignActionState.buttonDisabled}
-                    onPointerDownCapture={stopDesignerControlEvent}
-                    onMouseDownCapture={stopDesignerControlEvent}
-                    onDoubleClickCapture={stopDesignerControlEvent}
-                    onClick={(event) => {
-                      stopDesignerControlEvent(event);
-                      onBulkAssignRecipient?.();
-                    }}
-                    data-testid="right-sidebar-reassign"
-                    data-designer-control="true"
-                    data-interaction-exclusion="true"
-                    aria-label={resolveAriaLabel(bulkRecipientLabel, 'Reasignar responsable')}
-                    className={mergeClassNames(
-                      DESIGNER_CLASSNAME + 'bulk-assign-recipient',
-                      'inline-flex appearance-none items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 px-2 text-xs font-semibold text-sky-700 shadow-[0_1px_2px_rgba(15,23,42,0.04)]',
-                      isMinimalDensity ? 'h-7' : 'h-8',
-                    )}
-                  >
-                    <Users size={14} />
-                    <span className="hidden lg:inline">Reasignar</span>
-                  </Button>
-                </Tooltip>
+                <button
+                  type="button"
+                  disabled={reassignActionState.buttonDisabled}
+                  title="Reasignar responsable"
+                  onPointerDownCapture={stopDesignerControlEvent}
+                  onMouseDownCapture={stopDesignerControlEvent}
+                  onDoubleClickCapture={stopDesignerControlEvent}
+                  onClick={(event) => {
+                    stopDesignerControlEvent(event);
+                    onBulkAssignRecipient?.();
+                  }}
+                  data-testid="right-sidebar-reassign"
+                  data-designer-control="true"
+                  data-interaction-exclusion="true"
+                  aria-label={resolveAriaLabel(bulkRecipientLabel, 'Reasignar responsable')}
+                  className={mergeClassNames(
+                    DESIGNER_CLASSNAME + 'bulk-assign-recipient',
+                    'inline-flex appearance-none items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 px-2 text-xs font-semibold text-sky-700 shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-colors hover:border-sky-300 hover:bg-sky-100/80 disabled:cursor-not-allowed disabled:opacity-45',
+                    isMinimalDensity ? 'h-7' : 'h-8',
+                  )}
+                >
+                  <Users size={14} />
+                  <span className="hidden lg:inline">Reasignar</span>
+                </button>
               ) : null}
-              <Dropdown
-                trigger={['click']}
-                placement="bottomRight"
-                menu={{
-                  items: [
-                    ...(reassignActionState.showSelectionHint
-                      ? [{
-                          key: 'reassign-hint',
-                          label: (
-                            <span data-testid="right-sidebar-reassign-hint">
-                              {reassignActionState.selectionHintLabel || 'Selecciona campos'}
-                            </span>
-                          ),
-                          disabled: true,
-                          icon: <Users size={14} />,
-                        }]
-                      : []),
-                    {
-                      key: 'rename',
-                      label: <span data-testid="right-sidebar-more-rename">{bulkActionLabel || 'Renombrar campos'}</span>,
-                      icon: <PencilLine size={14} />,
-                    },
-                  ],
-                  onClick: ({ key }) => {
-                    if (key === 'rename') {
-                      onStartBulk();
-                    }
-                  },
-                }}
-              >
-                <Tooltip title={bulkActionLabel || 'Más acciones'} placement="top">
-                  <Button
-                    type="text"
-                    size="small"
-                    data-testid="right-sidebar-more"
-                    aria-label={resolveAriaLabel(bulkActionLabel, 'Más acciones')}
-                    className={mergeClassNames(
-                      DESIGNER_CLASSNAME + 'bulk-update',
-                      'inline-flex appearance-none items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
-                      isMinimalDensity ? 'h-7 w-7' : 'h-8 w-8',
-                    )}
+              <div ref={moreMenuRef} className="relative">
+                <button
+                  type="button"
+                  title={resolveAriaLabel(bulkActionLabel, 'Más acciones')}
+                  data-testid="right-sidebar-more"
+                  aria-label={resolveAriaLabel(bulkActionLabel, 'Más acciones')}
+                  aria-expanded={isMoreMenuOpen}
+                  aria-haspopup="menu"
+                  onPointerDownCapture={stopDesignerControlEvent}
+                  onMouseDownCapture={stopDesignerControlEvent}
+                  onClick={(event) => {
+                    stopDesignerControlEvent(event);
+                    setIsMoreMenuOpen((prev) => !prev);
+                  }}
+                  className={mergeClassNames(
+                    DESIGNER_CLASSNAME + 'bulk-update',
+                    'inline-flex appearance-none items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-colors hover:border-slate-300 hover:bg-slate-50',
+                    isMinimalDensity ? 'h-7 w-7' : 'h-8 w-8',
+                  )}
+                >
+                  <MoreHorizontal size={14} />
+                </button>
+                {isMoreMenuOpen ? (
+                  <div
+                    role="menu"
+                    className="absolute right-0 z-30 mt-1.5 min-w-[12rem] overflow-hidden rounded-xl border border-slate-200 bg-white py-1 shadow-lg"
                   >
-                    <MoreHorizontal size={14} />
-                  </Button>
-                </Tooltip>
-              </Dropdown>
+                    {reassignActionState.showSelectionHint ? (
+                      <div className="flex items-center gap-2 px-3 py-2 text-xs text-slate-500" role="note">
+                        <Users size={14} className="text-slate-400" />
+                        <span data-testid="right-sidebar-reassign-hint">
+                          {reassignActionState.selectionHintLabel || 'Selecciona campos'}
+                        </span>
+                      </div>
+                    ) : null}
+                    <button
+                      type="button"
+                      role="menuitem"
+                      onClick={(event) => {
+                        stopDesignerControlEvent(event);
+                        setIsMoreMenuOpen(false);
+                        onStartBulk();
+                      }}
+                      className="flex w-full items-center gap-2 px-3 py-2 text-left text-xs font-medium text-slate-700 transition-colors hover:bg-slate-50"
+                    >
+                      <PencilLine size={14} className="text-slate-500" />
+                      <span data-testid="right-sidebar-more-rename">{bulkActionLabel || 'Renombrar campos'}</span>
+                    </button>
+                  </div>
+                ) : null}
+              </div>
             </div>
           ) : null
         }
@@ -238,53 +274,66 @@ const ListViewToolbar = ({
         'flex flex-col',
         isDense && 'gap-2',
       )}>
-        <Input
-          id="right-sidebar-fields-search"
-          name="right-sidebar-fields-search"
-          size="small"
-          allowClear
-          placeholder={searchPlaceholder}
-          prefix={<Search size={12} className={DESIGNER_CLASSNAME + 'search-auto'} />}
-          value={searchQuery}
-          onChange={(e) => onChangeSearch(e.target.value)}
+        <label
           className={mergeClassNames(
             DESIGNER_CLASSNAME + 'input-auto',
-            'min-w-0 rounded-xl border border-slate-200/80 bg-white text-sm shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+            'flex min-w-0 items-center gap-1.5 rounded-xl border border-slate-200/80 bg-white px-2 text-sm shadow-[0_1px_2px_rgba(15,23,42,0.03)] focus-within:border-sky-200 focus-within:ring-2 focus-within:ring-sky-100',
             isDense ? 'h-8' : 'h-9',
           )}
-        />
+        >
+          <Search size={12} className={mergeClassNames(DESIGNER_CLASSNAME + 'search-auto', 'shrink-0 text-slate-400')} />
+          <input
+            id="right-sidebar-fields-search"
+            name="right-sidebar-fields-search"
+            placeholder={searchPlaceholder}
+            value={searchQuery}
+            onChange={(e) => onChangeSearch(e.target.value)}
+            className="h-full w-full min-w-0 border-0 bg-transparent text-[0.72rem] text-slate-700 outline-none placeholder:text-slate-400"
+          />
+          {searchQuery ? (
+            <button
+              type="button"
+              aria-label="Limpiar búsqueda"
+              onClick={() => onChangeSearch('')}
+              className="inline-flex h-5 w-5 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+            >
+              ×
+            </button>
+          ) : null}
+        </label>
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-toolbar-row', 'flex items-center gap-2')}>
           {schemaTypes.length > 2 ? (
-            <Select<string, Option>
+            <select
               id="right-sidebar-fields-type-filter"
-              size="small"
               value={typeFilter}
-              onChange={onChangeType}
-              options={schemaTypes}
-              popupMatchSelectWidth={false}
+              onChange={(event) => onChangeType(event.target.value)}
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'select-auto',
-                'min-w-0 rounded-xl border-slate-200 bg-white [&_.ant-select-selector]:min-h-[2rem] [&_.ant-select-selector]:rounded-md [&_.ant-select-selector]:border-slate-200 [&_.ant-select-selector]:bg-white [&_.ant-select-selector]:text-[0.6875rem] [&_.ant-select-selector]:shadow-none',
-                isMinimalDensity ? 'h-7' : 'h-8',
+                'min-w-0 rounded-xl border border-slate-200 bg-white px-2 text-[0.6875rem] text-slate-700 outline-none transition-colors hover:border-slate-300 focus:border-sky-200 focus:ring-2 focus:ring-sky-100',
+                isMinimalDensity ? 'h-7' : 'h-8'
               )}
-            />
+            >
+              {schemaTypes.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {optionMap.get(option.value) || option.value}
+                </option>
+              ))}
+            </select>
           ) : null}
           {hasActiveSearch ? (
-            <Tooltip title={clearLabel || 'Limpiar filtros'} placement="top">
-              <Button
-                type="text"
-                size="small"
-                onClick={onClearFilters}
-                aria-label={resolveAriaLabel(clearLabel, 'Limpiar filtros')}
-                className={mergeClassNames(
-                  DESIGNER_CLASSNAME + 'list-view-clear-filters',
-                  'inline-flex appearance-none items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
-                  isMinimalDensity ? 'h-7 w-7' : 'h-8 w-8',
-                )}
-              >
-                <Eraser size={14} />
-              </Button>
-            </Tooltip>
+            <button
+              type="button"
+              title={resolveAriaLabel(clearLabel, 'Limpiar filtros')}
+              onClick={onClearFilters}
+              aria-label={resolveAriaLabel(clearLabel, 'Limpiar filtros')}
+              className={mergeClassNames(
+                DESIGNER_CLASSNAME + 'list-view-clear-filters',
+                'inline-flex appearance-none items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-colors hover:border-slate-300 hover:bg-slate-50',
+                isMinimalDensity ? 'h-7 w-7' : 'h-8 w-8',
+              )}
+            >
+              <Eraser size={14} />
+            </button>
           ) : null}
         </div>
       </div>

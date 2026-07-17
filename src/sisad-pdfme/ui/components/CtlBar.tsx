@@ -189,6 +189,8 @@ type CtlBarProps = {
    * When undefined, visibility is resolved from OptionsContext.hideControlBar or OptionsContext.uxMode === 'runtime'.
    */
   visible?: boolean;
+  /** When true, the canvas reserves space for the right sidebar chrome. */
+  sidebarOpen?: boolean;
 };
 
 /**
@@ -217,16 +219,13 @@ const CtlBar = (props: CtlBarProps) => {
     onFitWidth,
     onFitPage,
     onOpenShortcuts,
-    documentTitle,
-    documentStatus,
     onSave,
     onExport,
     featureToggles,
     onToggleFeature,
-    selectionCount,
-    isGroupedSelection,
     interactionPhase,
     visible,
+    sidebarOpen,
   } = props;
 
   // Resolve visibility: explicit prop visible takes precedence. When undefined,
@@ -249,8 +248,10 @@ const CtlBar = (props: CtlBarProps) => {
   const undoAction = resolveDesignerActionState('undo', { hasHandler: typeof onUndo === 'function' });
   const redoAction = resolveDesignerActionState('redo', { hasHandler: typeof onRedo === 'function' });
   const fitPageAction = resolveDesignerActionState('fit-to-page', { hasHandler: typeof onFitPage === 'function' });
-  
-  const densityOption = String((options as any)?.density || '').toLowerCase();
+
+  const densityOption = String(
+    options && typeof options === 'object' ? ((options as { density?: unknown }).density ?? '') : '',
+  ).toLowerCase();
   // Densidad explícita del preset gana SIEMPRE (incluida 'comfortable').
   // El fallback por ancho usa el área real del canvas (ya descontados los
   // sidebars reservados del preset three-panel), por eso los umbrales son
@@ -268,9 +269,7 @@ const CtlBar = (props: CtlBarProps) => {
   const showZoomStepper = toolbarDensity === 'comfortable';
   const showSaveText = toolbarDensity === 'comfortable';
   const showFitAction = toolbarDensity === 'comfortable';
-  const statusTone = (documentStatus || '').toLowerCase().includes('edit') ? 'editing' : 'idle';
   const pageLabel = `Pág ${pageCursor + 1}/${Math.max(1, pageNum)}`;
-  const summaryLabel = `Doc · ${pageLabel}${selectionCount && selectionCount > 0 ? ` · Sel ${selectionCount}` : ''}${isGroupedSelection ? ' · Grupo' : ''}`;
   const isActiveInteractionPhase =
     interactionPhase === 'selected-single' || interactionPhase === 'selected-multi';
 
@@ -345,19 +344,10 @@ const CtlBar = (props: CtlBarProps) => {
     <div className={mergeClassNames(
       UI_CLASSNAME + 'control-bar',
       'absolute inset-0 z-[var(--sisad-pdfme-chrome-z,_45)] pointer-events-none bg-transparent max-[48rem]:p-[0.25rem_0.5rem]',
+      sidebarOpen && 'pr-[calc(var(--sisad-pdfme-rs-width)_+_0.875rem)]',
       isActiveInteractionPhase && '[box-shadow:0_0_0_1px_var(--color-primary-20),0_2px_0.5rem_var(--color-primary-12)]',
     )} data-density={toolbarDensity} data-layout="canvas-chrome">
-      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', 'absolute left-[0.5rem] top-[0.5rem] inline-flex items-center gap-[0.1875rem] pointer-events-auto')}>
-        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-summary', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] text-[0.625rem] font-semibold tracking-[0.005em] whitespace-nowrap [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)] text-[var(--text-secondary)]')}>
-          <span
-            className={mergeClassNames(UI_CLASSNAME + 'control-bar-status-dot', 'h-[0.42rem] w-[0.42rem] rounded-full bg-[var(--color-success)] [box-shadow:0_0_0_2px_var(--color-white-92)]')}
-            data-status={statusTone}
-            title={documentStatus || 'Estado'}
-            aria-label={documentStatus || 'Estado'}
-          />
-          <span title={typeof documentTitle === 'string' ? documentTitle.trim() : undefined}>{summaryLabel}</span>
-        </div>
-      </div>
+      
 
       <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', 'absolute left-1/2 top-[0.5rem] inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>

@@ -85,7 +85,7 @@ const ListView = (
     minimal: 256,
   });
   const sidebarDensityMode: 'compact' | 'comfortable' | 'minimal' =
-    densityMode === 'full' ? 'comfortable' : (densityMode as any);
+    densityMode === 'full' ? 'comfortable' : (densityMode as 'compact' | 'comfortable' | 'minimal');
   const [isBulkUpdateFieldNamesMode, setIsBulkUpdateFieldNamesMode] = useState(false);
   const [fieldNamesValue, setFieldNamesValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -350,7 +350,7 @@ const ListView = (
           onClearFilters={handleClearFilters}
           collaborationContext={collaborationContext}
           selectionCommands={selectionCommands}
-          showBulkRecipientAction={selectedSchemas.length > 0 && recipientOptions.length > 0}
+          showBulkRecipientAction={recipientOptions.length > 0}
           bulkRecipientDisabled={!canAssignSelected}
           onBulkAssignRecipient={openAssignmentDialog}
           bulkRecipientLabel={

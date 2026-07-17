@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-16T19:39:01.521Z`
+- **Fecha generación:** `2026-07-17T15:10:20.978Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `334`
+- **Archivos candidatos incluidos:** `346`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -69,6 +69,7 @@ prueba-plugin
 │   │   ├── ai-docs-context.md
 │   │   ├── canvas-multipage-context.md
 │   │   ├── css-tailwind-context.md
+│   │   ├── ESPECIFICACION_FUNCIONAL_COMPLETA_SISAD_PDFME.md
 │   │   ├── inspector-context.md
 │   │   ├── README.md
 │   │   ├── schema-families-context.md
@@ -177,6 +178,8 @@ prueba-plugin
 │   │   ├── backlog
 │   │   │   ├── TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md
 │   │   │   ├── TASK-CSS-022-left-sidebar-css-pruning.md
+│   │   │   ├── TASK-CSS-023-tailwind-migration-continuity-step-by-step.md
+│   │   │   ├── TASK-CSS-027-right-sidebar-constants-tailwind-scroll-polish.md
 │   │   │   ├── TASK-LAB-030-canvas-first-shell-style-source-unification.md
 │   │   │   ├── TASK-QA-016-tailwind-design-visual-regression.md
 │   │   │   ├── TASK-QA-017-listview-specs-docs-default-drift.md
@@ -349,6 +352,8 @@ prueba-plugin
 │   │   ├── 02-firma.md
 │   │   └── README.md
 │   └── README.md
+├── INTEGRATION_CHECKLIST.md
+├── KNOWN_GAPS.md
 ├── MANIFEST.md
 ├── PROMPT_FINALIZAR_MIGRACION_TAILWIND_SIN_PERDER_DISENO.md
 ├── README.md
@@ -389,43 +394,58 @@ prueba-plugin
 │       └── ui-styles-decommission-progress.md
 ├── scripts
 │   └── README.md
-└── src
-    └── sisad-pdfme
-        ├── common
-        │   ├── documentacion-common-sisad-pdfme.md
-        │   └── README.md
-        ├── converter
-        │   ├── documentacion-converter-sisad-pdfme.md
-        │   └── README.md
-        ├── runtime
-        │   ├── documentacion-runtime-sisad-pdfme.md
-        │   └── README.md
-        └── ui
-            ├── components
-            │   ├── Designer
-            │   │   ├── Canvas
-            │   │   │   ├── documentacion-canvas-core-jsdoc.md
-            │   │   │   ├── overlays
-            │   │   │   │   └── …
-            │   │   │   └── README.md
-            │   │   └── RightSidebar
-            │   │       ├── DetailView
-            │   │       │   └── …
-            │   │       ├── documentacion-right-sidebar-rails-jsdoc.md
-            │   │       ├── ListView
-            │   │       │   └── …
-            │   │       └── README.md
-            │   ├── documentacion-runtime-preview-base-jsdoc.md
-            │   └── README.md
-            ├── documentacion-ui-runtime-sisad-pdfme.md
-            └── README.md
+├── src
+│   └── sisad-pdfme
+│       ├── common
+│       │   ├── documentacion-common-sisad-pdfme.md
+│       │   └── README.md
+│       ├── converter
+│       │   ├── documentacion-converter-sisad-pdfme.md
+│       │   └── README.md
+│       ├── runtime
+│       │   ├── documentacion-runtime-sisad-pdfme.md
+│       │   └── README.md
+│       └── ui
+│           ├── components
+│           │   ├── Designer
+│           │   │   ├── Canvas
+│           │   │   │   ├── documentacion-canvas-core-jsdoc.md
+│           │   │   │   ├── overlays
+│           │   │   │   │   └── …
+│           │   │   │   └── README.md
+│           │   │   └── RightSidebar
+│           │   │       ├── DetailView
+│           │   │       │   └── …
+│           │   │       ├── documentacion-right-sidebar-rails-jsdoc.md
+│           │   │       ├── ListView
+│           │   │       │   └── …
+│           │   │       └── README.md
+│           │   ├── documentacion-runtime-preview-base-jsdoc.md
+│           │   └── README.md
+│           ├── documentacion-ui-runtime-sisad-pdfme.md
+│           └── README.md
+└── test-results
+    ├── tests-playwright-schema-ow-440a8-the-active-recipient-accent-chromium
+    │   └── error-context.md
+    ├── tests-playwright-schema-ow-61272-ents-from-the-same-resolver-chromium
+    │   └── error-context.md
+    ├── tests-playwright-schema-tr-c031a-cted-schema-to-page-anchors-chromium
+    │   └── error-context.md
+    ├── tests-playwright-selection-95146-focus-returns-to-the-canvas-chromium
+    │   └── error-context.md
+    ├── tests-playwright-sidebar-r-77399-ver-overlaps-the-right-rail-chromium
+    │   └── error-context.md
+    ├── tests-playwright-sidebar-r-f489a-estores-the-requested-panel-chromium
+    │   └── error-context.md
+    └── tests-playwright-standard--66ac8-s-the-expected-schema-types-chromium
+        └── error-context.md
 ```
 
 ## Archivos incluidos
 
 | # | Ruta | Lenguaje | Líneas | KB original | Estado |
 |---:|---|---|---:|---:|---|
-| 1 | `README.md` | markdown | 21 | 1.0 | completo |
+| 1 | `README.md` | markdown | 76 | 2.6 | completo |
 | 2 | `docs/README.md` | markdown | 31 | 0.7 | completo |
 | 3 | `docs/00-introduccion/01-que-es-sisad-pdfme.md` | markdown | 27 | 0.9 | completo |
 | 4 | `docs/00-introduccion/02-para-que-sirve.md` | markdown | 24 | 0.7 | completo |
@@ -524,251 +544,263 @@ prueba-plugin
 | 97 | `AGENTS.md` | markdown | 26 | 0.7 | completo |
 | 98 | `ANALISIS_PROFUNDO_MIGRACION_TAILWIND_BASELINE_ANTERIOR.md` | markdown | 844 | 14.8 | completo |
 | 99 | `CLAUDE.md` | markdown | 23 | 0.5 | completo |
-| 100 | `MANIFEST.md` | markdown | 27 | 1.0 | completo |
-| 101 | `PROMPT_FINALIZAR_MIGRACION_TAILWIND_SIN_PERDER_DISENO.md` | markdown | 455 | 7.1 | completo |
-| 102 | `.github/copilot-instructions.md` | markdown | 15 | 0.4 | completo |
-| 103 | `ai/README.md` | markdown | 38 | 0.8 | completo |
-| 104 | `ai/tree.md` | markdown | 26 | 0.4 | completo |
-| 105 | `reports/jsdoc-missing-report.md` | markdown | 2254 | 78.0 | completo |
-| 106 | `scripts/README.md` | markdown | 21 | 0.4 | completo |
-| 107 | `.serena/memories/memory_maintenance.md` | markdown | 33 | 2.0 | completo |
-| 108 | `ai/adapters/README.md` | markdown | 3 | 0.1 | completo |
-| 109 | `ai/agents/canvas-agent.md` | markdown | 37 | 0.6 | completo |
-| 110 | `ai/agents/css-tailwind-agent.md` | markdown | 37 | 0.6 | completo |
-| 111 | `ai/agents/designer-runtime-agent.md` | markdown | 37 | 0.6 | completo |
-| 112 | `ai/agents/docs-architecture-agent.md` | markdown | 37 | 0.6 | completo |
-| 113 | `ai/agents/inspector-agent.md` | markdown | 37 | 0.6 | completo |
-| 114 | `ai/agents/interaction-agent.md` | markdown | 37 | 0.6 | completo |
-| 115 | `ai/agents/lab-shell-agent.md` | markdown | 37 | 0.6 | completo |
-| 116 | `ai/agents/README.md` | markdown | 3 | 0.1 | completo |
-| 117 | `ai/agents/registry.md` | markdown | 12 | 1.3 | completo |
-| 118 | `ai/agents/schema-agent.md` | markdown | 37 | 0.6 | completo |
-| 119 | `ai/agents/snapshot-agent.md` | markdown | 37 | 0.6 | completo |
-| 120 | `ai/agents/visual-baseline-agent.md` | markdown | 37 | 0.6 | completo |
-| 121 | `ai/baselines/img-version-baseline-protocol.md` | markdown | 29 | 0.4 | completo |
-| 122 | `ai/baselines/README.md` | markdown | 3 | 0.1 | completo |
-| 123 | `ai/checklists/button-action-contract-checklist.md` | markdown | 57 | 1.0 | completo |
-| 124 | `ai/checklists/done-vs-pending.md` | markdown | 41 | 0.7 | completo |
-| 125 | `ai/checklists/global-validation.md` | markdown | 8 | 0.2 | completo |
-| 126 | `ai/checklists/improvement-backlog.md` | markdown | 9 | 0.3 | completo |
-| 127 | `ai/checklists/manual-ui-regression.md` | markdown | 19 | 0.4 | completo |
-| 128 | `ai/checklists/pdfcomponent-dynamic-integration-checklist.md` | markdown | 31 | 1.4 | completo |
-| 129 | `ai/checklists/README.md` | markdown | 3 | 0.1 | completo |
-| 130 | `ai/checklists/tailwind-design-continuity-validation.md` | markdown | 16 | 1.0 | completo |
-| 131 | `ai/checklists/tailwind-migration.md` | markdown | 11 | 0.3 | completo |
-| 132 | `ai/context/action-map-context.md` | markdown | 70 | 1.4 | completo |
-| 133 | `ai/context/ai-docs-context.md` | markdown | 3 | 0.1 | completo |
-| 134 | `ai/context/canvas-multipage-context.md` | markdown | 9 | 0.2 | completo |
-| 135 | `ai/context/css-tailwind-context.md` | markdown | 26 | 0.6 | completo |
-| 136 | `ai/context/inspector-context.md` | markdown | 3 | 0.1 | completo |
-| 137 | `ai/context/README.md` | markdown | 3 | 0.1 | completo |
-| 138 | `ai/context/schema-families-context.md` | markdown | 5 | 0.2 | completo |
-| 139 | `ai/context/selection-transform-context.md` | markdown | 3 | 0.2 | completo |
-| 140 | `ai/context/snapshot-context.md` | markdown | 3 | 0.1 | completo |
-| 141 | `ai/context/tailwind-design-continuity-context.md` | markdown | 25 | 1.7 | completo |
-| 142 | `ai/context/visual-baseline-context.md` | markdown | 18 | 0.2 | completo |
-| 143 | `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md` | markdown | 30 | 0.7 | completo |
-| 144 | `ai/memory/changelog.md` | markdown | 7 | 0.3 | completo |
-| 145 | `ai/memory/completed-checklist.md` | markdown | 27 | 1.3 | completo |
-| 146 | `ai/memory/decisions.md` | markdown | 21 | 0.8 | completo |
-| 147 | `ai/memory/known-risks.md` | markdown | 10 | 0.5 | completo |
-| 148 | `ai/memory/memory-update-protocol.md` | markdown | 29 | 0.6 | completo |
-| 149 | `ai/memory/pending-checklist.md` | markdown | 21 | 1.2 | completo |
-| 150 | `ai/memory/project-memory.md` | markdown | 20 | 0.8 | completo |
-| 151 | `ai/memory/README.md` | markdown | 13 | 0.4 | completo |
-| 152 | `ai/memory/session-handoff.md` | markdown | 168 | 9.6 | completo |
-| 153 | `ai/plans/PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md` | markdown | 679 | 11.9 | completo |
-| 154 | `ai/playbooks/pb-ai-docs-refactor.md` | markdown | 26 | 0.8 | completo |
-| 155 | `ai/playbooks/pb-canvas-multipage.md` | markdown | 6 | 0.2 | completo |
-| 156 | `ai/playbooks/pb-css-tailwind-migration.md` | markdown | 28 | 0.7 | completo |
-| 157 | `ai/playbooks/pb-inspector.md` | markdown | 6 | 0.1 | completo |
-| 158 | `ai/playbooks/pb-schema-families.md` | markdown | 6 | 0.2 | completo |
-| 159 | `ai/playbooks/pb-selection-transform.md` | markdown | 6 | 0.1 | completo |
-| 160 | `ai/playbooks/pb-snapshot.md` | markdown | 6 | 0.1 | completo |
-| 161 | `ai/playbooks/pb-tailwind-design-continuity.md` | markdown | 33 | 1.2 | completo |
-| 162 | `ai/playbooks/pb-visual-regression.md` | markdown | 8 | 0.2 | completo |
-| 163 | `ai/playbooks/README.md` | markdown | 3 | 0.1 | completo |
-| 164 | `ai/project/architecture-principles.md` | markdown | 34 | 1.0 | completo |
-| 165 | `ai/project/definition-of-done.md` | markdown | 12 | 0.4 | completo |
-| 166 | `ai/project/file-ownership-map.md` | markdown | 14 | 0.8 | completo |
-| 167 | `ai/project/glossary.md` | markdown | 16 | 0.7 | completo |
-| 168 | `ai/project/goals.md` | markdown | 24 | 0.9 | completo |
-| 169 | `ai/project/non-goals.md` | markdown | 12 | 0.3 | completo |
-| 170 | `ai/project/scope.md` | markdown | 38 | 0.6 | completo |
-| 171 | `ai/prompts/claude-diagnose-or-implement.md` | markdown | 7 | 0.2 | completo |
-| 172 | `ai/prompts/codex-master-prompt.md` | markdown | 5 | 0.3 | completo |
-| 173 | `ai/prompts/codex-next-pass-actions-ui-dedup.md` | markdown | 62 | 1.7 | completo |
-| 174 | `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md` | markdown | 31 | 1.6 | completo |
-| 175 | `ai/prompts/codex-start-tailwind-design-continuity.md` | markdown | 13 | 0.8 | completo |
-| 176 | `ai/prompts/copilot-task-context.md` | markdown | 11 | 0.2 | completo |
-| 177 | `ai/prompts/create-task-card.md` | markdown | 11 | 0.2 | completo |
-| 178 | `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md` | markdown | 804 | 14.7 | completo |
-| 179 | `ai/prompts/README.md` | markdown | 3 | 0.1 | completo |
-| 180 | `ai/prompts/update-memory.md` | markdown | 3 | 0.1 | completo |
-| 181 | `ai/reports/architecture-correction-2026-07-14.md` | markdown | 28 | 1.6 | completo |
-| 182 | `ai/reports/auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md` | markdown | 198 | 11.2 | completo |
-| 183 | `ai/reports/deep-ui-action-audit-2026-07-15.md` | markdown | 169 | 5.0 | completo |
-| 184 | `ai/reports/pdfcomponent-integration-boundary.md` | markdown | 41 | 1.6 | completo |
-| 185 | `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md` | markdown | 193 | 10.8 | completo |
-| 186 | `ai/reports/tailwind-design-continuity-roadmap.md` | markdown | 24 | 1.2 | completo |
-| 187 | `ai/router/CONTEXT_BUDGET.md` | markdown | 58 | 1.2 | completo |
-| 188 | `ai/router/ROUTER.md` | markdown | 30 | 2.0 | completo |
-| 189 | `ai/router/TASK_INTAKE.md` | markdown | 35 | 0.9 | completo |
-| 190 | `ai/rules/ai-docs-rules.md` | markdown | 6 | 0.2 | completo |
-| 191 | `ai/rules/canvas-rules.md` | markdown | 3 | 0.1 | completo |
-| 192 | `ai/rules/css-migration-rules.md` | markdown | 35 | 0.8 | completo |
-| 193 | `ai/rules/global-rules.md` | markdown | 9 | 0.7 | completo |
-| 194 | `ai/rules/inspector-rules.md` | markdown | 3 | 0.1 | completo |
-| 195 | `ai/rules/moveable-selecto-rules.md` | markdown | 5 | 0.2 | completo |
-| 196 | `ai/rules/README.md` | markdown | 3 | 0.1 | completo |
-| 197 | `ai/rules/schema-rules.md` | markdown | 3 | 0.1 | completo |
-| 198 | `ai/rules/snapshot-rules.md` | markdown | 3 | 0.1 | completo |
-| 199 | `ai/rules/tailwind-design-continuity-rules.md` | markdown | 14 | 1.3 | completo |
-| 200 | `ai/skills/canvas-multipage-skill.md` | markdown | 29 | 0.4 | completo |
-| 201 | `ai/skills/inspector-skill.md` | markdown | 29 | 0.4 | completo |
-| 202 | `ai/skills/memory-update-skill.md` | markdown | 29 | 0.4 | completo |
-| 203 | `ai/skills/moveable-selecto-skill.md` | markdown | 29 | 0.4 | completo |
-| 204 | `ai/skills/option-groups-skill.md` | markdown | 29 | 0.4 | completo |
-| 205 | `ai/skills/prompting-skill.md` | markdown | 29 | 0.4 | completo |
-| 206 | `ai/skills/README.md` | markdown | 3 | 0.1 | completo |
-| 207 | `ai/skills/snapshot-safety-skill.md` | markdown | 29 | 0.4 | completo |
-| 208 | `ai/skills/tailwind-migration-skill.md` | markdown | 29 | 0.4 | completo |
-| 209 | `ai/skills/visual-regression-skill.md` | markdown | 29 | 0.4 | completo |
-| 210 | `ai/start/QUICKSTART-CLAUDE.md` | markdown | 15 | 0.4 | completo |
-| 211 | `ai/start/QUICKSTART-CODEX.md` | markdown | 34 | 0.7 | completo |
-| 212 | `ai/start/QUICKSTART-COPILOT.md` | markdown | 18 | 0.4 | completo |
-| 213 | `ai/start/START.md` | markdown | 76 | 1.2 | completo |
-| 214 | `ai/subagents/anti-hallucination-reviewer.md` | markdown | 13 | 0.3 | completo |
-| 215 | `ai/subagents/baseline-visual-critic.md` | markdown | 13 | 0.3 | completo |
-| 216 | `ai/subagents/code-docs-writer.md` | markdown | 13 | 0.3 | completo |
-| 217 | `ai/subagents/css-auditor.md` | markdown | 13 | 0.3 | completo |
-| 218 | `ai/subagents/legacy-css-guardian.md` | markdown | 13 | 0.3 | completo |
-| 219 | `ai/subagents/memory-curator.md` | markdown | 13 | 0.3 | completo |
-| 220 | `ai/subagents/prompt-engineer.md` | markdown | 13 | 0.3 | completo |
-| 221 | `ai/subagents/README.md` | markdown | 3 | 0.1 | completo |
-| 222 | `ai/subagents/regression-tester.md` | markdown | 13 | 0.3 | completo |
-| 223 | `ai/subagents/tailwind-migrator.md` | markdown | 13 | 0.3 | completo |
-| 224 | `ai/task-cards/README.md` | markdown | 11 | 0.2 | completo |
-| 225 | `ai/templates/agent-template.md` | markdown | 7 | 0.1 | completo |
-| 226 | `ai/templates/checklist-template.md` | markdown | 5 | 0.1 | completo |
-| 227 | `ai/templates/decision-template.md` | markdown | 7 | 0.1 | completo |
-| 228 | `ai/templates/memory-update-template.md` | markdown | 7 | 0.1 | completo |
-| 229 | `ai/templates/README.md` | markdown | 3 | 0.1 | completo |
-| 230 | `ai/templates/skill-template.md` | markdown | 7 | 0.1 | completo |
-| 231 | `ai/templates/task-card-template.md` | markdown | 11 | 0.2 | completo |
-| 232 | `reports/action-audit/button-action-inventory.md` | markdown | 149 | 41.7 | completo |
-| 233 | `reports/designer-deep-audit/duplication-map.md` | markdown | 24 | 1.4 | completo |
-| 234 | `reports/designer-deep-audit/risk-map.md` | markdown | 19 | 1.1 | completo |
-| 235 | `reports/designer-deep-audit/wrapper-reduction.md` | markdown | 56 | 2.7 | completo |
-| 236 | `reports/tailwind-migration/active-css-inventory.md` | markdown | 12 | 0.6 | completo |
-| 237 | `reports/tailwind-migration/active-selector-duplicates.md` | markdown | 49 | 9.6 | completo |
-| 238 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
-| 239 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 126 | 9.3 | completo |
-| 240 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
-| 241 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
-| 242 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
-| 243 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
-| 244 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
-| 245 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
-| 246 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
-| 247 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
-| 248 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
-| 249 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
-| 250 | `reports/tailwind-migration/selector-duplicates-current.md` | markdown | 61 | 10.9 | completo |
-| 251 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
-| 252 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
-| 253 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
-| 254 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
-| 255 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
-| 256 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
-| 257 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
-| 258 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
-| 259 | `ai/task-cards/active/TASK-CSS-026-accelerated-tailwind-inline-decommission.md` | markdown | 109 | 7.0 | completo |
-| 260 | `ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md` | markdown | 177 | 26.8 | completo |
-| 261 | `ai/task-cards/backlog/TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md` | markdown | 42 | 1.2 | completo |
-| 262 | `ai/task-cards/backlog/TASK-CSS-022-left-sidebar-css-pruning.md` | markdown | 39 | 0.9 | completo |
-| 263 | `ai/task-cards/backlog/TASK-LAB-030-canvas-first-shell-style-source-unification.md` | markdown | 42 | 1.2 | completo |
-| 264 | `ai/task-cards/backlog/TASK-QA-016-tailwind-design-visual-regression.md` | markdown | 42 | 1.1 | completo |
-| 265 | `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md` | markdown | 39 | 1.9 | completo |
-| 266 | `ai/task-cards/backlog/TASK-SCHEMA-003-action-owner-accent-continuity.md` | markdown | 42 | 1.2 | completo |
-| 267 | `ai/task-cards/completed/completed-summary.md` | markdown | 152 | 8.9 | completo |
-| 268 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
-| 269 | `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md` | markdown | 89 | 2.6 | completo |
-| 270 | `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md` | markdown | 105 | 3.6 | completo |
-| 271 | `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
-| 272 | `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md` | markdown | 77 | 2.5 | completo |
-| 273 | `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 21 | 0.5 | completo |
-| 274 | `ai/task-cards/completed/TASK-CANVAS-003-guides-ruler-black-overlay-regression.md` | markdown | 78 | 3.0 | completo |
-| 275 | `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 91 | 2.7 | completo |
-| 276 | `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md` | markdown | 86 | 3.1 | completo |
-| 277 | `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md` | markdown | 85 | 2.9 | completo |
-| 278 | `ai/task-cards/completed/TASK-CSS-015-lab-routes-tailwind3-dedup.md` | markdown | 14 | 0.4 | completo |
-| 279 | `ai/task-cards/completed/TASK-CSS-018-stabilize-tailwind-cleanup.md` | markdown | 41 | 1.6 | completo |
-| 280 | `ai/task-cards/completed/TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md` | markdown | 72 | 4.6 | completo |
-| 281 | `ai/task-cards/completed/TASK-CSS-020-lab-routes-zero-apply.md` | markdown | 50 | 1.5 | completo |
-| 282 | `ai/task-cards/completed/TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md` | markdown | 42 | 1.1 | completo |
-| 283 | `ai/task-cards/completed/TASK-CSS-024-right-sidebar-listview-row-flat.md` | markdown | 99 | 4.6 | completo |
-| 284 | `ai/task-cards/completed/TASK-CSS-025-context-summary-guides-apply-to-jsx.md` | markdown | 116 | 6.5 | completo |
-| 285 | `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md` | markdown | 85 | 3.3 | completo |
-| 286 | `ai/task-cards/completed/TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md` | markdown | 36 | 2.1 | completo |
-| 287 | `ai/task-cards/completed/TASK-LAB-017-pdfcomponent-integration-boundary.md` | markdown | 19 | 0.8 | completo |
-| 288 | `ai/task-cards/completed/TASK-LAB-018-use-pdfme-lab-integration-hook.md` | markdown | 20 | 0.8 | completo |
-| 289 | `ai/task-cards/completed/TASK-LAB-019-normalize-lab-example-data-contract.md` | markdown | 16 | 0.5 | completo |
-| 290 | `ai/task-cards/completed/TASK-LAB-020-public-runtime-wrappers-only.md` | markdown | 18 | 0.7 | completo |
-| 291 | `ai/task-cards/completed/TASK-LAB-021-lab-action-registry-controller-contract.md` | markdown | 15 | 0.5 | completo |
-| 292 | `ai/task-cards/completed/TASK-LAB-022-remove-compat-wrapper-reexports.md` | markdown | 18 | 0.7 | completo |
-| 293 | `ai/task-cards/completed/TASK-LAB-023-lab-presentation-core-selectors.md` | markdown | 14 | 0.5 | completo |
-| 294 | `ai/task-cards/completed/TASK-LAB-024-external-data-integration-e2e.md` | markdown | 19 | 0.8 | completo |
-| 295 | `ai/task-cards/completed/TASK-LAB-025-example-bundle-normalized-export.md` | markdown | 18 | 0.6 | completo |
-| 296 | `ai/task-cards/completed/TASK-LAB-026-restore-designer-visual-baseline-after-integration.md` | markdown | 97 | 4.9 | completo |
-| 297 | `ai/task-cards/completed/TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md` | markdown | 40 | 1.6 | completo |
-| 298 | `ai/task-cards/completed/TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md` | markdown | 48 | 2.0 | completo |
-| 299 | `ai/task-cards/completed/TASK-LAB-029-multidocument-right-sidebar-docs-default.md` | markdown | 43 | 1.7 | completo |
-| 300 | `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 40 | 1.0 | completo |
-| 301 | `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 37 | 1.0 | completo |
-| 302 | `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 48 | 1.4 | completo |
-| 303 | `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 37 | 1.3 | completo |
-| 304 | `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
-| 305 | `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md` | markdown | 86 | 2.4 | completo |
-| 306 | `ai/task-cards/completed/TASK-REGRESSION-020-owner-color-renderer-continuity.md` | markdown | 49 | 1.9 | completo |
-| 307 | `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md` | markdown | 59 | 1.9 | completo |
-| 308 | `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md` | markdown | 77 | 2.5 | completo |
-| 309 | `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md` | markdown | 68 | 2.0 | completo |
-| 310 | `ai/task-cards/completed/TASK-UI-017-density-breakpoints-sync.md` | markdown | 37 | 1.7 | completo |
-| 311 | `reports/tailwind-migration/accelerated/constants-contract.md` | markdown | 22 | 2.1 | completo |
-| 312 | `reports/tailwind-migration/accelerated/migration-ledger.md` | markdown | 92 | 5.2 | completo |
-| 313 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
-| 314 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
-| 315 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
-| 316 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
-| 317 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
-| 318 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
-| 319 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
-| 320 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
-| 321 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
-| 322 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
-| 323 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
-| 324 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
-| 325 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
-| 326 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
-| 327 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
-| 328 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
-| 329 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
-| 330 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
-| 331 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
-| 332 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
-| 333 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
-| 334 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
+| 100 | `INTEGRATION_CHECKLIST.md` | markdown | 26 | 1.1 | completo |
+| 101 | `KNOWN_GAPS.md` | markdown | 18 | 1.3 | completo |
+| 102 | `MANIFEST.md` | markdown | 27 | 1.0 | completo |
+| 103 | `PROMPT_FINALIZAR_MIGRACION_TAILWIND_SIN_PERDER_DISENO.md` | markdown | 455 | 7.1 | completo |
+| 104 | `.github/copilot-instructions.md` | markdown | 15 | 0.4 | completo |
+| 105 | `ai/README.md` | markdown | 38 | 0.8 | completo |
+| 106 | `ai/tree.md` | markdown | 26 | 0.4 | completo |
+| 107 | `reports/jsdoc-missing-report.md` | markdown | 2254 | 78.0 | completo |
+| 108 | `scripts/README.md` | markdown | 21 | 0.4 | completo |
+| 109 | `.serena/memories/memory_maintenance.md` | markdown | 33 | 2.0 | completo |
+| 110 | `ai/adapters/README.md` | markdown | 3 | 0.1 | completo |
+| 111 | `ai/agents/canvas-agent.md` | markdown | 37 | 0.6 | completo |
+| 112 | `ai/agents/css-tailwind-agent.md` | markdown | 37 | 0.6 | completo |
+| 113 | `ai/agents/designer-runtime-agent.md` | markdown | 37 | 0.6 | completo |
+| 114 | `ai/agents/docs-architecture-agent.md` | markdown | 37 | 0.6 | completo |
+| 115 | `ai/agents/inspector-agent.md` | markdown | 37 | 0.6 | completo |
+| 116 | `ai/agents/interaction-agent.md` | markdown | 37 | 0.6 | completo |
+| 117 | `ai/agents/lab-shell-agent.md` | markdown | 37 | 0.6 | completo |
+| 118 | `ai/agents/README.md` | markdown | 3 | 0.1 | completo |
+| 119 | `ai/agents/registry.md` | markdown | 12 | 1.3 | completo |
+| 120 | `ai/agents/schema-agent.md` | markdown | 37 | 0.6 | completo |
+| 121 | `ai/agents/snapshot-agent.md` | markdown | 37 | 0.6 | completo |
+| 122 | `ai/agents/visual-baseline-agent.md` | markdown | 37 | 0.6 | completo |
+| 123 | `ai/baselines/img-version-baseline-protocol.md` | markdown | 29 | 0.4 | completo |
+| 124 | `ai/baselines/README.md` | markdown | 3 | 0.1 | completo |
+| 125 | `ai/checklists/button-action-contract-checklist.md` | markdown | 57 | 1.0 | completo |
+| 126 | `ai/checklists/done-vs-pending.md` | markdown | 41 | 0.7 | completo |
+| 127 | `ai/checklists/global-validation.md` | markdown | 8 | 0.2 | completo |
+| 128 | `ai/checklists/improvement-backlog.md` | markdown | 9 | 0.3 | completo |
+| 129 | `ai/checklists/manual-ui-regression.md` | markdown | 19 | 0.4 | completo |
+| 130 | `ai/checklists/pdfcomponent-dynamic-integration-checklist.md` | markdown | 31 | 1.4 | completo |
+| 131 | `ai/checklists/README.md` | markdown | 3 | 0.1 | completo |
+| 132 | `ai/checklists/tailwind-design-continuity-validation.md` | markdown | 16 | 1.0 | completo |
+| 133 | `ai/checklists/tailwind-migration.md` | markdown | 11 | 0.3 | completo |
+| 134 | `ai/context/action-map-context.md` | markdown | 70 | 1.4 | completo |
+| 135 | `ai/context/ai-docs-context.md` | markdown | 3 | 0.1 | completo |
+| 136 | `ai/context/canvas-multipage-context.md` | markdown | 9 | 0.2 | completo |
+| 137 | `ai/context/css-tailwind-context.md` | markdown | 26 | 0.6 | completo |
+| 138 | `ai/context/ESPECIFICACION_FUNCIONAL_COMPLETA_SISAD_PDFME.md` | markdown | 1153 | 19.6 | completo |
+| 139 | `ai/context/inspector-context.md` | markdown | 3 | 0.1 | completo |
+| 140 | `ai/context/README.md` | markdown | 3 | 0.1 | completo |
+| 141 | `ai/context/schema-families-context.md` | markdown | 5 | 0.2 | completo |
+| 142 | `ai/context/selection-transform-context.md` | markdown | 3 | 0.2 | completo |
+| 143 | `ai/context/snapshot-context.md` | markdown | 3 | 0.1 | completo |
+| 144 | `ai/context/tailwind-design-continuity-context.md` | markdown | 25 | 1.7 | completo |
+| 145 | `ai/context/visual-baseline-context.md` | markdown | 18 | 0.2 | completo |
+| 146 | `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md` | markdown | 30 | 0.7 | completo |
+| 147 | `ai/memory/changelog.md` | markdown | 7 | 0.3 | completo |
+| 148 | `ai/memory/completed-checklist.md` | markdown | 27 | 1.3 | completo |
+| 149 | `ai/memory/decisions.md` | markdown | 21 | 0.8 | completo |
+| 150 | `ai/memory/known-risks.md` | markdown | 10 | 0.5 | completo |
+| 151 | `ai/memory/memory-update-protocol.md` | markdown | 29 | 0.6 | completo |
+| 152 | `ai/memory/pending-checklist.md` | markdown | 21 | 1.2 | completo |
+| 153 | `ai/memory/project-memory.md` | markdown | 20 | 0.8 | completo |
+| 154 | `ai/memory/README.md` | markdown | 13 | 0.4 | completo |
+| 155 | `ai/memory/session-handoff.md` | markdown | 168 | 9.6 | completo |
+| 156 | `ai/plans/PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md` | markdown | 679 | 12.9 | completo |
+| 157 | `ai/playbooks/pb-ai-docs-refactor.md` | markdown | 26 | 0.8 | completo |
+| 158 | `ai/playbooks/pb-canvas-multipage.md` | markdown | 6 | 0.2 | completo |
+| 159 | `ai/playbooks/pb-css-tailwind-migration.md` | markdown | 28 | 0.7 | completo |
+| 160 | `ai/playbooks/pb-inspector.md` | markdown | 6 | 0.1 | completo |
+| 161 | `ai/playbooks/pb-schema-families.md` | markdown | 6 | 0.2 | completo |
+| 162 | `ai/playbooks/pb-selection-transform.md` | markdown | 6 | 0.1 | completo |
+| 163 | `ai/playbooks/pb-snapshot.md` | markdown | 6 | 0.1 | completo |
+| 164 | `ai/playbooks/pb-tailwind-design-continuity.md` | markdown | 33 | 1.2 | completo |
+| 165 | `ai/playbooks/pb-visual-regression.md` | markdown | 8 | 0.2 | completo |
+| 166 | `ai/playbooks/README.md` | markdown | 3 | 0.1 | completo |
+| 167 | `ai/project/architecture-principles.md` | markdown | 34 | 1.0 | completo |
+| 168 | `ai/project/definition-of-done.md` | markdown | 12 | 0.4 | completo |
+| 169 | `ai/project/file-ownership-map.md` | markdown | 14 | 0.8 | completo |
+| 170 | `ai/project/glossary.md` | markdown | 16 | 0.7 | completo |
+| 171 | `ai/project/goals.md` | markdown | 24 | 0.9 | completo |
+| 172 | `ai/project/non-goals.md` | markdown | 12 | 0.3 | completo |
+| 173 | `ai/project/scope.md` | markdown | 38 | 0.6 | completo |
+| 174 | `ai/prompts/claude-diagnose-or-implement.md` | markdown | 7 | 0.2 | completo |
+| 175 | `ai/prompts/codex-master-prompt.md` | markdown | 5 | 0.3 | completo |
+| 176 | `ai/prompts/codex-next-pass-actions-ui-dedup.md` | markdown | 62 | 1.7 | completo |
+| 177 | `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md` | markdown | 31 | 1.6 | completo |
+| 178 | `ai/prompts/codex-start-tailwind-design-continuity.md` | markdown | 13 | 0.8 | completo |
+| 179 | `ai/prompts/copilot-task-context.md` | markdown | 11 | 0.2 | completo |
+| 180 | `ai/prompts/create-task-card.md` | markdown | 11 | 0.2 | completo |
+| 181 | `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md` | markdown | 804 | 14.7 | completo |
+| 182 | `ai/prompts/README.md` | markdown | 3 | 0.1 | completo |
+| 183 | `ai/prompts/update-memory.md` | markdown | 3 | 0.1 | completo |
+| 184 | `ai/reports/architecture-correction-2026-07-14.md` | markdown | 28 | 1.6 | completo |
+| 185 | `ai/reports/auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md` | markdown | 198 | 11.2 | completo |
+| 186 | `ai/reports/deep-ui-action-audit-2026-07-15.md` | markdown | 169 | 5.0 | completo |
+| 187 | `ai/reports/pdfcomponent-integration-boundary.md` | markdown | 41 | 1.6 | completo |
+| 188 | `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md` | markdown | 193 | 10.8 | completo |
+| 189 | `ai/reports/tailwind-design-continuity-roadmap.md` | markdown | 24 | 1.2 | completo |
+| 190 | `ai/router/CONTEXT_BUDGET.md` | markdown | 58 | 1.2 | completo |
+| 191 | `ai/router/ROUTER.md` | markdown | 30 | 2.0 | completo |
+| 192 | `ai/router/TASK_INTAKE.md` | markdown | 35 | 0.9 | completo |
+| 193 | `ai/rules/ai-docs-rules.md` | markdown | 6 | 0.2 | completo |
+| 194 | `ai/rules/canvas-rules.md` | markdown | 3 | 0.1 | completo |
+| 195 | `ai/rules/css-migration-rules.md` | markdown | 35 | 0.8 | completo |
+| 196 | `ai/rules/global-rules.md` | markdown | 9 | 0.7 | completo |
+| 197 | `ai/rules/inspector-rules.md` | markdown | 3 | 0.1 | completo |
+| 198 | `ai/rules/moveable-selecto-rules.md` | markdown | 5 | 0.2 | completo |
+| 199 | `ai/rules/README.md` | markdown | 3 | 0.1 | completo |
+| 200 | `ai/rules/schema-rules.md` | markdown | 3 | 0.1 | completo |
+| 201 | `ai/rules/snapshot-rules.md` | markdown | 3 | 0.1 | completo |
+| 202 | `ai/rules/tailwind-design-continuity-rules.md` | markdown | 14 | 1.3 | completo |
+| 203 | `ai/skills/canvas-multipage-skill.md` | markdown | 29 | 0.4 | completo |
+| 204 | `ai/skills/inspector-skill.md` | markdown | 29 | 0.4 | completo |
+| 205 | `ai/skills/memory-update-skill.md` | markdown | 29 | 0.4 | completo |
+| 206 | `ai/skills/moveable-selecto-skill.md` | markdown | 29 | 0.4 | completo |
+| 207 | `ai/skills/option-groups-skill.md` | markdown | 29 | 0.4 | completo |
+| 208 | `ai/skills/prompting-skill.md` | markdown | 29 | 0.4 | completo |
+| 209 | `ai/skills/README.md` | markdown | 3 | 0.1 | completo |
+| 210 | `ai/skills/snapshot-safety-skill.md` | markdown | 29 | 0.4 | completo |
+| 211 | `ai/skills/tailwind-migration-skill.md` | markdown | 29 | 0.4 | completo |
+| 212 | `ai/skills/visual-regression-skill.md` | markdown | 29 | 0.4 | completo |
+| 213 | `ai/start/QUICKSTART-CLAUDE.md` | markdown | 15 | 0.4 | completo |
+| 214 | `ai/start/QUICKSTART-CODEX.md` | markdown | 34 | 0.7 | completo |
+| 215 | `ai/start/QUICKSTART-COPILOT.md` | markdown | 18 | 0.4 | completo |
+| 216 | `ai/start/START.md` | markdown | 76 | 1.2 | completo |
+| 217 | `ai/subagents/anti-hallucination-reviewer.md` | markdown | 13 | 0.3 | completo |
+| 218 | `ai/subagents/baseline-visual-critic.md` | markdown | 13 | 0.3 | completo |
+| 219 | `ai/subagents/code-docs-writer.md` | markdown | 13 | 0.3 | completo |
+| 220 | `ai/subagents/css-auditor.md` | markdown | 13 | 0.3 | completo |
+| 221 | `ai/subagents/legacy-css-guardian.md` | markdown | 13 | 0.3 | completo |
+| 222 | `ai/subagents/memory-curator.md` | markdown | 13 | 0.3 | completo |
+| 223 | `ai/subagents/prompt-engineer.md` | markdown | 13 | 0.3 | completo |
+| 224 | `ai/subagents/README.md` | markdown | 3 | 0.1 | completo |
+| 225 | `ai/subagents/regression-tester.md` | markdown | 13 | 0.3 | completo |
+| 226 | `ai/subagents/tailwind-migrator.md` | markdown | 13 | 0.3 | completo |
+| 227 | `ai/task-cards/README.md` | markdown | 11 | 0.2 | completo |
+| 228 | `ai/templates/agent-template.md` | markdown | 7 | 0.1 | completo |
+| 229 | `ai/templates/checklist-template.md` | markdown | 5 | 0.1 | completo |
+| 230 | `ai/templates/decision-template.md` | markdown | 7 | 0.1 | completo |
+| 231 | `ai/templates/memory-update-template.md` | markdown | 7 | 0.1 | completo |
+| 232 | `ai/templates/README.md` | markdown | 3 | 0.1 | completo |
+| 233 | `ai/templates/skill-template.md` | markdown | 7 | 0.1 | completo |
+| 234 | `ai/templates/task-card-template.md` | markdown | 11 | 0.2 | completo |
+| 235 | `reports/action-audit/button-action-inventory.md` | markdown | 149 | 41.7 | completo |
+| 236 | `reports/designer-deep-audit/duplication-map.md` | markdown | 24 | 1.4 | completo |
+| 237 | `reports/designer-deep-audit/risk-map.md` | markdown | 19 | 1.1 | completo |
+| 238 | `reports/designer-deep-audit/wrapper-reduction.md` | markdown | 56 | 2.7 | completo |
+| 239 | `reports/tailwind-migration/active-css-inventory.md` | markdown | 12 | 0.6 | completo |
+| 240 | `reports/tailwind-migration/active-selector-duplicates.md` | markdown | 9 | 0.9 | completo |
+| 241 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
+| 242 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 212 | 19.5 | completo |
+| 243 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
+| 244 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
+| 245 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
+| 246 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
+| 247 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
+| 248 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
+| 249 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
+| 250 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
+| 251 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
+| 252 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
+| 253 | `reports/tailwind-migration/selector-duplicates-current.md` | markdown | 37 | 5.5 | completo |
+| 254 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
+| 255 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
+| 256 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
+| 257 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
+| 258 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
+| 259 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
+| 260 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
+| 261 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
+| 262 | `test-results/tests-playwright-schema-ow-440a8-the-active-recipient-accent-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
+| 263 | `test-results/tests-playwright-schema-ow-61272-ents-from-the-same-resolver-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
+| 264 | `test-results/tests-playwright-schema-tr-c031a-cted-schema-to-page-anchors-chromium/error-context.md` | markdown | 555 | 28.0 | completo |
+| 265 | `test-results/tests-playwright-selection-95146-focus-returns-to-the-canvas-chromium/error-context.md` | markdown | 555 | 28.0 | completo |
+| 266 | `test-results/tests-playwright-sidebar-r-77399-ver-overlaps-the-right-rail-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
+| 267 | `test-results/tests-playwright-sidebar-r-f489a-estores-the-requested-panel-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
+| 268 | `test-results/tests-playwright-standard--66ac8-s-the-expected-schema-types-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
+| 269 | `ai/task-cards/active/TASK-CSS-026-accelerated-tailwind-inline-decommission.md` | markdown | 109 | 7.0 | completo |
+| 270 | `ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md` | markdown | 214 | 35.7 | completo |
+| 271 | `ai/task-cards/backlog/TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md` | markdown | 42 | 1.2 | completo |
+| 272 | `ai/task-cards/backlog/TASK-CSS-022-left-sidebar-css-pruning.md` | markdown | 39 | 0.9 | completo |
+| 273 | `ai/task-cards/backlog/TASK-CSS-023-tailwind-migration-continuity-step-by-step.md` | markdown | 84 | 3.9 | completo |
+| 274 | `ai/task-cards/backlog/TASK-CSS-027-right-sidebar-constants-tailwind-scroll-polish.md` | markdown | 95 | 4.6 | completo |
+| 275 | `ai/task-cards/backlog/TASK-LAB-030-canvas-first-shell-style-source-unification.md` | markdown | 42 | 1.2 | completo |
+| 276 | `ai/task-cards/backlog/TASK-QA-016-tailwind-design-visual-regression.md` | markdown | 42 | 1.1 | completo |
+| 277 | `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md` | markdown | 39 | 1.9 | completo |
+| 278 | `ai/task-cards/backlog/TASK-SCHEMA-003-action-owner-accent-continuity.md` | markdown | 42 | 1.2 | completo |
+| 279 | `ai/task-cards/completed/completed-summary.md` | markdown | 152 | 8.9 | completo |
+| 280 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 281 | `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md` | markdown | 89 | 2.6 | completo |
+| 282 | `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md` | markdown | 105 | 3.6 | completo |
+| 283 | `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
+| 284 | `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md` | markdown | 77 | 2.5 | completo |
+| 285 | `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 21 | 0.5 | completo |
+| 286 | `ai/task-cards/completed/TASK-CANVAS-003-guides-ruler-black-overlay-regression.md` | markdown | 78 | 3.0 | completo |
+| 287 | `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 91 | 2.7 | completo |
+| 288 | `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md` | markdown | 86 | 3.1 | completo |
+| 289 | `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md` | markdown | 85 | 2.9 | completo |
+| 290 | `ai/task-cards/completed/TASK-CSS-015-lab-routes-tailwind3-dedup.md` | markdown | 14 | 0.4 | completo |
+| 291 | `ai/task-cards/completed/TASK-CSS-018-stabilize-tailwind-cleanup.md` | markdown | 41 | 1.6 | completo |
+| 292 | `ai/task-cards/completed/TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md` | markdown | 72 | 4.6 | completo |
+| 293 | `ai/task-cards/completed/TASK-CSS-020-lab-routes-zero-apply.md` | markdown | 50 | 1.5 | completo |
+| 294 | `ai/task-cards/completed/TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md` | markdown | 42 | 1.1 | completo |
+| 295 | `ai/task-cards/completed/TASK-CSS-024-right-sidebar-listview-row-flat.md` | markdown | 99 | 4.6 | completo |
+| 296 | `ai/task-cards/completed/TASK-CSS-025-context-summary-guides-apply-to-jsx.md` | markdown | 116 | 6.5 | completo |
+| 297 | `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md` | markdown | 85 | 3.3 | completo |
+| 298 | `ai/task-cards/completed/TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md` | markdown | 36 | 2.1 | completo |
+| 299 | `ai/task-cards/completed/TASK-LAB-017-pdfcomponent-integration-boundary.md` | markdown | 19 | 0.8 | completo |
+| 300 | `ai/task-cards/completed/TASK-LAB-018-use-pdfme-lab-integration-hook.md` | markdown | 20 | 0.8 | completo |
+| 301 | `ai/task-cards/completed/TASK-LAB-019-normalize-lab-example-data-contract.md` | markdown | 16 | 0.5 | completo |
+| 302 | `ai/task-cards/completed/TASK-LAB-020-public-runtime-wrappers-only.md` | markdown | 18 | 0.7 | completo |
+| 303 | `ai/task-cards/completed/TASK-LAB-021-lab-action-registry-controller-contract.md` | markdown | 15 | 0.5 | completo |
+| 304 | `ai/task-cards/completed/TASK-LAB-022-remove-compat-wrapper-reexports.md` | markdown | 18 | 0.7 | completo |
+| 305 | `ai/task-cards/completed/TASK-LAB-023-lab-presentation-core-selectors.md` | markdown | 14 | 0.5 | completo |
+| 306 | `ai/task-cards/completed/TASK-LAB-024-external-data-integration-e2e.md` | markdown | 19 | 0.8 | completo |
+| 307 | `ai/task-cards/completed/TASK-LAB-025-example-bundle-normalized-export.md` | markdown | 18 | 0.6 | completo |
+| 308 | `ai/task-cards/completed/TASK-LAB-026-restore-designer-visual-baseline-after-integration.md` | markdown | 97 | 4.9 | completo |
+| 309 | `ai/task-cards/completed/TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md` | markdown | 40 | 1.6 | completo |
+| 310 | `ai/task-cards/completed/TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md` | markdown | 48 | 2.0 | completo |
+| 311 | `ai/task-cards/completed/TASK-LAB-029-multidocument-right-sidebar-docs-default.md` | markdown | 43 | 1.7 | completo |
+| 312 | `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 40 | 1.0 | completo |
+| 313 | `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 37 | 1.0 | completo |
+| 314 | `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 48 | 1.4 | completo |
+| 315 | `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 37 | 1.3 | completo |
+| 316 | `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
+| 317 | `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md` | markdown | 86 | 2.4 | completo |
+| 318 | `ai/task-cards/completed/TASK-REGRESSION-020-owner-color-renderer-continuity.md` | markdown | 49 | 1.9 | completo |
+| 319 | `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md` | markdown | 59 | 1.9 | completo |
+| 320 | `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md` | markdown | 77 | 2.5 | completo |
+| 321 | `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md` | markdown | 68 | 2.0 | completo |
+| 322 | `ai/task-cards/completed/TASK-UI-017-density-breakpoints-sync.md` | markdown | 37 | 1.7 | completo |
+| 323 | `reports/tailwind-migration/accelerated/constants-contract.md` | markdown | 22 | 2.1 | completo |
+| 324 | `reports/tailwind-migration/accelerated/migration-ledger.md` | markdown | 92 | 5.2 | completo |
+| 325 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
+| 326 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
+| 327 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
+| 328 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
+| 329 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
+| 330 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
+| 331 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
+| 332 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
+| 333 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 334 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
+| 335 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
+| 336 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
+| 337 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
+| 338 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
+| 339 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
+| 340 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
+| 341 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
+| 342 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
+| 343 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
+| 344 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
+| 345 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
+| 346 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1720
+- **extensión no incluida:** 1794
 - **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `623.3`
-- **KB incluidos en contenido:** `623.0`
+- **KB originales candidatos:** `852.9`
+- **KB incluidos en contenido:** `852.6`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -782,33 +814,88 @@ prueba-plugin
 ### 0001 — `README.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `21`
-- **Tamaño original:** `1.0 KB`
-- **SHA1 corto:** `67e457c24a`
+- **Líneas:** `76`
+- **Tamaño original:** `2.6 KB`
+- **SHA1 corto:** `8ff586052c`
 - **Estado:** `completo`
 
 ```markdown
-# Paquete — análisis profundo `src/features/pdfcomponent`
+# Suite integral de pruebas — SISAD PDFME
 
-Este ZIP contiene un análisis y task-cards para convertir `src/features/pdfcomponent` en una referencia de integración dinámica de `sisad-pdfme`.
+Suite generada a partir del código, documentación, estilos y especificación funcional consolidados el 16 de julio de 2026.
 
-## Archivos principales
+## Alcance
 
-- `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md`
-- `ai/reports/pdfcomponent-integration-file-matrix.csv`
-- `ai/checklists/pdfcomponent-dynamic-integration-checklist.md`
-- `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md`
-- `scripts/audit-pdfcomponent-duplication.mjs`
-- `ai/task-cards/active/TASK-LAB-017...TASK-LAB-025.md`
-- `docs/07-integraciones/07-pdfcomponent-lab-as-host-reference.md`
-- `docs/13-ejemplos/04-dynamic-host-integration-examples.md`
+Incluye pruebas para:
 
-## Uso recomendado
+- catálogo y familias de schemas;
+- option groups, checkbox/radio/select;
+- firma y providers;
+- recipients, permisos, colores y registry;
+- assignments;
+- documents, páginas y routing;
+- comentarios y anchors;
+- snapshot, migración y validación;
+- runtime Designer/Form/Viewer;
+- teclado y acciones;
+- LeftSidebar;
+- RightSidebar, ListView y DetailView;
+- Docs, Comments y Reasignar;
+- Canvas, multipágina, drag/drop y zoom;
+- selector de usuario activo;
+- regresiones visuales y migración Tailwind.
 
-1. Descomprimir sobre la raíz del repo.
-2. Ejecutar `node scripts/audit-pdfcomponent-duplication.mjs`.
-3. Ejecutar las tareas en orden: LAB-017 → LAB-018 → LAB-020 → LAB-021 → LAB-019.
-4. No tocar `src/sisad-pdfme` salvo export público mínimo y justificado.
+## Integración
+
+Desde la raíz de `prueba-plugin`:
+
+``​`bash
+unzip SISAD_PDFME_TEST_SUITE.zip -d /tmp/sisad-pdfme-tests
+cp -R /tmp/sisad-pdfme-tests/sisad-pdfme-generated-test-suite/tests ./
+``​`
+
+Los archivos se ubican en subcarpetas `generated`, por lo que no reemplazan pruebas existentes:
+
+``​`txt
+tests/unit/generated/
+tests/playwright/generated/
+``​`
+
+## Ejecución
+
+``​`bash
+npx vitest run tests/unit/generated
+npx playwright test tests/playwright/generated --project=chromium
+``​`
+
+Ejecución por dominio:
+
+``​`bash
+npx vitest run tests/unit/generated/recipients
+npx vitest run tests/unit/generated/schemas
+npx playwright test tests/playwright/generated/right-sidebar --project=chromium
+npx playwright test tests/playwright/generated/canvas --project=chromium
+``​`
+
+## Consideraciones
+
+1. Las pruebas unitarias importan la API real desde `@/sisad-pdfme/...` y `@sisad-pdfme/schemas`.
+2. Los specs Playwright usan la ruta `/lab/multi-document-routing` y selectores semánticos con fallbacks.
+3. Funciones opcionales se omiten mediante `test.skip()` cuando el host las deshabilita por configuración.
+4. Casos que documentan defectos confirmados pero todavía no corregidos usan `it.todo` o `test.fixme` para no bloquear la integración inicial.
+5. `css-migration-budget.test.ts` usa el presupuesto observado en los archivos analizados: 47 `@apply` en `sisad-pdfme.css` y 1 en `tokens.css`. Reduzca esos límites cuando avance la migración.
+6. Las capturas de `visual-baseline.spec.ts` requieren crear/aceptar snapshots la primera vez:
+
+``​`bash
+npx playwright test tests/playwright/generated/visual/visual-baseline.spec.ts --update-snapshots
+``​`
+
+## Archivos de apoyo
+
+- `TEST_CASE_MATRIX.csv`: matriz de casos y cobertura.
+- `KNOWN_GAPS.md`: riesgos y casos pendientes detectados.
+- `INTEGRATION_CHECKLIST.md`: pasos para integrar sin dañar las pruebas actuales.
+- `scripts/run-generated-tests.sh`: ejecución completa.
 ```
 
 <a id="file-0002"></a>
@@ -4406,7 +4493,77 @@ ai/memory/project-memory.md
 
 <a id="file-0100"></a>
 
-### 0100 — `MANIFEST.md`
+### 0100 — `INTEGRATION_CHECKLIST.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `26`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `fbc19c607a`
+- **Estado:** `completo`
+
+```markdown
+# Checklist de integración
+
+## Antes de copiar
+
+- [ ] Crear una rama o checkpoint.
+- [ ] Confirmar que `vitest.config.ts` incluye `tests/unit/**/*.test.{ts,tsx,js,jsx}`.
+- [ ] Confirmar que `playwright.config.ts` incluye `tests/playwright/**/*.spec.ts`.
+- [ ] Levantar el lab en `http://localhost:5174`.
+- [ ] Confirmar que `/lab/multi-document-routing` existe.
+
+## Después de copiar
+
+- [ ] Ejecutar `npx vitest run tests/unit/generated`.
+- [ ] Corregir imports únicamente si el repositorio cambió después del pack analizado.
+- [ ] Ejecutar Playwright por dominio.
+- [ ] Revisar tests omitidos por funcionalidades opcionales.
+- [ ] Crear snapshots visuales en Chromium.
+- [ ] Ratchetear los presupuestos de CSS después de cada lote Tailwind.
+
+## No hacer
+
+- No reemplazar `tests/unit/setupTests.ts`.
+- No mover las pruebas generadas fuera de `generated` hasta estabilizarlas.
+- No adaptar una regresión cambiando el expected para que pase sin investigar.
+- No agregar `waitForTimeout` como sincronización principal.
+- No depender exclusivamente de clases Tailwind en E2E; usar roles, nombres, data attributes y test IDs.
+```
+
+<a id="file-0101"></a>
+
+### 0101 — `KNOWN_GAPS.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `18`
+- **Tamaño original:** `1.3 KB`
+- **SHA1 corto:** `da2770fdc7`
+- **Estado:** `completo`
+
+```markdown
+# Gaps y riesgos detectados
+
+## Gaps confirmados por código/documentación
+
+1. `detachCommentFromField` pasa `schemaUid: ''`, pero el normalizador actual solo aplica `schemaUid` cuando tiene texto. El caso está marcado `it.todo`.
+2. El ListView ha mantenido selección local además de `activeSchemaIds`; la suite exige una sola fuente de verdad.
+3. Existen riesgos de scroll anidado en RightSidebar. Los E2E verifican un solo propietario scrollable por panel.
+4. La densidad histórica `mini` y la actual `minimal` pueden divergir. Los tests responsive cubren 256/318/390 px.
+5. El selector de usuario activo puede existir visualmente sin actualizar el registry real. Los tests verifican valor y efecto visible.
+6. El cierre de modales AntD puede dejar overlays ocultos y bloquear selección. Los tests de Reasignar/Comentarios verifican recuperación.
+7. La migración Tailwind aún conserva `@apply`; el presupuesto evita que aumente y permite reducirlo gradualmente.
+8. Algunos specs visuales requieren baseline local y no pueden validarse fuera del repositorio ejecutable.
+
+## Política sugerida
+
+- `todo/fixme`: contrato conocido pero implementación pendiente.
+- `skip`: funcionalidad explícitamente deshabilitada por configuración del ejemplo.
+- fallo activo: regresión en una funcionalidad que el ejemplo declara habilitada.
+```
+
+<a id="file-0102"></a>
+
+### 0102 — `MANIFEST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -4444,9 +4601,9 @@ ai/memory/project-memory.md
 - `ai/reports/claude-codex-handoff-2026-07-14.md`
 ```
 
-<a id="file-0101"></a>
+<a id="file-0103"></a>
 
-### 0101 — `PROMPT_FINALIZAR_MIGRACION_TAILWIND_SIN_PERDER_DISENO.md`
+### 0103 — `PROMPT_FINALIZAR_MIGRACION_TAILWIND_SIN_PERDER_DISENO.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `455`
@@ -4912,9 +5069,9 @@ no habilitar preflight.
 No declares que la migración terminó solo porque bajaron las líneas. Termina cuando `@apply = 0`, el residual técnico está documentado y el baseline funcional/visual pasa.
 ```
 
-<a id="file-0102"></a>
+<a id="file-0104"></a>
 
-### 0102 — `.github/copilot-instructions.md`
+### 0104 — `.github/copilot-instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -4940,9 +5097,9 @@ Copilot debe seguir estas reglas mínimas:
 - Preferir cambios pequeños y focalizados.
 ```
 
-<a id="file-0103"></a>
+<a id="file-0105"></a>
 
-### 0103 — `ai/README.md`
+### 0105 — `ai/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -4991,9 +5148,9 @@ Esta carpeta centraliza todo lo que un asistente necesita para trabajar sin aluc
 ``​`
 ```
 
-<a id="file-0104"></a>
+<a id="file-0106"></a>
 
-### 0104 — `ai/tree.md`
+### 0106 — `ai/tree.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -5030,9 +5187,9 @@ ai/
 ``​`
 ```
 
-<a id="file-0105"></a>
+<a id="file-0107"></a>
 
-### 0105 — `reports/jsdoc-missing-report.md`
+### 0107 — `reports/jsdoc-missing-report.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `2254`
@@ -7297,9 +7454,9 @@ ai/
 - Línea 103: `type` `DesignerRuntimeApi`
 ```
 
-<a id="file-0106"></a>
+<a id="file-0108"></a>
 
-### 0106 — `scripts/README.md`
+### 0108 — `scripts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -7331,9 +7488,9 @@ bash scripts/clean-empty-dirs.sh /ruta/proyecto --confirm
 ``​`
 ```
 
-<a id="file-0107"></a>
+<a id="file-0109"></a>
 
-### 0107 — `.serena/memories/memory_maintenance.md`
+### 0109 — `.serena/memories/memory_maintenance.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -7377,9 +7534,9 @@ Do not add: quick-read facts; generic language/framework knowledge; one-off task
 - Checking for stale memories (e.g. after deletion): Call `serena memories check` for a report.
 ```
 
-<a id="file-0108"></a>
+<a id="file-0110"></a>
 
-### 0108 — `ai/adapters/README.md`
+### 0110 — `ai/adapters/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7393,9 +7550,9 @@ Do not add: quick-read facts; generic language/framework knowledge; one-off task
 Adaptadores para herramientas. Los archivos raíz deben ser copias delgadas de estos o apuntar a `ai/start/START.md`.
 ```
 
-<a id="file-0109"></a>
+<a id="file-0111"></a>
 
-### 0109 — `ai/agents/canvas-agent.md`
+### 0111 — `ai/agents/canvas-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7443,9 +7600,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0110"></a>
+<a id="file-0112"></a>
 
-### 0110 — `ai/agents/css-tailwind-agent.md`
+### 0112 — `ai/agents/css-tailwind-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7493,9 +7650,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0111"></a>
+<a id="file-0113"></a>
 
-### 0111 — `ai/agents/designer-runtime-agent.md`
+### 0113 — `ai/agents/designer-runtime-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7543,9 +7700,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0112"></a>
+<a id="file-0114"></a>
 
-### 0112 — `ai/agents/docs-architecture-agent.md`
+### 0114 — `ai/agents/docs-architecture-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7593,9 +7750,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0113"></a>
+<a id="file-0115"></a>
 
-### 0113 — `ai/agents/inspector-agent.md`
+### 0115 — `ai/agents/inspector-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7643,9 +7800,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0114"></a>
+<a id="file-0116"></a>
 
-### 0114 — `ai/agents/interaction-agent.md`
+### 0116 — `ai/agents/interaction-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7693,9 +7850,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0115"></a>
+<a id="file-0117"></a>
 
-### 0115 — `ai/agents/lab-shell-agent.md`
+### 0117 — `ai/agents/lab-shell-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7743,9 +7900,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0116"></a>
+<a id="file-0118"></a>
 
-### 0116 — `ai/agents/README.md`
+### 0118 — `ai/agents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7759,9 +7916,9 @@ playbook del dominio
 Cada agente representa un dominio principal. Un agente no debe cambiar de dominio durante una task-card.
 ```
 
-<a id="file-0117"></a>
+<a id="file-0119"></a>
 
-### 0117 — `ai/agents/registry.md`
+### 0119 — `ai/agents/registry.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -7784,9 +7941,9 @@ Cada agente representa un dominio principal. Un agente no debe cambiar de domini
 - `docs-architecture-agent.md` — Docs Architecture Agent: Mantiene ai/ sin duplicidad, memoria, reglas, prompts y task-cards.
 ```
 
-<a id="file-0118"></a>
+<a id="file-0120"></a>
 
-### 0118 — `ai/agents/schema-agent.md`
+### 0120 — `ai/agents/schema-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7834,9 +7991,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0119"></a>
+<a id="file-0121"></a>
 
-### 0119 — `ai/agents/snapshot-agent.md`
+### 0121 — `ai/agents/snapshot-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7884,9 +8041,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0120"></a>
+<a id="file-0122"></a>
 
-### 0120 — `ai/agents/visual-baseline-agent.md`
+### 0122 — `ai/agents/visual-baseline-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7934,9 +8091,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0121"></a>
+<a id="file-0123"></a>
 
-### 0121 — `ai/baselines/img-version-baseline-protocol.md`
+### 0123 — `ai/baselines/img-version-baseline-protocol.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -7976,9 +8133,9 @@ Evaluar:
 - consistencia.
 ```
 
-<a id="file-0122"></a>
+<a id="file-0124"></a>
 
-### 0122 — `ai/baselines/README.md`
+### 0124 — `ai/baselines/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7992,9 +8149,9 @@ Evaluar:
 Protocolos de referencia visual y funcional.
 ```
 
-<a id="file-0123"></a>
+<a id="file-0125"></a>
 
-### 0123 — `ai/checklists/button-action-contract-checklist.md`
+### 0125 — `ai/checklists/button-action-contract-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -8062,9 +8219,9 @@ Protocolos de referencia visual y funcional.
 - [ ] Zoom in
 ```
 
-<a id="file-0124"></a>
+<a id="file-0126"></a>
 
-### 0124 — `ai/checklists/done-vs-pending.md`
+### 0126 — `ai/checklists/done-vs-pending.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -8116,9 +8273,9 @@ Antes de implementar:
 No usar `completed/**` como fuente de tareas pendientes.
 ```
 
-<a id="file-0125"></a>
+<a id="file-0127"></a>
 
-### 0125 — `ai/checklists/global-validation.md`
+### 0127 — `ai/checklists/global-validation.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -8137,9 +8294,9 @@ No usar `completed/**` como fuente de tareas pendientes.
 - [ ] Nueva memoria si hubo decisión.
 ```
 
-<a id="file-0126"></a>
+<a id="file-0128"></a>
 
-### 0126 — `ai/checklists/improvement-backlog.md`
+### 0128 — `ai/checklists/improvement-backlog.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -8159,9 +8316,9 @@ No usar `completed/**` como fuente de tareas pendientes.
 | Media | Mejorar LeftSidebar truncation | Pendiente |
 ```
 
-<a id="file-0127"></a>
+<a id="file-0129"></a>
 
-### 0127 — `ai/checklists/manual-ui-regression.md`
+### 0129 — `ai/checklists/manual-ui-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -8191,9 +8348,9 @@ No usar `completed/**` como fuente de tareas pendientes.
 - [ ] PDF sin chrome.
 ```
 
-<a id="file-0128"></a>
+<a id="file-0130"></a>
 
-### 0128 — `ai/checklists/pdfcomponent-dynamic-integration-checklist.md`
+### 0130 — `ai/checklists/pdfcomponent-dynamic-integration-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -8235,9 +8392,9 @@ No usar `completed/**` como fuente de tareas pendientes.
 - [ ] Export bundle conserva recipients/documents/config sin duplicarlos.
 ```
 
-<a id="file-0129"></a>
+<a id="file-0131"></a>
 
-### 0129 — `ai/checklists/README.md`
+### 0131 — `ai/checklists/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8251,9 +8408,9 @@ No usar `completed/**` como fuente de tareas pendientes.
 Checklists vivos para validar tareas y controlar pendientes.
 ```
 
-<a id="file-0130"></a>
+<a id="file-0132"></a>
 
-### 0130 — `ai/checklists/tailwind-design-continuity-validation.md`
+### 0132 — `ai/checklists/tailwind-design-continuity-validation.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -8280,9 +8437,9 @@ Checklists vivos para validar tareas y controlar pendientes.
 - [ ] La tarjeta contiene evidencia y criterio de parada satisfecho.
 ```
 
-<a id="file-0131"></a>
+<a id="file-0133"></a>
 
-### 0131 — `ai/checklists/tailwind-migration.md`
+### 0133 — `ai/checklists/tailwind-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -8304,9 +8461,9 @@ Checklists vivos para validar tareas y controlar pendientes.
 - [ ] PDF final sin chrome no deseado.
 ```
 
-<a id="file-0132"></a>
+<a id="file-0134"></a>
 
-### 0132 — `ai/context/action-map-context.md`
+### 0134 — `ai/context/action-map-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `70`
@@ -8387,9 +8544,9 @@ type DesignerActionId =
 - Botón que depende de recipient local cuando existe RecipientRegistry.
 ```
 
-<a id="file-0133"></a>
+<a id="file-0135"></a>
 
-### 0133 — `ai/context/ai-docs-context.md`
+### 0135 — `ai/context/ai-docs-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8403,9 +8560,9 @@ type DesignerActionId =
 La carpeta `ai/` es fuente de verdad. Documentación antigua puede migrarse, pero no duplicarse.
 ```
 
-<a id="file-0134"></a>
+<a id="file-0136"></a>
 
-### 0134 — `ai/context/canvas-multipage-context.md`
+### 0136 — `ai/context/canvas-multipage-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -8425,9 +8582,9 @@ event → page target → coordinate conversion → schema metadata → render p
 Validar siempre página 2+.
 ```
 
-<a id="file-0135"></a>
+<a id="file-0137"></a>
 
-### 0135 — `ai/context/css-tailwind-context.md`
+### 0137 — `ai/context/css-tailwind-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -8464,9 +8621,1175 @@ Migrar clases visuales a JSX/TSX, pero conservar CSS crítico:
 tokens, geometry, zoom, transforms, Moveable, Selecto, print/PDF, canvas/paper, pseudo-elementos complejos.
 ```
 
-<a id="file-0136"></a>
+<a id="file-0138"></a>
 
-### 0136 — `ai/context/inspector-context.md`
+### 0138 — `ai/context/ESPECIFICACION_FUNCIONAL_COMPLETA_SISAD_PDFME.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `1153`
+- **Tamaño original:** `19.6 KB`
+- **SHA1 corto:** `535b841a90`
+- **Estado:** `completo`
+
+```markdown
+# Especificación funcional consolidada — SISAD PDFME
+
+## 1. Alcance
+
+Este documento consolida los requisitos discutidos para schemas, Canvas, LeftSidebar, RightSidebar, ListView, DetailView, DocumentsRail, CommentsRail, colaboración, runtime, snapshot y migración Tailwind.
+
+El contrato objetivo es una librería portable:
+
+``​`txt
+Designer  -> diseña campos sobre PDF
+Form      -> captura valores
+Viewer    -> muestra valores readonly
+Generator -> produce el PDF final
+``​`
+
+`src/sisad-pdfme` no debe contener reglas de negocio específicas de SISAD Web, DigitalAgreements, Uanataca o un backend concreto. Los hosts integran mediante configuración, adapters, events, recipients, documents, persistence y signature providers.
+
+---
+
+# 2. Principios estructurales
+
+## 2.1. Una fuente de verdad por concepto
+
+| Concepto | Fuente de verdad |
+|---|---|
+| selección | `activeSchemaIds` del Designer |
+| usuario/recipient activo | `RecipientRegistry` |
+| ownership/color | resolver central de owner |
+| acceso/lock | resolver central de interacción |
+| acciones | ActionRegistry/CommandBus |
+| inspector | contrato declarativo por schema |
+| valores runtime | `schemaUid` + inputs |
+| documento/página | routing documental |
+| persistencia | snapshot versionado |
+
+No duplicar selección, ownership, permisos o estado de panel en varios componentes.
+
+## 2.2. Canvas como protagonista
+
+- Sidebars compactos.
+- Sin exceso de cards anidadas.
+- Sin sombras permanentes innecesarias.
+- Sin bordes negros inesperados.
+- PDF claramente separado del fondo.
+- Scroll independiente.
+- Toolbars que no tapen el documento.
+
+## 2.3. Tailwind-first
+
+Tailwind en JSX/TSX para layout, skin, estados, densidad, inputs, tabs, filas, badges y modales.
+
+CSS puro solo para contratos técnicos imposibles de expresar localmente:
+
+- Moveable;
+- Selecto;
+- Scena Guides;
+- geometría paper/canvas;
+- coordinación stage → sidebar → canvas;
+- zoom/transform;
+- print;
+- portals y nodos de terceros;
+- variables runtime.
+
+Meta correcta:
+
+``​`txt
+0 @apply
+``​`
+
+No es obligatorio:
+
+``​`txt
+0 líneas CSS
+``​`
+
+---
+
+# 3. Contrato universal de schema
+
+Todo schema debe conservar:
+
+``​`txt
+schemaUid
+type
+name
+label
+documentId
+fileId
+fileTemplateId
+pageNumber
+pageIndex
+x
+y
+width
+height
+rotation
+ownerRecipientId
+ownerRecipientIds
+ownerColor
+recipientId
+required
+readOnly / readonly
+locked
+objectLocked
+collaborationLock
+hidden
+defaultValue
+content
+validation
+__designer
+``​`
+
+## 3.1. Identidad
+
+- `schemaUid`: identidad técnica estable.
+- `name`: clave/variable persistente y única cuando se exige.
+- `label`: nombre visible.
+- `type`: solo lectura en el inspector.
+- Renombrar no cambia `schemaUid`.
+- Duplicados muestran advertencia.
+- Copiar/pegar genera nueva identidad técnica.
+
+## 3.2. Routing
+
+Mover, duplicar, restaurar o reasignar no debe perder:
+
+- documento;
+- archivo;
+- página;
+- índice;
+- asignaciones;
+- owner.
+
+## 3.3. Geometría
+
+Debe soportar posición, tamaño, rotación, alineación, límites de página, movimiento con teclado, resize, snap y validación fuera de límites.
+
+---
+
+# 4. Estados visuales de schema
+
+Estados mínimos:
+
+``​`txt
+idle
+hovered
+selected
+multi-selected
+dragging
+resizing
+rotating
+invalid
+readonly
+locked
+hidden
+blocked-by-recipient
+editing-by-me
+editing-by-other
+``​`
+
+Reglas:
+
+- Ownership no equivale a selección.
+- Owner color se usa como acento, icon tint o badge.
+- Invalid usa semántica de error.
+- Readonly y locked deben diferenciarse.
+- Designer muestra chrome; Form muestra control limpio; Viewer/PDF no muestran chrome de edición.
+
+---
+
+# 5. Selección
+
+## 5.1. Sincronización
+
+- Click en Canvas selecciona la fila del ListView.
+- Click en ListView selecciona el schema del Canvas.
+- Click vacío limpia selección cuando no hay modal.
+- `activeSchemaIds` es la única selección persistente.
+
+## 5.2. Selección múltiple
+
+``​`txt
+Mac:
+- Command + click: toggle
+- Shift: rango
+
+Windows/Linux:
+- Ctrl + click: toggle
+- Shift: rango
+- Ctrl + Shift: rango aditivo cuando la policy lo permita
+``​`
+
+Selecto permite selección por región.
+
+## 5.3. ListView
+
+El ListView solo puede guardar estado local para:
+
+- anchor;
+- active drag id;
+- hover;
+- foco.
+
+No mantiene otra colección de seleccionados.
+
+## 5.4. Grupos
+
+Para `radioGroup` y `checkboxGroup`:
+
+- root seleccionable;
+- opciones internas fuera de Selecto/Moveable;
+- grupo se mueve como unidad;
+- edición interna mediante doble click o acción explícita;
+- borde de grupo;
+- botón `+` fuera del área Moveable;
+- copiar/pegar preserva offsets, dirección y orden.
+
+---
+
+# 6. Drag, reorder, clipboard y shortcuts
+
+## 6.1. LeftSidebar → Canvas
+
+Debe existir:
+
+- preview;
+- animación;
+- drop válido/inválido;
+- owner correcto;
+- coordenadas normalizadas;
+- soporte multipágina/multidocumento;
+- prevención de solapamiento según policy;
+- no scroll accidental del catálogo.
+
+## 6.2. Reorder ListView
+
+- DnD solo desde grip.
+- El cuerpo selecciona.
+- Acciones no inician drag.
+- Movimiento pequeño no se convierte en drag.
+- Reordenar visibles se fusiona con `allSchemas`.
+- Ocultos/filtrados conservan orden relativo.
+
+## 6.3. Clipboard
+
+Debe soportar:
+
+``​`txt
+copy
+cut
+paste
+duplicate
+delete
+undo
+redo
+``​`
+
+Al copiar múltiples schemas o grupos:
+
+- conservar orden;
+- conservar distancias;
+- aplicar offset común;
+- mantenerse dentro de página;
+- preservar configuración;
+- generar IDs nuevos;
+- respetar policy de owner.
+
+## 6.4. Atajos
+
+``​`txt
+Ctrl/Cmd+C -> copiar
+Ctrl/Cmd+X -> cortar
+Ctrl/Cmd+V -> pegar
+Ctrl/Cmd+D -> duplicar
+Delete/Backspace -> eliminar
+Ctrl/Cmd+Z -> undo
+Ctrl/Cmd+Shift+Z -> redo
+Flechas -> mover
+Escape -> cancelar/cerrar
++/- -> zoom
+? -> ayuda
+``​`
+
+Se suspenden en inputs, textarea, contenteditable, modales y popups visibles.
+
+---
+
+# 7. Familias de schemas
+
+## 7.1. Text-like
+
+Incluye:
+
+``​`txt
+text
+number
+date
+dateTime
+time
+fullName
+emailAddress
+company
+title
+multiVariableText
+``​`
+
+Comparten placeholder, defaultValue, required, readonly, validation, appearance, dataLabel y tooltip.
+
+### Text
+
+- multiline opcional;
+- fuente;
+- tamaño;
+- tamaño dinámico;
+- color/fondo;
+- opacidad;
+- align horizontal/vertical;
+- line height;
+- spacing;
+- padding;
+- límites y patrón.
+
+### Number
+
+- min/max;
+- enteros/decimales;
+- precisión;
+- formato;
+- separadores;
+- validación numérica.
+
+### Date/DateTime/Time
+
+- formato;
+- locale;
+- restricciones;
+- default;
+- representación coherente en Form/Viewer/PDF.
+
+### MultiVariableText
+
+- plantilla;
+- variables `{variable}`;
+- datos de muestra;
+- preview;
+- validación;
+- fallback.
+
+## 7.2. Checkbox
+
+- checked/unchecked;
+- default;
+- required;
+- readonly;
+- value adapter estable;
+- indicador visual único y claro.
+
+## 7.3. RadioGroup y CheckboxGroup
+
+- opciones apiladas;
+- orientación configurable;
+- diseño boxed;
+- borde de grupo;
+- botón `+`;
+- agregar/eliminar/reordenar;
+- label/value por opción;
+- default;
+- IDs de opción estables;
+- radio circular;
+- checkbox cuadrado;
+- edición desde DetailView.
+
+RadioGroup permite una opción. CheckboxGroup permite varias y puede exigir al menos una.
+
+## 7.4. Select/Dropdown
+
+- opciones label/value;
+- placeholder;
+- default;
+- required;
+- readonly;
+- agregar/eliminar/reordenar;
+- validación de duplicados.
+
+El editor de opciones debe ser compartido con grupos y aislar eventos del Canvas.
+
+## 7.5. Firma
+
+Incluye:
+
+``​`txt
+signature
+initials
+dateSigned
+``​`
+
+Modos técnicos:
+
+``​`txt
+draw
+image
+p12
+provider
+``​`
+
+Mapeo del host:
+
+``​`txt
+Firma SISAD -> draw
+Electrónica -> p12
+OneShot -> provider + providerKey=oneshot
+``​`
+
+Debe conservar recipient, required, provider capabilities, estado y renderers Designer/Form/Viewer/PDF.
+
+## 7.6. Action-based
+
+### Attachment
+
+- tipos permitidos;
+- máximo de archivos;
+- máximo tamaño;
+- reemplazo;
+- mostrar nombre/estado;
+- readonly;
+- required;
+- recipient;
+- adapter de storage.
+
+### Note
+
+- contenido informativo;
+- readonly por defecto;
+- estilo y visibilidad;
+- no parecer input si es informativa.
+
+### Approve/Decline
+
+- acciones semánticas;
+- label/icon/tono;
+- callback/command;
+- recipient;
+- disabled reason;
+- no doble ejecución.
+
+## 7.7. Media
+
+Image/SVG/Stamp:
+
+- source;
+- fit;
+- aspect ratio;
+- opacidad;
+- borde;
+- fallback;
+- PDF render.
+
+## 7.8. Barcode
+
+QR, Code128, EAN, PDF417 y otros:
+
+- valor;
+- validación por estándar;
+- color;
+- incluir texto;
+- tamaño;
+- quiet zone.
+
+## 7.9. Table
+
+- columnas/filas;
+- header;
+- repetir header;
+- estilos;
+- fondo alternado;
+- contenido dinámico;
+- crecimiento y división de página en generación.
+
+## 7.10. Shapes
+
+Line/Rectangle/Ellipse:
+
+- color;
+- borde;
+- fondo;
+- opacidad;
+- radio;
+- rotación;
+- resize.
+
+## 7.11. Custom
+
+Debe declarar key, defaults, categoría, icono, factory, renderer Designer/Form/Viewer/PDF, inspector contract, value adapter, validation y snapshot compatibility.
+
+---
+
+# 8. LeftSidebar
+
+## 8.1. Función
+
+Catálogo para buscar, filtrar, marcar favoritos y arrastrar campos.
+
+## 8.2. Fuentes
+
+``​`txt
+Base
+Custom
+Auto
+``​`
+
+Categorías:
+
+``​`txt
+Recientes
+Firmas
+Texto
+Fecha y hora
+Selecciones
+Imagen y medios
+QR y códigos
+Estructura
+Acciones
+General
+``​`
+
+## 8.3. Búsqueda y filtros
+
+Buscar por label, type, tags, descripción, categoría y custom name.
+
+Filtros:
+
+``​`txt
+Todos
+Favoritos
+Recientes
+Recipient activo
+``​`
+
+## 8.4. Favoritos y recientes
+
+- Toggle sin iniciar drag.
+- Persistencia según host.
+- Recientes al usar/insertar.
+- Contadores reales.
+
+## 8.5. Layouts
+
+``​`txt
+list
+tiles
+icons
+``​`
+
+Todos comparten drag, click, favorite, recent, tooltip, keyboard, owner, disabled y test IDs. Solo cambia presentación.
+
+La densidad no cambia el layout elegido.
+
+## 8.6. Custom fields
+
+Modal para crear/editar definición con nombre, label, base type, categoría, defaults y validación de duplicados.
+
+## 8.7. Auto-place
+
+Soporta campos prefill/auto con descriptor de owner, documento, página y posición sugerida.
+
+## 8.8. Collapse y scroll
+
+- Un scroll owner.
+- No scroll accidental durante drag.
+- Rail compacto configurable.
+- Sin botones anchos huérfanos al colapsar.
+- Restaura estado al expandir.
+
+---
+
+# 9. RightSidebar general
+
+## 9.1. Paneles
+
+``​`txt
+fields
+detail
+docs
+comments
+``​`
+
+Soporta modo controlado, interno y `auto`.
+
+- Un schema seleccionado: puede abrir Detail.
+- Cero o varios: Fields en modo auto.
+- Host explícito no se sobreescribe.
+- Docs puede ser default en multidocumento mediante configuración.
+
+## 9.2. Switcher
+
+- Tabs en una fila.
+- Sin wrap.
+- Collapse no deforma tabs.
+- En ancho mínimo puede ocultar label visual y conservar `sr-only`.
+- `Documento:*` y context summary no se montan en la fila de tabs.
+
+## 9.3. Presentación
+
+``​`txt
+docked
+overlay
+``​`
+
+Debe evitar solapes, conservar Canvas usable y no dejar controles flotantes cuando está colapsado.
+
+## 9.4. Scroll
+
+``​`txt
+SidebarFrame: overflow-hidden
+Header: shrink-0
+Body: overflow-hidden
+Panel viewport: overflow-y-auto
+``​`
+
+Un solo scroll owner por panel y posición independiente para Fields, Detail, Docs y Comments.
+
+---
+
+# 10. RightSidebar Fields/ListView
+
+## 10.1. Header y toolbar
+
+Debe mostrar título, total, selección, Reasignar, Más, búsqueda, filtro por tipo y filtros configurables.
+
+No duplicar otro header dentro del sortable container.
+
+## 10.2. Fila
+
+Debe mostrar:
+
+- grip;
+- icono;
+- label principal;
+- name técnico secundario;
+- tipo;
+- owner;
+- badges;
+- acciones.
+
+Badges/estados:
+
+``​`txt
+required
+readonly
+locked
+hidden
+invalid
+duplicate name
+assigned
+unassigned
+editing by me
+blocked by recipient
+``​`
+
+## 10.3. Acciones
+
+- abrir detalle;
+- delete;
+- hide/show;
+- lock/unlock;
+- comments;
+- reassign;
+- more.
+
+No cambian el ancho al aparecer, detienen propagación y respetan permisos.
+
+## 10.4. Selección y reorder
+
+- `activeSchemaIds` fuente única.
+- Click replace.
+- Ctrl/Cmd toggle.
+- Shift range.
+- Hover sincronizado con Canvas.
+- `aria-selected`.
+- Reorder filtrado conserva orden global.
+
+## 10.5. Empty states
+
+Distinguir:
+
+- sin schemas;
+- filtro sin resultados;
+- sin campos en documento/página;
+- ocultos por recipient.
+
+---
+
+# 11. DetailView/Inspector
+
+## 11.1. Contrato declarativo
+
+Cada schema declara secciones aplicables:
+
+``​`txt
+basics
+content
+options
+appearance
+validation
+dataLabel
+help
+location
+collaboration
+advanced
+fileRules
+connections
+comments
+``​`
+
+No usar `if (type === ...)` disperso.
+
+## 11.2. Header
+
+Muestra icono, label, name, type, owner, documento/página, selección, estado de acceso, volver y acciones.
+
+## 11.3. Secciones
+
+### Información del campo
+
+- name;
+- label;
+- data label;
+- tooltip/help;
+- rename;
+- advertencia duplicado;
+- type readonly.
+
+### Contenido
+
+Default, placeholder, texto, note content, action label o template.
+
+### Opciones
+
+Agregar, eliminar, subir, bajar, label, value y default.
+
+### Apariencia
+
+Solo controles aplicables: opacidad, fuente, tamaño, spacing, line height, align, colores, border, radius, dynamic size.
+
+### Validación
+
+Required, readonly, hidden, tipo, patrón, min/max y mensaje.
+
+### Reglas de archivo
+
+Solo attachment: tipos, cantidad, tamaño, reemplazo, nombre y estado.
+
+### Ubicación y tamaño
+
+X, Y, ancho, alto, rotación, alineación y lock.
+
+### Datos y conexiones
+
+``​`txt
+Persistencia
+Salida JSON
+Consulta API
+``​`
+
+Debe incluir estado, validar, configurar, labels, field key, mapping, errores y adapter real. No stubs silenciosos.
+
+### Asignación y bloqueo
+
+Owner, recipient, estado, lock, readonly, editing by me/other, reassign, release edit y lock/unlock. Labels/tones de un resolver central.
+
+### Comentarios
+
+Ver, agregar, contador y navegar al hilo.
+
+### Advanced
+
+Solo si contiene controles reales.
+
+## 11.4. Interacción
+
+- Switch con un click.
+- Inputs y dropdowns no interactúan con Canvas.
+- Cerrar popup no congela selección.
+- Cambios controlados.
+- Sin DOM imperativo.
+- Sin secciones vacías.
+- Sin alturas mínimas artificiales.
+
+---
+
+# 12. DocumentsRail
+
+Debe soportar:
+
+- lista de documentos;
+- preview;
+- número;
+- páginas;
+- activo;
+- seleccionar;
+- subir PDF;
+- agregar página;
+- eliminar con permiso;
+- disabled reason;
+- empty state;
+- scroll propio.
+
+En multidocumento conserva documentId/fileId, routing, assignments y página activa. Puede usar split/stacked según ancho.
+
+---
+
+# 13. CommentsRail
+
+Debe soportar:
+
+- comentario por schema;
+- comentario por página;
+- anchor por coordenadas;
+- hilo activo;
+- agregar;
+- responder si bridge lo permite;
+- resolver/reabrir si bridge lo permite;
+- contador;
+- navegación;
+- empty state;
+- scroll propio.
+
+Dialog:
+
+- Cancelar/X/Escape;
+- Guardar una vez;
+- eventos aislados;
+- restaurar interacción al cerrar.
+
+---
+
+# 14. Reasignación
+
+## 14.1. Apertura
+
+Desde selección simple/múltiple, ListView y DetailView.
+
+## 14.2. Modal
+
+Muestra seleccionados, cantidad, owner actual, búsqueda, recipients, rol, color, actual, Cancelar y Reasignar.
+
+## 14.3. Confirmación
+
+Actualiza:
+
+``​`txt
+ownerRecipientId
+ownerRecipientIds
+recipientId
+ownerColor
+recipientColor
+userColor
+assignments
+snapshot
+runtime access
+``​`
+
+No cambia:
+
+``​`txt
+schemaUid
+routing
+locked
+readOnly
+objectLocked
+collaborationLock
+``​`
+
+## 14.4. Cierre
+
+Cancelar, X, Escape, mask configurada y confirmar.
+
+Debe conservar selección, liberar modal lock, limpiar pointer state y no congelar Canvas. AntD oculto no cuenta como popup abierto.
+
+---
+
+# 15. Usuario activo y colaboración
+
+Selector visible cuando colaboración está habilitada.
+
+Muestra usuario, color, rol y global view.
+
+Al cambiar:
+
+- actualiza RecipientRegistry;
+- activeRecipientId;
+- permisos;
+- filtros;
+- owner de nuevos schemas;
+- runtime.
+
+No debe repintar incorrectamente schemas existentes ni desaparecer al cambiar de panel derecho.
+
+---
+
+# 16. Multipágina y multidocumento
+
+Debe soportar:
+
+- varios PDFs;
+- varias páginas;
+- tamaños diferentes;
+- page navigator;
+- scroll continuo;
+- página 2+;
+- schema routing;
+- máscaras no activas;
+- documento/página activa;
+- assignments por documento/página;
+- coordenadas contra el paper correcto.
+
+---
+
+# 17. Form, Viewer y Snapshot
+
+## 17.1. Form
+
+- controles interactivos;
+- recipient filtering;
+- required;
+- readonly;
+- hidden;
+- validation;
+- valores por schemaUid;
+- cambios al host;
+- inputs por documento;
+- guardado parcial;
+- reasignaciones reflejadas.
+
+## 17.2. Viewer
+
+- readonly;
+- sin sidebars;
+- sin Moveable/Selecto;
+- sin chrome;
+- respeta hidden y recipient.
+
+## 17.3. Snapshot
+
+Preserva template, schemas, IDs, documents, routing, recipients, assignments, ownership, colors, locks, validation, groups, opciones, firma, conexiones, comentarios, config e inputs cuando aplica.
+
+Restaurar no genera IDs nuevos ni pierde geometría o metadatos.
+
+---
+
+# 18. Acciones y accesibilidad
+
+Cada acción debe tener:
+
+``​`txt
+visible
+enabled
+disabledReason
+handler
+label
+ariaLabel
+testId
+shortcut
+``​`
+
+Reglas:
+
+- icon-only con tooltip;
+- botón sin handler no se renderiza;
+- `type="button"`;
+- focus visible;
+- `aria-selected` en filas;
+- `aria-pressed` en toggles;
+- tabs con roles;
+- foco restaurado en modales;
+- no usar `aria-hidden` sobre controles.
+
+---
+
+# 19. Responsive y densidad
+
+Densidades:
+
+``​`txt
+comfortable
+compact
+minimal/narrow
+``​`
+
+Reglas:
+
+- no coexistir `mini` y `minimal`;
+- tabs no hacen wrap;
+- densidad no cambia layout LeftSidebar;
+- funciones críticas siempre tienen alternativa;
+- overlay no bloquea permanentemente el Canvas;
+- un scroll owner por panel.
+
+---
+
+# 20. Rendimiento
+
+- Memoizar resolvers.
+- No duplicar listas ni selección.
+- No ejecutar scrollIntoView en cada render.
+- No reconstruir plugin registry.
+- Evitar remount de widgets.
+- No consultar todo el DOM salvo guards técnicos.
+- Montar paneles según necesidad o preservar scroll con una estrategia explícita.
+
+---
+
+# 21. Criterios de aceptación
+
+## Schemas
+
+``​`txt
+[ ] Identidad/routing estables.
+[ ] Owner coherente.
+[ ] Estados diferenciados.
+[ ] Designer/Form/Viewer/PDF coherentes.
+[ ] Inspector proporcional.
+[ ] Ningún control visible sin persistencia.
+``​`
+
+## LeftSidebar
+
+``​`txt
+[ ] Búsqueda, favoritos y recientes.
+[ ] list/tiles/icons.
+[ ] Drag preview.
+[ ] Sin scroll accidental.
+[ ] Custom y auto-place.
+[ ] Collapse correcto.
+``​`
+
+## RightSidebar
+
+``​`txt
+[ ] Tabs en una fila.
+[ ] Un scroll owner por panel.
+[ ] Canvas ↔ ListView sincronizado.
+[ ] Reorder.
+[ ] Detail auto-focus.
+[ ] Docs/Comments.
+[ ] Collapse sin distorsión.
+``​`
+
+## DetailView
+
+``​`txt
+[ ] Secciones declarativas.
+[ ] Sin secciones vacías.
+[ ] Switch con un click.
+[ ] Inputs aislados.
+[ ] Opciones editables.
+[ ] Connections reales.
+[ ] Access resolver único.
+``​`
+
+## Reasignación
+
+``​`txt
+[ ] Simple y múltiple.
+[ ] Cancelar conserva selección.
+[ ] Confirmar actualiza ownership.
+[ ] Locks preservados.
+[ ] Cierre no congela Canvas.
+``​`
+
+## Runtime
+
+``​`txt
+[ ] Form por recipient.
+[ ] Viewer readonly.
+[ ] Snapshot roundtrip.
+[ ] Multi-document.
+[ ] PDF sin chrome.
+``​`
+
+## Tailwind
+
+``​`txt
+[ ] No CSS visual nuevo.
+[ ] 0 @apply.
+[ ] Residual técnico documentado.
+[ ] Baseline visual comparable.
+``​`
+
+---
+
+# 22. Prioridades
+
+## P0
+
+1. Selección única y sincronizada.
+2. Scroll por panel.
+3. Reasignar sin freeze.
+4. Selector de usuario.
+5. Drag/drop.
+6. Multipágina/multidocumento.
+7. Persistencia real del inspector.
+8. Tailwind sin regresiones.
+
+## P1
+
+1. Inspector declarativo.
+2. Editor de opciones común.
+3. Ownership/access central.
+4. Grupos.
+5. Firma técnica + políticas del host.
+6. Attachment runtime.
+7. Connections con adapters.
+
+## P2
+
+1. Atajos completos.
+2. Copy/paste de grupos.
+3. Layouts del catálogo.
+4. Favoritos/recientes.
+5. Comentarios anclados.
+6. QA responsive.
+
+---
+
+# 23. Regla de diagnóstico
+
+Clasificar cada incidencia antes de corregir:
+
+``​`txt
+DATA
+STATE
+INTERACTION
+LAYOUT
+STYLE
+RUNTIME
+SNAPSHOT
+HOST INTEGRATION
+``​`
+
+No corregir state con CSS, layout con z-index ni funcionalidad desconectada mostrando un botón sin handler.
+
+Arquitectura objetivo:
+
+``​`txt
+schema + context
+  -> profile resolver
+  -> access resolver
+  -> action state
+  -> renderer/widget
+  -> controlled update
+  -> snapshot/runtime
+``​`
+```
+
+<a id="file-0139"></a>
+
+### 0139 — `ai/context/inspector-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8480,9 +9803,9 @@ tokens, geometry, zoom, transforms, Moveable, Selecto, print/PDF, canvas/paper, 
 Inspector usa secciones declarativas. Widgets actualizan schema por command/update centralizado, no por mutación directa.
 ```
 
-<a id="file-0137"></a>
+<a id="file-0140"></a>
 
-### 0137 — `ai/context/README.md`
+### 0140 — `ai/context/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8496,9 +9819,9 @@ Inspector usa secciones declarativas. Widgets actualizan schema por command/upda
 Contextos focales. Cargar solo uno por task-card.
 ```
 
-<a id="file-0138"></a>
+<a id="file-0141"></a>
 
-### 0138 — `ai/context/schema-families-context.md`
+### 0141 — `ai/context/schema-families-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -8514,9 +9837,9 @@ Familias: text-like, boolean, option-based, signing-based, action-based, media, 
 Cada familia define render, inspector, value adapter y compatibilidad Form/Viewer/PDF.
 ```
 
-<a id="file-0139"></a>
+<a id="file-0142"></a>
 
-### 0139 — `ai/context/selection-transform-context.md`
+### 0142 — `ai/context/selection-transform-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8530,9 +9853,9 @@ Cada familia define render, inspector, value adapter y compatibilidad Form/Viewe
 Selecto selecciona roots con `data-schema-id`. Moveable transforma roots. Excluir option internals, botón +, toolbar, inputs, contenteditable y overlays.
 ```
 
-<a id="file-0140"></a>
+<a id="file-0143"></a>
 
-### 0140 — `ai/context/snapshot-context.md`
+### 0143 — `ai/context/snapshot-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8546,9 +9869,9 @@ Selecto selecciona roots con `data-schema-id`. Moveable transforma roots. Exclui
 Snapshot preserva document/page, geometry, ownership, options, selected values y `__designer`.
 ```
 
-<a id="file-0141"></a>
+<a id="file-0144"></a>
 
-### 0141 — `ai/context/tailwind-design-continuity-context.md`
+### 0144 — `ai/context/tailwind-design-continuity-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -8584,9 +9907,9 @@ Snapshot preserva document/page, geometry, ownership, options, selected values y
 5. Cerrar con validación visual y ledger cuantitativo.
 ```
 
-<a id="file-0142"></a>
+<a id="file-0145"></a>
 
-### 0142 — `ai/context/visual-baseline-context.md`
+### 0145 — `ai/context/visual-baseline-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -8615,9 +9938,9 @@ Comparar intención visual, no pixel-perfect:
 - canvas-first.
 ```
 
-<a id="file-0143"></a>
+<a id="file-0146"></a>
 
-### 0143 — `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md`
+### 0146 — `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -8658,9 +9981,9 @@ AGENTS.md/CLAUDE.md si existen
 | `reports/*` | conservar como evidencia, no cargar por defecto |
 ```
 
-<a id="file-0144"></a>
+<a id="file-0147"></a>
 
-### 0144 — `ai/memory/changelog.md`
+### 0147 — `ai/memory/changelog.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -8678,9 +10001,9 @@ AGENTS.md/CLAUDE.md si existen
 - Se agregan adaptadores para Codex, Claude y GitHub Copilot.
 ```
 
-<a id="file-0145"></a>
+<a id="file-0148"></a>
 
-### 0145 — `ai/memory/completed-checklist.md`
+### 0148 — `ai/memory/completed-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -8718,9 +10041,9 @@ AGENTS.md/CLAUDE.md si existen
 - No convertir reports/completed en contexto activo.
 ```
 
-<a id="file-0146"></a>
+<a id="file-0149"></a>
 
-### 0146 — `ai/memory/decisions.md`
+### 0149 — `ai/memory/decisions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -8752,9 +10075,9 @@ Las imágenes de `public/img-version` son referencia de intención visual previa
 Paper, transform, zoom, x/y/width/height, Moveable/Selecto y z-index crítico permanecen en CSS/tokens o inline controlado.
 ```
 
-<a id="file-0147"></a>
+<a id="file-0150"></a>
 
-### 0147 — `ai/memory/known-risks.md`
+### 0150 — `ai/memory/known-risks.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -8775,9 +10098,9 @@ Paper, transform, zoom, x/y/width/height, Moveable/Selecto y z-index crítico pe
 | Agentes duplican reglas | Alucinaciones/inconsistencias | Adaptadores delgados |
 ```
 
-<a id="file-0148"></a>
+<a id="file-0151"></a>
 
-### 0148 — `ai/memory/memory-update-protocol.md`
+### 0151 — `ai/memory/memory-update-protocol.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -8817,9 +10140,9 @@ Actualizar memoria solo si ocurrió una decisión estable o cambio relevante.
 ``​`
 ```
 
-<a id="file-0149"></a>
+<a id="file-0152"></a>
 
-### 0149 — `ai/memory/pending-checklist.md`
+### 0152 — `ai/memory/pending-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -8851,9 +10174,9 @@ Este archivo contiene solo trabajo pendiente o continuidad. Las tareas completad
 - [x] Confirmar que el CSS migrado a Tailwind inline no rompe geometry, zoom, canvas, paper, Moveable, Selecto o print/PDF.
 ```
 
-<a id="file-0150"></a>
+<a id="file-0153"></a>
 
-### 0150 — `ai/memory/project-memory.md`
+### 0153 — `ai/memory/project-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -8884,9 +10207,9 @@ El proyecto `sisad-pdfme` es un diseñador PDF con laboratorios bajo `src/featur
 La migración Tailwind puede romper layout por doble fuente de verdad: Tailwind JSX + bridge + CSS legacy. Corregir por capas.
 ```
 
-<a id="file-0151"></a>
+<a id="file-0154"></a>
 
-### 0151 — `ai/memory/README.md`
+### 0154 — `ai/memory/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -8910,9 +10233,9 @@ La memoria evita repetir decisiones y reduce tokens. Debe mantenerse corta, obje
 - `pending-checklist.md`: pendientes priorizados.
 ```
 
-<a id="file-0152"></a>
+<a id="file-0155"></a>
 
-### 0152 — `ai/memory/session-handoff.md`
+### 0155 — `ai/memory/session-handoff.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -9091,14 +10414,14 @@ edición paralela.
   con las reglas de border-solid.
 ```
 
-<a id="file-0153"></a>
+<a id="file-0156"></a>
 
-### 0153 — `ai/plans/PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md`
+### 0156 — `ai/plans/PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `679`
-- **Tamaño original:** `11.9 KB`
-- **SHA1 corto:** `9ddcfe148c`
+- **Tamaño original:** `12.9 KB`
+- **SHA1 corto:** `e7b02c48b8`
 - **Estado:** `completo`
 
 ```markdown
@@ -9110,14 +10433,14 @@ Completar la migración visual de SISAD PDFME sin repetir análisis ya cerrados,
 
 Este plan parte del estado más reciente disponible:
 
-| Archivo | Estado aproximado reportado |
-|---|---:|
-| `src/features/pdfcomponent/labRoutes.css` | 5 líneas |
-| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 2484 líneas |
-| `src/sisad-pdfme/ui/styles/tokens.css` | 323 líneas |
-| `src/styles/sisad-tailwind-bridge.css` | vacío |
-| `src/style.css` | neutralizado |
-| `src/styles/tailwind.css` | fuente única de Tailwind |
+| Archivo                                       | Estado aproximado reportado |
+| --------------------------------------------- | --------------------------: |
+| `src/features/pdfcomponent/labRoutes.css`   |                   5 líneas |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` |                2484 líneas |
+| `src/sisad-pdfme/ui/styles/tokens.css`      |                 323 líneas |
+| `src/styles/sisad-tailwind-bridge.css`      |                      vacío |
+| `src/style.css`                             |                neutralizado |
+| `src/styles/tailwind.css`                   |   fuente única de Tailwind |
 
 Estas cifras deben volver a medirse al comenzar porque el repositorio puede haber cambiado.
 
@@ -9216,18 +10539,18 @@ Usarlo únicamente si posee modo seguro de reporte o generación de candidatos. 
 
 ## 5. Matriz de decisión
 
-| Tipo de regla | Destino |
-|---|---|
-| Flex, grid, gap, padding, skin | JSX/TSX |
-| Hover, focus, selected local | JSX/TSX |
-| Responsive local | JSX/TSX |
-| Token compartido | `tokens.css` |
-| Variable consumida por JS | `tokens.css` o constante |
-| Ant Design descendant selector | CSS técnico |
-| Moveable/Selecto | CSS técnico |
-| Canvas/paper geometry | CSS técnico |
-| Print/keyframes | CSS técnico |
-| Selector sin consumidor | eliminar con evidencia |
+| Tipo de regla                  | Destino                    |
+| ------------------------------ | -------------------------- |
+| Flex, grid, gap, padding, skin | JSX/TSX                    |
+| Hover, focus, selected local   | JSX/TSX                    |
+| Responsive local               | JSX/TSX                    |
+| Token compartido               | `tokens.css`             |
+| Variable consumida por JS      | `tokens.css` o constante |
+| Ant Design descendant selector | CSS técnico               |
+| Moveable/Selecto               | CSS técnico               |
+| Canvas/paper geometry          | CSS técnico               |
+| Print/keyframes                | CSS técnico               |
+| Selector sin consumidor        | eliminar con evidencia     |
 
 ## 6. Fases y paquetes
 
@@ -9757,17 +11080,17 @@ sin wrappers decorativos nuevos;
 
 ## 8. Estimación por paquetes
 
-| Paquete | Subpases estimados | Gate |
-|---|---:|---|
-| Baseline e inventario | 1 | reportes |
-| RightSidebar | 2–3 | build + 2 specs |
-| LeftSidebar | 2 | build + specs del dominio |
-| Toolbar/zoom | 1–2 | build + suite amplia |
-| Lab host | 1 | build + 2 specs |
-| Form/Viewer | 1–2 | build + suite amplia |
-| Poda CSS | 2 | build |
-| Tokens | 1 | build |
-| QA final | 1 | suite completa |
+| Paquete               | Subpases estimados | Gate                      |
+| --------------------- | -----------------: | ------------------------- |
+| Baseline e inventario |                  1 | reportes                  |
+| RightSidebar          |               2–3 | build + 2 specs           |
+| LeftSidebar           |                  2 | build + specs del dominio |
+| Toolbar/zoom          |               1–2 | build + suite amplia      |
+| Lab host              |                  1 | build + 2 specs           |
+| Form/Viewer           |               1–2 | build + suite amplia      |
+| Poda CSS              |                  2 | build                     |
+| Tokens                |                  1 | build                     |
+| QA final              |             oi, o1 | suite completa            |
 
 ## 9. Regla de continuidad
 
@@ -9783,9 +11106,9 @@ No actualizar cinco documentos distintos.
 No volver a abrir un paquete cerrado salvo que una prueba demuestre una regresión.
 ```
 
-<a id="file-0154"></a>
+<a id="file-0157"></a>
 
-### 0154 — `ai/playbooks/pb-ai-docs-refactor.md`
+### 0157 — `ai/playbooks/pb-ai-docs-refactor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -9822,9 +11145,9 @@ Modificar documentación o archivos IA respetando la estructura real del reposit
 - No se duplican prompts operativos dentro de `docs/**`.
 ```
 
-<a id="file-0155"></a>
+<a id="file-0158"></a>
 
-### 0155 — `ai/playbooks/pb-canvas-multipage.md`
+### 0158 — `ai/playbooks/pb-canvas-multipage.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -9841,9 +11164,9 @@ Modificar documentación o archivos IA respetando la estructura real del reposit
 4. Validar snapshot.
 ```
 
-<a id="file-0156"></a>
+<a id="file-0159"></a>
 
-### 0156 — `ai/playbooks/pb-css-tailwind-migration.md`
+### 0159 — `ai/playbooks/pb-css-tailwind-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -9882,9 +11205,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 - No se rompe canvas ni runtime.
 ```
 
-<a id="file-0157"></a>
+<a id="file-0160"></a>
 
-### 0157 — `ai/playbooks/pb-inspector.md`
+### 0160 — `ai/playbooks/pb-inspector.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -9901,9 +11224,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. Validar ListView/DetailView.
 ```
 
-<a id="file-0158"></a>
+<a id="file-0161"></a>
 
-### 0158 — `ai/playbooks/pb-schema-families.md`
+### 0161 — `ai/playbooks/pb-schema-families.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -9920,9 +11243,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. Validar snapshot.
 ```
 
-<a id="file-0159"></a>
+<a id="file-0162"></a>
 
-### 0159 — `ai/playbooks/pb-selection-transform.md`
+### 0162 — `ai/playbooks/pb-selection-transform.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -9939,9 +11262,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. Validar Moveable root-only.
 ```
 
-<a id="file-0160"></a>
+<a id="file-0163"></a>
 
-### 0160 — `ai/playbooks/pb-snapshot.md`
+### 0163 — `ai/playbooks/pb-snapshot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -9958,9 +11281,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. No tocar generator salvo task explícita.
 ```
 
-<a id="file-0161"></a>
+<a id="file-0164"></a>
 
-### 0161 — `ai/playbooks/pb-tailwind-design-continuity.md`
+### 0164 — `ai/playbooks/pb-tailwind-design-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -10004,9 +11327,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 - Si falla, conservar la tarjeta activa y documentar el bloqueo sin encadenar arreglos ajenos.
 ```
 
-<a id="file-0162"></a>
+<a id="file-0165"></a>
 
-### 0162 — `ai/playbooks/pb-visual-regression.md`
+### 0165 — `ai/playbooks/pb-visual-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -10025,9 +11348,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 6. Corregir por componente.
 ```
 
-<a id="file-0163"></a>
+<a id="file-0166"></a>
 
-### 0163 — `ai/playbooks/README.md`
+### 0166 — `ai/playbooks/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10041,9 +11364,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 Procedimientos. Cargar uno por task-card.
 ```
 
-<a id="file-0164"></a>
+<a id="file-0167"></a>
 
-### 0164 — `ai/project/architecture-principles.md`
+### 0167 — `ai/project/architecture-principles.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -10088,9 +11411,9 @@ Las instrucciones dependen de contratos (`task-card`, `rules`, `context`) y no d
 No duplicar reglas en `AGENTS.md`, `CLAUDE.md` y Copilot. Esos archivos solo apuntan a `ai/start/START.md`.
 ```
 
-<a id="file-0165"></a>
+<a id="file-0168"></a>
 
-### 0165 — `ai/project/definition-of-done.md`
+### 0168 — `ai/project/definition-of-done.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -10113,9 +11436,9 @@ Una task-card se considera completa cuando:
 - Se propuso nueva task-card si quedó trabajo fuera de alcance.
 ```
 
-<a id="file-0166"></a>
+<a id="file-0169"></a>
 
-### 0166 — `ai/project/file-ownership-map.md`
+### 0169 — `ai/project/file-ownership-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -10140,9 +11463,9 @@ Una task-card se considera completa cuando:
 | AI docs | `ai/**` | docs-architecture-agent |
 ```
 
-<a id="file-0167"></a>
+<a id="file-0170"></a>
 
-### 0167 — `ai/project/glossary.md`
+### 0170 — `ai/project/glossary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -10169,9 +11492,9 @@ Una task-card se considera completa cuando:
 | Bridge Tailwind | CSS con `@apply` que conserva classNames existentes |
 ```
 
-<a id="file-0168"></a>
+<a id="file-0171"></a>
 
-### 0168 — `ai/project/goals.md`
+### 0171 — `ai/project/goals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10206,9 +11529,9 @@ Construir y estabilizar `sisad-pdfme` como componente diseñador PDF reutilizabl
 - Dividir tareas grandes en pasos verificables.
 ```
 
-<a id="file-0169"></a>
+<a id="file-0172"></a>
 
-### 0169 — `ai/project/non-goals.md`
+### 0172 — `ai/project/non-goals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -10231,9 +11554,9 @@ No hacer por defecto:
 - Resolver permisos con CSS.
 ```
 
-<a id="file-0170"></a>
+<a id="file-0173"></a>
 
-### 0170 — `ai/project/scope.md`
+### 0173 — `ai/project/scope.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -10282,9 +11605,9 @@ infra backend
 Form/Viewer/Generator no son foco principal, pero no deben romperse. Cualquier cambio en Designer debe preservar metadata y render compatible.
 ```
 
-<a id="file-0171"></a>
+<a id="file-0174"></a>
 
-### 0171 — `ai/prompts/claude-diagnose-or-implement.md`
+### 0174 — `ai/prompts/claude-diagnose-or-implement.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -10302,9 +11625,9 @@ Modo implementación: modificar solo archivos de la task-card, validar y reporta
 Siempre respetar contexto budget.
 ```
 
-<a id="file-0172"></a>
+<a id="file-0175"></a>
 
-### 0172 — `ai/prompts/codex-master-prompt.md`
+### 0175 — `ai/prompts/codex-master-prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -10320,9 +11643,9 @@ Lee `ai/start/START.md`. Enruta con `ai/router/ROUTER.md`. Usa presupuesto de `a
 Trabaja una sola task-card. Antes de editar, declara Router decision. No hagas auditoría global salvo que la task lo pida.
 ```
 
-<a id="file-0173"></a>
+<a id="file-0176"></a>
 
-### 0173 — `ai/prompts/codex-next-pass-actions-ui-dedup.md`
+### 0176 — `ai/prompts/codex-next-pass-actions-ui-dedup.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `62`
@@ -10395,9 +11718,9 @@ Criterio:
 No puede quedar ningún botón visible sin handler real, aria-label, testId y estado de acción.
 ```
 
-<a id="file-0174"></a>
+<a id="file-0177"></a>
 
-### 0174 — `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md`
+### 0177 — `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -10439,9 +11762,9 @@ Validación:
 - `npx playwright test tests/playwright/pdfcomponent-dynamic-integration.spec.ts`
 ```
 
-<a id="file-0175"></a>
+<a id="file-0178"></a>
 
-### 0175 — `ai/prompts/codex-start-tailwind-design-continuity.md`
+### 0178 — `ai/prompts/codex-start-tailwind-design-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10465,9 +11788,9 @@ Después del arranque base del repositorio:
 No conviertas el roadmap completo en una sola ejecución. Las tarjetas de `backlog/` representan trabajo futuro y no autorizan cambios todavía.
 ```
 
-<a id="file-0176"></a>
+<a id="file-0179"></a>
 
-### 0176 — `ai/prompts/copilot-task-context.md`
+### 0179 — `ai/prompts/copilot-task-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -10489,9 +11812,9 @@ Cambios pequeños y focalizados.
 ``​`
 ```
 
-<a id="file-0177"></a>
+<a id="file-0180"></a>
 
-### 0177 — `ai/prompts/create-task-card.md`
+### 0180 — `ai/prompts/create-task-card.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -10513,9 +11836,9 @@ Convierte la petición del usuario en una task-card cerrada con:
 - criterio de parada.
 ```
 
-<a id="file-0178"></a>
+<a id="file-0181"></a>
 
-### 0178 — `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md`
+### 0181 — `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `804`
@@ -11330,9 +12653,9 @@ Siguiente paquete:
 Continúa con el siguiente paquete automáticamente mientras no exista una regresión funcional, una ambigüedad arquitectónica o un selector técnico de alto riesgo.
 ```
 
-<a id="file-0179"></a>
+<a id="file-0182"></a>
 
-### 0179 — `ai/prompts/README.md`
+### 0182 — `ai/prompts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11346,9 +12669,9 @@ Continúa con el siguiente paquete automáticamente mientras no exista una regre
 Prompts reutilizables. No reemplazan task-cards.
 ```
 
-<a id="file-0180"></a>
+<a id="file-0183"></a>
 
-### 0180 — `ai/prompts/update-memory.md`
+### 0183 — `ai/prompts/update-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11362,9 +12685,9 @@ Prompts reutilizables. No reemplazan task-cards.
 Actualiza memoria solo si hubo decisión estable. Usa `ai/memory/memory-update-protocol.md`.
 ```
 
-<a id="file-0181"></a>
+<a id="file-0184"></a>
 
-### 0181 — `ai/reports/architecture-correction-2026-07-14.md`
+### 0184 — `ai/reports/architecture-correction-2026-07-14.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -11403,9 +12726,9 @@ Se encontraron referencias de documentación IA que apuntaban a una arquitectura
 - No se tocaron archivos fuera del alcance de docs/IA, por lo que el contenido público y el código fuente permanecen intactos.
 ```
 
-<a id="file-0182"></a>
+<a id="file-0185"></a>
 
-### 0182 — `ai/reports/auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md`
+### 0185 — `ai/reports/auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `198`
@@ -11614,9 +12937,9 @@ npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/p
 Sincronizar el checkout real del repositorio (incluyendo `package.json`, `src/`, tests y configuración) en el workspace, o proporcionar repositorio y rama. Los paquetes Markdown son suficientes para auditar, pero no para aplicar cambios seguros ni validar el comportamiento actual.
 ```
 
-<a id="file-0183"></a>
+<a id="file-0186"></a>
 
-### 0183 — `ai/reports/deep-ui-action-audit-2026-07-15.md`
+### 0186 — `ai/reports/deep-ui-action-audit-2026-07-15.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `169`
@@ -11796,9 +13119,9 @@ Prohibido tocar en esta pasada:
 - CSS visual repetido se desplaza a Tailwind 3 en TSX, no a otra hoja CSS.
 ```
 
-<a id="file-0184"></a>
+<a id="file-0187"></a>
 
-### 0184 — `ai/reports/pdfcomponent-integration-boundary.md`
+### 0187 — `ai/reports/pdfcomponent-integration-boundary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -11850,9 +13173,9 @@ If a change affects the render host path, it must go through public wrappers and
 Host render boundary satisfied for the current task-card criteria. Future regressions should create a new `continuity` or `regression` card instead of reopening this one.
 ```
 
-<a id="file-0185"></a>
+<a id="file-0188"></a>
 
-### 0185 — `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md`
+### 0188 — `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `193`
@@ -12056,9 +13379,9 @@ example.collaboration.users + runtimeOptions.collaboration.recipients + designer
 - `labExamples` se parte en catálogo declarativo y builders.
 ```
 
-<a id="file-0186"></a>
+<a id="file-0189"></a>
 
-### 0186 — `ai/reports/tailwind-design-continuity-roadmap.md`
+### 0189 — `ai/reports/tailwind-design-continuity-roadmap.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -12093,9 +13416,9 @@ Solo una tarjeta puede estar activa. Una dependencia se considera satisfecha cua
 - Regresiones visuales convertidas en pruebas reproducibles.
 ```
 
-<a id="file-0187"></a>
+<a id="file-0190"></a>
 
-### 0187 — `ai/router/CONTEXT_BUDGET.md`
+### 0190 — `ai/router/CONTEXT_BUDGET.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `58`
@@ -12164,9 +13487,9 @@ tsconfig.tsbuildinfo
 - No modificar `pdf-lib`, `generator`, `Moveable`, `Selecto`, `snapshotAdapter` o geometría sin task-card explícita.
 ```
 
-<a id="file-0188"></a>
+<a id="file-0191"></a>
 
-### 0188 — `ai/router/ROUTER.md`
+### 0191 — `ai/router/ROUTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -12207,9 +13530,9 @@ tsconfig.tsbuildinfo
 - Si una tarea menciona CSS, primero revisar `reports/tailwind-migration/**` y luego modificar `src/**`.
 ```
 
-<a id="file-0189"></a>
+<a id="file-0192"></a>
 
-### 0189 — `ai/router/TASK_INTAKE.md`
+### 0192 — `ai/router/TASK_INTAKE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -12255,9 +13578,9 @@ scripts
 - Documentar cada regla que se elimina.
 ```
 
-<a id="file-0190"></a>
+<a id="file-0193"></a>
 
-### 0190 — `ai/rules/ai-docs-rules.md`
+### 0193 — `ai/rules/ai-docs-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12274,9 +13597,9 @@ scripts
 - Cada archivo Markdown tiene única responsabilidad.
 ```
 
-<a id="file-0191"></a>
+<a id="file-0194"></a>
 
-### 0191 — `ai/rules/canvas-rules.md`
+### 0194 — `ai/rules/canvas-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12290,9 +13613,9 @@ scripts
 No usar `pages[0]`, `pageNumber || 1`, ni query selector del primer paper para operaciones multipágina. Siempre resolver página real.
 ```
 
-<a id="file-0192"></a>
+<a id="file-0195"></a>
 
-### 0192 — `ai/rules/css-migration-rules.md`
+### 0195 — `ai/rules/css-migration-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -12338,9 +13661,9 @@ src/styles/tailwind.css -> importado por src/main.jsx
 5. Comparar baseline visual.
 ```
 
-<a id="file-0193"></a>
+<a id="file-0196"></a>
 
-### 0193 — `ai/rules/global-rules.md`
+### 0196 — `ai/rules/global-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -12360,9 +13683,9 @@ src/styles/tailwind.css -> importado por src/main.jsx
 - Cualquier regresión de una tarea completada debe tener una nueva task-card de regression/continuity.
 ```
 
-<a id="file-0194"></a>
+<a id="file-0197"></a>
 
-### 0194 — `ai/rules/inspector-rules.md`
+### 0197 — `ai/rules/inspector-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12376,9 +13699,9 @@ src/styles/tailwind.css -> importado por src/main.jsx
 Widgets no mutan schemas directamente. Usar command/update centralizado.
 ```
 
-<a id="file-0195"></a>
+<a id="file-0198"></a>
 
-### 0195 — `ai/rules/moveable-selecto-rules.md`
+### 0198 — `ai/rules/moveable-selecto-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -12394,9 +13717,9 @@ Widgets no mutan schemas directamente. Usar command/update centralizado.
 - No resolver hit-testing con z-index.
 ```
 
-<a id="file-0196"></a>
+<a id="file-0199"></a>
 
-### 0196 — `ai/rules/README.md`
+### 0199 — `ai/rules/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12410,9 +13733,9 @@ Widgets no mutan schemas directamente. Usar command/update centralizado.
 Reglas duras. Cargar solo la regla principal de la task-card.
 ```
 
-<a id="file-0197"></a>
+<a id="file-0200"></a>
 
-### 0197 — `ai/rules/schema-rules.md`
+### 0200 — `ai/rules/schema-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12426,9 +13749,9 @@ Reglas duras. Cargar solo la regla principal de la task-card.
 Preservar schemaUid, documentId, pageNumber, ownerRecipientId, colors, groupId, optionId, selected values, options y `__designer`.
 ```
 
-<a id="file-0198"></a>
+<a id="file-0201"></a>
 
-### 0198 — `ai/rules/snapshot-rules.md`
+### 0201 — `ai/rules/snapshot-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12442,9 +13765,9 @@ Preservar schemaUid, documentId, pageNumber, ownerRecipientId, colors, groupId, 
 No crear snapshot paralelo. No perder metadata. Todo roundtrip debe conservar el modelo.
 ```
 
-<a id="file-0199"></a>
+<a id="file-0202"></a>
 
-### 0199 — `ai/rules/tailwind-design-continuity-rules.md`
+### 0202 — `ai/rules/tailwind-design-continuity-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -12469,9 +13792,9 @@ No crear snapshot paralelo. No perder metadata. Todo roundtrip debe conservar el
 12. Todo cambio termina con typecheck, lint focalizado, tests focalizados y evidencia visual en la ruta objetivo.
 ```
 
-<a id="file-0200"></a>
+<a id="file-0203"></a>
 
-### 0200 — `ai/skills/canvas-multipage-skill.md`
+### 0203 — `ai/skills/canvas-multipage-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -12511,9 +13834,9 @@ Validar drop, selección, move, resize y snapshot en páginas 2+.
 ``​`
 ```
 
-<a id="file-0201"></a>
+<a id="file-0204"></a>
 
-### 0201 — `ai/skills/inspector-skill.md`
+### 0204 — `ai/skills/inspector-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -12553,9 +13876,9 @@ Mejorar DetailView/ListView sin romper CommandBus.
 ``​`
 ```
 
-<a id="file-0202"></a>
+<a id="file-0205"></a>
 
-### 0202 — `ai/skills/memory-update-skill.md`
+### 0205 — `ai/skills/memory-update-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -12595,9 +13918,9 @@ Actualizar memoria con decisiones útiles.
 ``​`
 ```
 
-<a id="file-0203"></a>
+<a id="file-0206"></a>
 
-### 0203 — `ai/skills/moveable-selecto-skill.md`
+### 0206 — `ai/skills/moveable-selecto-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -12637,9 +13960,9 @@ Proteger targets, guards, overlays y shortcuts.
 ``​`
 ```
 
-<a id="file-0204"></a>
+<a id="file-0207"></a>
 
-### 0204 — `ai/skills/option-groups-skill.md`
+### 0207 — `ai/skills/option-groups-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -12679,9 +14002,9 @@ Gestionar checkboxGroup/radioGroup/select y botón +.
 ``​`
 ```
 
-<a id="file-0205"></a>
+<a id="file-0208"></a>
 
-### 0205 — `ai/skills/prompting-skill.md`
+### 0208 — `ai/skills/prompting-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -12721,9 +14044,9 @@ Diseñar prompts/task-cards de bajo consumo de tokens.
 ``​`
 ```
 
-<a id="file-0206"></a>
+<a id="file-0209"></a>
 
-### 0206 — `ai/skills/README.md`
+### 0209 — `ai/skills/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12737,9 +14060,9 @@ Diseñar prompts/task-cards de bajo consumo de tokens.
 Skills son procedimientos reutilizables. Cada skill describe entradas, pasos y salida esperada.
 ```
 
-<a id="file-0207"></a>
+<a id="file-0210"></a>
 
-### 0207 — `ai/skills/snapshot-safety-skill.md`
+### 0210 — `ai/skills/snapshot-safety-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -12779,9 +14102,9 @@ Preservar metadata en import/export/roundtrip.
 ``​`
 ```
 
-<a id="file-0208"></a>
+<a id="file-0211"></a>
 
-### 0208 — `ai/skills/tailwind-migration-skill.md`
+### 0211 — `ai/skills/tailwind-migration-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -12821,9 +14144,9 @@ Migrar CSS puro a Tailwind por capas sin afectar geometría.
 ``​`
 ```
 
-<a id="file-0209"></a>
+<a id="file-0212"></a>
 
-### 0209 — `ai/skills/visual-regression-skill.md`
+### 0212 — `ai/skills/visual-regression-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -12863,9 +14186,9 @@ Usar public/img-version como baseline y comparar visualmente.
 ``​`
 ```
 
-<a id="file-0210"></a>
+<a id="file-0213"></a>
 
-### 0210 — `ai/start/QUICKSTART-CLAUDE.md`
+### 0213 — `ai/start/QUICKSTART-CLAUDE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -12891,9 +14214,9 @@ Usar `ai/prompts/claude-diagnose-or-implement.md` en modo `diagnose-only` cuando
 Usar una sola task-card. No mezclar Tailwind, schemas, canvas, runtime y snapshot en la misma pasada.
 ```
 
-<a id="file-0211"></a>
+<a id="file-0214"></a>
 
-### 0211 — `ai/start/QUICKSTART-CODEX.md`
+### 0214 — `ai/start/QUICKSTART-CODEX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -12938,9 +14261,9 @@ No revises todo. Enruta, selecciona task-card, inspecciona con rg y modifica poc
 ``​`
 ```
 
-<a id="file-0212"></a>
+<a id="file-0215"></a>
 
-### 0212 — `ai/start/QUICKSTART-COPILOT.md`
+### 0215 — `ai/start/QUICKSTART-COPILOT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -12969,9 +14292,9 @@ Preservar metadata de schemas.
 `.github/copilot-instructions.md` solo debe apuntar a esta carpeta y contener restricciones mínimas.
 ```
 
-<a id="file-0213"></a>
+<a id="file-0216"></a>
 
-### 0213 — `ai/start/START.md`
+### 0216 — `ai/start/START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -13058,9 +14381,9 @@ Detente si necesitas:
 - resolver por CSS un problema de permisos, metadata o geometría.
 ```
 
-<a id="file-0214"></a>
+<a id="file-0217"></a>
 
-### 0214 — `ai/subagents/anti-hallucination-reviewer.md`
+### 0217 — `ai/subagents/anti-hallucination-reviewer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13084,9 +14407,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0215"></a>
+<a id="file-0218"></a>
 
-### 0215 — `ai/subagents/baseline-visual-critic.md`
+### 0218 — `ai/subagents/baseline-visual-critic.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13110,9 +14433,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0216"></a>
+<a id="file-0219"></a>
 
-### 0216 — `ai/subagents/code-docs-writer.md`
+### 0219 — `ai/subagents/code-docs-writer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13136,9 +14459,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0217"></a>
+<a id="file-0220"></a>
 
-### 0217 — `ai/subagents/css-auditor.md`
+### 0220 — `ai/subagents/css-auditor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13162,9 +14485,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0218"></a>
+<a id="file-0221"></a>
 
-### 0218 — `ai/subagents/legacy-css-guardian.md`
+### 0221 — `ai/subagents/legacy-css-guardian.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13188,9 +14511,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0219"></a>
+<a id="file-0222"></a>
 
-### 0219 — `ai/subagents/memory-curator.md`
+### 0222 — `ai/subagents/memory-curator.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13214,9 +14537,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0220"></a>
+<a id="file-0223"></a>
 
-### 0220 — `ai/subagents/prompt-engineer.md`
+### 0223 — `ai/subagents/prompt-engineer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13240,9 +14563,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0221"></a>
+<a id="file-0224"></a>
 
-### 0221 — `ai/subagents/README.md`
+### 0224 — `ai/subagents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13256,9 +14579,9 @@ No modificar código por sí solo. Debe apoyar al agente principal.
 Los subagentes son apoyo especializado. No son dueños de procesos completos.
 ```
 
-<a id="file-0222"></a>
+<a id="file-0225"></a>
 
-### 0222 — `ai/subagents/regression-tester.md`
+### 0225 — `ai/subagents/regression-tester.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13282,9 +14605,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0223"></a>
+<a id="file-0226"></a>
 
-### 0223 — `ai/subagents/tailwind-migrator.md`
+### 0226 — `ai/subagents/tailwind-migrator.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13308,9 +14631,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0224"></a>
+<a id="file-0227"></a>
 
-### 0224 — `ai/task-cards/README.md`
+### 0227 — `ai/task-cards/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -13332,9 +14655,9 @@ completed/  tareas completadas
 ``​`
 ```
 
-<a id="file-0225"></a>
+<a id="file-0228"></a>
 
-### 0225 — `ai/templates/agent-template.md`
+### 0228 — `ai/templates/agent-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -13352,9 +14675,9 @@ completed/  tareas completadas
 ## Salida esperada
 ```
 
-<a id="file-0226"></a>
+<a id="file-0229"></a>
 
-### 0226 — `ai/templates/checklist-template.md`
+### 0229 — `ai/templates/checklist-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -13370,9 +14693,9 @@ completed/  tareas completadas
 - [ ] Validación
 ```
 
-<a id="file-0227"></a>
+<a id="file-0230"></a>
 
-### 0227 — `ai/templates/decision-template.md`
+### 0230 — `ai/templates/decision-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -13390,9 +14713,9 @@ completed/  tareas completadas
 ## Consecuencias
 ```
 
-<a id="file-0228"></a>
+<a id="file-0231"></a>
 
-### 0228 — `ai/templates/memory-update-template.md`
+### 0231 — `ai/templates/memory-update-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -13410,9 +14733,9 @@ completed/  tareas completadas
 - Próxima acción:
 ```
 
-<a id="file-0229"></a>
+<a id="file-0232"></a>
 
-### 0229 — `ai/templates/README.md`
+### 0232 — `ai/templates/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13426,9 +14749,9 @@ completed/  tareas completadas
 Plantillas para extender la arquitectura sin duplicar estilo.
 ```
 
-<a id="file-0230"></a>
+<a id="file-0233"></a>
 
-### 0230 — `ai/templates/skill-template.md`
+### 0233 — `ai/templates/skill-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -13446,9 +14769,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 ## Salida
 ```
 
-<a id="file-0231"></a>
+<a id="file-0234"></a>
 
-### 0231 — `ai/templates/task-card-template.md`
+### 0234 — `ai/templates/task-card-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -13470,9 +14793,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 ## Entrega final
 ```
 
-<a id="file-0232"></a>
+<a id="file-0235"></a>
 
-### 0232 — `reports/action-audit/button-action-inventory.md`
+### 0235 — `reports/action-audit/button-action-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `149`
@@ -13632,9 +14955,9 @@ Total candidates: 131
 | `src/features/pdfcomponent/ui/primitives.jsx` | 23-32 | DISABLED_WITH_REASON | — | `label` | yes | yes | yes | `<button type="button" className={classNameList} aria-label={label} title={title \|\| label} aria-haspopup={ariaHasPopup} aria-expanded={ariaExpanded} onClick={onClick} disabled={disabled} >` |
 ```
 
-<a id="file-0233"></a>
+<a id="file-0236"></a>
 
-### 0233 — `reports/designer-deep-audit/duplication-map.md`
+### 0236 — `reports/designer-deep-audit/duplication-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -13669,9 +14992,9 @@ Total candidates: 131
 - **Fuente única propuesta:** Centralizar en `sidebarPanelContract.ts` y tokens de Tailwind.
 ```
 
-<a id="file-0234"></a>
+<a id="file-0237"></a>
 
-### 0234 — `reports/designer-deep-audit/risk-map.md`
+### 0237 — `reports/designer-deep-audit/risk-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -13701,9 +15024,9 @@ Total candidates: 131
 - **Impacto:** Medio.
 ```
 
-<a id="file-0235"></a>
+<a id="file-0238"></a>
 
-### 0235 — `reports/designer-deep-audit/wrapper-reduction.md`
+### 0238 — `reports/designer-deep-audit/wrapper-reduction.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -13770,14 +15093,14 @@ de `src/sisad-pdfme` = 0 resultados.
 - `npm run build` exit 0; `npx vitest run tests/unit/sisad-pdfme/react` (runtime-modes) en verde.
 ```
 
-<a id="file-0236"></a>
+<a id="file-0239"></a>
 
-### 0236 — `reports/tailwind-migration/active-css-inventory.md`
+### 0239 — `reports/tailwind-migration/active-css-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
 - **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `d27a26896c`
+- **SHA1 corto:** `bc7bee8d21`
 - **Estado:** `completo`
 
 ```markdown
@@ -13789,77 +15112,37 @@ de `src/sisad-pdfme` = 0 resultados.
 | `src/style.css` | 12 | 0.5 | mantener neutralizado |
 | `src/styles/sisad-tailwind-bridge.css` | 1 | 0.0 | revisar |
 | `src/features/pdfcomponent/labRoutes.css` | 0 | 0 | no existe |
-| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 1565 | 70.1 | migrar solo reglas visuales seguras |
-| `src/sisad-pdfme/ui/styles/tokens.css` | 151 | 6.0 | conservar tokens |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 309 | 14.3 | migrar solo reglas visuales seguras |
+| `src/sisad-pdfme/ui/styles/tokens.css` | 86 | 3.5 | conservar tokens |
 
 No incluir `reports/**` ni `.tailwind-migration-backups/**` como CSS activo.
 ```
 
-<a id="file-0237"></a>
+<a id="file-0240"></a>
 
-### 0237 — `reports/tailwind-migration/active-selector-duplicates.md`
+### 0240 — `reports/tailwind-migration/active-selector-duplicates.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `49`
-- **Tamaño original:** `9.6 KB`
-- **SHA1 corto:** `576f01059d`
+- **Líneas:** `9`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `16973ddaf9`
 - **Estado:** `completo`
 
 ```markdown
 # Active Selector Duplicates
 
 Files scanned: src/sisad-pdfme/ui/styles/sisad-pdfme.css, src/styles/sisad-tailwind-bridge.css
-Duplicate selectors: 42
+Duplicate selectors: 2
 
 | Selector | Count | Locations | Suggested class |
 |---|---:|---|---|
-| `to` | 18 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1477`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1487`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1497`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1507`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1517`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1527`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1537`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1547`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1566`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1594`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1604`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1801`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1810`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1833`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1845`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1855`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1861`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1872` | REVIEW |
-| `from` | 16 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1472`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1483`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1493`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1503`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1513`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1523`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1533`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1543`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1590`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1600`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1797`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1806`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1825`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1839`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1850`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1866` | REVIEW |
-| `.sisad-pdfme-designer-right-sidebar` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:492`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:616`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:622`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:701`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:863` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:886`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:900`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:914`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:923` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:890`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:904`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:918`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:926` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-color-picker-trigger` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1014`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1132`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1162`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1182` | REVIEW |
-| `100%` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1560`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1574`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1585`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1817` | REVIEW |
-| `.sisad-pdfme-designer-stage` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:85`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:107`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:391` | REVIEW |
-| `.sisad-pdfme-ui-control-bar` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:166`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:851`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1097` | REVIEW |
-| `.sisad-pdfme-ui-control-bar-summary` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:192`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:199`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1468` | REVIEW |
-| `.sisad-pdfme-ui-control-bar-text-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:249`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:274`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1101` | REVIEW |
-| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:388`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1630`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1637` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-toggle-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:518`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:876`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1092` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:882`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:896`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:910` | MIGRATE_TO_TSX |
-| `0%` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1553`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1571`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1579` | REVIEW |
-| `.sisad-pdfme-root` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:25`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1464` | REVIEW |
-| `.sisad-pdfme-designer-canvas` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:95`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:394` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-ui-preview-scroll [data-paper-root="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:125`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:146` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-ui-control-bar-text-btn:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:339`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1105` | REVIEW |
-| `.sisad-pdfme-designer-snap-label` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:363`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:369` | REVIEW |
-| `.sisad-pdfme-designer-left-sidebar` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:375`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:855` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-canvas-empty-state-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:426`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:963` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-canvas-empty-state-hint` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:429`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:966` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:555`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1174` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-col` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:558`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1171` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar .ant-form-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:561`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1147` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar .ant-input-number-input` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:571`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1064` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:586`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1057` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-output-grid` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:675`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:707` | REVIEW |
-| `.sisad-pdfme-designer-custom-field-form` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:737`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:832` | REVIEW |
-| `.sisad-pdfme-designer-custom-field-section-legend` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:758`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:761` | REVIEW |
-| `.sisad-pdfme-designer-custom-field-inline-checks` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:811`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:837` | REVIEW |
-| `.sisad-pdfme-designer-custom-field-footer` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:814`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:841` | REVIEW |
-| `.sisad-pdfme-designer-custom-field-footer .ant-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:819`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:845` | REVIEW |
-| `.sisad-pdfme-designer-right-sidebar[data-sidebar-open="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:867`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:969` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-button-group` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:983`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1153` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-button-auto` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:986`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1156` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-color-picker-container` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1011`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1159` | REVIEW |
-| `.sisad-pdfme-designer-color-picker-preview` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1029`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1168` | REVIEW |
-| `.sisad-pdfme-designer-color-picker-hex` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1035`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1165` | REVIEW |
-| `60%` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1557`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1582` | REVIEW |
-| `55%` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1829`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1842` | REVIEW |
+| `from` | 6 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:229`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:239`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:249`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:277`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:286`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:300` | REVIEW |
+| `to` | 6 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:233`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:243`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:253`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:281`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:294`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:305` | REVIEW |
 ```
 
-<a id="file-0238"></a>
+<a id="file-0241"></a>
 
-### 0238 — `reports/tailwind-migration/baseline-regression-audit.md`
+### 0241 — `reports/tailwind-migration/baseline-regression-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -13897,14 +15180,14 @@ Duplicate selectors: 42
 | Runtime Form | `public/img-version` no aporta evidencia directa | Layout de formulario limpio y protagonista | Ruta actual no se rompió | Riesgo indirecto por wrappers del host | Host lab puede influir en viewport | Validar en `/lab/generator-runtime` |
 ```
 
-<a id="file-0239"></a>
+<a id="file-0242"></a>
 
-### 0239 — `reports/tailwind-migration/component-migration-ledger.md`
+### 0242 — `reports/tailwind-migration/component-migration-ledger.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `126`
-- **Tamaño original:** `9.3 KB`
-- **SHA1 corto:** `4463bdf6dc`
+- **Líneas:** `212`
+- **Tamaño original:** `19.5 KB`
+- **SHA1 corto:** `699e161a48`
 - **Estado:** `completo`
 
 ```markdown
@@ -14031,14 +15314,100 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
   `sisad-pdfme.css` eliminó el bloque raíz equivalente; quedaron en CSS solo
   los ajustes de catálogo/dragging y las reglas responsivas que siguen siendo
   geométricas.
+- Slice 2026-07-16k: `RightSidebar.tsx` absorbió la excepción de
+  `prefers-reduced-motion` del rail derecho como variantes `motion-reduce` en
+  el propio nodo React, y `sisad-pdfme.css` eliminó el bloque media query
+  equivalente.
+- Slice 2026-07-16l: `sisad-pdfme.css` eliminó los media queries compactos
+  redundantes de `left-sidebar-compact` y `stage[data-left-sidebar-variant="compact"]`,
+  dejando el clamp final como fuente única para el ancho compacto del shell.
+  Resultado actual del CSS activo: 387 líneas y 68 apariciones de `@apply`.
+- Slice 2026-07-16m: `index.tsx` ya resolvía el ancho compacto del rail derecho
+  en TSX y `sisad-pdfme.css` eliminó el último selector residual
+  `stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas`,
+  dejando el reporte de duplicados solo con contratos KEEP_GEOMETRY. Resultado
+  actual del CSS activo: 373 líneas y 64 apariciones de `@apply`.
+- Slice 2026-07-16n: `LeftSidebar.tsx` absorbió el skin de drag source y el
+  hide-state del favorito en el propio botón del catálogo; `sisad-pdfme.css`
+  retiró el selector residual del favorito drag. Validado tras corregir un
+  `ReferenceError` transitorio en runtime. Resultado actual del CSS activo:
+  369 líneas y 63 apariciones de `@apply`.
+- Slice 2026-07-16o: `CanvasOverlayManager.tsx` absorbió el skin base del
+  contenedor de overlays del canvas y `Mask.tsx` absorbió la superficie de
+  bloqueo; `sisad-pdfme.css` retiró ambos selectores residuales. Validado con
+  build y canvas/right-sidebar smoke. Resultado actual del CSS activo:
+  363 líneas y 61 apariciones de `@apply`.
+- Slice 2026-07-16p: `GroupOptionFloatingAction.tsx` ya contenía el skin inline
+  del botón flotante de opciones de grupo y `sisad-pdfme.css` retiró el bloque
+  residual de visibilidad para `option-group-floating-action`, dejando la
+  ocultación de dragging/resizing/rotating resuelta por el propio componente.
+  Resultado actual del CSS activo: 357 líneas y 60 apariciones de `@apply`.
+- Slice 2026-07-16q: `CanvasOverlayManager.tsx` ya absorbía el skin del
+  contenedor de overlays y `sisad-pdfme.css` retiró el selector redundante
+  `.sisad-pdfme-ui-canvas-overlay-manager`, dejando la posición/pointer-events
+  del overlay como contrato local del componente. Resultado actual del CSS
+  activo: 352 líneas y 59 apariciones de `@apply`.
+- Slice 2026-07-16r: `Canvas.tsx` pasó la ocultación de `Mask` a una clase
+  inline basada en `interactionState.phase`, y `sisad-pdfme.css` eliminó el
+  bloque residual de visibilidad por fase (`dragging/resizing/rotating/
+  selected-single/selected-multi`). Resultado actual del CSS activo:
+  346 líneas y 58 apariciones de `@apply`.
+- Slice 2026-07-16s: `CanvasStateOverlay.tsx` ya absorbía el skin del empty
+  state y `sisad-pdfme.css` retiró el selector huérfano
+  `.sisad-pdfme-designer-canvas-empty-state`, dejando ese overlay como contrato
+  puro del componente. Resultado actual del CSS activo: 341 líneas y 57
+  apariciones de `@apply`.
+- Slice 2026-07-16t: `LeftSidebar.tsx` absorbió el skin del shell arrastrable
+  y la ocultación del favorito durante drag en el propio JSX, y
+  `sisad-pdfme.css` retiró los selectores residuales de
+  `.sisad-pdfme-designer-left-sidebar-draggable-shell` y su estado drag,
+  dejando esos contratos como skin local del componente. Resultado actual del
+  CSS activo: 335 líneas y 56 apariciones de `@apply`.
+- Slice 2026-07-16u: `sisad-pdfme.css` retiró los bloques legacy del shell
+  `.sisad-pdfme-page`, `.sisad-pdfme-header`, `.sisad-pdfme-grid`,
+  `.sisad-pdfme-workspace` y `.sisad-pdfme-canvas`, que no tenían consumidores
+  activos en el árbol React actual. Validado con `npm run build`, los smoke
+  tests del rail derecho y el reporte de duplicados regenerado. Resultado
+  actual del CSS activo: 310 líneas y 47 apariciones de `@apply`.
+- Slice 2026-07-16v: `Item.tsx` fijó el affordance de delete al hover del
+  `li` completo para que no desaparezca al entrar al botón, y
+  `DetailSectionCard.tsx` + `SchemaConnectionsShared.tsx` aclararon los
+  accordions del inspector con títulos más cercanos al fondo/base y
+  superficies menos grises. `tokens.css` quedó en 86 líneas tras podar
+  tokens sin consumidores directos. Validado con `npm run build` y la
+  ruta `/lab/multi-document-routing` en Playwright, manteniendo el panel
+  derecho estable en `Campos`, `Detalle` y `Docs`.
+- Slice 2026-07-16w: `DetailSectionCard.tsx` y `SchemaConnectionsShared.tsx`
+  terminaron de unificar los headers de acordeón con la superficie blanca del
+  panel, bajando el tinte gris que aún se percibía en los detalles del schema y
+  en las secciones técnicas/conexiones. Validado con `npm run build` y los
+  smoke tests del rail derecho.
+- Slice 2026-07-16x: `Item.tsx` dejó el delete del ListView visible y
+  detectable por Playwright sin depender de opacidad cero, `DocumentsRail.tsx`
+  alineó el delete de documentos en la misma fila de la tarjeta y
+  `DetailSectionCard.tsx` subió el contraste del título de acordeón para
+  mantener la jerarquía del inspector. Validado con `npm run build`,
+  `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts`,
+  `tests/playwright/right-sidebar-docs-tab.spec.ts` y
+  `tests/playwright/list-view-regression.spec.ts`.
 - Decisión: continuar con merges de `MERGE_SAME_SELECTOR` por slice
   (1 zona por pase, criterio CSS-014) usando estos reportes como fuente, con
   verificación visual por zona.
+
+- Slice 2026-07-16y: `index.tsx` y `CtlBar.tsx` absorbieron el padding del stage y el offset del control bar para el right sidebar, `SchemaConnectionsShared.tsx` elevó el contraste de los títulos de sección/edición técnica y `sisad-pdfme.css` perdió el selector residual `data-sidebar-open`. Resultado actual del CSS activo: 304 líneas y 85 apariciones de `@apply`. Validado con `npm run build` y los smoke tests del rail derecho/list view.
+- Slice 2026-07-16z: `Item.tsx` elevó la capa de `ItemActions` y del botón `Eliminar` para que el affordance no desaparezca detrás del hit-target del row; `SidebarSurfacePrimitives.tsx` y `DetailSectionCard.tsx` subieron el contraste de los títulos y descripciones del inspector a `text-slate-950`/`text-slate-600`; `tests/playwright/list-view-regression.spec.ts` y `tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.test.ts` quedaron como cobertura estable del row y del encabezado de sección. Validado con `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/list-view-regression.spec.ts`, `npx vitest run tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.test.ts tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.test.tsx` y regeneración de `reports/tailwind-migration/selector-duplicates-current.md`. El CSS activo sigue en 304 líneas y 85 apariciones de `@apply`; lo restante es contrato técnico/geométrico y no un candidato seguro para vaciar.
+
+- Slice 2026-07-16aa: `src/sisad-pdfme/ui/styles/sisad-pdfme.css` se vació por completo (0 líneas) por decisión explícita de esta migración y el shell visual quedó apoyado en TSX/Tailwind + `tokens.css`. Limpieza asociada: se retiró un import duplicado de `sisad-pdfme.css` en `src/sisad-pdfme/ui/index.ts`. Validación post-cambio: `npm run build` ✅ y `npm run test -- --run tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.visibility.test.tsx` ✅ (con warning heredado de `act(...)` en test, sin fallas).
+- Slice 2026-07-17a: `DetailSectionCard.tsx`, `SchemaConnectionsShared.tsx`, `DetailHeaderCard.tsx` y `SidebarSurfacePrimitives.tsx` dejaron más compacto y más blanco el inspector derecho, corrigiendo el bloque roto del encabezado no colapsable y homogeneizando los headers/títulos de las secciones técnicas. En paralelo, `src/sisad-pdfme/ui/styles/sisad-pdfme.css` retiró el último ajuste de `data-sidebar-open` ya resuelto en TSX. Conteo actual del CSS activo: 287 líneas y 68 apariciones de `@apply`. Validado con `npm run build`, `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/list-view-regression.spec.ts` y `npx playwright test tests/playwright/right-sidebar-docs-tab.spec.ts`.
+- Slice 2026-07-17b: `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el helper huérfano `sisad-pdfme-sr-only`, bajando otra porción residual de CSS ya migrado a utilidades inline. Conteo actual del CSS activo: 284 líneas y 41 apariciones de `@apply`. Validado con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts tests/playwright/list-view-regression.spec.ts`.
+- Slice 2026-07-17c: `RightSidebar.tsx`, `layout.tsx` y `SelectionContextToolbar.tsx` reemplazaron las animaciones de entrada por transiciones inline, permitiendo retirar de `src/sisad-pdfme/ui/styles/sisad-pdfme.css` los keyframes `rs-slide-in`, `rs-panel-switch`, `rs-stagger-in` y `toolbar-reveal`. Conteo actual del CSS activo: 241 líneas y 41 apariciones de `@apply`. Validado con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts tests/playwright/list-view-regression.spec.ts`.
+- Slice 2026-07-17d: `SchemaDragPreview.tsx` y `SchemaDropCommitFlash.tsx` absorbieron las animaciones de entrada/salida con transiciones inline y estado local; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó los keyframes `schema-drag-preview-enter` y `schema-drop-commit-flash-enter`. Conteo actual del CSS activo: 218 líneas y 41 apariciones de `@apply`. Validado con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts tests/playwright/list-view-regression.spec.ts tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts`.
+- Slice 2026-07-17e: `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó totalmente vaciado (0 líneas, 0 apariciones de `@apply`) y sus contratos visuales residuales se movieron a `src/sisad-pdfme/ui/runtimeStyles.ts`, que ahora se inyecta desde `Root.tsx`; `src/sisad-pdfme/ui/index.ts` dejó de importar la hoja CSS. Validado con `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts tests/playwright/list-view-regression.spec.ts tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts` ✅ y `npm run build` en curso/pendiente de cierre final al momento de registrar este slice.
 ```
 
-<a id="file-0240"></a>
+<a id="file-0243"></a>
 
-### 0240 — `reports/tailwind-migration/deep-density-spacing-audit.md`
+### 0243 — `reports/tailwind-migration/deep-density-spacing-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `105`
@@ -14154,9 +15523,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 - [x] Reporte actualizado.
 ```
 
-<a id="file-0241"></a>
+<a id="file-0244"></a>
 
-### 0241 — `reports/tailwind-migration/img-version-baseline-inventory.md`
+### 0244 — `reports/tailwind-migration/img-version-baseline-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -14181,9 +15550,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 | `public/img-version/Captura de pantalla 2026-07-08 a la(s) 4.48.22 p. m..jpg` | `RIGHT_SIDEBAR_DOCUMENTS` | LeftSidebar, canvas, document list, right panel tabs | Confirma que la densidad de la barra derecha es compacta y navegable. |
 ```
 
-<a id="file-0242"></a>
+<a id="file-0245"></a>
 
-### 0242 — `reports/tailwind-migration/line-by-line-style-audit.md`
+### 0245 — `reports/tailwind-migration/line-by-line-style-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `227`
@@ -14421,9 +15790,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 - **TC-CSS-06** — Migrar `@media` de labRoutes a breakpoints Tailwind (`sm:`/`md:`) — opcional, cosmético.
 ```
 
-<a id="file-0243"></a>
+<a id="file-0246"></a>
 
-### 0243 — `reports/tailwind-migration/pending-phases-progress.md`
+### 0246 — `reports/tailwind-migration/pending-phases-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -14444,9 +15813,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 | TC-CSS-13 Docs | pending | `docs/11-migraciones/tailwind-migration.md`, `docs/09-theming/tailwind-and-css-architecture.md` | Bajo | Documentación y reportes actualizados |
 ```
 
-<a id="file-0244"></a>
+<a id="file-0247"></a>
 
-### 0244 — `reports/tailwind-migration/README.md`
+### 0247 — `reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -14533,9 +15902,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0245"></a>
+<a id="file-0248"></a>
 
-### 0245 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
+### 0248 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -14591,9 +15960,9 @@ SCROLL  .layout-body (SidebarBody) → min-h-0 flex-1 overflow-y-auto overflow-x
 Ninguno de los archivos `.css` prohibidos fue modificado por esta tarea. Los `.css` que aparecen en `git status` (`sisad-pdfme-global.css`, `labRoutes.css`) corresponden a trabajo externo/paralelo de la migración, no a esta tarea.
 ```
 
-<a id="file-0246"></a>
+<a id="file-0249"></a>
 
-### 0246 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
+### 0249 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -14638,9 +16007,9 @@ Fase: RightSidebar visual density (Tailwind JSX/TSX only). Sin CSS nuevo, sin ed
 Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provienen del `Row`/`Col` interno de `form-render` (gutter por defecto). El margen negativo y el padding se compensan a cero contra el borde del form-shell, por lo que **no** producen overflow. Al dejar el form-shell en `p-0 bg-transparent`, el contenido queda alineado al borde de la sección sin card anidada. No se fuerza cambio del gutter por CSS ni por schema data (prohibido). Queda como riesgo residual estético menor.
 ```
 
-<a id="file-0247"></a>
+<a id="file-0250"></a>
 
-### 0247 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
+### 0250 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14664,9 +16033,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | Shared sidebar header primitives | Shared chrome already centralised for list/detail surfaces | `KEEP_LEGACY` | Low |
 ```
 
-<a id="file-0248"></a>
+<a id="file-0251"></a>
 
-### 0248 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
+### 0251 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -14697,9 +16066,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - El runtime mantiene la paridad Form/Viewer y la separación clara entre chrome y contenido.
 ```
 
-<a id="file-0249"></a>
+<a id="file-0252"></a>
 
-### 0249 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
+### 0252 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -14728,14 +16097,14 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - `basic-designer` continúa renderizando `field-chrome` y `action-based` sin overflow ni regresiones visibles.
 ```
 
-<a id="file-0250"></a>
+<a id="file-0253"></a>
 
-### 0250 — `reports/tailwind-migration/selector-duplicates-current.md`
+### 0253 — `reports/tailwind-migration/selector-duplicates-current.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `61`
-- **Tamaño original:** `10.9 KB`
-- **SHA1 corto:** `1655e666c7`
+- **Líneas:** `37`
+- **Tamaño original:** `5.5 KB`
+- **SHA1 corto:** `345927f928`
 - **Estado:** `completo`
 
 ```markdown
@@ -14745,66 +16114,42 @@ Auditoría generada sobre CSS activo del proyecto.
 
 | Selector | Apariciones | Archivos | Líneas aprox. | Clasificación |
 |---|---:|---|---|---|
-| `.sisad-pdfme-designer-right-sidebar` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:269, src/sisad-pdfme/ui/styles/sisad-pdfme.css:275, src/sisad-pdfme/ui/styles/sisad-pdfme.css:281, src/sisad-pdfme/ui/styles/sisad-pdfme.css:291, src/sisad-pdfme/ui/styles/sisad-pdfme.css:301 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:311, src/sisad-pdfme/ui/styles/sisad-pdfme.css:325, src/sisad-pdfme/ui/styles/sisad-pdfme.css:339, src/sisad-pdfme/ui/styles/sisad-pdfme.css:348 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:315, src/sisad-pdfme/ui/styles/sisad-pdfme.css:329, src/sisad-pdfme/ui/styles/sisad-pdfme.css:343, src/sisad-pdfme/ui/styles/sisad-pdfme.css:351 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-canvas` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:84, src/sisad-pdfme/ui/styles/sisad-pdfme.css:100, src/sisad-pdfme/ui/styles/sisad-pdfme.css:176 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:307, src/sisad-pdfme/ui/styles/sisad-pdfme.css:321, src/sisad-pdfme/ui/styles/sisad-pdfme.css:335 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:173, src/sisad-pdfme/ui/styles/sisad-pdfme.css:408, src/sisad-pdfme/ui/styles/sisad-pdfme.css:415 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:84 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas .sisad-pdfme-ui-canvas-overlay-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:131 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:202 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:233 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-control` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:240 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-line` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:237 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-origin` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:245 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-rotation-line` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:248 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide-origin` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:227 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide.scena-guides-adder` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:230 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:224 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-custom-undefined` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:212 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-padding` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:215 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-paper-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:134 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-paper-root="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:114 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas-empty-state` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:196 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas[data-grid-visible="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:106 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas[data-guides-visible="false"] [data-canvas-page="true"] .scena-guides-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:221 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas[data-padding-visible="false"] [data-canvas-page="true"]>.sisad-pdfme-designer-padding` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:218 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:287 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-draggable-shell` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:168 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"] .sisad-pdfme-designer-plugin-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:411 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"] .sisad-pdfme-designer-plugin-favorite-toggle` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:418 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar-plugin-wrap[data-drag-source="true"] .sisad-pdfme-designer-plugin-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:411 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-interaction-phase="dragging"] .sisad-pdfme-designer-mask` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:421 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .moveable-control-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:402 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-designer-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:393 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-option-group-floating-action` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:428 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-ui-inline-edit-overlay` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:402 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-ui-selection-context-toolbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:402 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"][data-drop-valid="false"] [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:399 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"][data-schema-over-canvas="true"] [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:396 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:262 | KEEP_GEOMETRY |
-| `.sisad-pdfme-page` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:66 | KEEP_GEOMETRY |
-| `.sisad-pdfme-paper-page` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:126 | KEEP_GEOMETRY |
-| `.sisad-pdfme-paper-root` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:118 | KEEP_GEOMETRY |
-| `.sisad-pdfme-paper-scale-layer` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:121 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:139 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:159 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:190 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-control` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:197 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-line` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:194 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-origin` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:202 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-rotation-line` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:205 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide-origin` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:184 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide.scena-guides-adder` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:187 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:181 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-custom-undefined` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:169 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-padding` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:172 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-paper-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:108 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-paper-root="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:91 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas[data-grid-visible="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:83 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas[data-guides-visible="false"] [data-canvas-page="true"] .scena-guides-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:178 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas[data-padding-visible="false"] [data-canvas-page="true"]>.sisad-pdfme-designer-padding` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:175 | KEEP_GEOMETRY |
+| `.sisad-pdfme-paper-page` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:103 | KEEP_GEOMETRY |
+| `.sisad-pdfme-paper-root` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:95 | KEEP_GEOMETRY |
+| `.sisad-pdfme-paper-scale-layer` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:98 | KEEP_GEOMETRY |
 | `.sisad-pdfme-root ::-webkit-scrollbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:54 | KEEP_GEOMETRY |
 | `.sisad-pdfme-root ::-webkit-scrollbar-thumb` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:60 | KEEP_GEOMETRY |
 | `.sisad-pdfme-root ::-webkit-scrollbar-thumb:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:63 | KEEP_GEOMETRY |
 | `.sisad-pdfme-root ::-webkit-scrollbar-track` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:57 | KEEP_GEOMETRY |
-| `.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="false"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:183 | KEEP_GEOMETRY |
-| `.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:188 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-canvas-overlay-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:390 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-preview-scroll` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:100 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-preview-scroll [data-paper-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:134 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-preview-scroll [data-paper-root="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:114 | KEEP_GEOMETRY |
+| `.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="false"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:146 | KEEP_GEOMETRY |
+| `.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:151 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-preview-scroll` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:78 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-preview-scroll [data-paper-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:108 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-preview-scroll [data-paper-root="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:91 | KEEP_GEOMETRY |
 
 Ignora `reports/**`, `.tailwind-migration-backups/**` y reglas de keyframes.
 ```
 
-<a id="file-0251"></a>
+<a id="file-0254"></a>
 
-### 0251 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
+### 0254 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -14860,9 +16205,9 @@ Ninguno `.css` fue modificado en esta card. Los `.css` que figuran en `git statu
 `reports/tailwind-migration/current-screenshots/left-sidebar-before.png`, `left-sidebar-after.png`.
 ```
 
-<a id="file-0252"></a>
+<a id="file-0255"></a>
 
-### 0252 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
+### 0255 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -14916,9 +16261,9 @@ Ningún `.css` modificado por esta card. Los `.css` en `git status` (`sisad-pdfm
 `reports/tailwind-migration/current-screenshots/control-bar-toolbar-after.png`.
 ```
 
-<a id="file-0253"></a>
+<a id="file-0256"></a>
 
-### 0253 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
+### 0256 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -14962,9 +16307,9 @@ Buena parte del spec **ya estaba implementada** por trabajo previo/paralelo:
 Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapshot, `pdf` render. Sin estilos inline nuevos (los existentes se conservan). Sin `setTimeout`.
 ```
 
-<a id="file-0254"></a>
+<a id="file-0257"></a>
 
-### 0254 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
+### 0257 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -15006,9 +16351,9 @@ Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapsh
 - `npm run lint`: passed with inherited warnings only
 ```
 
-<a id="file-0255"></a>
+<a id="file-0258"></a>
 
-### 0255 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
+### 0258 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -15057,9 +16402,9 @@ Validación: al seleccionar un radioGroup → `activeHasDesignerBoxes: 0`, `acti
 `global.css` lo edita una sesión paralela en vivo (cambió durante esta tarea). Reapliqué sobre el estado actual y el build pasa; si el worker reintroduce el `fit-content`, reaplicar este cambio.
 ```
 
-<a id="file-0256"></a>
+<a id="file-0259"></a>
 
-### 0256 — `reports/tailwind-migration/tc-css-ownership-color.md`
+### 0259 — `reports/tailwind-migration/tc-css-ownership-color.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -15108,9 +16453,9 @@ La prioridad #5 del spec (resolver color desde `ownerRecipientId` + `recipientCo
 Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas x/y/w/h/rotation. Sin colores hardcodeados nuevos, sin `setTimeout`, sin `!important`, sin editar `.css`.
 ```
 
-<a id="file-0257"></a>
+<a id="file-0260"></a>
 
-### 0257 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
+### 0260 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -15178,9 +16523,9 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `.sisad-pdfme-ui-snap-feedback*` | `canvas-interactions.css` | El root y labels ya están en JSX | DELETE_DUPLICATE_WITH_EVIDENCE |
 ```
 
-<a id="file-0258"></a>
+<a id="file-0261"></a>
 
-### 0258 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
+### 0261 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -15216,9 +16561,3910 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | Shell, sidebars, paper, runtime layout | Cascada legacy aún compartida por múltiples vistas | TC-CSS-11 / TC-CSS-12 |
 ```
 
-<a id="file-0259"></a>
+<a id="file-0262"></a>
 
-### 0259 — `ai/task-cards/active/TASK-CSS-026-accelerated-tailwind-inline-decommission.md`
+### 0262 — `test-results/tests-playwright-schema-ow-440a8-the-active-recipient-accent-chromium/error-context.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `540`
+- **Tamaño original:** `27.1 KB`
+- **SHA1 corto:** `7447d15fbb`
+- **Estado:** `completo`
+
+```markdown
+# Page snapshot
+
+``​`yaml
+- main [ref=e3]:
+  - region "Canvas" [ref=e4]:
+    - generic [ref=e5]:
+      - heading "Canvas" [level=2] [ref=e6]
+      - paragraph [ref=e7]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e8]: sisad-pdfme
+        - text: .
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
+            - img [ref=e17]
+          - generic [ref=e21]:
+            - generic [ref=e24]: Campos
+            - generic [ref=e25]:
+              - tablist "Tipos de campo" [ref=e26]:
+                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
+                  - img [ref=e29]
+                  - generic [ref=e32]: Base
+                  - generic [ref=e33]: "38"
+                - tab "Personalizados" [ref=e34] [cursor=pointer]:
+                  - img [ref=e36]
+                  - generic [ref=e40]: Custom
+                  - generic [ref=e41]: "0"
+                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
+                  - img [ref=e44]
+                  - generic [ref=e47]: Auto
+                  - generic [ref=e48]: "0"
+              - generic [ref=e50]:
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - textbox "Buscar campo..." [ref=e56]
+                - generic [ref=e58]:
+                  - button "Todos" [ref=e59] [cursor=pointer]:
+                    - generic [ref=e60]: Todos
+                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
+                    - generic [ref=e62]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
+                    - generic [ref=e64]: Recientes (0)
+                  - group "Diseño del catálogo" [ref=e65]:
+                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
+                      - generic [ref=e67]:
+                        - img [ref=e69]
+                        - generic [ref=e72]: Lista
+                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
+                      - generic [ref=e74]:
+                        - img [ref=e76]
+                        - generic [ref=e78]: Tarjetas
+                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
+                      - generic [ref=e80]:
+                        - img [ref=e82]
+                        - generic [ref=e85]: Iconos
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
+                  - generic [ref=e89]:
+                    - img [ref=e91]
+                    - generic [ref=e93]: Firmas
+                  - generic [ref=e94]: "3"
+                - generic [ref=e95]:
+                  - generic [ref=e98]:
+                    - button "Datesigned Datesigned" [ref=e99]:
+                      - generic "Datesigned" [ref=e101]:
+                        - img [ref=e102]
+                      - generic [ref=e106]: Datesigned
+                    - button "Marcar favorito" [ref=e107]: ★
+                  - generic [ref=e110]:
+                    - button "Initials Initials" [ref=e111]:
+                      - generic "Initials" [ref=e113]:
+                        - img [ref=e114]
+                      - generic [ref=e117]: Initials
+                    - button "Marcar favorito" [ref=e118]: ★
+                  - generic [ref=e121]:
+                    - button "Firma Firma" [ref=e122]:
+                      - generic "Firma" [ref=e124]:
+                        - img [ref=e125]
+                      - generic [ref=e128]: Firma
+                    - button "Marcar favorito" [ref=e129]: ★
+              - generic [ref=e130]:
+                - button "Alternar categoría Texto" [expanded] [ref=e131]:
+                  - generic [ref=e132]:
+                    - img [ref=e134]
+                    - generic [ref=e136]: Texto
+                  - generic [ref=e137]: "2"
+                - generic [ref=e138]:
+                  - generic [ref=e141]:
+                    - button "Número" [ref=e142]:
+                      - generic [ref=e145]: Número
+                    - button "Marcar favorito" [ref=e146]: ★
+                  - generic [ref=e149]:
+                    - button "Texto Texto" [ref=e150]:
+                      - generic "Texto" [ref=e152]:
+                        - img [ref=e153]
+                      - generic [ref=e159]: Texto
+                    - button "Marcar favorito" [ref=e160]: ★
+              - generic [ref=e161]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
+                  - generic [ref=e163]:
+                    - img [ref=e165]
+                    - generic [ref=e167]: Imagen y medios
+                  - generic [ref=e168]: "2"
+                - generic [ref=e169]:
+                  - generic [ref=e172]:
+                    - button "Imagen Imagen" [ref=e173]:
+                      - generic "Imagen" [ref=e175]:
+                        - img [ref=e176]
+                      - generic [ref=e181]: Imagen
+                    - button "Marcar favorito" [ref=e182]: ★
+                  - generic [ref=e185]:
+                    - button "SVG SVG" [ref=e186]:
+                      - generic "SVG" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e194]: SVG
+                    - button "Marcar favorito" [ref=e195]: ★
+              - generic [ref=e196]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
+                  - generic [ref=e198]:
+                    - img [ref=e200]
+                    - generic [ref=e202]: Selecciones
+                  - generic [ref=e203]: "4"
+                - generic [ref=e204]:
+                  - generic [ref=e207]:
+                    - button "Casilla Casilla" [ref=e208]:
+                      - generic "Casilla" [ref=e210]:
+                        - img [ref=e211]
+                      - generic [ref=e215]: Casilla
+                    - button "Marcar favorito" [ref=e216]: ★
+                  - generic [ref=e219]:
+                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
+                      - generic "Grupo de Casillas" [ref=e222]:
+                        - img [ref=e223]
+                      - generic [ref=e227]: Grupo de Casillas
+                    - button "Marcar favorito" [ref=e228]: ★
+                  - generic [ref=e231]:
+                    - button "Opción Opción" [ref=e232]:
+                      - generic "Opción" [ref=e234]:
+                        - img [ref=e235]
+                      - generic [ref=e239]: Opción
+                    - button "Marcar favorito" [ref=e240]: ★
+                  - generic [ref=e243]:
+                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
+                      - generic "Lista Desplegable" [ref=e246]:
+                        - img [ref=e247]
+                      - generic [ref=e250]: Lista Desplegable
+                    - button "Marcar favorito" [ref=e251]: ★
+              - generic [ref=e252]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
+                  - generic [ref=e254]:
+                    - img [ref=e256]
+                    - generic [ref=e258]: Fecha y Hora
+                  - generic [ref=e259]: "3"
+                - generic [ref=e260]:
+                  - generic [ref=e263]:
+                    - button "Fecha Fecha" [ref=e264]:
+                      - generic "Fecha" [ref=e266]:
+                        - img [ref=e267]
+                      - generic [ref=e270]: Fecha
+                    - button "Marcar favorito" [ref=e271]: ★
+                  - generic [ref=e274]:
+                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
+                      - generic "Fecha Y Hora" [ref=e277]:
+                        - img [ref=e278]
+                      - generic [ref=e283]: Fecha Y Hora
+                    - button "Marcar favorito" [ref=e284]: ★
+                  - generic [ref=e287]:
+                    - button "Hora Hora" [ref=e288]:
+                      - generic "Hora" [ref=e290]:
+                        - img [ref=e291]
+                      - generic [ref=e295]: Hora
+                    - button "Marcar favorito" [ref=e296]: ★
+              - generic [ref=e297]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
+                  - generic [ref=e299]:
+                    - img [ref=e301]
+                    - generic [ref=e303]: QR y Códigos
+                  - generic [ref=e304]: "12"
+                - generic [ref=e305]:
+                  - generic [ref=e308]:
+                    - button "Código de barras Código de barras" [ref=e309]:
+                      - generic "Código de barras" [ref=e311]:
+                        - img [ref=e312]
+                      - generic [ref=e314]: Código de barras
+                    - button "Marcar favorito" [ref=e315]: ★
+                  - generic [ref=e318]:
+                    - button "Código de barras Código de barras" [ref=e319]:
+                      - generic "Código de barras" [ref=e321]:
+                        - img [ref=e322]
+                      - generic [ref=e324]: Código de barras
+                    - button "Marcar favorito" [ref=e325]: ★
+                  - generic [ref=e328]:
+                    - button "Código de barras Código de barras" [ref=e329]:
+                      - generic "Código de barras" [ref=e331]:
+                        - img [ref=e332]
+                      - generic [ref=e334]: Código de barras
+                    - button "Marcar favorito" [ref=e335]: ★
+                  - generic [ref=e338]:
+                    - button "Código de barras Código de barras" [ref=e339]:
+                      - generic "Código de barras" [ref=e341]:
+                        - img [ref=e342]
+                      - generic [ref=e344]: Código de barras
+                    - button "Marcar favorito" [ref=e345]: ★
+                  - generic [ref=e348]:
+                    - button "DataMatrix DataMatrix" [ref=e349]:
+                      - generic "DataMatrix" [ref=e351]:
+                        - img [ref=e352]
+                      - generic [ref=e354]: DataMatrix
+                    - button "Marcar favorito" [ref=e355]: ★
+                  - generic [ref=e358]:
+                    - button "Código de barras Código de barras" [ref=e359]:
+                      - generic "Código de barras" [ref=e361]:
+                        - img [ref=e362]
+                      - generic [ref=e364]: Código de barras
+                    - button "Marcar favorito" [ref=e365]: ★
+                  - generic [ref=e368]:
+                    - button "Japan Post Japan Post" [ref=e369]:
+                      - generic "Japan Post" [ref=e371]:
+                        - img [ref=e372]
+                      - generic [ref=e374]: Japan Post
+                    - button "Marcar favorito" [ref=e375]: ★
+                  - generic [ref=e378]:
+                    - button "NW7 NW7" [ref=e379]:
+                      - generic "NW7" [ref=e381]:
+                        - img [ref=e382]
+                      - generic [ref=e384]: NW7
+                    - button "Marcar favorito" [ref=e385]: ★
+                  - generic [ref=e388]:
+                    - button "PDF417 PDF417" [ref=e389]:
+                      - generic "PDF417" [ref=e391]:
+                        - img [ref=e392]
+                      - generic [ref=e394]: PDF417
+                    - button "Marcar favorito" [ref=e395]: ★
+                  - generic [ref=e398]:
+                    - button "Código QR Código QR" [ref=e399]:
+                      - generic "Código QR" [ref=e401]:
+                        - img [ref=e402]
+                      - generic [ref=e409]: Código QR
+                    - button "Marcar favorito" [ref=e410]: ★
+                  - generic [ref=e413]:
+                    - button "Código de barras Código de barras" [ref=e414]:
+                      - generic "Código de barras" [ref=e416]:
+                        - img [ref=e417]
+                      - generic [ref=e419]: Código de barras
+                    - button "Marcar favorito" [ref=e420]: ★
+                  - generic [ref=e423]:
+                    - button "Código de barras Código de barras" [ref=e424]:
+                      - generic "Código de barras" [ref=e426]:
+                        - img [ref=e427]
+                      - generic [ref=e429]: Código de barras
+                    - button "Marcar favorito" [ref=e430]: ★
+              - generic [ref=e431]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
+                  - generic [ref=e433]:
+                    - img [ref=e435]
+                    - generic [ref=e437]: Estructura
+                  - generic [ref=e438]: "4"
+                - generic [ref=e439]:
+                  - generic [ref=e442]:
+                    - button "Óvalo Óvalo" [ref=e443]:
+                      - generic "Óvalo" [ref=e445]:
+                        - img [ref=e446]
+                      - generic [ref=e449]: Óvalo
+                    - button "Marcar favorito" [ref=e450]: ★
+                  - generic [ref=e453]:
+                    - button "Línea Línea" [ref=e454]:
+                      - generic "Línea" [ref=e456]:
+                        - img [ref=e457]
+                      - generic [ref=e459]: Línea
+                    - button "Marcar favorito" [ref=e460]: ★
+                  - generic [ref=e463]:
+                    - button "Rectángulo Rectángulo" [ref=e464]:
+                      - generic "Rectángulo" [ref=e466]:
+                        - img [ref=e467]
+                      - generic [ref=e470]: Rectángulo
+                    - button "Marcar favorito" [ref=e471]: ★
+                  - generic [ref=e474]:
+                    - button "Tabla Tabla" [ref=e475]:
+                      - generic "Tabla" [ref=e477]:
+                        - img [ref=e478]
+                      - generic [ref=e481]: Tabla
+                    - button "Marcar favorito" [ref=e482]: ★
+              - generic [ref=e483]:
+                - button "Alternar categoría Acción" [expanded] [ref=e484]:
+                  - generic [ref=e485]:
+                    - img [ref=e487]
+                    - generic [ref=e489]: Acción
+                  - generic [ref=e490]: "4"
+                - generic [ref=e491]:
+                  - generic [ref=e494]:
+                    - button "Approve Approve" [ref=e495]:
+                      - generic "Approve" [ref=e497]:
+                        - img [ref=e498]
+                      - generic [ref=e502]: Approve
+                    - button "Marcar favorito" [ref=e503]: ★
+                  - generic [ref=e506]:
+                    - button "Attachment Attachment" [ref=e507]:
+                      - generic "Attachment" [ref=e509]:
+                        - img [ref=e510]
+                      - generic [ref=e513]: Attachment
+                    - button "Marcar favorito" [ref=e514]: ★
+                  - generic [ref=e517]:
+                    - button "Decline Decline" [ref=e518]:
+                      - generic "Decline" [ref=e520]:
+                        - img [ref=e521]
+                      - generic [ref=e526]: Decline
+                    - button "Marcar favorito" [ref=e527]: ★
+                  - generic [ref=e530]:
+                    - button "Note Note" [ref=e531]:
+                      - generic "Note" [ref=e533]:
+                        - img [ref=e534]
+                      - generic [ref=e538]: Note
+                    - button "Marcar favorito" [ref=e539]: ★
+              - generic [ref=e540]:
+                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
+                  - generic [ref=e542]:
+                    - img [ref=e544]
+                    - generic [ref=e546]: Destinatario
+                  - generic [ref=e547]: "4"
+                - generic [ref=e548]:
+                  - generic [ref=e551]:
+                    - button "Company Company" [ref=e552]:
+                      - generic "Company" [ref=e554]:
+                        - img [ref=e555]
+                      - generic [ref=e560]: Company
+                    - button "Marcar favorito" [ref=e561]: ★
+                  - generic [ref=e564]:
+                    - button "Emailaddress Emailaddress" [ref=e565]:
+                      - generic "Emailaddress" [ref=e567]:
+                        - img [ref=e568]
+                      - generic [ref=e572]: Emailaddress
+                    - button "Marcar favorito" [ref=e573]: ★
+                  - generic [ref=e576]:
+                    - button "Fullname Fullname" [ref=e577]:
+                      - generic "Fullname" [ref=e579]:
+                        - img [ref=e580]
+                      - generic [ref=e584]: Fullname
+                    - button "Marcar favorito" [ref=e585]: ★
+                  - generic [ref=e588]:
+                    - button "Title Title" [ref=e589]:
+                      - generic "Title" [ref=e591]:
+                        - img [ref=e592]
+                      - generic [ref=e596]: Title
+                    - button "Marcar favorito" [ref=e597]: ★
+        - generic [ref=e598]:
+          - generic:
+            - generic [ref=e600]:
+              - button "Página anterior" [disabled] [ref=e601]:
+                - generic:
+                  - img
+              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
+                - generic [ref=e603]: Pág 1/14
+              - button "Página siguiente" [ref=e604] [cursor=pointer]:
+                - img [ref=e606]
+            - generic [ref=e609]:
+              - button "Guardar" [ref=e610] [cursor=pointer]:
+                - img [ref=e612]
+                - generic [ref=e616]: Guardar
+              - button "Más acciones" [ref=e617] [cursor=pointer]:
+                - img [ref=e619]
+            - generic [ref=e624]:
+              - button "Deshacer" [ref=e625] [cursor=pointer]:
+                - img [ref=e627]
+              - button "Rehacer" [ref=e630] [cursor=pointer]:
+                - img [ref=e632]
+              - button "Ajustar página" [ref=e635] [cursor=pointer]:
+                - img [ref=e637]
+              - generic [ref=e642]:
+                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
+                  - img [ref=e645]
+                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
+                  - generic [ref=e648]:
+                    - combobox "Nivel de zoom" [ref=e650]
+                    - generic "100%" [ref=e651]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
+                  - img [ref=e654]
+          - complementary "Panel derecho del diseñador" [ref=e655]:
+            - generic [ref=e656]:
+              - generic [ref=e657]:
+                - tablist "Panel derecho" [ref=e658]:
+                  - tab "Abrir panel Campos" [ref=e659]:
+                    - generic [ref=e660]:
+                      - img [ref=e662]
+                      - generic [ref=e666]: Campos
+                  - tab "Abrir panel Detalle" [disabled] [ref=e667]:
+                    - generic [ref=e668]:
+                      - img [ref=e670]
+                      - generic [ref=e671]: Detalle
+                  - tab "Abrir panel Docs" [selected] [ref=e672]:
+                    - generic [ref=e673]:
+                      - img [ref=e675]
+                      - generic [ref=e678]: Docs
+                - button "Ocultar panel derecho" [expanded] [ref=e681]:
+                  - img [ref=e682]
+              - generic [ref=e688]:
+                - generic [ref=e690]:
+                  - img [ref=e692]
+                  - generic [ref=e696]:
+                    - generic [ref=e697]: Documentos cargados
+                    - generic [ref=e698]: Selecciona una página
+                    - generic [ref=e700]: "2"
+                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
+                    - img [ref=e705]
+                    - generic [ref=e709]: Subir PDF
+                - generic "Lista de páginas del documento" [ref=e710]:
+                  - generic [ref=e711]:
+                    - generic [ref=e712]:
+                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
+                        - generic [ref=e716]: "1"
+                        - generic [ref=e717]:
+                          - strong [ref=e719]: Declaración de datos
+                          - generic [ref=e720]:
+                            - generic [ref=e721]: "1"
+                            - generic [ref=e722]: Activo
+                          - generic [ref=e723]: 14 paginas
+                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
+                        - img [ref=e726]
+                    - generic [ref=e729]:
+                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
+                        - generic [ref=e733]: "2"
+                        - generic [ref=e734]:
+                          - strong [ref=e736]: Certificado académico
+                          - generic [ref=e738]: "2"
+                          - generic [ref=e739]: 5 paginas
+                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
+                        - img [ref=e742]
+          - generic [ref=e747]:
+            - generic [ref=e748]:
+              - generic "contract_name" [ref=e750] [cursor=pointer]:
+                - generic [ref=e753]: Contrato principal
+                - generic: contract_name · text
+              - generic "contract_date" [ref=e754] [cursor=pointer]:
+                - generic [ref=e757]: 2026-05-01
+                - generic: contract_date · text
+              - generic "contract_stage" [ref=e758] [cursor=pointer]:
+                - generic [ref=e759]:
+                  - generic [ref=e761]: Pendiente
+                  - button:
+                    - img
+                - generic: contract_stage · select
+              - generic "approval_mode" [ref=e762] [cursor=pointer]:
+                - generic:
+                  - radiogroup "Modo de aprobación":
+                    - generic:
+                      - radio "Firma" [checked] [disabled]
+                      - radio "Revisión" [disabled]
+              - generic "required_documents" [ref=e763] [cursor=pointer]:
+                - generic:
+                  - group "Documentos requeridos":
+                    - generic:
+                      - checkbox "Cédula" [checked] [disabled]:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                      - checkbox "RUC" [disabled]
+                      - checkbox "Contrato firmado" [checked] [disabled]:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
+                - generic [ref=e767]:
+                  - img [ref=e768]
+                  - text: Adjuntar archivo
+                - generic: routing-primary-showcase_attachment · attachment
+              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
+                - button "Aprobar" [ref=e773]:
+                  - img [ref=e774]
+                  - text: Aprobar
+                - generic: routing-primary-showcase_approve · approve
+              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
+                - generic [ref=e779]: Nota informativa
+                - generic: routing-primary-showcase_note · note
+                - generic: solo lectura
+              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
+                - button "Rechazar" [ref=e783]:
+                  - img [ref=e784]
+                  - text: Rechazar
+                - generic: routing-primary-showcase_decline · decline
+              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
+                - generic: routing-primary-showcase_title · title
+              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
+                - generic: routing-primary-showcase_emailaddress · emailAddress
+            - generic [ref=e795]:
+              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
+                - generic: routing-primary-showcase_company · company
+              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
+                - generic: routing-primary-showcase_fullname · fullName
+              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
+                - generic [ref=e806]:
+                  - generic [ref=e810]: Name
+                  - generic [ref=e814]: City
+                  - generic [ref=e818]: Description
+                  - generic [ref=e822]: Alice
+                  - generic [ref=e830]: New York
+                  - generic [ref=e838]: Alice is a freelance web designer and developer
+                  - generic [ref=e846]: Bob
+                  - generic [ref=e854]: Paris
+                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
+                - generic: routing-primary-showcase_table · table
+              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
+                - generic: routing-primary-showcase_date · date
+              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
+                - generic: routing-primary-showcase_datetime · dateTime
+              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
+                - generic: routing-primary-showcase_time · time
+            - generic [ref=e879]:
+              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
+                - generic [ref=e884]: 17/07/2026
+                - generic: routing-primary-showcase_datesigned · dateSigned
+                - generic: solo lectura
+              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
+                - generic: routing-primary-showcase_signature · signature
+              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
+                - generic: routing-primary-showcase_initials · initials
+              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
+                - img [ref=e894]
+                - generic: routing-primary-showcase_code128 · code128
+              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
+                - img [ref=e898]
+                - generic: routing-primary-showcase_code39 · code39
+              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
+                - img [ref=e902]
+                - generic: routing-primary-showcase_ean13 · ean13
+            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
+              - img [ref=e908]
+              - generic: routing-primary-showcase_ean8 · ean8
+      - status [ref=e929]
+  - region "Resultados":
+    - generic:
+      - button "Resultados Sin artefactos":
+        - text: Resultados
+        - generic: Sin artefactos
+``​`
+```
+
+<a id="file-0263"></a>
+
+### 0263 — `test-results/tests-playwright-schema-ow-61272-ents-from-the-same-resolver-chromium/error-context.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `540`
+- **Tamaño original:** `27.1 KB`
+- **SHA1 corto:** `7447d15fbb`
+- **Estado:** `completo`
+
+```markdown
+# Page snapshot
+
+``​`yaml
+- main [ref=e3]:
+  - region "Canvas" [ref=e4]:
+    - generic [ref=e5]:
+      - heading "Canvas" [level=2] [ref=e6]
+      - paragraph [ref=e7]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e8]: sisad-pdfme
+        - text: .
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
+            - img [ref=e17]
+          - generic [ref=e21]:
+            - generic [ref=e24]: Campos
+            - generic [ref=e25]:
+              - tablist "Tipos de campo" [ref=e26]:
+                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
+                  - img [ref=e29]
+                  - generic [ref=e32]: Base
+                  - generic [ref=e33]: "38"
+                - tab "Personalizados" [ref=e34] [cursor=pointer]:
+                  - img [ref=e36]
+                  - generic [ref=e40]: Custom
+                  - generic [ref=e41]: "0"
+                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
+                  - img [ref=e44]
+                  - generic [ref=e47]: Auto
+                  - generic [ref=e48]: "0"
+              - generic [ref=e50]:
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - textbox "Buscar campo..." [ref=e56]
+                - generic [ref=e58]:
+                  - button "Todos" [ref=e59] [cursor=pointer]:
+                    - generic [ref=e60]: Todos
+                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
+                    - generic [ref=e62]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
+                    - generic [ref=e64]: Recientes (0)
+                  - group "Diseño del catálogo" [ref=e65]:
+                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
+                      - generic [ref=e67]:
+                        - img [ref=e69]
+                        - generic [ref=e72]: Lista
+                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
+                      - generic [ref=e74]:
+                        - img [ref=e76]
+                        - generic [ref=e78]: Tarjetas
+                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
+                      - generic [ref=e80]:
+                        - img [ref=e82]
+                        - generic [ref=e85]: Iconos
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
+                  - generic [ref=e89]:
+                    - img [ref=e91]
+                    - generic [ref=e93]: Firmas
+                  - generic [ref=e94]: "3"
+                - generic [ref=e95]:
+                  - generic [ref=e98]:
+                    - button "Datesigned Datesigned" [ref=e99]:
+                      - generic "Datesigned" [ref=e101]:
+                        - img [ref=e102]
+                      - generic [ref=e106]: Datesigned
+                    - button "Marcar favorito" [ref=e107]: ★
+                  - generic [ref=e110]:
+                    - button "Initials Initials" [ref=e111]:
+                      - generic "Initials" [ref=e113]:
+                        - img [ref=e114]
+                      - generic [ref=e117]: Initials
+                    - button "Marcar favorito" [ref=e118]: ★
+                  - generic [ref=e121]:
+                    - button "Firma Firma" [ref=e122]:
+                      - generic "Firma" [ref=e124]:
+                        - img [ref=e125]
+                      - generic [ref=e128]: Firma
+                    - button "Marcar favorito" [ref=e129]: ★
+              - generic [ref=e130]:
+                - button "Alternar categoría Texto" [expanded] [ref=e131]:
+                  - generic [ref=e132]:
+                    - img [ref=e134]
+                    - generic [ref=e136]: Texto
+                  - generic [ref=e137]: "2"
+                - generic [ref=e138]:
+                  - generic [ref=e141]:
+                    - button "Número" [ref=e142]:
+                      - generic [ref=e145]: Número
+                    - button "Marcar favorito" [ref=e146]: ★
+                  - generic [ref=e149]:
+                    - button "Texto Texto" [ref=e150]:
+                      - generic "Texto" [ref=e152]:
+                        - img [ref=e153]
+                      - generic [ref=e159]: Texto
+                    - button "Marcar favorito" [ref=e160]: ★
+              - generic [ref=e161]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
+                  - generic [ref=e163]:
+                    - img [ref=e165]
+                    - generic [ref=e167]: Imagen y medios
+                  - generic [ref=e168]: "2"
+                - generic [ref=e169]:
+                  - generic [ref=e172]:
+                    - button "Imagen Imagen" [ref=e173]:
+                      - generic "Imagen" [ref=e175]:
+                        - img [ref=e176]
+                      - generic [ref=e181]: Imagen
+                    - button "Marcar favorito" [ref=e182]: ★
+                  - generic [ref=e185]:
+                    - button "SVG SVG" [ref=e186]:
+                      - generic "SVG" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e194]: SVG
+                    - button "Marcar favorito" [ref=e195]: ★
+              - generic [ref=e196]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
+                  - generic [ref=e198]:
+                    - img [ref=e200]
+                    - generic [ref=e202]: Selecciones
+                  - generic [ref=e203]: "4"
+                - generic [ref=e204]:
+                  - generic [ref=e207]:
+                    - button "Casilla Casilla" [ref=e208]:
+                      - generic "Casilla" [ref=e210]:
+                        - img [ref=e211]
+                      - generic [ref=e215]: Casilla
+                    - button "Marcar favorito" [ref=e216]: ★
+                  - generic [ref=e219]:
+                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
+                      - generic "Grupo de Casillas" [ref=e222]:
+                        - img [ref=e223]
+                      - generic [ref=e227]: Grupo de Casillas
+                    - button "Marcar favorito" [ref=e228]: ★
+                  - generic [ref=e231]:
+                    - button "Opción Opción" [ref=e232]:
+                      - generic "Opción" [ref=e234]:
+                        - img [ref=e235]
+                      - generic [ref=e239]: Opción
+                    - button "Marcar favorito" [ref=e240]: ★
+                  - generic [ref=e243]:
+                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
+                      - generic "Lista Desplegable" [ref=e246]:
+                        - img [ref=e247]
+                      - generic [ref=e250]: Lista Desplegable
+                    - button "Marcar favorito" [ref=e251]: ★
+              - generic [ref=e252]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
+                  - generic [ref=e254]:
+                    - img [ref=e256]
+                    - generic [ref=e258]: Fecha y Hora
+                  - generic [ref=e259]: "3"
+                - generic [ref=e260]:
+                  - generic [ref=e263]:
+                    - button "Fecha Fecha" [ref=e264]:
+                      - generic "Fecha" [ref=e266]:
+                        - img [ref=e267]
+                      - generic [ref=e270]: Fecha
+                    - button "Marcar favorito" [ref=e271]: ★
+                  - generic [ref=e274]:
+                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
+                      - generic "Fecha Y Hora" [ref=e277]:
+                        - img [ref=e278]
+                      - generic [ref=e283]: Fecha Y Hora
+                    - button "Marcar favorito" [ref=e284]: ★
+                  - generic [ref=e287]:
+                    - button "Hora Hora" [ref=e288]:
+                      - generic "Hora" [ref=e290]:
+                        - img [ref=e291]
+                      - generic [ref=e295]: Hora
+                    - button "Marcar favorito" [ref=e296]: ★
+              - generic [ref=e297]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
+                  - generic [ref=e299]:
+                    - img [ref=e301]
+                    - generic [ref=e303]: QR y Códigos
+                  - generic [ref=e304]: "12"
+                - generic [ref=e305]:
+                  - generic [ref=e308]:
+                    - button "Código de barras Código de barras" [ref=e309]:
+                      - generic "Código de barras" [ref=e311]:
+                        - img [ref=e312]
+                      - generic [ref=e314]: Código de barras
+                    - button "Marcar favorito" [ref=e315]: ★
+                  - generic [ref=e318]:
+                    - button "Código de barras Código de barras" [ref=e319]:
+                      - generic "Código de barras" [ref=e321]:
+                        - img [ref=e322]
+                      - generic [ref=e324]: Código de barras
+                    - button "Marcar favorito" [ref=e325]: ★
+                  - generic [ref=e328]:
+                    - button "Código de barras Código de barras" [ref=e329]:
+                      - generic "Código de barras" [ref=e331]:
+                        - img [ref=e332]
+                      - generic [ref=e334]: Código de barras
+                    - button "Marcar favorito" [ref=e335]: ★
+                  - generic [ref=e338]:
+                    - button "Código de barras Código de barras" [ref=e339]:
+                      - generic "Código de barras" [ref=e341]:
+                        - img [ref=e342]
+                      - generic [ref=e344]: Código de barras
+                    - button "Marcar favorito" [ref=e345]: ★
+                  - generic [ref=e348]:
+                    - button "DataMatrix DataMatrix" [ref=e349]:
+                      - generic "DataMatrix" [ref=e351]:
+                        - img [ref=e352]
+                      - generic [ref=e354]: DataMatrix
+                    - button "Marcar favorito" [ref=e355]: ★
+                  - generic [ref=e358]:
+                    - button "Código de barras Código de barras" [ref=e359]:
+                      - generic "Código de barras" [ref=e361]:
+                        - img [ref=e362]
+                      - generic [ref=e364]: Código de barras
+                    - button "Marcar favorito" [ref=e365]: ★
+                  - generic [ref=e368]:
+                    - button "Japan Post Japan Post" [ref=e369]:
+                      - generic "Japan Post" [ref=e371]:
+                        - img [ref=e372]
+                      - generic [ref=e374]: Japan Post
+                    - button "Marcar favorito" [ref=e375]: ★
+                  - generic [ref=e378]:
+                    - button "NW7 NW7" [ref=e379]:
+                      - generic "NW7" [ref=e381]:
+                        - img [ref=e382]
+                      - generic [ref=e384]: NW7
+                    - button "Marcar favorito" [ref=e385]: ★
+                  - generic [ref=e388]:
+                    - button "PDF417 PDF417" [ref=e389]:
+                      - generic "PDF417" [ref=e391]:
+                        - img [ref=e392]
+                      - generic [ref=e394]: PDF417
+                    - button "Marcar favorito" [ref=e395]: ★
+                  - generic [ref=e398]:
+                    - button "Código QR Código QR" [ref=e399]:
+                      - generic "Código QR" [ref=e401]:
+                        - img [ref=e402]
+                      - generic [ref=e409]: Código QR
+                    - button "Marcar favorito" [ref=e410]: ★
+                  - generic [ref=e413]:
+                    - button "Código de barras Código de barras" [ref=e414]:
+                      - generic "Código de barras" [ref=e416]:
+                        - img [ref=e417]
+                      - generic [ref=e419]: Código de barras
+                    - button "Marcar favorito" [ref=e420]: ★
+                  - generic [ref=e423]:
+                    - button "Código de barras Código de barras" [ref=e424]:
+                      - generic "Código de barras" [ref=e426]:
+                        - img [ref=e427]
+                      - generic [ref=e429]: Código de barras
+                    - button "Marcar favorito" [ref=e430]: ★
+              - generic [ref=e431]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
+                  - generic [ref=e433]:
+                    - img [ref=e435]
+                    - generic [ref=e437]: Estructura
+                  - generic [ref=e438]: "4"
+                - generic [ref=e439]:
+                  - generic [ref=e442]:
+                    - button "Óvalo Óvalo" [ref=e443]:
+                      - generic "Óvalo" [ref=e445]:
+                        - img [ref=e446]
+                      - generic [ref=e449]: Óvalo
+                    - button "Marcar favorito" [ref=e450]: ★
+                  - generic [ref=e453]:
+                    - button "Línea Línea" [ref=e454]:
+                      - generic "Línea" [ref=e456]:
+                        - img [ref=e457]
+                      - generic [ref=e459]: Línea
+                    - button "Marcar favorito" [ref=e460]: ★
+                  - generic [ref=e463]:
+                    - button "Rectángulo Rectángulo" [ref=e464]:
+                      - generic "Rectángulo" [ref=e466]:
+                        - img [ref=e467]
+                      - generic [ref=e470]: Rectángulo
+                    - button "Marcar favorito" [ref=e471]: ★
+                  - generic [ref=e474]:
+                    - button "Tabla Tabla" [ref=e475]:
+                      - generic "Tabla" [ref=e477]:
+                        - img [ref=e478]
+                      - generic [ref=e481]: Tabla
+                    - button "Marcar favorito" [ref=e482]: ★
+              - generic [ref=e483]:
+                - button "Alternar categoría Acción" [expanded] [ref=e484]:
+                  - generic [ref=e485]:
+                    - img [ref=e487]
+                    - generic [ref=e489]: Acción
+                  - generic [ref=e490]: "4"
+                - generic [ref=e491]:
+                  - generic [ref=e494]:
+                    - button "Approve Approve" [ref=e495]:
+                      - generic "Approve" [ref=e497]:
+                        - img [ref=e498]
+                      - generic [ref=e502]: Approve
+                    - button "Marcar favorito" [ref=e503]: ★
+                  - generic [ref=e506]:
+                    - button "Attachment Attachment" [ref=e507]:
+                      - generic "Attachment" [ref=e509]:
+                        - img [ref=e510]
+                      - generic [ref=e513]: Attachment
+                    - button "Marcar favorito" [ref=e514]: ★
+                  - generic [ref=e517]:
+                    - button "Decline Decline" [ref=e518]:
+                      - generic "Decline" [ref=e520]:
+                        - img [ref=e521]
+                      - generic [ref=e526]: Decline
+                    - button "Marcar favorito" [ref=e527]: ★
+                  - generic [ref=e530]:
+                    - button "Note Note" [ref=e531]:
+                      - generic "Note" [ref=e533]:
+                        - img [ref=e534]
+                      - generic [ref=e538]: Note
+                    - button "Marcar favorito" [ref=e539]: ★
+              - generic [ref=e540]:
+                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
+                  - generic [ref=e542]:
+                    - img [ref=e544]
+                    - generic [ref=e546]: Destinatario
+                  - generic [ref=e547]: "4"
+                - generic [ref=e548]:
+                  - generic [ref=e551]:
+                    - button "Company Company" [ref=e552]:
+                      - generic "Company" [ref=e554]:
+                        - img [ref=e555]
+                      - generic [ref=e560]: Company
+                    - button "Marcar favorito" [ref=e561]: ★
+                  - generic [ref=e564]:
+                    - button "Emailaddress Emailaddress" [ref=e565]:
+                      - generic "Emailaddress" [ref=e567]:
+                        - img [ref=e568]
+                      - generic [ref=e572]: Emailaddress
+                    - button "Marcar favorito" [ref=e573]: ★
+                  - generic [ref=e576]:
+                    - button "Fullname Fullname" [ref=e577]:
+                      - generic "Fullname" [ref=e579]:
+                        - img [ref=e580]
+                      - generic [ref=e584]: Fullname
+                    - button "Marcar favorito" [ref=e585]: ★
+                  - generic [ref=e588]:
+                    - button "Title Title" [ref=e589]:
+                      - generic "Title" [ref=e591]:
+                        - img [ref=e592]
+                      - generic [ref=e596]: Title
+                    - button "Marcar favorito" [ref=e597]: ★
+        - generic [ref=e598]:
+          - generic:
+            - generic [ref=e600]:
+              - button "Página anterior" [disabled] [ref=e601]:
+                - generic:
+                  - img
+              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
+                - generic [ref=e603]: Pág 1/14
+              - button "Página siguiente" [ref=e604] [cursor=pointer]:
+                - img [ref=e606]
+            - generic [ref=e609]:
+              - button "Guardar" [ref=e610] [cursor=pointer]:
+                - img [ref=e612]
+                - generic [ref=e616]: Guardar
+              - button "Más acciones" [ref=e617] [cursor=pointer]:
+                - img [ref=e619]
+            - generic [ref=e624]:
+              - button "Deshacer" [ref=e625] [cursor=pointer]:
+                - img [ref=e627]
+              - button "Rehacer" [ref=e630] [cursor=pointer]:
+                - img [ref=e632]
+              - button "Ajustar página" [ref=e635] [cursor=pointer]:
+                - img [ref=e637]
+              - generic [ref=e642]:
+                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
+                  - img [ref=e645]
+                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
+                  - generic [ref=e648]:
+                    - combobox "Nivel de zoom" [ref=e650]
+                    - generic "100%" [ref=e651]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
+                  - img [ref=e654]
+          - complementary "Panel derecho del diseñador" [ref=e655]:
+            - generic [ref=e656]:
+              - generic [ref=e657]:
+                - tablist "Panel derecho" [ref=e658]:
+                  - tab "Abrir panel Campos" [ref=e659]:
+                    - generic [ref=e660]:
+                      - img [ref=e662]
+                      - generic [ref=e666]: Campos
+                  - tab "Abrir panel Detalle" [disabled] [ref=e667]:
+                    - generic [ref=e668]:
+                      - img [ref=e670]
+                      - generic [ref=e671]: Detalle
+                  - tab "Abrir panel Docs" [selected] [ref=e672]:
+                    - generic [ref=e673]:
+                      - img [ref=e675]
+                      - generic [ref=e678]: Docs
+                - button "Ocultar panel derecho" [expanded] [ref=e681]:
+                  - img [ref=e682]
+              - generic [ref=e688]:
+                - generic [ref=e690]:
+                  - img [ref=e692]
+                  - generic [ref=e696]:
+                    - generic [ref=e697]: Documentos cargados
+                    - generic [ref=e698]: Selecciona una página
+                    - generic [ref=e700]: "2"
+                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
+                    - img [ref=e705]
+                    - generic [ref=e709]: Subir PDF
+                - generic "Lista de páginas del documento" [ref=e710]:
+                  - generic [ref=e711]:
+                    - generic [ref=e712]:
+                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
+                        - generic [ref=e716]: "1"
+                        - generic [ref=e717]:
+                          - strong [ref=e719]: Declaración de datos
+                          - generic [ref=e720]:
+                            - generic [ref=e721]: "1"
+                            - generic [ref=e722]: Activo
+                          - generic [ref=e723]: 14 paginas
+                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
+                        - img [ref=e726]
+                    - generic [ref=e729]:
+                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
+                        - generic [ref=e733]: "2"
+                        - generic [ref=e734]:
+                          - strong [ref=e736]: Certificado académico
+                          - generic [ref=e738]: "2"
+                          - generic [ref=e739]: 5 paginas
+                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
+                        - img [ref=e742]
+          - generic [ref=e747]:
+            - generic [ref=e748]:
+              - generic "contract_name" [ref=e750] [cursor=pointer]:
+                - generic [ref=e753]: Contrato principal
+                - generic: contract_name · text
+              - generic "contract_date" [ref=e754] [cursor=pointer]:
+                - generic [ref=e757]: 2026-05-01
+                - generic: contract_date · text
+              - generic "contract_stage" [ref=e758] [cursor=pointer]:
+                - generic [ref=e759]:
+                  - generic [ref=e761]: Pendiente
+                  - button:
+                    - img
+                - generic: contract_stage · select
+              - generic "approval_mode" [ref=e762] [cursor=pointer]:
+                - generic:
+                  - radiogroup "Modo de aprobación":
+                    - generic:
+                      - radio "Firma" [checked] [disabled]
+                      - radio "Revisión" [disabled]
+              - generic "required_documents" [ref=e763] [cursor=pointer]:
+                - generic:
+                  - group "Documentos requeridos":
+                    - generic:
+                      - checkbox "Cédula" [checked] [disabled]:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                      - checkbox "RUC" [disabled]
+                      - checkbox "Contrato firmado" [checked] [disabled]:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
+                - generic [ref=e767]:
+                  - img [ref=e768]
+                  - text: Adjuntar archivo
+                - generic: routing-primary-showcase_attachment · attachment
+              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
+                - button "Aprobar" [ref=e773]:
+                  - img [ref=e774]
+                  - text: Aprobar
+                - generic: routing-primary-showcase_approve · approve
+              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
+                - generic [ref=e779]: Nota informativa
+                - generic: routing-primary-showcase_note · note
+                - generic: solo lectura
+              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
+                - button "Rechazar" [ref=e783]:
+                  - img [ref=e784]
+                  - text: Rechazar
+                - generic: routing-primary-showcase_decline · decline
+              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
+                - generic: routing-primary-showcase_title · title
+              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
+                - generic: routing-primary-showcase_emailaddress · emailAddress
+            - generic [ref=e795]:
+              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
+                - generic: routing-primary-showcase_company · company
+              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
+                - generic: routing-primary-showcase_fullname · fullName
+              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
+                - generic [ref=e806]:
+                  - generic [ref=e810]: Name
+                  - generic [ref=e814]: City
+                  - generic [ref=e818]: Description
+                  - generic [ref=e822]: Alice
+                  - generic [ref=e830]: New York
+                  - generic [ref=e838]: Alice is a freelance web designer and developer
+                  - generic [ref=e846]: Bob
+                  - generic [ref=e854]: Paris
+                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
+                - generic: routing-primary-showcase_table · table
+              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
+                - generic: routing-primary-showcase_date · date
+              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
+                - generic: routing-primary-showcase_datetime · dateTime
+              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
+                - generic: routing-primary-showcase_time · time
+            - generic [ref=e879]:
+              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
+                - generic [ref=e884]: 17/07/2026
+                - generic: routing-primary-showcase_datesigned · dateSigned
+                - generic: solo lectura
+              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
+                - generic: routing-primary-showcase_signature · signature
+              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
+                - generic: routing-primary-showcase_initials · initials
+              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
+                - img [ref=e894]
+                - generic: routing-primary-showcase_code128 · code128
+              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
+                - img [ref=e898]
+                - generic: routing-primary-showcase_code39 · code39
+              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
+                - img [ref=e902]
+                - generic: routing-primary-showcase_ean13 · ean13
+            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
+              - img [ref=e908]
+              - generic: routing-primary-showcase_ean8 · ean8
+      - status [ref=e929]
+  - region "Resultados":
+    - generic:
+      - button "Resultados Sin artefactos":
+        - text: Resultados
+        - generic: Sin artefactos
+``​`
+```
+
+<a id="file-0264"></a>
+
+### 0264 — `test-results/tests-playwright-schema-tr-c031a-cted-schema-to-page-anchors-chromium/error-context.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `555`
+- **Tamaño original:** `28.0 KB`
+- **SHA1 corto:** `dbd72567ae`
+- **Estado:** `completo`
+
+```markdown
+# Page snapshot
+
+``​`yaml
+- main [ref=e3]:
+  - region "Canvas" [ref=e4]:
+    - generic [ref=e5]:
+      - heading "Canvas" [level=2] [ref=e6]
+      - paragraph [ref=e7]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e8]: sisad-pdfme
+        - text: .
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
+            - img [ref=e17]
+          - generic [ref=e21]:
+            - generic [ref=e24]: Campos
+            - generic [ref=e25]:
+              - tablist "Tipos de campo" [ref=e26]:
+                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
+                  - img [ref=e29]
+                  - generic [ref=e32]: Base
+                  - generic [ref=e33]: "38"
+                - tab "Personalizados" [ref=e34] [cursor=pointer]:
+                  - img [ref=e36]
+                  - generic [ref=e40]: Custom
+                  - generic [ref=e41]: "0"
+                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
+                  - img [ref=e44]
+                  - generic [ref=e47]: Auto
+                  - generic [ref=e48]: "0"
+              - generic [ref=e50]:
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - textbox "Buscar campo..." [ref=e56]
+                - generic [ref=e58]:
+                  - button "Todos" [ref=e59] [cursor=pointer]:
+                    - generic [ref=e60]: Todos
+                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
+                    - generic [ref=e62]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
+                    - generic [ref=e64]: Recientes (0)
+                  - group "Diseño del catálogo" [ref=e65]:
+                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
+                      - generic [ref=e67]:
+                        - img [ref=e69]
+                        - generic [ref=e72]: Lista
+                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
+                      - generic [ref=e74]:
+                        - img [ref=e76]
+                        - generic [ref=e78]: Tarjetas
+                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
+                      - generic [ref=e80]:
+                        - img [ref=e82]
+                        - generic [ref=e85]: Iconos
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
+                  - generic [ref=e89]:
+                    - img [ref=e91]
+                    - generic [ref=e93]: Firmas
+                  - generic [ref=e94]: "3"
+                - generic [ref=e95]:
+                  - generic [ref=e98]:
+                    - button "Datesigned Datesigned" [ref=e99]:
+                      - generic "Datesigned" [ref=e101]:
+                        - img [ref=e102]
+                      - generic [ref=e106]: Datesigned
+                    - button "Marcar favorito" [ref=e107]: ★
+                  - generic [ref=e110]:
+                    - button "Initials Initials" [ref=e111]:
+                      - generic "Initials" [ref=e113]:
+                        - img [ref=e114]
+                      - generic [ref=e117]: Initials
+                    - button "Marcar favorito" [ref=e118]: ★
+                  - generic [ref=e121]:
+                    - button "Firma Firma" [ref=e122]:
+                      - generic "Firma" [ref=e124]:
+                        - img [ref=e125]
+                      - generic [ref=e128]: Firma
+                    - button "Marcar favorito" [ref=e129]: ★
+              - generic [ref=e130]:
+                - button "Alternar categoría Texto" [expanded] [ref=e131]:
+                  - generic [ref=e132]:
+                    - img [ref=e134]
+                    - generic [ref=e136]: Texto
+                  - generic [ref=e137]: "2"
+                - generic [ref=e138]:
+                  - generic [ref=e141]:
+                    - button "Número" [ref=e142]:
+                      - generic [ref=e145]: Número
+                    - button "Marcar favorito" [ref=e146]: ★
+                  - generic [ref=e149]:
+                    - button "Texto Texto" [ref=e150]:
+                      - generic "Texto" [ref=e152]:
+                        - img [ref=e153]
+                      - generic [ref=e159]: Texto
+                    - button "Marcar favorito" [ref=e160]: ★
+              - generic [ref=e161]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
+                  - generic [ref=e163]:
+                    - img [ref=e165]
+                    - generic [ref=e167]: Imagen y medios
+                  - generic [ref=e168]: "2"
+                - generic [ref=e169]:
+                  - generic [ref=e172]:
+                    - button "Imagen Imagen" [ref=e173]:
+                      - generic "Imagen" [ref=e175]:
+                        - img [ref=e176]
+                      - generic [ref=e181]: Imagen
+                    - button "Marcar favorito" [ref=e182]: ★
+                  - generic [ref=e185]:
+                    - button "SVG SVG" [ref=e186]:
+                      - generic "SVG" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e194]: SVG
+                    - button "Marcar favorito" [ref=e195]: ★
+              - generic [ref=e196]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
+                  - generic [ref=e198]:
+                    - img [ref=e200]
+                    - generic [ref=e202]: Selecciones
+                  - generic [ref=e203]: "4"
+                - generic [ref=e204]:
+                  - generic [ref=e207]:
+                    - button "Casilla Casilla" [ref=e208]:
+                      - generic "Casilla" [ref=e210]:
+                        - img [ref=e211]
+                      - generic [ref=e215]: Casilla
+                    - button "Marcar favorito" [ref=e216]: ★
+                  - generic [ref=e219]:
+                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
+                      - generic "Grupo de Casillas" [ref=e222]:
+                        - img [ref=e223]
+                      - generic [ref=e227]: Grupo de Casillas
+                    - button "Marcar favorito" [ref=e228]: ★
+                  - generic [ref=e231]:
+                    - button "Opción Opción" [ref=e232]:
+                      - generic "Opción" [ref=e234]:
+                        - img [ref=e235]
+                      - generic [ref=e239]: Opción
+                    - button "Marcar favorito" [ref=e240]: ★
+                  - generic [ref=e243]:
+                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
+                      - generic "Lista Desplegable" [ref=e246]:
+                        - img [ref=e247]
+                      - generic [ref=e250]: Lista Desplegable
+                    - button "Marcar favorito" [ref=e251]: ★
+              - generic [ref=e252]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
+                  - generic [ref=e254]:
+                    - img [ref=e256]
+                    - generic [ref=e258]: Fecha y Hora
+                  - generic [ref=e259]: "3"
+                - generic [ref=e260]:
+                  - generic [ref=e263]:
+                    - button "Fecha Fecha" [ref=e264]:
+                      - generic "Fecha" [ref=e266]:
+                        - img [ref=e267]
+                      - generic [ref=e270]: Fecha
+                    - button "Marcar favorito" [ref=e271]: ★
+                  - generic [ref=e274]:
+                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
+                      - generic "Fecha Y Hora" [ref=e277]:
+                        - img [ref=e278]
+                      - generic [ref=e283]: Fecha Y Hora
+                    - button "Marcar favorito" [ref=e284]: ★
+                  - generic [ref=e287]:
+                    - button "Hora Hora" [ref=e288]:
+                      - generic "Hora" [ref=e290]:
+                        - img [ref=e291]
+                      - generic [ref=e295]: Hora
+                    - button "Marcar favorito" [ref=e296]: ★
+              - generic [ref=e297]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
+                  - generic [ref=e299]:
+                    - img [ref=e301]
+                    - generic [ref=e303]: QR y Códigos
+                  - generic [ref=e304]: "12"
+                - generic [ref=e305]:
+                  - generic [ref=e308]:
+                    - button "Código de barras Código de barras" [ref=e309]:
+                      - generic "Código de barras" [ref=e311]:
+                        - img [ref=e312]
+                      - generic [ref=e314]: Código de barras
+                    - button "Marcar favorito" [ref=e315]: ★
+                  - generic [ref=e318]:
+                    - button "Código de barras Código de barras" [ref=e319]:
+                      - generic "Código de barras" [ref=e321]:
+                        - img [ref=e322]
+                      - generic [ref=e324]: Código de barras
+                    - button "Marcar favorito" [ref=e325]: ★
+                  - generic [ref=e328]:
+                    - button "Código de barras Código de barras" [ref=e329]:
+                      - generic "Código de barras" [ref=e331]:
+                        - img [ref=e332]
+                      - generic [ref=e334]: Código de barras
+                    - button "Marcar favorito" [ref=e335]: ★
+                  - generic [ref=e338]:
+                    - button "Código de barras Código de barras" [ref=e339]:
+                      - generic "Código de barras" [ref=e341]:
+                        - img [ref=e342]
+                      - generic [ref=e344]: Código de barras
+                    - button "Marcar favorito" [ref=e345]: ★
+                  - generic [ref=e348]:
+                    - button "DataMatrix DataMatrix" [ref=e349]:
+                      - generic "DataMatrix" [ref=e351]:
+                        - img [ref=e352]
+                      - generic [ref=e354]: DataMatrix
+                    - button "Marcar favorito" [ref=e355]: ★
+                  - generic [ref=e358]:
+                    - button "Código de barras Código de barras" [ref=e359]:
+                      - generic "Código de barras" [ref=e361]:
+                        - img [ref=e362]
+                      - generic [ref=e364]: Código de barras
+                    - button "Marcar favorito" [ref=e365]: ★
+                  - generic [ref=e368]:
+                    - button "Japan Post Japan Post" [ref=e369]:
+                      - generic "Japan Post" [ref=e371]:
+                        - img [ref=e372]
+                      - generic [ref=e374]: Japan Post
+                    - button "Marcar favorito" [ref=e375]: ★
+                  - generic [ref=e378]:
+                    - button "NW7 NW7" [ref=e379]:
+                      - generic "NW7" [ref=e381]:
+                        - img [ref=e382]
+                      - generic [ref=e384]: NW7
+                    - button "Marcar favorito" [ref=e385]: ★
+                  - generic [ref=e388]:
+                    - button "PDF417 PDF417" [ref=e389]:
+                      - generic "PDF417" [ref=e391]:
+                        - img [ref=e392]
+                      - generic [ref=e394]: PDF417
+                    - button "Marcar favorito" [ref=e395]: ★
+                  - generic [ref=e398]:
+                    - button "Código QR Código QR" [ref=e399]:
+                      - generic "Código QR" [ref=e401]:
+                        - img [ref=e402]
+                      - generic [ref=e409]: Código QR
+                    - button "Marcar favorito" [ref=e410]: ★
+                  - generic [ref=e413]:
+                    - button "Código de barras Código de barras" [ref=e414]:
+                      - generic "Código de barras" [ref=e416]:
+                        - img [ref=e417]
+                      - generic [ref=e419]: Código de barras
+                    - button "Marcar favorito" [ref=e420]: ★
+                  - generic [ref=e423]:
+                    - button "Código de barras Código de barras" [ref=e424]:
+                      - generic "Código de barras" [ref=e426]:
+                        - img [ref=e427]
+                      - generic [ref=e429]: Código de barras
+                    - button "Marcar favorito" [ref=e430]: ★
+              - generic [ref=e431]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
+                  - generic [ref=e433]:
+                    - img [ref=e435]
+                    - generic [ref=e437]: Estructura
+                  - generic [ref=e438]: "4"
+                - generic [ref=e439]:
+                  - generic [ref=e442]:
+                    - button "Óvalo Óvalo" [ref=e443]:
+                      - generic "Óvalo" [ref=e445]:
+                        - img [ref=e446]
+                      - generic [ref=e449]: Óvalo
+                    - button "Marcar favorito" [ref=e450]: ★
+                  - generic [ref=e453]:
+                    - button "Línea Línea" [ref=e454]:
+                      - generic "Línea" [ref=e456]:
+                        - img [ref=e457]
+                      - generic [ref=e459]: Línea
+                    - button "Marcar favorito" [ref=e460]: ★
+                  - generic [ref=e463]:
+                    - button "Rectángulo Rectángulo" [ref=e464]:
+                      - generic "Rectángulo" [ref=e466]:
+                        - img [ref=e467]
+                      - generic [ref=e470]: Rectángulo
+                    - button "Marcar favorito" [ref=e471]: ★
+                  - generic [ref=e474]:
+                    - button "Tabla Tabla" [ref=e475]:
+                      - generic "Tabla" [ref=e477]:
+                        - img [ref=e478]
+                      - generic [ref=e481]: Tabla
+                    - button "Marcar favorito" [ref=e482]: ★
+              - generic [ref=e483]:
+                - button "Alternar categoría Acción" [expanded] [ref=e484]:
+                  - generic [ref=e485]:
+                    - img [ref=e487]
+                    - generic [ref=e489]: Acción
+                  - generic [ref=e490]: "4"
+                - generic [ref=e491]:
+                  - generic [ref=e494]:
+                    - button "Approve Approve" [ref=e495]:
+                      - generic "Approve" [ref=e497]:
+                        - img [ref=e498]
+                      - generic [ref=e502]: Approve
+                    - button "Marcar favorito" [ref=e503]: ★
+                  - generic [ref=e506]:
+                    - button "Attachment Attachment" [ref=e507]:
+                      - generic "Attachment" [ref=e509]:
+                        - img [ref=e510]
+                      - generic [ref=e513]: Attachment
+                    - button "Marcar favorito" [ref=e514]: ★
+                  - generic [ref=e517]:
+                    - button "Decline Decline" [ref=e518]:
+                      - generic "Decline" [ref=e520]:
+                        - img [ref=e521]
+                      - generic [ref=e526]: Decline
+                    - button "Marcar favorito" [ref=e527]: ★
+                  - generic [ref=e530]:
+                    - button "Note Note" [ref=e531]:
+                      - generic "Note" [ref=e533]:
+                        - img [ref=e534]
+                      - generic [ref=e538]: Note
+                    - button "Marcar favorito" [ref=e539]: ★
+              - generic [ref=e540]:
+                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
+                  - generic [ref=e542]:
+                    - img [ref=e544]
+                    - generic [ref=e546]: Destinatario
+                  - generic [ref=e547]: "4"
+                - generic [ref=e548]:
+                  - generic [ref=e551]:
+                    - button "Company Company" [ref=e552]:
+                      - generic "Company" [ref=e554]:
+                        - img [ref=e555]
+                      - generic [ref=e560]: Company
+                    - button "Marcar favorito" [ref=e561]: ★
+                  - generic [ref=e564]:
+                    - button "Emailaddress Emailaddress" [ref=e565]:
+                      - generic "Emailaddress" [ref=e567]:
+                        - img [ref=e568]
+                      - generic [ref=e572]: Emailaddress
+                    - button "Marcar favorito" [ref=e573]: ★
+                  - generic [ref=e576]:
+                    - button "Fullname Fullname" [ref=e577]:
+                      - generic "Fullname" [ref=e579]:
+                        - img [ref=e580]
+                      - generic [ref=e584]: Fullname
+                    - button "Marcar favorito" [ref=e585]: ★
+                  - generic [ref=e588]:
+                    - button "Title Title" [ref=e589]:
+                      - generic "Title" [ref=e591]:
+                        - img [ref=e592]
+                      - generic [ref=e596]: Title
+                    - button "Marcar favorito" [ref=e597]: ★
+        - generic [ref=e598]:
+          - generic:
+            - generic [ref=e600]:
+              - button "Página anterior" [disabled] [ref=e601]:
+                - generic:
+                  - img
+              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
+                - generic [ref=e603]: Pág 1/14
+              - button "Página siguiente" [ref=e604] [cursor=pointer]:
+                - img [ref=e606]
+            - generic [ref=e609]:
+              - button "Guardar" [ref=e610] [cursor=pointer]:
+                - img [ref=e612]
+                - generic [ref=e616]: Guardar
+              - button "Más acciones" [ref=e617] [cursor=pointer]:
+                - img [ref=e619]
+            - generic [ref=e624]:
+              - button "Deshacer" [ref=e625] [cursor=pointer]:
+                - img [ref=e627]
+              - button "Rehacer" [ref=e630] [cursor=pointer]:
+                - img [ref=e632]
+              - button "Ajustar página" [ref=e635] [cursor=pointer]:
+                - img [ref=e637]
+              - generic [ref=e642]:
+                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
+                  - img [ref=e645]
+                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
+                  - generic [ref=e648]:
+                    - combobox "Nivel de zoom" [ref=e650]
+                    - generic "100%" [ref=e651]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
+                  - img [ref=e654]
+          - complementary "Panel derecho del diseñador" [ref=e655]:
+            - generic [ref=e656]:
+              - generic [ref=e657]:
+                - tablist "Panel derecho" [ref=e658]:
+                  - tab "Abrir panel Campos" [ref=e659]:
+                    - generic [ref=e660]:
+                      - img [ref=e662]
+                      - generic [ref=e666]: Campos
+                  - tab "Abrir panel Detalle" [ref=e667]:
+                    - generic [ref=e668]:
+                      - img [ref=e670]
+                      - generic [ref=e671]: Detalle
+                  - tab "Abrir panel Docs" [selected] [ref=e672]:
+                    - generic [ref=e673]:
+                      - img [ref=e675]
+                      - generic [ref=e678]: Docs
+                - button "Ocultar panel derecho" [expanded] [ref=e681]:
+                  - img [ref=e682]
+              - generic [ref=e685]:
+                - text: "* * * * *"
+                - generic [ref=e688]:
+                  - generic [ref=e690]:
+                    - img [ref=e692]
+                    - generic [ref=e696]:
+                      - generic [ref=e697]: Documentos cargados
+                      - generic [ref=e698]: Selecciona una página
+                      - generic [ref=e700]: "2"
+                    - button "Subir PDF" [ref=e703] [cursor=pointer]:
+                      - img [ref=e705]
+                      - generic [ref=e709]: Subir PDF
+                  - generic "Lista de páginas del documento" [ref=e710]:
+                    - generic [ref=e711]:
+                      - generic [ref=e712]:
+                        - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
+                          - generic [ref=e716]: "1"
+                          - generic [ref=e717]:
+                            - strong [ref=e719]: Declaración de datos
+                            - generic [ref=e720]:
+                              - generic [ref=e721]: "1"
+                              - generic [ref=e722]: Activo
+                            - generic [ref=e723]: 14 paginas
+                        - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
+                          - img [ref=e726]
+                      - generic [ref=e729]:
+                        - button "2 Certificado académico 2 5 paginas" [ref=e730]:
+                          - generic [ref=e733]: "2"
+                          - generic [ref=e734]:
+                            - strong [ref=e736]: Certificado académico
+                            - generic [ref=e738]: "2"
+                            - generic [ref=e739]: 5 paginas
+                        - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
+                          - img [ref=e742]
+          - generic [ref=e745]:
+            - generic [ref=e747]:
+              - generic [ref=e748]:
+                - generic "contract_name" [ref=e766] [cursor=pointer]:
+                  - generic:
+                    - generic:
+                      - generic: Contrato principal
+                  - generic: contract_name · text
+                - generic "contract_date" [ref=e767] [cursor=pointer]:
+                  - generic [ref=e770]: 2026-05-01
+                  - generic: contract_date · text
+                - generic "contract_stage" [ref=e771] [cursor=pointer]:
+                  - generic [ref=e772]:
+                    - generic [ref=e774]: Pendiente
+                    - button:
+                      - img
+                  - generic: contract_stage · select
+                - generic "approval_mode" [ref=e775] [cursor=pointer]:
+                  - generic:
+                    - radiogroup "Modo de aprobación":
+                      - generic:
+                        - radio "Firma" [checked] [disabled]
+                        - radio "Revisión" [disabled]
+                - generic "required_documents" [ref=e776] [cursor=pointer]:
+                  - generic:
+                    - group "Documentos requeridos":
+                      - generic:
+                        - checkbox "Cédula" [checked] [disabled]:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - img
+                        - checkbox "RUC" [disabled]
+                        - checkbox "Contrato firmado" [checked] [disabled]:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - img
+                - generic "routing-primary-showcase_attachment" [ref=e777] [cursor=pointer]:
+                  - generic [ref=e780]:
+                    - img [ref=e781]
+                    - text: Adjuntar archivo
+                  - generic: routing-primary-showcase_attachment · attachment
+                - generic "routing-primary-showcase_approve" [ref=e783] [cursor=pointer]:
+                  - button "Aprobar" [ref=e786]:
+                    - img [ref=e787]
+                    - text: Aprobar
+                  - generic: routing-primary-showcase_approve · approve
+                - generic "Solo lectura" [ref=e789] [cursor=pointer]:
+                  - generic [ref=e792]: Nota informativa
+                  - generic: routing-primary-showcase_note · note
+                  - generic: solo lectura
+                - generic "routing-primary-showcase_decline" [ref=e793] [cursor=pointer]:
+                  - button "Rechazar" [ref=e796]:
+                    - img [ref=e797]
+                    - text: Rechazar
+                  - generic: routing-primary-showcase_decline · decline
+                - generic "routing-primary-showcase_title" [ref=e800] [cursor=pointer]:
+                  - generic: routing-primary-showcase_title · title
+                - generic "routing-primary-showcase_emailaddress" [ref=e804] [cursor=pointer]:
+                  - generic: routing-primary-showcase_emailaddress · emailAddress
+              - generic [ref=e808]:
+                - generic "routing-primary-showcase_company" [ref=e810] [cursor=pointer]:
+                  - generic: routing-primary-showcase_company · company
+                - generic "routing-primary-showcase_fullname" [ref=e814] [cursor=pointer]:
+                  - generic: routing-primary-showcase_fullname · fullName
+                - generic "routing-primary-showcase_table" [ref=e818] [cursor=pointer]:
+                  - generic [ref=e819]:
+                    - generic [ref=e823]: Name
+                    - generic [ref=e827]: City
+                    - generic [ref=e831]: Description
+                    - generic [ref=e835]: Alice
+                    - generic [ref=e843]: New York
+                    - generic [ref=e851]: Alice is a freelance web designer and developer
+                    - generic [ref=e859]: Bob
+                    - generic [ref=e867]: Paris
+                    - generic [ref=e875]: Bob is a freelance illustrator and graphic designer
+                  - generic: routing-primary-showcase_table · table
+                - generic "routing-primary-showcase_date" [ref=e880] [cursor=pointer]:
+                  - generic: routing-primary-showcase_date · date
+                - generic "routing-primary-showcase_datetime" [ref=e884] [cursor=pointer]:
+                  - generic: routing-primary-showcase_datetime · dateTime
+                - generic "routing-primary-showcase_time" [ref=e888] [cursor=pointer]:
+                  - generic: routing-primary-showcase_time · time
+              - generic [ref=e892]:
+                - generic "Solo lectura" [ref=e894] [cursor=pointer]:
+                  - generic [ref=e897]: 17/07/2026
+                  - generic: routing-primary-showcase_datesigned · dateSigned
+                  - generic: solo lectura
+                - generic "routing-primary-showcase_signature" [ref=e898] [cursor=pointer]:
+                  - generic: routing-primary-showcase_signature · signature
+                - generic "routing-primary-showcase_initials" [ref=e901] [cursor=pointer]:
+                  - generic: routing-primary-showcase_initials · initials
+                - generic "routing-primary-showcase_code128" [ref=e904] [cursor=pointer]:
+                  - img [ref=e907]
+                  - generic: routing-primary-showcase_code128 · code128
+                - generic "routing-primary-showcase_code39" [ref=e908] [cursor=pointer]:
+                  - img [ref=e911]
+                  - generic: routing-primary-showcase_code39 · code39
+                - generic "routing-primary-showcase_ean13" [ref=e912] [cursor=pointer]:
+                  - img [ref=e915]
+                  - generic: routing-primary-showcase_ean13 · ean13
+              - generic "routing-primary-showcase_ean8" [ref=e918] [cursor=pointer]:
+                - img [ref=e921]
+                - generic: routing-primary-showcase_ean8 · ean8
+            - generic:
+              - toolbar "Barra contextual de edición" [ref=e942]:
+                - generic [ref=e943]:
+                  - button "Eliminar" [ref=e944]:
+                    - img [ref=e946]
+                    - generic [ref=e949]: Eliminar
+                  - button "Más acciones" [ref=e950]:
+                    - img [ref=e952]
+                    - generic [ref=e956]: Más
+              - generic: 229px × 30px
+      - status [ref=e957]
+  - region "Resultados":
+    - generic:
+      - button "Resultados Sin artefactos":
+        - text: Resultados
+        - generic: Sin artefactos
+``​`
+```
+
+<a id="file-0265"></a>
+
+### 0265 — `test-results/tests-playwright-selection-95146-focus-returns-to-the-canvas-chromium/error-context.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `555`
+- **Tamaño original:** `28.0 KB`
+- **SHA1 corto:** `1dc6ec1b63`
+- **Estado:** `completo`
+
+```markdown
+# Page snapshot
+
+``​`yaml
+- main [ref=e3]:
+  - region "Canvas" [ref=e4]:
+    - generic [ref=e5]:
+      - heading "Canvas" [level=2] [ref=e6]
+      - paragraph [ref=e7]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e8]: sisad-pdfme
+        - text: .
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
+            - img [ref=e17]
+          - generic [ref=e21]:
+            - generic [ref=e24]: Campos
+            - generic [ref=e25]:
+              - tablist "Tipos de campo" [ref=e26]:
+                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
+                  - img [ref=e29]
+                  - generic [ref=e32]: Base
+                  - generic [ref=e33]: "38"
+                - tab "Personalizados" [ref=e34] [cursor=pointer]:
+                  - img [ref=e36]
+                  - generic [ref=e40]: Custom
+                  - generic [ref=e41]: "0"
+                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
+                  - img [ref=e44]
+                  - generic [ref=e47]: Auto
+                  - generic [ref=e48]: "0"
+              - generic [ref=e50]:
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - textbox "Buscar campo..." [ref=e56]
+                - generic [ref=e58]:
+                  - button "Todos" [ref=e59] [cursor=pointer]:
+                    - generic [ref=e60]: Todos
+                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
+                    - generic [ref=e62]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
+                    - generic [ref=e64]: Recientes (0)
+                  - group "Diseño del catálogo" [ref=e65]:
+                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
+                      - generic [ref=e67]:
+                        - img [ref=e69]
+                        - generic [ref=e72]: Lista
+                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
+                      - generic [ref=e74]:
+                        - img [ref=e76]
+                        - generic [ref=e78]: Tarjetas
+                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
+                      - generic [ref=e80]:
+                        - img [ref=e82]
+                        - generic [ref=e85]: Iconos
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
+                  - generic [ref=e89]:
+                    - img [ref=e91]
+                    - generic [ref=e93]: Firmas
+                  - generic [ref=e94]: "3"
+                - generic [ref=e95]:
+                  - generic [ref=e98]:
+                    - button "Datesigned Datesigned" [ref=e99]:
+                      - generic "Datesigned" [ref=e101]:
+                        - img [ref=e102]
+                      - generic [ref=e106]: Datesigned
+                    - button "Marcar favorito" [ref=e107]: ★
+                  - generic [ref=e110]:
+                    - button "Initials Initials" [ref=e111]:
+                      - generic "Initials" [ref=e113]:
+                        - img [ref=e114]
+                      - generic [ref=e117]: Initials
+                    - button "Marcar favorito" [ref=e118]: ★
+                  - generic [ref=e121]:
+                    - button "Firma Firma" [ref=e122]:
+                      - generic "Firma" [ref=e124]:
+                        - img [ref=e125]
+                      - generic [ref=e128]: Firma
+                    - button "Marcar favorito" [ref=e129]: ★
+              - generic [ref=e130]:
+                - button "Alternar categoría Texto" [expanded] [ref=e131]:
+                  - generic [ref=e132]:
+                    - img [ref=e134]
+                    - generic [ref=e136]: Texto
+                  - generic [ref=e137]: "2"
+                - generic [ref=e138]:
+                  - generic [ref=e141]:
+                    - button "Número" [ref=e142]:
+                      - generic [ref=e145]: Número
+                    - button "Marcar favorito" [ref=e146]: ★
+                  - generic [ref=e149]:
+                    - button "Texto Texto" [ref=e150]:
+                      - generic "Texto" [ref=e152]:
+                        - img [ref=e153]
+                      - generic [ref=e159]: Texto
+                    - button "Marcar favorito" [ref=e160]: ★
+              - generic [ref=e161]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
+                  - generic [ref=e163]:
+                    - img [ref=e165]
+                    - generic [ref=e167]: Imagen y medios
+                  - generic [ref=e168]: "2"
+                - generic [ref=e169]:
+                  - generic [ref=e172]:
+                    - button "Imagen Imagen" [ref=e173]:
+                      - generic "Imagen" [ref=e175]:
+                        - img [ref=e176]
+                      - generic [ref=e181]: Imagen
+                    - button "Marcar favorito" [ref=e182]: ★
+                  - generic [ref=e185]:
+                    - button "SVG SVG" [ref=e186]:
+                      - generic "SVG" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e194]: SVG
+                    - button "Marcar favorito" [ref=e195]: ★
+              - generic [ref=e196]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
+                  - generic [ref=e198]:
+                    - img [ref=e200]
+                    - generic [ref=e202]: Selecciones
+                  - generic [ref=e203]: "4"
+                - generic [ref=e204]:
+                  - generic [ref=e207]:
+                    - button "Casilla Casilla" [ref=e208]:
+                      - generic "Casilla" [ref=e210]:
+                        - img [ref=e211]
+                      - generic [ref=e215]: Casilla
+                    - button "Marcar favorito" [ref=e216]: ★
+                  - generic [ref=e219]:
+                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
+                      - generic "Grupo de Casillas" [ref=e222]:
+                        - img [ref=e223]
+                      - generic [ref=e227]: Grupo de Casillas
+                    - button "Marcar favorito" [ref=e228]: ★
+                  - generic [ref=e231]:
+                    - button "Opción Opción" [ref=e232]:
+                      - generic "Opción" [ref=e234]:
+                        - img [ref=e235]
+                      - generic [ref=e239]: Opción
+                    - button "Marcar favorito" [ref=e240]: ★
+                  - generic [ref=e243]:
+                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
+                      - generic "Lista Desplegable" [ref=e246]:
+                        - img [ref=e247]
+                      - generic [ref=e250]: Lista Desplegable
+                    - button "Marcar favorito" [ref=e251]: ★
+              - generic [ref=e252]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
+                  - generic [ref=e254]:
+                    - img [ref=e256]
+                    - generic [ref=e258]: Fecha y Hora
+                  - generic [ref=e259]: "3"
+                - generic [ref=e260]:
+                  - generic [ref=e263]:
+                    - button "Fecha Fecha" [ref=e264]:
+                      - generic "Fecha" [ref=e266]:
+                        - img [ref=e267]
+                      - generic [ref=e270]: Fecha
+                    - button "Marcar favorito" [ref=e271]: ★
+                  - generic [ref=e274]:
+                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
+                      - generic "Fecha Y Hora" [ref=e277]:
+                        - img [ref=e278]
+                      - generic [ref=e283]: Fecha Y Hora
+                    - button "Marcar favorito" [ref=e284]: ★
+                  - generic [ref=e287]:
+                    - button "Hora Hora" [ref=e288]:
+                      - generic "Hora" [ref=e290]:
+                        - img [ref=e291]
+                      - generic [ref=e295]: Hora
+                    - button "Marcar favorito" [ref=e296]: ★
+              - generic [ref=e297]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
+                  - generic [ref=e299]:
+                    - img [ref=e301]
+                    - generic [ref=e303]: QR y Códigos
+                  - generic [ref=e304]: "12"
+                - generic [ref=e305]:
+                  - generic [ref=e308]:
+                    - button "Código de barras Código de barras" [ref=e309]:
+                      - generic "Código de barras" [ref=e311]:
+                        - img [ref=e312]
+                      - generic [ref=e314]: Código de barras
+                    - button "Marcar favorito" [ref=e315]: ★
+                  - generic [ref=e318]:
+                    - button "Código de barras Código de barras" [ref=e319]:
+                      - generic "Código de barras" [ref=e321]:
+                        - img [ref=e322]
+                      - generic [ref=e324]: Código de barras
+                    - button "Marcar favorito" [ref=e325]: ★
+                  - generic [ref=e328]:
+                    - button "Código de barras Código de barras" [ref=e329]:
+                      - generic "Código de barras" [ref=e331]:
+                        - img [ref=e332]
+                      - generic [ref=e334]: Código de barras
+                    - button "Marcar favorito" [ref=e335]: ★
+                  - generic [ref=e338]:
+                    - button "Código de barras Código de barras" [ref=e339]:
+                      - generic "Código de barras" [ref=e341]:
+                        - img [ref=e342]
+                      - generic [ref=e344]: Código de barras
+                    - button "Marcar favorito" [ref=e345]: ★
+                  - generic [ref=e348]:
+                    - button "DataMatrix DataMatrix" [ref=e349]:
+                      - generic "DataMatrix" [ref=e351]:
+                        - img [ref=e352]
+                      - generic [ref=e354]: DataMatrix
+                    - button "Marcar favorito" [ref=e355]: ★
+                  - generic [ref=e358]:
+                    - button "Código de barras Código de barras" [ref=e359]:
+                      - generic "Código de barras" [ref=e361]:
+                        - img [ref=e362]
+                      - generic [ref=e364]: Código de barras
+                    - button "Marcar favorito" [ref=e365]: ★
+                  - generic [ref=e368]:
+                    - button "Japan Post Japan Post" [ref=e369]:
+                      - generic "Japan Post" [ref=e371]:
+                        - img [ref=e372]
+                      - generic [ref=e374]: Japan Post
+                    - button "Marcar favorito" [ref=e375]: ★
+                  - generic [ref=e378]:
+                    - button "NW7 NW7" [ref=e379]:
+                      - generic "NW7" [ref=e381]:
+                        - img [ref=e382]
+                      - generic [ref=e384]: NW7
+                    - button "Marcar favorito" [ref=e385]: ★
+                  - generic [ref=e388]:
+                    - button "PDF417 PDF417" [ref=e389]:
+                      - generic "PDF417" [ref=e391]:
+                        - img [ref=e392]
+                      - generic [ref=e394]: PDF417
+                    - button "Marcar favorito" [ref=e395]: ★
+                  - generic [ref=e398]:
+                    - button "Código QR Código QR" [ref=e399]:
+                      - generic "Código QR" [ref=e401]:
+                        - img [ref=e402]
+                      - generic [ref=e409]: Código QR
+                    - button "Marcar favorito" [ref=e410]: ★
+                  - generic [ref=e413]:
+                    - button "Código de barras Código de barras" [ref=e414]:
+                      - generic "Código de barras" [ref=e416]:
+                        - img [ref=e417]
+                      - generic [ref=e419]: Código de barras
+                    - button "Marcar favorito" [ref=e420]: ★
+                  - generic [ref=e423]:
+                    - button "Código de barras Código de barras" [ref=e424]:
+                      - generic "Código de barras" [ref=e426]:
+                        - img [ref=e427]
+                      - generic [ref=e429]: Código de barras
+                    - button "Marcar favorito" [ref=e430]: ★
+              - generic [ref=e431]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
+                  - generic [ref=e433]:
+                    - img [ref=e435]
+                    - generic [ref=e437]: Estructura
+                  - generic [ref=e438]: "4"
+                - generic [ref=e439]:
+                  - generic [ref=e442]:
+                    - button "Óvalo Óvalo" [ref=e443]:
+                      - generic "Óvalo" [ref=e445]:
+                        - img [ref=e446]
+                      - generic [ref=e449]: Óvalo
+                    - button "Marcar favorito" [ref=e450]: ★
+                  - generic [ref=e453]:
+                    - button "Línea Línea" [ref=e454]:
+                      - generic "Línea" [ref=e456]:
+                        - img [ref=e457]
+                      - generic [ref=e459]: Línea
+                    - button "Marcar favorito" [ref=e460]: ★
+                  - generic [ref=e463]:
+                    - button "Rectángulo Rectángulo" [ref=e464]:
+                      - generic "Rectángulo" [ref=e466]:
+                        - img [ref=e467]
+                      - generic [ref=e470]: Rectángulo
+                    - button "Marcar favorito" [ref=e471]: ★
+                  - generic [ref=e474]:
+                    - button "Tabla Tabla" [ref=e475]:
+                      - generic "Tabla" [ref=e477]:
+                        - img [ref=e478]
+                      - generic [ref=e481]: Tabla
+                    - button "Marcar favorito" [ref=e482]: ★
+              - generic [ref=e483]:
+                - button "Alternar categoría Acción" [expanded] [ref=e484]:
+                  - generic [ref=e485]:
+                    - img [ref=e487]
+                    - generic [ref=e489]: Acción
+                  - generic [ref=e490]: "4"
+                - generic [ref=e491]:
+                  - generic [ref=e494]:
+                    - button "Approve Approve" [ref=e495]:
+                      - generic "Approve" [ref=e497]:
+                        - img [ref=e498]
+                      - generic [ref=e502]: Approve
+                    - button "Marcar favorito" [ref=e503]: ★
+                  - generic [ref=e506]:
+                    - button "Attachment Attachment" [ref=e507]:
+                      - generic "Attachment" [ref=e509]:
+                        - img [ref=e510]
+                      - generic [ref=e513]: Attachment
+                    - button "Marcar favorito" [ref=e514]: ★
+                  - generic [ref=e517]:
+                    - button "Decline Decline" [ref=e518]:
+                      - generic "Decline" [ref=e520]:
+                        - img [ref=e521]
+                      - generic [ref=e526]: Decline
+                    - button "Marcar favorito" [ref=e527]: ★
+                  - generic [ref=e530]:
+                    - button "Note Note" [ref=e531]:
+                      - generic "Note" [ref=e533]:
+                        - img [ref=e534]
+                      - generic [ref=e538]: Note
+                    - button "Marcar favorito" [ref=e539]: ★
+              - generic [ref=e540]:
+                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
+                  - generic [ref=e542]:
+                    - img [ref=e544]
+                    - generic [ref=e546]: Destinatario
+                  - generic [ref=e547]: "4"
+                - generic [ref=e548]:
+                  - generic [ref=e551]:
+                    - button "Company Company" [ref=e552]:
+                      - generic "Company" [ref=e554]:
+                        - img [ref=e555]
+                      - generic [ref=e560]: Company
+                    - button "Marcar favorito" [ref=e561]: ★
+                  - generic [ref=e564]:
+                    - button "Emailaddress Emailaddress" [ref=e565]:
+                      - generic "Emailaddress" [ref=e567]:
+                        - img [ref=e568]
+                      - generic [ref=e572]: Emailaddress
+                    - button "Marcar favorito" [ref=e573]: ★
+                  - generic [ref=e576]:
+                    - button "Fullname Fullname" [ref=e577]:
+                      - generic "Fullname" [ref=e579]:
+                        - img [ref=e580]
+                      - generic [ref=e584]: Fullname
+                    - button "Marcar favorito" [ref=e585]: ★
+                  - generic [ref=e588]:
+                    - button "Title Title" [ref=e589]:
+                      - generic "Title" [ref=e591]:
+                        - img [ref=e592]
+                      - generic [ref=e596]: Title
+                    - button "Marcar favorito" [ref=e597]: ★
+        - generic [ref=e598]:
+          - generic:
+            - generic [ref=e600]:
+              - button "Página anterior" [disabled] [ref=e601]:
+                - generic:
+                  - img
+              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
+                - generic [ref=e603]: Pág 1/14
+              - button "Página siguiente" [ref=e604] [cursor=pointer]:
+                - img [ref=e606]
+            - generic [ref=e609]:
+              - button "Guardar" [ref=e610] [cursor=pointer]:
+                - img [ref=e612]
+                - generic [ref=e616]: Guardar
+              - button "Más acciones" [ref=e617] [cursor=pointer]:
+                - img [ref=e619]
+            - generic [ref=e624]:
+              - button "Deshacer" [ref=e625] [cursor=pointer]:
+                - img [ref=e627]
+              - button "Rehacer" [ref=e630] [cursor=pointer]:
+                - img [ref=e632]
+              - button "Ajustar página" [ref=e635] [cursor=pointer]:
+                - img [ref=e637]
+              - generic [ref=e642]:
+                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
+                  - img [ref=e645]
+                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
+                  - generic [ref=e648]:
+                    - combobox "Nivel de zoom" [ref=e650]
+                    - generic "100%" [ref=e651]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
+                  - img [ref=e654]
+          - complementary "Panel derecho del diseñador" [ref=e655]:
+            - generic [ref=e656]:
+              - generic [ref=e657]:
+                - tablist "Panel derecho" [ref=e658]:
+                  - tab "Abrir panel Campos" [ref=e659]:
+                    - generic [ref=e660]:
+                      - img [ref=e662]
+                      - generic [ref=e666]: Campos
+                  - tab "Abrir panel Detalle" [ref=e667]:
+                    - generic [ref=e668]:
+                      - img [ref=e670]
+                      - generic [ref=e671]: Detalle
+                  - tab "Abrir panel Docs" [selected] [ref=e672]:
+                    - generic [ref=e673]:
+                      - img [ref=e675]
+                      - generic [ref=e678]: Docs
+                - button "Ocultar panel derecho" [expanded] [ref=e681]:
+                  - img [ref=e682]
+              - generic [ref=e685]:
+                - text: "* * * * *"
+                - generic [ref=e688]:
+                  - generic [ref=e690]:
+                    - img [ref=e692]
+                    - generic [ref=e696]:
+                      - generic [ref=e697]: Documentos cargados
+                      - generic [ref=e698]: Selecciona una página
+                      - generic [ref=e700]: "2"
+                    - button "Subir PDF" [ref=e703] [cursor=pointer]:
+                      - img [ref=e705]
+                      - generic [ref=e709]: Subir PDF
+                  - generic "Lista de páginas del documento" [ref=e710]:
+                    - generic [ref=e711]:
+                      - generic [ref=e712]:
+                        - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
+                          - generic [ref=e716]: "1"
+                          - generic [ref=e717]:
+                            - strong [ref=e719]: Declaración de datos
+                            - generic [ref=e720]:
+                              - generic [ref=e721]: "1"
+                              - generic [ref=e722]: Activo
+                            - generic [ref=e723]: 14 paginas
+                        - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
+                          - img [ref=e726]
+                      - generic [ref=e729]:
+                        - button "2 Certificado académico 2 5 paginas" [ref=e730]:
+                          - generic [ref=e733]: "2"
+                          - generic [ref=e734]:
+                            - strong [ref=e736]: Certificado académico
+                            - generic [ref=e738]: "2"
+                            - generic [ref=e739]: 5 paginas
+                        - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
+                          - img [ref=e742]
+          - generic [ref=e745]:
+            - generic [ref=e747]:
+              - generic [ref=e748]:
+                - generic "contract_name" [active] [ref=e766] [cursor=pointer]:
+                  - generic:
+                    - generic:
+                      - generic: Contrato principal
+                  - generic: contract_name · text
+                - generic "contract_date" [ref=e767] [cursor=pointer]:
+                  - generic [ref=e770]: 2026-05-01
+                  - generic: contract_date · text
+                - generic "contract_stage" [ref=e771] [cursor=pointer]:
+                  - generic [ref=e772]:
+                    - generic [ref=e774]: Pendiente
+                    - button:
+                      - img
+                  - generic: contract_stage · select
+                - generic "approval_mode" [ref=e775] [cursor=pointer]:
+                  - generic:
+                    - radiogroup "Modo de aprobación":
+                      - generic:
+                        - radio "Firma" [checked] [disabled]
+                        - radio "Revisión" [disabled]
+                - generic "required_documents" [ref=e776] [cursor=pointer]:
+                  - generic:
+                    - group "Documentos requeridos":
+                      - generic:
+                        - checkbox "Cédula" [checked] [disabled]:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - img
+                        - checkbox "RUC" [disabled]
+                        - checkbox "Contrato firmado" [checked] [disabled]:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - img
+                - generic "routing-primary-showcase_attachment" [ref=e777] [cursor=pointer]:
+                  - generic [ref=e780]:
+                    - img [ref=e781]
+                    - text: Adjuntar archivo
+                  - generic: routing-primary-showcase_attachment · attachment
+                - generic "routing-primary-showcase_approve" [ref=e783] [cursor=pointer]:
+                  - button "Aprobar" [ref=e786]:
+                    - img [ref=e787]
+                    - text: Aprobar
+                  - generic: routing-primary-showcase_approve · approve
+                - generic "Solo lectura" [ref=e789] [cursor=pointer]:
+                  - generic [ref=e792]: Nota informativa
+                  - generic: routing-primary-showcase_note · note
+                  - generic: solo lectura
+                - generic "routing-primary-showcase_decline" [ref=e793] [cursor=pointer]:
+                  - button "Rechazar" [ref=e796]:
+                    - img [ref=e797]
+                    - text: Rechazar
+                  - generic: routing-primary-showcase_decline · decline
+                - generic "routing-primary-showcase_title" [ref=e800] [cursor=pointer]:
+                  - generic: routing-primary-showcase_title · title
+                - generic "routing-primary-showcase_emailaddress" [ref=e804] [cursor=pointer]:
+                  - generic: routing-primary-showcase_emailaddress · emailAddress
+              - generic [ref=e808]:
+                - generic "routing-primary-showcase_company" [ref=e810] [cursor=pointer]:
+                  - generic: routing-primary-showcase_company · company
+                - generic "routing-primary-showcase_fullname" [ref=e814] [cursor=pointer]:
+                  - generic: routing-primary-showcase_fullname · fullName
+                - generic "routing-primary-showcase_table" [ref=e818] [cursor=pointer]:
+                  - generic [ref=e819]:
+                    - generic [ref=e823]: Name
+                    - generic [ref=e827]: City
+                    - generic [ref=e831]: Description
+                    - generic [ref=e835]: Alice
+                    - generic [ref=e843]: New York
+                    - generic [ref=e851]: Alice is a freelance web designer and developer
+                    - generic [ref=e859]: Bob
+                    - generic [ref=e867]: Paris
+                    - generic [ref=e875]: Bob is a freelance illustrator and graphic designer
+                  - generic: routing-primary-showcase_table · table
+                - generic "routing-primary-showcase_date" [ref=e880] [cursor=pointer]:
+                  - generic: routing-primary-showcase_date · date
+                - generic "routing-primary-showcase_datetime" [ref=e884] [cursor=pointer]:
+                  - generic: routing-primary-showcase_datetime · dateTime
+                - generic "routing-primary-showcase_time" [ref=e888] [cursor=pointer]:
+                  - generic: routing-primary-showcase_time · time
+              - generic [ref=e892]:
+                - generic "Solo lectura" [ref=e894] [cursor=pointer]:
+                  - generic [ref=e897]: 17/07/2026
+                  - generic: routing-primary-showcase_datesigned · dateSigned
+                  - generic: solo lectura
+                - generic "routing-primary-showcase_signature" [ref=e898] [cursor=pointer]:
+                  - generic: routing-primary-showcase_signature · signature
+                - generic "routing-primary-showcase_initials" [ref=e901] [cursor=pointer]:
+                  - generic: routing-primary-showcase_initials · initials
+                - generic "routing-primary-showcase_code128" [ref=e904] [cursor=pointer]:
+                  - img [ref=e907]
+                  - generic: routing-primary-showcase_code128 · code128
+                - generic "routing-primary-showcase_code39" [ref=e908] [cursor=pointer]:
+                  - img [ref=e911]
+                  - generic: routing-primary-showcase_code39 · code39
+                - generic "routing-primary-showcase_ean13" [ref=e912] [cursor=pointer]:
+                  - img [ref=e915]
+                  - generic: routing-primary-showcase_ean13 · ean13
+              - generic "routing-primary-showcase_ean8" [ref=e918] [cursor=pointer]:
+                - img [ref=e921]
+                - generic: routing-primary-showcase_ean8 · ean8
+            - generic:
+              - toolbar "Barra contextual de edición" [ref=e942]:
+                - generic [ref=e943]:
+                  - button "Eliminar" [ref=e944]:
+                    - img [ref=e946]
+                    - generic [ref=e949]: Eliminar
+                  - button "Más acciones" [ref=e950]:
+                    - img [ref=e952]
+                    - generic [ref=e956]: Más
+              - generic: 229px × 30px
+      - status [ref=e957]
+  - region "Resultados":
+    - generic:
+      - button "Resultados Sin artefactos":
+        - text: Resultados
+        - generic: Sin artefactos
+``​`
+```
+
+<a id="file-0266"></a>
+
+### 0266 — `test-results/tests-playwright-sidebar-r-77399-ver-overlaps-the-right-rail-chromium/error-context.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `540`
+- **Tamaño original:** `27.1 KB`
+- **SHA1 corto:** `7e406ff2e6`
+- **Estado:** `completo`
+
+```markdown
+# Page snapshot
+
+``​`yaml
+- main [ref=e3]:
+  - region "Canvas" [ref=e4]:
+    - generic [ref=e5]:
+      - heading "Canvas" [level=2] [ref=e6]
+      - paragraph [ref=e7]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e8]: sisad-pdfme
+        - text: .
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - button "Cerrar catálogo de campos" [expanded] [active] [ref=e16]:
+            - img [ref=e17]
+          - generic [ref=e21]:
+            - generic [ref=e24]: Campos
+            - generic [ref=e25]:
+              - tablist "Tipos de campo" [ref=e26]:
+                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
+                  - img [ref=e29]
+                  - generic [ref=e32]: Base
+                  - generic [ref=e33]: "38"
+                - tab "Personalizados" [ref=e34] [cursor=pointer]:
+                  - img [ref=e36]
+                  - generic [ref=e40]: Custom
+                  - generic [ref=e41]: "0"
+                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
+                  - img [ref=e44]
+                  - generic [ref=e47]: Auto
+                  - generic [ref=e48]: "0"
+              - generic [ref=e50]:
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - textbox "Buscar campo..." [ref=e56]
+                - generic [ref=e58]:
+                  - button "Todos" [ref=e59] [cursor=pointer]:
+                    - generic [ref=e60]: Todos
+                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
+                    - generic [ref=e62]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
+                    - generic [ref=e64]: Recientes (0)
+                  - group "Diseño del catálogo" [ref=e65]:
+                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
+                      - generic [ref=e67]:
+                        - img [ref=e69]
+                        - generic [ref=e72]: Lista
+                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
+                      - generic [ref=e74]:
+                        - img [ref=e76]
+                        - generic [ref=e78]: Tarjetas
+                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
+                      - generic [ref=e80]:
+                        - img [ref=e82]
+                        - generic [ref=e85]: Iconos
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
+                  - generic [ref=e89]:
+                    - img [ref=e91]
+                    - generic [ref=e93]: Firmas
+                  - generic [ref=e94]: "3"
+                - generic [ref=e95]:
+                  - generic [ref=e98]:
+                    - button "Datesigned Datesigned" [ref=e99]:
+                      - generic "Datesigned" [ref=e101]:
+                        - img [ref=e102]
+                      - generic [ref=e106]: Datesigned
+                    - button "Marcar favorito" [ref=e107]: ★
+                  - generic [ref=e110]:
+                    - button "Initials Initials" [ref=e111]:
+                      - generic "Initials" [ref=e113]:
+                        - img [ref=e114]
+                      - generic [ref=e117]: Initials
+                    - button "Marcar favorito" [ref=e118]: ★
+                  - generic [ref=e121]:
+                    - button "Firma Firma" [ref=e122]:
+                      - generic "Firma" [ref=e124]:
+                        - img [ref=e125]
+                      - generic [ref=e128]: Firma
+                    - button "Marcar favorito" [ref=e129]: ★
+              - generic [ref=e130]:
+                - button "Alternar categoría Texto" [expanded] [ref=e131]:
+                  - generic [ref=e132]:
+                    - img [ref=e134]
+                    - generic [ref=e136]: Texto
+                  - generic [ref=e137]: "2"
+                - generic [ref=e138]:
+                  - generic [ref=e141]:
+                    - button "Número" [ref=e142]:
+                      - generic [ref=e145]: Número
+                    - button "Marcar favorito" [ref=e146]: ★
+                  - generic [ref=e149]:
+                    - button "Texto Texto" [ref=e150]:
+                      - generic "Texto" [ref=e152]:
+                        - img [ref=e153]
+                      - generic [ref=e159]: Texto
+                    - button "Marcar favorito" [ref=e160]: ★
+              - generic [ref=e161]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
+                  - generic [ref=e163]:
+                    - img [ref=e165]
+                    - generic [ref=e167]: Imagen y medios
+                  - generic [ref=e168]: "2"
+                - generic [ref=e169]:
+                  - generic [ref=e172]:
+                    - button "Imagen Imagen" [ref=e173]:
+                      - generic "Imagen" [ref=e175]:
+                        - img [ref=e176]
+                      - generic [ref=e181]: Imagen
+                    - button "Marcar favorito" [ref=e182]: ★
+                  - generic [ref=e185]:
+                    - button "SVG SVG" [ref=e186]:
+                      - generic "SVG" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e194]: SVG
+                    - button "Marcar favorito" [ref=e195]: ★
+              - generic [ref=e196]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
+                  - generic [ref=e198]:
+                    - img [ref=e200]
+                    - generic [ref=e202]: Selecciones
+                  - generic [ref=e203]: "4"
+                - generic [ref=e204]:
+                  - generic [ref=e207]:
+                    - button "Casilla Casilla" [ref=e208]:
+                      - generic "Casilla" [ref=e210]:
+                        - img [ref=e211]
+                      - generic [ref=e215]: Casilla
+                    - button "Marcar favorito" [ref=e216]: ★
+                  - generic [ref=e219]:
+                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
+                      - generic "Grupo de Casillas" [ref=e222]:
+                        - img [ref=e223]
+                      - generic [ref=e227]: Grupo de Casillas
+                    - button "Marcar favorito" [ref=e228]: ★
+                  - generic [ref=e231]:
+                    - button "Opción Opción" [ref=e232]:
+                      - generic "Opción" [ref=e234]:
+                        - img [ref=e235]
+                      - generic [ref=e239]: Opción
+                    - button "Marcar favorito" [ref=e240]: ★
+                  - generic [ref=e243]:
+                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
+                      - generic "Lista Desplegable" [ref=e246]:
+                        - img [ref=e247]
+                      - generic [ref=e250]: Lista Desplegable
+                    - button "Marcar favorito" [ref=e251]: ★
+              - generic [ref=e252]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
+                  - generic [ref=e254]:
+                    - img [ref=e256]
+                    - generic [ref=e258]: Fecha y Hora
+                  - generic [ref=e259]: "3"
+                - generic [ref=e260]:
+                  - generic [ref=e263]:
+                    - button "Fecha Fecha" [ref=e264]:
+                      - generic "Fecha" [ref=e266]:
+                        - img [ref=e267]
+                      - generic [ref=e270]: Fecha
+                    - button "Marcar favorito" [ref=e271]: ★
+                  - generic [ref=e274]:
+                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
+                      - generic "Fecha Y Hora" [ref=e277]:
+                        - img [ref=e278]
+                      - generic [ref=e283]: Fecha Y Hora
+                    - button "Marcar favorito" [ref=e284]: ★
+                  - generic [ref=e287]:
+                    - button "Hora Hora" [ref=e288]:
+                      - generic "Hora" [ref=e290]:
+                        - img [ref=e291]
+                      - generic [ref=e295]: Hora
+                    - button "Marcar favorito" [ref=e296]: ★
+              - generic [ref=e297]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
+                  - generic [ref=e299]:
+                    - img [ref=e301]
+                    - generic [ref=e303]: QR y Códigos
+                  - generic [ref=e304]: "12"
+                - generic [ref=e305]:
+                  - generic [ref=e308]:
+                    - button "Código de barras Código de barras" [ref=e309]:
+                      - generic "Código de barras" [ref=e311]:
+                        - img [ref=e312]
+                      - generic [ref=e314]: Código de barras
+                    - button "Marcar favorito" [ref=e315]: ★
+                  - generic [ref=e318]:
+                    - button "Código de barras Código de barras" [ref=e319]:
+                      - generic "Código de barras" [ref=e321]:
+                        - img [ref=e322]
+                      - generic [ref=e324]: Código de barras
+                    - button "Marcar favorito" [ref=e325]: ★
+                  - generic [ref=e328]:
+                    - button "Código de barras Código de barras" [ref=e329]:
+                      - generic "Código de barras" [ref=e331]:
+                        - img [ref=e332]
+                      - generic [ref=e334]: Código de barras
+                    - button "Marcar favorito" [ref=e335]: ★
+                  - generic [ref=e338]:
+                    - button "Código de barras Código de barras" [ref=e339]:
+                      - generic "Código de barras" [ref=e341]:
+                        - img [ref=e342]
+                      - generic [ref=e344]: Código de barras
+                    - button "Marcar favorito" [ref=e345]: ★
+                  - generic [ref=e348]:
+                    - button "DataMatrix DataMatrix" [ref=e349]:
+                      - generic "DataMatrix" [ref=e351]:
+                        - img [ref=e352]
+                      - generic [ref=e354]: DataMatrix
+                    - button "Marcar favorito" [ref=e355]: ★
+                  - generic [ref=e358]:
+                    - button "Código de barras Código de barras" [ref=e359]:
+                      - generic "Código de barras" [ref=e361]:
+                        - img [ref=e362]
+                      - generic [ref=e364]: Código de barras
+                    - button "Marcar favorito" [ref=e365]: ★
+                  - generic [ref=e368]:
+                    - button "Japan Post Japan Post" [ref=e369]:
+                      - generic "Japan Post" [ref=e371]:
+                        - img [ref=e372]
+                      - generic [ref=e374]: Japan Post
+                    - button "Marcar favorito" [ref=e375]: ★
+                  - generic [ref=e378]:
+                    - button "NW7 NW7" [ref=e379]:
+                      - generic "NW7" [ref=e381]:
+                        - img [ref=e382]
+                      - generic [ref=e384]: NW7
+                    - button "Marcar favorito" [ref=e385]: ★
+                  - generic [ref=e388]:
+                    - button "PDF417 PDF417" [ref=e389]:
+                      - generic "PDF417" [ref=e391]:
+                        - img [ref=e392]
+                      - generic [ref=e394]: PDF417
+                    - button "Marcar favorito" [ref=e395]: ★
+                  - generic [ref=e398]:
+                    - button "Código QR Código QR" [ref=e399]:
+                      - generic "Código QR" [ref=e401]:
+                        - img [ref=e402]
+                      - generic [ref=e409]: Código QR
+                    - button "Marcar favorito" [ref=e410]: ★
+                  - generic [ref=e413]:
+                    - button "Código de barras Código de barras" [ref=e414]:
+                      - generic "Código de barras" [ref=e416]:
+                        - img [ref=e417]
+                      - generic [ref=e419]: Código de barras
+                    - button "Marcar favorito" [ref=e420]: ★
+                  - generic [ref=e423]:
+                    - button "Código de barras Código de barras" [ref=e424]:
+                      - generic "Código de barras" [ref=e426]:
+                        - img [ref=e427]
+                      - generic [ref=e429]: Código de barras
+                    - button "Marcar favorito" [ref=e430]: ★
+              - generic [ref=e431]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
+                  - generic [ref=e433]:
+                    - img [ref=e435]
+                    - generic [ref=e437]: Estructura
+                  - generic [ref=e438]: "4"
+                - generic [ref=e439]:
+                  - generic [ref=e442]:
+                    - button "Óvalo Óvalo" [ref=e443]:
+                      - generic "Óvalo" [ref=e445]:
+                        - img [ref=e446]
+                      - generic [ref=e449]: Óvalo
+                    - button "Marcar favorito" [ref=e450]: ★
+                  - generic [ref=e453]:
+                    - button "Línea Línea" [ref=e454]:
+                      - generic "Línea" [ref=e456]:
+                        - img [ref=e457]
+                      - generic [ref=e459]: Línea
+                    - button "Marcar favorito" [ref=e460]: ★
+                  - generic [ref=e463]:
+                    - button "Rectángulo Rectángulo" [ref=e464]:
+                      - generic "Rectángulo" [ref=e466]:
+                        - img [ref=e467]
+                      - generic [ref=e470]: Rectángulo
+                    - button "Marcar favorito" [ref=e471]: ★
+                  - generic [ref=e474]:
+                    - button "Tabla Tabla" [ref=e475]:
+                      - generic "Tabla" [ref=e477]:
+                        - img [ref=e478]
+                      - generic [ref=e481]: Tabla
+                    - button "Marcar favorito" [ref=e482]: ★
+              - generic [ref=e483]:
+                - button "Alternar categoría Acción" [expanded] [ref=e484]:
+                  - generic [ref=e485]:
+                    - img [ref=e487]
+                    - generic [ref=e489]: Acción
+                  - generic [ref=e490]: "4"
+                - generic [ref=e491]:
+                  - generic [ref=e494]:
+                    - button "Approve Approve" [ref=e495]:
+                      - generic "Approve" [ref=e497]:
+                        - img [ref=e498]
+                      - generic [ref=e502]: Approve
+                    - button "Marcar favorito" [ref=e503]: ★
+                  - generic [ref=e506]:
+                    - button "Attachment Attachment" [ref=e507]:
+                      - generic "Attachment" [ref=e509]:
+                        - img [ref=e510]
+                      - generic [ref=e513]: Attachment
+                    - button "Marcar favorito" [ref=e514]: ★
+                  - generic [ref=e517]:
+                    - button "Decline Decline" [ref=e518]:
+                      - generic "Decline" [ref=e520]:
+                        - img [ref=e521]
+                      - generic [ref=e526]: Decline
+                    - button "Marcar favorito" [ref=e527]: ★
+                  - generic [ref=e530]:
+                    - button "Note Note" [ref=e531]:
+                      - generic "Note" [ref=e533]:
+                        - img [ref=e534]
+                      - generic [ref=e538]: Note
+                    - button "Marcar favorito" [ref=e539]: ★
+              - generic [ref=e540]:
+                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
+                  - generic [ref=e542]:
+                    - img [ref=e544]
+                    - generic [ref=e546]: Destinatario
+                  - generic [ref=e547]: "4"
+                - generic [ref=e548]:
+                  - generic [ref=e551]:
+                    - button "Company Company" [ref=e552]:
+                      - generic "Company" [ref=e554]:
+                        - img [ref=e555]
+                      - generic [ref=e560]: Company
+                    - button "Marcar favorito" [ref=e561]: ★
+                  - generic [ref=e564]:
+                    - button "Emailaddress Emailaddress" [ref=e565]:
+                      - generic "Emailaddress" [ref=e567]:
+                        - img [ref=e568]
+                      - generic [ref=e572]: Emailaddress
+                    - button "Marcar favorito" [ref=e573]: ★
+                  - generic [ref=e576]:
+                    - button "Fullname Fullname" [ref=e577]:
+                      - generic "Fullname" [ref=e579]:
+                        - img [ref=e580]
+                      - generic [ref=e584]: Fullname
+                    - button "Marcar favorito" [ref=e585]: ★
+                  - generic [ref=e588]:
+                    - button "Title Title" [ref=e589]:
+                      - generic "Title" [ref=e591]:
+                        - img [ref=e592]
+                      - generic [ref=e596]: Title
+                    - button "Marcar favorito" [ref=e597]: ★
+        - generic [ref=e598]:
+          - generic:
+            - generic [ref=e600]:
+              - button "Página anterior" [disabled] [ref=e601]:
+                - generic:
+                  - img
+              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
+                - generic [ref=e603]: Pág 1/14
+              - button "Página siguiente" [ref=e604] [cursor=pointer]:
+                - img [ref=e606]
+            - generic [ref=e609]:
+              - button "Guardar" [ref=e610] [cursor=pointer]:
+                - img [ref=e612]
+                - generic [ref=e616]: Guardar
+              - button "Más acciones" [ref=e617] [cursor=pointer]:
+                - img [ref=e619]
+            - generic [ref=e624]:
+              - button "Deshacer" [ref=e625] [cursor=pointer]:
+                - img [ref=e627]
+              - button "Rehacer" [ref=e630] [cursor=pointer]:
+                - img [ref=e632]
+              - button "Ajustar página" [ref=e635] [cursor=pointer]:
+                - img [ref=e637]
+              - generic [ref=e642]:
+                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
+                  - img [ref=e645]
+                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
+                  - generic [ref=e648]:
+                    - combobox "Nivel de zoom" [ref=e650]
+                    - generic "100%" [ref=e651]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
+                  - img [ref=e654]
+          - complementary "Panel derecho del diseñador" [ref=e655]:
+            - generic [ref=e656]:
+              - generic [ref=e657]:
+                - tablist "Panel derecho" [ref=e658]:
+                  - tab "Abrir panel Campos" [ref=e659]:
+                    - generic [ref=e660]:
+                      - img [ref=e662]
+                      - generic [ref=e666]: Campos
+                  - tab "Abrir panel Detalle" [disabled] [ref=e667]:
+                    - generic [ref=e668]:
+                      - img [ref=e670]
+                      - generic [ref=e671]: Detalle
+                  - tab "Abrir panel Docs" [selected] [ref=e672]:
+                    - generic [ref=e673]:
+                      - img [ref=e675]
+                      - generic [ref=e678]: Docs
+                - button "Ocultar panel derecho" [expanded] [ref=e681]:
+                  - img [ref=e682]
+              - generic [ref=e688]:
+                - generic [ref=e690]:
+                  - img [ref=e692]
+                  - generic [ref=e696]:
+                    - generic [ref=e697]: Documentos cargados
+                    - generic [ref=e698]: Selecciona una página
+                    - generic [ref=e700]: "2"
+                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
+                    - img [ref=e705]
+                    - generic [ref=e709]: Subir PDF
+                - generic "Lista de páginas del documento" [ref=e710]:
+                  - generic [ref=e711]:
+                    - generic [ref=e712]:
+                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
+                        - generic [ref=e716]: "1"
+                        - generic [ref=e717]:
+                          - strong [ref=e719]: Declaración de datos
+                          - generic [ref=e720]:
+                            - generic [ref=e721]: "1"
+                            - generic [ref=e722]: Activo
+                          - generic [ref=e723]: 14 paginas
+                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
+                        - img [ref=e726]
+                    - generic [ref=e729]:
+                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
+                        - generic [ref=e733]: "2"
+                        - generic [ref=e734]:
+                          - strong [ref=e736]: Certificado académico
+                          - generic [ref=e738]: "2"
+                          - generic [ref=e739]: 5 paginas
+                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
+                        - img [ref=e742]
+          - generic [ref=e747]:
+            - generic [ref=e748]:
+              - generic "contract_name" [ref=e750] [cursor=pointer]:
+                - generic [ref=e753]: Contrato principal
+                - generic: contract_name · text
+              - generic "contract_date" [ref=e754] [cursor=pointer]:
+                - generic [ref=e757]: 2026-05-01
+                - generic: contract_date · text
+              - generic "contract_stage" [ref=e758] [cursor=pointer]:
+                - generic [ref=e759]:
+                  - generic [ref=e761]: Pendiente
+                  - button:
+                    - img
+                - generic: contract_stage · select
+              - generic "approval_mode" [ref=e762] [cursor=pointer]:
+                - generic:
+                  - radiogroup "Modo de aprobación":
+                    - generic:
+                      - radio "Firma" [checked] [disabled]
+                      - radio "Revisión" [disabled]
+              - generic "required_documents" [ref=e763] [cursor=pointer]:
+                - generic:
+                  - group "Documentos requeridos":
+                    - generic:
+                      - checkbox "Cédula" [checked] [disabled]:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                      - checkbox "RUC" [disabled]
+                      - checkbox "Contrato firmado" [checked] [disabled]:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
+                - generic [ref=e767]:
+                  - img [ref=e768]
+                  - text: Adjuntar archivo
+                - generic: routing-primary-showcase_attachment · attachment
+              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
+                - button "Aprobar" [ref=e773]:
+                  - img [ref=e774]
+                  - text: Aprobar
+                - generic: routing-primary-showcase_approve · approve
+              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
+                - generic [ref=e779]: Nota informativa
+                - generic: routing-primary-showcase_note · note
+                - generic: solo lectura
+              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
+                - button "Rechazar" [ref=e783]:
+                  - img [ref=e784]
+                  - text: Rechazar
+                - generic: routing-primary-showcase_decline · decline
+              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
+                - generic: routing-primary-showcase_title · title
+              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
+                - generic: routing-primary-showcase_emailaddress · emailAddress
+            - generic [ref=e795]:
+              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
+                - generic: routing-primary-showcase_company · company
+              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
+                - generic: routing-primary-showcase_fullname · fullName
+              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
+                - generic [ref=e806]:
+                  - generic [ref=e810]: Name
+                  - generic [ref=e814]: City
+                  - generic [ref=e818]: Description
+                  - generic [ref=e822]: Alice
+                  - generic [ref=e830]: New York
+                  - generic [ref=e838]: Alice is a freelance web designer and developer
+                  - generic [ref=e846]: Bob
+                  - generic [ref=e854]: Paris
+                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
+                - generic: routing-primary-showcase_table · table
+              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
+                - generic: routing-primary-showcase_date · date
+              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
+                - generic: routing-primary-showcase_datetime · dateTime
+              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
+                - generic: routing-primary-showcase_time · time
+            - generic [ref=e879]:
+              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
+                - generic [ref=e884]: 17/07/2026
+                - generic: routing-primary-showcase_datesigned · dateSigned
+                - generic: solo lectura
+              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
+                - generic: routing-primary-showcase_signature · signature
+              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
+                - generic: routing-primary-showcase_initials · initials
+              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
+                - img [ref=e894]
+                - generic: routing-primary-showcase_code128 · code128
+              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
+                - img [ref=e898]
+                - generic: routing-primary-showcase_code39 · code39
+              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
+                - img [ref=e902]
+                - generic: routing-primary-showcase_ean13 · ean13
+            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
+              - img [ref=e908]
+              - generic: routing-primary-showcase_ean8 · ean8
+      - status [ref=e929]
+  - region "Resultados":
+    - generic:
+      - button "Resultados Sin artefactos":
+        - text: Resultados
+        - generic: Sin artefactos
+``​`
+```
+
+<a id="file-0267"></a>
+
+### 0267 — `test-results/tests-playwright-sidebar-r-f489a-estores-the-requested-panel-chromium/error-context.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `540`
+- **Tamaño original:** `27.1 KB`
+- **SHA1 corto:** `7447d15fbb`
+- **Estado:** `completo`
+
+```markdown
+# Page snapshot
+
+``​`yaml
+- main [ref=e3]:
+  - region "Canvas" [ref=e4]:
+    - generic [ref=e5]:
+      - heading "Canvas" [level=2] [ref=e6]
+      - paragraph [ref=e7]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e8]: sisad-pdfme
+        - text: .
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
+            - img [ref=e17]
+          - generic [ref=e21]:
+            - generic [ref=e24]: Campos
+            - generic [ref=e25]:
+              - tablist "Tipos de campo" [ref=e26]:
+                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
+                  - img [ref=e29]
+                  - generic [ref=e32]: Base
+                  - generic [ref=e33]: "38"
+                - tab "Personalizados" [ref=e34] [cursor=pointer]:
+                  - img [ref=e36]
+                  - generic [ref=e40]: Custom
+                  - generic [ref=e41]: "0"
+                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
+                  - img [ref=e44]
+                  - generic [ref=e47]: Auto
+                  - generic [ref=e48]: "0"
+              - generic [ref=e50]:
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - textbox "Buscar campo..." [ref=e56]
+                - generic [ref=e58]:
+                  - button "Todos" [ref=e59] [cursor=pointer]:
+                    - generic [ref=e60]: Todos
+                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
+                    - generic [ref=e62]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
+                    - generic [ref=e64]: Recientes (0)
+                  - group "Diseño del catálogo" [ref=e65]:
+                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
+                      - generic [ref=e67]:
+                        - img [ref=e69]
+                        - generic [ref=e72]: Lista
+                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
+                      - generic [ref=e74]:
+                        - img [ref=e76]
+                        - generic [ref=e78]: Tarjetas
+                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
+                      - generic [ref=e80]:
+                        - img [ref=e82]
+                        - generic [ref=e85]: Iconos
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
+                  - generic [ref=e89]:
+                    - img [ref=e91]
+                    - generic [ref=e93]: Firmas
+                  - generic [ref=e94]: "3"
+                - generic [ref=e95]:
+                  - generic [ref=e98]:
+                    - button "Datesigned Datesigned" [ref=e99]:
+                      - generic "Datesigned" [ref=e101]:
+                        - img [ref=e102]
+                      - generic [ref=e106]: Datesigned
+                    - button "Marcar favorito" [ref=e107]: ★
+                  - generic [ref=e110]:
+                    - button "Initials Initials" [ref=e111]:
+                      - generic "Initials" [ref=e113]:
+                        - img [ref=e114]
+                      - generic [ref=e117]: Initials
+                    - button "Marcar favorito" [ref=e118]: ★
+                  - generic [ref=e121]:
+                    - button "Firma Firma" [ref=e122]:
+                      - generic "Firma" [ref=e124]:
+                        - img [ref=e125]
+                      - generic [ref=e128]: Firma
+                    - button "Marcar favorito" [ref=e129]: ★
+              - generic [ref=e130]:
+                - button "Alternar categoría Texto" [expanded] [ref=e131]:
+                  - generic [ref=e132]:
+                    - img [ref=e134]
+                    - generic [ref=e136]: Texto
+                  - generic [ref=e137]: "2"
+                - generic [ref=e138]:
+                  - generic [ref=e141]:
+                    - button "Número" [ref=e142]:
+                      - generic [ref=e145]: Número
+                    - button "Marcar favorito" [ref=e146]: ★
+                  - generic [ref=e149]:
+                    - button "Texto Texto" [ref=e150]:
+                      - generic "Texto" [ref=e152]:
+                        - img [ref=e153]
+                      - generic [ref=e159]: Texto
+                    - button "Marcar favorito" [ref=e160]: ★
+              - generic [ref=e161]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
+                  - generic [ref=e163]:
+                    - img [ref=e165]
+                    - generic [ref=e167]: Imagen y medios
+                  - generic [ref=e168]: "2"
+                - generic [ref=e169]:
+                  - generic [ref=e172]:
+                    - button "Imagen Imagen" [ref=e173]:
+                      - generic "Imagen" [ref=e175]:
+                        - img [ref=e176]
+                      - generic [ref=e181]: Imagen
+                    - button "Marcar favorito" [ref=e182]: ★
+                  - generic [ref=e185]:
+                    - button "SVG SVG" [ref=e186]:
+                      - generic "SVG" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e194]: SVG
+                    - button "Marcar favorito" [ref=e195]: ★
+              - generic [ref=e196]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
+                  - generic [ref=e198]:
+                    - img [ref=e200]
+                    - generic [ref=e202]: Selecciones
+                  - generic [ref=e203]: "4"
+                - generic [ref=e204]:
+                  - generic [ref=e207]:
+                    - button "Casilla Casilla" [ref=e208]:
+                      - generic "Casilla" [ref=e210]:
+                        - img [ref=e211]
+                      - generic [ref=e215]: Casilla
+                    - button "Marcar favorito" [ref=e216]: ★
+                  - generic [ref=e219]:
+                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
+                      - generic "Grupo de Casillas" [ref=e222]:
+                        - img [ref=e223]
+                      - generic [ref=e227]: Grupo de Casillas
+                    - button "Marcar favorito" [ref=e228]: ★
+                  - generic [ref=e231]:
+                    - button "Opción Opción" [ref=e232]:
+                      - generic "Opción" [ref=e234]:
+                        - img [ref=e235]
+                      - generic [ref=e239]: Opción
+                    - button "Marcar favorito" [ref=e240]: ★
+                  - generic [ref=e243]:
+                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
+                      - generic "Lista Desplegable" [ref=e246]:
+                        - img [ref=e247]
+                      - generic [ref=e250]: Lista Desplegable
+                    - button "Marcar favorito" [ref=e251]: ★
+              - generic [ref=e252]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
+                  - generic [ref=e254]:
+                    - img [ref=e256]
+                    - generic [ref=e258]: Fecha y Hora
+                  - generic [ref=e259]: "3"
+                - generic [ref=e260]:
+                  - generic [ref=e263]:
+                    - button "Fecha Fecha" [ref=e264]:
+                      - generic "Fecha" [ref=e266]:
+                        - img [ref=e267]
+                      - generic [ref=e270]: Fecha
+                    - button "Marcar favorito" [ref=e271]: ★
+                  - generic [ref=e274]:
+                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
+                      - generic "Fecha Y Hora" [ref=e277]:
+                        - img [ref=e278]
+                      - generic [ref=e283]: Fecha Y Hora
+                    - button "Marcar favorito" [ref=e284]: ★
+                  - generic [ref=e287]:
+                    - button "Hora Hora" [ref=e288]:
+                      - generic "Hora" [ref=e290]:
+                        - img [ref=e291]
+                      - generic [ref=e295]: Hora
+                    - button "Marcar favorito" [ref=e296]: ★
+              - generic [ref=e297]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
+                  - generic [ref=e299]:
+                    - img [ref=e301]
+                    - generic [ref=e303]: QR y Códigos
+                  - generic [ref=e304]: "12"
+                - generic [ref=e305]:
+                  - generic [ref=e308]:
+                    - button "Código de barras Código de barras" [ref=e309]:
+                      - generic "Código de barras" [ref=e311]:
+                        - img [ref=e312]
+                      - generic [ref=e314]: Código de barras
+                    - button "Marcar favorito" [ref=e315]: ★
+                  - generic [ref=e318]:
+                    - button "Código de barras Código de barras" [ref=e319]:
+                      - generic "Código de barras" [ref=e321]:
+                        - img [ref=e322]
+                      - generic [ref=e324]: Código de barras
+                    - button "Marcar favorito" [ref=e325]: ★
+                  - generic [ref=e328]:
+                    - button "Código de barras Código de barras" [ref=e329]:
+                      - generic "Código de barras" [ref=e331]:
+                        - img [ref=e332]
+                      - generic [ref=e334]: Código de barras
+                    - button "Marcar favorito" [ref=e335]: ★
+                  - generic [ref=e338]:
+                    - button "Código de barras Código de barras" [ref=e339]:
+                      - generic "Código de barras" [ref=e341]:
+                        - img [ref=e342]
+                      - generic [ref=e344]: Código de barras
+                    - button "Marcar favorito" [ref=e345]: ★
+                  - generic [ref=e348]:
+                    - button "DataMatrix DataMatrix" [ref=e349]:
+                      - generic "DataMatrix" [ref=e351]:
+                        - img [ref=e352]
+                      - generic [ref=e354]: DataMatrix
+                    - button "Marcar favorito" [ref=e355]: ★
+                  - generic [ref=e358]:
+                    - button "Código de barras Código de barras" [ref=e359]:
+                      - generic "Código de barras" [ref=e361]:
+                        - img [ref=e362]
+                      - generic [ref=e364]: Código de barras
+                    - button "Marcar favorito" [ref=e365]: ★
+                  - generic [ref=e368]:
+                    - button "Japan Post Japan Post" [ref=e369]:
+                      - generic "Japan Post" [ref=e371]:
+                        - img [ref=e372]
+                      - generic [ref=e374]: Japan Post
+                    - button "Marcar favorito" [ref=e375]: ★
+                  - generic [ref=e378]:
+                    - button "NW7 NW7" [ref=e379]:
+                      - generic "NW7" [ref=e381]:
+                        - img [ref=e382]
+                      - generic [ref=e384]: NW7
+                    - button "Marcar favorito" [ref=e385]: ★
+                  - generic [ref=e388]:
+                    - button "PDF417 PDF417" [ref=e389]:
+                      - generic "PDF417" [ref=e391]:
+                        - img [ref=e392]
+                      - generic [ref=e394]: PDF417
+                    - button "Marcar favorito" [ref=e395]: ★
+                  - generic [ref=e398]:
+                    - button "Código QR Código QR" [ref=e399]:
+                      - generic "Código QR" [ref=e401]:
+                        - img [ref=e402]
+                      - generic [ref=e409]: Código QR
+                    - button "Marcar favorito" [ref=e410]: ★
+                  - generic [ref=e413]:
+                    - button "Código de barras Código de barras" [ref=e414]:
+                      - generic "Código de barras" [ref=e416]:
+                        - img [ref=e417]
+                      - generic [ref=e419]: Código de barras
+                    - button "Marcar favorito" [ref=e420]: ★
+                  - generic [ref=e423]:
+                    - button "Código de barras Código de barras" [ref=e424]:
+                      - generic "Código de barras" [ref=e426]:
+                        - img [ref=e427]
+                      - generic [ref=e429]: Código de barras
+                    - button "Marcar favorito" [ref=e430]: ★
+              - generic [ref=e431]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
+                  - generic [ref=e433]:
+                    - img [ref=e435]
+                    - generic [ref=e437]: Estructura
+                  - generic [ref=e438]: "4"
+                - generic [ref=e439]:
+                  - generic [ref=e442]:
+                    - button "Óvalo Óvalo" [ref=e443]:
+                      - generic "Óvalo" [ref=e445]:
+                        - img [ref=e446]
+                      - generic [ref=e449]: Óvalo
+                    - button "Marcar favorito" [ref=e450]: ★
+                  - generic [ref=e453]:
+                    - button "Línea Línea" [ref=e454]:
+                      - generic "Línea" [ref=e456]:
+                        - img [ref=e457]
+                      - generic [ref=e459]: Línea
+                    - button "Marcar favorito" [ref=e460]: ★
+                  - generic [ref=e463]:
+                    - button "Rectángulo Rectángulo" [ref=e464]:
+                      - generic "Rectángulo" [ref=e466]:
+                        - img [ref=e467]
+                      - generic [ref=e470]: Rectángulo
+                    - button "Marcar favorito" [ref=e471]: ★
+                  - generic [ref=e474]:
+                    - button "Tabla Tabla" [ref=e475]:
+                      - generic "Tabla" [ref=e477]:
+                        - img [ref=e478]
+                      - generic [ref=e481]: Tabla
+                    - button "Marcar favorito" [ref=e482]: ★
+              - generic [ref=e483]:
+                - button "Alternar categoría Acción" [expanded] [ref=e484]:
+                  - generic [ref=e485]:
+                    - img [ref=e487]
+                    - generic [ref=e489]: Acción
+                  - generic [ref=e490]: "4"
+                - generic [ref=e491]:
+                  - generic [ref=e494]:
+                    - button "Approve Approve" [ref=e495]:
+                      - generic "Approve" [ref=e497]:
+                        - img [ref=e498]
+                      - generic [ref=e502]: Approve
+                    - button "Marcar favorito" [ref=e503]: ★
+                  - generic [ref=e506]:
+                    - button "Attachment Attachment" [ref=e507]:
+                      - generic "Attachment" [ref=e509]:
+                        - img [ref=e510]
+                      - generic [ref=e513]: Attachment
+                    - button "Marcar favorito" [ref=e514]: ★
+                  - generic [ref=e517]:
+                    - button "Decline Decline" [ref=e518]:
+                      - generic "Decline" [ref=e520]:
+                        - img [ref=e521]
+                      - generic [ref=e526]: Decline
+                    - button "Marcar favorito" [ref=e527]: ★
+                  - generic [ref=e530]:
+                    - button "Note Note" [ref=e531]:
+                      - generic "Note" [ref=e533]:
+                        - img [ref=e534]
+                      - generic [ref=e538]: Note
+                    - button "Marcar favorito" [ref=e539]: ★
+              - generic [ref=e540]:
+                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
+                  - generic [ref=e542]:
+                    - img [ref=e544]
+                    - generic [ref=e546]: Destinatario
+                  - generic [ref=e547]: "4"
+                - generic [ref=e548]:
+                  - generic [ref=e551]:
+                    - button "Company Company" [ref=e552]:
+                      - generic "Company" [ref=e554]:
+                        - img [ref=e555]
+                      - generic [ref=e560]: Company
+                    - button "Marcar favorito" [ref=e561]: ★
+                  - generic [ref=e564]:
+                    - button "Emailaddress Emailaddress" [ref=e565]:
+                      - generic "Emailaddress" [ref=e567]:
+                        - img [ref=e568]
+                      - generic [ref=e572]: Emailaddress
+                    - button "Marcar favorito" [ref=e573]: ★
+                  - generic [ref=e576]:
+                    - button "Fullname Fullname" [ref=e577]:
+                      - generic "Fullname" [ref=e579]:
+                        - img [ref=e580]
+                      - generic [ref=e584]: Fullname
+                    - button "Marcar favorito" [ref=e585]: ★
+                  - generic [ref=e588]:
+                    - button "Title Title" [ref=e589]:
+                      - generic "Title" [ref=e591]:
+                        - img [ref=e592]
+                      - generic [ref=e596]: Title
+                    - button "Marcar favorito" [ref=e597]: ★
+        - generic [ref=e598]:
+          - generic:
+            - generic [ref=e600]:
+              - button "Página anterior" [disabled] [ref=e601]:
+                - generic:
+                  - img
+              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
+                - generic [ref=e603]: Pág 1/14
+              - button "Página siguiente" [ref=e604] [cursor=pointer]:
+                - img [ref=e606]
+            - generic [ref=e609]:
+              - button "Guardar" [ref=e610] [cursor=pointer]:
+                - img [ref=e612]
+                - generic [ref=e616]: Guardar
+              - button "Más acciones" [ref=e617] [cursor=pointer]:
+                - img [ref=e619]
+            - generic [ref=e624]:
+              - button "Deshacer" [ref=e625] [cursor=pointer]:
+                - img [ref=e627]
+              - button "Rehacer" [ref=e630] [cursor=pointer]:
+                - img [ref=e632]
+              - button "Ajustar página" [ref=e635] [cursor=pointer]:
+                - img [ref=e637]
+              - generic [ref=e642]:
+                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
+                  - img [ref=e645]
+                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
+                  - generic [ref=e648]:
+                    - combobox "Nivel de zoom" [ref=e650]
+                    - generic "100%" [ref=e651]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
+                  - img [ref=e654]
+          - complementary "Panel derecho del diseñador" [ref=e655]:
+            - generic [ref=e656]:
+              - generic [ref=e657]:
+                - tablist "Panel derecho" [ref=e658]:
+                  - tab "Abrir panel Campos" [ref=e659]:
+                    - generic [ref=e660]:
+                      - img [ref=e662]
+                      - generic [ref=e666]: Campos
+                  - tab "Abrir panel Detalle" [disabled] [ref=e667]:
+                    - generic [ref=e668]:
+                      - img [ref=e670]
+                      - generic [ref=e671]: Detalle
+                  - tab "Abrir panel Docs" [selected] [ref=e672]:
+                    - generic [ref=e673]:
+                      - img [ref=e675]
+                      - generic [ref=e678]: Docs
+                - button "Ocultar panel derecho" [expanded] [ref=e681]:
+                  - img [ref=e682]
+              - generic [ref=e688]:
+                - generic [ref=e690]:
+                  - img [ref=e692]
+                  - generic [ref=e696]:
+                    - generic [ref=e697]: Documentos cargados
+                    - generic [ref=e698]: Selecciona una página
+                    - generic [ref=e700]: "2"
+                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
+                    - img [ref=e705]
+                    - generic [ref=e709]: Subir PDF
+                - generic "Lista de páginas del documento" [ref=e710]:
+                  - generic [ref=e711]:
+                    - generic [ref=e712]:
+                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
+                        - generic [ref=e716]: "1"
+                        - generic [ref=e717]:
+                          - strong [ref=e719]: Declaración de datos
+                          - generic [ref=e720]:
+                            - generic [ref=e721]: "1"
+                            - generic [ref=e722]: Activo
+                          - generic [ref=e723]: 14 paginas
+                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
+                        - img [ref=e726]
+                    - generic [ref=e729]:
+                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
+                        - generic [ref=e733]: "2"
+                        - generic [ref=e734]:
+                          - strong [ref=e736]: Certificado académico
+                          - generic [ref=e738]: "2"
+                          - generic [ref=e739]: 5 paginas
+                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
+                        - img [ref=e742]
+          - generic [ref=e747]:
+            - generic [ref=e748]:
+              - generic "contract_name" [ref=e750] [cursor=pointer]:
+                - generic [ref=e753]: Contrato principal
+                - generic: contract_name · text
+              - generic "contract_date" [ref=e754] [cursor=pointer]:
+                - generic [ref=e757]: 2026-05-01
+                - generic: contract_date · text
+              - generic "contract_stage" [ref=e758] [cursor=pointer]:
+                - generic [ref=e759]:
+                  - generic [ref=e761]: Pendiente
+                  - button:
+                    - img
+                - generic: contract_stage · select
+              - generic "approval_mode" [ref=e762] [cursor=pointer]:
+                - generic:
+                  - radiogroup "Modo de aprobación":
+                    - generic:
+                      - radio "Firma" [checked] [disabled]
+                      - radio "Revisión" [disabled]
+              - generic "required_documents" [ref=e763] [cursor=pointer]:
+                - generic:
+                  - group "Documentos requeridos":
+                    - generic:
+                      - checkbox "Cédula" [checked] [disabled]:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                      - checkbox "RUC" [disabled]
+                      - checkbox "Contrato firmado" [checked] [disabled]:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
+                - generic [ref=e767]:
+                  - img [ref=e768]
+                  - text: Adjuntar archivo
+                - generic: routing-primary-showcase_attachment · attachment
+              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
+                - button "Aprobar" [ref=e773]:
+                  - img [ref=e774]
+                  - text: Aprobar
+                - generic: routing-primary-showcase_approve · approve
+              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
+                - generic [ref=e779]: Nota informativa
+                - generic: routing-primary-showcase_note · note
+                - generic: solo lectura
+              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
+                - button "Rechazar" [ref=e783]:
+                  - img [ref=e784]
+                  - text: Rechazar
+                - generic: routing-primary-showcase_decline · decline
+              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
+                - generic: routing-primary-showcase_title · title
+              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
+                - generic: routing-primary-showcase_emailaddress · emailAddress
+            - generic [ref=e795]:
+              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
+                - generic: routing-primary-showcase_company · company
+              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
+                - generic: routing-primary-showcase_fullname · fullName
+              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
+                - generic [ref=e806]:
+                  - generic [ref=e810]: Name
+                  - generic [ref=e814]: City
+                  - generic [ref=e818]: Description
+                  - generic [ref=e822]: Alice
+                  - generic [ref=e830]: New York
+                  - generic [ref=e838]: Alice is a freelance web designer and developer
+                  - generic [ref=e846]: Bob
+                  - generic [ref=e854]: Paris
+                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
+                - generic: routing-primary-showcase_table · table
+              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
+                - generic: routing-primary-showcase_date · date
+              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
+                - generic: routing-primary-showcase_datetime · dateTime
+              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
+                - generic: routing-primary-showcase_time · time
+            - generic [ref=e879]:
+              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
+                - generic [ref=e884]: 17/07/2026
+                - generic: routing-primary-showcase_datesigned · dateSigned
+                - generic: solo lectura
+              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
+                - generic: routing-primary-showcase_signature · signature
+              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
+                - generic: routing-primary-showcase_initials · initials
+              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
+                - img [ref=e894]
+                - generic: routing-primary-showcase_code128 · code128
+              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
+                - img [ref=e898]
+                - generic: routing-primary-showcase_code39 · code39
+              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
+                - img [ref=e902]
+                - generic: routing-primary-showcase_ean13 · ean13
+            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
+              - img [ref=e908]
+              - generic: routing-primary-showcase_ean8 · ean8
+      - status [ref=e929]
+  - region "Resultados":
+    - generic:
+      - button "Resultados Sin artefactos":
+        - text: Resultados
+        - generic: Sin artefactos
+``​`
+```
+
+<a id="file-0268"></a>
+
+### 0268 — `test-results/tests-playwright-standard--66ac8-s-the-expected-schema-types-chromium/error-context.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `540`
+- **Tamaño original:** `27.1 KB`
+- **SHA1 corto:** `7447d15fbb`
+- **Estado:** `completo`
+
+```markdown
+# Page snapshot
+
+``​`yaml
+- main [ref=e3]:
+  - region "Canvas" [ref=e4]:
+    - generic [ref=e5]:
+      - heading "Canvas" [level=2] [ref=e6]
+      - paragraph [ref=e7]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e8]: sisad-pdfme
+        - text: .
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
+            - img [ref=e17]
+          - generic [ref=e21]:
+            - generic [ref=e24]: Campos
+            - generic [ref=e25]:
+              - tablist "Tipos de campo" [ref=e26]:
+                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
+                  - img [ref=e29]
+                  - generic [ref=e32]: Base
+                  - generic [ref=e33]: "38"
+                - tab "Personalizados" [ref=e34] [cursor=pointer]:
+                  - img [ref=e36]
+                  - generic [ref=e40]: Custom
+                  - generic [ref=e41]: "0"
+                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
+                  - img [ref=e44]
+                  - generic [ref=e47]: Auto
+                  - generic [ref=e48]: "0"
+              - generic [ref=e50]:
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - textbox "Buscar campo..." [ref=e56]
+                - generic [ref=e58]:
+                  - button "Todos" [ref=e59] [cursor=pointer]:
+                    - generic [ref=e60]: Todos
+                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
+                    - generic [ref=e62]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
+                    - generic [ref=e64]: Recientes (0)
+                  - group "Diseño del catálogo" [ref=e65]:
+                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
+                      - generic [ref=e67]:
+                        - img [ref=e69]
+                        - generic [ref=e72]: Lista
+                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
+                      - generic [ref=e74]:
+                        - img [ref=e76]
+                        - generic [ref=e78]: Tarjetas
+                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
+                      - generic [ref=e80]:
+                        - img [ref=e82]
+                        - generic [ref=e85]: Iconos
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
+                  - generic [ref=e89]:
+                    - img [ref=e91]
+                    - generic [ref=e93]: Firmas
+                  - generic [ref=e94]: "3"
+                - generic [ref=e95]:
+                  - generic [ref=e98]:
+                    - button "Datesigned Datesigned" [ref=e99]:
+                      - generic "Datesigned" [ref=e101]:
+                        - img [ref=e102]
+                      - generic [ref=e106]: Datesigned
+                    - button "Marcar favorito" [ref=e107]: ★
+                  - generic [ref=e110]:
+                    - button "Initials Initials" [ref=e111]:
+                      - generic "Initials" [ref=e113]:
+                        - img [ref=e114]
+                      - generic [ref=e117]: Initials
+                    - button "Marcar favorito" [ref=e118]: ★
+                  - generic [ref=e121]:
+                    - button "Firma Firma" [ref=e122]:
+                      - generic "Firma" [ref=e124]:
+                        - img [ref=e125]
+                      - generic [ref=e128]: Firma
+                    - button "Marcar favorito" [ref=e129]: ★
+              - generic [ref=e130]:
+                - button "Alternar categoría Texto" [expanded] [ref=e131]:
+                  - generic [ref=e132]:
+                    - img [ref=e134]
+                    - generic [ref=e136]: Texto
+                  - generic [ref=e137]: "2"
+                - generic [ref=e138]:
+                  - generic [ref=e141]:
+                    - button "Número" [ref=e142]:
+                      - generic [ref=e145]: Número
+                    - button "Marcar favorito" [ref=e146]: ★
+                  - generic [ref=e149]:
+                    - button "Texto Texto" [ref=e150]:
+                      - generic "Texto" [ref=e152]:
+                        - img [ref=e153]
+                      - generic [ref=e159]: Texto
+                    - button "Marcar favorito" [ref=e160]: ★
+              - generic [ref=e161]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
+                  - generic [ref=e163]:
+                    - img [ref=e165]
+                    - generic [ref=e167]: Imagen y medios
+                  - generic [ref=e168]: "2"
+                - generic [ref=e169]:
+                  - generic [ref=e172]:
+                    - button "Imagen Imagen" [ref=e173]:
+                      - generic "Imagen" [ref=e175]:
+                        - img [ref=e176]
+                      - generic [ref=e181]: Imagen
+                    - button "Marcar favorito" [ref=e182]: ★
+                  - generic [ref=e185]:
+                    - button "SVG SVG" [ref=e186]:
+                      - generic "SVG" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e194]: SVG
+                    - button "Marcar favorito" [ref=e195]: ★
+              - generic [ref=e196]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
+                  - generic [ref=e198]:
+                    - img [ref=e200]
+                    - generic [ref=e202]: Selecciones
+                  - generic [ref=e203]: "4"
+                - generic [ref=e204]:
+                  - generic [ref=e207]:
+                    - button "Casilla Casilla" [ref=e208]:
+                      - generic "Casilla" [ref=e210]:
+                        - img [ref=e211]
+                      - generic [ref=e215]: Casilla
+                    - button "Marcar favorito" [ref=e216]: ★
+                  - generic [ref=e219]:
+                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
+                      - generic "Grupo de Casillas" [ref=e222]:
+                        - img [ref=e223]
+                      - generic [ref=e227]: Grupo de Casillas
+                    - button "Marcar favorito" [ref=e228]: ★
+                  - generic [ref=e231]:
+                    - button "Opción Opción" [ref=e232]:
+                      - generic "Opción" [ref=e234]:
+                        - img [ref=e235]
+                      - generic [ref=e239]: Opción
+                    - button "Marcar favorito" [ref=e240]: ★
+                  - generic [ref=e243]:
+                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
+                      - generic "Lista Desplegable" [ref=e246]:
+                        - img [ref=e247]
+                      - generic [ref=e250]: Lista Desplegable
+                    - button "Marcar favorito" [ref=e251]: ★
+              - generic [ref=e252]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
+                  - generic [ref=e254]:
+                    - img [ref=e256]
+                    - generic [ref=e258]: Fecha y Hora
+                  - generic [ref=e259]: "3"
+                - generic [ref=e260]:
+                  - generic [ref=e263]:
+                    - button "Fecha Fecha" [ref=e264]:
+                      - generic "Fecha" [ref=e266]:
+                        - img [ref=e267]
+                      - generic [ref=e270]: Fecha
+                    - button "Marcar favorito" [ref=e271]: ★
+                  - generic [ref=e274]:
+                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
+                      - generic "Fecha Y Hora" [ref=e277]:
+                        - img [ref=e278]
+                      - generic [ref=e283]: Fecha Y Hora
+                    - button "Marcar favorito" [ref=e284]: ★
+                  - generic [ref=e287]:
+                    - button "Hora Hora" [ref=e288]:
+                      - generic "Hora" [ref=e290]:
+                        - img [ref=e291]
+                      - generic [ref=e295]: Hora
+                    - button "Marcar favorito" [ref=e296]: ★
+              - generic [ref=e297]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
+                  - generic [ref=e299]:
+                    - img [ref=e301]
+                    - generic [ref=e303]: QR y Códigos
+                  - generic [ref=e304]: "12"
+                - generic [ref=e305]:
+                  - generic [ref=e308]:
+                    - button "Código de barras Código de barras" [ref=e309]:
+                      - generic "Código de barras" [ref=e311]:
+                        - img [ref=e312]
+                      - generic [ref=e314]: Código de barras
+                    - button "Marcar favorito" [ref=e315]: ★
+                  - generic [ref=e318]:
+                    - button "Código de barras Código de barras" [ref=e319]:
+                      - generic "Código de barras" [ref=e321]:
+                        - img [ref=e322]
+                      - generic [ref=e324]: Código de barras
+                    - button "Marcar favorito" [ref=e325]: ★
+                  - generic [ref=e328]:
+                    - button "Código de barras Código de barras" [ref=e329]:
+                      - generic "Código de barras" [ref=e331]:
+                        - img [ref=e332]
+                      - generic [ref=e334]: Código de barras
+                    - button "Marcar favorito" [ref=e335]: ★
+                  - generic [ref=e338]:
+                    - button "Código de barras Código de barras" [ref=e339]:
+                      - generic "Código de barras" [ref=e341]:
+                        - img [ref=e342]
+                      - generic [ref=e344]: Código de barras
+                    - button "Marcar favorito" [ref=e345]: ★
+                  - generic [ref=e348]:
+                    - button "DataMatrix DataMatrix" [ref=e349]:
+                      - generic "DataMatrix" [ref=e351]:
+                        - img [ref=e352]
+                      - generic [ref=e354]: DataMatrix
+                    - button "Marcar favorito" [ref=e355]: ★
+                  - generic [ref=e358]:
+                    - button "Código de barras Código de barras" [ref=e359]:
+                      - generic "Código de barras" [ref=e361]:
+                        - img [ref=e362]
+                      - generic [ref=e364]: Código de barras
+                    - button "Marcar favorito" [ref=e365]: ★
+                  - generic [ref=e368]:
+                    - button "Japan Post Japan Post" [ref=e369]:
+                      - generic "Japan Post" [ref=e371]:
+                        - img [ref=e372]
+                      - generic [ref=e374]: Japan Post
+                    - button "Marcar favorito" [ref=e375]: ★
+                  - generic [ref=e378]:
+                    - button "NW7 NW7" [ref=e379]:
+                      - generic "NW7" [ref=e381]:
+                        - img [ref=e382]
+                      - generic [ref=e384]: NW7
+                    - button "Marcar favorito" [ref=e385]: ★
+                  - generic [ref=e388]:
+                    - button "PDF417 PDF417" [ref=e389]:
+                      - generic "PDF417" [ref=e391]:
+                        - img [ref=e392]
+                      - generic [ref=e394]: PDF417
+                    - button "Marcar favorito" [ref=e395]: ★
+                  - generic [ref=e398]:
+                    - button "Código QR Código QR" [ref=e399]:
+                      - generic "Código QR" [ref=e401]:
+                        - img [ref=e402]
+                      - generic [ref=e409]: Código QR
+                    - button "Marcar favorito" [ref=e410]: ★
+                  - generic [ref=e413]:
+                    - button "Código de barras Código de barras" [ref=e414]:
+                      - generic "Código de barras" [ref=e416]:
+                        - img [ref=e417]
+                      - generic [ref=e419]: Código de barras
+                    - button "Marcar favorito" [ref=e420]: ★
+                  - generic [ref=e423]:
+                    - button "Código de barras Código de barras" [ref=e424]:
+                      - generic "Código de barras" [ref=e426]:
+                        - img [ref=e427]
+                      - generic [ref=e429]: Código de barras
+                    - button "Marcar favorito" [ref=e430]: ★
+              - generic [ref=e431]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
+                  - generic [ref=e433]:
+                    - img [ref=e435]
+                    - generic [ref=e437]: Estructura
+                  - generic [ref=e438]: "4"
+                - generic [ref=e439]:
+                  - generic [ref=e442]:
+                    - button "Óvalo Óvalo" [ref=e443]:
+                      - generic "Óvalo" [ref=e445]:
+                        - img [ref=e446]
+                      - generic [ref=e449]: Óvalo
+                    - button "Marcar favorito" [ref=e450]: ★
+                  - generic [ref=e453]:
+                    - button "Línea Línea" [ref=e454]:
+                      - generic "Línea" [ref=e456]:
+                        - img [ref=e457]
+                      - generic [ref=e459]: Línea
+                    - button "Marcar favorito" [ref=e460]: ★
+                  - generic [ref=e463]:
+                    - button "Rectángulo Rectángulo" [ref=e464]:
+                      - generic "Rectángulo" [ref=e466]:
+                        - img [ref=e467]
+                      - generic [ref=e470]: Rectángulo
+                    - button "Marcar favorito" [ref=e471]: ★
+                  - generic [ref=e474]:
+                    - button "Tabla Tabla" [ref=e475]:
+                      - generic "Tabla" [ref=e477]:
+                        - img [ref=e478]
+                      - generic [ref=e481]: Tabla
+                    - button "Marcar favorito" [ref=e482]: ★
+              - generic [ref=e483]:
+                - button "Alternar categoría Acción" [expanded] [ref=e484]:
+                  - generic [ref=e485]:
+                    - img [ref=e487]
+                    - generic [ref=e489]: Acción
+                  - generic [ref=e490]: "4"
+                - generic [ref=e491]:
+                  - generic [ref=e494]:
+                    - button "Approve Approve" [ref=e495]:
+                      - generic "Approve" [ref=e497]:
+                        - img [ref=e498]
+                      - generic [ref=e502]: Approve
+                    - button "Marcar favorito" [ref=e503]: ★
+                  - generic [ref=e506]:
+                    - button "Attachment Attachment" [ref=e507]:
+                      - generic "Attachment" [ref=e509]:
+                        - img [ref=e510]
+                      - generic [ref=e513]: Attachment
+                    - button "Marcar favorito" [ref=e514]: ★
+                  - generic [ref=e517]:
+                    - button "Decline Decline" [ref=e518]:
+                      - generic "Decline" [ref=e520]:
+                        - img [ref=e521]
+                      - generic [ref=e526]: Decline
+                    - button "Marcar favorito" [ref=e527]: ★
+                  - generic [ref=e530]:
+                    - button "Note Note" [ref=e531]:
+                      - generic "Note" [ref=e533]:
+                        - img [ref=e534]
+                      - generic [ref=e538]: Note
+                    - button "Marcar favorito" [ref=e539]: ★
+              - generic [ref=e540]:
+                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
+                  - generic [ref=e542]:
+                    - img [ref=e544]
+                    - generic [ref=e546]: Destinatario
+                  - generic [ref=e547]: "4"
+                - generic [ref=e548]:
+                  - generic [ref=e551]:
+                    - button "Company Company" [ref=e552]:
+                      - generic "Company" [ref=e554]:
+                        - img [ref=e555]
+                      - generic [ref=e560]: Company
+                    - button "Marcar favorito" [ref=e561]: ★
+                  - generic [ref=e564]:
+                    - button "Emailaddress Emailaddress" [ref=e565]:
+                      - generic "Emailaddress" [ref=e567]:
+                        - img [ref=e568]
+                      - generic [ref=e572]: Emailaddress
+                    - button "Marcar favorito" [ref=e573]: ★
+                  - generic [ref=e576]:
+                    - button "Fullname Fullname" [ref=e577]:
+                      - generic "Fullname" [ref=e579]:
+                        - img [ref=e580]
+                      - generic [ref=e584]: Fullname
+                    - button "Marcar favorito" [ref=e585]: ★
+                  - generic [ref=e588]:
+                    - button "Title Title" [ref=e589]:
+                      - generic "Title" [ref=e591]:
+                        - img [ref=e592]
+                      - generic [ref=e596]: Title
+                    - button "Marcar favorito" [ref=e597]: ★
+        - generic [ref=e598]:
+          - generic:
+            - generic [ref=e600]:
+              - button "Página anterior" [disabled] [ref=e601]:
+                - generic:
+                  - img
+              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
+                - generic [ref=e603]: Pág 1/14
+              - button "Página siguiente" [ref=e604] [cursor=pointer]:
+                - img [ref=e606]
+            - generic [ref=e609]:
+              - button "Guardar" [ref=e610] [cursor=pointer]:
+                - img [ref=e612]
+                - generic [ref=e616]: Guardar
+              - button "Más acciones" [ref=e617] [cursor=pointer]:
+                - img [ref=e619]
+            - generic [ref=e624]:
+              - button "Deshacer" [ref=e625] [cursor=pointer]:
+                - img [ref=e627]
+              - button "Rehacer" [ref=e630] [cursor=pointer]:
+                - img [ref=e632]
+              - button "Ajustar página" [ref=e635] [cursor=pointer]:
+                - img [ref=e637]
+              - generic [ref=e642]:
+                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
+                  - img [ref=e645]
+                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
+                  - generic [ref=e648]:
+                    - combobox "Nivel de zoom" [ref=e650]
+                    - generic "100%" [ref=e651]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
+                  - img [ref=e654]
+          - complementary "Panel derecho del diseñador" [ref=e655]:
+            - generic [ref=e656]:
+              - generic [ref=e657]:
+                - tablist "Panel derecho" [ref=e658]:
+                  - tab "Abrir panel Campos" [ref=e659]:
+                    - generic [ref=e660]:
+                      - img [ref=e662]
+                      - generic [ref=e666]: Campos
+                  - tab "Abrir panel Detalle" [disabled] [ref=e667]:
+                    - generic [ref=e668]:
+                      - img [ref=e670]
+                      - generic [ref=e671]: Detalle
+                  - tab "Abrir panel Docs" [selected] [ref=e672]:
+                    - generic [ref=e673]:
+                      - img [ref=e675]
+                      - generic [ref=e678]: Docs
+                - button "Ocultar panel derecho" [expanded] [ref=e681]:
+                  - img [ref=e682]
+              - generic [ref=e688]:
+                - generic [ref=e690]:
+                  - img [ref=e692]
+                  - generic [ref=e696]:
+                    - generic [ref=e697]: Documentos cargados
+                    - generic [ref=e698]: Selecciona una página
+                    - generic [ref=e700]: "2"
+                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
+                    - img [ref=e705]
+                    - generic [ref=e709]: Subir PDF
+                - generic "Lista de páginas del documento" [ref=e710]:
+                  - generic [ref=e711]:
+                    - generic [ref=e712]:
+                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
+                        - generic [ref=e716]: "1"
+                        - generic [ref=e717]:
+                          - strong [ref=e719]: Declaración de datos
+                          - generic [ref=e720]:
+                            - generic [ref=e721]: "1"
+                            - generic [ref=e722]: Activo
+                          - generic [ref=e723]: 14 paginas
+                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
+                        - img [ref=e726]
+                    - generic [ref=e729]:
+                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
+                        - generic [ref=e733]: "2"
+                        - generic [ref=e734]:
+                          - strong [ref=e736]: Certificado académico
+                          - generic [ref=e738]: "2"
+                          - generic [ref=e739]: 5 paginas
+                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
+                        - img [ref=e742]
+          - generic [ref=e747]:
+            - generic [ref=e748]:
+              - generic "contract_name" [ref=e750] [cursor=pointer]:
+                - generic [ref=e753]: Contrato principal
+                - generic: contract_name · text
+              - generic "contract_date" [ref=e754] [cursor=pointer]:
+                - generic [ref=e757]: 2026-05-01
+                - generic: contract_date · text
+              - generic "contract_stage" [ref=e758] [cursor=pointer]:
+                - generic [ref=e759]:
+                  - generic [ref=e761]: Pendiente
+                  - button:
+                    - img
+                - generic: contract_stage · select
+              - generic "approval_mode" [ref=e762] [cursor=pointer]:
+                - generic:
+                  - radiogroup "Modo de aprobación":
+                    - generic:
+                      - radio "Firma" [checked] [disabled]
+                      - radio "Revisión" [disabled]
+              - generic "required_documents" [ref=e763] [cursor=pointer]:
+                - generic:
+                  - group "Documentos requeridos":
+                    - generic:
+                      - checkbox "Cédula" [checked] [disabled]:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                      - checkbox "RUC" [disabled]
+                      - checkbox "Contrato firmado" [checked] [disabled]:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
+                - generic [ref=e767]:
+                  - img [ref=e768]
+                  - text: Adjuntar archivo
+                - generic: routing-primary-showcase_attachment · attachment
+              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
+                - button "Aprobar" [ref=e773]:
+                  - img [ref=e774]
+                  - text: Aprobar
+                - generic: routing-primary-showcase_approve · approve
+              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
+                - generic [ref=e779]: Nota informativa
+                - generic: routing-primary-showcase_note · note
+                - generic: solo lectura
+              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
+                - button "Rechazar" [ref=e783]:
+                  - img [ref=e784]
+                  - text: Rechazar
+                - generic: routing-primary-showcase_decline · decline
+              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
+                - generic: routing-primary-showcase_title · title
+              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
+                - generic: routing-primary-showcase_emailaddress · emailAddress
+            - generic [ref=e795]:
+              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
+                - generic: routing-primary-showcase_company · company
+              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
+                - generic: routing-primary-showcase_fullname · fullName
+              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
+                - generic [ref=e806]:
+                  - generic [ref=e810]: Name
+                  - generic [ref=e814]: City
+                  - generic [ref=e818]: Description
+                  - generic [ref=e822]: Alice
+                  - generic [ref=e830]: New York
+                  - generic [ref=e838]: Alice is a freelance web designer and developer
+                  - generic [ref=e846]: Bob
+                  - generic [ref=e854]: Paris
+                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
+                - generic: routing-primary-showcase_table · table
+              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
+                - generic: routing-primary-showcase_date · date
+              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
+                - generic: routing-primary-showcase_datetime · dateTime
+              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
+                - generic: routing-primary-showcase_time · time
+            - generic [ref=e879]:
+              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
+                - generic [ref=e884]: 17/07/2026
+                - generic: routing-primary-showcase_datesigned · dateSigned
+                - generic: solo lectura
+              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
+                - generic: routing-primary-showcase_signature · signature
+              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
+                - generic: routing-primary-showcase_initials · initials
+              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
+                - img [ref=e894]
+                - generic: routing-primary-showcase_code128 · code128
+              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
+                - img [ref=e898]
+                - generic: routing-primary-showcase_code39 · code39
+              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
+                - img [ref=e902]
+                - generic: routing-primary-showcase_ean13 · ean13
+            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
+              - img [ref=e908]
+              - generic: routing-primary-showcase_ean8 · ean8
+      - status [ref=e929]
+  - region "Resultados":
+    - generic:
+      - button "Resultados Sin artefactos":
+        - text: Resultados
+        - generic: Sin artefactos
+``​`
+```
+
+<a id="file-0269"></a>
+
+### 0269 — `ai/task-cards/active/TASK-CSS-026-accelerated-tailwind-inline-decommission.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `109`
@@ -15338,14 +20584,14 @@ y en reescritura por REGRESSION-021; un bug ahí rompe permisos/colores runtime 
 - No tocar Moveable/Selecto/coordenadas/snapshot/generator/pdf-lib/zoom.
 ```
 
-<a id="file-0260"></a>
+<a id="file-0270"></a>
 
-### 0260 — `ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md`
+### 0270 — `ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `177`
-- **Tamaño original:** `26.8 KB`
-- **SHA1 corto:** `f671dcad3e`
+- **Líneas:** `214`
+- **Tamaño original:** `35.7 KB`
+- **SHA1 corto:** `6454803449`
 - **Estado:** `completo`
 
 ```markdown
@@ -15491,6 +20737,9 @@ Recuperar la paridad visual del shell del laboratorio y de las superficies base 
 - `scripts/css-selector-duplicates.mjs` se volvió a ejecutar y regeneró `reports/tailwind-migration/selector-duplicates-current.md` con el estado actualizado de los duplicados del CSS activo.
 - La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 576 líneas y 108 apariciones de `@apply` tras la última validación.
 - Validado el slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar sin regresiones.
+- `Item.tsx` dejó el delete del ListView anclado al hover del `li` completo para que no desaparezca al mover el puntero hacia el botón, `DetailSectionCard.tsx` y `SchemaConnectionsShared.tsx` aclararon los accordions del inspector con títulos más cercanos al fondo y `SchemaConnectionsShared.tsx` suavizó el bloque de conexiones para mantener el contraste del baseline.
+- `DocumentsRail.tsx` quedó con la validación del rail derecho intacta y `src/sisad-pdfme/ui/styles/tokens.css` se redujo a 86 líneas tras podar tokens sin consumidores directos; el build siguió pasando y la ruta `/lab/multi-document-routing` mostró el panel derecho estable en las vistas `Campos`, `Detalle` y `Docs`.
+- `DetailSectionCard.tsx` y `SchemaConnectionsShared.tsx` terminaron de unificar los headers de acordeón con la superficie blanca del panel, bajando el tinte gris que aún se percibía en los detalles del schema y en las secciones técnicas/conexiones; validado con `npm run build` y los smoke tests del rail derecho.
 - `Canvas/SnapLines.tsx` absorbió el skin base de `snap-line` y `snap-label` para que la posición absoluta, pointer-events y la semántica de texto vivan en el componente y no en CSS; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó esos selectores redundantes.
 - La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 569 líneas y 106 apariciones de `@apply` tras la última validación.
 - `scripts/css-selector-duplicates.mjs` se volvió a ejecutar y regeneró `reports/tailwind-migration/selector-duplicates-current.md` con el estado actualizado de los duplicados del CSS activo.
@@ -15522,15 +20771,49 @@ Recuperar la paridad visual del shell del laboratorio y de las superficies base 
 - `LeftSidebar.tsx` absorbió el skin base del rail izquierdo (posición, ancho, borde, fondo, shrink y transición) en el nodo React, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque raíz equivalente; quedaron en CSS solo los ajustes de catálogo/dragging y las reglas responsivas que siguen siendo geométricas.
 - La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 466 líneas y 84 apariciones de `@apply` tras este corte.
 - Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar sin regresiones visibles tras mover el skin del rail izquierdo.
+- `RightSidebar.tsx` absorbió la excepción de `prefers-reduced-motion` del rail derecho como variantes `motion-reduce` en el propio nodo React, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque media query equivalente.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 456 líneas y 82 apariciones de `@apply` tras este corte.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar sin regresiones visibles tras mover la excepción de motion-reduce.
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó los media queries compactos redundantes de `left-sidebar-compact` y `stage[data-left-sidebar-variant="compact"]`, dejando el clamp final como fuente única para el ancho compacto del shell.
+- `scripts/css-selector-duplicates.mjs` se volvió a ejecutar y regeneró `reports/tailwind-migration/selector-duplicates-current.md` con el estado actualizado del CSS activo.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 387 líneas y 68 apariciones de `@apply` tras esta validación.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron sin regresiones visibles.
+- `index.tsx` ya resolvía el ancho compacto del rail derecho en TSX y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el último selector residual `stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas`, dejando el reporte de duplicados solo con contratos `KEEP_GEOMETRY`.
+- `LeftSidebar.tsx` absorbió el skin de drag source y el hide-state del favorito en el propio botón del catálogo; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` retiró el selector residual del favorito drag. Se corrigió un `ReferenceError` transitorio en runtime al mover el estado de arrastre al render prop correcto.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 369 líneas y 63 apariciones de `@apply` tras este corte.
+- Validado este slice con `npm run build` y `npx playwright test tests/e2e/left-sidebar-view-modes.spec.ts tests/playwright/right-sidebar-visual-polish.spec.ts`; ambos volvieron a pasar sin regresiones visibles.
+- `CanvasOverlayManager.tsx` absorbió el skin base del contenedor de overlays del canvas y `Mask.tsx` absorbió la superficie de bloqueo; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` retiró ambos selectores residuales.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 363 líneas y 61 apariciones de `@apply` tras este corte.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/canvas-interactions.spec.ts tests/playwright/right-sidebar-visual-polish.spec.ts`; ambos volvieron a pasar sin regresiones visibles.
+- `GroupOptionFloatingAction.tsx` ya resolvía el skin del botón flotante con Tailwind inline y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque residual de visibilidad para `option-group-floating-action`, dejando la ocultación de drag/resize/rotate como responsabilidad del propio componente.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 357 líneas y 60 apariciones de `@apply` tras este corte.
+- Pendiente de validar: build + Playwright smoke y regeneración del reporte de duplicados activo.
+- `CanvasOverlayManager.tsx` ya resolvía el skin del contenedor de overlays y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el selector redundante `.sisad-pdfme-ui-canvas-overlay-manager`, dejando la posición/pointer-events del overlay como contrato local del componente.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 352 líneas y 59 apariciones de `@apply` tras este corte.
+- Pendiente de validar: build + Playwright smoke y regeneración del reporte de duplicados activo.
+- `Canvas.tsx` movió la ocultación de `Mask` a una clase inline basada en `interactionState.phase`, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque residual de visibilidad por fase para `Mask`.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 346 líneas y 58 apariciones de `@apply` tras este corte.
+- Pendiente de validar: build + Playwright smoke y regeneración del reporte de duplicados activo.
+- `CanvasStateOverlay.tsx` ya absorbía el skin del empty state y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` retiró el selector huérfano `.sisad-pdfme-designer-canvas-empty-state`, dejando el overlay como contrato puro del componente.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 341 líneas y 57 apariciones de `@apply` tras este corte.
+- Pendiente de validar: build + Playwright smoke y regeneración del reporte de duplicados activo.
+- `LeftSidebar.tsx` absorbió el skin del shell arrastrable y la ocultación del favorito durante drag en el propio JSX, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` retiró los selectores residuales del shell draggable, dejando esos contratos como skin local del componente.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 335 líneas y 56 apariciones de `@apply` tras este corte.
+- Pendiente de validar: build + Playwright smoke y regeneración del reporte de duplicados activo.
+- Slice 2026-07-16u: se retiraron de `sisad-pdfme.css` los bloques legacy del shell `sisad-pdfme-page/header/grid/workspace/canvas`, que no tenían consumidores activos en el árbol React actual. Validado con `npm run build`, `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts` y el reporte de duplicados regenerado. CSS activo actual: 310 líneas y 47 apariciones de `@apply`.
+- Slice 2026-07-16x: `Item.tsx` dejó el delete del ListView visible y detectable por Playwright sin depender de opacidad cero, `DocumentsRail.tsx` alineó el delete de documentos en la misma fila de la tarjeta y `DetailSectionCard.tsx` subió el contraste del título de acordeón para mantener la jerarquía del inspector. Validado con `npm run build`, `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts`, `tests/playwright/right-sidebar-docs-tab.spec.ts` y `tests/playwright/list-view-regression.spec.ts`.
 
 ## Criterio de parada
 
 Detenerse si la recuperación exige más de 5 archivos de producto o si aparece una regresión funcional fuera del shell/tokens; abrir tarjeta separada en ese caso.
+
+- Slice 2026-07-16y: `index.tsx` y `CtlBar.tsx` absorbieron el padding del stage y el offset del control bar para el right sidebar, y `SchemaConnectionsShared.tsx` elevó el contraste de los títulos de sección/edición técnica. Se retiró el selector `data-sidebar-open` residual de `sisad-pdfme.css`, dejando el CSS activo en 304 líneas y 85 apariciones de `@apply`. Validado con `npm run build`, `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts tests/playwright/list-view-regression.spec.ts` y la regeneración del reporte de duplicados activo.
+- Slice 2026-07-16z: `Item.tsx` elevó la capa de `ItemActions` y del botón `Eliminar` para que el affordance no desaparezca detrás del hit-target del row; `SidebarSurfacePrimitives.tsx` y `DetailSectionCard.tsx` subieron el contraste de los títulos y descripciones del inspector a `text-slate-950`/`text-slate-600`; `tests/playwright/list-view-regression.spec.ts` y `tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.test.ts` quedaron como cobertura estable del row y del encabezado de sección. Validado con `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/list-view-regression.spec.ts`, `npx vitest run tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.test.ts tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.test.tsx` y regeneración de `reports/tailwind-migration/selector-duplicates-current.md`. El CSS activo sigue en 304 líneas y 85 apariciones de `@apply`; lo restante es contrato técnico/geométrico y no un candidato seguro para vaciar.
 ```
 
-<a id="file-0261"></a>
+<a id="file-0271"></a>
 
-### 0261 — `ai/task-cards/backlog/TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md`
+### 0271 — `ai/task-cards/backlog/TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -15583,9 +20866,9 @@ Detenerse si la corrección depende del DOM del canvas o de más de 5 componente
 Medidas, estados y capturas antes/después.
 ```
 
-<a id="file-0262"></a>
+<a id="file-0272"></a>
 
-### 0262 — `ai/task-cards/backlog/TASK-CSS-022-left-sidebar-css-pruning.md`
+### 0272 — `ai/task-cards/backlog/TASK-CSS-022-left-sidebar-css-pruning.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -15635,9 +20918,214 @@ Detenerse si un selector tiene consumidor incierto o alcance global.
 Lista exacta de reglas retiradas y delta cuantitativo.
 ```
 
-<a id="file-0263"></a>
+<a id="file-0273"></a>
 
-### 0263 — `ai/task-cards/backlog/TASK-LAB-030-canvas-first-shell-style-source-unification.md`
+### 0273 — `ai/task-cards/backlog/TASK-CSS-023-tailwind-migration-continuity-step-by-step.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `84`
+- **Tamaño original:** `3.9 KB`
+- **SHA1 corto:** `a89761e0a0`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-023 — Continuidad de migración Tailwind por slices pequeños
+
+## Objetivo
+
+Seguir migrando clases visuales desde `src/sisad-pdfme/ui/styles/sisad-pdfme.css` y los otros CSS activos hacia sus componentes JSX/TSX propietarios, sin perder paridad visual ni tocar contratos técnicos de canvas, Moveable, Selecto, zoom o geometría.
+
+## Contexto
+
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` ya quedó reducida y conserva sobre todo contratos técnicos.
+- Parte de las clases visuales del proyecto se concatenan desde `src/sisad-pdfme/ui/constants.ts`.
+- El laboratorio de referencia es `http://localhost:5174/lab/multi-document-routing`.
+- Hay una sola task-card activa; esta tarjeta vive en `backlog` hasta que el board libere espacio.
+
+## Alcance
+
+- Analizar componentes que concatenan clases desde `src/sisad-pdfme/ui/constants.ts`.
+- Mover a JSX/TSX utilidades estáticas de layout, spacing, tipografía, bordes, radios, hover y focus-visible.
+- Mantener en CSS solo lo que sea técnico, dinámico o imposible de expresar con seguridad en JSX/TSX.
+- Actualizar pruebas y el ledger de migración en cada slice.
+
+## Fuera de alcance
+
+- Moveable, Selecto, zoom, paper geometry, canvas coordinates, snapshot, generator y `pdf-lib`.
+- Crear CSS nuevo paralelo.
+- Forzar vaciado total de CSS técnico.
+- Cambiar lógica funcional de selección, drag/drop, reasignación o runtime.
+
+## Archivos candidatos
+
+Máximo 5 por slice. Priorizar:
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+
+## Archivos prohibidos
+
+- `src/sisad-pdfme/ui/styles/tokens.css`
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` para skin técnico/geométrico ya validado
+- `src/features/pdfcomponent/labRoutes.css`
+- Canvas geometry, Moveable, Selecto, snapshot, generator, `pdf-lib`
+
+## Plan paso a paso
+
+1. Reabrir `ai/router/CONTEXT_BUDGET.md` y trabajar solo un slice visual.
+2. Buscar clases concatenadas desde `src/sisad-pdfme/ui/constants.ts` y ubicar el nodo dueño real.
+3. Comparar la captura actual con el baseline del laboratorio en el panel objetivo.
+4. Migrar únicamente utilidades estáticas seguras al JSX/TSX del componente dueño.
+5. Dejar en CSS solo contratos técnicos, media queries o descendientes que el JSX no pueda expresar con seguridad.
+6. Agregar o ajustar pruebas unitarias y Playwright para el comportamiento visual cubierto.
+7. Regenerar `reports/tailwind-migration/selector-duplicates-current.md` si se retiró algún selector.
+8. Actualizar `ai/task-cards/active/*` o `reports/tailwind-migration/component-migration-ledger.md` con el slice validado.
+9. Validar con `npm run build` y el smoke o unit test correspondiente.
+10. Detenerse si el siguiente ajuste requiere más de 5 archivos o toca geometría/canvas.
+
+## Regla operativa
+
+- Un slice = una región visual.
+- No mezclar sidebar izquierdo, sidebar derecho, inspector y canvas en el mismo pase.
+- No borrar CSS sin comprobar el consumidor real.
+- No convertir clases runtime o derivadas en strings dinámicos si Tailwind no las detecta.
+
+## Validación mínima por slice
+
+- `npm run build`
+- Prueba focalizada del componente o panel
+- Smoke visual en `/lab/multi-document-routing`
+- Actualización del ledger y del reporte de duplicados si aplica
+
+## Criterio de parada
+
+Detenerse si:
+
+- el ajuste depende de geometría o del canvas;
+- el selector no tiene consumidor claro;
+- la migración requiere más de 5 archivos;
+- la comparación visual empeora;
+- el contrato ya es técnico y no debe vaciarse más.
+
+## Entrega esperada
+
+Registro corto del slice, archivos tocados, validaciones ejecutadas y estado de CSS restante.
+```
+
+<a id="file-0274"></a>
+
+### 0274 — `ai/task-cards/backlog/TASK-CSS-027-right-sidebar-constants-tailwind-scroll-polish.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `95`
+- **Tamaño original:** `4.6 KB`
+- **SHA1 corto:** `4c63b33a8b`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-027 — RightSidebar: migración Tailwind guiada por constantes y pulido de scroll
+
+## Objetivo
+
+Continuar la migración de clases visuales desde `src/sisad-pdfme/ui/styles/sisad-pdfme.css` hacia los componentes JSX/TSX propietarios, usando como referencia las clases concatenadas en `src/sisad-pdfme/ui/constants.ts` y corrigiendo los problemas visuales actuales del `RightSidebar`.
+
+## Contexto
+
+- La migración Tailwind ya avanzó bastante, pero todavía quedan contratos técnicos en `src/sisad-pdfme/ui/styles/sisad-pdfme.css`.
+- En el laboratorio `http://localhost:5174/lab/multi-document-routing` siguen apareciendo problemas de jerarquía visual, scroll y affordances en el panel derecho.
+- Los estilos visuales migrados deben vivir en JSX/TSX; CSS solo debe conservar contratos técnicos, geométricos o no expresables con seguridad.
+- Hay otras task-cards activas en el board, así que este slice debe permanecer acotado y validable.
+
+## Alcance
+
+Este slice solo toca la superficie y el comportamiento visual del `RightSidebar`:
+
+- Tabs superiores `Campos / Detalle / Docs`.
+- Header del panel y rail de acciones.
+- `ListViewToolbar` y su relación con `ListView`.
+- `Item.tsx` y la interacción de hover, selección y eliminar.
+- `DetailHeaderCard.tsx`, `DetailSectionCard.tsx` y `SchemaCollaborationWidget.tsx` si el ajuste visual lo exige.
+- Scroll local de `ListView`, `DetailView` y `Docs`.
+
+## Fuera de alcance
+
+- `Canvas` geometry, Moveable, Selecto, zoom, paper coordinates, snapshot, generator y `pdf-lib`.
+- Crear CSS nuevo paralelo.
+- Introducir `!important` como solución.
+- Cambiar la lógica de selección, reasignación, ownership o permisos.
+- Reabrir task-cards completadas o tocar tarjetas archivadas.
+
+## Archivos candidatos
+
+Máximo 5 archivos de producto por pasada. Priorizar:
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx`
+
+Si el slice lo requiere:
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx`
+
+## Archivos prohibidos
+
+- `src/sisad-pdfme/ui/styles/tokens.css`
+- `src/features/pdfcomponent/labRoutes.css`
+- Canvas geometry y overlays técnicos de Moveable/Selecto
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` para contratos técnicos ya validados de canvas
+
+## Pasos
+
+1. Revisar los consumidores reales de `src/sisad-pdfme/ui/constants.ts` dentro del `RightSidebar`.
+2. Identificar qué clases estáticas pueden vivir en JSX/TSX y cuáles deben permanecer en CSS por ser técnicas o dependientes de runtime.
+3. Migrar primero el skin seguro del panel superior: switcher, tabs, botones, estados active/focus-visible y compactación.
+4. Corregir el header del `ListView` para que quede compacto, estable y sin duplicar bordes, sombras o paddings.
+5. Ajustar `Item.tsx` para que:
+   - el hover no oculte el icono de eliminar;
+   - el estado selected no se confunda con el acento del owner;
+   - el drag handle y el hit target no compitan con el click.
+6. Revisar `DetailSectionCard.tsx` para alinear los headers de secciones con el baseline visual y evitar tonos grises/negros demasiado pesados.
+7. Verificar que el panel derecho tenga un solo propietario de scroll por subvista y que `Docs`/`Detalle` no hagan wrap ni corten contenido.
+8. Eliminar de `src/sisad-pdfme/ui/styles/sisad-pdfme.css` solo los selectores migrados y verificados en este slice.
+9. Actualizar `reports/tailwind-migration/component-migration-ledger.md` con el slice validado.
+10. Si se retiró algún selector, regenerar `reports/tailwind-migration/selector-duplicates-current.md`.
+
+## Validación mínima
+
+- `npm run build`
+- Prueba focalizada de `RightSidebar` o `ListView`
+- Smoke visual en `http://localhost:5174/lab/multi-document-routing`
+- Verificación manual de:
+  - tabs sin wrap;
+  - scroll estable;
+  - botón eliminar visible en hover;
+  - header de detalle sin exceso de gris/negro;
+  - docs accesible y consistente.
+
+## Criterio de parada
+
+Detenerse si:
+
+- el siguiente ajuste requiere más de 5 archivos;
+- la corrección depende de geometría del canvas;
+- no está claro el consumidor de una clase;
+- la comparación visual empeora;
+- el cambio pide crear CSS nuevo paralelo.
+
+## Entrega esperada
+
+Registro corto del slice, archivos tocados, clases migradas desde `constants.ts`, validaciones ejecutadas y CSS técnico restante.
+```
+
+<a id="file-0275"></a>
+
+### 0275 — `ai/task-cards/backlog/TASK-LAB-030-canvas-first-shell-style-source-unification.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -15690,9 +21178,9 @@ Detenerse si el cambio exige alterar el contrato del canvas o más de 5 archivos
 Mapa de fuentes de estilo antes/después y medidas finales.
 ```
 
-<a id="file-0264"></a>
+<a id="file-0276"></a>
 
-### 0264 — `ai/task-cards/backlog/TASK-QA-016-tailwind-design-visual-regression.md`
+### 0276 — `ai/task-cards/backlog/TASK-QA-016-tailwind-design-visual-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -15745,9 +21233,9 @@ Ante cualquier fallo funcional o visual, no editar producto: crear tarjeta nueva
 Reporte final con capturas, comandos, resultados y deuda remanente priorizada.
 ```
 
-<a id="file-0265"></a>
+<a id="file-0277"></a>
 
-### 0265 — `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md`
+### 0277 — `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -15797,9 +21285,9 @@ los testids del ListView están intactos (verificado: al seleccionar la pestaña
 - `npx playwright test tests/playwright/list-view-regression.spec.ts tests/playwright/detail-view-options-listview.spec.ts tests/playwright/right-sidebar-visual-polish.spec.ts`
 ```
 
-<a id="file-0266"></a>
+<a id="file-0278"></a>
 
-### 0266 — `ai/task-cards/backlog/TASK-SCHEMA-003-action-owner-accent-continuity.md`
+### 0278 — `ai/task-cards/backlog/TASK-SCHEMA-003-action-owner-accent-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -15852,9 +21340,9 @@ Detenerse si no existe contrato explícito de acción o si el acento reduce cont
 Matriz owner/action/estado y evidencia.
 ```
 
-<a id="file-0267"></a>
+<a id="file-0279"></a>
 
-### 0267 — `ai/task-cards/completed/completed-summary.md`
+### 0279 — `ai/task-cards/completed/completed-summary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `152`
@@ -16017,9 +21505,9 @@ Este archivo es memoria histórica compacta. Sirve para evitar que agentes IA re
 Si un agente detecta una falla relacionada con una tarea completada, debe crear una task-card nueva con sufijo `regression` o `continuity`, no editar la tarea completada como si estuviera pendiente.
 ```
 
-<a id="file-0268"></a>
+<a id="file-0280"></a>
 
-### 0268 — `ai/task-cards/completed/README.md`
+### 0280 — `ai/task-cards/completed/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -16033,9 +21521,9 @@ Si un agente detecta una falla relacionada con una tarea completada, debe crear 
 Mover aquí task-cards completadas con reporte final.
 ```
 
-<a id="file-0269"></a>
+<a id="file-0281"></a>
 
-### 0269 — `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md`
+### 0281 — `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `89`
@@ -16135,9 +21623,9 @@ No crear wrappers ni nuevos menús. Esta task solo prepara inventario para la un
 - Validación: `node scripts/audit-buttons-actions.mjs` + `npm run build` exit 0.
 ```
 
-<a id="file-0270"></a>
+<a id="file-0282"></a>
 
-### 0270 — `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md`
+### 0282 — `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `105`
@@ -16253,9 +21741,9 @@ release-edit/select-schema/open-properties).
   build exit 0. Sin cambios de geometría/selección.
 ```
 
-<a id="file-0271"></a>
+<a id="file-0283"></a>
 
-### 0271 — `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
+### 0283 — `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `66`
@@ -16332,9 +21820,9 @@ No se deben crear carpetas como `architecture/`, `migration/`, `repo-patch/`, `0
 - Completed no se reabre.
 ```
 
-<a id="file-0272"></a>
+<a id="file-0284"></a>
 
-### 0272 — `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md`
+### 0284 — `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `77`
@@ -16422,9 +21910,9 @@ HOST_SPECIFIC_REMOVE = 0.
 - Validación: build exit 0 + `tests/unit/sisad-pdfme/react` en verde.
 ```
 
-<a id="file-0273"></a>
+<a id="file-0285"></a>
 
-### 0273 — `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md`
+### 0285 — `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -16456,9 +21944,9 @@ Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page
 - No resolver el overflow con hacks del host.
 ```
 
-<a id="file-0274"></a>
+<a id="file-0286"></a>
 
-### 0274 — `ai/task-cards/completed/TASK-CANVAS-003-guides-ruler-black-overlay-regression.md`
+### 0286 — `ai/task-cards/completed/TASK-CANVAS-003-guides-ruler-black-overlay-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `78`
@@ -16547,9 +22035,9 @@ Verificado en viewport 1400×900 sobre `/lab/multi-document-routing` (multipági
 a cualquier zoom/scroll (no dependen de medida ni de cálculo geométrico).
 ```
 
-<a id="file-0275"></a>
+<a id="file-0287"></a>
 
-### 0275 — `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md`
+### 0287 — `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `91`
@@ -16651,9 +22139,9 @@ No migrar reglas críticas de layout geométrico del PDF/canvas.
 - No se rompen screenshots baseline.
 ```
 
-<a id="file-0276"></a>
+<a id="file-0288"></a>
 
-### 0276 — `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md`
+### 0288 — `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `86`
@@ -16750,9 +22238,9 @@ del canvas, Moveable, Selecto, zoom ni coordenadas PDF.
   `canvas-overflow-regression` y `drag-preview-and-canvas-scroll-regression` en verde.
 ```
 
-<a id="file-0277"></a>
+<a id="file-0289"></a>
 
-### 0277 — `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md`
+### 0289 — `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `85`
@@ -16848,9 +22336,9 @@ No tocar `.moveable-*`, `.selecto-*`, transform, zoom math, paper/canvas geometr
       sin tocar geometría crítica.
 ```
 
-<a id="file-0278"></a>
+<a id="file-0290"></a>
 
-### 0278 — `ai/task-cards/completed/TASK-CSS-015-lab-routes-tailwind3-dedup.md`
+### 0290 — `ai/task-cards/completed/TASK-CSS-015-lab-routes-tailwind3-dedup.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -16875,9 +22363,9 @@ Eliminar CSS duplicado del host lab solo después de mover UI segura a JSX/Tailw
 - Menos selectores duplicados y sin regresión visual.
 ```
 
-<a id="file-0279"></a>
+<a id="file-0291"></a>
 
-### 0279 — `ai/task-cards/completed/TASK-CSS-018-stabilize-tailwind-cleanup.md`
+### 0291 — `ai/task-cards/completed/TASK-CSS-018-stabilize-tailwind-cleanup.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -16929,9 +22417,9 @@ Basado en `component-migration-ledger.md` y `active-selector-duplicates.md`.
 - La continuidad visual se valida por las task-cards de regresión funcional y por los tests de sidebar/right-sidebar ya existentes.
 ```
 
-<a id="file-0280"></a>
+<a id="file-0292"></a>
 
-### 0280 — `ai/task-cards/completed/TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md`
+### 0292 — `ai/task-cards/completed/TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -17014,9 +22502,9 @@ Mover la mayor cantidad posible de clases visuales Tailwind desde `sisad-pdfme.c
 - La UI mantiene la misma interacción y el build/tests siguen pasando.
 ```
 
-<a id="file-0281"></a>
+<a id="file-0293"></a>
 
-### 0281 — `ai/task-cards/completed/TASK-CSS-020-lab-routes-zero-apply.md`
+### 0293 — `ai/task-cards/completed/TASK-CSS-020-lab-routes-zero-apply.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `50`
@@ -17077,9 +22565,9 @@ los componentes JSX (PageHeader/PdfmeLabPage/CompactControls/ResultsPanel/
 PopoverMenu). Verificado: `grep -c "@apply"` = 0. Objetivo cumplido.
 ```
 
-<a id="file-0282"></a>
+<a id="file-0294"></a>
 
-### 0282 — `ai/task-cards/completed/TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md`
+### 0294 — `ai/task-cards/completed/TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -17132,9 +22620,9 @@ Detenerse si requiere cambiar lógica de documentos o más de 5 archivos.
 Matriz de estados y evidencia visual.
 ```
 
-<a id="file-0283"></a>
+<a id="file-0295"></a>
 
-### 0283 — `ai/task-cards/completed/TASK-CSS-024-right-sidebar-listview-row-flat.md`
+### 0295 — `ai/task-cards/completed/TASK-CSS-024-right-sidebar-listview-row-flat.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `99`
@@ -17244,9 +22732,9 @@ edición por TASK-REGRESSION-021; la dedup CSS de `.list-view-item` ya estaba
 resuelta por el trabajo paralelo.
 ```
 
-<a id="file-0284"></a>
+<a id="file-0296"></a>
 
-### 0284 — `ai/task-cards/completed/TASK-CSS-025-context-summary-guides-apply-to-jsx.md`
+### 0296 — `ai/task-cards/completed/TASK-CSS-025-context-summary-guides-apply-to-jsx.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `116`
@@ -17373,9 +22861,9 @@ las 3 formas de grep. El bulk-delete automático por detector ingenuo NO es
 seguro (falsos positivos rompen estilos vivos).
 ```
 
-<a id="file-0285"></a>
+<a id="file-0297"></a>
 
-### 0285 — `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md`
+### 0297 — `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `85`
@@ -17471,9 +22959,9 @@ No tocar recipients ni SnapshotAdapter. Esta tarea solo sincroniza consumo de es
   `schema-lock-state-consistency.spec.ts` en verde. Build exit 0.
 ```
 
-<a id="file-0286"></a>
+<a id="file-0298"></a>
 
-### 0286 — `ai/task-cards/completed/TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md`
+### 0298 — `ai/task-cards/completed/TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `36`
@@ -17520,9 +23008,9 @@ Validación (todo en verde):
 - `npm run build` exit 0.
 ```
 
-<a id="file-0287"></a>
+<a id="file-0299"></a>
 
-### 0287 — `ai/task-cards/completed/TASK-LAB-017-pdfcomponent-integration-boundary.md`
+### 0299 — `ai/task-cards/completed/TASK-LAB-017-pdfcomponent-integration-boundary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -17552,9 +23040,9 @@ Eliminar el uso de internals del core desde `src/features/pdfcomponent`.
 - `PdfmeLabPage.jsx` ya no usa `usePdfmeRuntimeInstance` ni `DesignerEngineBuilder`.
 ```
 
-<a id="file-0288"></a>
+<a id="file-0300"></a>
 
-### 0288 — `ai/task-cards/completed/TASK-LAB-018-use-pdfme-lab-integration-hook.md`
+### 0300 — `ai/task-cards/completed/TASK-LAB-018-use-pdfme-lab-integration-hook.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -17585,9 +23073,9 @@ Crear un hook que normalice template, recipients, documents, inputs, config, act
 - `PdfmeLabPage.jsx` dejó de armar `commonOptions` manualmente y consume la integración única.
 ```
 
-<a id="file-0289"></a>
+<a id="file-0301"></a>
 
-### 0289 — `ai/task-cards/completed/TASK-LAB-019-normalize-lab-example-data-contract.md`
+### 0301 — `ai/task-cards/completed/TASK-LAB-019-normalize-lab-example-data-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -17614,9 +23102,9 @@ Dividir `labExamples.js` en data declarativa + registry + builders.
 - `labExamples.js` queda como façade o desaparece.
 ```
 
-<a id="file-0290"></a>
+<a id="file-0302"></a>
 
-### 0290 — `ai/task-cards/completed/TASK-LAB-020-public-runtime-wrappers-only.md`
+### 0302 — `ai/task-cards/completed/TASK-LAB-020-public-runtime-wrappers-only.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -17645,9 +23133,9 @@ Renderizar Designer/Form/Viewer desde wrappers públicos, no desde runtime inter
 - El host dejó de importar `usePdfmeRuntimeInstance` y validó build + smoke del docs tab.
 ```
 
-<a id="file-0291"></a>
+<a id="file-0303"></a>
 
-### 0291 — `ai/task-cards/completed/TASK-LAB-021-lab-action-registry-controller-contract.md`
+### 0303 — `ai/task-cards/completed/TASK-LAB-021-lab-action-registry-controller-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -17673,9 +23161,9 @@ Que cada botón visible consuma un descriptor de acción y no lógica local repe
 - `CompactControls.jsx` no construye listas de acciones con reglas propias.
 ```
 
-<a id="file-0292"></a>
+<a id="file-0304"></a>
 
-### 0292 — `ai/task-cards/completed/TASK-LAB-022-remove-compat-wrapper-reexports.md`
+### 0304 — `ai/task-cards/completed/TASK-LAB-022-remove-compat-wrapper-reexports.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -17704,9 +23192,9 @@ Reducir wrappers que no agregan comportamiento.
 - `npm run build` siguió pasando tras la poda.
 ```
 
-<a id="file-0293"></a>
+<a id="file-0305"></a>
 
-### 0293 — `ai/task-cards/completed/TASK-LAB-023-lab-presentation-core-selectors.md`
+### 0305 — `ai/task-cards/completed/TASK-LAB-023-lab-presentation-core-selectors.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -17731,9 +23219,9 @@ Evitar que el lab calcule por su cuenta visible/editable/locked.
 - Los counters del header coinciden con canvas/list/detail.
 ```
 
-<a id="file-0294"></a>
+<a id="file-0306"></a>
 
-### 0294 — `ai/task-cards/completed/TASK-LAB-024-external-data-integration-e2e.md`
+### 0306 — `ai/task-cards/completed/TASK-LAB-024-external-data-integration-e2e.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -17763,9 +23251,9 @@ Probar integración dinámica real con datos que llegan después del primer rend
 - La validación de `Form/Viewer` en esta ruta quedó fuera de esta pasada porque el runtime de formulario rompe en la ruta base con el template actual.
 ```
 
-<a id="file-0295"></a>
+<a id="file-0307"></a>
 
-### 0295 — `ai/task-cards/completed/TASK-LAB-025-example-bundle-normalized-export.md`
+### 0307 — `ai/task-cards/completed/TASK-LAB-025-example-bundle-normalized-export.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -17794,9 +23282,9 @@ Actualizar export/download para no serializar estructuras duplicadas.
 - La unidad valida el bundle y el smoke verifica el affordance de descarga del card correcto.
 ```
 
-<a id="file-0296"></a>
+<a id="file-0308"></a>
 
-### 0296 — `ai/task-cards/completed/TASK-LAB-026-restore-designer-visual-baseline-after-integration.md`
+### 0308 — `ai/task-cards/completed/TASK-LAB-026-restore-designer-visual-baseline-after-integration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `97`
@@ -17904,9 +23392,9 @@ canvas-interactions 3, checkbox 2, detail-view 6, parity/rail/smoke/zoom/lock,
 overflow, drag-preview), 288 unit tests de las suites tocadas, build exit 0.
 ```
 
-<a id="file-0297"></a>
+<a id="file-0309"></a>
 
-### 0297 — `ai/task-cards/completed/TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md`
+### 0309 — `ai/task-cards/completed/TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -17957,9 +23445,9 @@ Corregir el diseño de `/lab/multi-document-routing` después de la migración a
 - `labRoutes.css` quedó más reducido y concentrado en fallback/medios.
 ```
 
-<a id="file-0298"></a>
+<a id="file-0310"></a>
 
-### 0298 — `ai/task-cards/completed/TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md`
+### 0310 — `ai/task-cards/completed/TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -18018,9 +23506,9 @@ Hacer que el laboratorio propague correctamente el usuario activo y la vista glo
 - Validado con `vitest` y `npm run build`.
 ```
 
-<a id="file-0299"></a>
+<a id="file-0311"></a>
 
-### 0299 — `ai/task-cards/completed/TASK-LAB-029-multidocument-right-sidebar-docs-default.md`
+### 0311 — `ai/task-cards/completed/TASK-LAB-029-multidocument-right-sidebar-docs-default.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -18074,9 +23562,9 @@ Hacer que la ruta `multi-document-routing` abra el RightSidebar con el tab `Docs
 - Validado con `vitest`, `npm run build` y Playwright.
 ```
 
-<a id="file-0300"></a>
+<a id="file-0312"></a>
 
-### 0300 — `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
+### 0312 — `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -18127,9 +23615,9 @@ Body no scrollea dentro del diseñador fullscreen.
 - No resolver el caso con hacks de host.
 ```
 
-<a id="file-0301"></a>
+<a id="file-0313"></a>
 
-### 0301 — `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md`
+### 0313 — `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -18177,9 +23665,9 @@ connectivity: {
 - Se validó con pruebas unitarias de round-trip y lookup.
 ```
 
-<a id="file-0302"></a>
+<a id="file-0314"></a>
 
-### 0302 — `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md`
+### 0314 — `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -18238,9 +23726,9 @@ La configuración global ya existe, pero cada componente debe consumir una fuent
 - Se agregaron pruebas de `advanced` y visibilidad total del inspector.
 ```
 
-<a id="file-0303"></a>
+<a id="file-0315"></a>
 
-### 0303 — `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md`
+### 0315 — `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -18288,9 +23776,9 @@ Evitar que `useSisadPdfmeController` exponga métodos que aparentan funcionar pe
 - La API pública documenta claramente qué métodos están disponibles.
 ```
 
-<a id="file-0304"></a>
+<a id="file-0316"></a>
 
-### 0304 — `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
+### 0316 — `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -18346,9 +23834,9 @@ handler/controller disponible
 - No limpiar selección al cerrar modal.
 ```
 
-<a id="file-0305"></a>
+<a id="file-0317"></a>
 
-### 0305 — `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md`
+### 0317 — `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `86`
@@ -18445,9 +23933,9 @@ Suite creada y en verde:
       (canvas-overflow + drag-preview specs en verde).
 ```
 
-<a id="file-0306"></a>
+<a id="file-0318"></a>
 
-### 0306 — `ai/task-cards/completed/TASK-REGRESSION-020-owner-color-renderer-continuity.md`
+### 0318 — `ai/task-cards/completed/TASK-REGRESSION-020-owner-color-renderer-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `49`
@@ -18507,9 +23995,9 @@ Detenerse si el identificador real no está disponible en el contrato público o
 Tabla antes/después de resolución de propietario, archivos modificados, pruebas ejecutadas y evidencia visual.
 ```
 
-<a id="file-0307"></a>
+<a id="file-0319"></a>
 
-### 0307 — `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md`
+### 0319 — `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `59`
@@ -18579,9 +24067,9 @@ npm run build
 - Validación: `npx vitest run tests/unit/sisad-pdfme/config` (7 tests) + build.
 ```
 
-<a id="file-0308"></a>
+<a id="file-0320"></a>
 
-### 0308 — `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md`
+### 0320 — `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `77`
@@ -18669,9 +24157,9 @@ No modificar lógica de panels ni selection; solo wiring visual/accionable.
   `sidebar-collapse-parity.spec.ts` en verde. Build exit 0.
 ```
 
-<a id="file-0309"></a>
+<a id="file-0321"></a>
 
-### 0309 — `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md`
+### 0321 — `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `68`
@@ -18750,9 +24238,9 @@ npm run build
   125% y verificar actualización) + `zoomContract.test.ts` (5 unit). Build exit 0.
 ```
 
-<a id="file-0310"></a>
+<a id="file-0322"></a>
 
-### 0310 — `ai/task-cards/completed/TASK-UI-017-density-breakpoints-sync.md`
+### 0322 — `ai/task-cards/completed/TASK-UI-017-density-breakpoints-sync.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -18800,9 +24288,9 @@ Alinear los breakpoints de `useResponsiveDensity` con los anchos reales definido
 - Verificación visual de los 3 niveles de densidad en el Designer.
 ```
 
-<a id="file-0311"></a>
+<a id="file-0323"></a>
 
-### 0311 — `reports/tailwind-migration/accelerated/constants-contract.md`
+### 0323 — `reports/tailwind-migration/accelerated/constants-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -18835,9 +24323,9 @@ añadiendo utilidades inline **junto** a la clase semántica (patrón
 `mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item', 'relative flex ...')`), nunca en su lugar.
 ```
 
-<a id="file-0312"></a>
+<a id="file-0324"></a>
 
-### 0312 — `reports/tailwind-migration/accelerated/migration-ledger.md`
+### 0324 — `reports/tailwind-migration/accelerated/migration-ledger.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `92`
@@ -18940,9 +24428,9 @@ redujo en paralelo).
 - FASE I: métricas finales + QA.
 ```
 
-<a id="file-0313"></a>
+<a id="file-0325"></a>
 
-### 0313 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
+### 0325 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `784`
@@ -19737,9 +25225,9 @@ No reemplazar las validaciones actuales si ya se usan en runtime.
 7. En `expression.ts`, agregar límites o limpieza de cache para evitar crecimiento indefinido.
 ```
 
-<a id="file-0314"></a>
+<a id="file-0326"></a>
 
-### 0314 — `src/sisad-pdfme/common/README.md`
+### 0326 — `src/sisad-pdfme/common/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -19783,9 +25271,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Revisar alineación de `ownerRecipientIds` entre Zod (`string[]`) y utilidades que aceptan `string | string[]`.
 ```
 
-<a id="file-0315"></a>
+<a id="file-0327"></a>
 
-### 0315 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
+### 0327 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -19964,9 +25452,9 @@ Debe exponer utilidades puras consumibles por UI, generator, importadores o adap
 ``​`
 ```
 
-<a id="file-0316"></a>
+<a id="file-0328"></a>
 
-### 0316 — `src/sisad-pdfme/converter/README.md`
+### 0328 — `src/sisad-pdfme/converter/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -20019,9 +25507,9 @@ Este módulo no debe conocer:
 Debe mantenerse como utilidad técnica reutilizable por el runtime.
 ```
 
-<a id="file-0317"></a>
+<a id="file-0329"></a>
 
-### 0317 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
+### 0329 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `151`
@@ -20183,9 +25671,9 @@ Riesgos técnicos:
 ``​`
 ```
 
-<a id="file-0318"></a>
+<a id="file-0330"></a>
 
-### 0318 — `src/sisad-pdfme/runtime/README.md`
+### 0330 — `src/sisad-pdfme/runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -20211,9 +25699,9 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
 ```
 
-<a id="file-0319"></a>
+<a id="file-0331"></a>
 
-### 0319 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
+### 0331 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -20392,9 +25880,9 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 | types.ts | 147 | 161 |
 ```
 
-<a id="file-0320"></a>
+<a id="file-0332"></a>
 
-### 0320 — `src/sisad-pdfme/ui/README.md`
+### 0332 — `src/sisad-pdfme/ui/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -20443,9 +25931,9 @@ git diff -- src/sisad-pdfme/ui
 ``​`
 ```
 
-<a id="file-0321"></a>
+<a id="file-0333"></a>
 
-### 0321 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0333 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -20532,9 +26020,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0322"></a>
+<a id="file-0334"></a>
 
-### 0322 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
+### 0334 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -20575,9 +26063,9 @@ Este bloque contiene la base visual y funcional usada por Preview/Form/Viewer en
 6. Validar persistencia/prefill/API del hook sin sobrescribir valores ya digitados por usuario.
 ```
 
-<a id="file-0323"></a>
+<a id="file-0335"></a>
 
-### 0323 — `src/sisad-pdfme/ui/components/README.md`
+### 0335 — `src/sisad-pdfme/ui/components/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -20616,9 +26104,9 @@ Este paquete contiene una copia completa de los archivos runtime/base UI enviado
 Este bloque es sensible porque conecta el runtime visual con plugins imperativos (`Renderer`), preprocesamiento de PDF (`Paper`/`Preview`) y sincronización de datos (`usePreviewRuntime`). La documentación refuerza que la geometría del canvas debe seguir controlada por schemas y servicios internos, no por estilos arbitrarios de plugins o hosts.
 ```
 
-<a id="file-0324"></a>
+<a id="file-0336"></a>
 
-### 0324 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
+### 0336 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -20647,9 +26135,9 @@ Este bloque es sensible porque conecta el runtime visual con plugins imperativos
 - `Guides.tsx`, `Mask.tsx` y `Padding.tsx` quedan como slots visuales puros.
 ```
 
-<a id="file-0325"></a>
+<a id="file-0337"></a>
 
-### 0325 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
+### 0337 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -20684,9 +26172,9 @@ Este paquete contiene copias completas de los archivos del core visual/interacti
 Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ContentCustomForm`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
 ```
 
-<a id="file-0326"></a>
+<a id="file-0338"></a>
 
-### 0326 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
+### 0338 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -20712,9 +26200,9 @@ Se documentó el bloque de composición del sidebar derecho del diseñador SISAD
 Estos archivos deben mantenerse como capa de composición visual y navegación del sidebar. No deberían incorporar reglas internas del canvas, manipulación directa de Moveable/Selecto, ni persistencia de negocio. Las mutaciones deben seguir delegándose a callbacks, bridges o comandos ya recibidos por props.
 ```
 
-<a id="file-0327"></a>
+<a id="file-0339"></a>
 
-### 0327 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
+### 0339 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -20743,9 +26231,9 @@ Este paquete contiene versiones documentadas de los archivos del sidebar derecho
 - Se conservó la separación esperada: el sidebar orquesta vistas, pero no manipula canvas, Moveable, Selecto ni schemas directamente.
 ```
 
-<a id="file-0328"></a>
+<a id="file-0340"></a>
 
-### 0328 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
+### 0340 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -20777,9 +26265,9 @@ Se generó documentación para los 18 archivos de overlays del canvas:
 5. Documentar restricciones arquitectónicas importantes cuando aplicaba.
 ```
 
-<a id="file-0329"></a>
+<a id="file-0341"></a>
 
-### 0329 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
+### 0341 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -20825,9 +26313,9 @@ Este paquete contiene copias completas de los archivos enviados, con documentaci
 Estos módulos pertenecen a la capa visual/interactiva del canvas. Deben seguir sin contener reglas de negocio del host, lógica Uanataca, persistencia HTTP, manipulación directa de Moveable/Selecto ni hacks de z-index para ocultar problemas.
 ```
 
-<a id="file-0330"></a>
+<a id="file-0342"></a>
 
-### 0330 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
+### 0342 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -20880,9 +26368,9 @@ La documentación se agregó con JSDoc en puntos de extensión y mantenimiento:
 5. En colaboración, validar casos de owner único, multi-owner, shared, locked by me y locked by other.
 ```
 
-<a id="file-0331"></a>
+<a id="file-0343"></a>
 
-### 0331 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
+### 0343 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -20931,9 +26419,9 @@ Wrapper de compatibilidad para widgets imperativos de plugins. Se documentaron:
 - Confirmar que clicks dentro del inspector no disparen Selecto, Moveable ni drag/drop del canvas.
 ```
 
-<a id="file-0332"></a>
+<a id="file-0344"></a>
 
-### 0332 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
+### 0344 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -20964,9 +26452,9 @@ Este paquete contiene copias documentadas de tres archivos del inspector del dis
 - `WidgetRenderer` conserva el render imperativo en cada render para no cambiar el contrato heredado.
 ```
 
-<a id="file-0333"></a>
+<a id="file-0345"></a>
 
-### 0333 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
+### 0345 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -21008,9 +26496,9 @@ El bloque `ListView` representa la lista lateral derecha de campos/schemas del d
 - Si se cambia el DOM del row, preservar `data-testid="right-sidebar-field-item"` y el drag handle.
 ```
 
-<a id="file-0334"></a>
+<a id="file-0346"></a>
 
-### 0334 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
+### 0346 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`

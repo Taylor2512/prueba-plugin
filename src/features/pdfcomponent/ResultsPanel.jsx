@@ -14,13 +14,6 @@ const CARD_CONTENT_PROP_TYPE = PropTypes.shape({
   roundtripPdfUrl: PropTypes.string,
 })
 
-const RESULTS_PANEL_STYLE = {
-  width: 'min(1400px, 100%)',
-  padding: 0,
-  overflow: 'hidden',
-  borderColor: 'rgba(59, 130, 246, 0.18)',
-}
-
 const RESULTS_BODY_STYLE = {
   padding: '1rem',
 }

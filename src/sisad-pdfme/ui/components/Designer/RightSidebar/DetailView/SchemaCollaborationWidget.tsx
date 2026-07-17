@@ -52,21 +52,6 @@ const FIELD_LABEL = mergeClassNames(
   'inline-flex min-h-3.5 items-center font-medium text-slate-500',
 );
 
-const HELP = mergeClassNames(
-  DESIGNER_CLASSNAME + 'schema-config-help',
-  'mt-0.5 text-[0.625rem] leading-tight text-slate-500',
-);
-
-const SUMMARY = mergeClassNames(
-  DESIGNER_CLASSNAME + 'schema-config-summary',
-  'relative overflow-hidden rounded-lg border border-slate-200/80 bg-gradient-to-b from-slate-100/80 to-white px-2 py-1 pl-2.5',
-);
-
-const SUMMARY_TEXT = mergeClassNames(
-  DESIGNER_CLASSNAME + 'schema-config-summary-text',
-  'text-[0.6875rem] leading-[1.35] text-slate-600',
-);
-
 const DIVIDER = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-config-divider',
   'my-1.5 border-slate-200/70',

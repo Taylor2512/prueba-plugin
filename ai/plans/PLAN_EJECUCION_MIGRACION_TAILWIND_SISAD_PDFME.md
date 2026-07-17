@@ -6,14 +6,14 @@ Completar la migración visual de SISAD PDFME sin repetir análisis ya cerrados,
 
 Este plan parte del estado más reciente disponible:
 
-| Archivo | Estado aproximado reportado |
-|---|---:|
-| `src/features/pdfcomponent/labRoutes.css` | 5 líneas |
-| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 2484 líneas |
-| `src/sisad-pdfme/ui/styles/tokens.css` | 323 líneas |
-| `src/styles/sisad-tailwind-bridge.css` | vacío |
-| `src/style.css` | neutralizado |
-| `src/styles/tailwind.css` | fuente única de Tailwind |
+| Archivo                                       | Estado aproximado reportado |
+| --------------------------------------------- | --------------------------: |
+| `src/features/pdfcomponent/labRoutes.css`   |                   5 líneas |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` |                2484 líneas |
+| `src/sisad-pdfme/ui/styles/tokens.css`      |                 323 líneas |
+| `src/styles/sisad-tailwind-bridge.css`      |                      vacío |
+| `src/style.css`                             |                neutralizado |
+| `src/styles/tailwind.css`                   |   fuente única de Tailwind |
 
 Estas cifras deben volver a medirse al comenzar porque el repositorio puede haber cambiado.
 
@@ -112,18 +112,18 @@ Usarlo únicamente si posee modo seguro de reporte o generación de candidatos. 
 
 ## 5. Matriz de decisión
 
-| Tipo de regla | Destino |
-|---|---|
-| Flex, grid, gap, padding, skin | JSX/TSX |
-| Hover, focus, selected local | JSX/TSX |
-| Responsive local | JSX/TSX |
-| Token compartido | `tokens.css` |
-| Variable consumida por JS | `tokens.css` o constante |
-| Ant Design descendant selector | CSS técnico |
-| Moveable/Selecto | CSS técnico |
-| Canvas/paper geometry | CSS técnico |
-| Print/keyframes | CSS técnico |
-| Selector sin consumidor | eliminar con evidencia |
+| Tipo de regla                  | Destino                    |
+| ------------------------------ | -------------------------- |
+| Flex, grid, gap, padding, skin | JSX/TSX                    |
+| Hover, focus, selected local   | JSX/TSX                    |
+| Responsive local               | JSX/TSX                    |
+| Token compartido               | `tokens.css`             |
+| Variable consumida por JS      | `tokens.css` o constante |
+| Ant Design descendant selector | CSS técnico               |
+| Moveable/Selecto               | CSS técnico               |
+| Canvas/paper geometry          | CSS técnico               |
+| Print/keyframes                | CSS técnico               |
+| Selector sin consumidor        | eliminar con evidencia     |
 
 ## 6. Fases y paquetes
 
@@ -653,17 +653,17 @@ sin wrappers decorativos nuevos;
 
 ## 8. Estimación por paquetes
 
-| Paquete | Subpases estimados | Gate |
-|---|---:|---|
-| Baseline e inventario | 1 | reportes |
-| RightSidebar | 2–3 | build + 2 specs |
-| LeftSidebar | 2 | build + specs del dominio |
-| Toolbar/zoom | 1–2 | build + suite amplia |
-| Lab host | 1 | build + 2 specs |
-| Form/Viewer | 1–2 | build + suite amplia |
-| Poda CSS | 2 | build |
-| Tokens | 1 | build |
-| QA final | 1 | suite completa |
+| Paquete               | Subpases estimados | Gate                      |
+| --------------------- | -----------------: | ------------------------- |
+| Baseline e inventario |                  1 | reportes                  |
+| RightSidebar          |               2–3 | build + 2 specs           |
+| LeftSidebar           |                  2 | build + specs del dominio |
+| Toolbar/zoom          |               1–2 | build + suite amplia      |
+| Lab host              |                  1 | build + 2 specs           |
+| Form/Viewer           |               1–2 | build + suite amplia      |
+| Poda CSS              |                  2 | build                     |
+| Tokens                |                  1 | build                     |
+| QA final              |             oi, o1 | suite completa            |
 
 ## 9. Regla de continuidad
 

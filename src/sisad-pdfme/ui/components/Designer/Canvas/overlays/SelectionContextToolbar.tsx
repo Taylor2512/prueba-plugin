@@ -126,7 +126,7 @@ const SelectionContextToolbar = ({
     <>
       <div
         ref={toolbarRef}
-        className="sisad-pdfme-ui-selection-context-toolbar pointer-events-auto absolute rounded-2xl border border-slate-200/80 bg-white/95 p-1 shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-md [animation:toolbar-reveal_var(--wix-reveal-dur)_var(--wix-ease-out)_both]"
+        className="sisad-pdfme-ui-selection-context-toolbar pointer-events-auto absolute rounded-2xl border border-slate-200/80 bg-white/95 p-1 shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-md transition-[opacity,transform] duration-[var(--wix-reveal-dur)] ease-out motion-reduce:transition-none"
         role="toolbar"
         aria-label="Barra contextual de edición"
         data-schema-interactive-control="true"
@@ -138,6 +138,8 @@ const SelectionContextToolbar = ({
           top: `${position.top}px`,
           left: `${position.left}px`,
           width: 'min(100%, 15.75rem)',
+          opacity: 1,
+          transform: 'translateY(0) scale(1)',
         }}
       >
         <div className="flex items-center gap-1">

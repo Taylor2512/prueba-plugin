@@ -17,7 +17,6 @@ import React, { useEffect, useContext, useState } from 'react';
 import { DraggableSyntheticListeners } from '@dnd-kit/core';
 import { I18nContext } from '../../../../contexts.js';
 import { GripVertical, CircleAlert, Lock, Eye, EyeOff, Trash2 } from 'lucide-react';
-import { Button, Tooltip } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
 
@@ -151,13 +150,14 @@ const ItemStatusLabel = ({
       : noKeyNameLabel;
 
   return (
-    <Tooltip title={status === 'is-danger' ? `${tooltipText} ${notUniqueLabel}` : tooltipText}>
-      <span className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-status', 'inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700')}>
-        <CircleAlert size={14} />
-        {statusText}
-        {status === 'is-danger' ? notUniqueLabel : ''}
-      </span>
-    </Tooltip>
+    <span
+      title={status === 'is-danger' ? `${tooltipText} ${notUniqueLabel}` : tooltipText}
+      className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-status', 'inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700')}
+    >
+      <CircleAlert size={14} />
+      {statusText}
+      {status === 'is-danger' ? notUniqueLabel : ''}
+    </span>
   );
 };
 
@@ -185,39 +185,34 @@ const ItemActions = ({
   isHovered?: boolean;
   label?: string;
 }) => (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-actions', 'flex items-center gap-1.5')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-actions', 'relative z-20 flex shrink-0 items-center gap-1')}>
       {readOnly ? (
-        <Tooltip title="Solo lectura" placement="top">
         <span data-testid="right-sidebar-field-badge" data-badge="readonly" className="pointer-events-auto inline-flex">
           <Lock size={13} className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-lock', 'text-slate-500')} />
         </span>
-        </Tooltip>
       ) : null}
     {required ? (
-      <Tooltip title="Campo requerido" placement="top">
         <span
+          title="Campo requerido"
           data-testid="right-sidebar-field-badge"
           data-badge="required"
           className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-required', 'pointer-events-auto text-xs font-semibold text-rose-600')}
         >
           *
         </span>
-      </Tooltip>
     ) : null}
     {onToggleVisibility ? (
-      <Tooltip title={hidden ? 'Mostrar campo en el lienzo' : 'Ocultar campo del lienzo'} placement="top">
         <button
           onClick={(e) => { e.stopPropagation(); onToggleVisibility(); }}
+          aria-label={hidden ? 'Mostrar campo en el lienzo' : 'Ocultar campo del lienzo'}
           title={hidden ? 'Mostrar' : 'Ocultar'}
           {...(hidden ? { 'data-testid': 'right-sidebar-field-badge', 'data-badge': 'hidden' } : {})}
-          className={mergeClassNames('pointer-events-auto inline-flex h-6 w-2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50')}
+          className={mergeClassNames('pointer-events-auto inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50')}
         >
           {hidden ? <EyeOff size={13} /> : <Eye size={13} />}
         </button>
-      </Tooltip>
     ) : null}
     {onDelete ? (
-      <Tooltip title="Eliminar campo" placement="top">
         <button
           type="button"
           aria-label={`Eliminar campo ${label || ''}`.trim()}
@@ -232,12 +227,11 @@ const ItemActions = ({
           }}
           title="Eliminar campo"
           className={mergeClassNames(
-            'pointer-events-auto inline-flex h-6 w-6 items-center justify-center rounded-full border border-rose-200 bg-white text-rose-600 shadow-sm opacity-75 transition-[opacity,background-color,border-color,box-shadow,transform] duration-150 hover:border-rose-300 hover:bg-rose-50 hover:text-rose-700 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 focus-visible:ring-offset-1 group-hover:opacity-100 group-focus-within:opacity-100',
+            'pointer-events-auto relative z-20 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-rose-200 bg-white text-rose-600 shadow-[0_1px_2px_rgba(15,23,42,0.03)] opacity-100 transition-[opacity,background-color,border-color,box-shadow,transform] duration-150 hover:-translate-y-[1px] hover:border-rose-300 hover:bg-rose-50 hover:text-rose-700 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 focus-visible:ring-offset-1 group-hover:opacity-100 group-focus-within:opacity-100',
           )}
         >
           <Trash2 size={13} />
         </button>
-      </Tooltip>
     ) : null}
   </div>
 );
@@ -389,11 +383,14 @@ const Item = React.memo(
           className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'pointer-events-none relative z-10 flex min-w-0 items-center before:pointer-events-none before:absolute before:inset-y-1.5 before:left-0 before:w-[3px] before:rounded-r-full before:bg-[var(--schema-owner-color,_transparent)] before:opacity-55 before:content-[\'\'] group-data-[selected=true]:before:opacity-100', contentDensityClass)}
           {...props}
           aria-hidden="true">
-          <Button
+          <button
             {...listeners}
-            type="text"
+            type="button"
+            aria-label="Reordenar campo"
             className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'pointer-events-auto inline-flex shrink-0 items-center justify-center rounded-md border-0 bg-transparent p-0 text-slate-400 shadow-none opacity-55 transition-colors hover:bg-slate-100 hover:text-slate-700 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-200 cursor-grab active:cursor-grabbing', gripDensityClass)}
-            icon={<GripVertical size={14} />} />
+          >
+            <GripVertical size={14} />
+          </button>
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-slate-600 shadow-none', iconDensityClass)}>{icon}</div>
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'flex min-w-0 flex-[1_1_auto] flex-col gap-[0.125rem] mr-[0.2rem]')}>
             <div

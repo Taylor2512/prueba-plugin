@@ -372,29 +372,6 @@ export type SchemaAccessState = {
 };
 
 /**
- * Resuelve el tono visual del estado de acceso.
- *
- * Prioridad:
- *
- * - error: bloqueado por otro;
- * - success: bloqueado/editado por mí o lock colaborativo propio;
- * - warning: bloqueo local o estado no editable.
- */
-const resolveAccessTone = (
-  hasCollaborationLock: boolean,
-  isLockedByMe: boolean,
-  isLockedByOther: boolean,
-  isObjectLocked: boolean,
-): SchemaAccessState['inspectorStatusTone'] => {
-  if (isLockedByOther) return 'error';
-  if (isLockedByMe) return 'success';
-  if (hasCollaborationLock) return 'warning';
-  if (isObjectLocked) return 'warning';
-
-  return 'warning';
-};
-
-/**
  * Resuelve el estado operativo de acceso de un schema.
  *
  * Este resolver es compartido por:

@@ -47,17 +47,21 @@ describe('ListViewToolbar visibility', () => {
     expect(screen.queryByTestId('right-sidebar-reassign')).toBeNull();
   });
 
-  it('hides the reassign button when the active recipient is missing', () => {
+  it('keeps the reassign button visible when the active recipient is missing', () => {
     render(
       <OptionsContext.Provider value={{ assignment: { enabled: true }, visibility: { actions: { reassign: true } } } as any}>
         <ListViewToolbar
           {...baseProps}
+          hasSchemas
+          showBulkAction
+          showBulkRecipientAction
+          onBulkAssignRecipient={() => undefined}
           collaborationContext={{ activeRecipient: null, canEditStructure: true }}
         />
       </OptionsContext.Provider>,
     );
 
-    expect(screen.queryByTestId('right-sidebar-reassign')).toBeNull();
+    expect(screen.getByTestId('right-sidebar-reassign')).toBeVisible();
   });
 
   it('shows a disabled hint in the menu when no selection exists', async () => {

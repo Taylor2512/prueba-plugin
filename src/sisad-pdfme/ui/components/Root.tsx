@@ -9,6 +9,7 @@ import { Size } from '@sisad-pdfme/common';
 import { FontContext } from '../contexts.js';
 import { BACKGROUND_COLOR, DESIGNER_CLASSNAME } from '../constants.js';
 import Spinner from './Spinner.js';
+import '../runtimeStyles.js';
 
 /**
  * Props del contenedor raíz del runtime.

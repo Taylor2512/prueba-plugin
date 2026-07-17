@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Props del preview visual de drag externo de schema.
@@ -30,9 +31,18 @@ const SchemaDragPreview = ({
   isOverCanvas,
   isOverPage,
 }: SchemaDragPreviewProps) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <div
-      className="sisad-pdfme-schema-drag-preview fixed left-0 top-0 z-[60] pointer-events-none h-8 w-8 origin-top-left rounded-xl border border-white/70 bg-white/90 shadow-[0_8px_18px_rgba(15,23,42,0.16)] backdrop-blur-md [transition:opacity_120ms_var(--wix-ease-out)] [will-change:transform,opacity] [animation:schema-drag-preview-enter_170ms_cubic-bezier(0.16,1,0.3,1)_both] opacity-90 data-[over-canvas=false]:opacity-60 data-[over-page=true]:opacity-75"
+      className={`sisad-pdfme-schema-drag-preview fixed left-0 top-0 z-[60] pointer-events-none h-8 w-8 origin-top-left rounded-xl border border-white/70 bg-white/90 shadow-[0_8px_18px_rgba(15,23,42,0.16)] backdrop-blur-md transition-[opacity,transform] duration-150 ease-[cubic-bezier(0.16,1,0.3,1)] [will-change:transform,opacity] ${
+        mounted ? 'opacity-90 data-[over-canvas=false]:opacity-60 data-[over-page=true]:opacity-75' : 'opacity-0'
+      }`}
       data-over-canvas={isOverCanvas ? 'true' : 'false'}
       data-over-page={isOverPage ? 'true' : 'false'}
       style={
@@ -40,9 +50,7 @@ const SchemaDragPreview = ({
           '--drag-x': `${pointer.x}px`,
           '--drag-y': `${pointer.y}px`,
           '--schema-owner-color': ownerColor || '#2563eb',
-          transform: 'translate3d(calc(var(--drag-x) + 18px), calc(var(--drag-y) - 42px), 0)',
-          willChange: 'transform, opacity',
-          animation: 'schema-drag-preview-enter 170ms cubic-bezier(0.16, 1, 0.3, 1) both',
+          transform: `translate3d(calc(var(--drag-x) + 18px), calc(var(--drag-y) - 42px), 0) scale(${mounted ? 1 : 0.82})`,
         } as React.CSSProperties
       }
       aria-hidden="true"

@@ -3,7 +3,6 @@ import { text, select, checkbox, radioGroup, checkboxGroup } from '@sisad-pdfme/
 import { optionGroupDesignerWidthMM, optionGroupDesignerHeightMM } from '@sisad-pdfme/schemas'
 import {
   createSchema,
-  createCommentAnchor,
   createAuditMetadata,
 } from '@/features/pdfcomponent/labs/builders/schemaFactory'
 import {
@@ -12,7 +11,6 @@ import {
 } from '@/features/pdfcomponent/labs/builders/schemaShowcase'
 import {
   createTemplate,
-  appendTemplatePages,
   createUploadedDocument as createUploadedDocumentCore,
   createCollaboration,
 } from '@/features/pdfcomponent/labs/builders/exampleTemplate'

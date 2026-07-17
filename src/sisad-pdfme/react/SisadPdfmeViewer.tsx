@@ -4,12 +4,13 @@
  * Igual que el Form: el filtrado por recipient (`options.collaboration`) se
  * deriva del RecipientRegistry compartido, no de props sueltos.
  */
-import React, { useContext, useMemo, useRef } from 'react';
-import { cloneDeep, getInputFromTemplate } from '@sisad-pdfme/common';
+import React, { useContext, useRef } from 'react';
+import { getInputFromTemplate } from '@sisad-pdfme/common';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import Viewer from '../ui/Viewer.js';
 import Form from '../ui/Form.js';
 import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
+import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
 import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
 import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
 import { useRecipientRegistry } from '../recipients/useRecipientRegistry.js';
@@ -45,11 +46,14 @@ export const SisadPdfmeViewer = ({ config, template, inputs = [], recipients, ac
   const recipientFilterEnabled = resolvedConfig.visibility.runtime?.recipientFilter !== false;
   const isGlobalView = resolvedConfig.config.collaboration.isGlobalView === true;
 
-  const runtimeConfig = useMemo(() => ({
+  const runtimeConfig: UsePdfmeRuntimeInstanceConfig = {
     containerRef,
-    mode: 'viewer' as const,
-    template: template as any,
-    inputs: (Array.isArray(inputs) && inputs.length > 0) ? inputs : getInputFromTemplate(template as any),
+    mode: 'viewer',
+    template: template as UsePdfmeRuntimeInstanceConfig['template'],
+    inputs:
+      Array.isArray(inputs) && inputs.length > 0
+        ? inputs
+        : getInputFromTemplate(template as UsePdfmeRuntimeInstanceConfig['template']),
     onTemplateChange: () => undefined,
     onPageChange: () => undefined,
     options: {
@@ -60,8 +64,9 @@ export const SisadPdfmeViewer = ({ config, template, inputs = [], recipients, ac
         : { collaboration: { isGlobalView } }),
     },
     plugins: flatSchemaPlugins,
-    runtime: { Designer: Viewer as any, Form: Form as any, Viewer: Viewer as any },
-  }), [effectiveActiveRecipientId, inputs, isGlobalView, recipientFilterEnabled, resolvedConfig, template]);
-  usePdfmeRuntimeInstance(runtimeConfig as any);
+    runtime: { Designer: Viewer, Form, Viewer },
+  };
+
+  usePdfmeRuntimeInstance(runtimeConfig);
   return <div ref={containerRef} data-sisad-pdfme-root="viewer" />;
 };

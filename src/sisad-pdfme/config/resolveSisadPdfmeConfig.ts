@@ -37,8 +37,6 @@ const deepMerge = <T extends Record<string, unknown>>(base: T, patch?: Record<st
   return next as T;
 };
 
-const normalizeText = (value: unknown) => String(value ?? '').trim();
-
 const defaultUiConfig = defaultSisadPdfmeConfig.ui as Required<SisadPdfmeUiConfig> & {
   visibility: Required<typeof defaultSisadPdfmeVisibilityConfig>;
   classNames: Required<SisadPdfmeUiClassNamesConfig>;

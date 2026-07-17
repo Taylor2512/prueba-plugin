@@ -1,0 +1,158 @@
+﻿ID,Dominio,Funcionalidad,Caso,Nivel,Archivo,Prioridad,Estado
+TC-001,Recipients,Color,Preservar color explícito,Unit,tests/unit/generated/recipients/recipientColorResolver.test.ts,P0,Automatizado
+TC-002,Recipients,Color,Asignar color estable y único,Unit,tests/unit/generated/recipients/recipientColorResolver.test.ts,P0,Automatizado
+TC-003,Recipients,Permisos,Roles readonly no editan estructura,Unit,tests/unit/generated/recipients/recipientPermissionResolver.test.ts,P0,Automatizado
+TC-004,Recipients,Registry,Normalizar/deduplicar/ordenar,Unit,tests/unit/generated/recipients/recipientRegistry.test.ts,P0,Automatizado
+TC-005,Recipients,Registry,Cambiar activo y emitir eventos,Unit,tests/unit/generated/recipients/recipientRegistry.test.ts,P0,Automatizado
+TC-006,Recipients,Registry,Snapshot roundtrip,Unit,tests/unit/generated/recipients/recipientRegistry.test.ts,P0,Automatizado
+TC-007,Schemas,Registry,Todos los tipos built-in registrados,Unit,tests/unit/generated/schemas/schemaRegistry.contract.test.ts,P0,Automatizado
+TC-008,Schemas,Identidad,Crear schema con routing/owner/geometría,Unit,tests/unit/generated/schemas/schemaRegistry.contract.test.ts,P0,Automatizado
+TC-009,Schemas,Nombre,Unicidad case-insensitive,Unit,tests/unit/generated/schemas/schemaRegistry.contract.test.ts,P0,Automatizado
+TC-010,Schemas,Inspector,Familias y secciones declarativas,Unit,tests/unit/generated/schemas/schemaFamilies.contract.test.ts,P0,Automatizado
+TC-011,Options,Modelo,"Normalizar ids, labels, defaults",Unit,tests/unit/generated/schemas/optionModel.test.ts,P0,Automatizado
+TC-012,Options,Layout,Altura/ancho mm por cantidad,Unit,tests/unit/generated/schemas/optionGroupLayout.test.ts,P0,Automatizado
+TC-013,Options,Selección,Single por id/value/fallback,Unit,tests/unit/generated/schemas/optionSelectionBehavior.test.ts,P0,Automatizado
+TC-014,Options,Selección,Multi toggle min/max,Unit,tests/unit/generated/schemas/optionSelectionBehavior.test.ts,P0,Automatizado
+TC-015,Options,Conversión,Checkbox a CheckboxGroup,Unit,tests/unit/generated/schemas/optionValueAdapter.test.ts,P0,Automatizado
+TC-016,Signature,Validación,Provider requerido,Unit,tests/unit/generated/schemas/signatureValidation.test.ts,P0,Automatizado
+TC-017,Signature,Validación,Metadata P12,Unit,tests/unit/generated/schemas/signatureValidation.test.ts,P0,Automatizado
+TC-018,Assignments,Lifecycle,Filtrar/mover/eliminar/reconciliar,Unit,tests/unit/generated/assignments/assignments.lifecycle.test.ts,P0,Automatizado
+TC-019,Documents,Routing,Normalizar páginas/documentos,Unit,tests/unit/generated/documents/documentRouting.test.ts,P0,Automatizado
+TC-020,Documents,Routing,Filtrar por file/page,Unit,tests/unit/generated/documents/documentRouting.test.ts,P0,Automatizado
+TC-021,Comments,Lifecycle,Inline + top-level,Unit,tests/unit/generated/comments/comments.lifecycle.test.ts,P0,Automatizado
+TC-022,Comments,Lifecycle,Mover/adjuntar/resolver/reabrir,Unit,tests/unit/generated/comments/comments.lifecycle.test.ts,P0,Automatizado
+TC-023,Snapshot,Roundtrip,Serialize/deserialize,Unit,tests/unit/generated/snapshot/snapshotAdapter.test.ts,P0,Automatizado
+TC-024,Snapshot,Migration,Legacy a snapshot oficial,Unit,tests/unit/generated/snapshot/snapshotAdapter.test.ts,P0,Automatizado
+TC-025,Snapshot,Metadata,V3 y flatten legacy,Unit,tests/unit/generated/snapshot/schemaMigration.test.ts,P0,Automatizado
+TC-026,Validation,Template,Duplicados/firma/out-of-bounds/hidden required,Unit,tests/unit/generated/validation/templateValidator.test.ts,P0,Automatizado
+TC-027,Runtime,Modes,designer/form/viewer y UX mode,Unit,tests/unit/generated/runtime/runtimeModes.test.ts,P1,Automatizado
+TC-028,Runtime,Options,"Theme, Designer, Form, Viewer",Unit,tests/unit/generated/runtime/runtimeOptions.test.ts,P1,Automatizado
+TC-029,Keyboard,Shortcuts,Copy/paste/delete/undo/redo/group,Unit,tests/unit/generated/keyboard/keyboardShortcuts.test.ts,P1,Automatizado
+TC-030,Config,Resolver,"Visibility, panel, adapters, engine",Unit,tests/unit/generated/config/configResolver.test.ts,P0,Automatizado
+TC-031,Tailwind,Source,Una sola fuente Tailwind,Unit,tests/unit/generated/tailwind/tailwind-source-singleton.test.ts,P0,Automatizado
+TC-032,Tailwind,Budget,No aumentar @apply,Unit,tests/unit/generated/tailwind/css-migration-budget.test.ts,P0,Automatizado
+TC-033,Shell,Toolbar,Canvas/PDF visible,E2E,tests/playwright/generated/shell/designer-shell-and-toolbar.spec.ts,P0,Automatizado
+TC-034,Shell,Toolbar,Guardar visible,E2E,tests/playwright/generated/shell/designer-shell-and-toolbar.spec.ts,P0,Automatizado
+TC-035,Shell,Toolbar,Undo/Redo visibles,E2E,tests/playwright/generated/shell/designer-shell-and-toolbar.spec.ts,P0,Automatizado
+TC-036,Shell,Toolbar,Zoom +/-,E2E,tests/playwright/generated/shell/designer-shell-and-toolbar.spec.ts,P0,Automatizado
+TC-037,Shell,Toolbar,Fit page,E2E,tests/playwright/generated/shell/designer-shell-and-toolbar.spec.ts,P0,Automatizado
+TC-038,Collaboration,Active recipient,Selector visible,E2E,tests/playwright/generated/collaboration/active-recipient.spec.ts,P0,Automatizado
+TC-039,Collaboration,Active recipient,Cambio controlado,E2E,tests/playwright/generated/collaboration/active-recipient.spec.ts,P0,Automatizado
+TC-040,Collaboration,Active recipient,Persistencia entre panels,E2E,tests/playwright/generated/collaboration/active-recipient.spec.ts,P0,Automatizado
+TC-041,RightSidebar,Selection,Lista→Canvas,E2E,tests/playwright/generated/right-sidebar/selection-sync.spec.ts,P0,Automatizado
+TC-042,RightSidebar,Selection,Canvas→lista,E2E,tests/playwright/generated/right-sidebar/selection-sync.spec.ts,P0,Automatizado
+TC-043,RightSidebar,Selection,Replace selection,E2E,tests/playwright/generated/right-sidebar/selection-sync.spec.ts,P0,Automatizado
+TC-044,RightSidebar,Multi-select/Reassign,Ctrl/Cmd multi,E2E,tests/playwright/generated/right-sidebar/multiselect-reassign.spec.ts,P0,Automatizado
+TC-045,RightSidebar,Multi-select/Reassign,Cantidad modal,E2E,tests/playwright/generated/right-sidebar/multiselect-reassign.spec.ts,P0,Automatizado
+TC-046,RightSidebar,Multi-select/Reassign,Cancelar,E2E,tests/playwright/generated/right-sidebar/multiselect-reassign.spec.ts,P0,Automatizado
+TC-047,RightSidebar,Multi-select/Reassign,Escape,E2E,tests/playwright/generated/right-sidebar/multiselect-reassign.spec.ts,P0,Automatizado
+TC-048,RightSidebar,Multi-select/Reassign,No freeze,E2E,tests/playwright/generated/right-sidebar/multiselect-reassign.spec.ts,P0,Automatizado
+TC-049,RightSidebar,Scroll/Tabs,No wrap 390,E2E,tests/playwright/generated/right-sidebar/scroll-and-tabs.spec.ts,P0,Automatizado
+TC-050,RightSidebar,Scroll/Tabs,No wrap 318,E2E,tests/playwright/generated/right-sidebar/scroll-and-tabs.spec.ts,P0,Automatizado
+TC-051,RightSidebar,Scroll/Tabs,No wrap 256,E2E,tests/playwright/generated/right-sidebar/scroll-and-tabs.spec.ts,P0,Automatizado
+TC-052,RightSidebar,Scroll/Tabs,Un scroll owner,E2E,tests/playwright/generated/right-sidebar/scroll-and-tabs.spec.ts,P0,Automatizado
+TC-053,RightSidebar,Scroll/Tabs,Header sticky,E2E,tests/playwright/generated/right-sidebar/scroll-and-tabs.spec.ts,P0,Automatizado
+TC-054,DetailView,Inspector,Agregar opción,E2E,tests/playwright/generated/right-sidebar/detail-options.spec.ts,P0,Automatizado
+TC-055,DetailView,Inspector,Eliminar opción,E2E,tests/playwright/generated/right-sidebar/detail-options.spec.ts,P0,Automatizado
+TC-056,DetailView,Inspector,Input aislado,E2E,tests/playwright/generated/right-sidebar/detail-options.spec.ts,P0,Automatizado
+TC-057,DetailView,Inspector,Scroll secciones inferiores,E2E,tests/playwright/generated/right-sidebar/detail-options.spec.ts,P0,Automatizado
+TC-058,DocumentsRail,Documents,Lista documentos,E2E,tests/playwright/generated/right-sidebar/documents-rail.spec.ts,P1,Automatizado
+TC-059,DocumentsRail,Documents,Activo,E2E,tests/playwright/generated/right-sidebar/documents-rail.spec.ts,P1,Automatizado
+TC-060,DocumentsRail,Documents,Subir PDF,E2E,tests/playwright/generated/right-sidebar/documents-rail.spec.ts,P1,Automatizado
+TC-061,DocumentsRail,Documents,Eliminar sin propagación,E2E,tests/playwright/generated/right-sidebar/documents-rail.spec.ts,P1,Automatizado
+TC-062,CommentsRail,Comments,Abrir/cancelar,E2E,tests/playwright/generated/right-sidebar/comments-rail.spec.ts,P1,Automatizado
+TC-063,CommentsRail,Comments,Escape,E2E,tests/playwright/generated/right-sidebar/comments-rail.spec.ts,P1,Automatizado
+TC-064,CommentsRail,Comments,Guardar una vez,E2E,tests/playwright/generated/right-sidebar/comments-rail.spec.ts,P1,Automatizado
+TC-065,LeftSidebar,Catalog,Buscar,E2E,tests/playwright/generated/left-sidebar/catalog.spec.ts,P0,Automatizado
+TC-066,LeftSidebar,Catalog,Empty state,E2E,tests/playwright/generated/left-sidebar/catalog.spec.ts,P0,Automatizado
+TC-067,LeftSidebar,Catalog,Layouts,E2E,tests/playwright/generated/left-sidebar/catalog.spec.ts,P0,Automatizado
+TC-068,LeftSidebar,Catalog,Favoritos,E2E,tests/playwright/generated/left-sidebar/catalog.spec.ts,P0,Automatizado
+TC-069,LeftSidebar,DnD,Drag commit,E2E,tests/playwright/generated/left-sidebar/drag-drop.spec.ts,P0,Automatizado
+TC-070,LeftSidebar,DnD,Preview/contador,E2E,tests/playwright/generated/left-sidebar/drag-drop.spec.ts,P0,Automatizado
+TC-071,LeftSidebar,DnD,Scroll lock,E2E,tests/playwright/generated/left-sidebar/drag-drop.spec.ts,P0,Automatizado
+TC-072,Canvas,Multipage,Scroll page 2+,E2E,tests/playwright/generated/canvas/multipage-routing.spec.ts,P0,Automatizado
+TC-073,Canvas,Multipage,No salto de paper,E2E,tests/playwright/generated/canvas/multipage-routing.spec.ts,P0,Automatizado
+TC-074,Canvas,Multipage,Data schema identity,E2E,tests/playwright/generated/canvas/multipage-routing.spec.ts,P0,Automatizado
+TC-075,Canvas,Keyboard,Arrow move,E2E,tests/playwright/generated/canvas/keyboard-and-actions.spec.ts,P0,Automatizado
+TC-076,Canvas,Keyboard,Copy/paste,E2E,tests/playwright/generated/canvas/keyboard-and-actions.spec.ts,P0,Automatizado
+TC-077,Canvas,Keyboard,Escape recovery,E2E,tests/playwright/generated/canvas/keyboard-and-actions.spec.ts,P0,Automatizado
+TC-078,OptionGroups,DocuSign behavior,Root selectable,E2E,tests/playwright/generated/schemas/option-groups.spec.ts,P0,Automatizado
+TC-079,OptionGroups,DocuSign behavior,Opciones no Moveable,E2E,tests/playwright/generated/schemas/option-groups.spec.ts,P0,Automatizado
+TC-080,OptionGroups,DocuSign behavior,Add/edit option,E2E,tests/playwright/generated/schemas/option-groups.spec.ts,P0,Automatizado
+TC-081,OptionGroups,DocuSign behavior,+ fuera del target,E2E,tests/playwright/generated/schemas/option-groups.spec.ts,P0,Automatizado
+TC-082,Runtime,Parity,Modo Form,E2E,tests/playwright/generated/runtime/form-viewer-parity.spec.ts,P0,Automatizado
+TC-083,Runtime,Parity,Modo Viewer,E2E,tests/playwright/generated/runtime/form-viewer-parity.spec.ts,P0,Fixme/pendiente
+TC-084,Runtime,Parity,Generator no chrome,E2E,tests/playwright/generated/runtime/form-viewer-parity.spec.ts,P0,Fixme/pendiente
+TC-085,Visual,Baseline,Shell,E2E,tests/playwright/generated/visual/visual-baseline.spec.ts,P1,Automatizado
+TC-086,Visual,Baseline,Fields,E2E,tests/playwright/generated/visual/visual-baseline.spec.ts,P1,Automatizado
+TC-087,Visual,Baseline,Detail attachment,E2E,tests/playwright/generated/visual/visual-baseline.spec.ts,P1,Automatizado
+TC-088,Visual,Baseline,Docs,E2E,tests/playwright/generated/visual/visual-baseline.spec.ts,P1,Automatizado
+TC-089,Schemas - Text,Cobertura ampliada,multiline,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-090,Schemas - Text,Cobertura ampliada,dynamic font size,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-091,Schemas - Text,Cobertura ampliada,max length,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-092,Schemas - Text,Cobertura ampliada,pattern validation,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-093,Schemas - Text,Cobertura ampliada,alignment vertical/horizontal,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-094,Schemas - Text,Cobertura ampliada,Form/Viewer/PDF parity,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-095,Schemas - Number,Cobertura ampliada,min/max,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-096,Schemas - Number,Cobertura ampliada,precision,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-097,Schemas - Number,Cobertura ampliada,integer/decimal,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-098,Schemas - Number,Cobertura ampliada,format separators,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-099,Schemas - Number,Cobertura ampliada,invalid input,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-100,Schemas - Date,Cobertura ampliada,locale,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-101,Schemas - Date,Cobertura ampliada,format,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-102,Schemas - Date,Cobertura ampliada,min/max date,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-103,Schemas - Date,Cobertura ampliada,DateTime,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-104,Schemas - Date,Cobertura ampliada,Time,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-105,Schemas - Date,Cobertura ampliada,readonly signed date,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-106,Schemas - Attachment,Cobertura ampliada,mime types,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-107,Schemas - Attachment,Cobertura ampliada,max files,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-108,Schemas - Attachment,Cobertura ampliada,max size,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-109,Schemas - Attachment,Cobertura ampliada,replace,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-110,Schemas - Attachment,Cobertura ampliada,show filename,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-111,Schemas - Attachment,Cobertura ampliada,upload progress/error,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-112,Schemas - Actions,Cobertura ampliada,Approve single execution,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-113,Schemas - Actions,Cobertura ampliada,Decline single execution,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-114,Schemas - Actions,Cobertura ampliada,permission disabled reason,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-115,Schemas - Actions,Cobertura ampliada,state persistence,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-116,Schemas - Media,Cobertura ampliada,image upload,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-117,Schemas - Media,Cobertura ampliada,fit/aspect ratio,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-118,Schemas - Media,Cobertura ampliada,SVG sanitize,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-119,Schemas - Media,Cobertura ampliada,fallback,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-120,Schemas - Barcode,Cobertura ampliada,QR value,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-121,Schemas - Barcode,Cobertura ampliada,Code128 validation,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-122,Schemas - Barcode,Cobertura ampliada,EAN validation,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-123,Schemas - Barcode,Cobertura ampliada,quiet zone,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-124,Schemas - Barcode,Cobertura ampliada,PDF renderer,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-125,Schemas - Table,Cobertura ampliada,dynamic rows,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-126,Schemas - Table,Cobertura ampliada,repeat head,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-127,Schemas - Table,Cobertura ampliada,column styles,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-128,Schemas - Table,Cobertura ampliada,page split,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-129,Schemas - Shapes,Cobertura ampliada,line,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-130,Schemas - Shapes,Cobertura ampliada,rectangle,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-131,Schemas - Shapes,Cobertura ampliada,ellipse,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-132,Schemas - Shapes,Cobertura ampliada,rotation,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-133,Schemas - Shapes,Cobertura ampliada,PDF render,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-134,Clipboard,Cobertura ampliada,multi-copy relative offsets,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-135,Clipboard,Cobertura ampliada,paste in bounds,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-136,Clipboard,Cobertura ampliada,new identities,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-137,Clipboard,Cobertura ampliada,undo/redo,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-138,Collaboration,Cobertura ampliada,lock by other,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-139,Collaboration,Cobertura ampliada,editing by me,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-140,Collaboration,Cobertura ampliada,release edit,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-141,Collaboration,Cobertura ampliada,shared owner,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-142,Collaboration,Cobertura ampliada,global view,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-143,Snapshot,Cobertura ampliada,group option ids/order,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-144,Snapshot,Cobertura ampliada,connections,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-145,Snapshot,Cobertura ampliada,comments,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-146,Snapshot,Cobertura ampliada,inputs,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-147,Snapshot,Cobertura ampliada,multi-document roundtrip,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-148,Accessibility,Cobertura ampliada,tablist roles,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-149,Accessibility,Cobertura ampliada,aria-selected,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-150,Accessibility,Cobertura ampliada,icon-only tooltip,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-151,Accessibility,Cobertura ampliada,focus restore,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-152,Accessibility,Cobertura ampliada,disabled reason,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-153,Responsive,Cobertura ampliada,docked/overlay,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-154,Responsive,Cobertura ampliada,collapse rails,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-155,Responsive,Cobertura ampliada,1280x720,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-156,Responsive,Cobertura ampliada,1366x768,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host
+TC-157,Responsive,Cobertura ampliada,mobile/narrow,Backlog,TEST_CASE_MATRIX.csv,P1,Diseñar/activar según host

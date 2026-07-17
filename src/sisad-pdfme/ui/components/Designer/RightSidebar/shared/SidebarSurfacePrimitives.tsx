@@ -1,10 +1,7 @@
 import React from 'react';
-import { Tag, Tooltip, Typography } from 'antd';
 
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
-
-const { Text } = Typography;
 
 /**
  * Lista vacía reutilizable de badges.
@@ -41,7 +38,7 @@ export type SidebarSurfaceBadge = {
   label: React.ReactNode;
 
   /**
-   * Color compatible con `Tag` de Ant Design.
+   * Color semántico visual.
    */
   color?:
     | 'default'
@@ -58,6 +55,27 @@ export type SidebarSurfaceBadge = {
    * Texto auxiliar mostrado como tooltip nativo mediante `title`.
    */
   tooltip?: string;
+};
+
+const resolveBadgeColorClass = (color: SidebarSurfaceBadge['color']) => {
+  switch (color) {
+    case 'processing':
+    case 'blue':
+      return 'border-sky-200 bg-sky-50 text-sky-700';
+    case 'success':
+      return 'border-emerald-200 bg-emerald-50 text-emerald-700';
+    case 'warning':
+    case 'gold':
+      return 'border-amber-200 bg-amber-50 text-amber-700';
+    case 'error':
+      return 'border-rose-200 bg-rose-50 text-rose-700';
+    case 'cyan':
+      return 'border-cyan-200 bg-cyan-50 text-cyan-700';
+    case 'purple':
+      return 'border-violet-200 bg-violet-50 text-violet-700';
+    default:
+      return 'border-slate-200/70 bg-white text-slate-600';
+  }
 };
 
 /**
@@ -145,7 +163,7 @@ export const SidebarSurfaceHeader = ({
     <div
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'sidebar-surface-header',
-        'flex justify-between gap-1.5 rounded-[0.95rem] border border-slate-200/60 bg-white/96 px-2.5 shadow-[0_1px_2px_rgba(15,23,42,0.035)] backdrop-blur-sm',
+        'flex justify-between gap-1.5 rounded-[0.95rem] border border-slate-200/70 bg-white px-2.5 shadow-[0_1px_2px_rgba(15,23,42,0.03)] backdrop-blur-sm',
         compact ? 'items-center py-1' : 'items-start py-1.5',
         className,
       )}
@@ -173,28 +191,26 @@ export const SidebarSurfaceHeader = ({
             'min-w-0 space-y-0.5',
           )}
         >
-          <Text
-            strong
+          <span
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'sidebar-surface-header-title',
-              'block truncate font-semibold leading-tight text-slate-900',
+              'block truncate font-semibold leading-tight text-slate-950',
               compact ? 'text-[0.7rem]' : 'text-[0.8rem]'
             )}
           >
             {title}
-          </Text>
+          </span>
 
           {subtitle ? (
-            <Text
-              type="secondary"
+            <span
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'sidebar-surface-header-subtitle',
-                'block truncate leading-tight text-slate-500',
+                'block truncate leading-tight text-slate-600',
                 compact ? 'text-[0.58rem]' : 'text-[0.64rem]'
               )}
             >
               {subtitle}
-            </Text>
+            </span>
           ) : null}
 
           {badges.length > 0 ? (
@@ -206,28 +222,34 @@ export const SidebarSurfaceHeader = ({
             >
               {badges.map((badge, index) => {
                 const badgeClassName = mergeClassNames(
-                  'm-0 inline-flex items-center rounded-full border border-slate-200/70 bg-white leading-none shadow-none',
+                  'm-0 inline-flex items-center rounded-full border leading-none shadow-none',
+                  resolveBadgeColorClass(badge.color),
                   compact ? 'h-4 px-[0.26rem] text-[0.56rem]' : 'h-5 px-1.5 text-[10px]',
                 );
 
                 const key = badge.key ?? badge.tooltip ?? String(badge.label) ?? index;
 
-                return badge.tooltip ? (
-                  <Tooltip key={key} title={badge.tooltip} placement="top">
-                    <Tag color={badge.color} className={badgeClassName}>
-                      {badge.label}
-                    </Tag>
-                  </Tooltip>
-                ) : (
-                  <Tag key={key} color={badge.color} className={badgeClassName}>
+                return (
+                  <span key={key} title={badge.tooltip} className={badgeClassName}>
                     {badge.label}
-                  </Tag>
+                  </span>
                 );
               })}
             </div>
           ) : null}
         </div>
       </div>
+
+      {trailing ? (
+        <div
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'sidebar-surface-header-trailing',
+            'flex shrink-0 items-center',
+          )}
+        >
+          {trailing}
+        </div>
+      ) : null}
 
     </div>
   );

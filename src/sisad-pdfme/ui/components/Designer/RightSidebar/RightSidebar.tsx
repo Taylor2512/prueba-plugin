@@ -501,9 +501,7 @@ const Sidebar = (props: RightSidebarProps) => {
       useDefaultStyles={props.useDefaultStyles}
     />
   );
-
-  /** Nodo principal renderizado según el modo efectivo. */
-  const contentNode = resolvedPanelMode === 'comments' ? (
+  const commentsNode = (
     <CommentsViewComponent
       items={props.comments?.items ?? []}
       onAdd={props.comments?.onAdd}
@@ -511,31 +509,33 @@ const Sidebar = (props: RightSidebarProps) => {
       emptyTitle={props.comments?.emptyTitle}
       activeCommentId={props.comments?.activeCommentId}
     />
-  ) : resolvedPanelMode === 'docs' ? (
-    (docsBridge || pagesBridge) ? (
-      <DocumentsRailComponent
-        items={railItems}
-        selectedId={(docsBridge?.selectedId ?? pagesBridge?.selectedId) ?? null}
-        onSelect={docsBridge?.onSelect ?? pagesBridge?.onSelect}
-        onAdd={docsBridge?.onAdd ?? pagesBridge?.onAdd}
-        onUploadPdf={docsBridge?.onUploadPdf ?? pagesBridge?.onUploadPdf}
-        onDelete={docsBridge?.onDelete ?? pagesBridge?.onDelete}
-        title={docsBridge?.title ?? pagesBridge?.title}
-        emptyTitle={docsBridge?.emptyTitle ?? pagesBridge?.emptyTitle}
-        style={props.styleOverrides?.documentsRail}
-        useDefaultStyles={props.useDefaultStyles}
-        density={railDensity}
-        className={mergeClassNames(`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`, documentsRailClassName)}
-      />
-    ) : listViewNode
-  ) : resolvedPanelMode === 'detail' && activeSchemaCount > 0 ? (
-    <div
-      className={mergeClassNames(
-        `${DESIGNER_CLASSNAME}detail-view-host`,
-        `${DESIGNER_CLASSNAME}custom-detailView`,
-        'flex min-h-0 flex-1 flex-col overflow-hidden animate-[rs-panel-switch_200ms_var(--wix-ease-out)_both] motion-reduce:animate-none motion-reduce:transform-none',
-        toDesignerCustomClassName(props.classNames?.detailView),
-      )}>
+  );
+
+  const docsNode = (docsBridge || pagesBridge) ? (
+    <DocumentsRailComponent
+      items={railItems}
+      selectedId={(docsBridge?.selectedId ?? pagesBridge?.selectedId) ?? null}
+      onSelect={docsBridge?.onSelect ?? pagesBridge?.onSelect}
+      onAdd={docsBridge?.onAdd ?? pagesBridge?.onAdd}
+      onUploadPdf={docsBridge?.onUploadPdf ?? pagesBridge?.onUploadPdf}
+      onDelete={docsBridge?.onDelete ?? pagesBridge?.onDelete}
+      title={docsBridge?.title ?? pagesBridge?.title}
+      emptyTitle={docsBridge?.emptyTitle ?? pagesBridge?.emptyTitle}
+      style={props.styleOverrides?.documentsRail}
+      useDefaultStyles={props.useDefaultStyles}
+      density={railDensity}
+      className={mergeClassNames(`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`, documentsRailClassName)}
+    />
+  ) : null;
+
+  const detailNode = activeSchemaCount > 0 ? (
+      <div
+        className={mergeClassNames(
+          `${DESIGNER_CLASSNAME}detail-view-host`,
+          `${DESIGNER_CLASSNAME}custom-detailView`,
+          'flex min-h-0 flex-1 flex-col overflow-hidden transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none motion-reduce:transform-none',
+          toDesignerCustomClassName(props.classNames?.detailView),
+        )}>
       <DetailViewComponent
         {...props}
         activeSchema={activeSchemas[activeSchemas.length - 1]}
@@ -543,7 +543,7 @@ const Sidebar = (props: RightSidebarProps) => {
         selectionCommands={props.selectionCommands}
       />
     </div>
-  ) : listViewNode;
+  ) : null;
 
   return (
     <aside
@@ -554,8 +554,9 @@ const Sidebar = (props: RightSidebarProps) => {
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'right-sidebar',
         'absolute right-[0.75rem] top-0 bottom-0 z-[70] flex h-full min-h-0 w-[var(--sisad-pdfme-rs-width)] min-w-0 flex-col rounded-[1rem_0_0_1rem] border-l border-slate-200/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.96))] shadow-[-0.75rem_0_2rem_rgba(15,23,42,0.06)]',
+        'transition-[transform,opacity] duration-200 ease-out',
         sidebarOpen
-          ? 'animate-[rs-slide-in_220ms_var(--wix-ease-out)_both] opacity-100 translate-x-0 pointer-events-auto motion-reduce:animate-none motion-reduce:transition-none motion-reduce:duration-[1ms]'
+          ? 'opacity-100 translate-x-0 pointer-events-auto motion-reduce:transition-none motion-reduce:duration-[1ms]'
           : 'transition-[transform,opacity] duration-150 opacity-0 translate-x-[calc(100%+var(--sisad-pdfme-rs-gap))] pointer-events-none motion-reduce:transition-none motion-reduce:duration-[1ms]',
         detached ? DESIGNER_CLASSNAME + 'right-sidebar-detached' : '',
         props.classNames?.root,
@@ -606,14 +607,14 @@ const Sidebar = (props: RightSidebarProps) => {
           {showTabs || contextHeaderNode ? (
             <div className={mergeClassNames(
               `${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap`,
-              'flex shrink-0 items-center justify-between gap-2 rounded-[0.9rem] border border-slate-200/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(248,250,252,0.84))] px-1.5 py-1.5 shadow-[0_4px_14px_rgba(15,23,42,0.04)]',
-              sidebarDensityMode === 'comfortable' ? 'px-2' : 'px-1'
+              'flex min-w-0 shrink-0 items-center justify-between gap-1.5 overflow-hidden rounded-[0.9rem] border border-slate-200/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(248,250,252,0.84))] px-1.5 py-1.5 shadow-[0_4px_14px_rgba(15,23,42,0.04)]',
+              sidebarDensityMode === 'comfortable' ? 'px-2' : 'px-1.5'
             )}>
               {showTabs ? (
                 <div
                   className={mergeClassNames(
                     `${DESIGNER_CLASSNAME}right-sidebar-panel-switcher`,
-                    'flex flex-nowrap items-center overflow-x-auto overflow-y-hidden rounded-[0.9rem] border border-slate-200/80 bg-white/90 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] [scrollbar-gutter:stable]',
+                    'flex min-w-0 flex-1 flex-nowrap items-center overflow-x-auto overflow-y-hidden rounded-[0.9rem] border border-slate-200/80 bg-white/90 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] [scrollbar-gutter:stable]',
                     sidebarDensityMode === 'comfortable' ? 'gap-1' :
                       sidebarDensityMode === 'compact' ? 'gap-[0.18rem]' : 'gap-[0.12rem]'
                   )}
@@ -640,7 +641,7 @@ const Sidebar = (props: RightSidebarProps) => {
                           'disabled:cursor-not-allowed disabled:opacity-45',
                           'data-[active=true]:border-sky-200 data-[active=true]:bg-white data-[active=true]:text-sky-700 data-[active=true]:shadow-[0_2px_6px_rgba(14,165,233,0.10)] data-[active=true]:ring-1 data-[active=true]:ring-sky-100',
                           'shrink-0 whitespace-nowrap',
-                          sidebarDensityMode === 'comfortable' ? 'min-h-7 px-2.5 py-1 text-[11px]' :
+                          sidebarDensityMode === 'comfortable' ? 'min-h-7 px-2.25 py-1 text-[11px]' :
                             sidebarDensityMode === 'compact' ? 'min-h-7 px-2 py-[0.2rem] text-[10.5px]' :
                               'min-h-6 px-1.5 py-[0.15rem] text-[10px]'
                         )}
@@ -661,7 +662,7 @@ const Sidebar = (props: RightSidebarProps) => {
                   })}
                 </div>
               ) : null}
-              <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra flex items-center gap-2 pl-1`}>
+              <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra flex shrink-0 items-center gap-2 pl-1`}>
                 {contextHeaderNode}
                 {showCollapseButton ? (
                   <div className="ml-1 flex items-center border-l border-slate-200/60 pl-2">
@@ -696,7 +697,48 @@ const Sidebar = (props: RightSidebarProps) => {
           ) : (
             <>
               {resolvedPanelMode !== 'docs' ? documentsRailNode : null}
-              {contentNode}
+              <div className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-panel-stack', 'min-h-0 flex flex-1 flex-col overflow-hidden')}>
+                <div
+                  className={mergeClassNames(
+                    DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-fields',
+                    resolvedPanelMode === 'list' || resolvedPanelMode === 'bulk'
+                      ? 'flex min-h-0 flex-1 flex-col'
+                      : 'hidden',
+                  )}
+                >
+                  {listViewNode}
+                </div>
+                <div
+                  className={mergeClassNames(
+                    DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-detail',
+                    resolvedPanelMode === 'detail'
+                      ? 'flex min-h-0 flex-1 flex-col'
+                      : 'hidden',
+                  )}
+                >
+                  {detailNode}
+                </div>
+                <div
+                  className={mergeClassNames(
+                    DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-comments',
+                    resolvedPanelMode === 'comments'
+                      ? 'flex min-h-0 flex-1 flex-col'
+                      : 'hidden',
+                  )}
+                >
+                  {commentsNode}
+                </div>
+                <div
+                  className={mergeClassNames(
+                    DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-docs',
+                    resolvedPanelMode === 'docs'
+                      ? 'flex min-h-0 flex-1 flex-col'
+                      : 'hidden',
+                  )}
+                >
+                  {docsNode}
+                </div>
+              </div>
             </>
           )}
         </div>

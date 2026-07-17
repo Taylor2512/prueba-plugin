@@ -86,7 +86,7 @@ export type DeleteSchemasOptions = {
 };
 
 export type SelectSchemasOptions = {
-  mode?: 'replace' | 'toggle';
+  mode?: 'replace' | 'toggle' | 'add';
   origin?: 'keyboard' | 'toolbar' | 'context-menu' | 'field-list' | 'command';
 };
 

@@ -1,9 +1,8 @@
 import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
-import { text, signature } from '@sisad-pdfme/schemas'
+import { text } from '@sisad-pdfme/schemas'
 import { createSchema, createCommentAnchor, createAuditMetadata } from '@/features/pdfcomponent/labs/builders/schemaFactory'
 import {
   createSchemaShowcasePages as createShowcasePagesCore,
-  mergeSchemaPages,
 } from '@/features/pdfcomponent/labs/builders/schemaShowcase'
 import {
   createTemplate,
@@ -57,11 +56,6 @@ const createTextSchema = createSchemaFactory(text.propPanel.defaultSchema, { x: 
   width: 92,
   height: 12,
   fontSize: 12,
-})
-
-const createSignatureSchema = createSchemaFactory(signature.propPanel.defaultSchema, { x: 18, y: 88 }, {
-  width: 60,
-  height: 24,
 })
 
 const createSchemaShowcasePages = (config) =>

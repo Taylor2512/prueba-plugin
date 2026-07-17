@@ -13,6 +13,7 @@ import React, { useContext, useEffect, useMemo, useRef } from 'react';
 import Designer from '../ui/Designer.js';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
+import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
 import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
 import { useSisadPdfmeController } from './useSisadPdfmeController.js';
 import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
@@ -109,7 +110,7 @@ export const SisadPdfmeDesigner = ({
   const runtimeConfig = useMemo(() => ({
     containerRef,
     mode: 'designer' as const,
-    template: template as any,
+    template: template as UsePdfmeRuntimeInstanceConfig['template'],
     inputs: [],
     onTemplateChange: (nextTemplate: unknown) => onTemplateChange?.(nextTemplate),
     onPageChange: () => undefined,
@@ -132,10 +133,10 @@ export const SisadPdfmeDesigner = ({
       activeDocumentId: (Array.isArray(documents) && documents.length > 0 ? resolvedConfig.adapters.documents.toDocument(documents[0] as unknown).id : null),
     },
     plugins: flatSchemaPlugins,
-    runtime: runtime as any,
+    runtime: runtime as UsePdfmeRuntimeInstanceConfig['runtime'],
     autoFit: 'page' as const,
   }), [documents, recipientState, resolvedConfig, runtime, template, onTemplateChange]);
-  const { instanceRef } = usePdfmeRuntimeInstance(runtimeConfig as any);
+  const { instanceRef } = usePdfmeRuntimeInstance(runtimeConfig as UsePdfmeRuntimeInstanceConfig);
 
   const controllerContext = useMemo(() => ({
     registry,
@@ -149,7 +150,10 @@ export const SisadPdfmeDesigner = ({
   }, [controller, onControllerReady]);
 
   useEffect(() => {
-    const instance = instanceRef.current as any;
+    const instance = instanceRef.current as {
+      onSaveTemplate?: (callback: () => void) => void;
+      getTemplate?: () => unknown;
+    } | null;
     if (!instance || !onSave) return;
     instance.onSaveTemplate?.(() => onSave(instance.getTemplate?.() ?? template));
   }, [instanceRef, onSave, template]);

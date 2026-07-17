@@ -74,28 +74,29 @@ describe('ListViewToolbar assignment action', () => {
     expect(onBulkAssignRecipient).not.toHaveBeenCalled();
   });
 
-  it('hides the action when the handler is missing', () => {
+  it('keeps the action visible but disabled when the handler is missing', () => {
     render(
       <OptionsContext.Provider value={enabledOptions as any}>
         <ListViewToolbar {...baseProps} onBulkAssignRecipient={undefined} />
       </OptionsContext.Provider>,
     );
 
-    expect(screen.queryByTestId('right-sidebar-reassign')).toBeNull();
+    expect(screen.getByTestId('right-sidebar-reassign')).toBeDisabled();
   });
 
-  it('hides the action when there are no assignable recipients', () => {
+  it('keeps the action visible but disabled when there are no assignable recipients', () => {
     render(
       <OptionsContext.Provider value={enabledOptions as any}>
         <ListViewToolbar
           {...baseProps}
           selectedCount={1}
           showBulkRecipientAction={false}
+          onBulkAssignRecipient={() => undefined}
         />
       </OptionsContext.Provider>,
     );
 
-    expect(screen.queryByTestId('right-sidebar-reassign')).toBeNull();
+    expect(screen.getByTestId('right-sidebar-reassign')).toBeDisabled();
   });
 
   it('hides the action when collaboration forbids structure edits', () => {
@@ -124,7 +125,13 @@ describe('ListViewToolbar assignment action', () => {
   it('keeps an accessible label for the reassign intent', () => {
     render(
       <OptionsContext.Provider value={enabledOptions as any}>
-        <ListViewToolbar {...baseProps} onBulkAssignRecipient={() => undefined} />
+        <ListViewToolbar
+          {...baseProps}
+          hasSchemas
+          showBulkAction
+          showBulkRecipientAction
+          onBulkAssignRecipient={() => undefined}
+        />
       </OptionsContext.Provider>,
     );
 
