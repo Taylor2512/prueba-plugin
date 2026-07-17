@@ -223,6 +223,10 @@ const CtlBar = (props: CtlBarProps) => {
     featureToggles,
     onToggleFeature,
     interactionPhase,
+    documentTitle,
+    documentStatus,
+    selectionCount,
+    isGroupedSelection,
     visible,
     sidebarOpen,
   } = props;
@@ -269,6 +273,11 @@ const CtlBar = (props: CtlBarProps) => {
   const showSaveText = toolbarDensity === 'comfortable';
   const showFitAction = toolbarDensity === 'comfortable';
   const pageLabel = `Pág ${pageCursor + 1}/${Math.max(1, pageNum)}`;
+  const statusTone = (documentStatus || '').toLowerCase().includes('edit') ? 'editing' : 'idle';
+  const summaryLabel =
+    typeof documentTitle === 'string' && documentTitle.trim()
+      ? documentTitle.trim()
+      : `Doc · ${pageLabel}${selectionCount && selectionCount > 0 ? ` · Sel ${selectionCount}` : ''}${isGroupedSelection ? ' · Grupo' : ''}`;
   const isActiveInteractionPhase =
     interactionPhase === 'selected-single' || interactionPhase === 'selected-multi';
 
@@ -348,7 +357,23 @@ const CtlBar = (props: CtlBarProps) => {
     )} data-density={toolbarDensity} data-layout="canvas-chrome">
       
 
-      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', 'absolute left-1/2 top-[0.5rem] inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-left', 'absolute left-[0.5rem] top-[0.5rem] inline-flex items-center gap-[0.1875rem] pointer-events-auto')}>
+        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-summary', 'inline-flex max-w-[13rem] items-center gap-[0.375rem] rounded-full border border-[var(--border-subtle)] bg-white/95 px-[0.55rem] py-[0.2rem] text-[0.6875rem] text-[var(--text-secondary)] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
+          <span
+            className={mergeClassNames(
+              UI_CLASSNAME + 'control-bar-status-dot',
+              'inline-block h-[0.4375rem] w-[0.4375rem] flex-none rounded-full',
+              statusTone === 'editing' ? 'bg-amber-400' : 'bg-emerald-400',
+            )}
+            data-status={statusTone}
+            title={documentStatus || 'Estado'}
+            aria-label={documentStatus || 'Estado'}
+          />
+          <span className="truncate" title={typeof documentTitle === 'string' ? documentTitle.trim() : undefined}>{summaryLabel}</span>
+        </div>
+      </div>
+
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-center', 'absolute left-1/2 top-[0.5rem] inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
           {showPageNavButtons ? (
             <Button
@@ -378,7 +403,7 @@ const CtlBar = (props: CtlBarProps) => {
         </div>
       </div>
 
-      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', 'absolute right-[0.5rem] top-[0.5rem] inline-flex items-center gap-[0.1875rem] pointer-events-auto')}>
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-right', 'absolute right-[0.5rem] top-[0.5rem] inline-flex items-center gap-[0.1875rem] pointer-events-auto')}>
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
           {saveAction.visible ? (
             <Button
@@ -408,7 +433,7 @@ const CtlBar = (props: CtlBarProps) => {
         </div>
       </div>
 
-      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', 'absolute bottom-[0.75rem] left-1/2 inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--bottom-right', 'absolute bottom-[0.75rem] left-1/2 inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
           {undoAction.visible ? (
             <Button
