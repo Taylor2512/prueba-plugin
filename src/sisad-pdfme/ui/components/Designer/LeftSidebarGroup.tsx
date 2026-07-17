@@ -31,32 +31,32 @@ export const LeftSidebarGroup = ({
   const isCompact = density === 'compact' || density === 'minimal';
   const itemsClassName = mergeUniqueClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar-group-items`,
-    'mt-1',
+    'mt-0.5',
     layout === 'icons'
-      ? (isMini ? 'grid grid-cols-3 gap-0.5 px-0.5' : isCompact ? 'grid grid-cols-4 gap-1 px-1' : 'grid grid-cols-5 gap-1 px-1.5')
+      ? (isMini ? 'grid grid-cols-3 gap-0.5 px-0' : isCompact ? 'grid grid-cols-3 gap-0.5 px-0.5' : 'grid grid-cols-4 gap-0.5 px-0.5')
       : layout === 'tiles'
-        ? (isMini ? 'grid grid-cols-2 gap-0.5 px-0.5' : isCompact ? 'grid grid-cols-2 gap-1 px-1' : 'grid grid-cols-3 gap-1 px-1.5')
-        : (isMini ? 'px-0.5 space-y-[1px]' : isCompact ? 'px-1 space-y-0.5' : 'px-1.5 space-y-1'),
+        ? (isMini ? 'grid grid-cols-2 gap-0.5 px-0' : isCompact ? 'grid grid-cols-2 gap-0.5 px-0.5' : 'grid grid-cols-2 gap-0.5 px-0.5')
+        : (isMini ? 'px-0 space-y-0.5' : isCompact ? 'px-0.5 space-y-0.5' : 'px-0.5 space-y-0.5'),
   );
 
   const titleContent = (
     <>
-      <div className="flex items-center gap-1.5 min-w-0">
+      <div className="flex items-center gap-1 min-w-0">
         <span
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-group-title-chevron`,
-            'inline-flex h-4 w-4 items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-500 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-transform duration-200',
+            'inline-flex h-3 w-3 items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-400 shadow-[0_0.5px_1px_rgba(15,23,42,0.03)] transition-transform duration-200 flex-shrink-0',
             collapsed ? 'rotate-[-90deg]' : '',
-            isMini ? 'scale-75' : isCompact ? 'scale-90' : ''
+            isMini ? 'scale-75' : isCompact ? 'scale-85' : ''
           )}
           aria-hidden="true"
         >
-          <ChevronDown size={isMini ? 8 : 10} strokeWidth={2.5} />
+          <ChevronDown size={isMini ? 8 : 9} strokeWidth={2.5} />
         </span>
         <span
           className={mergeUniqueClassNames(
-            `${DESIGNER_CLASSNAME}left-sidebar-group-title-label font-bold uppercase tracking-[0.08em] truncate text-slate-700`,
-            isMini ? 'text-[8px]' : isCompact ? 'text-[8.25px]' : 'text-[9px]'
+            `${DESIGNER_CLASSNAME}left-sidebar-group-title-label font-semibold uppercase tracking-[0.05em] truncate text-slate-600`,
+            isMini ? 'text-[7px]' : isCompact ? 'text-[7.5px]' : 'text-[8px]'
           )}
         >
           {category}
@@ -64,7 +64,7 @@ export const LeftSidebarGroup = ({
       </div>
       <span
         className={mergeUniqueClassNames(
-          `${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-[0.875rem] items-center rounded-full border border-slate-200/80 bg-white px-1 text-[8.25px] font-semibold text-slate-500 shadow-[0_1px_2px_rgba(15,23,42,0.02)]`,
+          `${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-[0.75rem] items-center rounded-full border border-slate-200/60 bg-white/80 px-0.5 text-[7px] font-semibold text-slate-400 shadow-[0_0.5px_1px_rgba(15,23,42,0.02)] flex-shrink-0`,
           isMini ? 'hidden' : ''
         )}
       >
@@ -75,15 +75,15 @@ export const LeftSidebarGroup = ({
 
   const titleClassName = mergeUniqueClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar-group-title`,
-    'flex w-full items-center justify-between gap-2 rounded-full border border-transparent px-2 py-1 text-left font-semibold text-slate-700 transition-colors duration-150 hover:border-slate-200 hover:bg-slate-50/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/45',
-    isMini ? 'min-h-[20px]' : isCompact ? 'min-h-[24px]' : 'min-h-[28px]',
+    'flex w-full items-center justify-between gap-1 rounded-full border border-transparent px-1.5 py-0.5 text-left font-semibold text-slate-600 transition-colors duration-150 hover:border-slate-200 hover:bg-slate-50/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/40',
+    isMini ? 'min-h-[18px]' : isCompact ? 'min-h-[19px]' : 'min-h-[21px]',
   );
 
   return (
     <section
       className={mergeUniqueClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-group`,
-        'rounded-[1rem] border border-slate-200/65 bg-white/95 px-1.5 py-1.5 shadow-[0_1px_2px_rgba(15,23,42,0.04)] last:border-b-0'
+        'rounded-[0.875rem] border border-slate-200/60 bg-white/85 px-0 py-0 shadow-[0_0.5px_1px_rgba(15,23,42,0.02)] last:border-b-0'
       )}
       data-testid="left-sidebar-group"
       data-density={density}
@@ -103,7 +103,7 @@ export const LeftSidebarGroup = ({
         <div
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-group-title`,
-            'flex w-full items-center justify-between gap-3 rounded-full px-3 py-2 text-left text-sm font-semibold text-slate-800',
+            'flex w-full items-center justify-between gap-1 rounded-full px-1.5 py-0.5 text-left text-sm font-semibold text-slate-600',
           )}
           data-collapsed={collapsed ? 'true' : 'false'}
         >

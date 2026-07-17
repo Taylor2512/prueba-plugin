@@ -30,9 +30,9 @@ const LeftSidebarSearch = ({
     data-use-default-style={useDefaultStyles ? 'true' : 'false'}
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-search`,
-      'w-full rounded-full border border-slate-200/65 bg-white/90 px-2.5 shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-colors duration-150 hover:border-slate-200 hover:bg-white focus-within:border-sky-200 focus-within:bg-white focus-within:shadow-[0_0_0_1px_rgba(186,230,253,0.8)]',
-      density === 'minimal' ? 'h-7 text-[10px]' : 'h-8 text-[0.72rem]',
-      density === 'minimal' ? '[&_.ant-input]:text-[10px]' : '[&_.ant-input]:text-[0.72rem]',
+      'w-full rounded-full border border-slate-200/65 bg-white/90 px-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-colors duration-150 hover:border-slate-200 hover:bg-white focus-within:border-sky-200 focus-within:bg-white focus-within:shadow-[0_0_0_1px_rgba(186,230,253,0.8)]',
+      density === 'minimal' ? 'h-7 text-[10px]' : 'h-7.5 text-[0.7rem]',
+      density === 'minimal' ? '[&_.ant-input]:text-[10px]' : '[&_.ant-input]:text-[0.7rem]',
       '[&_.ant-input-affix-wrapper-focused]:shadow-none',
       '[&_.ant-input-affix-wrapper]:border-0 [&_.ant-input-affix-wrapper]:bg-transparent [&_.ant-input]:bg-transparent',
       className || '',

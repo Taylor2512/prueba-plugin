@@ -32,7 +32,7 @@ const LeftSidebarTabs = ({
   <ul
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-tablist`,
-      'grid w-full min-w-0 grid-cols-3 gap-1 overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-50/90 p-1 shadow-sm',
+      'grid w-full min-w-0 grid-cols-3 gap-0.5 overflow-hidden rounded-xl border border-slate-200/70 bg-slate-50/90 p-0.5 shadow-sm',
     )}
     role="tablist"
     aria-orientation="horizontal"
@@ -45,17 +45,18 @@ const LeftSidebarTabs = ({
           role="tab"
           aria-selected={activeTab === tab.id}
           aria-label={tab.label}
+          title={tab.label}
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-tab-btn`,
-            'group relative inline-flex min-h-[2.05rem] w-full min-w-0 flex-col items-center justify-center gap-[0.1rem] rounded-[0.85rem] border border-transparent bg-transparent px-1 py-[0.28rem] text-slate-500 cursor-pointer transition-[background,color,border-color,box-shadow,transform] duration-150 hover:border-slate-200 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:ring-offset-1 focus-visible:ring-offset-slate-50',
-            density === 'comfortable' ? 'text-[0.56rem]' : 'min-h-[1.95rem] gap-0 px-0.5 py-[0.22rem] text-[0.5rem]',
+            'group relative inline-flex min-h-[1.8rem] w-full min-w-0 flex-col items-center justify-center gap-[0.06rem] rounded-[0.7rem] border border-transparent bg-transparent px-1 py-[0.18rem] text-slate-500 cursor-pointer transition-[background,color,border-color,box-shadow,transform] duration-150 hover:border-slate-200 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:ring-offset-1 focus-visible:ring-offset-slate-50',
+            density === 'comfortable' ? 'text-[0.54rem]' : 'min-h-[1.7rem] gap-0 px-0.5 py-[0.14rem] text-[0.48rem]',
             activeTab === tab.id
-              ? 'border-sky-200 bg-white text-sky-700 shadow-sm ring-1 ring-sky-100 after:absolute after:bottom-[3px] after:left-[25%] after:right-[25%] after:h-[2px] after:rounded-[1px] after:bg-sky-500 after:content-[\'\']'
+              ? 'border-sky-200 bg-white text-sky-700 shadow-sm ring-1 ring-sky-100 after:absolute after:bottom-[2px] after:left-[28%] after:right-[28%] after:h-[2px] after:rounded-[1px] after:bg-sky-500 after:content-[\'\']'
               : '',
           )}
           onClick={() => onChangeTab(tab.id)}
         >
-          <span className="inline-flex items-center justify-center [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:transition-transform group-hover:[&>svg]:scale-110">
+          <span className="inline-flex items-center justify-center [&>svg]:h-3 [&>svg]:w-3 [&>svg]:transition-transform group-hover:[&>svg]:scale-110">
             {renderTabIcon(tab.id)}
           </span>
           <span className={density !== 'minimal' ? 'block max-w-full px-0.5 text-center font-semibold leading-[1.02]' : 'sr-only'}>

@@ -565,25 +565,24 @@ const SidebarShell = ({
         `${DESIGNER_CLASSNAME}left-sidebar-shell`,
         `${DESIGNER_CLASSNAME}sidebar-surface`,
         'flex h-full min-h-0 flex-col overflow-hidden rounded-[0.95rem] border border-slate-200/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.96))] shadow-[0_8px_24px_rgba(15,23,42,0.06)] backdrop-blur-[14px]',
-        density === 'compact' ? 'rounded-[0.72rem] p-[0.22rem_0.24rem_0.24rem]' : 'p-[0.32rem_0.3rem_0.28rem]',
+        density === 'compact' ? 'rounded-[0.72rem] p-[0.12rem_0.12rem_0.12rem]' : density === 'minimal' ? 'p-[0.08rem_0.08rem_0.08rem]' : 'p-[0.2rem_0.16rem_0.16rem]',
       )}
       style={style}
       data-density={density}
     >
       <div className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 
-        'flex shrink-0 flex-col items-start gap-[0.14rem] border-b border-slate-200/70 px-3 py-[0.5rem]',
+        'flex shrink-0 flex-col items-start gap-0.5 border-b border-slate-200/70 px-2 py-1.5',
         density === 'minimal' ? 'hidden' : ''
       )}>
         {density !== 'compact' && (
-          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[0.56rem] font-semibold uppercase tracking-[0.12em] text-slate-400')}>
-            Diseñador
+          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[0.48rem] font-semibold uppercase tracking-[0.12em] text-slate-350')}>
+            Campos
           </span>
         )}
-          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-[0.35rem] text-[0.82rem] font-bold text-slate-900')}>
-            <span>Campos</span>
-          {activeRecipientLabel && density === 'comfortable' ? (
-            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-full bg-sky-50 px-[0.4rem] py-[0.06rem] text-[0.63rem] font-semibold text-sky-700')}>
+          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-1.5 text-[0.7rem] font-bold text-slate-900')}>
+            {activeRecipientLabel && density === 'comfortable' ? (
+            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-full bg-sky-50 px-1.5 py-0.5 text-[0.55rem] font-semibold text-sky-700')}>
               {activeRecipientLabel}
             </span>
           ) : null}
@@ -592,7 +591,7 @@ const SidebarShell = ({
       <div className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-control-band`,
         'shrink-0 border-b border-slate-200/70 bg-transparent',
-        density === 'minimal' ? 'px-1 py-1 space-y-1' : 'px-3 py-[0.42rem] space-y-[0.42rem]',
+        density === 'minimal' ? 'px-1 py-0.5 space-y-0.5' : density === 'compact' ? 'px-1.5 py-1 space-y-0.5' : 'px-2 py-1 space-y-1',
       )}>
         <LeftSidebarTabs
           tabs={tabs}
@@ -602,7 +601,7 @@ const SidebarShell = ({
           density={density}
         />
         {searchNode ? (
-          <div className="py-1">{searchNode}</div>
+          <div className={density === 'minimal' ? 'py-0.5' : 'py-0.5'}>{searchNode}</div>
         ) : null}
       </div>
       <div
@@ -610,7 +609,7 @@ const SidebarShell = ({
           `${DESIGNER_CLASSNAME}left-sidebar-main`,
           'min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain bg-[linear-gradient(180deg,rgba(255,255,255,0.38),rgba(248,250,252,0.8))]',
           density === 'compact' ? 'pr-[0.125rem]' : '',
-          density === 'minimal' ? 'px-1 py-1 space-y-1' : 'px-3 py-[0.45rem] space-y-[0.35rem]'
+          density === 'minimal' ? 'px-0.5 py-0.5 space-y-0.5' : density === 'compact' ? 'px-1 py-1 space-y-0.5' : 'px-1.5 py-1.5 space-y-1'
         )}
         data-left-sidebar-scroll="true"
         data-sidebar-scroll-container="true"
@@ -1137,9 +1136,9 @@ const LeftSidebar = ({
   const sidebarRootRef = useRef<HTMLDivElement | null>(null);
   const sidebarScrollLockRef = useRef<ReturnType<typeof lockDesignerSidebarScroll> | null>(null);
   const { mode: sidebarDensityMode, width: sidebarLiveWidth } = useResponsiveDensity(sidebarRootRef, {
-    comfortable: 260,
-    compact: 220,
-    minimal: 190,
+    comfortable: 232,
+    compact: 200,
+    minimal: 164,
   });
 
   useEffect(() => {
@@ -1208,20 +1207,20 @@ const LeftSidebar = ({
     );
     const layoutButtonClass = resolvedLayout === 'list'
       ? mergeClassNames(
-          'w-full min-h-[2.875rem] p-[0.375rem_0.5625rem] gap-[0.5rem] justify-center rounded-[0.5625rem] border border-[color:var(--color-border-20)]',
-          'bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)]',
-          'transition-[border-color,background,box-shadow] hover:border-[color:var(--color-primary-30)] hover:bg-[linear-gradient(180deg,_var(--color-white),_var(--color-primary-100-90))] hover:shadow-[0_2px_0.375rem_var(--color-primary-08)] motion-reduce:hover:translate-y-0',
+          'w-full min-h-[2.5rem] p-[0.25rem_0.4rem] gap-1.5 justify-start rounded-[0.375rem] border border-slate-200',
+          'bg-white shadow-[inset_0_1px_0_white,_0_0.5px_1px_rgba(15,23,42,0.04)]',
+          'transition-[border-color,background,box-shadow,color] hover:border-sky-200 hover:bg-sky-50 hover:shadow-[0_1px_2px_rgba(59,130,246,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 motion-reduce:hover:translate-y-0',
         )
       : resolvedLayout === 'icons'
         ? mergeClassNames(
-          'w-full aspect-square min-h-0 items-center justify-center p-[0.25rem] rounded-[0.5rem] border border-[color:var(--color-border-18)]',
-            'bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)] overflow-hidden text-center',
-            'transition-[border-color,background,box-shadow] hover:border-[var(--schema-owner-color,_var(--color-primary-30))] hover:shadow-[0_2px_0.375rem_var(--color-primary-08)] motion-reduce:hover:translate-y-0',
+          'w-full aspect-square min-h-0 items-center justify-center p-1 rounded-[0.375rem] border border-slate-200',
+            'bg-white shadow-[inset_0_1px_0_white,_0_0.5px_1px_rgba(15,23,42,0.04)] overflow-hidden text-center',
+            'transition-[border-color,background,box-shadow,color] hover:border-sky-200 hover:bg-sky-50 hover:shadow-[0_1.5px_3px_rgba(59,130,246,0.16)] motion-reduce:hover:translate-y-0',
           )
         : mergeClassNames(
-            'w-full min-h-[2.9rem] flex flex-col items-center justify-center gap-[0.2rem] p-[0.375rem_0.25rem_0.3125rem] rounded-[0.625rem] border border-[color:var(--color-border-18)]',
-            'bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_3px_var(--color-gray-900-04)] overflow-hidden text-center',
-            'transition-[border-color,background,box-shadow,transform] hover:border-[var(--schema-owner-color,_var(--color-primary-30))] hover:bg-[linear-gradient(180deg,_var(--color-white),_color-mix(in_srgb,_var(--schema-owner-color,_var(--color-primary))_8%,_var(--color-white)))] hover:shadow-[0_3px_8px_color-mix(in_srgb,_var(--schema-owner-color,_var(--color-primary))_12%,_transparent)] hover:-translate-y-px hover:border-l-[3px] hover:border-l-[var(--schema-owner-color,_var(--color-primary))] motion-reduce:hover:translate-y-0',
+            'w-full min-h-[2.3rem] flex flex-col items-center justify-center gap-0.5 p-[0.25rem_0.2rem] rounded-[0.375rem] border border-slate-200',
+            'bg-white shadow-[inset_0_1px_0_white,_0_0.5px_1px_rgba(15,23,42,0.04)] overflow-hidden text-center',
+            'transition-[border-color,background,box-shadow,transform,color] hover:border-sky-200 hover:bg-sky-50 hover:shadow-[0_2px_4px_rgba(59,130,246,0.12)] hover:-translate-y-px motion-reduce:hover:translate-y-0',
           );
     const stateButtonClass = isSelectionCategory
       ? 'border-[color-mix(in_srgb,_var(--color-primary-30)_54%,_var(--color-border-18))] bg-[linear-gradient(180deg,_var(--color-white),_color-mix(in_srgb,_var(--color-primary-100-90)_38%,_var(--color-white)))]'
@@ -1362,29 +1361,31 @@ const LeftSidebar = ({
               <span className={labelClass}>
                 <span className={titleClass}>
                   {highlightTerm(displayLabel, searchTerms)}
+                    {isFavorite ? (
+                      <span className={mergeClassNames(
+                        DESIGNER_CLASSNAME + 'plugin-favorite-inline-indicator',
+                        'ml-1 text-amber-400 flex-shrink-0 flex items-center justify-center w-3 h-3',
+                      )}>
+                        ★
+                      </span>
+                    ) : null}
                 </span>
-              </span>
-              {isFavorite ? (
-                <span className={mergeClassNames(
-                  DESIGNER_CLASSNAME + 'plugin-favorite-indicator',
-                  'ml-2 text-amber-500',
-                  resolvedLayout === 'icons' ? 'hidden' : '',
-                )}>
-                  ★
-                </span>
-              ) : null}
+                  </span>
             </Button>
             <button
               type="button"
-              aria-label="Marcar favorito"
+              aria-label={isFavorite ? 'Eliminar de favoritos' : 'Marcar como favorito'}
+              aria-pressed={isFavorite}
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'plugin-favorite-toggle',
-                'absolute right-1 top-1/2 -translate-y-1/2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-slate-200 bg-white text-[10px] text-slate-300 shadow-sm opacity-0 transition-[opacity,background-color,border-color,color,transform,box-shadow] group-hover:opacity-100 group-hover:scale-110 group-hover:border-[color:var(--color-primary-30)] group-hover:bg-[var(--color-primary-200-20)] group-hover:text-[var(--color-primary)] data-[active=true]:opacity-100 data-[active=true]:pointer-events-auto data-[active=true]:bg-[var(--color-primary)] data-[active=true]:border-[var(--color-primary)] data-[active=true]:text-[var(--color-white)] data-[active=true]:shadow-[0_1px_4px_var(--color-primary-20)] data-[active=true]:hover:bg-[var(--color-primary-hover,_var(--color-primary-light))] data-[active=true]:hover:border-[var(--color-primary-light)] data-[active=true]:hover:text-[var(--color-white)]',
+                resolvedLayout === 'icons' ? 'absolute right-0.5 top-0.5' : 'absolute right-0.5 top-1/2 -translate-y-1/2',
+                'inline-flex h-5 w-5 items-center justify-center rounded-full border transition-[opacity,background-color,border-color,color,transform,box-shadow] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 text-[9px]',
+                isFavorite 
+                  ? 'bg-amber-400 border-amber-400 text-white shadow-[0_1px_3px_rgba(251,146,60,0.3)]'
+                  : 'border-slate-200 bg-white/80 text-slate-400 shadow-sm hover:border-slate-300 hover:bg-white hover:text-slate-600',
                 draggableActive || isDragging ? 'opacity-0 pointer-events-none' : '',
-                resolvedLayout === 'icons' ? 'hidden' : '',
               )}
               data-active={isFavorite ? 'true' : 'false'}
-              style={isFavorite ? { opacity: 1, color: '#f59e0b', borderColor: '#fef3c7' } : undefined}
               onClick={(e) => {
                 e.stopPropagation();
                 toggleFavorite(pluginType);

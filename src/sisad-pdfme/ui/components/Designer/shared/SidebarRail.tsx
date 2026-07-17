@@ -30,15 +30,17 @@ export const SidebarRail = ({
   topSpacer = true,
 }: SidebarRailProps) => {
   const railPaddingClass = density === 'minimal'
-    ? 'py-1 px-0.5 gap-1'
+    ? 'py-1 px-0.5 gap-0.5'
     : density === 'compact'
-      ? 'py-1.5 px-[0.1875rem] gap-[0.3125rem]'
-      : 'py-2 px-1 gap-1.5';
+      ? 'py-0.5 px-0.5 gap-0.5'
+      : 'py-1 px-0.5 gap-0.5';
   const buttonSizeClass = density === 'minimal'
-    ? 'h-[1.75rem] w-[1.75rem] rounded-lg'
+    ? 'h-[1.75rem] w-[1.75rem] rounded-md'
     : density === 'compact'
-      ? 'h-[1.875rem] w-[1.875rem] rounded-xl'
-      : 'h-[1.9rem] w-[1.9rem] rounded-xl';
+      ? 'h-[1.75rem] w-[1.75rem] rounded-md'
+      : 'h-[1.9rem] w-[1.9rem] rounded-md';
+  const spacerHeight = density === 'minimal' ? 'h-9' : 'h-10';
+
   return (
     <div
       className={mergeClassNames(
@@ -50,20 +52,22 @@ export const SidebarRail = ({
       )}
       data-side={side}
       data-density={density}
+      role="toolbar"
+      aria-label={`Barra lateral ${side === 'left' ? 'izquierda' : 'derecha'}`}
     >
       {topSpacer && (
-         <div className={density === 'minimal' ? 'h-10 shrink-0 pointer-events-none' : 'h-12 shrink-0 pointer-events-none'} aria-hidden="true" />
+         <div className={`${spacerHeight} shrink-0 pointer-events-none`} aria-hidden="true" />
       )}
-      <div className={mergeClassNames('flex min-h-0 flex-1 flex-col', density === 'minimal' ? 'gap-0.5' : 'gap-[0.1875rem]')}>
+      <div className={mergeClassNames('flex min-h-0 flex-1 flex-col', density === 'minimal' ? 'gap-0.5' : 'gap-0.5')}>
         {items.map((item) => (
           <Tooltip key={item.key} title={item.label} placement={side === 'left' ? 'right' : 'left'}>
             <button
               type="button"
               className={mergeClassNames(
                 `${DESIGNER_CLASSNAME}sidebar-rail-btn`,
-                'group relative inline-flex items-center justify-center border border-transparent bg-transparent text-slate-500 transition-all duration-200 hover:bg-slate-100 hover:text-slate-900',
+                'group relative inline-flex items-center justify-center border border-slate-200 bg-white text-slate-500 transition-all duration-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-200',
                 buttonSizeClass,
-                item.active && 'bg-white text-sky-600 shadow-md ring-1 ring-slate-200/60'
+                item.active && 'bg-sky-50 text-sky-600 border-sky-200 ring-1 ring-sky-200/60'
               )}
               disabled={item.disabled}
               data-active={item.active ? 'true' : 'false'}
@@ -73,7 +77,7 @@ export const SidebarRail = ({
               onClick={item.onClick}
             >
               {item.active && (
-                <span className="absolute -left-[1px] top-1.5 h-4 w-[3px] rounded-full bg-sky-500" aria-hidden="true" />
+                <span className="absolute -left-px top-1 h-3 w-[2px] rounded-full bg-sky-500" aria-hidden="true" />
               )}
               <span className={`${DESIGNER_CLASSNAME}sidebar-rail-btn-icon transition-transform duration-200 group-active:scale-90`} aria-hidden="true">
                 {React.isValidElement(item.icon)

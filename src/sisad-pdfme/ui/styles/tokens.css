@@ -64,8 +64,8 @@
   --sisad-pdfme-mask-blur: 0.0625rem;
   --sisad-pdfme-rs-gap: 0.875rem;
   --sisad-pdfme-rs-width: clamp(14.25rem, 17vw, 18rem);
-  --sisad-pdfme-ls-width: clamp(12rem, 14.5vw, 15rem);
-  --sisad-pdfme-ls-rail-width: 2.25rem;
+  --sisad-pdfme-ls-width: clamp(10.5rem, 13vw, 14rem);
+  --sisad-pdfme-ls-rail-width: 2.75rem;
   /* Runtime tokens consumidos por sisad-pdfme.css con fallback inline;
      se conservan porque el fallback no siempre iguala el valor real. */
   --sisad-pdfme-root-width: auto;
