@@ -455,6 +455,28 @@ export const buildInspectorSections = ({
     );
   }
 
+  // Fill-rule fallback toggles — synthesized into the validation ("fill rules")
+  // section so the inspector always exposes "editable"/"required" even when a
+  // schema plugin declares neither the field nor its inverse. A plugin-declared
+  // equivalent wins (skipped to avoid duplicates). Kept out of the behavior
+  // bucket so schemas with no data fields don't render an empty behavior card.
+  if (!pluginFieldKeys.has('editable') && !pluginFieldKeys.has('readonly')) {
+    addFieldToSection(
+      sectionProperties,
+      'validation',
+      'editable',
+      createSectionField(typedI18n('editable'), 'boolean', { span: 12 }),
+    );
+  }
+  if (!pluginFieldKeys.has('required') && !pluginFieldKeys.has('mandatory')) {
+    addFieldToSection(
+      sectionProperties,
+      'validation',
+      'required',
+      createSectionField(typedI18n('required'), 'boolean', { span: 12 }),
+    );
+  }
+
   const isOptionsSectionField = (fieldKey: string, fieldSchema: PropPanelSchema) => {
     const normalizedFieldKey = fieldKey.trim().toLowerCase();
     const normalizedWidget = String(fieldSchema.widget || '').trim().toLowerCase();
