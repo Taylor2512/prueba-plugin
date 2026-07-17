@@ -28,7 +28,6 @@ import { useMaxZoom } from '../helper.js';
 import { UI_CLASSNAME } from '../constants.js';
 import { mergeClassNames } from './Designer/shared/className.js';
 import {
-  describeDisabledReason,
   resolveDesignerActionState,
 } from './Designer/shared/designerActionState.js';
 
@@ -388,7 +387,6 @@ const CtlBar = (props: CtlBarProps) => {
               onClick={onSave}
               disabled={!saveAction.enabled}
               icon={<Save size={14} />}
-              title={saveAction.enabled ? 'Guardar' : describeDisabledReason(saveAction.reason)}
               aria-label="Guardar"
               data-testid="designer-save"
             >
