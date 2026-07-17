@@ -19,6 +19,9 @@ import {
   Redo2,
   Maximize2,
   Save,
+  Check,
+  LoaderCircle,
+  CircleAlert,
 } from 'lucide-react';
 
 import type { MenuProps } from 'antd';
@@ -70,6 +73,48 @@ export const buildZoomSelectOptions = (
   return values
     .sort((a, b) => a - b)
     .map((preset) => ({ value: Number(preset.toFixed(2)), label: formatZoomPercent(preset) }));
+};
+
+/**
+ * Estado de persistencia global del diseñador.
+ *
+ * `idle` es el estado inicial neutro (aún no hubo edición ni guardado) y no
+ * pinta indicador; el resto mapea a las etiquetas visibles del contrato de
+ * Guardar global. La fuente de verdad del template sigue siendo el host: este
+ * estado solo describe la relación entre lo mostrado y lo último persistido.
+ */
+export type SaveStatus = 'idle' | 'saved' | 'dirty' | 'saving' | 'error';
+
+/**
+ * Presentación derivada del estado de guardado.
+ *
+ * `label` vacío indica que no debe renderizarse indicador (estado `idle`).
+ */
+export type SaveStatusPresentation = {
+  label: string;
+  tone: 'neutral' | 'positive' | 'pending' | 'warning' | 'danger';
+  live: 'polite' | 'assertive' | 'off';
+};
+
+/**
+ * Traduce un `SaveStatus` a etiqueta accesible, tono visual y cortesía de la
+ * live-region. Función pura (sin React) para poder testearla en unitarios.
+ */
+export const resolveSaveStatusPresentation = (
+  status: SaveStatus | undefined,
+): SaveStatusPresentation => {
+  switch (status) {
+    case 'saving':
+      return { label: 'Guardando…', tone: 'pending', live: 'polite' };
+    case 'saved':
+      return { label: 'Guardado', tone: 'positive', live: 'polite' };
+    case 'error':
+      return { label: 'Error al guardar', tone: 'danger', live: 'assertive' };
+    case 'dirty':
+      return { label: 'Cambios sin guardar', tone: 'warning', live: 'polite' };
+    default:
+      return { label: '', tone: 'neutral', live: 'off' };
+  }
 };
 
 /**
@@ -173,6 +218,8 @@ type CtlBarProps = {
   documentTitle?: string;
   documentStatus?: string;
   onSave?: () => void;
+  /** Estado de persistencia global mostrado junto a Guardar. */
+  saveStatus?: SaveStatus;
   onExport?: () => void;
   featureToggles?: {
     grid?: boolean;
@@ -220,6 +267,7 @@ const CtlBar = (props: CtlBarProps) => {
     onFitPage,
     onOpenShortcuts,
     onSave,
+    saveStatus,
     onExport,
     featureToggles,
     onToggleFeature,
@@ -252,6 +300,32 @@ const CtlBar = (props: CtlBarProps) => {
   const undoAction = resolveDesignerActionState('undo', { hasHandler: typeof onUndo === 'function' });
   const redoAction = resolveDesignerActionState('redo', { hasHandler: typeof onRedo === 'function' });
   const fitPageAction = resolveDesignerActionState('fit-to-page', { hasHandler: typeof onFitPage === 'function' });
+
+  // Estado de guardado global: derivado del contrato de persistencia del host.
+  // El indicador es informativo; Guardar sigue disponible salvo mientras se
+  // está guardando (evita dobles envíos).
+  const savePresentation = resolveSaveStatusPresentation(saveStatus);
+  const isSaving = saveStatus === 'saving';
+  const saveStatusToneClassName =
+    savePresentation.tone === 'positive'
+      ? 'text-emerald-600'
+      : savePresentation.tone === 'pending'
+        ? 'text-amber-600'
+        : savePresentation.tone === 'warning'
+          ? 'text-amber-600'
+          : savePresentation.tone === 'danger'
+            ? 'text-red-600'
+            : 'text-[var(--text-secondary)]';
+  const saveStatusIcon =
+    saveStatus === 'saving' ? (
+      <LoaderCircle size={12} className="animate-spin motion-reduce:animate-none" aria-hidden="true" />
+    ) : saveStatus === 'saved' ? (
+      <Check size={12} aria-hidden="true" />
+    ) : saveStatus === 'error' ? (
+      <CircleAlert size={12} aria-hidden="true" />
+    ) : saveStatus === 'dirty' ? (
+      <span className="inline-block h-[0.4rem] w-[0.4rem] flex-none rounded-full bg-amber-500" aria-hidden="true" />
+    ) : null;
 
   const densityOption = String(
     options && typeof options === 'object' ? ((options as { density?: unknown }).density ?? '') : '',
@@ -294,41 +368,60 @@ const CtlBar = (props: CtlBarProps) => {
     }
   };
 
-  const moreMenuItems: MenuProps['items'] = [];
-  if (!showFitAction && onFitWidth) {
-    moreMenuItems.push({ key: 'fit-width', label: 'Ajustar ancho' });
+  // Menú global agrupado (TASK-W2): las acciones se organizan en Vista / Página
+  // / Documento con separadores y un check para los toggles. Las etiquetas de
+  // los toggles conservan el verbo Mostrar/Ocultar (contrato de accesibilidad
+  // consumido por specs de canvas), y el check refleja el estado activo.
+  const renderToggleLabel = (text: string, checked: boolean) => (
+    <span className="inline-flex items-center gap-2">
+      <span className="inline-flex w-[0.85rem] justify-center text-emerald-600" aria-hidden="true">
+        {checked ? <Check size={13} /> : null}
+      </span>
+      <span>{text}</span>
+    </span>
+  );
+
+  const viewMenuChildren: NonNullable<MenuProps['items']> = [];
+  if (onToggleFeature) {
+    viewMenuChildren.push({ key: 'toggle-grid', label: renderToggleLabel(featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula', Boolean(featureToggles?.grid)) });
+    viewMenuChildren.push({ key: 'toggle-guides', label: renderToggleLabel(featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías', Boolean(featureToggles?.guides)) });
+    viewMenuChildren.push({ key: 'toggle-snap-lines', label: renderToggleLabel(featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps', Boolean(featureToggles?.snapLines)) });
+    viewMenuChildren.push({ key: 'toggle-padding', label: renderToggleLabel(featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding', Boolean(featureToggles?.padding)) });
   }
-  if (!showFitAction && onFitPage) {
-    moreMenuItems.push({ key: 'fit-page', label: 'Ajustar página' });
+  if (!showFitAction && onFitWidth) viewMenuChildren.push({ key: 'fit-width', label: 'Ajustar ancho' });
+  if (!showFitAction && onFitPage) viewMenuChildren.push({ key: 'fit-page', label: 'Ajustar página' });
+  if (!showZoomStepper) {
+    viewMenuChildren.push({ key: 'zoom-in', label: 'Aumentar zoom' });
+    viewMenuChildren.push({ key: 'zoom-out', label: 'Reducir zoom' });
+  }
+
+  const pageMenuChildren: NonNullable<MenuProps['items']> = [];
+  if (!showPageNavButtons && pageNum > 1) {
+    pageMenuChildren.push({ key: 'prev-page', label: 'Página anterior' });
+    pageMenuChildren.push({ key: 'next-page', label: 'Página siguiente' });
+  }
+  if (addPageAfter) pageMenuChildren.push({ key: 'add-page', label: i18n('addPageAfter') });
+  if (duplicatePageAfter) pageMenuChildren.push({ key: 'duplicate-page', label: 'Duplicar página' });
+  if (removePage && pageNum > 1 && pageCursor !== 0) pageMenuChildren.push({ key: 'remove-page', label: i18n('removePage') });
+
+  const documentMenuChildren: NonNullable<MenuProps['items']> = [];
+  if (onExport) documentMenuChildren.push({ key: 'export-pdf', label: 'Exportar' });
+
+  const moreMenuItems: MenuProps['items'] = [];
+  if (viewMenuChildren.length > 0) {
+    moreMenuItems.push({ key: 'group-view', type: 'group', label: 'Vista', children: viewMenuChildren });
+  }
+  if (pageMenuChildren.length > 0) {
+    if (moreMenuItems.length > 0) moreMenuItems.push({ type: 'divider' });
+    moreMenuItems.push({ key: 'group-page', type: 'group', label: 'Página', children: pageMenuChildren });
+  }
+  if (documentMenuChildren.length > 0) {
+    if (moreMenuItems.length > 0) moreMenuItems.push({ type: 'divider' });
+    moreMenuItems.push({ key: 'group-document', type: 'group', label: 'Documento', children: documentMenuChildren });
   }
   if (onOpenShortcuts) {
+    if (moreMenuItems.length > 0) moreMenuItems.push({ type: 'divider' });
     moreMenuItems.push({ key: 'shortcuts', label: 'Atajos' });
-  }
-  if (!showZoomStepper) {
-    moreMenuItems.push({ key: 'zoom-in', label: 'Aumentar zoom' });
-    moreMenuItems.push({ key: 'zoom-out', label: 'Reducir zoom' });
-  }
-  if (!showPageNavButtons && pageNum > 1) {
-    moreMenuItems.push({ key: 'prev-page', label: 'Página anterior' });
-    moreMenuItems.push({ key: 'next-page', label: 'Página siguiente' });
-  }
-  if (onToggleFeature) {
-    moreMenuItems.push({ key: 'toggle-grid', label: featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula' });
-    moreMenuItems.push({ key: 'toggle-guides', label: featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías' });
-    moreMenuItems.push({ key: 'toggle-snap-lines', label: featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps' });
-    moreMenuItems.push({ key: 'toggle-padding', label: featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding' });
-  }
-  if (addPageAfter) {
-    moreMenuItems.push({ key: 'add-page', label: i18n('addPageAfter') });
-  }
-  if (duplicatePageAfter) {
-    moreMenuItems.push({ key: 'duplicate-page', label: 'Duplicar página' });
-  }
-  if (removePage && pageNum > 1 && pageCursor !== 0) {
-    moreMenuItems.push({ key: 'remove-page', label: i18n('removePage') });
-  }
-  if (onExport) {
-    moreMenuItems.push({ key: 'export-pdf', label: 'Exportar' });
   }
 
   const handleMoreMenuClick: NonNullable<MenuProps['onClick']> = ({ key }) => {
@@ -411,7 +504,7 @@ const CtlBar = (props: CtlBarProps) => {
               className={mergeClassNames(UI_CLASSNAME + 'control-bar-text-btn', 'inline-flex h-[1.5rem] items-center rounded-md border border-transparent bg-transparent px-[0.325rem] text-[0.6875rem] text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
               type="text"
               onClick={onSave}
-              disabled={!saveAction.enabled}
+              disabled={!saveAction.enabled || isSaving}
               icon={<Save size={14} />}
               title={saveAction.enabled ? 'Guardar' : describeDisabledReason(saveAction.reason)}
               aria-label="Guardar"
@@ -419,6 +512,24 @@ const CtlBar = (props: CtlBarProps) => {
             >
               {showSaveText ? 'Guardar' : null}
             </Button>
+          ) : null}
+          {savePresentation.label ? (
+            <span
+              className={mergeClassNames(
+                UI_CLASSNAME + 'control-bar-save-status',
+                'inline-flex h-[1.5rem] items-center gap-[0.25rem] whitespace-nowrap rounded-md px-[0.3rem] text-[0.6875rem] font-medium',
+                saveStatusToneClassName,
+              )}
+              role="status"
+              aria-live={savePresentation.live}
+              aria-label={savePresentation.label}
+              title={savePresentation.label}
+              data-testid="designer-save-status"
+              data-save-status={saveStatus}
+            >
+              {saveStatusIcon}
+              {showSaveText ? <span>{savePresentation.label}</span> : null}
+            </span>
           ) : null}
           {moreMenuItems.length > 0 ? (
             <Dropdown menu={{ items: moreMenuItems, onClick: handleMoreMenuClick }} placement="bottomRight" trigger={['click']}>

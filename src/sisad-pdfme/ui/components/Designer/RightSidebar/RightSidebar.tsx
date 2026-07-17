@@ -190,13 +190,13 @@ const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', Sidebar
     ariaLabel: 'Abrir panel Detalle',
   },
   docs: {
-    shortLabel: 'Docs',
+    shortLabel: 'Doc.',
     icon: <FileText size={14} />,
     title: 'Ver documentos',
     ariaLabel: 'Abrir panel Docs',
   },
   comments: {
-    shortLabel: 'Comentarios',
+    shortLabel: 'Com.',
     icon: <MessageSquareText size={14} />,
     title: 'Ver comentarios',
     ariaLabel: 'Abrir panel Comentarios',
@@ -593,7 +593,7 @@ const Sidebar = (props: RightSidebarProps) => {
           className={mergeClassNames(
             DESIGNER_CLASSNAME + 'right-sidebar-content',
             DESIGNER_CLASSNAME + 'sidebar-surface',
-            'relative flex min-h-0 flex-1 flex-col gap-[0.375rem] overflow-hidden rounded-[1.1rem] border border-slate-200/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.96))] p-[0.4375rem_0.4375rem_0.5rem] shadow-[0_12px_30px_rgba(15,23,42,0.06)] backdrop-blur-[14px] max-[820px]:p-[0.5rem]',
+            'relative flex min-h-0 flex-1 flex-col gap-[0.25rem] overflow-hidden rounded-[0.95rem] border border-slate-200/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.96))] p-[0.3rem_0.3rem_0.35rem] shadow-[0_10px_22px_rgba(15,23,42,0.05)] backdrop-blur-[14px] max-[820px]:p-[0.35rem]',
             props.classNames?.content,
           )}
           data-sidebar-open={sidebarOpen ? 'true' : 'false'}
@@ -607,16 +607,16 @@ const Sidebar = (props: RightSidebarProps) => {
           {showTabs || contextHeaderNode ? (
             <div className={mergeClassNames(
               `${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap`,
-              'flex min-w-0 shrink-0 items-center justify-between gap-1.5 overflow-hidden rounded-[0.9rem] border border-slate-200/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(248,250,252,0.84))] px-1.5 py-1.5 shadow-[0_4px_14px_rgba(15,23,42,0.04)]',
-              sidebarDensityMode === 'comfortable' ? 'px-2' : 'px-1.5'
+              'flex min-w-0 shrink-0 items-center justify-between gap-1 overflow-hidden rounded-[0.75rem] border border-slate-200/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(248,250,252,0.84))] px-1 py-1 shadow-[0_2px_8px_rgba(15,23,42,0.04)]',
+              sidebarDensityMode === 'comfortable' ? 'px-1.5' : 'px-1'
             )}>
               {showTabs ? (
                 <div
                   className={mergeClassNames(
                     `${DESIGNER_CLASSNAME}right-sidebar-panel-switcher`,
-                    'flex min-w-0 flex-1 flex-nowrap items-center overflow-x-auto overflow-y-hidden rounded-[0.9rem] border border-slate-200/80 bg-white/90 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] [scrollbar-gutter:stable]',
-                    sidebarDensityMode === 'comfortable' ? 'gap-1' :
-                      sidebarDensityMode === 'compact' ? 'gap-[0.18rem]' : 'gap-[0.12rem]'
+                    'flex min-w-0 flex-1 flex-nowrap items-center overflow-x-auto overflow-y-hidden rounded-[0.75rem] border border-slate-200/80 bg-white/90 p-0.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] [scrollbar-gutter:stable]',
+                    sidebarDensityMode === 'comfortable' ? 'gap-0.5' :
+                      sidebarDensityMode === 'compact' ? 'gap-[0.12rem]' : 'gap-[0.12rem]'
                   )}
                   role="tablist"
                   tabIndex={0}
@@ -635,15 +635,15 @@ const Sidebar = (props: RightSidebarProps) => {
                         disabled={disabled}
                         className={mergeClassNames(
                           `${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn`,
-                          'inline-flex items-center gap-1.5 rounded-full border border-transparent bg-transparent font-semibold text-slate-500 transition-[background-color,color,box-shadow,transform,border-color] duration-150',
+                          'inline-flex items-center gap-1 rounded-full border border-transparent bg-transparent font-semibold text-slate-500 transition-[background-color,color,box-shadow,transform,border-color] duration-150',
                           'hover:border-slate-200 hover:bg-slate-50 hover:text-sky-700 hover:shadow-sm',
                           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
                           'disabled:cursor-not-allowed disabled:opacity-45',
                           'data-[active=true]:border-sky-200 data-[active=true]:bg-white data-[active=true]:text-sky-700 data-[active=true]:shadow-[0_2px_6px_rgba(14,165,233,0.10)] data-[active=true]:ring-1 data-[active=true]:ring-sky-100',
                           'shrink-0 whitespace-nowrap',
-                          sidebarDensityMode === 'comfortable' ? 'min-h-7 px-2.25 py-1 text-[11px]' :
-                            sidebarDensityMode === 'compact' ? 'min-h-7 px-2 py-[0.2rem] text-[10.5px]' :
-                              'min-h-6 px-1.5 py-[0.15rem] text-[10px]'
+                          sidebarDensityMode === 'comfortable' ? 'min-h-6 px-2 py-[0.15rem] text-[10.5px]' :
+                            sidebarDensityMode === 'compact' ? 'min-h-6 px-1.5 py-[0.12rem] text-[10px]' :
+                              'min-h-6 px-1 py-[0.1rem] text-[9.5px]'
                         )}
                         role="tab"
                         data-active={isActive ? 'true' : 'false'}
@@ -653,7 +653,7 @@ const Sidebar = (props: RightSidebarProps) => {
                         aria-label={modeMeta.ariaLabel}
                         onClick={() => handleModeChange(mode)}
                       >
-                        <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content inline-flex items-center gap-1.5`}>
+                        <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content inline-flex items-center gap-1`}>
                           <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-icon inline-flex items-center justify-center text-current`}>{modeMeta.icon}</span>
                           <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label truncate leading-none`}>{modeMeta.shortLabel}</span>
                         </span>

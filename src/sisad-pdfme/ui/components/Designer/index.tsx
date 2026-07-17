@@ -63,7 +63,7 @@ import { useUIPreProcessor, useScrollPageCursor, useInitEvents } from '../../hoo
 import usePaperRefRegistry from '../shared/usePaperRefRegistry.js';
 import Root from '../Root.js';
 import ErrorScreen from '../ErrorScreen.js';
-import CtlBar from '../CtlBar.js';
+import CtlBar, { type SaveStatus } from '../CtlBar.js';
 import CommentDialog from './Comments/CommentDialog.js';
 import { applyCollaborationEvent, diffCollaborationEvents, useCollaborationSync } from '../../collaboration.js';
 import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
@@ -758,6 +758,10 @@ const TemplateEditor = ({
   } | null>(null);
   const dropCommitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isIdle, setIsIdle] = useState<boolean | undefined>(undefined);
+  // Estado de persistencia global para la topbar. Deriva del callback de guardado
+  // existente (no crea otra fuente de estado del template): `idle` inicial,
+  // `dirty` en cada edición local, `saving`/`saved`/`error` alrededor de onSave.
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
 
   const areActiveElementsEqual = useCallback((left: HTMLElement[], right: HTMLElement[]) => {
     return left.length === right.length && left.every((element, index) => element?.id === right[index]?.id);
@@ -1062,6 +1066,9 @@ const TemplateEditor = ({
       setVisibleTemplate(nextTemplate);
       visibleTemplateRef.current = nextTemplate;
       internalTemplateSyncRef.current = true;
+      // Toda edición/notificación de cambio pasa por aquí: marca cambios sin
+      // guardar sin pisar un guardado en curso (que resolverá a saved/error).
+      setSaveStatus((prev) => (prev === 'saving' ? prev : 'dirty'));
       const documentId = context.documentId || activeDocumentId || canvasDocumentIdRef.current || null;
       onChangeTemplate(nextTemplate, {
         ...context,
@@ -1073,6 +1080,25 @@ const TemplateEditor = ({
     },
     [activeDocumentId, onChangeTemplate],
   );
+  // Guardar global: envuelve el callback de persistencia del host para exponer
+  // los estados Guardando/Guardado/Error. Soporta callbacks síncronos y los que
+  // devuelven una promesa; no introduce otra fuente de verdad del template.
+  const handleSaveTemplate = useCallback(() => {
+    setSaveStatus('saving');
+    try {
+      const result = (onSaveTemplate as (t: Template) => unknown)(visibleTemplateRef.current);
+      if (result && typeof (result as { then?: unknown }).then === 'function') {
+        (result as Promise<unknown>).then(
+          () => setSaveStatus('saved'),
+          () => setSaveStatus('error'),
+        );
+      } else {
+        setSaveStatus('saved');
+      }
+    } catch {
+      setSaveStatus('error');
+    }
+  }, [onSaveTemplate]);
   const handleCollaborationEvent = useCallback(
     (event: Parameters<typeof applyCollaborationEvent>[1]) => {
       if (isTopLevelCommentSchemaId('schemaId' in event ? event.schemaId : undefined)) {
@@ -4136,7 +4162,8 @@ const TemplateEditor = ({
             onFitPage={() => applyViewportMode('fit-page')}
             onOpenShortcuts={() => window.dispatchEvent(new CustomEvent('sisad-pdfme:shortcut-open-panel'))}
             documentStatus={isIdle ? 'Listo' : 'Editando'}
-            onSave={() => onSaveTemplate(visibleTemplate)}
+            onSave={handleSaveTemplate}
+            saveStatus={saveStatus}
             onExport={exportTemplateExternal}
             sidebarOpen={sidebarOpen}
             featureToggles={{

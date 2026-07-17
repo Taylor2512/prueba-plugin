@@ -95,7 +95,7 @@ const DetailViewContent = ({
           </div>
         )}
 
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view-sections', 'mt-1 space-y-1.5 pb-2')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view-sections', 'mt-0.5 space-y-1 pb-1.5')}>
           {sections.map((section) => (
             <DetailFormSection
               key={section.key}

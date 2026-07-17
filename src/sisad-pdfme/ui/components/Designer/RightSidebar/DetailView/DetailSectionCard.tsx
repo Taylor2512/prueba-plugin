@@ -104,7 +104,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         <div
           className={mergeClassNames(
             DESIGNER_CLASSNAME + 'detail-section-card-head',
-            'flex min-h-[24px] w-full items-center justify-between gap-1 rounded-[0.95rem] border border-slate-200/70 bg-white px-2 py-[0.34rem] shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+            'flex min-h-[22px] w-full items-center justify-between gap-1 rounded-[0.75rem] border border-slate-200/70 bg-white px-1.5 py-[0.22rem] shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
           )}
         >
           {header}
@@ -117,7 +117,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         type="button"
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-head',
-          'group flex min-h-[24px] w-full appearance-none items-center justify-between gap-1 rounded-[0.95rem] border border-slate-200/70 bg-white px-2 py-[0.34rem] text-left shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+          'group flex min-h-[22px] w-full appearance-none items-center justify-between gap-1 rounded-[0.75rem] border border-slate-200/70 bg-white px-1.5 py-[0.22rem] text-left shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
         )}
         aria-expanded={!collapsed}
         aria-controls={`${bodyId}-body`}
@@ -137,7 +137,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
       <div
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-head',
-          'flex min-h-[24px] w-full items-center justify-between gap-1 rounded-[0.85rem] border border-slate-200/70 bg-white px-2 py-[0.18rem] shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+          'flex min-h-[22px] w-full items-center justify-between gap-1 rounded-[0.75rem] border border-slate-200/70 bg-white px-1.5 py-[0.18rem] shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
         )}
       >
         {leading ? <div className={DESIGNER_CLASSNAME + 'detail-section-card-leading'}>{leading}</div> : null}
@@ -152,7 +152,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
       type="button"
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card-head',
-        'group flex min-h-[22px] w-full appearance-none items-center justify-between gap-[0.3125rem] rounded-[0.95rem] border border-slate-200/70 bg-white px-2 py-[0.3rem] text-left shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+        'group flex min-h-[22px] w-full appearance-none items-center justify-between gap-[0.3125rem] rounded-[0.75rem] border border-slate-200/70 bg-white px-1.5 py-[0.22rem] text-left shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
       )}
       aria-expanded={!collapsed}
       aria-controls={`${bodyId}-body`}
@@ -205,7 +205,7 @@ const DetailSectionCard = ({
     <section
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card',
-        'overflow-hidden rounded-[1rem] border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+        'overflow-hidden rounded-[0.85rem] border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
         className,
       )}
       data-section={sectionKey}
@@ -227,7 +227,7 @@ const DetailSectionCard = ({
         id={`${bodyId}-body`}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-body',
-          'mt-px px-2 pb-2 pt-1',
+          'mt-px px-1.5 pb-[0.375rem] pt-[0.1875rem]',
           bodyClassName,
         )}
         aria-hidden={resolvedCollapsed ? 'true' : 'false'}
@@ -235,7 +235,7 @@ const DetailSectionCard = ({
       >
         {resolvedCollapsed ? null : children}
       </div>
-      {footer ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-footer', 'mt-px px-1 pb-1')}>{footer}</div> : null}
+      {footer ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-footer', 'mt-px px-1 pb-[0.1875rem]')}>{footer}</div> : null}
     </section>
   );
 };

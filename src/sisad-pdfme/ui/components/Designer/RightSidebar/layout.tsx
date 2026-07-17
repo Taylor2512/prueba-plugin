@@ -9,7 +9,7 @@ export const SIDEBAR_H_PADDING_PX = 12;
 export const SIDEBAR_V_PADDING_PX = 6;
 
 /** Altura base estimada del header del sidebar, en píxeles. */
-export const SIDEBAR_HEADER_HEIGHT = 52;
+export const SIDEBAR_HEADER_HEIGHT = 44;
 
 type SectionProps = React.HTMLAttributes<HTMLDivElement> & {
   /** Contenido de la sección. */
@@ -38,7 +38,7 @@ export const SidebarFrame = ({ children, className, ...props }: SidebarFrameProp
     className={mergeClassNames(
       DESIGNER_CLASSNAME + 'sidebar-frame',
       DESIGNER_CLASSNAME + 'right-sidebar-layout-frame',
-      'flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
+      'flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-slate-200/70 bg-white/95 shadow-sm',
       className,
     )}
     {...props}
@@ -57,9 +57,9 @@ export const SidebarHeader = ({ children, className, stacked = false, ...props }
   <div
     className={mergeClassNames(
       DESIGNER_CLASSNAME + 'right-sidebar-layout-header',
-      stacked
-        ? 'flex flex-none flex-col items-stretch justify-start gap-1.5 border-b border-slate-200/70 px-2.5 py-2'
-        : 'flex flex-none items-center justify-between gap-2 border-b border-slate-200/70 px-2.5 py-2',
+        stacked
+          ? 'flex flex-none flex-col items-stretch justify-start gap-1 border-b border-slate-200/70 px-2 py-1.5'
+          : 'flex flex-none items-center justify-between gap-1.5 border-b border-slate-200/70 px-2 py-1.5',
       className,
     )}
     {...props}
@@ -84,7 +84,7 @@ export const SidebarHeader = ({ children, className, stacked = false, ...props }
  */
 export const SidebarBody = ({ children, className, ...props }: SectionProps) => (
   <div
-    className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-layout-body', 'flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden overscroll-contain [scrollbar-gutter:stable] px-2 pb-3 pt-2 transition-[opacity,transform] duration-180 ease-out motion-reduce:transition-none', className)}
+    className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-layout-body', 'flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden overscroll-contain [scrollbar-gutter:stable] px-1.5 pb-2.5 pt-1.5 transition-[opacity,transform] duration-180 ease-out motion-reduce:transition-none', className)}
     {...props}
   >
     {children}
@@ -100,7 +100,7 @@ export const SidebarFooter = ({ children, className, ...props }: SectionProps) =
   <div
     className={mergeClassNames(
       DESIGNER_CLASSNAME + 'right-sidebar-layout-footer',
-      'flex-none border-t border-slate-200/70 px-2.5 py-2',
+      'flex-none border-t border-slate-200/70 px-2 py-1.5',
       className,
     )}
     {...props}
