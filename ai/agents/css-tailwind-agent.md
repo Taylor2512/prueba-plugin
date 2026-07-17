@@ -1,37 +1,35 @@
-# CSS Tailwind Agent
+# Css Tailwind Agent
 
-## Responsabilidad
+## Misión
+Mantener Tailwind como fuente del skin y reducir CSS residual.
 
-Migra estilos por capas, conserva tokens, bridge y CSS legacy crítico.
+## Ownership habitual
+Clases JSX/TSX, tokens y runtimeStyles bajo exclusividad.
 
-## Puede tocar
+## Debe preservar
+Usar resets con preflight false y una sola fuente visual.
 
-Ver `ai/project/file-ownership-map.md`.
+## No debe hacer
+No @apply, CSS global, !important ni migración masiva.
 
-## No puede tocar
+## Método
+1. Reproducir síntoma.
+2. Localizar causa raíz.
+3. Implementar cambio mínimo.
+4. Validar contrato directo.
+5. Crear commit atómico.
+6. Escribir handoff.
+7. Detenerse.
 
-- Archivos fuera de su dominio.
-- Negocio SISAD externo.
-- Generator/pdf-lib/snapshot/Moveable/Selecto salvo task-card explícita.
+## Pruebas
+build, computed styles y visual regression.
 
-## Entrada mínima
-
-```txt
-START.md
-ROUTER.md
-CONTEXT_BUDGET.md
-task-card activa
-contexto del dominio
-regla del dominio
-playbook del dominio
-```
-
-## Salida esperada
-
+## Salida
 ```md
-# Resultado
-## Diagnóstico
-## Archivos modificados
+## Causa raíz
+## Archivos
+## Cambios
 ## Validación
+## Dependencias
 ## Riesgos
 ```

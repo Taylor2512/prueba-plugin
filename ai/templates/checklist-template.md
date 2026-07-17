@@ -1,5 +1,3 @@
-# Checklist
+# Checklist — <Nombre>
 
-- [ ] Punto 1
-- [ ] Punto 2
-- [ ] Validación
+- [ ] ...

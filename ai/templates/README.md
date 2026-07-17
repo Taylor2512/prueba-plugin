@@ -1,3 +1,3 @@
 # Templates
 
-Plantillas para extender la arquitectura sin duplicar estilo.
+Formatos canónicos para evitar variantes locales.

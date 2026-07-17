@@ -1,29 +1,37 @@
 # Moveable Selecto Skill
 
-## Objetivo
+## Propósito
+Cambiar interacción sin freeze.
 
-Proteger targets, guards, overlays y shortcuts.
+## Cuándo usar
+Drag, resize, select y modales.
 
 ## Entradas
-
-- Task-card activa.
+- Task-card.
 - Contexto focal.
-- Regla del dominio.
-- Archivos candidatos.
+- Rules.
+- Archivos y tests.
 
-## Pasos
+## Procedimiento
+1. Mapear eventos.
+2. Revisar exclusions.
+3. Preservar policy.
+4. Evitar capture destructivo.
+5. Limpiar locks/timers.
+6. Validar teclado/mouse.
 
-1. Confirmar alcance.
-2. Buscar evidencia con `rg`.
-3. Clasificar riesgos.
-4. Implementar cambio mínimo.
-5. Validar.
-6. Reportar.
+## Validaciones
+Moveable y Selecto no compiten.
+
+## Anti-patrones
+Blur global o stop capture incorrecto.
 
 ## Salida
-
 ```md
+## Alcance
+## Evidencia
 ## Cambios
 ## Validación
 ## Riesgos
+## Dependencia
 ```

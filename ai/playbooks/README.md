@@ -1,3 +1,3 @@
 # Playbooks
 
-Procedimientos. Cargar uno por task-card.
+Procedimientos repetibles usados junto con task-card, context y rules.

@@ -1,29 +1,37 @@
 # Snapshot Safety Skill
 
-## Objetivo
+## Propósito
+Cambiar snapshot sin pérdida.
 
-Preservar metadata en import/export/roundtrip.
+## Cuándo usar
+Persistencia/migration.
 
 ## Entradas
-
-- Task-card activa.
+- Task-card.
 - Contexto focal.
-- Regla del dominio.
-- Archivos candidatos.
+- Rules.
+- Archivos y tests.
 
-## Pasos
+## Procedimiento
+1. Inventariar campos.
+2. Definir compatibilidad.
+3. Migration idempotente.
+4. Serialize/restore.
+5. Multi-doc/groups.
+6. Documentar versión.
 
-1. Confirmar alcance.
-2. Buscar evidencia con `rg`.
-3. Clasificar riesgos.
-4. Implementar cambio mínimo.
-5. Validar.
-6. Reportar.
+## Validaciones
+Roundtrip semántico.
+
+## Anti-patrones
+Renombrar sin migration.
 
 ## Salida
-
 ```md
+## Alcance
+## Evidencia
 ## Cambios
 ## Validación
 ## Riesgos
+## Dependencia
 ```

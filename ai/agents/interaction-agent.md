@@ -1,37 +1,35 @@
 # Interaction Agent
 
-## Responsabilidad
+## Misión
+Gestionar selección, drag, resize, rotate, shortcuts, exclusiones, focus y modal lifecycle.
 
-Protege Selecto, Moveable, shortcuts, selección, drag/resize/rotate y hit-testing.
+## Ownership habitual
+Moveable, Selecto, guards, target selectors, policy y reset.
 
-## Puede tocar
+## Debe preservar
+Preservar selección por plataforma y evitar freeze tras popups.
 
-Ver `ai/project/file-ownership-map.md`.
+## No debe hacer
+No resolver permisos o metadata con guards visuales.
 
-## No puede tocar
+## Método
+1. Reproducir síntoma.
+2. Localizar causa raíz.
+3. Implementar cambio mínimo.
+4. Validar contrato directo.
+5. Crear commit atómico.
+6. Escribir handoff.
+7. Detenerse.
 
-- Archivos fuera de su dominio.
-- Negocio SISAD externo.
-- Generator/pdf-lib/snapshot/Moveable/Selecto salvo task-card explícita.
+## Pruebas
+selection, modal freeze, focus, transform y exclusions.
 
-## Entrada mínima
-
-```txt
-START.md
-ROUTER.md
-CONTEXT_BUDGET.md
-task-card activa
-contexto del dominio
-regla del dominio
-playbook del dominio
-```
-
-## Salida esperada
-
+## Salida
 ```md
-# Resultado
-## Diagnóstico
-## Archivos modificados
+## Causa raíz
+## Archivos
+## Cambios
 ## Validación
+## Dependencias
 ## Riesgos
 ```

@@ -1,29 +1,7 @@
-# Protocolo de actualización de memoria
+# Protocolo de memoria
 
-Actualizar memoria solo si ocurrió una decisión estable o cambio relevante.
+Después de task: changelog, riesgo, pendiente/completado y handoff si cambia el siguiente paso.
 
-## Cuándo actualizar
+Después de wave: project-memory, decisions, risks, pending/completed, handoff y plan status.
 
-- Nueva decisión arquitectónica.
-- Cambio en estructura de carpetas.
-- Cambio de regla global.
-- Task-card completada con impacto futuro.
-- Riesgo nuevo detectado.
-
-## Qué no guardar
-
-- Logs transitorios.
-- Errores ya corregidos sin impacto futuro.
-- Preferencias temporales.
-- Detalles duplicados de reportes.
-
-## Formato
-
-```md
-## YYYY-MM-DD — Título
-- Decisión:
-- Motivo:
-- Archivos afectados:
-- Riesgo:
-- Próxima acción:
-```
+No incluir logs completos, diffs, conversaciones o métricas sin SHA.

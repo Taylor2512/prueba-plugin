@@ -1,43 +1,36 @@
-# W15-COPILOT-TEST-INFRA
+# W15-COPILOT-TEST-INFRA — Infraestructura de tests
 
 ## Estado
+`active`
 
-`completed`
+## Wave
+`1.5`
 
 ## Proveedor
-
-GitHub Copilot
+`Copilot`
 
 ## Agente lógico
+`test-infrastructure-agent + lab-shell-agent`
 
-lab-shell-agent + visual-baseline-agent, limitado a infraestructura.
-
-## Worktree
-
+## Identidad
 ```txt
-/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-copilot
+worktree: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/copilot
 branch: ai/copilot
-port: 5183
 ```
 
 ## Objetivo
-
-Corregir resolución y tests stale sin recrear wrappers retirados.
+Resolver imports y tests stale sin recrear wrappers.
 
 ## Owned paths
-
 ```txt
 vitest.config.ts
 tests/setup.*
 src/features/pdfcomponent/**
 tests/unit/features/pdfcomponent/**
-tests/unit/App.test.ts
-tests/unit/main.test.ts
-tests unitarios smoke de Designer y RightSidebar
+tests smoke autorizados
 ```
 
 ## Forbidden paths
-
 ```txt
 RightSidebar/DetailView/**
 Canvas/**
@@ -45,19 +38,33 @@ schemas/**
 browser/**
 pdf-lib/**
 package.json
-package-lock.json
 ```
 
-`package.json` solo se toca con autorización del integrador.
-
 ## Casos
+- AntD theme internal
+- CaseGrid/Hero/IconButton stale
+- smoke imports
+- host routes
+- no node_modules patch
 
-- Resolución `antd/es/theme/internal` en Vitest.
-- Tests stale de CaseGrid/Hero/IconButton.
-- Smoke imports App/main/Designer/RightSidebar.
-- No parchear node_modules.
-- No recrear wrappers muertos.
+## Validación focal
+```bash
+npx eslint <archivos>
+npx vitest run <tests>
+```
+
+## Criterios
+- [ ] Causa raíz.
+- [ ] Ownership.
+- [ ] Tests focales.
+- [ ] Commit atómico.
+- [ ] Sin expected falsos.
+- [ ] Handoff.
 
 ## Handoff
+```txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai-coordination/sisad-pdfme/handoffs/COPILOT-W15.md
+```
 
-`COPILOT-W15.md`
+## Parada
+Detenerse al requerir una ruta no owned o más de 5 archivos productivos.

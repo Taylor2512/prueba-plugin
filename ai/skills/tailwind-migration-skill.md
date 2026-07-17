@@ -1,29 +1,37 @@
 # Tailwind Migration Skill
 
-## Objetivo
+## Propósito
+Migrar skin sin dañar geometría.
 
-Migrar CSS puro a Tailwind por capas sin afectar geometría.
+## Cuándo usar
+CSS o style duplicado.
 
 ## Entradas
-
-- Task-card activa.
+- Task-card.
 - Contexto focal.
-- Regla del dominio.
-- Archivos candidatos.
+- Rules.
+- Archivos y tests.
 
-## Pasos
+## Procedimiento
+1. Clasificar propiedades.
+2. Mover skin a className.
+3. Conservar dinámicos.
+4. Agregar resets.
+5. Eliminar CSS con evidencia.
+6. Validar visual.
 
-1. Confirmar alcance.
-2. Buscar evidencia con `rg`.
-3. Clasificar riesgos.
-4. Implementar cambio mínimo.
-5. Validar.
-6. Reportar.
+## Validaciones
+Sin @apply ni doble fuente.
+
+## Anti-patrones
+Migración masiva o !important.
 
 ## Salida
-
 ```md
+## Alcance
+## Evidencia
 ## Cambios
 ## Validación
 ## Riesgos
+## Dependencia
 ```

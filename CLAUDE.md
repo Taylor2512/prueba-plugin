@@ -1,34 +1,36 @@
-# CLAUDE.md — Adaptador delgado para Claude
+# CLAUDE.md — Adaptador para Claude
 
-Claude usa la misma fuente de verdad que Codex y Copilot:
+## Fuente de verdad
 
 ```txt
 ai/start/START.md
 ai/start/QUICKSTART-CLAUDE.md
 ```
 
-## Worktree
+## Implementación
 
 ```txt
-/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-claude
+worktree: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/claude
 branch: ai/claude
 port: 5182
 ```
 
-Claude no debe trabajar desde `prueba-plugin` ni desde `prueba-plugin-merge` cuando actúa como implementador.
+## Perfil recomendado
 
-## Modo de trabajo
+- RightSidebar, DetailView y ListView.
+- Topbar, Guardar y menú global.
+- Scroll ownership.
+- DocumentsRail y CommentsRail.
+- Arquitectura visual y accesibilidad.
+- Contratos semánticos del inspector.
 
-- No leer todos los Markdown.
-- No generar otro plan cuando ya existe una task-card.
-- No mezclar Tailwind, schemas, canvas, runtime y snapshot en un mismo commit.
-- No asumir el rol de integrador durante el trabajo paralelo.
-- Máximo 8 archivos inspeccionados y 5 archivos productivos modificados por slice.
-- Crear commits atómicos en `ai/claude`.
-- Escribir handoff externo y detenerse.
+## Restricciones
 
-## Coordinación
+- No transformar una task en auditoría general.
+- Máximo 8 archivos abiertos y 5 productivos por commit.
+- No actuar simultáneamente como integrador.
+- No tocar Canvas, Moveable, Selecto, pdf-lib o snapshot sin ownership.
+- No duplicar estilos estáticos entre `className` y `style`.
+- No integrar commits de otros agentes.
 
-```txt
-/Users/desarrollo1/Documents/Taylor/frontend/ai-coordination/sisad-pdfme
-```
+Crear commit en `ai/claude`, escribir handoff externo y detenerse.

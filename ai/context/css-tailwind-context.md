@@ -1,26 +1,21 @@
-# Contexto CSS/Tailwind
+# Contexto — Css Tailwind Context
 
-## Archivos CSS reales
+## Foco
+Skin JSX/TSX, preflight false, tokens, style dinámico y runtimeStyles técnico.
 
-```txt
-src/styles/tailwind.css
-src/style.css
-src/styles/sisad-tailwind-bridge.css
-src/features/pdfcomponent/labRoutes.css
-src/sisad-pdfme/ui/styles/sisad-pdfme.css
-src/sisad-pdfme/ui/styles/tokens.css
-```
+## Preguntas
+- ¿Cuál es la fuente de verdad?
+- ¿Qué identidad persiste?
+- ¿Qué es actual y qué histórico?
+- ¿Quién es owner?
+- ¿Qué tests protegen el contrato?
 
-## Evidencia/reports
+## Riesgos
+- Duplicar resolvers.
+- Consumir internals.
+- Cambiar metadata para arreglar UI.
+- Ajustar tests sin contrato.
+- Mezclar skin y geometría.
 
-```txt
-reports/tailwind-migration/**
-.tailwind-migration-backups/**
-```
-
-Los reports y backups no son fuente activa. Sirven para auditoría.
-
-## Regla de seguridad
-
-Migrar clases visuales a JSX/TSX, pero conservar CSS crítico:
-tokens, geometry, zoom, transforms, Moveable, Selecto, print/PDF, canvas/paper, pseudo-elementos complejos.
+## Evidencia
+Rutas exactas, reproducción, diff mínimo y resultado focal.

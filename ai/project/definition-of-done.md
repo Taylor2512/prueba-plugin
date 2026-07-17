@@ -1,12 +1,19 @@
 # Definition of Done
 
-Una task-card se considera completa cuando:
+Una task está completa cuando:
 
-- La causa raíz está identificada.
-- Los archivos modificados respetan el presupuesto.
-- No se tocó un proceso fuera del alcance.
-- Se preservó metadata crítica.
-- Se ejecutó validación focal.
-- Se registraron riesgos residuales.
-- Se actualizó memoria si hubo decisión nueva.
-- Se propuso nueva task-card si quedó trabajo fuera de alcance.
+- [ ] causa raíz documentada;
+- [ ] ownership respetado;
+- [ ] diff mínimo;
+- [ ] sin duplicidad;
+- [ ] sin CSS prohibido;
+- [ ] sin expected falsos;
+- [ ] ESLint focal;
+- [ ] Vitest focal;
+- [ ] Playwright focal cuando aplica;
+- [ ] diff check;
+- [ ] commit atómico;
+- [ ] handoff;
+- [ ] lock liberado.
+
+Una wave está completa cuando el gate global pasa y `main` avanza por fast-forward.

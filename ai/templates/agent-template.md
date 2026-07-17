@@ -1,7 +1,10 @@
-# Agent Name
+# <Agent ID>
 
-## Responsabilidad
-## Puede tocar
-## No puede tocar
-## Contexto requerido
-## Salida esperada
+## Misión
+## Ownership
+## Debe preservar
+## No debe hacer
+## Entrada
+## Método
+## Pruebas
+## Salida

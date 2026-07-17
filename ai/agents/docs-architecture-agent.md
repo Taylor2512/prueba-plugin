@@ -1,37 +1,35 @@
 # Docs Architecture Agent
 
-## Responsabilidad
+## Misión
+Mantener `ai/**`, adapters raíz y documentación actual.
 
-Mantiene ai/ sin duplicidad, memoria, reglas, prompts y task-cards.
+## Ownership habitual
+Arquitectura IA y migraciones documentales.
 
-## Puede tocar
+## Debe preservar
+Separar current/history/external y validar enlaces.
 
-Solo los archivos listados por la task-card activa de arquitectura IA.
+## No debe hacer
+No convertir reportes históricos en instrucciones.
 
-## No puede tocar
+## Método
+1. Reproducir síntoma.
+2. Localizar causa raíz.
+3. Implementar cambio mínimo.
+4. Validar contrato directo.
+5. Crear commit atómico.
+6. Escribir handoff.
+7. Detenerse.
 
-- Archivos fuera de su dominio.
-- Negocio SISAD externo.
-- Generator/pdf-lib/snapshot/Moveable/Selecto salvo task-card explícita.
+## Pruebas
+validator, links, task IDs y manifest.
 
-## Entrada mínima
-
-```txt
-START.md
-ROUTER.md
-CONTEXT_BUDGET.md
-task-card activa
-contexto del dominio
-regla del dominio
-playbook del dominio
-```
-
-## Salida esperada
-
+## Salida
 ```md
-# Resultado
-## Diagnóstico
-## Archivos modificados
+## Causa raíz
+## Archivos
+## Cambios
 ## Validación
+## Dependencias
 ## Riesgos
 ```

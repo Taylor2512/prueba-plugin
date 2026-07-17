@@ -1,0 +1,14 @@
+# Planes
+
+Los planes describen estrategia y dependencias. Las task-cards describen implementación inmediata.
+
+## Activos
+1. `PLAN_MAESTRO_MULTIAGENTE_POST_TAILWIND.md`
+2. `PLAN_00_REPARACION_DOCUMENTAL_Y_CONTEXTO.md`
+3. `PLAN_01_WAVE_1_5_ESTABILIZACION.md`
+4. `PLAN_02_UX_UI_STAGE_TOPBAR.md`
+5. `PLAN_03_CANVAS_INTERACCIONES.md`
+6. `PLAN_04_OWNER_COLOR_RUNTIME.md`
+7. `PLAN_05_RUNTIME_STYLES.md`
+8. `PLAN_06_RELEASE_QA.md`
+9. `ROADMAP_PORTABILIDAD.md`

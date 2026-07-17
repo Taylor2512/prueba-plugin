@@ -1,3 +1,3 @@
-# Adapters
+# Adapters de proveedores
 
-Adaptadores para herramientas. Los archivos raíz deben ser copias delgadas de estos o apuntar a `ai/start/START.md`.
+`AGENTS.md`, `CLAUDE.md` y `.github/copilot-instructions.md` son adaptadores delgados. No duplicar planes, rules o task-cards.

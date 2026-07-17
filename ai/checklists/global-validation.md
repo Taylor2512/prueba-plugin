@@ -1,8 +1,10 @@
-# Global Validation Checklist
+# Global Validation
 
-- [ ] Build pasa.
-- [ ] No hay `any` nuevo.
-- [ ] Metadata preservada.
-- [ ] No se tocó negocio externo.
-- [ ] No se duplicó arquitectura.
-- [ ] Nueva memoria si hubo decisión.
+- [ ] git diff --check
+- [ ] lint
+- [ ] build
+- [ ] Vitest
+- [ ] Playwright focal
+- [ ] ownership
+- [ ] sin CSS prohibido
+- [ ] sin expected falsos

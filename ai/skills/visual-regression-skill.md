@@ -1,29 +1,37 @@
 # Visual Regression Skill
 
-## Objetivo
+## Propósito
+Detectar regresiones con evidencia.
 
-Usar public/img-version como baseline y comparar visualmente.
+## Cuándo usar
+UI y responsive.
 
 ## Entradas
-
-- Task-card activa.
+- Task-card.
 - Contexto focal.
-- Regla del dominio.
-- Archivos candidatos.
+- Rules.
+- Archivos y tests.
 
-## Pasos
+## Procedimiento
+1. Fijar viewport/datos.
+2. Capturar before/after.
+3. Comparar regiones.
+4. Validar interacción.
+5. Registrar métricas.
+6. Crear test estable.
 
-1. Confirmar alcance.
-2. Buscar evidencia con `rg`.
-3. Clasificar riesgos.
-4. Implementar cambio mínimo.
-5. Validar.
-6. Reportar.
+## Validaciones
+Ruta, commit y viewport.
+
+## Anti-patrones
+Aprobar por memoria.
 
 ## Salida
-
 ```md
+## Alcance
+## Evidencia
 ## Cambios
 ## Validación
 ## Riesgos
+## Dependencia
 ```

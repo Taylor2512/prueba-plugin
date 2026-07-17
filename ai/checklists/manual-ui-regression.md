@@ -1,19 +1,13 @@
-# Manual UI Regression
+# Manual Ui Regression
 
-## `/lab/multi-document-routing`
-
-- [x] Header compacto.
-- [x] Canvas protagonista.
-- [x] LeftSidebar se parece al baseline.
-- [x] RightSidebar se parece al baseline.
-- [ ] Drag/drop funciona.
-- [ ] Selección funciona.
-- [ ] Página 2+ funciona.
-- [ ] Multi-recipient funciona.
-- [x] ResultsPanel no tapa toolbar.
-
-## `/lab/generator-runtime`
-
-- [ ] Form limpio.
-- [ ] Viewer limpio.
-- [ ] PDF sin chrome.
+- [ ] header
+- [ ] topbar
+- [ ] left
+- [ ] right
+- [ ] canvas
+- [ ] drag
+- [ ] selection
+- [ ] page 2+
+- [ ] multi-recipient
+- [ ] popovers
+- [ ] responsive

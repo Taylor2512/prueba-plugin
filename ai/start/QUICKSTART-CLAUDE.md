@@ -1,63 +1,31 @@
 # Quickstart — Claude
 
-## Worktree obligatorio
+## Identidad
 
 ```txt
-/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-claude
+worktree: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/claude
 branch: ai/claude
 port: 5182
 ```
 
-## Verificación
+## Perfil
 
-```bash
-pwd
-git branch --show-current
-git status --short
-```
+Arquitectura visual, inspector, topbar, scroll, DocumentsRail y UX accesible.
 
-Detente si no coincide.
+## Secuencia
 
-## Perfil de trabajo
-
-Claude ejecuta preferentemente:
-
-- arquitectura visual;
-- RightSidebar;
-- DetailView;
-- ListView;
-- DocumentsRail;
-- topbar y Guardar;
-- contratos de scroll;
-- composición Tailwind;
-- resolución semántica de integración cuando actúa en una sesión separada.
-
-## Regla principal
-
-No conviertas una task-card de implementación en otra auditoría general.
-
-## Implementador vs. integrador
-
-Son sesiones distintas:
-
-```txt
-Implementador:
-  prueba-plugin-claude / ai/claude
-
-Integrador:
-  prueba-plugin-merge / ai/integration
-```
-
-La sesión implementadora no usa `cherry-pick`, no edita integración y no absorbe cambios de otros agentes.
-
-## Método
-
-1. Leer `START.md`.
-2. Cargar una sola task-card.
-3. Respetar ownership.
-4. Hacer commits pequeños.
-5. Ejecutar pruebas focales.
-6. Escribir handoff externo.
+1. Validar `pwd`, rama y status.
+2. Leer START y task-card.
+3. Reclamar lock.
+4. Implementar o integrar según rol.
+5. Ejecutar validación focal o gate.
+6. Entregar evidencia.
 7. Detenerse.
 
-No continúes polish visual si el gate funcional de la wave anterior está abierto.
+## Reglas
+
+1. Implementador e integrador son sesiones distintas.
+2. No generar otro plan.
+3. No comenzar polish con gate funcional abierto.
+4. No usar estilos estáticos duplicados.
+5. Crear commit y handoff.

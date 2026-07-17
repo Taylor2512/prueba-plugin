@@ -1,76 +1,88 @@
-# Suite integral de pruebas — SISAD PDFME
+# SISAD PDFME
 
-Suite generada a partir del código, documentación, estilos y especificación funcional consolidados el 16 de julio de 2026.
+SISAD PDFME es un diseñador y runtime PDF para React/Vite con soporte para Designer, Form, Viewer, Generator, múltiples documentos, destinatarios, schemas, snapshot e integración con hosts externos.
 
-## Alcance
-
-Incluye pruebas para:
-
-- catálogo y familias de schemas;
-- option groups, checkbox/radio/select;
-- firma y providers;
-- recipients, permisos, colores y registry;
-- assignments;
-- documents, páginas y routing;
-- comentarios y anchors;
-- snapshot, migración y validación;
-- runtime Designer/Form/Viewer;
-- teclado y acciones;
-- LeftSidebar;
-- RightSidebar, ListView y DetailView;
-- Docs, Comments y Reasignar;
-- Canvas, multipágina, drag/drop y zoom;
-- selector de usuario activo;
-- regresiones visuales y migración Tailwind.
-
-## Integración
-
-Desde la raíz de `prueba-plugin`:
-
-```bash
-unzip SISAD_PDFME_TEST_SUITE.zip -d /tmp/sisad-pdfme-tests
-cp -R /tmp/sisad-pdfme-tests/sisad-pdfme-generated-test-suite/tests ./
-```
-
-Los archivos se ubican en subcarpetas `generated`, por lo que no reemplazan pruebas existentes:
+## Arquitectura principal
 
 ```txt
-tests/unit/generated/
-tests/playwright/generated/
+src/sisad-pdfme/
+├── adapters/
+├── assignments/
+├── browser/
+├── collaboration/
+├── common/
+├── config/
+├── contracts/
+├── documents/
+├── generator/
+├── integration/
+├── pdf-lib/
+├── react/
+├── recipients/
+├── runtime/
+├── schemas/
+├── shared/
+└── ui/
 ```
 
-## Ejecución
+El host de laboratorio vive en `src/features/pdfcomponent/`.
+
+## Desarrollo
 
 ```bash
-npx vitest run tests/unit/generated
-npx playwright test tests/playwright/generated --project=chromium
+npm install
+npm run dev
 ```
 
-Ejecución por dominio:
+Ruta de referencia:
+
+```txt
+http://localhost:5174/lab/multi-document-routing
+```
+
+## Validación
 
 ```bash
-npx vitest run tests/unit/generated/recipients
-npx vitest run tests/unit/generated/schemas
-npx playwright test tests/playwright/generated/right-sidebar --project=chromium
-npx playwright test tests/playwright/generated/canvas --project=chromium
+npm run lint
+npm run build
+npx vitest run
+npx playwright test --project=chromium
 ```
 
-## Consideraciones
+## Contrato visual
 
-1. Las pruebas unitarias importan la API real desde `@/sisad-pdfme/...` y `@sisad-pdfme/schemas`.
-2. Los specs Playwright usan la ruta `/lab/multi-document-routing` y selectores semánticos con fallbacks.
-3. Funciones opcionales se omiten mediante `test.skip()` cuando el host las deshabilita por configuración.
-4. Casos que documentan defectos confirmados pero todavía no corregidos usan `it.todo` o `test.fixme` para no bloquear la integración inicial.
-5. `css-migration-budget.test.ts` usa el presupuesto observado en los archivos analizados: 47 `@apply` en `sisad-pdfme.css` y 1 en `tokens.css`. Reduzca esos límites cuando avance la migración.
-6. Las capturas de `visual-baseline.spec.ts` requieren crear/aceptar snapshots la primera vez:
+- Tailwind es la fuente principal del skin en JSX/TSX.
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` permanece vacío.
+- `tokens.css` conserva tokens compartidos.
+- `runtimeStyles.ts` solo conserva CSS técnico demostrado.
+- `preflight: false` exige resets locales como `border-solid`, `appearance-none` y `box-border`.
+- Moveable, Selecto, guías, impresión, geometría y nodos de terceros requieren tratamiento técnico explícito.
 
-```bash
-npx playwright test tests/playwright/generated/visual/visual-baseline.spec.ts --update-snapshots
+## Documentación
+
+```txt
+docs/README.md
+ai/README.md
+ai/start/START.md
 ```
 
-## Archivos de apoyo
+## Trabajo multiagente local
 
-- `TEST_CASE_MATRIX.csv`: matriz de casos y cobertura.
-- `KNOWN_GAPS.md`: riesgos y casos pendientes detectados.
-- `INTEGRATION_CHECKLIST.md`: pasos para integrar sin dañar las pruebas actuales.
-- `scripts/run-generated-tests.sh`: ejecución completa.
+| Rol | Carpeta | Rama |
+|---|---|---|
+| Main/coordinador | `prueba-plugin` | `main` |
+| Integración | `.worktrees/merge` | `ai/integration` |
+| Codex | `.worktrees/codex` | `ai/codex` |
+| Claude | `.worktrees/claude` | `ai/claude` |
+| Copilot | `.worktrees/copilot` | `ai/copilot` |
+
+Los worktrees viven dentro de `prueba-plugin/.worktrees/`, están ignorados por Git y excluidos de scanners, búsquedas y builds.
+
+Abra `SISAD-PDFME-MULTIAGENT.code-workspace` para visualizar main, integración y los tres agentes en una sola ventana de VS Code sin navegar manualmente entre carpetas.
+
+## Portabilidad
+
+```txt
+src/sisad-pdfme no importa lógica concreta del host.
+El host entrega configuración, adapters, documentos, recipients y callbacks.
+```

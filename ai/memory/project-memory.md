@@ -1,20 +1,12 @@
-# Project Memory — SISAD PDFME
+# Project memory
 
-## Estado actual
+SISAD PDFME es una librería portable React/Vite con Designer, Form, Viewer y Generator.
 
-El proyecto `sisad-pdfme` es un diseñador PDF con laboratorios bajo `src/features/pdfcomponent`, core bajo `src/sisad-pdfme`, y migración visual en progreso de CSS puro a Tailwind.
+## Visual
+Tailwind-first, sisad-pdfme.css vacío, tokens activo, RightSidebar scroll corregido. Pendientes topbar, LeftSidebar, toolbar contextual y polish.
 
-## Reglas persistentes
+## Funcional
+Multi-document, recipients, reassignment, owner colors, wrappers públicos, snapshot y generator existen. Wave 1.5 estabiliza tests.
 
-- `src/sisad-pdfme` es core reutilizable.
-- `src/features/pdfcomponent` es host/lab.
-- No mezclar lógica de negocio SISAD dentro del core.
-- No tocar Moveable/Selecto/geometría sin task-card explícita.
-- `public/img-version` es baseline visual para regresiones Tailwind.
-- Tailwind debe tener `preflight: false`.
-- `tokens.css` es fuente de verdad visual.
-- Bridge Tailwind conserva classNames existentes.
-
-## Riesgo activo
-
-La migración Tailwind puede romper layout por doble fuente de verdad: Tailwind JSX + bridge + CSS legacy. Corregir por capas.
+## Operación
+Worktrees internos reutilizables, ramas ai/codex/claude/copilot/integration, coordinación externa y main ff-only.

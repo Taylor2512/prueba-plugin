@@ -1,6 +1,21 @@
-# Playbook — Canvas Multipage
+# pb-canvas-multipage
 
-1. Buscar cálculo de page target.
-2. Validar drop página 2.
-3. Validar selección/move/resize página 2.
-4. Validar snapshot.
+## Precondiciones
+- Task activa.
+- Ownership exclusivo.
+- Reproducción.
+- Worktree correcto.
+
+## Procedimiento
+1. Página 2+.
+2. Mapear IDs.
+3. Separar coordenadas.
+4. Cambio mínimo.
+5. Scroll/drop/selection.
+6. Overlays.
+
+## Salida
+Diff mínimo, pruebas focales, commit y handoff.
+
+## Parada
+No ampliar scope ni corregir dependencias ajenas.

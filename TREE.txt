@@ -1,0 +1,290 @@
+SISAD_PDFME_AI_ARCHITECTURE_V3_1_EMBEDDED_WORKTREES_2026-07-17/
+├── prueba-plugin
+│   ├── .github
+│   │   └── copilot-instructions.md
+│   ├── ai
+│   │   ├── adapters
+│   │   │   ├── provider-capability-map.md
+│   │   │   ├── README.md
+│   │   │   └── session-opening-checklist.md
+│   │   ├── agents
+│   │   │   ├── accessibility-agent.md
+│   │   │   ├── canvas-agent.md
+│   │   │   ├── css-tailwind-agent.md
+│   │   │   ├── designer-runtime-agent.md
+│   │   │   ├── docs-architecture-agent.md
+│   │   │   ├── inspector-agent.md
+│   │   │   ├── integration-agent.md
+│   │   │   ├── interaction-agent.md
+│   │   │   ├── lab-shell-agent.md
+│   │   │   ├── README.md
+│   │   │   ├── registry.md
+│   │   │   ├── schema-agent.md
+│   │   │   ├── snapshot-agent.md
+│   │   │   ├── test-infrastructure-agent.md
+│   │   │   └── visual-baseline-agent.md
+│   │   ├── archive
+│   │   │   ├── README.md
+│   │   │   └── SUPERSEDED_PLANS.md
+│   │   ├── baselines
+│   │   │   ├── evidence-index.md
+│   │   │   ├── README.md
+│   │   │   ├── regions.md
+│   │   │   └── visual-baseline-protocol.md
+│   │   ├── checklists
+│   │   │   ├── accessibility.md
+│   │   │   ├── action-contract.md
+│   │   │   ├── documentation-consistency.md
+│   │   │   ├── global-validation.md
+│   │   │   ├── integration-gate.md
+│   │   │   ├── manual-ui-regression.md
+│   │   │   ├── README.md
+│   │   │   ├── release-readiness.md
+│   │   │   ├── schema-completeness.md
+│   │   │   ├── tailwind-validation.md
+│   │   │   ├── test-triage.md
+│   │   │   ├── visual-evidence.md
+│   │   │   └── worktree-wave-checklist.md
+│   │   ├── context
+│   │   │   ├── accessibility-context.md
+│   │   │   ├── action-map-context.md
+│   │   │   ├── ai-docs-context.md
+│   │   │   ├── canvas-multipage-context.md
+│   │   │   ├── css-tailwind-context.md
+│   │   │   ├── inspector-context.md
+│   │   │   ├── lab-host-context.md
+│   │   │   ├── owner-color-context.md
+│   │   │   ├── README.md
+│   │   │   ├── runtime-config-context.md
+│   │   │   ├── schema-families-context.md
+│   │   │   ├── selection-transform-context.md
+│   │   │   ├── snapshot-context.md
+│   │   │   ├── testing-context.md
+│   │   │   ├── visual-baseline-context.md
+│   │   │   └── worktree-coordination-context.md
+│   │   ├── coordination
+│   │   │   ├── worktrees
+│   │   │   │   ├── templates
+│   │   │   │   │   ├── GATE.md
+│   │   │   │   │   ├── HANDOFF.md
+│   │   │   │   │   ├── INCIDENT.md
+│   │   │   │   │   └── STATUS.md
+│   │   │   │   ├── INTEGRATION-PROTOCOL.md
+│   │   │   │   ├── OWNERSHIP.md
+│   │   │   │   ├── README.md
+│   │   │   │   ├── WAVE-1.5.md
+│   │   │   │   ├── WAVE-2.md
+│   │   │   │   └── WORKTREE-MAP.md
+│   │   │   └── README.md
+│   │   ├── docs-migration
+│   │   │   ├── changelog.md
+│   │   │   ├── MIGRATION_TO_EMBEDDED_WORKTREES.md
+│   │   │   ├── MIGRATION_TO_V3.md
+│   │   │   └── README.md
+│   │   ├── memory
+│   │   │   ├── changelog.md
+│   │   │   ├── completed-checklist.md
+│   │   │   ├── decisions.md
+│   │   │   ├── external-repositories.md
+│   │   │   ├── known-risks.md
+│   │   │   ├── memory-update-protocol.md
+│   │   │   ├── metrics-current.md
+│   │   │   ├── pending-checklist.md
+│   │   │   ├── project-memory.md
+│   │   │   ├── README.md
+│   │   │   └── session-handoff.md
+│   │   ├── plans
+│   │   │   ├── PLAN_00_REPARACION_DOCUMENTAL_Y_CONTEXTO.md
+│   │   │   ├── PLAN_01_WAVE_1_5_ESTABILIZACION.md
+│   │   │   ├── PLAN_02_UX_UI_STAGE_TOPBAR.md
+│   │   │   ├── PLAN_03_CANVAS_INTERACCIONES.md
+│   │   │   ├── PLAN_04_OWNER_COLOR_RUNTIME.md
+│   │   │   ├── PLAN_05_RUNTIME_STYLES.md
+│   │   │   ├── PLAN_06_RELEASE_QA.md
+│   │   │   ├── PLAN_MAESTRO_MULTIAGENTE_POST_TAILWIND.md
+│   │   │   ├── README.md
+│   │   │   └── ROADMAP_PORTABILIDAD.md
+│   │   ├── playbooks
+│   │   │   ├── pb-accessibility.md
+│   │   │   ├── pb-ai-docs-refactor.md
+│   │   │   ├── pb-canvas-multipage.md
+│   │   │   ├── pb-canvas-overlay-positioning.md
+│   │   │   ├── pb-css-tailwind-migration.md
+│   │   │   ├── pb-git-integration.md
+│   │   │   ├── pb-incident-recovery.md
+│   │   │   ├── pb-inspector.md
+│   │   │   ├── pb-lab-host.md
+│   │   │   ├── pb-runtime-integration.md
+│   │   │   ├── pb-schema-families.md
+│   │   │   ├── pb-selection-transform.md
+│   │   │   ├── pb-snapshot.md
+│   │   │   ├── pb-test-stabilization.md
+│   │   │   ├── pb-visual-regression.md
+│   │   │   ├── pb-worktree-multiagent.md
+│   │   │   └── README.md
+│   │   ├── project
+│   │   │   ├── architecture-principles.md
+│   │   │   ├── css-tailwind-contract.md
+│   │   │   ├── definition-of-done.md
+│   │   │   ├── documentation-contract.md
+│   │   │   ├── file-ownership-map.md
+│   │   │   ├── git-operating-model.md
+│   │   │   ├── glossary.md
+│   │   │   ├── goals.md
+│   │   │   ├── non-goals.md
+│   │   │   ├── public-api-boundary.md
+│   │   │   ├── scope.md
+│   │   │   ├── security-and-secrets.md
+│   │   │   ├── testing-strategy.md
+│   │   │   └── worktree-topology.md
+│   │   ├── prompts
+│   │   │   ├── PROMPT_ACTUALIZAR_MEMORIA.md
+│   │   │   ├── PROMPT_ARRANQUE_CLAUDE.md
+│   │   │   ├── PROMPT_ARRANQUE_CODEX.md
+│   │   │   ├── PROMPT_ARRANQUE_COPILOT.md
+│   │   │   ├── PROMPT_CREAR_TASK_CARD.md
+│   │   │   ├── PROMPT_IMPLEMENTAR_TASK_CARD.md
+│   │   │   ├── PROMPT_INTEGRADOR.md
+│   │   │   ├── PROMPT_MAESTRO_MULTIAGENTE_WORKTREES.md
+│   │   │   ├── PROMPT_MANTENIMIENTO_DOCUMENTACION.md
+│   │   │   ├── PROMPT_MIGRACION_TAILWIND.md
+│   │   │   ├── PROMPT_RECUPERACION_INCIDENTE.md
+│   │   │   ├── PROMPT_REVISION_UX_UI.md
+│   │   │   ├── PROMPT_TRIAGE_TESTS.md
+│   │   │   └── README.md
+│   │   ├── reports
+│   │   │   ├── architecture-v3-audit.md
+│   │   │   └── README.md
+│   │   ├── router
+│   │   │   ├── CONTEXT_BUDGET.md
+│   │   │   ├── ROUTER.md
+│   │   │   ├── ROUTING_EXAMPLES.md
+│   │   │   └── TASK_INTAKE.md
+│   │   ├── rules
+│   │   │   ├── accessibility-rules.md
+│   │   │   ├── ai-docs-rules.md
+│   │   │   ├── canvas-rules.md
+│   │   │   ├── css-migration-rules.md
+│   │   │   ├── global-rules.md
+│   │   │   ├── inspector-rules.md
+│   │   │   ├── integration-rules.md
+│   │   │   ├── moveable-selecto-rules.md
+│   │   │   ├── public-api-rules.md
+│   │   │   ├── README.md
+│   │   │   ├── schema-rules.md
+│   │   │   ├── snapshot-rules.md
+│   │   │   ├── testing-rules.md
+│   │   │   ├── visual-regression-rules.md
+│   │   │   └── worktree-rules.md
+│   │   ├── skills
+│   │   │   ├── accessibility-skill.md
+│   │   │   ├── canvas-multipage-skill.md
+│   │   │   ├── docs-architecture-skill.md
+│   │   │   ├── git-integration-skill.md
+│   │   │   ├── host-adapter-skill.md
+│   │   │   ├── incident-recovery-skill.md
+│   │   │   ├── inspector-skill.md
+│   │   │   ├── memory-update-skill.md
+│   │   │   ├── moveable-selecto-skill.md
+│   │   │   ├── multiagent-worktree-skill.md
+│   │   │   ├── option-groups-skill.md
+│   │   │   ├── prompt-engineering-skill.md
+│   │   │   ├── README.md
+│   │   │   ├── repository-analysis-skill.md
+│   │   │   ├── runtime-integration-skill.md
+│   │   │   ├── schema-contract-skill.md
+│   │   │   ├── snapshot-safety-skill.md
+│   │   │   ├── tailwind-migration-skill.md
+│   │   │   ├── test-triage-skill.md
+│   │   │   └── visual-regression-skill.md
+│   │   ├── start
+│   │   │   ├── QUICKSTART-CLAUDE.md
+│   │   │   ├── QUICKSTART-CODEX.md
+│   │   │   ├── QUICKSTART-COPILOT.md
+│   │   │   ├── QUICKSTART-INTEGRATOR.md
+│   │   │   └── START.md
+│   │   ├── subagents
+│   │   │   ├── accessibility-reviewer.md
+│   │   │   ├── anti-hallucination-reviewer.md
+│   │   │   ├── baseline-visual-critic.md
+│   │   │   ├── code-docs-writer.md
+│   │   │   ├── css-auditor.md
+│   │   │   ├── dependency-reviewer.md
+│   │   │   ├── git-scope-reviewer.md
+│   │   │   ├── legacy-css-guardian.md
+│   │   │   ├── memory-curator.md
+│   │   │   ├── prompt-engineer.md
+│   │   │   ├── public-api-reviewer.md
+│   │   │   ├── README.md
+│   │   │   ├── regression-tester.md
+│   │   │   ├── tailwind-migrator.md
+│   │   │   └── test-contract-reviewer.md
+│   │   ├── task-cards
+│   │   │   ├── active
+│   │   │   │   ├── W15-CLAUDE-INSPECTOR-CONTRACTS.md
+│   │   │   │   ├── W15-CODEX-CORE-CONTRACTS.md
+│   │   │   │   ├── W15-COPILOT-TEST-INFRA.md
+│   │   │   │   └── W15-INTEGRATION-GATE.md
+│   │   │   ├── backlog
+│   │   │   │   ├── W2-CLAUDE-STAGE-TOPBAR.md
+│   │   │   │   ├── W2-CODEX-CONTEXT-TOOLBAR.md
+│   │   │   │   ├── W2-COPILOT-LEFT-SIDEBAR.md
+│   │   │   │   ├── W3-CLAUDE-DETAIL-POLISH.md
+│   │   │   │   ├── W3-CODEX-OWNER-COLOR.md
+│   │   │   │   ├── W3-COPILOT-A11Y.md
+│   │   │   │   ├── W4-CLAUDE-RUNTIME-STYLES.md
+│   │   │   │   └── W5-RELEASE-BOUNDARY.md
+│   │   │   ├── completed
+│   │   │   │   └── completed-summary.md
+│   │   │   ├── external
+│   │   │   │   ├── TASK-PDFME-005-digital-agreements-runtime-adapter.md
+│   │   │   │   ├── TASK-PDFME-008-signature-policies-firma-sisad.md
+│   │   │   │   └── TASK-PDFME-009-externalforms-runner-contract.md
+│   │   │   └── README.md
+│   │   ├── templates
+│   │   │   ├── agent-template.md
+│   │   │   ├── checklist-template.md
+│   │   │   ├── context-template.md
+│   │   │   ├── decision-template.md
+│   │   │   ├── gate-template.md
+│   │   │   ├── handoff-template.md
+│   │   │   ├── plan-template.md
+│   │   │   ├── playbook-template.md
+│   │   │   ├── prompt-template.md
+│   │   │   ├── README.md
+│   │   │   ├── report-template.md
+│   │   │   ├── rule-template.md
+│   │   │   ├── skill-template.md
+│   │   │   └── task-card-template.md
+│   │   ├── tooling
+│   │   │   ├── context-scan-exclusions.md
+│   │   │   ├── embedded-worktree-exclusion-contract.md
+│   │   │   ├── generated-artifacts-policy.md
+│   │   │   ├── README.md
+│   │   │   └── validation-contract.md
+│   │   ├── INDEX.md
+│   │   ├── README.md
+│   │   └── tree.md
+│   ├── scripts
+│   │   ├── ai-context-ignore.json
+│   │   ├── ai-open-workspace.sh
+│   │   ├── ai-sync-worktrees-after-gate.sh
+│   │   ├── ai-worktree-diff.sh
+│   │   ├── ai-worktree-status.sh
+│   │   ├── bootstrap-ai-worktrees.sh
+│   │   ├── gitignore-ai-worktrees.fragment
+│   │   ├── migrate-sibling-worktrees-to-embedded.sh
+│   │   ├── README.md
+│   │   ├── validate-ai-architecture.py
+│   │   └── verify-embedded-worktree-isolation.sh
+│   ├── .rgignore
+│   ├── AGENTS.md
+│   ├── apply-ai-architecture.sh
+│   ├── CLAUDE.md
+│   ├── README.md
+│   └── SISAD-PDFME-MULTIAGENT.code-workspace
+├── install.sh
+├── manifest.csv
+├── MANIFEST.md
+├── README-INSTALL.md
+└── TREE.txt

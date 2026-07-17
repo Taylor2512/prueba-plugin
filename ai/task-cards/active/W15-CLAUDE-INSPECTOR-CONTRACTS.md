@@ -1,31 +1,27 @@
-# W15-CLAUDE-INSPECTOR-CONTRACTS
+# W15-CLAUDE-INSPECTOR-CONTRACTS — Contratos inspector
 
 ## Estado
-
 `active`
 
-## Proveedor
+## Wave
+`1.5`
 
-Claude
+## Proveedor
+`Claude`
 
 ## Agente lógico
+`inspector-agent + schema-agent`
 
-inspector-agent + schema-agent para contratos declarados.
-
-## Worktree
-
+## Identidad
 ```txt
-/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-claude
+worktree: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/claude
 branch: ai/claude
-port: 5182
 ```
 
 ## Objetivo
-
-Cerrar errores unitarios del inspector antes del rediseño visual.
+Cerrar errores funcionales del inspector antes del polish.
 
 ## Owned paths
-
 ```txt
 src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/**
 src/sisad-pdfme/schemas/actions/**
@@ -37,31 +33,41 @@ tests unitarios directos
 ```
 
 ## Forbidden paths
-
 ```txt
 Canvas/**
 LeftSidebar/**
 browser/**
 pdf-lib/**
 vitest.config.ts
-package.json
 runtimeStyles.ts
 ```
 
 ## Casos
+- HELP ReferenceError
+- editable matrix
+- property maps
+- RadioGroup advanced
+- action family
+- CtlBar
 
-- `HELP` ReferenceError.
-- Matriz `editable`.
-- `propertyMap` required/data/validation.
-- `groupId`, `groupName`, `optionsContainer`.
-- Familia semántica action.
-- Contratos DetailSectionCard.
-- Clusters CtlBar.
+## Validación focal
+```bash
+npx eslint <archivos>
+npx vitest run <tests>
+```
 
-## Regla
-
-No hacer polish general ni otra auditoría.
+## Criterios
+- [ ] Causa raíz.
+- [ ] Ownership.
+- [ ] Tests focales.
+- [ ] Commit atómico.
+- [ ] Sin expected falsos.
+- [ ] Handoff.
 
 ## Handoff
+```txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai-coordination/sisad-pdfme/handoffs/CLAUDE-W15.md
+```
 
-`CLAUDE-W15.md`
+## Parada
+Detenerse al requerir una ruta no owned o más de 5 archivos productivos.

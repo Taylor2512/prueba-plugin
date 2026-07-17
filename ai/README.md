@@ -1,17 +1,17 @@
-# ai/ — Fuente de verdad para asistentes IA
+# Arquitectura IA de SISAD PDFME
 
-Esta carpeta centraliza la arquitectura de trabajo asistido de SISAD PDFME.
+`ai/**` contiene la fuente de verdad para agentes, worktrees, task-cards, memoria, planes y gates.
 
-## Principios
+## Objetivos
 
-- Una sola fuente de verdad documental.
-- Una task-card por ejecución.
-- Contexto modular y limitado.
-- Aislamiento de implementación mediante worktrees.
-- Ownership exclusivo por archivo y wave.
-- Integración serializada en `ai/integration`.
-- `main` solo recibe resultados validados mediante fast-forward.
-- Memoria y riesgos actualizados después de cada wave.
+- Evitar lectura indiscriminada de cientos de Markdown.
+- Una tarea verificable por ejecución.
+- Separar proveedor, agente lógico y rol Git.
+- Trabajar en paralelo sin modificar `main`.
+- Integrar mediante commits seleccionados.
+- Mantener Tailwind-first sin dañar geometría.
+- Preservar Designer, Form, Viewer, Generator y Snapshot.
+- Evitar reabrir tareas completadas o recrear wrappers.
 
 ## Orden de lectura
 
@@ -25,47 +25,51 @@ Esta carpeta centraliza la arquitectura de trabajo asistido de SISAD PDFME.
 7. coordination/worktrees/WAVE-<n>.md
 8. task-cards/active/<task>.md
 9. context/<context>.md
-10. rules/<rule>.md
+10. rules/<rules>.md
 11. playbooks/<playbook>.md
 ```
 
 ## Capas
 
-| Carpeta | Responsabilidad |
+| Carpeta | Función |
 |---|---|
-| `start/` | Entrada y quickstarts por proveedor |
-| `project/` | Contratos estables de arquitectura y Git |
-| `router/` | Selección de dominio, agente lógico y contexto |
-| `agents/` | Responsabilidades lógicas del producto |
-| `coordination/` | Protocolos versionados; la coordinación viva es externa |
-| `task-cards/` | Trabajo actual, backlog e histórico |
-| `context/` | Qué debe conocer el agente |
-| `rules/` | Qué no debe romper |
-| `playbooks/` | Cómo ejecutar |
-| `memory/` | Decisiones, riesgos, estado y handoff |
-| `checklists/` | Gates manuales y automáticos |
-| `prompts/` | Prompts reutilizables, no sustituyen task-cards |
-| `reports/` | Evidencia producida por auditorías o ejecución |
-| `docs-migration/` | Cambios de arquitectura documental |
+| start | Entrada y quickstarts |
+| project | Contratos estables |
+| router | Enrutamiento y presupuesto |
+| agents | Agentes lógicos |
+| subagents | Revisores |
+| skills | Capacidades reutilizables |
+| context | Conocimiento focal |
+| rules | Restricciones |
+| playbooks | Procedimientos |
+| plans | Estrategia por fases |
+| prompts | Wrappers operativos |
+| coordination | Waves y protocolo |
+| task-cards | Trabajo actual e histórico |
+| memory | Estado compacto |
+| checklists | Gates |
+| templates | Formatos |
+| baselines | Evidencia visual |
+| reports | Hallazgos |
+| tooling | Scanners y validación |
+| archive | Material sustituido |
 
 ## Coordinación viva
 
-Los archivos mutables de una wave no se guardan dentro de un worktree porque divergirían entre ramas.
-
-Ruta canónica local:
-
 ```txt
-/Users/desarrollo1/Documents/Taylor/frontend/ai-coordination/sisad-pdfme
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai-coordination/sisad-pdfme
 ```
 
-## Nunca cargar por defecto
+## Exclusiones obligatorias
 
 ```txt
-todos los archivos ai/**
-reports históricos completos
-unificados/**
-test-results/**
-dist/**
+.worktrees/**
+.ai-md-architecture-backups/**
 node_modules/**
+dist/**
+coverage/**
+test-results/**
+playwright-report/**
+unificados/**
 .tailwind-migration-backups/**
 ```

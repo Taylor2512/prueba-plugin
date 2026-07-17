@@ -1,46 +1,25 @@
-# Router de tareas IA
+# Router
 
-## 1. Selección de dominio lógico
-
-| Dominio | Agente lógico | Playbook | Rules | Context |
+| Dominio | Agente | Context | Rules | Playbook |
 |---|---|---|---|---|
-| Arquitectura IA | docs-architecture-agent | `pb-ai-docs-refactor.md` | `ai-docs-rules.md`, `global-rules.md` | `ai-docs-context.md` |
-| Coordinación Git | docs-architecture-agent | `pb-worktree-multiagent.md` | `worktree-rules.md` | `worktree-coordination-context.md` |
-| CSS/Tailwind | css-tailwind-agent | `pb-css-tailwind-migration.md` | `css-migration-rules.md` | `css-tailwind-context.md` |
-| Canvas | canvas-agent | `pb-canvas-multipage.md` | `canvas-rules.md`, `moveable-selecto-rules.md` | `canvas-multipage-context.md` |
-| Interacción | interaction-agent | `pb-selection-transform.md` | `moveable-selecto-rules.md`, `global-rules.md` | `selection-transform-context.md` |
-| Inspector | inspector-agent | `pb-inspector.md` | `inspector-rules.md` | `inspector-context.md` |
-| Schemas | schema-agent | `pb-schema-families.md` | `schema-rules.md` | `schema-families-context.md` |
-| Snapshot | snapshot-agent | `pb-snapshot.md` | `snapshot-rules.md` | `snapshot-context.md` |
-| Visual QA | visual-baseline-agent | `pb-visual-regression.md` | `css-migration-rules.md` | `visual-baseline-context.md` |
-| Host lab | lab-shell-agent | playbook de task-card | `global-rules.md` | contexto de integración lab |
+| IA docs | docs-architecture-agent | ai-docs-context | ai-docs-rules | pb-ai-docs-refactor |
+| Git/worktrees | integration-agent | worktree-coordination-context | worktree-rules | pb-worktree-multiagent |
+| Tests | test-infrastructure-agent | testing-context | testing-rules | pb-test-stabilization |
+| Tailwind | css-tailwind-agent | css-tailwind-context | css-migration-rules | pb-css-tailwind-migration |
+| Canvas | canvas-agent | canvas-multipage-context | canvas-rules | pb-canvas-multipage |
+| Interacción | interaction-agent | selection-transform-context | moveable-selecto-rules | pb-selection-transform |
+| Inspector | inspector-agent | inspector-context | inspector-rules | pb-inspector |
+| Schemas | schema-agent | schema-families-context | schema-rules | pb-schema-families |
+| Snapshot | snapshot-agent | snapshot-context | snapshot-rules | pb-snapshot |
+| Runtime | designer-runtime-agent | runtime-config-context | global-rules | pb-runtime-integration |
+| Lab | lab-shell-agent | lab-host-context | global-rules | pb-lab-host |
+| Visual | visual-baseline-agent | visual-baseline-context | visual-regression-rules | pb-visual-regression |
+| A11y | accessibility-agent | accessibility-context | accessibility-rules | pb-accessibility |
 
-## 2. Selección de proveedor
+## Preferencias de proveedor
 
-La wave asigna el proveedor. Predisposición:
+- Codex: core, hooks, adapters, Canvas e interacción.
+- Claude: inspector, composición, scroll y topbar.
+- Copilot: host lab, LeftSidebar, test infra y accesibilidad.
 
-| Proveedor | Trabajo preferente |
-|---|---|
-| Codex | lógica pura, hooks, adapters, Canvas, interacción, resolvers, tests focales |
-| Claude | arquitectura visual, inspector, composición, scroll, topbar, integración semántica |
-| Copilot | host lab, LeftSidebar, lint, test infra, accesibilidad, cambios repetitivos acotados |
-
-La predisposición no permite invadir ownership.
-
-## 3. Prioridad de fuentes
-
-1. `ai/coordination/worktrees/WAVE-<n>.md`
-2. `ai/task-cards/active/**`
-3. `ai/memory/pending-checklist.md`
-4. `ai/task-cards/backlog/**` solo si se solicita
-5. `completed-summary.md` como guardrail
-
-## 4. Reglas
-
-- No crear otra arquitectura fuera de `ai/**`, `docs/**`, `scripts/**` o `reports/**`.
-- Documentación pública va en `docs/**`.
-- Estado y memoria estable van en `ai/memory/**`.
-- Coordinación viva va en la ruta externa declarada.
-- Evidencia va en `ai/reports/**` o `reports/**`.
-- CSS visual se migra a Tailwind en JSX/TSX.
-- Geometría y terceros requieren task-card explícita.
+Prioridad: wave → task active → pending → backlog autorizado → completed como guardrail.

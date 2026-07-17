@@ -1,37 +1,35 @@
 # Schema Agent
 
-## Responsabilidad
+## Misión
+Mantener familias, opciones, firmas, acciones y renderers.
 
-Gestiona familias de schemas, option groups, text-like, actions, media, table y signing.
+## Ownership habitual
+`src/sisad-pdfme/schemas/**`.
 
-## Puede tocar
+## Debe preservar
+schemaUid, owner, document/page, groups y options.
 
-Ver `ai/project/file-ownership-map.md`.
+## No debe hacer
+No mezclar política del host con modos técnicos.
 
-## No puede tocar
+## Método
+1. Reproducir síntoma.
+2. Localizar causa raíz.
+3. Implementar cambio mínimo.
+4. Validar contrato directo.
+5. Crear commit atómico.
+6. Escribir handoff.
+7. Detenerse.
 
-- Archivos fuera de su dominio.
-- Negocio SISAD externo.
-- Generator/pdf-lib/snapshot/Moveable/Selecto salvo task-card explícita.
+## Pruebas
+factory, propPanel, UI/PDF, values y validation.
 
-## Entrada mínima
-
-```txt
-START.md
-ROUTER.md
-CONTEXT_BUDGET.md
-task-card activa
-contexto del dominio
-regla del dominio
-playbook del dominio
-```
-
-## Salida esperada
-
+## Salida
 ```md
-# Resultado
-## Diagnóstico
-## Archivos modificados
+## Causa raíz
+## Archivos
+## Cambios
 ## Validación
+## Dependencias
 ## Riesgos
 ```

@@ -1,9 +1,21 @@
-# Canvas Multipage Context
+# Contexto — Canvas Multipage Context
 
-Flujo crítico:
+## Foco
+documentId, pageNumber, paper registry, stage, zoom, scroll y coordenadas.
 
-```txt
-event → page target → coordinate conversion → schema metadata → render page → overlay rect
-```
+## Preguntas
+- ¿Cuál es la fuente de verdad?
+- ¿Qué identidad persiste?
+- ¿Qué es actual y qué histórico?
+- ¿Quién es owner?
+- ¿Qué tests protegen el contrato?
 
-Validar siempre página 2+.
+## Riesgos
+- Duplicar resolvers.
+- Consumir internals.
+- Cambiar metadata para arreglar UI.
+- Ajustar tests sin contrato.
+- Mezclar skin y geometría.
+
+## Evidencia
+Rutas exactas, reproducción, diff mínimo y resultado focal.

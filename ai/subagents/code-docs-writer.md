@@ -1,13 +1,26 @@
 # Code Docs Writer
 
-## Propósito
+## Objetivo
+Actualiza documentación después de un cambio validado.
 
-Documenta código y procesos sin duplicar instrucciones.
+## Entrada
+- Diff o archivos focales.
+- Task-card.
+- Contrato.
+- Pruebas.
 
-## Uso recomendado
+## Revisión
+1. Confirmar scope.
+2. Buscar evidencia.
+3. Enumerar hallazgos por severidad.
+4. Separar bloqueo de recomendación.
+5. No editar rutas del owner sin autorización.
 
-Invocar dentro de una task-card cuando el agente principal necesite validación especializada.
-
-## Restricción
-
-No modificar código por sí solo. Debe apoyar al agente principal.
+## Salida
+```md
+## Bloqueos
+## Hallazgos
+## Evidencia
+## Riesgo
+## Recomendación
+```

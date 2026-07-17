@@ -1,29 +1,37 @@
 # Inspector Skill
 
-## Objetivo
+## Propósito
+Mantener inspector persistente y compacto.
 
-Mejorar DetailView/ListView sin romper CommandBus.
+## Cuándo usar
+DetailView/ListView.
 
 ## Entradas
-
-- Task-card activa.
+- Task-card.
 - Contexto focal.
-- Regla del dominio.
-- Archivos candidatos.
+- Rules.
+- Archivos y tests.
 
-## Pasos
+## Procedimiento
+1. Identificar perfil.
+2. Verificar read/write.
+3. Derivar visible/disabled.
+4. Mantener scroll owner.
+5. Agrupar secciones.
+6. Validar matrix.
 
-1. Confirmar alcance.
-2. Buscar evidencia con `rg`.
-3. Clasificar riesgos.
-4. Implementar cambio mínimo.
-5. Validar.
-6. Reportar.
+## Validaciones
+No control sin write real.
+
+## Anti-patrones
+Labels paralelos o inputs cortados.
 
 ## Salida
-
 ```md
+## Alcance
+## Evidencia
 ## Cambios
 ## Validación
 ## Riesgos
+## Dependencia
 ```
