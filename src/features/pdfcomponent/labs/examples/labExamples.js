@@ -1,7 +1,8 @@
 // Lab examples. Builders/exporters live beside this catalog under labs/.
 // This file keeps the public catalog lean: example data lives in the per-case
 // catalog files and the shared bundle helpers stay here.
-import { cloneExample, buildExampleBundle, getExampleBundleFilename } from '@/features/pdfcomponent/labs/export/buildExampleBundle'
+import { buildExampleBundle, getExampleBundleFilename } from '@/features/pdfcomponent/labs/export/buildExampleBundle'
+import { cloneExample } from '@/features/pdfcomponent/labs/builders/exampleTemplate'
 import { buildExampleHref } from '@/features/pdfcomponent/labs/export/downloadExampleBundle'
 import { basicDesignerLabExample } from './catalog/basicDesigner.ts'
 import { multiDocumentRoutingLabExample } from './catalog/multiDocumentRouting.ts'
