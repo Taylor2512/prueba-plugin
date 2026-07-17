@@ -1,29 +1,37 @@
 # Canvas Multipage Skill
 
-## Objetivo
+## Propósito
+Modificar Canvas preservando identidad.
 
-Validar drop, selección, move, resize y snapshot en páginas 2+.
+## Cuándo usar
+Papers, páginas y overlays.
 
 ## Entradas
-
-- Task-card activa.
+- Task-card.
 - Contexto focal.
-- Regla del dominio.
-- Archivos candidatos.
+- Rules.
+- Archivos y tests.
 
-## Pasos
+## Procedimiento
+1. Mapear IDs.
+2. Reproducir página 2+.
+3. Separar coordenadas.
+4. Cambiar scroll owner.
+5. Validar drop/selection.
+6. Ejecutar specs.
 
-1. Confirmar alcance.
-2. Buscar evidencia con `rg`.
-3. Clasificar riesgos.
-4. Implementar cambio mínimo.
-5. Validar.
-6. Reportar.
+## Validaciones
+No mezclar stage/PDF.
+
+## Anti-patrones
+Asumir una página.
 
 ## Salida
-
 ```md
+## Alcance
+## Evidencia
 ## Cambios
 ## Validación
 ## Riesgos
+## Dependencia
 ```

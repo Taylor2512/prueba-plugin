@@ -1,3 +1,13 @@
 # Schema Rules
 
-Preservar schemaUid, documentId, pageNumber, ownerRecipientId, colors, groupId, optionId, selected values, options y `__designer`.
+## Reglas
+
+1. schemaUid estable.
+2. Owner/docs persistentes.
+3. Groups con IDs.
+4. Firma técnica.
+5. Ciclo completo.
+6. No índice como identidad.
+
+## Parada
+Detenerse al necesitar violar una regla.

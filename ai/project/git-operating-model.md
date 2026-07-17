@@ -1,40 +1,20 @@
-# Modelo operativo Git multiagente
+# Modelo Git
 
-## Flujo permitido
+## Implementadores
 
-```txt
-main
-  └─ base estable
-      ├─ ai/codex
-      ├─ ai/copilot
-      ├─ ai/claude
-      └─ ai/integration
-```
-
-Los agentes crean commits únicamente en sus ramas.
-
-El integrador aplica commits seleccionados en `ai/integration`.
-
-Después del gate:
+Permitido:
 
 ```bash
-cd /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-git merge --ff-only ai/integration
-```
-
-## Comandos permitidos a agentes
-
-```bash
-git status --short
+git status
 git diff
 git diff --check
-git add <rutas owned>
+git add <owned paths>
 git commit
 git log
 git show
 ```
 
-## Comandos prohibidos a agentes implementadores
+Prohibido:
 
 ```bash
 git switch
@@ -46,39 +26,20 @@ git pull
 git reset --hard
 git clean
 git stash
-git worktree remove
 git branch -D
+git worktree remove
 ```
 
-## Comandos del integrador
+## Integrador
+
+Revisa ramas, aplica SHAs y ejecuta gate. No hace merge de ramas completas.
+
+## Publicación
 
 ```bash
-git diff --name-only main..ai/codex
-git diff --name-only main..ai/copilot
-git diff --name-only main..ai/claude
-git cherry-pick <sha>
-npm run lint
-npm run build
-npx vitest run
-npx playwright test ...
+git merge --ff-only ai/integration
 ```
 
-## Conflictos
+## Realineación
 
-Un conflicto no se resuelve escogiendo automáticamente `ours` o `theirs`.
-
-1. Identificar ownership.
-2. Revisar dependencia declarada.
-3. Abortar si el commit invade rutas ajenas.
-4. Devolver el fallo al owner.
-5. Reemitir un commit limpio.
-
-## Realineación después de una wave
-
-Solo con worktrees limpios y commits integrados:
-
-```bash
-git -C <worktree-agente> reset --hard main
-```
-
-Este comando lo ejecuta el coordinador, nunca el agente durante una tarea.
+Solo después del gate, fast-forward y con worktrees limpios.

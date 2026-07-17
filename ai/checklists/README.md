@@ -1,3 +1,3 @@
 # Checklists
 
-Checklists vivos para validar tareas y controlar pendientes.
+Gates repetibles. No sustituyen pruebas automáticas.

@@ -1,6 +1,22 @@
-# Playbook — Schema Families
+# pb-schema-families
 
-1. Identificar familia.
-2. Revisar plugin/render/value/inspector.
-3. Validar Designer/Form/Viewer/PDF.
-4. Validar snapshot.
+## Precondiciones
+- Task activa.
+- Ownership exclusivo.
+- Reproducción.
+- Worktree correcto.
+
+## Procedimiento
+1. Contrato.
+2. Factory/metadata.
+3. PropPanel.
+4. UI/PDF.
+5. Value.
+6. Validation.
+7. Roundtrip.
+
+## Salida
+Diff mínimo, pruebas focales, commit y handoff.
+
+## Parada
+No ampliar scope ni corregir dependencias ajenas.

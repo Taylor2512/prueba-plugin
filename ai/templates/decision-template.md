@@ -1,7 +1,8 @@
-# DEC-XXX — Título
+# DEC-<ID> — <Decisión>
 
+## Fecha
+## Contexto
 ## Decisión
-## Motivo
 ## Alternativas
-## Riesgos
 ## Consecuencias
+## Validación

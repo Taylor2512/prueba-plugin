@@ -1,21 +1,12 @@
-# Scripts
+# Scripts IA y worktrees internos
 
-## Instalar arquitectura
-
-```bash
-bash scripts/install-architecture.sh /ruta/proyecto
-```
-
-## Eliminar Markdown anteriores
-
-```bash
-node scripts/delete-existing-markdown.mjs /ruta/proyecto --dry-run
-node scripts/delete-existing-markdown.mjs /ruta/proyecto --confirm --backup
-```
-
-## Eliminar carpetas vacías
-
-```bash
-bash scripts/clean-empty-dirs.sh /ruta/proyecto --dry-run
-bash scripts/clean-empty-dirs.sh /ruta/proyecto --confirm
-```
+- `apply-ai-architecture.sh`: instala la arquitectura.
+- `validate-ai-architecture.py`: valida estructura documental.
+- `bootstrap-ai-worktrees.sh`: crea `.worktrees/{merge,codex,claude,copilot}`.
+- `migrate-sibling-worktrees-to-embedded.sh`: mueve worktrees antiguos registrados.
+- `ai-worktree-status.sh`: muestra estado de main y agentes.
+- `ai-worktree-diff.sh`: compara una rama con main.
+- `ai-open-workspace.sh`: abre el workspace multi-root.
+- `ai-sync-worktrees-after-gate.sh`: realinea ramas limpias después del gate.
+- `verify-embedded-worktree-isolation.sh`: valida que `.worktrees` no contamine Git o contexto.
+- `ai-context-ignore.json`: exclusiones para generadores.

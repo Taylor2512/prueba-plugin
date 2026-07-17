@@ -1,27 +1,258 @@
-# MANIFEST
+# Manifest — Arquitectura IA V3.1 Embedded Worktrees
 
-## Completed
+Archivos incluidos: **252**
 
-- `ai/task-cards/completed/TASK-ARCH-001-sisad-pdfme-global-config-portability.md`
-- `ai/task-cards/completed/TASK-ARCH-002-recipient-registry.md`
-
-## Active
-
-- `ai/task-cards/active/TASK-PDFME-003-reassign-recipient-dialog-persistence.md`
-- `ai/task-cards/active/TASK-PDFME-004-lab-parity-multidocument-routing.md`
-- `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md`
-- `ai/task-cards/active/TASK-PDFME-006-runtime-form-preview-by-recipient.md`
-- `ai/task-cards/active/TASK-PDFME-007-snapshot-persistence-contract.md`
-- `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md`
-- `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md`
-
-## Backlog
-
-- `ai/task-cards/backlog/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
-- `ai/task-cards/backlog/TASK-PDFME-011-connectivity-sisad-restore.md`
-
-## Memory / Reports
-
-- `ai/memory/completed-checklist.md`
-- `ai/memory/pending-checklist.md`
-- `ai/reports/claude-codex-handoff-2026-07-14.md`
+| Ruta | Bytes | SHA-256 |
+|---|---:|---|
+| `.github/copilot-instructions.md` | 760 | `737c4fa42bece267…` |
+| `.rgignore` | 221 | `125199c1dd628abf…` |
+| `AGENTS.md` | 1663 | `f020c47a021dcf3e…` |
+| `CLAUDE.md` | 908 | `d3c10325bbfed8c9…` |
+| `README.md` | 2228 | `bf0d7a9e80405fe7…` |
+| `SISAD-PDFME-MULTIAGENT.code-workspace` | 1626 | `838edc8a5d8c82af…` |
+| `ai/INDEX.md` | 1069 | `75149f52478b6185…` |
+| `ai/README.md` | 1894 | `173fbbab598f538b…` |
+| `ai/adapters/README.md` | 154 | `8071b8a4484aa35d…` |
+| `ai/adapters/provider-capability-map.md` | 254 | `a22d9ee55a058540…` |
+| `ai/adapters/session-opening-checklist.md` | 189 | `380330d0d9c19cd1…` |
+| `ai/agents/README.md` | 278 | `e1b72a6f8dda73b0…` |
+| `ai/agents/accessibility-agent.md` | 618 | `cb5389e325409c4f…` |
+| `ai/agents/canvas-agent.md` | 691 | `c2c09a6be0f9f825…` |
+| `ai/agents/css-tailwind-agent.md` | 668 | `6e0a0de5739babcc…` |
+| `ai/agents/designer-runtime-agent.md` | 676 | `1bd6838def5af331…` |
+| `ai/agents/docs-architecture-agent.md` | 639 | `7337013f712583ad…` |
+| `ai/agents/inspector-agent.md` | 653 | `6599a2491360777f…` |
+| `ai/agents/integration-agent.md` | 638 | `3cc92a49774b8204…` |
+| `ai/agents/interaction-agent.md` | 716 | `9267648c6dfd30ea…` |
+| `ai/agents/lab-shell-agent.md` | 650 | `830ce97df9baafc1…` |
+| `ai/agents/registry.md` | 777 | `a90b1214fe3acc26…` |
+| `ai/agents/schema-agent.md` | 623 | `68723bae577e98ac…` |
+| `ai/agents/snapshot-agent.md` | 636 | `354805e81609b1fa…` |
+| `ai/agents/test-infrastructure-agent.md` | 599 | `790a8dceb0eb3a4a…` |
+| `ai/agents/visual-baseline-agent.md` | 629 | `2a22dd5efb72a15c…` |
+| `ai/archive/README.md` | 143 | `18848acf27f632f2…` |
+| `ai/archive/SUPERSEDED_PLANS.md` | 183 | `f42b846d9dbfe1df…` |
+| `ai/baselines/README.md` | 125 | `c13d0173dbc00d6f…` |
+| `ai/baselines/evidence-index.md` | 185 | `1e928f3dd71b2f97…` |
+| `ai/baselines/regions.md` | 159 | `18c75518fad14403…` |
+| `ai/baselines/visual-baseline-protocol.md` | 234 | `6dbc322d112e0395…` |
+| `ai/checklists/README.md` | 68 | `7760e4de9423dda0…` |
+| `ai/checklists/accessibility.md` | 133 | `18fcb4e895b28d27…` |
+| `ai/checklists/action-contract.md` | 135 | `f7e1693699a0b55d…` |
+| `ai/checklists/documentation-consistency.md` | 127 | `487a1c4f4401f6bb…` |
+| `ai/checklists/global-validation.md` | 169 | `2a6cf03df75a1617…` |
+| `ai/checklists/integration-gate.md` | 175 | `71820621d0770636…` |
+| `ai/checklists/manual-ui-regression.md` | 181 | `2a14d011a13c7853…` |
+| `ai/checklists/release-readiness.md` | 160 | `6ceb1a21bcbbbc2e…` |
+| `ai/checklists/schema-completeness.md` | 167 | `192127038dbc908e…` |
+| `ai/checklists/tailwind-validation.md` | 140 | `e5b8c07b9dbd0292…` |
+| `ai/checklists/test-triage.md` | 152 | `03ab538fb3be332f…` |
+| `ai/checklists/visual-evidence.md` | 145 | `9d4dfca923dc8752…` |
+| `ai/checklists/worktree-wave-checklist.md` | 143 | `a3ba1f834e025a0b…` |
+| `ai/context/README.md` | 105 | `381efc08ed951136…` |
+| `ai/context/accessibility-context.md` | 523 | `ea4d7d8c7f25eb35…` |
+| `ai/context/action-map-context.md` | 515 | `914522ba6d10ca58…` |
+| `ai/context/ai-docs-context.md` | 547 | `96a89e1c4eb28737…` |
+| `ai/context/canvas-multipage-context.md` | 525 | `67ca184e4ca0a491…` |
+| `ai/context/css-tailwind-context.md` | 527 | `1665701ea590b27e…` |
+| `ai/context/inspector-context.md` | 518 | `667488ea58c43759…` |
+| `ai/context/lab-host-context.md` | 523 | `b0b2f1ccdab7b065…` |
+| `ai/context/owner-color-context.md` | 517 | `86cf2752e3650250…` |
+| `ai/context/runtime-config-context.md` | 529 | `b7ea4b29f71dc010…` |
+| `ai/context/schema-families-context.md` | 519 | `3b851c2b2199ede2…` |
+| `ai/context/selection-transform-context.md` | 515 | `369da817316e86aa…` |
+| `ai/context/snapshot-context.md` | 516 | `f8d971663fe7c9b2…` |
+| `ai/context/testing-context.md` | 512 | `2aadb6ed27c0479d…` |
+| `ai/context/visual-baseline-context.md` | 504 | `0cab60b132fbbb31…` |
+| `ai/context/worktree-coordination-context.md` | 570 | `70e7cbcc022a9c21…` |
+| `ai/coordination/README.md` | 424 | `3b05ac30df2669aa…` |
+| `ai/coordination/worktrees/INTEGRATION-PROTOCOL.md` | 313 | `650ccbe3de439356…` |
+| `ai/coordination/worktrees/OWNERSHIP.md` | 209 | `ce1e78d78d18a69a…` |
+| `ai/coordination/worktrees/README.md` | 89 | `a2a650a9fb0de567…` |
+| `ai/coordination/worktrees/WAVE-1.5.md` | 192 | `d5a744273fdc8243…` |
+| `ai/coordination/worktrees/WAVE-2.md` | 173 | `ef9bc8c20eb29da1…` |
+| `ai/coordination/worktrees/WORKTREE-MAP.md` | 1090 | `1ebe2712bb80fc13…` |
+| `ai/coordination/worktrees/templates/GATE.md` | 93 | `06d7094e48f7dfa1…` |
+| `ai/coordination/worktrees/templates/HANDOFF.md` | 183 | `d2d71fd08fb8205a…` |
+| `ai/coordination/worktrees/templates/INCIDENT.md` | 155 | `638592ab26b61e75…` |
+| `ai/coordination/worktrees/templates/STATUS.md` | 114 | `0dfd8704e31986e6…` |
+| `ai/docs-migration/MIGRATION_TO_EMBEDDED_WORKTREES.md` | 632 | `cb17641e4659b95c…` |
+| `ai/docs-migration/MIGRATION_TO_V3.md` | 434 | `d9ac0f16e0ad7470…` |
+| `ai/docs-migration/README.md` | 115 | `486e88887075f734…` |
+| `ai/docs-migration/changelog.md` | 216 | `65193cf52389fc32…` |
+| `ai/memory/README.md` | 78 | `4801abbbf7a90141…` |
+| `ai/memory/changelog.md` | 195 | `c6330815280d5019…` |
+| `ai/memory/completed-checklist.md` | 279 | `737bb626728a453c…` |
+| `ai/memory/decisions.md` | 368 | `bda65a0f2c72b109…` |
+| `ai/memory/external-repositories.md` | 197 | `fe24ea8428dceaf1…` |
+| `ai/memory/known-risks.md` | 577 | `d2617feb1757f457…` |
+| `ai/memory/memory-update-protocol.md` | 287 | `47ad3469ad296b59…` |
+| `ai/memory/metrics-current.md` | 272 | `c537b3597017c20e…` |
+| `ai/memory/pending-checklist.md` | 217 | `12fe8be7510ad32e…` |
+| `ai/memory/project-memory.md` | 542 | `c40d97d670ded40d…` |
+| `ai/memory/session-handoff.md` | 483 | `c75655a74a56d5d0…` |
+| `ai/plans/PLAN_00_REPARACION_DOCUMENTAL_Y_CONTEXTO.md` | 823 | `be01569f2bd36c67…` |
+| `ai/plans/PLAN_01_WAVE_1_5_ESTABILIZACION.md` | 853 | `314e343ea58ac946…` |
+| `ai/plans/PLAN_02_UX_UI_STAGE_TOPBAR.md` | 681 | `8b786cff9f6f4477…` |
+| `ai/plans/PLAN_03_CANVAS_INTERACCIONES.md` | 561 | `b12277197d992a63…` |
+| `ai/plans/PLAN_04_OWNER_COLOR_RUNTIME.md` | 486 | `c82988218b7687a9…` |
+| `ai/plans/PLAN_05_RUNTIME_STYLES.md` | 522 | `c849703f6b6fcf61…` |
+| `ai/plans/PLAN_06_RELEASE_QA.md` | 528 | `cfe174196a9be410…` |
+| `ai/plans/PLAN_MAESTRO_MULTIAGENTE_POST_TAILWIND.md` | 1512 | `85416e597d559580…` |
+| `ai/plans/README.md` | 453 | `803b6f06c1fa617e…` |
+| `ai/plans/ROADMAP_PORTABILIDAD.md` | 406 | `3506ccc2c0a8a243…` |
+| `ai/playbooks/README.md` | 84 | `20eee9ee047caf84…` |
+| `ai/playbooks/pb-accessibility.md` | 336 | `31fbd5cc77e80dee…` |
+| `ai/playbooks/pb-ai-docs-refactor.md` | 374 | `638af3ae9119eaa8…` |
+| `ai/playbooks/pb-canvas-multipage.md` | 368 | `6304c0bb3011c9f2…` |
+| `ai/playbooks/pb-canvas-overlay-positioning.md` | 370 | `278a098e4559721b…` |
+| `ai/playbooks/pb-css-tailwind-migration.md` | 381 | `1698c4b6942b6cb8…` |
+| `ai/playbooks/pb-git-integration.md` | 382 | `8300b653a3efe97d…` |
+| `ai/playbooks/pb-incident-recovery.md` | 357 | `52c44843be486530…` |
+| `ai/playbooks/pb-inspector.md` | 341 | `c7fb4e8354a41c76…` |
+| `ai/playbooks/pb-lab-host.md` | 354 | `8ae0fe572b2cbcf1…` |
+| `ai/playbooks/pb-runtime-integration.md` | 351 | `f1d41c6af8639b62…` |
+| `ai/playbooks/pb-schema-families.md` | 353 | `7af1c3b0cb52cf60…` |
+| `ai/playbooks/pb-selection-transform.md` | 351 | `f9423b9cc18930f9…` |
+| `ai/playbooks/pb-snapshot.md` | 331 | `228510445b3f367d…` |
+| `ai/playbooks/pb-test-stabilization.md` | 384 | `a72611f9d37eac63…` |
+| `ai/playbooks/pb-visual-regression.md` | 335 | `b53efb61a7d8392d…` |
+| `ai/playbooks/pb-worktree-multiagent.md` | 431 | `1995061a1696c3da…` |
+| `ai/project/architecture-principles.md` | 719 | `ff106dd4e95a7f5b…` |
+| `ai/project/css-tailwind-contract.md` | 537 | `9783e3f3ae23e4b4…` |
+| `ai/project/definition-of-done.md` | 448 | `9f4467bebc593031…` |
+| `ai/project/documentation-contract.md` | 337 | `3ea52771ea3e3046…` |
+| `ai/project/file-ownership-map.md` | 1032 | `11e357e064ba0c3c…` |
+| `ai/project/git-operating-model.md` | 545 | `f62714538e3567ad…` |
+| `ai/project/glossary.md` | 202 | `2a918611c6f45c23…` |
+| `ai/project/goals.md` | 186 | `9820bbbcc098db92…` |
+| `ai/project/non-goals.md` | 184 | `8ff92ac15097d437…` |
+| `ai/project/public-api-boundary.md` | 359 | `0019865c4af368fb…` |
+| `ai/project/scope.md` | 240 | `75615dfeabf7d266…` |
+| `ai/project/security-and-secrets.md` | 167 | `1988cd01fc45373e…` |
+| `ai/project/testing-strategy.md` | 440 | `8c028976cebc1131…` |
+| `ai/project/worktree-topology.md` | 1102 | `5bd66863d2c467b6…` |
+| `ai/prompts/PROMPT_ACTUALIZAR_MEMORIA.md` | 208 | `d15e22f8b65d3959…` |
+| `ai/prompts/PROMPT_ARRANQUE_CLAUDE.md` | 338 | `e485ab71f60ce82d…` |
+| `ai/prompts/PROMPT_ARRANQUE_CODEX.md` | 302 | `84f2611fb44b5ce2…` |
+| `ai/prompts/PROMPT_ARRANQUE_COPILOT.md` | 272 | `9b0396a0879e9d64…` |
+| `ai/prompts/PROMPT_CREAR_TASK_CARD.md` | 222 | `9dfff891419acbcd…` |
+| `ai/prompts/PROMPT_IMPLEMENTAR_TASK_CARD.md` | 218 | `e6961c73a75cce94…` |
+| `ai/prompts/PROMPT_INTEGRADOR.md` | 319 | `dc01d64ac30fff4a…` |
+| `ai/prompts/PROMPT_MAESTRO_MULTIAGENTE_WORKTREES.md` | 403 | `870ac8aa41926b0d…` |
+| `ai/prompts/PROMPT_MANTENIMIENTO_DOCUMENTACION.md` | 209 | `56818710a4329a03…` |
+| `ai/prompts/PROMPT_MIGRACION_TAILWIND.md` | 249 | `e18f995e6c1bb9b0…` |
+| `ai/prompts/PROMPT_RECUPERACION_INCIDENTE.md` | 232 | `65ce2cf620f450e1…` |
+| `ai/prompts/PROMPT_REVISION_UX_UI.md` | 225 | `2bcaf6b86f64e0cb…` |
+| `ai/prompts/PROMPT_TRIAGE_TESTS.md` | 238 | `ad25c4577f2dd7ed…` |
+| `ai/prompts/README.md` | 121 | `f9878e9d19d67a95…` |
+| `ai/reports/README.md` | 97 | `e3534d8f2dd3c14e…` |
+| `ai/reports/architecture-v3-audit.md` | 453 | `c687d49fdb3d277c…` |
+| `ai/router/CONTEXT_BUDGET.md` | 495 | `ed652fb8609c2d3a…` |
+| `ai/router/ROUTER.md` | 1632 | `0d251856f4e88e23…` |
+| `ai/router/ROUTING_EXAMPLES.md` | 312 | `fa25cf26405f471e…` |
+| `ai/router/TASK_INTAKE.md` | 552 | `78df5284dbfebfbb…` |
+| `ai/rules/README.md` | 78 | `09f4630f75224ce6…` |
+| `ai/rules/accessibility-rules.md` | 202 | `1bda99613d08bca9…` |
+| `ai/rules/ai-docs-rules.md` | 222 | `e00afbc81fc47702…` |
+| `ai/rules/canvas-rules.md` | 235 | `0e69d8e57ed4fb66…` |
+| `ai/rules/css-migration-rules.md` | 217 | `e491d16a2b4e8e51…` |
+| `ai/rules/global-rules.md` | 259 | `355fdc9f7f978f32…` |
+| `ai/rules/inspector-rules.md` | 238 | `17349627345c0302…` |
+| `ai/rules/integration-rules.md` | 240 | `ed949734eba959b9…` |
+| `ai/rules/moveable-selecto-rules.md` | 247 | `6d7139992c24bcc5…` |
+| `ai/rules/public-api-rules.md` | 228 | `5f8db1db52a7600a…` |
+| `ai/rules/schema-rules.md` | 216 | `bd613dd7947218e6…` |
+| `ai/rules/snapshot-rules.md` | 209 | `0d4114e868578b46…` |
+| `ai/rules/testing-rules.md` | 227 | `552c89dc630ebae7…` |
+| `ai/rules/visual-regression-rules.md` | 231 | `5071f0d3611fa2f6…` |
+| `ai/rules/worktree-rules.md` | 228 | `48d40b374e6d410b…` |
+| `ai/skills/README.md` | 200 | `a257cfe06b539d95…` |
+| `ai/skills/accessibility-skill.md` | 506 | `4e84455a683a5df0…` |
+| `ai/skills/canvas-multipage-skill.md` | 527 | `5dc23a4b06ae717c…` |
+| `ai/skills/docs-architecture-skill.md` | 538 | `bbb15eb11a8993af…` |
+| `ai/skills/git-integration-skill.md` | 549 | `38a5fa3ba9e827b8…` |
+| `ai/skills/host-adapter-skill.md` | 502 | `708196e9201dcfcb…` |
+| `ai/skills/incident-recovery-skill.md` | 535 | `caaa1646cc4fdd57…` |
+| `ai/skills/inspector-skill.md` | 544 | `6055ef0db748f8d1…` |
+| `ai/skills/memory-update-skill.md` | 505 | `a3b4f20382c2fac8…` |
+| `ai/skills/moveable-selecto-skill.md` | 561 | `36aa6b115dc4369e…` |
+| `ai/skills/multiagent-worktree-skill.md` | 583 | `4960c10cce470dbe…` |
+| `ai/skills/option-groups-skill.md` | 555 | `124ac83efd6b2ff4…` |
+| `ai/skills/prompt-engineering-skill.md` | 492 | `dd0fc46fc17e2e53…` |
+| `ai/skills/repository-analysis-skill.md` | 599 | `157b80e52439e5bd…` |
+| `ai/skills/runtime-integration-skill.md` | 523 | `d1f274205dc94b1c…` |
+| `ai/skills/schema-contract-skill.md` | 525 | `868d7f395d14b66f…` |
+| `ai/skills/snapshot-safety-skill.md` | 524 | `1b59ee760a7ebd32…` |
+| `ai/skills/tailwind-migration-skill.md` | 548 | `6c5e3b60b95fdddf…` |
+| `ai/skills/test-triage-skill.md` | 551 | `03e906d327abdccf…` |
+| `ai/skills/visual-regression-skill.md` | 525 | `6c29636576aeb519…` |
+| `ai/start/QUICKSTART-CLAUDE.md` | 672 | `a4a8a02198debe9d…` |
+| `ai/start/QUICKSTART-CODEX.md` | 627 | `bb7fc5996b2581a3…` |
+| `ai/start/QUICKSTART-COPILOT.md` | 628 | `0a9ba2f028c6fea4…` |
+| `ai/start/QUICKSTART-INTEGRATOR.md` | 599 | `1b6a83e754a61c6f…` |
+| `ai/start/START.md` | 1691 | `a71bdc14d6e9148c…` |
+| `ai/subagents/README.md` | 127 | `80118729195c71f8…` |
+| `ai/subagents/accessibility-reviewer.md` | 424 | `e2ee09546e81b159…` |
+| `ai/subagents/anti-hallucination-reviewer.md` | 434 | `5d23412912acbcea…` |
+| `ai/subagents/baseline-visual-critic.md` | 437 | `b15041fdcc71bd4f…` |
+| `ai/subagents/code-docs-writer.md` | 429 | `adb133eeee9363d5…` |
+| `ai/subagents/css-auditor.md` | 425 | `6857f343767cd81a…` |
+| `ai/subagents/dependency-reviewer.md` | 445 | `5f356eb5745ebdb6…` |
+| `ai/subagents/git-scope-reviewer.md` | 407 | `933028b28e63c67e…` |
+| `ai/subagents/legacy-css-guardian.md` | 422 | `f4688acd52d2b038…` |
+| `ai/subagents/memory-curator.md` | 424 | `eb5c01be63245a9d…` |
+| `ai/subagents/prompt-engineer.md` | 422 | `fbb0e70c0d7eef70…` |
+| `ai/subagents/public-api-reviewer.md` | 428 | `edf33d132bc7d9b4…` |
+| `ai/subagents/regression-tester.md` | 408 | `0fd4bd14c138e6a0…` |
+| `ai/subagents/tailwind-migrator.md` | 407 | `be97434e40f0d899…` |
+| `ai/subagents/test-contract-reviewer.md` | 430 | `eb435fa2c4fe2e58…` |
+| `ai/task-cards/README.md` | 208 | `34178a0bba79fa68…` |
+| `ai/task-cards/active/W15-CLAUDE-INSPECTOR-CONTRACTS.md` | 1345 | `6241b4c3c7d18c6d…` |
+| `ai/task-cards/active/W15-CODEX-CORE-CONTRACTS.md` | 1410 | `8a26a30fb4ebdc79…` |
+| `ai/task-cards/active/W15-COPILOT-TEST-INFRA.md` | 1191 | `7981b9cb9af362be…` |
+| `ai/task-cards/active/W15-INTEGRATION-GATE.md` | 1060 | `6ce115b38a495586…` |
+| `ai/task-cards/backlog/W2-CLAUDE-STAGE-TOPBAR.md` | 1099 | `ac13492fa01d6cb4…` |
+| `ai/task-cards/backlog/W2-CODEX-CONTEXT-TOOLBAR.md` | 1083 | `22f7d80efb0ba06b…` |
+| `ai/task-cards/backlog/W2-COPILOT-LEFT-SIDEBAR.md` | 1084 | `1d5f3906f20bbd13…` |
+| `ai/task-cards/backlog/W3-CLAUDE-DETAIL-POLISH.md` | 1048 | `ffcc880129004024…` |
+| `ai/task-cards/backlog/W3-CODEX-OWNER-COLOR.md` | 1027 | `397e8f97ed0a4b3d…` |
+| `ai/task-cards/backlog/W3-COPILOT-A11Y.md` | 1019 | `2db7bc70a5fc319b…` |
+| `ai/task-cards/backlog/W4-CLAUDE-RUNTIME-STYLES.md` | 1034 | `01e3eb5e6029ad6e…` |
+| `ai/task-cards/backlog/W5-RELEASE-BOUNDARY.md` | 1042 | `3f2f8ca146611f44…` |
+| `ai/task-cards/completed/completed-summary.md` | 569 | `592107f7d31976c9…` |
+| `ai/task-cards/external/TASK-PDFME-005-digital-agreements-runtime-adapter.md` | 346 | `ecd24ca1fbfb69e3…` |
+| `ai/task-cards/external/TASK-PDFME-008-signature-policies-firma-sisad.md` | 335 | `2491568d8db8629a…` |
+| `ai/task-cards/external/TASK-PDFME-009-externalforms-runner-contract.md` | 308 | `9f77e008cc1fe00c…` |
+| `ai/templates/README.md` | 64 | `437b48471785fd86…` |
+| `ai/templates/agent-template.md` | 116 | `f95eca471da6cf44…` |
+| `ai/templates/checklist-template.md` | 36 | `8da79294c836fdf1…` |
+| `ai/templates/context-template.md` | 93 | `8e1e13ef4b334047…` |
+| `ai/templates/decision-template.md` | 110 | `867c4a8b5aadd31f…` |
+| `ai/templates/gate-template.md` | 93 | `06d7094e48f7dfa1…` |
+| `ai/templates/handoff-template.md` | 183 | `d2d71fd08fb8205a…` |
+| `ai/templates/plan-template.md` | 127 | `f766863b72f32ee0…` |
+| `ai/templates/playbook-template.md` | 96 | `7706eb4b59d7f5e0…` |
+| `ai/templates/prompt-template.md` | 115 | `d1817d2a5d7e1490…` |
+| `ai/templates/report-template.md` | 124 | `16ceabc67583db7a…` |
+| `ai/templates/rule-template.md` | 58 | `5c73c659511c2b94…` |
+| `ai/templates/skill-template.md` | 113 | `78a468c6a140656e…` |
+| `ai/templates/task-card-template.md` | 239 | `ae56759b08cc70c8…` |
+| `ai/tooling/README.md` | 82 | `a18f5d85baa81036…` |
+| `ai/tooling/context-scan-exclusions.md` | 179 | `ce85d96d2752ee0e…` |
+| `ai/tooling/embedded-worktree-exclusion-contract.md` | 717 | `e074abe27b92cf7c…` |
+| `ai/tooling/generated-artifacts-policy.md` | 212 | `d376ae92b8d21ed2…` |
+| `ai/tooling/validation-contract.md` | 151 | `785f1bce178e245d…` |
+| `ai/tree.md` | 585 | `c139278308938192…` |
+| `apply-ai-architecture.sh` | 2326 | `7f0598d52a4169b7…` |
+| `scripts/README.md` | 718 | `3011025fbb8a0235…` |
+| `scripts/ai-context-ignore.json` | 395 | `b56968e2c9db1285…` |
+| `scripts/ai-open-workspace.sh` | 341 | `0976883a8eaca4cd…` |
+| `scripts/ai-sync-worktrees-after-gate.sh` | 893 | `7597d1454b99885e…` |
+| `scripts/ai-worktree-diff.sh` | 477 | `b2a441204a45ea22…` |
+| `scripts/ai-worktree-status.sh` | 662 | `cd1c5d03c4d6ee35…` |
+| `scripts/bootstrap-ai-worktrees.sh` | 1769 | `b9c6ef69f1465cd8…` |
+| `scripts/gitignore-ai-worktrees.fragment` | 59 | `892ccd2d12f45753…` |
+| `scripts/migrate-sibling-worktrees-to-embedded.sh` | 1493 | `2bd6076d682a6cde…` |
+| `scripts/validate-ai-architecture.py` | 2970 | `47943138da125ca5…` |
+| `scripts/verify-embedded-worktree-isolation.sh` | 944 | `a5da8eb0f4b43879…` |

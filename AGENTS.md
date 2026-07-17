@@ -1,30 +1,26 @@
-# AGENTS.md — Entrada delgada para asistentes
+# AGENTS.md — Entrada para agentes
 
-Este archivo existe para herramientas que leen `AGENTS.md` automáticamente.
+La fuente de verdad se encuentra en `ai/**`.
 
-La fuente de verdad no está aquí. Antes de modificar código, cualquier agente debe leer:
+## Lectura mínima
 
 ```txt
 ai/start/START.md
-ai/router/ROUTER.md
-ai/router/CONTEXT_BUDGET.md
 ai/project/worktree-topology.md
 ai/project/git-operating-model.md
+ai/router/ROUTER.md
+ai/router/CONTEXT_BUDGET.md
 ```
 
-## Topología obligatoria
+## Topología
 
-| Rol | Carpeta | Rama |
-|---|---|---|
-| Coordinador/main | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin` | `main` |
-| Integración | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-merge` | `ai/integration` |
-| Codex | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-codex` | `ai/codex` |
-| Copilot | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-copilot` | `ai/copilot` |
-| Claude | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-claude` | `ai/claude` |
-
-Un agente de implementación nunca trabaja en `main` ni en `ai/integration`.
-
-## Inicio obligatorio
+| Rol | Carpeta | Rama | Puerto |
+|---|---|---|---:|
+| Coordinador | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin` | `main` | — |
+| Integrador | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/merge` | `ai/integration` | 5174 |
+| Codex | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/codex` | `ai/codex` | 5181 |
+| Claude | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/claude` | `ai/claude` | 5182 |
+| Copilot | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/copilot` | `ai/copilot` | 5183 |
 
 Antes de editar:
 
@@ -34,20 +30,22 @@ git branch --show-current
 git status --short
 ```
 
-La carpeta y la rama deben coincidir con el rol asignado.
-
 ## Reglas duras
 
-1. Seleccionar una sola task-card.
-2. Respetar `owned paths` y `forbidden paths`.
-3. No hacer auditorías globales salvo task-card explícita.
-4. No cambiar `expected`, snapshots o tests para ocultar regresiones.
-5. No crear CSS global, `@apply` ni skin visual en `runtimeStyles.ts`.
-6. No ejecutar `git merge`, `git cherry-pick`, `git rebase`, `git push`, `git pull`, `git reset --hard`, `git clean` o `git stash`.
-7. Cada agente crea commits atómicos únicamente en su rama.
-8. Solo el integrador usa `ai/integration`.
-9. `main` avanza únicamente mediante `git merge --ff-only ai/integration`.
+1. Una task-card por ejecución.
+2. Respetar owned y forbidden paths.
+3. Implementadores no trabajan en `main` ni `ai/integration`.
+4. No hacer auditoría global salvo tarea explícita.
+5. No cambiar expected o snapshots para ocultar defectos.
+6. No crear CSS global, `@apply` ni skin ordinario en `runtimeStyles.ts`.
+7. No usar merge, cherry-pick, rebase, push, pull, reset, clean o stash.
+8. Commits atómicos en la rama del agente.
+9. Handoff externo obligatorio.
+10. Solo el integrador ejecuta el gate.
+11. `main` avanza mediante `git merge --ff-only ai/integration`.
 
-## Documentación pública
+## Coordinación viva
 
-`docs/` documenta SISAD PDFME para consumidores. No debe contener coordinación de agentes, task-cards, prompts ni memoria IA.
+```txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai-coordination/sisad-pdfme
+```

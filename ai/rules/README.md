@@ -1,3 +1,3 @@
 # Rules
 
-Reglas duras. Cargar solo la regla principal de la task-card.
+Las rules son límites duros. El playbook describe el procedimiento.

@@ -1,28 +1,21 @@
-# Playbook — Migración CSS a Tailwind inline
+# pb-css-tailwind-migration
 
-## Objetivo
+## Precondiciones
+- Task activa.
+- Ownership exclusivo.
+- Reproducción.
+- Worktree correcto.
 
-Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
+## Procedimiento
+1. Baseline.
+2. Clasificar propiedades.
+3. Mover skin.
+4. Conservar dinámicos.
+5. Eliminar con evidencia.
+6. Validar.
 
-## Pasos
+## Salida
+Diff mínimo, pruebas focales, commit y handoff.
 
-1. Leer `ai/rules/css-migration-rules.md`.
-2. Ejecutar `node scripts/css-inventory.mjs`.
-3. Elegir una sola zona:
-   - Lab shell
-   - LeftSidebar
-   - RightSidebar
-   - DetailView
-   - ListView
-   - Canvas overlays no geométricos
-4. Migrar a Tailwind inline solo clases visuales.
-5. No tocar geometry, zoom, Moveable, Selecto, paper/canvas.
-6. Actualizar `reports/tailwind-migration/component-migration-ledger.md`.
-7. Correr pruebas o baseline visual.
-8. Reportar reglas CSS eliminadas y reglas conservadas.
-
-## Cierre
-
-- No aumenta CSS.
-- No hay doble Tailwind.
-- No se rompe canvas ni runtime.
+## Parada
+No ampliar scope ni corregir dependencias ajenas.

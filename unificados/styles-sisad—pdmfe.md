@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-17T17:55:09.842Z`
+- **Fecha generación:** `2026-07-17T20:37:06.556Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
-- **Archivos candidatos incluidos:** `15`
+- **Archivos candidatos incluidos:** `35`
 - **Límite por archivo:** `80 KB`
 - **Límite total de contenido:** `1200 KB`
 
@@ -34,6 +34,51 @@ prueba-plugin
 │                   ├── sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css
 │                   ├── sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css
 │                   └── sisad-pdfme__ui__styles__tokens.tailwind.candidate.css
+├── .worktrees
+│   ├── claude
+│   │   └── src
+│   │       ├── sisad-pdfme
+│   │       │   └── ui
+│   │       │       └── styles
+│   │       │           ├── sisad-pdfme.css
+│   │       │           └── tokens.css
+│   │       ├── style.css
+│   │       └── styles
+│   │           ├── sisad-tailwind-bridge.css
+│   │           └── tailwind.css
+│   ├── codex
+│   │   └── src
+│   │       ├── sisad-pdfme
+│   │       │   └── ui
+│   │       │       └── styles
+│   │       │           ├── sisad-pdfme.css
+│   │       │           └── tokens.css
+│   │       ├── style.css
+│   │       └── styles
+│   │           ├── sisad-tailwind-bridge.css
+│   │           └── tailwind.css
+│   ├── copilot
+│   │   └── src
+│   │       ├── sisad-pdfme
+│   │       │   └── ui
+│   │       │       └── styles
+│   │       │           ├── sisad-pdfme.css
+│   │       │           └── tokens.css
+│   │       ├── style.css
+│   │       └── styles
+│   │           ├── sisad-tailwind-bridge.css
+│   │           └── tailwind.css
+│   └── integration
+│       └── src
+│           ├── sisad-pdfme
+│           │   └── ui
+│           │       └── styles
+│           │           ├── sisad-pdfme.css
+│           │           └── tokens.css
+│           ├── style.css
+│           └── styles
+│               ├── sisad-tailwind-bridge.css
+│               └── tailwind.css
 ├── reports
 │   └── tailwind-migration
 │       └── candidates
@@ -59,30 +104,50 @@ prueba-plugin
 | # | Ruta | Lenguaje | Líneas | KB original | Estado |
 |---:|---|---|---:|---:|---|
 | 1 | `src/styles/tailwind.css` | css | 3 | 0.1 | completo |
-| 2 | `src/style.css` | css | 11 | 0.5 | completo |
-| 3 | `src/styles/sisad-tailwind-bridge.css` | css | 0 | 0.0 | completo |
-| 4 | `reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
-| 5 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css` | css | 1547 | 51.0 | completo |
-| 6 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css` | css | 6417 | 183.3 | truncado 75.1 KB |
-| 7 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css` | css | 443 | 14.0 | completo |
-| 8 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
-| 9 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 0 | 0.0 | completo |
-| 10 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 85 | 3.5 | completo |
-| 11 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
-| 12 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css` | css | 1547 | 51.0 | completo |
-| 13 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css` | css | 6417 | 183.3 | truncado 75.1 KB |
-| 14 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css` | css | 443 | 14.0 | completo |
-| 15 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
+| 2 | `.worktrees/claude/src/styles/tailwind.css` | css | 3 | 0.1 | completo |
+| 3 | `.worktrees/codex/src/styles/tailwind.css` | css | 3 | 0.1 | completo |
+| 4 | `.worktrees/copilot/src/styles/tailwind.css` | css | 3 | 0.1 | completo |
+| 5 | `.worktrees/integration/src/styles/tailwind.css` | css | 3 | 0.1 | completo |
+| 6 | `src/style.css` | css | 11 | 0.5 | completo |
+| 7 | `src/styles/sisad-tailwind-bridge.css` | css | 0 | 0.0 | completo |
+| 8 | `.worktrees/claude/src/style.css` | css | 11 | 0.5 | completo |
+| 9 | `.worktrees/codex/src/style.css` | css | 11 | 0.5 | completo |
+| 10 | `.worktrees/copilot/src/style.css` | css | 11 | 0.5 | completo |
+| 11 | `.worktrees/integration/src/style.css` | css | 11 | 0.5 | completo |
+| 12 | `reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
+| 13 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css` | css | 1547 | 51.0 | completo |
+| 14 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css` | css | 6417 | 183.3 | truncado 75.1 KB |
+| 15 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css` | css | 443 | 14.0 | completo |
+| 16 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
+| 17 | `.worktrees/claude/src/styles/sisad-tailwind-bridge.css` | css | 0 | 0.0 | completo |
+| 18 | `.worktrees/codex/src/styles/sisad-tailwind-bridge.css` | css | 0 | 0.0 | completo |
+| 19 | `.worktrees/copilot/src/styles/sisad-tailwind-bridge.css` | css | 0 | 0.0 | completo |
+| 20 | `.worktrees/integration/src/styles/sisad-tailwind-bridge.css` | css | 0 | 0.0 | completo |
+| 21 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 0 | 0.0 | completo |
+| 22 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 85 | 3.5 | completo |
+| 23 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
+| 24 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css` | css | 1547 | 51.0 | completo |
+| 25 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css` | css | 6417 | 183.3 | truncado 75.1 KB |
+| 26 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css` | css | 443 | 14.0 | completo |
+| 27 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
+| 28 | `.worktrees/claude/src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 0 | 0.0 | completo |
+| 29 | `.worktrees/claude/src/sisad-pdfme/ui/styles/tokens.css` | css | 85 | 3.5 | completo |
+| 30 | `.worktrees/codex/src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 0 | 0.0 | completo |
+| 31 | `.worktrees/codex/src/sisad-pdfme/ui/styles/tokens.css` | css | 85 | 3.5 | completo |
+| 32 | `.worktrees/copilot/src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 0 | 0.0 | completo |
+| 33 | `.worktrees/copilot/src/sisad-pdfme/ui/styles/tokens.css` | css | 85 | 3.5 | completo |
+| 34 | `.worktrees/integration/src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 0 | 0.0 | completo |
+| 35 | `.worktrees/integration/src/sisad-pdfme/ui/styles/tokens.css` | css | 85 | 3.5 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 2127
-- **directorio ignorado: dependencia/build/salida generada:** 8
+- **extensión no incluida:** 9869
+- **directorio ignorado: dependencia/build/salida generada:** 28
 
 ## Totales
 
-- **KB originales candidatos:** `573.5`
-- **KB incluidos en contenido:** `357.2`
+- **KB originales candidatos:** `589.6`
+- **KB incluidos en contenido:** `373.3`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -109,7 +174,71 @@ prueba-plugin
 
 <a id="file-0002"></a>
 
-### 0002 — `src/style.css`
+### 0002 — `.worktrees/claude/src/styles/tailwind.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `3`
+- **Tamaño original:** `0.1 KB`
+- **SHA1 corto:** `43ada92024`
+- **Estado:** `completo`
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+<a id="file-0003"></a>
+
+### 0003 — `.worktrees/codex/src/styles/tailwind.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `3`
+- **Tamaño original:** `0.1 KB`
+- **SHA1 corto:** `43ada92024`
+- **Estado:** `completo`
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+<a id="file-0004"></a>
+
+### 0004 — `.worktrees/copilot/src/styles/tailwind.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `3`
+- **Tamaño original:** `0.1 KB`
+- **SHA1 corto:** `43ada92024`
+- **Estado:** `completo`
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+<a id="file-0005"></a>
+
+### 0005 — `.worktrees/integration/src/styles/tailwind.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `3`
+- **Tamaño original:** `0.1 KB`
+- **SHA1 corto:** `43ada92024`
+- **Estado:** `completo`
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+<a id="file-0006"></a>
+
+### 0006 — `src/style.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `11`
@@ -131,9 +260,9 @@ prueba-plugin
  */
 ```
 
-<a id="file-0003"></a>
+<a id="file-0007"></a>
 
-### 0003 — `src/styles/sisad-tailwind-bridge.css`
+### 0007 — `src/styles/sisad-tailwind-bridge.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `0`
@@ -145,9 +274,105 @@ prueba-plugin
 
 ```
 
-<a id="file-0004"></a>
+<a id="file-0008"></a>
 
-### 0004 — `reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css`
+### 0008 — `.worktrees/claude/src/style.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `11`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `34516279db`
+- **Estado:** `completo`
+
+```css
+/**
+ * style.css — neutralizado (dedup Tailwind).
+ *
+ * index.html enlaza esta hoja, pero las directivas @tailwind viven ahora
+ * en src/styles/tailwind.css (importada por src/main.jsx). Mantener las
+ * directivas aquí generaba DOBLE emisión de Tailwind (base+components+utilities
+ * duplicados en el bundle). Se deja vacío a propósito para no romper el
+ * <link> de index.html.
+ *
+ * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
+ */
+```
+
+<a id="file-0009"></a>
+
+### 0009 — `.worktrees/codex/src/style.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `11`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `34516279db`
+- **Estado:** `completo`
+
+```css
+/**
+ * style.css — neutralizado (dedup Tailwind).
+ *
+ * index.html enlaza esta hoja, pero las directivas @tailwind viven ahora
+ * en src/styles/tailwind.css (importada por src/main.jsx). Mantener las
+ * directivas aquí generaba DOBLE emisión de Tailwind (base+components+utilities
+ * duplicados en el bundle). Se deja vacío a propósito para no romper el
+ * <link> de index.html.
+ *
+ * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
+ */
+```
+
+<a id="file-0010"></a>
+
+### 0010 — `.worktrees/copilot/src/style.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `11`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `34516279db`
+- **Estado:** `completo`
+
+```css
+/**
+ * style.css — neutralizado (dedup Tailwind).
+ *
+ * index.html enlaza esta hoja, pero las directivas @tailwind viven ahora
+ * en src/styles/tailwind.css (importada por src/main.jsx). Mantener las
+ * directivas aquí generaba DOBLE emisión de Tailwind (base+components+utilities
+ * duplicados en el bundle). Se deja vacío a propósito para no romper el
+ * <link> de index.html.
+ *
+ * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
+ */
+```
+
+<a id="file-0011"></a>
+
+### 0011 — `.worktrees/integration/src/style.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `11`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `34516279db`
+- **Estado:** `completo`
+
+```css
+/**
+ * style.css — neutralizado (dedup Tailwind).
+ *
+ * index.html enlaza esta hoja, pero las directivas @tailwind viven ahora
+ * en src/styles/tailwind.css (importada por src/main.jsx). Mantener las
+ * directivas aquí generaba DOBLE emisión de Tailwind (base+components+utilities
+ * duplicados en el bundle). Se deja vacío a propósito para no romper el
+ * <link> de index.html.
+ *
+ * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
+ */
+```
+
+<a id="file-0012"></a>
+
+### 0012 — `reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `1600`
@@ -1759,9 +1984,9 @@ prueba-plugin
 }
 ```
 
-<a id="file-0005"></a>
+<a id="file-0013"></a>
 
-### 0005 — `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css`
+### 0013 — `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `1547`
@@ -3320,9 +3545,9 @@ prueba-plugin
 }
 ```
 
-<a id="file-0006"></a>
+<a id="file-0014"></a>
 
-### 0006 — `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css`
+### 0014 — `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `6417`
@@ -5886,9 +6111,9 @@ ner-compact-config-panel {
 }
 ```
 
-<a id="file-0007"></a>
+<a id="file-0015"></a>
 
-### 0007 — `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css`
+### 0015 — `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `443`
@@ -6343,9 +6568,9 @@ ner-compact-config-panel {
 }
 ```
 
-<a id="file-0008"></a>
+<a id="file-0016"></a>
 
-### 0008 — `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css`
+### 0016 — `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `8`
@@ -6364,9 +6589,9 @@ ner-compact-config-panel {
 }
 ```
 
-<a id="file-0009"></a>
+<a id="file-0017"></a>
 
-### 0009 — `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+### 0017 — `.worktrees/claude/src/styles/sisad-tailwind-bridge.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `0`
@@ -6378,9 +6603,65 @@ ner-compact-config-panel {
 
 ```
 
-<a id="file-0010"></a>
+<a id="file-0018"></a>
 
-### 0010 — `src/sisad-pdfme/ui/styles/tokens.css`
+### 0018 — `.worktrees/codex/src/styles/sisad-tailwind-bridge.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `0`
+- **Tamaño original:** `0.0 KB`
+- **SHA1 corto:** `da39a3ee5e`
+- **Estado:** `completo`
+
+```css
+
+```
+
+<a id="file-0019"></a>
+
+### 0019 — `.worktrees/copilot/src/styles/sisad-tailwind-bridge.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `0`
+- **Tamaño original:** `0.0 KB`
+- **SHA1 corto:** `da39a3ee5e`
+- **Estado:** `completo`
+
+```css
+
+```
+
+<a id="file-0020"></a>
+
+### 0020 — `.worktrees/integration/src/styles/sisad-tailwind-bridge.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `0`
+- **Tamaño original:** `0.0 KB`
+- **SHA1 corto:** `da39a3ee5e`
+- **Estado:** `completo`
+
+```css
+
+```
+
+<a id="file-0021"></a>
+
+### 0021 — `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `0`
+- **Tamaño original:** `0.0 KB`
+- **SHA1 corto:** `da39a3ee5e`
+- **Estado:** `completo`
+
+```css
+
+```
+
+<a id="file-0022"></a>
+
+### 0022 — `src/sisad-pdfme/ui/styles/tokens.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `85`
@@ -6477,9 +6758,9 @@ ner-compact-config-panel {
 }
 ```
 
-<a id="file-0011"></a>
+<a id="file-0023"></a>
 
-### 0011 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css`
+### 0023 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `1600`
@@ -8091,9 +8372,9 @@ ner-compact-config-panel {
 }
 ```
 
-<a id="file-0012"></a>
+<a id="file-0024"></a>
 
-### 0012 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css`
+### 0024 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `1547`
@@ -9652,9 +9933,9 @@ ner-compact-config-panel {
 }
 ```
 
-<a id="file-0013"></a>
+<a id="file-0025"></a>
 
-### 0013 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css`
+### 0025 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `6417`
@@ -12218,9 +12499,9 @@ ner-compact-config-panel {
 }
 ```
 
-<a id="file-0014"></a>
+<a id="file-0026"></a>
 
-### 0014 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css`
+### 0026 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `443`
@@ -12675,9 +12956,9 @@ ner-compact-config-panel {
 }
 ```
 
-<a id="file-0015"></a>
+<a id="file-0027"></a>
 
-### 0015 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css`
+### 0027 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `8`
@@ -12693,6 +12974,458 @@ ner-compact-config-panel {
  */
 
 @layer components {
+}
+```
+
+<a id="file-0028"></a>
+
+### 0028 — `.worktrees/claude/src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `0`
+- **Tamaño original:** `0.0 KB`
+- **SHA1 corto:** `da39a3ee5e`
+- **Estado:** `completo`
+
+```css
+
+```
+
+<a id="file-0029"></a>
+
+### 0029 — `.worktrees/claude/src/sisad-pdfme/ui/styles/tokens.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `85`
+- **Tamaño original:** `3.5 KB`
+- **SHA1 corto:** `07f4df1ca0`
+- **Estado:** `completo`
+- **Símbolos detectados:** `selector: :root`
+
+```css
+/* ============================================================
+   tokens.css — tokens únicos del diseñador SISAD PDFME
+
+   Archivo conservado como CSS plano porque define variables.
+   No convertir a @apply. Debe importarse antes del entrypoint.
+   Duplicados internos eliminados conservando la última definición.
+   ============================================================ */
+
+:root {
+  --color-white: #ffffff;
+  --color-bg-base: #f8fafc;
+  --color-bg-elevated: #ffffff;
+  --color-bg-surface: #f1f5f9;
+  --color-bg-hover: #e8eef5;
+  --color-bg-active: #dde6f0;
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-900: #0f172a;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  --color-primary: #4338ca;
+  --color-primary-light: #6366f1;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-success: #10b981;
+  --color-info: #4338ca;
+  --color-border-subtle: rgba(148, 163, 184, 0.16);
+  --color-border-soft: rgba(148, 163, 184, 0.22);
+  --color-border-18: rgba(148, 163, 184, 0.18);
+  --color-border-20: rgba(148, 163, 184, 0.20);
+  --color-gray-900-04: rgba(15, 23, 42, 0.04);
+  --color-gray-900-06: rgba(15, 23, 42, 0.06);
+  --color-gray-900-08: rgba(15, 23, 42, 0.08);
+  --color-gray-900-10: rgba(15, 23, 42, 0.10);
+  --color-gray-50-90: rgba(248, 250, 252, 0.90);
+  --color-primary-100-90: rgba(238, 236, 255, 0.90);
+  --color-primary-200-20: rgba(199, 210, 254, 0.20);
+  --color-white-70: rgba(255, 255, 255, 0.70);
+  --color-white-80: rgba(255, 255, 255, 0.80);
+  --color-white-92: rgba(255, 255, 255, 0.92);
+  --color-white-98: rgba(255, 255, 255, 0.98);
+  --color-primary-08: rgba(67, 56, 202, 0.08);
+  --color-primary-10: rgba(67, 56, 202, 0.10);
+  --color-primary-12: rgba(67, 56, 202, 0.12);
+  --color-primary-20: rgba(67, 56, 202, 0.20);
+  --color-primary-25: rgba(67, 56, 202, 0.25);
+  --color-primary-30: rgba(67, 56, 202, 0.30);
+  --color-primary-40: rgba(67, 56, 202, 0.40);
+  --color-danger-32: rgba(239, 68, 68, 0.32);
+  --color-info-55: rgba(99, 102, 241, 0.55);
+  --font-family-ui: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  --inspector-field-min-height: 22px;
+  --shadow-gray-10: 0 0.5rem 1.375rem rgba(15, 23, 42, 0.10);
+  --z-overlay: 300;
+  --transition-fast: 120ms ease;
+  --sisad-pdfme-root-bg: #f8fafc;
+  --sisad-pdfme-mask-bg: rgba(15, 23, 42, 0.08);
+  --sisad-pdfme-mask-blur: 0.0625rem;
+  --sisad-pdfme-rs-gap: 0.875rem;
+  --sisad-pdfme-rs-width: clamp(14.25rem, 17vw, 18rem);
+  --sisad-pdfme-ls-width: clamp(12rem, 14.5vw, 15rem);
+  --sisad-pdfme-ls-rail-width: 2.25rem;
+  /* Runtime tokens consumidos por sisad-pdfme.css con fallback inline;
+     se conservan porque el fallback no siempre iguala el valor real. */
+  --sisad-pdfme-root-width: auto;
+  --sisad-pdfme-root-height: auto;
+  --sisad-pdfme-chrome-bg: linear-gradient(180deg, var(--color-white-98), var(--color-gray-50-90));
+  --sisad-pdfme-chrome-border: var(--color-border-20);
+  --sisad-pdfme-chrome-shadow: var(--shadow-gray-10);
+  --sisad-pdfme-chrome-radius: 0.625rem;
+  --sisad-pdfme-chrome-z: 45;
+  --sisad-pdfme-left-sidebar-draggable-opacity: 1;
+  --sisad-pdfme-left-sidebar-draggable-scale: 1;
+  --moveable-color: #4338ca;
+  --schema-tone: #4338ca;
+  --schema-outline: 0.0625rem solid transparent;
+  --wix-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --wix-reveal-dur: 220ms;
+}
+```
+
+<a id="file-0030"></a>
+
+### 0030 — `.worktrees/codex/src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `0`
+- **Tamaño original:** `0.0 KB`
+- **SHA1 corto:** `da39a3ee5e`
+- **Estado:** `completo`
+
+```css
+
+```
+
+<a id="file-0031"></a>
+
+### 0031 — `.worktrees/codex/src/sisad-pdfme/ui/styles/tokens.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `85`
+- **Tamaño original:** `3.5 KB`
+- **SHA1 corto:** `07f4df1ca0`
+- **Estado:** `completo`
+- **Símbolos detectados:** `selector: :root`
+
+```css
+/* ============================================================
+   tokens.css — tokens únicos del diseñador SISAD PDFME
+
+   Archivo conservado como CSS plano porque define variables.
+   No convertir a @apply. Debe importarse antes del entrypoint.
+   Duplicados internos eliminados conservando la última definición.
+   ============================================================ */
+
+:root {
+  --color-white: #ffffff;
+  --color-bg-base: #f8fafc;
+  --color-bg-elevated: #ffffff;
+  --color-bg-surface: #f1f5f9;
+  --color-bg-hover: #e8eef5;
+  --color-bg-active: #dde6f0;
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-900: #0f172a;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  --color-primary: #4338ca;
+  --color-primary-light: #6366f1;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-success: #10b981;
+  --color-info: #4338ca;
+  --color-border-subtle: rgba(148, 163, 184, 0.16);
+  --color-border-soft: rgba(148, 163, 184, 0.22);
+  --color-border-18: rgba(148, 163, 184, 0.18);
+  --color-border-20: rgba(148, 163, 184, 0.20);
+  --color-gray-900-04: rgba(15, 23, 42, 0.04);
+  --color-gray-900-06: rgba(15, 23, 42, 0.06);
+  --color-gray-900-08: rgba(15, 23, 42, 0.08);
+  --color-gray-900-10: rgba(15, 23, 42, 0.10);
+  --color-gray-50-90: rgba(248, 250, 252, 0.90);
+  --color-primary-100-90: rgba(238, 236, 255, 0.90);
+  --color-primary-200-20: rgba(199, 210, 254, 0.20);
+  --color-white-70: rgba(255, 255, 255, 0.70);
+  --color-white-80: rgba(255, 255, 255, 0.80);
+  --color-white-92: rgba(255, 255, 255, 0.92);
+  --color-white-98: rgba(255, 255, 255, 0.98);
+  --color-primary-08: rgba(67, 56, 202, 0.08);
+  --color-primary-10: rgba(67, 56, 202, 0.10);
+  --color-primary-12: rgba(67, 56, 202, 0.12);
+  --color-primary-20: rgba(67, 56, 202, 0.20);
+  --color-primary-25: rgba(67, 56, 202, 0.25);
+  --color-primary-30: rgba(67, 56, 202, 0.30);
+  --color-primary-40: rgba(67, 56, 202, 0.40);
+  --color-danger-32: rgba(239, 68, 68, 0.32);
+  --color-info-55: rgba(99, 102, 241, 0.55);
+  --font-family-ui: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  --inspector-field-min-height: 22px;
+  --shadow-gray-10: 0 0.5rem 1.375rem rgba(15, 23, 42, 0.10);
+  --z-overlay: 300;
+  --transition-fast: 120ms ease;
+  --sisad-pdfme-root-bg: #f8fafc;
+  --sisad-pdfme-mask-bg: rgba(15, 23, 42, 0.08);
+  --sisad-pdfme-mask-blur: 0.0625rem;
+  --sisad-pdfme-rs-gap: 0.875rem;
+  --sisad-pdfme-rs-width: clamp(14.25rem, 17vw, 18rem);
+  --sisad-pdfme-ls-width: clamp(12rem, 14.5vw, 15rem);
+  --sisad-pdfme-ls-rail-width: 2.25rem;
+  /* Runtime tokens consumidos por sisad-pdfme.css con fallback inline;
+     se conservan porque el fallback no siempre iguala el valor real. */
+  --sisad-pdfme-root-width: auto;
+  --sisad-pdfme-root-height: auto;
+  --sisad-pdfme-chrome-bg: linear-gradient(180deg, var(--color-white-98), var(--color-gray-50-90));
+  --sisad-pdfme-chrome-border: var(--color-border-20);
+  --sisad-pdfme-chrome-shadow: var(--shadow-gray-10);
+  --sisad-pdfme-chrome-radius: 0.625rem;
+  --sisad-pdfme-chrome-z: 45;
+  --sisad-pdfme-left-sidebar-draggable-opacity: 1;
+  --sisad-pdfme-left-sidebar-draggable-scale: 1;
+  --moveable-color: #4338ca;
+  --schema-tone: #4338ca;
+  --schema-outline: 0.0625rem solid transparent;
+  --wix-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --wix-reveal-dur: 220ms;
+}
+```
+
+<a id="file-0032"></a>
+
+### 0032 — `.worktrees/copilot/src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `0`
+- **Tamaño original:** `0.0 KB`
+- **SHA1 corto:** `da39a3ee5e`
+- **Estado:** `completo`
+
+```css
+
+```
+
+<a id="file-0033"></a>
+
+### 0033 — `.worktrees/copilot/src/sisad-pdfme/ui/styles/tokens.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `85`
+- **Tamaño original:** `3.5 KB`
+- **SHA1 corto:** `07f4df1ca0`
+- **Estado:** `completo`
+- **Símbolos detectados:** `selector: :root`
+
+```css
+/* ============================================================
+   tokens.css — tokens únicos del diseñador SISAD PDFME
+
+   Archivo conservado como CSS plano porque define variables.
+   No convertir a @apply. Debe importarse antes del entrypoint.
+   Duplicados internos eliminados conservando la última definición.
+   ============================================================ */
+
+:root {
+  --color-white: #ffffff;
+  --color-bg-base: #f8fafc;
+  --color-bg-elevated: #ffffff;
+  --color-bg-surface: #f1f5f9;
+  --color-bg-hover: #e8eef5;
+  --color-bg-active: #dde6f0;
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-900: #0f172a;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  --color-primary: #4338ca;
+  --color-primary-light: #6366f1;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-success: #10b981;
+  --color-info: #4338ca;
+  --color-border-subtle: rgba(148, 163, 184, 0.16);
+  --color-border-soft: rgba(148, 163, 184, 0.22);
+  --color-border-18: rgba(148, 163, 184, 0.18);
+  --color-border-20: rgba(148, 163, 184, 0.20);
+  --color-gray-900-04: rgba(15, 23, 42, 0.04);
+  --color-gray-900-06: rgba(15, 23, 42, 0.06);
+  --color-gray-900-08: rgba(15, 23, 42, 0.08);
+  --color-gray-900-10: rgba(15, 23, 42, 0.10);
+  --color-gray-50-90: rgba(248, 250, 252, 0.90);
+  --color-primary-100-90: rgba(238, 236, 255, 0.90);
+  --color-primary-200-20: rgba(199, 210, 254, 0.20);
+  --color-white-70: rgba(255, 255, 255, 0.70);
+  --color-white-80: rgba(255, 255, 255, 0.80);
+  --color-white-92: rgba(255, 255, 255, 0.92);
+  --color-white-98: rgba(255, 255, 255, 0.98);
+  --color-primary-08: rgba(67, 56, 202, 0.08);
+  --color-primary-10: rgba(67, 56, 202, 0.10);
+  --color-primary-12: rgba(67, 56, 202, 0.12);
+  --color-primary-20: rgba(67, 56, 202, 0.20);
+  --color-primary-25: rgba(67, 56, 202, 0.25);
+  --color-primary-30: rgba(67, 56, 202, 0.30);
+  --color-primary-40: rgba(67, 56, 202, 0.40);
+  --color-danger-32: rgba(239, 68, 68, 0.32);
+  --color-info-55: rgba(99, 102, 241, 0.55);
+  --font-family-ui: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  --inspector-field-min-height: 22px;
+  --shadow-gray-10: 0 0.5rem 1.375rem rgba(15, 23, 42, 0.10);
+  --z-overlay: 300;
+  --transition-fast: 120ms ease;
+  --sisad-pdfme-root-bg: #f8fafc;
+  --sisad-pdfme-mask-bg: rgba(15, 23, 42, 0.08);
+  --sisad-pdfme-mask-blur: 0.0625rem;
+  --sisad-pdfme-rs-gap: 0.875rem;
+  --sisad-pdfme-rs-width: clamp(14.25rem, 17vw, 18rem);
+  --sisad-pdfme-ls-width: clamp(12rem, 14.5vw, 15rem);
+  --sisad-pdfme-ls-rail-width: 2.25rem;
+  /* Runtime tokens consumidos por sisad-pdfme.css con fallback inline;
+     se conservan porque el fallback no siempre iguala el valor real. */
+  --sisad-pdfme-root-width: auto;
+  --sisad-pdfme-root-height: auto;
+  --sisad-pdfme-chrome-bg: linear-gradient(180deg, var(--color-white-98), var(--color-gray-50-90));
+  --sisad-pdfme-chrome-border: var(--color-border-20);
+  --sisad-pdfme-chrome-shadow: var(--shadow-gray-10);
+  --sisad-pdfme-chrome-radius: 0.625rem;
+  --sisad-pdfme-chrome-z: 45;
+  --sisad-pdfme-left-sidebar-draggable-opacity: 1;
+  --sisad-pdfme-left-sidebar-draggable-scale: 1;
+  --moveable-color: #4338ca;
+  --schema-tone: #4338ca;
+  --schema-outline: 0.0625rem solid transparent;
+  --wix-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --wix-reveal-dur: 220ms;
+}
+```
+
+<a id="file-0034"></a>
+
+### 0034 — `.worktrees/integration/src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `0`
+- **Tamaño original:** `0.0 KB`
+- **SHA1 corto:** `da39a3ee5e`
+- **Estado:** `completo`
+
+```css
+
+```
+
+<a id="file-0035"></a>
+
+### 0035 — `.worktrees/integration/src/sisad-pdfme/ui/styles/tokens.css`
+
+- **Lenguaje:** `css`
+- **Líneas:** `85`
+- **Tamaño original:** `3.5 KB`
+- **SHA1 corto:** `07f4df1ca0`
+- **Estado:** `completo`
+- **Símbolos detectados:** `selector: :root`
+
+```css
+/* ============================================================
+   tokens.css — tokens únicos del diseñador SISAD PDFME
+
+   Archivo conservado como CSS plano porque define variables.
+   No convertir a @apply. Debe importarse antes del entrypoint.
+   Duplicados internos eliminados conservando la última definición.
+   ============================================================ */
+
+:root {
+  --color-white: #ffffff;
+  --color-bg-base: #f8fafc;
+  --color-bg-elevated: #ffffff;
+  --color-bg-surface: #f1f5f9;
+  --color-bg-hover: #e8eef5;
+  --color-bg-active: #dde6f0;
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-900: #0f172a;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  --color-primary: #4338ca;
+  --color-primary-light: #6366f1;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-success: #10b981;
+  --color-info: #4338ca;
+  --color-border-subtle: rgba(148, 163, 184, 0.16);
+  --color-border-soft: rgba(148, 163, 184, 0.22);
+  --color-border-18: rgba(148, 163, 184, 0.18);
+  --color-border-20: rgba(148, 163, 184, 0.20);
+  --color-gray-900-04: rgba(15, 23, 42, 0.04);
+  --color-gray-900-06: rgba(15, 23, 42, 0.06);
+  --color-gray-900-08: rgba(15, 23, 42, 0.08);
+  --color-gray-900-10: rgba(15, 23, 42, 0.10);
+  --color-gray-50-90: rgba(248, 250, 252, 0.90);
+  --color-primary-100-90: rgba(238, 236, 255, 0.90);
+  --color-primary-200-20: rgba(199, 210, 254, 0.20);
+  --color-white-70: rgba(255, 255, 255, 0.70);
+  --color-white-80: rgba(255, 255, 255, 0.80);
+  --color-white-92: rgba(255, 255, 255, 0.92);
+  --color-white-98: rgba(255, 255, 255, 0.98);
+  --color-primary-08: rgba(67, 56, 202, 0.08);
+  --color-primary-10: rgba(67, 56, 202, 0.10);
+  --color-primary-12: rgba(67, 56, 202, 0.12);
+  --color-primary-20: rgba(67, 56, 202, 0.20);
+  --color-primary-25: rgba(67, 56, 202, 0.25);
+  --color-primary-30: rgba(67, 56, 202, 0.30);
+  --color-primary-40: rgba(67, 56, 202, 0.40);
+  --color-danger-32: rgba(239, 68, 68, 0.32);
+  --color-info-55: rgba(99, 102, 241, 0.55);
+  --font-family-ui: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  --inspector-field-min-height: 22px;
+  --shadow-gray-10: 0 0.5rem 1.375rem rgba(15, 23, 42, 0.10);
+  --z-overlay: 300;
+  --transition-fast: 120ms ease;
+  --sisad-pdfme-root-bg: #f8fafc;
+  --sisad-pdfme-mask-bg: rgba(15, 23, 42, 0.08);
+  --sisad-pdfme-mask-blur: 0.0625rem;
+  --sisad-pdfme-rs-gap: 0.875rem;
+  --sisad-pdfme-rs-width: clamp(14.25rem, 17vw, 18rem);
+  --sisad-pdfme-ls-width: clamp(12rem, 14.5vw, 15rem);
+  --sisad-pdfme-ls-rail-width: 2.25rem;
+  /* Runtime tokens consumidos por sisad-pdfme.css con fallback inline;
+     se conservan porque el fallback no siempre iguala el valor real. */
+  --sisad-pdfme-root-width: auto;
+  --sisad-pdfme-root-height: auto;
+  --sisad-pdfme-chrome-bg: linear-gradient(180deg, var(--color-white-98), var(--color-gray-50-90));
+  --sisad-pdfme-chrome-border: var(--color-border-20);
+  --sisad-pdfme-chrome-shadow: var(--shadow-gray-10);
+  --sisad-pdfme-chrome-radius: 0.625rem;
+  --sisad-pdfme-chrome-z: 45;
+  --sisad-pdfme-left-sidebar-draggable-opacity: 1;
+  --sisad-pdfme-left-sidebar-draggable-scale: 1;
+  --moveable-color: #4338ca;
+  --schema-tone: #4338ca;
+  --schema-outline: 0.0625rem solid transparent;
+  --wix-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --wix-reveal-dur: 220ms;
 }
 ```
 

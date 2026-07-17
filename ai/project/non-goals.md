@@ -1,12 +1,3 @@
 # No objetivos
 
-No hacer por defecto:
-
-- Reescribir el diseñador desde cero.
-- Crear un segundo renderer.
-- Crear un segundo snapshot.
-- Crear otra implementación de Moveable/Selecto.
-- Copiar DocuSign visualmente.
-- Migrar toda la geometría a Tailwind.
-- Cambiar reglas de negocio SISAD desde `sisad-pdfme`.
-- Resolver permisos con CSS.
+No reescribir pdf-lib; no sustituir Moveable/Selecto; no crear builder paralelo; no acoplar al host; no migrar geometría ciegamente; no agregar wrappers sin contrato.

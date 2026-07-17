@@ -1,13 +1,26 @@
 # Baseline Visual Critic
 
-## Propósito
+## Objetivo
+Compara jerarquía, densidad, alineación y solapamientos.
 
-Compara screenshots actuales contra public/img-version y detecta regresiones.
+## Entrada
+- Diff o archivos focales.
+- Task-card.
+- Contrato.
+- Pruebas.
 
-## Uso recomendado
+## Revisión
+1. Confirmar scope.
+2. Buscar evidencia.
+3. Enumerar hallazgos por severidad.
+4. Separar bloqueo de recomendación.
+5. No editar rutas del owner sin autorización.
 
-Invocar dentro de una task-card cuando el agente principal necesite validación especializada.
-
-## Restricción
-
-No modificar código por sí solo. Debe apoyar al agente principal.
+## Salida
+```md
+## Bloqueos
+## Hallazgos
+## Evidencia
+## Riesgo
+## Recomendación
+```

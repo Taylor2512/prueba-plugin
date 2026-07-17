@@ -1,29 +1,37 @@
 # Memory Update Skill
 
-## Objetivo
+## Propósito
+Actualizar memoria compacta.
 
-Actualizar memoria con decisiones útiles.
+## Cuándo usar
+Cierre task/wave.
 
 ## Entradas
-
-- Task-card activa.
+- Task-card.
 - Contexto focal.
-- Regla del dominio.
-- Archivos candidatos.
+- Rules.
+- Archivos y tests.
 
-## Pasos
+## Procedimiento
+1. Actualizar estado.
+2. Añadir decisión.
+3. Añadir riesgo.
+4. Mover completado.
+5. Actualizar pendientes.
+6. Compactar handoff.
 
-1. Confirmar alcance.
-2. Buscar evidencia con `rg`.
-3. Clasificar riesgos.
-4. Implementar cambio mínimo.
-5. Validar.
-6. Reportar.
+## Validaciones
+Sin logs completos.
+
+## Anti-patrones
+Memory como diario infinito.
 
 ## Salida
-
 ```md
+## Alcance
+## Evidencia
 ## Cambios
 ## Validación
 ## Riesgos
+## Dependencia
 ```

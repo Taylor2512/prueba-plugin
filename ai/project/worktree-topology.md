@@ -1,41 +1,29 @@
-# Topología de worktrees reutilizables
-
-## Mapa
+# Topología de worktrees internos
 
 | Rol | Carpeta | Rama | Puerto |
 |---|---|---|---:|
-| Main/coordinador | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin` | `main` | — |
-| Integración | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-merge` | `ai/integration` | 5174 |
-| Codex | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-codex` | `ai/codex` | 5181 |
-| Claude | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-claude` | `ai/claude` | 5182 |
-| Copilot | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-copilot` | `ai/copilot` | 5183 |
+| Main | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin` | `main` | — |
+| Integración | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/merge` | `ai/integration` | 5174 |
+| Codex | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/codex` | `ai/codex` | 5181 |
+| Claude | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/claude` | `ai/claude` | 5182 |
+| Copilot | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/copilot` | `ai/copilot` | 5183 |
 
-## Fuente
+## Decisión
 
-Todos son worktrees del mismo repositorio Git. No son clones independientes.
+Todos los worktrees viven dentro de `.worktrees/`. Esta carpeta está ignorada por Git y scanners. No crear carpetas hermanas `prueba-plugin-*`.
 
-## Coordinación viva
+## Visualización unificada
 
-```txt
-/Users/desarrollo1/Documents/Taylor/frontend/ai-coordination/sisad-pdfme
-```
-
-Esta ruta es externa porque los archivos dentro de una rama no son visibles automáticamente en las otras hasta integrar.
-
-## Reutilización
-
-Las mismas ramas y carpetas se reutilizan en todas las waves:
+Abrir:
 
 ```txt
-trabajo aislado
-→ commits
-→ handoffs externos
-→ cherry-pick en ai/integration
-→ gate
-→ fast-forward main
-→ realineación controlada
+SISAD-PDFME-MULTIAGENT.code-workspace
 ```
 
-## Regla de identidad
+El workspace muestra main, integration, codex, claude y copilot como raíces separadas.
 
-Un proveedor se detiene si `pwd` y `git branch --show-current` no coinciden con su fila.
+## Ciclo
+
+```txt
+trabajo aislado → commits → handoff local → integration → gate → ff-only main → realineación
+```

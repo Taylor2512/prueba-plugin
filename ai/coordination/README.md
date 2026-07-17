@@ -1,32 +1,14 @@
 # Coordinación
 
-## Documentación versionada
+## Versionada
+`ai/coordination/worktrees/**`.
 
-`ai/coordination/worktrees/**` contiene contratos, mapas, plantillas y waves que deben existir en Git.
+## Viva
+`/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai-coordination/sisad-pdfme` con locks, handoffs, status, gates e incidents.
 
-## Coordinación viva
+## Histórica
+Mover coordinación anterior a `ai/archive/coordination/**`.
 
-Los locks, handoffs, estados y gates mutables viven fuera del repositorio:
+## Dashboard
 
-```txt
-/Users/desarrollo1/Documents/Taylor/frontend/ai-coordination/sisad-pdfme
-```
-
-Esto evita que cada worktree tenga una versión distinta de la coordinación.
-
-## Histórico
-
-```txt
-ai/coordination/uxqa-20260717/**
-```
-
-Es evidencia de la primera consolidación. No es el protocolo activo y no debe cargarse por defecto.
-
-## Protocolo activo
-
-```txt
-ai/coordination/worktrees/README.md
-ai/coordination/worktrees/WORKTREE-MAP.md
-ai/coordination/worktrees/OWNERSHIP.md
-ai/coordination/worktrees/INTEGRATION-PROTOCOL.md
-```
+Use `scripts/ai-worktree-status.sh` o el workspace multi-root para observar el trabajo sin cambiar manualmente de carpeta.

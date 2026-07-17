@@ -1,3 +1,3 @@
-# Contexts
+# Contextos
 
-Contextos focales. Cargar solo uno por task-card.
+Un contexto explica el estado y conceptos de un dominio. La task-card carga solo uno o dos.

@@ -1,8 +1,6 @@
-# START — Entrada única para cualquier asistente IA
+# START — Entrada única
 
-## 1. Valida tu topología antes de leer código
-
-Ejecuta:
+## 1. Validar identidad
 
 ```bash
 pwd
@@ -10,96 +8,69 @@ git branch --show-current
 git status --short
 ```
 
-Compara el resultado con:
+Compara con `project/worktree-topology.md`. Si no coincide, detente.
+
+## 2. Identificar wave y task-card
 
 ```txt
-ai/project/worktree-topology.md
+coordination/worktrees/WAVE-<n>.md
+task-cards/active/<task>.md
 ```
 
-Si carpeta y rama no coinciden con tu rol, detente sin editar.
+Una ejecución trabaja sobre una sola task-card.
 
-## 2. Identifica la wave y task-card
-
-Lee:
+## 3. Enrutar dominio
 
 ```txt
-ai/coordination/worktrees/WAVE-1.5.md
-ai/task-cards/active/<task>.md
-```
-
-Solo una task-card por ejecución.
-
-## 3. Enruta el dominio
-
-Usa:
-
-```txt
-ai/router/ROUTER.md
-ai/router/TASK_INTAKE.md
-```
-
-El agente de proveedor —Codex, Claude o Copilot— ejecuta un agente lógico del dominio. No sustituye el contrato del agente lógico.
-
-## 4. Aplica presupuesto
-
-Usa:
-
-```txt
-ai/router/CONTEXT_BUDGET.md
-```
-
-Por slice:
-
-- máximo 2 consultas globales `rg`;
-- máximo 8 archivos inspeccionados;
-- máximo 5 archivos productivos modificados;
-- tests directos adicionales permitidos.
-
-## 5. Carga memoria mínima
-
-```txt
-ai/memory/project-memory.md
-ai/memory/decisions.md
-ai/memory/known-risks.md
-ai/memory/session-handoff.md
-```
-
-## 6. Carga contexto focal
-
-La task-card debe declarar:
-
-```txt
-context
-rules
-playbook
-owned paths
-forbidden paths
-tests focales
-```
-
-No cargues todos los Markdown.
-
-## 7. Reclama lock externo
-
-Ruta:
-
-```txt
-/Users/desarrollo1/Documents/Taylor/frontend/ai-coordination/sisad-pdfme/locks
+router/ROUTER.md
+router/TASK_INTAKE.md
 ```
 
 Ejemplo:
 
-```bash
-mkdir /Users/desarrollo1/Documents/Taylor/frontend/ai-coordination/sisad-pdfme/locks/<TASK-ID>.lock
+```txt
+Proveedor: Claude
+Agente lógico: inspector-agent
+Rol Git: implementador
 ```
 
-Si existe, no comiences.
+## 4. Aplicar presupuesto
 
-## 8. Declara antes de editar
+```txt
+router/CONTEXT_BUDGET.md
+```
+
+- 2 búsquedas globales.
+- 8 archivos fuente.
+- 5 archivos productivos por commit.
+- Tests directos adicionales.
+- Un dominio principal.
+
+## 5. Cargar memoria
+
+```txt
+memory/project-memory.md
+memory/decisions.md
+memory/known-risks.md
+memory/session-handoff.md
+```
+
+## 6. Cargar contexto focal
+
+La task-card declara context, rules, playbook, owned paths, forbidden paths y tests.
+
+## 7. Reclamar lock externo
+
+```bash
+mkdir /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai-coordination/sisad-pdfme/locks/<TASK-ID>.lock
+```
+
+## 8. Declarar decisión
 
 ```md
 ## Router decision
 - Proveedor:
+- Rol:
 - Worktree:
 - Rama:
 - Wave:
@@ -110,33 +81,25 @@ Si existe, no comiences.
 - Playbook:
 - Owned paths:
 - Forbidden paths:
-- Tests focales:
+- Tests:
 ```
 
-## 9. Implementa y valida
+## 9. Implementar
 
-El agente puede ejecutar:
+- Cambio mínimo.
+- Sin auditoría paralela.
+- Sin arreglar rutas ajenas.
+- Sin expected falsos.
+- Sin CSS global ni `@apply`.
+- Sin duplicar wrappers o estados.
 
-- ESLint focal;
-- Vitest focal;
-- Playwright focal en su puerto asignado;
-- build solo cuando la task-card lo exige y no existe otro proceso pesado.
+## 10. Entregar
 
-No puede ejecutar integración, merge o cambios sobre `main`.
-
-## 10. Commit y handoff
-
-- Commits atómicos en la rama del agente.
-- Máximo 5 archivos productivos por commit.
-- Escribir handoff en la coordinación externa.
-- Liberar lock.
-- Detenerse.
-
-## 11. Integración
-
-Solo el integrador sigue:
-
-```txt
-ai/start/QUICKSTART-INTEGRATOR.md
-ai/coordination/worktrees/INTEGRATION-PROTOCOL.md
-```
+1. ESLint focal.
+2. Vitest focal.
+3. Playwright focal cuando aplique.
+4. `git diff --check`.
+5. Commit atómico.
+6. Handoff externo.
+7. Liberar lock.
+8. Detenerse.

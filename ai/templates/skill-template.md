@@ -1,7 +1,9 @@
-# Skill Name
+# <Skill>
 
-## Objetivo
+## Propósito
+## Cuándo usar
 ## Entradas
 ## Procedimiento
-## Validación
+## Validaciones
+## Anti-patrones
 ## Salida

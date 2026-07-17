@@ -1,18 +1,21 @@
-# Visual Baseline Context
+# Contexto — Visual Baseline Context
 
-Baseline visual obligatorio:
+## Foco
+Ruta, viewport, fixture, commit, regiones y evidencia.
 
-```txt
-public/img-version
-```
+## Preguntas
+- ¿Cuál es la fuente de verdad?
+- ¿Qué identidad persiste?
+- ¿Qué es actual y qué histórico?
+- ¿Quién es owner?
+- ¿Qué tests protegen el contrato?
 
-Comparar intención visual, no pixel-perfect:
+## Riesgos
+- Duplicar resolvers.
+- Consumir internals.
+- Cambiar metadata para arreglar UI.
+- Ajustar tests sin contrato.
+- Mezclar skin y geometría.
 
-- densidad;
-- jerarquía;
-- spacing;
-- paneles;
-- sidebars;
-- field chrome;
-- toolbars;
-- canvas-first.
+## Evidencia
+Rutas exactas, reproducción, diff mínimo y resultado focal.

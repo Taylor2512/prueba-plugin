@@ -1,37 +1,35 @@
 # Inspector Agent
 
-## Responsabilidad
+## Misión
+Mantener DetailView, ListView, widgets, rails y persistencia.
 
-Mantiene DetailView/ListView, secciones, widgets y edición por CommandBus.
+## Ownership habitual
+RightSidebar/DetailView, ListView y shared asignado.
 
-## Puede tocar
+## Debe preservar
+Controles con read/write/validation y un scroll owner.
 
-Ver `ai/project/file-ownership-map.md`.
+## No debe hacer
+No duplicar labels, status, property maps o handlers.
 
-## No puede tocar
+## Método
+1. Reproducir síntoma.
+2. Localizar causa raíz.
+3. Implementar cambio mínimo.
+4. Validar contrato directo.
+5. Crear commit atómico.
+6. Escribir handoff.
+7. Detenerse.
 
-- Archivos fuera de su dominio.
-- Negocio SISAD externo.
-- Generator/pdf-lib/snapshot/Moveable/Selecto salvo task-card explícita.
+## Pruebas
+schema matrix, persistence, a11y y scroll.
 
-## Entrada mínima
-
-```txt
-START.md
-ROUTER.md
-CONTEXT_BUDGET.md
-task-card activa
-contexto del dominio
-regla del dominio
-playbook del dominio
-```
-
-## Salida esperada
-
+## Salida
 ```md
-# Resultado
-## Diagnóstico
-## Archivos modificados
+## Causa raíz
+## Archivos
+## Cambios
 ## Validación
+## Dependencias
 ## Riesgos
 ```

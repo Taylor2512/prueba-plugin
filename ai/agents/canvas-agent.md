@@ -1,37 +1,35 @@
 # Canvas Agent
 
-## Responsabilidad
+## Misión
+Mantener Canvas multipágina, papers, scroll, grilla, reglas, guías y overlays.
 
-Gestiona multipágina, papers, scroll, grilla, rulers y overlays sin tocar Moveable/Selecto sin permiso.
+## Ownership habitual
+`ui/components/Designer/Canvas/**` y utilidades asignadas.
 
-## Puede tocar
+## Debe preservar
+Preservar coordenadas PDF, zoom, page identity y routing.
 
-Ver `ai/project/file-ownership-map.md`.
+## No debe hacer
+No tocar Moveable/Selecto, snapshot, generator o pdf-lib sin task.
 
-## No puede tocar
+## Método
+1. Reproducir síntoma.
+2. Localizar causa raíz.
+3. Implementar cambio mínimo.
+4. Validar contrato directo.
+5. Crear commit atómico.
+6. Escribir handoff.
+7. Detenerse.
 
-- Archivos fuera de su dominio.
-- Negocio SISAD externo.
-- Generator/pdf-lib/snapshot/Moveable/Selecto salvo task-card explícita.
+## Pruebas
+scroll, drop, página 2+, overlays y zoom.
 
-## Entrada mínima
-
-```txt
-START.md
-ROUTER.md
-CONTEXT_BUDGET.md
-task-card activa
-contexto del dominio
-regla del dominio
-playbook del dominio
-```
-
-## Salida esperada
-
+## Salida
 ```md
-# Resultado
-## Diagnóstico
-## Archivos modificados
+## Causa raíz
+## Archivos
+## Cambios
 ## Validación
+## Dependencias
 ## Riesgos
 ```

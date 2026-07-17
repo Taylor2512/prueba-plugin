@@ -1,29 +1,37 @@
 # Option Groups Skill
 
-## Objetivo
+## Propósito
+Gestionar Radio/Checkbox/Select con IDs estables.
 
-Gestionar checkboxGroup/radioGroup/select y botón +.
+## Cuándo usar
+Editor y runtime de opciones.
 
 ## Entradas
-
-- Task-card activa.
+- Task-card.
 - Contexto focal.
-- Regla del dominio.
-- Archivos candidatos.
+- Rules.
+- Archivos y tests.
 
-## Pasos
+## Procedimiento
+1. Normalizar sin perder IDs.
+2. Separar label/value.
+3. Preservar root.
+4. Validar selección.
+5. Probar UI/PDF/snapshot.
+6. Probar reorder.
 
-1. Confirmar alcance.
-2. Buscar evidencia con `rg`.
-3. Clasificar riesgos.
-4. Implementar cambio mínimo.
-5. Validar.
-6. Reportar.
+## Validaciones
+optionId estable.
+
+## Anti-patrones
+IDs por índice o hijos como schemas.
 
 ## Salida
-
 ```md
+## Alcance
+## Evidencia
 ## Cambios
 ## Validación
 ## Riesgos
+## Dependencia
 ```

@@ -1,79 +1,18 @@
 # <TASK-ID> — <Título>
 
 ## Estado
-
-`active | blocked | completed`
-
 ## Wave
-
-`W<n>`
-
 ## Proveedor
-
-`Codex | Claude | Copilot`
-
 ## Agente lógico
-
-`<agent-id>`
-
-## Worktree y rama
-
-```txt
-worktree:
-branch:
-port:
-```
-
+## Worktree/rama/puerto
 ## Objetivo
-
-...
-
 ## Owned paths
-
-```txt
-ruta
-```
-
 ## Forbidden paths
-
-```txt
-ruta
-```
-
 ## Contexto
-
-```txt
-ai/context/...
-```
-
 ## Rules
-
-```txt
-ai/rules/...
-```
-
 ## Playbook
-
-```txt
-ai/playbooks/...
-```
-
+## Casos
 ## Tests focales
-
-```bash
-...
-```
-
-## Criterios de aceptación
-
-- [ ] ...
-
+## Criterios
 ## Handoff
-
-```txt
-/Users/desarrollo1/Documents/Taylor/frontend/ai-coordination/sisad-pdfme/handoffs/<FILE>.md
-```
-
 ## Parada
-
-Detenerse al requerir rutas no owned o más de 5 archivos productivos.

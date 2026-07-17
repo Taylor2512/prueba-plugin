@@ -1,47 +1,31 @@
-# Quickstart — GitHub Copilot
+# Quickstart — Copilot
 
-## Workspace obligatorio
+## Identidad
 
 ```txt
-/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-copilot
+workspace: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/copilot
 branch: ai/copilot
 port: 5183
 ```
 
-## Antes de Agent Mode
+## Perfil
 
-```bash
-pwd
-git branch --show-current
-git status --short
-```
+Host lab, LeftSidebar, Vitest, tests smoke, accesibilidad y cambios repetitivos acotados.
 
-Carga:
+## Secuencia
 
-```txt
-ai/start/START.md
-ai/task-cards/active/<task>.md
-```
+1. Validar `pwd`, rama y status.
+2. Leer START y task-card.
+3. Reclamar lock.
+4. Implementar o integrar según rol.
+5. Ejecutar validación focal o gate.
+6. Entregar evidencia.
+7. Detenerse.
 
-## Perfil de trabajo
+## Reglas
 
-Copilot ejecuta preferentemente:
-
-- host `src/features/pdfcomponent/**`;
-- LeftSidebar;
-- limpieza repetitiva y tipado acotado;
-- ESLint;
-- infraestructura Vitest;
-- accesibilidad;
-- tests smoke y visuales de su dominio.
-
-## Restricciones
-
-- No usar `Fix all` global.
-- No editar un archivo fuera de owned paths aunque aparezca en Problems.
-- No parchear `node_modules`.
-- No recrear wrappers muertos para satisfacer tests stale.
-- No tocar Canvas, DetailView, schemas o pdf-lib sin task-card.
-- Revisar cada diff antes de aceptar.
-- Crear commits atómicos en `ai/copilot`.
-- Escribir handoff externo y detenerse.
+1. No Fix all global.
+2. No parchear node_modules.
+3. No recrear wrappers muertos.
+4. No tocar otros dominios.
+5. Crear commit y handoff.
