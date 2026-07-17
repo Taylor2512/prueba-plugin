@@ -246892,3 +246892,407 @@ index dcffcad..7b25200 100644
  - **directorio ignorado: dependencia/build/salida generada:** 8
  
  ## Totales
+diff --git "a/unificados/codigo-frontend-sisad\342\200\224pdmfe.md" "b/unificados/codigo-frontend-sisad\342\200\224pdmfe.md"
+index 462615f..650edfb 100644
+--- "a/unificados/codigo-frontend-sisad\342\200\224pdmfe.md"
++++ "b/unificados/codigo-frontend-sisad\342\200\224pdmfe.md"
+@@ -14,7 +14,7 @@
+ - **Carpeta base:** `prueba-plugin`
+ - **Perfil:** `react`
+ - **Modo:** `compact`
+-- **Fecha generación:** `2026-07-17T16:15:28.990Z`
++- **Fecha generación:** `2026-07-17T16:46:45.987Z`
+ - **Extensiones incluidas:** `.js, .jsx, .ts, .tsx, .mjs, .cjs, .json`
+ - **Archivos candidatos incluidos:** `564`
+ - **Límite por archivo:** `90 KB`
+@@ -660,7 +660,7 @@ prueba-plugin
+ | 29 | `src/features/pdfcomponent/labs/builders/schemaShowcase.ts` | typescript | 220 | 7.1 | completo |
+ | 30 | `src/features/pdfcomponent/labs/examples/createLabExample.ts` | typescript | 11 | 0.4 | completo |
+ | 31 | `src/features/pdfcomponent/labs/examples/labExampleRegistry.ts` | typescript | 10 | 0.2 | completo |
+-| 32 | `src/features/pdfcomponent/labs/examples/labExamples.js` | javascript | 73 | 2.5 | completo |
++| 32 | `src/features/pdfcomponent/labs/examples/labExamples.js` | javascript | 74 | 2.5 | completo |
+ | 33 | `src/features/pdfcomponent/labs/export/buildExampleBundle.ts` | typescript | 120 | 4.4 | completo |
+ | 34 | `src/features/pdfcomponent/labs/export/downloadExampleBundle.ts` | typescript | 25 | 1.1 | completo |
+ | 35 | `src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts` | typescript | 154 | 4.9 | completo |
+@@ -747,7 +747,7 @@ prueba-plugin
+ | 116 | `src/sisad-pdfme/pdf-lib/index.ts` | typescript | 4 | 0.1 | completo |
+ | 117 | `src/sisad-pdfme/react/index.ts` | typescript | 17 | 0.8 | completo |
+ | 118 | `src/sisad-pdfme/react/SisadPdfmeDesigner.tsx` | tsx | 162 | 6.8 | completo |
+-| 119 | `src/sisad-pdfme/react/SisadPdfmeForm.tsx` | tsx | 85 | 3.3 | completo |
++| 119 | `src/sisad-pdfme/react/SisadPdfmeForm.tsx` | tsx | 104 | 3.7 | completo |
+ | 120 | `src/sisad-pdfme/react/SisadPdfmeProvider.tsx` | tsx | 29 | 1.4 | completo |
+ | 121 | `src/sisad-pdfme/react/SisadPdfmeViewer.tsx` | tsx | 72 | 3.0 | completo |
+ | 122 | `src/sisad-pdfme/react/useSisadPdfmeConfig.ts` | typescript | 19 | 0.9 | completo |
+@@ -1055,8 +1055,8 @@ prueba-plugin
+ | 424 | `src/sisad-pdfme/pdf-lib/utils/elements/Segment.ts` | typescript | 81 | 2.2 | completo |
+ | 425 | `src/sisad-pdfme/schemas/text/icons/index.ts` | typescript | 30 | 1.0 | completo |
+ | 426 | `src/sisad-pdfme/ui/components/Designer/constants.js` | javascript | 1 | 0.0 | completo |
+-| 427 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 4236 | 160.4 | truncado 49.6 KB |
+-| 428 | `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1907 | 75.7 | truncado 4.0 KB |
++| 427 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 4236 | 160.4 | truncado 49.2 KB |
++| 428 | `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1907 | 75.7 | truncado 3.9 KB |
+ | 429 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx` | tsx | 292 | 9.3 | omitido por presupuesto total |
+ | 430 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` | tsx | 94 | 3.7 | omitido por presupuesto total |
+ | 431 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx` | tsx | 139 | 4.9 | omitido por presupuesto total |
+@@ -1079,7 +1079,7 @@ prueba-plugin
+ | 448 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx` | tsx | 343 | 13.5 | omitido por presupuesto total |
+ | 449 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts` | typescript | 44 | 1.4 | omitido por presupuesto total |
+ | 450 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx` | tsx | 347 | 15.5 | omitido por presupuesto total |
+-| 451 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | tsx | 110 | 3.4 | omitido por presupuesto total |
++| 451 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | tsx | 110 | 3.5 | omitido por presupuesto total |
+ | 452 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx` | tsx | 750 | 30.9 | omitido por presupuesto total |
+ | 453 | `src/sisad-pdfme/ui/components/Designer/shared/accessPolicy.ts` | typescript | 139 | 4.1 | omitido por presupuesto total |
+ | 454 | `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts` | typescript | 521 | 15.3 | omitido por presupuesto total |
+@@ -1140,7 +1140,7 @@ prueba-plugin
+ | 509 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts` | typescript | 62 | 1.5 | omitido por presupuesto total |
+ | 510 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts` | typescript | 180 | 5.0 | omitido por presupuesto total |
+ | 511 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | tsx | 69 | 2.3 | omitido por presupuesto total |
+-| 512 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | tsx | 82 | 2.5 | omitido por presupuesto total |
++| 512 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | tsx | 146 | 4.7 | omitido por presupuesto total |
+ | 513 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | tsx | 80 | 2.3 | omitido por presupuesto total |
+ | 514 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | tsx | 230 | 9.2 | omitido por presupuesto total |
+ | 515 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` | typescript | 212 | 5.1 | omitido por presupuesto total |
+@@ -1196,7 +1196,7 @@ prueba-plugin
+ 
+ ## Resumen de exclusiones
+ 
+-- **test omitido:** 985
++- **test omitido:** 986
+ - **extensión no incluida:** 585
+ - **directorio ignorado: dependencia/build/salida generada:** 8
+ - **json de datos omitido en perfil react:** 6
+@@ -1206,7 +1206,7 @@ prueba-plugin
+ 
+ ## Totales
+ 
+-- **KB originales candidatos:** `3848.1`
++- **KB originales candidatos:** `3850.9`
+ - **KB incluidos en contenido:** `2499.8`
+ - **Comentarios reducidos:** `desactivada`
+ - **JSON de datos en React:** `omitido por defecto`
+@@ -6118,9 +6118,9 @@ export {
+ ### 0032 — `src/features/pdfcomponent/labs/examples/labExamples.js`
+ 
+ - **Lenguaje:** `javascript`
+-- **Líneas:** `73`
++- **Líneas:** `74`
+ - **Tamaño original:** `2.5 KB`
+-- **SHA1 corto:** `17731bd018`
++- **SHA1 corto:** `69b094c68b`
+ - **Estado:** `completo`
+ - **Símbolos detectados:** `export const: getLabExampleDownloadFilename`, `export const: getLabExampleActions`, `export const: buildLabExampleDownloadBundle`, `export const: buildLabExampleDownloadHref`, `export const: getLabExamples`, `export const: getLabExampleById`, `export const: getLabExampleByPath`, `export const: LAB_EXAMPLES_COUNT`
+ 
+@@ -6128,7 +6128,8 @@ export {
+ // Lab examples. Builders/exporters live beside this catalog under labs/.
+ // This file keeps the public catalog lean: example data lives in the per-case
+ // catalog files and the shared bundle helpers stay here.
+-import { cloneExample, buildExampleBundle, getExampleBundleFilename } from '@/features/pdfcomponent/labs/export/buildExampleBundle'
++import { buildExampleBundle, getExampleBundleFilename } from '@/features/pdfcomponent/labs/export/buildExampleBundle'
++import { cloneExample } from '@/features/pdfcomponent/labs/builders/exampleTemplate'
+ import { buildExampleHref } from '@/features/pdfcomponent/labs/export/downloadExampleBundle'
+ import { basicDesignerLabExample } from './catalog/basicDesigner.ts'
+ import { multiDocumentRoutingLabExample } from './catalog/multiDocumentRouting.ts'
+@@ -22431,9 +22432,9 @@ export const SisadPdfmeDesigner = ({
+ ### 0119 — `src/sisad-pdfme/react/SisadPdfmeForm.tsx`
+ 
+ - **Lenguaje:** `tsx`
+-- **Líneas:** `85`
+-- **Tamaño original:** `3.3 KB`
+-- **SHA1 corto:** `476a5458a2`
++- **Líneas:** `104`
++- **Tamaño original:** `3.7 KB`
++- **SHA1 corto:** `61fd38e0b8`
+ - **Estado:** `completo`
+ - **Símbolos detectados:** `export const: SisadPdfmeForm`
+ 
+@@ -22446,7 +22447,7 @@ export const SisadPdfmeDesigner = ({
+  * `activeRecipientId` es override puntual; si falta, manda el registry/config.
+  */
+ import { getInputFromTemplate } from '@sisad-pdfme/common';
+-import React, { useContext, useRef } from 'react';
++import React, { useContext, useMemo, useRef } from 'react';
+ import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
+ import Form from '../ui/Form.js';
+ import Viewer from '../ui/Viewer.js';
+@@ -22469,7 +22470,7 @@ type Props = {
+ export const SisadPdfmeForm = ({
+   config,
+   template,
+-  values = [],
++  values,
+   recipients,
+   activeRecipientId,
+   onInputChange,
+@@ -22494,31 +22495,50 @@ export const SisadPdfmeForm = ({
+   const effectiveActiveRecipientId = recipientState.activeRecipientId;
+   const recipientFilterEnabled = resolvedConfig.visibility.runtime?.recipientFilter !== false;
+   const isGlobalView = resolvedConfig.config.collaboration.isGlobalView === true;
+-  const collaborationOptions =
+-    recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
+-      ? { activeRecipientId: effectiveActiveRecipientId, isGlobalView }
+-      : { isGlobalView };
++  const collaborationOptions = useMemo(
++    () =>
++      recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
++        ? { activeRecipientId: effectiveActiveRecipientId, isGlobalView }
++        : { isGlobalView },
++    [effectiveActiveRecipientId, isGlobalView, recipientFilterEnabled],
++  );
+ 
+-  const runtimeConfig: UsePdfmeRuntimeInstanceConfig = {
+-    containerRef,
+-    mode: 'form',
+-    template: template as UsePdfmeRuntimeInstanceConfig['template'],
+-    inputs:
++  const runtimeInputs = useMemo(
++    () =>
+       Array.isArray(values) && values.length > 0
+         ? values
+         : getInputFromTemplate(template as UsePdfmeRuntimeInstanceConfig['template']),
+-    onTemplateChange: () => undefined,
+-    onPageChange: () => undefined,
+-    options: {
+-      ...resolvedConfig.runtimeOptions,
+-      designerEngine: resolvedConfig.designerEngine,
+-      // Preview lee `options.collaboration` para filtrar schemas por recipient.
+-      collaboration: collaborationOptions,
+-    },
+-    plugins: flatSchemaPlugins,
+-    runtime: { Designer: Form, Form, Viewer },
+-    onInputChange,
+-  };
++    [template, values],
++  );
++
++  const runtimeConfig: UsePdfmeRuntimeInstanceConfig = useMemo(
++    () => ({
++      containerRef,
++      mode: 'form',
++      template: template as UsePdfmeRuntimeInstanceConfig['template'],
++      inputs: runtimeInputs,
++      onTemplateChange: () => undefined,
++      onPageChange: () => undefined,
++      options: {
++        ...resolvedConfig.runtimeOptions,
++        designerEngine: resolvedConfig.designerEngine,
++        // Preview lee `options.collaboration` para filtrar schemas por recipient.
++        collaboration: collaborationOptions,
++      },
++      plugins: flatSchemaPlugins,
++      runtime: { Designer: Form, Form, Viewer },
++      onInputChange,
++    }),
++    [
++      collaborationOptions,
++      containerRef,
++      onInputChange,
++      resolvedConfig.designerEngine,
++      resolvedConfig.runtimeOptions,
++      runtimeInputs,
++      template,
++    ],
++  );
+ 
+   usePdfmeRuntimeInstance(runtimeConfig);
+   return <div ref={containerRef} data-sisad-pdfme-root="form" />;
+@@ -83258,7 +83278,7 @@ export * from '../../constants.ts';
+ - **Líneas:** `4236`
+ - **Tamaño original:** `160.4 KB`
+ - **SHA1 corto:** `ba4acbb04f`
+-- **Estado:** `truncado 49.6 KB`
++- **Estado:** `truncado 49.2 KB`
+ - **Símbolos detectados:** `function: resolveChangedSchemaUids`, `function: handleRemovePage`, `function: handleAddPageAfter`, `component/const: DetachedHost`, `component/const: TemplateEditor`
+ 
+ ```tsx
+@@ -84218,28 +84238,11 @@ const TemplateEditor = ({
+ 
+   useEffect(() => {
+     activeBasePdfRef.current = activeBasePdf;
+-  }, [activeBasePdf]);
+-
+-  useEffect(() => {
+-    visibleTemplateRef.current = visibleTemplate;
+-  }, [visibleTemplate]);
+-
+-  useEffect(() => {
+-    uploadedDocumentsRef.current = uploadedDocuments;
+-  }, [uploadedDocuments]);
+-  const currentPageSchemas = useMemo(
+-    () => schemasList[pageCursor] || [],
+-    [pageCursor, schemasList],
+-  );
+-  const visibleSc
++  
+ 
+-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 113552 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
++/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 114027 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+ 
+- (
+-    <Root ref={designerRootRef} size={size} scale={scale}>
+-      <input
+-        ref={pdfUploadInputRef}
+-        id="sisad-pdfme-pdf-upload"
++-pdfme-pdf-upload"
+         type="file"
+         accept="application/pdf,.pdf"
+         multiple
+@@ -84537,7 +84540,7 @@ export default TemplateEditor;
+ - **Líneas:** `1907`
+ - **Tamaño original:** `75.7 KB`
+ - **SHA1 corto:** `0496d7e228`
+-- **Estado:** `truncado 4.0 KB`
++- **Estado:** `truncado 3.9 KB`
+ - **Símbolos detectados:** `export type/class: CatalogLayout`, `export type/class: SidebarDensity`, `export type/class: CatalogQuickFilter`, `export type/class: CatalogCapability`, `export type/class: LeftSidebarProps`, `component/const: SidebarButtons`, `component/const: Draggable`, `component/const: SidebarShell`, `component/const: LeftSidebar`
+ 
+ ```tsx
+@@ -84603,12 +84606,10 @@ const schemaTypeCategoryMap: Record<string, string> = {
+   itf14: 'QR y Códigos',
+   upca: 'QR y Códigos',
+   upce: 'QR y Códigos',
+-  gs1datamatrix: 'QR y Códigos',
+-  pd
++  gs1data
+ 
+-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 73517 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
++/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 73555 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+ 
+-logItems}
+               collapsedCategories={collapsedCategories}
+               quickFilter={quickFilter}
+               normalizedSearch={normalizedSearch}
+diff --git "a/unificados/documentacion-sisad\342\200\224pdmfe-web.md" "b/unificados/documentacion-sisad\342\200\224pdmfe-web.md"
+index 9a7d97e..470dbd7 100644
+--- "a/unificados/documentacion-sisad\342\200\224pdmfe-web.md"
++++ "b/unificados/documentacion-sisad\342\200\224pdmfe-web.md"
+@@ -14,7 +14,7 @@
+ - **Carpeta base:** `prueba-plugin`
+ - **Perfil:** `docs`
+ - **Modo:** `compact`
+-- **Fecha generación:** `2026-07-17T16:15:28.366Z`
++- **Fecha generación:** `2026-07-17T16:46:45.226Z`
+ - **Extensiones incluidas:** `.md, .mdx`
+ - **Archivos candidatos incluidos:** `354`
+ - **Límite por archivo:** `120 KB`
+@@ -787,7 +787,7 @@ prueba-plugin
+ | 334 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-QUARANTINE-MAIN.md` | markdown | 32 | 1.4 | completo |
+ | 335 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-W1-DEP-COPILOT.md` | markdown | 50 | 2.0 | completo |
+ | 336 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-W1.md` | markdown | 94 | 4.4 | completo |
+-| 337 | `ai/coordination/uxqa-20260717/handoffs/CODEX-wave1.md` | markdown | 25 | 1.4 | completo |
++| 337 | `ai/coordination/uxqa-20260717/handoffs/CODEX-wave1.md` | markdown | 38 | 1.6 | completo |
+ | 338 | `ai/coordination/uxqa-20260717/handoffs/COPILOT-wave1.md` | markdown | 61 | 2.0 | completo |
+ | 339 | `ai/coordination/uxqa-20260717/status/CLAUDE.md` | markdown | 41 | 1.7 | completo |
+ | 340 | `ai/coordination/uxqa-20260717/status/CODEX.md` | markdown | 20 | 0.7 | completo |
+@@ -808,13 +808,13 @@ prueba-plugin
+ 
+ ## Resumen de exclusiones
+ 
+-- **extensión no incluida:** 1787
++- **extensión no incluida:** 1788
+ - **directorio ignorado: dependencia/build/salida generada:** 8
+ 
+ ## Totales
+ 
+-- **KB originales candidatos:** `768.5`
+-- **KB incluidos en contenido:** `768.2`
++- **KB originales candidatos:** `768.8`
++- **KB incluidos en contenido:** `768.4`
+ - **Comentarios reducidos:** `desactivada`
+ - **JSON de datos en React:** `omitido por defecto`
+ - **Redacción de secretos:** `activa`
+@@ -25620,37 +25620,50 @@ merge) una vez integrado el commit de Copilot.
+ ### 0337 — `ai/coordination/uxqa-20260717/handoffs/CODEX-wave1.md`
+ 
+ - **Lenguaje:** `markdown`
+-- **Líneas:** `25`
+-- **Tamaño original:** `1.4 KB`
+-- **SHA1 corto:** `c2fc3f3d60`
++- **Líneas:** `38`
++- **Tamaño original:** `1.6 KB`
++- **SHA1 corto:** `1032e07d3f`
+ - **Estado:** `completo`
+ 
+ ```markdown
+ # CODEX handoff - Wave 1
+ 
+-## done
+-- Moved the right sidebar body to a single scroll owner.
+-- Removed nested overflow from the sortable list container.
+-- Split the top right-sidebar rail into tabs row plus context row.
+-- Kept the delete affordance above the row hit-target so it stays visible on hover.
+-- Fixed the example catalog import path so build resolves again.
+-
+-## validated
+-- `npm run build`
+-- `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts`
+-- `npx playwright test tests/playwright/right-sidebar-docs-tab.spec.ts`
+-
+-## note
+-- `tests/playwright/detail-view-options-listview.spec.ts` currently fails because it expects the ListView panel to be visible on this route, but the lab opens a different panel state. I did not change that behavior in this slice.
+-- After the realignment prompt, the main checkout was quarantined/restored to the checkpoint and no additional product edits should land there for Wave 1.
++## state
++completed
+ 
+-## next
+-- If the visual pass continues, the next small slice is DetailView header/accordion contrast only.
++## commit
++- SHA: `cacf0ca9faa0a1415acdf209ec855528a27fb29f`
++- Message: `fix: stabilize form memoization and drop flash hooks`
+ 
+-## wave-2 slice
+-- Softened the inspector section cards and connection editors to reduce the gray header feel.
+-- Kept the headers white, with lighter borders and shadows, and preserved all collapse/accessibility behavior.
+-- `tests/playwright/detail-view-inspector.spec.ts` failed because it landed on the Docs panel in this route, not on DetailView.
++## files changed
++- `src/sisad-pdfme/react/SisadPdfmeForm.tsx`
++- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
++
++## commands executed
++- `pwd`
++- `git branch --show-current`
++- `git status --short`
++- `npm ci --no-fund --no-audit`
++- `npx eslint src/sisad-pdfme/react/SisadPdfmeForm.tsx src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
++- `npx vitest run tests/unit/sisad-pdfme/react/runtime-modes.test.tsx tests/unit/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.test.ts`
++- `npm run build`
++- `git add src/sisad-pdfme/react/SisadPdfmeForm.tsx src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
++- `git commit -m "fix: stabilize form memoization and drop flash hooks"`
++- `git rev-parse HEAD`
++
++## exact results
++- `pwd` ended in `prueba-plugin-codex`.
++- Branch was `ai/codex-uxqa-20260717`.
++- `git status --short` was clean before commit and clean after commit.
++- `npx eslint` exited `0`.
++- `npx vitest run ...` passed: 2 files, 5 tests.
++- `npm ci --no-fund --no-audit` completed successfully.
++- `npm run build` failed on an unrelated pre-existing example-catalog export mismatch after module graph resolution; the two edited files were not the failure point.
++
++## notes
++- Only the two permitted product files were modified.
++- No changes were made to any coordination file besides this handoff update.
++- The task lock was released after the commit.
+ ```
+ 
+ <a id="file-0338"></a>
+diff --git "a/unificados/styles-sisad\342\200\224pdmfe.md" "b/unificados/styles-sisad\342\200\224pdmfe.md"
+index 7b25200..df1424d 100644
+--- "a/unificados/styles-sisad\342\200\224pdmfe.md"
++++ "b/unificados/styles-sisad\342\200\224pdmfe.md"
+@@ -14,7 +14,7 @@
+ - **Carpeta base:** `prueba-plugin`
+ - **Perfil:** `css`
+ - **Modo:** `compact`
+-- **Fecha generación:** `2026-07-17T16:15:29.477Z`
++- **Fecha generación:** `2026-07-17T16:46:46.966Z`
+ - **Extensiones incluidas:** `.css, .scss, .sass, .less`
+ - **Archivos candidatos incluidos:** `15`
+ - **Límite por archivo:** `80 KB`
+@@ -76,7 +76,7 @@ prueba-plugin
+ 
+ ## Resumen de exclusiones
+ 
+-- **extensión no incluida:** 2126
++- **extensión no incluida:** 2127
+ - **directorio ignorado: dependencia/build/salida generada:** 8
+ 
+ ## Totales

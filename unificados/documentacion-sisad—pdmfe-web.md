@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-17T16:15:28.366Z`
+- **Fecha generación:** `2026-07-17T16:46:45.226Z`
 - **Extensiones incluidas:** `.md, .mdx`
 - **Archivos candidatos incluidos:** `354`
 - **Límite por archivo:** `120 KB`
@@ -787,7 +787,7 @@ prueba-plugin
 | 334 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-QUARANTINE-MAIN.md` | markdown | 32 | 1.4 | completo |
 | 335 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-W1-DEP-COPILOT.md` | markdown | 50 | 2.0 | completo |
 | 336 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-W1.md` | markdown | 94 | 4.4 | completo |
-| 337 | `ai/coordination/uxqa-20260717/handoffs/CODEX-wave1.md` | markdown | 25 | 1.4 | completo |
+| 337 | `ai/coordination/uxqa-20260717/handoffs/CODEX-wave1.md` | markdown | 38 | 1.6 | completo |
 | 338 | `ai/coordination/uxqa-20260717/handoffs/COPILOT-wave1.md` | markdown | 61 | 2.0 | completo |
 | 339 | `ai/coordination/uxqa-20260717/status/CLAUDE.md` | markdown | 41 | 1.7 | completo |
 | 340 | `ai/coordination/uxqa-20260717/status/CODEX.md` | markdown | 20 | 0.7 | completo |
@@ -808,13 +808,13 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1787
+- **extensión no incluida:** 1788
 - **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `768.5`
-- **KB incluidos en contenido:** `768.2`
+- **KB originales candidatos:** `768.8`
+- **KB incluidos en contenido:** `768.4`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -25620,37 +25620,50 @@ merge) una vez integrado el commit de Copilot.
 ### 0337 — `ai/coordination/uxqa-20260717/handoffs/CODEX-wave1.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `25`
-- **Tamaño original:** `1.4 KB`
-- **SHA1 corto:** `c2fc3f3d60`
+- **Líneas:** `38`
+- **Tamaño original:** `1.6 KB`
+- **SHA1 corto:** `1032e07d3f`
 - **Estado:** `completo`
 
 ```markdown
 # CODEX handoff - Wave 1
 
-## done
-- Moved the right sidebar body to a single scroll owner.
-- Removed nested overflow from the sortable list container.
-- Split the top right-sidebar rail into tabs row plus context row.
-- Kept the delete affordance above the row hit-target so it stays visible on hover.
-- Fixed the example catalog import path so build resolves again.
+## state
+completed
 
-## validated
+## commit
+- SHA: `cacf0ca9faa0a1415acdf209ec855528a27fb29f`
+- Message: `fix: stabilize form memoization and drop flash hooks`
+
+## files changed
+- `src/sisad-pdfme/react/SisadPdfmeForm.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
+
+## commands executed
+- `pwd`
+- `git branch --show-current`
+- `git status --short`
+- `npm ci --no-fund --no-audit`
+- `npx eslint src/sisad-pdfme/react/SisadPdfmeForm.tsx src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
+- `npx vitest run tests/unit/sisad-pdfme/react/runtime-modes.test.tsx tests/unit/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.test.ts`
 - `npm run build`
-- `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts`
-- `npx playwright test tests/playwright/right-sidebar-docs-tab.spec.ts`
+- `git add src/sisad-pdfme/react/SisadPdfmeForm.tsx src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
+- `git commit -m "fix: stabilize form memoization and drop flash hooks"`
+- `git rev-parse HEAD`
 
-## note
-- `tests/playwright/detail-view-options-listview.spec.ts` currently fails because it expects the ListView panel to be visible on this route, but the lab opens a different panel state. I did not change that behavior in this slice.
-- After the realignment prompt, the main checkout was quarantined/restored to the checkpoint and no additional product edits should land there for Wave 1.
+## exact results
+- `pwd` ended in `prueba-plugin-codex`.
+- Branch was `ai/codex-uxqa-20260717`.
+- `git status --short` was clean before commit and clean after commit.
+- `npx eslint` exited `0`.
+- `npx vitest run ...` passed: 2 files, 5 tests.
+- `npm ci --no-fund --no-audit` completed successfully.
+- `npm run build` failed on an unrelated pre-existing example-catalog export mismatch after module graph resolution; the two edited files were not the failure point.
 
-## next
-- If the visual pass continues, the next small slice is DetailView header/accordion contrast only.
-
-## wave-2 slice
-- Softened the inspector section cards and connection editors to reduce the gray header feel.
-- Kept the headers white, with lighter borders and shadows, and preserved all collapse/accessibility behavior.
-- `tests/playwright/detail-view-inspector.spec.ts` failed because it landed on the Docs panel in this route, not on DetailView.
+## notes
+- Only the two permitted product files were modified.
+- No changes were made to any coordination file besides this handoff update.
+- The task lock was released after the commit.
 ```
 
 <a id="file-0338"></a>
