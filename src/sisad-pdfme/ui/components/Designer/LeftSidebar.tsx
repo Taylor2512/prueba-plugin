@@ -1300,7 +1300,7 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'group relative rounded-[0.625rem] p-[0.0625rem] bg-transparent',
+              'group relative rounded-[0.5rem] p-[0.0625rem] bg-transparent',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
@@ -1313,7 +1313,7 @@ const LeftSidebar = ({
                 densityPaddingClass,
                 densitySkinClass,
                 draggableActive || isDragging
-                  ? 'border-[color:var(--color-primary)] bg-[var(--color-primary-08)] [box-shadow:0_0_0_3px_var(--color-primary-08),0_8px_18px_rgba(37,99,235,0.16)]'
+                  ? 'border-[color:var(--color-primary)] bg-[var(--color-primary-08)] [box-shadow:0_0_0_2px_var(--color-primary-08),0_4px_10px_rgba(37,99,235,0.12)]'
                   : '',
                 draggableActive ? 'opacity-50' : '',
               )}
@@ -1379,7 +1379,7 @@ const LeftSidebar = ({
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'plugin-favorite-toggle',
                 resolvedLayout === 'icons' ? 'absolute right-0.5 top-0.5' : 'absolute right-0.5 top-1/2 -translate-y-1/2',
-                'inline-flex h-5 w-5 items-center justify-center rounded-full border transition-[opacity,background-color,border-color,color,transform,box-shadow] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 text-[9px]',
+                'inline-flex h-[1.125rem] w-[1.125rem] items-center justify-center rounded-full border transition-[opacity,background-color,border-color,color,transform,box-shadow] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 text-[9px]',
                 isFavorite 
                   ? 'bg-amber-400 border-amber-400 text-white shadow-[0_1px_3px_rgba(251,146,60,0.3)]'
                   : 'border-slate-200 bg-white/80 text-slate-400 shadow-sm hover:border-slate-300 hover:bg-white hover:text-slate-600',
@@ -1448,7 +1448,7 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'relative rounded-[0.625rem] p-[0.0625rem] bg-transparent transition',
+              'relative rounded-[0.5rem] p-[0.0625rem] bg-transparent transition',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
@@ -1464,13 +1464,13 @@ const LeftSidebar = ({
                 densityPaddingClass,
                 densitySkinClass,
                 draggableActive || isDragging
-                  ? 'border-[color:var(--color-primary)] bg-[var(--color-primary-08)] [box-shadow:0_0_0_3px_var(--color-primary-08),0_8px_18px_rgba(37,99,235,0.16)]'
+                  ? 'border-[color:var(--color-primary)] bg-[var(--color-primary-08)] [box-shadow:0_0_0_2px_var(--color-primary-08),0_4px_10px_rgba(37,99,235,0.12)]'
                   : '',
                 resolvedLayout === 'list'
                   ? 'flex w-full items-center gap-[0.5rem] min-h-[2.875rem] p-[0.375rem_0.5625rem] justify-center rounded-[0.5625rem] border border-[color:var(--color-border-20)] bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)] transition-[border-color,background,box-shadow] hover:border-[color:var(--color-primary-30)] hover:bg-[linear-gradient(180deg,_var(--color-white),_var(--color-primary-100-90))] hover:shadow-[0_2px_0.375rem_var(--color-primary-08)]'
                   : resolvedLayout === 'icons'
                     ? 'flex w-full aspect-square min-h-0 items-center justify-center p-[0.25rem] rounded-[0.5rem] border border-[color:var(--color-border-18)] bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)] overflow-hidden text-center transition-[border-color,background,box-shadow] hover:border-[var(--schema-owner-color,_var(--color-primary-30))] hover:shadow-[0_2px_0.375rem_var(--color-primary-08)]'
-                    : 'flex w-full flex-col items-center justify-center gap-[0.2rem] min-h-[2.9rem] p-[0.375rem_0.25rem_0.3125rem] rounded-[0.625rem] border border-[color:var(--color-border-18)] bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_3px_var(--color-gray-900-04)] overflow-hidden text-center transition-[border-color,background,box-shadow,transform] hover:border-[var(--schema-owner-color,_var(--color-primary-30))] hover:bg-[linear-gradient(180deg,_var(--color-white),_color-mix(in_srgb,_var(--schema-owner-color,_var(--color-primary))_8%,_var(--color-white)))] hover:shadow-[0_3px_8px_color-mix(in_srgb,_var(--schema-owner-color,_var(--color-primary))_12%,_transparent)] hover:-translate-y-px hover:border-l-[3px] hover:border-l-[var(--schema-owner-color,_var(--color-primary))]',
+                    : 'flex w-full flex-col items-center justify-center gap-[0.15rem] min-h-[2.25rem] p-[0.2rem_0.2rem_0.2rem] rounded-[0.375rem] border border-[color:var(--color-border-18)] bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_3px_var(--color-gray-900-04)] overflow-hidden text-center transition-[border-color,background,box-shadow,transform] hover:border-[var(--schema-owner-color,_var(--color-primary-30))] hover:bg-[linear-gradient(180deg,_var(--color-white),_color-mix(in_srgb,_var(--schema-owner-color,_var(--color-primary))_8%,_var(--color-white)))] hover:shadow-[0_3px_8px_color-mix(in_srgb,_var(--schema-owner-color,_var(--color-primary))_12%,_transparent)] hover:-translate-y-px hover:border-l-[3px] hover:border-l-[var(--schema-owner-color,_var(--color-primary))]',
               )}
               data-testid="left-sidebar-schema-tile"
               data-schema-type={definition.pluginType}
