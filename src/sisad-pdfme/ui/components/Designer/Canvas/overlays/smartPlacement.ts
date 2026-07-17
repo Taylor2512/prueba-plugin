@@ -210,3 +210,69 @@ export const resolveSmartDropPosition = ({
     y: Math.max(0, Math.round((pageSize.height - schemaSize.height) / 2)),
   };
 };
+
+export const resolveNonOverlappingDropPosition = ({
+  candidate,
+  pageSize,
+  schemaSize,
+  existingSchemas = [],
+  stepMm = 6,
+  maxAttempts = 12,
+}: SmartPlacementInput) => {
+  const step = clampStep(stepMm);
+  const clampedCandidate = clampPointToPageBounds(candidate, pageSize, schemaSize);
+
+  if (!hasOverlap(clampedCandidate, schemaSize, existingSchemas)) {
+    return clampedCandidate;
+  }
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    const delta = step * attempt;
+    const shifted = clampPointToPageBounds(
+      {
+        x: candidate.x + delta,
+        y: candidate.y + delta,
+      },
+      pageSize,
+      schemaSize,
+    );
+    if (!hasOverlap(shifted, schemaSize, existingSchemas)) {
+      return shifted;
+    }
+
+    const shiftedDown = clampPointToPageBounds(
+      {
+        x: candidate.x,
+        y: candidate.y + delta,
+      },
+      pageSize,
+      schemaSize,
+    );
+    if (!hasOverlap(shiftedDown, schemaSize, existingSchemas)) {
+      return shiftedDown;
+    }
+
+    const shiftedRight = clampPointToPageBounds(
+      {
+        x: candidate.x + delta,
+        y: candidate.y,
+      },
+      pageSize,
+      schemaSize,
+    );
+    if (!hasOverlap(shiftedRight, schemaSize, existingSchemas)) {
+      return shiftedRight;
+    }
+  }
+
+  const fallback = findGridPosition({
+    pageSize,
+    schemaSize,
+    existingSchemas,
+    step,
+  });
+
+  if (fallback) return fallback;
+
+  return null;
+};
