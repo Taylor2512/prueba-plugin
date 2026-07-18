@@ -27,13 +27,16 @@ const resolveBadgePosition = (bounds: NonNullable<InlineMetricsOverlayProps['bou
   const viewportLeft = canvasRoot?.scrollLeft ?? 0;
   const viewportTop = canvasRoot?.scrollTop ?? 0;
   const viewportWidth = canvasRoot?.clientWidth ?? 0;
+  const viewportHeight = canvasRoot?.clientHeight ?? 0;
   const minLeft = viewportLeft + BADGE_GAP;
   const maxLeft = Math.max(minLeft, viewportLeft + viewportWidth - BADGE_SIZE.width - BADGE_GAP);
   const left = clamp(bounds.left, minLeft, maxLeft);
   const enoughSpaceAbove = bounds.top - viewportTop >= TOOLBAR_HEIGHT_HINT + BADGE_SIZE.height + BADGE_GAP * 2;
-  const top = enoughSpaceAbove
+  const preferredTop = enoughSpaceAbove
     ? bounds.bottom + BADGE_GAP
-    : Math.max(viewportTop + BADGE_GAP, bounds.top - BADGE_SIZE.height - BADGE_GAP);
+    : bounds.top - BADGE_SIZE.height - BADGE_GAP;
+  const maxTop = Math.max(viewportTop + BADGE_GAP, viewportTop + viewportHeight - BADGE_SIZE.height - BADGE_GAP);
+  const top = clamp(preferredTop, viewportTop + BADGE_GAP, maxTop);
 
   return { top, left };
 };
@@ -49,7 +52,7 @@ const InlineMetricsOverlay = ({ bounds }: InlineMetricsOverlayProps) => {
 
   return (
     <div
-      className="sisad-pdfme-ui-inline-metrics absolute inline-flex min-h-[22px] items-center rounded-[9px] border border-slate-200/80 bg-white/96 px-2 py-0.5 text-[10.5px] font-medium text-slate-500 shadow-[0_1px_2px_rgba(15,23,42,0.06)] backdrop-blur-sm"
+      className="sisad-pdfme-ui-inline-metrics pointer-events-none absolute inline-flex min-h-[22px] items-center rounded-[9px] border border-slate-200/80 bg-white/96 px-2 py-0.5 text-[10.5px] font-medium text-slate-500 shadow-[0_1px_2px_rgba(15,23,42,0.06)] backdrop-blur-sm"
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,

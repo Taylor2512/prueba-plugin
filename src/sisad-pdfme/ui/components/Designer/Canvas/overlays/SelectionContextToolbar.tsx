@@ -21,7 +21,7 @@ import { asRecord } from '../../shared/objectGuards.js';
  * Props del toolbar contextual de selección.
  */
 type SelectionContextToolbarProps = {
-  position: { top: number; left: number; width: number; height: number } | null;
+  position: { top: number; left: number; right: number; bottom: number; width: number; height: number } | null;
   commands?: SelectionCommandSet;
   activeElements: HTMLElement[];
   activeSchemas: SchemaForUI[];
@@ -150,11 +150,18 @@ const SelectionContextToolbar = ({
 
   const handleToolbarKeyDown = React.useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key !== 'Escape') return;
-    if (!moreMenuOpen) return;
     event.preventDefault();
     event.stopPropagation();
-    closeMoreMenu();
-  }, [closeMoreMenu, moreMenuOpen]);
+
+    if (moreMenuOpen) {
+      closeMoreMenu();
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      (restoreFocusTarget ?? activeElements[0] ?? moreButtonRef.current)?.focus({ preventScroll: true });
+    });
+  }, [activeElements, closeMoreMenu, moreMenuOpen, restoreFocusTarget]);
 
   React.useLayoutEffect(() => {
     const toolbarNode = toolbarRef.current;

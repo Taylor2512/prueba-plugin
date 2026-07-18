@@ -1,41 +1,18 @@
 /**
  * useFloatingToolbarPosition — calcula posición del toolbar contextual.
  *
- * Resuelve bounds de elementos DOM seleccionados relativos al canvas y delega
- * el posicionamiento seguro a las utilidades de floatingSurfaceGeometry.
+ * Resuelve bounds de elementos DOM seleccionados relativos al canvas.
+ *
+ * Importante: este hook devuelve el rectángulo ancla de la selección en el
+ * sistema de coordenadas del scroll owner del canvas; los componentes de
+ * superficie flotante son quienes aplican flip/clamp con su tamaño real.
  */
-
-import {
-  resolveCenteredFloatingSurfacePosition,
-  resolveSelectionToolbarPosition,
-} from './floatingSurfaceGeometry.js';
 
 /**
  * Bounds agregados de una o varias selecciones en coordenadas del canvas.
  */
 type Bounds = { top: number; left: number; right: number; bottom: number };
-/**
- * Tamaño de página usado como fallback para el viewport de posicionamiento.
- */
 type PageSize = { width: number; height: number };
-/**
- * Tamaño de la superficie flotante que se debe posicionar.
- */
-type SurfaceSize = { width: number; height: number };
-
-/**
- * Ancho default estimado del toolbar flotante.
- */
-const TOOLBAR_WIDTH = 256;
-/**
- * Alto default estimado del toolbar flotante.
- */
-const TOOLBAR_HEIGHT = 48;
-/**
- * Tamaño por defecto para cálculos cuando el caller no provee uno.
- */
-const DEFAULT_SURFACE_SIZE: SurfaceSize = { width: TOOLBAR_WIDTH, height: TOOLBAR_HEIGHT };
-
 /**
  * Calcula posición y tamaño de la selección activa para ubicar el toolbar.
  *
@@ -45,10 +22,8 @@ const DEFAULT_SURFACE_SIZE: SurfaceSize = { width: TOOLBAR_WIDTH, height: TOOLBA
 export const useFloatingToolbarPosition = (
   activeElements: HTMLElement[],
   pageSize: PageSize,
-  surfaceSize?: SurfaceSize,
+  _surfaceSize?: { width: number; height: number },
 ) => {
-  const resolvedSurfaceSize = surfaceSize ?? DEFAULT_SURFACE_SIZE;
-
   if (!activeElements.length) return null;
 
   const candidateRoot = activeElements[0]?.closest?.('.sisad-pdfme-designer-canvas');
@@ -81,23 +56,13 @@ export const useFloatingToolbarPosition = (
 
   const width = bounds.right - bounds.left;
   const height = bounds.bottom - bounds.top;
-  const safePageWidth = Number.isFinite(pageSize.width) ? Math.max(0, pageSize.width) : 0;
-  const safePageHeight = Number.isFinite(pageSize.height) ? Math.max(0, pageSize.height) : 0;
-
-  const viewportSize = {
-    left: 'scrollLeft' in canvasRoot ? canvasRoot.scrollLeft : 0,
-    top: 'scrollTop' in canvasRoot ? canvasRoot.scrollTop : 0,
-    width: Math.max(safePageWidth, canvasRect.width),
-    height: Math.max(safePageHeight, canvasRect.height),
-  };
-  const { top, left } =
-    activeElements.length > 1
-      ? resolveCenteredFloatingSurfacePosition(bounds, resolvedSurfaceSize, viewportSize)
-      : resolveSelectionToolbarPosition(bounds, resolvedSurfaceSize, viewportSize);
+  void pageSize;
 
   return {
-    top,
-    left,
+    top: bounds.top,
+    left: bounds.left,
+    right: bounds.right,
+    bottom: bounds.bottom,
     width,
     height,
   };
