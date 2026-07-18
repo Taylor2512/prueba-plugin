@@ -68,15 +68,22 @@ ai/start/START.md
 
 ## Trabajo multiagente local
 
+El checkout base es `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`.
+Los worktrees ya no viven como carpetas hermanas `prueba-plugin-*`; se
+rehidratan dentro de `.worktrees/` desde este repositorio principal.
+
 | Rol | Carpeta | Rama |
 |---|---|---|
-| Main/coordinador | `prueba-plugin` | `main` |
-| Integración | `.worktrees/merge` | `ai/integration` |
-| Codex | `.worktrees/codex` | `ai/codex` |
-| Claude | `.worktrees/claude` | `ai/claude` |
-| Copilot | `.worktrees/copilot` | `ai/copilot` |
+| Main/coordinador | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin` | `main` |
+| Integración | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/merge` | `ai/integration` |
+| Codex | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/codex` | `ai/codex` |
+| Claude | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/claude` | `ai/claude` |
+| Copilot | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/copilot` | `ai/copilot` |
 
-Los worktrees viven dentro de `prueba-plugin/.worktrees/`, están ignorados por Git y excluidos de scanners, búsquedas y builds.
+Si `git worktree list` muestra entradas `prunable` o rutas hermanas antiguas,
+la topología está desalineada y debe limpiarse antes de editar. Los worktrees
+activos viven en `prueba-plugin/.worktrees/`, están ignorados por Git y
+excluidos de scanners, búsquedas y builds.
 
 Abra `SISAD-PDFME-MULTIAGENT.code-workspace` para visualizar main, integración y los tres agentes en una sola ventana de VS Code sin navegar manualmente entre carpetas.
 

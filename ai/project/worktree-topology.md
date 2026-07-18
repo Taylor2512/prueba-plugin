@@ -1,4 +1,4 @@
-# Topología de worktrees internos
+# Topología de worktrees embebidos
 
 | Rol | Carpeta | Rama | Puerto |
 |---|---|---|---:|
@@ -10,7 +10,10 @@
 
 ## Decisión
 
-Todos los worktrees viven dentro de `.worktrees/`. Esta carpeta está ignorada por Git y scanners. No crear carpetas hermanas `prueba-plugin-*`.
+El modelo vigente usa el checkout principal como coordinador y rehidrata los
+worktrees dentro de `.worktrees/`. Las carpetas hermanas `prueba-plugin-*`
+quedaron fuera del flujo normal. Si aparecen como `prunable`, deben eliminarse
+o recrearse únicamente dentro de este repositorio.
 
 ## Visualización unificada
 
@@ -25,5 +28,5 @@ El workspace muestra main, integration, codex, claude y copilot como raíces sep
 ## Ciclo
 
 ```txt
-trabajo aislado → commits → handoff local → integration → gate → ff-only main → realineación
+trabajo aislado → commits → handoff local → integration → gate → ff-only main → realineación → rehidratar .worktrees/
 ```

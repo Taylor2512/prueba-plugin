@@ -22,6 +22,11 @@ ai/router/CONTEXT_BUDGET.md
 | Claude | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/claude` | `ai/claude` | 5182 |
 | Copilot | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/copilot` | `ai/copilot` | 5183 |
 
+La topología activa parte del checkout principal y solo usa worktrees embebidos
+en `.worktrees/`. Si `git worktree list` muestra rutas hermanas antiguas o
+entradas `prunable`, la estructura debe limpiarse y recrearse desde `main`
+antes de editar.
+
 Antes de editar:
 
 ```bash

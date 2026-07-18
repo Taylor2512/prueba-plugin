@@ -9,6 +9,8 @@ git status --short
 ```
 
 Compara con `project/worktree-topology.md`. Si no coincide, detente.
+Si `git worktree list` muestra entradas `prunable` o rutas fuera de
+`.worktrees/`, la topología no está limpia y debe corregirse antes de editar.
 
 ## 2. Identificar wave y task-card
 
@@ -64,6 +66,10 @@ La task-card declara context, rules, playbook, owned paths, forbidden paths y te
 ```bash
 mkdir /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai-coordination/sisad-pdfme/locks/<TASK-ID>.lock
 ```
+
+Si el worktree no existe porque fue pruned, recréalo dentro de
+`/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/` antes
+de continuar.
 
 ## 8. Declarar decisión
 

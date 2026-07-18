@@ -10,7 +10,10 @@
 
 ## Decisión
 
-Todos los worktrees viven dentro de `.worktrees/`. Esta carpeta está ignorada por Git y scanners. No crear carpetas hermanas `prueba-plugin-*`.
+El estado operativo actual usa únicamente worktrees embebidos dentro de
+`.worktrees/` en el repositorio principal. Las carpetas hermanas
+`prueba-plugin-*` ya no forman parte del flujo. Si `git worktree list` muestra
+entradas `prunable`, deben limpiarse antes de recrear o rehidratar worktrees.
 
 ## Visualización unificada
 
