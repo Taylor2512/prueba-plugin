@@ -18,11 +18,11 @@ export function downloadUrl(url: string, filename: string): void {
   link.rel = 'noopener';
   const style = link as HTMLAnchorElement & { style?: CSSStyleDeclaration };
   if (style.style) style.style.display = 'none';
-  if (link instanceof Node) document.body.appendChild(link);
+  if (typeof Node !== 'undefined' && link instanceof Node) document.body.appendChild(link);
   link.click();
   if (typeof link.remove === 'function') {
     link.remove();
-  } else if (link instanceof Node && link.parentNode) {
+  } else if (typeof Node !== 'undefined' && link instanceof Node && link.parentNode) {
     link.parentNode.removeChild(link);
   }
 }

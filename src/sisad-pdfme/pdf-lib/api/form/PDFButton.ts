@@ -121,13 +121,13 @@ export default class PDFButton extends PDFField {
    * })
    * ```
    * This will create a new widget for this button field.
-   * @param text The text to be displayed for this button widget.
+   * @param text The text to be displayed for this button widget. Omit it for
+   *             image-only buttons or other captionless variants.
    * @param page The page to which this button widget should be added.
    * @param options The options to be used when adding this button widget.
    */
   addToPage(
-    // TODO: This needs to be optional, e.g. for image buttons
-    text: string,
+    text: string | undefined,
     page: PDFPage,
     options?: FieldAppearanceOptions,
   ) {
