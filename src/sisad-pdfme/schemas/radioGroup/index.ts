@@ -6,7 +6,9 @@ import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 import type { OptionItem } from '../options/optionTypes.js';
 import {
   buildDefaultOptionGroupOptions,
+  normalizeOptionId,
   normalizeOptionGroupOptions,
+  normalizeText,
 } from '../options/optionModel.js';
 
 type RadioGroupSchema = SchemaForUI & {
@@ -62,6 +64,21 @@ const resolveSelectedOptionId = (
     options,
     options[0]?.optionId || 'option_1',
   );
+};
+
+const createNextOption = (label: string, options: RadioOption[]): RadioOption => {
+  const clean = normalizeText(label) || `Opción ${options.length + 1}`;
+  const base = normalizeOptionId(clean, options.length).replace(/_\d+$/, '') || 'option';
+  const existing = new Set(options.map((option) => option.optionId));
+  let nextIndex = options.length + 1;
+  let candidate = `${base}_${nextIndex}`;
+
+  while (existing.has(candidate)) {
+    nextIndex += 1;
+    candidate = `${base}_${nextIndex}`;
+  }
+
+  return { optionId: candidate, label: clean };
 };
 
 // ─── PropPanel options editor ────────────────────────────────────────────────
@@ -138,13 +155,7 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
       return nextOptions.length ? nextOptions : buildDefaultOptionGroupOptions('Opción', 1);
     },
     createAddedOptions: (options, label) => {
-      const clean = label || `Opción ${options.length + 1}`;
-      const nextIndex = options.length + 1;
-      const nextOption: RadioOption = {
-        optionId: `option_${nextIndex}`,
-        label: clean,
-      };
-      return [...options, nextOption];
+      return [...options, createNextOption(label, options)];
     },
     onCommitOptions: (nextOptions) => {
       commitOptions(nextOptions);
@@ -263,3 +274,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
 );
 
 export default schema;
+
+export const __test__ = {
+  createNextOption,
+};

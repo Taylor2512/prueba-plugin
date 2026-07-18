@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import radioGroup from '@/sisad-pdfme/schemas/radioGroup/index.js';
+import radioGroup, { __test__ } from '@/sisad-pdfme/schemas/radioGroup/index.js';
 import { createDefaultSchema, builtInSchemaDefinitions } from '@/sisad-pdfme/schemas/index.js';
 
 describe('sisad-pdfme/schemas/radioGroup/index.ts', () => {
@@ -31,5 +31,20 @@ describe('sisad-pdfme/schemas/radioGroup/index.ts', () => {
     expect(radioGroup.propPanel.inspector.propertyMap.groupId).toBe('advanced');
     expect(radioGroup.propPanel.inspector.propertyMap.groupName).toBe('data');
     expect(radioGroup.propPanel.inspector.propertyMap.optionsContainer).toBe('data');
+  });
+
+  it('creates a stable unique optionId for new radio options', () => {
+    const options = [
+      { optionId: 'option_1', label: 'A' },
+      { optionId: 'option_2', label: 'B' },
+      { optionId: 'option_3', label: 'C' },
+      { optionId: 'option_4', label: 'D' },
+    ];
+
+    const next = __test__.createNextOption('Opcion', options);
+
+    expect(next.label).toBe('Opcion');
+    expect(next.optionId).toBe('opcion_5');
+    expect(options.some((option) => option.optionId === next.optionId)).toBe(false);
   });
 });
