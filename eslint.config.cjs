@@ -43,8 +43,10 @@ module.exports = [
     ignores: [
       'node_modules/**',
       'dist/**',
+      '**/dist/**',
       'build/**',
       '.vite/**',
+      '.worktrees/**',
       'public/**',
       'coverage/**',
       'src/sisad-pdfme/pdf-lib/**',

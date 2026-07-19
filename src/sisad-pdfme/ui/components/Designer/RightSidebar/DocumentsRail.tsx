@@ -140,10 +140,12 @@ const DocumentsRail = ({
   const canAdd = typeof onAdd === 'function';
   const canAddPage = canAdd && hasItems;
   const resolvedSubtitle = subtitle ?? (hasItems ? 'Selecciona una página' : 'Carga un PDF para empezar.');
-  const headerActionClass = 'appearance-none rounded-[7px] border border-slate-200 bg-white text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 focus-visible:ring-offset-1';
-  const railItemBaseClass = 'group relative flex h-16 w-full items-center gap-2 rounded-[10px] border border-slate-200 bg-white p-2 text-left shadow-none transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60';
-  const railItemActiveClass = 'border-blue-300 bg-blue-50';
-  const railPreviewClass = 'flex h-7 w-7 items-center justify-center overflow-hidden rounded-md border border-slate-200 bg-slate-50 text-slate-500';
+  const headerActionClass = 'appearance-none rounded-full border border-slate-200 bg-white text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40 focus-visible:ring-offset-1';
+  const railItemBaseClass = 'group relative flex w-full items-center gap-2 rounded-[0.75rem] border border-slate-200/70 bg-white/96 px-1.5 py-1.5 text-left shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/35 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60';
+  const railItemActiveClass = 'border-sky-200 bg-sky-50/85 shadow-[0_1px_3px_rgba(15,23,42,0.05)]';
+  const railItemWrapperClass = 'group flex items-stretch gap-1.5 rounded-[0.9rem] border border-slate-200/70 bg-white/95 p-1.5 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-white';
+  const railItemWrapperActiveClass = 'border-sky-200 bg-sky-50/75 shadow-[0_1px_3px_rgba(15,23,42,0.05)]';
+  const railPreviewClass = 'flex h-8 w-8 items-center justify-center overflow-hidden rounded-md border border-slate-200/80 bg-slate-50 text-slate-500';
   const railAddCardClass = 'flex w-full items-center gap-2 rounded-[0.75rem] border border-dashed border-slate-200 bg-slate-50/80 px-1.5 py-1.5 text-left transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/35 focus-visible:ring-offset-1';
   const emptyActionClass = 'appearance-none rounded-full border border-slate-200 bg-white text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/35 focus-visible:ring-offset-1';
 
@@ -152,10 +154,10 @@ const DocumentsRail = ({
       className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-wrapper', 'min-h-0 flex-1')}
       style={style}
     >
-        <SidebarFrame
+      <SidebarFrame
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'documents-rail',
-          'flex min-h-0 flex-col overflow-hidden rounded-[10px] border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]',
+          'flex min-h-0 flex-col overflow-hidden rounded-[0.875rem] border border-slate-200/65 bg-white/95 shadow-[0_1px_2px_rgba(15,23,42,0.04)]',
           density === 'compact' ? DESIGNER_CLASSNAME + 'documents-rail-compact' : '',
           useDefaultStyles ? DESIGNER_CLASSNAME + 'documents-rail-default' : '',
           className,
@@ -200,12 +202,13 @@ const DocumentsRail = ({
         </SidebarHeader>
         <SidebarBody tabIndex={0} aria-label="Lista de páginas del documento">
           {hasItems ? (
-            <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-items', 'space-y-1')}>
+            <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-items', 'space-y-1.5')}>
               {canAdd && showInlineAddCard ? (
                 <button
                   type="button"
                   onClick={onAdd}
                   className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-item', railAddCardClass)}
+                  aria-label={String(addPageLabel)}
                 >
                   <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
                     <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-preview', railPreviewClass, 'bg-white')}>
@@ -227,10 +230,12 @@ const DocumentsRail = ({
                 return (
                   <div
                     key={item.id}
+                    data-active={isSelected ? 'true' : 'false'}
                     className={mergeClassNames(
                       DESIGNER_CLASSNAME + 'documents-rail-item-wrapper',
                       railItemWrapperClass,
-                      isSelected ? mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-item-wrapper-active', railItemActiveClass) : '',
+                      isSelected ? DESIGNER_CLASSNAME + 'documents-rail-item-wrapper-active' : '',
+                      isSelected ? railItemWrapperActiveClass : '',
                     )}
                   >
                     <button
@@ -241,12 +246,15 @@ const DocumentsRail = ({
                       className={mergeClassNames(
                         DESIGNER_CLASSNAME + 'documents-rail-item',
                         railItemBaseClass,
+                        'flex-1',
+                        isSelected ? railItemActiveClass : '',
+                        'min-h-[3.15rem]',
                       )}
                       data-active={isSelected ? 'true' : 'false'}
                     >
                       <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
                         {item.previewSrc ? (
-                          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-preview', railPreviewClass)}>
+                          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-preview', railPreviewClass, 'shadow-[0_1px_2px_rgba(15,23,42,0.04)]')}>
                             <img
                               src={item.previewSrc}
                               alt={item.name}
@@ -258,7 +266,7 @@ const DocumentsRail = ({
                           <div className={mergeClassNames(
                             DESIGNER_CLASSNAME + 'documents-rail-preview',
                             railPreviewClass,
-                            'border-slate-200 bg-slate-50 text-slate-600',
+                            'border-sky-100 bg-sky-50 text-sky-600 shadow-[0_1px_2px_rgba(59,130,246,0.05)]',
                           )}>
                             <span className="text-[0.68rem] font-bold">{(item.pageLabel || `${index + 1}`).substring(0, 2)}</span>
                           </div>
@@ -316,10 +324,10 @@ const DocumentsRail = ({
               })}
             </div>
           ) : (
-              <SidebarSurfaceEmptyState
-                icon={<FileText size={16} />}
-                title={emptyTitle}
-                description={emptyDescription}
+            <SidebarSurfaceEmptyState
+              icon={<FileText size={16} />}
+              title={emptyTitle}
+              description={emptyDescription}
               action={canUpload ? (
                 <Button
                   size="small"
