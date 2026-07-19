@@ -1207,28 +1207,22 @@ const LeftSidebar = ({
     );
     const layoutButtonClass = resolvedLayout === 'list'
       ? mergeClassNames(
-          'w-full min-h-[2.5rem] p-[0.25rem_0.4rem] gap-1.5 justify-start rounded-[0.375rem] border border-slate-200',
-          'bg-white shadow-[inset_0_1px_0_white,_0_0.5px_1px_rgba(15,23,42,0.04)]',
-          'transition-[border-color,background,box-shadow,color] hover:border-sky-200 hover:bg-sky-50 hover:shadow-[0_1px_2px_rgba(59,130,246,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 motion-reduce:hover:translate-y-0',
+          'h-[44px] w-full justify-start gap-2 rounded-lg border border-slate-200 px-2.5 py-0 text-slate-800',
+          'bg-white shadow-none',
+          'transition-[border-color,background,box-shadow,color] hover:border-slate-300 hover:bg-slate-50 focus-visible:border-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 motion-reduce:hover:translate-y-0',
         )
       : resolvedLayout === 'icons'
         ? mergeClassNames(
-          'w-full aspect-square min-h-0 items-center justify-center p-1 rounded-[0.375rem] border border-slate-200',
-            'bg-white shadow-[inset_0_1px_0_white,_0_0.5px_1px_rgba(15,23,42,0.04)] overflow-hidden text-center',
-            'transition-[border-color,background,box-shadow,color] hover:border-sky-200 hover:bg-sky-50 hover:shadow-[0_1.5px_3px_rgba(59,130,246,0.16)] motion-reduce:hover:translate-y-0',
+          'h-[44px] w-full min-h-0 items-center justify-center rounded-lg border border-slate-200 p-1 text-slate-800',
+            'bg-white shadow-none overflow-hidden text-center',
+            'transition-[border-color,background,box-shadow,color] hover:border-slate-300 hover:bg-slate-50 focus-visible:border-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 motion-reduce:hover:translate-y-0',
           )
         : mergeClassNames(
-            'w-full min-h-[2.3rem] flex flex-col items-center justify-center gap-0.5 p-[0.25rem_0.2rem] rounded-[0.375rem] border border-slate-200',
-            'bg-white shadow-[inset_0_1px_0_white,_0_0.5px_1px_rgba(15,23,42,0.04)] overflow-hidden text-center',
-            'transition-[border-color,background,box-shadow,transform,color] hover:border-sky-200 hover:bg-sky-50 hover:shadow-[0_2px_4px_rgba(59,130,246,0.12)] hover:-translate-y-px motion-reduce:hover:translate-y-0',
+            'h-[44px] w-full flex flex-col items-center justify-center gap-0.5 rounded-lg border border-slate-200 p-1 text-slate-800',
+            'bg-white shadow-none overflow-hidden text-center',
+            'transition-[border-color,background,box-shadow,color] hover:border-slate-300 hover:bg-slate-50 focus-visible:border-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 motion-reduce:hover:translate-y-0',
           );
-    const stateButtonClass = isSelectionCategory
-      ? 'border-[color-mix(in_srgb,_var(--color-primary-30)_54%,_var(--color-border-18))] bg-[linear-gradient(180deg,_var(--color-white),_color-mix(in_srgb,_var(--color-primary-100-90)_38%,_var(--color-white)))]'
-      : isBuiltin
-        ? 'shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_3px_color-mix(in_srgb,_var(--color-gray-900)_6%,_transparent)]'
-        : isCustom
-          ? 'border-dashed border-[color-mix(in_srgb,_var(--color-primary-35)_48%,_var(--color-border-18))]'
-          : '';
+    const stateButtonClass = isCustom ? 'border-dashed' : '';
     const labelClass = mergeClassNames(
       `${DESIGNER_CLASSNAME}plugin-btn-label`,
       resolvedLayout === 'list'
@@ -1239,7 +1233,7 @@ const LeftSidebar = ({
     const titleClass = mergeClassNames(
       `${DESIGNER_CLASSNAME}plugin-btn-label-title`,
       resolvedLayout === 'list'
-        ? 'block truncate text-left text-[0.75rem] font-semibold text-[var(--color-gray-900)] whitespace-nowrap [word-break:normal]'
+        ? 'block truncate text-left text-[0.75rem] font-semibold text-slate-800 whitespace-nowrap [word-break:normal]'
         : 'block min-w-0 w-full overflow-hidden [display:-webkit-box] [line-clamp:2] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] [text-overflow:ellipsis] [white-space:normal] text-[0.575rem] font-semibold text-[var(--color-gray-700)] capitalize text-center leading-[1.3] break-words',
       resolveCatalogDensityTitleClass(resolvedLayout, sidebarDensityMode),
       sidebarDensityMode === 'minimal'
@@ -1313,7 +1307,7 @@ const LeftSidebar = ({
                 densityPaddingClass,
                 densitySkinClass,
                 draggableActive || isDragging
-                  ? 'border-[color:var(--color-primary)] bg-[var(--color-primary-08)] [box-shadow:0_0_0_2px_var(--color-primary-08),0_4px_10px_rgba(37,99,235,0.12)]'
+                  ? 'border-blue-400 bg-blue-50 shadow-sm opacity-90'
                   : '',
                 draggableActive ? 'opacity-50' : '',
               )}
@@ -1361,14 +1355,6 @@ const LeftSidebar = ({
               <span className={labelClass}>
                 <span className={titleClass}>
                   {highlightTerm(displayLabel, searchTerms)}
-                    {isFavorite ? (
-                      <span className={mergeClassNames(
-                        DESIGNER_CLASSNAME + 'plugin-favorite-inline-indicator',
-                        'ml-1 text-amber-400 flex-shrink-0 flex items-center justify-center w-3 h-3',
-                      )}>
-                        ★
-                      </span>
-                    ) : null}
                 </span>
                   </span>
             </Button>
@@ -1379,14 +1365,15 @@ const LeftSidebar = ({
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'plugin-favorite-toggle',
                 resolvedLayout === 'icons' ? 'absolute right-0.5 top-0.5' : 'absolute right-0.5 top-1/2 -translate-y-1/2',
-                'inline-flex h-[1.125rem] w-[1.125rem] items-center justify-center rounded-full border transition-[opacity,background-color,border-color,color,transform,box-shadow] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 text-[9px]',
-                isFavorite 
-                  ? 'bg-amber-400 border-amber-400 text-white shadow-[0_1px_3px_rgba(251,146,60,0.3)]'
-                  : 'border-slate-200 bg-white/80 text-slate-400 shadow-sm hover:border-slate-300 hover:bg-white hover:text-slate-600',
+                'inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-transparent bg-transparent text-[12px] transition-[opacity,background-color,border-color,color] text-slate-300 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 hover:bg-slate-50',
+                isFavorite ? 'text-amber-500 opacity-100' : '',
                 draggableActive || isDragging ? 'opacity-0 pointer-events-none' : '',
               )}
               data-active={isFavorite ? 'true' : 'false'}
+              onPointerDown={(e) => e.stopPropagation()}
+              onMouseDown={(e) => e.stopPropagation()}
               onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 toggleFavorite(pluginType);
               }}
@@ -1464,7 +1451,7 @@ const LeftSidebar = ({
                 densityPaddingClass,
                 densitySkinClass,
                 draggableActive || isDragging
-                  ? 'border-[color:var(--color-primary)] bg-[var(--color-primary-08)] [box-shadow:0_0_0_2px_var(--color-primary-08),0_4px_10px_rgba(37,99,235,0.12)]'
+                  ? 'border-blue-400 bg-blue-50 shadow-sm opacity-90'
                   : '',
                 resolvedLayout === 'list'
                   ? 'flex w-full items-center gap-[0.5rem] min-h-[2.875rem] p-[0.375rem_0.5625rem] justify-center rounded-[0.5625rem] border border-[color:var(--color-border-20)] bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)] transition-[border-color,background,box-shadow] hover:border-[color:var(--color-primary-30)] hover:bg-[linear-gradient(180deg,_var(--color-white),_var(--color-primary-100-90))] hover:shadow-[0_2px_0.375rem_var(--color-primary-08)]'
