@@ -140,10 +140,11 @@ const DocumentsRail = ({
   const canAdd = typeof onAdd === 'function';
   const canAddPage = canAdd && hasItems;
   const resolvedSubtitle = subtitle ?? (hasItems ? 'Selecciona una página' : 'Carga un PDF para empezar.');
-  const headerActionClass = 'appearance-none rounded-full border border-slate-200 bg-white text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40 focus-visible:ring-offset-1';
-  const railItemBaseClass = 'group relative flex w-full items-center gap-2 rounded-[0.75rem] border border-slate-200/70 bg-white/96 px-1.5 py-1.5 text-left shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/35 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60';
-  const railItemActiveClass = 'border-sky-200 bg-sky-50/85 shadow-[0_1px_3px_rgba(15,23,42,0.05)]';
-  const railPreviewClass = 'flex h-8 w-8 items-center justify-center overflow-hidden rounded-md border border-slate-200/80 bg-slate-50 text-slate-500';
+  const headerActionClass = 'appearance-none rounded-[7px] border border-slate-200 bg-white text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 focus-visible:ring-offset-1';
+  const railItemWrapperClass = 'group relative flex h-16 w-full items-stretch overflow-hidden rounded-[10px] border border-slate-200 bg-white shadow-none transition-[background-color,border-color] hover:border-slate-300 hover:bg-slate-50 focus-within:ring-2 focus-within:ring-blue-500/30 focus-within:ring-offset-1';
+  const railItemBaseClass = 'flex h-full min-w-0 flex-1 items-center gap-2 rounded-[10px] border-0 bg-transparent p-2 pr-10 text-left shadow-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60';
+  const railItemActiveClass = 'border-blue-300 bg-blue-50';
+  const railPreviewClass = 'flex h-7 w-7 items-center justify-center overflow-hidden rounded-md border border-slate-200 bg-slate-50 text-slate-500';
   const railAddCardClass = 'flex w-full items-center gap-2 rounded-[0.75rem] border border-dashed border-slate-200 bg-slate-50/80 px-1.5 py-1.5 text-left transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/35 focus-visible:ring-offset-1';
   const emptyActionClass = 'appearance-none rounded-full border border-slate-200 bg-white text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/35 focus-visible:ring-offset-1';
 
@@ -155,7 +156,7 @@ const DocumentsRail = ({
         <SidebarFrame
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'documents-rail',
-          'flex min-h-0 flex-col overflow-hidden rounded-[0.875rem] border border-slate-200/65 bg-white/95 shadow-[0_1px_2px_rgba(15,23,42,0.04)]',
+          'flex min-h-0 flex-col overflow-hidden rounded-[10px] border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]',
           density === 'compact' ? DESIGNER_CLASSNAME + 'documents-rail-compact' : '',
           useDefaultStyles ? DESIGNER_CLASSNAME + 'documents-rail-default' : '',
           className,
@@ -176,7 +177,7 @@ const DocumentsRail = ({
                     htmlType="button"
                     icon={<FileUp size={14} />}
                     onClick={onUploadPdf}
-                    className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-action', headerActionClass, 'inline-flex h-7 items-center justify-center gap-1 px-2 text-xs font-medium')}
+                    className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-action', headerActionClass, 'inline-flex h-[30px] items-center justify-center gap-1 px-2 text-[12px] font-medium')}
                   >
                     {uploadLabel}
                   </Button>
@@ -213,10 +214,10 @@ const DocumentsRail = ({
                     </div>
                   </div>
                   <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
-                    <Text strong className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[0.78rem] font-medium leading-tight text-slate-800')}>
+                    <Text strong className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[12px] font-semibold leading-tight text-slate-900')}>
                       {addPageLabel}
                     </Text>
-                    <Text type="secondary" className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[0.68rem] leading-tight text-slate-500')}>
+                    <Text type="secondary" className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[11px] leading-tight text-slate-500')}>
                       Añade una página al final del documento
                     </Text>
                   </div>
@@ -229,8 +230,8 @@ const DocumentsRail = ({
                     key={item.id}
                     className={mergeClassNames(
                       DESIGNER_CLASSNAME + 'documents-rail-item-wrapper',
-                      'group flex items-stretch gap-1.5',
-                      isSelected ? DESIGNER_CLASSNAME + 'documents-rail-item-wrapper-active' : '',
+                      railItemWrapperClass,
+                      isSelected ? mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-item-wrapper-active', railItemActiveClass) : '',
                     )}
                   >
                     <button
@@ -241,8 +242,6 @@ const DocumentsRail = ({
                       className={mergeClassNames(
                         DESIGNER_CLASSNAME + 'documents-rail-item',
                         railItemBaseClass,
-                        'flex-1',
-                        isSelected ? railItemActiveClass : '',
                       )}
                       data-active={isSelected ? 'true' : 'false'}
                     >
@@ -260,18 +259,18 @@ const DocumentsRail = ({
                           <div className={mergeClassNames(
                             DESIGNER_CLASSNAME + 'documents-rail-preview',
                             railPreviewClass,
-                            'border-sky-100 bg-sky-50 text-sky-600',
+                            'border-slate-200 bg-slate-50 text-slate-600',
                           )}>
                             <span className="text-[0.68rem] font-bold">{(item.pageLabel || `${index + 1}`).substring(0, 2)}</span>
                           </div>
                         )}
                       </div>
                       <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-meta', 'min-w-0 flex-1 space-y-1')}>
-                        <Text strong ellipsis={{ tooltip: item.name }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[0.78rem] font-medium leading-tight text-slate-800')}>
+                        <Text strong ellipsis={{ tooltip: item.name }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[12px] font-semibold leading-tight text-slate-900')}>
                           {item.name}
                         </Text>
                         <div className={DESIGNER_CLASSNAME + 'documents-rail-meta-row'}>
-                          <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[0.68rem] leading-tight text-slate-500')}>
+                          <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[11px] leading-tight text-slate-500')}>
                             {pageLabelPrefix} {item.pageLabel || `${index + 1}`}
                           </Text>
                           {isSelected ? (
@@ -281,7 +280,7 @@ const DocumentsRail = ({
                           ) : null}
                         </div>
                         {item.meta ? (
-                          <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[0.68rem] leading-tight text-slate-500')}>
+                          <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[11px] leading-tight text-slate-500')}>
                             {item.meta}
                           </Text>
                         ) : null}
@@ -303,11 +302,10 @@ const DocumentsRail = ({
                         <Button
                           type="text"
                           size="small"
-                          danger
                           icon={<Trash2 size={13} />}
                           className={mergeClassNames(
                             DESIGNER_CLASSNAME + 'documents-rail-delete-btn',
-                            'inline-flex h-8 w-8 shrink-0 self-center items-center justify-center rounded-full border border-slate-200 bg-white text-rose-600 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-[opacity,background-color,border-color,box-shadow,transform] duration-150 hover:border-rose-300 hover:bg-rose-50 hover:text-rose-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 focus-visible:ring-offset-1',
+                            'absolute right-1.5 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-transparent bg-transparent text-slate-400 shadow-none transition-[background-color,border-color,color] duration-150 hover:border-red-200 hover:bg-red-50 hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30',
                           )}
                           aria-label={`Eliminar ${item.name}`}
                           onClick={(e) => e.stopPropagation()}

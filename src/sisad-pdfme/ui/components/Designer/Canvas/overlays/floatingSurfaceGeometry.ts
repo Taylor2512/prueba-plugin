@@ -34,6 +34,7 @@ type SelectionBounds = {
  * Separación mínima contra bordes del viewport y contra la selección/ancla.
  */
 export const FLOATING_SURFACE_EDGE_GAP = 8;
+const FLOATING_SURFACE_BADGE_GAP = 26;
 
 const clampWithin = (value: number, min: number, max: number) => Math.min(Math.max(min, value), max);
 
@@ -86,8 +87,8 @@ export const resolveSelectionToolbarPosition = (
   const clampTop = (value: number) => clampWithin(value, minTop, maxTop);
   const clampLeft = (value: number) => clampWithin(value, minLeft, maxLeft);
 
-  const topCandidate = bounds.top - surfaceSize.height - gap;
-  const bottomCandidate = bounds.bottom + gap;
+  const topCandidate = bounds.top - surfaceSize.height - gap - FLOATING_SURFACE_BADGE_GAP;
+  const bottomCandidate = bounds.bottom + gap + FLOATING_SURFACE_BADGE_GAP;
   const top = topCandidate >= minTop ? topCandidate : clampTop(bottomCandidate);
   const centeredLeft = selectionCenter - surfaceSize.width / 2;
   return {

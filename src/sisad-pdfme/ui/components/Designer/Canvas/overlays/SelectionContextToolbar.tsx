@@ -46,7 +46,7 @@ type SurfaceSize = { width: number; height: number };
 type SurfacePosition = { top: number; left: number };
 type MenuPosition = { x: number; y: number };
 
-const ESTIMATED_TOOLBAR_SIZE: SurfaceSize = { width: 256, height: 36 };
+const ESTIMATED_TOOLBAR_SIZE: SurfaceSize = { width: 190, height: 34 };
 
 /**
  * Evalúa si todos los schemas seleccionados comparten un flag booleano.
@@ -240,7 +240,7 @@ const SelectionContextToolbar = ({
     <>
       <div
         ref={toolbarRef}
-        className="sisad-pdfme-ui-selection-context-toolbar pointer-events-auto absolute inline-flex w-max min-h-[36px] rounded-[10px] border border-slate-200/80 bg-white/96 p-[3px] shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-md transition-[opacity,transform] duration-[var(--wix-reveal-dur)] ease-out motion-reduce:transition-none"
+        className="sisad-pdfme-ui-selection-context-toolbar pointer-events-auto absolute inline-flex h-[34px] w-max rounded-[10px] border border-slate-200 bg-white p-[3px] shadow-[0_6px_18px_rgba(15,23,42,0.10)] backdrop-blur-md transition-[opacity,transform] duration-[var(--wix-reveal-dur)] ease-out motion-reduce:transition-none"
         role="toolbar"
         aria-label="Barra contextual de edición"
         data-designer-control="true"
@@ -260,7 +260,7 @@ const SelectionContextToolbar = ({
         onMouseDownCapture={(event) => event.stopPropagation()}
         onKeyDown={handleToolbarKeyDown}
       >
-        <div className="flex items-center gap-0.5">
+        <div className="flex items-center gap-1">
           {quickActions.map((btn) => (
             <button
               key={btn.id}
@@ -281,15 +281,15 @@ const SelectionContextToolbar = ({
               className={mergeClassNames(
                 // `border-solid` explícito: los <button> traen `border-style:
                 // outset` del UA y preflight está off (daría un borde biselado).
-                'inline-flex min-h-7 min-w-0 items-center gap-1 rounded-lg border border-solid border-slate-200/80 bg-white/92 px-2 py-0.5 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200',
-                btn.danger && 'text-red-600 hover:border-red-200 hover:bg-red-50 hover:text-red-700',
+                'inline-flex h-7 min-w-0 items-center gap-1 rounded-[7px] border border-solid border-transparent bg-white px-2 py-0 text-[12px] font-medium text-slate-700 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30',
+                btn.danger && 'text-slate-700 hover:bg-red-50 hover:text-red-600',
                 btn.disabled && 'cursor-not-allowed opacity-50',
               )}
             >
               <span
                 className={mergeClassNames(
-                  'inline-flex h-[18px] w-[18px] flex-none items-center justify-center rounded-md bg-slate-50/90 text-slate-500',
-                  btn.danger && 'text-red-500',
+                  'inline-flex h-[18px] w-[18px] flex-none items-center justify-center rounded-md text-slate-500',
+                  btn.danger && 'text-current',
                 )}
                 aria-hidden="true"
               >
@@ -315,9 +315,9 @@ const SelectionContextToolbar = ({
               event.stopPropagation();
               openMoreMenu();
             }}
-            className="inline-flex min-h-7 min-w-0 items-center gap-1 rounded-lg border border-solid border-slate-200/80 bg-white/92 px-2 py-0.5 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200"
+            className="inline-flex h-7 min-w-0 items-center gap-1 rounded-[7px] border border-solid border-transparent bg-white px-2 py-0 text-[12px] font-medium text-slate-700 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30"
           >
-            <span className="inline-flex h-[16px] w-[16px] flex-none items-center justify-center rounded-md bg-slate-50/90 text-slate-500" aria-hidden="true">
+            <span className="inline-flex h-[16px] w-[16px] flex-none items-center justify-center rounded-md text-slate-500" aria-hidden="true">
               <Ellipsis size={14} />
             </span>
             <span>Más</span>
