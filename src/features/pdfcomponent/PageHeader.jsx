@@ -41,7 +41,7 @@ const EXAMPLE_PROP_TYPE = PropTypes.shape({
 
 const PAGE_TOPBAR_STYLE = {
   display: 'grid',
-  gridTemplateColumns: 'minmax(0, 1.4fr) minmax(17rem, 0.95fr)',
+  gridTemplateColumns: 'minmax(0, 1.45fr) minmax(17.5rem, 0.95fr)',
   gap: '0.22rem 0.42rem',
   alignItems: 'start',
   minWidth: 0,
@@ -67,12 +67,12 @@ const PAGE_ACTIONS_STYLE = {
   flexWrap: 'wrap',
   alignItems: 'center',
   justifyContent: 'flex-end',
-  gap: '0.25rem',
+  gap: '0.3rem',
   minWidth: 0,
-  borderRadius: '13px',
-  border: '1px solid rgba(148, 163, 184, 0.22)',
-  background: 'rgba(248, 250, 252, 0.75)',
-  padding: '0.22rem 0.28rem',
+  borderRadius: '14px',
+  border: '1px solid rgba(148, 163, 184, 0.2)',
+  background: 'linear-gradient(180deg, rgba(255,255,255,0.95), rgba(248,250,252,0.86))',
+  padding: '0.24rem 0.3rem',
 }
 
 const PAGE_ACTIONS_COMPACT_STYLE = {
@@ -151,7 +151,7 @@ const PAGE_TOP_HEADER_STYLE = {
 }
 
 const LAB_CHIP_BASE =
-  'inline-flex min-h-[1.45rem] items-center justify-center rounded-full border border-slate-200/70 bg-slate-50/85 px-2 text-[0.72rem] font-semibold leading-none text-slate-600 shadow-sm'
+  'inline-flex min-h-[1.5rem] items-center justify-center rounded-full border border-slate-200/80 bg-slate-50/90 px-2.5 text-[0.72rem] font-semibold leading-none text-slate-600 shadow-sm'
 const LAB_CHIP_MUTED = 'bg-slate-50/80 text-slate-500'
 const LAB_CHIP_BUTTON_BASE =
   'appearance-none cursor-pointer border border-[rgba(148,163,184,0.18)] transition-[transform,border-color,box-shadow,background-color] duration-150 ease-in-out hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:ring-offset-1 focus-visible:ring-offset-white'
@@ -240,7 +240,7 @@ HeaderActionStack.propTypes = {
 }
 
 const HeaderDetails = ({ example, pageMetrics }) => (
-  <details className="sisad-pdfme-lab-page-details sisad-pdfme-lab-debug-details grid w-full gap-[0.18rem] border-0 pt-[0.08rem] max-[900px]:gap-[0.18rem]" style={PAGE_DETAILS_STYLE}>
+  <details className="sisad-pdfme-lab-page-details sisad-pdfme-lab-debug-details grid w-full gap-[0.18rem] border-0 pt-[0.1rem] max-[900px]:gap-[0.18rem]" style={PAGE_DETAILS_STYLE}>
     <summary className="inline-flex w-fit cursor-pointer select-none items-center gap-[0.28rem] list-none" style={PAGE_DETAILS_SUMMARY_STYLE}>
       <span className="text-[0.68rem] font-bold text-blue-700">Detalles técnicos</span>
       <span className="text-[0.68rem] font-bold text-blue-700">Metadatos y estado</span>
@@ -358,7 +358,7 @@ CompactCollaborationBar.propTypes = {
 }
 
 const CompactMetric = ({ label, value }) => (
-  <div className="sisad-pdfme-lab-page-metric sisad-pdfme-lab-page-metric-compact flex-none min-w-[6rem] rounded-[12px] border border-slate-200/80 bg-gradient-to-b from-slate-50/95 to-slate-200/90 p-[0.38rem_0.5rem] max-[900px]:p-[0.35rem_0.48rem]">
+  <div className="sisad-pdfme-lab-page-metric sisad-pdfme-lab-page-metric-compact flex-none min-w-[6rem] rounded-[12px] border border-slate-200/80 bg-gradient-to-b from-slate-50/95 to-slate-100/90 p-[0.38rem_0.5rem] max-[900px]:p-[0.35rem_0.48rem]">
     <dt className="text-[0.64rem] font-bold uppercase tracking-[0.08em] text-slate-500">{label}</dt>
     <dd>{value}</dd>
   </div>
@@ -382,7 +382,7 @@ const CollaborationSection = ({
 
   if (isCompact) {
     return (
-      <section className="grid gap-[0.14rem] rounded-[12px] border border-[rgba(148,163,184,0.15)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(248,250,252,0.82))] p-[0.12rem_0.22rem] shadow-[0_8px_24px_rgba(15,23,42,0.04)] backdrop-blur-[10px]" aria-label="Colaboración del ejemplo">
+      <section className="grid gap-[0.14rem] rounded-[12px] border border-[rgba(148,163,184,0.16)] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(248,250,252,0.84))] p-[0.14rem_0.24rem] shadow-[0_8px_24px_rgba(15,23,42,0.05)] backdrop-blur-[10px]" aria-label="Colaboración del ejemplo">
         <CompactCollaborationBar
           collaborationUsers={collaborationUsers}
           activeCollaborator={activeCollaborator}
@@ -398,7 +398,7 @@ const CollaborationSection = ({
   const summaryItems = getCollaborationSummaryItems(collaborationSummary)
 
   return (
-    <section className="grid grid-cols-[minmax(0,1fr)_auto] gap-[0.28rem_0.55rem] items-start w-full min-w-0 rounded-[16px] border border-[rgba(148,163,184,0.14)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(248,250,252,0.82)),rgba(255,255,255,0.74)] p-[0.3rem_0.38rem] shadow-[0_10px_24px_rgba(15,23,42,0.07)]" aria-label="Colaboración del ejemplo">
+    <section className="grid grid-cols-[minmax(0,1fr)_auto] gap-[0.3rem_0.6rem] items-start w-full min-w-0 rounded-[16px] border border-[rgba(148,163,184,0.16)] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(248,250,252,0.84)),rgba(255,255,255,0.76)] p-[0.32rem_0.42rem] shadow-[0_12px_28px_rgba(15,23,42,0.07)]" aria-label="Colaboración del ejemplo">
       <div className="grid gap-[0.3rem] min-w-0">
         <div className="flex flex-wrap items-center gap-[0.2rem_0.32rem] min-w-0">
           <span className="text-[0.64rem] font-bold uppercase tracking-[0.08em] text-slate-500">Participantes</span>
@@ -467,7 +467,7 @@ export default function PageHeader({
     <header
       className={cn(
         'sisad-pdfme-lab-page-hero sisad-pdfme-lab-editor-shell grid max-w-full min-w-0 box-border gap-[0.22rem] rounded-[20px] border border-slate-200/70 bg-[rgba(255,255,255,0.88)] px-[0.38rem] py-[0.3rem] shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-[12px] relative z-[var(--sisad-pdfme-z-header)]',
-        isCompact && 'min-h-[46px] max-h-[50px] gap-[0.06rem] rounded-[14px] border border-slate-200/70 bg-[rgba(255,255,255,0.88)] p-[0.16rem_0.34rem] shadow-[0_10px_22px_rgba(15,23,42,0.04)] backdrop-blur-[8px]',
+        isCompact && 'min-h-[46px] max-h-[52px] gap-[0.08rem] rounded-[14px] border border-slate-200/75 bg-[rgba(255,255,255,0.92)] p-[0.18rem_0.36rem] shadow-[0_10px_22px_rgba(15,23,42,0.05)] backdrop-blur-[8px]',
         'max-[900px]:gap-[0.12rem] max-[900px]:p-[0.18rem_0.24rem] max-[900px]:rounded-[12px]',
       )}
       data-density={density}

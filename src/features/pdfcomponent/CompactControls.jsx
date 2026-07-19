@@ -18,7 +18,7 @@ const SCHEMA_DEFINITION_PROP_TYPE = PropTypes.shape({
 })
 
 const ControlSection = ({ label, children, quiet = false }) => (
-  <section className={joinClasses('grid gap-[0.3rem] rounded-[12px] border border-[rgba(148,163,184,0.16)] p-[0.42rem] bg-[rgba(248,250,252,0.86)]', quiet && 'bg-[rgba(255,255,255,0.86)]')}>
+  <section className={joinClasses('grid gap-[0.32rem] rounded-[12px] border border-[rgba(148,163,184,0.16)] p-[0.46rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.88))] shadow-[0_6px_18px_rgba(15,23,42,0.04)]', quiet && 'bg-[rgba(255,255,255,0.9)]')}>
     <span className="text-[0.64rem] font-bold uppercase tracking-[0.08em] text-slate-500">{label}</span>
     {children}
   </section>
@@ -49,7 +49,7 @@ const ActionButton = ({
     <button
       type="button"
       className={joinClasses(
-        'min-h-[2rem] cursor-pointer rounded-[10px] border border-[rgba(148,163,184,0.26)] bg-white p-[0.28rem_0.55rem] text-left font-semibold text-slate-900',
+        'min-h-[2rem] cursor-pointer rounded-[10px] border border-[rgba(148,163,184,0.24)] bg-white p-[0.3rem_0.6rem] text-left font-semibold text-slate-900 shadow-[0_2px_8px_rgba(15,23,42,0.04)] transition-colors hover:border-sky-200 hover:bg-sky-50/40',
         destructive && 'text-red-700',
       )}
       disabled={busy || disabled}
@@ -203,7 +203,7 @@ export default function CompactControls({
                   key={option.id}
                   type="button"
                   className={joinClasses(
-                    'min-h-[2rem] rounded-[10px] border border-[rgba(148,163,184,0.26)] bg-white p-[0.28rem_0.55rem] text-left font-semibold text-slate-900 cursor-pointer',
+                    'min-h-[2rem] rounded-[10px] border border-[rgba(148,163,184,0.24)] bg-white p-[0.3rem_0.6rem] text-left font-semibold text-slate-900 cursor-pointer shadow-[0_2px_8px_rgba(15,23,42,0.04)] transition-colors hover:border-sky-200 hover:bg-sky-50/40',
                     mode === option.id && 'border-[rgba(59,130,246,0.28)] bg-blue-50 text-blue-700',
                   )}
                   onClick={applyMode(close, option.id)}
@@ -227,7 +227,7 @@ export default function CompactControls({
               </label>
               <select
                 id="schema-type-select-compact"
-                className="min-h-[2rem] rounded-[10px] border border-[rgba(148,163,184,0.28)] bg-white px-[0.55rem] text-slate-900"
+                className="min-h-[2rem] rounded-[10px] border border-[rgba(148,163,184,0.28)] bg-white px-[0.55rem] text-slate-900 shadow-[0_2px_8px_rgba(15,23,42,0.04)]"
                 value={schemaType}
                 onChange={onSchemaTypeChange}
                 disabled={busy}
@@ -264,7 +264,7 @@ export default function CompactControls({
                 <div className="flex flex-wrap gap-[0.3rem]">
                   <button
                     type="button"
-                    className="min-h-[2rem] cursor-pointer rounded-[10px] border border-[rgba(148,163,184,0.26)] bg-white p-[0.28rem_0.55rem] text-left font-semibold text-red-700"
+                    className="min-h-[2rem] cursor-pointer rounded-[10px] border border-[rgba(148,163,184,0.26)] bg-white p-[0.3rem_0.6rem] text-left font-semibold text-red-700 shadow-[0_2px_8px_rgba(15,23,42,0.04)]"
                     disabled={busy}
                     onClick={runAndClose(close, onReset)}
                   >
@@ -272,7 +272,7 @@ export default function CompactControls({
                   </button>
                   <button
                     type="button"
-                    className="min-h-[2rem] cursor-pointer rounded-[10px] border border-[rgba(148,163,184,0.26)] bg-white p-[0.28rem_0.55rem] text-left font-semibold text-slate-900"
+                    className="min-h-[2rem] cursor-pointer rounded-[10px] border border-[rgba(148,163,184,0.26)] bg-white p-[0.3rem_0.6rem] text-left font-semibold text-slate-900 shadow-[0_2px_8px_rgba(15,23,42,0.04)]"
                     disabled={busy}
                     onClick={() => setResetConfirmationOpen(false)}
                   >

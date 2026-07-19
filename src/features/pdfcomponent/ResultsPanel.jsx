@@ -15,24 +15,24 @@ const CARD_CONTENT_PROP_TYPE = PropTypes.shape({
 })
 
 const RESULTS_BODY_STYLE = {
-  padding: '1rem',
+  padding: '0.9rem',
 }
 
 const RESULTS_GRID_STYLE = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-  gap: '1.25rem',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+  gap: '0.9rem',
 }
 
 const RESULT_CARD_STYLE = {
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.75rem',
-  borderRadius: '20px',
-  border: '1px solid rgba(148, 163, 184, 0.25)',
-  background: 'rgba(255, 255, 255, 0.88)',
-  padding: '1.25rem',
-  boxShadow: '0 18px 40px rgba(15,23,42,0.08)',
+  gap: '0.65rem',
+  borderRadius: '16px',
+  border: '1px solid rgba(148, 163, 184, 0.2)',
+  background: 'linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.9))',
+  padding: '0.95rem',
+  boxShadow: '0 10px 24px rgba(15,23,42,0.07)',
   backdropFilter: 'blur(12px)',
 }
 
@@ -54,9 +54,9 @@ const RESULTS_DRAWER_CLOSE_CLASSES =
 const RESULTS_BODY_CLASSES = 'p-4'
 const RESULTS_GRID_CLASSES = 'grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-5'
 const RESULT_CARD_CLASSES =
-  'flex flex-col gap-3 rounded-[20px] border border-slate-200/70 bg-white/88 p-5 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-md'
-const RESULT_CARD_TITLE_CLASSES = 'm-0 text-[0.95rem] font-bold text-slate-800'
-const RESULT_CARD_TEXT_CLASSES = 'text-[0.72rem] leading-[1.35] text-slate-600'
+  'flex flex-col gap-2.5 rounded-[16px] border border-slate-200/80 bg-white/92 p-4 shadow-[0_10px_24px_rgba(15,23,42,0.07)] backdrop-blur-md'
+const RESULT_CARD_TITLE_CLASSES = 'm-0 text-[0.9rem] font-bold text-slate-800'
+const RESULT_CARD_TEXT_CLASSES = 'text-[0.71rem] leading-[1.4] text-slate-600'
 
 const RESULT_IMAGE_GRID_STYLE = {
   display: 'grid',
@@ -95,10 +95,10 @@ const RESULTS_DRAWER_STYLE = {
   flexDirection: 'column',
   gap: '0.5rem',
   borderRadius: '1rem',
-  border: '1px solid rgba(148, 163, 184, 0.22)',
-  background: 'rgba(255, 255, 255, 0.92)',
-  padding: '0.5rem',
-  boxShadow: '0 10px 24px rgba(15, 23, 42, 0.08)',
+  border: '1px solid rgba(148, 163, 184, 0.18)',
+  background: 'linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.9))',
+  padding: '0.45rem',
+  boxShadow: '0 10px 24px rgba(15, 23, 42, 0.07)',
   backdropFilter: 'blur(12px)',
   pointerEvents: 'none',
 }
@@ -116,22 +116,22 @@ const RESULTS_DRAWER_BUTTON_STYLE = {
   alignItems: 'center',
   gap: '0.5rem',
   borderRadius: '9999px',
-  border: '1px solid rgba(148, 163, 184, 0.18)',
-  background: 'rgba(255,255,255,0.95)',
+  border: '1px solid rgba(148, 163, 184, 0.22)',
+  background: 'rgba(255,255,255,0.98)',
   padding: '0.375rem 0.75rem',
   fontSize: '0.72rem',
   fontWeight: 700,
   color: '#334155',
-  boxShadow: '0 1px 3px rgba(15,23,42,0.08)',
+  boxShadow: '0 4px 12px rgba(15,23,42,0.06)',
 }
 
 const RESULTS_DRAWER_PANEL_STYLE = {
   display: 'grid',
-  maxHeight: 'min(280px, 36dvh)',
+  maxHeight: 'min(250px, 34dvh)',
   overflow: 'auto',
   borderRadius: '0.9rem',
-  border: '1px solid rgba(148, 163, 184, 0.18)',
-  background: 'rgba(255,255,255,0.95)',
+  border: '1px solid rgba(148, 163, 184, 0.16)',
+  background: 'rgba(255,255,255,0.97)',
   padding: '0.3125rem',
   boxShadow: 'none',
   backdropFilter: 'blur(12px)',

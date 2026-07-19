@@ -1183,7 +1183,6 @@ const LeftSidebar = ({
     const recipientToneKey = activeRecipientTone || 'no-tone';
     const displayLabel = getCatalogLabel(label, pluginType, item.source);
     const isSelectionCategory = category === 'Selecciones';
-    const isBuiltin = item.source === 'builtin';
     const isCustom = item.source === 'custom';
     const baseButtonClass = mergeClassNames(
       `${DESIGNER_CLASSNAME}plugin-${pluginType}`,

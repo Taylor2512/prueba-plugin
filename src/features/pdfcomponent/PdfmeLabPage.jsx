@@ -419,7 +419,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id, example:
           'overflow-x-clip',
           'font-sans',
           'text-slate-900',
-          'bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.12),transparent_30%),radial-gradient(circle_at_top_right,rgba(244,114,182,0.12),transparent_28%),linear-gradient(180deg,#f8fafc_0%,#eef2ff_100%)]',
+          'bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.1),transparent_34%),radial-gradient(circle_at_top_right,rgba(249,115,22,0.09),transparent_30%),linear-gradient(180deg,#f8fbff_0%,#eef4ff_100%)]',
         ].join(' '),
         usesEmbeddedDesignerShell
           ? [
@@ -451,7 +451,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id, example:
           'fixed',
           'inset-0',
           '-z-10',
-          'bg-[radial-gradient(circle_at_12%_18%,rgba(56,189,248,0.10),transparent_38%),radial-gradient(circle_at_82%_10%,rgba(249,115,22,0.08),transparent_34%)]',
+          'bg-[linear-gradient(rgba(148,163,184,0.11)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.11)_1px,transparent_1px),radial-gradient(circle_at_12%_18%,rgba(56,189,248,0.10),transparent_38%),radial-gradient(circle_at_82%_10%,rgba(249,115,22,0.08),transparent_34%)] bg-[size:26px_26px,26px_26px,100%_100%,100%_100%] bg-[position:center,center,center,center]',
         ].join(' ')}
       />
       {!usesEmbeddedDesignerShell ? (
@@ -524,12 +524,12 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id, example:
                 'flex-1',
                 'flex-col',
                 'gap-2',
-                'rounded-[20px]',
+                'rounded-[22px]',
                 'border',
-                'border-slate-200/70',
-                'bg-white/90',
+                'border-slate-200/80',
+                'bg-white/92',
                 'p-2',
-                'shadow-[0_18px_40px_rgba(15,23,42,0.08)]',
+                'shadow-[0_20px_44px_rgba(15,23,42,0.09)]',
                 'backdrop-blur-[12px]',
               ].join(' '),
         )}
@@ -565,11 +565,11 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id, example:
                   'w-full',
                   'flex-1',
                   'overflow-hidden',
-                  'rounded-[20px]',
+                  'rounded-[22px]',
                   'border',
-                  'border-slate-200/70',
-                  'bg-white/90',
-                  'shadow-[0_18px_40px_rgba(15,23,42,0.08)]',
+                  'border-slate-200/80',
+                  'bg-white/95',
+                  'shadow-[0_20px_44px_rgba(15,23,42,0.09)]',
                 ].join(' '),
           )}
           data-ux-mode={uxMode}
@@ -577,8 +577,9 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id, example:
             usesEmbeddedDesignerShell
               ? undefined
               : {
-                  background: 'rgba(255, 255, 255, 0.8)',
-                  boxShadow: 'inset 0 1px 2px rgba(15, 23, 42, 0.04)',
+                  background:
+                    'linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.86) 100%)',
+                  boxShadow: 'inset 0 1px 2px rgba(15, 23, 42, 0.04), inset 0 0 0 1px rgba(148,163,184,0.08)',
                 }
           }
         >
