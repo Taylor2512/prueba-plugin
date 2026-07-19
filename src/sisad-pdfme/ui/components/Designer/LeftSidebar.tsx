@@ -703,19 +703,6 @@ const LeftSidebar = ({
         '--schema-owner-surface-strong': `color-mix(in srgb, ${activeRecipientTone} 38%, var(--color-white))`,
       } as React.CSSProperties)
     : undefined;
-  const activeRecipientWrapStyle = activeRecipientTone
-    ? ({
-        backgroundColor: `${activeRecipientTone}10`,
-        borderColor: `${activeRecipientTone}22`,
-      } as React.CSSProperties)
-    : undefined;
-  const activeRecipientButtonStyle = activeRecipientTone
-    ? ({
-        backgroundColor: `${activeRecipientTone}2A`,
-        borderColor: activeRecipientTone,
-        boxShadow: `0 0 0 1px ${activeRecipientTone}22 inset, 0 1px 3px rgba(15, 23, 42, 0.06)`,
-      } as React.CSSProperties)
-    : undefined;
   const {
     search,
     setSearch,
@@ -1180,8 +1167,8 @@ const LeftSidebar = ({
           '!min-w-[var(--sisad-pdfme-ls-rail-width)]',
           sidebarExpanded
             ? resolvedPresentation === 'overlay'
-              ? '!w-[12.5rem] !max-w-[12.5rem] max-[48rem]:!w-[15rem] max-[48rem]:!max-w-[15rem] max-[48rem]:overflow-visible'
-              : '!w-[13.25rem] !max-w-[13.25rem] max-[48rem]:!w-[15rem] max-[48rem]:!max-w-[15rem] max-[48rem]:overflow-visible'
+              ? '!w-[13.75rem] !max-w-[13.75rem] max-[48rem]:!w-[13.75rem] max-[48rem]:!max-w-[13.75rem] max-[48rem]:overflow-visible'
+              : '!w-[13.75rem] !max-w-[13.75rem] max-[48rem]:!w-[13.75rem] max-[48rem]:!max-w-[13.75rem] max-[48rem]:overflow-visible'
             : '!w-[var(--sisad-pdfme-ls-rail-width)] !min-w-[var(--sisad-pdfme-ls-rail-width)] !max-w-[var(--sisad-pdfme-ls-rail-width)] overflow-hidden',
         )
       : '',
@@ -1296,7 +1283,7 @@ const LeftSidebar = ({
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
               'group relative rounded-[0.5rem] p-[0.0625rem] bg-transparent',
             )}
-            style={activeRecipientWrapStyle || activeRecipientStyles}
+            style={activeRecipientStyles}
           >
             <Button
               className={mergeClassNames(
@@ -1321,7 +1308,6 @@ const LeftSidebar = ({
               data-density={sidebarDensityMode}
               data-dragging={draggableActive ? 'true' : 'false'}
               data-is-panel={isPanel ? 'true' : 'false'}
-              style={activeRecipientButtonStyle}
               onMouseDownCapture={() => {
                 setIsDragging(true);
               }}
@@ -1437,7 +1423,7 @@ const LeftSidebar = ({
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
               'relative rounded-[0.5rem] p-[0.0625rem] bg-transparent transition',
             )}
-            style={activeRecipientWrapStyle || activeRecipientStyles}
+            style={activeRecipientStyles}
           >
             <Button
               className={mergeClassNames(
@@ -1480,7 +1466,6 @@ const LeftSidebar = ({
                 if (!schema) return;
                 handleSchemaClick(cloneDeep(schema), definition.pluginType);
               }}
-              style={activeRecipientButtonStyle}
               >
                 <span className={mergeClassNames(
                   `${DESIGNER_CLASSNAME}left-sidebar-custom-item-icon`,

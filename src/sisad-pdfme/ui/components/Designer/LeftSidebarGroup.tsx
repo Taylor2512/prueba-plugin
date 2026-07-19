@@ -31,7 +31,7 @@ export const LeftSidebarGroup = ({
   const isCompact = density === 'compact' || density === 'minimal';
   const itemsClassName = mergeUniqueClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar-group-items`,
-    'mt-0.5',
+    'mt-1',
     layout === 'icons'
       ? (isMini ? 'grid grid-cols-3 gap-0.5 px-0' : isCompact ? 'grid grid-cols-3 gap-0.5 px-0.5' : 'grid grid-cols-4 gap-0.5 px-0.5')
       : layout === 'tiles'
@@ -45,7 +45,7 @@ export const LeftSidebarGroup = ({
         <span
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-group-title-chevron`,
-            'inline-flex h-3 w-3 items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-400 shadow-[0_0.5px_1px_rgba(15,23,42,0.03)] transition-transform duration-200 flex-shrink-0',
+            'inline-flex h-3 w-3 flex-shrink-0 items-center justify-center text-slate-400 transition-transform duration-200',
             collapsed ? 'rotate-[-90deg]' : '',
             isMini ? 'scale-75' : isCompact ? 'scale-85' : ''
           )}
@@ -64,7 +64,7 @@ export const LeftSidebarGroup = ({
       </div>
       <span
         className={mergeUniqueClassNames(
-          `${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-[0.75rem] items-center rounded-full border border-slate-200/60 bg-white/80 px-0.5 text-[7px] font-semibold text-slate-400 shadow-[0_0.5px_1px_rgba(15,23,42,0.02)] flex-shrink-0`,
+          `${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-[0.875rem] flex-shrink-0 items-center rounded-full bg-white px-1 text-[8px] font-semibold text-slate-500`,
           isMini ? 'hidden' : ''
         )}
       >
@@ -75,15 +75,15 @@ export const LeftSidebarGroup = ({
 
   const titleClassName = mergeUniqueClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar-group-title`,
-    'flex w-full items-center justify-between gap-1 rounded-full border border-transparent px-1.5 py-0.5 text-left font-semibold text-slate-600 transition-colors duration-150 hover:border-slate-200 hover:bg-slate-50/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/40',
-    isMini ? 'min-h-[18px]' : isCompact ? 'min-h-[19px]' : 'min-h-[21px]',
+    'flex w-full items-center justify-between gap-1 rounded-md border border-transparent bg-slate-100 px-2 text-left font-semibold text-slate-600 transition-colors duration-150 hover:bg-slate-200/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30',
+    isMini ? 'min-h-[24px]' : isCompact ? 'min-h-[28px]' : 'min-h-[32px]',
   );
 
   return (
     <section
       className={mergeUniqueClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-group`,
-        'rounded-[0.875rem] border border-slate-200/60 bg-white/85 px-0 py-0 shadow-[0_0.5px_1px_rgba(15,23,42,0.02)] last:border-b-0'
+        'mb-2 bg-transparent p-1 last:mb-0'
       )}
       data-testid="left-sidebar-group"
       data-density={density}

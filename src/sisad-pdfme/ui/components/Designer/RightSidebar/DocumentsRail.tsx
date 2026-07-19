@@ -155,7 +155,7 @@ const DocumentsRail = ({
         <SidebarFrame
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'documents-rail',
-          'flex min-h-0 flex-col overflow-hidden rounded-[0.875rem] border border-slate-200/65 bg-white/95 shadow-[0_1px_2px_rgba(15,23,42,0.04)]',
+          'flex min-h-0 flex-col overflow-hidden rounded-[10px] border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]',
           density === 'compact' ? DESIGNER_CLASSNAME + 'documents-rail-compact' : '',
           useDefaultStyles ? DESIGNER_CLASSNAME + 'documents-rail-default' : '',
           className,
@@ -229,8 +229,8 @@ const DocumentsRail = ({
                     key={item.id}
                     className={mergeClassNames(
                       DESIGNER_CLASSNAME + 'documents-rail-item-wrapper',
-                      'group flex items-stretch gap-1.5',
-                      isSelected ? DESIGNER_CLASSNAME + 'documents-rail-item-wrapper-active' : '',
+                      railItemWrapperClass,
+                      isSelected ? mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-item-wrapper-active', railItemActiveClass) : '',
                     )}
                   >
                     <button
@@ -241,8 +241,6 @@ const DocumentsRail = ({
                       className={mergeClassNames(
                         DESIGNER_CLASSNAME + 'documents-rail-item',
                         railItemBaseClass,
-                        'flex-1',
-                        isSelected ? railItemActiveClass : '',
                       )}
                       data-active={isSelected ? 'true' : 'false'}
                     >
@@ -303,7 +301,6 @@ const DocumentsRail = ({
                         <Button
                           type="text"
                           size="small"
-                          danger
                           icon={<Trash2 size={13} />}
                           className={mergeClassNames(
                             DESIGNER_CLASSNAME + 'documents-rail-delete-btn',
