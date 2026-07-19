@@ -308,11 +308,11 @@ const CtlBar = (props: CtlBarProps) => {
   const isSaving = saveStatus === 'saving';
   const saveStatusToneClassName =
     savePresentation.tone === 'positive'
-      ? 'text-emerald-600'
+      ? 'text-[#166534]'
       : savePresentation.tone === 'pending'
         ? 'text-amber-600'
         : savePresentation.tone === 'warning'
-          ? 'text-amber-600'
+          ? 'text-[#92400E]'
           : savePresentation.tone === 'danger'
             ? 'text-red-600'
             : 'text-[var(--text-secondary)]';
@@ -324,7 +324,7 @@ const CtlBar = (props: CtlBarProps) => {
     ) : saveStatus === 'error' ? (
       <CircleAlert size={12} aria-hidden="true" />
     ) : saveStatus === 'dirty' ? (
-      <span className="inline-block h-[0.4rem] w-[0.4rem] flex-none rounded-full bg-amber-500" aria-hidden="true" />
+      <span className="inline-block h-[6px] w-[6px] flex-none rounded-full bg-[#D97706]" aria-hidden="true" />
     ) : null;
 
   const densityOption = String(
@@ -383,10 +383,10 @@ const CtlBar = (props: CtlBarProps) => {
 
   const viewMenuChildren: NonNullable<MenuProps['items']> = [];
   if (onToggleFeature) {
-    viewMenuChildren.push({ key: 'toggle-grid', label: renderToggleLabel(featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula', Boolean(featureToggles?.grid)) });
-    viewMenuChildren.push({ key: 'toggle-guides', label: renderToggleLabel(featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías', Boolean(featureToggles?.guides)) });
-    viewMenuChildren.push({ key: 'toggle-snap-lines', label: renderToggleLabel(featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps', Boolean(featureToggles?.snapLines)) });
-    viewMenuChildren.push({ key: 'toggle-padding', label: renderToggleLabel(featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding', Boolean(featureToggles?.padding)) });
+    viewMenuChildren.push({ key: 'toggle-grid', label: renderToggleLabel('Cuadrícula', Boolean(featureToggles?.grid)) });
+    viewMenuChildren.push({ key: 'toggle-guides', label: renderToggleLabel('Guías', Boolean(featureToggles?.guides)) });
+    viewMenuChildren.push({ key: 'toggle-snap-lines', label: renderToggleLabel('Ajuste magnético', Boolean(featureToggles?.snapLines)) });
+    viewMenuChildren.push({ key: 'toggle-padding', label: renderToggleLabel('Padding', Boolean(featureToggles?.padding)) });
   }
   if (!showFitAction && onFitWidth) viewMenuChildren.push({ key: 'fit-width', label: 'Ajustar ancho' });
   if (!showFitAction && onFitPage) viewMenuChildren.push({ key: 'fit-page', label: 'Ajustar página' });
@@ -468,10 +468,10 @@ const CtlBar = (props: CtlBarProps) => {
       </div>
 
       <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-center', 'absolute left-1/2 top-[0.5rem] inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
-        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
+        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-10 items-center gap-1 rounded-[10px] border border-slate-200 bg-white p-1 shadow-[0_4px_14px_rgba(15,23,42,0.08)]')}>
           {showPageNavButtons ? (
             <Button
-              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border border-transparent bg-transparent p-0 text-slate-700 transition-[background-color,color] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50')}
               type="text"
               disabled={pageCursor <= 0}
               onClick={() => setPageCursor((currentPage) => Math.max(0, currentPage - 1))}
@@ -497,11 +497,11 @@ const CtlBar = (props: CtlBarProps) => {
         </div>
       </div>
 
-      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-right', 'absolute right-[0.5rem] top-[0.5rem] inline-flex items-center gap-[0.1875rem] pointer-events-auto')}>
-        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-right', 'absolute right-[0.5rem] top-[0.5rem] inline-flex items-center gap-1 pointer-events-auto')}>
+        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-10 items-center gap-1 rounded-[10px] border border-slate-200 bg-white p-1 shadow-[0_4px_14px_rgba(15,23,42,0.08)]')}>
           {saveAction.visible ? (
             <Button
-              className={mergeClassNames(UI_CLASSNAME + 'control-bar-text-btn', 'inline-flex h-[1.5rem] items-center rounded-md border border-transparent bg-transparent px-[0.325rem] text-[0.6875rem] text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-text-btn', 'inline-flex h-8 items-center rounded-lg border border-transparent bg-transparent px-2.5 text-[12px] font-semibold text-slate-800 transition-[background-color,color] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50')}
               type="text"
               onClick={onSave}
               disabled={!saveAction.enabled || isSaving}
@@ -517,7 +517,7 @@ const CtlBar = (props: CtlBarProps) => {
             <span
               className={mergeClassNames(
                 UI_CLASSNAME + 'control-bar-save-status',
-                'inline-flex h-[1.5rem] items-center gap-[0.25rem] whitespace-nowrap rounded-md px-[0.3rem] text-[0.6875rem] font-medium',
+                'inline-flex h-8 items-center gap-1 whitespace-nowrap rounded-md px-1 text-[11px] font-medium',
                 saveStatusToneClassName,
               )}
               role="status"
@@ -532,9 +532,9 @@ const CtlBar = (props: CtlBarProps) => {
             </span>
           ) : null}
           {moreMenuItems.length > 0 ? (
-            <Dropdown menu={{ items: moreMenuItems, onClick: handleMoreMenuClick }} placement="bottomRight" trigger={['click']}>
+            <Dropdown menu={{ items: moreMenuItems, onClick: handleMoreMenuClick, className: "w-[232px] max-h-[min(70vh,480px)] overflow-auto rounded-[10px] border border-slate-200 p-1.5 shadow-[0_12px_30px_rgba(15,23,42,0.14)] [&_.ant-dropdown-menu-item]:min-h-[34px] [&_.ant-dropdown-menu-item]:rounded-[7px] [&_.ant-dropdown-menu-item]:px-2 [&_.ant-dropdown-menu-item]:text-[13px] [&_.ant-dropdown-menu-item]:text-slate-700 [&_.ant-dropdown-menu-title-content]:text-[13px] [&_.ant-dropdown-menu-item-group-title]:px-2 [&_.ant-dropdown-menu-item-group-title]:pb-1 [&_.ant-dropdown-menu-item-group-title]:pt-1.5 [&_.ant-dropdown-menu-item-group-title]:text-[11px] [&_.ant-dropdown-menu-item-group-title]:font-semibold [&_.ant-dropdown-menu-item-group-title]:uppercase [&_.ant-dropdown-menu-item-group-title]:tracking-wide [&_.ant-dropdown-menu-item-group-title]:text-slate-400" }} placement="bottomRight" trigger={['click']}>
               <Button
-                className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
+                className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border border-transparent bg-transparent p-0 text-slate-700 transition-[background-color,color] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50')}
                 type="text"
                 title="Más acciones"
                 aria-label="Más acciones"
@@ -547,7 +547,7 @@ const CtlBar = (props: CtlBarProps) => {
       </div>
 
       <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--bottom-right', 'absolute bottom-[0.75rem] left-1/2 inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
-        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
+        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-10 items-center gap-1 rounded-[10px] border border-slate-200 bg-white p-1 shadow-[0_4px_14px_rgba(15,23,42,0.08)]')}>
           {undoAction.visible ? (
             <Button
               className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}

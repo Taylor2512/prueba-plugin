@@ -160,6 +160,8 @@ const Wrapper = ({
   onDoubleClick,
   onMouseDownCapture,
 }: RendererProps & { children: ReactNode }) => {
+  const options = useContext(OptionsContext) as { debug?: { showSchemaTechnicalLabels?: boolean } } | null;
+  const showSchemaTechnicalLabels = options?.debug?.showSchemaTechnicalLabels === true;
   const styleSchema = schema as DesignerStyleAwareSchema;
   const schemaClassName =
     styleSchema.designerClassName || styleSchema.__designer?.metadata?.className || '';
@@ -202,7 +204,7 @@ const Wrapper = ({
       : undefined;
   const schemaCaptionNode = schemaCaption ? (
     <span
-      className="pointer-events-none absolute bottom-[-1px] left-0 max-w-[9rem] translate-y-full overflow-hidden text-ellipsis whitespace-nowrap rounded-[0_0_var(--radius-sm)_var(--radius-sm)] bg-[color-mix(in_srgb,var(--schema-tone)_88%,#000)] px-[0.3125rem] py-px text-[0.46875rem] font-semibold leading-[1.4] text-white"
+      className="pointer-events-none absolute bottom-[-1px] left-0 max-w-[160px] translate-y-full overflow-hidden text-ellipsis whitespace-nowrap rounded-sm bg-blue-600 px-1 py-px text-[9px] font-medium leading-[1.2] text-white"
       aria-hidden="true"
     >
       {schemaCaption}
@@ -210,7 +212,7 @@ const Wrapper = ({
   ) : null;
   const schemaBadgeNode = schemaBadge ? (
     <span
-      className="pointer-events-none absolute right-0 top-0 flex h-[0.875rem] min-w-[0.875rem] translate-x-[30%] -translate-y-[30%] items-center justify-center rounded-full border border-[color:rgba(255,255,255,0.9)] bg-[var(--schema-tone)] px-1 text-center text-[0.40625rem] font-bold leading-[0.875rem] text-white"
+      className="pointer-events-none absolute right-0 top-0 max-w-[160px] translate-x-[30%] -translate-y-[30%] overflow-hidden text-ellipsis whitespace-nowrap rounded-sm bg-blue-600 px-1 py-px text-center text-[9px] font-medium leading-[1.2] text-white"
       aria-hidden="true"
     >
       {schemaBadge}
@@ -314,8 +316,8 @@ const Wrapper = ({
         onDoubleClick?.(event);
       }}>
       {children}
-      {schemaCaptionNode}
-      {schemaBadgeNode}
+      {showSchemaTechnicalLabels ? schemaCaptionNode : null}
+      {showSchemaTechnicalLabels ? schemaBadgeNode : null}
     </div>
   );
 };
