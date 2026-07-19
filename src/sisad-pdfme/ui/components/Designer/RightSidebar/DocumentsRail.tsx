@@ -141,8 +141,7 @@ const DocumentsRail = ({
   const canAddPage = canAdd && hasItems;
   const resolvedSubtitle = subtitle ?? (hasItems ? 'Selecciona una página' : 'Carga un PDF para empezar.');
   const headerActionClass = 'appearance-none rounded-[7px] border border-slate-200 bg-white text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 focus-visible:ring-offset-1';
-  const railItemWrapperClass = 'group relative flex h-16 w-full items-stretch overflow-hidden rounded-[10px] border border-slate-200 bg-white shadow-none transition-[background-color,border-color] hover:border-slate-300 hover:bg-slate-50 focus-within:ring-2 focus-within:ring-blue-500/30 focus-within:ring-offset-1';
-  const railItemBaseClass = 'flex h-full min-w-0 flex-1 items-center gap-2 rounded-[10px] border-0 bg-transparent p-2 pr-10 text-left shadow-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60';
+  const railItemBaseClass = 'group relative flex h-16 w-full items-center gap-2 rounded-[10px] border border-slate-200 bg-white p-2 text-left shadow-none transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60';
   const railItemActiveClass = 'border-blue-300 bg-blue-50';
   const railPreviewClass = 'flex h-7 w-7 items-center justify-center overflow-hidden rounded-md border border-slate-200 bg-slate-50 text-slate-500';
   const railAddCardClass = 'flex w-full items-center gap-2 rounded-[0.75rem] border border-dashed border-slate-200 bg-slate-50/80 px-1.5 py-1.5 text-left transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/35 focus-visible:ring-offset-1';
@@ -305,7 +304,7 @@ const DocumentsRail = ({
                           icon={<Trash2 size={13} />}
                           className={mergeClassNames(
                             DESIGNER_CLASSNAME + 'documents-rail-delete-btn',
-                            'absolute right-1.5 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-transparent bg-transparent text-slate-400 shadow-none transition-[background-color,border-color,color] duration-150 hover:border-red-200 hover:bg-red-50 hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30',
+                            'inline-flex h-7 w-7 shrink-0 self-center items-center justify-center rounded-md border border-slate-200 bg-white text-slate-500 shadow-none transition-[background-color,border-color,color] duration-150 hover:border-red-200 hover:bg-red-50 hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 focus-visible:ring-offset-1',
                           )}
                           aria-label={`Eliminar ${item.name}`}
                           onClick={(e) => e.stopPropagation()}
