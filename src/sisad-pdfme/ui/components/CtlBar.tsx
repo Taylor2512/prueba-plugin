@@ -345,7 +345,8 @@ const CtlBar = (props: CtlBarProps) => {
 
   const showPageNavButtons = pageNum > 1 && toolbarDensity === 'comfortable';
   const showZoomStepper = toolbarDensity === 'comfortable';
-  const showSaveText = toolbarDensity === 'comfortable';
+  const showSaveButtonText = toolbarDensity === 'comfortable';
+  const showSaveStatusText = toolbarDensity === 'comfortable' && !sidebarOpen;
   const showFitAction = toolbarDensity === 'comfortable';
   const pageLabel = `Pág ${pageCursor + 1}/${Math.max(1, pageNum)}`;
   const statusTone = (documentStatus || '').toLowerCase().includes('edit') ? 'editing' : 'idle';
@@ -368,10 +369,8 @@ const CtlBar = (props: CtlBarProps) => {
     }
   };
 
-  // Menú global agrupado (TASK-W2): las acciones se organizan en Vista / Página
-  // / Documento con separadores y un check para los toggles. Las etiquetas de
-  // los toggles conservan el verbo Mostrar/Ocultar (contrato de accesibilidad
-  // consumido por specs de canvas), y el check refleja el estado activo.
+  // Menú global agrupado: las acciones se organizan por dominio y los toggles
+  // muestran su estado mediante un check sin mezclarlo con un verbo contrario.
   const renderToggleLabel = (text: string, checked: boolean) => (
     <span className="inline-flex items-center gap-2">
       <span className="inline-flex w-[0.85rem] justify-center text-emerald-600" aria-hidden="true">
@@ -421,7 +420,12 @@ const CtlBar = (props: CtlBarProps) => {
   }
   if (onOpenShortcuts) {
     if (moreMenuItems.length > 0) moreMenuItems.push({ type: 'divider' });
-    moreMenuItems.push({ key: 'shortcuts', label: 'Atajos' });
+    moreMenuItems.push({
+      key: 'group-help',
+      type: 'group',
+      label: 'Ayuda',
+      children: [{ key: 'shortcuts', label: 'Atajos' }],
+    });
   }
 
   const handleMoreMenuClick: NonNullable<MenuProps['onClick']> = ({ key }) => {
@@ -443,12 +447,16 @@ const CtlBar = (props: CtlBarProps) => {
   };
 
   return (
-    <div className={mergeClassNames(
-      UI_CLASSNAME + 'control-bar',
-      'absolute inset-0 z-[var(--sisad-pdfme-chrome-z,_45)] pointer-events-none bg-transparent max-[48rem]:p-[0.25rem_0.5rem]',
-      sidebarOpen && 'pr-[calc(var(--sisad-pdfme-rs-width)_+_0.875rem)]',
-      isActiveInteractionPhase && '[box-shadow:0_0_0_1px_var(--color-primary-20),0_2px_0.5rem_var(--color-primary-12)]',
-    )} data-density={toolbarDensity} data-layout="canvas-chrome">
+    <div
+      className={mergeClassNames(
+        UI_CLASSNAME + 'control-bar',
+        'absolute inset-y-0 left-0 z-[var(--sisad-pdfme-chrome-z,_45)] pointer-events-none bg-transparent max-[48rem]:p-[0.25rem_0.5rem]',
+        sidebarOpen
+          ? 'right-[calc(var(--sisad-pdfme-rs-width)_+_0.875rem)]'
+          : 'right-0',
+        isActiveInteractionPhase &&
+          '[box-shadow:0_0_0_1px_var(--color-primary-20),0_2px_0.5rem_var(--color-primary-12)]',
+      )} data-density={toolbarDensity} data-layout="canvas-chrome">
       
 
       <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-left', 'absolute left-[0.5rem] top-[0.5rem] inline-flex items-center gap-[0.1875rem] pointer-events-auto')}>
@@ -498,10 +506,10 @@ const CtlBar = (props: CtlBarProps) => {
       </div>
 
       <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-right', 'absolute right-[0.5rem] top-[0.5rem] inline-flex items-center gap-1 pointer-events-auto')}>
-        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-10 items-center gap-1 rounded-[10px] border border-slate-200 bg-white p-1 shadow-[0_4px_14px_rgba(15,23,42,0.08)]')}>
+        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-9 items-center gap-0.5 rounded-lg border border-slate-200 bg-white p-0.5 shadow-sm')}>
           {saveAction.visible ? (
             <Button
-              className={mergeClassNames(UI_CLASSNAME + 'control-bar-text-btn', 'inline-flex h-8 items-center rounded-lg border border-transparent bg-transparent px-2.5 text-[12px] font-semibold text-slate-800 transition-[background-color,color] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50')}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-text-btn', 'inline-flex h-[30px] items-center rounded-md border border-transparent bg-transparent px-2 text-[12px] font-semibold text-slate-800 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50')}
               type="text"
               onClick={onSave}
               disabled={!saveAction.enabled || isSaving}
@@ -510,14 +518,14 @@ const CtlBar = (props: CtlBarProps) => {
               aria-label="Guardar"
               data-testid="designer-save"
             >
-              {showSaveText ? 'Guardar' : null}
+              {showSaveButtonText ? 'Guardar' : null}
             </Button>
           ) : null}
           {savePresentation.label ? (
             <span
               className={mergeClassNames(
                 UI_CLASSNAME + 'control-bar-save-status',
-                'inline-flex h-8 items-center gap-1 whitespace-nowrap rounded-md px-1 text-[11px] font-medium',
+                'inline-flex h-[30px] min-w-4 items-center justify-center gap-1 whitespace-nowrap rounded-md px-1 text-[11px] font-medium',
                 saveStatusToneClassName,
               )}
               role="status"
@@ -528,13 +536,13 @@ const CtlBar = (props: CtlBarProps) => {
               data-save-status={saveStatus}
             >
               {saveStatusIcon}
-              {showSaveText ? <span>{savePresentation.label}</span> : null}
+              {showSaveStatusText ? <span>{savePresentation.label}</span> : null}
             </span>
           ) : null}
           {moreMenuItems.length > 0 ? (
-            <Dropdown menu={{ items: moreMenuItems, onClick: handleMoreMenuClick, className: "w-[232px] max-h-[min(70vh,480px)] overflow-auto rounded-[10px] border border-slate-200 p-1.5 shadow-[0_12px_30px_rgba(15,23,42,0.14)] [&_.ant-dropdown-menu-item]:min-h-[34px] [&_.ant-dropdown-menu-item]:rounded-[7px] [&_.ant-dropdown-menu-item]:px-2 [&_.ant-dropdown-menu-item]:text-[13px] [&_.ant-dropdown-menu-item]:text-slate-700 [&_.ant-dropdown-menu-title-content]:text-[13px] [&_.ant-dropdown-menu-item-group-title]:px-2 [&_.ant-dropdown-menu-item-group-title]:pb-1 [&_.ant-dropdown-menu-item-group-title]:pt-1.5 [&_.ant-dropdown-menu-item-group-title]:text-[11px] [&_.ant-dropdown-menu-item-group-title]:font-semibold [&_.ant-dropdown-menu-item-group-title]:uppercase [&_.ant-dropdown-menu-item-group-title]:tracking-wide [&_.ant-dropdown-menu-item-group-title]:text-slate-400" }} placement="bottomRight" trigger={['click']}>
+            <Dropdown menu={{ items: moreMenuItems, onClick: handleMoreMenuClick, className: "w-[216px] max-h-[min(60vh,360px)] overflow-y-auto rounded-lg border border-slate-200 p-1 shadow-[0_12px_28px_rgba(15,23,42,0.14)] [&_.ant-dropdown-menu-item]:min-h-[30px] [&_.ant-dropdown-menu-item]:rounded-md [&_.ant-dropdown-menu-item]:px-2 [&_.ant-dropdown-menu-item]:py-1 [&_.ant-dropdown-menu-item]:text-[12px] [&_.ant-dropdown-menu-item]:text-slate-700 [&_.ant-dropdown-menu-title-content]:text-[12px] [&_.ant-dropdown-menu-item-group-title]:px-2 [&_.ant-dropdown-menu-item-group-title]:pb-0.5 [&_.ant-dropdown-menu-item-group-title]:pt-1.5 [&_.ant-dropdown-menu-item-group-title]:text-[10px] [&_.ant-dropdown-menu-item-group-title]:font-semibold [&_.ant-dropdown-menu-item-group-title]:uppercase [&_.ant-dropdown-menu-item-group-title]:tracking-[0.08em] [&_.ant-dropdown-menu-item-group-title]:text-slate-400 [&_.ant-dropdown-menu-item-group-list]:m-0 [&_.ant-dropdown-menu-item-group-list]:p-0 [&_.ant-dropdown-menu-item-divider]:my-1" }} placement="bottomRight" trigger={['click']} getPopupContainer={() => document.body}>
               <Button
-                className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border border-transparent bg-transparent p-0 text-slate-700 transition-[background-color,color] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50')}
+                className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[30px] min-h-[30px] w-[30px] min-w-[30px] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-slate-600 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50')}
                 type="text"
                 title="Más acciones"
                 aria-label="Más acciones"
