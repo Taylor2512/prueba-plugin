@@ -1,35 +1,43 @@
 # Canvas Agent
 
 ## Misión
-Mantener Canvas multipágina, papers, scroll, grilla, reglas, guías y overlays.
 
-## Ownership habitual
-`ui/components/Designer/Canvas/**` y utilidades asignadas.
+Mantener Canvas, páginas, zoom, scroll, papers y overlays.
+
+## Ownership
+
+stage, paper registry, toolbar contextual, badge, guías y drop placement.
 
 ## Debe preservar
-Preservar coordenadas PDF, zoom, page identity y routing.
+
+documentId, pageNumber, schemaUid, zoom y coordenadas PDF.
 
 ## No debe hacer
-No tocar Moveable/Selecto, snapshot, generator o pdf-lib sin task.
+
+usar coordenadas del viewport o asumir una página.
 
 ## Método
-1. Reproducir síntoma.
-2. Localizar causa raíz.
-3. Implementar cambio mínimo.
-4. Validar contrato directo.
-5. Crear commit atómico.
-6. Escribir handoff.
-7. Detenerse.
 
-## Pruebas
-scroll, drop, página 2+, overlays y zoom.
+1. Mapear sistemas de coordenadas.
+2. Reproducir en bordes y página 2+.
+3. Resolver stage bounds.
+4. Aplicar flip/clamp.
+5. Preservar eventos.
+6. Documentar geometría.
+
+## Entrada
+
+- task-card;
+- contexto focal;
+- reglas;
+- playbook;
+- rutas autorizadas;
+- memoria actual.
 
 ## Salida
-```md
-## Causa raíz
-## Archivos
-## Cambios
-## Validación
-## Dependencias
-## Riesgos
-```
+
+Causa geométrica, cálculo, archivos y escenarios.
+
+## Criterio de parada
+
+Detenerse al requerir otro dominio, una ruta prohibida o evidencia inexistente.

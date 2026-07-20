@@ -1,95 +1,69 @@
-# SISAD PDFME
+# Arquitectura de Agentes IA — SISAD PDFME V4
 
-SISAD PDFME es un diseñador y runtime PDF para React/Vite con soporte para Designer, Form, Viewer, Generator, múltiples documentos, destinatarios, schemas, snapshot e integración con hosts externos.
+Este paquete contiene una arquitectura documental completa para coordinar agentes de inteligencia artificial en SISAD PDFME.
 
-## Arquitectura principal
+La arquitectura se centra en:
 
-```txt
-src/sisad-pdfme/
-├── adapters/
-├── assignments/
-├── browser/
-├── collaboration/
-├── common/
-├── config/
-├── contracts/
-├── documents/
-├── generator/
-├── integration/
-├── pdf-lib/
-├── react/
-├── recipients/
-├── runtime/
-├── schemas/
-├── shared/
-└── ui/
-```
+- responsabilidades;
+- alcance;
+- contratos;
+- evidencia;
+- tareas;
+- memoria;
+- revisiones;
+- handoffs;
+- planes;
+- prompts;
+- skills reutilizables.
 
-El host de laboratorio vive en `src/features/pdfcomponent/`.
+No depende de una estructura particular de ramas, repositorios, carpetas de ejecución o herramientas de control de versiones.
 
-## Desarrollo
+## Instalación
+
+Copia la carpeta `ai/` en la raíz del proyecto:
 
 ```bash
-npm install
-npm run dev
+cp -R ai /ruta/al/proyecto/
 ```
 
-Ruta de referencia:
+Punto de entrada:
 
 ```txt
-http://localhost:5174/lab/multi-document-routing
+ai/START.md
 ```
 
-## Validación
-
-```bash
-npm run lint
-npm run build
-npx vitest run
-npx playwright test --project=chromium
-```
-
-## Contrato visual
-
-- Tailwind es la fuente principal del skin en JSX/TSX.
-- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` permanece vacío.
-- `tokens.css` conserva tokens compartidos.
-- `runtimeStyles.ts` solo conserva CSS técnico demostrado.
-- `preflight: false` exige resets locales como `border-solid`, `appearance-none` y `box-border`.
-- Moveable, Selecto, guías, impresión, geometría y nodos de terceros requieren tratamiento técnico explícito.
-
-## Documentación
+## Jerarquía
 
 ```txt
-docs/README.md
-ai/README.md
-ai/start/START.md
+ai/
+├── governance/
+├── router/
+├── agents/
+├── reviewers/
+├── skills/
+├── context/
+├── rules/
+├── playbooks/
+├── plans/
+├── prompts/
+├── tasks/
+├── memory/
+├── handoffs/
+├── reports/
+├── checklists/
+├── templates/
+└── archive/
 ```
 
-## Trabajo multiagente local
+## Principios
 
-El checkout base es `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`.
-Los worktrees ya no viven como carpetas hermanas `prueba-plugin-*`; se
-rehidratan dentro de `.worktrees/` desde este repositorio principal.
-
-| Rol | Carpeta | Rama |
-|---|---|---|
-| Main/coordinador | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin` | `main` |
-| Integración | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/merge` | `ai/integration` |
-| Codex | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/codex` | `ai/codex` |
-| Claude | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/claude` | `ai/claude` |
-| Copilot | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.worktrees/copilot` | `ai/copilot` |
-
-Si `git worktree list` muestra entradas `prunable` o rutas hermanas antiguas,
-la topología está desalineada y debe limpiarse antes de editar. Los worktrees
-activos viven en `prueba-plugin/.worktrees/`, están ignorados por Git y
-excluidos de scanners, búsquedas y builds.
-
-Abra `SISAD-PDFME-MULTIAGENT.code-workspace` para visualizar main, integración y los tres agentes en una sola ventana de VS Code sin navegar manualmente entre carpetas.
-
-## Portabilidad
-
-```txt
-src/sisad-pdfme no importa lógica concreta del host.
-El host entrega configuración, adapters, documentos, recipients y callbacks.
-```
+1. Una tarea por ejecución.
+2. Un agente lógico responsable por dominio.
+3. Contexto mínimo.
+4. Ownership explícito.
+5. Cambios pequeños.
+6. Contratos antes que apariencia.
+7. Evidencia antes que afirmaciones.
+8. Memoria compacta.
+9. Historia archivada.
+10. No inventar rutas, APIs ni resultados.

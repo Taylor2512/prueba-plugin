@@ -1,21 +1,25 @@
-# Contexto — Inspector Context
+# Inspector Context
 
-## Foco
-Profiles, property maps, widgets, sections, scroll, status y persistencia.
+## Estado
+
+DetailView y ListView consumen perfiles de schema, property maps, widgets, validation y persistence.
+
+## Fuente de verdad
+
+Código del dominio y contratos públicos actuales.
 
 ## Preguntas
-- ¿Cuál es la fuente de verdad?
+
 - ¿Qué identidad persiste?
-- ¿Qué es actual y qué histórico?
-- ¿Quién es owner?
-- ¿Qué tests protegen el contrato?
+- ¿Qué estado es visual y cuál semántico?
+- ¿Qué agente es owner?
+- ¿Qué dependencia existe?
+- ¿Qué evidencia protege el contrato?
 
 ## Riesgos
-- Duplicar resolvers.
-- Consumir internals.
-- Cambiar metadata para arreglar UI.
-- Ajustar tests sin contrato.
-- Mezclar skin y geometría.
 
-## Evidencia
-Rutas exactas, reproducción, diff mínimo y resultado focal.
+- duplicidad;
+- consumo de internals;
+- cambio visual que altera negocio;
+- estado derivado incorrecto;
+- historia obsoleta.

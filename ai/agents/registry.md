@@ -1,19 +1,19 @@
 # Registro de agentes
 
-| Agente | Dominio | Proveedor preferente |
-|---|---|---|
-| canvas-agent | Canvas | Codex |
-| interaction-agent | Moveable/Selecto/focus | Codex |
-| css-tailwind-agent | Skin/CSS | Claude/Copilot |
-| designer-runtime-agent | Runtime/config/API | Codex |
-| inspector-agent | RightSidebar | Claude |
-| lab-shell-agent | Host lab | Copilot |
-| schema-agent | Schemas | Codex/Claude |
-| snapshot-agent | Snapshot | Codex |
-| visual-baseline-agent | QA visual | Copilot/Claude |
-| docs-architecture-agent | IA docs | Claude/Codex |
-| test-infrastructure-agent | Vitest/Playwright | Copilot |
-| integration-agent | Gate | Integrador |
-| accessibility-agent | A11y | Copilot/Claude |
-
-La wave puede asignar otro proveedor si ownership y contexto están claros.
+| Agente | Responsabilidad |
+|---|---|
+| coordinator-agent | Coordinación y descomposición |
+| frontend-ux-agent | UX/UI y responsive |
+| canvas-agent | Canvas, páginas y overlays |
+| interaction-agent | Selección, drag, foco y teclado |
+| inspector-agent | DetailView, ListView y rails |
+| schema-agent | Ciclo de schemas |
+| runtime-agent | Designer, Form, Viewer y config |
+| integration-adapter-agent | Adapters externos |
+| css-tailwind-agent | Tailwind y CSS técnico |
+| accessibility-agent | Accesibilidad |
+| performance-agent | Rendimiento |
+| test-qa-agent | Calidad y triage |
+| documentation-agent | Documentación |
+| memory-agent | Memoria |
+| security-review-agent | Seguridad |

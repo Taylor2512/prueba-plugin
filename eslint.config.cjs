@@ -42,7 +42,6 @@ module.exports = [
   {
     ignores: [
       'node_modules/**',
-      '.worktrees/**',
       'dist/**',
       '**/dist/**',
       '**/dist/**',
@@ -50,7 +49,6 @@ module.exports = [
       '**/build/**',
       '.vite/**',
       '**/.vite/**',
-      '.worktrees/**',
       'public/**',
       'coverage/**',
       '**/coverage/**',

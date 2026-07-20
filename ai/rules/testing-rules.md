@@ -2,12 +2,13 @@
 
 ## Reglas
 
-1. Reproducir individual.
-2. Clasificar fallo.
-3. No parchear node_modules.
+1. Reproducir focal.
+2. Clasificar.
+3. No expected ciego.
 4. No mocks vacíos.
-5. No snapshots masivos.
-6. Registrar resultados.
+5. No parches de dependencias.
+6. Registrar evidencia.
 
 ## Parada
-Detenerse al necesitar violar una regla.
+
+Detenerse si la solución exige violar una regla.

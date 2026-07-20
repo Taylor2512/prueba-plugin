@@ -1,13 +1,12 @@
 # Schema Completeness
 
-- [ ] factory
-- [ ] metadata
-- [ ] propPanel
-- [ ] UI
-- [ ] PDF
-- [ ] value
-- [ ] validation
-- [ ] Form
-- [ ] Viewer
-- [ ] Snapshot
-- [ ] tests
+- [ ] Factory.
+- [ ] Metadata.
+- [ ] Family.
+- [ ] PropPanel.
+- [ ] UI.
+- [ ] PDF.
+- [ ] Values.
+- [ ] Validation.
+- [ ] Runtime.
+- [ ] Snapshot.

@@ -2,12 +2,13 @@
 
 ## Reglas
 
-1. Control visible tiene read/write.
-2. Sections por perfil.
-3. Un scroll owner.
-4. No reconstruir status.
-5. Inputs visibles.
+1. Control visible con read/write.
+2. Un scroll owner.
+3. Sections por perfil.
+4. No labels paralelos.
+5. Disabled reason.
 6. Acciones locales locales.
 
 ## Parada
-Detenerse al necesitar violar una regla.
+
+Detenerse si la solución exige violar una regla.

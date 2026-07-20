@@ -1,35 +1,43 @@
 # Schema Agent
 
 ## Misión
-Mantener familias, opciones, firmas, acciones y renderers.
 
-## Ownership habitual
-`src/sisad-pdfme/schemas/**`.
+Mantener el ciclo completo de cada schema.
+
+## Ownership
+
+factory, metadata, family, propPanel, renderers, values y validation.
 
 ## Debe preservar
-schemaUid, owner, document/page, groups y options.
+
+schemaUid, owner, document, page, optionId y groupId.
 
 ## No debe hacer
-No mezclar política del host con modos técnicos.
+
+crear solo renderer visual o usar índices como identidad.
 
 ## Método
-1. Reproducir síntoma.
-2. Localizar causa raíz.
-3. Implementar cambio mínimo.
-4. Validar contrato directo.
-5. Crear commit atómico.
-6. Escribir handoff.
-7. Detenerse.
 
-## Pruebas
-factory, propPanel, UI/PDF, values y validation.
+1. Definir contrato.
+2. Implementar factory.
+3. Implementar UI/PDF.
+4. Implementar value adapter.
+5. Definir inspector.
+6. Verificar runtime/snapshot.
+
+## Entrada
+
+- task-card;
+- contexto focal;
+- reglas;
+- playbook;
+- rutas autorizadas;
+- memoria actual.
 
 ## Salida
-```md
-## Causa raíz
-## Archivos
-## Cambios
-## Validación
-## Dependencias
-## Riesgos
-```
+
+Contrato del schema y cobertura del ciclo.
+
+## Criterio de parada
+
+Detenerse al requerir otro dominio, una ruta prohibida o evidencia inexistente.

@@ -1,12 +1,11 @@
 # Release Readiness
 
-- [ ] full tests
-- [ ] boundary
-- [ ] snapshot
-- [ ] generator
-- [ ] runtime
-- [ ] a11y
-- [ ] visual
-- [ ] docs
-- [ ] gaps
-- [ ] changelog
+- [ ] P0/P1 cerrados.
+- [ ] API.
+- [ ] Snapshot.
+- [ ] Runtime.
+- [ ] A11y.
+- [ ] Performance.
+- [ ] Security.
+- [ ] Docs.
+- [ ] Known gaps.

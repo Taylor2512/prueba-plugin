@@ -2,12 +2,14 @@
 
 ## Reglas
 
-1. No inventar APIs.
-2. Una task por ejecución.
-3. No editar fuera de ownership.
-4. No duplicar estado o wrappers.
-5. No cambiar expected para ocultar.
-6. No continuar otra wave.
+1. No inventar rutas o APIs.
+2. Una tarea por ejecución.
+3. No ampliar alcance.
+4. No duplicar estado.
+5. No ocultar defectos.
+6. No comenzar otra fase.
+7. No afirmar resultados no verificados.
 
 ## Parada
-Detenerse al necesitar violar una regla.
+
+Detenerse si la solución exige violar una regla.

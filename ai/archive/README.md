@@ -1,5 +1,7 @@
 # Archive
 
-Material `historical`, `superseded` o de incidentes. No cargar por defecto.
+Contiene material histórico, sustituido o deprecado.
 
-Cada archivo indica estado, fecha, sustituto y razón.
+No se carga por defecto.
+
+No borrar historia útil sin redirección.

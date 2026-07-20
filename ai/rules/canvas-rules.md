@@ -2,12 +2,13 @@
 
 ## Reglas
 
-1. Preservar document/page.
-2. No mezclar coordenadas.
-3. Un scroll owner.
-4. Página 2+.
-5. Moveable/Selecto solo con scope.
-6. Overlays no cubren schema.
+1. Preservar identidades.
+2. Separar coordenadas.
+3. Página 2+.
+4. Un scroll owner.
+5. Overlays dentro del stage.
+6. No cubrir schemas.
 
 ## Parada
-Detenerse al necesitar violar una regla.
+
+Detenerse si la solución exige violar una regla.

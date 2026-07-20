@@ -1,39 +1,50 @@
 # Índice
 
 ## Inicio
-- `start/START.md`
-- `start/QUICKSTART-CODEX.md`
-- `start/QUICKSTART-CLAUDE.md`
-- `start/QUICKSTART-COPILOT.md`
-- `start/QUICKSTART-INTEGRATOR.md`
 
-## Contratos
-- `project/architecture-principles.md`
-- `project/worktree-topology.md`
-- `project/git-operating-model.md`
-- `project/file-ownership-map.md`
-- `project/testing-strategy.md`
-- `project/css-tailwind-contract.md`
-- `project/public-api-boundary.md`
+- `START.md`
+- `governance/operating-principles.md`
+- `router/ROUTER.md`
+- `router/TASK-INTAKE.md`
+- `router/CONTEXT-BUDGET.md`
 
-## Operación
-- `coordination/worktrees/WAVE-1.5.md`
-- `coordination/worktrees/OWNERSHIP.md`
-- `coordination/worktrees/INTEGRATION-PROTOCOL.md`
-- `task-cards/active/`
+## Estado
 
-## Memoria
-- `memory/project-memory.md`
+- `memory/current-state.md`
 - `memory/decisions.md`
 - `memory/known-risks.md`
-- `memory/session-handoff.md`
+- `memory/pending.md`
+- `memory/completed.md`
+
+## Agentes
+
+- `agents/coordinator-agent.md`
+- `agents/frontend-ux-agent.md`
+- `agents/canvas-agent.md`
+- `agents/interaction-agent.md`
+- `agents/inspector-agent.md`
+- `agents/schema-agent.md`
+- `agents/runtime-agent.md`
+- `agents/integration-adapter-agent.md`
+- `agents/css-tailwind-agent.md`
+- `agents/accessibility-agent.md`
+- `agents/performance-agent.md`
+- `agents/test-qa-agent.md`
+- `agents/documentation-agent.md`
+- `agents/memory-agent.md`
+- `agents/security-review-agent.md`
 
 ## Planes
-- `plans/PLAN_MAESTRO_MULTIAGENTE_POST_TAILWIND.md`
-- `plans/PLAN_00_REPARACION_DOCUMENTAL_Y_CONTEXTO.md`
-- `plans/PLAN_01_WAVE_1_5_ESTABILIZACION.md`
-- `plans/PLAN_02_UX_UI_STAGE_TOPBAR.md`
-- `plans/PLAN_03_CANVAS_INTERACCIONES.md`
-- `plans/PLAN_04_OWNER_COLOR_RUNTIME.md`
-- `plans/PLAN_05_RUNTIME_STYLES.md`
-- `plans/PLAN_06_RELEASE_QA.md`
+
+- `plans/MASTER-PLAN.md`
+- `plans/CURRENT-PHASE.md`
+- `plans/UX-UI-PLAN.md`
+- `plans/CANVAS-PLAN.md`
+- `plans/INSPECTOR-PLAN.md`
+- `plans/SCHEMA-PLAN.md`
+- `plans/RUNTIME-PLAN.md`
+- `plans/CSS-TAILWIND-PLAN.md`
+- `plans/QUALITY-PLAN.md`
+- `plans/ACCESSIBILITY-PLAN.md`
+- `plans/PERFORMANCE-PLAN.md`
+- `plans/DOCUMENTATION-PLAN.md`

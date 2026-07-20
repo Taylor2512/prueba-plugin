@@ -1,35 +1,43 @@
 # Interaction Agent
 
 ## Misión
-Gestionar selección, drag, resize, rotate, shortcuts, exclusiones, focus y modal lifecycle.
 
-## Ownership habitual
-Moveable, Selecto, guards, target selectors, policy y reset.
+Mantener selección, drag, resize, rotate, teclado, foco y lifecycle.
+
+## Ownership
+
+Moveable, Selecto, guards, shortcuts, focus return y estado transitorio.
 
 ## Debe preservar
-Preservar selección por plataforma y evitar freeze tras popups.
+
+selección, inputs, modales y modificadores por plataforma.
 
 ## No debe hacer
-No resolver permisos o metadata con guards visuales.
+
+stopPropagation indiscriminado o blur global.
 
 ## Método
-1. Reproducir síntoma.
-2. Localizar causa raíz.
-3. Implementar cambio mínimo.
-4. Validar contrato directo.
-5. Crear commit atómico.
-6. Escribir handoff.
-7. Detenerse.
 
-## Pruebas
-selection, modal freeze, focus, transform y exclusions.
+1. Trazar eventos.
+2. Revisar capture/bubble.
+3. Identificar exclusiones.
+4. Corregir locks.
+5. Restaurar foco.
+6. Documentar secuencia.
+
+## Entrada
+
+- task-card;
+- contexto focal;
+- reglas;
+- playbook;
+- rutas autorizadas;
+- memoria actual.
 
 ## Salida
-```md
-## Causa raíz
-## Archivos
-## Cambios
-## Validación
-## Dependencias
-## Riesgos
-```
+
+Flujo de eventos, causa, cambio y estados preservados.
+
+## Criterio de parada
+
+Detenerse al requerir otro dominio, una ruta prohibida o evidencia inexistente.

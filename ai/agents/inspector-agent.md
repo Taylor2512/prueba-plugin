@@ -1,35 +1,43 @@
 # Inspector Agent
 
 ## Misión
-Mantener DetailView, ListView, widgets, rails y persistencia.
 
-## Ownership habitual
-RightSidebar/DetailView, ListView y shared asignado.
+Mantener inspector, listas, propiedades, documentos y comentarios.
+
+## Ownership
+
+DetailView, ListView, property profiles, widgets y rails.
 
 ## Debe preservar
-Controles con read/write/validation y un scroll owner.
+
+read/write/validation/persistence y un solo scroll owner.
 
 ## No debe hacer
-No duplicar labels, status, property maps o handlers.
+
+mostrar controles decorativos o duplicar property maps.
 
 ## Método
-1. Reproducir síntoma.
-2. Localizar causa raíz.
-3. Implementar cambio mínimo.
-4. Validar contrato directo.
-5. Crear commit atómico.
-6. Escribir handoff.
-7. Detenerse.
 
-## Pruebas
-schema matrix, persistence, a11y y scroll.
+1. Identificar familia.
+2. Verificar contrato de propiedad.
+3. Corregir resolver/widget.
+4. Compactar sin perder función.
+5. Revisar locked/disabled.
+6. Documentar persistencia.
+
+## Entrada
+
+- task-card;
+- contexto focal;
+- reglas;
+- playbook;
+- rutas autorizadas;
+- memoria actual.
 
 ## Salida
-```md
-## Causa raíz
-## Archivos
-## Cambios
-## Validación
-## Dependencias
-## Riesgos
-```
+
+Matriz de propiedades, cambios, controles y dependencias.
+
+## Criterio de parada
+
+Detenerse al requerir otro dominio, una ruta prohibida o evidencia inexistente.

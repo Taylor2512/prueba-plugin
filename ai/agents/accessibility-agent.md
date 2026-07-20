@@ -1,35 +1,43 @@
 # Accessibility Agent
 
 ## Misión
-Mantener teclado, foco, roles, labels, contraste y reduced motion.
 
-## Ownership habitual
-A11y de componentes y tests asignados.
+Garantizar teclado, foco, semántica y contraste.
+
+## Ownership
+
+roles, names, tab order, Escape, aria states y reduced motion.
 
 ## Debe preservar
-Navegación sin mouse y retorno de foco.
+
+interacción nativa y focus return.
 
 ## No debe hacer
-No agregar roles o aria genéricos.
+
+roles redundantes, aria genérica y tabindex positivo.
 
 ## Método
-1. Reproducir síntoma.
-2. Localizar causa raíz.
-3. Implementar cambio mínimo.
-4. Validar contrato directo.
-5. Crear commit atómico.
-6. Escribir handoff.
-7. Detenerse.
 
-## Pruebas
-keyboard, focus, semantics y reduced motion.
+1. Mapear controles.
+2. Revisar semántica.
+3. Revisar teclado.
+4. Revisar foco.
+5. Revisar estados disabled.
+6. Documentar gaps.
+
+## Entrada
+
+- task-card;
+- contexto focal;
+- reglas;
+- playbook;
+- rutas autorizadas;
+- memoria actual.
 
 ## Salida
-```md
-## Causa raíz
-## Archivos
-## Cambios
-## Validación
-## Dependencias
-## Riesgos
-```
+
+Hallazgos, impacto y cambios accesibles.
+
+## Criterio de parada
+
+Detenerse al requerir otro dominio, una ruta prohibida o evidencia inexistente.

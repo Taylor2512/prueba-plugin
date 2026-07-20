@@ -1,25 +1,23 @@
-# Router
+# Router de agentes
 
-| Dominio | Agente | Context | Rules | Playbook |
-|---|---|---|---|---|
-| IA docs | docs-architecture-agent | ai-docs-context | ai-docs-rules | pb-ai-docs-refactor |
-| Git/worktrees | integration-agent | worktree-coordination-context | worktree-rules | pb-worktree-multiagent |
-| Tests | test-infrastructure-agent | testing-context | testing-rules | pb-test-stabilization |
-| Tailwind | css-tailwind-agent | css-tailwind-context | css-migration-rules | pb-css-tailwind-migration |
-| Canvas | canvas-agent | canvas-multipage-context | canvas-rules | pb-canvas-multipage |
-| Interacción | interaction-agent | selection-transform-context | moveable-selecto-rules | pb-selection-transform |
-| Inspector | inspector-agent | inspector-context | inspector-rules | pb-inspector |
-| Schemas | schema-agent | schema-families-context | schema-rules | pb-schema-families |
-| Snapshot | snapshot-agent | snapshot-context | snapshot-rules | pb-snapshot |
-| Runtime | designer-runtime-agent | runtime-config-context | global-rules | pb-runtime-integration |
-| Lab | lab-shell-agent | lab-host-context | global-rules | pb-lab-host |
-| Visual | visual-baseline-agent | visual-baseline-context | visual-regression-rules | pb-visual-regression |
-| A11y | accessibility-agent | accessibility-context | accessibility-rules | pb-accessibility |
+| Dominio | Agente principal | Revisor |
+|---|---|---|
+| Coordinación | coordinator-agent | architecture-reviewer |
+| UX/UI | frontend-ux-agent | visual-reviewer |
+| Canvas | canvas-agent | regression-reviewer |
+| Interacción | interaction-agent | regression-reviewer |
+| Inspector | inspector-agent | visual-reviewer |
+| Schemas | schema-agent | test-contract-reviewer |
+| Runtime | runtime-agent | public-api-reviewer |
+| Adaptación externa | integration-adapter-agent | public-api-reviewer |
+| Tailwind/CSS | css-tailwind-agent | css-reviewer |
+| Accesibilidad | accessibility-agent | accessibility-reviewer |
+| Rendimiento | performance-agent | performance-reviewer |
+| Calidad | test-qa-agent | test-contract-reviewer |
+| Documentación | documentation-agent | anti-hallucination-reviewer |
+| Memoria | memory-agent | documentation-agent |
+| Seguridad | security-review-agent | architecture-reviewer |
 
-## Preferencias de proveedor
+## Regla
 
-- Codex: core, hooks, adapters, Canvas e interacción.
-- Claude: inspector, composición, scroll y topbar.
-- Copilot: host lab, LeftSidebar, test infra y accesibilidad.
-
-Prioridad: wave → task active → pending → backlog autorizado → completed como guardrail.
+El agente principal implementa. El revisor inspecciona y devuelve hallazgos.

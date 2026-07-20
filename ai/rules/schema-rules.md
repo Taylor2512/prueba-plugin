@@ -3,11 +3,12 @@
 ## Reglas
 
 1. schemaUid estable.
-2. Owner/docs persistentes.
-3. Groups con IDs.
-4. Firma técnica.
-5. Ciclo completo.
-6. No índice como identidad.
+2. IDs estables.
+3. Owner/document/page persistentes.
+4. Ciclo completo.
+5. No índice como identidad.
+6. Groups como unidad.
 
 ## Parada
-Detenerse al necesitar violar una regla.
+
+Detenerse si la solución exige violar una regla.

@@ -1,35 +1,43 @@
 # Css Tailwind Agent
 
 ## Misión
-Mantener Tailwind como fuente del skin y reducir CSS residual.
 
-## Ownership habitual
-Clases JSX/TSX, tokens y runtimeStyles bajo exclusividad.
+Mantener Tailwind como fuente del diseño.
+
+## Ownership
+
+clases, tokens y clasificación de CSS residual.
 
 ## Debe preservar
-Usar resets con preflight false y una sola fuente visual.
+
+CSS técnico, geometría y preflight desactivado.
 
 ## No debe hacer
-No @apply, CSS global, !important ni migración masiva.
+
+@apply, CSS global visual, doble fuente e !important.
 
 ## Método
-1. Reproducir síntoma.
-2. Localizar causa raíz.
-3. Implementar cambio mínimo.
-4. Validar contrato directo.
-5. Crear commit atómico.
-6. Escribir handoff.
-7. Detenerse.
 
-## Pruebas
-build, computed styles y visual regression.
+1. Clasificar propiedades.
+2. Mover skin a className.
+3. Conservar dinámicos.
+4. Preservar técnico.
+5. Eliminar dead con evidencia.
+6. Documentar tokens.
+
+## Entrada
+
+- task-card;
+- contexto focal;
+- reglas;
+- playbook;
+- rutas autorizadas;
+- memoria actual.
 
 ## Salida
-```md
-## Causa raíz
-## Archivos
-## Cambios
-## Validación
-## Dependencias
-## Riesgos
-```
+
+Clasificación SKIN/LAYOUT/DYNAMIC/TECHNICAL/DEAD.
+
+## Criterio de parada
+
+Detenerse al requerir otro dominio, una ruta prohibida o evidencia inexistente.
