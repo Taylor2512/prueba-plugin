@@ -272,8 +272,6 @@ const CtlBar = (props: CtlBarProps) => {
     featureToggles,
     onToggleFeature,
     interactionPhase,
-    documentTitle,
-    documentStatus,
     selectionCount,
     isGroupedSelection,
     visible,
@@ -349,11 +347,14 @@ const CtlBar = (props: CtlBarProps) => {
   const showSaveStatusText = toolbarDensity === 'comfortable' && !sidebarOpen;
   const showFitAction = toolbarDensity === 'comfortable';
   const pageLabel = `Pág ${pageCursor + 1}/${Math.max(1, pageNum)}`;
-  const statusTone = (documentStatus || '').toLowerCase().includes('edit') ? 'editing' : 'idle';
-  const summaryLabel =
-    typeof documentTitle === 'string' && documentTitle.trim()
-      ? documentTitle.trim()
-      : `Doc · ${pageLabel}${selectionCount && selectionCount > 0 ? ` · Sel ${selectionCount}` : ''}${isGroupedSelection ? ' · Grupo' : ''}`;
+  // Resumen de selección integrado en el navegador central (única fuente de la
+  // página actual): "1 seleccionado" / "N seleccionados" / "Grupo · N".
+  const selectionSummary = (() => {
+    const count = typeof selectionCount === 'number' ? selectionCount : 0;
+    if (count <= 0) return '';
+    if (isGroupedSelection) return `Grupo · ${count}`;
+    return count === 1 ? '1 seleccionado' : `${count} seleccionados`;
+  })();
   const isActiveInteractionPhase =
     interactionPhase === 'selected-single' || interactionPhase === 'selected-multi';
 
@@ -453,27 +454,11 @@ const CtlBar = (props: CtlBarProps) => {
         'absolute inset-y-0 left-0 z-[var(--sisad-pdfme-chrome-z,_45)] pointer-events-none bg-transparent max-[48rem]:p-[0.25rem_0.5rem]',
         sidebarOpen
           ? 'right-[calc(var(--sisad-pdfme-rs-width)_+_0.875rem)]'
-          : 'right-0',
+          : 'right-[calc(var(--sisad-pdfme-ls-rail-width)_+_0.5rem)]',
         isActiveInteractionPhase &&
           '[box-shadow:0_0_0_1px_var(--color-primary-20),0_2px_0.5rem_var(--color-primary-12)]',
       )} data-density={toolbarDensity} data-layout="canvas-chrome">
       
-
-      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-left', 'absolute left-[0.5rem] top-[0.5rem] inline-flex items-center gap-[0.1875rem] pointer-events-auto')}>
-        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-summary', 'inline-flex max-w-[13rem] items-center gap-[0.375rem] rounded-full border border-[var(--border-subtle)] bg-white/95 px-[0.55rem] py-[0.2rem] text-[0.6875rem] text-[var(--text-secondary)] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
-          <span
-            className={mergeClassNames(
-              UI_CLASSNAME + 'control-bar-status-dot',
-              'inline-block h-[0.4375rem] w-[0.4375rem] flex-none rounded-full',
-              statusTone === 'editing' ? 'bg-amber-400' : 'bg-emerald-400',
-            )}
-            data-status={statusTone}
-            title={documentStatus || 'Estado'}
-            aria-label={documentStatus || 'Estado'}
-          />
-          <span className="truncate" title={typeof documentTitle === 'string' ? documentTitle.trim() : undefined}>{summaryLabel}</span>
-        </div>
-      </div>
 
       <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-center', 'absolute left-1/2 top-[0.5rem] inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-10 items-center gap-1 rounded-[10px] border border-slate-200 bg-white p-1 shadow-[0_4px_14px_rgba(15,23,42,0.08)]')}>
@@ -501,6 +486,18 @@ const CtlBar = (props: CtlBarProps) => {
               icon={<ChevronRight size={16} />}
               title="Página siguiente"
             />
+          ) : null}
+          {selectionSummary ? (
+            <span
+              className={mergeClassNames(
+                UI_CLASSNAME + 'control-bar-selection-summary',
+                'inline-flex items-center gap-1 whitespace-nowrap px-1 text-[11px] font-medium text-[var(--text-secondary)]',
+              )}
+              data-selection-count={selectionCount}
+            >
+              <span aria-hidden="true">·</span>
+              <span>{selectionSummary}</span>
+            </span>
           ) : null}
         </div>
       </div>
