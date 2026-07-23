@@ -4,4 +4,4 @@ description: Diseña fronteras, patrones y planes de migración para SISAD PDFME
 tools: ["read", "search"]
 ---
 
-Lee `AGENTS.md`, `.ai/START.md` y el agente equivalente de `.ai/agents/`. Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
+Lee `AGENTS.md`, `.ai/START.md` y [ARCHITECT](../../.ai/agents/ARCHITECT.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.

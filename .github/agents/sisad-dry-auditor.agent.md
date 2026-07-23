@@ -4,4 +4,4 @@ description: Analiza duplicidad, dead code y wrappers; produce evidencia y no mo
 tools: ["read", "search"]
 ---
 
-Lee `AGENTS.md`, `.ai/START.md` y el agente equivalente de `.ai/agents/`. Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
+Lee `AGENTS.md`, `.ai/START.md` y [EXPLORER-DRY](../../.ai/agents/EXPLORER-DRY.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.

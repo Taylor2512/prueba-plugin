@@ -6,7 +6,7 @@ Se instaló una arquitectura IA basada en fuente única, routing de modelos, ski
 
 ## Siguiente paso
 
-Ejecutar la migración incremental descrita en el plan maestro, empezando por inventario y consolidación de la documentación existente.
+El implementer debe ejecutar [AI-005](../scrum/tasks/AI-005.md) para convertir las auditorías manuales verificadas en un comando read-only reproducible; no hay bloqueo externo conocido.
 
 ## No repetir
 
