@@ -420,21 +420,24 @@ const Sidebar = (props: RightSidebarProps) => {
   const railDensity = documentsRailMode === 'stacked' ? 'compact' : 'default';
   const railItems = (docsBridge?.items || pagesBridge?.items) ?? [];
 
+  /** Contrato compartido por las dos composiciones del rail documental. */
+  const documentsRailProps: DocumentsRailProps = {
+    items: railItems,
+    selectedId: (docsBridge?.selectedId ?? pagesBridge?.selectedId) ?? null,
+    onSelect: docsBridge?.onSelect ?? pagesBridge?.onSelect,
+    onAdd: docsBridge?.onAdd ?? pagesBridge?.onAdd,
+    onUploadPdf: docsBridge?.onUploadPdf ?? pagesBridge?.onUploadPdf,
+    onDelete: docsBridge?.onDelete ?? pagesBridge?.onDelete,
+    title: docsBridge?.title ?? pagesBridge?.title,
+    emptyTitle: docsBridge?.emptyTitle ?? pagesBridge?.emptyTitle,
+    style: props.styleOverrides?.documentsRail,
+    useDefaultStyles: props.useDefaultStyles,
+    density: railDensity,
+    className: mergeClassNames(`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`, documentsRailClassName),
+  };
+
   const documentsRailNode = shouldRenderDocumentsRail ? (
-    <DocumentsRailComponent
-      items={railItems}
-      selectedId={(docsBridge?.selectedId ?? pagesBridge?.selectedId) ?? null}
-      onSelect={docsBridge?.onSelect ?? pagesBridge?.onSelect}
-      onAdd={docsBridge?.onAdd ?? pagesBridge?.onAdd}
-      onUploadPdf={docsBridge?.onUploadPdf ?? pagesBridge?.onUploadPdf}
-      onDelete={docsBridge?.onDelete ?? pagesBridge?.onDelete}
-      title={docsBridge?.title ?? pagesBridge?.title}
-      emptyTitle={docsBridge?.emptyTitle ?? pagesBridge?.emptyTitle}
-      style={props.styleOverrides?.documentsRail}
-      useDefaultStyles={props.useDefaultStyles}
-      density={railDensity}
-      className={mergeClassNames(`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`, documentsRailClassName)}
-    />
+    <DocumentsRailComponent {...documentsRailProps} />
   ) : null;
 
   const handleModeChange = (mode: 'fields' | 'detail' | 'docs' | 'comments') => {
@@ -512,20 +515,7 @@ const Sidebar = (props: RightSidebarProps) => {
   );
 
   const docsNode = (docsBridge || pagesBridge) ? (
-    <DocumentsRailComponent
-      items={railItems}
-      selectedId={(docsBridge?.selectedId ?? pagesBridge?.selectedId) ?? null}
-      onSelect={docsBridge?.onSelect ?? pagesBridge?.onSelect}
-      onAdd={docsBridge?.onAdd ?? pagesBridge?.onAdd}
-      onUploadPdf={docsBridge?.onUploadPdf ?? pagesBridge?.onUploadPdf}
-      onDelete={docsBridge?.onDelete ?? pagesBridge?.onDelete}
-      title={docsBridge?.title ?? pagesBridge?.title}
-      emptyTitle={docsBridge?.emptyTitle ?? pagesBridge?.emptyTitle}
-      style={props.styleOverrides?.documentsRail}
-      useDefaultStyles={props.useDefaultStyles}
-      density={railDensity}
-      className={mergeClassNames(`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`, documentsRailClassName)}
-    />
+    <DocumentsRailComponent {...documentsRailProps} />
   ) : null;
 
   const detailNode = activeSchemaCount > 0 ? (

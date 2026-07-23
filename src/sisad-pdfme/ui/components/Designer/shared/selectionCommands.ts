@@ -643,13 +643,17 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     ]);
   };
 
+  const partitionSchemasBySelection = (current: SchemaForUI[]) => ({
+    selected: current.filter((schema) => activeIds.includes(schema.id)),
+    remaining: current.filter((schema) => !activeIds.includes(schema.id)),
+  });
+
   const bringForward = () => {
     if (!hasSelection || !guardStructureEdit()) return;
     applySelectionSchemas(
       context,
       (current) => {
-        const selected = current.filter((schema) => activeIds.includes(schema.id));
-        const remaining = current.filter((schema) => !activeIds.includes(schema.id));
+        const { selected, remaining } = partitionSchemasBySelection(current);
         return [...remaining, ...selected];
       },
       {
@@ -665,8 +669,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     applySelectionSchemas(
       context,
       (current) => {
-        const selected = current.filter((schema) => activeIds.includes(schema.id));
-        const remaining = current.filter((schema) => !activeIds.includes(schema.id));
+        const { selected, remaining } = partitionSchemasBySelection(current);
         return [...selected, ...remaining];
       },
       {
@@ -675,6 +678,34 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
         meta: { schemaUids: activeIds, commandId: 'sendBackward' },
       },
     );
+  };
+
+  const executeSelectionOps = (
+    ops: Array<{ key: string; value: unknown; schemaId: string }>,
+    commandId: 'alignSelection' | 'distributeSelection',
+  ) => {
+    if (!ops.length) return;
+    if (!context.executeCommand) {
+      context.changeSchemas(ops);
+      return;
+    }
+
+    const beforeSchemas = cloneDeep(getPageSchemas(context)) as SchemaForUI[];
+    const afterSchemas = applySchemaOps(beforeSchemas, ops);
+    context.executeCommand({
+      id: commandId,
+      label: commandId,
+      meta: {
+        schemaUids: activeIds,
+        commandId,
+        source: 'canvas-toolbar',
+        undoable: true,
+        timestamp: Date.now(),
+      },
+      execute: () => context.commitSchemas(afterSchemas),
+      undo: () => context.commitSchemas(beforeSchemas),
+      redo: () => context.commitSchemas(afterSchemas),
+    });
   };
 
   const alignSelection = (type: AlignType) => {
@@ -690,35 +721,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       align: type,
       mode: 'page',
     });
-    if (!ops.length) return;
-
-    if (context.executeCommand) {
-      const beforeSchemas = cloneDeep(pageSchemas) as SchemaForUI[];
-      const afterSchemas = applySchemaOps(beforeSchemas, ops);
-      context.executeCommand({
-        id: 'alignSelection',
-        label: 'alignSelection',
-        meta: {
-          schemaUids: activeIds,
-          commandId: 'alignSelection',
-          source: 'canvas-toolbar', // Usually triggered from toolbar
-          undoable: true,
-          timestamp: Date.now(),
-        },
-        execute: () => {
-          context.commitSchemas(afterSchemas);
-        },
-        undo: () => {
-          context.commitSchemas(beforeSchemas);
-        },
-        redo: () => {
-          context.commitSchemas(afterSchemas);
-        },
-      });
-      return;
-    }
-
-    context.changeSchemas(ops);
+    executeSelectionOps(ops, 'alignSelection');
   };
 
   const distributeSelection = (type: DistributeType) => {
@@ -733,35 +736,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       },
       distribute: type,
     });
-    if (!ops.length) return;
-
-    if (context.executeCommand) {
-      const beforeSchemas = cloneDeep(pageSchemas) as SchemaForUI[];
-      const afterSchemas = applySchemaOps(beforeSchemas, ops);
-      context.executeCommand({
-        id: 'distributeSelection',
-        label: 'distributeSelection',
-        meta: {
-          schemaUids: activeIds,
-          commandId: 'distributeSelection',
-          source: 'canvas-toolbar',
-          undoable: true,
-          timestamp: Date.now(),
-        },
-        execute: () => {
-          context.commitSchemas(afterSchemas);
-        },
-        undo: () => {
-          context.commitSchemas(beforeSchemas);
-        },
-        redo: () => {
-          context.commitSchemas(afterSchemas);
-        },
-      });
-      return;
-    }
-
-    context.changeSchemas(ops);
+    executeSelectionOps(ops, 'distributeSelection');
   };
 
   const openProperties = () => {

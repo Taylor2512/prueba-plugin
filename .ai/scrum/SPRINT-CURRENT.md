@@ -8,5 +8,18 @@ Objetivo: adoptar la arquitectura IA sin interrumpir el desarrollo de SISAD PDFM
 | [AI-002](tasks/AI-002.md) | Done | dry-auditor | Luna low | read-only | 208 Markdown; 0 links rotos; 2 plantillas esenciales |
 | [AI-003](tasks/AI-003.md) | Done | implementer | Terra medium | actual | 11 skills válidas; adapters explícitos y delgados |
 | [AI-004](tasks/AI-004.md) | Done | memory-scrum | Luna low | read-only | owners y handoff consolidados |
+| [DEDUP-001](task-cards/DEDUP-001-smart-placement.md) | Done | canvas-batch | Sol high | `/workspace/wt-canvas` | recorrido canónico; 5 tests; 0 clones focales |
+| [DEDUP-003](task-cards/DEDUP-003-comments-overlay.md) | Done | canvas-batch | Sol high | `/workspace/wt-canvas` | view-model canónico; clon focal 2→1 |
+| [DEDUP-004](task-cards/DEDUP-004-inline-edit-overlay.md) | Done | canvas-batch | Sol high | `/workspace/wt-canvas` | primitive + estrategias; 0 clones focales |
+| [DEDUP-002](task-cards/DEDUP-002-keyboard-command-registry.md) | Done | shared-batch | Sol high | `/workspace/wt-shared` | command registry; 3 tests |
+| [DEDUP-006](task-cards/DEDUP-006-selection-commands.md) | Done | shared-batch | Sol high | `/workspace/wt-shared` | command helper; 5 tests |
+| [DEDUP-007](task-cards/DEDUP-007-schema-clipboard.md) | Done | shared-batch | Sol high | `/workspace/wt-shared` | adapters; 26 tests; 0 clones focales |
+| [DEDUP-005](task-cards/DEDUP-005-right-sidebar-actions.md) | Done | sidebar-schema-batch | Sol high | `/workspace/wt-sidebar` | 12 props duplicadas eliminadas |
+| [DEDUP-008](task-cards/DEDUP-008-inspector-taxonomy.md) | Done | sidebar-schema-batch | Sol high | `/workspace/wt-sidebar` | taxonomía canónica; 102→101 |
+| [DEDUP-009](task-cards/DEDUP-009-custom-field-modal.md) | Done | sidebar-schema-batch | Sol high | `/workspace/wt-sidebar` | primitive + validator; 101→100 |
+| [DEDUP-010](task-cards/DEDUP-010-action-chrome.md) | Done | sidebar-schema-batch | Sol high | `/workspace/wt-sidebar` | chrome de familia; 100→99 |
+| [DOCS-001](task-cards/DOCS-001-canonical-common-docs.md) | Done | coordinator | Sol medium | actual | índice canónico; 0 párrafos duplicados |
+| [QUALITY-001](task-cards/QUALITY-001-jscpd-profiles.md) | Done | coordinator | Sol medium | actual | 3 perfiles reproducibles |
+| [DEDUP-011](task-cards/DEDUP-011-strict-owned-residuals.md) | Done | coordinator | Sol high | actual | owned 4→1; strict 65→62 |
 
 WIP máximo: 3; cuentan `In progress` e `In review`. `SPRINT-CURRENT.md` es el único propietario del estado.

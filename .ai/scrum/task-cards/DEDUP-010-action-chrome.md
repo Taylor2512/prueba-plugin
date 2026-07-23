@@ -1,6 +1,6 @@
 # DEDUP-010 — attachment/note chrome
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** sidebar-schema-batch · **Modelo:** GPT-5.6 Sol high · **Worktree:** `/workspace/wt-sidebar`
 
 ## Objetivo observable
 
@@ -12,7 +12,7 @@ Reporte jscpd del 22 de julio de 2026.
 
 ## Archivos permitidos
 
-src/sisad-pdfme/schemas/actions/attachment.ts; note.ts
+src/sisad-pdfme/schemas/actions/attachment.ts; note.ts; actionSchemaFactory.ts (fuente canónica compartida requerida)
 
 ## Archivos prohibidos
 
@@ -42,6 +42,13 @@ La coincidencia descrita en **DEDUP-010-action-chrome** queda eliminada o acepta
 
 Mantener un commit de caracterización separado y revertir la extracción si aumenta branching o rompe pruebas.
 
+## Cierre
+
+- Fuente canónica: `drawActionFieldChrome` en `actionSchemaFactory.ts`, factory existente de la familia action-based.
+- Duplicidad: los dos bloques PDF de 10 líneas se sustituyen por metadata RGB por variante; jscpd baja de 100 a 99 clones en esta ola.
+- Gates: jscpd strict en verde; TypeScript focal sin errores en archivos tocados (el gate global conserva deuda preexistente); build bloqueado por `tslib` ausente.
+- Riesgo residual: se preservan coordenadas, tamaño, borde de 1 punto y colores exactos de attachment/note.
+
 ## Memory delta
 
-Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+Nueva fuente canónica local de familia: el chrome PDF de acciones vive en `actionSchemaFactory.ts`.

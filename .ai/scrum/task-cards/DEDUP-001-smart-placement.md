@@ -1,6 +1,6 @@
 # DEDUP-001 — unificar smart placement
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** canvas-batch · **Modelo:** GPT-5.6 Sol high · **Worktree:** `/workspace/wt-canvas` (`codex/canvas-batch`)
 
 ## Objetivo observable
 
@@ -44,4 +44,11 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 
 ## Memory delta
 
-Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+`resolveDropPosition` es la fuente canónica del recorrido; las dos APIs públicas conservan su diferencia mediante estrategias de fallback explícitas (centro o `null`). El archivo pasó de 286 a 227 líneas y jscpd focal reportó 0 clones.
+
+## Cierre
+
+- Commit: registrado en el commit que contiene esta tarjeta.
+- Gates: ESLint focal; 5 tests Vitest focales; jscpd focal (0 clones).
+- Gates globales del batch: `quality:duplicates:strict` completó (99 clones de baseline, ninguno nuevo en este archivo); `lint` quedó bloqueado por un error preexistente en `useCanvasRenderState.ts`; `build` quedó bloqueado porque el entorno no resuelve `tslib` desde `form-render`.
+- Riesgo residual: no cambiaron coordenadas, orden de candidatos ni contratos públicos.

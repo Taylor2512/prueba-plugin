@@ -1,6 +1,6 @@
 # DEDUP-008 — taxonomía del inspector
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** sidebar-schema-batch · **Modelo:** GPT-5.6 Sol medium · **Worktree:** `/workspace/wt-sidebar`
 
 ## Objetivo observable
 
@@ -42,6 +42,13 @@ La coincidencia descrita en **DEDUP-008-inspector-taxonomy** queda eliminada o a
 
 Mantener un commit de caracterización separado y revertir la extracción si aumenta branching o rompe pruebas.
 
+## Cierre
+
+- Fuente canónica: `hasMeaningfulInspectorValue` en la taxonomía del inspector.
+- Duplicidad: eliminada la segunda implementación recursiva y conservada la misma semántica para arrays, records, números, booleanos y strings vacíos.
+- Gates: ESLint focal y jscpd strict en verde; build ya caracterizado como bloqueado por `tslib` ausente.
+- Riesgo residual: función pura; no modifica paths read/write, visibilidad, orden ni labels.
+
 ## Memory delta
 
-Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+Sin delta durable: `detailSectionTaxonomy.ts` ya era la fuente documentada de verdad.

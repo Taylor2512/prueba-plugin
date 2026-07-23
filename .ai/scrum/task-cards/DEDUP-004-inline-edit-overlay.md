@@ -1,6 +1,6 @@
 # DEDUP-004 — inline edit overlay
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** canvas-batch · **Modelo:** GPT-5.6 Sol high · **Worktree:** `/workspace/wt-canvas` (`codex/canvas-batch`)
 
 ## Objetivo observable
 
@@ -44,4 +44,11 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 
 ## Memory delta
 
-Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+`editorInteractionProps` es el primitive común para draft, cancelación e interacciones, con `editorCommitStrategies` como variantes explícitas para input simple y multilínea. El archivo pasó de 238 a 230 líneas y jscpd focal reportó 0 clones.
+
+## Cierre
+
+- Commit: registrado en el commit que contiene esta tarjeta.
+- Gates: ESLint focal; Vitest de import; jscpd focal (0 clones).
+- Gates globales del batch: `quality:duplicates:strict` completó (99 clones de baseline, ninguno nuevo en este archivo); `lint` quedó bloqueado por un error preexistente en `useCanvasRenderState.ts`; `build` quedó bloqueado porque el entorno no resuelve `tslib` desde `form-render`.
+- Riesgo residual: la suite disponible no ejercita Enter/Escape/blur/readOnly; se preservaron handlers, condiciones y props existentes.

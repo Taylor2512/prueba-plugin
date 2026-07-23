@@ -155,4 +155,28 @@ describe('selectionCommands behavior', () => {
     const duplicated = commitSchemas.mock.calls.at(-1)?.[0] as SchemaForUI[];
     expect(duplicated.length).toBeGreaterThan(2);
   });
+
+  test('moves the active selection to either z-order edge without losing schemas', () => {
+    const schemaA = makeSchema({ id: 'a' });
+    const schemaB = makeSchema({ id: 'b' });
+    const schemaC = makeSchema({ id: 'c' });
+    const commitSchemas = vi.fn();
+    const context: SelectionCommandsContext = {
+      activeElements: [makeActiveElement('b')],
+      schemasList: [[schemaA, schemaB, schemaC]],
+      pageCursor: 0,
+      pageSize: { width: 200, height: 120 },
+      changeSchemas: vi.fn(),
+      commitSchemas,
+      removeSchemas: vi.fn(),
+      onOpenProperties: vi.fn(),
+    };
+    const commands = createSelectionCommands(context);
+
+    commands.bringForward();
+    expect((commitSchemas.mock.calls.at(-1)?.[0] as SchemaForUI[]).map(({ id }) => id)).toEqual(['a', 'c', 'b']);
+
+    commands.sendBackward();
+    expect((commitSchemas.mock.calls.at(-1)?.[0] as SchemaForUI[]).map(({ id }) => id)).toEqual(['b', 'a', 'c']);
+  });
 });

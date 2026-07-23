@@ -1,6 +1,6 @@
 # DEDUP-009 — builders modal custom field
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** sidebar-schema-batch · **Modelo:** GPT-5.6 Terra medium · **Worktree:** `/workspace/wt-sidebar`
 
 ## Objetivo observable
 
@@ -42,6 +42,13 @@ La coincidencia descrita en **DEDUP-009-custom-field-modal** queda eliminada o a
 
 Mantener un commit de caracterización separado y revertir la extracción si aumenta branching o rompe pruebas.
 
+## Cierre
+
+- Fuente canónica: composición `FieldControl` para ID/label/control y validador puro `isCustomFieldDraftValid`.
+- Duplicidad: eliminados los dos bloques equivalentes de control textual/select (14 líneas detectadas por jscpd).
+- Gates: ESLint focal y jscpd strict en verde; build bloqueado por dependencia preexistente `tslib` ausente.
+- Riesgo residual: eventos y valores permanecen en cada control; save/cancel y validación conservan su contrato.
+
 ## Memory delta
 
-Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+Sin delta durable: la abstracción permanece local al modal.

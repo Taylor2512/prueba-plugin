@@ -11,6 +11,7 @@ import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfm
 import { asRecord, isRecord } from '../../shared/objectGuards.js';
 import {
   getDetailProfile,
+  hasMeaningfulInspectorValue,
   CANONICAL_DETAIL_SECTION_LABELS,
   CANONICAL_DETAIL_SECTION_ORDER,
   type CanonicalDetailSection,
@@ -146,32 +147,6 @@ const createSectionField = (
   ...extra,
 });
 
-const EMPTY_TEXT_VALUES = new Set(['', '-', '—', '–', 'n/a', 'na', 'null', 'undefined']);
-
-/**
- * Determina si un valor contiene información significativa para mostrar secciones.
- */
-const hasMeaningfulText = (value: unknown): boolean => {
-  if (Array.isArray(value)) {
-    return value.some((entry) => hasMeaningfulText(entry));
-  }
-
-  if (isRecord(value)) {
-    return Object.values(value).some((entry) => hasMeaningfulText(entry));
-  }
-
-  if (typeof value === 'number' || typeof value === 'boolean') {
-    return true;
-  }
-
-  if (typeof value !== 'string') {
-    return false;
-  }
-
-  const normalized = value.trim().toLowerCase();
-  return normalized.length > 0 && !EMPTY_TEXT_VALUES.has(normalized);
-};
-
 /**
  * Crea un campo numérico acotado por página/padding y validación externa.
  */
@@ -285,11 +260,11 @@ export const buildInspectorSections = ({
   );
   const hasSchemaHelpContent = Boolean(
     activeSchemaRecord &&
-      (hasMeaningfulText(activeSchemaRecord.tooltip) ||
-        hasMeaningfulText(activeSchemaRecord.helpText) ||
-        hasMeaningfulText(activeSchemaRecord.helptext) ||
-        hasMeaningfulText(activeSchemaRecord.description) ||
-        hasMeaningfulText(activeSchemaRecord.helpDescription)),
+      (hasMeaningfulInspectorValue(activeSchemaRecord.tooltip) ||
+        hasMeaningfulInspectorValue(activeSchemaRecord.helpText) ||
+        hasMeaningfulInspectorValue(activeSchemaRecord.helptext) ||
+        hasMeaningfulInspectorValue(activeSchemaRecord.description) ||
+        hasMeaningfulInspectorValue(activeSchemaRecord.helpDescription)),
   );
   const hasExplicitOpacity =
     activeSchemaRecord?.opacity !== undefined ||
@@ -559,12 +534,12 @@ export const buildInspectorSections = ({
     hasHelpContent: hasSchemaHelpContent,
     hasCollaborationContent: hasSchemaCollaboration,
     hasAdvancedOverrides:
-      hasMeaningfulText(activeSchemaRecord?.schemaUid) ||
-      hasMeaningfulText(activeSchemaRecord?.documentId) ||
-      hasMeaningfulText(activeSchemaRecord?.pageNumber) ||
-      hasMeaningfulText(activeSchemaRecord?.metadata) ||
-      hasMeaningfulText(activeSchemaRecord?.debug) ||
-      hasMeaningfulText(activeSchemaRecord?.__designer),
+      hasMeaningfulInspectorValue(activeSchemaRecord?.schemaUid) ||
+      hasMeaningfulInspectorValue(activeSchemaRecord?.documentId) ||
+      hasMeaningfulInspectorValue(activeSchemaRecord?.pageNumber) ||
+      hasMeaningfulInspectorValue(activeSchemaRecord?.metadata) ||
+      hasMeaningfulInspectorValue(activeSchemaRecord?.debug) ||
+      hasMeaningfulInspectorValue(activeSchemaRecord?.__designer),
     supportsComments: shouldShowComments,
     supportsCollaboration: shouldShowCollaboration,
     supportsDataBindings: shouldShowConnections,

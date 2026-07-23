@@ -1,6 +1,6 @@
 # DOCS-001 — documentación common canónica
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** coordinator · **Modelo:** GPT-5.6 Sol · **Worktree:** actual
 
 ## Objetivo observable
 
@@ -45,3 +45,11 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 ## Memory delta
 
 Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+
+## Cierre (2026-07-23)
+
+- Fuente canónica: JSDoc y tipos de cada módulo, con reglas transversales en `common/README.md`.
+- Patrón: índice enlazado; el consolidado repetido se sustituyó por un mapa de responsabilidades mantenible.
+- Medición: el checker Markdown analiza 138 archivos y reporta 0 párrafos duplicados.
+- Gates: checker Markdown y los tres perfiles jscpd en verde; lint/build conservan bloqueos globales ajenos documentados en el sprint.
+- Memory delta: se confirma la decisión durable de documentar junto al módulo propietario y no regenerar consolidaciones activas.

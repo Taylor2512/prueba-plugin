@@ -1,6 +1,6 @@
 # DEDUP-005 — composición RightSidebar
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** sidebar-schema-batch · **Modelo:** GPT-5.6 Sol medium · **Worktree:** `/workspace/wt-sidebar`
 
 ## Objetivo observable
 
@@ -42,6 +42,13 @@ La coincidencia descrita en **DEDUP-005-right-sidebar-actions** queda eliminada 
 
 Mantener un commit de caracterización separado y revertir la extracción si aumenta branching o rompe pruebas.
 
+## Cierre
+
+- Fuente canónica: `documentsRailProps`, contrato declarativo compartido por las composiciones split y tab.
+- Duplicidad: dos bloques equivalentes de 12 props pasan a una sola definición sin branching nuevo.
+- Gates: ESLint focal y jscpd strict en verde; build bloqueado por dependencia preexistente `tslib` ausente.
+- Riesgo residual: sin cambio de layout, routing, permisos ni callbacks; rollback mediante este commit.
+
 ## Memory delta
 
-Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+Sin delta durable: el contrato queda local al único componente que lo consume.

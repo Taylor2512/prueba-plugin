@@ -70,31 +70,6 @@ const getMoveStep = (event: KeyboardEvent): 'normal' | 'fast' | 'fine' => {
   return 'normal';
 };
 
-const getInsertType = (shortcutId: string) => {
-  switch (shortcutId) {
-    case 'insertText':
-      return 'text';
-    case 'insertSignature':
-      return 'signature';
-    case 'insertInitial':
-      return 'initial';
-    case 'insertName':
-      return 'name';
-    case 'insertEmail':
-      return 'email';
-    case 'insertDate':
-      return 'date';
-    case 'insertCheckbox':
-      return 'checkbox';
-    case 'insertRadio':
-      return 'radioGroup';
-    case 'insertSelect':
-      return 'select';
-    default:
-      return '';
-  }
-};
-
 const DESIGNER_ROOT_SELECTOR = `.${DESIGNER_CLASSNAME}root`;
 
 export const shouldIgnoreShortcutEvent = (
@@ -115,6 +90,47 @@ export const shouldIgnoreShortcutEvent = (
   return false;
 };
 
+const callbackCommands: Partial<Record<string, keyof UseDesignerKeyboardShortcutsParams>> = {
+  addComment: 'onAddComment',
+  zoomIn: 'onZoomIn',
+  zoomOut: 'onZoomOut',
+  fitPage: 'onFitPage',
+  fitWidth: 'onFitWidth',
+  zoom100: 'onZoom100',
+  nextPage: 'onNextPage',
+  previousPage: 'onPreviousPage',
+  selectAllVisible: 'onSelectAllVisible',
+  clearSelection: 'onClearSelection',
+  showInspector: 'onShowInspector',
+};
+
+const selectionCommands: Partial<Record<string, keyof SelectionCommandSet>> = {
+  copy: 'copySelection',
+  cut: 'cutSelection',
+  paste: 'pasteSelection',
+  duplicate: 'duplicateSelection',
+};
+
+const insertTypes: Record<string, string> = {
+  insertText: 'text',
+  insertSignature: 'signature',
+  insertInitial: 'initial',
+  insertName: 'name',
+  insertEmail: 'email',
+  insertDate: 'date',
+  insertCheckbox: 'checkbox',
+  insertRadio: 'radioGroup',
+  insertSelect: 'select',
+};
+
+const invokeOptionalCallback = (
+  current: UseDesignerKeyboardShortcutsParams,
+  key: keyof UseDesignerKeyboardShortcutsParams,
+) => {
+  const callback = current[key];
+  if (typeof callback === 'function') callback();
+};
+
 const executeShortcutAction = (
   event: KeyboardEvent,
   shortcut: ShortcutDefinition,
@@ -133,350 +149,87 @@ const executeShortcutAction = (
   };
 
   if (shortcut.id === 'openShortcuts') {
-    if (current.onOpenShortcutPanel) {
-      current.onOpenShortcutPanel();
-    } else {
-      window.dispatchEvent(new CustomEvent('sisad-pdfme:shortcut-open-panel'));
-    }
+    if (current.onOpenShortcutPanel) current.onOpenShortcutPanel();
+    else window.dispatchEvent(new CustomEvent('sisad-pdfme:shortcut-open-panel'));
     return true;
   }
-
   if (shortcut.id === 'openDetail') {
-    if (current.onOpenDetail) {
-      current.onOpenDetail();
-      return true;
-    }
-    current.selectionCommands?.openProperties?.();
+    if (current.onOpenDetail) current.onOpenDetail();
+    else current.selectionCommands?.openProperties?.();
     return true;
   }
 
-  if (shortcut.id === 'addComment') {
-    current.onAddComment?.();
+  const callbackKey = callbackCommands[shortcut.id];
+  if (callbackKey) {
+    invokeOptionalCallback(current, callbackKey);
     return true;
   }
 
-  if (shortcut.id === 'zoomIn') {
-    current.onZoomIn?.();
+  if (shortcut.id === 'undo' || shortcut.id === 'redo') {
+    const canExecute = shortcut.id === 'undo' ? current.commandBus?.canUndo?.() : current.commandBus?.canRedo?.();
+    if (!canExecute) return false;
+    void (shortcut.id === 'undo' ? current.commandBus?.undo() : current.commandBus?.redo());
     return true;
   }
 
-  if (shortcut.id === 'zoomOut') {
-    current.onZoomOut?.();
+  const selectionCommand = selectionCommands[shortcut.id];
+  if (selectionCommand) {
+    const command = current.selectionCommands?.[selectionCommand];
+    if (typeof command === 'function') command();
     return true;
   }
-
-  if (shortcut.id === 'fitPage') {
-    current.onFitPage?.();
-    return true;
-  }
-
-  if (shortcut.id === 'fitWidth') {
-    current.onFitWidth?.();
-    return true;
-  }
-
-  if (shortcut.id === 'zoom100') {
-    current.onZoom100?.();
-    return true;
-  }
-
-  if (shortcut.id === 'nextPage') {
-    current.onNextPage?.();
-    return true;
-  }
-
-  if (shortcut.id === 'previousPage') {
-    current.onPreviousPage?.();
-    return true;
-  }
-
-  if (shortcut.id === 'selectAllVisible') {
-    current.onSelectAllVisible?.();
-    return true;
-  }
-
-  if (shortcut.id === 'clearSelection') {
-    current.onClearSelection?.();
-    return true;
-  }
-
-  if (shortcut.id === 'undo') {
-    if (current.commandBus?.canUndo?.()) {
-      void current.commandBus.undo();
-      return true;
-    }
-    return false;
-  }
-
-  if (shortcut.id === 'redo') {
-    if (current.commandBus?.canRedo?.()) {
-      void current.commandBus.redo();
-      return true;
-    }
-    return false;
-  }
-
-  if (shortcut.id === 'copy') {
-    current.selectionCommands?.copySelection?.();
-    return true;
-  }
-
-  if (shortcut.id === 'cut') {
-    current.selectionCommands?.cutSelection?.();
-    return true;
-  }
-
-  if (shortcut.id === 'paste') {
-    current.selectionCommands?.pasteSelection?.();
-    return true;
-  }
-
-  if (shortcut.id === 'duplicate') {
-    current.selectionCommands?.duplicateSelection?.();
-    return true;
-  }
-
-  if (shortcut.id === 'delete') {
-    return Boolean(current.selectionCommands?.deleteSelection?.());
-  }
-
-  if (shortcut.id === 'recipientPrevious') {
-    current.selectionCommands?.changeRecipient?.('previous');
-    return true;
-  }
-
-  if (shortcut.id === 'recipientNext') {
-    current.selectionCommands?.changeRecipient?.('next');
+  if (shortcut.id === 'delete') return Boolean(current.selectionCommands?.deleteSelection?.());
+  if (shortcut.id === 'recipientPrevious' || shortcut.id === 'recipientNext') {
+    current.selectionCommands?.changeRecipient?.(shortcut.id === 'recipientPrevious' ? 'previous' : 'next');
     return true;
   }
 
   if (shortcut.id === 'moveUp' || shortcut.id === 'moveDown' || shortcut.id === 'moveLeft' || shortcut.id === 'moveRight') {
-    current.onMove?.(
-      shortcut.id === 'moveUp'
-        ? 'up'
-        : shortcut.id === 'moveDown'
-          ? 'down'
-          : shortcut.id === 'moveLeft'
-            ? 'left'
-            : 'right',
-      getMoveStep(event),
-      event,
-    );
+    const direction = shortcut.id.slice(4).toLowerCase() as 'up' | 'down' | 'left' | 'right';
+    current.onMove?.(direction, getMoveStep(event), event);
     return true;
   }
 
-  if (
-    shortcut.id === 'insertText' ||
-    shortcut.id === 'insertSignature' ||
-    shortcut.id === 'insertInitial' ||
-    shortcut.id === 'insertName' ||
-    shortcut.id === 'insertEmail' ||
-    shortcut.id === 'insertDate' ||
-    shortcut.id === 'insertCheckbox' ||
-    shortcut.id === 'insertRadio' ||
-    shortcut.id === 'insertSelect'
-  ) {
-    current.onInsertSchemaByType?.(getInsertType(shortcut.id));
+  const insertType = insertTypes[shortcut.id];
+  if (insertType) {
+    current.onInsertSchemaByType?.(insertType);
     return true;
   }
 
-  if (shortcut.id === 'group') {
-    if (current.onGroup) {
-      current.onGroup();
-    } else {
-      current.selectionCommands?.groupSelection?.();
-    }
+  if (shortcut.id === 'group' || shortcut.id === 'ungroup') {
+    const callback = shortcut.id === 'group' ? current.onGroup : current.onUngroup;
+    const fallback = shortcut.id === 'group'
+      ? current.selectionCommands?.groupSelection
+      : current.selectionCommands?.ungroupSelection;
+    if (callback) callback();
+    else fallback?.();
     return true;
   }
 
-  if (shortcut.id === 'ungroup') {
-    if (current.onUngroup) {
-      current.onUngroup();
-    } else {
-      current.selectionCommands?.ungroupSelection?.();
-    }
+  if (shortcut.id === 'copyStyle' || shortcut.id === 'pasteStyle') {
+    const callback = shortcut.id === 'copyStyle' ? current.onCopyStyle : current.onPasteStyle;
+    const fallback = shortcut.id === 'copyStyle'
+      ? current.selectionCommands?.copyStyle
+      : current.selectionCommands?.pasteStyle;
+    if (callback) callback();
+    else fallback?.();
     return true;
   }
 
-  if (shortcut.id === 'showInspector') {
-    current.onShowInspector?.();
-    return true;
-  }
-
-  if (shortcut.id === 'copyStyle') {
-    if (current.onCopyStyle) {
-      current.onCopyStyle();
-    } else {
-      current.selectionCommands?.copyStyle?.();
-    }
-    return true;
-  }
-
-  if (shortcut.id === 'pasteStyle') {
-    if (current.onPasteStyle) {
-      current.onPasteStyle();
-    } else {
-      current.selectionCommands?.pasteStyle?.();
-    }
-    return true;
-  }
-
-  const handler =
-    shortcut.id === 'copy' || shortcut.id === 'cut' || shortcut.id === 'paste'
-      ? undefined
-      : current.handlers?.[shortcut.id] ||
-        (shortcut.actionId ? current.handlers?.[shortcut.actionId] : undefined) ||
-        (shortcut.commandId ? current.handlers?.[shortcut.commandId] : undefined);
-
+  const handler = current.handlers?.[shortcut.id] ||
+    (shortcut.actionId ? current.handlers?.[shortcut.actionId] : undefined) ||
+    (shortcut.commandId ? current.handlers?.[shortcut.commandId] : undefined);
   if (!handler) return false;
-  const handledByRegistry = handler(event, shortcut, context);
-  return handledByRegistry !== false;
+  return handler(event, shortcut, context) !== false;
 };
 
-export const useDesignerKeyboardShortcuts = ({
-  enabled,
-  activeSchemas,
-  pageCursor,
-  schemasList,
-  visibleSchemasList,
-  shortcuts,
-  commandBus,
-  selectionCommands,
-  canEditStructure,
-  activeDocumentId,
-  activeUserId,
-  isModalOpen,
-  isInlineEditing,
-  handlers,
-  onOpenShortcutPanel,
-  onOpenDetail,
-  onAddComment,
-  onInsertSchemaByType,
-  onSelectAllVisible,
-  onClearSelection,
-  onZoomIn,
-  onZoomOut,
-  onFitPage,
-  onFitWidth,
-  onZoom100,
-  onNextPage,
-  onPreviousPage,
-  onMove,
-  onGroup,
-  onUngroup,
-  onShowInspector,
-  onCopyStyle,
-  onPasteStyle,
-}: UseDesignerKeyboardShortcutsParams) => {
-  const paramsRef = useRef<UseDesignerKeyboardShortcutsParams>({
-    enabled,
-    activeSchemas,
-    pageCursor,
-    schemasList,
-    visibleSchemasList,
-    shortcuts,
-    commandBus,
-    selectionCommands,
-    canEditStructure,
-    activeDocumentId,
-    activeUserId,
-    isModalOpen,
-    isInlineEditing,
-    handlers,
-    onOpenShortcutPanel,
-    onOpenDetail,
-    onAddComment,
-    onInsertSchemaByType,
-    onSelectAllVisible,
-    onClearSelection,
-    onZoomIn,
-    onZoomOut,
-    onFitPage,
-    onFitWidth,
-    onZoom100,
-    onNextPage,
-    onPreviousPage,
-    onMove,
-    onGroup,
-    onUngroup,
-    onShowInspector,
-    onCopyStyle,
-    onPasteStyle,
-  });
+export const useDesignerKeyboardShortcuts = (params: UseDesignerKeyboardShortcutsParams) => {
+  const { enabled } = params;
+  const paramsRef = useRef(params);
 
-  // Use useLayoutEffect so the ref is updated before the browser paints and
-  // before any synthesised keyboard events that fire immediately after a click.
   useLayoutEffect(() => {
-    paramsRef.current = {
-      enabled,
-      activeSchemas,
-      pageCursor,
-      schemasList,
-      visibleSchemasList,
-      shortcuts,
-      commandBus,
-      selectionCommands,
-      canEditStructure,
-      activeDocumentId,
-      activeUserId,
-      isModalOpen,
-      isInlineEditing,
-      handlers,
-      onOpenShortcutPanel,
-      onOpenDetail,
-      onAddComment,
-      onInsertSchemaByType,
-      onSelectAllVisible,
-      onClearSelection,
-      onZoomIn,
-      onZoomOut,
-      onFitPage,
-      onFitWidth,
-      onZoom100,
-      onNextPage,
-      onPreviousPage,
-      onMove,
-      onGroup,
-      onUngroup,
-      onShowInspector,
-      onCopyStyle,
-      onPasteStyle,
-    };
-  }, [
-    activeDocumentId,
-    activeSchemas,
-    activeUserId,
-    canEditStructure,
-    commandBus,
-    enabled,
-    handlers,
-    isInlineEditing,
-    isModalOpen,
-    onAddComment,
-    onClearSelection,
-    onFitPage,
-    onFitWidth,
-    onNextPage,
-    onPreviousPage,
-    onInsertSchemaByType,
-    onMove,
-    onOpenDetail,
-    onOpenShortcutPanel,
-    onSelectAllVisible,
-    onZoom100,
-    onZoomIn,
-    onZoomOut,
-    onGroup,
-    onUngroup,
-    onShowInspector,
-    onCopyStyle,
-    onPasteStyle,
-    pageCursor,
-    schemasList,
-    selectionCommands,
-    shortcuts,
-    visibleSchemasList,
-  ]);
+    paramsRef.current = params;
+  }, [params]);
 
   useEffect(() => {
     if (!enabled || typeof window === 'undefined') return undefined;
@@ -540,7 +293,7 @@ export const useDesignerKeyboardShortcuts = ({
 
     window.addEventListener('keydown', onKeyDown, true);
     return () => window.removeEventListener('keydown', onKeyDown, true);
-  }, [enabled, onFitPage, onFitWidth, onNextPage, onPreviousPage, onZoom100, onZoomIn, onZoomOut]);
+  }, [enabled]);
 };
 
 export default useDesignerKeyboardShortcuts;

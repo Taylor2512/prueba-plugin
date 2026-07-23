@@ -96,6 +96,8 @@ export type SchemaClipboardContext = {
    * When absent, group paste falls back to a fixed +10mm/+10mm offset.
    */
   targetAnchor?: { x: number; y: number };
+  /** Injectable identity source for deterministic adapters and tests. */
+  createId?: () => string;
 };
 
 const transientKeys: string[] = [
@@ -147,11 +149,12 @@ const remapGroupedSchemaIdentity = (
   schema: SchemaForUI,
   sourceSchema: SchemaForUI,
   groupIdMap: Map<string, string>,
+  createId: () => string,
 ) => {
   const sourceGroupId = resolveSchemaGroupId(sourceSchema);
   if (!sourceGroupId) return;
 
-  const nextGroupId = groupIdMap.get(sourceGroupId) || uuid();
+  const nextGroupId = groupIdMap.get(sourceGroupId) || createId();
   if (!groupIdMap.has(sourceGroupId)) {
     groupIdMap.set(sourceGroupId, nextGroupId);
   }
@@ -195,7 +198,7 @@ const remapGroupedSchemaIdentity = (
       typeof entry === 'string'
         ? normalizeText(entry) || `Opción ${index + 1}`
         : normalizeText(entry.label) || previousId;
-    const nextId = `option_${index + 1}_${uuid().slice(0, 6)}`;
+    const nextId = `option_${index + 1}_${createId().slice(0, 6)}`;
     optionIdMap.set(previousId, nextId);
     return { optionId: nextId, label };
   });
@@ -301,25 +304,22 @@ export const clampGroupAnchorToPage = (
   y: Math.max(0, Math.min(target.y, Math.max(0, pageSize.height - groupBounds.height))),
 });
 
-export const copySchemasToClipboard = (
+const createClipboardPayload = (
+  source: SchemaClipboardPayload['source'],
   schemas: SchemaForUI[],
-  sourcePageIndex = 0,
+  sourcePageIndex: number,
 ): SchemaClipboardPayload => ({
-  source: 'copy',
-  items: schemas.map((schema) => sanitizeCopiedSchema(schema)),
-  removeIds: [],
+  source,
+  items: schemas.map(sanitizeCopiedSchema),
+  removeIds: source === 'cut' ? schemas.map((schema) => schema.id) : [],
   group: buildGroupClipboardMetadata(schemas, sourcePageIndex),
 });
 
-export const cutSchemasToClipboard = (
-  schemas: SchemaForUI[],
-  sourcePageIndex = 0,
-): SchemaClipboardPayload => ({
-  source: 'cut',
-  items: schemas.map((schema) => sanitizeCopiedSchema(schema)),
-  removeIds: schemas.map((schema) => schema.id),
-  group: buildGroupClipboardMetadata(schemas, sourcePageIndex),
-});
+export const copySchemasToClipboard = (schemas: SchemaForUI[], sourcePageIndex = 0) =>
+  createClipboardPayload('copy', schemas, sourcePageIndex);
+
+export const cutSchemasToClipboard = (schemas: SchemaForUI[], sourcePageIndex = 0) =>
+  createClipboardPayload('cut', schemas, sourcePageIndex);
 
 export const resolvePasteOffset = (index: number) => {
   const offset = index === 0 ? 6 : 8;
@@ -363,7 +363,7 @@ const buildPastedSchema = (
   const originalCommentsAnchors = originalRecord.commentsAnchors;
 
   const baseSchema = sanitizeCopiedSchema(schema);
-  const nextSchemaUid = uuid();
+  const nextSchemaUid = (context.createId ?? uuid)();
   const targetFileId = context.fileId ?? context.collaborationContext?.fileId ?? undefined;
   const pageNumber = context.pageIndex + 1;
   const existingSchemas = context.existingSchemas || [];
@@ -503,6 +503,33 @@ const buildPastedSchema = (
   return finalResult as SchemaForUI;
 };
 
+const pasteClipboardItems = (
+  items: SchemaForUI[],
+  context: SchemaClipboardContext,
+  policy: PastePolicy,
+  resolveItemContext: (pasted: SchemaForUI[]) => SchemaClipboardContext,
+  placement?: GroupPlacement,
+): SchemaForUI[] => {
+  const stackUniqueSchemaNames: string[] = [];
+  const groupIdMap = new Map<string, string>();
+  const createId = context.createId ?? uuid;
+  const pasted: SchemaForUI[] = [];
+
+  for (const [index, schema] of items.entries()) {
+    const next = buildPastedSchema(
+      schema,
+      resolveItemContext(pasted),
+      index,
+      stackUniqueSchemaNames,
+      policy,
+      placement,
+    );
+    remapGroupedSchemaIdentity(next, schema, groupIdMap, createId);
+    pasted.push(next);
+  }
+  return pasted;
+};
+
 /**
  * Rigid-group paste: translate every schema by ONE shared delta derived from the
  * group bounding box, so order, spacing, size and direction are preserved. No
@@ -524,15 +551,7 @@ const pasteSchemaGroupFromClipboard = (
   const delta = { x: anchor.x - bounds.x, y: anchor.y - bounds.y };
   const placement: GroupPlacement = { delta };
 
-  const stackUniqueSchemaNames: string[] = [];
-  const groupIdMap = new Map<string, string>();
-  const pasted: SchemaForUI[] = [];
-  for (const [index, schema] of items.entries()) {
-    const next = buildPastedSchema(schema, context, index, stackUniqueSchemaNames, policy, placement);
-    remapGroupedSchemaIdentity(next, schema, groupIdMap);
-    pasted.push(next);
-  }
-  return pasted;
+  return pasteClipboardItems(items, context, policy, () => context, placement);
 };
 
 export const pasteSchemasFromClipboard = (
@@ -550,18 +569,10 @@ export const pasteSchemasFromClipboard = (
   }
 
   const existingSchemas = context.existingSchemas || [];
-  const stackUniqueSchemaNames: string[] = [];
-  const groupIdMap = new Map<string, string>();
-  const pasted: SchemaForUI[] = [];
-
-  for (const [index, schema] of items.entries()) {
-    const nextExistingSchemas = existingSchemas.concat(pasted);
-    const next = buildPastedSchema(schema, { ...context, existingSchemas: nextExistingSchemas }, index, stackUniqueSchemaNames, policy);
-    remapGroupedSchemaIdentity(next, schema, groupIdMap);
-    pasted.push(next);
-  }
-
-  return pasted;
+  return pasteClipboardItems(items, context, policy, (pasted) => ({
+    ...context,
+    existingSchemas: existingSchemas.concat(pasted),
+  }));
 };
 
 export const duplicateSchemas = (schemas: SchemaForUI[], context: SchemaClipboardContext): SchemaForUI[] =>

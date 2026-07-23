@@ -34,6 +34,14 @@ type InlineEditOverlayProps = {
   onCancel: () => void;
 };
 
+type EditorKeyEvent = React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>;
+
+const editorCommitStrategies = {
+  singleLine: (event: EditorKeyEvent) => event.key === 'Enter' && !event.shiftKey,
+  multiline: (event: EditorKeyEvent) =>
+    event.key === 'Enter' && !event.shiftKey && (event.metaKey || event.ctrlKey),
+};
+
 /**
  * Renderiza un editor flotante para modificar texto visible o nombre interno.
  *
@@ -89,6 +97,38 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
     onCancel();
   };
 
+  const editorInteractionProps = {
+    ref: inputRef,
+    value: draft,
+    onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setDraft(event.target.value),
+    onKeyDown: (event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        event.stopPropagation();
+        cancel();
+        return;
+      }
+
+      const commitStrategy = session?.multiline
+        ? editorCommitStrategies.multiline
+        : editorCommitStrategies.singleLine;
+      const commitsCurrentEditor = commitStrategy(event);
+      if (commitsCurrentEditor) {
+        event.preventDefault();
+        event.stopPropagation();
+        commit();
+      }
+    },
+    onMouseDown: (event: React.MouseEvent) => {
+      event.stopPropagation();
+    },
+    onDoubleClick: (event: React.MouseEvent) => {
+      event.stopPropagation();
+    },
+    placeholder: inputPlaceholder,
+    className: 'sisad-pdfme-ui-inline-edit-overlay-input rounded-xl border-slate-200 shadow-sm',
+  };
+
   if (!session) return null;
 
   const canvasRoot = globalThis.document?.querySelector('.sisad-pdfme-designer-canvas') as HTMLElement | null;
@@ -140,59 +180,11 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
 
       {session.multiline ? (
         <Input.TextArea
-          ref={inputRef}
-          value={draft}
-          onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setDraft(event.target.value)}
-          onKeyDown={(event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            if (event.key === 'Escape') {
-              event.preventDefault();
-              event.stopPropagation();
-              cancel();
-              return;
-            }
-            if (event.key === 'Enter' && !event.shiftKey && (event.metaKey || event.ctrlKey)) {
-              event.preventDefault();
-              event.stopPropagation();
-              commit();
-            }
-          }}
-          onMouseDown={(event: React.MouseEvent) => {
-            event.stopPropagation();
-          }}
-          onDoubleClick={(event: React.MouseEvent) => {
-            event.stopPropagation();
-          }}
-          placeholder={inputPlaceholder}
+          {...editorInteractionProps}
           autoSize={{ minRows: 4, maxRows: 10 }}
-          className="sisad-pdfme-ui-inline-edit-overlay-input rounded-xl border-slate-200 shadow-sm"
         />
       ) : (
-        <Input
-          ref={inputRef}
-          value={draft}
-          onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setDraft(event.target.value)}
-          onKeyDown={(event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            if (event.key === 'Escape') {
-              event.preventDefault();
-              event.stopPropagation();
-              cancel();
-              return;
-            }
-            if (event.key === 'Enter' && !event.shiftKey) {
-              event.preventDefault();
-              event.stopPropagation();
-              commit();
-            }
-          }}
-          onMouseDown={(event: React.MouseEvent) => {
-            event.stopPropagation();
-          }}
-          onDoubleClick={(event: React.MouseEvent) => {
-            event.stopPropagation();
-          }}
-          placeholder={inputPlaceholder}
-          className="sisad-pdfme-ui-inline-edit-overlay-input rounded-xl border-slate-200 shadow-sm"
-        />
+        <Input {...editorInteractionProps} />
       )}
 
       <div className="sisad-pdfme-ui-inline-edit-overlay-footer mt-2.5 flex items-center justify-between gap-2.5">
