@@ -1,6 +1,6 @@
 # DEDUP-007 — adapters clipboard
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** shared-batch · **Modelo:** GPT-5.6 Sol · **Worktree:** codex/shared-batch (`/workspace/wt-shared`)
 
 ## Objetivo observable
 
@@ -45,3 +45,12 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 ## Memory delta
 
 Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+
+## Cierre (2026-07-23)
+
+- Fuente canónica: `createClipboardPayload` normaliza copy/cut y `pasteClipboardItems` adapta paste/duplicate con una única regeneración de identidad.
+- Patrón: Adapter de clipboard con `createId` inyectable; la estrategia de contexto conserva smart placement individual frente a delta rígido de grupos.
+- Duplicidad eliminada: sanitización copy/cut y loops equivalentes de paste; jscpd focal reporta 0 clones.
+- Gates: ESLint focal; 26 tests Vitest de round-trip, grupos, multipágina/metadata e identidad determinista; jscpd focal.
+- Riesgo residual: ninguno conocido; documentId/fileId, pageNumber, recipient ownership y group ids siguen pasando por el adapter existente.
+- Memory delta: se documenta localmente la inyección de identidad; no requiere nueva política durable.

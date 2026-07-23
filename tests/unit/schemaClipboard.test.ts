@@ -109,4 +109,20 @@ describe('schemaClipboard group identity remap', () => {
     expect(nextGroupIdA).toBe(nextGroupIdB);
     expect(nextGroupIdA).not.toBe('visual-group-source');
   });
+  test('uses the injected id factory for deterministic duplicated identities', () => {
+    const source = {
+      id: 'source', name: 'source', type: 'text', content: '',
+      position: { x: 1, y: 2 }, width: 10, height: 5,
+    } as SchemaForUI;
+    const ids = ['schema-deterministic'];
+
+    const [duplicated] = duplicateSchemas([source], {
+      ...makeBaseContext(),
+      createId: () => ids.shift() || 'fallback-id',
+    });
+
+    expect(duplicated.id).toBe('schema-deterministic');
+    expect(duplicated.schemaUid).toBe('schema-deterministic');
+  });
+
 });

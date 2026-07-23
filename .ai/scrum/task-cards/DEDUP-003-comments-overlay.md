@@ -1,6 +1,6 @@
 # DEDUP-003 — comments overlay
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** canvas-batch · **Modelo:** GPT-5.6 Sol high · **Worktree:** `/workspace/wt-canvas` (`codex/canvas-batch`)
 
 ## Objetivo observable
 
@@ -44,4 +44,11 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 
 ## Memory delta
 
-Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+`upsertCommentAnchor` es la fuente canónica para normalizar id, coordenadas, página, texto y estado del view-model. El jscpd focal pasó de 2 clones/17 líneas a 1 clon/11 líneas; el restante es `owned-acceptable` entre los contratos serializados distintos `OverlayComment` y `OverlayAnchor`, no la construcción repetida del view-model objetivo.
+
+## Cierre
+
+- Commit: registrado en el commit que contiene esta tarjeta.
+- Gates: ESLint focal; Vitest de import; jscpd focal (clon accionable eliminado).
+- Gates globales del batch: `quality:duplicates:strict` completó (99 clones de baseline y el clon de tipos ya clasificado); `lint` quedó bloqueado por un error preexistente en `useCanvasRenderState.ts`; `build` quedó bloqueado porque el entorno no resuelve `tslib` desde `form-render`.
+- Riesgo residual: el Playwright existente es un smoke placeholder y no caracteriza routing; el cambio no altera DOM, geometría ni eventos.

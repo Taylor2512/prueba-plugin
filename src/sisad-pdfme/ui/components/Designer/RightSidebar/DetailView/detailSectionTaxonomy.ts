@@ -139,13 +139,14 @@ export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { t
 const normalizeSchemaType = (schemaType?: string) => normalizeText(schemaType);
 const EMPTY_TEXT_VALUES = new Set(['', '-', '—', '–', 'n/a', 'na', 'null', 'undefined']);
 
-const isMeaningfulInspectorText = (value: unknown) => {
+/** Determina si metadata del inspector contiene un valor visible significativo. */
+export const hasMeaningfulInspectorValue = (value: unknown): boolean => {
   if (Array.isArray(value)) {
-    return value.some((entry) => isMeaningfulInspectorText(entry));
+    return value.some((entry) => hasMeaningfulInspectorValue(entry));
   }
 
   if (isRecord(value)) {
-    return Object.values(value).some((entry) => isMeaningfulInspectorText(entry));
+    return Object.values(value).some((entry) => hasMeaningfulInspectorValue(entry));
   }
 
   if (typeof value === 'number' || typeof value === 'boolean') {
@@ -347,7 +348,7 @@ const hasDefinedSchemaValue = (schema: SchemaForUI, key: string) => {
 
 const hasAnyValue = (schema: SchemaForUI, keys: string[]) => keys.some((key) => hasDefinedSchemaValue(schema, key));
 const hasMeaningfulSchemaValue = (schema: SchemaForUI, keys: string[]) =>
-  keys.some((key) => isMeaningfulInspectorText(getSchemaValue(schema, key)));
+  keys.some((key) => hasMeaningfulInspectorValue(getSchemaValue(schema, key)));
 
 const hasWidget = (fields: FieldLike[], widgetNames: string[]) => fieldNames(fields).some((field) => widgetNames.includes(field.widget));
 

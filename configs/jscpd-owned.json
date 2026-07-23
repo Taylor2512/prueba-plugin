@@ -12,7 +12,6 @@
     "**/.tailwind-migration-backups/**",
     "src/sisad-pdfme/pdf-lib/**",
     "**/reports/**",
-    "**/*documentacion-consolidada*.md",
-    "**/documentacion-common-sisad-pdfme.md"
+    "**/*documentacion-consolidada*.md"
   ]
 }

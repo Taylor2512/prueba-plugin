@@ -6,10 +6,41 @@
  * Note/attachment use their own container helpers below.
  */
 import type { ActionSchemaKind, SemanticTone, SisadSchemaBase } from '../shared/schemaTypes.js';
+import type { PDFPage, RGB } from '@sisad-pdfme/pdf-lib';
 import { applyFieldChrome } from '../shared/fieldChrome.js';
 import { createSchemaPart } from '../shared/schemaDom.js';
 
-;
+type ActionChromeColor = readonly [number, number, number];
+
+/** Dibuja el chrome rectangular compartido por los campos de acción en PDF. */
+export const drawActionFieldChrome = ({
+  schema,
+  page,
+  rgb,
+  borderColor,
+  backgroundColor,
+}: {
+  schema: { position: { x?: number; y?: number }; width?: number; height?: number };
+  page: PDFPage;
+  rgb: (_red: number, _green: number, _blue: number) => RGB;
+  borderColor: ActionChromeColor;
+  backgroundColor: ActionChromeColor;
+}) => {
+  const { position } = schema;
+  const x = Number(position.x);
+  const y = Number(position.y);
+  const width = Number(schema.width);
+  const height = Number(schema.height);
+  page.drawRectangle({
+    x,
+    y: page.getHeight() - y - height,
+    width,
+    height,
+    borderColor: rgb(...borderColor),
+    borderWidth: 1,
+    color: rgb(...backgroundColor),
+  });
+};
 
 // ─── Note container ───────────────────────────────────────────────────────────
 

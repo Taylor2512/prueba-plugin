@@ -67,10 +67,14 @@ const SchemaDropCommitFlash = ({
   }, []);
 
   useEffect(() => {
-    const { enterFrame, exitTimer } = timersRef.current;
-    if (enterFrame !== null) cancelAnimationFrame(enterFrame);
-    if (exitTimer !== null) window.clearTimeout(exitTimer);
-    timersRef.current = { enterFrame: null, exitTimer: null };
+    const clearScheduledAnimation = () => {
+      const { enterFrame, exitTimer } = timersRef.current;
+      if (enterFrame !== null) cancelAnimationFrame(enterFrame);
+      if (exitTimer !== null) window.clearTimeout(exitTimer);
+      timersRef.current = { enterFrame: null, exitTimer: null };
+    };
+
+    clearScheduledAnimation();
 
     setEntering(false);
     setExiting(false);
@@ -83,24 +87,13 @@ const SchemaDropCommitFlash = ({
 
     if (prefersReducedMotion) {
       setEntering(true);
-      scheduleExit();
-      return () => {
-        const current = timersRef.current;
-        if (current.enterFrame !== null) cancelAnimationFrame(current.enterFrame);
-        if (current.exitTimer !== null) window.clearTimeout(current.exitTimer);
-        timersRef.current = { enterFrame: null, exitTimer: null };
-      };
+    } else {
+      const scheduledEnterFrame = window.requestAnimationFrame(() => setEntering(true));
+      timersRef.current.enterFrame = scheduledEnterFrame;
     }
 
-    const scheduledEnterFrame = window.requestAnimationFrame(() => setEntering(true));
-    timersRef.current.enterFrame = scheduledEnterFrame;
     scheduleExit();
-    return () => {
-      const current = timersRef.current;
-      if (current.enterFrame !== null) cancelAnimationFrame(current.enterFrame);
-      if (current.exitTimer !== null) window.clearTimeout(current.exitTimer);
-      timersRef.current = { enterFrame: null, exitTimer: null };
-    };
+    return clearScheduledAnimation;
   }, [paperRect, prefersReducedMotion]);
 
   if (!paperRect) return null;

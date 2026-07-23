@@ -26,6 +26,18 @@ const mm2px = (mm: number) => mm * MM_TO_PX;
  * Recibe todos los schemas relevantes, los comentarios top-level y referencias
  * a cada paper para ubicar pins según página, escala y posición real del DOM.
  */
+type CommentAnchorMetadata = {
+  id?: string;
+  x?: number;
+  y?: number;
+  pageNumber?: number;
+  schemaUid?: string;
+  authorName?: string;
+  authorId?: string;
+  authorColor?: string;
+  resolved?: boolean;
+};
+
 type CommentsOverlayProps = {
   schemas: SchemaForUI[];
   scale: number;
@@ -33,17 +45,7 @@ type CommentsOverlayProps = {
   paperRefs: React.MutableRefObject<HTMLDivElement[]>;
   topLevelComments?: Array<{
     pageNumber?: number;
-    anchor?: {
-      id?: string;
-      x?: number;
-      y?: number;
-      pageNumber?: number;
-      schemaUid?: string;
-      authorName?: string;
-      authorId?: string;
-      authorColor?: string;
-      resolved?: boolean;
-    };
+    anchor?: CommentAnchorMetadata;
     comment?: {
       id?: string;
       authorName?: string;
@@ -60,17 +62,7 @@ type CommentsOverlayProps = {
  */
 type OverlayComment = {
   id?: string;
-  anchor?: {
-    id?: string;
-    x?: number;
-    y?: number;
-    pageNumber?: number;
-    schemaUid?: string;
-    authorName?: string;
-    authorId?: string;
-    authorColor?: string;
-    resolved?: boolean;
-  };
+  anchor?: CommentAnchorMetadata;
   authorName?: string;
   authorId?: string;
   authorColor?: string;
@@ -81,17 +73,8 @@ type OverlayComment = {
 /**
  * Forma mínima de anchor suelto asociado a un schema.
  */
-type OverlayAnchor = {
-  id?: string;
-  x?: number;
-  y?: number;
-  pageNumber?: number;
-  schemaUid?: string;
-  authorName?: string;
-  authorId?: string;
-  authorColor?: string;
+type OverlayAnchor = CommentAnchorMetadata & {
   text?: string;
-  resolved?: boolean;
 };
 
 /**
@@ -107,6 +90,50 @@ type OverlaySchema = SchemaForUI & {
  */
 const toStringOrUndefined = (value: unknown): string | undefined =>
   typeof value === 'string' && value.trim() ? value : undefined;
+
+type CommentAnchorViewModel = {
+  id: string;
+  commentId: string;
+  x: number;
+  y: number;
+  pageIndex: number;
+  schemaUid?: string;
+  authorName?: string;
+  authorColor?: string;
+  text?: string;
+  resolved?: boolean;
+};
+
+type CommentAnchorSource = Omit<CommentAnchorViewModel, 'id' | 'commentId' | 'x' | 'y' | 'pageIndex'> & {
+  id: unknown;
+  commentId?: unknown;
+  x?: unknown;
+  y?: unknown;
+  pageNumber?: unknown;
+};
+
+/** Normaliza y registra el view-model compartido por todas las fuentes de comentarios. */
+const upsertCommentAnchor = (
+  byId: Map<string, CommentAnchorViewModel>,
+  source: CommentAnchorSource,
+  fallbackPageIndex: number,
+) => {
+  const id = String(source.id || '').trim();
+  if (!id) return;
+  const pageNumber = Number(source.pageNumber);
+  byId.set(id, {
+    id,
+    commentId: String(source.commentId || id),
+    x: Number(source.x || 0),
+    y: Number(source.y || 0),
+    pageIndex: Number.isInteger(pageNumber) && pageNumber >= 1 ? pageNumber - 1 : fallbackPageIndex,
+    schemaUid: source.schemaUid,
+    authorName: source.authorName,
+    authorColor: source.authorColor,
+    text: String(source.text || '').trim(),
+    resolved: Boolean(source.resolved),
+  });
+};
 
 /**
  * Renderiza botones/pins de comentario posicionados sobre cada página.
@@ -160,24 +187,7 @@ const CommentsOverlay = ({
  * aparece en más de una fuente serializada.
  */
   const anchors = useMemo(() => {
-    const byId = new Map<
-      string,
-      {
-        id: string;
-        x: number;
-        y: number;
-        pageIndex: number;
-        schemaUid?: string;
-        authorName?: string;
-        authorColor?: string;
-        text?: string;
-        resolved?: boolean;
-      }
-    >();
-    const toPageIndex = (pageNumber: unknown): number => {
-      const n = Number(pageNumber);
-      return Number.isInteger(n) && n >= 1 ? n - 1 : pageIndex;
-    };
+    const byId = new Map<string, CommentAnchorViewModel>();
     schemas.forEach((s) => {
       const schema = s as OverlaySchema;
       const comments = schema.comments || [];
@@ -185,47 +195,46 @@ const CommentsOverlay = ({
         const anchor = comment?.anchor;
         if (!anchor) return;
         const id = String(anchor.id || comment.id || `${s.schemaUid}-anchor`);
-        byId.set(id, {
+        upsertCommentAnchor(byId, {
           id,
           commentId: String(comment.id || anchor.id || id),
-          x: Number(anchor.x || 0),
-          y: Number(anchor.y || 0),
-          pageIndex: toPageIndex(anchor.pageNumber),
+          x: anchor.x,
+          y: anchor.y,
+          pageNumber: anchor.pageNumber,
           schemaUid: anchor.schemaUid || s.schemaUid,
           authorName: toStringOrUndefined(comment.authorName) || toStringOrUndefined(comment.authorId),
           authorColor: toStringOrUndefined(comment.authorColor) || toStringOrUndefined(anchor.authorColor),
           text: String(comment.text || '').trim(),
           resolved: Boolean(comment.resolved || anchor.resolved),
-        });
+        }, pageIndex);
       });
       const as = schema.commentAnchors || [];
       as.forEach((a) => {
         const id = String(a.id || `${s.schemaUid}-anchor`);
-        byId.set(id, {
+        upsertCommentAnchor(byId, {
           id,
           commentId: String(a.id || id),
-          x: Number(a.x || 0),
-          y: Number(a.y || 0),
-          pageIndex: toPageIndex(a.pageNumber),
+          x: a.x,
+          y: a.y,
+          pageNumber: a.pageNumber,
           schemaUid: a.schemaUid || s.schemaUid,
           authorName: toStringOrUndefined(a.authorName) || toStringOrUndefined(a.authorId),
           authorColor: toStringOrUndefined(a.authorColor),
           text: String(a.text || '').trim(),
           resolved: Boolean(a.resolved),
-        });
+        }, pageIndex);
       });
     });
     topLevelComments.forEach((entry) => {
       const anchor = asRecord(entry?.anchor) || {};
       const comment = asRecord(entry?.comment) || {};
       const id = String(anchor.id || comment.id || '').trim();
-      if (!id) return;
-      byId.set(id, {
+      upsertCommentAnchor(byId, {
         id,
         commentId: String(comment.id || anchor.id || id),
-        x: Number(anchor.x || 0),
-        y: Number(anchor.y || 0),
-        pageIndex: toPageIndex(anchor.pageNumber ?? entry?.pageNumber),
+        x: anchor.x,
+        y: anchor.y,
+        pageNumber: anchor.pageNumber ?? entry?.pageNumber,
         schemaUid: typeof anchor.schemaUid === 'string' ? anchor.schemaUid : undefined,
         authorName:
           (typeof comment.authorName === 'string' ? comment.authorName : undefined)
@@ -237,7 +246,7 @@ const CommentsOverlay = ({
           || (typeof anchor.authorColor === 'string' ? anchor.authorColor : undefined),
         text: String(comment.text || '').trim(),
         resolved: Boolean(comment.resolved || anchor.resolved),
-      });
+      }, pageIndex);
     });
     return Array.from(byId.values());
   }, [schemas, topLevelComments, pageIndex]);

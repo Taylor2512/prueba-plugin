@@ -49,6 +49,34 @@ type Props = {
   onChange: <K extends keyof CustomFieldDef>(_key: K, _value: CustomFieldDef[K]) => void;
 };
 
+/** Valida el contrato mínimo antes de persistir un draft de campo custom. */
+export const isCustomFieldDraftValid = (draft: Pick<CustomFieldDef, 'name'>): boolean =>
+  draft.name.trim().length > 0;
+
+const FieldControl = ({
+  label,
+  name,
+  children,
+}: {
+  label?: string;
+  name?: string;
+  children: (_id: string) => React.ReactNode;
+}) => {
+  const generatedId = React.useId();
+  const id = name ? `${DESIGNER_CLASSNAME}custom-field-${name}` : generatedId;
+
+  return (
+    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-control`, 'space-y-1')}>
+      {label ? (
+        <label htmlFor={id} className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-label`, 'block text-xs font-medium text-slate-600')}>
+          {label}
+        </label>
+      ) : null}
+      {children(id)}
+    </div>
+  );
+};
+
 const Section = ({
   title,
   children,
@@ -86,15 +114,9 @@ const TextField = ({
   onChange: (_value: string) => void;
   name?: string;
 }) => {
-  const generatedId = React.useId();
-  const id = name ? `${DESIGNER_CLASSNAME}custom-field-${name}` : generatedId;
   return (
-    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-control`, 'space-y-1')}>
-      {label ? (
-        <label htmlFor={id} className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-label`, 'block text-xs font-medium text-slate-600')}>
-          {label}
-        </label>
-      ) : null}
+    <FieldControl label={label} name={name}>
+      {(id) => (
       <Input
         id={id}
         value={value}
@@ -103,7 +125,8 @@ const TextField = ({
         aria-label={label || name}
         className="rounded-xl border-slate-200 bg-white shadow-sm"
       />
-    </div>
+      )}
+    </FieldControl>
   );
 };
 
@@ -120,15 +143,9 @@ const SelectField = ({
   onChange: (_value: string) => void;
   name?: string;
 }) => {
-  const generatedId = React.useId();
-  const id = name ? `${DESIGNER_CLASSNAME}custom-field-${name}` : generatedId;
   return (
-    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-control`, 'space-y-1')}>
-      {label ? (
-        <label htmlFor={id} className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-label`, 'block text-xs font-medium text-slate-600')}>
-          {label}
-        </label>
-      ) : null}
+    <FieldControl label={label} name={name}>
+      {(id) => (
       <select
         id={id}
         value={value}
@@ -145,7 +162,8 @@ const SelectField = ({
           </option>
         ))}
       </select>
-    </div>
+      )}
+    </FieldControl>
   );
 };
 
@@ -273,7 +291,7 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
         <Button
           type="primary"
           onClick={onSave}
-          disabled={!draft.name.trim()}
+          disabled={!isCustomFieldDraftValid(draft)}
           className="inline-flex h-9 items-center rounded-full border border-sky-500/70 bg-sky-600 px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:border-sky-400 hover:bg-sky-500 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
         >
           Guardar

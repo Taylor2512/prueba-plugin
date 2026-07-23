@@ -7,7 +7,7 @@ import { StickyNote } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
-import { createNoteContainerEl } from './actionSchemaFactory.js';
+import { createNoteContainerEl, drawActionFieldChrome } from './actionSchemaFactory.js';
 import type { NoteSchema } from './actionSchemaFactory.js';
 import { clearSchemaRoot, setSchemaRootAttributes } from '../shared/schemaDom.js';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
@@ -21,19 +21,14 @@ const notePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
       const { container } = createNoteContainerEl(s);
       rootElement.appendChild(container);
     },
-    pdf: async ({ schema, pdfDoc, pdfLib, page }) => {
+    pdf: async ({ schema, pdfLib, page }) => {
       const s = schema as NoteSchema & { position: { x: number; y: number } };
-      const { position, width, height } = s;
-      const { x, y } = position;
-      const pageHeight = page.getHeight();
-      page.drawRectangle({
-        x,
-        y: pageHeight - y - height,
-        width,
-        height,
-        borderColor: pdfLib.rgb(0.992, 0.878, 0.278),
-        borderWidth: 1,
-        color: pdfLib.rgb(0.996, 0.988, 0.910),
+      drawActionFieldChrome({
+        schema: s,
+        page,
+        rgb: pdfLib.rgb,
+        borderColor: [0.992, 0.878, 0.278],
+        backgroundColor: [0.996, 0.988, 0.910],
       });
     },
     propPanel: {

@@ -1,6 +1,6 @@
 # DEDUP-006 — helpers selectionCommands
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** shared-batch · **Modelo:** GPT-5.6 Sol · **Worktree:** codex/shared-batch (`/workspace/wt-shared`)
 
 ## Objetivo observable
 
@@ -45,3 +45,12 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 ## Memory delta
 
 Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+
+## Cierre (2026-07-23)
+
+- Fuente canónica: `executeSelectionOps`, que aplica patches y conserva execute/undo/redo para align/distribute.
+- Patrón: helper puro/acotado de comandos, sin flags de comportamiento.
+- Duplicidad eliminada: dos recorridos equivalentes de materialización y commit de operaciones. jscpd focal conserva 1 coincidencia (7 líneas, 72 tokens) entre bring-forward/send-backward, aceptada porque el orden inverso es semántica de dominio y un flag recrearía ambos bloques.
+- Gates: ESLint focal (sin errores; 2 warnings preexistentes de `INLINE_EDIT_REQUEST_EVENT`), 5 tests Vitest de geometría/clipboard y jscpd focal.
+- Riesgo residual: ninguno sobre offsets o geometría; los cálculos `computeAlignedSchemas`/`computeDistributedSchemas` no cambiaron.
+- Memory delta: no cambia una decisión durable fuera de esta tarjeta.

@@ -1,6 +1,6 @@
 # DEDUP-002 — registro de atajos
 
-**Estado:** ready · **Owner:** por asignar · **Modelo:** consultar router · **Worktree:** por definir
+**Estado:** done · **Owner:** shared-batch · **Modelo:** GPT-5.6 Sol · **Worktree:** codex/shared-batch (`/workspace/wt-shared`)
 
 ## Objetivo observable
 
@@ -45,3 +45,12 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 ## Memory delta
 
 Actualizar métricas y decisiones solo si nace una nueva fuente canónica o política durable.
+
+## Cierre (2026-07-23)
+
+- Fuente canónica: tablas de comandos y adaptadores en `useDesignerKeyboardShortcuts.ts`; `ui/hooks.ts` conserva un único caller delegado.
+- Patrón: Command Registry acotado para callbacks, selection commands e inserciones; las variantes con fallback permanecen explícitas.
+- Medición: jscpd focal, 1 coincidencia residual (7 líneas, 57 tokens) entre forma del contexto y parámetros; clasificada `owned-acceptable` porque extraerla degradaría el contrato tipado del hook.
+- Gates: ESLint focal; 3 tests Vitest de resolución, foco editable y carga del módulo; jscpd focal.
+- Riesgo residual: los shortcuts con semántica distinta (undo/redo, delete, group/style) siguen explícitos para no introducir un mega-command.
+- Memory delta: no cambia política durable; la fuente canónica ya estaba definida por la tarjeta.
