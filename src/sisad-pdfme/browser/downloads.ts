@@ -38,16 +38,3 @@ export function downloadJson(data: unknown, filename: string): string {
   return url;
 }
 
-/**
- * Downloads arbitrary bytes with the given mime type and returns the object
- * URL so the caller can revoke it. Returns an empty string when unavailable.
- */
-function downloadBytes(
-  bytes: BlobPart,
-  filename: string,
-  mimeType: string,
-): string {
-  const url = createObjectUrl(bytes, mimeType);
-  if (url) downloadUrl(url, filename);
-  return url;
-}
