@@ -12,7 +12,6 @@
  *   hidden    → no renderizado
  */
 import type { OfficialTemplateSnapshot, SnapshotAssignment, SchemaWithDesigner } from '../shared/snapshot.js';
-import type { SignaturePolicy } from '../shared/signatureRegistry.js';
 
 // ── Estado del flujo ────────────────────────────────────────────────────────
 
@@ -46,18 +45,6 @@ export interface ExternalFormStorage {
 }
 
 // ── Props del componente runner ─────────────────────────────────────────────
-
-interface ExternalFormRunnerProps {
-  snapshot: OfficialTemplateSnapshot;
-  currentRecipientId: string;
-  flowState: FlowState;
-  storage: ExternalFormStorage;
-  signaturePolicy: SignaturePolicy;
-  onComplete: (pdfBlob: Blob) => void;
-  onSaveProgress: (inputs: Record<string, unknown>) => void;
-  /** Llamado cuando snapshot.version cambia mientras el runner está activo */
-  onSnapshotVersionMismatch?: () => void;
-}
 
 // ── Visibilidad de schemas ──────────────────────────────────────────────────
 

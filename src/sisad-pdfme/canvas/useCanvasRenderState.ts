@@ -71,7 +71,21 @@ export function useCanvasRenderState(input: CanvasRenderStateInput): CanvasRende
   } = input;
 
   return useMemo(
-    () => deriveCanvasRenderState(input),
+    () => deriveCanvasRenderState({
+      schemaCount,
+      pageCursor,
+      documentId,
+      isLoadingDocument,
+      isSwitchingDocument,
+      switchFromDocId,
+      switchToDocId,
+      isLoadingPage,
+      renderError,
+      renderErrorRecoverable,
+      pdfLoadError,
+      isCollaborationDisconnected,
+      lastSyncAt,
+    }),
     [
       schemaCount,
       pageCursor,

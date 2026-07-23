@@ -357,16 +357,6 @@ const BUILTIN_CONTRACTS: Record<string, Omit<SchemaInspectorContract, 'type'>> =
 const _pluginContracts = new Map<string, Omit<SchemaInspectorContract, 'type'>>();
 
 /**
- * Registra o sobrescribe un contrato de inspector provisto por plugin.
- */
-const registerInspectorContract = (
-  type: string,
-  contract: Omit<SchemaInspectorContract, 'type'>,
-): void => {
-  _pluginContracts.set(type.trim().toLowerCase(), contract);
-};
-
-/**
  * Resuelve el contrato aplicable a un tipo de schema.
  */
 export const resolveInspectorContract = (schemaType: string): SchemaInspectorContract => {

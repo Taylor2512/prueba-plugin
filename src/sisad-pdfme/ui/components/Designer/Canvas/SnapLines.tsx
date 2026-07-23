@@ -217,23 +217,6 @@ const SnapLines = ({
 export default SnapLines;
 
 /**
- * Compute snap lines for an element being dragged.
- *
- * @param dragged  Current position/size of the dragged element (mm)
- * @param page     Page dimensions (mm)
- * @param others   Other elements on the page (mm)
- * @param threshold Snap threshold in mm (default 2)
- */
-function computeSnapLines(
-  dragged: { x: number; y: number; width: number; height: number },
-  page: { width: number; height: number },
-  others: Array<{ x: number; y: number; width: number; height: number }>,
-  threshold = 2,
-): SnapLine[] {
-  return computeSnapResult(dragged, page, others, threshold).lines;
-}
-
-/**
  * Busca el candidato de snap más cercano para un eje.
  */
 const findBestSnap = ({

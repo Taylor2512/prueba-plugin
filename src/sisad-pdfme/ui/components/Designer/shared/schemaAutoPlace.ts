@@ -1,4 +1,4 @@
-import { asRecord, isRecord } from './objectGuards.js';
+import { isRecord } from './objectGuards.js';
 
 const DEFAULT_AUTO_PLACE_SCOPE = 'document';
 const DEFAULT_AUTO_PLACE_MATCH_MODE = 'contains';
@@ -62,35 +62,3 @@ export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown>
   });
 };
 
-const collectAutoPlaceRulesFromDocuments = (documents: unknown[] = []) => {
-  if (!Array.isArray(documents) || !documents.length) return [];
-
-  const rules: Record<string, unknown>[] = [];
-  documents.forEach((documentRaw: unknown = {}) => {
-    const document = asRecord(documentRaw);
-    if (!document) return;
-    const documentId = normalizeText(document?.id || document?.fileId || document?.fileTemplateId);
-    const template = isRecord(document.template) ? document.template : undefined;
-    const templateSchemas = Array.isArray(template?.schemas) ? template.schemas : [];
-    templateSchemas.forEach((page: unknown[] = [], pageIndex: number) => {
-      (Array.isArray(page) ? page : []).forEach((schemaRaw: unknown = {}) => {
-        if (!isRecord(schemaRaw)) return;
-        const schema = schemaRaw;
-        const descriptor = resolveSchemaAutoPlaceDescriptor(schema, {
-          documentId,
-          pageIndex,
-        });
-        if (!descriptor) return;
-        rules.push({
-          ...descriptor,
-          documentId: descriptor.documentId || documentId || null,
-          pageIndex: descriptor.pageIndex !== undefined ? descriptor.pageIndex : pageIndex,
-          schemaUid: descriptor.schemaUid || normalizeText(schema?.schemaUid || schema?.id) || null,
-          schemaName: descriptor.schemaName || normalizeText(schema?.name) || null,
-        });
-      });
-    });
-  });
-
-  return rules;
-};

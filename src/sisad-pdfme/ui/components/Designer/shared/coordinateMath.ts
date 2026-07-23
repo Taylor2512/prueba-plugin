@@ -96,8 +96,6 @@ export const pagePointToSchemaPoint = (point: PagePoint): PdfPoint => ({
   y: point.y / ZOOM,
 });
 
-const pagePointToPdfPoint = (point: PagePoint, _pageSize: Size): PdfPoint => pagePointToSchemaPoint(point);
-
 const rectIntersects = (a: DOMRectLike, b: DOMRectLike): boolean =>
   !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
 

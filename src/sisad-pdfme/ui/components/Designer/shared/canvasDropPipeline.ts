@@ -54,17 +54,6 @@ export type DropTarget = {
   y: number;
 };
 
-type DropOwner = {
-  ownerRecipientId: string | null;
-  ownerColor: string | null;
-};
-
-type DropResult =
-  | { status: 'committed'; schemaId: string }
-  | { status: 'noSpace'; reason: string }
-  | { status: 'cancelled' }
-  | { status: 'error'; reason: string };
-
 export type ResolvePointerDropTargetInput = {
   clientX: number;
   clientY: number;

@@ -7,13 +7,9 @@ import type {
   SisadPdfmeRecipientsConfig,
 } from '../recipients/recipientTypes.js';
 
-export type {
-  SisadPdfmeRecipient,
-  
-  
-} from '../recipients/recipientTypes.js';
+;
 
-export type SisadPdfmeDocument = {
+type SisadPdfmeDocument = {
   id: string;
   label: string;
   /** Alias del label para consumidores legacy (UploadedPdfDocument.name). */

@@ -21,7 +21,6 @@ import type {
   SnapshotSchemaConnectivity,
   SnapshotContributor,
   SignatureConfig,
-  ProviderConfig,
   SerializeOptions,
   SchemaWithDesigner,
 } from './snapshot.js';

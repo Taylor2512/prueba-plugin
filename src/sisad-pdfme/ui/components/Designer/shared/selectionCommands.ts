@@ -90,8 +90,6 @@ type SelectSchemasOptions = {
   origin?: 'keyboard' | 'toolbar' | 'context-menu' | 'field-list' | 'command';
 };
 
-const INLINE_EDIT_REQUEST_EVENT = 'sisad-pdfme-designer-inline-edit-request';
-
 export type InlineEditTarget = 'content' | 'name';
 
 export type InlineEditRequest = {

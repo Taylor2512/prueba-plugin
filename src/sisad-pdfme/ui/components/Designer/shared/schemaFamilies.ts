@@ -41,25 +41,3 @@ const PLUGIN_FAMILY_MAP: Record<string, SchemaFamily> = {
 export function resolveSchemaFamily(schema: Schema): SchemaFamily {
   return PLUGIN_FAMILY_MAP[schema.type] || 'static';
 }
-
-/**
- * Determina si un schema es un contenedor de layout.
- */
-function isLayoutSchema(schema: Schema): boolean {
-  return resolveSchemaFamily(schema) === 'layout';
-}
-
-/**
- * Determina si un schema es de tipo interactivo.
- */
-function isInteractiveSchema(schema: Schema): boolean {
-  return resolveSchemaFamily(schema) === 'interactive';
-}
-
-/**
- * Determina si un schema permite edición de contenido vs solo propiedades.
- */
-function canEditContent(schema: Schema): boolean {
-  const family = resolveSchemaFamily(schema);
-  return family === 'static' || family === 'interactive';
-}

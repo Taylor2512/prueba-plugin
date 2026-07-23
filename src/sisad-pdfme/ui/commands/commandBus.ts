@@ -47,16 +47,6 @@ export type CommandMeta = {
   };
 };
 
-/**
- * Enriched command wrapper that pairs a payload with full metadata.
- * Use this when you need audit trails or multi-user reconciliation.
- * The raw `Command` interface from @sisad-pdfme/common is still accepted by `CommandBus.execute`.
- */
-type AppCommand<TPayload = unknown> = {
-  meta: CommandMeta;
-  payload: TPayload;
-};
-
 /** Helper to build a CommandMeta with sensible defaults. */
 export const buildCommandMeta = (
   overrides: Omit<CommandMeta, 'timestamp'> & { timestamp?: number },

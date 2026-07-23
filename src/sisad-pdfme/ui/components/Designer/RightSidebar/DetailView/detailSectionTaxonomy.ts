@@ -263,27 +263,6 @@ export const getVisibleDetailSections = (schemaType: string): CanonicalDetailSec
   return getDetailProfile(schemaType).visibleSections;
 };
 
-/**
- * Decide si una sección debe iniciar colapsada según sección y familia.
- */
-const resolveDetailSectionDefaultCollapsed = (
-  section: CanonicalDetailSection,
-  semanticFamily?: SchemaSemanticFamily | string,
-): boolean => {
-  const baseCollapsed = Boolean(CANONICAL_DETAIL_SECTION_LABELS[section]?.defaultCollapsed);
-  const normalizedFamily = normalizeText(semanticFamily);
-
-  if (section === 'identity') return false;
-  if (section === 'options') return false;
-  if (section === 'validation') return baseCollapsed;
-  if (section === 'behavior') {
-    const keepBehaviorExpanded = new Set(['text', 'multivariabletext', 'signature', 'choice', 'boolean', 'datetime', 'number']);
-    return !keepBehaviorExpanded.has(normalizedFamily);
-  }
-  if (section === 'box') return false;
-  return baseCollapsed;
-};
-
 /** Entrada flexible de campo usada por reglas de visibilidad. */
 type FieldLike =
   | string

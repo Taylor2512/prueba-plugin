@@ -1,4 +1,4 @@
-import type { SisadPdfmeDocument, SisadPdfmeDocumentsAdapter } from '../config/SisadPdfmeConfig.js';
+import type { SisadPdfmeDocumentsAdapter } from '../config/SisadPdfmeConfig.js';
 
 export type {  SisadPdfmeDocumentsAdapter };
 

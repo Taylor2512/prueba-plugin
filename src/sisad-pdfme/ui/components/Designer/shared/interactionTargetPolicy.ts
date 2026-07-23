@@ -12,43 +12,11 @@
  * never in two guard files.
  */
 import {
-  DESIGNER_INTERACTIVE_CONTROL_SELECTORS,
-  buildSelectorList,
-} from './interactionTargetSelectors.js';
-import { isDesignerInteractionExcluded } from './interactionExclusions.js';
-import { isSchemaRootElement } from './objectGuards.js';
-import {
   resolveInteractionTarget,
   shouldIgnoreForSelecto,
   shouldSelectTarget,
   shouldTransformTarget,
 } from './interactionTargetResolver.js';
-
-/** Everything Selecto/Moveable must NEVER treat as an interaction target. */
-const OPTION_INTERNAL_SELECTOR = '[data-option-id]';
-const GROUP_ADD_OPTION_SELECTOR = '[data-role="group-add-option"]';
-const INTERACTIVE_CONTROL_SELECTOR = buildSelectorList(DESIGNER_INTERACTIVE_CONTROL_SELECTORS);
-
-const matchesSelector = (target: EventTarget | null | undefined, selector: string): boolean => {
-  if (!(target instanceof HTMLElement)) return false;
-  return Boolean(target.closest(selector) || target.matches(selector));
-};
-
-/** Valid schema root = `.sisad-pdfme-ui-custom-selectable[data-schema-id]`. */
-const isSchemaRootTarget = (element: Element | null | undefined): boolean =>
-  isSchemaRootElement(element);
-
-/** In-schema interactive control (group "+" button, toggle, etc.). */
-const isDesignerInteractiveTarget = (target: EventTarget | null | undefined): boolean =>
-  matchesSelector(target, INTERACTIVE_CONTROL_SELECTOR) || isDesignerInteractionExcluded(target);
-
-/** Internal option of a checkbox/radio group (carries data-option-id). */
-const isOptionInternalTarget = (target: EventTarget | null | undefined): boolean =>
-  matchesSelector(target, OPTION_INTERNAL_SELECTOR);
-
-/** The floating "+" add-option button. */
-const isGroupAddOptionTarget = (target: EventTarget | null | undefined): boolean =>
-  matchesSelector(target, GROUP_ADD_OPTION_SELECTOR);
 
 /** Selecto may select this element (schema root only). */
 export const isSelectableCanvasTarget = (element: Element | null | undefined): boolean => {

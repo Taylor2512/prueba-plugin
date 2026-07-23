@@ -41,7 +41,7 @@ export const DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS = [
  * (instead of starting a Moveable drag) and must never be Selecto targets.
  * Centralized so Canvas hit-testing and the policy share one list.
  */
-export const DESIGNER_INTERACTIVE_CONTROL_SELECTORS = [
+const DESIGNER_INTERACTIVE_CONTROL_SELECTORS = [
   '[data-schema-interactive-control]',
   '[data-role="group-add-option"]',
   '[data-checkbox-convert-to-group]',

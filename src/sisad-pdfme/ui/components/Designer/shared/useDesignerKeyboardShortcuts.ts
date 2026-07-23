@@ -131,6 +131,40 @@ const invokeOptionalCallback = (
   if (typeof callback === 'function') callback();
 };
 
+const executeCallbackOrFallback = (
+  callback?: (() => void) | null,
+  fallback?: (() => void) | null,
+) => {
+  if (callback) callback();
+  else fallback?.();
+};
+
+const shortcutsThatStopPropagation = new Set([
+  'openShortcuts',
+  'openDetail',
+  'addComment',
+  'duplicate',
+  'delete',
+  'copy',
+  'cut',
+  'paste',
+  'recipientPrevious',
+  'recipientNext',
+  'selectAllVisible',
+  'clearSelection',
+  'group',
+  'ungroup',
+  'showInspector',
+  'copyStyle',
+  'pasteStyle',
+]);
+
+const shouldStopPropagationForShortcut = (shortcutId: string) => (
+  shortcutsThatStopPropagation.has(shortcutId) ||
+  shortcutId.startsWith('move') ||
+  shortcutId.startsWith('insert')
+);
+
 const executeShortcutAction = (
   event: KeyboardEvent,
   shortcut: ShortcutDefinition,
@@ -201,8 +235,7 @@ const executeShortcutAction = (
     const fallback = shortcut.id === 'group'
       ? current.selectionCommands?.groupSelection
       : current.selectionCommands?.ungroupSelection;
-    if (callback) callback();
-    else fallback?.();
+    executeCallbackOrFallback(callback, fallback);
     return true;
   }
 
@@ -211,8 +244,7 @@ const executeShortcutAction = (
     const fallback = shortcut.id === 'copyStyle'
       ? current.selectionCommands?.copyStyle
       : current.selectionCommands?.pasteStyle;
-    if (callback) callback();
-    else fallback?.();
+    executeCallbackOrFallback(callback, fallback);
     return true;
   }
 
@@ -259,27 +291,7 @@ export const useDesignerKeyboardShortcuts = (params: UseDesignerKeyboardShortcut
       const handled = executeShortcutAction(event, shortcut, current);
       if (!handled) return;
 
-      if (
-        shortcut.id === 'openShortcuts' ||
-        shortcut.id === 'openDetail' ||
-        shortcut.id === 'addComment' ||
-        shortcut.id === 'duplicate' ||
-        shortcut.id === 'delete' ||
-        shortcut.id === 'copy' ||
-        shortcut.id === 'cut' ||
-        shortcut.id === 'paste' ||
-        shortcut.id === 'recipientPrevious' ||
-        shortcut.id === 'recipientNext' ||
-        shortcut.id === 'selectAllVisible' ||
-        shortcut.id === 'clearSelection' ||
-        shortcut.id === 'group' ||
-        shortcut.id === 'ungroup' ||
-        shortcut.id === 'showInspector' ||
-        shortcut.id === 'copyStyle' ||
-        shortcut.id === 'pasteStyle' ||
-        shortcut.id.startsWith('move') ||
-        shortcut.id.startsWith('insert')
-      ) {
+      if (shouldStopPropagationForShortcut(shortcut.id)) {
         event.preventDefault();
         event.stopPropagation();
         return;
