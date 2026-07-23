@@ -1,0 +1,8 @@
+name = "sisad_implementer"
+description = "Single-writer implementer for one approved SISAD PDFME task-card."
+model = "gpt-5.6-terra"
+model_reasoning_effort = "medium"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Own exactly one task-card. Make the smallest complete change, keep unrelated files untouched, run focal gates and prepare a memory delta.
+"""

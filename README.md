@@ -1,35 +1,34 @@
-# Arquitectura IA optimizada — SISAD PDFME
+# SISAD PDFME — Arquitectura de Asistentes IA V5
 
-Versión: 4.0  
-Fecha de referencia: 2026-07-22
+Arquitectura versionada para coordinar Codex, Claude Code y GitHub Copilot en `prueba-plugin`, con prioridad en:
 
-Este paquete reorganiza la colaboración entre Codex, Claude y GitHub Copilot alrededor de una única fuente de verdad, carga progresiva de contexto, skills reutilizables, task-cards pequeñas, memoria curada, coordinación Scrum y gates de calidad.
+- reducir duplicidad de código, contratos, estado, UI, CSS, pruebas, documentación y prompts;
+- mantener la seguridad del diseñador PDF, multipágina, multidocumento, ownership y snapshot;
+- usar el modelo y esfuerzo de razonamiento mínimos que resuelvan cada tarea;
+- sostener memoria durable, Scrum ligero, task-cards y handoffs verificables;
+- impedir que varios agentes escriban sobre los mismos archivos sin aislamiento;
+- separar deuda propia, código vendorizado y documentación generada.
 
-## Objetivos
+## Inicio rápido
 
-- Reducir consumo de tokens y relecturas innecesarias.
-- Evitar duplicidad en código, estado, contratos, UI, CSS, pruebas, documentación, prompts y tareas.
-- Mantener el conocimiento durable sin convertir la memoria en un vertedero de logs.
-- Separar planificación, exploración, implementación, validación y revisión.
-- Usar el modelo más económico que pueda resolver cada tarea con calidad.
-- Proteger canvas, multipágina, snapshots, ownership, grupos de opciones y API pública.
+1. Copia el contenido de esta carpeta en la raíz de `prueba-plugin`.
+2. Lee `.ai/START.md`.
+3. Copia `.codex/config.toml.example` a `.codex/config.toml` y revisa permisos/modelos disponibles.
+4. Ejecuta `node tools/ai-quality/validate-ai-architecture.mjs`.
+5. Actualiza `.ai/scrum/SPRINT-CURRENT.md` y elige una task-card activa.
+6. Inicia el agente con `PROMPT_MAESTRO_CODEX_SISAD_PDFME.md` o uno de `.ai/prompts/`.
 
-## Inicio
+## Principio rector
 
-1. Leer `AGENTS.md`.
-2. Abrir `.ai/START.md`.
-3. Elegir una task-card o crearla con `.ai/templates/TASK-CARD.md`.
-4. Aplicar `.ai/MODEL-ROUTER.md`.
-5. Cargar solo la ruta, regla, playbook y skill necesarios.
-6. Ejecutar gates y actualizar memoria por delta.
+Una tarea tiene un solo propietario de escritura. Los agentes auxiliares investigan, prueban o revisan y devuelven evidencia resumida. Las reglas durables se versionan; la memoria automática nunca es la única fuente de verdad.
 
-## Fuente única de verdad
+## Documentos principales
 
-La carpeta `.ai/` es canónica. `AGENTS.md`, `CLAUDE.md` y `.github/copilot-instructions.md` son adaptadores delgados; no deben copiar el contenido completo de `.ai/`.
-
-## Contenido
-
-- `.ai/`: gobierno, memoria, Scrum, rutas, agentes, playbooks, templates y fuentes.
-- `.agents/skills/`: skills en el estándar abierto `SKILL.md`.
-- `.github/agents/`: perfiles Markdown para Copilot.
-- `.codex/agents/README.md`: plantillas de configuración Codex sin duplicar instrucciones.
+- `PLAN_MAESTRO_ARQUITECTURA_IA_SISAD_PDFME_V5.md`
+- `PROMPT_MAESTRO_CODEX_SISAD_PDFME.md`
+- `.ai/MODEL-ROUTER.md`
+- `.ai/DUPLICATION-POLICY.md`
+- `.ai/ORCHESTRATION.md`
+- `.ai/QUALITY-GATES.md`
+- `research/OFFICIAL-FINDINGS.md`
+- `research/CURRENT-DUPLICATION-BASELINE.md`

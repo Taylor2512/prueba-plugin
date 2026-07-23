@@ -1,8 +1,5 @@
 # Estado actual
 
-- SISAD PDFME es un componente React/Vite portable con Designer, Form, Viewer y Generator.
-- Invariantes críticas: multipágina, multidocumento, ownership, colores, grupos, opciones y snapshot.
-- La deduplicación previa redujo la lógica propia detectable a dos coincidencias no funcionales.
-- Riesgo principal: reintroducir duplicidad conceptual mediante nuevos wrappers, estados paralelos o documentación copiada.
+La prioridad activa es reducir los 16 bloques de duplicidad del código propio identificados por jscpd sin mezclar el fork `pdf-lib` ni el Markdown consolidado. La arquitectura IA V5 se encuentra lista para instalar y validar contra el repositorio real.
 
-Actualizar este archivo solo cuando cambie una condición durable del sistema.
+Próximo punto de control: generar baseline con los tres perfiles y comenzar DEDUP-001.

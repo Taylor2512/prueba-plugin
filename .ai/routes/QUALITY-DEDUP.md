@@ -1,22 +1,7 @@
-# Ruta — Calidad y deduplicación
+# Ruta — Calidad y duplicidad
 
-## Foco inicial
+Usa el parser jscpd, clasifica owned/vendor/generated, crea task-card y aplica la skill `sisad-dedup-triage`.
 
-- `scripts/quality`
-- `jscpd`
-- `knip`
-- `wrappers`
+## Salida mínima
 
-## Reglas
-
-- Clasificar antes de borrar.
-- No excluir código propio.
-- Medir duplicidad conceptual y textual.
-
-## Skill principal
-
-`sisad-dry-refactoring`
-
-## Salida
-
-Mapa de evidencia, decisión de patrón, cambios focales, gates y riesgos.
+Evidencia, cambio o recomendación, gates y memory delta.

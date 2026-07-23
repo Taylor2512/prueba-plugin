@@ -1,18 +1,21 @@
 # Métricas
 
-## Calidad base
+## Baseline 2026-07-22
 
-- Bloques duplicados propios: 2.
-- Líneas significativas repetidas: 20.
-- Reducción histórica: 97,18 % de bloques y 98,24 % de líneas.
+- 529 archivos analizados.
+- 103 clones globales.
+- 2.121 líneas duplicadas globales.
+- 61 clones en vendor `pdf-lib`.
+- 26 clones en documentación consolidada.
+- 16 clones en código propio; 292 líneas aproximadas por suma de bloques.
 
-## Métricas futuras
+## Registrar por sprint
 
-- clones nuevos por sprint;
-- archivos >700 líneas;
-- exports/archivos dead-code verificados;
-- wrappers sin valor;
-- fallos de snapshot/regresión;
-- tokens o créditos por task class;
-- retrabajo por task;
-- instrucciones duplicadas en Markdown.
+| Métrica | Inicio | Fin | Nota |
+|---|---:|---:|---|
+| clones owned | 16 |  |  |
+| líneas owned | 292 |  |  |
+| task-cards cerradas | 0 |  |  |
+| rework | 0 |  |  |
+| fallos post-review | 0 |  |  |
+| contexto inicial mediano |  |  |  |

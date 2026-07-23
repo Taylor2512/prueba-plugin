@@ -1,36 +1,26 @@
-# AGENTS.md — Contrato de trabajo SISAD PDFME
+# AGENTS.md — reglas raíz
 
-## Inicio obligatorio
+## Objetivo
 
-1. Lee `.ai/START.md`.
-2. Selecciona una sola task-card activa.
-3. Usa `.ai/MODEL-ROUTER.md` para elegir modelo y esfuerzo.
-4. Carga como máximo: 1 ruta + 1 regla + 1 playbook + skills estrictamente aplicables.
-5. Inspecciona código real antes de proponer abstracciones.
+Trabaja con cambios pequeños, verificables y reversibles. Conserva el comportamiento público de SISAD PDFME y reduce duplicidad real sin esconderla con exclusiones injustificadas.
 
-## Reglas permanentes
+## Antes de editar
 
-- Busca antes de crear: helper, hook, adapter, factory, registry, command, tipo o componente.
-- No ocultes clones excluyendo código propio del quality gate.
-- Un concepto de dominio debe tener un único propietario canónico.
-- Distingue duplicidad esencial de coincidencia accidental; no sobre-abstraigas.
-- No modifiques Moveable, Selecto, geometría global, snapshot o `pdf-lib` sin task-card específica.
-- Preserva `schemaUid`, documento, página, ownership, colores, grupos, opciones y `__designer`.
-- No mezcles análisis global con implementación focal.
-- No cierres una tarea sin evidencia: diff, lint/build/tests aplicables y riesgos.
-- Actualiza memoria solo con deltas durables; nunca pegues logs completos.
+1. Lee `.ai/START.md` y la task-card activa.
+2. Lee el `AGENTS.md` más cercano a los archivos objetivo.
+3. Confirma `git status --short`; no sobrescribas cambios ajenos.
+4. Clasifica la tarea con `.ai/MODEL-ROUTER.md` y `.ai/DUPLICATION-POLICY.md`.
+5. Define archivos permitidos, invariantes y comandos de cierre.
 
-## Gates mínimos
+## Límites
 
-```bash
-npm run lint
-npm run build
-npm run quality:duplicates:strict
-npm run quality
-```
+- Un solo agente escribe por task-card y worktree.
+- No modifiques `src/sisad-pdfme/pdf-lib` salvo tarea explícita de vendor.
+- No cambies Moveable, Selecto, geometría, snapshot o generator como efecto colateral.
+- No elimines APIs públicas solo porque Knip las marque como no usadas.
+- No introduzcas wrappers, hooks, factories o services que solo renombren una llamada.
+- No marques una tarea como terminada sin ejecutar gates focales.
 
-Agrega Vitest y Playwright focales según la superficie modificada.
+## Entrega
 
-## Finalización
-
-Entrega: archivos tocados, decisión de patrón, duplicidad retirada, pruebas ejecutadas, riesgos, pendientes y delta de memoria.
+Reporta: objetivo, archivos modificados, patrón aplicado, duplicidad eliminada, validaciones, riesgos y delta de memoria. Actualiza la task-card; solo modifica memoria durable cuando cambie una decisión, riesgo, métrica o estado estable.

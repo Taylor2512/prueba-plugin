@@ -1,24 +1,7 @@
-# Ruta — Canvas e interacción
+# Ruta — Canvas
 
-## Foco inicial
+Preserva coordenadas, zoom, scroll, page refs, Moveable/Selecto y overlays. Carga `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md`.
 
-- `Canvas/`
-- `Moveable`
-- `Selecto`
-- `selectionPolicy`
-- `coordinate`
-- `pageNumber`
+## Salida mínima
 
-## Reglas
-
-- No tocar geometría global sin baseline.
-- Seleccionado no implica editable.
-- Preservar página, zoom y scroll.
-
-## Skill principal
-
-`sisad-canvas-safety`
-
-## Salida
-
-Mapa de evidencia, decisión de patrón, cambios focales, gates y riesgos.
+Evidencia, cambio o recomendación, gates y memory delta.

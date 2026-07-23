@@ -1,17 +1,17 @@
 # Decisiones
 
-## ADR-001 — `.ai/` como fuente única
+## ADR-001 — reglas versionadas sobre memoria automática
 
-Los adapters de Codex, Claude y Copilot enlazan a `.ai/`; no replican reglas completas.
+Las normas obligatorias viven en AGENTS y `.ai`. La memoria automática puede recordar contexto, pero no reemplaza contratos del equipo.
 
-## ADR-002 — Skills para workflows
+## ADR-002 — perfiles de duplicidad separados
 
-Los procedimientos repetibles viven en `.agents/skills/` con carga progresiva.
+Código propio, vendor y documentación activa se miden por separado. Solo owned strict puede bloquear CI por defecto.
 
-## ADR-003 — Modelo por costo/riesgo
+## ADR-003 — un escritor por tarea
 
-Luna para tareas mecánicas, Terra para implementación diaria, Sol para ambigüedad y revisión de alto impacto.
+El paralelismo principal es read-heavy. Los escritores paralelos requieren worktrees y task-cards independientes.
 
-## ADR-004 — Duplicidad semántica primero
+## ADR-004 — skills canónicas compartidas
 
-Las métricas textuales son necesarias, pero el objetivo principal es eliminar fuentes paralelas de comportamiento, estado y contrato.
+Las skills viven en `.agents/skills`; los adaptadores de Codex, Claude y Copilot las reutilizan o enlazan, evitando copias divergentes.

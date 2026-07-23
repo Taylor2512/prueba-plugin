@@ -1,35 +1,32 @@
-# Router de modelos Codex — 2026-07-22
+# Router de modelos y esfuerzo
 
-## Modelos recomendados actuales
+## Objetivo
 
-| Modelo | Uso en SISAD PDFME | Esfuerzo recomendado |
-|---|---|---|
-| `gpt-5.6-sol` | arquitectura, refactor transversal, bugs ambiguos, revisión final de alto riesgo | medium; high/xhigh solo cuando existe complejidad real |
-| `gpt-5.6-terra` | implementación diaria, debugging, integración, pruebas y PRs | low o medium |
-| `gpt-5.6-luna` | auditorías repetibles, clasificación de clones, extracción, documentación delta, reportes estructurados | low |
-| `gpt-5.5` | fallback de generación anterior si 5.6 no está disponible | medium |
-| `gpt-5.3-codex-spark` | iteración textual casi instantánea y cambios pequeños; preview para Pro | low; no usar para juicio final |
+Minimizar costo y latencia sin degradar la seguridad del cambio. Los nombres son preferencias; verifica disponibilidad local y usa el fallback funcional.
 
-## Compatibilidad
+| Trabajo | Preferido | Esfuerzo | Fallback |
+|---|---|---|---|
+| inventario, clasificación, reportes, memoria | GPT-5.6 Luna | low | Terra low |
+| exploración y refactor claro | GPT-5.6 Terra | low/medium | Sol medium |
+| implementación diaria y pruebas | GPT-5.6 Terra | medium | Sol medium |
+| arquitectura o bug ambiguo | GPT-5.6 Sol | medium/high | Terra high |
+| canvas/snapshot/contrato público complejo | GPT-5.6 Sol | high/xhigh | Sol medium + revisión |
+| investigación documental primaria | Terra | medium | Luna low para extracción |
+| revisión final de alto riesgo | Sol | high | Terra high |
 
-`gpt-5.4` y `gpt-5.4-mini` pueden seguir visibles en algunas superficies. Úsalos solo como fallback: 5.4 para coordinación/implementación y 5.4 mini para exploración o subagentes de bajo costo. No diseñes el sistema alrededor de modelos deprecados.
+## Escalamiento
 
-## Decisión por tarea
+Escala un nivel cuando haya dos o más señales:
 
-- Reglas claras + resultado mecánico → Luna low.
-- Implementación con contexto estable → Terra medium.
-- Ambigüedad, tradeoffs, arquitectura o riesgo de regresión → Sol medium/high.
-- Revisión final independiente → Sol medium o Terra high según impacto.
-- Ultra → únicamente cuando hay subtareas verdaderamente independientes y el ahorro de tiempo compensa el costo multiagente.
+- hipótesis contradictorias;
+- tres dominios o más;
+- falta de pruebas de caracterización;
+- migración de snapshot/datos;
+- comportamiento visual difícil de reproducir;
+- cambio público o de seguridad.
 
-## Reglas de ahorro
+Desescala después del diagnóstico. No uses razonamiento alto para aplicar renombres, actualizar task-cards o ejecutar scripts conocidos.
 
-1. Usa el menor esfuerzo que pase los gates.
-2. No repitas análisis con Sol si Luna ya produjo un inventario verificable.
-3. No uses subagentes para trabajos secuenciales sobre los mismos archivos.
-4. Separa exploración read-only de implementación write.
-5. Finaliza con evidencia, no con razonamiento adicional innecesario.
+## Multiagente
 
-## Estado de versiones
-
-`GPT-5.3-Codex` y `GPT-5.2` fueron deprecados como modelos seleccionables para sesiones Codex autenticadas con ChatGPT; no confundirlos con `5.3 Codex Spark`.
+Usa subagentes solo si el trabajo es independiente y el resumen ahorra contexto al hilo principal. Evita paralelizar escritura sobre el mismo dominio. `Ultra` o `max` no son configuración habitual; requieren una nota de costo/beneficio en la task-card.

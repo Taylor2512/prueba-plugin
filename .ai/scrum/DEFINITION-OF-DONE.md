@@ -1,10 +1,11 @@
 # Definition of Done
 
-- implementación completa dentro del alcance;
-- no se introdujeron fuentes paralelas;
-- tests/gates ejecutados o limitación documentada;
-- diff revisado;
-- duplicidad antes/después medida cuando aplica;
-- documentación canónica actualizada por delta;
-- sprint board y handoff actualizados;
-- pendientes fuera de alcance registrados como backlog, no corregidos a escondidas.
+- aceptación funcional satisfecha;
+- diff limitado al alcance;
+- tests focales añadidos/actualizados y verdes;
+- lint/build/gates relevantes ejecutados;
+- medición antes/después registrada;
+- no se incrementa duplicidad propia;
+- task-card y board actualizados;
+- memory delta preparado;
+- reviewer no encuentra regresiones críticas.

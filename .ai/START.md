@@ -1,25 +1,29 @@
-# START — Punto de entrada único
+# START — entrada única
 
-## Secuencia
+Carga inicial obligatoria:
 
-1. `SCOPE.md`: confirma qué pertenece a SISAD PDFME.
-2. `MODEL-ROUTER.md`: selecciona modelo, esfuerzo y número de agentes.
-3. `scrum/SPRINT-CURRENT.md`: confirma prioridad y WIP.
-4. Task-card: objetivo, archivos, prohibiciones y criterios.
-5. `ROUTER.md`: carga solo el contexto necesario.
-6. Skill: ejecuta el workflow reutilizable.
-7. `governance/QUALITY-GATES.md`: valida.
-8. `playbooks/UPDATE-MEMORY.md`: persiste solo el delta durable.
+1. `AGENTS.md`.
+2. Esta página.
+3. `.ai/scrum/SPRINT-CURRENT.md`.
+4. Una task-card.
+5. El `AGENTS.md` local de la ruta objetivo.
 
-## Regla anti-loop
+Después selecciona solo una ruta en `.ai/routes/` y, cuando corresponda, una skill en `.agents/skills/`.
 
-Si después de dos rondas de búsqueda no aparece evidencia nueva, detén la exploración, resume lo conocido y divide la tarea. No vuelvas a leer documentación global para una task-card ya clasificada.
+## Flujo compacto
 
-## Regla anti-duplicidad
+```text
+orientar → clasificar → caracterizar → diseñar → implementar → validar → medir → cerrar
+```
 
-Antes de agregar algo nuevo responde:
+## Reglas de parada
 
-- ¿Ya existe el concepto?
-- ¿Cuál archivo es su propietario?
-- ¿Es un clon exacto, estructural, de estado, contrato, UI, mapping o proceso?
-- ¿Qué patrón elimina la causa sin crear una abstracción genérica innecesaria?
+Detente cuando:
+
+- la Definition of Done esté completa;
+- el cambio requiera archivos fuera del alcance;
+- falte evidencia para conservar comportamiento;
+- aparezca un conflicto con trabajo ajeno;
+- sea necesario modificar vendor o una frontera protegida no declarada.
+
+En esos casos, actualiza la task-card como `blocked` y crea una propuesta separada; no expandas silenciosamente el alcance.

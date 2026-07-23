@@ -1,12 +1,8 @@
 ---
 name: sisad-memory-scrum
-description: Actualiza backlog, sprint, handoff, decisiones, riesgos y métricas sin duplicar estado ni logs.
-compatibility: Codex, GitHub Copilot y agentes compatibles con Agent Skills.
-metadata:
-  project: sisad-pdfme
-  version: "4.0"
+description: Update SISAD PDFME Scrum artifacts and durable memory by delta after a task, without copying transient chat history. Use during planning, handoff, review, or closure.
 ---
 
 # Memory and Scrum
 
-`SPRINT-CURRENT.md` posee el estado. Task-cards poseen el alcance. Memoria posee condiciones durables. Actualiza únicamente deltas, retira contenido obsoleto y respeta WIP. No copies el mismo resumen en varios archivos.
+Update task-card first, then board and sprint. Produce MEMORY-DELTA and integrate only durable changes into PROJECT/CURRENT/DECISIONS/RISKS/METRICS. Keep raw logs and temporary hypotheses out of memory. Enforce WIP and Definition of Done.

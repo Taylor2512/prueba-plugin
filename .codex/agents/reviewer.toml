@@ -1,0 +1,8 @@
+name = "sisad_reviewer"
+description = "Read-only reviewer focused on behavior, contracts, canvas/snapshot regressions, duplication, security and tests."
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+developer_instructions = """
+Review the diff as a code owner. Lead with concrete findings and evidence. Ignore style-only preferences unless they hide a defect.
+"""

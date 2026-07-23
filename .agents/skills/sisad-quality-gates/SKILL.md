@@ -1,12 +1,8 @@
 ---
 name: sisad-quality-gates
-description: Ejecuta y documenta lint, build, jscpd, knip, unit y Playwright focales con evidencia reproducible.
-compatibility: Codex, GitHub Copilot y agentes compatibles con Agent Skills.
-metadata:
-  project: sisad-pdfme
-  version: "4.0"
+description: Select and execute the correct lint, build, unit, Playwright, duplication, architecture, and documentation gates for a SISAD PDFME task. Use before review or Done.
 ---
 
-# Quality Gates
+# Quality gates
 
-Selecciona gates por superficie. Separa fallo previo de regresión nueva. Registra comando, código de salida y resumen. No afirmes éxito sin ejecución. Usa `/review` o reviewer independiente en tareas L.
+Read the task-card and `.ai/QUALITY-GATES.md`. Run the smallest focal set during iteration, then the declared close set. Capture command, exit code and relevant summary. Do not claim green for commands not executed. Distinguish pre-existing failures from introduced failures with evidence.

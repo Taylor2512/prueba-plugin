@@ -1,12 +1,8 @@
 ---
 name: sisad-inspector-contract
-description: Consolida DetailView/ListView mediante contratos de widgets, property paths y access state canónico.
-compatibility: Codex, GitHub Copilot y agentes compatibles con Agent Skills.
-metadata:
-  project: sisad-pdfme
-  version: "4.0"
+description: Implement or review DetailView widgets using explicit property paths, read/write, visibility, disabled state, validation, and layout. Use for RightSidebar inspector work.
 ---
 
-# Inspector Contract
+# Inspector contract
 
-Cada control visible debe declarar lectura, escritura, path, visibilidad, disabled, validación y layout. El inspector consume estado de acceso canónico; no infiere bloqueo por CSS. Comparte campos comunes por composición y perfiles de familia.
+Every visible control must map to a real schema property and update path. Derive visibility from canonical schema profile/family, and disabled state from shared access state. Avoid widgets that only display editable-looking UI. Test mixed selection and narrow sidebar layouts.

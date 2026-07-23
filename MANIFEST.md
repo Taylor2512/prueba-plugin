@@ -1,87 +1,122 @@
-# Manifest
+# Manifest V5
+
+Total de archivos: 116
 
 ```text
-.agents/skills/sisad-canvas-safety/SKILL.md	583 bytes	12 lines
-.agents/skills/sisad-css-tailwind/SKILL.md	553 bytes	12 lines
-.agents/skills/sisad-dry-refactoring/SKILL.md	731 bytes	18 lines
-.agents/skills/sisad-inspector-contract/SKILL.md	551 bytes	12 lines
-.agents/skills/sisad-memory-scrum/SKILL.md	512 bytes	12 lines
-.agents/skills/sisad-pattern-selection/SKILL.md	581 bytes	12 lines
-.agents/skills/sisad-quality-gates/SKILL.md	499 bytes	12 lines
-.agents/skills/sisad-schema-family-refactor/SKILL.md	624 bytes	16 lines
-.agents/skills/sisad-skill-evaluation/SKILL.md	583 bytes	16 lines
-.agents/skills/sisad-snapshot-compatibility/SKILL.md	540 bytes	12 lines
-.agents/skills/sisad-task-execution/SKILL.md	633 bytes	20 lines
-.ai/CONTEXT-BUDGET.md	981 bytes	25 lines
-.ai/INDEX.md	574 bytes	17 lines
-.ai/MODEL-ROUTER.md	1989 bytes	35 lines
-.ai/ROUTER.md	705 bytes	16 lines
-.ai/SCOPE.md	1016 bytes	25 lines
-.ai/START.md	1014 bytes	25 lines
-.ai/agents/ARCHITECT.md	296 bytes	17 lines
-.ai/agents/CANVAS-SPECIALIST.md	307 bytes	17 lines
-.ai/agents/COORDINATOR.md	313 bytes	17 lines
-.ai/agents/EXPLORER-DRY.md	302 bytes	17 lines
-.ai/agents/IMPLEMENTER.md	281 bytes	17 lines
-.ai/agents/MEMORY-SCRUM.md	291 bytes	17 lines
-.ai/agents/QA-REVIEWER.md	303 bytes	17 lines
-.ai/architecture/ASSISTANT-SYSTEM.md	1166 bytes	33 lines
-.ai/architecture/DEDUP-BASELINE.md	1062 bytes	32 lines
-.ai/architecture/DUPLICATION-TAXONOMY.md	1767 bytes	37 lines
-.ai/architecture/LAYER-CONTRACTS.md	640 bytes	22 lines
-.ai/architecture/PATTERN-DECISION-MATRIX.md	1551 bytes	30 lines
-.ai/audits/CODE-DEDUP-CHECKLIST.md	372 bytes	12 lines
-.ai/audits/MARKDOWN-DEDUP-CHECKLIST.md	373 bytes	10 lines
-.ai/governance/ANTI-DUPLICATION.md	678 bytes	12 lines
-.ai/governance/ANTI-LOOP.md	496 bytes	10 lines
-.ai/governance/CHANGE-POLICY.md	486 bytes	23 lines
-.ai/governance/EVIDENCE-POLICY.md	308 bytes	17 lines
-.ai/governance/MEMORY-POLICY.md	761 bytes	31 lines
-.ai/governance/QUALITY-GATES.md	621 bytes	26 lines
-.ai/memory/CURRENT.md	516 bytes	8 lines
-.ai/memory/DECISIONS.md	599 bytes	17 lines
-.ai/memory/HANDOFF.md	463 bytes	13 lines
-.ai/memory/METRICS.md	441 bytes	18 lines
-.ai/memory/README.md	368 bytes	11 lines
-.ai/memory/RISKS.md	648 bytes	11 lines
-.ai/playbooks/CODE-REVIEW.md	341 bytes	13 lines
-.ai/playbooks/EXECUTE-TASK.md	284 bytes	10 lines
-.ai/playbooks/REFACTOR-DUPLICATION.md	411 bytes	11 lines
-.ai/playbooks/REMOVE-DEAD-CODE.md	372 bytes	8 lines
-.ai/playbooks/SELECT-PATTERN.md	405 bytes	8 lines
-.ai/playbooks/SPRINT-PLANNING.md	295 bytes	9 lines
-.ai/playbooks/UPDATE-MEMORY.md	327 bytes	9 lines
-.ai/provider-adapters/README.md	636 bytes	21 lines
-.ai/research/AGENT-SKILLS-RESEARCH.md	1060 bytes	23 lines
-.ai/research/CODEX-MODELS-2026-07-22.md	932 bytes	19 lines
-.ai/research/SOURCE-REPORTS.md	549 bytes	6 lines
-.ai/routes/CANVAS.md	395 bytes	24 lines
-.ai/routes/CSS-TAILWIND.md	337 bytes	22 lines
-.ai/routes/INSPECTOR.md	390 bytes	22 lines
-.ai/routes/INTEGRATION.md	332 bytes	22 lines
-.ai/routes/QUALITY-DEDUP.md	350 bytes	22 lines
-.ai/routes/RUNTIME.md	350 bytes	22 lines
-.ai/routes/SCHEMAS.md	396 bytes	22 lines
-.ai/routes/SNAPSHOT.md	362 bytes	21 lines
-.ai/scrum/DEFINITION-OF-DONE.md	401 bytes	10 lines
-.ai/scrum/DEFINITION-OF-READY.md	254 bytes	11 lines
-.ai/scrum/PRODUCT-BACKLOG.md	529 bytes	10 lines
-.ai/scrum/README.md	492 bytes	19 lines
-.ai/scrum/RETROSPECTIVE.md	290 bytes	12 lines
-.ai/scrum/SPRINT-CURRENT.md	455 bytes	11 lines
-.ai/templates/ADR.md	174 bytes	10 lines
-.ai/templates/EVIDENCE.md	152 bytes	10 lines
-.ai/templates/MEMORY-DELTA.md	156 bytes	8 lines
-.ai/templates/REFACTOR-REPORT.md	191 bytes	19 lines
-.ai/templates/TASK-CARD.md	287 bytes	28 lines
-.codex/agents/README.md	884 bytes	24 lines
-.github/agents/sisad-architect.agent.md	345 bytes	7 lines
-.github/agents/sisad-dry-auditor.agent.md	343 bytes	7 lines
-.github/agents/sisad-scrum-coordinator.agent.md	344 bytes	7 lines
-.github/agents/sisad-test-specialist.agent.md	308 bytes	6 lines
-.github/copilot-instructions.md	523 bytes	12 lines
-AGENTS.md	1418 bytes	36 lines
-CLAUDE.md	401 bytes	8 lines
-PLAN_MAESTRO_ARQUITECTURA_IA_SISAD_PDFME_2026-07-22.md	8546 bytes	214 lines
-README.md	1626 bytes	35 lines
+.agents/skills/sisad-dedup-triage/SKILL.md
+.agents/skills/sisad-designer-safety/SKILL.md
+.agents/skills/sisad-dry-refactor/SKILL.md
+.agents/skills/sisad-inspector-contract/SKILL.md
+.agents/skills/sisad-memory-scrum/SKILL.md
+.agents/skills/sisad-orchestrate-task/SKILL.md
+.agents/skills/sisad-quality-gates/SKILL.md
+.agents/skills/sisad-research-verify/SKILL.md
+.agents/skills/sisad-schema-plugin/SKILL.md
+.ai/AGENTS.md
+.ai/CONTEXT-POLICY.md
+.ai/DUPLICATION-POLICY.md
+.ai/MODEL-ROUTER.md
+.ai/ORCHESTRATION.md
+.ai/OWNER-MAP.md
+.ai/QUALITY-GATES.md
+.ai/SECURITY.md
+.ai/START.md
+.ai/VENDOR-GENERATED-POLICY.md
+.ai/memory/CURRENT.md
+.ai/memory/DECISIONS.md
+.ai/memory/HANDOFF.md
+.ai/memory/MEMORY-DELTA.template.md
+.ai/memory/METRICS.md
+.ai/memory/PROJECT.md
+.ai/memory/RISKS.md
+.ai/patterns/DUPLICATION-TAXONOMY.md
+.ai/patterns/PATTERN-DECISION-MATRIX.md
+.ai/patterns/SINGLE-SOURCE-OF-TRUTH.md
+.ai/prompts/ANALYZE_ONLY.prompt.md
+.ai/prompts/HANDOFF.prompt.md
+.ai/prompts/IMPLEMENT_TASK.prompt.md
+.ai/prompts/MASTER_EXECUTION.prompt.md
+.ai/prompts/RETROSPECTIVE.prompt.md
+.ai/prompts/REVIEW_DIFF.prompt.md
+.ai/prompts/SPRINT_PLANNING.prompt.md
+.ai/prompts/TRIAGE_JSCPD.prompt.md
+.ai/prompts/UPDATE_MEMORY.prompt.md
+.ai/routes/canvas.md
+.ai/routes/docs-memory.md
+.ai/routes/inspector.md
+.ai/routes/integration.md
+.ai/routes/quality-dedup.md
+.ai/routes/runtime-snapshot.md
+.ai/routes/schemas.md
+.ai/scrum/BOARD.md
+.ai/scrum/DEFINITION-OF-DONE.md
+.ai/scrum/DEFINITION-OF-READY.md
+.ai/scrum/PRODUCT-BACKLOG.md
+.ai/scrum/PRODUCT-GOAL.md
+.ai/scrum/RETROSPECTIVE.md
+.ai/scrum/SPRINT-CURRENT.md
+.ai/scrum/task-cards/DEDUP-001-smart-placement.md
+.ai/scrum/task-cards/DEDUP-002-keyboard-command-registry.md
+.ai/scrum/task-cards/DEDUP-003-comments-overlay.md
+.ai/scrum/task-cards/DEDUP-004-inline-edit-overlay.md
+.ai/scrum/task-cards/DEDUP-005-right-sidebar-actions.md
+.ai/scrum/task-cards/DEDUP-006-selection-commands.md
+.ai/scrum/task-cards/DEDUP-007-schema-clipboard.md
+.ai/scrum/task-cards/DEDUP-008-inspector-taxonomy.md
+.ai/scrum/task-cards/DEDUP-009-custom-field-modal.md
+.ai/scrum/task-cards/DEDUP-010-action-chrome.md
+.ai/scrum/task-cards/DOCS-001-canonical-common-docs.md
+.ai/scrum/task-cards/QUALITY-001-jscpd-profiles.md
+.ai/scrum/task-cards/TEMPLATE.md
+.claude/README.md
+.claude/agents/sisad-explorer.md
+.claude/agents/sisad-reviewer.md
+.claude/settings.json.example
+.codex/README.md
+.codex/agents/dedup-analyst.toml
+.codex/agents/docs-researcher.toml
+.codex/agents/explorer.toml
+.codex/agents/implementer.toml
+.codex/agents/qa.toml
+.codex/agents/reviewer.toml
+.codex/config.toml.example
+.codex/hooks/pre_tool_use_policy.py
+.codex/hooks/session_start.py
+.codex/hooks/stop_summary.py
+.codex/hooks.json.example
+.github/agents/sisad-dry-reviewer.agent.md
+.github/agents/sisad-task-planner.agent.md
+.github/copilot-instructions.md
+.github/instructions/canvas.instructions.md
+.github/instructions/quality.instructions.md
+.github/instructions/schemas.instructions.md
+.github/prompts/implement-task.prompt.md
+.github/prompts/triage-jscpd.prompt.md
+AGENTS.md
+CLAUDE.md
+INSTALL-CHECKLIST.md
+MANIFEST.md
+MIGRATION-FROM-V4.md
+PLAN_MAESTRO_ARQUITECTURA_IA_SISAD_PDFME_V5.md
+PROMPT_MAESTRO_CODEX_SISAD_PDFME.md
+README.md
+ROLLBACK.md
+SHA256SUMS.txt
+configs/jscpd-docs.json
+configs/jscpd-owned.json
+configs/jscpd-vendor.json
+research/CURRENT-DUPLICATION-BASELINE.md
+research/MODEL-MATRIX.md
+research/OFFICIAL-FINDINGS.md
+research/SOURCE-REGISTER.md
+research/V4-AUDIT.md
+src/sisad-pdfme/AGENTS.md
+src/sisad-pdfme/pdf-lib/AGENTS.md
+src/sisad-pdfme/schemas/AGENTS.md
+src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md
+src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md
+tools/ai-quality/README.md
+tools/ai-quality/check-markdown-duplicates.mjs
+tools/ai-quality/parse-jscpd-report.mjs
+tools/ai-quality/validate-ai-architecture.mjs
 ```

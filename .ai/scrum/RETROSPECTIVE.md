@@ -2,11 +2,16 @@
 
 ## Mantener
 
-- task-cards pequeñas;
-- evidencia y gates;
-- routing por costo/riesgo;
-- fuente única documental.
+- Evidencia antes del parche.
 
 ## Mejorar
 
-Registrar aquí únicamente aprendizajes que cambien el proceso. Cuando una regla se estabilice, moverla a governance y eliminarla de esta lista.
+- Registrar contexto inicial y archivos abiertos para comparar consumo.
+
+## Detener
+
+- Copiar reportes completos dentro del chat.
+
+## Acciones
+
+Máximo cinco acciones, cada una con propietario, fecha objetivo y señal de cierre.

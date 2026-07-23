@@ -1,22 +1,7 @@
-# Ruta — Inspector y sidebars
+# Ruta — Inspector
 
-## Foco inicial
+Todo widget visible declara read/write/visible/disabled/validate. No dupliques inferencias de access state.
 
-- `RightSidebar`
-- `DetailView`
-- `ListView`
-- `detailWidgetRegistry`
+## Salida mínima
 
-## Reglas
-
-- Cada widget declara read/write/path/visibility.
-- No inferir estado desde CSS.
-- Compartir superficies por composición.
-
-## Skill principal
-
-`sisad-inspector-contract`
-
-## Salida
-
-Mapa de evidencia, decisión de patrón, cambios focales, gates y riesgos.
+Evidencia, cambio o recomendación, gates y memory delta.

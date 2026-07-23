@@ -1,0 +1,9 @@
+{
+  "path": ["src/sisad-pdfme/pdf-lib"],
+  "mode": "mild",
+  "minLines": 6,
+  "minTokens": 50,
+  "reporters": ["console", "json"],
+  "output": "reports/jscpd-vendor",
+  "threshold": 100
+}

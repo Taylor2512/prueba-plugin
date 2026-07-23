@@ -1,22 +1,7 @@
-# Ruta — Integración portable
+# Ruta — Integración
 
-## Foco inicial
+El core no conoce hosts. Usa config y adapters; evita props sueltas y imports internos.
 
-- `config/`
-- `adapters/`
-- `react/`
-- `integration/`
+## Salida mínima
 
-## Reglas
-
-- Core no conoce host.
-- Adapter para datos externos.
-- Facade pública delgada.
-
-## Skill principal
-
-`sisad-pattern-selection`
-
-## Salida
-
-Mapa de evidencia, decisión de patrón, cambios focales, gates y riesgos.
+Evidencia, cambio o recomendación, gates y memory delta.

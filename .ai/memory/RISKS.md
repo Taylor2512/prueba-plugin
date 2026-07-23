@@ -1,11 +1,11 @@
 # Riesgos activos
 
-| Riesgo | Mitigación |
-|---|---|
-| documentación vuelve a crecer y duplicarse | owner canónico + links + auditoría mensual |
-| demasiadas skills saturan discovery | mantener descripciones cortas y catálogo ≤12 skills |
-| subagentes elevan consumo | máximo 3 y solo subtareas independientes |
-| jscpd se “mejora” excluyendo código | exclusiones gobernadas y revisadas |
-| dead code falsos positivos por API pública | verificar entrypoints, registries y consumidores |
-| over-engineering por patrones | matriz de decisión y evidencia de ritmo de cambio |
-| memoria obsoleta | delta por task + revisión de sprint |
+| Riesgo | Señal | Mitigación |
+|---|---|---|
+| abstracción DRY excesiva | helper con modes/booleans crecientes | matriz de patrones + review |
+| regresión de canvas | cambio en coords/scroll/transform | AGENTS local + Playwright |
+| snapshot incompatible | pérdida de ids/owner/groups | round-trip focal |
+| ruido de vendor | clones dominan métricas | perfiles separados |
+| contexto inflado | agentes leen consolidaciones | context policy + parser |
+| memoria divergente | varios archivos repiten estado | memory delta + owner único |
+| conflictos multiagente | dos writers en mismos archivos | worktrees + WIP |
