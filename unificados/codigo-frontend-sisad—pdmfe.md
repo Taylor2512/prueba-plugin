@@ -1400,7 +1400,7 @@ export default defineConfig({
       '@sisad-pdfme/schemas': path.resolve(__dirname, 'src/sisad-pdfme/schemas'),
       // Point to the browser entry so Vite resolves a file, not a directory
       '@sisad-pdfme/converter': path.resolve(__dirname, 'src/sisad-pdfme/converter/index.browser.ts'),
-      '@sisad-pdfme/pdf-lib': path.resolve(__dirname, 'src/sisad-pdfme/pdf-lib'),
+      'pdf-lib': path.resolve(__dirname, 'src/sisad-pdfme/pdf-lib'),
     }
   },
   server: {
@@ -1758,7 +1758,7 @@ module.exports = [
       "@sisad-pdfme/schemas": [
         "./src/sisad-pdfme/schemas/index.ts"
       ],
-      "@sisad-pdfme/pdf-lib": [
+      "pdf-lib": [
         "./src/sisad-pdfme/pdf-lib/index.ts"
       ],
       "@sisad-pdfme/ui": [
@@ -7936,7 +7936,7 @@ const SISAD_PDFME_DEPS = [
   "@sisad-pdfme/commands",
   "@sisad-pdfme/contracts",
   "@sisad-pdfme/schemas",
-  "@sisad-pdfme/pdf-lib",
+  "pdf-lib",
 ];
 
 const DOMPURIFY_SHIM = resolvePath("./src/vendor/dompurify.ts");
@@ -8062,7 +8062,7 @@ export default defineConfig(({ mode }) => {
          * @sisad-pdfme/ui
          * @sisad-pdfme/common
          * @sisad-pdfme/schemas/text/index
-         * @sisad-pdfme/pdf-lib
+         * pdf-lib
          */
         {
           find: /^@sisad-pdfme$/,
@@ -8091,7 +8091,7 @@ export default defineConfig(({ mode }) => {
       /**
        * No deduplicar pdf-lib aquí porque el proyecto tiene:
        * - pdf-lib en node_modules
-       * - @sisad-pdfme/pdf-lib como fork local
+       * - pdf-lib como fork local
        */
       dedupe: ["react", "react-dom"],
     },
@@ -8311,7 +8311,7 @@ export default defineConfig({
       '@sisad-pdfme/converter': resolve(__dirname, 'src/sisad-pdfme/converter/index.browser.ts'),
       '@sisad-pdfme/generator': resolve(__dirname, 'src/sisad-pdfme/generator'),
       '@sisad-pdfme/schemas': resolve(__dirname, 'src/sisad-pdfme/schemas'),
-      '@sisad-pdfme/pdf-lib': resolve(__dirname, 'src/sisad-pdfme/pdf-lib'),
+      'pdf-lib': resolve(__dirname, 'src/sisad-pdfme/pdf-lib'),
       '@sisad-pdfme/ui': resolve(__dirname, 'src/sisad-pdfme/ui'),
       'antd/es/theme/internal': resolve(__dirname, 'node_modules/antd/es/theme/internal.js'),
     },
@@ -16865,7 +16865,7 @@ import type {
   PluginStrategyDefinition,
   SchemaInspectorSection,
 } from '../contracts/index.js';
-import type { PDFPage, PDFDocument } from '@sisad-pdfme/pdf-lib';
+import type { PDFPage, PDFDocument } from 'pdf-lib';
 import type { ThemeConfig, GlobalToken as AntGlobalToken } from 'antd';
 import type { WidgetProps as _PropPanelWidgetProps, Schema as _PropPanelSchema } from 'form-render';
 import {
@@ -16913,7 +16913,7 @@ export type ChangeSchemas = (objs: ChangeSchemaItem[]) => void;
  * @property {string} value The string used for PDF rendering.
  * @property {T} schema Extended Schema object for rendering.
  * @property {BasePdf} basePdf Base PDF object for rendering.
- * @property {typeof import('@sisad-pdfme/pdf-lib')} pdfLib The pdf-lib library used for rendering.
+ * @property {typeof import('pdf-lib')} pdfLib The pdf-lib library used for rendering.
  * @property {PDFDocument} pdfDoc PDFDocument object from pdf-lib.
  * @property {PDFPage} page PDFPage object from pdf-lib.
  * @property {GeneratorOptions} options Options object passed from the generator.
@@ -16923,7 +16923,7 @@ export interface PDFRenderProps<T extends Schema> {
   value: string;
   schema: T;
   basePdf: BasePdf;
-  pdfLib: typeof import('@sisad-pdfme/pdf-lib');
+  pdfLib: typeof import('pdf-lib');
   pdfDoc: PDFDocument;
   page: PDFPage;
   options: GeneratorOptions;
@@ -19790,7 +19790,7 @@ export {
 - **Símbolos detectados:** `export function: img2pdf`, `export type/class: Img2PdfOptions`, `function: detectImageType`
 
 ```typescript
-import { PDFDocument } from '@sisad-pdfme/pdf-lib';
+import { PDFDocument } from 'pdf-lib';
 import { mm2pt } from '@sisad-pdfme/common';
 import type { ImageType } from './types.js';
 
@@ -21370,7 +21370,7 @@ export const TOOL_NAME = 'sisad-pdfme (https://sisad-pdfme.com/)';
 - **Estado:** `completo`
 
 ```typescript
-import * as pdfLib from '@sisad-pdfme/pdf-lib';
+import * as pdfLib from 'pdf-lib';
 import type { GenerateProps, Schema, PDFRenderProps, Template } from '@sisad-pdfme/common';
 import {
   checkGenerateProps,
@@ -21565,7 +21565,7 @@ import {
   BasePdf,
 } from '@sisad-pdfme/common';
 import { builtInPlugins } from '@sisad-pdfme/schemas';
-import { PDFPage, PDFDocument, PDFEmbeddedPage, TransformationMatrix } from '@sisad-pdfme/pdf-lib';
+import { PDFPage, PDFDocument, PDFEmbeddedPage, TransformationMatrix } from 'pdf-lib';
 import { TOOL_NAME } from './constants.js';
 import type { EmbedPdfBox } from './types.js';
 
@@ -26387,7 +26387,7 @@ export const createSchemaInspectorConfig = (
 import type * as CSS from 'csstype';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { cmyk, degrees, degreesToRadians, rgb, Color } from '@sisad-pdfme/pdf-lib';
+import { cmyk, degrees, degreesToRadians, rgb, Color } from 'pdf-lib';
 import { Schema, mm2pt, Mode, isHexValid, ColorType } from '@sisad-pdfme/common';
 import type { IconNode } from 'lucide-react';
 import { getDynamicHeightsForTable as _getDynamicHeightsForTable } from './tables/dynamicTemplate.js';
@@ -50645,7 +50645,7 @@ import { PDFRenderProps } from '@sisad-pdfme/common';
 import { convertForPdfLayoutProps } from '../utils.js';
 import type { BarcodeSchema } from './types.js';
 import { createBarCode, validateBarcodeInput } from './helper.js';
-import { PDFImage } from '@sisad-pdfme/pdf-lib';
+import { PDFImage } from 'pdf-lib';
 
 const getBarcodeCacheKey = (schema: BarcodeSchema, value: string) => {
   return `${schema.type}${schema.backgroundColor}${schema.barColor}${schema.textColor}${value}${schema.includetext}`;
@@ -52320,7 +52320,7 @@ export interface DateSchema extends Schema {
 
 ```typescript
 import type { ChangeEvent } from 'react';
-import type { PDFImage } from '@sisad-pdfme/pdf-lib';
+import type { PDFImage } from 'pdf-lib';
 import type { Plugin } from '@sisad-pdfme/common';
 import type { Schema } from '@sisad-pdfme/common';
 import type * as CSS from 'csstype';
@@ -56652,7 +56652,7 @@ export default lineSchema;
 import { Plugin, Schema, mm2pt } from '@sisad-pdfme/common';
 import { HEX_COLOR_PATTERN } from '../constants.js';
 import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '../utils.js';
-import { toRadians } from '@sisad-pdfme/pdf-lib';
+import { toRadians } from 'pdf-lib';
 import { Circle, Square } from 'lucide-react';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
@@ -62568,7 +62568,7 @@ export default textSchema;
 - **Símbolos detectados:** `export const: pdfRender`
 
 ```typescript
-import { PDFFont, PDFDocument } from '@sisad-pdfme/pdf-lib';
+import { PDFFont, PDFDocument } from 'pdf-lib';
 import type { Font as FontKitFont } from 'fontkit';
 import type { TextSchema } from './types.js';
 import {

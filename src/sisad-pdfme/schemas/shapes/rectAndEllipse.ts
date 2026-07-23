@@ -1,7 +1,7 @@
 import { Plugin, Schema, mm2pt } from '@sisad-pdfme/common';
 import { HEX_COLOR_PATTERN } from '../constants.js';
 import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '../utils.js';
-import { toRadians } from '@sisad-pdfme/pdf-lib';
+import { toRadians } from 'pdf-lib';
 import { Circle, Square } from 'lucide-react';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { hexColorFields } from '../propPanel/commonInspectorFields.js';

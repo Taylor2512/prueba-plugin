@@ -13,7 +13,6 @@
  */
 
 import { z } from 'zod';
-import { Buffer } from 'buffer';
 import {
   Schema,
   Template,
@@ -47,6 +46,42 @@ export const cloneDeep = structuredClone;
 
 /** Elimina duplicados preservando el primer orden de aparición. */
 const uniq = <T,>(array: Array<T>) => Array.from(new Set(array));
+
+/** Convierte bytes a base64 sin depender del `Buffer` de Node. */
+const uint8ArrayToBase64 = (bytes: Uint8Array): string => {
+  if (typeof globalThis.btoa === 'function') {
+    const chunkSize = 0x8000;
+    let binary = '';
+    for (let offset = 0; offset < bytes.length; offset += chunkSize) {
+      binary += String.fromCharCode(...bytes.subarray(offset, offset + chunkSize));
+    }
+    return globalThis.btoa(binary);
+  }
+
+  if (typeof globalThis.Buffer !== 'undefined') {
+    return globalThis.Buffer.from(bytes).toString('base64');
+  }
+
+  throw Error('[@sisad-pdfme/common] base64 encoding is not available in this environment.');
+};
+
+/** Convierte base64 a bytes sin depender del `Buffer` de Node. */
+const base64ToUint8Array = (base64: string): Uint8Array => {
+  if (typeof globalThis.atob === 'function') {
+    const binary = globalThis.atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i += 1) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return bytes;
+  }
+
+  if (typeof globalThis.Buffer !== 'undefined') {
+    return new Uint8Array(globalThis.Buffer.from(base64, 'base64'));
+  }
+
+  throw Error('[@sisad-pdfme/common] base64 decoding is not available in this environment.');
+};
 
 /** Devuelve el nombre de la única fuente marcada como fallback. */
 export const getFallbackFontName = (font: Font) => {
@@ -171,27 +206,17 @@ export const getB64BasePdf = async (
   }
 
   const uint8Array = customPdf instanceof Uint8Array ? customPdf : new Uint8Array(customPdf);
-  return 'data:application/pdf;base64,' + Buffer.from(uint8Array).toString('base64');
+  return 'data:application/pdf;base64,' + uint8ArrayToBase64(uint8Array);
 };
 
 /** Type guard para detectar basePdf tipo BlankPdf. */
 export const isBlankPdf = (basePdf: BasePdf): basePdf is BlankPdf =>
   BlankPdfSchema.safeParse(basePdf).success;
 
-/** Decodifica base64 a string binario. */
-const getByteString = (base64: string) => Buffer.from(base64, 'base64').toString('binary');
-
 /** Convierte base64/data URI a Uint8Array. */
 export const b64toUint8Array = (base64: string) => {
   const data = base64.split(';base64,')[1] ? base64.split(';base64,')[1] : base64;
-
-  const byteString = getByteString(data);
-
-  const unit8arr = new Uint8Array(byteString.length);
-  for (let i = 0; i < byteString.length; i += 1) {
-    unit8arr[i] = byteString.charCodeAt(i);
-  }
-  return unit8arr;
+  return base64ToUint8Array(data);
 };
 
 /** Extrae nombres de fuentes usados por los schemas. */

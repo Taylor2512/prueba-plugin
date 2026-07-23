@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
-import PDFDocument from '@/sisad-pdfme/pdf-lib/api/PDFDocument';
-import * as moduleUnderTest from '@/sisad-pdfme/pdf-lib/api/form/PDFButton';
-import PDFButton from '@/sisad-pdfme/pdf-lib/api/form/PDFButton';
+import PDFDocument from 'pdf-lib/api/PDFDocument';
+import * as moduleUnderTest from 'pdf-lib/api/form/PDFButton';
+import PDFButton from 'pdf-lib/api/form/PDFButton';
 
 describe('sisad-pdfme/pdf-lib/api/form/PDFButton.ts', ()=>{
   it('imports without crashing', ()=>{

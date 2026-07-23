@@ -3448,7 +3448,7 @@ index 2bad1ff..e541180 100644
 +++ b/src/sisad-pdfme/schemas/graphics/image.ts
 @@ -1,4 +1,3 @@
 -import type { ChangeEvent } from 'react';
- import type { PDFImage } from '@sisad-pdfme/pdf-lib';
+ import type { PDFImage } from 'pdf-lib';
  import type { Plugin } from '@sisad-pdfme/common';
  import type { Schema } from '@sisad-pdfme/common';
 @@ -9,12 +8,12 @@ import {
@@ -3983,7 +3983,7 @@ index 0e0c4ba..2adcfba 100644
 --- a/src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts
 +++ b/src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts
 @@ -4,6 +4,7 @@ import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '../ut
- import { toRadians } from '@sisad-pdfme/pdf-lib';
+ import { toRadians } from 'pdf-lib';
  import { Circle, Square } from 'lucide-react';
  import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 +import { hexColorFields } from '../propPanel/commonInspectorFields.js';

@@ -10,7 +10,6 @@ import {
   getDefaultFont,
   DEFAULT_FONT_NAME,
 } from '@sisad-pdfme/common';
-import { Buffer } from 'buffer';
 import type { TextSchema, FontWidthCalcValues } from './types.js';
 import {
   DEFAULT_FONT_SIZE,
@@ -128,13 +127,8 @@ export const getFontKitFont = async (
       : b64toUint8Array(fontData);
   }
 
-  // Convert fontData to Buffer if it's not already a Buffer
-  let fontDataBuffer: Buffer;
-  if (fontData instanceof Buffer) {
-    fontDataBuffer = fontData;
-  } else {
-    fontDataBuffer = Buffer.from(fontData as ArrayBufferLike);
-  }
+  // Normalize font bytes to Uint8Array before handing them to fontkit.
+  const fontDataBuffer = fontData instanceof Uint8Array ? fontData : new Uint8Array(fontData);
   const fontKitFont = fontkit.create(fontDataBuffer) as fontkit.Font;
   _cache.set(cacheKey, fontKitFont);
 

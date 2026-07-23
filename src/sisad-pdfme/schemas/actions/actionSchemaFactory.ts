@@ -6,7 +6,7 @@
  * Note/attachment use their own container helpers below.
  */
 import type { ActionSchemaKind, SemanticTone, SisadSchemaBase } from '../shared/schemaTypes.js';
-import type { PDFPage, RGB } from '@sisad-pdfme/pdf-lib';
+import type { PDFPage, RGB } from 'pdf-lib';
 import { applyFieldChrome } from '../shared/fieldChrome.js';
 import { createSchemaPart } from '../shared/schemaDom.js';
 

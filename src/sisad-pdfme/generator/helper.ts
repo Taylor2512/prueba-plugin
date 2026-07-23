@@ -12,7 +12,7 @@ import {
   BasePdf,
 } from '@sisad-pdfme/common';
 import { builtInPlugins } from '@sisad-pdfme/schemas';
-import { PDFPage, PDFDocument, PDFEmbeddedPage, TransformationMatrix } from '@sisad-pdfme/pdf-lib';
+import { PDFPage, PDFDocument, PDFEmbeddedPage, TransformationMatrix } from 'pdf-lib';
 import { TOOL_NAME } from './constants.js';
 import type { EmbedPdfBox } from './types.js';
 

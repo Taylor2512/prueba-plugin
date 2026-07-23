@@ -1,4 +1,4 @@
-import { PDFDocument } from '@sisad-pdfme/pdf-lib';
+import { PDFDocument } from 'pdf-lib';
 import { mm2pt } from '@sisad-pdfme/common';
 import type { ImageType } from './types.js';
 

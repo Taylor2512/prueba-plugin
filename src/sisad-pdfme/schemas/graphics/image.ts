@@ -1,4 +1,4 @@
-import type { PDFImage } from '@sisad-pdfme/pdf-lib';
+import type { PDFImage } from 'pdf-lib';
 import type { Plugin } from '@sisad-pdfme/common';
 import type { Schema } from '@sisad-pdfme/common';
 import type * as CSS from 'csstype';

@@ -1,7 +1,7 @@
 import type * as CSS from 'csstype';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { cmyk, degrees, degreesToRadians, rgb, Color } from '@sisad-pdfme/pdf-lib';
+import { cmyk, degrees, degreesToRadians, rgb, Color } from 'pdf-lib';
 import { Schema, mm2pt, Mode, isHexValid, ColorType } from '@sisad-pdfme/common';
 import type { IconNode } from 'lucide-react';
 import { getDynamicHeightsForTable as _getDynamicHeightsForTable } from './tables/dynamicTemplate.js';

@@ -1,4 +1,4 @@
-import { PDFFont, PDFDocument } from '@sisad-pdfme/pdf-lib';
+import { PDFFont, PDFDocument } from 'pdf-lib';
 import type { Font as FontKitFont } from 'fontkit';
 import type { TextSchema } from './types.js';
 import {

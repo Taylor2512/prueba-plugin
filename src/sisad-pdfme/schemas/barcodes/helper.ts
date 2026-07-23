@@ -1,6 +1,5 @@
 import { b64toUint8Array } from '@sisad-pdfme/common';
 import bwipjs, { RenderOptions } from 'bwip-js';
-import { Buffer } from 'buffer';
 import { BARCODE_TYPES, DEFAULT_BARCODE_INCLUDETEXT } from './constants.js';
 import { BarcodeTypes } from './types.js';
 
@@ -136,7 +135,7 @@ export const createBarCode = async (arg: {
   barColor?: string;
   textColor?: string;
   includetext?: boolean;
-}): Promise<Buffer> => {
+}): Promise<Uint8Array> => {
   const {
     type,
     input,
@@ -164,7 +163,7 @@ export const createBarCode = async (arg: {
   if (barColor) bwipjsArg.barcolor = mapHexColorForBwipJsLib(barColor);
   if (textColor) bwipjsArg.textcolor = mapHexColorForBwipJsLib(textColor);
 
-  let res: Buffer;
+  let res: Uint8Array;
 
   if (typeof window !== 'undefined') {
     const canvas = document.createElement('canvas');
@@ -174,11 +173,11 @@ export const createBarCode = async (arg: {
     };
     bwipjsModule.toCanvas(canvas, bwipjsArg);
     const dataUrl = canvas.toDataURL('image/png');
-    res = Buffer.from(b64toUint8Array(dataUrl).buffer);
+    res = b64toUint8Array(dataUrl);
   } else {
     // Use a type assertion to safely call toBuffer
     const bwipjsModule = bwipjs as unknown as {
-      toBuffer(options: RenderOptions): Promise<Buffer>;
+      toBuffer(options: RenderOptions): Promise<Uint8Array>;
     };
     res = await bwipjsModule.toBuffer(bwipjsArg);
   }

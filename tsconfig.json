@@ -39,7 +39,7 @@
       "@sisad-pdfme/schemas": [
         "./src/sisad-pdfme/schemas/index.ts"
       ],
-      "@sisad-pdfme/pdf-lib": [
+      "pdf-lib": [
         "./src/sisad-pdfme/pdf-lib/index.ts"
       ],
       "@sisad-pdfme/ui": [

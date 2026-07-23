@@ -134,7 +134,7 @@ const SISAD_PDFME_DEPS = [
   "@sisad-pdfme/commands",
   "@sisad-pdfme/contracts",
   "@sisad-pdfme/schemas",
-  "@sisad-pdfme/pdf-lib",
+  "pdf-lib",
 ];
 
 const DOMPURIFY_SHIM = resolvePath("./src/vendor/dompurify.ts");
@@ -260,7 +260,7 @@ export default defineConfig(({ mode }) => {
          * @sisad-pdfme/ui
          * @sisad-pdfme/common
          * @sisad-pdfme/schemas/text/index
-         * @sisad-pdfme/pdf-lib
+         * pdf-lib
          */
         {
           find: /^@sisad-pdfme$/,
@@ -289,7 +289,7 @@ export default defineConfig(({ mode }) => {
       /**
        * No deduplicar pdf-lib aquí porque el proyecto tiene:
        * - pdf-lib en node_modules
-       * - @sisad-pdfme/pdf-lib como fork local
+       * - pdf-lib como fork local
        */
       dedupe: ["react", "react-dom"],
     },

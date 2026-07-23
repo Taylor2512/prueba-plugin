@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import PDFDocument from '@/sisad-pdfme/pdf-lib/api/PDFDocument';
-import * as moduleUnderTest from '@/sisad-pdfme/pdf-lib/api/form/PDFRadioGroup';
+import PDFDocument from 'pdf-lib/api/PDFDocument';
+import * as moduleUnderTest from 'pdf-lib/api/form/PDFRadioGroup';
 
 describe('sisad-pdfme/pdf-lib/api/form/PDFRadioGroup.ts', ()=>{
   it('imports without crashing', ()=>{

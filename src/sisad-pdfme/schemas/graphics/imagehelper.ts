@@ -1,6 +1,6 @@
 // ref: https://github.com/image-size/image-size ----------------------------
 // The following code is adapted from the image-size code. Unnecessary formats and dependencies on Node have been removed.
-import { Buffer } from 'buffer';
+import { b64toUint8Array } from '@sisad-pdfme/common';
 
 type IImage = {
   validate: (input: Uint8Array) => boolean;
@@ -136,10 +136,10 @@ export const getImageDimension = (value: string): { height: number; width: numbe
   const dataUriPrefix = ';base64,';
   const idx = value.indexOf(dataUriPrefix);
   const imgBase64 = value.substring(idx + dataUriPrefix.length, value.length);
-  return imageSize(Buffer.from(imgBase64, 'base64'));
+  return imageSize(b64toUint8Array(imgBase64));
 };
 
-const imageSize = (imgBuffer: Buffer): { height: number; width: number } => {
+const imageSize = (imgBuffer: Uint8Array): { height: number; width: number } => {
   const type = detector(imgBuffer);
 
   if (typeof type !== 'undefined' && type in typeHandlers) {

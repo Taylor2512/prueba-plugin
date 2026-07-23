@@ -1,4 +1,4 @@
-import * as pdfLib from '@sisad-pdfme/pdf-lib';
+import * as pdfLib from 'pdf-lib';
 import type { GenerateProps, Schema, PDFRenderProps, Template } from '@sisad-pdfme/common';
 import {
   checkGenerateProps,
