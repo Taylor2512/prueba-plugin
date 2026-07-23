@@ -1,6 +1,6 @@
 import type { SisadPdfmeSignatureProvider, SisadPdfmeSignatureProviderAdapter } from '../config/SisadPdfmeConfig.js';
 
-export type { SisadPdfmeSignatureProvider, SisadPdfmeSignatureProviderAdapter };
+export type {  SisadPdfmeSignatureProviderAdapter };
 
 export const createSignatureProviderAdapter = <TInput = unknown>(): SisadPdfmeSignatureProviderAdapter<TInput> => ({
   toProvider(input) {

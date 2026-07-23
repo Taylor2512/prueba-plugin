@@ -1,6 +1,6 @@
 import type { SisadPdfmeDocument, SisadPdfmeDocumentsAdapter } from '../config/SisadPdfmeConfig.js';
 
-export type { SisadPdfmeDocument, SisadPdfmeDocumentsAdapter };
+export type {  SisadPdfmeDocumentsAdapter };
 
 export const createDocumentsAdapter = <THostDocument = unknown>(): SisadPdfmeDocumentsAdapter<THostDocument> => ({
   toDocument(input) {

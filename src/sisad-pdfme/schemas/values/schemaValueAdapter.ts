@@ -2,7 +2,7 @@
 
 type SchemaRecord = Record<string, unknown>;
 
-export const getSchemaTextValue = (schema: SchemaRecord): string => {
+const getSchemaTextValue = (schema: SchemaRecord): string => {
   if (schema == null) return '';
   if (typeof schema.content === 'string') return schema.content;
   if (schema.checked != null) return schema.checked ? 'true' : 'false';
@@ -41,9 +41,3 @@ export const getSchemaOptionSelection = (schema: SchemaRecord): { single?: strin
   return { single };
 };
 
-export default {
-  getSchemaTextValue,
-  getSchemaNumberValue,
-  getSchemaBooleanValue,
-  getSchemaOptionSelection,
-};

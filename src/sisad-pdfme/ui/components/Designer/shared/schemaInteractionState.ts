@@ -24,12 +24,12 @@ type OwnerColorContext = Pick<
   | 'activeRecipient'
 >;
 
-export type SchemaInteractionBadge = {
+type SchemaInteractionBadge = {
   label: string;
   color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue';
 };
 
-export type SchemaInteractionStatusTone = 'neutral' | 'info' | 'warning' | 'danger' | 'success';
+type SchemaInteractionStatusTone = 'neutral' | 'info' | 'warning' | 'danger' | 'success';
 
 export type SchemaInteractionState = {
   collaborationLock: 'none' | 'mine' | 'other' | 'unknown';
@@ -107,7 +107,7 @@ const resolveLockOwnerId = (schema: SchemaForUI, context?: SchemaInteractionStat
  * Resuelve el color del owner usando el mismo orden de prioridad que el resto
  * del sistema colaborativo y cae a `actorColor` si hace falta.
  */
-export const resolveSchemaOwnerColor = (schema: SchemaForUI, context?: OwnerColorContext | null): string => {
+const resolveSchemaOwnerColor = (schema: SchemaForUI, context?: OwnerColorContext | null): string => {
   const baseColor = resolveSchemaOwnerColorBase(schema, context?.recipientOptions || []);
   if (baseColor) return baseColor;
   return normalizeText(context?.actorColor);

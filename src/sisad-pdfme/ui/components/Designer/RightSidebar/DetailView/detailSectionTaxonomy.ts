@@ -265,7 +265,7 @@ export const getVisibleDetailSections = (schemaType: string): CanonicalDetailSec
 /**
  * Decide si una sección debe iniciar colapsada según sección y familia.
  */
-export const resolveDetailSectionDefaultCollapsed = (
+const resolveDetailSectionDefaultCollapsed = (
   section: CanonicalDetailSection,
   semanticFamily?: SchemaSemanticFamily | string,
 ): boolean => {

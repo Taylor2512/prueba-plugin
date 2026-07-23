@@ -62,7 +62,7 @@ export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown>
   });
 };
 
-export const collectAutoPlaceRulesFromDocuments = (documents: unknown[] = []) => {
+const collectAutoPlaceRulesFromDocuments = (documents: unknown[] = []) => {
   if (!Array.isArray(documents) || !documents.length) return [];
 
   const rules: Record<string, unknown>[] = [];

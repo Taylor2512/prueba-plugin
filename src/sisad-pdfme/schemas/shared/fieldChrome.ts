@@ -12,7 +12,7 @@ import type { SchemaVisualFamily, SchemaVisualState, SisadSchemaBase } from './s
 // Used in JS indicator builders AND in CSS (same literal value).
 
 export const DESIGNER_OPTION_BOX_BORDER = '#65d8de';
-export const DESIGNER_OPTION_BOX_BG = 'rgba(161, 239, 242, 0.58)';
+const DESIGNER_OPTION_BOX_BG = 'rgba(161, 239, 242, 0.58)';
 
 // ─── Designer compact box element ────────────────────────────────────────────
 
@@ -64,7 +64,7 @@ export const shouldRenderFieldBackgroundInPdf = (schema: unknown): boolean => {
 
 export type SchemaRenderMode = 'designer' | 'form' | 'viewer' | 'pdf';
 
-export type FieldChromePolicyState =
+type FieldChromePolicyState =
   | 'idle'
   | 'hover'
   | 'selected'
@@ -74,7 +74,7 @@ export type FieldChromePolicyState =
   | 'readonly'
   | 'locked';
 
-export type FieldChromePolicyInput = {
+type FieldChromePolicyInput = {
   mode: SchemaRenderMode;
   /** Base owner/recipient color. */
   tone: string;
@@ -87,7 +87,7 @@ export type FieldChromePolicyInput = {
   outline?: string;
 };
 
-export type FieldChromePolicyResult = {
+type FieldChromePolicyResult = {
   className: string;
   dataAttributes: Record<string, string>;
   styleVars: Record<string, string>;
@@ -152,7 +152,7 @@ export const resolveSchemaOwnerTone = (
 ): string =>
   resolveSchemaOwnerColorValue(schema) || normalizeColor(fallback) || '#2563EB';
 
-export const resolveSchemaOwnerStyleVars = (
+const resolveSchemaOwnerStyleVars = (
   schema: unknown,
   fallback?: string | null,
 ): Record<string, string> => {
@@ -172,7 +172,7 @@ export const resolveSchemaOwnerStyleVars = (
  * Single decision point so new modes/states extend here, not in each schema
  * (OCP). Returns small composable pieces (ISP). No `any`.
  */
-export const resolveFieldChromePolicy = (
+const resolveFieldChromePolicy = (
   input: FieldChromePolicyInput,
 ): FieldChromePolicyResult => {
   const { mode, tone, state = 'idle', compact = false, schema, outline } = input;

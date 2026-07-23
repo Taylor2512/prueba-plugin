@@ -17,6 +17,7 @@
  * Para colaboración real usar el backend REST.
  */
 import type { OfficialTemplateSnapshot } from './snapshot.js';
+import { readJsonStorageValue, resolveBrowserStorage } from './webStorage.js';
 
 // ── Constantes ──────────────────────────────────────────────────────────────
 
@@ -65,7 +66,7 @@ export class LocalSnapshotStoreImpl {
 
   constructor(options: LocalSnapshotStoreOptions = {}) {
     this.prefix = options.keyPrefix ?? KEY_PREFIX;
-    this.storage = options.storage ?? (typeof localStorage !== 'undefined' ? localStorage : this._noopStorage());
+    this.storage = options.storage ?? resolveBrowserStorage('local');
   }
 
   /** Guarda (o actualiza) un snapshot. Lanza LocalStorageQuotaError si no hay espacio. */
@@ -118,13 +119,7 @@ export class LocalSnapshotStoreImpl {
 
   /** Lista todos los snapshots guardados (solo metadatos, no el contenido completo). */
   listSnapshots(): SnapshotIndexEntry[] {
-    try {
-      const raw = this.storage.getItem(this._indexKey());
-      if (!raw) return [];
-      return JSON.parse(raw) as SnapshotIndexEntry[];
-    } catch {
-      return [];
-    }
+    return readJsonStorageValue(this.storage, this._indexKey(), []);
   }
 
   /** Comprueba si existe un snapshot para el templateId dado. */
@@ -180,18 +175,6 @@ export class LocalSnapshotStoreImpl {
     }
   }
 
-  /** Storage no-op para entornos sin localStorage (SSR, tests sin jsdom). */
-  private _noopStorage(): Storage {
-    const map = new Map<string, string>();
-    return {
-      getItem: (k: string) => map.get(k) ?? null,
-      setItem: (k: string, v: string) => { map.set(k, v); },
-      removeItem: (k: string) => { map.delete(k); },
-      clear: () => { map.clear(); },
-      key: (i: number) => Array.from(map.keys())[i] ?? null,
-      get length() { return map.size; },
-    };
-  }
 }
 
 /** Singleton para uso general en modo sin backend. */

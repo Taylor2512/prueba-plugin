@@ -125,6 +125,22 @@ const stableJsonSignature = (v: unknown) => {
  * No compara todo el schema para evitar renders por cambios de metadata
  * que no afectan el layout del Preview.
  */
+const buildFieldPersistenceSignature = (
+  { schema, config }: SchemaDataFieldSnapshot,
+  includeRequestMode = false,
+) =>
+  [
+    schema.id,
+    config?.persistence?.mode || 'local',
+    config?.persistence?.key || schema.name,
+    config?.api?.enabled ? 'api' : 'no-api',
+    includeRequestMode
+      ? config?.api?.requestMode || ''
+      : config?.prefill?.enabled
+        ? 'prefill'
+        : 'no-prefill',
+  ].join(':');
+
 const getSchemaLayoutKey = (schema: SchemaForUI) =>
   [schema?.schemaUid || schema?.id || schema?.name || 'field', schema?.pageNumber || '', schema?.position?.x || 0, schema?.position?.y || 0, schema?.width || 0, schema?.height || 0, schema?.type || '']
     .join(':');
@@ -502,15 +518,7 @@ const usePreviewRuntime = ({
 
     const persistedTargets = fieldSnapshots.filter(({ config }) => Boolean(config?.persistence?.enabled));
     const signature = persistedTargets
-      .map(({ schema, config }) =>
-        [
-          schema.id,
-          config?.persistence?.mode || 'local',
-          config?.persistence?.key || schema.name,
-          config?.api?.enabled ? 'api' : 'no-api',
-          config?.prefill?.enabled ? 'prefill' : 'no-prefill',
-        ].join(':'),
-      )
+      .map((field) => buildFieldPersistenceSignature(field))
       .join('|');
 
     if (hydrationSignatureRef.current === signature) return;
@@ -584,15 +592,7 @@ const usePreviewRuntime = ({
       JSON.stringify(input || {}),
       fieldSnapshots
         .filter(({ config }) => Boolean(config?.persistence?.enabled || config?.api?.enabled))
-        .map(({ schema, config }) =>
-          [
-            schema.id,
-            config?.persistence?.mode || 'local',
-            config?.persistence?.key || schema.name,
-            config?.api?.enabled ? 'api' : 'no-api',
-            config?.api?.requestMode || '',
-          ].join(':'),
-        )
+        .map((field) => buildFieldPersistenceSignature(field, true))
         .join('|'),
     ].join('::');
 

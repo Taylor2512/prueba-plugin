@@ -5,19 +5,19 @@
 
 // ─── Utility ──────────────────────────────────────────────────────────────────
 
-export type UnknownRecord = Record<string, unknown>;
+type UnknownRecord = Record<string, unknown>;
 
 // ─── Branded primitives ───────────────────────────────────────────────────────
 // Brand<T, B> prevents passing a raw string where a typed ID is expected.
 // Opt-in: existing code uses `string` everywhere; these are additive.
 
-export type Brand<T, TBrand extends string> = T & { readonly __brand: TBrand };
+type Brand<T, TBrand extends string> = T & { readonly __brand: TBrand };
 
-export type SchemaUid   = Brand<string, 'SchemaUid'>;
-export type DocumentId  = Brand<string, 'DocumentId'>;
-export type RecipientId = Brand<string, 'RecipientId'>;
-export type OptionId    = Brand<string, 'OptionId'>;
-export type GroupId     = Brand<string, 'GroupId'>;
+type SchemaUid   = Brand<string, 'SchemaUid'>;
+type DocumentId  = Brand<string, 'DocumentId'>;
+type RecipientId = Brand<string, 'RecipientId'>;
+type OptionId    = Brand<string, 'OptionId'>;
+type GroupId     = Brand<string, 'GroupId'>;
 
 // ─── Visual taxonomy ──────────────────────────────────────────────────────────
 
@@ -44,7 +44,7 @@ export type SchemaVisualState =
 
 // ─── Field groups ─────────────────────────────────────────────────────────────
 
-export type SchemaGeometryFields = {
+type SchemaGeometryFields = {
   x?: number;
   y?: number;
   width?: number;
@@ -52,7 +52,7 @@ export type SchemaGeometryFields = {
   rotation?: number;
 };
 
-export type SchemaIdentityFields = {
+type SchemaIdentityFields = {
   schemaUid?: string;
   id?: string;
   type?: string;
@@ -60,20 +60,20 @@ export type SchemaIdentityFields = {
   label?: string;
 };
 
-export type SchemaOwnershipFields = {
+type SchemaOwnershipFields = {
   ownerRecipientId?: string;
   recipientId?: string;
   ownerColor?: string;
   recipientColor?: string;
 };
 
-export type SchemaDocumentFields = {
+type SchemaDocumentFields = {
   documentId?: string;
   pageNumber?: number;
   pageIndex?: number;
 };
 
-export type SchemaBehaviorFields = {
+type SchemaBehaviorFields = {
   required?: boolean;
   readOnly?: boolean;
   readonly?: boolean;
@@ -89,7 +89,7 @@ export type SchemaBehaviorFields = {
  * new schema types or factory functions. Does NOT carry the index signature
  * required by `Plugin<T>` — pair with `& Schema` at plugin definition sites.
  */
-export type BaseSchema<TType extends string = string> = {
+type BaseSchema<TType extends string = string> = {
   type: TType;
   id?: string;
   schemaUid?: string;
@@ -120,7 +120,7 @@ export type SisadSchemaBase<TExtra extends UnknownRecord = UnknownRecord> =
 
 // ─── Option schemas ───────────────────────────────────────────────────────────
 
-export type OptionItem<TValue extends string = string> = {
+type OptionItem<TValue extends string = string> = {
   optionId: string;
   label: string;
   value: TValue;
@@ -128,9 +128,9 @@ export type OptionItem<TValue extends string = string> = {
   disabled?: boolean;
 };
 
-export type OptionSelectionMode = 'single' | 'multiple';
+type OptionSelectionMode = 'single' | 'multiple';
 
-export type OptionBasedSchema<
+type OptionBasedSchema<
   TValue extends string = string,
   TOption extends OptionItem<TValue> = OptionItem<TValue>,
   TExtra extends UnknownRecord = UnknownRecord,
@@ -161,7 +161,7 @@ export type SemanticTone = 'success' | 'danger' | 'info' | 'warning' | 'neutral'
 
 // ─── Signing schema base ──────────────────────────────────────────────────────
 
-export type SigningSchemaBase<TExtra extends UnknownRecord = UnknownRecord> =
+type SigningSchemaBase<TExtra extends UnknownRecord = UnknownRecord> =
   SisadSchemaBase<TExtra> & {
     signatureKind?: 'signature' | 'initials' | 'date';
     placeholderText?: string;

@@ -30,7 +30,18 @@ type FamilyPreset = PluginFamilyDefinition & {
   supportsValidation: boolean;
 };
 
-type FamilyPresetConfig = Omit<FamilyPreset, 'visibleSections' | 'propertyMap' | 'supportedActions' | 'strategies'> & {
+type FamilyCapabilityKey =
+  | 'supportsComments'
+  | 'supportsLocking'
+  | 'supportsPresence'
+  | 'supportsConnections'
+  | 'supportsCollaboration'
+  | 'supportsValidation';
+
+type FamilyPresetConfig = Omit<
+  FamilyPreset,
+  'visibleSections' | 'propertyMap' | 'supportedActions' | 'strategies' | FamilyCapabilityKey
+> & Partial<Pick<FamilyPreset, FamilyCapabilityKey>> & {
   visibleSections: SchemaInspectorSection[];
   propertyMap?: Partial<Record<string, PropPanelInspectorSectionKey>>;
   supportedActions: Array<PluginActionDefinition['command']>;
@@ -153,6 +164,12 @@ const createFamilyPreset = ({
   propertyMap = {},
   supportedActions,
   strategies,
+  supportsComments = true,
+  supportsLocking = true,
+  supportsPresence = true,
+  supportsConnections = false,
+  supportsCollaboration = true,
+  supportsValidation = false,
   ...rest
 }: FamilyPresetConfig): FamilyPreset => ({
   ...rest,
@@ -160,128 +177,75 @@ const createFamilyPreset = ({
   propertyMap,
   supportedActions: createActions(supportedActions),
   strategies: createStrategies(strategies),
+  supportsComments,
+  supportsLocking,
+  supportsPresence,
+  supportsConnections,
+  supportsCollaboration,
+  supportsValidation,
 });
+
+const VISUAL_FIELD_ACTIONS: Array<PluginActionDefinition['command']> = [
+  'resizeField',
+  'moveField',
+  'duplicateField',
+  'deleteField',
+  'changeColor',
+  'addComment',
+  'lockField',
+  'unlockField',
+];
+
+const DATA_FIELD_ACTIONS: Array<PluginActionDefinition['command']> = [
+  'renameVariable',
+  ...VISUAL_FIELD_ACTIONS.slice(0, 5),
+  'togglePersistence',
+  'addComment',
+  'resolveComment',
+  'lockField',
+  'unlockField',
+];
 
 const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
   text: createFamilyPreset({
     family: 'text',
     visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'help', 'collaboration', 'validation', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportedActions: [
-      'editText',
-      'renameVariable',
-      'resizeField',
-      'moveField',
-      'duplicateField',
-      'deleteField',
-      'changeColor',
-      'togglePersistence',
-      'addComment',
-      'resolveComment',
-      'lockField',
-      'unlockField',
-    ],
+    supportedActions: ['editText', ...DATA_FIELD_ACTIONS],
     strategies: ['validation', 'prefill', 'persistence', 'comments', 'locking'],
-    supportsComments: true,
-    supportsLocking: true,
-    supportsPresence: true,
     supportsConnections: true,
-    supportsCollaboration: true,
     supportsValidation: true,
   }),
   mediaVisual: createFamilyPreset({
     family: 'mediaVisual',
     visibleSections: ['general', 'layout', 'style', 'collaboration', 'comments', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportedActions: [
-      'resizeField',
-      'moveField',
-      'duplicateField',
-      'deleteField',
-      'changeColor',
-      'addComment',
-      'lockField',
-      'unlockField',
-    ],
+    supportedActions: VISUAL_FIELD_ACTIONS,
     strategies: ['upload', 'comments', 'locking'],
-    supportsComments: true,
-    supportsLocking: true,
-    supportsPresence: true,
-    supportsConnections: false,
-    supportsCollaboration: true,
-    supportsValidation: false,
   }),
   boolean: createFamilyPreset({
     family: 'boolean',
     visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'help', 'collaboration', 'validation', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportedActions: [
-      'renameVariable',
-      'resizeField',
-      'moveField',
-      'duplicateField',
-      'deleteField',
-      'changeColor',
-      'togglePersistence',
-      'addComment',
-      'resolveComment',
-      'lockField',
-      'unlockField',
-    ],
+    supportedActions: DATA_FIELD_ACTIONS,
     strategies: ['validation', 'prefill', 'persistence', 'comments', 'locking'],
-    supportsComments: true,
-    supportsLocking: true,
-    supportsPresence: true,
     supportsConnections: true,
-    supportsCollaboration: true,
     supportsValidation: true,
   }),
   shapeBarcode: createFamilyPreset({
     family: 'shapeBarcode',
     visibleSections: ['general', 'layout', 'style', 'data', 'collaboration', 'comments', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportedActions: [
-      'resizeField',
-      'moveField',
-      'duplicateField',
-      'deleteField',
-      'changeColor',
-      'addComment',
-      'lockField',
-      'unlockField',
-    ],
+    supportedActions: VISUAL_FIELD_ACTIONS,
     strategies: ['comments', 'locking'],
-    supportsComments: true,
-    supportsLocking: true,
-    supportsPresence: true,
-    supportsConnections: false,
-    supportsCollaboration: true,
-    supportsValidation: false,
   }),
   table: createFamilyPreset({
     family: 'table',
     visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportedActions: [
-      'renameVariable',
-      'resizeField',
-      'moveField',
-      'duplicateField',
-      'deleteField',
-      'changeColor',
-      'togglePersistence',
-      'addComment',
-      'resolveComment',
-      'lockField',
-      'unlockField',
-    ],
+    supportedActions: DATA_FIELD_ACTIONS,
     strategies: ['prefill', 'persistence', 'comments', 'locking'],
-    supportsComments: true,
-    supportsLocking: true,
-    supportsPresence: true,
     supportsConnections: true,
-    supportsCollaboration: true,
-    supportsValidation: false,
   }),
 };
 

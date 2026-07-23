@@ -56,6 +56,7 @@ import { DateSchema } from './types.js';
 import { getExtraFormatterSchema, Formatter } from '../text/extraFormatter.js';
 import { isEditable } from '../utils.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { hexColorFields, typographyFields } from '../propPanel/commonInspectorFields.js';
 
 interface AirDatepickerInstance {
   selectedDates: Date[];
@@ -290,7 +291,7 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
         buttons: adButtons,
         position({ $datepicker, $target, $pointer, done }) {
           $datepicker.style.position = 'fixed';
-          const offset = 5; 
+          const offset = 5;
           const scrollY = window.scrollY;
           const scrollX = window.scrollX;
 
@@ -414,58 +415,15 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
             ],
             span: 24,
           },
-          fontName: {
-            title: i18n('schemas.text.fontName'),
-            type: 'string',
-            widget: 'select',
-            default: fallbackFontName,
-            placeholder: fallbackFontName,
-            props: { options: fontNames.map((name) => ({ label: name, value: name })) },
-            span: 12,
-          },
-          fontSize: {
-            title: i18n('schemas.text.size'),
-            type: 'number',
-            widget: 'inputNumber',
-            span: 6,
-            props: { min: 0 },
-          },
-          characterSpacing: {
-            title: i18n('schemas.text.spacing'),
-            type: 'number',
-            widget: 'inputNumber',
-            span: 6,
-            props: { min: 0 },
-          },
+          ...typographyFields({ i18n, fallbackFontName, fontNames }),
           formatter,
-          fontColor: {
-            title: i18n('schemas.textColor'),
-            type: 'string',
-            widget: 'color',
-            props: {
-              disabledAlpha: true,
+          ...hexColorFields(
+            {
+              fontColor: i18n('schemas.textColor'),
+              backgroundColor: i18n('schemas.bgColor'),
             },
-            rules: [
-              {
-                pattern: HEX_COLOR_PATTERN,
-                message: i18n('validation.hexColor'),
-              },
-            ],
-          },
-          backgroundColor: {
-            title: i18n('schemas.bgColor'),
-            type: 'string',
-            widget: 'color',
-            props: {
-              disabledAlpha: true,
-            },
-            rules: [
-              {
-                pattern: HEX_COLOR_PATTERN,
-                message: i18n('validation.hexColor'),
-              },
-            ],
-          },
+            { pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') },
+          ),
           locale: {
             title: i18n('schemas.date.locale'),
             type: 'string',

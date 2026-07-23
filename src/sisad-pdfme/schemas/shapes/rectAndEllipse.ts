@@ -4,6 +4,7 @@ import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '../ut
 import { toRadians } from '@sisad-pdfme/pdf-lib';
 import { Circle, Square } from 'lucide-react';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { hexColorFields } from '../propPanel/commonInspectorFields.js';
 
 interface ShapeSchema extends Schema {
   type: 'ellipse' | 'rectangle';
@@ -88,25 +89,13 @@ const shape: Plugin<ShapeSchema> = {
         props: { min: 0, step: 1 },
         span: 12,
       },
-      borderColor: {
-        title: i18n('schemas.borderColor'),
-        type: 'string',
-        widget: 'color',
-        props: {
-          disabledAlpha: true,
+      ...hexColorFields(
+        {
+          borderColor: { title: i18n('schemas.borderColor'), span: 12 },
+          color: i18n('schemas.color'),
         },
-        rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
-        span: 12,
-      },
-      color: {
-        title: i18n('schemas.color'),
-        type: 'string',
-        widget: 'color',
-        props: {
-          disabledAlpha: true,
-        },
-        rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
-      },
+        { pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') },
+      ),
       radius: {
         title: i18n('schemas.radius'),
         type: 'number',

@@ -80,17 +80,17 @@ export type PageBounds = {
   height: number;
 };
 
-export type DeleteSchemasOptions = {
+type DeleteSchemasOptions = {
   origin?: 'keyboard' | 'toolbar' | 'context-menu' | 'field-list' | 'command';
   clearSelection?: boolean;
 };
 
-export type SelectSchemasOptions = {
+type SelectSchemasOptions = {
   mode?: 'replace' | 'toggle' | 'add';
   origin?: 'keyboard' | 'toolbar' | 'context-menu' | 'field-list' | 'command';
 };
 
-export const INLINE_EDIT_REQUEST_EVENT = 'sisad-pdfme-designer-inline-edit-request';
+const INLINE_EDIT_REQUEST_EVENT = 'sisad-pdfme-designer-inline-edit-request';
 
 export type InlineEditTarget = 'content' | 'name';
 

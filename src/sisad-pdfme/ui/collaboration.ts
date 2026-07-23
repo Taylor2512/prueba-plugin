@@ -367,6 +367,21 @@ const commentCollectionSignature = (comments: SchemaComment[] = [], anchors: Sch
     ),
   });
 
+const createCommentUpsertLifecycleEvent = (
+  type: 'comment.created' | 'comment.updated',
+  schema: SchemaForUI,
+  comment: SchemaComment,
+  metadata: Pick<CollaborationEvent, 'actorId' | 'sessionId' | 'timestamp'>,
+  pageIndex?: number,
+): CollaborationEvent => ({
+  type,
+  schemaId: schema.id,
+  comment: cloneDeep(comment),
+  anchor: comment.anchor ? cloneDeep(comment.anchor) : undefined,
+  pageIndex,
+  ...metadata,
+});
+
 const collectCommentLifecycleEvents = (
   before: SchemaForUI,
   after: SchemaForUI,
@@ -396,30 +411,16 @@ const collectCommentLifecycleEvents = (
   nextById.forEach((nextComment, commentId) => {
     const previousComment = previousById.get(commentId);
     if (!previousComment) {
-      events.push({
-        type: 'comment.created',
-        schemaId: after.id,
-        comment: cloneDeep(nextComment),
-        anchor: nextComment.anchor ? cloneDeep(nextComment.anchor) : undefined,
-        pageIndex,
-        actorId: metadata.actorId,
-        sessionId: metadata.sessionId,
-        timestamp: metadata.timestamp,
-      });
+      events.push(
+        createCommentUpsertLifecycleEvent('comment.created', after, nextComment, metadata, pageIndex),
+      );
       return;
     }
 
     if (commentSignature(previousComment) === commentSignature(nextComment)) return;
-    events.push({
-      type: 'comment.updated',
-      schemaId: after.id,
-      comment: cloneDeep(nextComment),
-      anchor: nextComment.anchor ? cloneDeep(nextComment.anchor) : undefined,
-      pageIndex,
-      actorId: metadata.actorId,
-      sessionId: metadata.sessionId,
-      timestamp: metadata.timestamp,
-    });
+    events.push(
+      createCommentUpsertLifecycleEvent('comment.updated', after, nextComment, metadata, pageIndex),
+    );
   });
 
   return events;
@@ -519,6 +520,21 @@ export const applyCollaborationEvent = (
     return true;
   };
 
+  const updateFirstMatchingSchema = (
+    schemaId: string,
+    updater: (schema: SchemaForUI) => SchemaForUI,
+  ) => {
+    for (let index = 0; index < nextSchemasList.length; index += 1) {
+      if (updateSchemaOnPage(index, schemaId, updater)) return true;
+    }
+    return false;
+  };
+
+  const resolveUpdatedSchemas = () =>
+    nextSchemasList.some((page, index) => page !== schemasList[index])
+      ? nextSchemasList
+      : schemasList;
+
   if (event.type === 'create') {
     const page = nextSchemasList[pageIndex] || [];
     nextSchemasList[pageIndex] = page.concat([cloneDeep(event.schema)]);
@@ -534,47 +550,39 @@ export const applyCollaborationEvent = (
   }
 
   if (event.type === 'lock') {
-    for (let i = 0; i < nextSchemasList.length; i += 1) {
-      const updated = updateSchemaOnPage(i, event.schemaId, (schema) => {
-        const nextState = event.state || 'locked';
-        const nextLock = { ...event.lock };
-        if (isStaleEvent(schema, event.timestamp)) return schema;
-        if (schema.state === nextState && shallowEqualRecord(schema.lock as Record<string, unknown> | undefined, nextLock)) {
-          return schema;
-        }
-        return {
-          ...schema,
-          state: nextState,
-          lock: nextLock,
-          updatedAt: event.timestamp || schema.updatedAt,
-          lastModifiedAt: event.timestamp || schema.lastModifiedAt,
-          lastModifiedBy: event.actorId || schema.lastModifiedBy,
-        };
-      });
-      if (updated) break;
-    }
-    if (!nextSchemasList.some((page, index) => page !== schemasList[index])) return schemasList;
-    return nextSchemasList;
+    updateFirstMatchingSchema(event.schemaId, (schema) => {
+      const nextState = event.state || 'locked';
+      const nextLock = { ...event.lock };
+      if (isStaleEvent(schema, event.timestamp)) return schema;
+      if (schema.state === nextState && shallowEqualRecord(schema.lock as Record<string, unknown> | undefined, nextLock)) {
+        return schema;
+      }
+      return {
+        ...schema,
+        state: nextState,
+        lock: nextLock,
+        updatedAt: event.timestamp || schema.updatedAt,
+        lastModifiedAt: event.timestamp || schema.lastModifiedAt,
+        lastModifiedBy: event.actorId || schema.lastModifiedBy,
+      };
+    });
+    return resolveUpdatedSchemas();
   }
 
   if (event.type === 'unlock') {
-    for (let i = 0; i < nextSchemasList.length; i += 1) {
-      const updated = updateSchemaOnPage(i, event.schemaId, (schema) => {
-        if (isStaleEvent(schema, event.timestamp)) return schema;
-        if (schema.state === 'draft' && !schema.lock) return schema;
-        return {
-          ...schema,
-          state: 'draft',
-          lock: undefined,
-          updatedAt: event.timestamp || schema.updatedAt,
-          lastModifiedAt: event.timestamp || schema.lastModifiedAt,
-          lastModifiedBy: event.actorId || schema.lastModifiedBy,
-        };
-      });
-      if (updated) break;
-    }
-    if (!nextSchemasList.some((page, index) => page !== schemasList[index])) return schemasList;
-    return nextSchemasList;
+    updateFirstMatchingSchema(event.schemaId, (schema) => {
+      if (isStaleEvent(schema, event.timestamp)) return schema;
+      if (schema.state === 'draft' && !schema.lock) return schema;
+      return {
+        ...schema,
+        state: 'draft',
+        lock: undefined,
+        updatedAt: event.timestamp || schema.updatedAt,
+        lastModifiedAt: event.timestamp || schema.lastModifiedAt,
+        lastModifiedBy: event.actorId || schema.lastModifiedBy,
+      };
+    });
+    return resolveUpdatedSchemas();
   }
 
   if (event.type === 'comment' || event.type === 'comment.created' || event.type === 'comment.updated' || event.type === 'comment.deleted') {
@@ -1147,6 +1155,27 @@ export const createYjsCollaborationProvider = ({
     const timestamp = ensureTimestamp(event.timestamp);
     const { schemasMap, commentsMap, locksMap } = getStores();
 
+    const updateStoredSchemaState = (
+      schemaId: string,
+      pageIndex: number | undefined,
+      state: SchemaCollaborativeState,
+      actorId: string | undefined,
+    ) => {
+      const currentEntry = schemasMap.get(schemaId);
+      if (!currentEntry) return;
+      schemasMap.set(schemaId, {
+        ...currentEntry,
+        pageIndex: pageIndex ?? currentEntry.pageIndex,
+        schema: {
+          ...currentEntry.schema,
+          state,
+          updatedAt: timestamp,
+          lastModifiedAt: timestamp,
+          lastModifiedBy: actorId || safeActorId,
+        },
+      });
+    };
+
     room.doc.transact(() => {
       if (event.type === 'create') {
         schemasMap.set(event.schema.id, {
@@ -1191,23 +1220,11 @@ export const createYjsCollaborationProvider = ({
       }
 
       if (event.type === 'lock') {
-        const currentEntry = schemasMap.get(event.schemaId);
-        if (currentEntry) {
-          schemasMap.set(event.schemaId, {
-            ...currentEntry,
-            pageIndex: event.pageIndex ?? currentEntry.pageIndex,
-            schema: {
-              ...currentEntry.schema,
-              state: event.state || 'locked',
-              updatedAt: timestamp,
-              lastModifiedAt: timestamp,
-              lastModifiedBy: event.actorId || safeActorId,
-            },
-          });
-        }
+        const nextState = event.state || 'locked';
+        updateStoredSchemaState(event.schemaId, event.pageIndex, nextState, event.actorId);
         locksMap.set(event.schemaId, {
           lock: cloneDeep(event.lock),
-          state: event.state || 'locked',
+          state: nextState,
           pageIndex: event.pageIndex,
         });
         appendHistory(createHistoryEntryFromEvent({ ...event, timestamp }));
@@ -1215,20 +1232,7 @@ export const createYjsCollaborationProvider = ({
       }
 
       if (event.type === 'unlock') {
-        const currentEntry = schemasMap.get(event.schemaId);
-        if (currentEntry) {
-          schemasMap.set(event.schemaId, {
-            ...currentEntry,
-            pageIndex: event.pageIndex ?? currentEntry.pageIndex,
-            schema: {
-              ...currentEntry.schema,
-              state: 'draft',
-              updatedAt: timestamp,
-              lastModifiedAt: timestamp,
-              lastModifiedBy: event.actorId || safeActorId,
-            },
-          });
-        }
+        updateStoredSchemaState(event.schemaId, event.pageIndex, 'draft', event.actorId);
         locksMap.delete(event.schemaId);
         appendHistory(createHistoryEntryFromEvent({ ...event, timestamp }));
         return;

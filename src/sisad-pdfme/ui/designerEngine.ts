@@ -14,7 +14,14 @@
  * - Mantener el engine serializable donde sea parte de snapshot/configuración.
  */
 
-import { cloneDeep, Schema, SchemaForUI, UIOptions, type CommentScope } from '@sisad-pdfme/common';
+import {
+  cloneDeep,
+  normalizeRecipientIds,
+  Schema,
+  SchemaForUI,
+  UIOptions,
+  type CommentScope,
+} from '@sisad-pdfme/common';
 import type React from 'react';
 import type { LeftSidebarProps } from './components/Designer/LeftSidebar';
 import type { RightSidebarProps } from './components/Designer/RightSidebar/RightSidebar';
@@ -33,6 +40,20 @@ import type {
 } from './components/Designer/Canvas/Canvas.js';
 
 export const DEFAULT_SCHEMA_CONFIG_STORAGE_KEY = '__designer';
+
+const cloneSignatureProviders = (
+  providers: SignatureProviderDefinition[] | undefined,
+): SignatureProviderDefinition[] | undefined =>
+  providers?.map((provider) => ({
+    ...provider,
+    badges: provider.badges ? [...provider.badges] : undefined,
+    capabilities: { ...provider.capabilities },
+    defaultConfig: provider.defaultConfig ? cloneDeep(provider.defaultConfig) : undefined,
+    configFields: provider.configFields?.map((field) => ({
+      ...field,
+      options: field.options?.map((option) => ({ ...option })),
+    })),
+  }));
 
 export type SchemaIdentity = {
   id?: string;
@@ -296,34 +317,11 @@ export type SchemaCreationContextInput = {
   >;
 };
 
-const normalizeCreationOwnerIds = (value: unknown): string[] => {
-  if (Array.isArray(value)) {
-    return Array.from(
-      new Set(
-        value
-          .map((entry) => String(entry || '').trim())
-          .filter(Boolean),
-      ),
-    );
-  }
-  if (typeof value === 'string') {
-    return Array.from(
-      new Set(
-        value
-          .split(',')
-          .map((entry) => entry.trim())
-          .filter(Boolean),
-      ),
-    );
-  }
-  return [];
-};
-
 /** Crea contexto de creación con timestamp, página, archivo y metadata colaborativa. */
 export const createSchemaCreationContext = (input: SchemaCreationContextInput): SchemaCreationContext => {
   const nextTimestamp = Number.isFinite(input.timestamp as number) ? Number(input.timestamp) : Date.now();
   const collaboration = input.collaboration || {};
-  const ownerRecipientIds = normalizeCreationOwnerIds(
+  const ownerRecipientIds = normalizeRecipientIds(
     collaboration.ownerRecipientIds || collaboration.ownerRecipientId || undefined,
   );
   const ownerRecipientId = (typeof collaboration.ownerRecipientId === 'string' && collaboration.ownerRecipientId.trim())
@@ -431,16 +429,7 @@ const cloneDesignerEngine = (engine: DesignerEngine = {}): DesignerEngine => ({
   signature: engine.signature
     ? {
         defaultProviderKey: engine.signature.defaultProviderKey ?? null,
-        providers: engine.signature.providers?.map((provider) => ({
-          ...provider,
-          badges: provider.badges ? [...provider.badges] : undefined,
-          capabilities: { ...provider.capabilities },
-          defaultConfig: provider.defaultConfig ? cloneDeep(provider.defaultConfig) : undefined,
-          configFields: provider.configFields?.map((field) => ({
-            ...field,
-            options: field.options?.map((option) => ({ ...option })),
-          })),
-        })),
+        providers: cloneSignatureProviders(engine.signature.providers),
       }
     : undefined,
   collaboration: engine.collaboration
@@ -507,23 +496,6 @@ const mergeRequestConfig = (
     requestMapping: mergeRecord(current?.requestMapping, patch?.requestMapping),
     responseMapping: mergeRecord(current?.responseMapping, patch?.responseMapping),
   };
-};
-
-const normalizeRecipientIds = (value?: string[] | string | null): string[] => {
-  if (Array.isArray(value)) {
-    const normalized = value.map((entry) => String(entry || '').trim()).filter(Boolean);
-    return normalized.length > 0 ? Array.from(new Set(normalized)) : [];
-  }
-
-  if (typeof value === 'string') {
-    const normalized = value
-      .split(',')
-      .map((entry) => entry.trim())
-      .filter(Boolean);
-    return normalized.length > 0 ? Array.from(new Set(normalized)) : [];
-  }
-
-  return [];
 };
 
 const mergeCollaborationLock = (
@@ -1408,16 +1380,7 @@ export class DesignerEngineBuilder {
   withSignatureProviders(providers: SignatureProviderDefinition[]) {
     this.engine.signature = {
       ...(this.engine.signature || {}),
-      providers: providers?.map((provider) => ({
-        ...provider,
-        badges: provider.badges ? [...provider.badges] : undefined,
-        capabilities: { ...provider.capabilities },
-        defaultConfig: provider.defaultConfig ? cloneDeep(provider.defaultConfig) : undefined,
-        configFields: provider.configFields?.map((field) => ({
-          ...field,
-          options: field.options?.map((option) => ({ ...option })),
-        })),
-      })) || [],
+      providers: cloneSignatureProviders(providers) || [],
     };
     return this;
   }

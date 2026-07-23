@@ -1,7 +1,7 @@
 import type { Plugin, UIRenderProps } from '@sisad-pdfme/common';
 import { PenLine } from 'lucide-react';
 import image from '../graphics/image.js';
-import { isEditable, readFile } from '../utils.js';
+import { isEditable } from '../utils.js';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { applyFieldChrome } from '../shared/fieldChrome.js';
 import type { SisadSchemaBase } from '../shared/schemaTypes.js';
@@ -9,6 +9,7 @@ import { propPanel } from './propPanel.js';
 import { getSignatureProvider, resolveSignatureProviderSource } from './providerRegistry.js';
 import { normalizeSignatureSchema } from './types.js';
 import type { SignatureSchema } from './types.js';
+import { applyCenteredImageFileInputStyle, createImageFileInput } from '../shared/imageFileInput.js';
 
 const buildSignaturePlaceholder = (schema: SignatureSchema) => {
   const modeLabel = {
@@ -124,31 +125,11 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
         backgroundColor: 'rgba(22,119,255,0.18)',
         cursor: 'pointer',
       });
-      const input = document.createElement('input');
-      Object.assign(input.style, {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: '180px',
-        height: '30px',
-        marginLeft: '-90px',
-        marginTop: '-15px',
+      const input = createImageFileInput({
+        onValue: (result) => onChange?.([{ key: 'content', value: result }]),
+        onBlur: stopEditing,
       });
-      input.type = 'file';
-      input.accept = 'image/jpeg, image/png';
-      input.addEventListener('change', (event: Event) => {
-        const changeEvent = event as Event & { target: HTMLInputElement };
-        readFile(changeEvent.target.files)
-          .then((result) => {
-            if (onChange) onChange([{ key: 'content', value: result as string }]);
-          })
-          .catch((error) => {
-            console.error('Error reading file:', error);
-          });
-      });
-      input.addEventListener('blur', () => {
-        if (stopEditing) stopEditing();
-      });
+      applyCenteredImageFileInputStyle(input);
       label.appendChild(input);
       container.appendChild(label);
     }

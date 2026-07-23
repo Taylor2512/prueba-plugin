@@ -7,7 +7,7 @@
 import { SELECTABLE_CLASSNAME } from '../../../constants.js';
 import { isDesignerInteractionExcluded } from './interactionExclusions.js';
 
-export type InteractionTargetKind =
+type InteractionTargetKind =
   | 'schema-root'
   | 'option-internal'
   | 'group-add-option'

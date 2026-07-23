@@ -1,0 +1,1000 @@
+{
+  "count": 71,
+  "duplicated_significant_lines": 1134,
+  "clones": [
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts",
+        4,
+        12
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts",
+        4,
+        12
+      ],
+      "significant_lines": 9,
+      "tokens": 57
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts",
+        4,
+        12
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts",
+        4,
+        12
+      ],
+      "significant_lines": 9,
+      "tokens": 57
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts",
+        19,
+        55
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts",
+        18,
+        54
+      ],
+      "significant_lines": 31,
+      "tokens": 336
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts",
+        19,
+        55
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts",
+        23,
+        59
+      ],
+      "significant_lines": 31,
+      "tokens": 336
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts",
+        21,
+        55
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts",
+        23,
+        57
+      ],
+      "significant_lines": 30,
+      "tokens": 335
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts",
+        61,
+        75
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts",
+        81,
+        95
+      ],
+      "significant_lines": 14,
+      "tokens": 52
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts",
+        74,
+        97
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts",
+        170,
+        193
+      ],
+      "significant_lines": 22,
+      "tokens": 68
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts",
+        77,
+        97
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts",
+        61,
+        81
+      ],
+      "significant_lines": 20,
+      "tokens": 65
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts",
+        77,
+        97
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts",
+        88,
+        108
+      ],
+      "significant_lines": 20,
+      "tokens": 65
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts",
+        3,
+        16
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts",
+        3,
+        16
+      ],
+      "significant_lines": 12,
+      "tokens": 103
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts",
+        23,
+        59
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts",
+        20,
+        56
+      ],
+      "significant_lines": 32,
+      "tokens": 341
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts",
+        23,
+        59
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts",
+        25,
+        61
+      ],
+      "significant_lines": 32,
+      "tokens": 341
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts",
+        61,
+        81
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts",
+        173,
+        193
+      ],
+      "significant_lines": 20,
+      "tokens": 65
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts",
+        61,
+        81
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts",
+        88,
+        108
+      ],
+      "significant_lines": 20,
+      "tokens": 65
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts",
+        18,
+        66
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts",
+        23,
+        71
+      ],
+      "significant_lines": 41,
+      "tokens": 406
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts",
+        68,
+        171
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts",
+        113,
+        216
+      ],
+      "significant_lines": 104,
+      "tokens": 499
+    },
+    {
+      "a": [
+        "src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts",
+        173,
+        193
+      ],
+      "b": [
+        "src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts",
+        88,
+        108
+      ],
+      "significant_lines": 20,
+      "tokens": 65
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/assignments/index.ts",
+        193,
+        204
+      ],
+      "b": [
+        "src/sisad-pdfme/assignments/index.ts",
+        513,
+        524
+      ],
+      "significant_lines": 10,
+      "tokens": 82
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/canvas/useCanvasRenderState.ts",
+        75,
+        108
+      ],
+      "b": [
+        "src/sisad-pdfme/canvas/useCanvasRenderState.ts",
+        146,
+        170
+      ],
+      "significant_lines": 25,
+      "tokens": 179
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/comments/index.ts",
+        333,
+        343
+      ],
+      "b": [
+        "src/sisad-pdfme/comments/index.ts",
+        430,
+        437
+      ],
+      "significant_lines": 7,
+      "tokens": 67
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/common/collaboration.ts",
+        48,
+        70
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/designerEngine.ts",
+        300,
+        320
+      ],
+      "significant_lines": 21,
+      "tokens": 110
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/common/collaboration.ts",
+        552,
+        558
+      ],
+      "b": [
+        "src/sisad-pdfme/common/collaboration.ts",
+        723,
+        729
+      ],
+      "significant_lines": 7,
+      "tokens": 50
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/common/collaboration.ts",
+        562,
+        602
+      ],
+      "b": [
+        "src/sisad-pdfme/common/collaboration.ts",
+        733,
+        753
+      ],
+      "significant_lines": 17,
+      "tokens": 125
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/common/collaboration.ts",
+        660,
+        665
+      ],
+      "b": [
+        "src/sisad-pdfme/common/collaboration.ts",
+        844,
+        849
+      ],
+      "significant_lines": 6,
+      "tokens": 58
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/common/schema.ts",
+        128,
+        134
+      ],
+      "b": [
+        "src/sisad-pdfme/common/schema.ts",
+        146,
+        152
+      ],
+      "significant_lines": 7,
+      "tokens": 80
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/converter/index.browser.ts",
+        52,
+        58
+      ],
+      "b": [
+        "src/sisad-pdfme/converter/index.node.ts",
+        39,
+        45
+      ],
+      "significant_lines": 6,
+      "tokens": 60
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/converter/index.browser.ts",
+        72,
+        91
+      ],
+      "b": [
+        "src/sisad-pdfme/converter/index.node.ts",
+        58,
+        76
+      ],
+      "significant_lines": 10,
+      "tokens": 115
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/react/SisadPdfmeDesigner.tsx",
+        66,
+        76
+      ],
+      "b": [
+        "src/sisad-pdfme/react/SisadPdfmeForm.tsx",
+        42,
+        52
+      ],
+      "significant_lines": 11,
+      "tokens": 61
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/react/SisadPdfmeDesigner.tsx",
+        66,
+        76
+      ],
+      "b": [
+        "src/sisad-pdfme/react/SisadPdfmeViewer.tsx",
+        33,
+        43
+      ],
+      "significant_lines": 11,
+      "tokens": 61
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/react/SisadPdfmeForm.tsx",
+        13,
+        22
+      ],
+      "b": [
+        "src/sisad-pdfme/react/SisadPdfmeViewer.tsx",
+        12,
+        21
+      ],
+      "significant_lines": 9,
+      "tokens": 109
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/react/SisadPdfmeForm.tsx",
+        37,
+        56
+      ],
+      "b": [
+        "src/sisad-pdfme/react/SisadPdfmeViewer.tsx",
+        28,
+        47
+      ],
+      "significant_lines": 18,
+      "tokens": 138
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/actions/approve.ts",
+        8,
+        14
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/actions/decline.ts",
+        7,
+        13
+      ],
+      "significant_lines": 7,
+      "tokens": 114
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/actions/approve.ts",
+        38,
+        50
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/actions/decline.ts",
+        36,
+        46
+      ],
+      "significant_lines": 10,
+      "tokens": 78
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/actions/approve.ts",
+        59,
+        70
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/actions/decline.ts",
+        55,
+        66
+      ],
+      "significant_lines": 12,
+      "tokens": 78
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/actions/approve.ts",
+        83,
+        93
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/actions/decline.ts",
+        79,
+        89
+      ],
+      "significant_lines": 11,
+      "tokens": 61
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/actions/approve.ts",
+        95,
+        106
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/actions/decline.ts",
+        91,
+        102
+      ],
+      "significant_lines": 12,
+      "tokens": 57
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/actions/approve.ts",
+        115,
+        143
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/actions/decline.ts",
+        104,
+        132
+      ],
+      "significant_lines": 29,
+      "tokens": 153
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/barcodes/propPanel.ts",
+        204,
+        229
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/date/helper.ts",
+        443,
+        468
+      ],
+      "significant_lines": 26,
+      "tokens": 106
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/barcodes/propPanel.ts",
+        204,
+        229
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/text/propPanel.ts",
+        138,
+        163
+      ],
+      "significant_lines": 26,
+      "tokens": 106
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/checkbox/index.ts",
+        153,
+        160
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/options/optionGroupFactory.ts",
+        361,
+        368
+      ],
+      "significant_lines": 8,
+      "tokens": 61
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/date/helper.ts",
+        417,
+        429
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/tables/helper.ts",
+        54,
+        66
+      ],
+      "significant_lines": 13,
+      "tokens": 98
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/date/helper.ts",
+        417,
+        430
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/text/propPanel.ts",
+        70,
+        83
+      ],
+      "significant_lines": 14,
+      "tokens": 102
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/date/helper.ts",
+        431,
+        439
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/text/propPanel.ts",
+        85,
+        93
+      ],
+      "significant_lines": 9,
+      "tokens": 52
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/date/helper.ts",
+        441,
+        468
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/text/propPanel.ts",
+        136,
+        163
+      ],
+      "significant_lines": 28,
+      "tokens": 120
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/graphics/image.ts",
+        205,
+        211
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/signature/index.ts",
+        129,
+        135
+      ],
+      "significant_lines": 7,
+      "tokens": 50
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/graphics/image.ts",
+        219,
+        230
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/signature/index.ts",
+        141,
+        152
+      ],
+      "significant_lines": 12,
+      "tokens": 102
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/number/index.ts",
+        1,
+        8
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts",
+        8,
+        15
+      ],
+      "significant_lines": 8,
+      "tokens": 67
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/options/optionIndicator.ts",
+        146,
+        155
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/options/optionIndicator.ts",
+        162,
+        171
+      ],
+      "significant_lines": 10,
+      "tokens": 85
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts",
+        55,
+        61
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts",
+        83,
+        89
+      ],
+      "significant_lines": 7,
+      "tokens": 51
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/schemaFamilies.ts",
+        172,
+        191
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/schemaFamilies.ts",
+        219,
+        238
+      ],
+      "significant_lines": 20,
+      "tokens": 97
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/schemaFamilies.ts",
+        217,
+        230
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/schemaFamilies.ts",
+        264,
+        277
+      ],
+      "significant_lines": 14,
+      "tokens": 53
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts",
+        90,
+        98
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/tables/helper.ts",
+        118,
+        126
+      ],
+      "significant_lines": 9,
+      "tokens": 58
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts",
+        90,
+        98
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/tables/propPanel.ts",
+        47,
+        55
+      ],
+      "significant_lines": 9,
+      "tokens": 58
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/signature/providerRegistry.ts",
+        167,
+        181
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/signature/providerRegistry.ts",
+        185,
+        199
+      ],
+      "significant_lines": 15,
+      "tokens": 57
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/tables/helper.ts",
+        54,
+        66
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/text/propPanel.ts",
+        70,
+        82
+      ],
+      "significant_lines": 13,
+      "tokens": 98
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/tables/helper.ts",
+        79,
+        87
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/tables/helper.ts",
+        186,
+        194
+      ],
+      "significant_lines": 9,
+      "tokens": 73
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/tables/helper.ts",
+        118,
+        127
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/tables/propPanel.ts",
+        47,
+        56
+      ],
+      "significant_lines": 10,
+      "tokens": 60
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/text/pdfRender.ts",
+        190,
+        197
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/text/pdfRender.ts",
+        203,
+        210
+      ],
+      "significant_lines": 8,
+      "tokens": 67
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/shared/localFormStorage.ts",
+        217,
+        231
+      ],
+      "b": [
+        "src/sisad-pdfme/shared/localSnapshotStore.ts",
+        181,
+        195
+      ],
+      "significant_lines": 13,
+      "tokens": 143
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/shared/schemaDesignerMeta.ts",
+        59,
+        84
+      ],
+      "b": [
+        "src/sisad-pdfme/shared/schemaDesignerMeta.ts",
+        143,
+        156
+      ],
+      "significant_lines": 14,
+      "tokens": 77
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/shared/snapshot.ts",
+        147,
+        164
+      ],
+      "b": [
+        "src/sisad-pdfme/shared/snapshotAdapter.ts",
+        43,
+        59
+      ],
+      "significant_lines": 17,
+      "tokens": 129
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/Designer.tsx",
+        307,
+        320
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/Viewer.tsx",
+        33,
+        46
+      ],
+      "significant_lines": 10,
+      "tokens": 60
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/Form.tsx",
+        97,
+        112
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/Viewer.tsx",
+        42,
+        57
+      ],
+      "significant_lines": 14,
+      "tokens": 90
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/collaboration.ts",
+        401,
+        408
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/collaboration.ts",
+        415,
+        422
+      ],
+      "significant_lines": 8,
+      "tokens": 51
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/collaboration.ts",
+        549,
+        558
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/collaboration.ts",
+        569,
+        578
+      ],
+      "significant_lines": 10,
+      "tokens": 76
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/collaboration.ts",
+        1194,
+        1200
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/collaboration.ts",
+        1218,
+        1224
+      ],
+      "significant_lines": 7,
+      "tokens": 52
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/components/usePreviewRuntime.ts",
+        505,
+        510
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/components/usePreviewRuntime.ts",
+        587,
+        592
+      ],
+      "significant_lines": 6,
+      "tokens": 61
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/designerEngine.ts",
+        435,
+        442
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/designerEngine.ts",
+        1412,
+        1419
+      ],
+      "significant_lines": 8,
+      "tokens": 97
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/hooks.ts",
+        214,
+        221
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/hooks.ts",
+        259,
+        266
+      ],
+      "significant_lines": 8,
+      "tokens": 51
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/runtimeStyles.ts",
+        114,
+        131
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/runtimeStyles.ts",
+        237,
+        254
+      ],
+      "significant_lines": 18,
+      "tokens": 327
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/theme.ts",
+        20,
+        32
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/theme.ts",
+        63,
+        75
+      ],
+      "significant_lines": 13,
+      "tokens": 50
+    }
+  ]
+}

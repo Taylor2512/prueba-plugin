@@ -3,8 +3,8 @@ import type { Schema } from '@sisad-pdfme/common';
 export type SignatureMode = 'draw' | 'image' | 'p12' | 'provider';
 export type SignatureProviderKey = string;
 export type SignatureProviderConfig = Record<string, unknown>;
-export type SignatureProviderStatus = 'pending' | 'ready' | 'completed' | 'failed' | 'expired';
-export type SignatureProviderDisplay = {
+type SignatureProviderStatus = 'pending' | 'ready' | 'completed' | 'failed' | 'expired';
+type SignatureProviderDisplay = {
   label?: string;
   badge?: string;
   tone?: 'neutral' | 'success' | 'warning' | 'danger';
@@ -43,9 +43,9 @@ export const SIGNATURE_MODE_OPTIONS: Array<{ value: SignatureMode; label: string
   { value: 'provider', label: 'Proveedor externo' },
 ];
 
-export const SIGNATURE_TYPE_OPTIONS = SIGNATURE_MODE_OPTIONS;
+const SIGNATURE_TYPE_OPTIONS = SIGNATURE_MODE_OPTIONS;
 
-export const DEFAULT_SIGNATURE_CAPABILITIES: SignatureCapabilities = {
+const DEFAULT_SIGNATURE_CAPABILITIES: SignatureCapabilities = {
   allowDraw: true,
   allowUploadImage: true,
   allowP12: true,
@@ -55,7 +55,7 @@ export const DEFAULT_SIGNATURE_CAPABILITIES: SignatureCapabilities = {
   allowPreview: true,
 };
 
-export const DEFAULT_SIGNATURE_DISPLAY: SignatureDisplayConfig = {
+const DEFAULT_SIGNATURE_DISPLAY: SignatureDisplayConfig = {
   showSignerName: true,
   showSignedAt: true,
   showReason: false,
@@ -197,7 +197,7 @@ export const resolveLegacySignatureMode = (schema: Partial<SignatureSchema> | un
   return 'provider';
 };
 
-export const resolveSignatureProviderKey = (schema: Partial<SignatureSchema> | undefined, mode?: SignatureMode) => {
+const resolveSignatureProviderKey = (schema: Partial<SignatureSchema> | undefined, mode?: SignatureMode) => {
   const resolvedMode = mode || resolveLegacySignatureMode(schema);
   if (resolvedMode !== 'provider') return null;
 

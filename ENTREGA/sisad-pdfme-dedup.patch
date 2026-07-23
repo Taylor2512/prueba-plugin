@@ -1,0 +1,5745 @@
+diff --git a/src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts b/src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts
+index 3d4876d..48ac9ed 100644
+--- a/src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts
++++ b/src/features/pdfcomponent/labs/examples/catalog/basicDesigner.ts
+@@ -1,100 +1,37 @@
+-import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
+-import { text, signature } from '@sisad-pdfme/schemas'
+-import { createSchema, createAuditMetadata } from '@/features/pdfcomponent/labs/builders/schemaFactory'
++import { text, signature } from '@sisad-pdfme/schemas';
++import { createAuditMetadata } from '@/features/pdfcomponent/labs/builders/schemaFactory';
+ import {
+-  createSchemaShowcasePages as createShowcasePagesCore,
+-} from '@/features/pdfcomponent/labs/builders/schemaShowcase'
+-import {
+-  createTemplate,
+   appendTemplatePages,
+   createCollaboration,
+-} from '@/features/pdfcomponent/labs/builders/exampleTemplate'
+-import { createLabExample } from '../createLabExample.ts'
+-import { BASIC_SIGNATURE_PROVIDERS } from './generatorRuntime.ts'
+-
+-const getTemplatePdfUrl = (fileName) => `/templates/${encodeURIComponent(fileName)}`
++  createTemplate,
++} from '@/features/pdfcomponent/labs/builders/exampleTemplate';
++import { createLabExample } from '../createLabExample.ts';
++import { BASIC_SIGNATURE_PROVIDERS } from './generatorRuntime.ts';
++import {
++  BASIC_SCHEMA_EXAMPLE_OVERRIDES,
++  createCatalogSchemaFactory,
++  createLabSchemaShowcasePages,
++  getTemplatePdfUrl,
++} from './labCatalogFixtures.ts';
+ 
+ const LAB_PDFS = {
+   basic: getTemplatePdfUrl('test.pdf'),
+-}
+-
+-const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
+-  .slice()
+-  .sort((a, b) => `${a.category}-${a.label}`.localeCompare(`${b.category}-${b.label}`))
+-
+-const EXCLUDED_SHOWCASE_SCHEMA_TYPES = new Set(['qrcode'])
+-const SHOWCASE_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((definition) => {
+-  const type = String(definition?.type || '').toLowerCase()
+-  return !EXCLUDED_SHOWCASE_SCHEMA_TYPES.has(type)
+-})
+-
+-const resolvePosition = (basePosition, overrides = {}) => {
+-  const nextPosition = { ...(basePosition || {}) }
+-  const overridePosition = overrides.position && typeof overrides.position === 'object' ? overrides.position : null
++};
+ 
+-  if (overridePosition) {
+-    if (overridePosition.x != null) nextPosition.x = overridePosition.x
+-    if (overridePosition.y != null) nextPosition.y = overridePosition.y
+-  }
+-  if (overrides.x != null) nextPosition.x = overrides.x
+-  if (overrides.y != null) nextPosition.y = overrides.y
+-  return nextPosition
+-}
+-
+-const createSchemaFactory = (baseSchema, basePosition, defaults = {}) => (overrides = {}) => {
+-  const { position, x, y, ...rest } = overrides
+-  return createSchema(baseSchema, {
+-    ...defaults,
+-    ...rest,
+-    position: resolvePosition(basePosition, { position, x, y }),
+-  })
+-}
+-
+-const createTextSchema = createSchemaFactory(text.propPanel.defaultSchema, { x: 18, y: 24 }, {
+-  width: 92,
+-  height: 12,
+-})
+-
+-const createSignatureSchema = createSchemaFactory(signature.propPanel.defaultSchema, { x: 18, y: 88 }, {
+-  width: 60,
+-  height: 24,
+-})
+-
+-const SCHEMA_EXAMPLE_OVERRIDES = {
+-  text: {
+-    name: 'customer_full_name',
+-    content: 'Taylor Demo',
+-    width: 92,
+-    height: 12,
+-  },
+-  signature: {
+-    name: 'review_signature',
+-    width: 60,
+-    height: 24,
+-  },
+-}
++const createTextSchema = createCatalogSchemaFactory(
++  text.propPanel.defaultSchema,
++  { x: 18, y: 24 },
++  { width: 92, height: 12 },
++);
+ 
+-const createSchemaShowcasePages = (config) =>
+-  createShowcasePagesCore({ ...config, overridesByType: SCHEMA_EXAMPLE_OVERRIDES })
++const createSignatureSchema = createCatalogSchemaFactory(
++  signature.propPanel.defaultSchema,
++  { x: 18, y: 88 },
++  { width: 60, height: 24 },
++);
+ 
+-const createLabSchemaShowcasePages = ({
+-  scope,
+-  ownerRecipientId,
+-  fileId,
+-  fileTemplateId,
+-  startingPageNumber,
+-  auditOffset,
+-  definitions = SHOWCASE_SCHEMA_DEFINITIONS,
+-}) =>
+-  createSchemaShowcasePages({
+-    definitions,
+-    scope,
+-    ownerRecipientId,
+-    fileId,
+-    fileTemplateId,
+-    startingPageNumber,
+-    auditOffset,
+-  })
++const createBasicShowcasePages = (config) =>
++  createLabSchemaShowcasePages(config, BASIC_SCHEMA_EXAMPLE_OVERRIDES);
+ 
+ const basicDesignerTemplate = createTemplate([
+   [
+@@ -126,7 +63,7 @@ const basicDesignerTemplate = createTemplate([
+   ],
+ ], { basePdf: LAB_PDFS.basic, pageCount: 3 })
+ 
+-const designerShowcasePages = createLabSchemaShowcasePages({
++const designerShowcasePages = createBasicShowcasePages({
+   scope: 'designer-showcase',
+   ownerRecipientId: 'basic-user-1',
+   startingPageNumber: basicDesignerTemplate.schemas.length + 1,
+diff --git a/src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts b/src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts
+index cb8e35b..cbf4ae1 100644
+--- a/src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts
++++ b/src/features/pdfcomponent/labs/examples/catalog/collaborationShowcases.ts
+@@ -1,98 +1,27 @@
+-import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
+-import { text } from '@sisad-pdfme/schemas'
+-import { createSchema, createCommentAnchor, createAuditMetadata } from '@/features/pdfcomponent/labs/builders/schemaFactory'
++import { createLabExample } from '../createLabExample.ts';
+ import {
+-  createSchemaShowcasePages as createShowcasePagesCore,
+-} from '@/features/pdfcomponent/labs/builders/schemaShowcase'
+-import {
+-  createTemplate,
++  BASIC_SCHEMA_EXAMPLE_OVERRIDES,
+   appendTemplatePages,
++  createAuditMetadata,
+   createCollaboration,
+-} from '@/features/pdfcomponent/labs/builders/exampleTemplate'
+-import { createLabExample } from '../createLabExample.ts'
+-
+-const getTemplatePdfUrl = (fileName) => `/templates/${encodeURIComponent(fileName)}`
++  createCommentAnchor,
++  createStandardTextSchema,
++  createTemplate,
++  createLabSchemaShowcasePages,
++  getTemplatePdfUrl,
++} from './labCatalogFixtures.ts';
+ 
+ const LAB_PDFS = {
+   enterprise: getTemplatePdfUrl('test.pdf'),
+   multiuser: getTemplatePdfUrl('test.pdf'),
+-}
+-
+-const BASE_COLLABORATION_TIMESTAMP = 1713570000000
+-
+-const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
+-  .slice()
+-  .sort((a, b) => `${a.category}-${a.label}`.localeCompare(`${b.category}-${b.label}`))
+-
+-const EXCLUDED_SHOWCASE_SCHEMA_TYPES = new Set(['qrcode'])
+-const SHOWCASE_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((definition) => {
+-  const type = String(definition?.type || '').toLowerCase()
+-  return !EXCLUDED_SHOWCASE_SCHEMA_TYPES.has(type)
+-})
+-
+-const resolvePosition = (basePosition, overrides = {}) => {
+-  const nextPosition = { ...(basePosition || {}) }
+-  const overridePosition = overrides.position && typeof overrides.position === 'object' ? overrides.position : null
+-
+-  if (overridePosition) {
+-    if (overridePosition.x != null) nextPosition.x = overridePosition.x
+-    if (overridePosition.y != null) nextPosition.y = overridePosition.y
+-  }
+-  if (overrides.x != null) nextPosition.x = overrides.x
+-  if (overrides.y != null) nextPosition.y = overrides.y
+-  return nextPosition
+-}
+-
+-const createSchemaFactory = (baseSchema, basePosition, defaults = {}) => (overrides = {}) => {
+-  const { position, x, y, ...rest } = overrides
+-  return createSchema(baseSchema, {
+-    ...defaults,
+-    ...rest,
+-    position: resolvePosition(basePosition, { position, x, y }),
+-  })
+-}
+-
+-const createTextSchema = createSchemaFactory(text.propPanel.defaultSchema, { x: 18, y: 24 }, {
+-  width: 92,
+-  height: 12,
+-  fontSize: 12,
+-})
++};
+ 
+-const createSchemaShowcasePages = (config) =>
+-  createShowcasePagesCore({ ...config, overridesByType: SCHEMA_EXAMPLE_OVERRIDES })
++const BASE_COLLABORATION_TIMESTAMP = 1713570000000;
+ 
+-const createLabSchemaShowcasePages = ({
+-  scope,
+-  ownerRecipientId,
+-  fileId,
+-  fileTemplateId,
+-  startingPageNumber,
+-  auditOffset,
+-  definitions = SHOWCASE_SCHEMA_DEFINITIONS,
+-}) =>
+-  createSchemaShowcasePages({
+-    definitions,
+-    scope,
+-    ownerRecipientId,
+-    fileId,
+-    fileTemplateId,
+-    startingPageNumber,
+-    auditOffset,
+-  })
++const createTextSchema = createStandardTextSchema;
+ 
+-const SCHEMA_EXAMPLE_OVERRIDES = {
+-  text: {
+-    name: 'customer_full_name',
+-    content: 'Taylor Demo',
+-    width: 92,
+-    height: 12,
+-  },
+-  signature: {
+-    name: 'review_signature',
+-    width: 60,
+-    height: 24,
+-  },
+-}
++const createCollaborationShowcasePages = (config) =>
++  createLabSchemaShowcasePages(config, BASIC_SCHEMA_EXAMPLE_OVERRIDES);
+ 
+ const enterpriseCollaborationTemplate = createTemplate([
+   [
+@@ -142,7 +71,7 @@ const enterpriseCollaborationTemplate = createTemplate([
+   ],
+ ], { basePdf: LAB_PDFS.enterprise, pageCount: 2 })
+ 
+-const multiuserShowcasePages = createLabSchemaShowcasePages({
++const multiuserShowcasePages = createCollaborationShowcasePages({
+   scope: 'multiuser-showcase',
+   ownerRecipientId: 'sales-user-1',
+   fileId: 'multiuser-contract',
+@@ -249,7 +178,7 @@ const multiuserCollaborationTemplate = appendTemplatePages(
+   multiuserShowcasePages,
+ )
+ 
+-const collaborationShowcasePages = createLabSchemaShowcasePages({
++const collaborationShowcasePages = createCollaborationShowcasePages({
+   scope: 'collaboration-showcase',
+   ownerRecipientId: 'ops-user-1',
+   fileId: 'enterprise-contract',
+diff --git a/src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts b/src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts
+index 99ae745..40798a6 100644
+--- a/src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts
++++ b/src/features/pdfcomponent/labs/examples/catalog/generatorRuntime.ts
+@@ -1,196 +1,28 @@
+-import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
+-import { text, select, checkbox } from '@sisad-pdfme/schemas'
+-import { createSchema, createCommentAnchor, createAuditMetadata } from '@/features/pdfcomponent/labs/builders/schemaFactory'
++import { createLabExample } from '../createLabExample.ts';
+ import {
+-  createSchemaShowcasePages as createShowcasePagesCore,
+-} from '@/features/pdfcomponent/labs/builders/schemaShowcase'
+-import {
+-  createTemplate,
+   appendTemplatePages,
++  createAuditMetadata,
+   createCollaboration,
+-} from '@/features/pdfcomponent/labs/builders/exampleTemplate'
+-import { createLabExample } from '../createLabExample.ts'
+-
+-const getTemplatePdfUrl = (fileName) => `/templates/${encodeURIComponent(fileName)}`
++  createCommentAnchor,
++  createStandardCheckboxSchema,
++  createStandardSelectSchema,
++  createStandardTextSchema,
++  createTemplate,
++  createLabSchemaShowcasePages,
++  EXTENDED_SCHEMA_EXAMPLE_OVERRIDES,
++  getTemplatePdfUrl,
++} from './labCatalogFixtures.ts';
+ 
+ const LAB_PDFS = {
+   generator: getTemplatePdfUrl('test.pdf'),
+-}
+-
+-const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
+-  .slice()
+-  .sort((a, b) => `${a.category}-${a.label}`.localeCompare(`${b.category}-${b.label}`))
+-
+-const EXCLUDED_SHOWCASE_SCHEMA_TYPES = new Set(['qrcode'])
+-const SHOWCASE_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((definition) => {
+-  const type = String(definition?.type || '').toLowerCase()
+-  return !EXCLUDED_SHOWCASE_SCHEMA_TYPES.has(type)
+-})
+-
+-const resolvePosition = (basePosition, overrides = {}) => {
+-  const nextPosition = { ...(basePosition || {}) }
+-  const overridePosition = overrides.position && typeof overrides.position === 'object' ? overrides.position : null
+-
+-  if (overridePosition) {
+-    if (overridePosition.x != null) nextPosition.x = overridePosition.x
+-    if (overridePosition.y != null) nextPosition.y = overridePosition.y
+-  }
+-  if (overrides.x != null) nextPosition.x = overrides.x
+-  if (overrides.y != null) nextPosition.y = overrides.y
+-  return nextPosition
+-}
+-
+-const createSchemaFactory = (baseSchema, basePosition, defaults = {}) => (overrides = {}) => {
+-  const { position, x, y, ...rest } = overrides
+-  return createSchema(baseSchema, {
+-    ...defaults,
+-    ...rest,
+-    position: resolvePosition(basePosition, { position, x, y }),
+-  })
+-}
+-
+-const createTextSchema = createSchemaFactory(text.propPanel.defaultSchema, { x: 18, y: 24 }, {
+-  width: 92,
+-  height: 12,
+-  fontSize: 12,
+-})
+-
+-const createSelectSchema = createSchemaFactory(select.propPanel.defaultSchema, { x: 18, y: 46 }, {
+-  width: 92,
+-  height: 12,
+-})
+-
+-const createCheckboxSchema = createSchemaFactory(checkbox.propPanel.defaultSchema, { x: 18, y: 66 }, {
+-  width: 8,
+-  height: 8,
+-})
+-
+-const SCHEMA_EXAMPLE_OVERRIDES = {
+-  text: {
+-    name: 'customer_full_name',
+-    content: 'Taylor Demo',
+-    width: 92,
+-    height: 12,
+-  },
+-  multiVariableText: {
+-    name: 'approval_summary',
+-    text: 'Cliente {customer_name} · Plan {plan}',
+-    content: '{customer_name}',
+-    width: 110,
+-    height: 14,
+-  },
+-  select: {
+-    name: 'contract_stage',
+-    content: 'Aprobado',
+-    options: ['Pendiente', 'Aprobado', 'Rechazado'],
+-    width: 92,
+-    height: 12,
+-  },
+-  checkbox: {
+-    name: 'accept_terms',
+-    content: 'true',
+-    width: 8,
+-    height: 8,
+-  },
+-  radioGroup: {
+-    name: 'notify_customer',
+-    groupId: 'delivery-notifications',
+-    group: 'delivery-notifications',
+-    groupName: 'Notificaciones de entrega',
+-    content: 'option_1',
+-    selectedOptionId: 'option_1',
+-    defaultSelectedOptionId: 'option_1',
+-    options: [
+-      { optionId: 'option_1', label: 'Sí' },
+-      { optionId: 'option_2', label: 'No' },
+-    ],
+-    width: 82,
+-    height: 18,
+-  },
+-  checkboxGroup: {
+-    name: 'preferences',
+-    options: [
+-      { optionId: 'opt_1', label: 'Opción A' },
+-      { optionId: 'opt_2', label: 'Opción B' },
+-      { optionId: 'opt_3', label: 'Opción C' },
+-    ],
+-    selectedOptionIds: ['opt_1'],
+-    width: 92,
+-    height: 12,
+-  },
+-  signature: {
+-    name: 'review_signature',
+-    width: 60,
+-    height: 24,
+-  },
+-  image: {
+-    name: 'company_logo',
+-    width: 42,
+-    height: 42,
+-  },
+-  svg: {
+-    name: 'process_icon',
+-    width: 42,
+-    height: 42,
+-  },
+-  line: {
+-    name: 'divider_line',
+-    width: 94,
+-    height: 0.75,
+-  },
+-  rectangle: {
+-    name: 'highlight_box',
+-    width: 94,
+-    height: 32,
+-  },
+-  ellipse: {
+-    name: 'approval_badge',
+-    width: 52,
+-    height: 28,
+-  },
+-  table: {
+-    name: 'line_items',
+-    width: 155,
+-    height: 28,
+-  },
+-  dateTime: {
+-    name: 'approval_timestamp',
+-    width: 68,
+-    height: 12,
+-  },
+-  date: {
+-    name: 'approval_date',
+-    width: 54,
+-    height: 12,
+-  },
+-  time: {
+-    name: 'approval_time',
+-    width: 36,
+-    height: 12,
+-  },
+-}
++};
+ 
+-const createSchemaShowcasePages = (config) =>
+-  createShowcasePagesCore({ ...config, overridesByType: SCHEMA_EXAMPLE_OVERRIDES })
++const createTextSchema = createStandardTextSchema;
++const createSelectSchema = createStandardSelectSchema;
++const createCheckboxSchema = createStandardCheckboxSchema;
+ 
+-const createLabSchemaShowcasePages = ({
+-  scope,
+-  ownerRecipientId,
+-  fileId,
+-  fileTemplateId,
+-  startingPageNumber,
+-  auditOffset,
+-  definitions = SHOWCASE_SCHEMA_DEFINITIONS,
+-}) =>
+-  createSchemaShowcasePages({
+-    definitions,
+-    scope,
+-    ownerRecipientId,
+-    fileId,
+-    fileTemplateId,
+-    startingPageNumber,
+-    auditOffset,
+-  })
++const createGeneratorShowcasePages = (config) =>
++  createLabSchemaShowcasePages(config, EXTENDED_SCHEMA_EXAMPLE_OVERRIDES);
+ 
+ const generatorRuntimeTemplate = createTemplate([
+   [
+@@ -238,7 +70,7 @@ const generatorRuntimeTemplate = createTemplate([
+   ],
+ ], { basePdf: LAB_PDFS.generator, pageCount: 3 })
+ 
+-const generatorShowcasePages = createLabSchemaShowcasePages({
++const generatorShowcasePages = createGeneratorShowcasePages({
+   scope: 'generator-showcase',
+   ownerRecipientId: 'generator-user-1',
+   startingPageNumber: generatorRuntimeTemplate.schemas.length + 1,
+diff --git a/src/features/pdfcomponent/labs/examples/catalog/labCatalogFixtures.ts b/src/features/pdfcomponent/labs/examples/catalog/labCatalogFixtures.ts
+new file mode 100644
+index 0000000..7d43b2c
+--- /dev/null
++++ b/src/features/pdfcomponent/labs/examples/catalog/labCatalogFixtures.ts
+@@ -0,0 +1,232 @@
++import {
++  builtInSchemaDefinitions,
++  checkbox,
++  select,
++  text,
++  optionGroupDesignerHeightMM,
++  optionGroupDesignerWidthMM,
++} from '@sisad-pdfme/schemas';
++import { createSchema } from '@/features/pdfcomponent/labs/builders/schemaFactory';
++
++export {
++  createAuditMetadata,
++  createCommentAnchor,
++} from '@/features/pdfcomponent/labs/builders/schemaFactory';
++export {
++  appendTemplatePages,
++  createCollaboration,
++  createTemplate,
++} from '@/features/pdfcomponent/labs/builders/exampleTemplate';
++import { createSchemaShowcasePages } from '@/features/pdfcomponent/labs/builders/schemaShowcase';
++
++const EXCLUDED_SHOWCASE_SCHEMA_TYPES = new Set(['qrcode']);
++
++export const getTemplatePdfUrl = (fileName: string) =>
++  `/templates/${encodeURIComponent(fileName)}`;
++
++export const SHOWCASE_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
++  .slice()
++  .sort((a, b) => `${a.category}-${a.label}`.localeCompare(`${b.category}-${b.label}`))
++  .filter((definition) => !EXCLUDED_SHOWCASE_SCHEMA_TYPES.has(String(definition?.type || '').toLowerCase()));
++
++export const resolveSchemaPosition = (
++  basePosition: Record<string, unknown> = {},
++  overrides: Record<string, unknown> = {},
++) => {
++  const nextPosition = { ...basePosition };
++  const overridePosition =
++    overrides.position && typeof overrides.position === 'object'
++      ? (overrides.position as Record<string, unknown>)
++      : undefined;
++
++  if (overridePosition?.x != null) nextPosition.x = overridePosition.x;
++  if (overridePosition?.y != null) nextPosition.y = overridePosition.y;
++  if (overrides.x != null) nextPosition.x = overrides.x;
++  if (overrides.y != null) nextPosition.y = overrides.y;
++
++  return nextPosition;
++};
++
++export const createCatalogSchemaFactory = (
++  baseSchema: Record<string, unknown>,
++  basePosition: Record<string, unknown>,
++  defaults: Record<string, unknown> = {},
++) =>
++  (overrides: Record<string, unknown> = {}) => {
++    const { position, x, y, ...rest } = overrides;
++    return createSchema(baseSchema, {
++      ...defaults,
++      ...rest,
++      position: resolveSchemaPosition(basePosition, { position, x, y }),
++    });
++  };
++
++export const createStandardTextSchema = createCatalogSchemaFactory(
++  text.propPanel.defaultSchema,
++  { x: 18, y: 24 },
++  { width: 92, height: 12, fontSize: 12 },
++);
++
++export const createStandardSelectSchema = createCatalogSchemaFactory(
++  select.propPanel.defaultSchema,
++  { x: 18, y: 46 },
++  { width: 92, height: 12 },
++);
++
++export const createStandardCheckboxSchema = createCatalogSchemaFactory(
++  checkbox.propPanel.defaultSchema,
++  { x: 18, y: 66 },
++  { width: 8, height: 8 },
++);
++
++type CatalogOptionGroupType = Parameters<typeof optionGroupDesignerWidthMM>[0];
++
++export const createCatalogOptionGroupFactory = (
++  baseSchema: Record<string, unknown>,
++  type: CatalogOptionGroupType,
++  basePosition: Record<string, unknown>,
++) =>
++  (overrides: Record<string, unknown> = {}) => {
++    const { position, x, y, options, width, height, ...rest } = overrides;
++    const optionCount = Array.isArray(options) ? options.length : 2;
++
++    return createSchema(baseSchema, {
++      width: width ?? optionGroupDesignerWidthMM(type),
++      height: height ?? optionGroupDesignerHeightMM(type, optionCount),
++      ...(options ? { options } : {}),
++      ...rest,
++      position: resolveSchemaPosition(basePosition, { position, x, y }),
++    });
++  };
++
++export const BASIC_SCHEMA_EXAMPLE_OVERRIDES = {
++  text: {
++    name: 'customer_full_name',
++    content: 'Taylor Demo',
++    width: 92,
++    height: 12,
++  },
++  signature: {
++    name: 'review_signature',
++    width: 60,
++    height: 24,
++  },
++};
++
++export const EXTENDED_SCHEMA_EXAMPLE_OVERRIDES = {
++  ...BASIC_SCHEMA_EXAMPLE_OVERRIDES,
++  multiVariableText: {
++    name: 'approval_summary',
++    text: 'Cliente {customer_name} · Plan {plan}',
++    content: '{customer_name}',
++    width: 110,
++    height: 14,
++  },
++  select: {
++    name: 'contract_stage',
++    content: 'Aprobado',
++    options: ['Pendiente', 'Aprobado', 'Rechazado'],
++    width: 92,
++    height: 12,
++  },
++  checkbox: {
++    name: 'accept_terms',
++    content: 'true',
++    width: 8,
++    height: 8,
++  },
++  radioGroup: {
++    name: 'notify_customer',
++    groupId: 'delivery-notifications',
++    group: 'delivery-notifications',
++    groupName: 'Notificaciones de entrega',
++    content: 'option_1',
++    selectedOptionId: 'option_1',
++    defaultSelectedOptionId: 'option_1',
++    options: [
++      { optionId: 'option_1', label: 'Sí' },
++      { optionId: 'option_2', label: 'No' },
++    ],
++    width: 82,
++    height: 18,
++  },
++  checkboxGroup: {
++    name: 'preferences',
++    options: [
++      { optionId: 'opt_1', label: 'Opción A' },
++      { optionId: 'opt_2', label: 'Opción B' },
++      { optionId: 'opt_3', label: 'Opción C' },
++    ],
++    selectedOptionIds: ['opt_1'],
++    width: 92,
++    height: 12,
++  },
++  image: {
++    name: 'company_logo',
++    width: 42,
++    height: 42,
++  },
++  svg: {
++    name: 'process_icon',
++    width: 42,
++    height: 42,
++  },
++  line: {
++    name: 'divider_line',
++    width: 94,
++    height: 0.75,
++  },
++  rectangle: {
++    name: 'highlight_box',
++    width: 94,
++    height: 32,
++  },
++  ellipse: {
++    name: 'approval_badge',
++    width: 52,
++    height: 28,
++  },
++  table: {
++    name: 'line_items',
++    width: 155,
++    height: 28,
++  },
++  dateTime: {
++    name: 'approval_timestamp',
++    width: 68,
++    height: 12,
++  },
++  date: {
++    name: 'approval_date',
++    width: 54,
++    height: 12,
++  },
++  time: {
++    name: 'approval_time',
++    width: 36,
++    height: 12,
++  },
++};
++
++export type LabSchemaShowcaseConfig = {
++  scope: string;
++  ownerRecipientId?: string;
++  fileId?: string;
++  fileTemplateId?: string;
++  startingPageNumber?: number;
++  auditOffset?: number;
++  definitions?: typeof SHOWCASE_SCHEMA_DEFINITIONS;
++};
++
++export const createLabSchemaShowcasePages = (
++  {
++    definitions = SHOWCASE_SCHEMA_DEFINITIONS,
++    ...config
++  }: LabSchemaShowcaseConfig,
++  overridesByType: Record<string, Record<string, unknown>> = BASIC_SCHEMA_EXAMPLE_OVERRIDES,
++) =>
++  createSchemaShowcasePages({
++    definitions,
++    ...config,
++    overridesByType,
++  });
+diff --git a/src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts b/src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts
+index 7af02c2..3136529 100644
+--- a/src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts
++++ b/src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts
+@@ -1,219 +1,50 @@
+-import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
+-import { text, select, checkbox, radioGroup, checkboxGroup } from '@sisad-pdfme/schemas'
+-import { optionGroupDesignerWidthMM, optionGroupDesignerHeightMM } from '@sisad-pdfme/schemas'
+ import {
+-  createSchema,
+-  createAuditMetadata,
+-} from '@/features/pdfcomponent/labs/builders/schemaFactory'
+-import {
+-  createSchemaShowcasePages as createShowcasePagesCore,
+-  mergeSchemaPages,
+-} from '@/features/pdfcomponent/labs/builders/schemaShowcase'
++  checkboxGroup,
++  radioGroup,
++} from '@sisad-pdfme/schemas';
+ import {
++  createCollaboration,
+   createTemplate,
+   createUploadedDocument as createUploadedDocumentCore,
+-  createCollaboration,
+-} from '@/features/pdfcomponent/labs/builders/exampleTemplate'
+-import { createLabExample } from '../createLabExample.ts'
+-
+-const getTemplatePdfUrl = (fileName) => `/templates/${encodeURIComponent(fileName)}`
++} from '@/features/pdfcomponent/labs/builders/exampleTemplate';
++import { mergeSchemaPages } from '@/features/pdfcomponent/labs/builders/schemaShowcase';
++import { createLabExample } from '../createLabExample.ts';
++import {
++  createCatalogOptionGroupFactory,
++  createAuditMetadata,
++  createStandardCheckboxSchema,
++  createStandardSelectSchema,
++  createStandardTextSchema,
++  createLabSchemaShowcasePages,
++  EXTENDED_SCHEMA_EXAMPLE_OVERRIDES,
++  getTemplatePdfUrl,
++  SHOWCASE_SCHEMA_DEFINITIONS,
++} from './labCatalogFixtures.ts';
+ 
+ const LAB_PDFS = {
+   routingPrimary: getTemplatePdfUrl('test.pdf'),
+-}
+-
+-const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
+-  .slice()
+-  .sort((a, b) => `${a.category}-${a.label}`.localeCompare(`${b.category}-${b.label}`))
+-
+-const EXCLUDED_SHOWCASE_SCHEMA_TYPES = new Set(['qrcode'])
+-const SHOWCASE_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((definition) => {
+-  const type = String(definition?.type || '').toLowerCase()
+-  return !EXCLUDED_SHOWCASE_SCHEMA_TYPES.has(type)
+-})
+-
+-const resolvePosition = (basePosition, overrides = {}) => {
+-  const nextPosition = { ...(basePosition || {}) }
+-  const overridePosition = overrides.position && typeof overrides.position === 'object' ? overrides.position : null
+-
+-  if (overridePosition) {
+-    if (overridePosition.x != null) nextPosition.x = overridePosition.x
+-    if (overridePosition.y != null) nextPosition.y = overridePosition.y
+-  }
+-  if (overrides.x != null) nextPosition.x = overrides.x
+-  if (overrides.y != null) nextPosition.y = overrides.y
+-  return nextPosition
+-}
+-
+-const createSchemaFactory = (baseSchema, basePosition, defaults = {}) => (overrides = {}) => {
+-  const { position, x, y, ...rest } = overrides
+-  return createSchema(baseSchema, {
+-    ...defaults,
+-    ...rest,
+-    position: resolvePosition(basePosition, { position, x, y }),
+-  })
+-}
+-
+-const createTextSchema = createSchemaFactory(text.propPanel.defaultSchema, { x: 18, y: 24 }, {
+-  width: 92,
+-  height: 12,
+-  fontSize: 12,
+-})
+-
+-const createSelectSchema = createSchemaFactory(select.propPanel.defaultSchema, { x: 18, y: 46 }, {
+-  width: 92,
+-  height: 12,
+-})
+-
+-const createCheckboxSchema = createSchemaFactory(checkbox.propPanel.defaultSchema, { x: 18, y: 66 }, {
+-  width: 8,
+-  height: 8,
+-})
++};
+ 
+-const createOptionGroupFactory = (baseSchema, type, basePosition) => (overrides = {}) => {
+-  const { position, x, y, options, width, height, ...rest } = overrides
+-  const count = Array.isArray(options) ? options.length : 2
+-  return createSchema(baseSchema, {
+-    width: width ?? optionGroupDesignerWidthMM(type),
+-    height: height ?? optionGroupDesignerHeightMM(type, count),
+-    ...(options ? { options } : {}),
+-    ...rest,
+-    position: resolvePosition(basePosition, { position, x, y }),
+-  })
+-}
++const createTextSchema = createStandardTextSchema;
++const createSelectSchema = createStandardSelectSchema;
++const createCheckboxSchema = createStandardCheckboxSchema;
+ 
+-const createRadioGroupSchema = createOptionGroupFactory(radioGroup.propPanel.defaultSchema, 'radioGroup', { x: 18, y: 84 })
+-const createCheckboxGroupSchema = createOptionGroupFactory(checkboxGroup.propPanel.defaultSchema, 'checkboxGroup', { x: 18, y: 108 })
++const createRadioGroupSchema = createCatalogOptionGroupFactory(
++  radioGroup.propPanel.defaultSchema,
++  'radioGroup',
++  { x: 18, y: 84 },
++);
++const createCheckboxGroupSchema = createCatalogOptionGroupFactory(
++  checkboxGroup.propPanel.defaultSchema,
++  'checkboxGroup',
++  { x: 18, y: 108 },
++);
+ 
+-const createSchemaShowcasePages = (config) =>
+-  createShowcasePagesCore({ ...config, overridesByType: SCHEMA_EXAMPLE_OVERRIDES })
+-
+-const createLabSchemaShowcasePages = ({
+-  scope,
+-  ownerRecipientId,
+-  fileId,
+-  fileTemplateId,
+-  startingPageNumber,
+-  auditOffset,
+-  definitions = SHOWCASE_SCHEMA_DEFINITIONS,
+-}) =>
+-  createSchemaShowcasePages({
+-    definitions,
+-    scope,
+-    ownerRecipientId,
+-    fileId,
+-    fileTemplateId,
+-    startingPageNumber,
+-    auditOffset,
+-  })
++const createRoutingShowcasePages = (config) =>
++  createLabSchemaShowcasePages(config, EXTENDED_SCHEMA_EXAMPLE_OVERRIDES);
+ 
+ const createUploadedDocument = (args) =>
+-  createUploadedDocumentCore({ ...args, pdfResolver: getTemplatePdfUrl })
+-
+-const SCHEMA_EXAMPLE_OVERRIDES = {
+-  text: {
+-    name: 'customer_full_name',
+-    content: 'Taylor Demo',
+-    width: 92,
+-    height: 12,
+-  },
+-  multiVariableText: {
+-    name: 'approval_summary',
+-    text: 'Cliente {customer_name} · Plan {plan}',
+-    content: '{customer_name}',
+-    width: 110,
+-    height: 14,
+-  },
+-  select: {
+-    name: 'contract_stage',
+-    content: 'Aprobado',
+-    options: ['Pendiente', 'Aprobado', 'Rechazado'],
+-    width: 92,
+-    height: 12,
+-  },
+-  checkbox: {
+-    name: 'accept_terms',
+-    content: 'true',
+-    width: 8,
+-    height: 8,
+-  },
+-  radioGroup: {
+-    name: 'notify_customer',
+-    groupId: 'delivery-notifications',
+-    group: 'delivery-notifications',
+-    groupName: 'Notificaciones de entrega',
+-    content: 'option_1',
+-    selectedOptionId: 'option_1',
+-    defaultSelectedOptionId: 'option_1',
+-    options: [
+-      { optionId: 'option_1', label: 'Sí' },
+-      { optionId: 'option_2', label: 'No' },
+-    ],
+-    width: 82,
+-    height: 18,
+-  },
+-  checkboxGroup: {
+-    name: 'preferences',
+-    options: [
+-      { optionId: 'opt_1', label: 'Opción A' },
+-      { optionId: 'opt_2', label: 'Opción B' },
+-      { optionId: 'opt_3', label: 'Opción C' },
+-    ],
+-    selectedOptionIds: ['opt_1'],
+-    width: 92,
+-    height: 12,
+-  },
+-  signature: {
+-    name: 'review_signature',
+-    width: 60,
+-    height: 24,
+-  },
+-  image: {
+-    name: 'company_logo',
+-    width: 42,
+-    height: 42,
+-  },
+-  svg: {
+-    name: 'process_icon',
+-    width: 42,
+-    height: 42,
+-  },
+-  line: {
+-    name: 'divider_line',
+-    width: 94,
+-    height: 0.75,
+-  },
+-  rectangle: {
+-    name: 'highlight_box',
+-    width: 94,
+-    height: 32,
+-  },
+-  ellipse: {
+-    name: 'approval_badge',
+-    width: 52,
+-    height: 28,
+-  },
+-  table: {
+-    name: 'line_items',
+-    width: 155,
+-    height: 28,
+-  },
+-  dateTime: {
+-    name: 'approval_timestamp',
+-    width: 68,
+-    height: 12,
+-  },
+-  date: {
+-    name: 'approval_date',
+-    width: 54,
+-    height: 12,
+-  },
+-  time: {
+-    name: 'approval_time',
+-    width: 36,
+-    height: 12,
+-  },
+-}
++  createUploadedDocumentCore({ ...args, pdfResolver: getTemplatePdfUrl });
+ 
+ const MULTI_DOCUMENT_ROUTING_PAGE_COUNT = 5
+ const routingSchemaSplitIndex = Math.ceil(SHOWCASE_SCHEMA_DEFINITIONS.length / 2)
+@@ -356,7 +187,7 @@ const multiDocumentSecondaryBaseSchemas = [
+   ],
+ ]
+ 
+-const multiDocumentPrimaryShowcaseSchemas = createLabSchemaShowcasePages({
++const multiDocumentPrimaryShowcaseSchemas = createRoutingShowcasePages({
+   definitions: routingPrimarySchemaDefinitions,
+   scope: 'routing-primary-showcase',
+   ownerRecipientId: 'recipient-1',
+@@ -366,7 +197,7 @@ const multiDocumentPrimaryShowcaseSchemas = createLabSchemaShowcasePages({
+   auditOffset: 180000,
+ })
+ 
+-const multiDocumentSecondaryShowcaseSchemas = createLabSchemaShowcasePages({
++const multiDocumentSecondaryShowcaseSchemas = createRoutingShowcasePages({
+   definitions: routingSecondarySchemaDefinitions,
+   scope: 'routing-secondary-showcase',
+   ownerRecipientId: 'recipient-2',
+diff --git a/src/sisad-pdfme/assignments/index.ts b/src/sisad-pdfme/assignments/index.ts
+index 58c1f5d..f4282e7 100644
+--- a/src/sisad-pdfme/assignments/index.ts
++++ b/src/sisad-pdfme/assignments/index.ts
+@@ -115,6 +115,52 @@ const dedupeAssignments = (assignments: SchemaAssignments) => {
+  * Esto permite validar si un assignment apunta a un schema que
+  * todavía existe dentro del template.
+  */
++
++
++type FileAssignmentProjection = 'wrapped' | 'pages';
++
++const projectAssignmentsForFile = (
++  assignments: SchemaAssignments,
++  fileId: string | null | undefined,
++  projection: FileAssignmentProjection,
++  includeEmptyRecipients: boolean,
++) => {
++  const normalizedFileId = normalizeText(fileId);
++  if (!normalizedFileId) return {};
++
++  const entries = Object.entries(assignments || {}).flatMap(([recipientId, files]) => {
++    const pages = files?.[normalizedFileId];
++    if (!pages && !includeEmptyRecipients) return [];
++
++    return [[
++      recipientId,
++      pages
++        ? projection === 'wrapped'
++          ? { [normalizedFileId]: cloneDeep(pages) }
++          : cloneDeep(pages)
++        : {},
++    ]];
++  });
++
++  return Object.fromEntries(entries);
++};
++
++const projectAssignmentsForPage = (
++  assignments: SchemaAssignments,
++  fileId: string | null | undefined,
++  pageNumber: number | string | null | undefined,
++) => {
++  const normalizedFileId = normalizeText(fileId);
++  if (!normalizedFileId) return {};
++
++  const pageKey = normalizePageNumber(pageNumber);
++  return Object.fromEntries(
++    Object.entries(assignments || {}).map(([recipientId, files]) => [
++      recipientId,
++      cloneDeep(files?.[normalizedFileId]?.[pageKey] || []),
++    ]),
++  );
++};
+ const collectSchemaUids = (schemas: Schema[][] = []) => {
+   const ids = new Set<string>();
+ 
+@@ -162,19 +208,7 @@ export const buildRecipientAssignments = (schemas: Schema[][] = []) =>
+ export const buildFileAssignments = (
+   assignments: SchemaAssignments = {},
+   fileId?: string | null,
+-) => {
+-  const normalizedFileId = normalizeText(fileId);
+-  if (!normalizedFileId) return {};
+-
+-  return Object.fromEntries(
+-    Object.entries(assignments || {}).map(([recipientId, files]) => [
+-      recipientId,
+-      files?.[normalizedFileId]
+-        ? { [normalizedFileId]: cloneDeep(files[normalizedFileId]) }
+-        : {},
+-    ]),
+-  );
+-};
++) => projectAssignmentsForFile(assignments, fileId, 'wrapped', true);
+ 
+ /**
+  * Filtra assignments por archivo y página.
+@@ -193,21 +227,7 @@ export const buildPageAssignments = (
+   assignments: SchemaAssignments = {},
+   fileId?: string | null,
+   pageNumber?: number | string | null,
+-) => {
+-  const normalizedFileId = normalizeText(fileId);
+-  const pageKey = normalizePageNumber(pageNumber);
+-
+-  if (!normalizedFileId) return {};
+-
+-  return Object.fromEntries(
+-    Object.entries(assignments || {}).map(([recipientId, files]) => [
+-      recipientId,
+-      files?.[normalizedFileId]?.[pageKey]
+-        ? cloneDeep(files[normalizedFileId][pageKey])
+-        : [],
+-    ]),
+-  );
+-};
++) => projectAssignmentsForPage(assignments, fileId, pageNumber);
+ 
+ /**
+  * Reconcilia assignments contra la fuente actual de schemas,
+@@ -483,20 +503,7 @@ export const getAssignmentsForRecipient = (
+ export const getAssignmentsForFile = (
+   assignments: SchemaAssignments = {},
+   fileId?: string | null,
+-) => {
+-  const normalizedFileId = normalizeText(fileId);
+-
+-  if (!normalizedFileId) return {};
+-
+-  return Object.fromEntries(
+-    Object.entries(assignments || {})
+-      .filter(([, files]) => Boolean(files?.[normalizedFileId]))
+-      .map(([recipientId, files]) => [
+-        recipientId,
+-        cloneDeep(files[normalizedFileId]),
+-      ]),
+-  );
+-};
++) => projectAssignmentsForFile(assignments, fileId, 'pages', false);
+ 
+ /**
+  * Obtiene los schemaUid asignados a una página específica de un archivo,
+@@ -509,23 +516,7 @@ export const getAssignmentsForFile = (
+  *   recipientB: []
+  * }
+  */
+-export const getAssignmentsForPage = (
+-  assignments: SchemaAssignments = {},
+-  fileId?: string | null,
+-  pageNumber?: number | string | null,
+-) => {
+-  const normalizedFileId = normalizeText(fileId);
+-  const pageKey = normalizePageNumber(pageNumber);
+-
+-  if (!normalizedFileId) return {};
+-
+-  return Object.fromEntries(
+-    Object.entries(assignments || {}).map(([recipientId, files]) => [
+-      recipientId,
+-      cloneDeep(files?.[normalizedFileId]?.[pageKey] || []),
+-    ]),
+-  );
+-};
++export const getAssignmentsForPage = buildPageAssignments;
+ 
+ /**
+  * Valida la consistencia interna de assignments.
+diff --git a/src/sisad-pdfme/canvas/useCanvasRenderState.ts b/src/sisad-pdfme/canvas/useCanvasRenderState.ts
+index 03066c9..d995314 100644
+--- a/src/sisad-pdfme/canvas/useCanvasRenderState.ts
++++ b/src/sisad-pdfme/canvas/useCanvasRenderState.ts
+@@ -55,58 +55,6 @@ export interface CanvasRenderStateInput {
+  */
+ export function useCanvasRenderState(input: CanvasRenderStateInput): CanvasRenderState {
+   const {
+-    schemaCount,
+-    pageCursor,
+-    documentId,
+-    isLoadingDocument = false,
+-    isSwitchingDocument = false,
+-    switchFromDocId,
+-    switchToDocId,
+-    isLoadingPage = false,
+-    renderError,
+-    renderErrorRecoverable = true,
+-    pdfLoadError,
+-    isCollaborationDisconnected = false,
+-    lastSyncAt = 0,
+-  } = input;
+-
+-  return useMemo((): CanvasRenderState => {
+-    // 1. Explicit errors take highest priority
+-    if (renderError) {
+-      return { type: 'render_error', error: renderError, recoverable: renderErrorRecoverable };
+-    }
+-    if (pdfLoadError) {
+-      return { type: 'pdf_load_error', reason: pdfLoadError.reason };
+-    }
+-
+-    // 2. Loading states
+-    if (isLoadingDocument) {
+-      return { type: 'loading_document' };
+-    }
+-    if (isSwitchingDocument && switchFromDocId && switchToDocId) {
+-      return { type: 'document_switching', fromDocId: switchFromDocId, toDocId: switchToDocId };
+-    }
+-    if (isLoadingPage) {
+-      return { type: 'loading_page' };
+-    }
+-
+-    // 3. Collaboration disconnected (but still functional)
+-    if (isCollaborationDisconnected) {
+-      return { type: 'collaboration_disconnected', lastSyncAt };
+-    }
+-
+-    // 4. Content-based states
+-    if (schemaCount === 0) {
+-      // Distinguish between "the page itself is empty" and "no schemas on this page"
+-      if (documentId) {
+-        return { type: 'empty_page', pageNumber: pageCursor + 1, documentId };
+-      }
+-      return { type: 'no_schemas', pageNumber: pageCursor + 1 };
+-    }
+-
+-    // 5. Normal operation
+-    return { type: 'ready', schemaCount };
+-  }, [
+     schemaCount,
+     pageCursor,
+     documentId,
+@@ -120,7 +68,26 @@ export function useCanvasRenderState(input: CanvasRenderStateInput): CanvasRende
+     pdfLoadError,
+     isCollaborationDisconnected,
+     lastSyncAt,
+-  ]);
++  } = input;
++
++  return useMemo(
++    () => deriveCanvasRenderState(input),
++    [
++      schemaCount,
++      pageCursor,
++      documentId,
++      isLoadingDocument,
++      isSwitchingDocument,
++      switchFromDocId,
++      switchToDocId,
++      isLoadingPage,
++      renderError,
++      renderErrorRecoverable,
++      pdfLoadError,
++      isCollaborationDisconnected,
++      lastSyncAt,
++    ],
++  );
+ }
+ 
+ /**
+diff --git a/src/sisad-pdfme/collaboration/index.ts b/src/sisad-pdfme/collaboration/index.ts
+index a308bb8..938ca5d 100644
+--- a/src/sisad-pdfme/collaboration/index.ts
++++ b/src/sisad-pdfme/collaboration/index.ts
+@@ -8,6 +8,7 @@ import {
+   type SchemaForUI,
+   type Template,
+ } from '@sisad-pdfme/common';
++import { findSchemaInPages } from '../common/schemaPageTraversal.js';
+ 
+ /**
+  * Estado colaborativo soportado por este módulo.
+@@ -145,25 +146,9 @@ const findSchema = (state: CollaborationState, schemaUid: string) => {
+ 
+   if (!normalizedSchemaUid) return null;
+ 
+-  const pages = getSchemaPages(state);
+-
+-  for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
+-    const page = pages[pageIndex] || [];
+-
+-    for (let schemaIndex = 0; schemaIndex < page.length; schemaIndex += 1) {
+-      const schema = page[schemaIndex];
+-
+-      const currentSchemaUid = normalizeText(
+-        schema.schemaUid || schema.id || schema.name,
+-      );
+-
+-      if (currentSchemaUid === normalizedSchemaUid) {
+-        return schema;
+-      }
+-    }
+-  }
+-
+-  return null;
++  return findSchemaInPages(getSchemaPages(state), (schema) =>
++    normalizeText(schema.schemaUid || schema.id || schema.name) === normalizedSchemaUid,
++  );
+ };
+ 
+ /**
+@@ -456,4 +441,4 @@ export {
+   schemaMatchesAuthorView,
+   filterSchemasByAuthorView,
+   validateCollaborativeSchemas,
+-};
+\ No newline at end of file
++};
+diff --git a/src/sisad-pdfme/comments/index.ts b/src/sisad-pdfme/comments/index.ts
+index 5b2314b..224f6c9 100644
+--- a/src/sisad-pdfme/comments/index.ts
++++ b/src/sisad-pdfme/comments/index.ts
+@@ -17,6 +17,7 @@ import {
+   resolveCommentInSchema,
+   updateCommentInSchema,
+ } from '@sisad-pdfme/common';
++import { forEachSchemaInPages } from '../common/schemaPageTraversal.js';
+ 
+ /**
+  * Entrada parcial para actualizar la posición o asociación de un anchor.
+@@ -99,42 +100,43 @@ const normalizeText = (value: unknown) => String(value || '').trim();
+ const updateCommentAnchorValues = (
+   anchor: Record<string, unknown> = {},
+   updates: AnchorUpdateInput = {},
+-) => ({
+-  ...anchor,
++) => {
++  const nextAnchor: Record<string, unknown> = { ...anchor };
+ 
+-  /**
+-   * Actualiza coordenada horizontal del comentario.
+-   */
+-  ...(Number.isFinite(updates.x) ? { x: Number(updates.x) } : {}),
++  if (Number.isFinite(updates.x)) nextAnchor.x = Number(updates.x);
++  if (Number.isFinite(updates.y)) nextAnchor.y = Number(updates.y);
+ 
+-  /**
+-   * Actualiza coordenada vertical del comentario.
+-   */
+-  ...(Number.isFinite(updates.y) ? { y: Number(updates.y) } : {}),
++  const fileId = normalizeText(updates.fileId);
++  if (fileId) nextAnchor.fileId = fileId;
+ 
+-  /**
+-   * Actualiza el archivo/documento al que pertenece el comentario.
+-   */
+-  ...(normalizeText(updates.fileId)
+-    ? { fileId: normalizeText(updates.fileId) }
+-    : {}),
++  if (Number.isFinite(updates.pageNumber) && Number(updates.pageNumber) > 0) {
++    nextAnchor.pageNumber = Math.trunc(Number(updates.pageNumber));
++  }
+ 
+-  /**
+-   * Actualiza la página del comentario.
+-   *
+-   * La página se guarda como número entero positivo.
+-   */
+-  ...(Number.isFinite(updates.pageNumber) && Number(updates.pageNumber) > 0
+-    ? { pageNumber: Math.trunc(Number(updates.pageNumber)) }
+-    : {}),
++  if (Object.prototype.hasOwnProperty.call(updates, 'schemaUid')) {
++    const schemaUid = normalizeText(updates.schemaUid);
++    if (schemaUid) nextAnchor.schemaUid = schemaUid;
++    else delete nextAnchor.schemaUid;
++  }
+ 
+-  /**
+-   * Asocia el anchor a un schema específico.
+-   */
+-  ...(normalizeText(updates.schemaUid)
+-    ? { schemaUid: normalizeText(updates.schemaUid) }
+-    : {}),
+-});
++  return nextAnchor;
++};
++
++const mapTopLevelCommentsById = (
++  template: Template,
++  normalizedCommentId: string,
++  updater: (entry: PdfCommentEntry) => PdfCommentEntry,
++) => {
++  const entries = Array.isArray(template.pdfComments)
++    ? (template.pdfComments as PdfCommentEntry[])
++    : [];
++
++  template.pdfComments = entries.map((entry) =>
++    normalizeText(entry?.id || entry?.comment?.id) === normalizedCommentId
++      ? updater(entry)
++      : entry,
++  );
++};
+ 
+ /**
+  * Obtiene todos los comentarios asociados a un documento/archivo.
+@@ -269,79 +271,34 @@ export const moveCommentAnchor = (
+   const next = cloneDeep(template) as Template;
+   const pages = next.schemas || [];
+ 
+-  /**
+-   * Recorre todas las páginas y schemas para actualizar comentarios
+-   * embebidos en schemas.
+-   */
+-  for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
+-    const page = pages[pageIndex] || [];
+-
+-    for (let schemaIndex = 0; schemaIndex < page.length; schemaIndex += 1) {
+-      const schema = page[schemaIndex] as SchemaForUI;
+-      let changed = false;
+-
+-      /**
+-       * Actualiza schema.comments[] cuando encuentra el commentId.
+-       */
+-      const comments = (schema.comments || []).map((comment) => {
+-        if (normalizeText(comment.id) !== normalizedCommentId) return comment;
+-
+-        changed = true;
+-
+-        return {
+-          ...comment,
+-          anchor: updateCommentAnchorValues(
+-            comment.anchor as Record<string, unknown>,
+-            updates,
+-          ) as CommentAnchor,
+-        };
+-      });
+-
+-      /**
+-       * Actualiza schema.commentAnchors[] cuando encuentra el commentId.
+-       *
+-       * Nota:
+-       * Aquí se compara anchor.id contra commentId.
+-       */
+-      const commentAnchors = (schema.commentAnchors || []).map((anchor) => {
+-        if (normalizeText(anchor.id) !== normalizedCommentId) return anchor;
+-
+-        changed = true;
+-
+-        return updateCommentAnchorValues(
+-          anchor as Record<string, unknown>,
++  /** Actualiza comentarios embebidos en cada schema. */
++  forEachSchemaInPages(pages as SchemaForUI[][], ({ schema, page, schemaIndex }) => {
++    let changed = false;
++    const comments = (schema.comments || []).map((comment) => {
++      if (normalizeText(comment.id) !== normalizedCommentId) return comment;
++      changed = true;
++      return {
++        ...comment,
++        anchor: updateCommentAnchorValues(
++          comment.anchor as Record<string, unknown>,
+           updates,
+-        ) as CommentAnchor;
+-      });
+-
+-      /**
+-       * Solo reemplaza el schema si realmente hubo cambios.
+-       */
+-      if (changed) {
+-        page[schemaIndex] = {
+-          ...schema,
+-          comments,
+-          commentAnchors,
+-        };
+-      }
+-    }
+-  }
+-
+-  /**
+-   * Actualiza comentarios top-level en template.pdfComments.
+-   */
+-  const nextPdfComments = Array.isArray(next.pdfComments)
+-    ? (next.pdfComments as PdfCommentEntry[])
+-    : [];
+-
+-  next.pdfComments = nextPdfComments.map((entry) => {
+-    /**
+-     * El id puede estar en entry.id o en entry.comment.id.
+-     */
+-    if (normalizeText(entry?.id || entry?.comment?.id) !== normalizedCommentId) {
+-      return entry;
+-    }
++        ) as CommentAnchor,
++      };
++    });
++    const commentAnchors = (schema.commentAnchors || []).map((anchor) => {
++      if (normalizeText(anchor.id) !== normalizedCommentId) return anchor;
++      changed = true;
++      return updateCommentAnchorValues(
++        anchor as Record<string, unknown>,
++        updates,
++      ) as CommentAnchor;
++    });
++
++    if (changed) page[schemaIndex] = { ...schema, comments, commentAnchors };
++  });
+ 
++  /** Actualiza anchor y comment.anchor en la representación top-level. */
++  mapTopLevelCommentsById(next, normalizedCommentId, (entry) => {
+     const nextAnchor = updateCommentAnchorValues(
+       entry.anchor as Record<string, unknown>,
+       updates,
+@@ -349,15 +306,7 @@ export const moveCommentAnchor = (
+ 
+     return {
+       ...entry,
+-
+-      /**
+-       * Actualiza anchor top-level.
+-       */
+       anchor: nextAnchor as typeof entry.anchor,
+-
+-      /**
+-       * Mantiene sincronizado comment.anchor.
+-       */
+       comment: {
+         ...entry.comment,
+         anchor: nextAnchor as typeof entry.comment.anchor,
+@@ -396,10 +345,8 @@ export const attachCommentToField = (
+  * - quitar schemaUid del anchor;
+  * - dejar el comentario como comentario de página/documento.
+  *
+- * OJO:
+- * Con la implementación actual de updateCommentAnchorValues,
+- * pasar schemaUid: '' NO elimina el schemaUid existente porque el helper
+- * solo aplica schemaUid cuando normalizeText(updates.schemaUid) tiene valor.
++ * El helper interpreta schemaUid vacío como una desasociación explícita y
++ * elimina la referencia tanto en comentarios embebidos como top-level.
+  */
+ export const detachCommentFromField = (
+   template: Template,
+@@ -427,39 +374,17 @@ export const resolveTopLevelComment = (
+ 
+   const next = cloneDeep(template) as Template;
+ 
+-  const nextPdfComments = Array.isArray(next.pdfComments)
+-    ? (next.pdfComments as PdfCommentEntry[])
+-    : [];
+-
+-  next.pdfComments = nextPdfComments.map((entry) => {
+-    if (normalizeText(entry?.id || entry?.comment?.id) !== normalizedCommentId) {
+-      return entry;
+-    }
+-
+-    return {
+-      ...entry,
+-
+-      /**
+-       * Marca el anchor como resuelto/no resuelto.
+-       *
+-       * Esto es útil si la UI pinta el estado desde entry.anchor.
+-       */
+-      anchor: {
+-        ...entry.anchor,
+-        resolved,
+-      },
+-
+-      /**
+-       * Marca el comentario como resuelto/no resuelto.
+-       *
+-       * Esto es útil si la UI pinta el estado desde entry.comment.
+-       */
+-      comment: {
+-        ...entry.comment,
+-        resolved,
+-      },
+-    };
+-  });
++  mapTopLevelCommentsById(next, normalizedCommentId, (entry) => ({
++    ...entry,
++    anchor: {
++      ...entry.anchor,
++      resolved,
++    },
++    comment: {
++      ...entry.comment,
++      resolved,
++    },
++  }));
+ 
+   return next;
+ };
+@@ -489,4 +414,4 @@ export {
+   deleteCommentFromSchema,
+   resolveCommentInSchema,
+   filterCommentsByFileAndPage,
+-};
+\ No newline at end of file
++};
+diff --git a/src/sisad-pdfme/common/collaboration.ts b/src/sisad-pdfme/common/collaboration.ts
+index ad09d92..4ae9145 100644
+--- a/src/sisad-pdfme/common/collaboration.ts
++++ b/src/sisad-pdfme/common/collaboration.ts
+@@ -512,6 +512,89 @@ export const removeById = <T extends { id: string }>(
+  * author:
+  * Agrupa schemas por createdBy/lastModifiedBy.
+  */
++
++type CollaborativeAssignmentSchema = SchemaForUI & {
++  schemaUid?: string;
++  fileId?: string;
++  fileTemplateId?: string;
++  pageNumber?: number;
++  ownerRecipientId?: string;
++  ownerRecipientIds?: string[] | string;
++  ownerMode?: 'single' | 'multi' | 'shared';
++  createdBy?: string;
++  lastModifiedBy?: string;
++};
++
++type SchemaAssignmentLocation = {
++  schema: CollaborativeAssignmentSchema;
++  schemaUid: string;
++  fileId: string;
++  pageKey: string;
++};
++
++const resolveSchemaAssignmentLocation = (
++  schema: SchemaForUI,
++  pageIndex: number,
++): SchemaAssignmentLocation | null => {
++  const rawSchema = schema as CollaborativeAssignmentSchema;
++  const schemaUid = String(
++    rawSchema.schemaUid || rawSchema.id || rawSchema.name || '',
++  ).trim();
++
++  if (!schemaUid) return null;
++
++  const fileId =
++    String(rawSchema.fileId || rawSchema.fileTemplateId || 'default').trim() ||
++    'default';
++  const pageNumber =
++    typeof rawSchema.pageNumber === 'number' &&
++    Number.isFinite(rawSchema.pageNumber) &&
++    rawSchema.pageNumber > 0
++      ? Math.trunc(rawSchema.pageNumber)
++      : pageIndex + 1;
++
++  return {
++    schema: rawSchema,
++    schemaUid,
++    fileId,
++    pageKey: String(pageNumber),
++  };
++};
++
++const forEachSchemaAssignmentLocation = (
++  schemas: SchemaPageArray,
++  visitor: (location: SchemaAssignmentLocation) => void,
++) => {
++  schemas.forEach((page, pageIndex) => {
++    page.forEach((schema) => {
++      const location = resolveSchemaAssignmentLocation(schema, pageIndex);
++      if (location) visitor(location);
++    });
++  });
++};
++
++const dedupeAssignmentTree = (
++  tree: Record<string, unknown>,
++  levelsBeforePageMap: number,
++) => {
++  if (levelsBeforePageMap > 0) {
++    Object.values(tree).forEach((child) => {
++      if (child && typeof child === 'object') {
++        dedupeAssignmentTree(
++          child as Record<string, unknown>,
++          levelsBeforePageMap - 1,
++        );
++      }
++    });
++    return;
++  }
++
++  Object.keys(tree).forEach((pageKey) => {
++    const values = Array.isArray(tree[pageKey]) ? tree[pageKey] : [];
++    tree[pageKey] = Array.from(new Set(values));
++  });
++};
++
+ type AssignmentIdentityMode = 'recipient' | 'author';
+ 
+ /**
+@@ -549,71 +632,9 @@ const buildAssignments = (
+ ): SchemaAssignments => {
+   const assignments: SchemaAssignments = {};
+ 
+-  schemas.forEach((page, pageIndex) => {
+-    page.forEach((schema) => {
+-      const rawSchema = schema as SchemaForUI & {
+-        schemaUid?: string;
+-        fileId?: string;
+-        fileTemplateId?: string;
+-        pageNumber?: number;
+-        ownerRecipientId?: string;
+-        ownerRecipientIds?: string[] | string;
+-        ownerMode?: 'single' | 'multi' | 'shared';
+-        createdBy?: string;
+-        lastModifiedBy?: string;
+-      };
+-
+-      /**
+-       * Identidad técnica del schema.
+-       *
+-       * Prioridad:
+-       *
+-       * 1. schemaUid
+-       * 2. id
+-       * 3. name
+-       */
+-      const schemaUid = String(
+-        rawSchema.schemaUid || rawSchema.id || rawSchema.name || '',
+-      ).trim();
+-
+-      if (!schemaUid) return;
+-
+-      /**
+-       * Documento/archivo dueño del schema.
+-       *
+-       * Fallback: 'default'
+-       */
+-      const fileId =
+-        String(rawSchema.fileId || rawSchema.fileTemplateId || 'default').trim() ||
+-        'default';
+-
+-      /**
+-       * Página del schema.
+-       *
+-       * Si schema.pageNumber es válido, se usa.
+-       * Si no, se usa pageIndex + 1.
+-       */
+-      const pageKey = String(
+-        typeof rawSchema.pageNumber === 'number' &&
+-          Number.isFinite(rawSchema.pageNumber) &&
+-          rawSchema.pageNumber > 0
+-          ? Math.trunc(rawSchema.pageNumber)
+-          : pageIndex + 1,
+-      );
+-
+-      /**
+-       * Identidad principal del bucket.
+-       *
+-       * En modo author:
+-       * - createdBy
+-       * - lastModifiedBy
+-       * - __unassigned__
+-       *
+-       * En modo recipient:
+-       * - ownerRecipientIds
+-       * - ownerRecipientId
+-       * - __unassigned__
+-       */
++  forEachSchemaAssignmentLocation(
++    schemas,
++    ({ schema: rawSchema, schemaUid, fileId, pageKey }) => {
+       const identities =
+         mode === 'author'
+           ? normalizeRecipientIds(
+@@ -627,42 +648,23 @@ const buildAssignments = (
+                 '__unassigned__',
+             );
+ 
+-      /**
+-       * En modo author, si el schema es compartido, también se agrega
+-       * al bucket especial __shared__.
+-       */
+       const sharedIdentityKeys =
+         mode === 'author' && rawSchema.ownerMode === 'shared'
+           ? [SHARED_ASSIGNMENTS_BUCKET]
+           : [];
+ 
+-      /**
+-       * Crea la estructura:
+-       *
+-       * assignments[identity][fileId][pageKey]
+-       */
+       identities.concat(sharedIdentityKeys).forEach((identity) => {
+         if (!assignments[identity]) assignments[identity] = {};
+         if (!assignments[identity][fileId]) assignments[identity][fileId] = {};
+         if (!assignments[identity][fileId][pageKey]) {
+           assignments[identity][fileId][pageKey] = [];
+         }
+-
+         assignments[identity][fileId][pageKey].push(schemaUid);
+       });
+-    });
+-  });
++    },
++  );
+ 
+-  /**
+-   * Deduplica schemaUids por identity/file/page.
+-   */
+-  Object.values(assignments).forEach((files) => {
+-    Object.values(files).forEach((pages) => {
+-      Object.keys(pages).forEach((pageKey) => {
+-        pages[pageKey] = Array.from(new Set(pages[pageKey]));
+-      });
+-    });
+-  });
++  dedupeAssignmentTree(assignments as unknown as Record<string, unknown>, 2);
+ 
+   return assignments;
+ };
+@@ -720,87 +722,30 @@ export const buildUserRecipientAssignments = (
+ 
+   const assignments: UserRecipientSchemaAssignments = {};
+ 
+-  schemas.forEach((page, pageIndex) => {
+-    page.forEach((schema) => {
+-      const rawSchema = schema as SchemaForUI & {
+-        schemaUid?: string;
+-        fileId?: string;
+-        fileTemplateId?: string;
+-        pageNumber?: number;
+-        ownerMode?: 'single' | 'multi' | 'shared';
+-        ownerRecipientId?: string;
+-        ownerRecipientIds?: string[] | string;
+-        createdBy?: string;
+-        lastModifiedBy?: string;
+-      };
+-
+-      const schemaUid = String(
+-        rawSchema.schemaUid || rawSchema.id || rawSchema.name || '',
+-      ).trim();
+-
+-      if (!schemaUid) return;
+-
+-      const fileId =
+-        String(rawSchema.fileId || rawSchema.fileTemplateId || 'default').trim() ||
+-        'default';
+-
+-      const pageKey = String(
+-        typeof rawSchema.pageNumber === 'number' &&
+-          Number.isFinite(rawSchema.pageNumber) &&
+-          rawSchema.pageNumber > 0
+-          ? Math.trunc(rawSchema.pageNumber)
+-          : pageIndex + 1,
+-      );
+-
+-      /**
+-       * Usuario/autor dueño de la acción.
+-       *
+-       * Prioridad:
+-       *
+-       * 1. createdBy
+-       * 2. lastModifiedBy
+-       * 3. unassignedUserKey
+-       */
++  forEachSchemaAssignmentLocation(
++    schemas,
++    ({ schema: rawSchema, schemaUid, fileId, pageKey }) => {
+       const userIds = normalizeRecipientIds(
+         rawSchema.createdBy || rawSchema.lastModifiedBy || unassignedUserKey,
+       );
+ 
+-      /**
+-       * Recipients asociados al schema.
+-       *
+-       * Si ownerMode es:
+-       *
+-       * - single: usa solo un recipient.
+-       * - multi: usa múltiples recipients.
+-       * - shared/undefined: usa los ids disponibles.
+-       */
+-      const recipientIds = (() => {
+-        const normalizedSingle = normalizeRecipientIds(
+-          rawSchema.ownerRecipientId ||
+-            rawSchema.ownerRecipientIds ||
+-            unassignedRecipientKey,
+-        );
+-
+-        const normalizedMulti = normalizeRecipientIds(
++      const normalizedSingle = normalizeRecipientIds(
++        rawSchema.ownerRecipientId ||
+           rawSchema.ownerRecipientIds ||
+-            rawSchema.ownerRecipientId ||
+-            unassignedRecipientKey,
+-        );
+-
+-        if (rawSchema.ownerMode === 'single') {
+-          return normalizedSingle.slice(0, 1);
+-        }
+-
+-        if (rawSchema.ownerMode === 'multi') {
+-          return normalizedMulti;
+-        }
+-
+-        return normalizedMulti.length > 0 ? normalizedMulti : normalizedSingle;
+-      })();
++          unassignedRecipientKey,
++      );
++      const normalizedMulti = normalizeRecipientIds(
++        rawSchema.ownerRecipientIds ||
++          rawSchema.ownerRecipientId ||
++          unassignedRecipientKey,
++      );
++      const recipientIds =
++        rawSchema.ownerMode === 'single'
++          ? normalizedSingle.slice(0, 1)
++          : normalizedMulti.length > 0
++            ? normalizedMulti
++            : normalizedSingle;
+ 
+-      /**
+-       * Si el schema es shared, agrega también el bucket compartido.
+-       */
+       if (
+         rawSchema.ownerMode === 'shared' &&
+         includeSharedRecipientBucket &&
+@@ -809,11 +754,6 @@ export const buildUserRecipientAssignments = (
+         recipientIds.push(sharedRecipientKey);
+       }
+ 
+-      /**
+-       * Crea estructura:
+-       *
+-       * assignments[userId][recipientId][fileId][pageKey]
+-       */
+       userIds.forEach((userId) => {
+         if (!assignments[userId]) assignments[userId] = {};
+ 
+@@ -821,33 +761,19 @@ export const buildUserRecipientAssignments = (
+           if (!assignments[userId][recipientId]) {
+             assignments[userId][recipientId] = {};
+           }
+-
+           if (!assignments[userId][recipientId][fileId]) {
+             assignments[userId][recipientId][fileId] = {};
+           }
+-
+           if (!assignments[userId][recipientId][fileId][pageKey]) {
+             assignments[userId][recipientId][fileId][pageKey] = [];
+           }
+-
+           assignments[userId][recipientId][fileId][pageKey].push(schemaUid);
+         });
+       });
+-    });
+-  });
++    },
++  );
+ 
+-  /**
+-   * Deduplica schemaUids por user/recipient/file/page.
+-   */
+-  Object.values(assignments).forEach((recipients) => {
+-    Object.values(recipients).forEach((files) => {
+-      Object.values(files).forEach((pages) => {
+-        Object.keys(pages).forEach((pageKey) => {
+-          pages[pageKey] = Array.from(new Set(pages[pageKey]));
+-        });
+-      });
+-    });
+-  });
++  dedupeAssignmentTree(assignments as unknown as Record<string, unknown>, 3);
+ 
+   return assignments;
+ };
+diff --git a/src/sisad-pdfme/common/schema.ts b/src/sisad-pdfme/common/schema.ts
+index 12fadcb..1351fc6 100644
+--- a/src/sisad-pdfme/common/schema.ts
++++ b/src/sisad-pdfme/common/schema.ts
+@@ -121,17 +121,21 @@ export const ColorType = z.enum(['rgb', 'cmyk']).optional();
+ /** Tamaño rectangular genérico. */
+ export const Size = z.object({ height: z.number(), width: z.number() });
+ 
++const commentMessageShape = {
++  authorId: z.string().optional(),
++  authorName: z.string().optional(),
++  authorColor: z.string().optional(),
++  timestamp: z.number().optional(),
++  createdAt: z.number().optional(),
++  text: z.string(),
++  resolved: z.boolean().optional(),
++};
++
+ /** Contrato runtime para replies de comentarios. */
+ export const SchemaCommentReply = z
+   .object({
+     id: z.string(),
+-    authorId: z.string().optional(),
+-    authorName: z.string().optional(),
+-    authorColor: z.string().optional(),
+-    timestamp: z.number().optional(),
+-    createdAt: z.number().optional(),
+-    text: z.string(),
+-    resolved: z.boolean().optional(),
++    ...commentMessageShape,
+   })
+   .passthrough();
+ 
+@@ -143,13 +147,7 @@ export const SchemaComment = z
+     pageNumber: z.number().int().positive().optional(),
+     fieldId: z.string().optional(),
+     schemaUid: z.string().optional(),
+-    authorId: z.string().optional(),
+-    authorName: z.string().optional(),
+-    authorColor: z.string().optional(),
+-    timestamp: z.number().optional(),
+-    createdAt: z.number().optional(),
+-    text: z.string(),
+-    resolved: z.boolean().optional(),
++    ...commentMessageShape,
+     anchor: z.lazy(() => CommentAnchor).optional(),
+     replies: z.array(SchemaCommentReply).optional(),
+   })
+diff --git a/src/sisad-pdfme/common/schemaPageTraversal.ts b/src/sisad-pdfme/common/schemaPageTraversal.ts
+new file mode 100644
+index 0000000..174798a
+--- /dev/null
++++ b/src/sisad-pdfme/common/schemaPageTraversal.ts
+@@ -0,0 +1,31 @@
++export type SchemaPageLocation<T> = {
++  schema: T;
++  page: T[];
++  pageIndex: number;
++  schemaIndex: number;
++};
++
++export const forEachSchemaInPages = <T>(
++  pages: T[][],
++  visitor: (location: SchemaPageLocation<T>) => void,
++): void => {
++  pages.forEach((page, pageIndex) => {
++    (page || []).forEach((schema, schemaIndex) => {
++      visitor({ schema, page, pageIndex, schemaIndex });
++    });
++  });
++};
++
++export const findSchemaInPages = <T>(
++  pages: T[][],
++  predicate: (schema: T, location: Omit<SchemaPageLocation<T>, 'schema'>) => boolean,
++): T | null => {
++  for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
++    const page = pages[pageIndex] || [];
++    for (let schemaIndex = 0; schemaIndex < page.length; schemaIndex += 1) {
++      const schema = page[schemaIndex];
++      if (predicate(schema, { page, pageIndex, schemaIndex })) return schema;
++    }
++  }
++  return null;
++};
+diff --git a/src/sisad-pdfme/converter/createEnvironmentConverters.ts b/src/sisad-pdfme/converter/createEnvironmentConverters.ts
+new file mode 100644
+index 0000000..811b6fd
+--- /dev/null
++++ b/src/sisad-pdfme/converter/createEnvironmentConverters.ts
+@@ -0,0 +1,33 @@
++import type { PDFDocumentProxy } from 'pdfjs-dist';
++import type { ImageType } from './types.js';
++import type { Pdf2ImgOptions } from './pdf2img.js';
++import type { Pdf2SizeOptions } from './pdf2size.js';
++import { pdf2img as convertPdfToImages } from './pdf2img.js';
++import { pdf2size as readPdfPageSizes } from './pdf2size.js';
++
++type ConverterCanvas = HTMLCanvasElement | OffscreenCanvas;
++
++export type PdfConverterEnvironment = {
++  getDocument: (
++    pdf: ArrayBuffer | Uint8Array,
++  ) => Promise<PDFDocumentProxy>;
++  createCanvas: (width: number, height: number) => ConverterCanvas;
++  canvasToArrayBuffer: (
++    canvas: ConverterCanvas,
++    imageType: ImageType,
++  ) => ArrayBuffer;
++};
++
++export const createEnvironmentConverters = (
++  environment: PdfConverterEnvironment,
++) => ({
++  pdf2img: (
++    pdf: ArrayBuffer | Uint8Array,
++    options: Pdf2ImgOptions = {},
++  ): Promise<ArrayBuffer[]> => convertPdfToImages(pdf, options, environment),
++
++  pdf2size: (
++    pdf: ArrayBuffer | Uint8Array,
++    options: Pdf2SizeOptions = {},
++  ) => readPdfPageSizes(pdf, options, { getDocument: environment.getDocument }),
++});
+diff --git a/src/sisad-pdfme/converter/index.browser.ts b/src/sisad-pdfme/converter/index.browser.ts
+index 14a3fd0..4701ddc 100644
+--- a/src/sisad-pdfme/converter/index.browser.ts
++++ b/src/sisad-pdfme/converter/index.browser.ts
+@@ -1,9 +1,6 @@
+ import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
+ import PDFJSWorkerUrl from 'pdfjs-dist/legacy/build/pdf.worker.min.js?url';
+-import type { Pdf2ImgOptions } from './pdf2img.js';
+-import type { Pdf2SizeOptions } from './pdf2size.js';
+-import { pdf2img as _pdf2img } from './pdf2img.js';
+-import { pdf2size as _pdf2size } from './pdf2size.js';
++import { createEnvironmentConverters } from './createEnvironmentConverters.js';
+ 
+ /**
+  * Entry point para navegador.
+@@ -43,49 +40,20 @@ function dataURLToArrayBuffer(dataURL: string): ArrayBuffer {
+   return arrayBuffer;
+ }
+ 
+-/**
+- * Convierte un PDF a imágenes desde navegador.
+- *
+- * El core `pdf2img` recibe un adaptador de entorno para no depender
+- * directamente de DOM, PDF.js ni canvas. Aquí se provee ese adaptador.
+- */
+-export const pdf2img = async (
+-  pdf: ArrayBuffer | Uint8Array,
+-  options: Pdf2ImgOptions = {},
+-): Promise<ArrayBuffer[]> =>
+-  _pdf2img(pdf, options, {
+-    /** Carga documento con PDF.js deshabilitando eval por seguridad. */
+-    getDocument: (pdf) => pdfjsLib.getDocument({ data: pdf, isEvalSupported: false }).promise,
+-
+-    /** Crea un canvas DOM estándar para renderizar cada página. */
+-    createCanvas: (width, height) => {
+-      const canvas = document.createElement('canvas');
+-      canvas.width = width;
+-      canvas.height = height;
+-      return canvas;
+-    },
+-
+-    /** Serializa el canvas al tipo de imagen solicitado. */
+-    canvasToArrayBuffer: (canvas, imageType) => {
+-      const dataUrl = (canvas as HTMLCanvasElement).toDataURL(`image/${imageType}`);
+-      return dataURLToArrayBuffer(dataUrl);
+-    },
+-  });
+-
+-/**
+- * Obtiene tamaños de páginas PDF en navegador.
+- *
+- * La medición real vive en `pdf2size.ts`; aquí solo se inyecta PDF.js.
+- */
+-export const pdf2size = async (pdf: ArrayBuffer | Uint8Array, options: Pdf2SizeOptions = {}) =>
+-  _pdf2size(pdf, options, {
+-    getDocument: (pdf) => pdfjsLib.getDocument({ data: pdf, isEvalSupported: false }).promise,
+-  });
+-
+-/** Reexporta tipos públicos del paquete converter. */
+-export type { Img2PdfOptions } from './img2pdf.js';
+-export type { Pdf2ImgOptions } from './pdf2img.js';
+-export type { Pdf2SizeOptions } from './pdf2size.js';
+-
+-/** img2pdf no necesita adaptación especial de entorno browser. */
+-export { img2pdf } from './img2pdf.js';
+\ No newline at end of file
++const { pdf2img, pdf2size } = createEnvironmentConverters({
++  getDocument: (pdf) =>
++    pdfjsLib.getDocument({ data: pdf, isEvalSupported: false }).promise,
++  createCanvas: (width, height) => {
++    const canvas = document.createElement('canvas');
++    canvas.width = width;
++    canvas.height = height;
++    return canvas;
++  },
++  canvasToArrayBuffer: (canvas, imageType) => {
++    const dataUrl = (canvas as HTMLCanvasElement).toDataURL(`image/${imageType}`);
++    return dataURLToArrayBuffer(dataUrl);
++  },
++});
++
++export { pdf2img, pdf2size };
++export * from './index.shared.js';
+diff --git a/src/sisad-pdfme/converter/index.node.ts b/src/sisad-pdfme/converter/index.node.ts
+index 6dd1243..00fefe6 100644
+--- a/src/sisad-pdfme/converter/index.node.ts
++++ b/src/sisad-pdfme/converter/index.node.ts
+@@ -1,9 +1,6 @@
+ import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
+ import PDFJSWorker from 'pdfjs-dist/legacy/build/pdf.worker.js';
+-import type { Pdf2ImgOptions } from './pdf2img.js';
+-import type { Pdf2SizeOptions } from './pdf2size.js';
+-import { pdf2img as _pdf2img } from './pdf2img.js';
+-import { pdf2size as _pdf2size } from './pdf2size.js';
++import { createEnvironmentConverters } from './createEnvironmentConverters.js';
+ 
+ /**
+  * Entry point para Node.js.
+@@ -30,47 +27,20 @@ try {
+ /** Configura el worker de PDF.js para el entorno Node. */
+ pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJSWorker as unknown as string;
+ 
+-/**
+- * Convierte un PDF a imágenes desde Node.
+- *
+- * La lógica de iterar páginas/renderizar vive en `pdf2img.ts`.
+- * Aquí solo se inyectan funciones específicas de Node/PDF.js/canvas.
+- */
+-export const pdf2img = async (
+-  pdf: ArrayBuffer | Uint8Array,
+-  options: Pdf2ImgOptions = {},
+-): Promise<ArrayBuffer[]> =>
+-  _pdf2img(pdf, options, {
+-    /** Carga documento con PDF.js deshabilitando eval por seguridad. */
+-    getDocument: (pdf) => pdfjsLib.getDocument({ data: pdf, isEvalSupported: false }).promise,
+-
+-    /** Crea canvas mediante el paquete nativo `canvas`. */
+-    createCanvas: (width, height) => createCanvas(width, height) as unknown as HTMLCanvasElement,
+-
+-    /**
+-     * Serializa el canvas de Node a Buffer y luego lo expone como ArrayBuffer.
+-     * Se usa `any` porque los tipos de node-canvas no coinciden con DOM Canvas.
+-     */
+-    canvasToArrayBuffer: (canvas) => {
+-      const nodeCanvas = canvas as any;
+-      const buffer = nodeCanvas.toBuffer();
+-      return new Uint8Array(buffer).buffer;
+-    },
+-  });
+-
+-/**
+- * Obtiene tamaños de páginas PDF en Node.
+- * No requiere canvas, solo PDF.js.
+- */
+-export const pdf2size = async (pdf: ArrayBuffer | Uint8Array, options: Pdf2SizeOptions = {}) =>
+-  _pdf2size(pdf, options, {
+-    getDocument: (pdf) => pdfjsLib.getDocument({ data: pdf, isEvalSupported: false }).promise,
+-  });
+-
+-/** Reexporta tipos públicos del paquete converter. */
+-export type { Img2PdfOptions } from './img2pdf.js';
+-export type { Pdf2ImgOptions } from './pdf2img.js';
+-export type { Pdf2SizeOptions } from './pdf2size.js';
+-
+-/** img2pdf es independiente del entorno. */
+-export { img2pdf } from './img2pdf.js';
+\ No newline at end of file
++const { pdf2img, pdf2size } = createEnvironmentConverters({
++  getDocument: (pdf) =>
++    pdfjsLib.getDocument({ data: pdf, isEvalSupported: false }).promise,
++  createCanvas: (width, height) =>
++    createCanvas(width, height) as unknown as HTMLCanvasElement,
++  canvasToArrayBuffer: (canvas) => {
++    const nodeCanvas = canvas as unknown as { toBuffer: () => Uint8Array };
++    const bytes = new Uint8Array(nodeCanvas.toBuffer());
++    return bytes.buffer.slice(
++      bytes.byteOffset,
++      bytes.byteOffset + bytes.byteLength,
++    ) as ArrayBuffer;
++  },
++});
++
++export { pdf2img, pdf2size };
++export * from './index.shared.js';
+diff --git a/src/sisad-pdfme/converter/index.shared.ts b/src/sisad-pdfme/converter/index.shared.ts
+new file mode 100644
+index 0000000..1ce2eb3
+--- /dev/null
++++ b/src/sisad-pdfme/converter/index.shared.ts
+@@ -0,0 +1,5 @@
++/** Environment-independent converter exports. */
++export { img2pdf } from './img2pdf.js';
++export type { Img2PdfOptions } from './img2pdf.js';
++export type { Pdf2ImgOptions } from './pdf2img.js';
++export type { Pdf2SizeOptions } from './pdf2size.js';
+diff --git a/src/sisad-pdfme/react/SisadPdfmeDesigner.tsx b/src/sisad-pdfme/react/SisadPdfmeDesigner.tsx
+index ce7a597..85ae456 100644
+--- a/src/sisad-pdfme/react/SisadPdfmeDesigner.tsx
++++ b/src/sisad-pdfme/react/SisadPdfmeDesigner.tsx
+@@ -9,16 +9,14 @@
+  * El host entrega recipients UNA vez; nunca construye collaborationContext,
+  * ownerColorMap, recipientNameMap ni listas para el AssignmentDialog.
+  */
+-import React, { useContext, useEffect, useMemo, useRef } from 'react';
++import React, { useEffect, useMemo, useRef } from 'react';
+ import Designer from '../ui/Designer.js';
+ import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
+ import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
+ import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
+-import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
+ import { useSisadPdfmeController } from './useSisadPdfmeController.js';
+-import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
+-import { useRecipientRegistry } from '../recipients/useRecipientRegistry.js';
+ import { buildCollaborationSyncFromRegistry } from '../recipients/recipientResolver.js';
++import { useSisadPdfmeRecipientRuntime } from './useSisadPdfmeRecipientRuntime.js';
+ import type {
+   SisadPdfmeAssignmentChangePayload,
+   SisadPdfmeRecipient,
+@@ -58,22 +56,10 @@ export const SisadPdfmeDesigner = ({
+   onAssignmentChange,
+ }: DesignerProps) => {
+   const containerRef = useRef<HTMLDivElement | null>(null);
+-  const resolvedConfig = useSisadPdfmeConfig(config);
+-  const providerValue = useContext(SisadPdfmeContext);
+-
+-  // Registro único: reutiliza el registry del Provider si existe.
+-  const { registry, state: recipientState } = useRecipientRegistry({
+-    registry: providerValue?.recipientRegistry ?? null,
+-    recipients,
+-    adapter: resolvedConfig.adapters.recipients,
+-    config: resolvedConfig.config.recipients,
+-    activeRecipientId:
+-      activeRecipientId !== undefined
+-        ? activeRecipientId
+-        : resolvedConfig.config.recipients.activeRecipientId ??
+-          resolvedConfig.config.collaboration.activeRecipientId ??
+-          undefined,
+-  });
++  const {
++    resolvedConfig,
++    recipientRegistry: { registry, state: recipientState },
++  } = useSisadPdfmeRecipientRuntime({ config, recipients, activeRecipientId });
+ 
+   // Despacha a config.events (si es función) y al prop equivalente. Se asigna
+   // en un effect sin deps para capturar siempre los handlers más recientes.
+diff --git a/src/sisad-pdfme/react/SisadPdfmeForm.tsx b/src/sisad-pdfme/react/SisadPdfmeForm.tsx
+index 01ecad6..4e2b76b 100644
+--- a/src/sisad-pdfme/react/SisadPdfmeForm.tsx
++++ b/src/sisad-pdfme/react/SisadPdfmeForm.tsx
+@@ -1,104 +1,14 @@
+-/**
+- * SisadPdfmeForm — wrapper público del Form runtime.
+- *
+- * El filtrado por recipient (`options.collaboration.activeRecipientId`, leído
+- * por Preview) se deriva del RecipientRegistry compartido: el prop
+- * `activeRecipientId` es override puntual; si falta, manda el registry/config.
+- */
+-import { getInputFromTemplate } from '@sisad-pdfme/common';
+-import React, { useContext, useMemo, useRef } from 'react';
+-import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
+-import Form from '../ui/Form.js';
+-import Viewer from '../ui/Viewer.js';
+-import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
+-import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
+-import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
+-import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
+-import { useRecipientRegistry } from '../recipients/useRecipientRegistry.js';
+-import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '../config/SisadPdfmeConfig.js';
+-
+-type Props = {
+-  config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
+-  template: unknown;
++/** Public Form wrapper with recipient-aware filtering. */
++import React from 'react';
++import {
++  SisadPdfmePreviewRuntime,
++  type SisadPdfmePreviewRuntimeProps,
++} from './SisadPdfmePreviewRuntime.js';
++
++type Props = Omit<SisadPdfmePreviewRuntimeProps, 'mode' | 'inputs'> & {
+   values?: unknown[];
+-  recipients?: unknown[];
+-  activeRecipientId?: string | null;
+-  onInputChange?: (payload: { index: number; name: string; value: unknown }) => void;
+ };
+ 
+-export const SisadPdfmeForm = ({
+-  config,
+-  template,
+-  values,
+-  recipients,
+-  activeRecipientId,
+-  onInputChange,
+-}: Props) => {
+-  const containerRef = useRef<HTMLDivElement | null>(null);
+-  const resolvedConfig = useSisadPdfmeConfig(config);
+-  const providerValue = useContext(SisadPdfmeContext);
+-
+-  const { state: recipientState } = useRecipientRegistry({
+-    registry: providerValue?.recipientRegistry ?? null,
+-    recipients,
+-    adapter: resolvedConfig.adapters.recipients,
+-    config: resolvedConfig.config.recipients,
+-    activeRecipientId:
+-      activeRecipientId !== undefined
+-        ? activeRecipientId
+-        : resolvedConfig.config.recipients.activeRecipientId ??
+-          resolvedConfig.config.collaboration.activeRecipientId ??
+-          undefined,
+-  });
+-
+-  const effectiveActiveRecipientId = recipientState.activeRecipientId;
+-  const recipientFilterEnabled = resolvedConfig.visibility.runtime?.recipientFilter !== false;
+-  const isGlobalView = resolvedConfig.config.collaboration.isGlobalView === true;
+-  const collaborationOptions = useMemo(
+-    () =>
+-      recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
+-        ? { activeRecipientId: effectiveActiveRecipientId, isGlobalView }
+-        : { isGlobalView },
+-    [effectiveActiveRecipientId, isGlobalView, recipientFilterEnabled],
+-  );
+-
+-  const runtimeInputs = useMemo(
+-    () =>
+-      Array.isArray(values) && values.length > 0
+-        ? values
+-        : getInputFromTemplate(template as UsePdfmeRuntimeInstanceConfig['template']),
+-    [template, values],
+-  );
+-
+-  const runtimeConfig: UsePdfmeRuntimeInstanceConfig = useMemo(
+-    () => ({
+-      containerRef,
+-      mode: 'form',
+-      template: template as UsePdfmeRuntimeInstanceConfig['template'],
+-      inputs: runtimeInputs,
+-      onTemplateChange: () => undefined,
+-      onPageChange: () => undefined,
+-      options: {
+-        ...resolvedConfig.runtimeOptions,
+-        designerEngine: resolvedConfig.designerEngine,
+-        // Preview lee `options.collaboration` para filtrar schemas por recipient.
+-        collaboration: collaborationOptions,
+-      },
+-      plugins: flatSchemaPlugins,
+-      runtime: { Designer: Form, Form, Viewer },
+-      onInputChange,
+-    }),
+-    [
+-      collaborationOptions,
+-      containerRef,
+-      onInputChange,
+-      resolvedConfig.designerEngine,
+-      resolvedConfig.runtimeOptions,
+-      runtimeInputs,
+-      template,
+-    ],
+-  );
+-
+-  usePdfmeRuntimeInstance(runtimeConfig);
+-  return <div ref={containerRef} data-sisad-pdfme-root="form" />;
+-};
+\ No newline at end of file
++export const SisadPdfmeForm = ({ values, ...props }: Props) => (
++  <SisadPdfmePreviewRuntime mode="form" inputs={values} {...props} />
++);
+diff --git a/src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx b/src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx
+new file mode 100644
+index 0000000..dd76481
+--- /dev/null
++++ b/src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx
+@@ -0,0 +1,92 @@
++import { getInputFromTemplate } from '@sisad-pdfme/common';
++import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
++import React, { useMemo, useRef } from 'react';
++import type {
++  ResolvedSisadPdfmeConfig,
++  SisadPdfmeGlobalConfig,
++} from '../config/SisadPdfmeConfig.js';
++import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
++import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
++import Form from '../ui/Form.js';
++import Viewer from '../ui/Viewer.js';
++import { useSisadPdfmeRecipientRuntime } from './useSisadPdfmeRecipientRuntime.js';
++
++type PreviewMode = 'form' | 'viewer';
++
++export type SisadPdfmePreviewRuntimeProps = {
++  mode: PreviewMode;
++  config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
++  template: unknown;
++  inputs?: unknown[];
++  recipients?: unknown[];
++  activeRecipientId?: string | null;
++  onInputChange?: (payload: {
++    index: number;
++    name: string;
++    value: unknown;
++  }) => void;
++};
++
++const runtimeByMode = {
++  form: { Designer: Form, Form, Viewer },
++  viewer: { Designer: Viewer, Form, Viewer },
++};
++
++export const SisadPdfmePreviewRuntime = ({
++  mode,
++  config,
++  template,
++  inputs,
++  recipients,
++  activeRecipientId,
++  onInputChange,
++}: SisadPdfmePreviewRuntimeProps) => {
++  const containerRef = useRef<HTMLDivElement | null>(null);
++  const { resolvedConfig, collaborationOptions } =
++    useSisadPdfmeRecipientRuntime({
++      config,
++      recipients,
++      activeRecipientId,
++    });
++  const runtimeInputs = useMemo(
++    () =>
++      Array.isArray(inputs) && inputs.length > 0
++        ? inputs
++        : getInputFromTemplate(
++            template as UsePdfmeRuntimeInstanceConfig['template'],
++          ),
++    [inputs, template],
++  );
++
++  const runtimeConfig = useMemo<UsePdfmeRuntimeInstanceConfig>(
++    () => ({
++      containerRef,
++      mode,
++      template: template as UsePdfmeRuntimeInstanceConfig['template'],
++      inputs: runtimeInputs,
++      onTemplateChange: () => undefined,
++      onPageChange: () => undefined,
++      options: {
++        ...resolvedConfig.runtimeOptions,
++        designerEngine: resolvedConfig.designerEngine,
++        collaboration: collaborationOptions,
++      },
++      plugins: flatSchemaPlugins,
++      runtime: runtimeByMode[mode],
++      ...(mode === 'form' ? { onInputChange } : {}),
++    }),
++    [
++      collaborationOptions,
++      mode,
++      onInputChange,
++      resolvedConfig.designerEngine,
++      resolvedConfig.runtimeOptions,
++      runtimeInputs,
++      template,
++    ],
++  );
++
++  usePdfmeRuntimeInstance(runtimeConfig);
++
++  return <div ref={containerRef} data-sisad-pdfme-root={mode} />;
++};
+diff --git a/src/sisad-pdfme/react/SisadPdfmeViewer.tsx b/src/sisad-pdfme/react/SisadPdfmeViewer.tsx
+index f996312..a81ffaf 100644
+--- a/src/sisad-pdfme/react/SisadPdfmeViewer.tsx
++++ b/src/sisad-pdfme/react/SisadPdfmeViewer.tsx
+@@ -1,72 +1,15 @@
+-/**
+- * SisadPdfmeViewer — wrapper público del Viewer runtime.
+- *
+- * Igual que el Form: el filtrado por recipient (`options.collaboration`) se
+- * deriva del RecipientRegistry compartido, no de props sueltos.
+- */
+-import React, { useContext, useRef } from 'react';
+-import { getInputFromTemplate } from '@sisad-pdfme/common';
+-import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
+-import Viewer from '../ui/Viewer.js';
+-import Form from '../ui/Form.js';
+-import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
+-import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
+-import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
+-import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
+-import { useRecipientRegistry } from '../recipients/useRecipientRegistry.js';
+-import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '../config/SisadPdfmeConfig.js';
+-
+-type Props = {
+-  config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
+-  template: unknown;
+-  inputs?: unknown[];
+-  recipients?: unknown[];
+-  activeRecipientId?: string | null;
+-};
+-
+-export const SisadPdfmeViewer = ({ config, template, inputs = [], recipients, activeRecipientId }: Props) => {
+-  const containerRef = useRef<HTMLDivElement | null>(null);
+-  const resolvedConfig = useSisadPdfmeConfig(config);
+-  const providerValue = useContext(SisadPdfmeContext);
+-
+-  const { state: recipientState } = useRecipientRegistry({
+-    registry: providerValue?.recipientRegistry ?? null,
+-    recipients,
+-    adapter: resolvedConfig.adapters.recipients,
+-    config: resolvedConfig.config.recipients,
+-    activeRecipientId:
+-      activeRecipientId !== undefined
+-        ? activeRecipientId
+-        : resolvedConfig.config.recipients.activeRecipientId ??
+-          resolvedConfig.config.collaboration.activeRecipientId ??
+-          undefined,
+-  });
+-
+-  const effectiveActiveRecipientId = recipientState.activeRecipientId;
+-  const recipientFilterEnabled = resolvedConfig.visibility.runtime?.recipientFilter !== false;
+-  const isGlobalView = resolvedConfig.config.collaboration.isGlobalView === true;
+-
+-  const runtimeConfig: UsePdfmeRuntimeInstanceConfig = {
+-    containerRef,
+-    mode: 'viewer',
+-    template: template as UsePdfmeRuntimeInstanceConfig['template'],
+-    inputs:
+-      Array.isArray(inputs) && inputs.length > 0
+-        ? inputs
+-        : getInputFromTemplate(template as UsePdfmeRuntimeInstanceConfig['template']),
+-    onTemplateChange: () => undefined,
+-    onPageChange: () => undefined,
+-    options: {
+-      ...resolvedConfig.runtimeOptions,
+-      designerEngine: resolvedConfig.designerEngine,
+-      ...(recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
+-        ? { collaboration: { activeRecipientId: effectiveActiveRecipientId, isGlobalView } }
+-        : { collaboration: { isGlobalView } }),
+-    },
+-    plugins: flatSchemaPlugins,
+-    runtime: { Designer: Viewer, Form, Viewer },
+-  };
+-
+-  usePdfmeRuntimeInstance(runtimeConfig);
+-  return <div ref={containerRef} data-sisad-pdfme-root="viewer" />;
+-};
+\ No newline at end of file
++/** Public read-only Viewer wrapper with recipient-aware filtering. */
++import React from 'react';
++import {
++  SisadPdfmePreviewRuntime,
++  type SisadPdfmePreviewRuntimeProps,
++} from './SisadPdfmePreviewRuntime.js';
++
++type Props = Omit<
++  SisadPdfmePreviewRuntimeProps,
++  'mode' | 'onInputChange'
++>;
++
++export const SisadPdfmeViewer = (props: Props) => (
++  <SisadPdfmePreviewRuntime mode="viewer" {...props} />
++);
+diff --git a/src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts b/src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts
+new file mode 100644
+index 0000000..26f80fd
+--- /dev/null
++++ b/src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts
+@@ -0,0 +1,54 @@
++import { useContext, useMemo } from 'react';
++import { useRecipientRegistry } from '../recipients/useRecipientRegistry.js';
++import type {
++  ResolvedSisadPdfmeConfig,
++  SisadPdfmeGlobalConfig,
++} from '../config/SisadPdfmeConfig.js';
++import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
++import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
++
++type RecipientRuntimeOptions = {
++  config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
++  recipients?: unknown[];
++  activeRecipientId?: string | null;
++};
++
++export const useSisadPdfmeRecipientRuntime = ({
++  config,
++  recipients,
++  activeRecipientId,
++}: RecipientRuntimeOptions) => {
++  const resolvedConfig = useSisadPdfmeConfig(config);
++  const providerValue = useContext(SisadPdfmeContext);
++  const recipientRegistry = useRecipientRegistry({
++    registry: providerValue?.recipientRegistry ?? null,
++    recipients,
++    adapter: resolvedConfig.adapters.recipients,
++    config: resolvedConfig.config.recipients,
++    activeRecipientId:
++      activeRecipientId !== undefined
++        ? activeRecipientId
++        : resolvedConfig.config.recipients.activeRecipientId ??
++          resolvedConfig.config.collaboration.activeRecipientId ??
++          undefined,
++  });
++
++  const effectiveActiveRecipientId = recipientRegistry.state.activeRecipientId;
++  const recipientFilterEnabled =
++    resolvedConfig.visibility.runtime?.recipientFilter !== false;
++  const isGlobalView =
++    resolvedConfig.config.collaboration.isGlobalView === true;
++  const collaborationOptions = useMemo(
++    () =>
++      recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
++        ? { activeRecipientId: effectiveActiveRecipientId, isGlobalView }
++        : { isGlobalView },
++    [effectiveActiveRecipientId, isGlobalView, recipientFilterEnabled],
++  );
++
++  return {
++    resolvedConfig,
++    recipientRegistry,
++    collaborationOptions,
++  };
++};
+diff --git a/src/sisad-pdfme/schemas/actions/approve.ts b/src/sisad-pdfme/schemas/actions/approve.ts
+index 4cc3d77..633387c 100644
+--- a/src/sisad-pdfme/schemas/actions/approve.ts
++++ b/src/sisad-pdfme/schemas/actions/approve.ts
+@@ -1,180 +1,19 @@
+-/**
+- * approve schema — action button that the recipient clicks to approve a document.
+- * Fires an 'approve' action event via the host callback. No business logic inside.
+- * The host app handles confirmation, audit trail, and routing.
+- */
+-import type { Plugin, Schema } from '@sisad-pdfme/common';
++/** Approval action schema. Business confirmation and routing remain host-owned. */
+ import { CheckCircle } from 'lucide-react';
+-import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+-import { helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
+-import { createActionButtonEl } from '../shared/schemaDom.js';
+-import type { ActionSchemaBase } from '../shared/schemaTypes.js';
+-import { renderSchemaWithChrome } from '../shared/renderSchemaWithChrome.js';
+-import type { PropPanelSchema } from '@sisad-pdfme/common';
++import { createDecisionActionPlugin } from './createDecisionActionPlugin.js';
+ 
+-type ApproveSchema = ActionSchemaBase<{
+-  requiresReason?: boolean;
+-  confirmationMessage?: string;
+-  auditEventName?: string;
+-  action?: string;
+-}>;
++const approvePlugin = createDecisionActionPlugin({
++  type: 'approve',
++  label: 'Aprobar',
++  defaultColor: '#16a34a',
++  pdfColor: [0.086, 0.639, 0.29],
++  actionStatus: 'approved',
++  confirmationPlaceholder: '¿Confirma la aprobación?',
++  auditEventName: 'document.approved',
++  icon: CheckCircle,
++  iconSvg:
++    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>',
++  tags: ['approve', 'action', 'button'],
++});
+ 
+-const approvePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
+-  {
+-    ui: async ({ schema, rootElement, mode, onChange }) => {
+-      const s = schema as ApproveSchema;
+-      const iconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+-      renderSchemaWithChrome<ApproveSchema>({
+-        schema: s,
+-        rootElement,
+-        family: 'action-based',
+-        compact: true,
+-        renderMode: mode,
+-        render: (chromeEl) => {
+-          const button = createActionButtonEl({
+-            label: s.label || 'Aprobar',
+-            bgColor: s.buttonColor || '#16a34a',
+-            textColor: s.buttonTextColor || '#ffffff',
+-            fontSize: s.fontSize || 11,
+-            isInteractive: mode === 'form',
+-            iconSvg,
+-          });
+-          // Only in form is the action live: notify the host via onChange AND a
+-          // bubbling CustomEvent (host owns confirmation/audit/routing). In
+-          // designer/viewer the button stays visual/non-interactive.
+-          if (mode === 'form') {
+-            button.addEventListener('click', (event) => {
+-              event.preventDefault();
+-              event.stopPropagation();
+-              onChange?.([
+-                { key: 'content', value: s.action || 'approve' },
+-                { key: 'actionStatus', value: 'approved' },
+-              ]);
+-              rootElement.dispatchEvent(
+-                new CustomEvent('sisad-pdfme:schema-action', {
+-                  bubbles: true,
+-                  detail: {
+-                    action: s.action || 'approve',
+-                    schemaUid: (s as { schemaUid?: string; id?: string }).schemaUid ?? (s as { id?: string }).id,
+-                    schema: s,
+-                  },
+-                }),
+-              );
+-            });
+-          }
+-          chromeEl.appendChild(button);
+-        },
+-      });
+-    },
+-    pdf: async ({ schema, pdfLib, page }) => {
+-      const s = schema as ApproveSchema & { position: { x: number; y: number } };
+-      const { position, width, height } = s;
+-      const { x, y } = position;
+-      const pageHeight = page.getHeight();
+-      page.drawRectangle({
+-        x,
+-        y: pageHeight - y - height,
+-        width,
+-        height,
+-        borderColor: pdfLib.rgb(0.086, 0.639, 0.290),
+-        borderWidth: 1,
+-        color: pdfLib.rgb(0.086, 0.639, 0.290),
+-        borderOpacity: 0,
+-        opacity: 0.15,
+-      });
+-    },
+-    propPanel: {
+-      schema: ({ i18n }): Record<string, PropPanelSchema> => ({
+-        label: {
+-          title: 'Etiqueta del botón',
+-          type: 'string',
+-          widget: 'input',
+-          span: 24,
+-          props: { placeholder: 'Aprobar' },
+-        },
+-        requiresReason: {
+-          title: 'Requiere motivo',
+-          type: 'boolean',
+-          widget: 'switch',
+-          span: 12,
+-        },
+-        confirmationMessage: {
+-          title: 'Mensaje de confirmación',
+-          type: 'string',
+-          widget: 'textarea',
+-          span: 24,
+-          props: { placeholder: '¿Confirma la aprobación?', autoSize: { minRows: 2, maxRows: 3 } },
+-        },
+-        auditEventName: {
+-          title: 'Nombre de evento (auditoría)',
+-          type: 'string',
+-          widget: 'input',
+-          span: 24,
+-          props: { placeholder: 'document.approved' },
+-        },
+-        buttonColor: {
+-          title: 'Color botón',
+-          type: 'string',
+-          widget: 'colorPicker',
+-          span: 8,
+-        },
+-        buttonTextColor: {
+-          title: 'Color texto',
+-          type: 'string',
+-          widget: 'colorPicker',
+-          span: 8,
+-        },
+-        fontSize: {
+-          title: 'Tamaño',
+-          type: 'number',
+-          widget: 'inputNumber',
+-          span: 8,
+-          props: { min: 8, max: 20, precision: 0 },
+-        },
+-        ...helpFields(),
+-        ...dataLabelFields(),
+-      }),
+-      inspector: createSchemaInspectorConfig('textual', {
+-        propertyMap: {
+-          ...COMMON_PROPERTY_MAP,
+-          label: 'data',
+-          requiresReason: 'data',
+-          confirmationMessage: 'data',
+-          auditEventName: 'connections',
+-          buttonColor: 'style',
+-          buttonTextColor: 'style',
+-          fontSize: 'style',
+-        },
+-        includeConnections: true,
+-      }),
+-      defaultSchema: {
+-        name: '',
+-        type: 'approve',
+-        content: '',
+-        position: { x: 0, y: 0 },
+-        width: 40,
+-        height: 12,
+-        action: 'approve',
+-        label: 'Aprobar',
+-        requiresReason: false,
+-        confirmationMessage: '',
+-        auditEventName: 'document.approved',
+-        buttonColor: '#16a34a',
+-        buttonTextColor: '#ffffff',
+-        fontSize: 11,
+-      },
+-    },
+-    icon: renderLucideIcon(CheckCircle, { stroke: '#16a34a' }),
+-  },
+-  {
+-    key: 'approve',
+-    type: 'approve',
+-    label: 'Aprobar',
+-    category: 'Acción',
+-    tags: ['approve', 'action', 'button'],
+-    capabilities: ['designer', 'form', 'viewer'],
+-  },
+-);
+-
+-export default approvePlugin;
+\ No newline at end of file
++export default approvePlugin;
+diff --git a/src/sisad-pdfme/schemas/actions/createDecisionActionPlugin.ts b/src/sisad-pdfme/schemas/actions/createDecisionActionPlugin.ts
+new file mode 100644
+index 0000000..9996fd0
+--- /dev/null
++++ b/src/sisad-pdfme/schemas/actions/createDecisionActionPlugin.ts
+@@ -0,0 +1,212 @@
++import type { Plugin, PropPanelSchema, Schema } from '@sisad-pdfme/common';
++import type { LucideIcon } from 'lucide-react';
++import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
++import { createSchemaInspectorConfig } from '../schemaFamilies.js';
++import {
++  COMMON_PROPERTY_MAP,
++  dataLabelFields,
++  helpFields,
++} from '../propPanel/commonInspectorFields.js';
++import { renderSchemaWithChrome } from '../shared/renderSchemaWithChrome.js';
++import { createActionButtonEl } from '../shared/schemaDom.js';
++import type { ActionSchemaBase } from '../shared/schemaTypes.js';
++
++type DecisionActionSchema = ActionSchemaBase<{
++  requiresReason?: boolean;
++  confirmationMessage?: string;
++  auditEventName?: string;
++  action?: string;
++}>;
++
++type DecisionActionPluginConfig = {
++  type: 'approve' | 'decline';
++  label: string;
++  defaultColor: string;
++  pdfColor: [number, number, number];
++  actionStatus: string;
++  confirmationPlaceholder: string;
++  auditEventName?: string;
++  icon: LucideIcon;
++  iconSvg: string;
++  tags: string[];
++};
++
++export const createDecisionActionPlugin = ({
++  type,
++  label,
++  defaultColor,
++  pdfColor,
++  actionStatus,
++  confirmationPlaceholder,
++  auditEventName,
++  icon,
++  iconSvg,
++  tags,
++}: DecisionActionPluginConfig): Plugin<Schema> =>
++  createSchemaPlugin<Schema>(
++    {
++      ui: async ({ schema, rootElement, mode, onChange }) => {
++        const decisionSchema = schema as DecisionActionSchema;
++        const action = decisionSchema.action || type;
++
++        renderSchemaWithChrome<DecisionActionSchema>({
++          schema: decisionSchema,
++          rootElement,
++          family: 'action-based',
++          compact: true,
++          renderMode: mode,
++          render: (chromeEl) => {
++            const button = createActionButtonEl({
++              label: decisionSchema.label || label,
++              bgColor: decisionSchema.buttonColor || defaultColor,
++              textColor: decisionSchema.buttonTextColor || '#ffffff',
++              fontSize: decisionSchema.fontSize || 11,
++              isInteractive: mode === 'form',
++              iconSvg,
++            });
++
++            if (mode === 'form') {
++              button.addEventListener('click', (event) => {
++                event.preventDefault();
++                event.stopPropagation();
++                onChange?.([
++                  { key: 'content', value: action },
++                  { key: 'actionStatus', value: actionStatus },
++                ]);
++                rootElement.dispatchEvent(
++                  new CustomEvent('sisad-pdfme:schema-action', {
++                    bubbles: true,
++                    detail: {
++                      action,
++                      schemaUid:
++                        decisionSchema.schemaUid ??
++                        (decisionSchema as { id?: string }).id,
++                      schema: decisionSchema,
++                    },
++                  }),
++                );
++              });
++            }
++
++            chromeEl.appendChild(button);
++          },
++        });
++      },
++      pdf: async ({ schema, pdfLib, page }) => {
++        const decisionSchema = schema as DecisionActionSchema & {
++          position: { x: number; y: number };
++        };
++        const { position, width, height } = decisionSchema;
++        const color = pdfLib.rgb(...pdfColor);
++
++        page.drawRectangle({
++          x: position.x,
++          y: page.getHeight() - position.y - height,
++          width,
++          height,
++          borderColor: color,
++          borderWidth: 1,
++          color,
++          borderOpacity: 0,
++          opacity: 0.15,
++        });
++      },
++      propPanel: {
++        schema: (): Record<string, PropPanelSchema> => ({
++          label: {
++            title: 'Etiqueta del botón',
++            type: 'string',
++            widget: 'input',
++            span: 24,
++            props: { placeholder: label },
++          },
++          requiresReason: {
++            title: 'Requiere motivo',
++            type: 'boolean',
++            widget: 'switch',
++            span: 12,
++          },
++          confirmationMessage: {
++            title: 'Mensaje de confirmación',
++            type: 'string',
++            widget: 'textarea',
++            span: 24,
++            props: {
++              placeholder: confirmationPlaceholder,
++              autoSize: { minRows: 2, maxRows: 3 },
++            },
++          },
++          ...(auditEventName
++            ? {
++                auditEventName: {
++                  title: 'Nombre de evento (auditoría)',
++                  type: 'string',
++                  widget: 'input',
++                  span: 24,
++                  props: { placeholder: auditEventName },
++                } as PropPanelSchema,
++              }
++            : {}),
++          buttonColor: {
++            title: 'Color botón',
++            type: 'string',
++            widget: 'colorPicker',
++            span: 8,
++          },
++          buttonTextColor: {
++            title: 'Color texto',
++            type: 'string',
++            widget: 'colorPicker',
++            span: 8,
++          },
++          fontSize: {
++            title: 'Tamaño',
++            type: 'number',
++            widget: 'inputNumber',
++            span: 8,
++            props: { min: 8, max: 20, precision: 0 },
++          },
++          ...helpFields(),
++          ...dataLabelFields(),
++        }),
++        inspector: createSchemaInspectorConfig('textual', {
++          propertyMap: {
++            ...COMMON_PROPERTY_MAP,
++            label: 'data',
++            requiresReason: 'data',
++            confirmationMessage: 'data',
++            ...(auditEventName ? { auditEventName: 'connections' as const } : {}),
++            buttonColor: 'style',
++            buttonTextColor: 'style',
++            fontSize: 'style',
++          },
++          includeConnections: true,
++        }),
++        defaultSchema: {
++          name: '',
++          type,
++          content: '',
++          position: { x: 0, y: 0 },
++          width: 40,
++          height: 12,
++          action: type,
++          label,
++          requiresReason: false,
++          confirmationMessage: '',
++          ...(auditEventName ? { auditEventName } : {}),
++          buttonColor: defaultColor,
++          buttonTextColor: '#ffffff',
++          fontSize: 11,
++        },
++      },
++      icon: renderLucideIcon(icon, { stroke: defaultColor }),
++    },
++    {
++      key: type,
++      type,
++      label,
++      category: 'Acción',
++      tags,
++      capabilities: ['designer', 'form', 'viewer'],
++    },
++  );
+diff --git a/src/sisad-pdfme/schemas/actions/decline.ts b/src/sisad-pdfme/schemas/actions/decline.ts
+index 0481e0a..d93fd7c 100644
+--- a/src/sisad-pdfme/schemas/actions/decline.ts
++++ b/src/sisad-pdfme/schemas/actions/decline.ts
+@@ -1,167 +1,18 @@
+-/**
+- * decline schema — action button that the recipient clicks to decline a document.
+- * Fires a 'decline' action event via the host callback. No business logic inside.
+- */
+-import type { Plugin, Schema } from '@sisad-pdfme/common';
++/** Rejection action schema. Business confirmation and routing remain host-owned. */
+ import { XCircle } from 'lucide-react';
+-import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+-import { helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
+-import { createActionButtonEl } from '../shared/schemaDom.js';
+-import type { ActionSchemaBase } from '../shared/schemaTypes.js';
+-import { renderSchemaWithChrome } from '../shared/renderSchemaWithChrome.js';
+-import type { PropPanelSchema } from '@sisad-pdfme/common';
++import { createDecisionActionPlugin } from './createDecisionActionPlugin.js';
+ 
+-type DeclineSchema = ActionSchemaBase<{
+-  requiresReason?: boolean;
+-  confirmationMessage?: string;
+-  action?: string;
+-}>;
++const declinePlugin = createDecisionActionPlugin({
++  type: 'decline',
++  label: 'Rechazar',
++  defaultColor: '#dc2626',
++  pdfColor: [0.863, 0.149, 0.149],
++  actionStatus: 'declined',
++  confirmationPlaceholder: '¿Confirma el rechazo?',
++  icon: XCircle,
++  iconSvg:
++    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
++  tags: ['decline', 'reject', 'action', 'button'],
++});
+ 
+-const declinePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
+-  {
+-    ui: async ({ schema, rootElement, mode, onChange }) => {
+-      const s = schema as DeclineSchema;
+-      const iconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+-      renderSchemaWithChrome<DeclineSchema>({
+-        schema: s,
+-        rootElement,
+-        family: 'action-based',
+-        compact: true,
+-        renderMode: mode,
+-        render: (chromeEl) => {
+-          const button = createActionButtonEl({
+-            label: s.label || 'Rechazar',
+-            bgColor: s.buttonColor || '#dc2626',
+-            textColor: s.buttonTextColor || '#ffffff',
+-            fontSize: s.fontSize || 11,
+-            isInteractive: mode === 'form',
+-            iconSvg,
+-          });
+-          // Live only in form: notify host via onChange + bubbling CustomEvent.
+-          if (mode === 'form') {
+-            button.addEventListener('click', (event) => {
+-              event.preventDefault();
+-              event.stopPropagation();
+-              onChange?.([
+-                { key: 'content', value: s.action || 'decline' },
+-                { key: 'actionStatus', value: 'declined' },
+-              ]);
+-              rootElement.dispatchEvent(
+-                new CustomEvent('sisad-pdfme:schema-action', {
+-                  bubbles: true,
+-                  detail: {
+-                    action: s.action || 'decline',
+-                    schemaUid: (s as { schemaUid?: string; id?: string }).schemaUid ?? (s as { id?: string }).id,
+-                    schema: s,
+-                  },
+-                }),
+-              );
+-            });
+-          }
+-          chromeEl.appendChild(button);
+-        },
+-      });
+-    },
+-    pdf: async ({ schema, pdfLib, page }) => {
+-      const s = schema as DeclineSchema & { position: { x: number; y: number } };
+-      const { position, width, height } = s;
+-      const { x, y } = position;
+-      const pageHeight = page.getHeight();
+-      page.drawRectangle({
+-        x,
+-        y: pageHeight - y - height,
+-        width,
+-        height,
+-        borderColor: pdfLib.rgb(0.863, 0.149, 0.149),
+-        borderWidth: 1,
+-        color: pdfLib.rgb(0.863, 0.149, 0.149),
+-        borderOpacity: 0,
+-        opacity: 0.15,
+-      });
+-    },
+-    propPanel: {
+-      schema: ({ i18n }): Record<string, PropPanelSchema> => ({
+-        label: {
+-          title: 'Etiqueta del botón',
+-          type: 'string',
+-          widget: 'input',
+-          span: 24,
+-          props: { placeholder: 'Rechazar' },
+-        },
+-        requiresReason: {
+-          title: 'Requiere motivo',
+-          type: 'boolean',
+-          widget: 'switch',
+-          span: 12,
+-        },
+-        confirmationMessage: {
+-          title: 'Mensaje de confirmación',
+-          type: 'string',
+-          widget: 'textarea',
+-          span: 24,
+-          props: { placeholder: '¿Confirma el rechazo?', autoSize: { minRows: 2, maxRows: 3 } },
+-        },
+-        buttonColor: {
+-          title: 'Color botón',
+-          type: 'string',
+-          widget: 'colorPicker',
+-          span: 8,
+-        },
+-        buttonTextColor: {
+-          title: 'Color texto',
+-          type: 'string',
+-          widget: 'colorPicker',
+-          span: 8,
+-        },
+-        fontSize: {
+-          title: 'Tamaño',
+-          type: 'number',
+-          widget: 'inputNumber',
+-          span: 8,
+-          props: { min: 8, max: 20, precision: 0 },
+-        },
+-        ...helpFields(),
+-        ...dataLabelFields(),
+-      }),
+-      inspector: createSchemaInspectorConfig('textual', {
+-        propertyMap: {
+-          ...COMMON_PROPERTY_MAP,
+-          label: 'data',
+-          requiresReason: 'data',
+-          confirmationMessage: 'data',
+-          buttonColor: 'style',
+-          buttonTextColor: 'style',
+-          fontSize: 'style',
+-        },
+-        includeConnections: true,
+-      }),
+-      defaultSchema: {
+-        name: '',
+-        type: 'decline',
+-        content: '',
+-        position: { x: 0, y: 0 },
+-        width: 40,
+-        height: 12,
+-        action: 'decline',
+-        label: 'Rechazar',
+-        requiresReason: false,
+-        confirmationMessage: '',
+-        buttonColor: '#dc2626',
+-        buttonTextColor: '#ffffff',
+-        fontSize: 11,
+-      },
+-    },
+-    icon: renderLucideIcon(XCircle, { stroke: '#dc2626' }),
+-  },
+-  {
+-    key: 'decline',
+-    type: 'decline',
+-    label: 'Rechazar',
+-    category: 'Acción',
+-    tags: ['decline', 'reject', 'action', 'button'],
+-    capabilities: ['designer', 'form', 'viewer'],
+-  },
+-);
+-
+-export default declinePlugin;
+\ No newline at end of file
++export default declinePlugin;
+diff --git a/src/sisad-pdfme/schemas/barcodes/propPanel.ts b/src/sisad-pdfme/schemas/barcodes/propPanel.ts
+index 6c917ab..5e81e47 100644
+--- a/src/sisad-pdfme/schemas/barcodes/propPanel.ts
++++ b/src/sisad-pdfme/schemas/barcodes/propPanel.ts
+@@ -7,6 +7,7 @@ import {
+ } from './constants.js';
+ import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
+ import { createSchemaInspectorConfig } from '../schemaFamilies.js';
++import { hexColorFields } from '../propPanel/commonInspectorFields.js';
+ 
+ const defaultColors = {
+   backgroundColor: DEFAULT_BARCODE_BG_COLOR,
+@@ -199,34 +200,13 @@ export const getPropPanelByBarcodeType = (barcodeType: string): PropPanel<Barcod
+ 
+   return {
+     schema: ({ i18n }) => ({
+-      barColor: {
+-        title: i18n('schemas.barcodes.barColor'),
+-        type: 'string',
+-        widget: 'color',
+-        props: {
+-          disabledAlpha: true,
++      ...hexColorFields(
++        {
++          barColor: i18n('schemas.barcodes.barColor'),
++          backgroundColor: i18n('schemas.bgColor'),
+         },
+-        rules: [
+-          {
+-            pattern: HEX_COLOR_PATTERN,
+-            message: i18n('validation.hexColor'),
+-          },
+-        ],
+-      },
+-      backgroundColor: {
+-        title: i18n('schemas.bgColor'),
+-        type: 'string',
+-        widget: 'color',
+-        props: {
+-          disabledAlpha: true,
+-        },
+-        rules: [
+-          {
+-            pattern: HEX_COLOR_PATTERN,
+-            message: i18n('validation.hexColor'),
+-          },
+-        ],
+-      },
++        { pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') },
++      ),
+       ...(barcodeHasText
+         ? {
+             textColor: {
+diff --git a/src/sisad-pdfme/schemas/checkbox/index.ts b/src/sisad-pdfme/schemas/checkbox/index.ts
+index 37bc878..20789cd 100644
+--- a/src/sisad-pdfme/schemas/checkbox/index.ts
++++ b/src/sisad-pdfme/schemas/checkbox/index.ts
+@@ -2,6 +2,7 @@ import { Plugin, Schema } from '@sisad-pdfme/common';
+ import svg from '../graphics/svg.js';
+ import { isEditable } from '../utils.js';
+ import { HEX_COLOR_PATTERN } from '../constants.js';
++import { hexColorField } from '../propPanel/commonInspectorFields.js';
+ import { SquareCheck } from 'lucide-react';
+ import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+ import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+@@ -150,14 +151,12 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
+     })),
+   propPanel: {
+     schema: ({ i18n }) => ({
+-      color: {
++      color: hexColorField({
+         title: i18n('schemas.color'),
+-        type: 'string',
+-        widget: 'color',
+-        props: { disabledAlpha: true },
++        pattern: HEX_COLOR_PATTERN,
++        message: i18n('validation.hexColor'),
+         required: true,
+-        rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+-      },
++      }),
+       groupId: {
+         title: i18n('schemas.radioGroup.groupName'),
+         type: 'string',
+diff --git a/src/sisad-pdfme/schemas/date/helper.ts b/src/sisad-pdfme/schemas/date/helper.ts
+index 787ded4..fc116e6 100644
+--- a/src/sisad-pdfme/schemas/date/helper.ts
++++ b/src/sisad-pdfme/schemas/date/helper.ts
+@@ -56,6 +56,7 @@ import { DateSchema } from './types.js';
+ import { getExtraFormatterSchema, Formatter } from '../text/extraFormatter.js';
+ import { isEditable } from '../utils.js';
+ import { createSchemaInspectorConfig } from '../schemaFamilies.js';
++import { hexColorFields, typographyFields } from '../propPanel/commonInspectorFields.js';
+ 
+ interface AirDatepickerInstance {
+   selectedDates: Date[];
+@@ -414,58 +415,15 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
+             ],
+             span: 24,
+           },
+-          fontName: {
+-            title: i18n('schemas.text.fontName'),
+-            type: 'string',
+-            widget: 'select',
+-            default: fallbackFontName,
+-            placeholder: fallbackFontName,
+-            props: { options: fontNames.map((name) => ({ label: name, value: name })) },
+-            span: 12,
+-          },
+-          fontSize: {
+-            title: i18n('schemas.text.size'),
+-            type: 'number',
+-            widget: 'inputNumber',
+-            span: 6,
+-            props: { min: 0 },
+-          },
+-          characterSpacing: {
+-            title: i18n('schemas.text.spacing'),
+-            type: 'number',
+-            widget: 'inputNumber',
+-            span: 6,
+-            props: { min: 0 },
+-          },
++          ...typographyFields({ i18n, fallbackFontName, fontNames }),
+           formatter,
+-          fontColor: {
+-            title: i18n('schemas.textColor'),
+-            type: 'string',
+-            widget: 'color',
+-            props: {
+-              disabledAlpha: true,
++          ...hexColorFields(
++            {
++              fontColor: i18n('schemas.textColor'),
++              backgroundColor: i18n('schemas.bgColor'),
+             },
+-            rules: [
+-              {
+-                pattern: HEX_COLOR_PATTERN,
+-                message: i18n('validation.hexColor'),
+-              },
+-            ],
+-          },
+-          backgroundColor: {
+-            title: i18n('schemas.bgColor'),
+-            type: 'string',
+-            widget: 'color',
+-            props: {
+-              disabledAlpha: true,
+-            },
+-            rules: [
+-              {
+-                pattern: HEX_COLOR_PATTERN,
+-                message: i18n('validation.hexColor'),
+-              },
+-            ],
+-          },
++            { pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') },
++          ),
+           locale: {
+             title: i18n('schemas.date.locale'),
+             type: 'string',
+diff --git a/src/sisad-pdfme/schemas/graphics/image.ts b/src/sisad-pdfme/schemas/graphics/image.ts
+index 2bad1ff..e541180 100644
+--- a/src/sisad-pdfme/schemas/graphics/image.ts
++++ b/src/sisad-pdfme/schemas/graphics/image.ts
+@@ -1,4 +1,3 @@
+-import type { ChangeEvent } from 'react';
+ import type { PDFImage } from '@sisad-pdfme/pdf-lib';
+ import type { Plugin } from '@sisad-pdfme/common';
+ import type { Schema } from '@sisad-pdfme/common';
+@@ -9,12 +8,12 @@ import {
+   convertForPdfLayoutProps,
+   addAlphaToHex,
+   isEditable,
+-  readFile,
+   createSvgStr,
+ } from '../utils.js';
+ import { DEFAULT_OPACITY } from '../constants.js';
+ import { getImageDimension } from './imagehelper.js';
+ import { createSchemaInspectorConfig } from '../schemaFamilies.js';
++import { applyCenteredImageFileInputStyle, createImageFileInput } from '../shared/imageFileInput.js';
+ 
+ const getCacheKey = (schema: Schema, input: string) => `${schema.type}${input}`;
+ const fullSize = { width: '100%', height: '100%' };
+@@ -199,34 +198,12 @@ const imageSchema: Plugin<ImageSchema> = {
+       };
+       Object.assign(label.style, labelStyle);
+       container.appendChild(label);
+-      const input = document.createElement('input');
+-      const inputStyle: CSS.Properties = {
+-        ...fullSize,
+-        position: 'absolute',
+-        top: '50%',
+-        left: '50%',
+-        width: '180px',
+-        height: '30px',
+-        marginLeft: '-90px',
+-        marginTop: '-15px',
+-      };
+-      Object.assign(input.style, inputStyle);
+-      input.tabIndex = tabIndex || 0;
+-      input.type = 'file';
+-      input.accept = 'image/jpeg, image/png';
+-      input.addEventListener('change', (event: Event) => {
+-        const changeEvent = event as unknown as ChangeEvent<HTMLInputElement>;
+-        readFile(changeEvent.target.files)
+-          .then((result) => {
+-            if (onChange) onChange([{ key: 'content', value: result as string }]);
+-          })
+-          .catch((error) => {
+-            console.error('Error reading file:', error);
+-          });
+-      });
+-      input.addEventListener('blur', () => {
+-        if (stopEditing) stopEditing();
++      const input = createImageFileInput({
++        tabIndex: tabIndex || 0,
++        onValue: (result) => onChange?.([{ key: 'content', value: result }]),
++        onBlur: stopEditing,
+       });
++      applyCenteredImageFileInputStyle(input);
+       label.appendChild(input);
+     }
+   },
+diff --git a/src/sisad-pdfme/schemas/options/optionGroupFactory.ts b/src/sisad-pdfme/schemas/options/optionGroupFactory.ts
+index 05eae4e..3056e9a 100644
+--- a/src/sisad-pdfme/schemas/options/optionGroupFactory.ts
++++ b/src/sisad-pdfme/schemas/options/optionGroupFactory.ts
+@@ -30,6 +30,7 @@ import {
+   helpFields,
+   dataLabelFields,
+   COMMON_PROPERTY_MAP,
++  hexColorField,
+ } from '../propPanel/commonInspectorFields.js';
+ import {
+   type OptionGroupLayoutConfig,
+@@ -358,14 +359,12 @@ export const buildOptionGroupDefaultSchema = ({
+ export const createOptionGroupPropPanelConfig = (config: OptionGroupPropPanelConfig) => ({
+   schema: ({ i18n }: { i18n: (key: string) => string }) => ({
+     ...basicsFields(),
+-    color: {
++    color: hexColorField({
+       title: i18n('schemas.color'),
+-      type: 'string',
+-      widget: 'color',
+-      props: { disabledAlpha: true },
++      pattern: HEX_COLOR_PATTERN,
++      message: i18n('validation.hexColor'),
+       required: true,
+-      rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+-    },
++    }),
+     groupName: { title: config.groupNameTitle, type: 'string', span: 12 },
+     orientation: {
+       title: 'Orientación',
+diff --git a/src/sisad-pdfme/schemas/options/optionIndicator.ts b/src/sisad-pdfme/schemas/options/optionIndicator.ts
+index 375dfb6..554d784 100644
+--- a/src/sisad-pdfme/schemas/options/optionIndicator.ts
++++ b/src/sisad-pdfme/schemas/options/optionIndicator.ts
+@@ -136,40 +136,34 @@ export const createOptionIndicatorElement = (params: OptionIndicatorParams): HTM
+   }
+ 
+   const fill = Boolean(params.fill);
+-  Object.assign(el.style, fill
++  const baseContainerStyle = {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    position: 'relative',
++    boxSizing: 'border-box',
++    flexShrink: '0',
++    overflow: 'hidden',
++    pointerEvents: 'none',
++    opacity: params.disabled || params.readOnly ? '0.82' : '1',
++    transition: 'opacity 100ms ease, transform 100ms ease',
++  } as const;
++  const dimensions = fill
+     ? {
+         height: '100%',
+         width: 'auto',
+         aspectRatio: '1 / 1',
+         maxWidth: '100%',
+         maxHeight: '100%',
+-        display: 'inline-flex',
+-        alignItems: 'center',
+-        justifyContent: 'center',
+-        position: 'relative',
+-        boxSizing: 'border-box',
+-        flexShrink: '0',
+-        overflow: 'hidden',
+-        pointerEvents: 'none',
+-        opacity: params.disabled || params.readOnly ? '0.82' : '1',
+-        transition: 'opacity 100ms ease, transform 100ms ease',
+       }
+     : {
+         width: `${size}px`,
+         height: `${size}px`,
+         minWidth: `${size}px`,
+         minHeight: `${size}px`,
+-        display: 'inline-flex',
+-        alignItems: 'center',
+-        justifyContent: 'center',
+-        position: 'relative',
+-        boxSizing: 'border-box',
+-        flexShrink: '0',
+-        overflow: 'hidden',
+-        pointerEvents: 'none',
+-        opacity: params.disabled || params.readOnly ? '0.82' : '1',
+-        transition: 'opacity 100ms ease, transform 100ms ease',
+-      });
++      };
++
++  Object.assign(el.style, baseContainerStyle, dimensions);
+ 
+   const outer = document.createElement('span');
+   outer.className = 'sisad-pdfme-option-indicator__outer';
+diff --git a/src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts b/src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts
+index 488face..5d63294 100644
+--- a/src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts
++++ b/src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts
+@@ -3,11 +3,15 @@ import { normalizeText } from './optionModel.js';
+ 
+ const normalizeOptionIds = (ids: unknown, validIds: Set<string>): string[] => {
+   if (!Array.isArray(ids)) return [];
+-  return ids
+-    .map(normalizeText)
+-    .filter((id) => id && validIds.has(id));
++  return ids.map(normalizeText).filter((id) => id && validIds.has(id));
+ };
+ 
++const getValidOptionIds = (options: OptionItem[]): Set<string> =>
++  new Set(options.map((option) => option.optionId));
++
++const normalizeKnownOptionIds = (ids: unknown, options: OptionItem[]): string[] =>
++  normalizeOptionIds(ids, getValidOptionIds(options));
++
+ /**
+  * Core single-option matcher: resolve a stored value to a known optionId by id
+  * then by value. Returns undefined when nothing matches (no fallback applied).
+@@ -43,10 +47,9 @@ export const resolveMultiOptionSelection = (
+   options: OptionItem[],
+   fallback: string[] = [],
+ ): string[] => {
+-  const validIds = new Set(options.map((option) => option.optionId));
++  const validIds = getValidOptionIds(options);
+   const normalized = normalizeOptionIds(schemaSelected, validIds);
+-  if (normalized.length > 0) return normalized;
+-  return fallback.filter((id) => validIds.has(id));
++  return normalized.length > 0 ? normalized : fallback.filter((id) => validIds.has(id));
+ };
+ 
+ export const toggleMultiOptionSelection = (
+@@ -58,8 +61,7 @@ export const toggleMultiOptionSelection = (
+     maxSelected?: number;
+   },
+ ): string[] => {
+-  const validIds = new Set(options.map((option) => option.optionId));
+-  const current = selectedIds.map(normalizeText).filter((id) => id && validIds.has(id));
++  const current = normalizeKnownOptionIds(selectedIds, options);
+   const next = new Set(current);
+ 
+   if (next.has(optionId)) {
+@@ -86,8 +88,7 @@ export const clampMultiOptionSelection = (
+     maxSelected?: number;
+   },
+ ): string[] => {
+-  const validIds = new Set(options.map((option) => option.optionId));
+-  const selected = selectedIds.map(normalizeText).filter((id) => id && validIds.has(id));
++  const selected = normalizeKnownOptionIds(selectedIds, options);
+ 
+   if (limits?.maxSelected != null && selected.length > limits.maxSelected) {
+     selected.length = limits.maxSelected;
+diff --git a/src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts b/src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts
+index 068df21..fe26739 100644
+--- a/src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts
++++ b/src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts
+@@ -346,4 +346,120 @@ export const COMMON_PROPERTY_MAP: Partial<Record<string, 'general' | 'layout' |
+   mandatory: 'validation',
+   editableBySender: 'collaboration',
+   editableByRecipient: 'collaboration',
+-};
+\ No newline at end of file
++};
++// ── Shared typography / color definitions ────────────────────────────────
++
++type I18n = (key: string) => string;
++
++export const fontNameField = ({
++  title,
++  fallbackFontName,
++  fontNames,
++}: {
++  title: string;
++  fallbackFontName: string;
++  fontNames: string[];
++}): PropPanelSchema => ({
++  title,
++  type: 'string',
++  widget: 'select',
++  default: fallbackFontName,
++  placeholder: fallbackFontName,
++  props: { options: fontNames.map((name) => ({ label: name, value: name })) },
++  span: 12,
++});
++
++export const fontSizeField = (
++  title: string,
++  options: { disabled?: boolean; span?: number } = {},
++): PropPanelSchema => ({
++  title,
++  type: 'number',
++  widget: 'inputNumber',
++  props: { min: 0 },
++  span: options.span ?? 6,
++  disabled: options.disabled,
++});
++
++export const characterSpacingField = (title: string): PropPanelSchema => ({
++  title,
++  type: 'number',
++  widget: 'inputNumber',
++  props: { min: 0 },
++  span: 6,
++});
++
++export const hexColorField = ({
++  title,
++  pattern,
++  message,
++  required = false,
++}: {
++  title: string;
++  pattern: string | RegExp;
++  message: string;
++  required?: boolean;
++}): PropPanelSchema => ({
++  title,
++  type: 'string',
++  widget: 'color',
++  props: { disabledAlpha: true },
++  ...(required ? { required: true } : {}),
++  rules: [{ pattern, message }],
++});
++
++type HexColorFieldDefinition =
++  | string
++  | { title: string; span?: number; required?: boolean };
++
++export const hexColorFields = (
++  fields: Record<string, HexColorFieldDefinition>,
++  options: { pattern: string | RegExp; message: string },
++): Record<string, PropPanelSchema> =>
++  Object.fromEntries(
++    Object.entries(fields).map(([key, definition]) => {
++      const normalized =
++        typeof definition === 'string' ? { title: definition } : definition;
++      return [
++        key,
++        {
++          ...hexColorField({
++            title: normalized.title,
++            pattern: options.pattern,
++            message: options.message,
++            required: normalized.required,
++          }),
++          ...(normalized.span == null ? {} : { span: normalized.span }),
++        },
++      ];
++    }),
++  );
++
++export const typographyFields = ({
++  i18n,
++  fallbackFontName,
++  fontNames,
++  fontSizeDisabled = false,
++}: {
++  i18n: I18n;
++  fallbackFontName: string;
++  fontNames: string[];
++  fontSizeDisabled?: boolean;
++}): Record<string, PropPanelSchema> => ({
++  fontName: fontNameField({
++    title: i18n('schemas.text.fontName'),
++    fallbackFontName,
++    fontNames,
++  }),
++  fontSize: fontSizeField(i18n('schemas.text.size'), { disabled: fontSizeDisabled }),
++  characterSpacing: characterSpacingField(i18n('schemas.text.spacing')),
++});
++
++export const horizontalAlignmentOptions = (
++  i18n: I18n,
++  values: { left: string; center: string; right: string },
++) => [
++  { label: i18n('schemas.left'), value: values.left },
++  { label: i18n('schemas.center'), value: values.center },
++  { label: i18n('schemas.right'), value: values.right },
++];
+diff --git a/src/sisad-pdfme/schemas/schemaFamilies.ts b/src/sisad-pdfme/schemas/schemaFamilies.ts
+index a242b7b..7e4ab0e 100644
+--- a/src/sisad-pdfme/schemas/schemaFamilies.ts
++++ b/src/sisad-pdfme/schemas/schemaFamilies.ts
+@@ -30,7 +30,18 @@ type FamilyPreset = PluginFamilyDefinition & {
+   supportsValidation: boolean;
+ };
+ 
+-type FamilyPresetConfig = Omit<FamilyPreset, 'visibleSections' | 'propertyMap' | 'supportedActions' | 'strategies'> & {
++type FamilyCapabilityKey =
++  | 'supportsComments'
++  | 'supportsLocking'
++  | 'supportsPresence'
++  | 'supportsConnections'
++  | 'supportsCollaboration'
++  | 'supportsValidation';
++
++type FamilyPresetConfig = Omit<
++  FamilyPreset,
++  'visibleSections' | 'propertyMap' | 'supportedActions' | 'strategies' | FamilyCapabilityKey
++> & Partial<Pick<FamilyPreset, FamilyCapabilityKey>> & {
+   visibleSections: SchemaInspectorSection[];
+   propertyMap?: Partial<Record<string, PropPanelInspectorSectionKey>>;
+   supportedActions: Array<PluginActionDefinition['command']>;
+@@ -153,6 +164,12 @@ const createFamilyPreset = ({
+   propertyMap = {},
+   supportedActions,
+   strategies,
++  supportsComments = true,
++  supportsLocking = true,
++  supportsPresence = true,
++  supportsConnections = false,
++  supportsCollaboration = true,
++  supportsValidation = false,
+   ...rest
+ }: FamilyPresetConfig): FamilyPreset => ({
+   ...rest,
+@@ -160,128 +177,75 @@ const createFamilyPreset = ({
+   propertyMap,
+   supportedActions: createActions(supportedActions),
+   strategies: createStrategies(strategies),
++  supportsComments,
++  supportsLocking,
++  supportsPresence,
++  supportsConnections,
++  supportsCollaboration,
++  supportsValidation,
+ });
+ 
++const VISUAL_FIELD_ACTIONS: Array<PluginActionDefinition['command']> = [
++  'resizeField',
++  'moveField',
++  'duplicateField',
++  'deleteField',
++  'changeColor',
++  'addComment',
++  'lockField',
++  'unlockField',
++];
++
++const DATA_FIELD_ACTIONS: Array<PluginActionDefinition['command']> = [
++  'renameVariable',
++  ...VISUAL_FIELD_ACTIONS.slice(0, 5),
++  'togglePersistence',
++  'addComment',
++  'resolveComment',
++  'lockField',
++  'unlockField',
++];
++
+ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
+   text: createFamilyPreset({
+     family: 'text',
+     visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'help', 'collaboration', 'validation', 'advanced', 'comments'],
+     propertyMap: BASE_PROPERTY_MAP,
+-    supportedActions: [
+-      'editText',
+-      'renameVariable',
+-      'resizeField',
+-      'moveField',
+-      'duplicateField',
+-      'deleteField',
+-      'changeColor',
+-      'togglePersistence',
+-      'addComment',
+-      'resolveComment',
+-      'lockField',
+-      'unlockField',
+-    ],
++    supportedActions: ['editText', ...DATA_FIELD_ACTIONS],
+     strategies: ['validation', 'prefill', 'persistence', 'comments', 'locking'],
+-    supportsComments: true,
+-    supportsLocking: true,
+-    supportsPresence: true,
+     supportsConnections: true,
+-    supportsCollaboration: true,
+     supportsValidation: true,
+   }),
+   mediaVisual: createFamilyPreset({
+     family: 'mediaVisual',
+     visibleSections: ['general', 'layout', 'style', 'collaboration', 'comments', 'advanced'],
+     propertyMap: BASE_PROPERTY_MAP,
+-    supportedActions: [
+-      'resizeField',
+-      'moveField',
+-      'duplicateField',
+-      'deleteField',
+-      'changeColor',
+-      'addComment',
+-      'lockField',
+-      'unlockField',
+-    ],
++    supportedActions: VISUAL_FIELD_ACTIONS,
+     strategies: ['upload', 'comments', 'locking'],
+-    supportsComments: true,
+-    supportsLocking: true,
+-    supportsPresence: true,
+-    supportsConnections: false,
+-    supportsCollaboration: true,
+-    supportsValidation: false,
+   }),
+   boolean: createFamilyPreset({
+     family: 'boolean',
+     visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'help', 'collaboration', 'validation', 'advanced', 'comments'],
+     propertyMap: BASE_PROPERTY_MAP,
+-    supportedActions: [
+-      'renameVariable',
+-      'resizeField',
+-      'moveField',
+-      'duplicateField',
+-      'deleteField',
+-      'changeColor',
+-      'togglePersistence',
+-      'addComment',
+-      'resolveComment',
+-      'lockField',
+-      'unlockField',
+-    ],
++    supportedActions: DATA_FIELD_ACTIONS,
+     strategies: ['validation', 'prefill', 'persistence', 'comments', 'locking'],
+-    supportsComments: true,
+-    supportsLocking: true,
+-    supportsPresence: true,
+     supportsConnections: true,
+-    supportsCollaboration: true,
+     supportsValidation: true,
+   }),
+   shapeBarcode: createFamilyPreset({
+     family: 'shapeBarcode',
+     visibleSections: ['general', 'layout', 'style', 'data', 'collaboration', 'comments', 'advanced'],
+     propertyMap: BASE_PROPERTY_MAP,
+-    supportedActions: [
+-      'resizeField',
+-      'moveField',
+-      'duplicateField',
+-      'deleteField',
+-      'changeColor',
+-      'addComment',
+-      'lockField',
+-      'unlockField',
+-    ],
++    supportedActions: VISUAL_FIELD_ACTIONS,
+     strategies: ['comments', 'locking'],
+-    supportsComments: true,
+-    supportsLocking: true,
+-    supportsPresence: true,
+-    supportsConnections: false,
+-    supportsCollaboration: true,
+-    supportsValidation: false,
+   }),
+   table: createFamilyPreset({
+     family: 'table',
+     visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'advanced', 'comments'],
+     propertyMap: BASE_PROPERTY_MAP,
+-    supportedActions: [
+-      'renameVariable',
+-      'resizeField',
+-      'moveField',
+-      'duplicateField',
+-      'deleteField',
+-      'changeColor',
+-      'togglePersistence',
+-      'addComment',
+-      'resolveComment',
+-      'lockField',
+-      'unlockField',
+-    ],
++    supportedActions: DATA_FIELD_ACTIONS,
+     strategies: ['prefill', 'persistence', 'comments', 'locking'],
+-    supportsComments: true,
+-    supportsLocking: true,
+-    supportsPresence: true,
+     supportsConnections: true,
+-    supportsCollaboration: true,
+-    supportsValidation: false,
+   }),
+ };
+ 
+diff --git a/src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts b/src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts
+index 0e0c4ba..2adcfba 100644
+--- a/src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts
++++ b/src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts
+@@ -4,6 +4,7 @@ import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '../ut
+ import { toRadians } from '@sisad-pdfme/pdf-lib';
+ import { Circle, Square } from 'lucide-react';
+ import { createSchemaInspectorConfig } from '../schemaFamilies.js';
++import { hexColorFields } from '../propPanel/commonInspectorFields.js';
+ 
+ interface ShapeSchema extends Schema {
+   type: 'ellipse' | 'rectangle';
+@@ -88,25 +89,13 @@ const shape: Plugin<ShapeSchema> = {
+         props: { min: 0, step: 1 },
+         span: 12,
+       },
+-      borderColor: {
+-        title: i18n('schemas.borderColor'),
+-        type: 'string',
+-        widget: 'color',
+-        props: {
+-          disabledAlpha: true,
++      ...hexColorFields(
++        {
++          borderColor: { title: i18n('schemas.borderColor'), span: 12 },
++          color: i18n('schemas.color'),
+         },
+-        rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+-        span: 12,
+-      },
+-      color: {
+-        title: i18n('schemas.color'),
+-        type: 'string',
+-        widget: 'color',
+-        props: {
+-          disabledAlpha: true,
+-        },
+-        rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+-      },
++        { pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') },
++      ),
+       radius: {
+         title: i18n('schemas.radius'),
+         type: 'number',
+@@ -158,4 +147,4 @@ export const ellipse = {
+   ...shape,
+   propPanel: getPropPanelSchema('ellipse'),
+   icon: createSvgStr(Circle),
+-};
+\ No newline at end of file
++};
+diff --git a/src/sisad-pdfme/schemas/shared/imageFileInput.ts b/src/sisad-pdfme/schemas/shared/imageFileInput.ts
+new file mode 100644
+index 0000000..37b5a14
+--- /dev/null
++++ b/src/sisad-pdfme/schemas/shared/imageFileInput.ts
+@@ -0,0 +1,40 @@
++import { readFile } from '../utils.js';
++
++export type ImageFileInputOptions = {
++  onValue: (value: string) => void;
++  onBlur?: () => void;
++  onError?: (error: unknown) => void;
++  tabIndex?: number;
++};
++
++/** Creates the shared JPEG/PNG file input used by image-like schemas. */
++export const createImageFileInput = ({
++  onValue,
++  onBlur,
++  onError = (error) => console.error('Error reading file:', error),
++  tabIndex = 0,
++}: ImageFileInputOptions): HTMLInputElement => {
++  const input = document.createElement('input');
++  input.type = 'file';
++  input.accept = 'image/jpeg, image/png';
++  input.tabIndex = tabIndex;
++  input.addEventListener('change', () => {
++    readFile(input.files)
++      .then((result) => onValue(String(result)))
++      .catch(onError);
++  });
++  if (onBlur) input.addEventListener('blur', onBlur);
++  return input;
++};
++
++export const applyCenteredImageFileInputStyle = (input: HTMLInputElement): void => {
++  Object.assign(input.style, {
++    position: 'absolute',
++    top: '50%',
++    left: '50%',
++    width: '180px',
++    height: '30px',
++    marginLeft: '-90px',
++    marginTop: '-15px',
++  });
++};
+diff --git a/src/sisad-pdfme/schemas/signature/index.ts b/src/sisad-pdfme/schemas/signature/index.ts
+index 5eea35c..b819a5e 100644
+--- a/src/sisad-pdfme/schemas/signature/index.ts
++++ b/src/sisad-pdfme/schemas/signature/index.ts
+@@ -1,7 +1,7 @@
+ import type { Plugin, UIRenderProps } from '@sisad-pdfme/common';
+ import { PenLine } from 'lucide-react';
+ import image from '../graphics/image.js';
+-import { isEditable, readFile } from '../utils.js';
++import { isEditable } from '../utils.js';
+ import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+ import { applyFieldChrome } from '../shared/fieldChrome.js';
+ import type { SisadSchemaBase } from '../shared/schemaTypes.js';
+@@ -9,6 +9,7 @@ import { propPanel } from './propPanel.js';
+ import { getSignatureProvider, resolveSignatureProviderSource } from './providerRegistry.js';
+ import { normalizeSignatureSchema } from './types.js';
+ import type { SignatureSchema } from './types.js';
++import { applyCenteredImageFileInputStyle, createImageFileInput } from '../shared/imageFileInput.js';
+ 
+ const buildSignaturePlaceholder = (schema: SignatureSchema) => {
+   const modeLabel = {
+@@ -124,31 +125,11 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
+         backgroundColor: 'rgba(22,119,255,0.18)',
+         cursor: 'pointer',
+       });
+-      const input = document.createElement('input');
+-      Object.assign(input.style, {
+-        position: 'absolute',
+-        top: '50%',
+-        left: '50%',
+-        width: '180px',
+-        height: '30px',
+-        marginLeft: '-90px',
+-        marginTop: '-15px',
+-      });
+-      input.type = 'file';
+-      input.accept = 'image/jpeg, image/png';
+-      input.addEventListener('change', (event: Event) => {
+-        const changeEvent = event as Event & { target: HTMLInputElement };
+-        readFile(changeEvent.target.files)
+-          .then((result) => {
+-            if (onChange) onChange([{ key: 'content', value: result as string }]);
+-          })
+-          .catch((error) => {
+-            console.error('Error reading file:', error);
+-          });
+-      });
+-      input.addEventListener('blur', () => {
+-        if (stopEditing) stopEditing();
++      const input = createImageFileInput({
++        onValue: (result) => onChange?.([{ key: 'content', value: result }]),
++        onBlur: stopEditing,
+       });
++      applyCenteredImageFileInputStyle(input);
+       label.appendChild(input);
+       container.appendChild(label);
+     }
+diff --git a/src/sisad-pdfme/schemas/signature/providerRegistry.ts b/src/sisad-pdfme/schemas/signature/providerRegistry.ts
+index 5420e7f..bf746db 100644
+--- a/src/sisad-pdfme/schemas/signature/providerRegistry.ts
++++ b/src/sisad-pdfme/schemas/signature/providerRegistry.ts
+@@ -159,6 +159,20 @@ export const validateSignatureProviderConfig = (
+   return errors;
+ };
+ 
++const createLocalProviderCapabilities = (
++  overrides: Partial<SignatureProviderDefinition['capabilities']> = {},
++): SignatureProviderDefinition['capabilities'] => ({
++  supportsVisibleSignature: true,
++  supportsWebhook: false,
++  supportsPolling: false,
++  supportsCertificateMetadata: false,
++  supportsReason: false,
++  supportsLocation: false,
++  supportsOtp: false,
++  supportsBiometric: false,
++  ...overrides,
++});
++
+ registerSignatureProviders([
+   {
+     key: 'local_draw',
+@@ -166,16 +180,7 @@ registerSignatureProviders([
+     description: 'Renderizado interno para firma dibujada.',
+     internal: true,
+     badges: ['local'],
+-    capabilities: {
+-      supportsVisibleSignature: true,
+-      supportsWebhook: false,
+-      supportsPolling: false,
+-      supportsCertificateMetadata: false,
+-      supportsReason: false,
+-      supportsLocation: false,
+-      supportsOtp: false,
+-      supportsBiometric: false,
+-    },
++    capabilities: createLocalProviderCapabilities(),
+     defaultConfig: {},
+   },
+   {
+@@ -184,16 +189,7 @@ registerSignatureProviders([
+     description: 'Renderizado interno para firma por imagen.',
+     internal: true,
+     badges: ['local'],
+-    capabilities: {
+-      supportsVisibleSignature: true,
+-      supportsWebhook: false,
+-      supportsPolling: false,
+-      supportsCertificateMetadata: false,
+-      supportsReason: false,
+-      supportsLocation: false,
+-      supportsOtp: false,
+-      supportsBiometric: false,
+-    },
++    capabilities: createLocalProviderCapabilities(),
+     defaultConfig: {},
+   },
+   {
+@@ -202,16 +198,11 @@ registerSignatureProviders([
+     description: 'Configuracion local para firma con certificado P12.',
+     internal: true,
+     badges: ['local', 'p12'],
+-    capabilities: {
+-      supportsVisibleSignature: true,
+-      supportsWebhook: false,
+-      supportsPolling: false,
++    capabilities: createLocalProviderCapabilities({
+       supportsCertificateMetadata: true,
+       supportsReason: true,
+       supportsLocation: true,
+-      supportsOtp: false,
+-      supportsBiometric: false,
+-    },
++    }),
+     defaultConfig: {},
+   },
+ ]);
+\ No newline at end of file
+diff --git a/src/sisad-pdfme/schemas/tables/helper.ts b/src/sisad-pdfme/schemas/tables/helper.ts
+index b8e33ba..1e7cf70 100644
+--- a/src/sisad-pdfme/schemas/tables/helper.ts
++++ b/src/sisad-pdfme/schemas/tables/helper.ts
+@@ -12,6 +12,7 @@ import {
+   VERTICAL_ALIGN_BOTTOM,
+ } from '../text/constants.js';
+ import { HEX_COLOR_PATTERN } from '../constants.js';
++import { hexColorFields, horizontalAlignmentOptions, typographyFields } from '../propPanel/commonInspectorFields.js';
+ 
+ export const getDefaultCellStyles = () => ({
+   fontName: undefined,
+@@ -51,39 +52,13 @@ export const getCellPropPanelSchema = (arg: {
+   const { i18n, fallbackFontName, fontNames, isBody } = arg;
+ 
+   return {
+-    fontName: {
+-      title: i18n('schemas.text.fontName'),
+-      type: 'string',
+-      widget: 'select',
+-      default: fallbackFontName,
+-      placeholder: fallbackFontName,
+-      props: { options: fontNames.map((name) => ({ label: name, value: name })) },
+-      span: 12,
+-    },
+-    fontSize: {
+-      title: i18n('schemas.text.size'),
+-      type: 'number',
+-      widget: 'inputNumber',
+-      props: { min: 0 },
+-      span: 6,
+-    },
+-    characterSpacing: {
+-      title: i18n('schemas.text.spacing'),
+-      type: 'number',
+-      widget: 'inputNumber',
+-      props: { min: 0 },
+-      span: 6,
+-    },
++    ...typographyFields({ i18n, fallbackFontName, fontNames }),
+     alignment: {
+       title: i18n('schemas.text.textAlign'),
+       type: 'string',
+       widget: 'select',
+       props: {
+-        options: [
+-          { label: i18n('schemas.left'), value: ALIGN_LEFT },
+-          { label: i18n('schemas.center'), value: ALIGN_CENTER },
+-          { label: i18n('schemas.right'), value: ALIGN_RIGHT },
+-        ],
++        options: horizontalAlignmentOptions(i18n, { left: ALIGN_LEFT, center: ALIGN_CENTER, right: ALIGN_RIGHT }),
+       },
+       span: 8,
+     },
+@@ -107,33 +82,14 @@ export const getCellPropPanelSchema = (arg: {
+       props: { step: 0.1, min: 0 },
+       span: 8,
+     },
+-    fontColor: {
+-      title: i18n('schemas.textColor'),
+-      type: 'string',
+-      widget: 'color',
+-      props: {
+-        disabledAlpha: true,
+-      },
+-      rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+-    },
+-    borderColor: {
+-      title: i18n('schemas.borderColor'),
+-      type: 'string',
+-      widget: 'color',
+-      props: {
+-        disabledAlpha: true,
++    ...hexColorFields(
++      {
++        fontColor: i18n('schemas.textColor'),
++        borderColor: i18n('schemas.borderColor'),
++        backgroundColor: i18n('schemas.backgroundColor'),
+       },
+-      rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+-    },
+-    backgroundColor: {
+-      title: i18n('schemas.backgroundColor'),
+-      type: 'string',
+-      widget: 'color',
+-      props: {
+-        disabledAlpha: true,
+-      },
+-      rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+-    },
++      { pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') },
++    ),
+     ...(isBody
+       ? {
+           alternateBackgroundColor: {
+@@ -186,11 +142,11 @@ export const getColumnStylesPropPanelSchema = ({
+             type: 'string',
+             widget: 'select',
+             props: {
+-              options: [
+-                { label: i18n('schemas.left'), value: ALIGN_LEFT },
+-                { label: i18n('schemas.center'), value: ALIGN_CENTER },
+-                { label: i18n('schemas.right'), value: ALIGN_RIGHT },
+-              ],
++              options: horizontalAlignmentOptions(i18n, {
++                left: ALIGN_LEFT,
++                center: ALIGN_CENTER,
++                right: ALIGN_RIGHT,
++              }),
+             },
+           },
+         }),
+diff --git a/src/sisad-pdfme/schemas/tables/propPanel.ts b/src/sisad-pdfme/schemas/tables/propPanel.ts
+index 683a2e7..4721102 100644
+--- a/src/sisad-pdfme/schemas/tables/propPanel.ts
++++ b/src/sisad-pdfme/schemas/tables/propPanel.ts
+@@ -8,6 +8,7 @@ import {
+ } from './helper.js';
+ import { HEX_COLOR_PATTERN } from '../constants.js';
+ import { createSchemaInspectorConfig } from '../schemaFamilies.js';
++import { hexColorField } from '../propPanel/commonInspectorFields.js';
+ 
+ export const propPanel: PropPanel<TableSchema> = {
+   schema: ({ activeSchema, options, i18n }) => {
+@@ -45,15 +46,11 @@ export const propPanel: PropPanel<TableSchema> = {
+             props: { min: 0, step: 0.1 },
+             step: 1,
+           },
+-          borderColor: {
++          borderColor: hexColorField({
+             title: i18n('schemas.borderColor'),
+-            type: 'string',
+-            widget: 'color',
+-            props: {
+-              disabledAlpha: true,
+-            },
+-            rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+-          },
++            pattern: HEX_COLOR_PATTERN,
++            message: i18n('validation.hexColor'),
++          }),
+         },
+       },
+       headStyles: {
+@@ -119,4 +116,4 @@ export const propPanel: PropPanel<TableSchema> = {
+     }),
+     columnStyles: {},
+   },
+-};
+\ No newline at end of file
++};
+diff --git a/src/sisad-pdfme/schemas/text/pdfRender.ts b/src/sisad-pdfme/schemas/text/pdfRender.ts
+index 7c3d874..791d65f 100644
+--- a/src/sisad-pdfme/schemas/text/pdfRender.ts
++++ b/src/sisad-pdfme/schemas/text/pdfRender.ts
+@@ -183,30 +183,26 @@ export const pdfRender = async (arg: PDFRenderProps<TextSchema>) => {
+ 
+     let yLine = pageHeight - mm2pt(schema.position.y) - yOffset - rowYOffset;
+ 
+-    // draw strikethrough
+-    if (schema.strikethrough && textWidth > 0) {
+-      const _x = xLine + textWidth + 1;
+-      const _y = yLine + textHeight / 3;
++    const drawDecorationLine = (decorationY: number) => {
+       page.drawLine({
+-        start: rotatePoint({ x: xLine, y: _y }, pivotPoint, rotate.angle),
+-        end: rotatePoint({ x: _x, y: _y }, pivotPoint, rotate.angle),
++        start: rotatePoint({ x: xLine, y: decorationY }, pivotPoint, rotate.angle),
++        end: rotatePoint(
++          { x: xLine + textWidth + 1, y: decorationY },
++          pivotPoint,
++          rotate.angle,
++        ),
+         thickness: (1 / 12) * fontSize,
+-        color: color,
++        color,
+         opacity,
+       });
++    };
++
++    if (schema.strikethrough && textWidth > 0) {
++      drawDecorationLine(yLine + textHeight / 3);
+     }
+ 
+-    // draw underline
+     if (schema.underline && textWidth > 0) {
+-      const _x = xLine + textWidth + 1;
+-      const _y = yLine - textHeight / 12;
+-      page.drawLine({
+-        start: rotatePoint({ x: xLine, y: _y }, pivotPoint, rotate.angle),
+-        end: rotatePoint({ x: _x, y: _y }, pivotPoint, rotate.angle),
+-        thickness: (1 / 12) * fontSize,
+-        color: color,
+-        opacity,
+-      });
++      drawDecorationLine(yLine - textHeight / 12);
+     }
+ 
+     if (rotate.angle !== 0) {
+diff --git a/src/sisad-pdfme/schemas/text/propPanel.ts b/src/sisad-pdfme/schemas/text/propPanel.ts
+index 5c20bbe..6c39342 100644
+--- a/src/sisad-pdfme/schemas/text/propPanel.ts
++++ b/src/sisad-pdfme/schemas/text/propPanel.ts
+@@ -28,6 +28,8 @@ import {
+   dataLabelFields,
+   textValidationFields,
+   COMMON_PROPERTY_MAP,
++  hexColorFields,
++  typographyFields,
+ } from '../propPanel/commonInspectorFields.js';
+ 
+ const UseDynamicFontSize = (props: PropPanelWidgetProps) => {
+@@ -67,30 +69,12 @@ export const propPanel: PropPanel<TextSchema> = {
+     );
+ 
+     const textSchema: Record<string, PropPanelSchema> = {
+-      fontName: {
+-        title: i18n('schemas.text.fontName'),
+-        type: 'string',
+-        widget: 'select',
+-        default: fallbackFontName,
+-        placeholder: fallbackFontName,
+-        props: { options: fontNames.map((name) => ({ label: name, value: name })) },
+-        span: 12,
+-      },
+-      fontSize: {
+-        title: i18n('schemas.text.size'),
+-        type: 'number',
+-        widget: 'inputNumber',
+-        span: 6,
+-        disabled: enableDynamicFont,
+-        props: { min: 0 },
+-      },
+-      characterSpacing: {
+-        title: i18n('schemas.text.spacing'),
+-        type: 'number',
+-        widget: 'inputNumber',
+-        span: 6,
+-        props: { min: 0 },
+-      },
++      ...typographyFields({
++        i18n,
++        fallbackFontName,
++        fontNames,
++        fontSizeDisabled: enableDynamicFont,
++      }),
+       formatter: getExtraFormatterSchema(i18n),
+       lineHeight: {
+         title: i18n('schemas.text.lineHeight'),
+@@ -133,34 +117,13 @@ export const propPanel: PropPanel<TextSchema> = {
+           },
+         },
+       },
+-      fontColor: {
+-        title: i18n('schemas.textColor'),
+-        type: 'string',
+-        widget: 'color',
+-        props: {
+-          disabledAlpha: true,
+-        },
+-        rules: [
+-          {
+-            pattern: HEX_COLOR_PATTERN,
+-            message: i18n('validation.hexColor'),
+-          },
+-        ],
+-      },
+-      backgroundColor: {
+-        title: i18n('schemas.bgColor'),
+-        type: 'string',
+-        widget: 'color',
+-        props: {
+-          disabledAlpha: true,
++      ...hexColorFields(
++        {
++          fontColor: i18n('schemas.textColor'),
++          backgroundColor: i18n('schemas.bgColor'),
+         },
+-        rules: [
+-          {
+-            pattern: HEX_COLOR_PATTERN,
+-            message: i18n('validation.hexColor'),
+-          },
+-        ],
+-      },
++        { pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') },
++      ),
+     };
+ 
+     return {
+diff --git a/src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts b/src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts
+index 15f0e15..9068992 100644
+--- a/src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts
++++ b/src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts
+@@ -4,8 +4,12 @@
+  * Normalizes SVGElement | string returned by renderLucideIcon to plain string
+  * to satisfy Plugin<Schema>.icon: string.
+  */
+-import { cloneDeep } from '@sisad-pdfme/common';
+-import type { Plugin, Schema } from '@sisad-pdfme/common';
++import {
++  cloneDeep,
++  type Plugin,
++  type PropPanelSchema,
++  type Schema,
++} from '@sisad-pdfme/common';
+ import text from '../text/index.js';
+ import { createSchemaPlugin } from '../schemaBuilder.js';
+ import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+@@ -15,7 +19,6 @@ import {
+   dataLabelFields,
+   COMMON_PROPERTY_MAP,
+ } from '../propPanel/commonInspectorFields.js';
+-import type { PropPanelSchema } from '@sisad-pdfme/common';
+ 
+ export type TextLikePresetConfig = {
+   type: string;
+diff --git a/src/sisad-pdfme/shared/localFormStorage.ts b/src/sisad-pdfme/shared/localFormStorage.ts
+index ab827ba..e65e841 100644
+--- a/src/sisad-pdfme/shared/localFormStorage.ts
++++ b/src/sisad-pdfme/shared/localFormStorage.ts
+@@ -16,6 +16,7 @@
+  * Para producción con backend, usar la implementación REST del padre.
+  */
+ import type { ExternalFormStorage } from '../externalForms/externalFormRunner.js';
++import { readJsonStorageValue, resolveBrowserStorage } from './webStorage.js';
+ 
+ // ── Constantes ────────────────────────────────────────────────────────────────
+ 
+@@ -141,13 +142,7 @@ export class LocalFormStorage implements ExternalFormStorage {
+   }
+ 
+   private _getUidIndex(recipientId: string): string[] {
+-    try {
+-      const raw = this.storage.getItem(this._uidIndexKey(recipientId));
+-      if (!raw) return [];
+-      return JSON.parse(raw) as string[];
+-    } catch {
+-      return [];
+-    }
++    return readJsonStorageValue(this.storage, this._uidIndexKey(recipientId), []);
+   }
+ 
+   private _addToUidIndex(recipientId: string, schemaUid: string): void {
+@@ -190,13 +185,7 @@ export class LocalFormStorage implements ExternalFormStorage {
+   }
+ 
+   private _getRecipientIndex(): string[] {
+-    try {
+-      const raw = this.storage.getItem(this._recipientIndexKey());
+-      if (!raw) return [];
+-      return JSON.parse(raw) as string[];
+-    } catch {
+-      return [];
+-    }
++    return readJsonStorageValue(this.storage, this._recipientIndexKey(), []);
+   }
+ 
+   private _setItem(key: string, value: string): void {
+@@ -211,23 +200,9 @@ export class LocalFormStorage implements ExternalFormStorage {
+   }
+ 
+   private _resolveDefaultStorage(): Storage {
+-    if (typeof sessionStorage !== 'undefined') return sessionStorage;
+-    if (typeof localStorage !== 'undefined') return localStorage;
+-    return this._noopStorage();
+-  }
+-
+-  /** Storage no-op para SSR / entornos sin Web Storage API. */
+-  private _noopStorage(): Storage {
+-    const map = new Map<string, string>();
+-    return {
+-      getItem: (k: string) => map.get(k) ?? null,
+-      setItem: (k: string, v: string) => { map.set(k, v); },
+-      removeItem: (k: string) => { map.delete(k); },
+-      clear: () => { map.clear(); },
+-      key: (i: number) => Array.from(map.keys())[i] ?? null,
+-      get length() { return map.size; },
+-    };
++    return resolveBrowserStorage('session');
+   }
++
+ }
+ 
+ /**
+diff --git a/src/sisad-pdfme/shared/localSnapshotStore.ts b/src/sisad-pdfme/shared/localSnapshotStore.ts
+index 9ba325c..cbd353e 100644
+--- a/src/sisad-pdfme/shared/localSnapshotStore.ts
++++ b/src/sisad-pdfme/shared/localSnapshotStore.ts
+@@ -17,6 +17,7 @@
+  * Para colaboración real usar el backend REST.
+  */
+ import type { OfficialTemplateSnapshot } from './snapshot.js';
++import { readJsonStorageValue, resolveBrowserStorage } from './webStorage.js';
+ 
+ // ── Constantes ──────────────────────────────────────────────────────────────
+ 
+@@ -65,7 +66,7 @@ export class LocalSnapshotStoreImpl {
+ 
+   constructor(options: LocalSnapshotStoreOptions = {}) {
+     this.prefix = options.keyPrefix ?? KEY_PREFIX;
+-    this.storage = options.storage ?? (typeof localStorage !== 'undefined' ? localStorage : this._noopStorage());
++    this.storage = options.storage ?? resolveBrowserStorage('local');
+   }
+ 
+   /** Guarda (o actualiza) un snapshot. Lanza LocalStorageQuotaError si no hay espacio. */
+@@ -118,13 +119,7 @@ export class LocalSnapshotStoreImpl {
+ 
+   /** Lista todos los snapshots guardados (solo metadatos, no el contenido completo). */
+   listSnapshots(): SnapshotIndexEntry[] {
+-    try {
+-      const raw = this.storage.getItem(this._indexKey());
+-      if (!raw) return [];
+-      return JSON.parse(raw) as SnapshotIndexEntry[];
+-    } catch {
+-      return [];
+-    }
++    return readJsonStorageValue(this.storage, this._indexKey(), []);
+   }
+ 
+   /** Comprueba si existe un snapshot para el templateId dado. */
+@@ -180,18 +175,6 @@ export class LocalSnapshotStoreImpl {
+     }
+   }
+ 
+-  /** Storage no-op para entornos sin localStorage (SSR, tests sin jsdom). */
+-  private _noopStorage(): Storage {
+-    const map = new Map<string, string>();
+-    return {
+-      getItem: (k: string) => map.get(k) ?? null,
+-      setItem: (k: string, v: string) => { map.set(k, v); },
+-      removeItem: (k: string) => { map.delete(k); },
+-      clear: () => { map.clear(); },
+-      key: (i: number) => Array.from(map.keys())[i] ?? null,
+-      get length() { return map.size; },
+-    };
+-  }
+ }
+ 
+ /** Singleton para uso general en modo sin backend. */
+diff --git a/src/sisad-pdfme/shared/schemaDesignerMeta.ts b/src/sisad-pdfme/shared/schemaDesignerMeta.ts
+index bd8d22f..9e70868 100644
+--- a/src/sisad-pdfme/shared/schemaDesignerMeta.ts
++++ b/src/sisad-pdfme/shared/schemaDesignerMeta.ts
+@@ -45,6 +45,32 @@ export interface GroupMeta {
+   lockedAsGroup?: boolean;
+ }
+ 
++export interface DesignerAssignment {
++  scope: 'recipient' | 'group' | 'global';
++  recipientIds?: string[];
++  groupIds?: string[];
++}
++
++export interface DesignerOwnership {
++  ownerUserId?: string;
++  ownerRecipientId?: string;
++  editableBy?: string[];
++  readonly?: boolean;
++}
++
++export interface DesignerSignatureSettings {
++  mode?: 'draw' | 'image' | 'p12' | 'provider';
++  providerKey?: string;
++  allowedProviders?: string[];
++}
++
++export interface DesignerIntegrationBinding {
++  provider?: string;
++  envelopeId?: string;
++  tabId?: string;
++  externalRef?: string;
++}
++
+ export interface SchemaDesignerMeta {
+   /** UUID v4 inmutable — generado en schema.create, nunca regenerado excepto en colisión de import */
+   schemaUid: string;
+@@ -63,34 +89,13 @@ export interface SchemaDesignerMeta {
+   recipientColor?: string;
+ 
+   /** Scope de asignación del schema */
+-  assignment?: {
+-    scope: 'recipient' | 'group' | 'global';
+-    /** recipientIds con acceso explícito (scope === 'recipient') */
+-    recipientIds?: string[];
+-    /** groupIds con acceso (scope === 'group') */
+-    groupIds?: string[];
+-  };
++  assignment?: DesignerAssignment;
+ 
+   /** Política de ownership — escrita por DigitalAgreements, leída por guards */
+-  ownership?: {
+-    /** userId propietario del schema en el contexto de edición */
+-    ownerUserId?: string;
+-    /** recipientId propietario del schema en el contexto de firma */
+-    ownerRecipientId?: string;
+-    /** recipientIds que pueden editar el schema */
+-    editableBy?: string[];
+-    /** Si true, ningún agente puede mutar este schema por ninguna vía */
+-    readonly?: boolean;
+-  };
++  ownership?: DesignerOwnership;
+ 
+   /** Configuración de firma — no hardcodea el provider, usa clave opaca */
+-  signature?: {
+-    mode?: 'draw' | 'image' | 'p12' | 'provider';
+-    /** Clave del provider registrado en SignatureProviderRegistry */
+-    providerKey?: string;
+-    /** Lista de providerKeys permitidos para este schema */
+-    allowedProviders?: string[];
+-  };
++  signature?: DesignerSignatureSettings;
+ 
+   /**
+    * Agrupación visual o lógica del schema.
+@@ -105,13 +110,7 @@ export interface SchemaDesignerMeta {
+    * Completamente opacos para sisad-pdfme — DigitalAgreements los interpreta.
+    * Ejemplo: { provider: 'oneshot', envelopeId: 'env-123', tabId: 'tab-456' }
+    */
+-  integration?: {
+-    /** Clave del provider externo — opaca, no interpretada por el runtime */
+-    provider?: string;
+-    envelopeId?: string;
+-    tabId?: string;
+-    externalRef?: string;
+-  };
++  integration?: DesignerIntegrationBinding;
+ 
+   /**
+    * Contador de mutaciones para reconciliación Yjs.
+@@ -143,17 +142,8 @@ export interface DesignerCollaboration {
+   recipientId?: string;
+   recipientName?: string;
+   recipientColor?: string;
+-  assignment?: {
+-    scope: 'recipient' | 'group' | 'global';
+-    recipientIds?: string[];
+-    groupIds?: string[];
+-  };
+-  ownership?: {
+-    ownerUserId?: string;
+-    ownerRecipientId?: string;
+-    editableBy?: string[];
+-    readonly?: boolean;
+-  };
++  assignment?: DesignerAssignment;
++  ownership?: DesignerOwnership;
+   lock?: {
+     lockedBy?: string;
+     lockedByName?: string;
+@@ -165,12 +155,7 @@ export interface DesignerCollaboration {
+ 
+ /** Bindings a proveedores externos — opacos para el runtime. */
+ export interface DesignerBindings {
+-  integration?: {
+-    provider?: string;
+-    envelopeId?: string;
+-    tabId?: string;
+-    externalRef?: string;
+-  };
++  integration?: DesignerIntegrationBinding;
+ }
+ 
+ /** Estado de UI del schema — grupo visual, hints de render. */
+@@ -182,11 +167,7 @@ export interface DesignerUI {
+ /** Estado de runtime del schema — firma, estado del ciclo de vida. */
+ export interface DesignerRuntime {
+   state?: string;
+-  signature?: {
+-    mode?: 'draw' | 'image' | 'p12' | 'provider';
+-    providerKey?: string;
+-    allowedProviders?: string[];
+-  };
++  signature?: DesignerSignatureSettings;
+ }
+ 
+ /**
+diff --git a/src/sisad-pdfme/shared/snapshotAdapter.ts b/src/sisad-pdfme/shared/snapshotAdapter.ts
+index 10348e7..b9d0419 100644
+--- a/src/sisad-pdfme/shared/snapshotAdapter.ts
++++ b/src/sisad-pdfme/shared/snapshotAdapter.ts
+@@ -37,28 +37,14 @@ export interface ValidationResult {
+   errors: string[];
+ }
+ 
+-/** Estado interno del designer que se puede serializar */
+-export interface DesignerState {
+-  templateSchemaVersion?: string;
+-  activeDocumentId?: string | null;
+-  documents: SnapshotDocument[];
+-  uploadedDocuments?: SnapshotDocument[];
+-  recipients: SnapshotRecipient[];
+-  assignments: SnapshotAssignment[];
+-  connectivity?: SnapshotConnectivity;
+-  inputs?: Array<Record<string, unknown>>;
+-  contributors?: SnapshotContributor[];
+-  history?: Array<Record<string, unknown>>;
+-  signatureConfig: SignatureConfig;
+-  signaturePolicyId?: string | null;
+-  signatureMode?: string | null;
+-  signatureProviderKey?: string | null;
+-  providerConfig: ProviderConfig;
+-  delivery?: Record<string, unknown>;
+-  message?: Record<string, unknown>;
+-  security?: Record<string, unknown>;
+-  comments?: OfficialTemplateSnapshot['comments'];
+-}
++/**
++ * Estado interno serializable: comparte exactamente el payload operativo del
++ * snapshot oficial, excluyendo identidad, timestamps y metadata de cabecera.
++ */
++export type DesignerState = Omit<
++  OfficialTemplateSnapshot,
++  'version' | 'templateId' | 'createdAt' | 'updatedAt' | 'metadata'
++>;
+ 
+ const normalizeConnectivityRecord = <T extends Record<string, unknown>>(value: unknown): T | undefined => {
+   if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
+diff --git a/src/sisad-pdfme/shared/webStorage.ts b/src/sisad-pdfme/shared/webStorage.ts
+new file mode 100644
+index 0000000..01dca4e
+--- /dev/null
++++ b/src/sisad-pdfme/shared/webStorage.ts
+@@ -0,0 +1,48 @@
++/**
++ * Shared Web Storage helpers used by local-only persistence adapters.
++ * Keeps SSR/test fallbacks and JSON parsing behavior consistent.
++ */
++export const createMemoryStorage = (): Storage => {
++  const values = new Map<string, string>();
++
++  return {
++    getItem: (key: string) => values.get(key) ?? null,
++    setItem: (key: string, value: string) => {
++      values.set(key, value);
++    },
++    removeItem: (key: string) => {
++      values.delete(key);
++    },
++    clear: () => {
++      values.clear();
++    },
++    key: (index: number) => Array.from(values.keys())[index] ?? null,
++    get length() {
++      return values.size;
++    },
++  };
++};
++
++export const readJsonStorageValue = <T>(
++  storage: Storage,
++  key: string,
++  fallback: T,
++): T => {
++  try {
++    const raw = storage.getItem(key);
++    return raw ? (JSON.parse(raw) as T) : fallback;
++  } catch {
++    return fallback;
++  }
++};
++
++export const resolveBrowserStorage = (
++  preferred: 'session' | 'local',
++): Storage => {
++  if (preferred === 'session' && typeof sessionStorage !== 'undefined') {
++    return sessionStorage;
++  }
++  if (typeof localStorage !== 'undefined') return localStorage;
++  if (typeof sessionStorage !== 'undefined') return sessionStorage;
++  return createMemoryStorage();
++};
+diff --git a/src/sisad-pdfme/ui/Form.tsx b/src/sisad-pdfme/ui/Form.tsx
+index 14efa0c..52d39ec 100644
+--- a/src/sisad-pdfme/ui/Form.tsx
++++ b/src/sisad-pdfme/ui/Form.tsx
+@@ -16,21 +16,15 @@
+  * - Evitar reglas de negocio del host; la clase debe seguir siendo runtime genérico.
+  */
+ 
+-import React from 'react';
+-import { PreviewProps } from '@sisad-pdfme/common';
+-import { PreviewUI } from './class';
+-import { DESTROYED_ERR_MSG } from './constants';
+-import AppContextProvider from './components/AppContextProvider';
+-import Preview from './components/Preview';
+-import { FormJsonEnvelope } from './designerEngine';
++import type { PreviewProps } from '@sisad-pdfme/common';
++import { PagedPreviewUI } from './PagedPreviewUI';
++import type { FormJsonEnvelope } from './designerEngine';
+ 
+ /** Runtime interactivo para llenar campos del template. */
+-class Form extends PreviewUI {
++class Form extends PagedPreviewUI {
+   private onChangeInputCallback?: (arg: { index: number; value: string; name: string }) => void;
+   private onChangeInputsCallback?: (arg: { index: number; values: Record<string, string> }) => void;
+   private onChangeFormJsonCallback?: (json: FormJsonEnvelope | null) => void;
+-  private onPageChangeCallback?: (pageInfo: { currentPage: number; totalPages: number }) => void;
+-  private pageCursor: number = 0;
+   private lastFormJson: FormJsonEnvelope | null = null;
+ 
+   constructor(props: PreviewProps) {
+@@ -49,23 +43,10 @@ class Form extends PreviewUI {
+     this.onChangeFormJsonCallback = cb;
+   }
+ 
+-  public onPageChange(cb: (pageInfo: { currentPage: number; totalPages: number }) => void) {
+-    this.onPageChangeCallback = cb;
+-  }
+-
+-  public getPageCursor() {
+-    return this.pageCursor;
+-  }
+-
+   public getFormJson() {
+     return this.lastFormJson;
+   }
+ 
+-  public getTotalPages() {
+-    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+-    return this.template.schemas.length;
+-  }
+-
+   /** Reemplaza inputs y emite eventos por campo cambiado. */
+   public setInputs(inputs: { [key: string]: string }[]): void {
+     const previousInputs = this.getInputs();
+@@ -98,53 +79,28 @@ class Form extends PreviewUI {
+ 
+   /** Renderiza Preview en modo formulario y sincroniza inputs/formJson. */
+   protected render() {
+-    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+-    this.getOrCreateRoot().render(
+-      <AppContextProvider
+-        lang={this.getLang()}
+-        font={this.getFont()}
+-        plugins={this.getPluginsRegistry()}
+-        options={this.getOptions()}
+-      >
+-        <Preview
+-          template={this.template}
+-          size={this.size}
+-          inputs={this.inputs}
+-          onChangeInputs={(arg: { index: number; values: Record<string, string> }) => {
+-            const nextInputs = this.getInputs().map((input, index) =>
+-              index === arg.index ? { ...input, ...arg.values } : input,
+-            );
+-            this.setInputs(nextInputs);
+-            if (this.onChangeInputsCallback) {
+-              this.onChangeInputsCallback(arg);
+-            }
+-          }}
+-          onFormJsonChange={(json: FormJsonEnvelope | null) => {
+-            this.lastFormJson = json;
+-            if (this.onChangeFormJsonCallback) {
+-              this.onChangeFormJsonCallback(json);
+-            }
+-          }}
+-          onChangeInput={(arg: { index: number; value: string; name: string }) => {
+-            const { index, value, name } = arg;
+-            if (this.onChangeInputCallback) {
+-              this.onChangeInputCallback({ index, value, name });
+-            }
+-            const currentInput = this.inputs?.[index];
+-            if (currentInput && currentInput[name] !== value) {
+-              currentInput[name] = value;
+-              this.render();
+-            }
+-          }}
+-          onPageChange={(pageInfo) => {
+-            this.pageCursor = pageInfo.currentPage;
+-            if (this.onPageChangeCallback) {
+-              this.onPageChangeCallback(pageInfo);
+-            }
+-          }}
+-        />
+-      </AppContextProvider>,
+-    );
++    this.renderPreview({
++      onChangeInputs: (arg: { index: number; values: Record<string, string> }) => {
++        const nextInputs = this.getInputs().map((input, index) =>
++          index === arg.index ? { ...input, ...arg.values } : input,
++        );
++        this.setInputs(nextInputs);
++        this.onChangeInputsCallback?.(arg);
++      },
++      onFormJsonChange: (json: FormJsonEnvelope | null) => {
++        this.lastFormJson = json;
++        this.onChangeFormJsonCallback?.(json);
++      },
++      onChangeInput: (arg: { index: number; value: string; name: string }) => {
++        const { index, value, name } = arg;
++        this.onChangeInputCallback?.({ index, value, name });
++        const currentInput = this.inputs?.[index];
++        if (currentInput && currentInput[name] !== value) {
++          currentInput[name] = value;
++          this.render();
++        }
++      },
++    });
+   }
+ }
+ 
+diff --git a/src/sisad-pdfme/ui/PagedPreviewUI.tsx b/src/sisad-pdfme/ui/PagedPreviewUI.tsx
+new file mode 100644
+index 0000000..7f15a1a
+--- /dev/null
++++ b/src/sisad-pdfme/ui/PagedPreviewUI.tsx
+@@ -0,0 +1,58 @@
++import React from 'react';
++import type { PreviewProps } from '@sisad-pdfme/common';
++import { PreviewUI } from './class';
++import { DESTROYED_ERR_MSG } from './constants';
++import AppContextProvider from './components/AppContextProvider';
++import Preview from './components/Preview';
++
++type PageInfo = { currentPage: number; totalPages: number };
++type RuntimePreviewProps = Omit<
++  React.ComponentProps<typeof Preview>,
++  'template' | 'size' | 'inputs' | 'onPageChange'
++>;
++
++/** Shared page cursor and render shell for Form and Viewer runtimes. */
++export abstract class PagedPreviewUI extends PreviewUI {
++  private onPageChangeCallback?: (pageInfo: PageInfo) => void;
++  protected pageCursor = 0;
++
++  constructor(props: PreviewProps) {
++    super(props);
++  }
++
++  public onPageChange(callback: (pageInfo: PageInfo) => void) {
++    this.onPageChangeCallback = callback;
++  }
++
++  public getPageCursor() {
++    return this.pageCursor;
++  }
++
++  public getTotalPages() {
++    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
++    return this.template.schemas.length;
++  }
++
++  protected renderPreview(props: RuntimePreviewProps = {}) {
++    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
++    this.getOrCreateRoot().render(
++      <AppContextProvider
++        lang={this.getLang()}
++        font={this.getFont()}
++        plugins={this.getPluginsRegistry()}
++        options={this.getOptions()}
++      >
++        <Preview
++          {...props}
++          template={this.template}
++          size={this.size}
++          inputs={this.inputs}
++          onPageChange={(pageInfo) => {
++            this.pageCursor = pageInfo.currentPage;
++            this.onPageChangeCallback?.(pageInfo);
++          }}
++        />
++      </AppContextProvider>,
++    );
++  }
++}
+diff --git a/src/sisad-pdfme/ui/Viewer.tsx b/src/sisad-pdfme/ui/Viewer.tsx
+index 39dc8a8..7d7678e 100644
+--- a/src/sisad-pdfme/ui/Viewer.tsx
++++ b/src/sisad-pdfme/ui/Viewer.tsx
+@@ -12,59 +12,19 @@
+  * - No debe contener lógica de firma, envío o persistencia.
+  */
+ 
+-import React from 'react';
+-import { PreviewProps } from '@sisad-pdfme/common';
+-import { PreviewUI } from './class';
+-import { DESTROYED_ERR_MSG } from './constants';
+-import Preview from './components/Preview';
+-import AppContextProvider from './components/AppContextProvider';
++import type { PreviewProps } from '@sisad-pdfme/common';
++import { PagedPreviewUI } from './PagedPreviewUI';
+ 
+ /** Runtime de solo lectura para visualizar template + inputs. */
+-class Viewer extends PreviewUI {
+-  private onPageChangeCallback?: (pageInfo: { currentPage: number; totalPages: number }) => void;
+-  private pageCursor: number = 0;
+-
++class Viewer extends PagedPreviewUI {
+   constructor(props: PreviewProps) {
+     super(props);
+   }
+ 
+-  public onPageChange(cb: (pageInfo: { currentPage: number; totalPages: number }) => void) {
+-    this.onPageChangeCallback = cb;
+-  }
+-
+-  public getPageCursor() {
+-    return this.pageCursor;
+-  }
+-
+-  public getTotalPages() {
+-    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+-    return this.template.schemas.length;
+-  }
+-
+   /** Renderiza Preview sin callbacks de edición. */
+   protected render() {
+-    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+-    this.getOrCreateRoot().render(
+-      <AppContextProvider
+-        lang={this.getLang()}
+-        font={this.getFont()}
+-        plugins={this.getPluginsRegistry()}
+-        options={this.getOptions()}
+-      >
+-        <Preview
+-          template={this.template}
+-          size={this.size}
+-          inputs={this.inputs}
+-          onPageChange={(pageInfo) => {
+-            this.pageCursor = pageInfo.currentPage;
+-            if (this.onPageChangeCallback) {
+-              this.onPageChangeCallback(pageInfo);
+-            }
+-          }}
+-        />
+-      </AppContextProvider>,
+-    );
++    this.renderPreview();
+   }
+ }
+ 
+-export default Viewer;
+\ No newline at end of file
++export default Viewer;
+diff --git a/src/sisad-pdfme/ui/collaboration.ts b/src/sisad-pdfme/ui/collaboration.ts
+index dfb7b5b..c010f7c 100644
+--- a/src/sisad-pdfme/ui/collaboration.ts
++++ b/src/sisad-pdfme/ui/collaboration.ts
+@@ -367,6 +367,21 @@ const commentCollectionSignature = (comments: SchemaComment[] = [], anchors: Sch
+     ),
+   });
+ 
++const createCommentUpsertLifecycleEvent = (
++  type: 'comment.created' | 'comment.updated',
++  schema: SchemaForUI,
++  comment: SchemaComment,
++  metadata: Pick<CollaborationEvent, 'actorId' | 'sessionId' | 'timestamp'>,
++  pageIndex?: number,
++): CollaborationEvent => ({
++  type,
++  schemaId: schema.id,
++  comment: cloneDeep(comment),
++  anchor: comment.anchor ? cloneDeep(comment.anchor) : undefined,
++  pageIndex,
++  ...metadata,
++});
++
+ const collectCommentLifecycleEvents = (
+   before: SchemaForUI,
+   after: SchemaForUI,
+@@ -396,30 +411,16 @@ const collectCommentLifecycleEvents = (
+   nextById.forEach((nextComment, commentId) => {
+     const previousComment = previousById.get(commentId);
+     if (!previousComment) {
+-      events.push({
+-        type: 'comment.created',
+-        schemaId: after.id,
+-        comment: cloneDeep(nextComment),
+-        anchor: nextComment.anchor ? cloneDeep(nextComment.anchor) : undefined,
+-        pageIndex,
+-        actorId: metadata.actorId,
+-        sessionId: metadata.sessionId,
+-        timestamp: metadata.timestamp,
+-      });
++      events.push(
++        createCommentUpsertLifecycleEvent('comment.created', after, nextComment, metadata, pageIndex),
++      );
+       return;
+     }
+ 
+     if (commentSignature(previousComment) === commentSignature(nextComment)) return;
+-    events.push({
+-      type: 'comment.updated',
+-      schemaId: after.id,
+-      comment: cloneDeep(nextComment),
+-      anchor: nextComment.anchor ? cloneDeep(nextComment.anchor) : undefined,
+-      pageIndex,
+-      actorId: metadata.actorId,
+-      sessionId: metadata.sessionId,
+-      timestamp: metadata.timestamp,
+-    });
++    events.push(
++      createCommentUpsertLifecycleEvent('comment.updated', after, nextComment, metadata, pageIndex),
++    );
+   });
+ 
+   return events;
+@@ -519,6 +520,21 @@ export const applyCollaborationEvent = (
+     return true;
+   };
+ 
++  const updateFirstMatchingSchema = (
++    schemaId: string,
++    updater: (schema: SchemaForUI) => SchemaForUI,
++  ) => {
++    for (let index = 0; index < nextSchemasList.length; index += 1) {
++      if (updateSchemaOnPage(index, schemaId, updater)) return true;
++    }
++    return false;
++  };
++
++  const resolveUpdatedSchemas = () =>
++    nextSchemasList.some((page, index) => page !== schemasList[index])
++      ? nextSchemasList
++      : schemasList;
++
+   if (event.type === 'create') {
+     const page = nextSchemasList[pageIndex] || [];
+     nextSchemasList[pageIndex] = page.concat([cloneDeep(event.schema)]);
+@@ -534,47 +550,39 @@ export const applyCollaborationEvent = (
+   }
+ 
+   if (event.type === 'lock') {
+-    for (let i = 0; i < nextSchemasList.length; i += 1) {
+-      const updated = updateSchemaOnPage(i, event.schemaId, (schema) => {
+-        const nextState = event.state || 'locked';
+-        const nextLock = { ...event.lock };
+-        if (isStaleEvent(schema, event.timestamp)) return schema;
+-        if (schema.state === nextState && shallowEqualRecord(schema.lock as Record<string, unknown> | undefined, nextLock)) {
+-          return schema;
+-        }
+-        return {
+-          ...schema,
+-          state: nextState,
+-          lock: nextLock,
+-          updatedAt: event.timestamp || schema.updatedAt,
+-          lastModifiedAt: event.timestamp || schema.lastModifiedAt,
+-          lastModifiedBy: event.actorId || schema.lastModifiedBy,
+-        };
+-      });
+-      if (updated) break;
+-    }
+-    if (!nextSchemasList.some((page, index) => page !== schemasList[index])) return schemasList;
+-    return nextSchemasList;
++    updateFirstMatchingSchema(event.schemaId, (schema) => {
++      const nextState = event.state || 'locked';
++      const nextLock = { ...event.lock };
++      if (isStaleEvent(schema, event.timestamp)) return schema;
++      if (schema.state === nextState && shallowEqualRecord(schema.lock as Record<string, unknown> | undefined, nextLock)) {
++        return schema;
++      }
++      return {
++        ...schema,
++        state: nextState,
++        lock: nextLock,
++        updatedAt: event.timestamp || schema.updatedAt,
++        lastModifiedAt: event.timestamp || schema.lastModifiedAt,
++        lastModifiedBy: event.actorId || schema.lastModifiedBy,
++      };
++    });
++    return resolveUpdatedSchemas();
+   }
+ 
+   if (event.type === 'unlock') {
+-    for (let i = 0; i < nextSchemasList.length; i += 1) {
+-      const updated = updateSchemaOnPage(i, event.schemaId, (schema) => {
+-        if (isStaleEvent(schema, event.timestamp)) return schema;
+-        if (schema.state === 'draft' && !schema.lock) return schema;
+-        return {
+-          ...schema,
+-          state: 'draft',
+-          lock: undefined,
+-          updatedAt: event.timestamp || schema.updatedAt,
+-          lastModifiedAt: event.timestamp || schema.lastModifiedAt,
+-          lastModifiedBy: event.actorId || schema.lastModifiedBy,
+-        };
+-      });
+-      if (updated) break;
+-    }
+-    if (!nextSchemasList.some((page, index) => page !== schemasList[index])) return schemasList;
+-    return nextSchemasList;
++    updateFirstMatchingSchema(event.schemaId, (schema) => {
++      if (isStaleEvent(schema, event.timestamp)) return schema;
++      if (schema.state === 'draft' && !schema.lock) return schema;
++      return {
++        ...schema,
++        state: 'draft',
++        lock: undefined,
++        updatedAt: event.timestamp || schema.updatedAt,
++        lastModifiedAt: event.timestamp || schema.lastModifiedAt,
++        lastModifiedBy: event.actorId || schema.lastModifiedBy,
++      };
++    });
++    return resolveUpdatedSchemas();
+   }
+ 
+   if (event.type === 'comment' || event.type === 'comment.created' || event.type === 'comment.updated' || event.type === 'comment.deleted') {
+@@ -1147,6 +1155,27 @@ export const createYjsCollaborationProvider = ({
+     const timestamp = ensureTimestamp(event.timestamp);
+     const { schemasMap, commentsMap, locksMap } = getStores();
+ 
++    const updateStoredSchemaState = (
++      schemaId: string,
++      pageIndex: number | undefined,
++      state: SchemaCollaborativeState,
++      actorId: string | undefined,
++    ) => {
++      const currentEntry = schemasMap.get(schemaId);
++      if (!currentEntry) return;
++      schemasMap.set(schemaId, {
++        ...currentEntry,
++        pageIndex: pageIndex ?? currentEntry.pageIndex,
++        schema: {
++          ...currentEntry.schema,
++          state,
++          updatedAt: timestamp,
++          lastModifiedAt: timestamp,
++          lastModifiedBy: actorId || safeActorId,
++        },
++      });
++    };
++
+     room.doc.transact(() => {
+       if (event.type === 'create') {
+         schemasMap.set(event.schema.id, {
+@@ -1191,23 +1220,11 @@ export const createYjsCollaborationProvider = ({
+       }
+ 
+       if (event.type === 'lock') {
+-        const currentEntry = schemasMap.get(event.schemaId);
+-        if (currentEntry) {
+-          schemasMap.set(event.schemaId, {
+-            ...currentEntry,
+-            pageIndex: event.pageIndex ?? currentEntry.pageIndex,
+-            schema: {
+-              ...currentEntry.schema,
+-              state: event.state || 'locked',
+-              updatedAt: timestamp,
+-              lastModifiedAt: timestamp,
+-              lastModifiedBy: event.actorId || safeActorId,
+-            },
+-          });
+-        }
++        const nextState = event.state || 'locked';
++        updateStoredSchemaState(event.schemaId, event.pageIndex, nextState, event.actorId);
+         locksMap.set(event.schemaId, {
+           lock: cloneDeep(event.lock),
+-          state: event.state || 'locked',
++          state: nextState,
+           pageIndex: event.pageIndex,
+         });
+         appendHistory(createHistoryEntryFromEvent({ ...event, timestamp }));
+@@ -1215,20 +1232,7 @@ export const createYjsCollaborationProvider = ({
+       }
+ 
+       if (event.type === 'unlock') {
+-        const currentEntry = schemasMap.get(event.schemaId);
+-        if (currentEntry) {
+-          schemasMap.set(event.schemaId, {
+-            ...currentEntry,
+-            pageIndex: event.pageIndex ?? currentEntry.pageIndex,
+-            schema: {
+-              ...currentEntry.schema,
+-              state: 'draft',
+-              updatedAt: timestamp,
+-              lastModifiedAt: timestamp,
+-              lastModifiedBy: event.actorId || safeActorId,
+-            },
+-          });
+-        }
++        updateStoredSchemaState(event.schemaId, event.pageIndex, 'draft', event.actorId);
+         locksMap.delete(event.schemaId);
+         appendHistory(createHistoryEntryFromEvent({ ...event, timestamp }));
+         return;
+diff --git a/src/sisad-pdfme/ui/components/usePreviewRuntime.ts b/src/sisad-pdfme/ui/components/usePreviewRuntime.ts
+index a970028..c039124 100644
+--- a/src/sisad-pdfme/ui/components/usePreviewRuntime.ts
++++ b/src/sisad-pdfme/ui/components/usePreviewRuntime.ts
+@@ -125,6 +125,22 @@ const stableJsonSignature = (v: unknown) => {
+  * No compara todo el schema para evitar renders por cambios de metadata
+  * que no afectan el layout del Preview.
+  */
++const buildFieldPersistenceSignature = (
++  { schema, config }: SchemaDataFieldSnapshot,
++  includeRequestMode = false,
++) =>
++  [
++    schema.id,
++    config?.persistence?.mode || 'local',
++    config?.persistence?.key || schema.name,
++    config?.api?.enabled ? 'api' : 'no-api',
++    includeRequestMode
++      ? config?.api?.requestMode || ''
++      : config?.prefill?.enabled
++        ? 'prefill'
++        : 'no-prefill',
++  ].join(':');
++
+ const getSchemaLayoutKey = (schema: SchemaForUI) =>
+   [schema?.schemaUid || schema?.id || schema?.name || 'field', schema?.pageNumber || '', schema?.position?.x || 0, schema?.position?.y || 0, schema?.width || 0, schema?.height || 0, schema?.type || '']
+     .join(':');
+@@ -502,15 +518,7 @@ const usePreviewRuntime = ({
+ 
+     const persistedTargets = fieldSnapshots.filter(({ config }) => Boolean(config?.persistence?.enabled));
+     const signature = persistedTargets
+-      .map(({ schema, config }) =>
+-        [
+-          schema.id,
+-          config?.persistence?.mode || 'local',
+-          config?.persistence?.key || schema.name,
+-          config?.api?.enabled ? 'api' : 'no-api',
+-          config?.prefill?.enabled ? 'prefill' : 'no-prefill',
+-        ].join(':'),
+-      )
++      .map((field) => buildFieldPersistenceSignature(field))
+       .join('|');
+ 
+     if (hydrationSignatureRef.current === signature) return;
+@@ -584,15 +592,7 @@ const usePreviewRuntime = ({
+       JSON.stringify(input || {}),
+       fieldSnapshots
+         .filter(({ config }) => Boolean(config?.persistence?.enabled || config?.api?.enabled))
+-        .map(({ schema, config }) =>
+-          [
+-            schema.id,
+-            config?.persistence?.mode || 'local',
+-            config?.persistence?.key || schema.name,
+-            config?.api?.enabled ? 'api' : 'no-api',
+-            config?.api?.requestMode || '',
+-          ].join(':'),
+-        )
++        .map((field) => buildFieldPersistenceSignature(field, true))
+         .join('|'),
+     ].join('::');
+ 
+diff --git a/src/sisad-pdfme/ui/designerEngine.ts b/src/sisad-pdfme/ui/designerEngine.ts
+index de70507..652783b 100644
+--- a/src/sisad-pdfme/ui/designerEngine.ts
++++ b/src/sisad-pdfme/ui/designerEngine.ts
+@@ -14,7 +14,14 @@
+  * - Mantener el engine serializable donde sea parte de snapshot/configuración.
+  */
+ 
+-import { cloneDeep, Schema, SchemaForUI, UIOptions, type CommentScope } from '@sisad-pdfme/common';
++import {
++  cloneDeep,
++  normalizeRecipientIds,
++  Schema,
++  SchemaForUI,
++  UIOptions,
++  type CommentScope,
++} from '@sisad-pdfme/common';
+ import type React from 'react';
+ import type { LeftSidebarProps } from './components/Designer/LeftSidebar';
+ import type { RightSidebarProps } from './components/Designer/RightSidebar/RightSidebar';
+@@ -34,6 +41,20 @@ import type {
+ 
+ export const DEFAULT_SCHEMA_CONFIG_STORAGE_KEY = '__designer';
+ 
++const cloneSignatureProviders = (
++  providers: SignatureProviderDefinition[] | undefined,
++): SignatureProviderDefinition[] | undefined =>
++  providers?.map((provider) => ({
++    ...provider,
++    badges: provider.badges ? [...provider.badges] : undefined,
++    capabilities: { ...provider.capabilities },
++    defaultConfig: provider.defaultConfig ? cloneDeep(provider.defaultConfig) : undefined,
++    configFields: provider.configFields?.map((field) => ({
++      ...field,
++      options: field.options?.map((option) => ({ ...option })),
++    })),
++  }));
++
+ export type SchemaIdentity = {
+   id?: string;
+   key?: string;
+@@ -296,34 +317,11 @@ export type SchemaCreationContextInput = {
+   >;
+ };
+ 
+-const normalizeCreationOwnerIds = (value: unknown): string[] => {
+-  if (Array.isArray(value)) {
+-    return Array.from(
+-      new Set(
+-        value
+-          .map((entry) => String(entry || '').trim())
+-          .filter(Boolean),
+-      ),
+-    );
+-  }
+-  if (typeof value === 'string') {
+-    return Array.from(
+-      new Set(
+-        value
+-          .split(',')
+-          .map((entry) => entry.trim())
+-          .filter(Boolean),
+-      ),
+-    );
+-  }
+-  return [];
+-};
+-
+ /** Crea contexto de creación con timestamp, página, archivo y metadata colaborativa. */
+ export const createSchemaCreationContext = (input: SchemaCreationContextInput): SchemaCreationContext => {
+   const nextTimestamp = Number.isFinite(input.timestamp as number) ? Number(input.timestamp) : Date.now();
+   const collaboration = input.collaboration || {};
+-  const ownerRecipientIds = normalizeCreationOwnerIds(
++  const ownerRecipientIds = normalizeRecipientIds(
+     collaboration.ownerRecipientIds || collaboration.ownerRecipientId || undefined,
+   );
+   const ownerRecipientId = (typeof collaboration.ownerRecipientId === 'string' && collaboration.ownerRecipientId.trim())
+@@ -431,16 +429,7 @@ const cloneDesignerEngine = (engine: DesignerEngine = {}): DesignerEngine => ({
+   signature: engine.signature
+     ? {
+         defaultProviderKey: engine.signature.defaultProviderKey ?? null,
+-        providers: engine.signature.providers?.map((provider) => ({
+-          ...provider,
+-          badges: provider.badges ? [...provider.badges] : undefined,
+-          capabilities: { ...provider.capabilities },
+-          defaultConfig: provider.defaultConfig ? cloneDeep(provider.defaultConfig) : undefined,
+-          configFields: provider.configFields?.map((field) => ({
+-            ...field,
+-            options: field.options?.map((option) => ({ ...option })),
+-          })),
+-        })),
++        providers: cloneSignatureProviders(engine.signature.providers),
+       }
+     : undefined,
+   collaboration: engine.collaboration
+@@ -509,23 +498,6 @@ const mergeRequestConfig = (
+   };
+ };
+ 
+-const normalizeRecipientIds = (value?: string[] | string | null): string[] => {
+-  if (Array.isArray(value)) {
+-    const normalized = value.map((entry) => String(entry || '').trim()).filter(Boolean);
+-    return normalized.length > 0 ? Array.from(new Set(normalized)) : [];
+-  }
+-
+-  if (typeof value === 'string') {
+-    const normalized = value
+-      .split(',')
+-      .map((entry) => entry.trim())
+-      .filter(Boolean);
+-    return normalized.length > 0 ? Array.from(new Set(normalized)) : [];
+-  }
+-
+-  return [];
+-};
+-
+ const mergeCollaborationLock = (
+   current?: SchemaCollaborativeLock,
+   patch?: SchemaCollaborativeLock,
+@@ -1408,16 +1380,7 @@ export class DesignerEngineBuilder {
+   withSignatureProviders(providers: SignatureProviderDefinition[]) {
+     this.engine.signature = {
+       ...(this.engine.signature || {}),
+-      providers: providers?.map((provider) => ({
+-        ...provider,
+-        badges: provider.badges ? [...provider.badges] : undefined,
+-        capabilities: { ...provider.capabilities },
+-        defaultConfig: provider.defaultConfig ? cloneDeep(provider.defaultConfig) : undefined,
+-        configFields: provider.configFields?.map((field) => ({
+-          ...field,
+-          options: field.options?.map((option) => ({ ...option })),
+-        })),
+-      })) || [],
++      providers: cloneSignatureProviders(providers) || [],
+     };
+     return this;
+   }
+diff --git a/src/sisad-pdfme/ui/hooks.ts b/src/sisad-pdfme/ui/hooks.ts
+index 45c6478..048f8e6 100644
+--- a/src/sisad-pdfme/ui/hooks.ts
++++ b/src/sisad-pdfme/ui/hooks.ts
+@@ -184,41 +184,47 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
+     requestIdRef.current += 1;
+     const requestId = requestIdRef.current;
+     const currentTemplate = templateRef.current;
++    const applyPreprocessedState = ({
++      pageSizes,
++      backgrounds,
++      paperWidth,
++      paperHeight,
++    }: Awaited<ReturnType<typeof init>>) => {
++      const pageSizesChanged =
++        pageSizesRefLocal.current.length !== pageSizes.length ||
++        pageSizes.some((pageSize, index) => {
++          const previous = pageSizesRefLocal.current[index];
++          return !previous || previous.width !== pageSize.width || previous.height !== pageSize.height;
++        });
++      if (pageSizesChanged) {
++        pageSizesRefLocal.current = pageSizes;
++        setPageSizes(pageSizes);
++      }
++
++      const backgroundsChanged =
++        backgroundsRefLocal.current.length !== backgrounds.length ||
++        backgrounds.some((background, index) => backgroundsRefLocal.current[index] !== background);
++      if (backgroundsChanged) {
++        backgroundsRefLocal.current = backgrounds;
++        setBackgrounds(backgrounds);
++      }
++
++      const nextPaperMetrics = { paperWidth, paperHeight };
++      const paperMetricsChanged =
++        !paperMetricsRefLocal.current ||
++        paperMetricsRefLocal.current.paperWidth !== paperWidth ||
++        paperMetricsRefLocal.current.paperHeight !== paperHeight;
++      if (paperMetricsChanged) {
++        paperMetricsRefLocal.current = nextPaperMetrics;
++        setPaperMetrics(nextPaperMetrics);
++      }
++    };
++
+     init(currentTemplate)
+       .then(({ pageSizes, paperWidth, paperHeight, backgrounds }) => {
+         if (requestId !== requestIdRef.current) return;
+ 
+-        // update pageSizes only when changed
+-        const pageSizesChanged =
+-          pageSizesRefLocal.current.length !== pageSizes.length ||
+-          pageSizes.some((p, i) => {
+-            const prev = pageSizesRefLocal.current[i];
+-            return !prev || prev.width !== p.width || prev.height !== p.height;
+-          });
+-        if (pageSizesChanged) {
+-          pageSizesRefLocal.current = pageSizes;
+-          setPageSizes(pageSizes);
+-        }
+-
+-        // update backgrounds only when changed
+-        const backgroundsChanged =
+-          backgroundsRefLocal.current.length !== backgrounds.length ||
+-          backgrounds.some((b, i) => backgroundsRefLocal.current[i] !== b);
+-        if (backgroundsChanged) {
+-          backgroundsRefLocal.current = backgrounds;
+-          setBackgrounds(backgrounds);
+-        }
+-
+-        // update paperMetrics only when changed
+-        const nextPaperMetrics = { paperWidth, paperHeight };
+-        const paperMetricsChanged =
+-          !paperMetricsRefLocal.current ||
+-          paperMetricsRefLocal.current.paperWidth !== nextPaperMetrics.paperWidth ||
+-          paperMetricsRefLocal.current.paperHeight !== nextPaperMetrics.paperHeight;
+-        if (paperMetricsChanged) {
+-          paperMetricsRefLocal.current = nextPaperMetrics;
+-          setPaperMetrics(nextPaperMetrics);
+-        }
++        applyPreprocessedState({ pageSizes, backgrounds, paperWidth, paperHeight });
+ 
+         setError(null);
+         lastGoodPreprocessRef.current = {
+@@ -235,35 +241,12 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
+         setError(err);
+         const lastGood = lastGoodPreprocessRef.current;
+         if (lastGood) {
+-          const { pageSizes: lp, backgrounds: lb, paperWidth: pw, paperHeight: ph } = lastGood;
+-          const pageSizesChanged =
+-            pageSizesRefLocal.current.length !== lp.length ||
+-            lp.some((p, i) => {
+-              const prev = pageSizesRefLocal.current[i];
+-              return !prev || prev.width !== p.width || prev.height !== p.height;
+-            });
+-          if (pageSizesChanged) {
+-            pageSizesRefLocal.current = lp;
+-            setPageSizes(lp);
+-          }
+-
+-          const backgroundsChanged =
+-            backgroundsRefLocal.current.length !== lb.length ||
+-            lb.some((b, i) => backgroundsRefLocal.current[i] !== b);
+-          if (backgroundsChanged) {
+-            backgroundsRefLocal.current = lb;
+-            setBackgrounds(lb);
+-          }
+-
+-          const nextPaperMetrics = { paperWidth: pw, paperHeight: ph };
+-          const paperMetricsChanged =
+-            !paperMetricsRefLocal.current ||
+-            paperMetricsRefLocal.current.paperWidth !== nextPaperMetrics.paperWidth ||
+-            paperMetricsRefLocal.current.paperHeight !== nextPaperMetrics.paperHeight;
+-          if (paperMetricsChanged) {
+-            paperMetricsRefLocal.current = nextPaperMetrics;
+-            setPaperMetrics(nextPaperMetrics);
+-          }
++          applyPreprocessedState({
++            pageSizes: lastGood.pageSizes,
++            backgrounds: lastGood.backgrounds,
++            paperWidth: lastGood.paperWidth,
++            paperHeight: lastGood.paperHeight,
++          });
+         }
+       });
+ 
+diff --git a/src/sisad-pdfme/ui/runtimeStyles.ts b/src/sisad-pdfme/ui/runtimeStyles.ts
+index 183dcb3..5037c58 100644
+--- a/src/sisad-pdfme/ui/runtimeStyles.ts
++++ b/src/sisad-pdfme/ui/runtimeStyles.ts
+@@ -233,26 +233,6 @@ const SISAD_PDFME_RUNTIME_CSS = `
+   background-size: auto, auto;
+ }
+ 
+-.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="true"] {
+-  --sisad-grid-step: 24px;
+-  --sisad-grid-line: rgba(148, 163, 184, 0.16);
+-  --sisad-grid-line-strong: rgba(148, 163, 184, 0.24);
+-  background-image:
+-    linear-gradient(to right, var(--sisad-grid-line) 1px, transparent 1px),
+-    linear-gradient(to bottom, var(--sisad-grid-line) 1px, transparent 1px),
+-    linear-gradient(to right, var(--sisad-grid-line-strong) 1px, transparent 1px),
+-    linear-gradient(to bottom, var(--sisad-grid-line-strong) 1px, transparent 1px),
+-    radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
+-    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
+-  background-size:
+-    var(--sisad-grid-step) var(--sisad-grid-step),
+-    var(--sisad-grid-step) var(--sisad-grid-step),
+-    calc(var(--sisad-grid-step) * 4) calc(var(--sisad-grid-step) * 4),
+-    calc(var(--sisad-grid-step) * 4) calc(var(--sisad-grid-step) * 4),
+-    auto,
+-    auto;
+-}
+-
+ .sisad-pdfme-designer-canvas [data-canvas-page="true"] {
+   overflow: hidden;
+   isolation: isolate;

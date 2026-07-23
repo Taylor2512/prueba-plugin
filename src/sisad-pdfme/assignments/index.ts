@@ -115,6 +115,52 @@ const dedupeAssignments = (assignments: SchemaAssignments) => {
  * Esto permite validar si un assignment apunta a un schema que
  * todavía existe dentro del template.
  */
+
+
+type FileAssignmentProjection = 'wrapped' | 'pages';
+
+const projectAssignmentsForFile = (
+  assignments: SchemaAssignments,
+  fileId: string | null | undefined,
+  projection: FileAssignmentProjection,
+  includeEmptyRecipients: boolean,
+) => {
+  const normalizedFileId = normalizeText(fileId);
+  if (!normalizedFileId) return {};
+
+  const entries = Object.entries(assignments || {}).flatMap(([recipientId, files]) => {
+    const pages = files?.[normalizedFileId];
+    if (!pages && !includeEmptyRecipients) return [];
+
+    return [[
+      recipientId,
+      pages
+        ? projection === 'wrapped'
+          ? { [normalizedFileId]: cloneDeep(pages) }
+          : cloneDeep(pages)
+        : {},
+    ]];
+  });
+
+  return Object.fromEntries(entries);
+};
+
+const projectAssignmentsForPage = (
+  assignments: SchemaAssignments,
+  fileId: string | null | undefined,
+  pageNumber: number | string | null | undefined,
+) => {
+  const normalizedFileId = normalizeText(fileId);
+  if (!normalizedFileId) return {};
+
+  const pageKey = normalizePageNumber(pageNumber);
+  return Object.fromEntries(
+    Object.entries(assignments || {}).map(([recipientId, files]) => [
+      recipientId,
+      cloneDeep(files?.[normalizedFileId]?.[pageKey] || []),
+    ]),
+  );
+};
 const collectSchemaUids = (schemas: Schema[][] = []) => {
   const ids = new Set<string>();
 
@@ -162,19 +208,7 @@ export const buildRecipientAssignments = (schemas: Schema[][] = []) =>
 export const buildFileAssignments = (
   assignments: SchemaAssignments = {},
   fileId?: string | null,
-) => {
-  const normalizedFileId = normalizeText(fileId);
-  if (!normalizedFileId) return {};
-
-  return Object.fromEntries(
-    Object.entries(assignments || {}).map(([recipientId, files]) => [
-      recipientId,
-      files?.[normalizedFileId]
-        ? { [normalizedFileId]: cloneDeep(files[normalizedFileId]) }
-        : {},
-    ]),
-  );
-};
+) => projectAssignmentsForFile(assignments, fileId, 'wrapped', true);
 
 /**
  * Filtra assignments por archivo y página.
@@ -193,21 +227,7 @@ export const buildPageAssignments = (
   assignments: SchemaAssignments = {},
   fileId?: string | null,
   pageNumber?: number | string | null,
-) => {
-  const normalizedFileId = normalizeText(fileId);
-  const pageKey = normalizePageNumber(pageNumber);
-
-  if (!normalizedFileId) return {};
-
-  return Object.fromEntries(
-    Object.entries(assignments || {}).map(([recipientId, files]) => [
-      recipientId,
-      files?.[normalizedFileId]?.[pageKey]
-        ? cloneDeep(files[normalizedFileId][pageKey])
-        : [],
-    ]),
-  );
-};
+) => projectAssignmentsForPage(assignments, fileId, pageNumber);
 
 /**
  * Reconcilia assignments contra la fuente actual de schemas,
@@ -483,20 +503,7 @@ export const getAssignmentsForRecipient = (
 export const getAssignmentsForFile = (
   assignments: SchemaAssignments = {},
   fileId?: string | null,
-) => {
-  const normalizedFileId = normalizeText(fileId);
-
-  if (!normalizedFileId) return {};
-
-  return Object.fromEntries(
-    Object.entries(assignments || {})
-      .filter(([, files]) => Boolean(files?.[normalizedFileId]))
-      .map(([recipientId, files]) => [
-        recipientId,
-        cloneDeep(files[normalizedFileId]),
-      ]),
-  );
-};
+) => projectAssignmentsForFile(assignments, fileId, 'pages', false);
 
 /**
  * Obtiene los schemaUid asignados a una página específica de un archivo,
@@ -509,23 +516,7 @@ export const getAssignmentsForFile = (
  *   recipientB: []
  * }
  */
-export const getAssignmentsForPage = (
-  assignments: SchemaAssignments = {},
-  fileId?: string | null,
-  pageNumber?: number | string | null,
-) => {
-  const normalizedFileId = normalizeText(fileId);
-  const pageKey = normalizePageNumber(pageNumber);
-
-  if (!normalizedFileId) return {};
-
-  return Object.fromEntries(
-    Object.entries(assignments || {}).map(([recipientId, files]) => [
-      recipientId,
-      cloneDeep(files?.[normalizedFileId]?.[pageKey] || []),
-    ]),
-  );
-};
+export const getAssignmentsForPage = buildPageAssignments;
 
 /**
  * Valida la consistencia interna de assignments.

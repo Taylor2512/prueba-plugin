@@ -30,6 +30,7 @@ import {
   helpFields,
   dataLabelFields,
   COMMON_PROPERTY_MAP,
+  hexColorField,
 } from '../propPanel/commonInspectorFields.js';
 import {
   type OptionGroupLayoutConfig,
@@ -45,7 +46,7 @@ import { createOptionIndicatorElement } from './optionIndicator.js';
 
 export type OptionGroupIndicatorShape = 'square' | 'circle';
 
-export type OptionGroupPluginConfig = {
+type OptionGroupPluginConfig = {
   type: OptionGroupType;
   selectionMode: 'single' | 'multiple';
   indicatorShape: OptionGroupIndicatorShape;
@@ -65,7 +66,7 @@ export type OptionGroupDesignerSchema = {
   };
 };
 
-export type OptionGroupRootRuntimeParams = {
+type OptionGroupRootRuntimeParams = {
   rootElement: HTMLElement;
   isDesigner: boolean;
   mode: 'designer' | 'form' | 'viewer';
@@ -171,7 +172,7 @@ export type OptionGroupPropPanelConfig = {
   defaultSchema: Record<string, unknown>;
 };
 
-export const resolveOptionGroupKey = (schema: OptionGroupDesignerSchema): string =>
+const resolveOptionGroupKey = (schema: OptionGroupDesignerSchema): string =>
   schema.__designer?.group?.groupId ?? schema.groupId ?? schema.group ?? schema.name ?? '';
 
 export const syncDesignerOptionGroupPatch = (
@@ -195,7 +196,7 @@ export const resolveOptionGroupReadOnly = (schema: {
  * In designer mode the host geometry stays authoritative unless compact sizing
  * is explicitly requested by the caller.
  */
-export const applyOptionGroupRootRuntime = ({
+const applyOptionGroupRootRuntime = ({
   rootElement,
   isDesigner,
   mode,
@@ -358,14 +359,12 @@ export const buildOptionGroupDefaultSchema = ({
 export const createOptionGroupPropPanelConfig = (config: OptionGroupPropPanelConfig) => ({
   schema: ({ i18n }: { i18n: (key: string) => string }) => ({
     ...basicsFields(),
-    color: {
+    color: hexColorField({
       title: i18n('schemas.color'),
-      type: 'string',
-      widget: 'color',
-      props: { disabledAlpha: true },
+      pattern: HEX_COLOR_PATTERN,
+      message: i18n('validation.hexColor'),
       required: true,
-      rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
-    },
+    }),
     groupName: { title: config.groupNameTitle, type: 'string', span: 12 },
     orientation: {
       title: 'Orientación',
@@ -430,7 +429,7 @@ export const createOptionGroupPropPanelConfig = (config: OptionGroupPropPanelCon
  * Creates a single designer option box element.
  * Caller must set the schema-specific data attribute after calling.
  */
-export const createDesignerOptionBox = (
+const createDesignerOptionBox = (
   option: SimpleOption,
   layout: OptionGroupLayoutConfig,
   indicatorShape: OptionGroupIndicatorShape,
@@ -501,7 +500,7 @@ type SyncParams = {
  * Synchronizes legacy or oversized schemas to compact designer geometry.
  * Each schema type uses a distinct datasetKey to avoid double-sync triggers.
  */
-export const syncOptionGroupDesignerGeometry = ({
+const syncOptionGroupDesignerGeometry = ({
   schema, options, rootElement, onChange, layout, datasetKey,
 }: SyncParams): void => {
   if (!onChange) return;
@@ -534,7 +533,7 @@ export const syncOptionGroupDesignerGeometry = ({
 
 // ─── Factory function ──────────────────────────────────────────────────────────
 
-export { getOptionGroupLayoutConfig, computeOptionGroupDesignerHeightMM, computeOptionGroupDesignerWidthMM };
+;
 export { createOptionGroupRuntime };
 
 /**
@@ -548,11 +547,10 @@ export { createOptionGroupRuntime };
  * (selection keys, limits, color defaults, PDF drawing logic) into a single
  * over-parameterized factory.
  */
-export function createOptionGroupSchemaPlugin(config: OptionGroupPluginConfig): {
+function createOptionGroupSchemaPlugin(config: OptionGroupPluginConfig): {
   config: OptionGroupPluginConfig;
   layout: OptionGroupLayoutConfig;
 } {
   return { config, layout: getOptionGroupLayoutConfig(config.type) };
 }
 
-export default createOptionGroupSchemaPlugin;

@@ -1,0 +1,34 @@
+{
+  "count": 2,
+  "duplicated_significant_lines": 20,
+  "clones": [
+    {
+      "a": [
+        "src/sisad-pdfme/schemas/number/index.ts",
+        2,
+        8
+      ],
+      "b": [
+        "src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts",
+        13,
+        19
+      ],
+      "significant_lines": 7,
+      "tokens": 50
+    },
+    {
+      "a": [
+        "src/sisad-pdfme/ui/theme.ts",
+        20,
+        32
+      ],
+      "b": [
+        "src/sisad-pdfme/ui/theme.ts",
+        63,
+        75
+      ],
+      "significant_lines": 13,
+      "tokens": 50
+    }
+  ]
+}

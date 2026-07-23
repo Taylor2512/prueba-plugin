@@ -121,17 +121,21 @@ export const ColorType = z.enum(['rgb', 'cmyk']).optional();
 /** Tamaño rectangular genérico. */
 export const Size = z.object({ height: z.number(), width: z.number() });
 
+const commentMessageShape = {
+  authorId: z.string().optional(),
+  authorName: z.string().optional(),
+  authorColor: z.string().optional(),
+  timestamp: z.number().optional(),
+  createdAt: z.number().optional(),
+  text: z.string(),
+  resolved: z.boolean().optional(),
+};
+
 /** Contrato runtime para replies de comentarios. */
 export const SchemaCommentReply = z
   .object({
     id: z.string(),
-    authorId: z.string().optional(),
-    authorName: z.string().optional(),
-    authorColor: z.string().optional(),
-    timestamp: z.number().optional(),
-    createdAt: z.number().optional(),
-    text: z.string(),
-    resolved: z.boolean().optional(),
+    ...commentMessageShape,
   })
   .passthrough();
 
@@ -143,13 +147,7 @@ export const SchemaComment = z
     pageNumber: z.number().int().positive().optional(),
     fieldId: z.string().optional(),
     schemaUid: z.string().optional(),
-    authorId: z.string().optional(),
-    authorName: z.string().optional(),
-    authorColor: z.string().optional(),
-    timestamp: z.number().optional(),
-    createdAt: z.number().optional(),
-    text: z.string(),
-    resolved: z.boolean().optional(),
+    ...commentMessageShape,
     anchor: z.lazy(() => CommentAnchor).optional(),
     replies: z.array(SchemaCommentReply).optional(),
   })

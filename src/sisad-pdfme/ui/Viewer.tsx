@@ -12,58 +12,18 @@
  * - No debe contener lógica de firma, envío o persistencia.
  */
 
-import React from 'react';
-import { PreviewProps } from '@sisad-pdfme/common';
-import { PreviewUI } from './class';
-import { DESTROYED_ERR_MSG } from './constants';
-import Preview from './components/Preview';
-import AppContextProvider from './components/AppContextProvider';
+import type { PreviewProps } from '@sisad-pdfme/common';
+import { PagedPreviewUI } from './PagedPreviewUI';
 
 /** Runtime de solo lectura para visualizar template + inputs. */
-class Viewer extends PreviewUI {
-  private onPageChangeCallback?: (pageInfo: { currentPage: number; totalPages: number }) => void;
-  private pageCursor: number = 0;
-
+class Viewer extends PagedPreviewUI {
   constructor(props: PreviewProps) {
     super(props);
   }
 
-  public onPageChange(cb: (pageInfo: { currentPage: number; totalPages: number }) => void) {
-    this.onPageChangeCallback = cb;
-  }
-
-  public getPageCursor() {
-    return this.pageCursor;
-  }
-
-  public getTotalPages() {
-    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
-    return this.template.schemas.length;
-  }
-
   /** Renderiza Preview sin callbacks de edición. */
   protected render() {
-    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
-    this.getOrCreateRoot().render(
-      <AppContextProvider
-        lang={this.getLang()}
-        font={this.getFont()}
-        plugins={this.getPluginsRegistry()}
-        options={this.getOptions()}
-      >
-        <Preview
-          template={this.template}
-          size={this.size}
-          inputs={this.inputs}
-          onPageChange={(pageInfo) => {
-            this.pageCursor = pageInfo.currentPage;
-            if (this.onPageChangeCallback) {
-              this.onPageChangeCallback(pageInfo);
-            }
-          }}
-        />
-      </AppContextProvider>,
-    );
+    this.renderPreview();
   }
 }
 

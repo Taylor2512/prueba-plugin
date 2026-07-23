@@ -1,0 +1,45 @@
+{
+  "reporters": [
+    "console",
+    "html",
+    "json"
+  ],
+  "output": "reports/jscpd",
+  "mode": "weak",
+  "minLines": 8,
+  "minTokens": 70,
+  "maxLines": 1000,
+  "maxSize": "500kb",
+  "absolute": false,
+  "ignore": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/coverage/**",
+    "**/reports/**",
+    "**/playwright-report/**",
+    "**/test-results/**",
+
+    "**/*.min.js",
+    "**/*.min.css",
+    "**/*.map",
+
+    "**/__snapshots__/**",
+    "**/__fixtures__/**",
+    "**/__mocks__/**",
+
+    "**/*.test.js",
+    "**/*.test.jsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.js",
+    "**/*.spec.jsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "/.ai/**",
+    ".ai/**",
+
+    "public/**",
+    "src/generated/**"
+  ]
+}

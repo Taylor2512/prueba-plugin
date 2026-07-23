@@ -54,12 +54,12 @@ export type DropTarget = {
   y: number;
 };
 
-export type DropOwner = {
+type DropOwner = {
   ownerRecipientId: string | null;
   ownerColor: string | null;
 };
 
-export type DropResult =
+type DropResult =
   | { status: 'committed'; schemaId: string }
   | { status: 'noSpace'; reason: string }
   | { status: 'cancelled' }

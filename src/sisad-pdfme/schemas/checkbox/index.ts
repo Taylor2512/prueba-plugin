@@ -2,6 +2,7 @@ import { Plugin, Schema } from '@sisad-pdfme/common';
 import svg from '../graphics/svg.js';
 import { isEditable } from '../utils.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
+import { hexColorField } from '../propPanel/commonInspectorFields.js';
 import { SquareCheck } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
@@ -150,14 +151,12 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
     })),
   propPanel: {
     schema: ({ i18n }) => ({
-      color: {
+      color: hexColorField({
         title: i18n('schemas.color'),
-        type: 'string',
-        widget: 'color',
-        props: { disabledAlpha: true },
+        pattern: HEX_COLOR_PATTERN,
+        message: i18n('validation.hexColor'),
         required: true,
-        rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
-      },
+      }),
       groupId: {
         title: i18n('schemas.radioGroup.groupName'),
         type: 'string',

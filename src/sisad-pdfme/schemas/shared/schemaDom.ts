@@ -10,7 +10,7 @@ import type { SisadSchemaBase, SchemaVisualFamily } from './schemaTypes.js';
  * Applies common rootElement inline styles shared by all schema ui() functions.
  * Resets chrome applied by the host container so schemas control their own look.
  */
-export const setSchemaRootBase = (root: HTMLElement, isDesigner: boolean): void => {
+const setSchemaRootBase = (root: HTMLElement, isDesigner: boolean): void => {
   Object.assign(root.style, {
     overflow: 'visible',
     background: 'transparent',
@@ -79,7 +79,7 @@ export const createSchemaPart = <K extends keyof HTMLElementTagNameMap>(
 /**
  * Appends non-null children to root in one pass.
  */
-export const appendSchemaChildren = (
+const appendSchemaChildren = (
   root: HTMLElement,
   children: Array<HTMLElement | null | undefined>,
 ): void => {

@@ -1,6 +1,6 @@
 import type { SisadPdfmeRecipient, SisadPdfmeRecipientsAdapter } from '../config/SisadPdfmeConfig.js';
 
-export type { SisadPdfmeRecipient, SisadPdfmeRecipientsAdapter };
+export type {  SisadPdfmeRecipientsAdapter };
 
 export const createRecipientsAdapter = <THostUser = unknown>(): SisadPdfmeRecipientsAdapter<THostUser> => ({
   toRecipient(input) {

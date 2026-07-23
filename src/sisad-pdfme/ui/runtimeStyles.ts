@@ -233,26 +233,6 @@ const SISAD_PDFME_RUNTIME_CSS = `
   background-size: auto, auto;
 }
 
-.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="true"] {
-  --sisad-grid-step: 24px;
-  --sisad-grid-line: rgba(148, 163, 184, 0.16);
-  --sisad-grid-line-strong: rgba(148, 163, 184, 0.24);
-  background-image:
-    linear-gradient(to right, var(--sisad-grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--sisad-grid-line) 1px, transparent 1px),
-    linear-gradient(to right, var(--sisad-grid-line-strong) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--sisad-grid-line-strong) 1px, transparent 1px),
-    radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
-    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
-  background-size:
-    var(--sisad-grid-step) var(--sisad-grid-step),
-    var(--sisad-grid-step) var(--sisad-grid-step),
-    calc(var(--sisad-grid-step) * 4) calc(var(--sisad-grid-step) * 4),
-    calc(var(--sisad-grid-step) * 4) calc(var(--sisad-grid-step) * 4),
-    auto,
-    auto;
-}
-
 .sisad-pdfme-designer-canvas [data-canvas-page="true"] {
   overflow: hidden;
   isolation: isolate;
@@ -358,7 +338,7 @@ const ensureLink = (href: string) => {
   document.head.appendChild(link);
 };
 
-export const ensureSisadPdfmeRuntimeStyles = () => {
+const ensureSisadPdfmeRuntimeStyles = () => {
   if (typeof document === 'undefined') return;
   ensureLink('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
   if (document.getElementById(SISAD_PDFME_RUNTIME_STYLE_ID)) return;
@@ -369,3 +349,5 @@ export const ensureSisadPdfmeRuntimeStyles = () => {
 };
 
 ensureSisadPdfmeRuntimeStyles();
+
+export {};

@@ -3,7 +3,7 @@ import type { Command, CommandExecutionContext, CommandObserverPayload } from '@
 // ── Enriched command metadata ─────────────────────────────────────────────────
 
 /** Identifies where a command was triggered from — used for analytics and audit. */
-export type CommandSource = 'keyboard' | 'canvas-toolbar' | 'inspector' | 'context-menu' | 'system';
+type CommandSource = 'keyboard' | 'canvas-toolbar' | 'inspector' | 'context-menu' | 'system';
 
 /**
  * Metadata attached to every enriched command.
@@ -52,7 +52,7 @@ export type CommandMeta = {
  * Use this when you need audit trails or multi-user reconciliation.
  * The raw `Command` interface from @sisad-pdfme/common is still accepted by `CommandBus.execute`.
  */
-export type AppCommand<TPayload = unknown> = {
+type AppCommand<TPayload = unknown> = {
   meta: CommandMeta;
   payload: TPayload;
 };

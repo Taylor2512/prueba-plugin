@@ -45,21 +45,21 @@ export function resolveSchemaFamily(schema: Schema): SchemaFamily {
 /**
  * Determina si un schema es un contenedor de layout.
  */
-export function isLayoutSchema(schema: Schema): boolean {
+function isLayoutSchema(schema: Schema): boolean {
   return resolveSchemaFamily(schema) === 'layout';
 }
 
 /**
  * Determina si un schema es de tipo interactivo.
  */
-export function isInteractiveSchema(schema: Schema): boolean {
+function isInteractiveSchema(schema: Schema): boolean {
   return resolveSchemaFamily(schema) === 'interactive';
 }
 
 /**
  * Determina si un schema permite edición de contenido vs solo propiedades.
  */
-export function canEditContent(schema: Schema): boolean {
+function canEditContent(schema: Schema): boolean {
   const family = resolveSchemaFamily(schema);
   return family === 'static' || family === 'interactive';
 }

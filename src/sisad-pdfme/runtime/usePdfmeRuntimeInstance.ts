@@ -25,9 +25,9 @@ export type RuntimeTemplateLike = {
   schemas?: unknown[];
 };
 
-export type RuntimeOptionsLike = Record<string, unknown>;
-export type RuntimeInputsLike = unknown;
-export type RuntimePluginsLike = Record<string, unknown>;
+type RuntimeOptionsLike = Record<string, unknown>;
+type RuntimeInputsLike = unknown;
+type RuntimePluginsLike = Record<string, unknown>;
 
 export type RuntimeInstanceLike = {
   destroy: () => void;
@@ -41,7 +41,7 @@ export type RuntimeInstanceLike = {
   onPageChange?: (handler: (pageInfo: unknown) => void) => void;
 };
 
-export type RuntimeConstructorLike = new (props: {
+type RuntimeConstructorLike = new (props: {
   domContainer: HTMLElement;
   template: RuntimeTemplateLike;
   plugins: RuntimePluginsLike;
@@ -83,14 +83,14 @@ export const scheduleDestroyInstance = (instance: RuntimeInstanceLike | null | u
 };
 
 /** Runtime surfaces owned by this adapter. */
-export type PdfmeRuntimeMode = 'designer' | 'form' | 'viewer';
+type PdfmeRuntimeMode = 'designer' | 'form' | 'viewer';
 
 /**
  * Runtime constructors are injected to avoid hard dependency coupling.
  *
  * This also makes the hook testable with lightweight fake classes.
  */
-export type PdfmeRuntimeConstructors = {
+type PdfmeRuntimeConstructors = {
   Designer: RuntimeConstructorLike;
   Form: RuntimeConstructorLike;
   Viewer: RuntimeConstructorLike;

@@ -1,225 +1,87 @@
 # Manifest
 
-Total de archivos: **219**
-
-| Archivo | Bytes | SHA-256 |
-|---|---:|---|
-| `README.md` | 1310 | `b384290ced8a5589…` |
-| `TREE.md` | 721 | `fc65fdd58f324d6e…` |
-| `ai/INDEX.md` | 1114 | `4112dafbfc27179f…` |
-| `ai/README.md` | 881 | `4e5184b9a6b55433…` |
-| `ai/START.md` | 1424 | `211222da023e433f…` |
-| `ai/agents/accessibility-agent.md` | 698 | `7b2f7d4814af1635…` |
-| `ai/agents/canvas-agent.md` | 784 | `256f322b5a95df11…` |
-| `ai/agents/coordinator-agent.md` | 795 | `6f6332994a6fd6d7…` |
-| `ai/agents/css-tailwind-agent.md` | 725 | `c173520475cee795…` |
-| `ai/agents/documentation-agent.md` | 718 | `80bdc55c7314719d…` |
-| `ai/agents/frontend-ux-agent.md` | 777 | `44af0a4347239bb2…` |
-| `ai/agents/inspector-agent.md` | 795 | `8281b5e74f6b8cf5…` |
-| `ai/agents/integration-adapter-agent.md` | 721 | `b4c8b4167e2e44d4…` |
-| `ai/agents/interaction-agent.md` | 762 | `1a0ec53d86fe639f…` |
-| `ai/agents/memory-agent.md` | 679 | `99b6ad409076b2f4…` |
-| `ai/agents/performance-agent.md` | 680 | `3b2b68f9bd5bf63a…` |
-| `ai/agents/registry.md` | 722 | `28fe3e8f1dd85a8a…` |
-| `ai/agents/runtime-agent.md` | 729 | `5197e4f673401f90…` |
-| `ai/agents/schema-agent.md` | 736 | `d6d80a907282ea58…` |
-| `ai/agents/security-review-agent.md` | 720 | `d63c0866455f98cc…` |
-| `ai/agents/test-qa-agent.md` | 691 | `8b111f833330f794…` |
-| `ai/archive/README.md` | 135 | `a7dfead7831b9185…` |
-| `ai/archive/completed-tasks/README.md` | 114 | `c936fc7f3a3cab53…` |
-| `ai/archive/deprecated-docs/README.md` | 114 | `c5671243632d85f0…` |
-| `ai/archive/historical-plans/README.md` | 115 | `143f305e27587151…` |
-| `ai/archive/historical-prompts/README.md` | 117 | `f4b33f8defb92c30…` |
-| `ai/archive/historical-reports/README.md` | 117 | `9d4ea0e3427a0e3e…` |
-| `ai/checklists/accessibility-review.md` | 157 | `57043f7ce7276bd0…` |
-| `ai/checklists/canvas-review.md` | 137 | `dfd965dceb59e3a2…` |
-| `ai/checklists/documentation-review.md` | 152 | `6a942b4934347d91…` |
-| `ai/checklists/implementation-complete.md` | 158 | `d6f1412519e80119…` |
-| `ai/checklists/incident-review.md` | 134 | `e90f9ece3ec47ae8…` |
-| `ai/checklists/inspector-review.md` | 149 | `7899c62d7e0be78a…` |
-| `ai/checklists/performance-review.md` | 137 | `f085453bdd987a9a…` |
-| `ai/checklists/release-readiness.md` | 162 | `e977136fb5fcd0df…` |
-| `ai/checklists/schema-completeness.md` | 169 | `5f5f79cb294b2258…` |
-| `ai/checklists/scope-review.md` | 149 | `0c7c0f67d7fffaed…` |
-| `ai/checklists/task-ready.md` | 213 | `65190ba3f095b9a1…` |
-| `ai/checklists/visual-review.md` | 149 | `1e95d94b73b4f148…` |
-| `ai/context/accessibility-context.md` | 528 | `f0456202105cbcff…` |
-| `ai/context/action-contract-context.md` | 532 | `e2dee0c8cd07d954…` |
-| `ai/context/canvas-context.md` | 527 | `5c92e6e649f9180f…` |
-| `ai/context/collaboration-context.md` | 531 | `94bdcc756e422a2c…` |
-| `ai/context/css-tailwind-context.md` | 550 | `2fbc4cd6b0d0f1df…` |
-| `ai/context/frontend-architecture.md` | 540 | `1dcf7ba007dbd1cf…` |
-| `ai/context/host-integration-context.md` | 524 | `6b5e0f44e94b24be…` |
-| `ai/context/inspector-context.md` | 530 | `bf9328ac1cd561c7…` |
-| `ai/context/interaction-context.md` | 519 | `1955693ef445313c…` |
-| `ai/context/owner-color-context.md` | 538 | `21c41a2e12e46af6…` |
-| `ai/context/performance-context.md` | 537 | `d3d24396aee498ae…` |
-| `ai/context/project-overview.md` | 573 | `53e3ad39a453dfda…` |
-| `ai/context/runtime-context.md` | 522 | `499b5ae30ee8c2d8…` |
-| `ai/context/schema-context.md` | 530 | `d253d22786b4478f…` |
-| `ai/context/security-context.md` | 521 | `7c960345524946fd…` |
-| `ai/context/snapshot-context.md` | 525 | `3aaee35b61397801…` |
-| `ai/context/testing-context.md` | 516 | `bbff49919b6fe635…` |
-| `ai/context/visual-baseline-context.md` | 513 | `673a3d156823b308…` |
-| `ai/governance/change-policy.md` | 399 | `0b3670241d052f53…` |
-| `ai/governance/documentation-policy.md` | 518 | `6c4649aae7fc2283…` |
-| `ai/governance/evidence-policy.md` | 317 | `206fc76398f4af9a…` |
-| `ai/governance/operating-principles.md` | 564 | `2502bd4ac694dea8…` |
-| `ai/governance/ownership-policy.md` | 488 | `f4d0c156cef20db5…` |
-| `ai/governance/quality-policy.md` | 404 | `289ae4a09a3db1de…` |
-| `ai/governance/scope-policy.md` | 542 | `7e6c82038ca7512b…` |
-| `ai/governance/security-policy.md` | 367 | `43aafde15d672ed6…` |
-| `ai/handoffs/archive/README.md` | 80 | `e4f36ddd999fb976…` |
-| `ai/handoffs/blocked/README.md` | 80 | `4207635789572a9b…` |
-| `ai/handoffs/incoming/README.md` | 82 | `a039505fc039f085…` |
-| `ai/handoffs/outgoing/HANDOFF-EXAMPLE.md` | 604 | `d6bd8c12e687bee3…` |
-| `ai/handoffs/outgoing/README.md` | 82 | `b493e5a6caa86ad2…` |
-| `ai/memory/changelog.md` | 164 | `55caa45bd4928ffa…` |
-| `ai/memory/completed.md` | 100 | `ab22a3b360780ebb…` |
-| `ai/memory/current-state.md` | 323 | `a550c8f21928f94c…` |
-| `ai/memory/decisions.md` | 357 | `252058836a068655…` |
-| `ai/memory/external-dependencies.md` | 175 | `c6109738aae91b5b…` |
-| `ai/memory/known-gaps.md` | 175 | `760656fd942a3ec4…` |
-| `ai/memory/known-risks.md` | 567 | `934e6da94211b067…` |
-| `ai/memory/metrics.md` | 150 | `276b1c3f67c047fd…` |
-| `ai/memory/pending.md` | 140 | `35bc5ee2ca8e5cee…` |
-| `ai/memory/terminology.md` | 414 | `35d7e5ca5569d778…` |
-| `ai/plans/ACCESSIBILITY-PLAN.md` | 168 | `f7b7c8bf245ac6c8…` |
-| `ai/plans/CANVAS-PLAN.md` | 259 | `5560cc3068330dda…` |
-| `ai/plans/CSS-TAILWIND-PLAN.md` | 235 | `6f92f43af4599c56…` |
-| `ai/plans/CURRENT-PHASE.md` | 312 | `655d8d4c926437bb…` |
-| `ai/plans/DOCUMENTATION-PLAN.md` | 143 | `852a07f709a2aee3…` |
-| `ai/plans/INSPECTOR-PLAN.md` | 195 | `2260f85cf874555b…` |
-| `ai/plans/MASTER-PLAN.md` | 463 | `49c752e0a84ff2f9…` |
-| `ai/plans/PERFORMANCE-PLAN.md` | 179 | `129755c776b27f98…` |
-| `ai/plans/QUALITY-PLAN.md` | 198 | `447b0272bad1e1e3…` |
-| `ai/plans/RUNTIME-PLAN.md` | 167 | `83a700172323dd42…` |
-| `ai/plans/SCHEMA-PLAN.md` | 240 | `7b2b25f4e92e58b5…` |
-| `ai/plans/SECURITY-PLAN.md` | 140 | `f60069c73b7deeaf…` |
-| `ai/plans/UX-UI-PLAN.md` | 316 | `981112b2767ce6df…` |
-| `ai/playbooks/accessibility-improvement.md` | 473 | `3c52853104678fb9…` |
-| `ai/playbooks/bug-fix.md` | 504 | `f41af1cc18ecba3d…` |
-| `ai/playbooks/canvas-regression.md` | 522 | `58a22f993e98cbf5…` |
-| `ai/playbooks/documentation-refactor.md` | 480 | `b676581bec4253e5…` |
-| `ai/playbooks/feature-implementation.md` | 528 | `1453d49adfc7485b…` |
-| `ai/playbooks/incident-recovery.md` | 476 | `5967953856b90340…` |
-| `ai/playbooks/inspector-regression.md` | 524 | `c2cb86dc9567dc73…` |
-| `ai/playbooks/interaction-regression.md` | 497 | `14303f5ef66421cf…` |
-| `ai/playbooks/performance-improvement.md` | 465 | `9c9b03d36bd0f08e…` |
-| `ai/playbooks/public-api-review.md` | 498 | `d5483363e9f1fd98…` |
-| `ai/playbooks/runtime-integration.md` | 501 | `44948a66d6f3308e…` |
-| `ai/playbooks/schema-extension.md` | 471 | `937a497459b6d857…` |
-| `ai/playbooks/security-review.md` | 462 | `2c477a19a21f963b…` |
-| `ai/playbooks/snapshot-migration.md` | 488 | `ab76acfb356b7321…` |
-| `ai/playbooks/tailwind-migration.md` | 496 | `a72c32a282fab880…` |
-| `ai/playbooks/test-stabilization.md` | 496 | `33db10ea5b9698e5…` |
-| `ai/playbooks/ux-improvement.md` | 514 | `f27502e3ed54086d…` |
-| `ai/playbooks/visual-regression.md` | 510 | `4e022b5baa558b69…` |
-| `ai/prompts/MASTER-PROMPT.md` | 300 | `ce2e581c94d013ae…` |
-| `ai/prompts/accessibility-prompt.md` | 116 | `095ba8fc535c42ed…` |
-| `ai/prompts/canvas-prompt.md` | 169 | `ffb52a68a3f17c9d…` |
-| `ai/prompts/coordinator-prompt.md` | 175 | `4f61269ed1c50732…` |
-| `ai/prompts/css-tailwind-prompt.md` | 164 | `3dacc6e9a72f6eb7…` |
-| `ai/prompts/documentation-prompt.md` | 148 | `7fbc3878c1efe222…` |
-| `ai/prompts/frontend-ux-prompt.md` | 194 | `4816ea0f422cfa5f…` |
-| `ai/prompts/handoff-prompt.md` | 137 | `72dbe72c9bd72ab4…` |
-| `ai/prompts/incident-prompt.md` | 131 | `61be36a7ba8e72e1…` |
-| `ai/prompts/inspector-prompt.md` | 164 | `71a1035649aea8ab…` |
-| `ai/prompts/interaction-prompt.md` | 143 | `59938d444d1d1ccf…` |
-| `ai/prompts/memory-prompt.md` | 126 | `8fddbecbeace5b3c…` |
-| `ai/prompts/performance-prompt.md` | 117 | `f993bb52b327feb6…` |
-| `ai/prompts/qa-prompt.md` | 125 | `de1eba5a6a88d60f…` |
-| `ai/prompts/review-prompt.md` | 132 | `29f753715b080b69…` |
-| `ai/prompts/runtime-prompt.md` | 143 | `8537c5665539b855…` |
-| `ai/prompts/schema-prompt.md` | 147 | `071a4e4066a9b5ff…` |
-| `ai/prompts/security-prompt.md` | 140 | `c596bb79cd99af02…` |
-| `ai/prompts/task-creation-prompt.md` | 170 | `0a20d3cfb72d001e…` |
-| `ai/reports/README.md` | 163 | `310bc37da9ddb003…` |
-| `ai/reports/accessibility/README.md` | 115 | `f4e0fa60683a98c5…` |
-| `ai/reports/architecture/README.md` | 114 | `bc5e8f9bea86d623…` |
-| `ai/reports/performance/README.md` | 113 | `efa70ac4b84489ef…` |
-| `ai/reports/quality/README.md` | 109 | `62b169eb74a83b84…` |
-| `ai/reports/regression/README.md` | 112 | `cef00a69a14998ee…` |
-| `ai/reports/security/README.md` | 110 | `8ebbea278156ff5b…` |
-| `ai/reports/ux/README.md` | 104 | `479728dbb6d01af2…` |
-| `ai/reports/visual/README.md` | 108 | `7a6eceaf6241bb23…` |
-| `ai/reviewers/accessibility-reviewer.md` | 535 | `1dd995764e7241cc…` |
-| `ai/reviewers/anti-hallucination-reviewer.md` | 538 | `6901044effb87cfb…` |
-| `ai/reviewers/architecture-reviewer.md` | 531 | `eaf91395d5b14f7d…` |
-| `ai/reviewers/css-reviewer.md` | 521 | `ac2c227a1f539b4e…` |
-| `ai/reviewers/documentation-reviewer.md` | 524 | `89942820bdd1d34e…` |
-| `ai/reviewers/performance-reviewer.md` | 525 | `c50efa9baf8dd17c…` |
-| `ai/reviewers/public-api-reviewer.md` | 536 | `033ac3e9188398a7…` |
-| `ai/reviewers/regression-reviewer.md` | 535 | `eca497e7836e247c…` |
-| `ai/reviewers/scope-reviewer.md` | 518 | `1a088f2703d0380a…` |
-| `ai/reviewers/security-reviewer.md` | 530 | `6fe9bd33b78a80db…` |
-| `ai/reviewers/test-contract-reviewer.md` | 528 | `9e44b471189a9f78…` |
-| `ai/reviewers/visual-reviewer.md` | 537 | `048ebd26c4025398…` |
-| `ai/router/CONTEXT-BUDGET.md` | 460 | `9d353f4fc28acdc1…` |
-| `ai/router/DECISION-TREE.md` | 467 | `e4ba1f9bca301a29…` |
-| `ai/router/PRIORITY-MATRIX.md` | 581 | `b983fdd4c7d4d6d8…` |
-| `ai/router/ROUTER.md` | 1019 | `8f8918f5daff3971…` |
-| `ai/router/ROUTING-EXAMPLES.md` | 736 | `fa4abdc07296265e…` |
-| `ai/router/TASK-INTAKE.md` | 737 | `49413a9156cc3424…` |
-| `ai/rules/accessibility-rules.md` | 203 | `35143033823569cd…` |
-| `ai/rules/canvas-rules.md` | 226 | `9afd7503f5726a73…` |
-| `ai/rules/css-tailwind-rules.md` | 242 | `c4c835faa12a6682…` |
-| `ai/rules/documentation-rules.md` | 252 | `a663d03c3ac64591…` |
-| `ai/rules/frontend-rules.md` | 271 | `4e5ff70c474413e7…` |
-| `ai/rules/global-rules.md` | 284 | `4564412084dfb956…` |
-| `ai/rules/inspector-rules.md` | 244 | `0e1ec1af584a75e2…` |
-| `ai/rules/interaction-rules.md` | 261 | `ff8082765e395e23…` |
-| `ai/rules/performance-rules.md` | 229 | `f2ab43a211147d13…` |
-| `ai/rules/review-rules.md` | 241 | `33d94658e47d2138…` |
-| `ai/rules/runtime-rules.md` | 229 | `cef576816e21d993…` |
-| `ai/rules/schema-rules.md` | 237 | `62c272511fa4bc3a…` |
-| `ai/rules/security-rules.md` | 241 | `27308c98f6433072…` |
-| `ai/rules/snapshot-rules.md` | 213 | `df2f5976b06dcc00…` |
-| `ai/rules/testing-rules.md` | 224 | `2a39be5a00ce7e24…` |
-| `ai/skills/accessibility-review.md` | 617 | `1c0b01d1a3da595a…` |
-| `ai/skills/canvas-positioning.md` | 675 | `d58240095653fe3c…` |
-| `ai/skills/color-state-separation.md` | 719 | `4df1d3bb0209d8ea…` |
-| `ai/skills/documentation-curation.md` | 647 | `1e782a99b49b4e90…` |
-| `ai/skills/incident-recovery.md` | 664 | `d08a5292ca8f6736…` |
-| `ai/skills/inspector-contracts.md` | 684 | `3d55c8aedd0b7679…` |
-| `ai/skills/memory-maintenance.md` | 627 | `d7cb57ea93585e73…` |
-| `ai/skills/moveable-selecto-lifecycle.md` | 699 | `033dd6b013a9a969…` |
-| `ai/skills/option-groups.md` | 654 | `5953701264f91d52…` |
-| `ai/skills/performance-analysis.md` | 621 | `16f0fc540793e45c…` |
-| `ai/skills/prompt-design.md` | 662 | `c401a86982c7c458…` |
-| `ai/skills/public-api-boundary.md` | 667 | `7df649e45daff27a…` |
-| `ai/skills/repository-analysis.md` | 724 | `85dd3e7139271c7f…` |
-| `ai/skills/runtime-integration.md` | 650 | `137465b26c1713c5…` |
-| `ai/skills/schema-contracts.md` | 627 | `8667b9aac46e8339…` |
-| `ai/skills/snapshot-safety.md` | 630 | `a331b2c8b94514ee…` |
-| `ai/skills/tailwind-migration.md` | 677 | `21c54273646bc1a9…` |
-| `ai/skills/task-decomposition.md` | 676 | `0eb938414c3e63a4…` |
-| `ai/skills/test-triage.md` | 635 | `0d80862a8a1aa463…` |
-| `ai/skills/ux-audit.md` | 676 | `19ea993d02048164…` |
-| `ai/skills/visual-regression.md` | 646 | `e67e35a9c8f36414…` |
-| `ai/skills/visual-system-design.md` | 695 | `fcc3a96d92e47fcd…` |
-| `ai/tasks/active/README.md` | 79 | `d9964de3a1db3a7a…` |
-| `ai/tasks/active/TASK-UX-001-example.md` | 899 | `93d38a2447439c52…` |
-| `ai/tasks/backlog/README.md` | 96 | `7fbf78d1f1a8efcd…` |
-| `ai/tasks/blocked/README.md` | 92 | `6714d7efbf55ae34…` |
-| `ai/tasks/cancelled/README.md` | 90 | `81f8fb07a320a2db…` |
-| `ai/tasks/completed/README.md` | 77 | `f391fa09eb74f51b…` |
-| `ai/tasks/external/README.md` | 107 | `2c9ed6dffb62433d…` |
-| `ai/tasks/external/TASK-EXTERNAL-001-example.md` | 282 | `c15188c7408b9190…` |
-| `ai/tasks/ready/README.md` | 103 | `92b3c8bc34b53fdf…` |
-| `ai/tasks/review/README.md` | 103 | `7fce6d1f23f1dc4a…` |
-| `ai/templates/agent.md` | 112 | `6cc42c8e15d66f9d…` |
-| `ai/templates/checklist.md` | 34 | `19fbc9a0d2dbb850…` |
-| `ai/templates/context.md` | 108 | `bba5b00ddef7a32c…` |
-| `ai/templates/decision.md` | 91 | `134ecb6ffaf2071c…` |
-| `ai/templates/handoff.md` | 208 | `3ce317ab570d9545…` |
-| `ai/templates/incident.md` | 139 | `b19220f038f06b2a…` |
-| `ai/templates/memory-update.md` | 111 | `8aee4fad2b721c6f…` |
-| `ai/templates/plan.md` | 124 | `504e1c8683f3557f…` |
-| `ai/templates/playbook.md` | 107 | `2ef57db6616e718b…` |
-| `ai/templates/prompt.md` | 149 | `c9a72b6f24c617be…` |
-| `ai/templates/report.md` | 125 | `9c65be97f6da011b…` |
-| `ai/templates/reviewer.md` | 89 | `2c0a684c559c319e…` |
-| `ai/templates/rule.md` | 58 | `5c73c659511c2b94…` |
-| `ai/templates/skill.md` | 113 | `78a468c6a140656e…` |
-| `ai/templates/task-card.md` | 332 | `9a034904ba49998f…` |
+```text
+.agents/skills/sisad-canvas-safety/SKILL.md	583 bytes	12 lines
+.agents/skills/sisad-css-tailwind/SKILL.md	553 bytes	12 lines
+.agents/skills/sisad-dry-refactoring/SKILL.md	731 bytes	18 lines
+.agents/skills/sisad-inspector-contract/SKILL.md	551 bytes	12 lines
+.agents/skills/sisad-memory-scrum/SKILL.md	512 bytes	12 lines
+.agents/skills/sisad-pattern-selection/SKILL.md	581 bytes	12 lines
+.agents/skills/sisad-quality-gates/SKILL.md	499 bytes	12 lines
+.agents/skills/sisad-schema-family-refactor/SKILL.md	624 bytes	16 lines
+.agents/skills/sisad-skill-evaluation/SKILL.md	583 bytes	16 lines
+.agents/skills/sisad-snapshot-compatibility/SKILL.md	540 bytes	12 lines
+.agents/skills/sisad-task-execution/SKILL.md	633 bytes	20 lines
+.ai/CONTEXT-BUDGET.md	981 bytes	25 lines
+.ai/INDEX.md	574 bytes	17 lines
+.ai/MODEL-ROUTER.md	1989 bytes	35 lines
+.ai/ROUTER.md	705 bytes	16 lines
+.ai/SCOPE.md	1016 bytes	25 lines
+.ai/START.md	1014 bytes	25 lines
+.ai/agents/ARCHITECT.md	296 bytes	17 lines
+.ai/agents/CANVAS-SPECIALIST.md	307 bytes	17 lines
+.ai/agents/COORDINATOR.md	313 bytes	17 lines
+.ai/agents/EXPLORER-DRY.md	302 bytes	17 lines
+.ai/agents/IMPLEMENTER.md	281 bytes	17 lines
+.ai/agents/MEMORY-SCRUM.md	291 bytes	17 lines
+.ai/agents/QA-REVIEWER.md	303 bytes	17 lines
+.ai/architecture/ASSISTANT-SYSTEM.md	1166 bytes	33 lines
+.ai/architecture/DEDUP-BASELINE.md	1062 bytes	32 lines
+.ai/architecture/DUPLICATION-TAXONOMY.md	1767 bytes	37 lines
+.ai/architecture/LAYER-CONTRACTS.md	640 bytes	22 lines
+.ai/architecture/PATTERN-DECISION-MATRIX.md	1551 bytes	30 lines
+.ai/audits/CODE-DEDUP-CHECKLIST.md	372 bytes	12 lines
+.ai/audits/MARKDOWN-DEDUP-CHECKLIST.md	373 bytes	10 lines
+.ai/governance/ANTI-DUPLICATION.md	678 bytes	12 lines
+.ai/governance/ANTI-LOOP.md	496 bytes	10 lines
+.ai/governance/CHANGE-POLICY.md	486 bytes	23 lines
+.ai/governance/EVIDENCE-POLICY.md	308 bytes	17 lines
+.ai/governance/MEMORY-POLICY.md	761 bytes	31 lines
+.ai/governance/QUALITY-GATES.md	621 bytes	26 lines
+.ai/memory/CURRENT.md	516 bytes	8 lines
+.ai/memory/DECISIONS.md	599 bytes	17 lines
+.ai/memory/HANDOFF.md	463 bytes	13 lines
+.ai/memory/METRICS.md	441 bytes	18 lines
+.ai/memory/README.md	368 bytes	11 lines
+.ai/memory/RISKS.md	648 bytes	11 lines
+.ai/playbooks/CODE-REVIEW.md	341 bytes	13 lines
+.ai/playbooks/EXECUTE-TASK.md	284 bytes	10 lines
+.ai/playbooks/REFACTOR-DUPLICATION.md	411 bytes	11 lines
+.ai/playbooks/REMOVE-DEAD-CODE.md	372 bytes	8 lines
+.ai/playbooks/SELECT-PATTERN.md	405 bytes	8 lines
+.ai/playbooks/SPRINT-PLANNING.md	295 bytes	9 lines
+.ai/playbooks/UPDATE-MEMORY.md	327 bytes	9 lines
+.ai/provider-adapters/README.md	636 bytes	21 lines
+.ai/research/AGENT-SKILLS-RESEARCH.md	1060 bytes	23 lines
+.ai/research/CODEX-MODELS-2026-07-22.md	932 bytes	19 lines
+.ai/research/SOURCE-REPORTS.md	549 bytes	6 lines
+.ai/routes/CANVAS.md	395 bytes	24 lines
+.ai/routes/CSS-TAILWIND.md	337 bytes	22 lines
+.ai/routes/INSPECTOR.md	390 bytes	22 lines
+.ai/routes/INTEGRATION.md	332 bytes	22 lines
+.ai/routes/QUALITY-DEDUP.md	350 bytes	22 lines
+.ai/routes/RUNTIME.md	350 bytes	22 lines
+.ai/routes/SCHEMAS.md	396 bytes	22 lines
+.ai/routes/SNAPSHOT.md	362 bytes	21 lines
+.ai/scrum/DEFINITION-OF-DONE.md	401 bytes	10 lines
+.ai/scrum/DEFINITION-OF-READY.md	254 bytes	11 lines
+.ai/scrum/PRODUCT-BACKLOG.md	529 bytes	10 lines
+.ai/scrum/README.md	492 bytes	19 lines
+.ai/scrum/RETROSPECTIVE.md	290 bytes	12 lines
+.ai/scrum/SPRINT-CURRENT.md	455 bytes	11 lines
+.ai/templates/ADR.md	174 bytes	10 lines
+.ai/templates/EVIDENCE.md	152 bytes	10 lines
+.ai/templates/MEMORY-DELTA.md	156 bytes	8 lines
+.ai/templates/REFACTOR-REPORT.md	191 bytes	19 lines
+.ai/templates/TASK-CARD.md	287 bytes	28 lines
+.codex/agents/README.md	884 bytes	24 lines
+.github/agents/sisad-architect.agent.md	345 bytes	7 lines
+.github/agents/sisad-dry-auditor.agent.md	343 bytes	7 lines
+.github/agents/sisad-scrum-coordinator.agent.md	344 bytes	7 lines
+.github/agents/sisad-test-specialist.agent.md	308 bytes	6 lines
+.github/copilot-instructions.md	523 bytes	12 lines
+AGENTS.md	1418 bytes	36 lines
+CLAUDE.md	401 bytes	8 lines
+PLAN_MAESTRO_ARQUITECTURA_IA_SISAD_PDFME_2026-07-22.md	8546 bytes	214 lines
+README.md	1626 bytes	35 lines
+```

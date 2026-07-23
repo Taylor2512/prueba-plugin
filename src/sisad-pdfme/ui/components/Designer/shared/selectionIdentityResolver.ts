@@ -55,7 +55,7 @@ const matchesIdentity = (schema: SchemaForUI, identity: SchemaElementIdentity): 
   return Boolean(identity.schemaId) && schema.id === identity.schemaId;
 };
 
-export const resolveSchemaFromElement = (
+const resolveSchemaFromElement = (
   schemasList: SchemaForUI[][],
   element: HTMLElement | null | undefined,
 ): SchemaForUI | null => {
@@ -83,7 +83,7 @@ export const resolveActiveSchemasFromElements = (
     .map((element) => resolveSchemaFromElement(schemasList, element))
     .filter((schema): schema is SchemaForUI => schema !== null);
 
-export const resolveSelectionPageScope = (activeElements: HTMLElement[]): SelectionPageScope => {
+const resolveSelectionPageScope = (activeElements: HTMLElement[]): SelectionPageScope => {
   const keys = new Set<string>();
   let first: SchemaElementIdentity | null = null;
   for (const element of activeElements) {

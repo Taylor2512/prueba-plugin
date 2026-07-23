@@ -11,23 +11,9 @@ import {
   type Size,
 } from './coordinateMath.js';
 
-export {
-  clientPointToPagePoint,
-  getPageRectInViewport,
-  pagePointToSchemaPoint,
-  pagePointToPdfPoint,
-  rectIntersects,
-  resolveSelectionRegion,
-} from './coordinateMath.js';
+;
 
-export type {
-  DOMRectLike,
-  PagePoint,
-  PdfPoint,
-  ResolveSelectionRegionParams,
-  SelectionRegionPageHit,
-  SelectionRegionResult,
-} from './coordinateMath.js';
+;
 
 // PointArea is exported from ./coordinateMath.ts — avoid redeclaring to prevent
 // type conflicts. Use the imported `PointArea` type instead.

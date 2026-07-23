@@ -20,7 +20,7 @@ import { isOptionGroupType } from '../../../../schemas/options/optionGroupLayout
  * - assignToActiveRecipient: strips legacy assignment and applies the currently active
  *   recipient from collaborationContext. Used when dropping into a different recipient slot.
  */
-export type ClipboardPasteMode = 'preserveAssignments' | 'assignToActiveRecipient';
+type ClipboardPasteMode = 'preserveAssignments' | 'assignToActiveRecipient';
 
 export type PastePolicy = {
   /** Controls assignment behavior on paste. Defaults to 'preserveAssignments'. */
@@ -248,7 +248,7 @@ export const sanitizeCopiedSchema = (schema: SchemaForUI): SchemaForUI => {
 };
 
 /** Fixed offset (mm) applied to a rigid-group paste when no target anchor exists. */
-export const GROUP_PASTE_FALLBACK_OFFSET_MM = 10;
+const GROUP_PASTE_FALLBACK_OFFSET_MM = 10;
 
 const schemaPosition = (schema: SchemaForUI) => {
   const position = schema.position || { x: 0, y: 0 };
@@ -326,7 +326,7 @@ export const resolvePasteOffset = (index: number) => {
   return { x: offset, y: offset };
 };
 
-export const resolveUniqueSchemaName = (
+const resolveUniqueSchemaName = (
   schema: SchemaForUI,
   existingSchemas: SchemaForUI[],
   stackUniqueSchemaNames: string[],
@@ -344,9 +344,9 @@ export const resolveUniqueSchemaName = (
  * Rigid-group placement: translate the schema by a single shared delta and skip
  * all per-item collision/smart placement so the group geometry is preserved.
  */
-export type GroupPlacement = { delta: { x: number; y: number } };
+type GroupPlacement = { delta: { x: number; y: number } };
 
-export const buildPastedSchema = (
+const buildPastedSchema = (
   schema: SchemaForUI,
   context: SchemaClipboardContext,
   index = 0,
@@ -509,7 +509,7 @@ export const buildPastedSchema = (
  * per-item smart placement or collision resolution runs; a single clamp keeps the
  * whole box inside the page.
  */
-export const pasteSchemaGroupFromClipboard = (
+const pasteSchemaGroupFromClipboard = (
   items: SchemaForUI[],
   group: SchemaGroupClipboardMeta | undefined,
   context: SchemaClipboardContext,

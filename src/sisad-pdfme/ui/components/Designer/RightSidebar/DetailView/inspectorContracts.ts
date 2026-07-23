@@ -14,7 +14,7 @@
 /**
  * Familias semánticas de schemas usadas por el contrato del inspector.
  */
-export type SchemaInspectorFamily =
+type SchemaInspectorFamily =
   | 'textLike'
   | 'numberLike'
   | 'dateLike'
@@ -58,7 +58,7 @@ export type SchemaInspectorSections = {
 };
 
 /** Acciones de footer disponibles para una familia de schema. */
-export type SchemaInspectorFooterActions = {
+type SchemaInspectorFooterActions = {
   saveAsCustom?: boolean;
   duplicate?: boolean;
   delete?: boolean;
@@ -359,7 +359,7 @@ const _pluginContracts = new Map<string, Omit<SchemaInspectorContract, 'type'>>(
 /**
  * Registra o sobrescribe un contrato de inspector provisto por plugin.
  */
-export const registerInspectorContract = (
+const registerInspectorContract = (
   type: string,
   contract: Omit<SchemaInspectorContract, 'type'>,
 ): void => {

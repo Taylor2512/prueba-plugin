@@ -512,6 +512,89 @@ export const removeById = <T extends { id: string }>(
  * author:
  * Agrupa schemas por createdBy/lastModifiedBy.
  */
+
+type CollaborativeAssignmentSchema = SchemaForUI & {
+  schemaUid?: string;
+  fileId?: string;
+  fileTemplateId?: string;
+  pageNumber?: number;
+  ownerRecipientId?: string;
+  ownerRecipientIds?: string[] | string;
+  ownerMode?: 'single' | 'multi' | 'shared';
+  createdBy?: string;
+  lastModifiedBy?: string;
+};
+
+type SchemaAssignmentLocation = {
+  schema: CollaborativeAssignmentSchema;
+  schemaUid: string;
+  fileId: string;
+  pageKey: string;
+};
+
+const resolveSchemaAssignmentLocation = (
+  schema: SchemaForUI,
+  pageIndex: number,
+): SchemaAssignmentLocation | null => {
+  const rawSchema = schema as CollaborativeAssignmentSchema;
+  const schemaUid = String(
+    rawSchema.schemaUid || rawSchema.id || rawSchema.name || '',
+  ).trim();
+
+  if (!schemaUid) return null;
+
+  const fileId =
+    String(rawSchema.fileId || rawSchema.fileTemplateId || 'default').trim() ||
+    'default';
+  const pageNumber =
+    typeof rawSchema.pageNumber === 'number' &&
+    Number.isFinite(rawSchema.pageNumber) &&
+    rawSchema.pageNumber > 0
+      ? Math.trunc(rawSchema.pageNumber)
+      : pageIndex + 1;
+
+  return {
+    schema: rawSchema,
+    schemaUid,
+    fileId,
+    pageKey: String(pageNumber),
+  };
+};
+
+const forEachSchemaAssignmentLocation = (
+  schemas: SchemaPageArray,
+  visitor: (location: SchemaAssignmentLocation) => void,
+) => {
+  schemas.forEach((page, pageIndex) => {
+    page.forEach((schema) => {
+      const location = resolveSchemaAssignmentLocation(schema, pageIndex);
+      if (location) visitor(location);
+    });
+  });
+};
+
+const dedupeAssignmentTree = (
+  tree: Record<string, unknown>,
+  levelsBeforePageMap: number,
+) => {
+  if (levelsBeforePageMap > 0) {
+    Object.values(tree).forEach((child) => {
+      if (child && typeof child === 'object') {
+        dedupeAssignmentTree(
+          child as Record<string, unknown>,
+          levelsBeforePageMap - 1,
+        );
+      }
+    });
+    return;
+  }
+
+  Object.keys(tree).forEach((pageKey) => {
+    const values = Array.isArray(tree[pageKey]) ? tree[pageKey] : [];
+    tree[pageKey] = Array.from(new Set(values));
+  });
+};
+
 type AssignmentIdentityMode = 'recipient' | 'author';
 
 /**
@@ -549,71 +632,9 @@ const buildAssignments = (
 ): SchemaAssignments => {
   const assignments: SchemaAssignments = {};
 
-  schemas.forEach((page, pageIndex) => {
-    page.forEach((schema) => {
-      const rawSchema = schema as SchemaForUI & {
-        schemaUid?: string;
-        fileId?: string;
-        fileTemplateId?: string;
-        pageNumber?: number;
-        ownerRecipientId?: string;
-        ownerRecipientIds?: string[] | string;
-        ownerMode?: 'single' | 'multi' | 'shared';
-        createdBy?: string;
-        lastModifiedBy?: string;
-      };
-
-      /**
-       * Identidad técnica del schema.
-       *
-       * Prioridad:
-       *
-       * 1. schemaUid
-       * 2. id
-       * 3. name
-       */
-      const schemaUid = String(
-        rawSchema.schemaUid || rawSchema.id || rawSchema.name || '',
-      ).trim();
-
-      if (!schemaUid) return;
-
-      /**
-       * Documento/archivo dueño del schema.
-       *
-       * Fallback: 'default'
-       */
-      const fileId =
-        String(rawSchema.fileId || rawSchema.fileTemplateId || 'default').trim() ||
-        'default';
-
-      /**
-       * Página del schema.
-       *
-       * Si schema.pageNumber es válido, se usa.
-       * Si no, se usa pageIndex + 1.
-       */
-      const pageKey = String(
-        typeof rawSchema.pageNumber === 'number' &&
-          Number.isFinite(rawSchema.pageNumber) &&
-          rawSchema.pageNumber > 0
-          ? Math.trunc(rawSchema.pageNumber)
-          : pageIndex + 1,
-      );
-
-      /**
-       * Identidad principal del bucket.
-       *
-       * En modo author:
-       * - createdBy
-       * - lastModifiedBy
-       * - __unassigned__
-       *
-       * En modo recipient:
-       * - ownerRecipientIds
-       * - ownerRecipientId
-       * - __unassigned__
-       */
+  forEachSchemaAssignmentLocation(
+    schemas,
+    ({ schema: rawSchema, schemaUid, fileId, pageKey }) => {
       const identities =
         mode === 'author'
           ? normalizeRecipientIds(
@@ -627,42 +648,23 @@ const buildAssignments = (
                 '__unassigned__',
             );
 
-      /**
-       * En modo author, si el schema es compartido, también se agrega
-       * al bucket especial __shared__.
-       */
       const sharedIdentityKeys =
         mode === 'author' && rawSchema.ownerMode === 'shared'
           ? [SHARED_ASSIGNMENTS_BUCKET]
           : [];
 
-      /**
-       * Crea la estructura:
-       *
-       * assignments[identity][fileId][pageKey]
-       */
       identities.concat(sharedIdentityKeys).forEach((identity) => {
         if (!assignments[identity]) assignments[identity] = {};
         if (!assignments[identity][fileId]) assignments[identity][fileId] = {};
         if (!assignments[identity][fileId][pageKey]) {
           assignments[identity][fileId][pageKey] = [];
         }
-
         assignments[identity][fileId][pageKey].push(schemaUid);
       });
-    });
-  });
+    },
+  );
 
-  /**
-   * Deduplica schemaUids por identity/file/page.
-   */
-  Object.values(assignments).forEach((files) => {
-    Object.values(files).forEach((pages) => {
-      Object.keys(pages).forEach((pageKey) => {
-        pages[pageKey] = Array.from(new Set(pages[pageKey]));
-      });
-    });
-  });
+  dedupeAssignmentTree(assignments as unknown as Record<string, unknown>, 2);
 
   return assignments;
 };
@@ -720,87 +722,30 @@ export const buildUserRecipientAssignments = (
 
   const assignments: UserRecipientSchemaAssignments = {};
 
-  schemas.forEach((page, pageIndex) => {
-    page.forEach((schema) => {
-      const rawSchema = schema as SchemaForUI & {
-        schemaUid?: string;
-        fileId?: string;
-        fileTemplateId?: string;
-        pageNumber?: number;
-        ownerMode?: 'single' | 'multi' | 'shared';
-        ownerRecipientId?: string;
-        ownerRecipientIds?: string[] | string;
-        createdBy?: string;
-        lastModifiedBy?: string;
-      };
-
-      const schemaUid = String(
-        rawSchema.schemaUid || rawSchema.id || rawSchema.name || '',
-      ).trim();
-
-      if (!schemaUid) return;
-
-      const fileId =
-        String(rawSchema.fileId || rawSchema.fileTemplateId || 'default').trim() ||
-        'default';
-
-      const pageKey = String(
-        typeof rawSchema.pageNumber === 'number' &&
-          Number.isFinite(rawSchema.pageNumber) &&
-          rawSchema.pageNumber > 0
-          ? Math.trunc(rawSchema.pageNumber)
-          : pageIndex + 1,
-      );
-
-      /**
-       * Usuario/autor dueño de la acción.
-       *
-       * Prioridad:
-       *
-       * 1. createdBy
-       * 2. lastModifiedBy
-       * 3. unassignedUserKey
-       */
+  forEachSchemaAssignmentLocation(
+    schemas,
+    ({ schema: rawSchema, schemaUid, fileId, pageKey }) => {
       const userIds = normalizeRecipientIds(
         rawSchema.createdBy || rawSchema.lastModifiedBy || unassignedUserKey,
       );
 
-      /**
-       * Recipients asociados al schema.
-       *
-       * Si ownerMode es:
-       *
-       * - single: usa solo un recipient.
-       * - multi: usa múltiples recipients.
-       * - shared/undefined: usa los ids disponibles.
-       */
-      const recipientIds = (() => {
-        const normalizedSingle = normalizeRecipientIds(
-          rawSchema.ownerRecipientId ||
-            rawSchema.ownerRecipientIds ||
-            unassignedRecipientKey,
-        );
-
-        const normalizedMulti = normalizeRecipientIds(
+      const normalizedSingle = normalizeRecipientIds(
+        rawSchema.ownerRecipientId ||
           rawSchema.ownerRecipientIds ||
-            rawSchema.ownerRecipientId ||
-            unassignedRecipientKey,
-        );
+          unassignedRecipientKey,
+      );
+      const normalizedMulti = normalizeRecipientIds(
+        rawSchema.ownerRecipientIds ||
+          rawSchema.ownerRecipientId ||
+          unassignedRecipientKey,
+      );
+      const recipientIds =
+        rawSchema.ownerMode === 'single'
+          ? normalizedSingle.slice(0, 1)
+          : normalizedMulti.length > 0
+            ? normalizedMulti
+            : normalizedSingle;
 
-        if (rawSchema.ownerMode === 'single') {
-          return normalizedSingle.slice(0, 1);
-        }
-
-        if (rawSchema.ownerMode === 'multi') {
-          return normalizedMulti;
-        }
-
-        return normalizedMulti.length > 0 ? normalizedMulti : normalizedSingle;
-      })();
-
-      /**
-       * Si el schema es shared, agrega también el bucket compartido.
-       */
       if (
         rawSchema.ownerMode === 'shared' &&
         includeSharedRecipientBucket &&
@@ -809,11 +754,6 @@ export const buildUserRecipientAssignments = (
         recipientIds.push(sharedRecipientKey);
       }
 
-      /**
-       * Crea estructura:
-       *
-       * assignments[userId][recipientId][fileId][pageKey]
-       */
       userIds.forEach((userId) => {
         if (!assignments[userId]) assignments[userId] = {};
 
@@ -821,33 +761,19 @@ export const buildUserRecipientAssignments = (
           if (!assignments[userId][recipientId]) {
             assignments[userId][recipientId] = {};
           }
-
           if (!assignments[userId][recipientId][fileId]) {
             assignments[userId][recipientId][fileId] = {};
           }
-
           if (!assignments[userId][recipientId][fileId][pageKey]) {
             assignments[userId][recipientId][fileId][pageKey] = [];
           }
-
           assignments[userId][recipientId][fileId][pageKey].push(schemaUid);
         });
       });
-    });
-  });
+    },
+  );
 
-  /**
-   * Deduplica schemaUids por user/recipient/file/page.
-   */
-  Object.values(assignments).forEach((recipients) => {
-    Object.values(recipients).forEach((files) => {
-      Object.values(files).forEach((pages) => {
-        Object.keys(pages).forEach((pageKey) => {
-          pages[pageKey] = Array.from(new Set(pages[pageKey]));
-        });
-      });
-    });
-  });
+  dedupeAssignmentTree(assignments as unknown as Record<string, unknown>, 3);
 
   return assignments;
 };

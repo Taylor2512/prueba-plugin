@@ -183,30 +183,26 @@ export const pdfRender = async (arg: PDFRenderProps<TextSchema>) => {
 
     let yLine = pageHeight - mm2pt(schema.position.y) - yOffset - rowYOffset;
 
-    // draw strikethrough
-    if (schema.strikethrough && textWidth > 0) {
-      const _x = xLine + textWidth + 1;
-      const _y = yLine + textHeight / 3;
+    const drawDecorationLine = (decorationY: number) => {
       page.drawLine({
-        start: rotatePoint({ x: xLine, y: _y }, pivotPoint, rotate.angle),
-        end: rotatePoint({ x: _x, y: _y }, pivotPoint, rotate.angle),
+        start: rotatePoint({ x: xLine, y: decorationY }, pivotPoint, rotate.angle),
+        end: rotatePoint(
+          { x: xLine + textWidth + 1, y: decorationY },
+          pivotPoint,
+          rotate.angle,
+        ),
         thickness: (1 / 12) * fontSize,
-        color: color,
+        color,
         opacity,
       });
+    };
+
+    if (schema.strikethrough && textWidth > 0) {
+      drawDecorationLine(yLine + textHeight / 3);
     }
 
-    // draw underline
     if (schema.underline && textWidth > 0) {
-      const _x = xLine + textWidth + 1;
-      const _y = yLine - textHeight / 12;
-      page.drawLine({
-        start: rotatePoint({ x: xLine, y: _y }, pivotPoint, rotate.angle),
-        end: rotatePoint({ x: _x, y: _y }, pivotPoint, rotate.angle),
-        thickness: (1 / 12) * fontSize,
-        color: color,
-        opacity,
-      });
+      drawDecorationLine(yLine - textHeight / 12);
     }
 
     if (rotate.angle !== 0) {

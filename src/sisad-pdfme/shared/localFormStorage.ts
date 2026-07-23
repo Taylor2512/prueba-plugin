@@ -16,6 +16,7 @@
  * Para producción con backend, usar la implementación REST del padre.
  */
 import type { ExternalFormStorage } from '../externalForms/externalFormRunner.js';
+import { readJsonStorageValue, resolveBrowserStorage } from './webStorage.js';
 
 // ── Constantes ────────────────────────────────────────────────────────────────
 
@@ -141,13 +142,7 @@ export class LocalFormStorage implements ExternalFormStorage {
   }
 
   private _getUidIndex(recipientId: string): string[] {
-    try {
-      const raw = this.storage.getItem(this._uidIndexKey(recipientId));
-      if (!raw) return [];
-      return JSON.parse(raw) as string[];
-    } catch {
-      return [];
-    }
+    return readJsonStorageValue(this.storage, this._uidIndexKey(recipientId), []);
   }
 
   private _addToUidIndex(recipientId: string, schemaUid: string): void {
@@ -190,13 +185,7 @@ export class LocalFormStorage implements ExternalFormStorage {
   }
 
   private _getRecipientIndex(): string[] {
-    try {
-      const raw = this.storage.getItem(this._recipientIndexKey());
-      if (!raw) return [];
-      return JSON.parse(raw) as string[];
-    } catch {
-      return [];
-    }
+    return readJsonStorageValue(this.storage, this._recipientIndexKey(), []);
   }
 
   private _setItem(key: string, value: string): void {
@@ -211,23 +200,9 @@ export class LocalFormStorage implements ExternalFormStorage {
   }
 
   private _resolveDefaultStorage(): Storage {
-    if (typeof sessionStorage !== 'undefined') return sessionStorage;
-    if (typeof localStorage !== 'undefined') return localStorage;
-    return this._noopStorage();
+    return resolveBrowserStorage('session');
   }
 
-  /** Storage no-op para SSR / entornos sin Web Storage API. */
-  private _noopStorage(): Storage {
-    const map = new Map<string, string>();
-    return {
-      getItem: (k: string) => map.get(k) ?? null,
-      setItem: (k: string, v: string) => { map.set(k, v); },
-      removeItem: (k: string) => { map.delete(k); },
-      clear: () => { map.clear(); },
-      key: (i: number) => Array.from(map.keys())[i] ?? null,
-      get length() { return map.size; },
-    };
-  }
 }
 
 /**

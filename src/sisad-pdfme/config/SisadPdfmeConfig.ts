@@ -9,8 +9,8 @@ import type {
 
 export type {
   SisadPdfmeRecipient,
-  SisadPdfmeRecipientRegistry,
-  SisadPdfmeRecipientsConfig,
+  
+  
 } from '../recipients/recipientTypes.js';
 
 export type SisadPdfmeDocument = {
@@ -96,7 +96,7 @@ export type SisadPdfmeEventName =
   | 'onDocumentChange'
   | 'onSignatureRequest';
 
-export type SisadPdfmeEventHandlers = Partial<
+type SisadPdfmeEventHandlers = Partial<
   Record<
     SisadPdfmeEventName,
     | 'host'

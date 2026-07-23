@@ -1,6 +1,6 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
-export const LAB_ROUTE = '/lab/multi-document-routing';
+const LAB_ROUTE = '/lab/multi-document-routing';
 
 export async function openDesigner(page: Page) {
   await page.goto(LAB_ROUTE);
@@ -24,7 +24,7 @@ export const schemaOnCanvas = (page: Page, nameOrId: string) =>
     `[data-schema-name="${nameOrId}"], [data-schema-id="${nameOrId}"], [data-schema-uid="${nameOrId}"]`,
   ).first();
 
-export const panelTab = (page: Page, label: RegExp | string) => {
+const panelTab = (page: Page, label: RegExp | string) => {
   const named = page.getByRole('tab', { name: label });
   const button = page.getByRole('button', { name: label });
   return named.or(button).last();
@@ -67,6 +67,6 @@ export async function countScrollableDescendants(container: Locator) {
   });
 }
 
-export async function isFeatureVisible(locator: Locator) {
+async function isFeatureVisible(locator: Locator) {
   return (await locator.count()) > 0 && await locator.first().isVisible().catch(() => false);
 }

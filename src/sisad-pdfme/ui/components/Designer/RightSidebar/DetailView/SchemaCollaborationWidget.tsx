@@ -30,7 +30,7 @@ import { resolveSchemaAccessState } from '../../../../collaboration/schemaRuntim
 import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
 import { SCHEMA_CONFIG_COLLAPSE } from './SchemaConnectionsShared.js';
 
-export { joinRecipientIds, normalizeRecipientIds, resolveOwnerMode } from './schemaCollaborationUtils.js';
+;
 
 const WIDGET_ROOT = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-collaboration-widget',

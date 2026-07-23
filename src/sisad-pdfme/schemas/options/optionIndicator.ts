@@ -1,5 +1,5 @@
 export type OptionIndicatorShape = 'square' | 'circle';
-export type OptionIndicatorMode = 'designer' | 'form' | 'viewer' | 'pdf';
+type OptionIndicatorMode = 'designer' | 'form' | 'viewer' | 'pdf';
 
 export type OptionIndicatorParams = {
   shape: OptionIndicatorShape;
@@ -136,40 +136,34 @@ export const createOptionIndicatorElement = (params: OptionIndicatorParams): HTM
   }
 
   const fill = Boolean(params.fill);
-  Object.assign(el.style, fill
+  const baseContainerStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    boxSizing: 'border-box',
+    flexShrink: '0',
+    overflow: 'hidden',
+    pointerEvents: 'none',
+    opacity: params.disabled || params.readOnly ? '0.82' : '1',
+    transition: 'opacity 100ms ease, transform 100ms ease',
+  } as const;
+  const dimensions = fill
     ? {
         height: '100%',
         width: 'auto',
         aspectRatio: '1 / 1',
         maxWidth: '100%',
         maxHeight: '100%',
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        boxSizing: 'border-box',
-        flexShrink: '0',
-        overflow: 'hidden',
-        pointerEvents: 'none',
-        opacity: params.disabled || params.readOnly ? '0.82' : '1',
-        transition: 'opacity 100ms ease, transform 100ms ease',
       }
     : {
         width: `${size}px`,
         height: `${size}px`,
         minWidth: `${size}px`,
         minHeight: `${size}px`,
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        boxSizing: 'border-box',
-        flexShrink: '0',
-        overflow: 'hidden',
-        pointerEvents: 'none',
-        opacity: params.disabled || params.readOnly ? '0.82' : '1',
-        transition: 'opacity 100ms ease, transform 100ms ease',
-      });
+      };
+
+  Object.assign(el.style, baseContainerStyle, dimensions);
 
   const outer = document.createElement('span');
   outer.className = 'sisad-pdfme-option-indicator__outer';

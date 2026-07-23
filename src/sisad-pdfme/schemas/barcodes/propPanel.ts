@@ -7,6 +7,7 @@ import {
 } from './constants.js';
 import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { hexColorFields } from '../propPanel/commonInspectorFields.js';
 
 const defaultColors = {
   backgroundColor: DEFAULT_BARCODE_BG_COLOR,
@@ -199,34 +200,13 @@ export const getPropPanelByBarcodeType = (barcodeType: string): PropPanel<Barcod
 
   return {
     schema: ({ i18n }) => ({
-      barColor: {
-        title: i18n('schemas.barcodes.barColor'),
-        type: 'string',
-        widget: 'color',
-        props: {
-          disabledAlpha: true,
+      ...hexColorFields(
+        {
+          barColor: i18n('schemas.barcodes.barColor'),
+          backgroundColor: i18n('schemas.bgColor'),
         },
-        rules: [
-          {
-            pattern: HEX_COLOR_PATTERN,
-            message: i18n('validation.hexColor'),
-          },
-        ],
-      },
-      backgroundColor: {
-        title: i18n('schemas.bgColor'),
-        type: 'string',
-        widget: 'color',
-        props: {
-          disabledAlpha: true,
-        },
-        rules: [
-          {
-            pattern: HEX_COLOR_PATTERN,
-            message: i18n('validation.hexColor'),
-          },
-        ],
-      },
+        { pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') },
+      ),
       ...(barcodeHasText
         ? {
             textColor: {

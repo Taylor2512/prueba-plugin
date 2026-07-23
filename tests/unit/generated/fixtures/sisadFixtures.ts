@@ -1,4 +1,4 @@
-export const RECIPIENTS = [
+const RECIPIENTS = [
   { id: 'recipient-1', label: 'Cliente Principal', name: 'Cliente Principal', role: 'signer', order: 1, color: '#2563eb' },
   { id: 'recipient-2', label: 'Analista', name: 'Analista', role: 'signer', order: 2, color: '#d946ef' },
   { id: 'recipient-3', label: 'Mesa de entrega', name: 'Mesa de entrega', role: 'coordinator', order: 3, color: '#f97316' },

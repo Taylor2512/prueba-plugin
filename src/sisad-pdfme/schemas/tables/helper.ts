@@ -12,6 +12,7 @@ import {
   VERTICAL_ALIGN_BOTTOM,
 } from '../text/constants.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
+import { hexColorFields, horizontalAlignmentOptions, typographyFields } from '../propPanel/commonInspectorFields.js';
 
 export const getDefaultCellStyles = () => ({
   fontName: undefined,
@@ -51,39 +52,13 @@ export const getCellPropPanelSchema = (arg: {
   const { i18n, fallbackFontName, fontNames, isBody } = arg;
 
   return {
-    fontName: {
-      title: i18n('schemas.text.fontName'),
-      type: 'string',
-      widget: 'select',
-      default: fallbackFontName,
-      placeholder: fallbackFontName,
-      props: { options: fontNames.map((name) => ({ label: name, value: name })) },
-      span: 12,
-    },
-    fontSize: {
-      title: i18n('schemas.text.size'),
-      type: 'number',
-      widget: 'inputNumber',
-      props: { min: 0 },
-      span: 6,
-    },
-    characterSpacing: {
-      title: i18n('schemas.text.spacing'),
-      type: 'number',
-      widget: 'inputNumber',
-      props: { min: 0 },
-      span: 6,
-    },
+    ...typographyFields({ i18n, fallbackFontName, fontNames }),
     alignment: {
       title: i18n('schemas.text.textAlign'),
       type: 'string',
       widget: 'select',
       props: {
-        options: [
-          { label: i18n('schemas.left'), value: ALIGN_LEFT },
-          { label: i18n('schemas.center'), value: ALIGN_CENTER },
-          { label: i18n('schemas.right'), value: ALIGN_RIGHT },
-        ],
+        options: horizontalAlignmentOptions(i18n, { left: ALIGN_LEFT, center: ALIGN_CENTER, right: ALIGN_RIGHT }),
       },
       span: 8,
     },
@@ -107,33 +82,14 @@ export const getCellPropPanelSchema = (arg: {
       props: { step: 0.1, min: 0 },
       span: 8,
     },
-    fontColor: {
-      title: i18n('schemas.textColor'),
-      type: 'string',
-      widget: 'color',
-      props: {
-        disabledAlpha: true,
+    ...hexColorFields(
+      {
+        fontColor: i18n('schemas.textColor'),
+        borderColor: i18n('schemas.borderColor'),
+        backgroundColor: i18n('schemas.backgroundColor'),
       },
-      rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
-    },
-    borderColor: {
-      title: i18n('schemas.borderColor'),
-      type: 'string',
-      widget: 'color',
-      props: {
-        disabledAlpha: true,
-      },
-      rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
-    },
-    backgroundColor: {
-      title: i18n('schemas.backgroundColor'),
-      type: 'string',
-      widget: 'color',
-      props: {
-        disabledAlpha: true,
-      },
-      rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
-    },
+      { pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') },
+    ),
     ...(isBody
       ? {
           alternateBackgroundColor: {
@@ -186,11 +142,11 @@ export const getColumnStylesPropPanelSchema = ({
             type: 'string',
             widget: 'select',
             props: {
-              options: [
-                { label: i18n('schemas.left'), value: ALIGN_LEFT },
-                { label: i18n('schemas.center'), value: ALIGN_CENTER },
-                { label: i18n('schemas.right'), value: ALIGN_RIGHT },
-              ],
+              options: horizontalAlignmentOptions(i18n, {
+                left: ALIGN_LEFT,
+                center: ALIGN_CENTER,
+                right: ALIGN_RIGHT,
+              }),
             },
           },
         }),

@@ -16,7 +16,7 @@ export const buildExampleHref = async (
  * Builds the bundle and triggers a browser download. Returns the object URL
  * (revoke when done). No-op outside the browser.
  */
-export const downloadExampleBundle = async (
+const downloadExampleBundle = async (
   example: ExampleDefinition,
   options: ExampleBundleOptions = {},
 ): Promise<string> => {

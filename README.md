@@ -1,69 +1,35 @@
-# Arquitectura de Agentes IA — SISAD PDFME V4
+# Arquitectura IA optimizada — SISAD PDFME
 
-Este paquete contiene una arquitectura documental completa para coordinar agentes de inteligencia artificial en SISAD PDFME.
+Versión: 4.0  
+Fecha de referencia: 2026-07-22
 
-La arquitectura se centra en:
+Este paquete reorganiza la colaboración entre Codex, Claude y GitHub Copilot alrededor de una única fuente de verdad, carga progresiva de contexto, skills reutilizables, task-cards pequeñas, memoria curada, coordinación Scrum y gates de calidad.
 
-- responsabilidades;
-- alcance;
-- contratos;
-- evidencia;
-- tareas;
-- memoria;
-- revisiones;
-- handoffs;
-- planes;
-- prompts;
-- skills reutilizables.
+## Objetivos
 
-No depende de una estructura particular de ramas, repositorios, carpetas de ejecución o herramientas de control de versiones.
+- Reducir consumo de tokens y relecturas innecesarias.
+- Evitar duplicidad en código, estado, contratos, UI, CSS, pruebas, documentación, prompts y tareas.
+- Mantener el conocimiento durable sin convertir la memoria en un vertedero de logs.
+- Separar planificación, exploración, implementación, validación y revisión.
+- Usar el modelo más económico que pueda resolver cada tarea con calidad.
+- Proteger canvas, multipágina, snapshots, ownership, grupos de opciones y API pública.
 
-## Instalación
+## Inicio
 
-Copia la carpeta `ai/` en la raíz del proyecto:
+1. Leer `AGENTS.md`.
+2. Abrir `.ai/START.md`.
+3. Elegir una task-card o crearla con `.ai/templates/TASK-CARD.md`.
+4. Aplicar `.ai/MODEL-ROUTER.md`.
+5. Cargar solo la ruta, regla, playbook y skill necesarios.
+6. Ejecutar gates y actualizar memoria por delta.
 
-```bash
-cp -R ai /ruta/al/proyecto/
-```
+## Fuente única de verdad
 
-Punto de entrada:
+La carpeta `.ai/` es canónica. `AGENTS.md`, `CLAUDE.md` y `.github/copilot-instructions.md` son adaptadores delgados; no deben copiar el contenido completo de `.ai/`.
 
-```txt
-ai/START.md
-```
+## Contenido
 
-## Jerarquía
-
-```txt
-ai/
-├── governance/
-├── router/
-├── agents/
-├── reviewers/
-├── skills/
-├── context/
-├── rules/
-├── playbooks/
-├── plans/
-├── prompts/
-├── tasks/
-├── memory/
-├── handoffs/
-├── reports/
-├── checklists/
-├── templates/
-└── archive/
-```
-
-## Principios
-
-1. Una tarea por ejecución.
-2. Un agente lógico responsable por dominio.
-3. Contexto mínimo.
-4. Ownership explícito.
-5. Cambios pequeños.
-6. Contratos antes que apariencia.
-7. Evidencia antes que afirmaciones.
-8. Memoria compacta.
-9. Historia archivada.
-10. No inventar rutas, APIs ni resultados.
+- `.ai/`: gobierno, memoria, Scrum, rutas, agentes, playbooks, templates y fuentes.
+- `.agents/skills/`: skills en el estándar abierto `SKILL.md`.
+- `.github/agents/`: perfiles Markdown para Copilot.
+- `.codex/agents/README.md`: plantillas de configuración Codex sin duplicar instrucciones.

@@ -58,58 +58,6 @@ export function useCanvasRenderState(input: CanvasRenderStateInput): CanvasRende
     schemaCount,
     pageCursor,
     documentId,
-    isLoadingDocument = false,
-    isSwitchingDocument = false,
-    switchFromDocId,
-    switchToDocId,
-    isLoadingPage = false,
-    renderError,
-    renderErrorRecoverable = true,
-    pdfLoadError,
-    isCollaborationDisconnected = false,
-    lastSyncAt = 0,
-  } = input;
-
-  return useMemo((): CanvasRenderState => {
-    // 1. Explicit errors take highest priority
-    if (renderError) {
-      return { type: 'render_error', error: renderError, recoverable: renderErrorRecoverable };
-    }
-    if (pdfLoadError) {
-      return { type: 'pdf_load_error', reason: pdfLoadError.reason };
-    }
-
-    // 2. Loading states
-    if (isLoadingDocument) {
-      return { type: 'loading_document' };
-    }
-    if (isSwitchingDocument && switchFromDocId && switchToDocId) {
-      return { type: 'document_switching', fromDocId: switchFromDocId, toDocId: switchToDocId };
-    }
-    if (isLoadingPage) {
-      return { type: 'loading_page' };
-    }
-
-    // 3. Collaboration disconnected (but still functional)
-    if (isCollaborationDisconnected) {
-      return { type: 'collaboration_disconnected', lastSyncAt };
-    }
-
-    // 4. Content-based states
-    if (schemaCount === 0) {
-      // Distinguish between "the page itself is empty" and "no schemas on this page"
-      if (documentId) {
-        return { type: 'empty_page', pageNumber: pageCursor + 1, documentId };
-      }
-      return { type: 'no_schemas', pageNumber: pageCursor + 1 };
-    }
-
-    // 5. Normal operation
-    return { type: 'ready', schemaCount };
-  }, [
-    schemaCount,
-    pageCursor,
-    documentId,
     isLoadingDocument,
     isSwitchingDocument,
     switchFromDocId,
@@ -120,7 +68,26 @@ export function useCanvasRenderState(input: CanvasRenderStateInput): CanvasRende
     pdfLoadError,
     isCollaborationDisconnected,
     lastSyncAt,
-  ]);
+  } = input;
+
+  return useMemo(
+    () => deriveCanvasRenderState(input),
+    [
+      schemaCount,
+      pageCursor,
+      documentId,
+      isLoadingDocument,
+      isSwitchingDocument,
+      switchFromDocId,
+      switchToDocId,
+      isLoadingPage,
+      renderError,
+      renderErrorRecoverable,
+      pdfLoadError,
+      isCollaborationDisconnected,
+      lastSyncAt,
+    ],
+  );
 }
 
 /**

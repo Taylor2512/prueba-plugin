@@ -13,7 +13,7 @@ export type PointArea = {
   pos4: number[];
 };
 
-export type SelectionRegionPageHit = {
+type SelectionRegionPageHit = {
   pageIndex: number;
   pageRect: Rect;
   regionRect: Rect;
@@ -96,9 +96,9 @@ export const pagePointToSchemaPoint = (point: PagePoint): PdfPoint => ({
   y: point.y / ZOOM,
 });
 
-export const pagePointToPdfPoint = (point: PagePoint, _pageSize: Size): PdfPoint => pagePointToSchemaPoint(point);
+const pagePointToPdfPoint = (point: PagePoint, _pageSize: Size): PdfPoint => pagePointToSchemaPoint(point);
 
-export const rectIntersects = (a: DOMRectLike, b: DOMRectLike): boolean =>
+const rectIntersects = (a: DOMRectLike, b: DOMRectLike): boolean =>
   !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
 
 export const resolveSelectionRegion = ({

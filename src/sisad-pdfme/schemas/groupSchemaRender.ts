@@ -15,7 +15,7 @@
 /** Hex → rgba with a given alpha (0–1). Handles both 6 and 3-char hex. */
 import { createOptionIndicatorElement } from './options/optionIndicator.js';
 
-export const hexAlpha = (hex: string, alpha: number): string => {
+const hexAlpha = (hex: string, alpha: number): string => {
   const h = hex.replace('#', '');
   const full = h.length === 3 ? h.split('').map((c) => c + c).join('') : h;
   const r = parseInt(full.slice(0, 2), 16);
@@ -171,7 +171,7 @@ export const buildOptionRow = (opts: {
 };
 
 /** Checkbox indicator (square with optional checkmark). */
-export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElement => {
+const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElement => {
   return createOptionIndicatorElement({
     shape: 'square',
     checked: isChecked,
@@ -183,7 +183,7 @@ export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLS
 };
 
 /** Radio indicator (circle with optional center dot). */
-export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpanElement => {
+const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpanElement => {
   return createOptionIndicatorElement({
     shape: 'circle',
     checked: isSelected,

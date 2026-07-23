@@ -16,4 +16,3 @@ import Preview from './Preview.js';
  */
 export const RuntimeFormPanel = Preview;
 
-export default RuntimeFormPanel;

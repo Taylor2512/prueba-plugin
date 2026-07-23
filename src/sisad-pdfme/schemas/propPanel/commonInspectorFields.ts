@@ -8,28 +8,28 @@ import type { PropPanelSchema } from '@sisad-pdfme/common';
 
 // ── Behavior / basics ──────────────────────────────────────────────────────
 
-export const requiredField = (): PropPanelSchema => ({
+const requiredField = (): PropPanelSchema => ({
   title: 'Obligatorio',
   type: 'boolean',
   widget: 'switch',
   span: 12,
 });
 
-export const readOnlyField = (): PropPanelSchema => ({
+const readOnlyField = (): PropPanelSchema => ({
   title: 'Solo lectura',
   type: 'boolean',
   widget: 'switch',
   span: 12,
 });
 
-export const lockedField = (): PropPanelSchema => ({
+const lockedField = (): PropPanelSchema => ({
   title: 'Bloqueado',
   type: 'boolean',
   widget: 'switch',
   span: 12,
 });
 
-export const restrictChangesField = (): PropPanelSchema => ({
+const restrictChangesField = (): PropPanelSchema => ({
   title: 'Restringir cambios',
   type: 'boolean',
   widget: 'switch',
@@ -44,21 +44,21 @@ export const basicsFields = (): Record<string, PropPanelSchema> => ({
 
 // ── Content ────────────────────────────────────────────────────────────────
 
-export const placeholderTextField = (label = 'Placeholder'): PropPanelSchema => ({
+const placeholderTextField = (label = 'Placeholder'): PropPanelSchema => ({
   title: label,
   type: 'string',
   widget: 'input',
   span: 24,
 });
 
-export const defaultValueField = (label = 'Valor por defecto'): PropPanelSchema => ({
+const defaultValueField = (label = 'Valor por defecto'): PropPanelSchema => ({
   title: label,
   type: 'string',
   widget: 'input',
   span: 24,
 });
 
-export const maxLengthField = (): PropPanelSchema => ({
+const maxLengthField = (): PropPanelSchema => ({
   title: 'Máximo caracteres',
   type: 'number',
   widget: 'inputNumber',
@@ -66,14 +66,14 @@ export const maxLengthField = (): PropPanelSchema => ({
   props: { min: 0, precision: 0 },
 });
 
-export const maskedField = (): PropPanelSchema => ({
+const maskedField = (): PropPanelSchema => ({
   title: 'Ocultar con asteriscos',
   type: 'boolean',
   widget: 'switch',
   span: 12,
 });
 
-export const fixedWidthField = (): PropPanelSchema => ({
+const fixedWidthField = (): PropPanelSchema => ({
   title: 'Anchura fija',
   type: 'boolean',
   widget: 'switch',
@@ -82,7 +82,7 @@ export const fixedWidthField = (): PropPanelSchema => ({
 
 // ── Help / tooltip ─────────────────────────────────────────────────────────
 
-export const tooltipField = (): PropPanelSchema => ({
+const tooltipField = (): PropPanelSchema => ({
   title: 'Ayuda del campo',
   type: 'string',
   widget: 'textarea',
@@ -90,7 +90,7 @@ export const tooltipField = (): PropPanelSchema => ({
   props: { maxLength: 2000, autoSize: { minRows: 2, maxRows: 4 } },
 });
 
-export const helpTextField = (): PropPanelSchema => ({
+const helpTextField = (): PropPanelSchema => ({
   title: 'Descripción del campo',
   type: 'string',
   widget: 'textarea',
@@ -106,7 +106,7 @@ export const helpFields = (): Record<string, PropPanelSchema> => ({
 
 // ── Data label / integrations ──────────────────────────────────────────────
 
-export const dataLabelField = (): PropPanelSchema => ({
+const dataLabelField = (): PropPanelSchema => ({
   title: 'Etiqueta de datos',
   type: 'string',
   widget: 'input',
@@ -114,7 +114,7 @@ export const dataLabelField = (): PropPanelSchema => ({
   props: { autoComplete: 'off' },
 });
 
-export const tabLabelField = (): PropPanelSchema => ({
+const tabLabelField = (): PropPanelSchema => ({
   title: 'Etiqueta de pestaña',
   type: 'string',
   widget: 'input',
@@ -122,7 +122,7 @@ export const tabLabelField = (): PropPanelSchema => ({
   props: { autoComplete: 'off' },
 });
 
-export const fieldKeyField = (): PropPanelSchema => ({
+const fieldKeyField = (): PropPanelSchema => ({
   title: 'Clave del campo',
   type: 'string',
   widget: 'input',
@@ -166,7 +166,7 @@ export const validationTypeField = (): PropPanelSchema => ({
   },
 });
 
-export const validationPatternField = (): PropPanelSchema => ({
+const validationPatternField = (): PropPanelSchema => ({
   title: 'Patrón (regex)',
   type: 'string',
   widget: 'input',
@@ -206,7 +206,7 @@ export const textValidationFields = (): Record<string, PropPanelSchema> => ({
 
 // ── Number format ──────────────────────────────────────────────────────────
 
-export const numberFormatField = (): PropPanelSchema => ({
+const numberFormatField = (): PropPanelSchema => ({
   title: 'Formato',
   type: 'string',
   widget: 'select',
@@ -221,7 +221,7 @@ export const numberFormatField = (): PropPanelSchema => ({
   },
 });
 
-export const currencyField = (): PropPanelSchema => ({
+const currencyField = (): PropPanelSchema => ({
   title: 'Moneda',
   type: 'string',
   widget: 'input',
@@ -229,7 +229,7 @@ export const currencyField = (): PropPanelSchema => ({
   props: { placeholder: 'USD', maxLength: 8 },
 });
 
-export const decimalsField = (): PropPanelSchema => ({
+const decimalsField = (): PropPanelSchema => ({
   title: 'Decimales',
   type: 'number',
   widget: 'inputNumber',
@@ -237,21 +237,21 @@ export const decimalsField = (): PropPanelSchema => ({
   props: { min: 0, max: 10, precision: 0 },
 });
 
-export const thousandSeparatorField = (): PropPanelSchema => ({
+const thousandSeparatorField = (): PropPanelSchema => ({
   title: 'Sep. miles',
   type: 'boolean',
   widget: 'switch',
   span: 12,
 });
 
-export const allowNegativeField = (): PropPanelSchema => ({
+const allowNegativeField = (): PropPanelSchema => ({
   title: 'Permitir negativo',
   type: 'boolean',
   widget: 'switch',
   span: 12,
 });
 
-export const positiveFormatField = (): PropPanelSchema => ({
+const positiveFormatField = (): PropPanelSchema => ({
   title: 'Formato positivo',
   type: 'string',
   widget: 'input',
@@ -259,7 +259,7 @@ export const positiveFormatField = (): PropPanelSchema => ({
   props: { placeholder: '#,##0.00' },
 });
 
-export const negativeFormatField = (): PropPanelSchema => ({
+const negativeFormatField = (): PropPanelSchema => ({
   title: 'Formato negativo',
   type: 'string',
   widget: 'input',
@@ -280,21 +280,21 @@ export const numberFormatFields = (): Record<string, PropPanelSchema> => ({
 
 // ── Permissions ────────────────────────────────────────────────────────────
 
-export const mandatoryField = (): PropPanelSchema => ({
+const mandatoryField = (): PropPanelSchema => ({
   title: 'Obligatorio',
   type: 'boolean',
   widget: 'switch',
   span: 12,
 });
 
-export const editableBySenderField = (): PropPanelSchema => ({
+const editableBySenderField = (): PropPanelSchema => ({
   title: 'Editable por remitente',
   type: 'boolean',
   widget: 'switch',
   span: 12,
 });
 
-export const editableByRecipientField = (): PropPanelSchema => ({
+const editableByRecipientField = (): PropPanelSchema => ({
   title: 'Editable por destinatario',
   type: 'boolean',
   widget: 'switch',
@@ -302,7 +302,7 @@ export const editableByRecipientField = (): PropPanelSchema => ({
 });
 
 /** Convenience: sender permissions block */
-export const permissionsFields = (): Record<string, PropPanelSchema> => ({
+const permissionsFields = (): Record<string, PropPanelSchema> => ({
   mandatory: mandatoryField(),
   editableBySender: editableBySenderField(),
   editableByRecipient: editableByRecipientField(),
@@ -347,3 +347,119 @@ export const COMMON_PROPERTY_MAP: Partial<Record<string, 'general' | 'layout' | 
   editableBySender: 'collaboration',
   editableByRecipient: 'collaboration',
 };
+// ── Shared typography / color definitions ────────────────────────────────
+
+type I18n = (key: string) => string;
+
+const fontNameField = ({
+  title,
+  fallbackFontName,
+  fontNames,
+}: {
+  title: string;
+  fallbackFontName: string;
+  fontNames: string[];
+}): PropPanelSchema => ({
+  title,
+  type: 'string',
+  widget: 'select',
+  default: fallbackFontName,
+  placeholder: fallbackFontName,
+  props: { options: fontNames.map((name) => ({ label: name, value: name })) },
+  span: 12,
+});
+
+const fontSizeField = (
+  title: string,
+  options: { disabled?: boolean; span?: number } = {},
+): PropPanelSchema => ({
+  title,
+  type: 'number',
+  widget: 'inputNumber',
+  props: { min: 0 },
+  span: options.span ?? 6,
+  disabled: options.disabled,
+});
+
+const characterSpacingField = (title: string): PropPanelSchema => ({
+  title,
+  type: 'number',
+  widget: 'inputNumber',
+  props: { min: 0 },
+  span: 6,
+});
+
+export const hexColorField = ({
+  title,
+  pattern,
+  message,
+  required = false,
+}: {
+  title: string;
+  pattern: string | RegExp;
+  message: string;
+  required?: boolean;
+}): PropPanelSchema => ({
+  title,
+  type: 'string',
+  widget: 'color',
+  props: { disabledAlpha: true },
+  ...(required ? { required: true } : {}),
+  rules: [{ pattern, message }],
+});
+
+type HexColorFieldDefinition =
+  | string
+  | { title: string; span?: number; required?: boolean };
+
+export const hexColorFields = (
+  fields: Record<string, HexColorFieldDefinition>,
+  options: { pattern: string | RegExp; message: string },
+): Record<string, PropPanelSchema> =>
+  Object.fromEntries(
+    Object.entries(fields).map(([key, definition]) => {
+      const normalized =
+        typeof definition === 'string' ? { title: definition } : definition;
+      return [
+        key,
+        {
+          ...hexColorField({
+            title: normalized.title,
+            pattern: options.pattern,
+            message: options.message,
+            required: normalized.required,
+          }),
+          ...(normalized.span == null ? {} : { span: normalized.span }),
+        },
+      ];
+    }),
+  );
+
+export const typographyFields = ({
+  i18n,
+  fallbackFontName,
+  fontNames,
+  fontSizeDisabled = false,
+}: {
+  i18n: I18n;
+  fallbackFontName: string;
+  fontNames: string[];
+  fontSizeDisabled?: boolean;
+}): Record<string, PropPanelSchema> => ({
+  fontName: fontNameField({
+    title: i18n('schemas.text.fontName'),
+    fallbackFontName,
+    fontNames,
+  }),
+  fontSize: fontSizeField(i18n('schemas.text.size'), { disabled: fontSizeDisabled }),
+  characterSpacing: characterSpacingField(i18n('schemas.text.spacing')),
+});
+
+export const horizontalAlignmentOptions = (
+  i18n: I18n,
+  values: { left: string; center: string; right: string },
+) => [
+  { label: i18n('schemas.left'), value: values.left },
+  { label: i18n('schemas.center'), value: values.center },
+  { label: i18n('schemas.right'), value: values.right },
+];

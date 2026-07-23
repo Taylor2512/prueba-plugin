@@ -3,10 +3,14 @@ import { normalizeText } from './optionModel.js';
 
 const normalizeOptionIds = (ids: unknown, validIds: Set<string>): string[] => {
   if (!Array.isArray(ids)) return [];
-  return ids
-    .map(normalizeText)
-    .filter((id) => id && validIds.has(id));
+  return ids.map(normalizeText).filter((id) => id && validIds.has(id));
 };
+
+const getValidOptionIds = (options: OptionItem[]): Set<string> =>
+  new Set(options.map((option) => option.optionId));
+
+const normalizeKnownOptionIds = (ids: unknown, options: OptionItem[]): string[] =>
+  normalizeOptionIds(ids, getValidOptionIds(options));
 
 /**
  * Core single-option matcher: resolve a stored value to a known optionId by id
@@ -43,10 +47,9 @@ export const resolveMultiOptionSelection = (
   options: OptionItem[],
   fallback: string[] = [],
 ): string[] => {
-  const validIds = new Set(options.map((option) => option.optionId));
+  const validIds = getValidOptionIds(options);
   const normalized = normalizeOptionIds(schemaSelected, validIds);
-  if (normalized.length > 0) return normalized;
-  return fallback.filter((id) => validIds.has(id));
+  return normalized.length > 0 ? normalized : fallback.filter((id) => validIds.has(id));
 };
 
 export const toggleMultiOptionSelection = (
@@ -58,8 +61,7 @@ export const toggleMultiOptionSelection = (
     maxSelected?: number;
   },
 ): string[] => {
-  const validIds = new Set(options.map((option) => option.optionId));
-  const current = selectedIds.map(normalizeText).filter((id) => id && validIds.has(id));
+  const current = normalizeKnownOptionIds(selectedIds, options);
   const next = new Set(current);
 
   if (next.has(optionId)) {
@@ -86,8 +88,7 @@ export const clampMultiOptionSelection = (
     maxSelected?: number;
   },
 ): string[] => {
-  const validIds = new Set(options.map((option) => option.optionId));
-  const selected = selectedIds.map(normalizeText).filter((id) => id && validIds.has(id));
+  const selected = normalizeKnownOptionIds(selectedIds, options);
 
   if (limits?.maxSelected != null && selected.length > limits.maxSelected) {
     selected.length = limits.maxSelected;

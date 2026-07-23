@@ -37,28 +37,14 @@ export interface ValidationResult {
   errors: string[];
 }
 
-/** Estado interno del designer que se puede serializar */
-export interface DesignerState {
-  templateSchemaVersion?: string;
-  activeDocumentId?: string | null;
-  documents: SnapshotDocument[];
-  uploadedDocuments?: SnapshotDocument[];
-  recipients: SnapshotRecipient[];
-  assignments: SnapshotAssignment[];
-  connectivity?: SnapshotConnectivity;
-  inputs?: Array<Record<string, unknown>>;
-  contributors?: SnapshotContributor[];
-  history?: Array<Record<string, unknown>>;
-  signatureConfig: SignatureConfig;
-  signaturePolicyId?: string | null;
-  signatureMode?: string | null;
-  signatureProviderKey?: string | null;
-  providerConfig: ProviderConfig;
-  delivery?: Record<string, unknown>;
-  message?: Record<string, unknown>;
-  security?: Record<string, unknown>;
-  comments?: OfficialTemplateSnapshot['comments'];
-}
+/**
+ * Estado interno serializable: comparte exactamente el payload operativo del
+ * snapshot oficial, excluyendo identidad, timestamps y metadata de cabecera.
+ */
+export type DesignerState = Omit<
+  OfficialTemplateSnapshot,
+  'version' | 'templateId' | 'createdAt' | 'updatedAt' | 'metadata'
+>;
 
 const normalizeConnectivityRecord = <T extends Record<string, unknown>>(value: unknown): T | undefined => {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;

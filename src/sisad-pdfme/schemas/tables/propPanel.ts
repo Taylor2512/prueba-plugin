@@ -8,6 +8,7 @@ import {
 } from './helper.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { hexColorField } from '../propPanel/commonInspectorFields.js';
 
 export const propPanel: PropPanel<TableSchema> = {
   schema: ({ activeSchema, options, i18n }) => {
@@ -45,15 +46,11 @@ export const propPanel: PropPanel<TableSchema> = {
             props: { min: 0, step: 0.1 },
             step: 1,
           },
-          borderColor: {
+          borderColor: hexColorField({
             title: i18n('schemas.borderColor'),
-            type: 'string',
-            widget: 'color',
-            props: {
-              disabledAlpha: true,
-            },
-            rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
-          },
+            pattern: HEX_COLOR_PATTERN,
+            message: i18n('validation.hexColor'),
+          }),
         },
       },
       headStyles: {

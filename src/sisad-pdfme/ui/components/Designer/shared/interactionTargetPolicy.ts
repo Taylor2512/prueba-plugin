@@ -35,19 +35,19 @@ const matchesSelector = (target: EventTarget | null | undefined, selector: strin
 };
 
 /** Valid schema root = `.sisad-pdfme-ui-custom-selectable[data-schema-id]`. */
-export const isSchemaRootTarget = (element: Element | null | undefined): boolean =>
+const isSchemaRootTarget = (element: Element | null | undefined): boolean =>
   isSchemaRootElement(element);
 
 /** In-schema interactive control (group "+" button, toggle, etc.). */
-export const isDesignerInteractiveTarget = (target: EventTarget | null | undefined): boolean =>
+const isDesignerInteractiveTarget = (target: EventTarget | null | undefined): boolean =>
   matchesSelector(target, INTERACTIVE_CONTROL_SELECTOR) || isDesignerInteractionExcluded(target);
 
 /** Internal option of a checkbox/radio group (carries data-option-id). */
-export const isOptionInternalTarget = (target: EventTarget | null | undefined): boolean =>
+const isOptionInternalTarget = (target: EventTarget | null | undefined): boolean =>
   matchesSelector(target, OPTION_INTERNAL_SELECTOR);
 
 /** The floating "+" add-option button. */
-export const isGroupAddOptionTarget = (target: EventTarget | null | undefined): boolean =>
+const isGroupAddOptionTarget = (target: EventTarget | null | undefined): boolean =>
   matchesSelector(target, GROUP_ADD_OPTION_SELECTOR);
 
 /** Selecto may select this element (schema root only). */

@@ -49,7 +49,7 @@ export type RuntimeMode = 'designer' | 'form' | 'viewer' | 'pdf';
  * Esta razón permite que UI, logs, contadores, inspector y tests expliquen
  * por qué un schema está visible, oculto, editable o readonly.
  */
-export type RuntimeSchemaAccessReason =
+type RuntimeSchemaAccessReason =
   /**
    * El destinatario activo es propietario del schema.
    */

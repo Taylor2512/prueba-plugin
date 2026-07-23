@@ -9,16 +9,14 @@
  * El host entrega recipients UNA vez; nunca construye collaborationContext,
  * ownerColorMap, recipientNameMap ni listas para el AssignmentDialog.
  */
-import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import Designer from '../ui/Designer.js';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
 import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
-import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
 import { useSisadPdfmeController } from './useSisadPdfmeController.js';
-import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
-import { useRecipientRegistry } from '../recipients/useRecipientRegistry.js';
 import { buildCollaborationSyncFromRegistry } from '../recipients/recipientResolver.js';
+import { useSisadPdfmeRecipientRuntime } from './useSisadPdfmeRecipientRuntime.js';
 import type {
   SisadPdfmeAssignmentChangePayload,
   SisadPdfmeRecipient,
@@ -58,22 +56,10 @@ export const SisadPdfmeDesigner = ({
   onAssignmentChange,
 }: DesignerProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const resolvedConfig = useSisadPdfmeConfig(config);
-  const providerValue = useContext(SisadPdfmeContext);
-
-  // Registro único: reutiliza el registry del Provider si existe.
-  const { registry, state: recipientState } = useRecipientRegistry({
-    registry: providerValue?.recipientRegistry ?? null,
-    recipients,
-    adapter: resolvedConfig.adapters.recipients,
-    config: resolvedConfig.config.recipients,
-    activeRecipientId:
-      activeRecipientId !== undefined
-        ? activeRecipientId
-        : resolvedConfig.config.recipients.activeRecipientId ??
-          resolvedConfig.config.collaboration.activeRecipientId ??
-          undefined,
-  });
+  const {
+    resolvedConfig,
+    recipientRegistry: { registry, state: recipientState },
+  } = useSisadPdfmeRecipientRuntime({ config, recipients, activeRecipientId });
 
   // Despacha a config.events (si es función) y al prop equivalente. Se asigna
   // en un effect sin deps para capturar siempre los handlers más recientes.

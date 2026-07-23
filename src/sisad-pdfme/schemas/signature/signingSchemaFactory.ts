@@ -12,7 +12,7 @@ import type { PropPanelSchema } from '@sisad-pdfme/common';
 import type { PropPanelInspectorSectionKey } from '../../common/types.js';
 import type { SchemaCapability } from '../schemaBuilder.js';
 
-export type SigningSchemaKind = 'signature' | 'initials' | 'dateSigned';
+type SigningSchemaKind = 'signature' | 'initials' | 'dateSigned';
 
 export type SigningSchemaFactoryConfig = {
   type: SigningSchemaKind;
@@ -108,7 +108,7 @@ export function createSigningSchemaPlugin(config: SigningSchemaFactoryConfig): P
 /**
  * Backward-compatible alias kept for the existing dateSigned import path.
  */
-export function createTextSigningSchemaPlugin(config: Omit<SigningSchemaFactoryConfig, 'placeholder'> & {
+function createTextSigningSchemaPlugin(config: Omit<SigningSchemaFactoryConfig, 'placeholder'> & {
   placeholder?: string;
 }): Plugin<Schema> {
   return createSigningSchemaPlugin({

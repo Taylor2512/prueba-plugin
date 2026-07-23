@@ -16,7 +16,7 @@ import type { SignaturePolicy } from '../shared/signatureRegistry.js';
 
 // ── Estado del flujo ────────────────────────────────────────────────────────
 
-export interface FlowState {
+interface FlowState {
   /** IDs de destinatarios que ya completaron su turno */
   completedRecipients: string[];
   currentStep: number;
@@ -47,7 +47,7 @@ export interface ExternalFormStorage {
 
 // ── Props del componente runner ─────────────────────────────────────────────
 
-export interface ExternalFormRunnerProps {
+interface ExternalFormRunnerProps {
   snapshot: OfficialTemplateSnapshot;
   currentRecipientId: string;
   flowState: FlowState;
@@ -61,9 +61,9 @@ export interface ExternalFormRunnerProps {
 
 // ── Visibilidad de schemas ──────────────────────────────────────────────────
 
-export type SchemaVisibility = 'editable' | 'readonly' | 'hidden';
+type SchemaVisibility = 'editable' | 'readonly' | 'hidden';
 
-export type ExternalFormSchemaState = {
+type ExternalFormSchemaState = {
   documentId: string;
   pageNumber: number;
   schemaUid: string;
@@ -73,7 +73,7 @@ export type ExternalFormSchemaState = {
   isSignatureSchema: boolean;
 };
 
-export type ExternalFormPageState = {
+type ExternalFormPageState = {
   documentId: string;
   pageNumber: number;
   editableSchemaUids: string[];
@@ -84,7 +84,7 @@ export type ExternalFormPageState = {
   canRenderForm: boolean;
 };
 
-export type ExternalFormDocumentState = {
+type ExternalFormDocumentState = {
   documentId: string;
   name: string;
   order: number;
@@ -166,7 +166,7 @@ const extractSignatureSchema = (schema: SchemaWithDesigner): boolean => {
  * 5. scope === 'recipient' && recipientId no coincide → hidden
  * 6. scope === 'group' → requiere resolución externa (asume editable)
  */
-export function getSchemaVisibility(
+function getSchemaVisibility(
   schemaAssignment: SnapshotAssignment | undefined,
   schemaUid: string,
   isReadonly: boolean | undefined,
@@ -341,7 +341,7 @@ export function resolveExternalFormRuntimeState(
  * Un campo es requerido si su visibilidad es 'editable'.
  * Un campo está completo si storage.hasInput(schemaUid) === true.
  */
-export function areAllRequiredFieldsComplete(
+function areAllRequiredFieldsComplete(
   editableSchemaUids: string[],
   storage: ExternalFormStorage,
 ): boolean {

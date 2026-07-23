@@ -1,0 +1,39 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+
+  "entry": [
+    "src/main.{js,jsx,ts,tsx}!",
+    "server/index.js!",
+    "scripts/quality/**/*.{js,mjs,cjs}",
+    "tests/playwright/**/*.{js,jsx,ts,tsx}"
+  ],
+
+  "project": [
+    "src/**/*.{js,jsx,ts,tsx}!",
+    "server/**/*.{js,jsx,ts,tsx}!",
+    "scripts/**/*.{js,mjs,cjs}",
+    "tests/**/*.{js,jsx,ts,tsx}",
+
+    "!src/generated/**",
+    "!dist/**",
+    "!coverage/**",
+    "!reports/**",
+    "!playwright-report/**",
+    "!test-results/**"
+  ],
+
+  "includeEntryExports": true,
+
+  "rules": {
+    "files": "error",
+    "dependencies": "error",
+    "devDependencies": "error",
+    "unlisted": "error",
+    "binaries": "error",
+    "unresolved": "error",
+    "exports": "error",
+    "types": "warn",
+    "duplicates": "warn",
+    "cycles": "warn"
+  }
+}

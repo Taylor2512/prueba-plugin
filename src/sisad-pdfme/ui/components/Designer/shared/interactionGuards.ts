@@ -260,6 +260,6 @@ export const unlockDesignerSidebarScroll = (release: SidebarScrollLockRelease | 
 /**
  * Detiene la propagación de eventos de puntero en el inspector.
  */
-export const stopInspectorPointerEvent = (e: React.PointerEvent | React.MouseEvent | React.DragEvent) => {
+const stopInspectorPointerEvent = (e: React.PointerEvent | React.MouseEvent | React.DragEvent) => {
   e.stopPropagation();
 };

@@ -11,7 +11,7 @@ import {
 } from '../groupSchemaRender.js';
 import { createOptionIndicatorElement } from './optionIndicator.js';
 
-export type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
+type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
 
 // Designer double-click detection by click timing. The native `dblclick` event
 // is unreliable here: selecting the group re-renders (rebuilds the option DOM)

@@ -170,7 +170,7 @@ const getShortcutPatterns = (shortcut: ShortcutDefinition, platform: ShortcutPla
 
 const getRegisteredShortcuts = () => orderedIds.map((id) => registry.get(id)).filter(Boolean) as ShortcutDefinition[];
 
-export const registerShortcut = (shortcut: ShortcutDefinition): ShortcutDefinition => {
+const registerShortcut = (shortcut: ShortcutDefinition): ShortcutDefinition => {
   if (!registry.has(shortcut.id)) {
     orderedIds.push(shortcut.id);
   }
@@ -178,7 +178,7 @@ export const registerShortcut = (shortcut: ShortcutDefinition): ShortcutDefiniti
   return shortcut;
 };
 
-export const registerShortcuts = (shortcuts: ShortcutDefinition[]): ShortcutDefinition[] => shortcuts.map(registerShortcut);
+const registerShortcuts = (shortcuts: ShortcutDefinition[]): ShortcutDefinition[] => shortcuts.map(registerShortcut);
 
 export const getShortcut = (id: string): ShortcutDefinition | undefined => registry.get(id);
 

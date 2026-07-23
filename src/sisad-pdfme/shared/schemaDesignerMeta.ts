@@ -45,6 +45,32 @@ export interface GroupMeta {
   lockedAsGroup?: boolean;
 }
 
+export interface DesignerAssignment {
+  scope: 'recipient' | 'group' | 'global';
+  recipientIds?: string[];
+  groupIds?: string[];
+}
+
+export interface DesignerOwnership {
+  ownerUserId?: string;
+  ownerRecipientId?: string;
+  editableBy?: string[];
+  readonly?: boolean;
+}
+
+export interface DesignerSignatureSettings {
+  mode?: 'draw' | 'image' | 'p12' | 'provider';
+  providerKey?: string;
+  allowedProviders?: string[];
+}
+
+export interface DesignerIntegrationBinding {
+  provider?: string;
+  envelopeId?: string;
+  tabId?: string;
+  externalRef?: string;
+}
+
 export interface SchemaDesignerMeta {
   /** UUID v4 inmutable — generado en schema.create, nunca regenerado excepto en colisión de import */
   schemaUid: string;
@@ -63,34 +89,13 @@ export interface SchemaDesignerMeta {
   recipientColor?: string;
 
   /** Scope de asignación del schema */
-  assignment?: {
-    scope: 'recipient' | 'group' | 'global';
-    /** recipientIds con acceso explícito (scope === 'recipient') */
-    recipientIds?: string[];
-    /** groupIds con acceso (scope === 'group') */
-    groupIds?: string[];
-  };
+  assignment?: DesignerAssignment;
 
   /** Política de ownership — escrita por DigitalAgreements, leída por guards */
-  ownership?: {
-    /** userId propietario del schema en el contexto de edición */
-    ownerUserId?: string;
-    /** recipientId propietario del schema en el contexto de firma */
-    ownerRecipientId?: string;
-    /** recipientIds que pueden editar el schema */
-    editableBy?: string[];
-    /** Si true, ningún agente puede mutar este schema por ninguna vía */
-    readonly?: boolean;
-  };
+  ownership?: DesignerOwnership;
 
   /** Configuración de firma — no hardcodea el provider, usa clave opaca */
-  signature?: {
-    mode?: 'draw' | 'image' | 'p12' | 'provider';
-    /** Clave del provider registrado en SignatureProviderRegistry */
-    providerKey?: string;
-    /** Lista de providerKeys permitidos para este schema */
-    allowedProviders?: string[];
-  };
+  signature?: DesignerSignatureSettings;
 
   /**
    * Agrupación visual o lógica del schema.
@@ -105,13 +110,7 @@ export interface SchemaDesignerMeta {
    * Completamente opacos para sisad-pdfme — DigitalAgreements los interpreta.
    * Ejemplo: { provider: 'oneshot', envelopeId: 'env-123', tabId: 'tab-456' }
    */
-  integration?: {
-    /** Clave del provider externo — opaca, no interpretada por el runtime */
-    provider?: string;
-    envelopeId?: string;
-    tabId?: string;
-    externalRef?: string;
-  };
+  integration?: DesignerIntegrationBinding;
 
   /**
    * Contador de mutaciones para reconciliación Yjs.
@@ -143,17 +142,8 @@ export interface DesignerCollaboration {
   recipientId?: string;
   recipientName?: string;
   recipientColor?: string;
-  assignment?: {
-    scope: 'recipient' | 'group' | 'global';
-    recipientIds?: string[];
-    groupIds?: string[];
-  };
-  ownership?: {
-    ownerUserId?: string;
-    ownerRecipientId?: string;
-    editableBy?: string[];
-    readonly?: boolean;
-  };
+  assignment?: DesignerAssignment;
+  ownership?: DesignerOwnership;
   lock?: {
     lockedBy?: string;
     lockedByName?: string;
@@ -165,12 +155,7 @@ export interface DesignerCollaboration {
 
 /** Bindings a proveedores externos — opacos para el runtime. */
 export interface DesignerBindings {
-  integration?: {
-    provider?: string;
-    envelopeId?: string;
-    tabId?: string;
-    externalRef?: string;
-  };
+  integration?: DesignerIntegrationBinding;
 }
 
 /** Estado de UI del schema — grupo visual, hints de render. */
@@ -182,11 +167,7 @@ export interface DesignerUI {
 /** Estado de runtime del schema — firma, estado del ciclo de vida. */
 export interface DesignerRuntime {
   state?: string;
-  signature?: {
-    mode?: 'draw' | 'image' | 'p12' | 'provider';
-    providerKey?: string;
-    allowedProviders?: string[];
-  };
+  signature?: DesignerSignatureSettings;
 }
 
 /**

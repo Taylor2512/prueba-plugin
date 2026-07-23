@@ -5,9 +5,9 @@ export type OptionItem = {
   disabled?: boolean;
 };
 
-export type OptionSelectionMode = 'single' | 'multiple';
+type OptionSelectionMode = 'single' | 'multiple';
 
-export interface OptionGroupConfig {
+interface OptionGroupConfig {
   type: string;
   mode: OptionSelectionMode;
   defaultOptions?: OptionItem[];

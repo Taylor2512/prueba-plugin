@@ -1,98 +1,27 @@
-import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
-import { text } from '@sisad-pdfme/schemas'
-import { createSchema, createCommentAnchor, createAuditMetadata } from '@/features/pdfcomponent/labs/builders/schemaFactory'
+import { createLabExample } from '../createLabExample.ts';
 import {
-  createSchemaShowcasePages as createShowcasePagesCore,
-} from '@/features/pdfcomponent/labs/builders/schemaShowcase'
-import {
-  createTemplate,
+  BASIC_SCHEMA_EXAMPLE_OVERRIDES,
   appendTemplatePages,
+  createAuditMetadata,
   createCollaboration,
-} from '@/features/pdfcomponent/labs/builders/exampleTemplate'
-import { createLabExample } from '../createLabExample.ts'
-
-const getTemplatePdfUrl = (fileName) => `/templates/${encodeURIComponent(fileName)}`
+  createCommentAnchor,
+  createStandardTextSchema,
+  createTemplate,
+  createLabSchemaShowcasePages,
+  getTemplatePdfUrl,
+} from './labCatalogFixtures.ts';
 
 const LAB_PDFS = {
   enterprise: getTemplatePdfUrl('test.pdf'),
   multiuser: getTemplatePdfUrl('test.pdf'),
-}
+};
 
-const BASE_COLLABORATION_TIMESTAMP = 1713570000000
+const BASE_COLLABORATION_TIMESTAMP = 1713570000000;
 
-const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
-  .slice()
-  .sort((a, b) => `${a.category}-${a.label}`.localeCompare(`${b.category}-${b.label}`))
+const createTextSchema = createStandardTextSchema;
 
-const EXCLUDED_SHOWCASE_SCHEMA_TYPES = new Set(['qrcode'])
-const SHOWCASE_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((definition) => {
-  const type = String(definition?.type || '').toLowerCase()
-  return !EXCLUDED_SHOWCASE_SCHEMA_TYPES.has(type)
-})
-
-const resolvePosition = (basePosition, overrides = {}) => {
-  const nextPosition = { ...(basePosition || {}) }
-  const overridePosition = overrides.position && typeof overrides.position === 'object' ? overrides.position : null
-
-  if (overridePosition) {
-    if (overridePosition.x != null) nextPosition.x = overridePosition.x
-    if (overridePosition.y != null) nextPosition.y = overridePosition.y
-  }
-  if (overrides.x != null) nextPosition.x = overrides.x
-  if (overrides.y != null) nextPosition.y = overrides.y
-  return nextPosition
-}
-
-const createSchemaFactory = (baseSchema, basePosition, defaults = {}) => (overrides = {}) => {
-  const { position, x, y, ...rest } = overrides
-  return createSchema(baseSchema, {
-    ...defaults,
-    ...rest,
-    position: resolvePosition(basePosition, { position, x, y }),
-  })
-}
-
-const createTextSchema = createSchemaFactory(text.propPanel.defaultSchema, { x: 18, y: 24 }, {
-  width: 92,
-  height: 12,
-  fontSize: 12,
-})
-
-const createSchemaShowcasePages = (config) =>
-  createShowcasePagesCore({ ...config, overridesByType: SCHEMA_EXAMPLE_OVERRIDES })
-
-const createLabSchemaShowcasePages = ({
-  scope,
-  ownerRecipientId,
-  fileId,
-  fileTemplateId,
-  startingPageNumber,
-  auditOffset,
-  definitions = SHOWCASE_SCHEMA_DEFINITIONS,
-}) =>
-  createSchemaShowcasePages({
-    definitions,
-    scope,
-    ownerRecipientId,
-    fileId,
-    fileTemplateId,
-    startingPageNumber,
-    auditOffset,
-  })
-
-const SCHEMA_EXAMPLE_OVERRIDES = {
-  text: {
-    name: 'customer_full_name',
-    content: 'Taylor Demo',
-    width: 92,
-    height: 12,
-  },
-  signature: {
-    name: 'review_signature',
-    width: 60,
-    height: 24,
-  },
-}
+const createCollaborationShowcasePages = (config) =>
+  createLabSchemaShowcasePages(config, BASIC_SCHEMA_EXAMPLE_OVERRIDES);
 
 const enterpriseCollaborationTemplate = createTemplate([
   [
@@ -142,7 +71,7 @@ const enterpriseCollaborationTemplate = createTemplate([
   ],
 ], { basePdf: LAB_PDFS.enterprise, pageCount: 2 })
 
-const multiuserShowcasePages = createLabSchemaShowcasePages({
+const multiuserShowcasePages = createCollaborationShowcasePages({
   scope: 'multiuser-showcase',
   ownerRecipientId: 'sales-user-1',
   fileId: 'multiuser-contract',
@@ -249,7 +178,7 @@ const multiuserCollaborationTemplate = appendTemplatePages(
   multiuserShowcasePages,
 )
 
-const collaborationShowcasePages = createLabSchemaShowcasePages({
+const collaborationShowcasePages = createCollaborationShowcasePages({
   scope: 'collaboration-showcase',
   ownerRecipientId: 'ops-user-1',
   fileId: 'enterprise-contract',

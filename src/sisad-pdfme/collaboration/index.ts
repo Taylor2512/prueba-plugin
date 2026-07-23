@@ -8,6 +8,7 @@ import {
   type SchemaForUI,
   type Template,
 } from '@sisad-pdfme/common';
+import { findSchemaInPages } from '../common/schemaPageTraversal.js';
 
 /**
  * Estado colaborativo soportado por este módulo.
@@ -145,25 +146,9 @@ const findSchema = (state: CollaborationState, schemaUid: string) => {
 
   if (!normalizedSchemaUid) return null;
 
-  const pages = getSchemaPages(state);
-
-  for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
-    const page = pages[pageIndex] || [];
-
-    for (let schemaIndex = 0; schemaIndex < page.length; schemaIndex += 1) {
-      const schema = page[schemaIndex];
-
-      const currentSchemaUid = normalizeText(
-        schema.schemaUid || schema.id || schema.name,
-      );
-
-      if (currentSchemaUid === normalizedSchemaUid) {
-        return schema;
-      }
-    }
-  }
-
-  return null;
+  return findSchemaInPages(getSchemaPages(state), (schema) =>
+    normalizeText(schema.schemaUid || schema.id || schema.name) === normalizedSchemaUid,
+  );
 };
 
 /**

@@ -1,196 +1,28 @@
-import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
-import { text, select, checkbox } from '@sisad-pdfme/schemas'
-import { createSchema, createCommentAnchor, createAuditMetadata } from '@/features/pdfcomponent/labs/builders/schemaFactory'
+import { createLabExample } from '../createLabExample.ts';
 import {
-  createSchemaShowcasePages as createShowcasePagesCore,
-} from '@/features/pdfcomponent/labs/builders/schemaShowcase'
-import {
-  createTemplate,
   appendTemplatePages,
+  createAuditMetadata,
   createCollaboration,
-} from '@/features/pdfcomponent/labs/builders/exampleTemplate'
-import { createLabExample } from '../createLabExample.ts'
-
-const getTemplatePdfUrl = (fileName) => `/templates/${encodeURIComponent(fileName)}`
+  createCommentAnchor,
+  createStandardCheckboxSchema,
+  createStandardSelectSchema,
+  createStandardTextSchema,
+  createTemplate,
+  createLabSchemaShowcasePages,
+  EXTENDED_SCHEMA_EXAMPLE_OVERRIDES,
+  getTemplatePdfUrl,
+} from './labCatalogFixtures.ts';
 
 const LAB_PDFS = {
   generator: getTemplatePdfUrl('test.pdf'),
-}
+};
 
-const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
-  .slice()
-  .sort((a, b) => `${a.category}-${a.label}`.localeCompare(`${b.category}-${b.label}`))
+const createTextSchema = createStandardTextSchema;
+const createSelectSchema = createStandardSelectSchema;
+const createCheckboxSchema = createStandardCheckboxSchema;
 
-const EXCLUDED_SHOWCASE_SCHEMA_TYPES = new Set(['qrcode'])
-const SHOWCASE_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((definition) => {
-  const type = String(definition?.type || '').toLowerCase()
-  return !EXCLUDED_SHOWCASE_SCHEMA_TYPES.has(type)
-})
-
-const resolvePosition = (basePosition, overrides = {}) => {
-  const nextPosition = { ...(basePosition || {}) }
-  const overridePosition = overrides.position && typeof overrides.position === 'object' ? overrides.position : null
-
-  if (overridePosition) {
-    if (overridePosition.x != null) nextPosition.x = overridePosition.x
-    if (overridePosition.y != null) nextPosition.y = overridePosition.y
-  }
-  if (overrides.x != null) nextPosition.x = overrides.x
-  if (overrides.y != null) nextPosition.y = overrides.y
-  return nextPosition
-}
-
-const createSchemaFactory = (baseSchema, basePosition, defaults = {}) => (overrides = {}) => {
-  const { position, x, y, ...rest } = overrides
-  return createSchema(baseSchema, {
-    ...defaults,
-    ...rest,
-    position: resolvePosition(basePosition, { position, x, y }),
-  })
-}
-
-const createTextSchema = createSchemaFactory(text.propPanel.defaultSchema, { x: 18, y: 24 }, {
-  width: 92,
-  height: 12,
-  fontSize: 12,
-})
-
-const createSelectSchema = createSchemaFactory(select.propPanel.defaultSchema, { x: 18, y: 46 }, {
-  width: 92,
-  height: 12,
-})
-
-const createCheckboxSchema = createSchemaFactory(checkbox.propPanel.defaultSchema, { x: 18, y: 66 }, {
-  width: 8,
-  height: 8,
-})
-
-const SCHEMA_EXAMPLE_OVERRIDES = {
-  text: {
-    name: 'customer_full_name',
-    content: 'Taylor Demo',
-    width: 92,
-    height: 12,
-  },
-  multiVariableText: {
-    name: 'approval_summary',
-    text: 'Cliente {customer_name} · Plan {plan}',
-    content: '{customer_name}',
-    width: 110,
-    height: 14,
-  },
-  select: {
-    name: 'contract_stage',
-    content: 'Aprobado',
-    options: ['Pendiente', 'Aprobado', 'Rechazado'],
-    width: 92,
-    height: 12,
-  },
-  checkbox: {
-    name: 'accept_terms',
-    content: 'true',
-    width: 8,
-    height: 8,
-  },
-  radioGroup: {
-    name: 'notify_customer',
-    groupId: 'delivery-notifications',
-    group: 'delivery-notifications',
-    groupName: 'Notificaciones de entrega',
-    content: 'option_1',
-    selectedOptionId: 'option_1',
-    defaultSelectedOptionId: 'option_1',
-    options: [
-      { optionId: 'option_1', label: 'Sí' },
-      { optionId: 'option_2', label: 'No' },
-    ],
-    width: 82,
-    height: 18,
-  },
-  checkboxGroup: {
-    name: 'preferences',
-    options: [
-      { optionId: 'opt_1', label: 'Opción A' },
-      { optionId: 'opt_2', label: 'Opción B' },
-      { optionId: 'opt_3', label: 'Opción C' },
-    ],
-    selectedOptionIds: ['opt_1'],
-    width: 92,
-    height: 12,
-  },
-  signature: {
-    name: 'review_signature',
-    width: 60,
-    height: 24,
-  },
-  image: {
-    name: 'company_logo',
-    width: 42,
-    height: 42,
-  },
-  svg: {
-    name: 'process_icon',
-    width: 42,
-    height: 42,
-  },
-  line: {
-    name: 'divider_line',
-    width: 94,
-    height: 0.75,
-  },
-  rectangle: {
-    name: 'highlight_box',
-    width: 94,
-    height: 32,
-  },
-  ellipse: {
-    name: 'approval_badge',
-    width: 52,
-    height: 28,
-  },
-  table: {
-    name: 'line_items',
-    width: 155,
-    height: 28,
-  },
-  dateTime: {
-    name: 'approval_timestamp',
-    width: 68,
-    height: 12,
-  },
-  date: {
-    name: 'approval_date',
-    width: 54,
-    height: 12,
-  },
-  time: {
-    name: 'approval_time',
-    width: 36,
-    height: 12,
-  },
-}
-
-const createSchemaShowcasePages = (config) =>
-  createShowcasePagesCore({ ...config, overridesByType: SCHEMA_EXAMPLE_OVERRIDES })
-
-const createLabSchemaShowcasePages = ({
-  scope,
-  ownerRecipientId,
-  fileId,
-  fileTemplateId,
-  startingPageNumber,
-  auditOffset,
-  definitions = SHOWCASE_SCHEMA_DEFINITIONS,
-}) =>
-  createSchemaShowcasePages({
-    definitions,
-    scope,
-    ownerRecipientId,
-    fileId,
-    fileTemplateId,
-    startingPageNumber,
-    auditOffset,
-  })
+const createGeneratorShowcasePages = (config) =>
+  createLabSchemaShowcasePages(config, EXTENDED_SCHEMA_EXAMPLE_OVERRIDES);
 
 const generatorRuntimeTemplate = createTemplate([
   [
@@ -238,7 +70,7 @@ const generatorRuntimeTemplate = createTemplate([
   ],
 ], { basePdf: LAB_PDFS.generator, pageCount: 3 })
 
-const generatorShowcasePages = createLabSchemaShowcasePages({
+const generatorShowcasePages = createGeneratorShowcasePages({
   scope: 'generator-showcase',
   ownerRecipientId: 'generator-user-1',
   startingPageNumber: generatorRuntimeTemplate.schemas.length + 1,

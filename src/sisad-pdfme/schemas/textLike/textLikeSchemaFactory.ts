@@ -4,8 +4,12 @@
  * Normalizes SVGElement | string returned by renderLucideIcon to plain string
  * to satisfy Plugin<Schema>.icon: string.
  */
-import { cloneDeep } from '@sisad-pdfme/common';
-import type { Plugin, Schema } from '@sisad-pdfme/common';
+import {
+  cloneDeep,
+  type Plugin,
+  type PropPanelSchema,
+  type Schema,
+} from '@sisad-pdfme/common';
 import text from '../text/index.js';
 import { createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
@@ -15,7 +19,6 @@ import {
   dataLabelFields,
   COMMON_PROPERTY_MAP,
 } from '../propPanel/commonInspectorFields.js';
-import type { PropPanelSchema } from '@sisad-pdfme/common';
 
 export type TextLikePresetConfig = {
   type: string;

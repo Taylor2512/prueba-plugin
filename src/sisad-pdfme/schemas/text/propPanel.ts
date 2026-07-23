@@ -28,6 +28,8 @@ import {
   dataLabelFields,
   textValidationFields,
   COMMON_PROPERTY_MAP,
+  hexColorFields,
+  typographyFields,
 } from '../propPanel/commonInspectorFields.js';
 
 const UseDynamicFontSize = (props: PropPanelWidgetProps) => {
@@ -67,30 +69,12 @@ export const propPanel: PropPanel<TextSchema> = {
     );
 
     const textSchema: Record<string, PropPanelSchema> = {
-      fontName: {
-        title: i18n('schemas.text.fontName'),
-        type: 'string',
-        widget: 'select',
-        default: fallbackFontName,
-        placeholder: fallbackFontName,
-        props: { options: fontNames.map((name) => ({ label: name, value: name })) },
-        span: 12,
-      },
-      fontSize: {
-        title: i18n('schemas.text.size'),
-        type: 'number',
-        widget: 'inputNumber',
-        span: 6,
-        disabled: enableDynamicFont,
-        props: { min: 0 },
-      },
-      characterSpacing: {
-        title: i18n('schemas.text.spacing'),
-        type: 'number',
-        widget: 'inputNumber',
-        span: 6,
-        props: { min: 0 },
-      },
+      ...typographyFields({
+        i18n,
+        fallbackFontName,
+        fontNames,
+        fontSizeDisabled: enableDynamicFont,
+      }),
       formatter: getExtraFormatterSchema(i18n),
       lineHeight: {
         title: i18n('schemas.text.lineHeight'),
@@ -133,34 +117,13 @@ export const propPanel: PropPanel<TextSchema> = {
           },
         },
       },
-      fontColor: {
-        title: i18n('schemas.textColor'),
-        type: 'string',
-        widget: 'color',
-        props: {
-          disabledAlpha: true,
+      ...hexColorFields(
+        {
+          fontColor: i18n('schemas.textColor'),
+          backgroundColor: i18n('schemas.bgColor'),
         },
-        rules: [
-          {
-            pattern: HEX_COLOR_PATTERN,
-            message: i18n('validation.hexColor'),
-          },
-        ],
-      },
-      backgroundColor: {
-        title: i18n('schemas.bgColor'),
-        type: 'string',
-        widget: 'color',
-        props: {
-          disabledAlpha: true,
-        },
-        rules: [
-          {
-            pattern: HEX_COLOR_PATTERN,
-            message: i18n('validation.hexColor'),
-          },
-        ],
-      },
+        { pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') },
+      ),
     };
 
     return {

@@ -1,6 +1,6 @@
 export type ShortcutPlatform = 'mac' | 'windows' | 'linux';
 
-export type ShortcutScope =
+type ShortcutScope =
   | 'global'
   | 'canvas'
   | 'selection'

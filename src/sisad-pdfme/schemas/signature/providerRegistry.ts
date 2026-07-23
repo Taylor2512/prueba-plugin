@@ -159,6 +159,20 @@ export const validateSignatureProviderConfig = (
   return errors;
 };
 
+const createLocalProviderCapabilities = (
+  overrides: Partial<SignatureProviderDefinition['capabilities']> = {},
+): SignatureProviderDefinition['capabilities'] => ({
+  supportsVisibleSignature: true,
+  supportsWebhook: false,
+  supportsPolling: false,
+  supportsCertificateMetadata: false,
+  supportsReason: false,
+  supportsLocation: false,
+  supportsOtp: false,
+  supportsBiometric: false,
+  ...overrides,
+});
+
 registerSignatureProviders([
   {
     key: 'local_draw',
@@ -166,16 +180,7 @@ registerSignatureProviders([
     description: 'Renderizado interno para firma dibujada.',
     internal: true,
     badges: ['local'],
-    capabilities: {
-      supportsVisibleSignature: true,
-      supportsWebhook: false,
-      supportsPolling: false,
-      supportsCertificateMetadata: false,
-      supportsReason: false,
-      supportsLocation: false,
-      supportsOtp: false,
-      supportsBiometric: false,
-    },
+    capabilities: createLocalProviderCapabilities(),
     defaultConfig: {},
   },
   {
@@ -184,16 +189,7 @@ registerSignatureProviders([
     description: 'Renderizado interno para firma por imagen.',
     internal: true,
     badges: ['local'],
-    capabilities: {
-      supportsVisibleSignature: true,
-      supportsWebhook: false,
-      supportsPolling: false,
-      supportsCertificateMetadata: false,
-      supportsReason: false,
-      supportsLocation: false,
-      supportsOtp: false,
-      supportsBiometric: false,
-    },
+    capabilities: createLocalProviderCapabilities(),
     defaultConfig: {},
   },
   {
@@ -202,16 +198,11 @@ registerSignatureProviders([
     description: 'Configuracion local para firma con certificado P12.',
     internal: true,
     badges: ['local', 'p12'],
-    capabilities: {
-      supportsVisibleSignature: true,
-      supportsWebhook: false,
-      supportsPolling: false,
+    capabilities: createLocalProviderCapabilities({
       supportsCertificateMetadata: true,
       supportsReason: true,
       supportsLocation: true,
-      supportsOtp: false,
-      supportsBiometric: false,
-    },
+    }),
     defaultConfig: {},
   },
 ]);

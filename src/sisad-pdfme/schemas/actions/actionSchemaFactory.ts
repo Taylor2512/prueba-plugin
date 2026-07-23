@@ -9,7 +9,7 @@ import type { ActionSchemaKind, SemanticTone, SisadSchemaBase } from '../shared/
 import { applyFieldChrome } from '../shared/fieldChrome.js';
 import { createSchemaPart } from '../shared/schemaDom.js';
 
-export type { ActionSchemaKind, SemanticTone };
+;
 
 // ─── Note container ───────────────────────────────────────────────────────────
 

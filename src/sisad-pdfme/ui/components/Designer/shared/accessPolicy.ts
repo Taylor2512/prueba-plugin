@@ -32,7 +32,7 @@ export type SchemaAccessState = {
 /**
  * Alias de compatibilidad para el contrato previo del canvas.
  */
-export type AccessState = SchemaAccessState;
+type AccessState = SchemaAccessState;
 
 type SchemaWithLock = Schema & {
   lockedByActorId?: string | null;
@@ -121,14 +121,14 @@ export function isTransformable(access: Pick<SchemaAccessState, 'isMovable' | 'i
 /**
  * Compatibilidad para callers que solo necesitan saber si el schema puede editarse.
  */
-export function isContentEditable(access: Pick<SchemaAccessState, 'isEditable' | 'isLockedByOther'>) {
+function isContentEditable(access: Pick<SchemaAccessState, 'isEditable' | 'isLockedByOther'>) {
   return !access.isLockedByOther && access.isEditable;
 }
 
 /**
  * Resuelve solo los booleanos básicos para compatibilidad legacy si fuera necesario.
  */
-export function resolveSchemaAccess(schema: SchemaWithLock, userId?: string) {
+function resolveSchemaAccess(schema: SchemaWithLock, userId?: string) {
   const lockedBy = schema.lockedByActorId;
   const isLockedByOther = !!lockedBy && lockedBy !== userId;
   return {

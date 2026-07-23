@@ -10,7 +10,7 @@ export type CreateTemplateOptions = {
   pageCount?: number;
 };
 
-export type TemplatePage = Template['schemas'][number];
+type TemplatePage = Template['schemas'][number];
 
 export type UploadedDocument = {
   id: string;

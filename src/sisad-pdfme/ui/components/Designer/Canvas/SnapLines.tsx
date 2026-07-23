@@ -224,7 +224,7 @@ export default SnapLines;
  * @param others   Other elements on the page (mm)
  * @param threshold Snap threshold in mm (default 2)
  */
-export function computeSnapLines(
+function computeSnapLines(
   dragged: { x: number; y: number; width: number; height: number },
   page: { width: number; height: number },
   others: Array<{ x: number; y: number; width: number; height: number }>,

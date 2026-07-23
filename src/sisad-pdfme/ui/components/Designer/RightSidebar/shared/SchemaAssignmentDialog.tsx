@@ -22,7 +22,7 @@ import { resolveSchemaUid } from '../../shared/schemaAssignmentService.js';
 import { resetDesignerTransientInteractionState } from '../../shared/designerInteractionReset.js';
 
 /** Razón normalizada de cierre del modal (lifecycle único). */
-export type SchemaAssignmentCloseReason =
+type SchemaAssignmentCloseReason =
   | 'cancel'
   | 'x'
   | 'escape'
@@ -33,7 +33,7 @@ export type SchemaAssignmentCloseReason =
 /**
  * Props del modal de reasignación.
  */
-export type SchemaAssignmentDialogProps = {
+type SchemaAssignmentDialogProps = {
   open: boolean;
   selectedSchemas: SchemaForUI[];
   recipients: CollaborationRecipientOption[];

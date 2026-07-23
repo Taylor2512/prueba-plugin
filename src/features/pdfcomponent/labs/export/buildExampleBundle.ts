@@ -7,7 +7,7 @@ import type { LabHostExample } from '@/features/pdfcomponent/integration/normali
 import { normalizeLabHostData } from '@/features/pdfcomponent/integration/normalizeLabHostData';
 
 /** Inlines a template's basePdf as a base64 data string. */
-export const inlineTemplateBasePdf = async (template: Template) => {
+const inlineTemplateBasePdf = async (template: Template) => {
   if (!template) return template;
   const nextTemplate = cloneDeep(template);
   nextTemplate.basePdf = await getB64BasePdf(
@@ -17,7 +17,7 @@ export const inlineTemplateBasePdf = async (template: Template) => {
 };
 
 /** Inlines basePdfs for every uploaded document in runtime options. */
-export const inlineRuntimeOptionsBasePdfs = async (runtimeOptions: ExampleRuntimeOptions | null | undefined) => {
+const inlineRuntimeOptionsBasePdfs = async (runtimeOptions: ExampleRuntimeOptions | null | undefined) => {
   if (!runtimeOptions) return null;
   const next = cloneDeep(runtimeOptions) as ExampleRuntimeOptions;
   if (!Array.isArray(next.uploadedDocuments) || next.uploadedDocuments.length === 0) {

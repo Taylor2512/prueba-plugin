@@ -17,6 +17,7 @@ import {
   resolveCommentInSchema,
   updateCommentInSchema,
 } from '@sisad-pdfme/common';
+import { forEachSchemaInPages } from '../common/schemaPageTraversal.js';
 
 /**
  * Entrada parcial para actualizar la posición o asociación de un anchor.
@@ -99,42 +100,43 @@ const normalizeText = (value: unknown) => String(value || '').trim();
 const updateCommentAnchorValues = (
   anchor: Record<string, unknown> = {},
   updates: AnchorUpdateInput = {},
-) => ({
-  ...anchor,
+) => {
+  const nextAnchor: Record<string, unknown> = { ...anchor };
 
-  /**
-   * Actualiza coordenada horizontal del comentario.
-   */
-  ...(Number.isFinite(updates.x) ? { x: Number(updates.x) } : {}),
+  if (Number.isFinite(updates.x)) nextAnchor.x = Number(updates.x);
+  if (Number.isFinite(updates.y)) nextAnchor.y = Number(updates.y);
 
-  /**
-   * Actualiza coordenada vertical del comentario.
-   */
-  ...(Number.isFinite(updates.y) ? { y: Number(updates.y) } : {}),
+  const fileId = normalizeText(updates.fileId);
+  if (fileId) nextAnchor.fileId = fileId;
 
-  /**
-   * Actualiza el archivo/documento al que pertenece el comentario.
-   */
-  ...(normalizeText(updates.fileId)
-    ? { fileId: normalizeText(updates.fileId) }
-    : {}),
+  if (Number.isFinite(updates.pageNumber) && Number(updates.pageNumber) > 0) {
+    nextAnchor.pageNumber = Math.trunc(Number(updates.pageNumber));
+  }
 
-  /**
-   * Actualiza la página del comentario.
-   *
-   * La página se guarda como número entero positivo.
-   */
-  ...(Number.isFinite(updates.pageNumber) && Number(updates.pageNumber) > 0
-    ? { pageNumber: Math.trunc(Number(updates.pageNumber)) }
-    : {}),
+  if (Object.prototype.hasOwnProperty.call(updates, 'schemaUid')) {
+    const schemaUid = normalizeText(updates.schemaUid);
+    if (schemaUid) nextAnchor.schemaUid = schemaUid;
+    else delete nextAnchor.schemaUid;
+  }
 
-  /**
-   * Asocia el anchor a un schema específico.
-   */
-  ...(normalizeText(updates.schemaUid)
-    ? { schemaUid: normalizeText(updates.schemaUid) }
-    : {}),
-});
+  return nextAnchor;
+};
+
+const mapTopLevelCommentsById = (
+  template: Template,
+  normalizedCommentId: string,
+  updater: (entry: PdfCommentEntry) => PdfCommentEntry,
+) => {
+  const entries = Array.isArray(template.pdfComments)
+    ? (template.pdfComments as PdfCommentEntry[])
+    : [];
+
+  template.pdfComments = entries.map((entry) =>
+    normalizeText(entry?.id || entry?.comment?.id) === normalizedCommentId
+      ? updater(entry)
+      : entry,
+  );
+};
 
 /**
  * Obtiene todos los comentarios asociados a un documento/archivo.
@@ -269,79 +271,34 @@ export const moveCommentAnchor = (
   const next = cloneDeep(template) as Template;
   const pages = next.schemas || [];
 
-  /**
-   * Recorre todas las páginas y schemas para actualizar comentarios
-   * embebidos en schemas.
-   */
-  for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
-    const page = pages[pageIndex] || [];
-
-    for (let schemaIndex = 0; schemaIndex < page.length; schemaIndex += 1) {
-      const schema = page[schemaIndex] as SchemaForUI;
-      let changed = false;
-
-      /**
-       * Actualiza schema.comments[] cuando encuentra el commentId.
-       */
-      const comments = (schema.comments || []).map((comment) => {
-        if (normalizeText(comment.id) !== normalizedCommentId) return comment;
-
-        changed = true;
-
-        return {
-          ...comment,
-          anchor: updateCommentAnchorValues(
-            comment.anchor as Record<string, unknown>,
-            updates,
-          ) as CommentAnchor,
-        };
-      });
-
-      /**
-       * Actualiza schema.commentAnchors[] cuando encuentra el commentId.
-       *
-       * Nota:
-       * Aquí se compara anchor.id contra commentId.
-       */
-      const commentAnchors = (schema.commentAnchors || []).map((anchor) => {
-        if (normalizeText(anchor.id) !== normalizedCommentId) return anchor;
-
-        changed = true;
-
-        return updateCommentAnchorValues(
-          anchor as Record<string, unknown>,
+  /** Actualiza comentarios embebidos en cada schema. */
+  forEachSchemaInPages(pages as SchemaForUI[][], ({ schema, page, schemaIndex }) => {
+    let changed = false;
+    const comments = (schema.comments || []).map((comment) => {
+      if (normalizeText(comment.id) !== normalizedCommentId) return comment;
+      changed = true;
+      return {
+        ...comment,
+        anchor: updateCommentAnchorValues(
+          comment.anchor as Record<string, unknown>,
           updates,
-        ) as CommentAnchor;
-      });
+        ) as CommentAnchor,
+      };
+    });
+    const commentAnchors = (schema.commentAnchors || []).map((anchor) => {
+      if (normalizeText(anchor.id) !== normalizedCommentId) return anchor;
+      changed = true;
+      return updateCommentAnchorValues(
+        anchor as Record<string, unknown>,
+        updates,
+      ) as CommentAnchor;
+    });
 
-      /**
-       * Solo reemplaza el schema si realmente hubo cambios.
-       */
-      if (changed) {
-        page[schemaIndex] = {
-          ...schema,
-          comments,
-          commentAnchors,
-        };
-      }
-    }
-  }
+    if (changed) page[schemaIndex] = { ...schema, comments, commentAnchors };
+  });
 
-  /**
-   * Actualiza comentarios top-level en template.pdfComments.
-   */
-  const nextPdfComments = Array.isArray(next.pdfComments)
-    ? (next.pdfComments as PdfCommentEntry[])
-    : [];
-
-  next.pdfComments = nextPdfComments.map((entry) => {
-    /**
-     * El id puede estar en entry.id o en entry.comment.id.
-     */
-    if (normalizeText(entry?.id || entry?.comment?.id) !== normalizedCommentId) {
-      return entry;
-    }
-
+  /** Actualiza anchor y comment.anchor en la representación top-level. */
+  mapTopLevelCommentsById(next, normalizedCommentId, (entry) => {
     const nextAnchor = updateCommentAnchorValues(
       entry.anchor as Record<string, unknown>,
       updates,
@@ -349,15 +306,7 @@ export const moveCommentAnchor = (
 
     return {
       ...entry,
-
-      /**
-       * Actualiza anchor top-level.
-       */
       anchor: nextAnchor as typeof entry.anchor,
-
-      /**
-       * Mantiene sincronizado comment.anchor.
-       */
       comment: {
         ...entry.comment,
         anchor: nextAnchor as typeof entry.comment.anchor,
@@ -396,10 +345,8 @@ export const attachCommentToField = (
  * - quitar schemaUid del anchor;
  * - dejar el comentario como comentario de página/documento.
  *
- * OJO:
- * Con la implementación actual de updateCommentAnchorValues,
- * pasar schemaUid: '' NO elimina el schemaUid existente porque el helper
- * solo aplica schemaUid cuando normalizeText(updates.schemaUid) tiene valor.
+ * El helper interpreta schemaUid vacío como una desasociación explícita y
+ * elimina la referencia tanto en comentarios embebidos como top-level.
  */
 export const detachCommentFromField = (
   template: Template,
@@ -427,39 +374,17 @@ export const resolveTopLevelComment = (
 
   const next = cloneDeep(template) as Template;
 
-  const nextPdfComments = Array.isArray(next.pdfComments)
-    ? (next.pdfComments as PdfCommentEntry[])
-    : [];
-
-  next.pdfComments = nextPdfComments.map((entry) => {
-    if (normalizeText(entry?.id || entry?.comment?.id) !== normalizedCommentId) {
-      return entry;
-    }
-
-    return {
-      ...entry,
-
-      /**
-       * Marca el anchor como resuelto/no resuelto.
-       *
-       * Esto es útil si la UI pinta el estado desde entry.anchor.
-       */
-      anchor: {
-        ...entry.anchor,
-        resolved,
-      },
-
-      /**
-       * Marca el comentario como resuelto/no resuelto.
-       *
-       * Esto es útil si la UI pinta el estado desde entry.comment.
-       */
-      comment: {
-        ...entry.comment,
-        resolved,
-      },
-    };
-  });
+  mapTopLevelCommentsById(next, normalizedCommentId, (entry) => ({
+    ...entry,
+    anchor: {
+      ...entry.anchor,
+      resolved,
+    },
+    comment: {
+      ...entry.comment,
+      resolved,
+    },
+  }));
 
   return next;
 };
