@@ -1,25 +1,29 @@
-# Alcance SISAD PDFME
+# Alcance
 
-## Incluido
+## Producto
 
-- Designer, Canvas, sidebars, inspector, comandos y overlays.
-- Schemas, familias, plugins, Form, Viewer y Generator.
-- Multipágina, multidocumento, recipients, assignments y colaboración.
-- Snapshot, migración, adapters, configuración y API pública.
-- Laboratorio que valida el componente reusable.
-- Calidad: duplicidad, dead code, wrappers, tipos, rendimiento y pruebas.
+`src/sisad-pdfme` es una librería/componente frontend reutilizable para diseñar, completar, visualizar y generar documentos PDF.
 
-## Excluido salvo task-card explícita
+## Dominios internos
 
-- Reglas de negocio específicas del host SISAD Web.
-- APIs reales de Uanataca, workflows o credenciales.
-- Fork `src/sisad-pdfme/pdf-lib/**` como objetivo de deduplicación propia.
-- Backups, reportes generados y artefactos históricos.
+- configuración y API pública;
+- Designer, Form y Viewer;
+- Canvas e interacciones;
+- schemas y plugins;
+- recipients, asignación y colaboración;
+- documentos y routing;
+- inspector y sidebars;
+- snapshot y persistencia;
+- generator y converter;
+- diseño visual, Tailwind y tokens;
+- pruebas, accesibilidad, rendimiento y distribución.
 
-## Invariantes
+## Fuera del core
 
-- `schemaUid` es identidad técnica estable.
-- Documento y página sobreviven a move, resize, copy/paste y snapshot.
-- Ownership y color persistido no cambian al cambiar el usuario activo.
-- Opciones internas no son schemas independientes.
-- Form/Viewer/Generator consumen el mismo contrato serializable.
+- reglas de negocio del host;
+- endpoints específicos de SISAD-WEB;
+- credenciales;
+- flujos particulares de una empresa;
+- lógica de formularios externos no generalizable.
+
+El host se integra mediante configuración, adapters, callbacks, eventos y contratos públicos.

@@ -1,8 +1,25 @@
 ---
 name: sisad-schema-plugin
-description: Create or refactor a schema plugin/family while preserving Designer, inspector, Form, Viewer, Generator, snapshot, ownership, groups, and tests. Use for schema implementation work.
+description: Crear o cambiar plugins.
+version: "6.0"
+project: sisad-pdfme
 ---
 
-# Schema plugin workflow
+# sisad-schema-plugin
 
-Start from schema family contracts and existing registries. Reuse shared chrome, option behavior and value adapters. Do not create internal options as independent schemas. Preserve schemaUid, document/page routing, owner fields and designer metadata. Validate all runtime surfaces and round-trip.
+## Procedimiento
+
+1. Factory/registry.
+2. Render en todos los modos.
+3. Inspector y valores.
+4. Snapshot roundtrip.
+
+## Evidencia mínima
+
+- rutas y símbolos;
+- test o reproducción;
+- decisión;
+- riesgos;
+- condición de parada.
+
+No cargar esta skill fuera de su dominio.

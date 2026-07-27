@@ -1,22 +1,24 @@
-# Ruta — Form, Viewer y preview
+# Ruta: runtime
 
-## Foco inicial
+**Alcance:** Designer, Form, Viewer, Generator y converter.  
+**Owner recomendado:** Runtime Architect
 
-- `Form.tsx`
-- `Viewer.tsx`
-- `Preview`
-- `runtime`
+## Cargar
 
-## Reglas
+- task-card;
+- AGENTS local;
+- símbolos afectados;
+- pruebas focales;
+- una skill relevante.
 
-- Compartir shell paginado.
-- Mantener métodos públicos.
-- No duplicar adaptación de recipients.
+## Comprobar
 
-## Skill principal
+- mode separation;
+- browser/node;
+- public exports;
+- errors;
+- performance;
 
-`sisad-pattern-selection`
+## Parada
 
-## Salida
-
-Mapa de evidencia, decisión de patrón, cambios focales, gates y riesgos.
+Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.

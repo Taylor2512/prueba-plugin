@@ -1,3 +1,9 @@
-# Claude Code adapter
+# Claude adapter
 
-Claude reads `CLAUDE.md`, while procedures live in shared `.agents/skills`. Keep project settings minimal and review permissions locally. Custom subagents below are narrow and read-only by default.
+- fuente: `AGENTS.md` y `.ai/`;
+- skills: `.agents/skills/`;
+- subagentes con descripción precisa y contexto aislado;
+- memoria automática auxiliar, no canónica;
+- hooks para controles deterministas;
+- plan mode antes de tareas L;
+- worktrees para escritores paralelos.

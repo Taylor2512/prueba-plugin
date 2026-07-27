@@ -1,9 +1,13 @@
-# Memoria estable del proyecto
+# PROJECT
 
-- SISAD PDFME es un diseñador portable React/TypeScript basado en pdfme.
-- Debe soportar múltiples documentos, páginas, destinatarios, ownership, comentarios y assignments.
-- Canvas usa Moveable/Selecto y requiere geometría estable.
-- Cada schema debe conservar identidad, routing, geometría, ownership y `__designer`.
-- La API pública debe evitar imports profundos desde hosts.
-- Tailwind es preferente; CSS plano se conserva para tokens y reglas técnicas justificadas.
-- El fork `pdf-lib` es vendor y se audita por separado.
+## Hechos estables
+
+- Producto: componente frontend reutilizable SISAD PDFME.
+- Stack: React, TypeScript/JavaScript, Vite, Tailwind, Vitest y Playwright.
+- Modos: Designer, Form, Viewer y Generator.
+- Integración: configuración, adapters, eventos, callbacks y API pública.
+- Invariantes: identidad de schema, routing multi-documento, ownership, snapshot y aislamiento del host.
+
+## Procedencia
+
+Actualizar únicamente desde código canónico, documentación vigente o decisiones aprobadas.

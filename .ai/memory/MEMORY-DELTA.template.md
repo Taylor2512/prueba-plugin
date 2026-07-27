@@ -1,17 +1,23 @@
-# Memory delta
+# MEMORY-DELTA
 
-## Añadir
+## Add
 
-- Hechos durables nuevos.
+- hecho:
+- evidencia:
+- confianza:
+- vigencia:
 
-## Modificar
+## Update
 
-- Estado o decisión existente y motivo.
+- entrada:
+- cambio:
+- motivo:
 
-## Resolver
+## Resolve/Supersede
 
-- Riesgos o pendientes cerrados con evidencia.
+- entrada:
+- resolución:
 
-## No cambiar
+## No change
 
-- Información temporal que debe permanecer solo en la task-card o handoff.
+- archivos revisados sin cambio:

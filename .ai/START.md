@@ -1,29 +1,39 @@
-# START — entrada única
+# START — Entrada única V6
 
-Carga inicial obligatoria:
+## Carga inicial
 
-1. `AGENTS.md`.
-2. Esta página.
-3. `.ai/scrum/SPRINT-CURRENT.md`.
-4. Una task-card.
-5. El `AGENTS.md` local de la ruta objetivo.
+- `AGENTS.md`;
+- `.ai/tasks/ACTIVE.md`;
+- una task-card;
+- el `AGENTS.md` local;
+- una ruta;
+- una skill.
 
-Después selecciona solo una ruta en `.ai/routes/` y, cuando corresponda, una skill en `.agents/skills/`.
+Objetivo de arranque: menos de 8.000 tokens y no más de 5 archivos.
 
-## Flujo compacto
+## Ciclo
 
-```text
-orientar → clasificar → caracterizar → diseñar → implementar → validar → medir → cerrar
-```
+`orientar → evidenciar → formular hipótesis → caracterizar → planificar → cambiar → validar → revisar → cerrar`
 
-## Reglas de parada
+## Checkpoint obligatorio
 
-Detente cuando:
+Antes del primer parche registra en la task-card:
 
-- la Definition of Done esté completa;
-- el cambio requiera archivos fuera del alcance;
-- falte evidencia para conservar comportamiento;
-- aparezca un conflicto con trabajo ajeno;
-- sea necesario modificar vendor o una frontera protegida no declarada.
+- causa probable;
+- evidencia actual;
+- invariantes;
+- archivos permitidos;
+- test focal;
+- presupuesto restante;
+- condición de parada.
 
-En esos casos, actualiza la task-card como `blocked` y crea una propuesta separada; no expandas silenciosamente el alcance.
+## Reanudación
+
+No confíes solo en el resumen previo. Verifica:
+
+- rama y worktree;
+- `git status`;
+- commit base;
+- task-card;
+- último gate;
+- archivos realmente modificados.

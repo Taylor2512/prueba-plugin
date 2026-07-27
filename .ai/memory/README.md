@@ -1,11 +1,9 @@
-# Memoria del proyecto
+# Memoria
 
-| Archivo | Propietario del dato |
-|---|---|
-| `CURRENT.md` | estado operativo durable |
-| `DECISIONS.md` | decisiones aceptadas |
-| `RISKS.md` | riesgos activos |
-| `METRICS.md` | métricas y tendencias |
-| `HANDOFF.md` | último delta para continuar |
+La memoria no es un diario. Es un índice pequeño de conocimiento durable y verificable.
 
-No repitas el estado del sprint aquí. El sprint board es canónico para WIP y progreso.
+## Flujo
+
+`task-card → HANDOFF → MEMORY-DELTA → Memory Steward → archivos canónicos`
+
+Ejecuta revisión de vigencia al final de cada sprint y garbage collection mensual.

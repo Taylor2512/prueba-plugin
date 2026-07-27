@@ -1,17 +1,6 @@
-# Retrospectiva
+# Retrospective
 
-## Mantener
+Máximo cinco acciones.
 
-- Evidencia antes del parche.
-
-## Mejorar
-
-- Registrar contexto inicial y archivos abiertos para comparar consumo.
-
-## Detener
-
-- Copiar reportes completos dentro del chat.
-
-## Acciones
-
-Máximo cinco acciones, cada una con propietario, fecha objetivo y señal de cierre.
+| Hallazgo | Evidencia | Acción | Owner | Fecha | Métrica |
+|---|---|---|---|---|---|

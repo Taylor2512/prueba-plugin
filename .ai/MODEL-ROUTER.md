@@ -1,32 +1,35 @@
-# Router de modelos y esfuerzo
+# Router de modelos por capacidad
 
-## Objetivo
+No fijes la arquitectura a nombres comerciales. Selecciona la capacidad mínima que cumple el criterio de éxito.
 
-Minimizar costo y latencia sin degradar la seguridad del cambio. Los nombres son preferencias; verifica disponibilidad local y usa el fallback funcional.
+## Clases
 
-| Trabajo | Preferido | Esfuerzo | Fallback |
-|---|---|---|---|
-| inventario, clasificación, reportes, memoria | GPT-5.6 Luna | low | Terra low |
-| exploración y refactor claro | GPT-5.6 Terra | low/medium | Sol medium |
-| implementación diaria y pruebas | GPT-5.6 Terra | medium | Sol medium |
-| arquitectura o bug ambiguo | GPT-5.6 Sol | medium/high | Terra high |
-| canvas/snapshot/contrato público complejo | GPT-5.6 Sol | high/xhigh | Sol medium + revisión |
-| investigación documental primaria | Terra | medium | Luna low para extracción |
-| revisión final de alto riesgo | Sol | high | Terra high |
+| Clase | Uso | Razonamiento |
+|---|---|---|
+| Extractor | inventario, clasificación, summaries, memory delta | bajo |
+| Implementador | cambios claros, tests, documentación | bajo/medio |
+| Diagnóstico | bugs ambiguos, visuales o transversales | medio/alto |
+| Arquitecto | contratos públicos, snapshot, canvas, migraciones | alto |
+| Revisor independiente | diff de alto riesgo | medio/alto |
+
+## Ejemplos actuales
+
+- GPT-5.6 Luna: Extractor.
+- GPT-5.6 Terra: Implementador y diagnóstico acotado.
+- GPT-5.6 Sol: Arquitectura y revisión de alto riesgo.
+- Claude rápido/medio: exploración o implementación delimitada.
+- Claude avanzado: diagnóstico complejo, no tareas mecánicas.
+- Copilot: edición focal con instrucciones de ruta y tests.
 
 ## Escalamiento
 
-Escala un nivel cuando haya dos o más señales:
+Escala solo cuando existan dos señales:
 
-- hipótesis contradictorias;
-- tres dominios o más;
-- falta de pruebas de caracterización;
-- migración de snapshot/datos;
-- comportamiento visual difícil de reproducir;
-- cambio público o de seguridad.
+- hipótesis incompatibles;
+- más de tres dominios;
+- falta de caracterización;
+- contrato público o migración;
+- comportamiento visual no reproducido;
+- tres fallos diferentes.
 
-Desescala después del diagnóstico. No uses razonamiento alto para aplicar renombres, actualizar task-cards o ejecutar scripts conocidos.
-
-## Multiagente
-
-Usa subagentes solo si el trabajo es independiente y el resumen ahorra contexto al hilo principal. Evita paralelizar escritura sobre el mismo dominio. `Ultra` o `max` no son configuración habitual; requieren una nota de costo/beneficio en la task-card.
+Desescala inmediatamente después de aislar la causa.

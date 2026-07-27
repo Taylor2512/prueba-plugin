@@ -1,17 +1,33 @@
 # Política de evidencia
 
-Cada afirmación técnica debe apuntar a uno de estos soportes:
+## Evidencia válida
 
-- ruta y símbolo del código;
-- salida de comando;
+- ruta + símbolo + rango;
+- comando y salida relevante;
 - test reproducible;
-- diff/commit;
+- captura antes/después;
+- diff o commit;
 - documento canónico;
-- fuente oficial vigente.
+- fuente oficial con fecha.
 
-Separa claramente:
+## Evidencia insuficiente
 
-- confirmado;
-- inferido;
-- no verificado;
-- deuda previa.
+- “parece” sin inspección;
+- nombre de archivo recordado;
+- resultado no ejecutado;
+- captura sin estado o viewport;
+- test indirecto que no cubre el comportamiento;
+- documentación generada y obsoleta.
+
+## Formato
+
+```text
+EVIDENCIA:
+- fuente:
+- observación:
+- interpretación:
+- confianza:
+- limitación:
+```
+
+Las inferencias se etiquetan y deben ser reversibles.

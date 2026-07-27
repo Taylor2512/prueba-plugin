@@ -1,7 +1,24 @@
-# Ruta — Inspector
+# Ruta: inspector
 
-Todo widget visible declara read/write/visible/disabled/validate. No dupliques inferencias de access state.
+**Alcance:** DetailView, widgets y property paths.  
+**Owner recomendado:** Inspector Specialist
 
-## Salida mínima
+## Cargar
 
-Evidencia, cambio o recomendación, gates y memory delta.
+- task-card;
+- AGENTS local;
+- símbolos afectados;
+- pruebas focales;
+- una skill relevante.
+
+## Comprobar
+
+- schema profile;
+- mixed selection;
+- disabled reason;
+- validation;
+- read/write;
+
+## Parada
+
+Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.

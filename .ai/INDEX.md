@@ -2,16 +2,24 @@
 
 | Necesidad | Fuente |
 |---|---|
+| Inicio | `START.md` |
 | Alcance | `SCOPE.md` |
-| Elección de modelo | `MODEL-ROUTER.md` |
-| Presupuesto de contexto | `CONTEXT-BUDGET.md` |
-| Ruteo por dominio | `ROUTER.md` y `routes/` |
-| Duplicidad | `architecture/DUPLICATION-TAXONOMY.md` |
-| Patrones | `architecture/PATTERN-DECISION-MATRIX.md` |
-| Capas | `architecture/LAYER-CONTRACTS.md` |
-| Reglas | `governance/` |
-| Scrum | `scrum/` |
+| Dominio | `ROUTER.md` y `routes/` |
+| Modelo/esfuerzo | `MODEL-ROUTER.md` |
+| Tokens/contexto | `CONTEXT-BUDGET.md`, `CONTEXT-POLICY.md` |
+| Alucinaciones | `governance/ANTI-HALLUCINATION.md` |
+| Loops | `governance/ANTI-LOOP.md` |
+| Overflow | `governance/ANTI-OVERFLOW.md` |
+| Evidencia | `governance/EVIDENCE-POLICY.md` |
+| Orquestación | `ORCHESTRATION.md` |
+| Agentes | `agents/` |
+| Skills | `.agents/skills/` |
 | Memoria | `memory/` |
-| Workflows | `playbooks/` y `.agents/skills/` |
-| Evidencia | `templates/EVIDENCE.md` |
+| Tareas | `tasks/` |
+| Planes | `plans/` |
+| Prompts | `prompts/` |
+| Playbooks | `playbooks/` |
+| Evaluaciones | `EVALS.md` |
+| Calidad | `governance/QUALITY-POLICY.md` |
+| Seguridad | `SECURITY.md` |
 | Investigación | `research/` |

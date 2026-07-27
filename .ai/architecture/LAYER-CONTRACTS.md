@@ -1,22 +1,16 @@
-# Contratos por capa
+# Contratos de capas del componente
 
-```text
-UI/React
-  ↓ comandos, view models, callbacks
-Application
-  ↓ use cases, policies, orchestration
-Domain
-  ↓ contracts, strategies, factories, registries
-Infrastructure
-  ↓ adapters, browser APIs, persistence, providers
-```
+| Capa | Responsabilidad | No debe |
+|---|---|---|
+| public API | props, config, adapters, callbacks | exponer internals |
+| integration | traducir host/core | implementar UI |
+| runtime | montar Designer/Form/Viewer | conocer negocio host |
+| engine | estado y comandos | renderizar chrome |
+| UI | interacción y presentación | duplicar policies |
+| schemas | plugins y renderers | acceder al host |
+| snapshot | serializar identidad/routing | guardar estado visual temporal |
+| generator | salida PDF | depender del Designer DOM |
+| design system | tokens/variants | alterar geometría del canvas |
+| tests | caracterizar contratos | acoplarse a detalles triviales |
 
-## Reglas
-
-- UI no adapta payloads remotos.
-- Domain no importa React ni APIs del host.
-- Infrastructure no decide UX.
-- Application coordina, pero no renderiza.
-- Hooks conectan React con application; no reemplazan el dominio.
-- Registries poseen extensibilidad; no se replican switches en cada superficie.
-- Commands son la entrada única de acciones mutables del diseñador.
+Toda abstracción nueva declara capa propietaria.

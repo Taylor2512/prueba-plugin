@@ -1,7 +1,24 @@
-# Ruta — Canvas
+# Ruta: canvas
 
-Preserva coordenadas, zoom, scroll, page refs, Moveable/Selecto y overlays. Carga `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md`.
+**Alcance:** Canvas, Paper, Moveable, Selecto, overlays y coordenadas.  
+**Owner recomendado:** Canvas Specialist
 
-## Salida mínima
+## Cargar
 
-Evidencia, cambio o recomendación, gates y memory delta.
+- task-card;
+- AGENTS local;
+- símbolos afectados;
+- pruebas focales;
+- una skill relevante.
+
+## Comprobar
+
+- zoom/scroll/viewport;
+- page metadata;
+- selection roots;
+- drag/resize/rotate;
+- modal suspension;
+
+## Parada
+
+Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.

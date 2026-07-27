@@ -1,30 +1,40 @@
 # Política de contexto
 
-## Base mínima
+## Progressive disclosure
 
-- reglas raíz;
-- task-card;
-- regla local;
-- ruta/playbook específico;
-- símbolos y pruebas relacionadas.
+Cada capa se carga solo cuando responde una pregunta concreta:
 
-## Presupuestos
+1. task-card;
+2. ruta;
+3. símbolos;
+4. pruebas;
+5. skill;
+6. referencia amplia, solo si sigue una incógnita.
 
-- dos búsquedas amplias como máximo antes de estrechar;
-- ocho archivos abiertos antes del primer parche, salvo justificación;
-- cinco archivos modificados por task-card como objetivo, no límite ciego;
-- logs mayores de 100 líneas se guardan y resumen;
-- documentos consolidados se consultan por búsqueda, no se cargan completos.
+## Evidence packet
+
+Cada investigación devuelve:
+
+- pregunta;
+- archivos/símbolos;
+- evidencia;
+- conclusión;
+- confianza;
+- incógnitas;
+- recomendación;
+- siguiente acción.
+
+No devuelve narración de comandos ni copias extensas.
 
 ## Contexto prohibido por defecto
 
-- backups de Tailwind;
-- informes históricos completos;
-- `node_modules` y builds;
-- fork `pdf-lib` cuando la tarea no sea vendor;
-- todas las skills simultáneamente;
-- toda la memoria en cada subtarea.
+- `node_modules`, bundles y cobertura;
+- backups y documentos generados;
+- conversaciones completas;
+- todos los prompts y skills a la vez;
+- memoria histórica completa;
+- vendor cuando no es el objetivo.
 
-## Compresión
+## Invalidación
 
-Un resumen de exploración debe contener: ruta de ejecución, símbolos, evidencia, incógnitas y recomendación. No debe incluir narración cronológica de comandos.
+Un resumen queda obsoleto si cambia el commit base, la ruta propietaria, el contrato público o un test caracterizador.

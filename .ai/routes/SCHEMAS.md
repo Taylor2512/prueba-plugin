@@ -1,7 +1,24 @@
-# Ruta — Schemas
+# Ruta: schemas
 
-Valida Designer, DetailView, Form, Viewer, Generator, snapshot y ownership. Prefiere factories/registries por familia.
+**Alcance:** Plugins, familias y renderers.  
+**Owner recomendado:** Schema Specialist
 
-## Salida mínima
+## Cargar
 
-Evidencia, cambio o recomendación, gates y memory delta.
+- task-card;
+- AGENTS local;
+- símbolos afectados;
+- pruebas focales;
+- una skill relevante.
+
+## Comprobar
+
+- Designer/Form/Viewer/PDF;
+- values;
+- snapshot;
+- factory/registry;
+- tests;
+
+## Parada
+
+Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.

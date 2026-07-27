@@ -1,33 +1,21 @@
-# Arquitectura del sistema de asistentes
+# Sistema de asistentes
 
-```text
-Usuario / Product Owner
-        │
-        ▼
-Coordinator ── Scrum board + task-card + model router
-        │
-        ├─ Explorer / DRY Auditor (read-only)
-        ├─ Architect (read-only, decisiones)
-        ├─ Implementer (worktree, write)
-        ├─ Specialist (canvas/schema/snapshot, solo si aplica)
-        └─ QA Reviewer (read-only, evidencia)
-        │
-        ▼
-Memory Curator ── delta durable + métricas + handoff
-```
+## Control plane
 
-## Separación de responsabilidades
+- task-cards definen trabajo;
+- router selecciona dominio;
+- model router selecciona capacidad;
+- owner coordina;
+- skills aportan procedimiento;
+- policies limitan;
+- gates verifican;
+- memory conserva conocimiento durable;
+- evals mejoran el sistema.
 
-- Coordinator no programa; define scope, dependencias y WIP.
-- Explorer no modifica; devuelve mapa de archivos y evidencia.
-- Architect elige patrón y frontera; no crea parches.
-- Implementer trabaja en una task-card y un worktree.
-- QA valida comportamiento y regresiones; no arregla silenciosamente.
-- Memory Curator conserva decisiones y estado, no logs.
+## Data plane
 
-## Paralelismo
+Los agentes inspeccionan, editan, ejecutan tests y producen artifacts dentro de worktrees controlados.
 
-- Máximo tres agentes activos por epic.
-- Solo tareas independientes usan worktrees paralelos.
-- Un archivo no tiene dos agentes write simultáneos.
-- El Coordinator sintetiza resultados; los subagentes no se encadenan indefinidamente.
+## Separación
+
+Los proveedores son adaptadores. Ninguna regla crítica debe existir únicamente en `CLAUDE.md`, `.codex/` o `.github/`.

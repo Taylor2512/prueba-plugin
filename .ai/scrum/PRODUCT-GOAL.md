@@ -1,3 +1,3 @@
 # Product Goal
 
-Convertir SISAD PDFME en un diseñador portable, extensible y verificable, con una sola fuente de verdad por dominio, duplicidad propia mínima y ciclos de cambio seguros para agentes y desarrolladores.
+Entregar un componente PDF reusable, configurable, accesible y estable, con una arquitectura de ingeniería asistida por IA que aumente velocidad sin sacrificar evidencia, mantenibilidad ni control humano.

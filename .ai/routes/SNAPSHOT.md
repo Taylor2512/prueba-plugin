@@ -1,21 +1,24 @@
-# Ruta — Snapshot y compatibilidad
+# Ruta: snapshot
 
-## Foco inicial
+**Alcance:** Serialización, persistencia y migración.  
+**Owner recomendado:** Runtime Reviewer
 
-- `snapshotAdapter`
-- `schemaDesignerMeta`
-- `migration`
+## Cargar
 
-## Reglas
+- task-card;
+- AGENTS local;
+- símbolos afectados;
+- pruebas focales;
+- una skill relevante.
 
-- Roundtrip obligatorio.
-- Migrar legacy, no duplicar contratos.
-- No perder metadata desconocida.
+## Comprobar
 
-## Skill principal
+- identity;
+- routing;
+- ownership;
+- versioning;
+- roundtrip;
 
-`sisad-snapshot-compatibility`
+## Parada
 
-## Salida
-
-Mapa de evidencia, decisión de patrón, cambios focales, gates y riesgos.
+Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.

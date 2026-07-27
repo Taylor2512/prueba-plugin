@@ -1,10 +1,9 @@
-# ADR-XXX — Decisión
+# ADR-XXX
 
-- Estado: propuesta / aceptada / sustituida
+- Estado:
 - Fecha:
 - Contexto:
 - Decisión:
-- Alternativas rechazadas:
+- Alternativas:
 - Consecuencias:
-- Migración:
 - Evidencia:

@@ -1,22 +1,24 @@
-# Ruta — CSS y Tailwind
+# Ruta: css-tailwind
 
-## Foco inicial
+**Alcance:** Tailwind, tokens y styles scoped.  
+**Owner recomendado:** Design System
 
-- `tokens.css`
-- `Tailwind`
-- `className`
-- `runtimeStyles`
+## Cargar
 
-## Reglas
+- task-card;
+- AGENTS local;
+- símbolos afectados;
+- pruebas focales;
+- una skill relevante.
 
-- Tailwind-first.
-- CSS plano solo tokens/geometría técnica.
-- No tapar bugs con z-index.
+## Comprobar
 
-## Skill principal
+- single source;
+- class variants;
+- responsive;
+- no geometry regressions;
+- bundle;
 
-`sisad-css-tailwind`
+## Parada
 
-## Salida
-
-Mapa de evidencia, decisión de patrón, cambios focales, gates y riesgos.
+Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.

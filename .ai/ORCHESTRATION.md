@@ -1,33 +1,35 @@
-# Orquestación
+# Orquestación V6
 
 ## Topología por defecto
 
 ```text
-Main owner (write)
-├── Explorer (read-only, opcional)
-└── Reviewer/QA (read-only, opcional)
+Owner/Manager — único escritor
+├── Explorer — lectura, opcional
+└── Reviewer o QA — lectura, opcional
 ```
 
-## Delegación permitida
+Empieza con un solo agente. Agrega subagentes cuando la separación reduzca contexto o permita trabajo realmente independiente.
 
-- buscar callers y contratos;
-- clasificar clones;
-- ejecutar tests independientes;
-- revisar documentación versionada;
-- revisar un diff ya producido.
+## Contrato de delegación
 
-## Delegación no recomendada
+Toda delegación define:
 
-- dos agentes editando el mismo archivo;
-- refactor y migración de snapshot en paralelo;
-- agentes que abren nuevas tareas sin autorización;
-- “equipo” de agentes para una tarea de menos de tres archivos;
-- subagentes que devuelven logs sin síntesis.
+- pregunta única;
+- rutas permitidas;
+- herramientas;
+- presupuesto;
+- formato de salida;
+- condición de parada;
+- prohibición de editar, salvo worktree asignado.
 
-## Worktrees
+## Paralelismo
 
-Cada escritor paralelo usa una rama y worktree propios. El coordinador registra en la task-card: worktree, rama, archivos, commit y gates. La integración se hace por commits revisables, nunca copiando directorios completos.
+- máximo dos lectores por task-card;
+- máximo tres task-cards en WIP;
+- cada escritor usa worktree y archivos no solapados;
+- el manager sintetiza resultados, no copia outputs;
+- no existe handoff circular entre agentes.
 
-## WIP
+## Integración
 
-Máximo tres task-cards activas en el sprint; una por dominio sensible. Si el WIP está lleno, termina o bloquea antes de comenzar otra.
+Commits pequeños, revisables y con gates. No copiar carpetas completas ni mezclar parches no revisados.

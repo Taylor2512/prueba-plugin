@@ -1,7 +1,24 @@
-# Ruta — Documentación y memoria
+# Ruta: docs-memory
 
-Actualiza por delta, enlaza fuentes canónicas y ejecuta el checker de párrafos.
+**Alcance:** Documentación, tareas y memoria.  
+**Owner recomendado:** Memory Steward
 
-## Salida mínima
+## Cargar
 
-Evidencia, cambio o recomendación, gates y memory delta.
+- task-card;
+- AGENTS local;
+- símbolos afectados;
+- pruebas focales;
+- una skill relevante.
+
+## Comprobar
+
+- canonical sources;
+- delta;
+- staleness;
+- handoff;
+- dedup;
+
+## Parada
+
+Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.

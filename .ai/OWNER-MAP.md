@@ -1,14 +1,15 @@
-# Ownership por dominio
+# Ownership
 
-| Dominio | Fuente canónica | Gates especiales |
+| Dominio | Owner | Fronteras protegidas |
 |---|---|---|
-| canvas/interacción | `ui/components/Designer/Canvas` | Vitest + Playwright |
-| schemas/plugins | `schemas` + registry | Form/Viewer/Generator/snapshot |
-| inspector | `RightSidebar/DetailView` | widget contract + UI focal |
-| colaboración | `collaboration`, `assignments`, common | ownership/lock tests |
-| snapshot/runtime | `shared`, `runtime`, react | round-trip y compatibilidad |
-| documentos | adapters/documents | multi-document routing |
-| vendor PDF | `pdf-lib` | pruebas PDF y upstream |
-| IA/documentación | `.ai`, `.agents`, adapters | validator + markdown dedup |
+| configuración/API | Config Specialist | exports, semver, adapters |
+| Canvas | Canvas Specialist | coordenadas, Moveable, Selecto |
+| schemas | Schema Specialist | registry, families, renderers |
+| inspector | Inspector Specialist | property paths, mixed selection |
+| UX/design system | UX Designer | responsive, density, tokens |
+| runtime | Runtime Architect | Designer/Form/Viewer/Generator |
+| snapshot | Runtime Reviewer | identidad, routing, ownership |
+| pruebas | QA | fixtures, Playwright, Vitest |
+| memoria/proceso | Memory Steward | task state, decisions, metrics |
 
-Una task-card declara un owner de dominio y no cambia de dominio principal durante la ejecución.
+Una task-card declara owner del parche y reviewers requeridos.

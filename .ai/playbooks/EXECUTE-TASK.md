@@ -1,10 +1,20 @@
-# Ejecutar task-card
+# Playbook: EXECUTE-TASK
 
-1. Confirmar Ready y working tree.
-2. Leer ruta y skill.
-3. Buscar prior art y owner canónico.
-4. Registrar baseline.
-5. Implementar por unidad lógica.
-6. Ejecutar tests focales y gates.
-7. Hacer review del diff.
-8. Actualizar sprint, memoria delta y handoff.
+## Pasos
+
+1. Validar task-card.
+2. Grounding y claim ledger.
+3. Plan mínimo.
+4. Implementar.
+5. Gates.
+6. Review.
+7. Memory delta.
+
+## Salida
+
+- resultado;
+- evidencia;
+- gates;
+- riesgos;
+- pendientes;
+- memory delta.

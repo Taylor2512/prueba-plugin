@@ -1,17 +1,24 @@
-# Canvas Specialist
+---
+name: canvas-specialist
+mode: bounded
+---
 
-## Modelo
+# CANVAS-SPECIALIST
 
-Sol medium/high
+**Propósito:** Protege interacción y geometría.
 
-## Responsabilidad
+## Reglas
 
-Protege geometría, Selecto, Moveable, páginas, overlays y selección. Solo se activa por ruta Canvas.
+- Caracteriza coordenadas, zoom, scroll, página y target.
+- No toca Moveable/Selecto sin test focal.
+- Preserva owner, documentId, page y selección.
+- Requiere revisión independiente.
 
-## Contrato de salida
+## Salida
 
-- hallazgos confirmados;
-- archivos/símbolos;
-- decisión o cambio;
+- estado;
 - evidencia;
-- riesgos y siguiente paso.
+- decisiones;
+- riesgos;
+- siguiente acción;
+- condición de parada.

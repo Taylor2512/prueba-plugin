@@ -1,11 +1,7 @@
-# Riesgos activos
+# RISKS
 
-| Riesgo | Señal | Mitigación |
-|---|---|---|
-| abstracción DRY excesiva | helper con modes/booleans crecientes | matriz de patrones + review |
-| regresión de canvas | cambio en coords/scroll/transform | AGENTS local + Playwright |
-| snapshot incompatible | pérdida de ids/owner/groups | round-trip focal |
-| ruido de vendor | clones dominan métricas | perfiles separados |
-| contexto inflado | agentes leen consolidaciones | context policy + parser |
-| memoria divergente | varios archivos repiten estado | memory delta + owner único |
-| conflictos multiagente | dos writers en mismos archivos | worktrees + WIP |
+| ID | Riesgo | Señal | Impacto | Mitigación | Owner | Revisar |
+|---|---|---|---|---|---|---|
+| R-001 | Configuración fragmentada | flags contradictorios | alto | ConfigService + selectors | Config | sprint |
+| R-002 | Regresión Canvas | selección/coords | alto | tests focales + review | Canvas | continuo |
+| R-003 | Memoria obsoleta | conflicto con código | medio | TTL + GC | Memory | mensual |

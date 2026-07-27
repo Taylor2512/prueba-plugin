@@ -1,3 +1,5 @@
-# GitHub Copilot repository instructions
+# GitHub Copilot instructions
 
-Use `AGENTS.md` and the nearest path-specific instructions. Work from one task-card. Preserve SISAD PDFME public contracts, canvas geometry, snapshot identity/routing/ownership and host independence. Prefer the smallest domain abstraction; never hide owned clones with exclusions. Run focal tests and update the task-card before completion.
+Use `AGENTS.md`, the active task-card, and the nearest route instructions.
+
+Preserve public API, Canvas geometry, snapshot identity/routing/ownership, accessibility and host independence. Do not infer unverified behavior. Use the smallest valid abstraction, run focal tests, and update the task-card. Do not duplicate shared policies in generated code or documentation.

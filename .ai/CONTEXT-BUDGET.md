@@ -1,25 +1,28 @@
-# Presupuesto de contexto
+# Presupuesto de contexto y tokens
 
-## Carga base
+## Perfil por defecto
 
-- `AGENTS.md` + `START.md`: siempre.
-- Una task-card: siempre.
-- Una ruta, una regla y un playbook: máximo por defecto.
-- Skills: solo las que disparen por descripción.
+| Fase | Objetivo | Límite recomendado |
+|---|---|---:|
+| orientación | localizar contrato y task-card | 8k tokens / 5 archivos |
+| diagnóstico | confirmar causa | 24k / 8 archivos |
+| diseño | decidir cambio mínimo | 12k / 4 referencias |
+| implementación | editar y revisar | 32k / 5 archivos |
+| validación | tests y diff | 16k / salidas resumidas |
+| cierre | handoff y memoria | 8k |
 
-## Tamaño de tarea
+Objetivo de contexto activo: ≤48k. Techo operativo: 80k salvo tarea L explícita.
 
-| Clase | Archivos iniciales | Modificaciones esperadas | Agentes | Modelo base |
-|---|---:|---:|---:|---|
-| S | 3–5 | 1–4 | 1 | Luna low / Terra low |
-| M | 6–10 | 3–10 | 1 | Terra medium |
-| L | 10–20 | 8–20 | 2–3 | Sol medium/high + subagentes |
-| XL | >20 | transversal | dividir epic | no ejecutar como una sola task |
+## Marcas de agua
 
-## Límites operativos
+- 60%: compactar resultados y crear `CONTEXT-CHECKPOINT`;
+- 75%: detener exploración, cerrar hipótesis y guardar evidencia;
+- 85%: no iniciar nuevos cambios; crear handoff o sesión nueva.
 
-- Máximo dos rondas de búsqueda antes de decidir o dividir.
-- No cargar archivos consolidados completos si existen rutas y símbolos precisos.
-- Subagentes devuelven resumen estructurado; no vuelcan logs al hilo principal.
-- No usar Ultra para tareas S/M; los subagentes consumen más tokens.
-- Mantener `AGENTS.md` corto; el conocimiento especializado pertenece a skills y rutas.
+## Outputs
+
+- logs >100 líneas se guardan como evidencia y se resumen;
+- no pegar archivos completos cuando bastan símbolos/rangos;
+- no cargar documentos consolidados;
+- procesar reportes con scripts antes de enviarlos al modelo;
+- no repetir código sin cambios en el hilo.

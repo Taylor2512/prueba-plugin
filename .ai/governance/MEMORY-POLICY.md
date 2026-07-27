@@ -1,31 +1,36 @@
-# Política de memoria
+# Política de memoria V6
 
-## Memoria repo
+## Capas
 
-`.ai/memory/` es la memoria durable del equipo y la fuente confiable para decisiones del proyecto.
+- `PROJECT.md`: hechos estables;
+- `CURRENT.md`: estado vigente;
+- `DECISIONS.md`: decisiones y supersesiones;
+- `RISKS.md`: riesgos activos;
+- `METRICS.md`: tendencias;
+- `HANDOFF.md`: continuidad inmediata;
+- task-card: estado operativo;
+- evidence: salidas temporales.
 
-## Memoria local Codex
+## Campos de cada memoria
 
-Es complementaria, personal y generada. No dependas de editar manualmente `~/.codex/memories/` como control principal y nunca guardes secretos.
+- hecho;
+- procedencia;
+- confianza;
+- fecha de verificación;
+- vigencia/TTL;
+- owner;
+- relación con decisiones.
 
-## Qué persistir
+## No persistir
 
-- decisiones difíciles de revertir;
-- invariantes y contratos;
-- estado actual resumido;
-- riesgos activos;
-- métricas de calidad;
-- handoff de la última tarea.
-
-## Qué no persistir
-
-- logs completos;
 - chain-of-thought;
-- archivos temporales;
+- logs;
+- transcripciones;
 - hipótesis descartadas;
-- credenciales o datos sensibles;
-- duplicados del sprint board.
+- secretos;
+- tareas duplicadas;
+- detalles efímeros de una sesión.
 
 ## Actualización
 
-Solo delta. Si el contenido ya existe, reemplaza o enlaza; no lo copies.
+Solo por delta. La nueva información reemplaza, enlaza o marca como obsoleta; no se apila indefinidamente.
