@@ -69,6 +69,7 @@ import { applyCollaborationEvent, diffCollaborationEvents, useCollaborationSync 
 import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
 import type { DesignerRuntimeApi, DesignerSidebarPresentation, DesignerCommentItem } from '../../types.js';
 import type { SchemaComment, SchemaCommentAnchor } from '../../designerEngine.js';
+import { useSisadPdfmeConfig } from '../../../react/useSisadPdfmeConfig.js';
 import {
   extractClientPoint,
 } from './Canvas/overlays/pointerGeometry.js';
@@ -547,6 +548,7 @@ const TemplateEditor = ({
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
+  const resolvedConfig = useSisadPdfmeConfig(options);
   const designerEngine = useMemo(
     () => resolveDesignerEngine(options as Record<string, unknown>),
     [options],
@@ -712,13 +714,29 @@ const TemplateEditor = ({
   const [canvasFeatureOverrides, setCanvasFeatureOverrides] = useState<Partial<CanvasFeatureToggles>>({});
   const canvasFeatureToggles = useMemo<CanvasFeatureToggles>(
     () => ({
-      selecto: canvasFeatureOverrides.selecto ?? designerEngine.canvas?.featureToggles?.selecto ?? true,
-      snapLines: canvasFeatureOverrides.snapLines ?? designerEngine.canvas?.featureToggles?.snapLines ?? true,
+      selecto:
+        canvasFeatureOverrides.selecto ??
+        resolvedConfig.config.canvas.selecto ??
+        designerEngine.canvas?.featureToggles?.selecto ??
+        true,
+      snapLines:
+        canvasFeatureOverrides.snapLines ??
+        resolvedConfig.config.canvas.snapLines ??
+        designerEngine.canvas?.featureToggles?.snapLines ??
+        true,
       grid: canvasFeatureOverrides.grid ?? designerEngine.canvas?.featureToggles?.grid ?? true,
-      guides: canvasFeatureOverrides.guides ?? designerEngine.canvas?.featureToggles?.guides ?? true,
+      guides:
+        canvasFeatureOverrides.guides ??
+        resolvedConfig.config.canvas.guides ??
+        designerEngine.canvas?.featureToggles?.guides ??
+        true,
       padding: canvasFeatureOverrides.padding ?? designerEngine.canvas?.featureToggles?.padding ?? true,
       mask: canvasFeatureOverrides.mask ?? designerEngine.canvas?.featureToggles?.mask ?? true,
-      moveable: canvasFeatureOverrides.moveable ?? designerEngine.canvas?.featureToggles?.moveable ?? true,
+      moveable:
+        canvasFeatureOverrides.moveable ??
+        resolvedConfig.config.canvas.moveable ??
+        designerEngine.canvas?.featureToggles?.moveable ??
+        true,
       deleteButton: canvasFeatureOverrides.deleteButton ?? designerEngine.canvas?.featureToggles?.deleteButton ?? true,
     }),
     [
@@ -730,6 +748,10 @@ const TemplateEditor = ({
       canvasFeatureOverrides.padding,
       canvasFeatureOverrides.selecto,
       canvasFeatureOverrides.snapLines,
+      resolvedConfig.config.canvas.guides,
+      resolvedConfig.config.canvas.moveable,
+      resolvedConfig.config.canvas.selecto,
+      resolvedConfig.config.canvas.snapLines,
       designerEngine.canvas?.featureToggles?.deleteButton,
       designerEngine.canvas?.featureToggles?.grid,
       designerEngine.canvas?.featureToggles?.guides,

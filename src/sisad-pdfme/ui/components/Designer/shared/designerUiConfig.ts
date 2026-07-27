@@ -11,7 +11,7 @@
  * - Config legacy intacta: este módulo solo LEE las mismas options que ya
  *   viajan por OptionsContext.
  */
-import type { SisadPdfmeVisibilityConfig } from '../../../../config/SisadPdfmeConfig.js';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeVisibilityConfig } from '../../../../config/SisadPdfmeConfig.js';
 import { asRecord } from '../../../../shared/objectGuards.js';
 import { resolveVisibilityConfig, resolveReassignVisibilityState } from './visibilityConfig.js';
 import {
@@ -40,6 +40,8 @@ export type ResolvedDesignerUiMap = {
   resolveAction(actionId: string, context?: DesignerActionContext): DesignerActionState;
 };
 
+type ResolvedDesignerUiSource = Pick<ResolvedSisadPdfmeConfig, 'config' | 'visibility'>;
+
 /** Mapea ids de acción → flags de `visibility.actions`/paneles. */
 const actionVisibilityKey: Record<string, (visibility?: SisadPdfmeVisibilityConfig) => boolean> = {
   'reassign-recipient': (v) => v?.actions?.reassign !== false,
@@ -57,6 +59,53 @@ const actionVisibilityKey: Record<string, (visibility?: SisadPdfmeVisibilityConf
   'switch-right-panel-comments': (v) => v?.sidebars?.right?.panels?.comments !== false,
   'switch-right-panel-documents': (v) => v?.sidebars?.right?.panels?.documents !== false,
   'add-comment': (v) => v?.modals?.comments !== false,
+};
+
+export const buildDesignerUiMapFromResolvedConfig = (source: ResolvedDesignerUiSource): ResolvedDesignerUiMap => {
+  const visibility = source.visibility;
+  const canEditStructure = source.config.collaboration?.canEditStructure !== false;
+  const assignmentEnabled = source.config.assignment?.enabled === true;
+  const reassignVisible = visibility.actions?.reassign !== false && assignmentEnabled;
+  const assignmentModalVisible = visibility.modals?.assignment !== false;
+
+  const actions: ResolvedDesignerUiMap['actions'] = {};
+  Object.entries(actionVisibilityKey).forEach(([actionId, isVisible]) => {
+    actions[actionId] = {
+      visibleByConfig:
+        actionId === 'reassign-recipient'
+          ? reassignVisible && assignmentModalVisible
+          : isVisible(visibility),
+      enabledByConfig: true,
+    };
+  });
+
+  return {
+    visibility,
+    permissions: { canEditStructure },
+    features: {
+      assignmentEnabled,
+      reassignVisible,
+      assignmentModalVisible,
+      commentsPanelVisible: visibility?.sidebars?.right?.panels?.comments !== false,
+      documentsPanelVisible: visibility?.sidebars?.right?.panels?.documents !== false,
+      fieldsPanelVisible: visibility?.sidebars?.right?.panels?.fields !== false,
+      detailPanelVisible: visibility?.sidebars?.right?.panels?.detail !== false,
+    },
+    actions,
+    resolveAction(actionId, context = {}) {
+      const overrides = actions[actionId];
+      return resolveDesignerActionState(actionId, {
+        canEditStructure,
+        ...context,
+        ...(overrides
+          ? {
+              visibleByConfig: context.visibleByConfig ?? overrides.visibleByConfig,
+              enabledByConfig: context.enabledByConfig ?? overrides.enabledByConfig,
+            }
+          : {}),
+      });
+    },
+  };
 };
 
 export const buildDesignerUiMap = (options: unknown): ResolvedDesignerUiMap => {

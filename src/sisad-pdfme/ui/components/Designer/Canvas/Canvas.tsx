@@ -44,12 +44,13 @@ import {
   replacePlaceholders,
 } from '@sisad-pdfme/common';
 import type { DesignerComponentBridge } from '../../../types.js';
-import { PluginsRegistry } from '../../../contexts.js';
+import { OptionsContext, PluginsRegistry } from '../../../contexts.js';
 import { RULER_HEIGHT, DESIGNER_CLASSNAME, SELECTABLE_CLASSNAME } from '../../../constants.js';
 import { usePrevious } from '../../../hooks.js';
 import { round, flatten } from '../../../helper.js';
 import Paper from '../../Paper.js';
 import Renderer from '../../Renderer.js';
+import { useSisadPdfmeConfig } from '../../../../react/useSisadPdfmeConfig.js';
 import Selecto from './Selecto.js';
 import Moveable from './Moveable.js';
 import Guides from './Guides.js';
@@ -101,7 +102,6 @@ import {
 } from './overlays/overlayState.js';
 import { useCanvasRenderState } from '../../../../canvas/useCanvasRenderState.js';
 import { isCanvasInteractive } from '../../../../canvas/canvasRenderState.js';
-import { OptionsContext } from '../../../contexts.js';
 import { asRecord } from '../../../../shared/objectGuards.js';
 
 /**
@@ -437,8 +437,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
    */
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
-  const visibility = asRecord(asRecord(options)?.visibility);
-  const canvasVisibility = asRecord(visibility?.canvas);
+  const resolvedConfig = useSisadPdfmeConfig(options);
+  const canvasVisibility = resolvedConfig.visibility.canvas;
   /**
    * Plataforma detectada para normalización de atajos y selección.
    */

@@ -35,19 +35,6 @@ type DocumentLike = {
 };
 
 /**
- * Normaliza cualquier valor a texto limpio.
- *
- * Se usa para evitar ids con espacios, null, undefined o valores falsy.
- *
- * Ejemplo:
- *
- * normalizeText(' abc ') -> 'abc'
- * normalizeText(null) -> ''
- * normalizeText(undefined) -> ''
- */
-const normalizeAssignmentText = normalizeLooseText;
-
-/**
  * Normaliza el número de página usado como key dentro de assignments.
  *
  * Si el valor recibido no es un número válido o es menor/igual que 0,
@@ -126,7 +113,7 @@ const projectAssignmentsForFile = (
   projection: FileAssignmentProjection,
   includeEmptyRecipients: boolean,
 ) => {
-  const normalizedFileId = normalizeAssignmentText(fileId);
+  const normalizedFileId = normalizeLooseText(fileId);
   if (!normalizedFileId) return {};
 
   const entries = Object.entries(assignments || {}).flatMap(([recipientId, files]) => {
@@ -151,7 +138,7 @@ const projectAssignmentsForPage = (
   fileId: string | null | undefined,
   pageNumber: number | string | null | undefined,
 ) => {
-  const normalizedFileId = normalizeAssignmentText(fileId);
+  const normalizedFileId = normalizeLooseText(fileId);
   if (!normalizedFileId) return {};
 
   const pageKey = normalizePageNumber(pageNumber);
@@ -167,7 +154,7 @@ const collectSchemaUids = (schemas: Schema[][] = []) => {
 
   (schemas || []).forEach((page = []) => {
     (page || []).forEach((schema) => {
-      const schemaUid = normalizeAssignmentText(schema.schemaUid || schema.name);
+      const schemaUid = normalizeLooseText(schema.schemaUid || schema.name);
       if (schemaUid) ids.add(schemaUid);
     });
   });
@@ -289,7 +276,7 @@ export const reconcileAssignments = ({
    */
   const recipientIds = new Set(
     (recipients || [])
-      .map((recipient) => normalizeAssignmentText(recipient?.id))
+      .map((recipient) => normalizeLooseText(recipient?.id))
       .filter(Boolean),
   );
 
@@ -304,9 +291,7 @@ export const reconcileAssignments = ({
    */
   const fileIds = new Set(
     (documents || [])
-      .map((document) =>
-        normalizeAssignmentText(document?.id || document?.fileId || document?.fileTemplateId),
-      )
+      .map((document) => normalizeLooseText(document?.id || document?.fileId || document?.fileTemplateId))
       .filter(Boolean),
   );
 
@@ -402,7 +387,7 @@ export const removeSchemaFromAssignments = (
   schemaUid: string,
   assignments: SchemaAssignments = {},
 ) => {
-  const normalizedSchemaUid = normalizeAssignmentText(schemaUid);
+  const normalizedSchemaUid = normalizeLooseText(schemaUid);
 
   if (!normalizedSchemaUid) return cloneDeep(assignments || {});
 
@@ -450,10 +435,10 @@ export const moveSchemaAssignment = (
 ) => {
   const nextAssignments = removeSchemaFromAssignments(schemaUid, assignments);
 
-  const recipientId = normalizeAssignmentText(target?.toRecipientId);
-  const fileId = normalizeAssignmentText(target?.toFileId);
+  const recipientId = normalizeLooseText(target?.toRecipientId);
+  const fileId = normalizeLooseText(target?.toFileId);
   const pageKey = normalizePageNumber(target?.toPageNumber);
-  const normalizedSchemaUid = normalizeAssignmentText(schemaUid);
+  const normalizedSchemaUid = normalizeLooseText(schemaUid);
 
   if (!recipientId || !fileId || !pageKey || !normalizedSchemaUid) {
     return nextAssignments;
@@ -481,7 +466,7 @@ export const getAssignmentsForRecipient = (
   assignments: SchemaAssignments = {},
   recipientId?: string | null,
 ) => {
-  const normalizedRecipientId = normalizeAssignmentText(recipientId);
+  const normalizedRecipientId = normalizeLooseText(recipientId);
 
   if (!normalizedRecipientId) return {};
 

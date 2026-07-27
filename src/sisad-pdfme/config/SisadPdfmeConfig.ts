@@ -1,15 +1,14 @@
 import type React from 'react';
 import type { DesignerEngine } from '../ui/designerEngine.js';
 import type { DesignerRuntimeEventHub } from '../ui/components/Designer/shared/designerExtensions.js';
+import type { SisadPdfmeConfigService } from './SisadPdfmeConfigService.js';
 import type {
   SisadPdfmeRecipient,
   SisadPdfmeRecipientRegistry,
   SisadPdfmeRecipientsConfig,
 } from '../recipients/recipientTypes.js';
 
-;
-
-type SisadPdfmeDocument = {
+export type SisadPdfmeDocument = {
   id: string;
   label: string;
   /** Alias del label para consumidores legacy (UploadedPdfDocument.name). */
@@ -92,7 +91,7 @@ export type SisadPdfmeEventName =
   | 'onDocumentChange'
   | 'onSignatureRequest';
 
-type SisadPdfmeEventHandlers = Partial<
+export type SisadPdfmeEventHandlers = Partial<
   Record<
     SisadPdfmeEventName,
     | 'host'
@@ -246,6 +245,14 @@ export type SisadPdfmeUiConfig = {
 };
 
 export type SisadPdfmeGlobalConfig = {
+  /**
+   * Versión del esquema de configuración.
+   *
+   * v2 marca rutas canónicas (los aliases `ui.visibility`, `ui.density`,
+   * `ui.sidebars.*` y `collaboration.activeRecipientId` quedan deprecated y se
+   * migran con `migrateSisadPdfmeConfig`). Ausente = compatibilidad v1.
+   */
+  configVersion?: 1 | 2;
   app?: {
     id?: string;
     name?: string;
@@ -286,6 +293,7 @@ export type SisadPdfmeGlobalConfig = {
     };
     right?: {
       enabled?: boolean;
+      defaultOpen?: boolean;
       defaultPanel?: 'fields' | 'detail' | 'comments' | 'documents';
       panels?: Array<'fields' | 'detail' | 'comments' | 'documents'>;
       density?: 'comfortable' | 'compact' | 'minimal';
@@ -365,6 +373,7 @@ export type ResolvedSisadPdfmeConfig = {
 
 export type SisadPdfmeProviderValue = {
   config: ResolvedSisadPdfmeConfig;
+  configService: SisadPdfmeConfigService;
   /** Registry compartido de recipients; fuente única para wrappers hijos. */
   recipientRegistry: SisadPdfmeRecipientRegistry;
 };

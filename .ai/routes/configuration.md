@@ -1,6 +1,6 @@
 # Ruta: configuration
 
-**Alcance:** Config raíz, provider, selectors y feature state.  
+**Alcance:** Config raíz, provider, selectors y feature state.
 **Owner recomendado:** Config Specialist
 
 ## Cargar

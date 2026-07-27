@@ -33,6 +33,8 @@ import { CatalogLayoutToggle, type CatalogLayout } from './shared/CatalogLayoutT
 import { getCatalogLabel } from './shared/designerLabels.js';
 import { lockDesignerSidebarScroll, unlockDesignerSidebarScroll } from './shared/interactionGuards.js';
 import SidebarCollapseHandle from './shared/SidebarCollapseHandle.js';
+import { SisadPdfmeContext } from '../../../react/SisadPdfmeProvider.js';
+import { useSisadPdfmeConfig } from '../../../react/useSisadPdfmeConfig.js';
 
 const schemaTypeCategoryMap: Record<string, string> = {
   text: 'Texto',
@@ -113,7 +115,11 @@ const normalizeCatalogCategory = (value: string): string => {
   return categoryAliases[key] || normalized;
 };
 
-const resolveCatalogCategory = (schemaType: string, schemaCategory?: string, customCategory?: string): string => {
+const resolveSidebarCatalogCategory = (
+  schemaType: string,
+  schemaCategory?: string,
+  customCategory?: string,
+): string => {
   const custom = normalizeCatalogCategory(String(customCategory || ''));
   if (custom) return custom;
   const typeMapped = schemaTypeCategoryMap[String(schemaType || '').toLowerCase()] || 'General';
@@ -676,6 +682,8 @@ const LeftSidebar = ({
   extensions,
 }: LeftSidebarProps) => {
   const pluginsRegistry = useContext(PluginsRegistry);
+  const providerValue = useContext(SisadPdfmeContext);
+  const resolvedConfig = useSisadPdfmeConfig();
   const options = useContext(OptionsContext) as Record<string, unknown>;
   const resolvedContextRecipientColor =
     typeof options.activeRecipientColor === 'string' && String(options.activeRecipientColor || '').trim()
@@ -704,6 +712,8 @@ const LeftSidebar = ({
         '--schema-owner-surface-strong': `color-mix(in srgb, ${activeRecipientTone} 38%, var(--color-white))`,
       } as React.CSSProperties)
     : undefined;
+  const resolvedCatalogLayout =
+    catalogLayout ?? (providerValue ? resolvedConfig.config.sidebars?.left?.catalogLayout : undefined);
   const {
     search,
     setSearch,
@@ -728,10 +738,13 @@ const LeftSidebar = ({
     markRecent,
     isDragging,
     setIsDragging,
-  } = useLeftSidebarCatalogState({ catalogLayout });
+  } = useLeftSidebarCatalogState({ catalogLayout: resolvedCatalogLayout });
   const hiddenCatalogTypes = useMemo(
-    () => buildHiddenCatalogTypeSet(options.hiddenCatalogTypes),
-    [options.hiddenCatalogTypes],
+    () =>
+      providerValue
+        ? buildHiddenCatalogTypeSet(resolvedConfig.visibility.schemas?.catalog)
+        : buildHiddenCatalogTypeSet(options.hiddenCatalogTypes),
+    [options.hiddenCatalogTypes, providerValue, resolvedConfig.visibility.schemas?.catalog],
   );
 
   const clickCooldownRef = useRef(0);
@@ -818,7 +831,7 @@ const LeftSidebar = ({
         const normalizedType = type.toLowerCase();
         const builtInDefinition = builtInDefinitionsByType.get(normalizedType);
         const customCategory = customCategoryByLabel.get(String(label || '').trim());
-        const category = resolveCatalogCategory(type, String(builtInDefinition?.category || ''), customCategory);
+        const category = resolveSidebarCatalogCategory(type, String(builtInDefinition?.category || ''), customCategory);
         const tags = (builtInDefinition?.tags || []).map((tag) => String(tag));
         const capabilities = (builtInDefinition?.capabilities || []).map((capability) => String(capability));
         const builtInDescription = String(
@@ -1059,7 +1072,7 @@ const LeftSidebar = ({
     if (!normalizedName) return;
     const nextField = { ...customDraft, id: `custom-${Date.now()}`, name: normalizedName };
     const mappedType = nextField.type === 'email' || nextField.type === 'name' ? 'text' : nextField.type;
-    const normalizedCategory = resolveCatalogCategory(mappedType, '');
+    const normalizedCategory = resolveSidebarCatalogCategory(mappedType, '');
     const autoFillSource =
       nextField.type === 'email'
         ? 'recipient.email'

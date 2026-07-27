@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import type {
   SidebarProps,
   DesignerComponentBridge,
@@ -13,18 +13,17 @@ import { SidebarFrame } from './layout.js';
 import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
 import CommentsRail, { CommentsRailProps } from './CommentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
-import { asRecord } from '../../../../shared/objectGuards.js';
 import { SidebarRail, type SidebarRailItem } from '../shared/SidebarRail.js';
 import { SidebarCollapseHandle } from '../shared/SidebarCollapseHandle.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
 import { useResponsiveDensity } from '../shared/useResponsiveDensity.js';
 import { Layers, SlidersHorizontal, FileText, MessageSquareText } from 'lucide-react';
-import { OptionsContext } from '../../../contexts.js';
 import {
   resolveRightSidebarContextHeader,
   type RightSidebarContextHeader,
 } from './contextHeader.js';
 import { resolveSchemaIdentityFromElement } from '../shared/selectionIdentityResolver.js';
+import { useDesignerUiConfig } from '../shared/useDesignerUiConfig.js';
 
 /**
  * Props extendidas del sidebar derecho del diseñador.
@@ -226,11 +225,10 @@ const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', Sidebar
 const Sidebar = (props: RightSidebarProps) => {
   const { sidebarOpen, activeElements, schemas } = props;
   const { autoFocusDetail, onViewModeChange } = props;
-  const options = useContext(OptionsContext);
-  const optionsRecord = asRecord(options);
-  const visibility = asRecord(optionsRecord?.visibility);
-  const rightSidebarVisibility = asRecord(asRecord(visibility?.sidebars)?.right);
-  const rightSidebarPanelsVisibility = asRecord(rightSidebarVisibility?.panels);
+  const designerUiConfig = useDesignerUiConfig();
+  const visibility = designerUiConfig.visibility;
+  const rightSidebarVisibility = visibility?.sidebars?.right;
+  const rightSidebarPanelsVisibility = rightSidebarVisibility?.panels;
   const sidebarVisible = rightSidebarVisibility?.visible !== false;
   const detached = Boolean(props.detached);
   const sidebarRootRef = useRef<HTMLElement | null>(null);

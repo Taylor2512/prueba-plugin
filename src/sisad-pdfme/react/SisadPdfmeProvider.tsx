@@ -1,4 +1,5 @@
 import React, { createContext, useMemo } from 'react';
+import { createSisadPdfmeConfigService } from '../config/SisadPdfmeConfigService.js';
 import { createSisadPdfmeConfig } from '../config/createSisadPdfmeConfig.js';
 import { createRecipientRegistry } from '../recipients/recipientRegistry.js';
 import type { ResolvedSisadPdfmeConfig, SisadPdfmeProviderProps, SisadPdfmeProviderValue } from '../config/SisadPdfmeConfig.js';
@@ -13,6 +14,7 @@ export const SisadPdfmeProvider = ({ children, config }: SisadPdfmeProviderProps
     const resolved: ResolvedSisadPdfmeConfig = isResolvedSisadPdfmeProviderConfig(config)
       ? config
       : createSisadPdfmeConfig(config);
+    const configService = createSisadPdfmeConfigService(resolved);
     // Registry único por provider: los wrappers hijos (Designer/Form/Viewer)
     // lo reutilizan en lugar de crear copias locales de recipients.
     const recipientRegistry = createRecipientRegistry({
@@ -22,7 +24,7 @@ export const SisadPdfmeProvider = ({ children, config }: SisadPdfmeProviderProps
         resolved.config.collaboration.activeRecipientId ??
         null,
     });
-    return { config: resolved, recipientRegistry };
+    return { config: resolved, configService, recipientRegistry };
   }, [config]);
 
   return <SisadPdfmeContext.Provider value={value}>{children}</SisadPdfmeContext.Provider>;

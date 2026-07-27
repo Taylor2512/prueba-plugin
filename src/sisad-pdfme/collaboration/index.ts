@@ -55,8 +55,6 @@ type PresenceEntry = {
  * - espacios extra
  * - valores falsy
  */
-const normalizeCollaborationText = normalizeLooseText;
-
 /**
  * Normaliza un color recibido.
  *
@@ -66,7 +64,7 @@ const normalizeCollaborationText = normalizeLooseText;
  * No valida si el valor es un color CSS válido. Solo garantiza que
  * no tenga espacios extra ni valores null/undefined.
  */
-const normalizeCollaborationColor = (value: unknown) => normalizeCollaborationText(value);
+const normalizeCollaborationColor = (value: unknown) => normalizeLooseText(value);
 
 /**
  * Obtiene las páginas de schemas desde un CollaborationState.
@@ -112,15 +110,13 @@ const mapSchemaState = (
   schemaUid: string,
   updater: (_schema: SchemaForUI) => SchemaForUI,
 ) => {
-  const normalizedSchemaUid = normalizeCollaborationText(schemaUid);
+  const normalizedSchemaUid = normalizeLooseText(schemaUid);
 
   if (!normalizedSchemaUid) return cloneDeep(state);
 
   const pages = getSchemaPages(state).map((page = []) =>
     page.map((schema) => {
-      const currentSchemaUid = normalizeCollaborationText(
-        schema.schemaUid || schema.id || schema.name,
-      );
+      const currentSchemaUid = normalizeLooseText(schema.schemaUid || schema.id || schema.name);
 
       if (currentSchemaUid !== normalizedSchemaUid) return schema;
 
@@ -143,12 +139,12 @@ const mapSchemaState = (
  * Retorna el schema encontrado o null.
  */
 const findSchema = (state: CollaborationState, schemaUid: string) => {
-  const normalizedSchemaUid = normalizeCollaborationText(schemaUid);
+  const normalizedSchemaUid = normalizeLooseText(schemaUid);
 
   if (!normalizedSchemaUid) return null;
 
   return findSchemaInPages(getSchemaPages(state), (schema) =>
-    normalizeCollaborationText(schema.schemaUid || schema.id || schema.name) === normalizedSchemaUid,
+    normalizeLooseText(schema.schemaUid || schema.id || schema.name) === normalizedSchemaUid,
   );
 };
 
@@ -185,12 +181,12 @@ export const lockSchema = (
     ...schema,
     state: 'locked',
     userColor: normalizeCollaborationColor(user.color) || schema.userColor,
-    lastModifiedBy: normalizeCollaborationText(user.id) || schema.lastModifiedBy,
+    lastModifiedBy: normalizeLooseText(user.id) || schema.lastModifiedBy,
     lock: {
-      lockedBy: normalizeCollaborationText(user.id) || undefined,
+      lockedBy: normalizeLooseText(user.id) || undefined,
       lockedAt: Date.now(),
-      reason: normalizeCollaborationText(user.reason) || undefined,
-      sessionId: normalizeCollaborationText(user.sessionId) || undefined,
+      reason: normalizeLooseText(user.reason) || undefined,
+      sessionId: normalizeLooseText(user.sessionId) || undefined,
     },
   }));
 
@@ -218,7 +214,7 @@ export const unlockSchema = (
     ...schema,
     state: schema.state === 'locked' ? 'draft' : schema.state,
     userColor: normalizeCollaborationColor(user.color) || schema.userColor,
-    lastModifiedBy: normalizeCollaborationText(user.id) || schema.lastModifiedBy,
+    lastModifiedBy: normalizeLooseText(user.id) || schema.lastModifiedBy,
     lock: undefined,
   }));
 
@@ -253,13 +249,13 @@ export const isSchemaLocked = (
  * aunque el schema venga con ownerRecipientId simple o ownerRecipientIds array.
  */
 export const getSchemaOwner = (schema: SchemaForUI) => ({
-  ownerRecipientId: normalizeCollaborationText(schema?.ownerRecipientId) || null,
+  ownerRecipientId: normalizeLooseText(schema?.ownerRecipientId) || null,
   ownerRecipientIds: normalizeRecipientIds(
     schema?.ownerRecipientIds || schema?.ownerRecipientId,
   ),
   ownerMode: schema?.ownerMode || null,
-  createdBy: normalizeCollaborationText(schema?.createdBy) || null,
-  lastModifiedBy: normalizeCollaborationText(schema?.lastModifiedBy) || null,
+  createdBy: normalizeLooseText(schema?.createdBy) || null,
+  lastModifiedBy: normalizeLooseText(schema?.lastModifiedBy) || null,
 });
 
 /**
@@ -285,14 +281,14 @@ export const assignCollaborativeSchemaOwner = (
   state: CollaborationState,
   userId?: string | null,
 ) => {
-  const normalizedRecipientId = normalizeCollaborationText(recipientId);
+  const normalizedRecipientId = normalizeLooseText(recipientId);
 
   return mapSchemaState(state, schemaUid, (schema) => ({
     ...schema,
     ownerMode: normalizedRecipientId ? 'single' : 'shared',
     ownerRecipientId: normalizedRecipientId || undefined,
     ownerRecipientIds: normalizedRecipientId ? [normalizedRecipientId] : [],
-    lastModifiedBy: normalizeCollaborationText(userId) || schema.lastModifiedBy,
+    lastModifiedBy: normalizeLooseText(userId) || schema.lastModifiedBy,
     updatedAt: Date.now(),
   }));
 };
@@ -345,7 +341,7 @@ export const filterSchemasByCollaborationScope = (
     isGlobalView: scope.isGlobalView,
   });
 
-  const activeRecipientId = normalizeCollaborationText(scope.activeRecipientId);
+  const activeRecipientId = normalizeLooseText(scope.activeRecipientId);
 
   /**
    * Si no hay recipient activo o la vista es global,
@@ -386,7 +382,7 @@ export const buildCollaborationPresenceState = (
   const latestByUser = new Map<string, PresenceEntry>();
 
   (presenceEntries || []).forEach((entry) => {
-    const userId = normalizeCollaborationText(entry?.userId);
+    const userId = normalizeLooseText(entry?.userId);
 
     if (!userId) return;
 

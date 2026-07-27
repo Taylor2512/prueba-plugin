@@ -5,7 +5,7 @@
  * filter, clear filter action, mass rename action and optional bulk recipient
  * assignment action for collaborative workflows.
  */
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Layers, Search, Users, MoreHorizontal, PencilLine, Eraser } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
@@ -13,8 +13,7 @@ import type { EffectiveCollaborationContext } from '../../../../collaborationCon
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { mergeClassNames } from '../../shared/className.js';
 import { stopDesignerControlEvent } from '../../shared/interactionExclusions.js';
-import { OptionsContext } from '../../../../contexts.js';
-import { resolveReassignVisibilityState } from '../../shared/visibilityConfig.js';
+import { useDesignerUiConfig } from '../../shared/useDesignerUiConfig.js';
 import { resolveReassignActionState } from './reassignActionState.js';
 import TypeFilterSelect from './TypeFilterSelect.js';
 
@@ -100,8 +99,8 @@ const ListViewToolbar = ({
   onBulkAssignRecipient,
   collaborationContext,
 }: Props) => {
-  const options = useContext(OptionsContext);
-  const { assignmentEnabled, reassignVisible, assignmentModalVisible } = resolveReassignVisibilityState(options);
+  const designerUiConfig = useDesignerUiConfig();
+  const { assignmentEnabled, reassignVisible, assignmentModalVisible } = designerUiConfig.features;
   const reassignActionState = resolveReassignActionState({
     assignmentEnabled,
     reassignVisible,

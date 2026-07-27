@@ -22,5 +22,8 @@ Objetivo: adoptar la arquitectura IA sin interrumpir el desarrollo de SISAD PDFM
 | [QUALITY-001](task-cards/QUALITY-001-jscpd-profiles.md) | Done | coordinator | Sol medium | actual | 3 perfiles reproducibles |
 | [DEDUP-011](task-cards/DEDUP-011-strict-owned-residuals.md) | Done | coordinator | Sol high | actual | owned 4→1; strict 65→62 |
 | [UX-001](task-cards/UX-001-right-sidebar-listview-compactness-and-dnd.md) | In review | claude-opus | Opus 4.8 max | actual | contador único, filtro accesible, delete seguro, overlay alineado; lint/build/unit verdes (36 tests) |
+| [CONFIG-001](task-cards/CONFIG-001-repair-public-config-api.md) | In review | claude-opus | Opus 4.8 max | actual | Fase 1: barrel público restaurado; ~13 errores tsc resueltos, 0 nuevos; lint/build verdes; +3 tests contrato |
+| [CONFIG-002](task-cards/CONFIG-002-audit-configuration-sources.md) | Ready | config-specialist | Terra medium | pendiente | baseline de fuentes/readers y recursos |
+| [CONFIG-015](task-cards/CONFIG-015-migrate-schema-profiles.md) | Done | schema-specialist | Sol high | actual | perfiles por familia unificados; tests focales y build verdes |
 
 WIP máximo: 3; cuentan `In progress` e `In review`. `SPRINT-CURRENT.md` es el único propietario del estado.

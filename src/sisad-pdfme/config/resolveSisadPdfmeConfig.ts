@@ -8,6 +8,7 @@ import { createRecipientsAdapter } from '../adapters/recipientsAdapter.js';
 import { createDocumentsAdapter } from '../adapters/documentsAdapter.js';
 import { createPersistenceAdapter } from '../adapters/persistenceAdapter.js';
 import { createSignatureProviderAdapter } from '../adapters/signatureProviderAdapter.js';
+import { migrateSisadPdfmeConfig } from './configMigration.js';
 import { defaultSisadPdfmeConfig, defaultSisadPdfmeVisibilityConfig } from './defaultSisadPdfmeConfig.js';
 import type {
   ResolvedSisadPdfmeConfig,
@@ -71,10 +72,11 @@ const resolveLayoutPresetOptions = (
     visibility: Required<typeof defaultSisadPdfmeVisibilityConfig>;
     classNames: Required<SisadPdfmeUiClassNamesConfig>;
   },
+  config: ResolvedSisadPdfmeConfig['config'],
 ) => {
   const isThreePanel = ui.layoutPreset === 'three-panel';
-  const sidebarOpen = ui.sidebars?.right?.defaultOpen ?? true;
-  const leftSidebarVisible = ui.sidebars?.left?.defaultOpen ?? true;
+  const sidebarOpen = config.sidebars?.right?.defaultOpen ?? true;
+  const leftSidebarVisible = config.sidebars?.left?.defaultOpen ?? true;
 
   return {
     themePreset: ui.visualPreset === 'classic-designer' ? 'sisad' : ui.visualPreset || 'sisad',
@@ -93,18 +95,18 @@ const resolveLayoutPresetOptions = (
     // conservar el auto-switch a Detalle al seleccionar un schema; un panel
     // explícito distinto sí se respeta literal.
     rightSidebarViewMode:
-      !ui.sidebars?.right?.defaultPanel || ui.sidebars.right.defaultPanel === 'fields'
+      !config.sidebars?.right?.defaultPanel || config.sidebars.right.defaultPanel === 'fields'
         ? 'auto'
-        : ui.sidebars.right.defaultPanel === 'documents'
+        : config.sidebars.right.defaultPanel === 'documents'
           ? 'docs'
-          : ui.sidebars.right.defaultPanel,
+          : config.sidebars.right.defaultPanel,
     // El preset define el estado INICIAL del sidebar; no lo controla. Un estado
     // controlado sin re-control del host congela el toggle de colapso.
     sidebarOpenControlled: false,
     sidebarOpen,
-    catalogLayout: ui.sidebars?.left?.catalogLayout || 'list',
+    catalogLayout: config.sidebars?.left?.catalogLayout || 'list',
     layoutPreset: ui.layoutPreset,
-    density: ui.density,
+    density: config.theme.density,
     gap: ui.gap,
     padding: ui.padding,
     baseWidth: ui.baseWidth,
@@ -115,17 +117,18 @@ const resolveLayoutPresetOptions = (
 export const resolveSisadPdfmeConfig = (
   input: SisadPdfmeGlobalConfig = {},
 ): ResolvedSisadPdfmeConfig => {
-  const baseConfig = deepMerge(defaultSisadPdfmeConfig as unknown as Record<string, unknown>, input as Record<string, unknown>) as ResolvedSisadPdfmeConfig['config'];
+  const migratedInput = migrateSisadPdfmeConfig(input).config;
+  const baseConfig = deepMerge(defaultSisadPdfmeConfig as unknown as Record<string, unknown>, migratedInput as Record<string, unknown>) as ResolvedSisadPdfmeConfig['config'];
   const ui = normalizeUiConfig(input.ui);
   const visibility = deepMerge(
     defaultSisadPdfmeVisibilityConfig as unknown as Record<string, unknown>,
-    input.visibility as Record<string, unknown> | undefined,
+    migratedInput.visibility as Record<string, unknown> | undefined,
   ) as ResolvedSisadPdfmeConfig['visibility'];
   const mergedVisibility = deepMerge(
     visibility as unknown as Record<string, unknown>,
     ui.visibility as Record<string, unknown> | undefined,
   ) as ResolvedSisadPdfmeConfig['visibility'];
-  const layoutOptions = resolveLayoutPresetOptions(ui);
+  const layoutOptions = resolveLayoutPresetOptions(ui, baseConfig);
   const hiddenCatalogTypes = Object.entries(mergedVisibility.schemas.catalog || {})
     .filter(([, isVisible]) => isVisible === false)
     .map(([schemaType]) => schemaType);
@@ -191,22 +194,37 @@ export const resolveSisadPdfmeConfig = (
 
   const designerEngine = designerEngineBuilder.build();
 
-  const resolvedUi = {
-    ...ui,
-    visibility: mergedVisibility,
-    classNames: ui.classNames,
-  };
-  const resolvedThemeDensity = resolvedUi.density || baseConfig.theme.density;
   const resolvedSidebars = {
     ...baseConfig.sidebars,
     left: {
       ...(baseConfig.sidebars?.left || {}),
-      defaultOpen: resolvedUi.sidebars?.left?.defaultOpen ?? baseConfig.sidebars?.left?.defaultOpen,
-      catalogLayout: resolvedUi.sidebars?.left?.catalogLayout ?? baseConfig.sidebars?.left?.catalogLayout,
+      defaultOpen: baseConfig.sidebars?.left?.defaultOpen,
+      catalogLayout: baseConfig.sidebars?.left?.catalogLayout,
     },
     right: {
       ...(baseConfig.sidebars?.right || {}),
-      defaultPanel: resolvedUi.sidebars?.right?.defaultPanel ?? baseConfig.sidebars?.right?.defaultPanel,
+      defaultOpen: baseConfig.sidebars?.right?.defaultOpen,
+      defaultPanel: baseConfig.sidebars?.right?.defaultPanel,
+    },
+  };
+  const resolvedThemeDensity = baseConfig.theme.density;
+  const resolvedUi = {
+    ...ui,
+    visibility: mergedVisibility,
+    classNames: ui.classNames,
+    density: resolvedThemeDensity,
+    sidebars: {
+      ...ui.sidebars,
+      left: {
+        ...(ui.sidebars?.left || {}),
+        defaultOpen: resolvedSidebars.left.defaultOpen,
+        catalogLayout: resolvedSidebars.left.catalogLayout,
+      },
+      right: {
+        ...(ui.sidebars?.right || {}),
+        defaultOpen: resolvedSidebars.right.defaultOpen,
+        defaultPanel: resolvedSidebars.right.defaultPanel,
+      },
     },
   };
   const resolvedConfig = {

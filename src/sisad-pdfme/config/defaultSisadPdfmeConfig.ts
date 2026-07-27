@@ -139,6 +139,7 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
     },
     right: {
       enabled: true,
+      defaultOpen: true,
       defaultPanel: 'fields',
       panels: ['fields', 'detail', 'comments', 'documents'],
       density: 'comfortable',

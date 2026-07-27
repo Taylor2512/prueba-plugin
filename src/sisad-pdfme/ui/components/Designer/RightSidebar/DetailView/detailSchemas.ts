@@ -10,7 +10,6 @@ import type { SchemaDesignerConfig } from '../../../../../ui/designerEngine.js';
 import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
 import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
 import {
-  getDetailProfile,
   hasMeaningfulInspectorValue,
   CANONICAL_DETAIL_SECTION_LABELS,
   CANONICAL_DETAIL_SECTION_ORDER,
@@ -19,8 +18,8 @@ import {
   shouldRenderDetailSection,
 } from './detailSectionTaxonomy.js';
 import { contractSectionEnabled, resolveInspectorContract } from './inspectorContracts.js';
-import { getSchemaTypeInspectorPreset, resolveSchemaSemanticFamily } from '../../../../../schemas/schemaFamilies.js';
 import { shouldShowInspectorSection } from '../../shared/visibilityConfig.js';
+import { createSchemaConfigurationProfile } from '../../../../../config/schemaConfigurationProfile.js';
 
 /** Clave canónica de sección usada por el DetailView. */
 export type DetailInspectorSectionKey = CanonicalDetailSection;
@@ -84,13 +83,13 @@ type BuildInspectorSchemasParams = {
  */
 export const getInspectorProfile = (schema: InspectorProfileInput, _context?: unknown): InspectorProfile => {
   const normalizedSchemaType = String((typeof schema === 'string' ? schema : schema?.type) || '').trim().toLowerCase();
-  const profile = getDetailProfile(normalizedSchemaType);
+  const profile = createSchemaConfigurationProfile(normalizedSchemaType);
 
   return {
     schemaType: normalizedSchemaType,
-    family: resolveSchemaSemanticFamily(normalizedSchemaType),
-    visibleSections: profile.visibleSections,
-    defaultOpenSections: profile.defaultOpenSections,
+    family: profile.semanticFamily,
+    visibleSections: profile.inspector.visibleSections,
+    defaultOpenSections: profile.inspector.defaultOpenSections,
   };
 };
 
@@ -226,8 +225,9 @@ export const buildInspectorSections = ({
   validatePosition,
   visibility,
 }: BuildInspectorSchemasParams) => {
-  const familyPreset = getSchemaTypeInspectorPreset(activeSchemaType);
-  const semanticFamily = resolveSchemaSemanticFamily(activeSchemaType);
+  const schemaProfile = createSchemaConfigurationProfile(activeSchemaType);
+  const familyPreset = schemaProfile.inspectorPreset;
+  const semanticFamily = schemaProfile.semanticFamily;
   const inspectorContract = resolveInspectorContract(activeSchemaType);
   const activeSchemaRecord = asRecord(activeSchema);
   const hasSchemaBindings = Boolean(

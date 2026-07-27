@@ -1,19 +1,12 @@
-import { useContext, useMemo } from 'react';
-import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
-import { createSisadPdfmeConfig } from '../config/createSisadPdfmeConfig.js';
-import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '../config/SisadPdfmeConfig.js';
-
-export type SisadPdfmeConfigInput = SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
-
-const isResolvedSisadPdfmeConfig = (value: unknown): value is ResolvedSisadPdfmeConfig =>
-  Boolean(value && typeof value === 'object' && 'config' in value && 'runtimeOptions' in value && 'designerEngine' in value);
+import { useSyncExternalStore } from 'react';
+import type { ResolvedSisadPdfmeConfig } from '../config/SisadPdfmeConfig.js';
+import { useSisadPdfmeConfigService, type SisadPdfmeConfigInput } from './useSisadPdfmeConfigService.js';
 
 export const useSisadPdfmeConfig = (config?: SisadPdfmeConfigInput): ResolvedSisadPdfmeConfig => {
-  const context = useContext(SisadPdfmeContext);
-  return useMemo(() => {
-    if (isResolvedSisadPdfmeConfig(config)) return config;
-    if (config) return createSisadPdfmeConfig(config);
-    if (context) return context.config;
-    return createSisadPdfmeConfig();
-  }, [config, context]);
+  const service = useSisadPdfmeConfigService(config);
+  return useSyncExternalStore(
+    (listener) => service.subscribe(listener),
+    () => service.getResolvedConfig(),
+    () => service.getResolvedConfig(),
+  );
 };

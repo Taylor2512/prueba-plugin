@@ -1,4 +1,3 @@
-
 # Plan de continuidad — Configuración unificada de componentes y comportamientos de SISAD PDFME
 
 **Proyecto base:** `prueba-plugin`
@@ -12,23 +11,23 @@
 
 La configuración raíz actual debe continuar siendo el contrato público:
 
-```txt
+``​`txt
 src/sisad-pdfme/config/SisadPdfmeConfig.ts
 src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts
 src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts
 src/sisad-pdfme/config/createSisadPdfmeConfig.ts
 src/sisad-pdfme/config/index.ts
-```
+``​`
 
 Sobre esa base se debe crear una fachada única:
 
-```txt
+``​`txt
 src/sisad-pdfme/config/SisadPdfmeConfigService.ts
-```
+``​`
 
 La regla es:
 
-```txt
+``​`txt
 Un SisadPdfmeProvider
 → una instancia de SisadPdfmeConfigService
 → una configuración resuelta
@@ -37,7 +36,7 @@ Un SisadPdfmeProvider
 → un EventHub
 → un conjunto de adapters
 → todos los componentes consumen selectores del mismo servicio
-```
+``​`
 
 ## Aclaración importante
 
@@ -75,7 +74,7 @@ La continuidad no debe reemplazar esa arquitectura. Debe **cerrar el circuito** 
 
 Actualmente existen rutas equivalentes o parcialmente equivalentes:
 
-```txt
+``​`txt
 visibility
 ui.visibility
 
@@ -90,7 +89,7 @@ ui.sidebars.right.defaultPanel
 
 theme.density
 ui.density
-```
+``​`
 
 Esto obliga al resolver a decidir precedencia y permite que dos configuraciones distintas controlen el mismo resultado.
 
@@ -98,12 +97,12 @@ Esto obliga al resolver a decidir precedencia y permite que dos configuraciones 
 
 `resolveSisadPdfmeConfig` no solo normaliza valores. También crea:
 
-```txt
+``​`txt
 DesignerEngine
 adapters
 eventHub
 runtimeOptions
-```
+``​`
 
 Cada nueva resolución puede crear recursos distintos. Esto es peligroso cuando:
 
@@ -119,14 +118,14 @@ Cada nueva resolución puede crear recursos distintos. Esto es peligroso cuando:
 
 El flujo actual puede terminar así:
 
-```txt
+``​`txt
 SisadPdfmeGlobalConfig
 → resolveSisadPdfmeConfig
 → runtimeOptions
 → OptionsContext
 → buildDesignerUiMap
 → nueva interpretación de visibility/assignment/collaboration
-```
+``​`
 
 La UI debe recibir un estado efectivo ya resuelto o consultar selectores del servicio, no reconstruir reglas de dominio.
 
@@ -134,7 +133,7 @@ La UI debe recibir un estado efectivo ya resuelto o consultar selectores del ser
 
 Ejemplo de reasignación:
 
-```txt
+``​`txt
 assignment.enabled
 assignment.allowSingle
 assignment.allowBulk
@@ -144,7 +143,7 @@ collaboration.canEditStructure
 selección actual
 recipients disponibles
 lock/readOnly del schema
-```
+``​`
 
 Un booleano aislado no responde si la acción:
 
@@ -160,11 +159,11 @@ Un booleano aislado no responde si la acción:
 
 El archivo consolidado actual muestra:
 
-```ts
+``​`ts
 export { defaultSisadPdfmeConfig } from './defaultSisadPdfmeConfig.js';
 export { createSisadPdfmeConfig } from './createSisadPdfmeConfig.js';
 ;
-```
+``​`
 
 También desaparecieron exportaciones públicas que existían antes, entre ellas el resolver y varios contratos.
 
@@ -174,10 +173,10 @@ Esto debe corregirse antes de publicar el nuevo servicio.
 
 En las diferencias recientes aparecen contratos como:
 
-```txt
+``​`txt
 SisadPdfmeDocument
 SisadPdfmeEventHandlers
-```
+``​`
 
 convertidos de `export type` a tipos internos.
 
@@ -189,7 +188,7 @@ La configuración global no será portable si el host no puede tipar documentos,
 
 Cada funcionalidad o componente debe resolverse con el mismo modelo:
 
-```ts
+``​`ts
 export type SisadPdfmeFeatureState = {
   id: string;
 
@@ -223,32 +222,32 @@ export type SisadPdfmeFeatureState = {
   /** Rutas de configuración que participaron en la decisión. */
   sources?: string[];
 };
-```
+``​`
 
 ## Fórmula efectiva
 
-```txt
+``​`txt
 executable =
   registered
   && supported
   && enabled
   && permitted
   && available
-```
+``​`
 
 La visibilidad se evalúa aparte:
 
-```txt
+``​`txt
 renderable =
   registered
   && supported
   && enabled
   && visible
-```
+``​`
 
 Esto permite estados útiles:
 
-```txt
+``​`txt
 visible=true + executable=false
 → mostrar botón deshabilitado con motivo
 
@@ -260,7 +259,7 @@ enabled=false
 
 visible=false
 → ocultar UI sin necesariamente desactivar la capacidad
-```
+``​`
 
 ---
 
@@ -270,7 +269,7 @@ visible=false
 
 Se conservan como fuente canónica:
 
-```txt
+``​`txt
 app
 runtime
 theme
@@ -287,13 +286,13 @@ events
 debug
 visibility
 ui
-```
+``​`
 
 ## 5.2 Reducir `ui` a presentación
 
 `ui` debe quedar solo para layout y estilos:
 
-```ts
+``​`ts
 ui: {
   visualPreset;
   layoutPreset;
@@ -303,37 +302,37 @@ ui: {
   baseHeight;
   classNames;
 }
-```
+``​`
 
 Deben considerarse legacy/deprecated:
 
-```txt
+``​`txt
 ui.visibility
 ui.density
 ui.sidebars
-```
+``​`
 
 ## 5.3 Rutas canónicas
 
-```txt
+``​`txt
 visibility                    → única configuración de visualización
 theme.density                 → única densidad base
 sidebars.*                    → único comportamiento y estado inicial de sidebars
 ui.*                          → solo layout, medidas, preset y classNames públicos
 recipients.activeRecipientId  → único destinatario activo
-```
+``​`
 
 Debe quedar deprecated:
 
-```txt
+``​`txt
 collaboration.activeRecipientId
-```
+``​`
 
 Se conserva temporalmente solo como alias de compatibilidad.
 
 ## 5.4 Precedencia oficial
 
-```txt
+``​`txt
 1. Defaults de librería
 2. Preset visual/runtime
 3. Config legacy migrada
@@ -341,7 +340,7 @@ Se conserva temporalmente solo como alias de compatibilidad.
 5. Overrides temporales del runtime
 6. Permisos y contexto efectivo
 7. Estado local de interacción
-```
+``​`
 
 La configuración canónica siempre gana sobre un alias legacy.
 
@@ -351,7 +350,7 @@ La configuración canónica siempre gana sobre un alias legacy.
 
 ## 6.1 Estructura propuesta
 
-```txt
+``​`txt
 src/sisad-pdfme/config/
 ├── SisadPdfmeConfig.ts
 ├── defaultSisadPdfmeConfig.ts
@@ -367,13 +366,13 @@ src/sisad-pdfme/config/
 ├── componentRegistry.ts
 ├── actionConfigRegistry.ts
 └── index.ts
-```
+``​`
 
 ## 6.2 Responsabilidad de `SisadPdfmeConfigService`
 
 La fachada debe:
 
-```ts
+``​`ts
 export interface SisadPdfmeConfigService {
   getRawConfig(): SisadPdfmeGlobalConfig;
   getResolvedConfig(): ResolvedSisadPdfmeConfig;
@@ -419,13 +418,13 @@ export interface SisadPdfmeConfigService {
     context?: Record<string, unknown>,
   ): SisadPdfmeConfigurationExplanation;
 }
-```
+``​`
 
 ## 6.3 El servicio no debe ser un God Object
 
 La fachada delega en módulos puros:
 
-```txt
+``​`txt
 configMigration       → compatibilidad legacy
 configValidation      → errores y warnings
 resolveConfig         → normalización
@@ -435,7 +434,7 @@ actionConfigRegistry  → acciones
 componentRegistry     → componentes visuales
 configSelectors       → lectura estable
 configChangeImpact    → hot update/rebuild/remount
-```
+``​`
 
 ---
 
@@ -445,32 +444,32 @@ configChangeImpact    → hot update/rebuild/remount
 
 Deben crearse una sola vez:
 
-```txt
+``​`txt
 SisadPdfmeConfigService
 RecipientRegistry
 DesignerRuntimeEventHub
 adapters base
 controller facade
-```
+``​`
 
 ## 7.2 Recursos reconstruibles con control
 
-```txt
+``​`txt
 DesignerEngine
 runtimeOptions
 plugins resueltos
 signature providers
-```
+``​`
 
 No deben reconstruirse por un cambio como:
 
-```txt
+``​`txt
 ocultar búsqueda
 cerrar sidebar
 cambiar panel visible
 ocultar botón eliminar
 mostrar sección avanzada
-```
+``​`
 
 ---
 
@@ -478,20 +477,20 @@ mostrar sección avanzada
 
 Crear:
 
-```ts
+``​`ts
 export type SisadPdfmeConfigChangeImpact =
   | 'none'
   | 'ui-state'
   | 'runtime-options'
   | 'engine-rebuild'
   | 'runtime-remount';
-```
+``​`
 
 ## 8.1 Cambios calientes
 
 No deben remontar el runtime:
 
-```txt
+``​`txt
 visibility.*
 sidebars.*.defaultOpen
 sidebars.right.defaultPanel
@@ -502,11 +501,11 @@ ui.classNames
 debug.logEvents
 acciones visibles/habilitadas
 secciones y campos del inspector
-```
+``​`
 
 ## 8.2 Rebuild de engine
 
-```txt
+``​`txt
 canvas.selecto
 canvas.moveable
 canvas.guides
@@ -515,30 +514,30 @@ schemas.plugins
 schemas.enabledTypes
 signatures.providers
 collaboration.enabled
-```
+``​`
 
 Cuando sea posible, usar `updateOptions`; reconstruir solo si el engine no soporta actualización.
 
 ## 8.3 Remount de runtime
 
-```txt
+``​`txt
 runtime.mode
 cambio de constructor Designer/Form/Viewer
 cambio incompatible del plugin registry
 cambio de aislamiento del host que requiera nuevo DOM owner
-```
+``​`
 
 ## 8.4 Cambios prohibidos en caliente
 
 Nunca cambiar en medio de una interacción activa:
 
-```txt
+``​`txt
 Moveable mientras se redimensiona
 Selecto mientras selecciona por región
 document routing durante drag
 schema plugins durante inline edit
 runtime.mode con modal abierto
-```
+``​`
 
 El servicio debe posponer o rechazar el cambio con motivo.
 
@@ -550,17 +549,17 @@ Crear IDs estables, independientes de nombres de componentes React.
 
 ## 9.1 Runtime
 
-```txt
+``​`txt
 runtime.designer
 runtime.form
 runtime.viewer
 runtime.readonly
 runtime.eventIsolation
-```
+``​`
 
 ## 9.2 Canvas e interacción
 
-```txt
+``​`txt
 canvas.render
 canvas.select
 canvas.regionSelect
@@ -579,11 +578,11 @@ canvas.copyPaste
 canvas.undoRedo
 canvas.emptyClickClear
 canvas.modalSuspension
-```
+``​`
 
 ## 9.3 LeftSidebar
 
-```txt
+``​`txt
 sidebar.left
 sidebar.left.collapse
 sidebar.left.search
@@ -594,11 +593,11 @@ sidebar.left.customFields
 sidebar.left.favorites
 sidebar.left.recent
 sidebar.left.recipients
-```
+``​`
 
 ## 9.4 RightSidebar
 
-```txt
+``​`txt
 sidebar.right
 sidebar.right.collapse
 sidebar.right.tabs
@@ -607,11 +606,11 @@ sidebar.right.fields
 sidebar.right.detail
 sidebar.right.comments
 sidebar.right.documents
-```
+``​`
 
 ## 9.5 Inspector
 
-```txt
+``​`txt
 inspector
 inspector.identity
 inspector.options
@@ -625,11 +624,11 @@ inspector.collaboration
 inspector.comments
 inspector.advanced
 inspector.technical
-```
+``​`
 
 ## 9.6 Schemas
 
-```txt
+``​`txt
 schema.catalog.<type>
 schema.canvas.<type>
 schema.inspector.<type>
@@ -637,11 +636,11 @@ schema.runtime.<type>
 schema.create.<type>
 schema.edit.<type>
 schema.delete.<type>
-```
+``​`
 
 ## 9.7 Acciones
 
-```txt
+``​`txt
 action.reassign
 action.rename
 action.duplicate
@@ -655,11 +654,11 @@ action.show
 action.align
 action.distribute
 action.matchSize
-```
+``​`
 
 ## 9.8 Colaboración y asignación
 
-```txt
+``​`txt
 recipients.registry
 recipients.activeSelection
 collaboration
@@ -670,11 +669,11 @@ assignment.single
 assignment.bulk
 assignment.modal
 assignment.search
-```
+``​`
 
 ## 9.9 Documentos y comentarios
 
-```txt
+``​`txt
 documents
 documents.multi
 documents.panel
@@ -683,11 +682,11 @@ comments
 comments.panel
 comments.modal
 comments.anchor
-```
+``​`
 
 ## 9.10 Firma, persistencia y diagnóstico
 
-```txt
+``​`txt
 signatures
 signatures.draw
 signatures.image
@@ -702,7 +701,7 @@ debug
 debug.panel
 debug.technicalInspector
 debug.eventLog
-```
+``​`
 
 ---
 
@@ -712,12 +711,12 @@ debug.eventLog
 
 ### Configuración actual
 
-```txt
+``​`txt
 runtime.mode
 runtime.readonly
 runtime.isolateDomEvents
 runtime.preserveSelectionOnModalClose
-```
+``​`
 
 ### Regla efectiva
 
@@ -730,12 +729,12 @@ runtime.preserveSelectionOnModalClose
 
 Crear selectores:
 
-```txt
+``​`txt
 selectRuntimeMode
 selectIsReadonly
 selectCanMutateTemplate
 selectCanInspectSchemas
-```
+``​`
 
 ---
 
@@ -743,7 +742,7 @@ selectCanInspectSchemas
 
 ### Configuración actual
 
-```txt
+``​`txt
 canvas.enabled
 canvas.selecto
 canvas.moveable
@@ -754,7 +753,7 @@ canvas.multiSelect
 canvas.platformSelection
 canvas.suspendWhenModalOpen
 canvas.resetInteractionOnModalClose
-```
+``​`
 
 ### Problema
 
@@ -764,7 +763,7 @@ canvas.resetInteractionOnModalClose
 
 Agregar capacidades separadas sin romper legacy:
 
-```ts
+``​`ts
 canvas: {
   transform?: {
     move?: boolean;
@@ -772,16 +771,16 @@ canvas: {
     rotate?: boolean;
   };
 }
-```
+``​`
 
 Compatibilidad:
 
-```txt
+``​`txt
 canvas.moveable=false
 → move=false
 → resize=false
 → rotate=false
-```
+``​`
 
 No tocar `Moveable.tsx` ni `Selecto.tsx` en la primera fase. La configuración se resuelve antes de llegar a ellos.
 
@@ -791,17 +790,17 @@ No tocar `Moveable.tsx` ni `Selecto.tsx` en la primera fase. La configuración s
 
 ### LeftSidebar
 
-```txt
+``​`txt
 sidebars.left.enabled
 sidebars.left.defaultOpen
 sidebars.left.catalogLayout
 sidebars.left.allowCustomFields
 visibility.sidebars.left.*
-```
+``​`
 
 Reglas:
 
-```txt
+``​`txt
 enabled=false
 → no montar catálogo ni listeners de drag
 
@@ -812,35 +811,35 @@ customFields efectivo =
   sidebar habilitado
   && allowCustomFields
   && visibility.customFields
-```
+``​`
 
 ### RightSidebar
 
-```txt
+``​`txt
 sidebars.right.enabled
 sidebars.right.defaultPanel
 sidebars.right.panels
 sidebars.right.density
 sidebars.right.showCollapsedButton
 visibility.sidebars.right.*
-```
+``​`
 
 Reglas:
 
-```txt
+``​`txt
 panel efectivo =
   incluido en sidebars.right.panels
   && visible en visibility.sidebars.right.panels
   && soportado por runtime
-```
+``​`
 
 El botón de colapso efectivo:
 
-```txt
+``​`txt
 sidebar habilitado
 && visibility.collapseButton
 && showCollapsedButton
-```
+``​`
 
 Actualmente esos flags pueden contradecirse; el servicio debe resolverlos.
 
@@ -850,7 +849,7 @@ Actualmente esos flags pueden contradecirse; el servicio debe resolverlos.
 
 ### Configuración actual
 
-```txt
+``​`txt
 schemas.enabledTypes
 schemas.autoAttachIdentity
 schemas.validateUniqueNames
@@ -860,11 +859,11 @@ visibility.schemas.catalog
 visibility.schemas.canvas
 visibility.schemas.inspector
 visibility.schemas.runtime
-```
+``​`
 
 ### Semántica
 
-```txt
+``​`txt
 enabledTypes
 → tipos permitidos funcionalmente
 
@@ -879,7 +878,7 @@ visibility.schemas.inspector
 
 visibility.schemas.runtime
 → visibles en Form/Viewer
-```
+``​`
 
 Ocultar del catálogo no debe eliminar un schema existente del canvas ni del snapshot.
 
@@ -887,11 +886,11 @@ Ocultar del catálogo no debe eliminar un schema existente del canvas ni del sna
 
 Crear:
 
-```txt
+``​`txt
 SchemaCapabilityResolver
 SchemaConfigurationProfile
 SchemaVisibilitySelector
-```
+``​`
 
 Cada schema debe consultar un único perfil efectivo.
 
@@ -901,7 +900,7 @@ Cada schema debe consultar un único perfil efectivo.
 
 ### Configuración actual
 
-```txt
+``​`txt
 inspector.visible
 showEmptySections
 showAdvanced
@@ -911,29 +910,29 @@ showComments
 sections
 fields
 fieldsBySchemaType
-```
+``​`
 
 ### Orden de resolución
 
-```txt
+``​`txt
 inspector.visible
 → sección visible
 → campo visible global
 → campo visible para schemaType
 → widget soportado
 → access state permite editar
-```
+``​`
 
 La visibilidad no determina editabilidad.
 
 El widget puede estar:
 
-```txt
+``​`txt
 visible + editable
 visible + readonly con razón
 oculto
 no soportado
-```
+``​`
 
 ---
 
@@ -941,28 +940,28 @@ no soportado
 
 Cada acción debe pasar por:
 
-```txt
+``​`txt
 ActionRegistry
 → ConfigService.getActionState
 → permisos
 → selección/contexto
 → schemaAccessState
 → CommandBus
-```
+``​`
 
 Eliminar gradualmente lecturas directas como:
 
-```txt
+``​`txt
 options.visibility.actions.delete
 options.assignment.enabled
 collaborationContext.canEditStructure
-```
+``​`
 
 dentro de botones individuales.
 
 El estado final debe incluir:
 
-```ts
+``​`ts
 {
   visible,
   enabled,
@@ -970,7 +969,7 @@ El estado final debe incluir:
   reason,
   commandId,
 }
-```
+``​`
 
 ---
 
@@ -978,23 +977,23 @@ El estado final debe incluir:
 
 ### Fuente única
 
-```txt
+``​`txt
 RecipientRegistry
-```
+``​`
 
 El host registra recipients una sola vez.
 
 ### Destinatario activo canónico
 
-```txt
+``​`txt
 recipients.activeRecipientId
-```
+``​`
 
 `collaboration.activeRecipientId` queda como alias legacy.
 
 ### Reasignación efectiva
 
-```txt
+``​`txt
 assignment.enabled
 && allowSingle/allowBulk según selección
 && visibility.actions.reassign
@@ -1002,7 +1001,7 @@ assignment.enabled
 && collaboration.canEditStructure
 && recipients disponibles
 && schemas reasignables
-```
+``​`
 
 La acción no debe reimplementar esa fórmula en `ListViewToolbar`, Canvas y DetailView.
 
@@ -1012,12 +1011,12 @@ La acción no debe reimplementar esa fórmula en `ListViewToolbar`, Canvas y Det
 
 ### Configuración actual
 
-```txt
+``​`txt
 documents.mode
 documents.preserveDocumentSchemaRouting
 documents.activeDocumentStrategy
 visibility.sidebars.right.panels.documents
-```
+``​`
 
 ### Reglas
 
@@ -1036,7 +1035,7 @@ Actualmente comentarios dependen principalmente de visibilidad.
 
 Agregar contrato de comportamiento:
 
-```ts
+``​`ts
 comments?: {
   enabled?: boolean;
   allowDocumentComments?: boolean;
@@ -1045,17 +1044,17 @@ comments?: {
   allowResolve?: boolean;
   allowReopen?: boolean;
 }
-```
+``​`
 
 Reglas:
 
-```txt
+``​`txt
 comments.enabled=false
 → no registrar overlays, modal ni comandos
 
 comments.enabled=true + panel visible=false
 → comentarios disponibles por API/CommandBus
-```
+``​`
 
 ---
 
@@ -1063,11 +1062,11 @@ comments.enabled=true + panel visible=false
 
 ### Configuración actual
 
-```txt
+``​`txt
 signatures.enabled
 signatures.defaultMode
 signatures.providers
-```
+``​`
 
 ### Reglas
 
@@ -1081,10 +1080,10 @@ signatures.providers
 
 El servicio debe explicar configuraciones inválidas, por ejemplo:
 
-```txt
+``​`txt
 signature provider deshabilitado:
 defaultMode=provider pero providers está vacío
-```
+``​`
 
 ---
 
@@ -1092,15 +1091,15 @@ defaultMode=provider pero providers está vacío
 
 ### Configuración actual
 
-```txt
+``​`txt
 persistence.mode
 persistence.autosave
 persistence.serializeSnapshot
-```
+``​`
 
 ### Reglas
 
-```txt
+``​`txt
 mode=none
 → sin load/save automático
 
@@ -1112,11 +1111,11 @@ mode=host
 
 autosave=true
 → requiere persistence habilitada
-```
+``​`
 
 El snapshot debe conservar:
 
-```txt
+``​`txt
 documents
 schemas
 recipients
@@ -1126,7 +1125,7 @@ comments
 signature config
 metadata
 version
-```
+``​`
 
 La configuración visual temporal no debe contaminar el snapshot del documento.
 
@@ -1138,7 +1137,7 @@ El `EventHub` debe ser estable por Provider.
 
 Cada evento puede estar:
 
-```txt
+``​`txt
 false
 → deshabilitado
 
@@ -1147,14 +1146,14 @@ false
 
 function
 → se ejecuta el handler configurado
-```
+``​`
 
 Agregar política:
 
-```txt
+``​`txt
 events no deben reconstruirse al cambiar un handler
 handlers se almacenan en refs o registro mutable
-```
+``​`
 
 ---
 
@@ -1162,21 +1161,21 @@ handlers se almacenan en refs o registro mutable
 
 Rutas canónicas:
 
-```txt
+``​`txt
 theme.density
 theme.tokens
 ui.visualPreset
 ui.layoutPreset
 ui.classNames
-```
+``​`
 
 La densidad responsiva derivada por ancho debe combinarse así:
 
-```txt
+``​`txt
 densidad efectiva =
   límite configurado por host
   + ajuste responsivo interno
-```
+``​`
 
 El resize no debe cambiar la preferencia de layout elegida por el usuario.
 
@@ -1186,7 +1185,7 @@ El resize no debe cambiar la preferencia de layout elegida por el usuario.
 
 Crear `configSelectors.ts`:
 
-```txt
+``​`txt
 selectRuntimeConfig
 selectCanvasConfig
 selectLeftSidebarConfig
@@ -1202,7 +1201,7 @@ selectVisibility
 selectFeatureState(id, context)
 selectActionState(id, context)
 selectComponentState(id, context)
-```
+``​`
 
 Los componentes no deben recibir el objeto completo cuando solo necesitan un fragmento.
 
@@ -1214,40 +1213,40 @@ Los componentes no deben recibir el objeto completo cuando solo necesitan un fra
 
 El Provider debe crear y conservar:
 
-```txt
+``​`txt
 configService
 recipientRegistry
-```
+``​`
 
 Nuevo valor:
 
-```ts
+``​`ts
 export type SisadPdfmeProviderValue = {
   configService: SisadPdfmeConfigService;
   config: ResolvedSisadPdfmeConfig;
   recipientRegistry: SisadPdfmeRecipientRegistry;
 };
-```
+``​`
 
 `config` se conserva temporalmente por compatibilidad.
 
 ## 12.2 Hooks
 
-```txt
+``​`txt
 useSisadPdfmeConfigService()
 useSisadPdfmeConfig(selector?)
 useSisadPdfmeFeature(featureId, context?)
 useSisadPdfmeAction(actionId, context?)
 useSisadPdfmeComponent(componentId, context?)
-```
+``​`
 
 ## 12.3 External store
 
 Usar una suscripción compatible con React:
 
-```txt
+``​`txt
 useSyncExternalStore
-```
+``​`
 
 Así se evitan rerenders de todo el diseñador cuando cambia un flag de una sola sección.
 
@@ -1259,20 +1258,20 @@ Así se evitan rerenders de todo el diseñador cuando cambia un flag de una sola
 
 ## Etapa puente
 
-```txt
+``​`txt
 buildDesignerUiMap(options)
 → adapter legacy
 → usa selectores puros compartidos
-```
+``​`
 
 ## Estado final
 
-```txt
+``​`txt
 useDesignerUiConfig()
 → consulta SisadPdfmeConfigService
 → no lee OptionsContext como unknown
 → no vuelve a inferir configuración
-```
+``​`
 
 `OptionsContext` puede seguir recibiendo `runtimeOptions` para compatibilidad con internals legacy, pero no será la fuente primaria para nuevas funcionalidades.
 
@@ -1284,7 +1283,7 @@ useDesignerUiConfig()
 
 Crear:
 
-```txt
+``​`txt
 reports/configuration/
 ├── config-sources-audit.md
 ├── direct-config-readers.txt
@@ -1292,24 +1291,24 @@ reports/configuration/
 ├── current-public-api.md
 ├── behavior-matrix.md
 └── visual-functional-baseline.md
-```
+``​`
 
 Buscar:
 
-```bash
+``​`bash
 rg "options\.(visibility|assignment|sidebars|canvas|schemas|collaboration)" src/sisad-pdfme
 rg "visibility\?\.|visibility\." src/sisad-pdfme
 rg "canEditStructure|assignment\.enabled|showCollapsedButton|defaultPanel" src/sisad-pdfme
 rg "useContext\(OptionsContext\)" src/sisad-pdfme
 rg "createSisadPdfmeConfig|resolveSisadPdfmeConfig" src/sisad-pdfme
-```
+``​`
 
 Cierre:
 
-```txt
+``​`txt
 Existe un mapa componente/acción → rutas de configuración actuales.
 No se modifica comportamiento.
-```
+``​`
 
 ---
 
@@ -1317,16 +1316,16 @@ No se modifica comportamiento.
 
 Modificar:
 
-```txt
+``​`txt
 src/sisad-pdfme/config/index.ts
 src/sisad-pdfme/config/SisadPdfmeConfig.ts
 src/sisad-pdfme/integration/index.ts
 src/sisad-pdfme/react/index.ts
-```
+``​`
 
 Restaurar exportaciones:
 
-```txt
+``​`txt
 resolveSisadPdfmeConfig
 ResolvedSisadPdfmeConfig
 SisadPdfmeVisibilityConfig
@@ -1340,15 +1339,15 @@ SisadPdfmePersistenceAdapter
 SisadPdfmeSignatureProviderAdapter
 SisadPdfmeProviderProps
 SisadPdfmeProviderValue
-```
+``​`
 
 Eliminar el `;` aislado.
 
 Cierre:
 
-```txt
+``​`txt
 El host puede tipar toda la configuración pública sin imports profundos.
-```
+``​`
 
 ---
 
@@ -1356,20 +1355,20 @@ El host puede tipar toda la configuración pública sin imports profundos.
 
 Crear:
 
-```txt
+``​`txt
 configMigration.ts
 configValidation.ts
-```
+``​`
 
 Agregar:
 
-```ts
+``​`ts
 configVersion?: 2;
-```
+``​`
 
 Migrar:
 
-```txt
+``​`txt
 ui.visibility → visibility
 ui.density → theme.density
 ui.sidebars.left.defaultOpen → sidebars.left.defaultOpen
@@ -1377,16 +1376,16 @@ ui.sidebars.left.catalogLayout → sidebars.left.catalogLayout
 ui.sidebars.right.defaultOpen → nuevo sidebars.right.defaultOpen
 ui.sidebars.right.defaultPanel → sidebars.right.defaultPanel
 collaboration.activeRecipientId → recipients.activeRecipientId
-```
+``​`
 
 La config canónica gana sobre el alias legacy.
 
 Cierre:
 
-```txt
+``​`txt
 La misma entrada siempre produce una única configuración canónica.
 Warnings solo en debug/development.
-```
+``​`
 
 ---
 
@@ -1394,22 +1393,22 @@ Warnings solo en debug/development.
 
 Crear:
 
-```txt
+``​`txt
 SisadPdfmeConfigService.ts
 configSelectors.ts
 configChangeImpact.ts
-```
+``​`
 
 Criterios:
 
-```txt
+``​`txt
 No muta la entrada.
 Mantiene snapshot estable.
 Soporta subscribe/unsubscribe.
 Agrupa cambios por transaction.
 No recrea EventHub por cambio visual.
 Clasifica el impacto de cada patch.
-```
+``​`
 
 ---
 
@@ -1417,16 +1416,16 @@ Clasifica el impacto de cada patch.
 
 Crear:
 
-```txt
+``​`txt
 featureRegistry.ts
 featureDependencies.ts
 componentRegistry.ts
 actionConfigRegistry.ts
-```
+``​`
 
 Registrar primero:
 
-```txt
+``​`txt
 canvas
 sidebars
 right panels
@@ -1436,14 +1435,14 @@ inspector
 documents
 comments
 signatures
-```
+``​`
 
 Cierre:
 
-```txt
+``​`txt
 Toda feature devuelve estado efectivo y razón.
 No hay if/else masivo dentro de componentes.
-```
+``​`
 
 ---
 
@@ -1451,23 +1450,23 @@ No hay if/else masivo dentro de componentes.
 
 Modificar:
 
-```txt
+``​`txt
 SisadPdfmeProvider.tsx
 useSisadPdfmeConfig.ts
 useSisadPdfmeRecipientRuntime.ts
 SisadPdfmeDesigner.tsx
 SisadPdfmeForm.tsx
 SisadPdfmeViewer.tsx
-```
+``​`
 
 Cierre:
 
-```txt
+``​`txt
 Una instancia de service por Provider.
 Un RecipientRegistry por Provider.
 Un EventHub por Provider.
 Wrappers reutilizan los mismos recursos.
-```
+``​`
 
 ---
 
@@ -1475,7 +1474,7 @@ Wrappers reutilizan los mismos recursos.
 
 Orden:
 
-```txt
+``​`txt
 1. RightSidebar actions
 2. ListViewToolbar
 3. DetailView actions
@@ -1483,24 +1482,24 @@ Orden:
 5. LeftSidebar
 6. RightSidebar panels
 7. Sidebar collapse handles
-```
+``​`
 
 Regla:
 
-```txt
+``​`txt
 Los componentes consultan useSisadPdfmeAction/useSisadPdfmeComponent.
-```
+``​`
 
 No tocar:
 
-```txt
+``​`txt
 Moveable
 Selecto
 coordinateMath
 paper geometry
 snapshot
 generator
-```
+``​`
 
 ---
 
@@ -1508,7 +1507,7 @@ generator
 
 Integrar selectores para:
 
-```txt
+``​`txt
 select
 multiSelect
 move
@@ -1520,7 +1519,7 @@ contextMenu
 floatingToolbar
 keyboard shortcuts
 modal suspension
-```
+``​`
 
 Primero pasar flags resueltos a componentes existentes. No reescribir algoritmos.
 
@@ -1530,15 +1529,15 @@ Primero pasar flags resueltos a componentes existentes. No reescribir algoritmos
 
 Implementar:
 
-```txt
+``​`txt
 SchemaConfigurationProfile
 SchemaCapabilityResolver
 InspectorConfigurationResolver
-```
+``​`
 
 Cada familia consume el perfil compartido:
 
-```txt
+``​`txt
 text-like
 option-based
 signing-based
@@ -1548,7 +1547,7 @@ barcodes
 tables
 shapes
 custom
-```
+``​`
 
 ---
 
@@ -1556,14 +1555,14 @@ custom
 
 Cerrar dependencias cruzadas:
 
-```txt
+``​`txt
 recipients ↔ collaboration
 collaboration ↔ permissions
 assignment ↔ actions/modals
 documents ↔ routing/panels
 comments ↔ panel/modal/overlays
 signatures ↔ schemas/providers/runtime mode
-```
+``​`
 
 ---
 
@@ -1571,17 +1570,17 @@ signatures ↔ schemas/providers/runtime mode
 
 Exponer en controller:
 
-```ts
+``​`ts
 getConfig(): ResolvedSisadPdfmeConfig;
 updateConfig(patch, options?): SisadPdfmeConfigChangeResult;
 resetConfig(): void;
 getFeatureState(id, context?): SisadPdfmeFeatureState;
 explainConfiguration(id, context?): SisadPdfmeConfigurationExplanation;
-```
+``​`
 
 Los cambios calientes se aplican sin perder:
 
-```txt
+``​`txt
 selección
 zoom
 scroll
@@ -1589,7 +1588,7 @@ página
 documento activo
 panel activo cuando siga permitido
 inline edit cuando no haya conflicto
-```
+``​`
 
 ---
 
@@ -1597,18 +1596,18 @@ inline edit cuando no haya conflicto
 
 Actualizar:
 
-```txt
+``​`txt
 docs/07-integraciones/05-global-config.md
 docs/03-designer/02-props.md
 docs/03-designer/11-action-contract.md
 docs/04-schemas/09-inspector-contract.md
 docs/13-ejemplos/04-dynamic-host-integration-examples.md
 docs/10-testing-qa/02-regression-matrix.md
-```
+``​`
 
 Crear ejemplos:
 
-```txt
+``​`txt
 config/minimal-designer
 config/full-designer
 config/reviewer-readonly
@@ -1617,13 +1616,13 @@ config/multi-document
 config/no-collaboration
 config/provider-signature
 config/dynamic-feature-toggle
-```
+``​`
 
 ---
 
 # 15. Task-cards recomendadas
 
-```txt
+``​`txt
 CONFIG-001 — Reparar exports públicos
 CONFIG-002 — Auditar fuentes de configuración
 CONFIG-003 — Canonicalizar Config v2
@@ -1644,16 +1643,16 @@ CONFIG-017 — Configurar documents/comments
 CONFIG-018 — Configurar signatures
 CONFIG-019 — Configuración dinámica y controller
 CONFIG-020 — Matriz QA y documentación
-```
+``​`
 
 Cada task-card debe limitarse a:
 
-```txt
+``​`txt
 máximo 8 archivos leídos inicialmente
 máximo 5 archivos modificados
 máximo 2 rondas de búsqueda
 un solo dominio por tarea
-```
+``​`
 
 ---
 
@@ -1661,7 +1660,7 @@ un solo dominio por tarea
 
 ## 16.1 Unitarias
 
-```txt
+``​`txt
 defaults completos
 merge profundo sin mutación
 arrays reemplazados, no concatenados accidentalmente
@@ -1673,34 +1672,34 @@ action state con razón
 change impact
 subscribe/unsubscribe
 transaction emite una sola actualización
-```
+``​`
 
 ## 16.2 Contrato
 
-```txt
+``​`txt
 createSisadPdfmeConfig() funcional sin argumentos
 API pública no requiere imports internos
 config serializable cuando no contiene handlers
 tipos públicos accesibles
 misma entrada produce misma config canónica
-```
+``​`
 
 ## 16.3 Integración React
 
-```txt
+``​`txt
 un service por Provider
 un RecipientRegistry por Provider
 wrappers comparten recursos
 cambio visual no recrea EventHub
 cambio de recipients no crea registry paralelo
 useSyncExternalStore actualiza solo consumidores relevantes
-```
+``​`
 
 ## 16.4 Playwright
 
 Escenarios:
 
-```txt
+``​`txt
 deshabilitar LeftSidebar
 ocultar LeftSidebar sin desactivar comandos
 deshabilitar RightSidebar
@@ -1717,31 +1716,31 @@ cambiar densidad sin perder selección
 cambiar layout sin perder zoom
 cambiar flags calientes sin remount
 cambiar runtime.mode con remount controlado
-```
+``​`
 
 ---
 
 # 17. Quality gates
 
-```bash
+``​`bash
 npm run lint
 npm run build
 npx vitest run
 npx playwright test tests/playwright/configuration
 npm run quality:duplicate-functions
 npm run quality:dead-code
-```
+``​`
 
 Añadir un gate específico:
 
-```txt
+``​`txt
 Ningún componente nuevo puede leer directamente:
 options.visibility
 options.assignment
 options.sidebars
 options.canvas
 options.schemas
-```
+``​`
 
 Debe usar el servicio o un selector autorizado.
 
@@ -1751,7 +1750,7 @@ Debe usar el servicio o un selector autorizado.
 
 La continuidad queda completada cuando:
 
-```txt
+``​`txt
 [ ] Existe una sola configuración canónica por Provider.
 [ ] `ui.visibility`, `ui.sidebars` y `ui.density` ya no son fuentes activas.
 [ ] Todos los recursos compartidos son estables.
@@ -1766,13 +1765,13 @@ La continuidad queda completada cuando:
 [ ] Legacy sigue funcionando durante la ventana de migración.
 [ ] No se toca geometría de Canvas/Moveable/Selecto para implementar flags.
 [ ] Existe documentación y matriz de pruebas por comportamiento.
-```
+``​`
 
 ---
 
 # 19. Ejemplo objetivo de configuración
 
-```ts
+``​`ts
 const config = createSisadPdfmeConfig({
   configVersion: 2,
 
@@ -1906,7 +1905,7 @@ const config = createSisadPdfmeConfig({
     },
   },
 });
-```
+``​`
 
 ---
 
@@ -1914,7 +1913,7 @@ const config = createSisadPdfmeConfig({
 
 Al finalizar, el host debe poder configurar SISAD PDFME sin conocer:
 
-```txt
+``​`txt
 Canvas
 Moveable
 Selecto
@@ -1927,11 +1926,11 @@ designerUiConfig
 visibilityConfig
 schemaAssignmentService
 DesignerEngineBuilder
-```
+``​`
 
 El core será responsable de traducir la configuración raíz en:
 
-```txt
+``​`txt
 componente montado o no montado
 componente visible u oculto
 acción habilitada o deshabilitada
@@ -1940,6 +1939,6 @@ comportamiento disponible o no disponible
 estado activo
 motivo de bloqueo
 actualización caliente, rebuild o remount
-```
+``​`
 
 Esa es la continuidad correcta para convertir `src/sisad-pdfme` en un componente configurable, portable, predecible y reutilizable.

@@ -24,14 +24,19 @@ export {
   createSisadPdfmeConfig,
   defaultSisadPdfmeConfig,
   resolveSisadPdfmeConfig,
+  createInspectorConfigurationResolver,
 } from '../config/index.js';
 export {
   SisadPdfmeProvider,
   SisadPdfmeDesigner,
   SisadPdfmeForm,
   SisadPdfmeViewer,
+  useSisadPdfmeConfigService,
   useSisadPdfmeConfig,
   useSisadPdfmeController,
+  useSisadPdfmeFeature,
+  useSisadPdfmeAction,
+  useSisadPdfmeComponent,
 } from '../react/index.js';
 export type {
   ResolvedSisadPdfmeConfig,
@@ -42,10 +47,18 @@ export type {
   SisadPdfmeEventName,
   SisadPdfmeGlobalConfig,
   SisadPdfmePersistenceAdapter,
+  SisadPdfmeProviderProps,
+  SisadPdfmeProviderValue,
   SisadPdfmeRecipient,
   SisadPdfmeRecipientsAdapter,
   SisadPdfmeSignatureProvider,
   SisadPdfmeSignatureProviderAdapter,
+  SisadPdfmeUiClassNamesConfig,
+  SisadPdfmeUiConfig,
+  SisadPdfmeVisibilityConfig,
+} from '../config/index.js';
+export type {
+  InspectorConfigurationResolver,
 } from '../config/index.js';
 export {
   createRecipientRegistry,

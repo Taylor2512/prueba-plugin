@@ -17,7 +17,7 @@ import type {
 } from '@sisad-pdfme/common';
 import { isBlankPdf } from '@sisad-pdfme/common';
 import type { SidebarProps } from '../../../../types.js';
-import { I18nContext, PluginsRegistry, OptionsContext } from '../../../../contexts.js';
+import { I18nContext, PluginsRegistry } from '../../../../contexts.js';
 import { debounce } from '../../../../helper.js';
 import { theme } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
@@ -32,13 +32,14 @@ import {
 import { buildInspectorSections } from './detailSchemas.js';
 import buildDetailWidgets from './detailWidgetRegistry.js';
 import DetailViewContent from './DetailViewContent.js';
+import { createInspectorConfigurationResolver } from '../../../../../config/InspectorConfigurationResolver.js';
 import {
   getSchemaConfigStorageKey,
   getSchemaDesignerConfig,
   mergeSchemaDesignerConfig,
-  resolveDesignerEngine,
   type SchemaDesignerConfig,
 } from '../../../../designerEngine.js';
+import { useSisadPdfmeConfig } from '../../../../../react/useSisadPdfmeConfig.js';
 
 /**
  * Props requeridas por el inspector principal del schema activo.
@@ -198,8 +199,12 @@ const DetailView = (props: DetailViewProps) => {
   const form = useForm();
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
-  const options = useContext(OptionsContext);
-  const designerEngine = useMemo(() => resolveDesignerEngine(asRecord(options) || {}), [options]);
+  const resolvedConfig = useSisadPdfmeConfig();
+  const designerEngine = resolvedConfig.designerEngine;
+  const inspectorResolver = useMemo(
+    () => createInspectorConfigurationResolver(resolvedConfig),
+    [resolvedConfig],
+  );
 
   const accessContext = useMemo<SchemaAccessContext>(
     () => ({
@@ -264,7 +269,7 @@ const DetailView = (props: DetailViewProps) => {
     () =>
       buildDetailWidgets({
         pluginsRegistry,
-        options,
+        options: resolvedConfig.config as unknown as import('@sisad-pdfme/common').UIOptions,
         token,
         typedI18n,
         normalizeColorHex,
@@ -287,8 +292,8 @@ const DetailView = (props: DetailViewProps) => {
       changeSchemas,
       designerEngine,
       normalizeColorHex,
-      options,
       pluginsRegistry,
+      resolvedConfig.config,
       props,
       schemaConfig,
       token,
@@ -391,7 +396,7 @@ const DetailView = (props: DetailViewProps) => {
     };
     const functionResult = activePlugin.propPanel.schema({
       ...propPanelProps,
-      options,
+      options: resolvedConfig.config as unknown as import('@sisad-pdfme/common').UIOptions,
       theme: token,
       i18n: typedI18n,
     });
@@ -405,7 +410,7 @@ const DetailView = (props: DetailViewProps) => {
 
   const maxWidth = pageSize.width - paddingLeft - paddingRight;
   const maxHeight = pageSize.height - paddingTop - paddingBottom;
-  const visibility = asRecord(asRecord(options)?.visibility) as SisadPdfmeVisibilityConfig | undefined;
+  const visibility = inspectorResolver.visibility as SisadPdfmeVisibilityConfig;
   const sections = buildInspectorSections({
     activeSchemaType: activeSchema.type,
     activeSchema,
