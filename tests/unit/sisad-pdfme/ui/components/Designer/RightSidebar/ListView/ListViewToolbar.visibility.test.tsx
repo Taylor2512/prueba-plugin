@@ -77,8 +77,30 @@ describe('ListViewToolbar visibility', () => {
       </OptionsContext.Provider>,
     );
 
-    expect(screen.queryByTestId('right-sidebar-reassign')).toBeNull();
+    expect(screen.getByTestId('right-sidebar-reassign')).toBeDisabled();
     await user.click(screen.getByTestId('right-sidebar-more'));
     expect(await screen.findByTestId('right-sidebar-reassign-hint')).toHaveTextContent('Selecciona campos');
+  });
+
+  it('keeps the title row horizontal in minimal density (never stacks title/counter/actions)', () => {
+    const { container } = render(
+      <OptionsContext.Provider value={{ assignment: { enabled: true }, visibility: { actions: { reassign: true } } } as any}>
+        <ListViewToolbar
+          {...baseProps}
+          densityMode="minimal"
+          selectedCount={2}
+          onBulkAssignRecipient={() => undefined}
+        />
+      </OptionsContext.Provider>,
+    );
+
+    // El header ya no apila título/contador/acciones en tres bloques verticales.
+    const header = container.querySelector('.sisad-pdfme-designer-sidebar-surface-header');
+    expect(header).not.toHaveClass('flex-col');
+    // Título, contador y acciones conviven en la fila principal…
+    expect(screen.getByTestId('right-sidebar-fields-counter')).toBeVisible();
+    expect(screen.getByTestId('right-sidebar-reassign')).toBeVisible();
+    // …y la búsqueda vive en la sección de controles debajo del header.
+    expect(screen.getByPlaceholderText('Buscar campo o nombre')).toBeVisible();
   });
 });

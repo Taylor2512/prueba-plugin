@@ -20,6 +20,7 @@ import type { CollaborationRecipientOption } from '../../../../collaborationCont
 import { markInspectorInteractive, stopInspectorPointerEvent } from '../DetailView/inspectorInteractionGuards.js';
 import { resolveSchemaUid } from '../../shared/schemaAssignmentService.js';
 import { resetDesignerTransientInteractionState } from '../../shared/designerInteractionReset.js';
+import { normalizeText } from '../../../../../shared/text.js';
 
 /** Razón normalizada de cierre del modal (lifecycle único). */
 type SchemaAssignmentCloseReason =
@@ -64,8 +65,6 @@ const resolveCancelReason = (
   }
   return 'cancel';
 };
-
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 
 const resolveSchemaLabel = (schema: SchemaForUI): string =>
   normalizeText((schema as SchemaForUI & { label?: string }).label) ||

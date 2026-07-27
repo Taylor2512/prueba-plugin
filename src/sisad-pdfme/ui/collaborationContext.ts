@@ -15,6 +15,9 @@
 
 import { normalizeRecipientIds, type SchemaForUI } from '@sisad-pdfme/common';
 import type { CollaborationSyncConfig, SchemaCreationContext } from './designerEngine.js';
+import { normalizeText } from '../shared/text.js';
+import { buildRecipientColorMap } from '../recipients/recipientColorResolver.js';
+export { buildRecipientColorMap } from '../recipients/recipientColorResolver.js';
 
 export type CollaborationRecipientOption = {
   id: string;
@@ -80,9 +83,7 @@ const resolveCanEditStructure = (
   return true;
 };
 
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
-
-const normalizeNullableText = (value: unknown) => {
+const normalizeNullableString = (value: unknown) => {
   const normalized = normalizeText(value);
   return normalized || null;
 };
@@ -103,22 +104,15 @@ export const normalizeCollaborationRecipients = (options: unknown): Collaboratio
     next.set(id, {
       id,
       name: normalizeText(candidate.name) || normalizeText(candidate.tag) || id,
-      color: normalizeNullableText(candidate.color),
-      role: normalizeNullableText(candidate.role),
-      team: normalizeNullableText(candidate.team),
-      tag: normalizeNullableText(candidate.tag),
+      color: normalizeNullableString(candidate.color),
+      role: normalizeNullableString(candidate.role),
+      team: normalizeNullableString(candidate.team),
+      tag: normalizeNullableString(candidate.tag),
     });
   });
 
   return Array.from(next.values());
 };
-
-export const buildRecipientColorMap = (recipientOptions: CollaborationRecipientOption[] = []) =>
-  new Map(
-    recipientOptions
-      .map((recipient) => [recipient.id, normalizeText(recipient.color)] as const)
-      .filter((entry) => Boolean(entry[0] && entry[1])),
-  );
 
 export const buildRecipientNameMap = (recipientOptions: CollaborationRecipientOption[] = []) =>
   new Map(
@@ -153,9 +147,9 @@ export const buildEffectiveCollaborationContext = (
   fileId: string | null,
 ): EffectiveCollaborationContext => {
   const { recipientOptions, activeRecipient, activeRecipientId } = resolveActiveRecipient(collaboration);
-  const actorId = normalizeNullableText(collaboration?.actorId) || activeRecipientId;
-  const actorColor = normalizeNullableText(collaboration?.actorColor) || activeRecipient?.color || null;
-  const activeRecipientRole = normalizeNullableText(activeRecipient?.role);
+  const actorId = normalizeNullableString(collaboration?.actorId) || activeRecipientId;
+  const actorColor = normalizeNullableString(collaboration?.actorColor) || activeRecipient?.color || null;
+  const activeRecipientRole = normalizeNullableString(activeRecipient?.role);
   const ownerRecipientId = activeRecipientId || actorId || null;
   const ownerColor = activeRecipient?.color || actorColor || null;
   const hiddenSchemaTypes = Array.isArray(collaboration?.hiddenSchemaTypes)
@@ -212,30 +206,30 @@ export const resolveSchemaCollaborationState = (
     (schema as SchemaForUI & { ownerRecipientIds?: string[] | string; ownerRecipientId?: string }).ownerRecipientIds ||
       (schema as SchemaForUI & { ownerRecipientId?: string }).ownerRecipientId,
   );
-  const ownerRecipientId = normalizeNullableText(
+  const ownerRecipientId = normalizeNullableString(
     (schema as SchemaForUI & { ownerRecipientId?: string }).ownerRecipientId,
   ) || ownerRecipientIds[0] || null;
   const ownerMode = resolveOwnerMode(
     (schema as SchemaForUI & { ownerMode?: 'single' | 'multi' | 'shared' }).ownerMode,
     ownerRecipientIds,
   );
-  const createdBy = normalizeNullableText((schema as SchemaForUI & { createdBy?: string }).createdBy) || ownerRecipientId;
-  const lastModifiedBy = normalizeNullableText((schema as SchemaForUI & { lastModifiedBy?: string }).lastModifiedBy);
+  const createdBy = normalizeNullableString((schema as SchemaForUI & { createdBy?: string }).createdBy) || ownerRecipientId;
+  const lastModifiedBy = normalizeNullableString((schema as SchemaForUI & { lastModifiedBy?: string }).lastModifiedBy);
   const ownerRecipientName =
-    normalizeNullableText((schema as SchemaForUI & { ownerRecipientName?: string }).ownerRecipientName) ||
+    normalizeNullableString((schema as SchemaForUI & { ownerRecipientName?: string }).ownerRecipientName) ||
     (ownerRecipientId ? collaborationContext?.recipientNameMap?.get(ownerRecipientId) || null : null);
   const ownerColor =
-    normalizeNullableText((schema as SchemaForUI & { ownerColor?: string }).ownerColor) ||
+    normalizeNullableString((schema as SchemaForUI & { ownerColor?: string }).ownerColor) ||
     (ownerRecipientId ? collaborationContext?.recipientColorMap?.get(ownerRecipientId) || null : null) ||
     null;
   const userColor =
-    normalizeNullableText((schema as SchemaForUI & { userColor?: string }).userColor) ||
+    normalizeNullableString((schema as SchemaForUI & { userColor?: string }).userColor) ||
     ownerColor ||
     (createdBy ? collaborationContext?.recipientColorMap?.get(createdBy) || null : null) ||
     collaborationContext?.actorColor ||
     null;
   const activeRecipientId =
-    collaborationContext?.isGlobalView === true ? null : normalizeNullableText(collaborationContext?.activeRecipientId);
+    collaborationContext?.isGlobalView === true ? null : normalizeNullableString(collaborationContext?.activeRecipientId);
   const isShared = ownerMode === 'shared';
   const hasActiveOwnership =
     Boolean(activeRecipientId) && (ownerRecipientIds.includes(activeRecipientId as string) || ownerRecipientId === activeRecipientId);

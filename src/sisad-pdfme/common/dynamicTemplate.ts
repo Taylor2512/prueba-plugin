@@ -49,7 +49,7 @@ const getContentHeight = (basePdf: BlankPdf): number =>
   basePdf.height - basePdf.padding[0] - basePdf.padding[2];
 
 /** Get the input value for a schema */
-const getSchemaValue = (schema: Schema, input: Record<string, string>): string =>
+const getDynamicSchemaValue = (schema: Schema, input: Record<string, string>): string =>
   (schema.readOnly ? schema.content : input?.[schema.name]) || '';
 
 /**
@@ -286,7 +286,7 @@ export const getDynamicTemplate = async (
       const chunk = items.slice(i, i + PARALLEL_LIMIT);
       const chunkResults = await Promise.all(
         chunk.map((item) => {
-          const value = getSchemaValue(item.schema, input);
+          const value = getDynamicSchemaValue(item.schema, input);
           return getDynamicHeights(value, {
             schema: item.schema,
             basePdf,

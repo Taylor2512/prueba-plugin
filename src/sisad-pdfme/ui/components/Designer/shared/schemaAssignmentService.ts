@@ -14,6 +14,7 @@
  * - El color visual se actualiza según el nuevo propietario.
  */
 import type { SchemaForUI } from '@sisad-pdfme/common';
+import { normalizeText } from '../../../../shared/text.js';
 
 /**
  * Destinatario mínimo necesario para reasignar un schema.
@@ -40,8 +41,6 @@ export type AssignSchemaOwnerResult = {
   pages: SchemaForUI[][];
   changedSchemaUids: string[];
 };
-
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 
 /**
  * Resuelve la identidad estable de un schema.

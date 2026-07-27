@@ -8,7 +8,9 @@
  * asignables y el hint de selección vacía).
  *
  * Semántica preservada: sin permiso estructural o sin config el botón se
- * OCULTA (no se deshabilita); `bulkRecipientDisabled` es el único disabled.
+ * OCULTA (no se deshabilita). Cuando la acción existe, la selección vacía y
+ * los bloqueos del toolbar se resuelven como estado disabled para no perder el
+ * affordance en densidades compactas.
  */
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 import { resolveDesignerActionState } from '../../shared/designerActionState.js';
@@ -44,9 +46,9 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
     visibleByConfig,
   });
 
-  const showButton = canEditStructure && action.visible && selectedCount > 0;
-  // Para el hint se evalúan las mismas puertas con selección hipotética (1).
-  const gates = resolveDesignerActionState('reassign-recipient', {
+  // Usamos una selección hipotética para conservar el gating de visibilidad
+  // del registry sin esconder el affordance cuando la selección real es 0.
+  const visibility = resolveDesignerActionState('reassign-recipient', {
     hasHandler: true,
     selectionCount: 1,
     canEditStructure,
@@ -54,10 +56,17 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
   });
 
   return {
-    showButton,
-    buttonDisabled: showButton && (input.bulkRecipientDisabled || !action.enabled || !input.hasAssignableRecipients || !input.hasHandler),
+    showButton: canEditStructure && visibility.visible,
+    buttonDisabled:
+      !canEditStructure ||
+      !visibility.visible ||
+      !action.enabled ||
+      input.bulkRecipientDisabled ||
+      !input.hasAssignableRecipients ||
+      !input.hasHandler ||
+      selectedCount === 0,
     showSelectionHint:
-      selectedCount === 0 && gates.visible && gates.enabled,
+      selectedCount === 0 && visibility.visible && visibility.enabled,
     selectionHintLabel: selectedCount === 0 ? 'Selecciona campos' : null,
   };
 }

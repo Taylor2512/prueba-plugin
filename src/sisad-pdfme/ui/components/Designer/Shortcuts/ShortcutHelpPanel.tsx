@@ -27,7 +27,7 @@ const scopeLabels: Record<ShortcutDefinition['scope'], string> = {
   collaboration: 'Colaboración',
 };
 
-const normalize = (value: string) => value.toLowerCase().trim();
+const normalizeShortcutQuery = (value: string) => value.toLowerCase().trim();
 
 const splitShortcutCombos = (value: string): string[] =>
   value.split(',').reduce<string[]>((acc, entry) => {
@@ -81,7 +81,7 @@ const ShortcutHelpPanel = ({
       ]
         .join(' ')
         .toLowerCase();
-      return haystack.includes(normalize(query));
+      return haystack.includes(normalizeShortcutQuery(query));
     });
 
     return filtered.reduce<Record<string, ShortcutDefinition[]>>((acc, shortcut) => {

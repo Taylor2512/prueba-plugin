@@ -12,7 +12,7 @@ import { uuid } from '../../../../helper.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaComment } from '../../../../designerEngine.js';
 import { InspectorEmptyState } from './InspectorPrimitives.js';
-import { asRecord } from '../../shared/objectGuards.js';
+import { asRecord } from '../../../../../shared/objectGuards.js';
 import { mergeClassNames } from '../../shared/className.js';
 import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
@@ -101,7 +101,7 @@ const COMMENT_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat('es-ES', {
  * Devuelve string vacío si el timestamp no es finito o no puede convertirse
  * a una fecha válida.
  */
-const formatTimestamp = (ts?: number): string => {
+const formatFieldCommentTimestamp = (ts?: number): string => {
   if (!ts || !Number.isFinite(ts)) return '';
 
   try {
@@ -340,7 +340,7 @@ const SchemaFieldCommentsWidget = ({
                       {comment.authorName || comment.authorId || 'Anónimo'}
                     </span>
                     <span className={mergeClassNames(cls('field-comments-timestamp'), 'text-xs text-slate-500')}>
-                      {formatTimestamp(comment.timestamp || comment.createdAt)}
+                      {formatFieldCommentTimestamp(comment.timestamp || comment.createdAt)}
                     </span>
                     {resolved ? (
                       <Tag color="success" className="m-0 rounded-full border-0 bg-emerald-100 px-2 py-0.5 text-[11px] font-medium text-emerald-700">
@@ -400,7 +400,7 @@ const SchemaFieldCommentsWidget = ({
                             {reply.authorName || reply.authorId || 'Anónimo'}
                           </span>
                           <span className={mergeClassNames(cls('field-comments-timestamp'), 'text-xs text-slate-500')}>
-                            {formatTimestamp(reply.timestamp || reply.createdAt)}
+                            {formatFieldCommentTimestamp(reply.timestamp || reply.createdAt)}
                           </span>
                         </Space>
                         <div className={mergeClassNames(cls('field-comments-reply-text'), 'text-sm leading-6 text-slate-700')}>{reply.text}</div>

@@ -1,3 +1,6 @@
-# SISAD PDFME core
+# Reglas locales
 
-This directory is a portable library. Do not import host-specific modules, API clients or workflow rules. Preserve public entrypoints and adapter boundaries. Every behavioral change considers Designer, Form, Viewer, Generator and snapshot where applicable. Use local domain names rather than generic `utils` or wrapper layers.
+- Este árbol es una librería reusable.
+- No importar negocio host.
+- Proteger API pública y múltiples instancias.
+- Usar adapters/config/events.

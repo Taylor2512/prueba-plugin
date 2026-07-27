@@ -129,3 +129,5 @@ export {
   isLocalStorageAvailable,
   isSessionStorageAvailable,
 } from './localMode.js';
+
+export { normalizeLooseText, normalizeText } from './text.js';

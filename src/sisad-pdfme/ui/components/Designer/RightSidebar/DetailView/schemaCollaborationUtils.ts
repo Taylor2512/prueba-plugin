@@ -6,6 +6,7 @@
  * reutilización desde widgets y builders.
  */
 import { normalizeRecipientIds as normalizeRecipientIdsShared } from '@sisad-pdfme/common';
+export { resolveOwnerMode } from '../../../../collaborationContext.js';
 import type { SchemaCollaborativeState } from '../../../../designerEngine.js';
 
 /** Reexporta el normalizador compartido de destinatarios. */
@@ -15,15 +16,6 @@ export { normalizeRecipientIdsShared as normalizeRecipientIds };
  * Normaliza y une destinatarios en una cadena legible.
  */
 export const joinRecipientIds = (value: unknown): string => normalizeRecipientIdsShared(value).join(', ');
-
-/**
- * Resuelve modo de ownership desde la cantidad de destinatarios.
- */
-export const resolveOwnerMode = (ownerRecipientIds: string[]) => {
-  if (ownerRecipientIds.length > 1) return 'multi' as const;
-  if (ownerRecipientIds.length === 1) return 'single' as const;
-  return undefined;
-};
 
 /**
  * Traduce estado colaborativo a tag visual del inspector.

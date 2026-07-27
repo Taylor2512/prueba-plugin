@@ -8,7 +8,8 @@ import { uuid } from '../../../helper.js';
 import { resolveSmartDropPosition, type SmartPlacementInput } from '../Canvas/overlays/smartPlacement.js';
 import { createUniqueSchemaVariableName } from './schemaVariableName.js';
 import { filterSchemasByCollisionScope } from './schemaCollision.js';
-import { asRecord, isRecord } from './objectGuards.js';
+import { asRecord, isRecord } from '../../../../shared/objectGuards.js';
+import { normalizeLooseText } from '../../../../shared/text.js';
 import { isOptionGroupType } from '../../../../schemas/options/optionGroupLayout.js';
 
 /**
@@ -133,15 +134,15 @@ const getDesignerRecord = (schema: SchemaForUI): DesignerRecord | undefined => {
   return isRecord(designer) ? (designer as DesignerRecord) : undefined;
 };
 
-const normalizeText = (value: unknown) => String(value || '').trim();
+const normalizeClipboardText = normalizeLooseText;
 
 const resolveSchemaGroupId = (schema: SchemaForUI): string | null => {
   const record = asSchemaRecord(schema) as SchemaRecord & { groupId?: string; group?: string };
   const designer = getDesignerRecord(schema);
   const groupId =
-    normalizeText(designer?.group?.groupId) ||
-    normalizeText(record.groupId) ||
-    normalizeText(record.group);
+    normalizeClipboardText(designer?.group?.groupId) ||
+    normalizeClipboardText(record.groupId) ||
+    normalizeClipboardText(record.group);
   return groupId || null;
 };
 
@@ -184,7 +185,7 @@ const remapGroupedSchemaIdentity = (
     };
   }
 
-  const schemaType = normalizeText(record.type).toLowerCase();
+  const schemaType = normalizeClipboardText(record.type).toLowerCase();
   if (!isOptionGroupType(schemaType)) return;
 
   const rawOptions = Array.isArray(record.options) ? record.options : [];
@@ -192,19 +193,19 @@ const remapGroupedSchemaIdentity = (
   const normalizedOptions = rawOptions.map((entry, index) => {
     const previousId =
       typeof entry === 'string'
-        ? normalizeText(entry) || `option_${index + 1}`
-        : normalizeText(entry.optionId) || `option_${index + 1}`;
+        ? normalizeClipboardText(entry) || `option_${index + 1}`
+        : normalizeClipboardText(entry.optionId) || `option_${index + 1}`;
     const label =
       typeof entry === 'string'
-        ? normalizeText(entry) || `Opción ${index + 1}`
-        : normalizeText(entry.label) || previousId;
+        ? normalizeClipboardText(entry) || `Opción ${index + 1}`
+        : normalizeClipboardText(entry.label) || previousId;
     const nextId = `option_${index + 1}_${createId().slice(0, 6)}`;
     optionIdMap.set(previousId, nextId);
     return { optionId: nextId, label };
   });
 
   const mapSingleId = (value: unknown) => {
-    const normalized = normalizeText(value);
+    const normalized = normalizeClipboardText(value);
     return optionIdMap.get(normalized) || normalized;
   };
 
@@ -212,14 +213,14 @@ const remapGroupedSchemaIdentity = (
     if (Array.isArray(values)) {
       return values
         .map((value) => mapSingleId(value))
-        .filter((value) => Boolean(normalizeText(value)));
+        .filter((value) => Boolean(normalizeClipboardText(value)));
     }
-    const content = normalizeText(values);
+    const content = normalizeClipboardText(values);
     if (!content) return [];
     return content
       .split(',')
       .map((value) => mapSingleId(value))
-      .filter((value) => Boolean(normalizeText(value)));
+      .filter((value) => Boolean(normalizeClipboardText(value)));
   };
 
   record.options = normalizedOptions;

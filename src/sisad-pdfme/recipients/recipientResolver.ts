@@ -22,7 +22,7 @@ import type {
   SisadPdfmeRecipientRegistryState,
 } from './recipientTypes.js';
 
-const normalizeText = (value: unknown) => String(value ?? '').trim();
+const normalizeRecipientText = (value: unknown) => String(value ?? '').trim();
 
 type RegistryLike = SisadPdfmeRecipientRegistry | SisadPdfmeRecipientRegistryState;
 
@@ -35,9 +35,9 @@ const toState = (registry: RegistryLike): SisadPdfmeRecipientRegistryState =>
 export const resolveOwnerRecipientId = (schema: OwnerAwareSchemaLike): string | null => {
   const ownerIds = normalizeRecipientIds(schema.ownerRecipientIds || schema.ownerRecipientId);
   return (
-    normalizeText(schema.ownerRecipientId) ||
+    normalizeRecipientText(schema.ownerRecipientId) ||
     ownerIds[0] ||
-    normalizeText(schema.recipientId) ||
+    normalizeRecipientText(schema.recipientId) ||
     null
   );
 };
@@ -65,7 +65,7 @@ export const resolveSchemaOwnerAppearance = (
 
   const ownerLabel =
     owner?.label ||
-    normalizeText(schema.ownerRecipientName) ||
+    normalizeRecipientText(schema.ownerRecipientName) ||
     (ownerRecipientId ? state.labelById.get(ownerRecipientId) ?? ownerRecipientId : '');
 
   const activeRecipientId = state.activeRecipientId;

@@ -196,7 +196,7 @@ const boolField = (schema: SchemaForUI, key: string): boolean =>
  *
  * Devuelve string vacío si el valor no es string.
  */
-const normalizeText = (value: unknown): string =>
+const normalizeRuntimeText = (value: unknown): string =>
   typeof value === 'string' ? value.trim() : '';
 
 /**
@@ -205,7 +205,7 @@ const normalizeText = (value: unknown): string =>
  * Útil para IDs opcionales donde string vacío debe tratarse como ausencia.
  */
 const normalizeNullableText = (value: unknown): string | null => {
-  const normalized = normalizeText(value);
+  const normalized = normalizeRuntimeText(value);
   return normalized || null;
 };
 
@@ -427,8 +427,8 @@ export const resolveSchemaAccessState = (
       schemaRecord.lockedByActorId,
   );
 
-  const currentActorId = normalizeText(collaborationContext?.actorId);
-  const currentRecipientId = normalizeText(collaborationContext?.activeRecipientId);
+  const currentActorId = normalizeRuntimeText(collaborationContext?.actorId);
+  const currentRecipientId = normalizeRuntimeText(collaborationContext?.activeRecipientId);
 
   const lockOwnerId =
     normalizeNullableText(schemaRecord.lock?.lockedBy) ||

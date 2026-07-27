@@ -119,9 +119,6 @@ export type RawOptionItem = {
   disabled?: boolean;
 };
 
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-  Boolean(value) && typeof value === 'object' && !Array.isArray(value);
-
 /** Narrows an unknown item to RawOptionItem if it has the required optionId+label. */
 export function isRawOptionItem(item: unknown): item is RawOptionItem {
   return (
@@ -165,3 +162,4 @@ export function resolveSchemaIdByIdentity(
       candidate.position?.y === schema.position?.y,
   )?.id;
 }
+import { isRecord } from '../../shared/objectGuards.js';

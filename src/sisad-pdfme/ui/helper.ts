@@ -546,7 +546,7 @@ const handleTypeChange = (
   }
 };
 
-export const changeSchemas = (args: {
+export const applySchemaChanges = (args: {
   objs: { key: string; value: unknown; schemaId: string }[];
   schemas: SchemaForUI[] | SchemaForUI[][];
   basePdf: BasePdf;

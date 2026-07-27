@@ -1,14 +1,14 @@
 import type { Plugin } from '@sisad-pdfme/common';
-import { pdfRender } from './pdfRender.js';
+import { renderTextPdf } from './pdfRender.js';
 import { propPanel } from './propPanel.js';
-import { uiRender } from './uiRender.js';
+import { renderTextUi } from './uiRender.js';
 import type { TextSchema } from './types.js';
 import { TextCursorInput } from 'lucide-react';
 import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
 
 const textSchema: Plugin<TextSchema> = createSchemaPlugin<TextSchema>({
-  pdf: pdfRender,
-  ui: uiRender,
+  pdf: renderTextPdf,
+  ui: renderTextUi,
   propPanel,
   icon: renderLucideIcon(TextCursorInput),
 }, {

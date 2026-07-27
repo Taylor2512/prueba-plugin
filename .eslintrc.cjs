@@ -18,7 +18,7 @@ module.exports = {
     },
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
+        extensions: ['.js', '.jsx', '.json', '.scss', '.css', '.ts', '.tsx'],
       },
     },
   },
@@ -31,18 +31,18 @@ module.exports = {
   ],
   rules: {
     // React 17+ with modern JSX runtime
-    'react/react-in-jsx-scope': 'off',
-    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'on',
+    'react/jsx-uses-react': 'on',
     // prefer warnings for unused vars to avoid noisy build failures
     'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     // allow importing styles and other assets without errors
     'import/no-unresolved': ['error', { commonjs: true, amd: true }],
     // accessibility rule adjustments (tweak per project needs)
-    'jsx-a11y/anchor-is-valid': 'off',
+    'jsx-a11y/anchor-is-valid': 'on',
   },
   overrides: [
     {
-      files: ['**/*.jsx', '**/*.js'],
+      files: ['**/*.jsx', '**/*.js', '**/*.ts', '**/*.tsx'],
       rules: {},
     },
   ],

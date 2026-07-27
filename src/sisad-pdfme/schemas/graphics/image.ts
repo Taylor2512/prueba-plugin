@@ -15,7 +15,7 @@ import { getImageDimension } from './imagehelper.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { applyCenteredImageFileInputStyle, createImageFileInput } from '../shared/imageFileInput.js';
 
-const getCacheKey = (schema: Schema, input: string) => `${schema.type}${input}`;
+const getImageCacheKey = (schema: Schema, input: string) => `${schema.type}${input}`;
 const fullSize = { width: '100%', height: '100%' };
 const defaultValue =
   'data:image/png;base64,[LONG_BASE64_OR_TOKEN_REDACTED length=3760]';
@@ -27,7 +27,7 @@ const imageSchema: Plugin<ImageSchema> = {
     const { value, schema, pdfDoc, page, _cache } = arg;
     if (!value) return;
 
-    const inputImageCacheKey = getCacheKey(schema, value);
+    const inputImageCacheKey = getImageCacheKey(schema, value);
     let image = _cache.get(inputImageCacheKey) as PDFImage;
     if (!image) {
       const isPng = value.startsWith('data:image/png;');

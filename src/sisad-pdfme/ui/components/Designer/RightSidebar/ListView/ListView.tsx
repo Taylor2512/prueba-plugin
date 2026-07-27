@@ -102,7 +102,7 @@ const ListView = (
   /**
    * Normalizes searchable scalar values for case-insensitive filtering.
    */
-  const normalizeText = (value: unknown) => {
+  const normalizeSearchText = (value: unknown) => {
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
       return String(value).trim().toLowerCase();
     }
@@ -126,11 +126,11 @@ const ListView = (
    */
   const filteredSchemas = useMemo(() => {
     return viewSchemas.filter((s) => {
-      const query = normalizeText(searchQuery);
+      const query = normalizeSearchText(searchQuery);
       const matchesSearch =
         query.length === 0 ||
-        [s.name, s.type, s.id].some((value) => normalizeText(value).includes(query));
-      const matchesType = typeFilter === 'all' || normalizeText(s.type) === normalizeText(typeFilter);
+        [s.name, s.type, s.id].some((value) => normalizeSearchText(value).includes(query));
+      const matchesType = typeFilter === 'all' || normalizeSearchText(s.type) === normalizeSearchText(typeFilter);
       return matchesSearch && matchesType;
     });
   }, [viewSchemas, searchQuery, typeFilter]);

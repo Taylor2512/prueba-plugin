@@ -9,7 +9,7 @@ import { DESIGNER_CLASSNAME } from "../../../../constants.js";
 import { Button, Form, Tooltip, theme } from 'antd';
 import React from 'react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import { isRecord } from '../../shared/objectGuards.js';
+import { isRecord } from '../../../../../shared/objectGuards.js';
 import { mergeClassNames } from '../../shared/className.js';
 /**
  * Configuración declarativa de cada botón del grupo.

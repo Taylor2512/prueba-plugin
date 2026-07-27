@@ -15,7 +15,7 @@ import CanvasContextMenu from './CanvasContextMenu.js';
 import { resolveSelectionToolbarPosition } from './floatingSurfaceGeometry.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 import { OptionsContext } from '../../../../contexts.js';
-import { asRecord } from '../../shared/objectGuards.js';
+import { asRecord } from '../../../../../shared/objectGuards.js';
 
 /**
  * Props del toolbar contextual de selección.

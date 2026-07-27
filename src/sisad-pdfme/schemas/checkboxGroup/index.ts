@@ -25,7 +25,7 @@ import {
   buildDefaultOptionGroupOptions,
   normalizeOptionId,
   normalizeOptionGroupOptions,
-  normalizeText,
+  normalizeOptionText,
 } from '../options/optionModel.js';
 import { renderOptionGroupPdf } from '../options/optionGroupPdfRender.js';
 import { markInspectorInteractive } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
@@ -67,7 +67,7 @@ const normalizeSelectionLimit = (value: unknown): number | undefined => {
   return Math.floor(parsed);
 };
 
-const normalizeOptions = (schema: CheckboxGroupSchema): CheckboxOption[] => {
+const normalizeCheckboxGroupOptions = (schema: CheckboxGroupSchema): CheckboxOption[] => {
   return normalizeOptionGroupOptions(schema.options, 'Casilla', 2) as CheckboxOption[];
 };
 
@@ -85,8 +85,8 @@ const resolveSelectedIds = (schema: CheckboxGroupSchema): Set<string> =>
     resolveMultiOptionSelection(
       Array.isArray(schema.selectedOptionIds) && schema.selectedOptionIds.length > 0
         ? schema.selectedOptionIds
-        : normalizeText(schema.content).split(',').map((s) => s.trim()).filter(Boolean),
-      normalizeOptions(schema),
+        : normalizeOptionText(schema.content).split(',').map((s) => s.trim()).filter(Boolean),
+      normalizeCheckboxGroupOptions(schema),
     ),
   );
 
@@ -149,7 +149,7 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
     );
   };
 
-  let currentOptions = normalizeOptions(schema);
+  let currentOptions = normalizeCheckboxGroupOptions(schema);
 
   const commitOptions = (nextOptions: CheckboxOption[]) => {
     currentOptions = nextOptions;
@@ -197,7 +197,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
     ui: (arg) => {
       const { schema, rootElement, mode, onChange, value } = arg;
       const cbSchema = schema as CheckboxGroupSchema;
-      const options = normalizeOptions(cbSchema);
+      const options = normalizeCheckboxGroupOptions(cbSchema);
       const isDesigner = mode === 'designer';
       const selected = clampSelectedIds(
         !isDesigner && typeof value === 'string' && value.trim()
@@ -256,7 +256,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
     pdf: async (arg) => {
       const { page, schema } = arg;
       const cbSchema = schema as CheckboxGroupSchema;
-      const resolvedOptions = normalizeOptions(cbSchema);
+      const resolvedOptions = normalizeCheckboxGroupOptions(cbSchema);
       if (!resolvedOptions.length) return;
       renderOptionGroupPdf({
         page,
@@ -313,7 +313,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
 
 // Exposed for unit tests — pure helpers, no side effects.
 export const __test__ = {
-  normalizeOptions,
+  normalizeCheckboxGroupOptions,
   resolveSelectedIds,
   serializeSelectedIds,
   resolveSelectionLimits,
@@ -327,7 +327,7 @@ export const __test__ = {
   },
   /** Generates a stable, unique optionId from a label against current options. */
   createNextOption: (label: string, options: CheckboxOption[]): CheckboxOption => {
-    const clean = normalizeText(label) || `Casilla ${options.length + 1}`;
+    const clean = normalizeOptionText(label) || `Casilla ${options.length + 1}`;
     const base = clean.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'option';
     let candidate = `${base}_${options.length + 1}`;
     const existing = new Set(options.map((o) => o.optionId));

@@ -39,7 +39,7 @@ import {
   getOptionGroupLayoutConfig,
   type OptionGroupType,
 } from './optionGroupLayout.js';
-import { buildDefaultOptionGroupOptions, normalizeText } from './optionModel.js';
+import { buildDefaultOptionGroupOptions, normalizeOptionText } from './optionModel.js';
 import createOptionGroupRuntime from './optionGroupRenderer.js';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 import { createOptionIndicatorElement } from './optionIndicator.js';
@@ -180,7 +180,7 @@ export const syncDesignerOptionGroupPatch = (
   groupType: 'checkbox' | 'radio',
 ) => ({
   '__designer.group.groupId': resolveOptionGroupKey(schema),
-  '__designer.group.groupName': normalizeText(schema.groupName) || undefined,
+  '__designer.group.groupName': normalizeOptionText(schema.groupName) || undefined,
   '__designer.group.groupType': groupType,
   '__designer.group.lockedAsGroup': schema.lockedAsGroup !== false,
 });
@@ -553,4 +553,3 @@ function createOptionGroupSchemaPlugin(config: OptionGroupPluginConfig): {
 } {
   return { config, layout: getOptionGroupLayoutConfig(config.type) };
 }
-

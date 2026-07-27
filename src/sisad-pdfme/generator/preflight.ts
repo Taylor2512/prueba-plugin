@@ -46,7 +46,7 @@ export type PdfPreflightReport = {
   ok: boolean;
 };
 
-const normalizeText = (value: unknown): string => String(value ?? '').trim();
+const normalizePreflightText = (value: unknown): string => String(value ?? '').trim();
 
 const getPluginsRegistry = (plugins: GenerateProps['plugins']) =>
   pluginRegistry(Object.values(plugins || {}).length > 0 ? (plugins || {}) : builtInPlugins);
@@ -146,7 +146,7 @@ const inspectSelectValue = (
   issues: PdfPreflightIssue[],
 ) => {
   const options = Array.isArray((schema as { options?: string[] }).options)
-    ? ((schema as { options?: string[] }).options || []).map((option) => normalizeText(option)).filter(Boolean)
+    ? ((schema as { options?: string[] }).options || []).map((option) => normalizePreflightText(option)).filter(Boolean)
     : [];
 
   if (!rawValue) {
@@ -190,9 +190,9 @@ const inspectOptionGroup = (
   const options = Array.isArray((schema as { options?: Array<string | { optionId?: string; label?: string }> }).options)
     ? ((schema as { options?: Array<string | { optionId?: string; label?: string }> }).options || []).map((option, index) => {
         if (typeof option === 'string') {
-          return normalizeText(option);
+          return normalizePreflightText(option);
         }
-        return normalizeText(option.optionId) || `option_${index + 1}`;
+        return normalizePreflightText(option.optionId) || `option_${index + 1}`;
       }).filter(Boolean)
     : [];
 
@@ -322,7 +322,7 @@ const inspectSchema = (
   registry: ReturnType<typeof pluginRegistry>,
 ) => {
   const schemaIssues: PdfPreflightIssue[] = [];
-  const schemaType = normalizeText(schema.type).toLowerCase();
+  const schemaType = normalizePreflightText(schema.type).toLowerCase();
   const hasRenderer = Boolean(registry.findByType(schemaType) || getSchemaPluginByType(schemaType));
   if (!hasRenderer) {
     addIssue(schemaIssues, {

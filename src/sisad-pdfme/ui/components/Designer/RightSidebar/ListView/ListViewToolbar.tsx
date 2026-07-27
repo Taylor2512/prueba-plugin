@@ -16,6 +16,7 @@ import { stopDesignerControlEvent } from '../../shared/interactionExclusions.js'
 import { OptionsContext } from '../../../../contexts.js';
 import { resolveReassignVisibilityState } from '../../shared/visibilityConfig.js';
 import { resolveReassignActionState } from './reassignActionState.js';
+import TypeFilterSelect from './TypeFilterSelect.js';
 
 
 /**
@@ -111,11 +112,24 @@ const ListViewToolbar = ({
     bulkRecipientDisabled,
     collaborationContext,
   });
-  const resolvedSubtitle = subtitle ?? (() => {
-    if (!hasActiveSearch) return null;
-    if (filteredCount === 0) return 'Sin coincidencias';
-    return `${filteredCount} visibles`;
-  })();
+  // Contador único y semántico: sin filtro "N campos"; con filtro "F de N"
+  // (cubre "0 de N" sin coincidencias). Reemplaza el duplicado previo de badge
+  // `F/N` + subtítulo "F visibles".
+  const fieldCounterLabel = hasActiveSearch
+    ? `${filteredCount} de ${totalCount}`
+    : totalCount === 1
+      ? '1 campo'
+      : `${totalCount} campos`;
+  // Etiqueta contextual del renombrado según la selección; un `bulkActionLabel`
+  // explícito distinto del default la sobrescribe.
+  const renameActionLabel =
+    typeof bulkActionLabel === 'string' && bulkActionLabel.trim() && bulkActionLabel !== 'Renombrar'
+      ? bulkActionLabel
+      : selectedCount === 1
+        ? 'Renombrar campo'
+        : selectedCount > 1
+          ? `Renombrar ${selectedCount} campos`
+          : 'Renombrar campos';
   const isDense = useDefaultStyles !== false;
   const isCompactDensity = densityMode !== 'comfortable';
   const isMinimalDensity = densityMode === 'minimal';
@@ -163,27 +177,29 @@ const ListViewToolbar = ({
         compact={isCompactDensity}
         leading={<Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />}
         title={title}
-        subtitle={resolvedSubtitle || undefined}
-        badges={[
-          { label: `${filteredCount}/${totalCount}`, color: 'default' },
-          ...(selectedCount > 0
-            ? [{
-                label: (
-                  <span className="inline-flex items-center gap-1">
-                    <Users size={10} />
-                    <span>{selectedCount}</span>
-                  </span>
-                ),
-                color: 'processing' as const,
-                tooltip: `${selectedCount} seleccionados`,
-              }]
-            : []),
-        ]}
+        subtitle={subtitle}
+        meta={
+          <>
+            <span data-testid="right-sidebar-fields-counter" className="text-slate-500">
+              {fieldCounterLabel}
+            </span>
+            {selectedCount > 0 ? (
+              <span
+                title={`${selectedCount} seleccionados`}
+                data-testid="right-sidebar-fields-selection-count"
+                className="inline-flex items-center gap-0.5 rounded-full border border-sky-200 bg-sky-50 px-1.5 py-[0.0625rem] font-semibold text-sky-700"
+              >
+                <Users size={10} />
+                {selectedCount}
+              </span>
+            ) : null}
+          </>
+        }
         trailing={
           showBulkAction && hasSchemas ? (
             <div className={mergeClassNames(
               DESIGNER_CLASSNAME + 'list-view-toolbar-actions',
-              'flex items-center',
+              'flex items-center justify-end',
               isCompactDensity ? 'gap-1.5' : 'gap-2',
               isDense && 'shrink-0',
             )}>
@@ -216,9 +232,9 @@ const ListViewToolbar = ({
               <div ref={moreMenuRef} className="relative">
                 <button
                   type="button"
-                  title={resolveAriaLabel(bulkActionLabel, 'Más acciones')}
+                  title="Más acciones"
                   data-testid="right-sidebar-more"
-                  aria-label={resolveAriaLabel(bulkActionLabel, 'Más acciones')}
+                  aria-label="Más acciones"
                   aria-expanded={isMoreMenuOpen}
                   aria-haspopup="menu"
                   onPointerDownCapture={stopDesignerControlEvent}
@@ -259,7 +275,7 @@ const ListViewToolbar = ({
                       className="flex w-full items-center gap-2 px-3 py-2 text-left text-xs font-medium text-slate-700 transition-colors hover:bg-slate-50"
                     >
                       <PencilLine size={14} className="text-slate-500" />
-                      <span data-testid="right-sidebar-more-rename">{bulkActionLabel || 'Renombrar campos'}</span>
+                      <span data-testid="right-sidebar-more-rename">{renameActionLabel}</span>
                     </button>
                   </div>
                 ) : null}
@@ -301,24 +317,18 @@ const ListViewToolbar = ({
             </button>
           ) : null}
         </label>
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-toolbar-row', 'flex items-center gap-2')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-toolbar-row', 'flex flex-wrap items-center gap-2')}>
           {schemaTypes.length > 2 ? (
-            <select
+            <TypeFilterSelect
               id="right-sidebar-fields-type-filter"
               value={typeFilter}
-              onChange={(event) => onChangeType(event.target.value)}
-              className={mergeClassNames(
-                DESIGNER_CLASSNAME + 'select-auto',
-                'min-w-0 rounded-xl border border-slate-200 bg-white px-2 text-[0.6875rem] text-slate-700 outline-none transition-colors hover:border-slate-300 focus:border-sky-200 focus:ring-2 focus:ring-sky-100',
-                isMinimalDensity ? 'h-7' : 'h-8'
-              )}
-            >
-              {schemaTypes.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {optionMap.get(option.value) || option.value}
-                </option>
-              ))}
-            </select>
+              onChange={onChangeType}
+              densityMode={densityMode}
+              options={schemaTypes.map((option) => ({
+                value: option.value,
+                label: optionMap.get(option.value) || option.value,
+              }))}
+            />
           ) : null}
           {hasActiveSearch ? (
             <button

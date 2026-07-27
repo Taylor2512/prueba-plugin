@@ -8,7 +8,7 @@ const getBarcodeCacheKey = (schema: BarcodeSchema, value: string) => {
   return `${schema.type}${schema.backgroundColor}${schema.barColor}${schema.textColor}${value}${schema.includetext}`;
 };
 
-export const pdfRender = async (arg: PDFRenderProps<BarcodeSchema>) => {
+export const renderBarcodePdf = async (arg: PDFRenderProps<BarcodeSchema>) => {
   const { value, schema, pdfDoc, page, _cache } = arg;
   if (!validateBarcodeInput(schema.type, value)) return;
 

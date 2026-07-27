@@ -1,6 +1,6 @@
 import type { Plugin, Schema } from '@sisad-pdfme/common';
 import type { IconNode } from 'lucide-react';
-import { isRecord } from '../ui/components/Designer/shared/objectGuards.js';
+import { isRecord } from '../shared/objectGuards.js';
 import { createSvgStr } from './utils.js';
 
 export type SchemaCapability =
@@ -37,7 +37,7 @@ export const renderLucideIcon = (icon: unknown, attrs?: Record<string, string>) 
   createSvgStr(icon, attrs);
 
 // Wrap UI handlers to dedupe identical onChange emissions using a stable JSON signature.
-const stableJsonSignature = (v: unknown) => {
+const buildSchemaBuilderStableJsonSignature = (v: unknown) => {
   try {
     const canon = (function canon(x: unknown): unknown {
       if (x === null || typeof x !== 'object') return x;
@@ -103,7 +103,7 @@ export const createSchemaPlugin = <T extends Schema>(
       const dedupeOnChange = (payload: unknown) => {
         if (typeof originalOnChange !== 'function') return undefined;
         try {
-          const sig = stableJsonSignature(payload);
+          const sig = buildSchemaBuilderStableJsonSignature(payload);
           if (shouldSkipDuplicateEmission(getOnChangeCacheKey(schema, rootElement), sig)) return;
         } catch (e) {
           // ignore signature errors and proceed
@@ -122,7 +122,7 @@ export const createSchemaPlugin = <T extends Schema>(
   } as SchemaPluginWithMetadata<T>;
 };
 
-export const getSchemaDefinition = (plugin: Plugin<Schema> | SchemaPluginWithMetadata<Schema>) =>
+export const buildSchemaDefinitionFromPlugin = (plugin: Plugin<Schema> | SchemaPluginWithMetadata<Schema>) =>
   'designer' in plugin ? plugin.designer : null;
 
 const isPluginLike = (value: unknown): value is Plugin<Schema> =>
@@ -132,7 +132,7 @@ const isPluginLike = (value: unknown): value is Plugin<Schema> =>
   'propPanel' in value;
 
 const resolveDefinitionFromPlugin = (key: string, plugin: Plugin<Schema>) => {
-  const definition = getSchemaDefinition(plugin as SchemaPluginWithMetadata<Schema>);
+  const definition = buildSchemaDefinitionFromPlugin(plugin as SchemaPluginWithMetadata<Schema>);
   if (definition) return definition;
   const defaultSchema = plugin?.propPanel?.defaultSchema;
   return defaultSchema

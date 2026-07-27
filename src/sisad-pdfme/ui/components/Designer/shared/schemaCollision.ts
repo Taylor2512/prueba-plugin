@@ -16,7 +16,7 @@ export type CollisionScopeFallback = {
   ownerRecipientIds?: string[] | null;
 };
 
-const normalizeText = (value: unknown) =>
+const normalizeCollisionText = (value: unknown) =>
   typeof value === 'string' && value.trim().length > 0 ? value.trim() : '';
 
 const normalizeNumber = (value: unknown) => {
@@ -31,10 +31,10 @@ const normalizeNumber = (value: unknown) => {
 const toRecipientIdList = (value: unknown): string[] => {
   if (Array.isArray(value)) {
     return value
-      .map((entry) => normalizeText(entry))
+      .map((entry) => normalizeCollisionText(entry))
       .filter((entry, index, arr) => entry.length > 0 && arr.indexOf(entry) === index);
   }
-  const single = normalizeText(value);
+  const single = normalizeCollisionText(value);
   return single ? [single] : [];
 };
 
@@ -42,21 +42,21 @@ const resolveSchemaOwnerRecipientIds = (schema: CollisionSchemaLike, fallback?: 
   const fromSchema = toRecipientIdList(schema.ownerRecipientIds);
   if (fromSchema.length > 0) return fromSchema;
 
-  const fromPrimary = normalizeText(schema.ownerRecipientId);
+  const fromPrimary = normalizeCollisionText(schema.ownerRecipientId);
   if (fromPrimary) return [fromPrimary];
 
   if (!fallback) return [];
   const fromFallback = toRecipientIdList(fallback.ownerRecipientIds);
   if (fromFallback.length > 0) return fromFallback;
 
-  const fallbackPrimary = normalizeText(fallback.ownerRecipientId);
+  const fallbackPrimary = normalizeCollisionText(fallback.ownerRecipientId);
   return fallbackPrimary ? [fallbackPrimary] : [];
 };
 
 const resolveSchemaFileId = (schema: CollisionSchemaLike, fallback?: CollisionScopeFallback) => {
-  const fileId = normalizeText(schema.fileId) || normalizeText(schema.fileTemplateId);
+  const fileId = normalizeCollisionText(schema.fileId) || normalizeCollisionText(schema.fileTemplateId);
   if (fileId) return fileId;
-  return normalizeText(fallback?.fileId);
+  return normalizeCollisionText(fallback?.fileId);
 };
 
 const resolveSchemaPageNumber = (schema: CollisionSchemaLike, fallback?: CollisionScopeFallback) => {
@@ -75,11 +75,11 @@ export const filterSchemasByCollisionScope = (
   const referenceOwnerIds = resolveSchemaOwnerRecipientIds(reference, fallback);
   const referenceFileId = resolveSchemaFileId(reference, fallback);
   const referencePageNumber = resolveSchemaPageNumber(reference, fallback);
-  const referenceId = normalizeText(reference.id);
+  const referenceId = normalizeCollisionText(reference.id);
 
   return schemas.filter((schema) => {
     if (!schema) return false;
-    if (referenceId && normalizeText(schema.id) === referenceId) return false;
+    if (referenceId && normalizeCollisionText(schema.id) === referenceId) return false;
 
     if (referenceFileId) {
       const schemaFileId = resolveSchemaFileId(schema);

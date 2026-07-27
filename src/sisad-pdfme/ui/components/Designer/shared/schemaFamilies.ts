@@ -38,6 +38,6 @@ const PLUGIN_FAMILY_MAP: Record<string, SchemaFamily> = {
 /**
  * Resuelve la familia a la que pertenece un schema según su tipo (type).
  */
-export function resolveSchemaFamily(schema: Schema): SchemaFamily {
+export function resolveDesignerSchemaFamily(schema: Schema): SchemaFamily {
   return PLUGIN_FAMILY_MAP[schema.type] || 'static';
 }

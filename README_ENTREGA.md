@@ -1,17 +1,37 @@
-# Entrega SISAD PDFME — reducción de duplicidad
+# SISAD PDFME — Arquitectura IA V6
 
-Este ZIP es un overlay: conserva las rutas originales del proyecto y contiene únicamente archivos modificados/nuevos.
+Esta entrega reemplaza la arquitectura V5 por una estructura más pequeña en el arranque, más rigurosa en evidencia y más completa para un componente frontend reutilizable.
 
-## Aplicación
+## Objetivos
 
-1. Extraer en la raíz de `prueba-plugin`.
-2. Revisar `ENTREGA/INFORME_DEDUP.md` y `ENTREGA/MANIFEST_CAMBIOS.txt`.
-3. Ejecutar lint, build, quality, unit tests y Playwright en el repositorio original.
+- reducir consumo de tokens y reaperturas innecesarias;
+- prevenir alucinaciones, ciclos de análisis y desbordamiento de contexto;
+- separar memoria durable, estado operativo y evidencia histórica;
+- coordinar Codex, Claude Code, GitHub Copilot y otros asistentes sin duplicar reglas;
+- mantener un único escritor por parche y varios lectores especializados;
+- proteger Canvas, Moveable, Selecto, Snapshot, Generator y la API pública;
+- incorporar UX, accesibilidad, responsive, rendimiento, Tailwind, plugins y configuración;
+- medir calidad de prompts, tareas, agentes y cambios de código.
 
-## Alternativa
+## Entrada recomendada
 
-Usar `ENTREGA/sisad-pdfme-dedup.patch` con `git apply --check` y `git apply`.
+1. Leer `AGENTS.md`.
+2. Leer `.ai/START.md`.
+3. Seleccionar una task-card en `.ai/tasks/`.
+4. Cargar una ruta y una skill, no toda la arquitectura.
+5. Confirmar evidencia, alcance, presupuesto y condiciones de parada.
+6. Ejecutar, validar, revisar y emitir `MEMORY-DELTA`.
 
-## Advertencia
+## Diferencia esencial frente a V5
 
-No se modificaron archivos truncados/redactados del consolidado ni el fork interno de `pdf-lib`. No se afirma que el build completo haya pasado en el sandbox porque no se recibieron dependencias instaladas ni el checkout íntegro.
+V5 tenía una base correcta, pero seguía fragmentada y carecía de controles explícitos para:
+
+- afirmaciones sin evidencia;
+- repetición de búsquedas;
+- acumulación silenciosa de contexto;
+- memoria obsoleta;
+- cambios visuales sin verificación renderizada;
+- evaluación de prompts y agentes;
+- especialización para arquitectura de librerías frontend.
+
+V6 incorpora esos controles como políticas, plantillas, skills y gates.

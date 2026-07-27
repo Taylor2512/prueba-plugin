@@ -24,7 +24,7 @@ export type DesignerCoordinateServiceOptions = {
   getPageElement?: (pageIndex: number) => HTMLElement | null;
 };
 
-const normalizeZoom = (value: number | undefined) => {
+const normalizeDesignerCoordinateZoom = (value: number | undefined) => {
   if (!Number.isFinite(value) || (value || 0) <= 0) return 1;
   return value as number;
 };
@@ -58,7 +58,7 @@ export class DesignerCoordinateService {
   constructor(private readonly options: DesignerCoordinateServiceOptions = {}) {}
 
   private getZoom() {
-    return normalizeZoom(this.options.getZoom?.() ?? 1);
+    return normalizeDesignerCoordinateZoom(this.options.getZoom?.() ?? 1);
   }
 
   private getCanvasRoot() {

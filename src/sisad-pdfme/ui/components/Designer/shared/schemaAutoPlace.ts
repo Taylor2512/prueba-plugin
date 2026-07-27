@@ -1,9 +1,8 @@
-import { isRecord } from './objectGuards.js';
+import { isRecord } from '../../../../shared/objectGuards.js';
+import { normalizeText } from '../../../../shared/text.js';
 
 const DEFAULT_AUTO_PLACE_SCOPE = 'document';
 const DEFAULT_AUTO_PLACE_MATCH_MODE = 'contains';
-
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 
 export const buildAutoPlaceDescriptor = (keyword: unknown, options: Record<string, unknown> = {}) => {
   const normalizedKeyword = normalizeText(keyword);
@@ -61,4 +60,3 @@ export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown>
             : undefined,
   });
 };
-

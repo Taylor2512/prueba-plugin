@@ -1,6 +1,8 @@
 import { MultiVariableTextSchema } from './types.js';
 
-const normalizeText = (value: unknown): string => String(value || '').trim();
+import { normalizeLooseText } from '../../shared/text.js';
+
+const normalizeMultiVariableText = normalizeLooseText;
 
 export const parseVariablesInput = (variablesIn: string | Record<string, string>): Record<string, string> => {
   if (!variablesIn) {
@@ -28,7 +30,7 @@ export const getMissingVariables = (value: string, schema: MultiVariableTextSche
   }
 
   const values = parseVariablesInput(value);
-  return schema.variables.filter((variable) => !normalizeText(values[variable]));
+  return schema.variables.filter((variable) => !normalizeMultiVariableText(values[variable]));
 };
 
 export const substituteVariables = (
@@ -74,7 +76,7 @@ export const validateVariables = (value: string, schema: MultiVariableTextSchema
   }
 
   for (const variable of schema.variables) {
-    if (!normalizeText(values[variable])) {
+    if (!normalizeMultiVariableText(values[variable])) {
       if (schema.required) {
         throw new Error(
           `[@sisad-pdfme/generator] variable ${variable} is missing for field ${schema.name}`,

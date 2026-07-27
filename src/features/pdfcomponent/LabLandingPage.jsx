@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { normalizeLooseText } from '../../sisad-pdfme/shared/text.ts'
 import { getLabExamples } from './labs/examples/labExampleRegistry.ts'
 import { getLabCoverageCounts, getLabExamplePresentation, getLabExampleSchemaStats } from './domain/labPresentation.js'
 import CaseCard from './CaseCard.jsx'
@@ -39,7 +40,7 @@ const FILTERS = [
   },
 ]
 
-const normalizeText = (value) => String(value || '').trim().toLowerCase()
+const normalizeLabSearchText = (value) => normalizeLooseText(value).toLowerCase()
 
 const LANDING_ROOT_STYLE = {
   fontFamily: "var(--font-family-ui, 'DM Sans', system-ui, sans-serif)",
@@ -75,11 +76,11 @@ export default function LabLandingPage({ examples = defaultExamples } = {}) {
   ).length
   const fullSchemaExamples = examples.filter((example) => getLabExampleSchemaStats(example).isFullCoverage).length
 
-  const query = normalizeText(search)
+  const query = normalizeLabSearchText(search)
   const active = FILTERS.find((filter) => filter.id === activeFilter) || FILTERS[0]
   const visibleExamples = examples.filter((example) => {
     const presentation = getLabExamplePresentation(example)
-    const haystack = normalizeText(
+    const haystack = normalizeLabSearchText(
       [
         example.title,
         example.description,

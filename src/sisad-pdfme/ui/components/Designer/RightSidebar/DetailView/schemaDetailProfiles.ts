@@ -1,8 +1,8 @@
 export {
-  getDefaultOpenSections,
+  getInspectorDefaultOpenSections,
   getInspectorProfile,
   getSectionWidgets,
-  getVisibleDetailSections,
+  getInspectorVisibleDetailSections,
   type DetailInspectorSection,
   type DetailInspectorSectionKey,
   type InspectorProfile,

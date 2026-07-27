@@ -39,13 +39,13 @@ const buildSwitchField = (title: string, hidden = false): PropPanelSchema => ({
   hidden,
 });
 
-const resolveDesignerEngine = (options: unknown): DesignerEngine | undefined => {
+const resolveSignatureDesignerEngine = (options: unknown): DesignerEngine | undefined => {
   const candidate = options as { designerEngine?: DesignerEngine } | undefined;
   return candidate?.designerEngine;
 };
 
 const getProviderSourceFromOptions = (options: unknown) =>
-  resolveSignatureProviderSource(resolveDesignerEngine(options));
+  resolveSignatureProviderSource(resolveSignatureDesignerEngine(options));
 
 const createSchemaChanges = (
   schemaId: string | undefined,
@@ -53,7 +53,7 @@ const createSchemaChanges = (
 ) => Object.entries(patch).map(([key, value]) => ({ key, value, schemaId }));
 
 const getBlockedOwnerRole = (activeSchema: SignatureSchema, options: unknown) => {
-  const engine = resolveDesignerEngine(options);
+  const engine = resolveSignatureDesignerEngine(options);
   const collaboration = resolveActiveRecipient(engine?.collaboration);
   return collaboration.recipientOptions.find((entry) => entry.id === activeSchema.ownerRecipientId)?.role || null;
 };

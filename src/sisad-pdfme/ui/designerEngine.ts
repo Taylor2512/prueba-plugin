@@ -22,6 +22,7 @@ import {
   UIOptions,
   type CommentScope,
 } from '@sisad-pdfme/common';
+import { normalizeLooseText } from '../shared/text.js';
 import type React from 'react';
 import type { LeftSidebarProps } from './components/Designer/LeftSidebar';
 import type { RightSidebarProps } from './components/Designer/RightSidebar/RightSidebar';
@@ -30,6 +31,7 @@ import {
   resolveOwnerMode,
   type CollaborationRecipientOption,
 } from './collaborationContext.js';
+import { asRecord } from '../shared/objectGuards.js';
 import type { DesignerRuntimeExtensions } from './components/Designer/shared/designerExtensions';
 import type { SignatureProviderDefinition } from '../schemas/signature/providerRegistry.js';
 import type {
@@ -449,9 +451,6 @@ const cloneDesignerEngine = (engine: DesignerEngine = {}): DesignerEngine => ({
       }
     : undefined,
 });
-
-const asRecord = (value: unknown): Record<string, unknown> | null =>
-  value && typeof value === 'object' ? (value as Record<string, unknown>) : null;
 
 const mergeRecord = <T extends Record<string, unknown>>(current?: T, patch?: Partial<T>): T => ({
   ...(current || {}),
@@ -918,7 +917,7 @@ const toStringRecord = (value: unknown): Record<string, string> => {
 };
 
 const normalizeRequestMethod = (value: unknown): ResolvedSchemaRequest['method'] | null => {
-  const normalized = String(value || '').trim().toUpperCase();
+  const normalized = normalizeLooseText(value).toUpperCase();
   if (normalized === 'GET' || normalized === 'POST' || normalized === 'PUT' || normalized === 'PATCH' || normalized === 'DELETE') {
     return normalized;
   }

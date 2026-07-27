@@ -1,4 +1,5 @@
 import { cloneDeep, type ChangeSchemaItem, type Plugin, type Schema, type SchemaForUI } from '@sisad-pdfme/common';
+import { normalizeLooseText } from '../shared/text.js';
 import multiVariableText from './multiVariableText/index.js';
 import text from './text/index.js';
 import number from './number/index.js';
@@ -25,7 +26,7 @@ import approve from './actions/approve.js';
 import decline from './actions/decline.js';
 import {
   flattenSchemaPlugins,
-  getSchemaDefinition as getSchemaDefinitionFromPlugin,
+  buildSchemaDefinitionFromPlugin as getSchemaDefinitionFromPlugin,
   listSchemaDefinitions,
   createSchemaPlugin,
   renderLucideIcon,
@@ -90,8 +91,8 @@ const builtInSchemaDefinitionsByType = Object.fromEntries(
 const builtInFields = builtInSchemaDefinitions;
 const registeredSchemaPlugins = new Map<string, Plugin<Schema>>();
 
-const normalizeText = (value: unknown) => String(value || '').trim();
-const normalizeSchemaType = (value: unknown) => normalizeText(value).toLowerCase();
+const normalizeSchemaText = normalizeLooseText;
+const normalizeSchemaType = (value: unknown) => normalizeSchemaText(value).toLowerCase();
 
 const getAllRegisteredSchemaPlugins = () => ({
   ...Object.entries(flatSchemaPlugins).reduce<Record<string, Plugin<Schema>>>((acc, [key, plugin]) => {
@@ -129,10 +130,10 @@ const createSchemaUid = () =>
 const flattenSchemaList = (schemas: Schema[] | Schema[][] = []) =>
   Array.isArray(schemas[0]) ? (schemas as Schema[][]).flat() : (schemas as Schema[]);
 
-const normalizeFieldName = (value: unknown, fallback = 'field') => normalizeText(value) || fallback;
+const normalizeFieldName = (value: unknown, fallback = 'field') => normalizeSchemaText(value) || fallback;
 
 const updateValueByPath = (target: Record<string, unknown>, key: string, value: unknown) => {
-  const path = normalizeText(key);
+  const path = normalizeSchemaText(key);
   if (!path) return;
   const segments = path.split('.').filter(Boolean);
   if (segments.length === 0) return;
@@ -193,7 +194,7 @@ export const generateUniqueSchemaName = (
   const baseName = normalizeFieldName(typeOrBaseName, 'field');
   const names = new Set(
     flattenSchemaList(existingSchemas)
-      .map((schema) => normalizeText(schema?.name).toLowerCase())
+      .map((schema) => normalizeSchemaText(schema?.name).toLowerCase())
       .filter(Boolean),
   );
 
@@ -208,7 +209,7 @@ export const validateSchemaNameUniqueness = (
   existingSchemas: Schema[] | Schema[][] = [],
   ignoredSchemaUid?: string | null,
 ) => {
-  const normalizedName = normalizeText(name).toLowerCase();
+  const normalizedName = normalizeSchemaText(name).toLowerCase();
   if (!normalizedName) {
     return {
       isUnique: false,
@@ -218,14 +219,14 @@ export const validateSchemaNameUniqueness = (
   }
 
   const schema = flattenSchemaList(existingSchemas).find((item) => {
-    const sameName = normalizeText(item?.name).toLowerCase() === normalizedName;
-    const ignored = ignoredSchemaUid && normalizeText(item?.schemaUid || item?.name) === normalizeText(ignoredSchemaUid);
+    const sameName = normalizeSchemaText(item?.name).toLowerCase() === normalizedName;
+    const ignored = ignoredSchemaUid && normalizeSchemaText(item?.schemaUid || item?.name) === normalizeSchemaText(ignoredSchemaUid);
     return sameName && !ignored;
   });
 
   return {
     isUnique: !schema,
-    conflictSchemaUid: schema ? normalizeText(schema.schemaUid || schema.name) || null : null,
+    conflictSchemaUid: schema ? normalizeSchemaText(schema.schemaUid || schema.name) || null : null,
     normalizedName,
   };
 };
@@ -256,8 +257,8 @@ export const createDefaultSchema = (
     },
   );
 
-  const schemaUid = normalizeText(context.schemaUid) || normalizeText(baseSchema.schemaUid) || createSchemaUid();
-  const id = normalizeText(context.id) || schemaUid;
+  const schemaUid = normalizeSchemaText(context.schemaUid) || normalizeSchemaText(baseSchema.schemaUid) || createSchemaUid();
+  const id = normalizeSchemaText(context.id) || schemaUid;
   const existingSchemas = flattenSchemaList(context.existingSchemas || []);
 
   const defaultSchema: SchemaForUI = {
@@ -266,15 +267,15 @@ export const createDefaultSchema = (
     schemaUid,
     type: baseSchema.type || type,
     name: generateUniqueSchemaName(baseSchema.name || type, existingSchemas),
-    fileTemplateId: normalizeText(context.fileTemplateId || context.fileId || baseSchema.fileTemplateId || baseSchema.fileId) || undefined,
-    fileId: normalizeText(context.fileId || context.fileTemplateId || baseSchema.fileId || baseSchema.fileTemplateId) || undefined,
+    fileTemplateId: normalizeSchemaText(context.fileTemplateId || context.fileId || baseSchema.fileTemplateId || baseSchema.fileId) || undefined,
+    fileId: normalizeSchemaText(context.fileId || context.fileTemplateId || baseSchema.fileId || baseSchema.fileTemplateId) || undefined,
     pageNumber:
       Number.isFinite(context.pageNumber) && Number(context.pageNumber) > 0
         ? Math.trunc(Number(context.pageNumber))
         : baseSchema.pageNumber,
     ownerMode: context.ownerMode || baseSchema.ownerMode,
     ownerRecipientId:
-      normalizeText(context.ownerRecipientId || baseSchema.ownerRecipientId) || undefined,
+      normalizeSchemaText(context.ownerRecipientId || baseSchema.ownerRecipientId) || undefined,
     ownerRecipientIds:
       context.ownerRecipientIds?.length
         ? context.ownerRecipientIds.filter(Boolean)
@@ -299,14 +300,14 @@ export const changeSchemas = (schemas: SchemaForUI[] = [], changes: ChangeSchema
   const changeMap = new Map<string, ChangeSchemaItem[]>();
 
   (changes || []).forEach((change) => {
-    const schemaId = normalizeText(change?.schemaId);
+    const schemaId = normalizeSchemaText(change?.schemaId);
     if (!schemaId) return;
     if (!changeMap.has(schemaId)) changeMap.set(schemaId, []);
     changeMap.get(schemaId)?.push(change);
   });
 
   return nextSchemas.map((schema) => {
-    const schemaId = normalizeText(schema.id || schema.schemaUid || schema.name);
+    const schemaId = normalizeSchemaText(schema.id || schema.schemaUid || schema.name);
     const schemaChanges = changeMap.get(schemaId);
     if (!schemaChanges?.length) return schema;
 

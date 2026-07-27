@@ -117,6 +117,14 @@ type SidebarSurfaceHeaderProps = {
   trailing?: React.ReactNode;
 
   /**
+   * Nodo compacto alineado en la misma fila del título, antes de `trailing`.
+   *
+   * Pensado para un contador o estado semántico único (por ejemplo
+   * "8 de 11") que debe permanecer horizontal y no apilarse bajo el título.
+   */
+  meta?: React.ReactNode;
+
+  /**
    * Badges compactos mostrados debajo del título/subtítulo.
    */
   badges?: SidebarSurfaceBadge[];
@@ -130,6 +138,11 @@ type SidebarSurfaceHeaderProps = {
    * Activa una variante más compacta del header.
    */
   compact?: boolean;
+
+  /**
+   * Apila el contenido principal y las acciones cuando el ancho es reducido.
+   */
+  stacked?: boolean;
 };
 
 /**
@@ -155,102 +168,125 @@ export const SidebarSurfaceHeader = ({
   subtitle,
   leading,
   trailing,
+  meta,
   badges = EMPTY_BADGES,
   className,
   compact = false,
+  stacked = false,
 }: SidebarSurfaceHeaderProps) => {
   return (
     <div
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'sidebar-surface-header',
-        'flex justify-between gap-1.5 rounded-[0.95rem] border border-slate-200/70 bg-white px-2.5 shadow-[0_1px_2px_rgba(15,23,42,0.03)] backdrop-blur-sm',
-        compact ? 'items-center py-1' : 'items-start py-1.5',
+        'rounded-[0.95rem] border border-slate-200/70 bg-white px-2.5 shadow-[0_1px_2px_rgba(15,23,42,0.03)] backdrop-blur-sm',
+        stacked ? 'flex flex-col items-stretch gap-1.5 py-1.5' : 'flex justify-between gap-1.5',
+        stacked ? '' : (compact ? 'items-center py-1' : 'items-start py-1.5'),
         className,
       )}
     >
-      {leading ? (
-        <div
-          className={mergeClassNames(
-            DESIGNER_CLASSNAME + 'sidebar-surface-header-leading',
-            'flex flex-none items-center',
-          )}
-        >
-          {leading}
-        </div>
-      ) : null}
-
       <div
         className={mergeClassNames(
-          DESIGNER_CLASSNAME + 'sidebar-surface-header-main',
-          'min-w-0 flex-1',
+          DESIGNER_CLASSNAME + 'sidebar-surface-header-main-row',
+          stacked ? 'flex min-w-0 items-start gap-2' : 'flex min-w-0 flex-1 items-start gap-2',
         )}
       >
-        <div
-          className={mergeClassNames(
-            DESIGNER_CLASSNAME + 'sidebar-surface-header-copy',
-            'min-w-0 space-y-0.5',
-          )}
-        >
-          <span
+        {leading ? (
+          <div
             className={mergeClassNames(
-              DESIGNER_CLASSNAME + 'sidebar-surface-header-title',
-              'block truncate font-semibold leading-tight text-slate-950',
-              compact ? 'text-[0.7rem]' : 'text-[0.8rem]'
+              DESIGNER_CLASSNAME + 'sidebar-surface-header-leading',
+              'flex flex-none items-center',
             )}
           >
-            {title}
-          </span>
+            {leading}
+          </div>
+        ) : null}
 
-          {subtitle ? (
+        <div
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'sidebar-surface-header-main',
+            'min-w-0 flex-1',
+          )}
+        >
+          <div
+            className={mergeClassNames(
+              DESIGNER_CLASSNAME + 'sidebar-surface-header-copy',
+              'min-w-0 space-y-0.5',
+            )}
+          >
             <span
               className={mergeClassNames(
-                DESIGNER_CLASSNAME + 'sidebar-surface-header-subtitle',
-                'block truncate leading-tight text-slate-600',
-                compact ? 'text-[0.58rem]' : 'text-[0.64rem]'
+                DESIGNER_CLASSNAME + 'sidebar-surface-header-title',
+                'block truncate font-semibold leading-tight text-slate-950',
+                compact ? 'text-[0.7rem]' : 'text-[0.8rem]'
               )}
             >
-              {subtitle}
+              {title}
             </span>
-          ) : null}
 
-          {badges.length > 0 ? (
-            <div
-              className={mergeClassNames(
-                DESIGNER_CLASSNAME + 'sidebar-surface-header-badges',
-                'mt-0.5 flex flex-wrap gap-1',
-              )}
-            >
-              {badges.map((badge, index) => {
-                const badgeClassName = mergeClassNames(
-                  'm-0 inline-flex items-center rounded-full border leading-none shadow-none',
-                  resolveBadgeColorClass(badge.color),
-                  compact ? 'h-4 px-[0.26rem] text-[0.56rem]' : 'h-5 px-1.5 text-[10px]',
-                );
+            {subtitle ? (
+              <span
+                className={mergeClassNames(
+                  DESIGNER_CLASSNAME + 'sidebar-surface-header-subtitle',
+                  'block truncate leading-tight text-slate-600',
+                  compact ? 'text-[0.58rem]' : 'text-[0.64rem]'
+                )}
+              >
+                {subtitle}
+              </span>
+            ) : null}
 
-                const key = badge.key ?? badge.tooltip ?? String(badge.label) ?? index;
+            {badges.length > 0 ? (
+              <div
+                className={mergeClassNames(
+                  DESIGNER_CLASSNAME + 'sidebar-surface-header-badges',
+                  'mt-0.5 flex flex-wrap gap-1',
+                )}
+              >
+                {badges.map((badge, index) => {
+                  const badgeClassName = mergeClassNames(
+                    'm-0 inline-flex items-center rounded-full border leading-none shadow-none',
+                    resolveBadgeColorClass(badge.color),
+                    compact ? 'h-4 px-[0.26rem] text-[0.56rem]' : 'h-5 px-1.5 text-[10px]',
+                  );
 
-                return (
-                  <span key={key} title={badge.tooltip} className={badgeClassName}>
-                    {badge.label}
-                  </span>
-                );
-              })}
-            </div>
-          ) : null}
+                  const key = badge.key ?? badge.tooltip ?? String(badge.label) ?? index;
+
+                  return (
+                    <span key={key} title={badge.tooltip} className={badgeClassName}>
+                      {badge.label}
+                    </span>
+                  );
+                })}
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
+
+      {meta ? (
+        <div
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'sidebar-surface-header-meta',
+            'flex shrink-0 items-center gap-1 whitespace-nowrap tabular-nums leading-none text-slate-500',
+            compact ? 'text-[0.62rem]' : 'text-[0.66rem]',
+            stacked ? 'justify-end' : '',
+          )}
+        >
+          {meta}
+        </div>
+      ) : null}
 
       {trailing ? (
         <div
           className={mergeClassNames(
             DESIGNER_CLASSNAME + 'sidebar-surface-header-trailing',
             'flex shrink-0 items-center',
+            stacked ? 'justify-end' : '',
           )}
         >
           {trailing}
         </div>
       ) : null}
-
     </div>
   );
 };

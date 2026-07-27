@@ -12,7 +12,7 @@
  *   viajan por OptionsContext.
  */
 import type { SisadPdfmeVisibilityConfig } from '../../../../config/SisadPdfmeConfig.js';
-import { asRecord } from './objectGuards.js';
+import { asRecord } from '../../../../shared/objectGuards.js';
 import { resolveVisibilityConfig, resolveReassignVisibilityState } from './visibilityConfig.js';
 import {
   resolveDesignerActionState,

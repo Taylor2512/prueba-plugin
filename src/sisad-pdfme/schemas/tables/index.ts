@@ -1,14 +1,14 @@
 import type { Plugin } from '@sisad-pdfme/common';
 import type { TableSchema } from './types.js';
-import { pdfRender } from './pdfRender.js';
-import { uiRender } from './uiRender.js';
+import { renderTablePdf } from './pdfRender.js';
+import { renderTableUi } from './uiRender.js';
 import { propPanel } from './propPanel.js';
 import { Table } from 'lucide-react';
 import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
 
 const tableSchema: Plugin<TableSchema> = createSchemaPlugin<TableSchema>({
-  pdf: pdfRender,
-  ui: uiRender,
+  pdf: renderTablePdf,
+  ui: renderTableUi,
   propPanel,
   icon: renderLucideIcon(Table),
 }, {

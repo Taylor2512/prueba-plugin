@@ -31,7 +31,7 @@ type Props = {
 /**
  * Verifica si un valor puede tratarse como objeto plano para mezcla profunda.
  */
-const isObject = (item: unknown): item is Record<string, unknown> =>
+const isPlainObject = (item: unknown): item is Record<string, unknown> =>
   Boolean(item) && typeof item === 'object' && !Array.isArray(item);
 
 /**
@@ -40,23 +40,23 @@ const isObject = (item: unknown): item is Record<string, unknown> =>
  * Se usa para combinar temas y diccionarios sin perder claves anidadas
  * previamente definidas por los presets base.
  */
-const deepMerge = <T extends Record<string, unknown>, U extends Record<string, unknown>>(
+const mergeDeepObjects = <T extends Record<string, unknown>, U extends Record<string, unknown>>(
   target: T,
   source: U,
 ): T & U => {
   let output = { ...target } as T & U;
 
-  if (isObject(target) && isObject(source)) {
+  if (isPlainObject(target) && isPlainObject(source)) {
     Object.keys(source).forEach((key) => {
       const sourceValue = source[key];
-      if (isObject(sourceValue)) {
+      if (isPlainObject(sourceValue)) {
         if (!(key in target)) {
           Object.assign(output, { [key]: sourceValue });
         } else {
           const targetValue = target[key];
-          if (isObject(targetValue)) {
+          if (isPlainObject(targetValue)) {
             // Using Record<string, unknown> for recursive type
-            (output as Record<string, unknown>)[key] = deepMerge(targetValue, sourceValue);
+            (output as Record<string, unknown>)[key] = mergeDeepObjects(targetValue, sourceValue);
           } else {
             Object.assign(output, { [key]: sourceValue });
           }
@@ -79,7 +79,7 @@ const AppContextProvider = ({ children, lang, font, plugins, options }: Props) =
   const theme = useMemo(() => {
     let nextTheme = options.themePreset === 'sisad' ? sisadTheme : defaultTheme;
     if (options.theme) {
-      nextTheme = deepMerge(
+      nextTheme = mergeDeepObjects(
         nextTheme as unknown as Record<string, unknown>,
         options.theme as unknown as Record<string, unknown>,
       ) as typeof nextTheme;
@@ -90,7 +90,7 @@ const AppContextProvider = ({ children, lang, font, plugins, options }: Props) =
   const dict = useMemo(() => {
     let nextDict = getDict(lang);
     if (options.labels) {
-      nextDict = deepMerge(
+      nextDict = mergeDeepObjects(
         nextDict as unknown as Record<string, unknown>,
         options.labels as unknown as Record<string, unknown>,
       ) as typeof nextDict;

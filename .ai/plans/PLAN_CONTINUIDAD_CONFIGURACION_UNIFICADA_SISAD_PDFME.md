@@ -1,8 +1,9 @@
+
 # Plan de continuidad — Configuración unificada de componentes y comportamientos de SISAD PDFME
 
-**Proyecto base:** `prueba-plugin`  
-**Ámbito:** `src/sisad-pdfme` como componente portable y aislado  
-**Fecha de continuidad:** 2026-07-27  
+**Proyecto base:** `prueba-plugin`
+**Ámbito:** `src/sisad-pdfme` como componente portable y aislado
+**Fecha de continuidad:** 2026-07-27
 **Objetivo:** unificar la configuración de componentes, funcionalidades, comportamientos, permisos y visibilidad en una única fuente de verdad, sin acoplar el core a SISAD-WEB ni reimplementar lógica existente.
 
 ---

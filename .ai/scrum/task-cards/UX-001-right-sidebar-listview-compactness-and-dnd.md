@@ -73,3 +73,7 @@ Riesgo en el test `visibility` (asertaba `flex-col`): reescrito a la nueva semá
 ## Memory delta
 
 Nota durable: en el field-list el contador es único (`meta`) y el filtro de tipos es un listbox portal-a-`body` (no `<select>`). Relacionado con `[[detailview-proppanel-notes]]` y `[[w15-inspector-regressions]]` (patrón "docs/styles" ocultando lógica).
+
+## Nota de coordinación
+
+Pasada transversal de calidad ejecutada en paralelo: `npm run quality:duplicate-functions` quedó en `0`, con ESLint y Vitest focales en verde sobre los módulos tocados en esta ronda.

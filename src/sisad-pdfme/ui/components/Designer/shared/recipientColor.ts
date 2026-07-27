@@ -1,4 +1,4 @@
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
+import { normalizeText } from '../../../../shared/text.js';
 
 export const normalizeHexColor = (rawColor: unknown) => {
   const value = normalizeText(rawColor);

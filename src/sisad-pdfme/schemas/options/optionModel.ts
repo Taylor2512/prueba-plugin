@@ -1,6 +1,8 @@
 import type { OptionItem } from './optionTypes';
+import { normalizeLooseText } from '../../shared/text.js';
 
-export const normalizeText = (value: unknown): string => String(value || '').trim();
+export const normalizeOptionText = normalizeLooseText;
+export const normalizeText = normalizeOptionText;
 
 export type NormalizeOptionGroupSourceOptions = {
   fallbackLabelPrefix?: string;
@@ -27,7 +29,7 @@ export const normalizeOptionGroupOptions = (
   });
 
 export const normalizeOptionId = (value: unknown, index: number): string => {
-  const normalized = normalizeText(value)
+  const normalized = normalizeOptionText(value)
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '_')
     .replace(/^_+|_+$/g, '');
@@ -53,7 +55,7 @@ export const normalizeOptionsFromSource = (
 
   return list.map((entry, index) => {
     if (typeof entry === 'string') {
-      const label = normalizeText(entry) || `${fallbackLabelPrefix} ${index + 1}`;
+      const label = normalizeOptionText(entry) || `${fallbackLabelPrefix} ${index + 1}`;
 
       return {
         optionId: normalizeOptionId(label, index),
@@ -61,7 +63,7 @@ export const normalizeOptionsFromSource = (
       } as OptionItem;
     }
 
-    const label = normalizeText(entry?.label) || `${fallbackLabelPrefix} ${index + 1}`;
+    const label = normalizeOptionText(entry?.label) || `${fallbackLabelPrefix} ${index + 1}`;
 
     return {
       optionId: normalizeOptionId(entry?.optionId || label, index),

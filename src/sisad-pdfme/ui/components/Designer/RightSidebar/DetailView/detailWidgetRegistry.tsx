@@ -23,7 +23,7 @@ import type { DesignerEngine, SchemaDesignerConfig } from '../../../../designerE
 import type { SidebarProps } from '../../../../types.js';
 import { BooleanSwitchWidget } from './InspectorPrimitives.js';
 import { ColorPickerWidget } from './detailWidgets.js';
-import { asRecord } from '../../shared/objectGuards.js';
+import { asRecord } from '../../../../../shared/objectGuards.js';
 
 /**
  * Parámetros usados para construir el registro final de widgets.

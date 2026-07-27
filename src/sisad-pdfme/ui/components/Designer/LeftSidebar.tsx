@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect, useMemo, useCallback, useRef } 
 import { Schema, Plugin, BasePdf, getFallbackFontName, cloneDeep } from '@sisad-pdfme/common';
 import { Button } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
-import { DESIGNER_CLASSNAME } from '../../constants.js';
+import { DESIGNER_CLASSNAME } from '../../constants.ts';
+import { normalizeLooseText } from '../../../shared/text.js';
 import { setFontNameRecursively } from '../../helper.js';
 import { OptionsContext, PluginsRegistry } from '../../contexts.js';
 import PluginIcon from './PluginIcon.js';
@@ -106,7 +107,7 @@ const categoryOrder = [
 ];
 
 const normalizeCatalogCategory = (value: string): string => {
-  const normalized = String(value || '').trim();
+  const normalized = normalizeLooseText(value);
   if (!normalized) return '';
   const key = normalized.toLowerCase();
   return categoryAliases[key] || normalized;
@@ -343,7 +344,7 @@ const SUPPORTED_CAPABILITIES: CatalogCapability[] = [
   'dynamic',
 ];
 
-const tokenize = (value: string) =>
+const tokenizeSidebarTerms = (value: string) =>
   String(value || '')
     .toLowerCase()
     .split(/\s+/)
@@ -351,7 +352,7 @@ const tokenize = (value: string) =>
     .filter((part): part is string => Boolean(part));
 
 const parseSearchQuery = (query: string) => {
-  const rawTokens = tokenize(query);
+  const rawTokens = tokenizeSidebarTerms(query);
   const capabilities = new Set<string>();
   const categories = new Set<string>();
   const types = new Set<string>();

@@ -18,6 +18,7 @@ import {
   updateCommentInSchema,
 } from '@sisad-pdfme/common';
 import { forEachSchemaInPages } from '../common/schemaPageTraversal.js';
+import { normalizeLooseText } from '../shared/text.js';
 
 /**
  * Entrada parcial para actualizar la posición o asociación de un anchor.
@@ -80,7 +81,7 @@ interface PdfCommentEntry {
  * - espacios extra
  * - valores falsy
  */
-const normalizeText = (value: unknown) => String(value || '').trim();
+const normalizeCommentText = normalizeLooseText;
 
 /**
  * Actualiza los valores de un CommentAnchor sin mutar el objeto original.
@@ -106,7 +107,7 @@ const updateCommentAnchorValues = (
   if (Number.isFinite(updates.x)) nextAnchor.x = Number(updates.x);
   if (Number.isFinite(updates.y)) nextAnchor.y = Number(updates.y);
 
-  const fileId = normalizeText(updates.fileId);
+  const fileId = normalizeCommentText(updates.fileId);
   if (fileId) nextAnchor.fileId = fileId;
 
   if (Number.isFinite(updates.pageNumber) && Number(updates.pageNumber) > 0) {
@@ -114,7 +115,7 @@ const updateCommentAnchorValues = (
   }
 
   if (Object.prototype.hasOwnProperty.call(updates, 'schemaUid')) {
-    const schemaUid = normalizeText(updates.schemaUid);
+    const schemaUid = normalizeCommentText(updates.schemaUid);
     if (schemaUid) nextAnchor.schemaUid = schemaUid;
     else delete nextAnchor.schemaUid;
   }
@@ -132,7 +133,7 @@ const mapTopLevelCommentsById = (
     : [];
 
   template.pdfComments = entries.map((entry) =>
-    normalizeText(entry?.id || entry?.comment?.id) === normalizedCommentId
+    normalizeCommentText(entry?.id || entry?.comment?.id) === normalizedCommentId
       ? updater(entry)
       : entry,
   );
@@ -220,11 +221,11 @@ export const getCommentsForSchema = (
   const topLevelComments: PdfCommentEntry[] = topLevelEntries
     .filter(
       (entry) =>
-        normalizeText(
+        normalizeCommentText(
           entry?.comment?.schemaUid ||
             entry?.comment?.fieldId ||
             entry?.anchor?.schemaUid,
-        ) === normalizeText(schemaUid),
+        ) === normalizeCommentText(schemaUid),
     )
     .map((entry) => ({
       schemaUid: entry?.comment?.schemaUid || entry?.anchor?.schemaUid,
@@ -261,7 +262,7 @@ export const moveCommentAnchor = (
   commentId: string,
   updates: AnchorUpdateInput = {},
 ) => {
-  const normalizedCommentId = normalizeText(commentId);
+  const normalizedCommentId = normalizeCommentText(commentId);
 
   /**
    * Si no hay commentId válido, se retorna una copia profunda del template.
@@ -275,7 +276,7 @@ export const moveCommentAnchor = (
   forEachSchemaInPages(pages as SchemaForUI[][], ({ schema, page, schemaIndex }) => {
     let changed = false;
     const comments = (schema.comments || []).map((comment) => {
-      if (normalizeText(comment.id) !== normalizedCommentId) return comment;
+      if (normalizeCommentText(comment.id) !== normalizedCommentId) return comment;
       changed = true;
       return {
         ...comment,
@@ -286,7 +287,7 @@ export const moveCommentAnchor = (
       };
     });
     const commentAnchors = (schema.commentAnchors || []).map((anchor) => {
-      if (normalizeText(anchor.id) !== normalizedCommentId) return anchor;
+      if (normalizeCommentText(anchor.id) !== normalizedCommentId) return anchor;
       changed = true;
       return updateCommentAnchorValues(
         anchor as Record<string, unknown>,
@@ -368,7 +369,7 @@ export const resolveTopLevelComment = (
   commentId: string,
   resolved = true,
 ) => {
-  const normalizedCommentId = normalizeText(commentId);
+  const normalizedCommentId = normalizeCommentText(commentId);
 
   if (!normalizedCommentId) return cloneDeep(template);
 

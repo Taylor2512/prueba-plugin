@@ -1,8 +1,9 @@
 import { cloneDeep } from '@sisad-pdfme/common';
+import { normalizeLooseText } from '../shared/text.js';
 
 const DEFAULT_TEMPLATE_SCHEMA_VERSION = 2;
 
-const normalizeText = (value: unknown) => String(value || '').trim();
+const normalizeSchemaControllerText = normalizeLooseText;
 
 type SchemaLike = Record<string, unknown> & {
   schemaUid?: string;
@@ -19,13 +20,13 @@ type TemplateLike = Record<string, unknown> & {
 const normalizeSchemaForLoad = (schema: SchemaLike, context: Record<string, unknown> = {}) => {
   if (!schema || typeof schema !== 'object') return schema;
 
-  const schemaUid = normalizeText(schema.schemaUid || schema.id || context.schemaUid || '');
-  const fallbackName = normalizeText(context.name || '') || `campo_${Number(context.fieldIndex || 0) + 1}`;
+  const schemaUid = normalizeSchemaControllerText(schema.schemaUid || schema.id || context.schemaUid || '');
+  const fallbackName = normalizeSchemaControllerText(context.name || '') || `campo_${Number(context.fieldIndex || 0) + 1}`;
   const normalized = {
     ...cloneDeep(schema),
-    schemaUid: schemaUid || normalizeText(schema.id || `schema_${Date.now()}`),
-    id: normalizeText(schema.id || schemaUid || context.id || ''),
-    name: normalizeText(schema.name) || fallbackName,
+    schemaUid: schemaUid || normalizeSchemaControllerText(schema.id || `schema_${Date.now()}`),
+    id: normalizeSchemaControllerText(schema.id || schemaUid || context.id || ''),
+    name: normalizeSchemaControllerText(schema.name) || fallbackName,
     required: Boolean(schema.required),
     editable: schema.editable !== false,
   };
@@ -33,7 +34,7 @@ const normalizeSchemaForLoad = (schema: SchemaLike, context: Record<string, unkn
   return normalized;
 };
 
-const normalizeTemplate = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => {
+const normalizeSchemaTemplate = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => {
   if (!template || typeof template !== 'object') return template;
   const schemas = Array.isArray(template.schemas) ? template.schemas : [[]];
 
@@ -73,10 +74,10 @@ export const createSchemaController = (customConfig: Record<string, unknown> = {
     return normalized;
   };
 
-  const processTemplate = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
-  const normalizeTemplateForLoad = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
-  const normalizeTemplateForCreate = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
-  const normalizeTemplateForSave = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
+  const processTemplate = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeSchemaTemplate(template, context);
+  const normalizeTemplateForLoad = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeSchemaTemplate(template, context);
+  const normalizeTemplateForCreate = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeSchemaTemplate(template, context);
+  const normalizeTemplateForSave = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeSchemaTemplate(template, context);
 
   return {
     handlers,

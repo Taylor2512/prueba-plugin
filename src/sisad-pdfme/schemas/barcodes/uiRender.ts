@@ -33,7 +33,7 @@ const createBarcodeImageElm = async (schema: BarcodeSchema, value: string) => {
   return img;
 };
 
-export const uiRender = async (arg: UIRenderProps<BarcodeSchema>) => {
+export const renderBarcodeUi = async (arg: UIRenderProps<BarcodeSchema>) => {
   const { value, rootElement, mode, onChange, stopEditing, tabIndex, placeholder, schema, theme } =
     arg;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import type { Plugin, Schema } from '@sisad-pdfme/common';
-import { DESIGNER_CLASSNAME } from '../../constants.js';
+import { DESIGNER_CLASSNAME } from '../../constants.ts';
 import { mergeUniqueClassNames } from './shared/className.js';
 import { SidebarEmptyState } from './shared/SidebarEmptyState.js';
 

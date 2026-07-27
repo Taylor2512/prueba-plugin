@@ -8,7 +8,7 @@
 import type { PropPanelInspectorConfig, PropPanelSchema, SchemaForUI } from '@sisad-pdfme/common';
 import type { SchemaDesignerConfig } from '../../../../../ui/designerEngine.js';
 import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
-import { asRecord, isRecord } from '../../shared/objectGuards.js';
+import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
 import {
   getDetailProfile,
   hasMeaningfulInspectorValue,
@@ -95,11 +95,11 @@ export const getInspectorProfile = (schema: InspectorProfileInput, _context?: un
 };
 
 /** Devuelve las secciones visibles para un schema activo. */
-export const getVisibleDetailSections = (schema: InspectorProfileInput, context?: unknown): CanonicalDetailSection[] =>
+export const getInspectorVisibleDetailSections = (schema: InspectorProfileInput, context?: unknown): CanonicalDetailSection[] =>
   getInspectorProfile(schema, context).visibleSections;
 
 /** Devuelve las secciones abiertas por defecto para un schema activo. */
-export const getDefaultOpenSections = (schema: InspectorProfileInput, context?: unknown): CanonicalDetailSection[] =>
+export const getInspectorDefaultOpenSections = (schema: InspectorProfileInput, context?: unknown): CanonicalDetailSection[] =>
   getInspectorProfile(schema, context).defaultOpenSections;
 
 /** Metadata visual base por sección canónica. */

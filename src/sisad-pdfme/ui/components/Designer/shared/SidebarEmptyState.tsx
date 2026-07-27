@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Typography } from 'antd';
-import { DESIGNER_CLASSNAME } from '../../constants.js';
+import { DESIGNER_CLASSNAME } from '../../../constants.ts';
 import { mergeClassNames } from './className.js';
 
 const { Text } = Typography;

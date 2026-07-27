@@ -13,7 +13,7 @@ import { SidebarFrame } from './layout.js';
 import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
 import CommentsRail, { CommentsRailProps } from './CommentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
-import { asRecord } from '../shared/objectGuards.js';
+import { asRecord } from '../../../../shared/objectGuards.js';
 import { SidebarRail, type SidebarRailItem } from '../shared/SidebarRail.js';
 import { SidebarCollapseHandle } from '../shared/SidebarCollapseHandle.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
@@ -604,7 +604,7 @@ const Sidebar = (props: RightSidebarProps) => {
                 <div
                   className={mergeClassNames(
                     `${DESIGNER_CLASSNAME}right-sidebar-panel-switcher`,
-                    'flex min-w-0 flex-1 flex-nowrap items-center overflow-x-auto overflow-y-hidden rounded-[0.75rem] border border-slate-200/80 bg-white/90 p-0.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] [scrollbar-gutter:stable]',
+                    'flex min-w-0 flex-1 flex-nowrap items-center overflow-x-auto overflow-y-hidden rounded-[0.9rem] border border-slate-200/80 bg-white/90 p-0.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] [scrollbar-gutter:stable]',
                     sidebarDensityMode === 'comfortable' ? 'gap-0.5' :
                       sidebarDensityMode === 'compact' ? 'gap-[0.12rem]' : 'gap-[0.12rem]'
                   )}

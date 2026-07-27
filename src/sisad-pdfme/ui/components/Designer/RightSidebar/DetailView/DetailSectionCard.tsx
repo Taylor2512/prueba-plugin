@@ -65,18 +65,18 @@ type SectionTextProps = {
  * Renderiza título y descripción de sección con truncado compacto.
  */
 const SectionText = ({ title, description }: SectionTextProps) => (
-  <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head-main', 'min-w-0 flex-1 space-y-0')}>
-    <div
-      className={mergeClassNames(
-        DESIGNER_CLASSNAME + 'detail-section-card-title',
-        'truncate text-[0.64rem] font-semibold uppercase tracking-[0.05em] leading-tight text-slate-950',
-      )}
-      data-has-description={description ? 'true' : 'false'}
-    >
-      {title}
-    </div>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head-main', 'min-w-0 flex-1 space-y-0')}>
+      <div
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'detail-section-card-title',
+          'truncate text-[0.68rem] font-semibold leading-tight text-slate-950',
+        )}
+        data-has-description={description ? 'true' : 'false'}
+      >
+        {title}
+      </div>
     {description ? (
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'truncate text-[0.58rem] leading-tight text-slate-600')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'truncate text-[0.62rem] leading-tight text-slate-600')}>
         {description}
       </div>
     ) : null}
@@ -205,7 +205,7 @@ const DetailSectionCard = ({
     <section
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card',
-        'overflow-hidden rounded-[0.85rem] border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+        'overflow-hidden rounded-[0.9rem] border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
         className,
       )}
       data-section={sectionKey}
@@ -227,7 +227,7 @@ const DetailSectionCard = ({
         id={`${bodyId}-body`}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-body',
-          'mt-px px-1.5 pb-[0.375rem] pt-[0.1875rem]',
+          'mt-px px-2 pb-1.5 pt-1',
           bodyClassName,
         )}
         aria-hidden={resolvedCollapsed ? 'true' : 'false'}

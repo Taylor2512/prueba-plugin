@@ -1,4 +1,4 @@
-import { DESIGNER_CLASSNAME } from '../../constants.js';
+import { DESIGNER_CLASSNAME } from '../../constants.ts';
 import React, { useContext, useMemo } from 'react';
 import { Plugin, Schema } from '@sisad-pdfme/common';
 import { OptionsContext } from '../../contexts.js';

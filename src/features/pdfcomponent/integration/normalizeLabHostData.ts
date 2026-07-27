@@ -63,7 +63,7 @@ export type NormalizedLabHostData = {
 const buildDocumentLabel = (document: { id?: string; name?: string }) =>
   String(document?.name || document?.id || 'Documento').trim() || 'Documento'
 
-const normalizeDocuments = (runtimeOptions: LabHostRuntimeOptions | null | undefined): LabHostDocument[] => {
+const normalizeLabDocuments = (runtimeOptions: LabHostRuntimeOptions | null | undefined): LabHostDocument[] => {
   if (!runtimeOptions || !Array.isArray(runtimeOptions.uploadedDocuments)) return []
 
   return runtimeOptions.uploadedDocuments
@@ -114,7 +114,7 @@ export const normalizeLabHostData = (
     template,
     inputs,
     recipients: collaborationUsers,
-    documents: normalizeDocuments(example?.runtimeOptions),
+    documents: normalizeLabDocuments(example?.runtimeOptions),
     activeRecipientId,
     signatureProviders: Array.isArray(example?.runtimeOptions?.signatureProviders)
       ? cloneDeep(example.runtimeOptions.signatureProviders)

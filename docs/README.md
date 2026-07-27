@@ -28,4 +28,4 @@ presupuesto de tokens
 ruteo de modelos
 ```
 
-Todo eso vive en `ai/`.
+Todo eso vive en .ai/`.

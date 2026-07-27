@@ -38,7 +38,7 @@ export const buildCheckboxToGroupPatch = (
  * resolution path. Returns undefined when the stored value matches no option
  * (the radioGroup/select UI decide their own fallback).
  */
-export const resolveSelectedOptionId = (
+export const resolveOptionValueSelectedId = (
   schemaSelected: unknown,
   options: OptionItem[],
 ): string | undefined => matchOptionId(schemaSelected, options);

@@ -8,7 +8,7 @@
 
 import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { asRecord } from '../../shared/objectGuards.js';
+import { asRecord } from '../../../../../shared/objectGuards.js';
 import { MessageSquare } from 'lucide-react';
 
 /**
@@ -18,7 +18,7 @@ const MM_TO_PX = 3.7795275591;
 /**
  * Convierte una medida en milímetros a píxeles CSS antes de aplicar zoom.
  */
-const mm2px = (mm: number) => mm * MM_TO_PX;
+const mmToPxOverlay = (mm: number) => mm * MM_TO_PX;
 
 /**
  * Props del overlay de comentarios.
@@ -269,7 +269,7 @@ const CommentsOverlay = ({
       return [{
         ...anchor,
         left: paperRect.right - overlayRect.left + 10,
-        top: paperRect.top - overlayRect.top + mm2px(anchor.y) * scale,
+        top: paperRect.top - overlayRect.top + mmToPxOverlay(anchor.y) * scale,
       }];
     });
 

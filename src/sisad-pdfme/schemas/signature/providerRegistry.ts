@@ -1,5 +1,6 @@
 import type { DesignerEngine } from '../../ui/designerEngine.js';
 import type { SignatureProviderConfig, SignatureProviderKey } from './types.js';
+import { normalizeText } from '../../shared/text.js';
 
 export type SignatureProviderDefinition = {
   key: string;
@@ -49,8 +50,6 @@ const cloneDefinition = (definition: SignatureProviderDefinition): SignatureProv
     options: field.options?.map((option) => ({ ...option })),
   })),
 });
-
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 
 const mergeProviderLists = (
   base: SignatureProviderDefinition[],

@@ -14,6 +14,7 @@
 
 /** Hex → rgba with a given alpha (0–1). Handles both 6 and 3-char hex. */
 import { createOptionIndicatorElement } from './options/optionIndicator.js';
+import { isRecord } from '../shared/objectGuards.js';
 
 const hexAlpha = (hex: string, alpha: number): string => {
   const h = hex.replace('#', '');
@@ -27,9 +28,6 @@ const hexAlpha = (hex: string, alpha: number): string => {
 const applyStyles = (element: HTMLElement, styles: Record<string, string>): void => {
   Object.assign(element.style, styles);
 };
-
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-  Boolean(value) && typeof value === 'object';
 
 /**
  * Marker-only groups hide visible labels unless the schema explicitly opts in.

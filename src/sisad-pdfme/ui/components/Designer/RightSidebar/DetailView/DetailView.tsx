@@ -22,10 +22,10 @@ import { debounce } from '../../../../helper.js';
 import { theme } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import { asRecord, isRecord } from '../../shared/objectGuards.js';
+import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
 import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
 import {
-  resolveSchemaAccessState,
+  resolveDesignerSchemaAccessState,
   type SchemaAccessState,
   type SchemaAccessContext,
 } from '../../shared/accessPolicy.js';
@@ -211,7 +211,7 @@ const DetailView = (props: DetailViewProps) => {
   );
 
   const accessState = useMemo<SchemaAccessState>(
-    () => resolveSchemaAccessState(activeSchema, accessContext),
+    () => resolveDesignerSchemaAccessState(activeSchema, accessContext),
     [activeSchema, accessContext],
   );
   const selectionCount = Array.isArray(activeElements) ? activeElements.length : 0;

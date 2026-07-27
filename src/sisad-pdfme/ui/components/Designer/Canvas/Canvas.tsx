@@ -71,7 +71,7 @@ import {
   type PlatformKind,
 } from '../shared/selectionPolicy.js';
 import {
-  resolveSchemaAccessState,
+  resolveDesignerSchemaAccessState,
   isTransformable,
   type SchemaAccessContext,
 } from '../shared/accessPolicy.js';
@@ -102,14 +102,14 @@ import {
 import { useCanvasRenderState } from '../../../../canvas/useCanvasRenderState.js';
 import { isCanvasInteractive } from '../../../../canvas/canvasRenderState.js';
 import { OptionsContext } from '../../../contexts.js';
-import { asRecord } from '../shared/objectGuards.js';
+import { asRecord } from '../../../../shared/objectGuards.js';
 
 /**
  * Convierte milímetros a píxeles usando el factor CSS estándar de 96 DPI.
  *
  * Se usa para calcular bounds visuales de Moveable y overlays dentro del Paper.
  */
-const mm2px = (mm: number) => mm * 3.7795275591;
+const mmToPxCanvas = (mm: number) => mm * 3.7795275591;
 
 /**
  * Convierte una medida CSS en px a número crudo.
@@ -162,7 +162,7 @@ const getPaddingMm = (basePdf: BasePdf): [number, number, number, number] => {
 /**
  * Limita un valor numérico dentro de un rango inclusivo.
  */
-const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const clampValue = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 /**
  * Convierte dataset numérico a number entero seguro.
  */
@@ -628,7 +628,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       if (!id) return false;
       const schema = schemasList.flat().find((s) => s.id === id);
       if (!schema) return false;
-      return isTransformable(resolveSchemaAccessState(schema, accessContext));
+      return isTransformable(resolveDesignerSchemaAccessState(schema, accessContext));
     });
   }, [activeElements, moveablePageIndex, schemasList, accessContext]);
   /**
@@ -762,8 +762,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
         snapThresholdMm,
       );
 
-    const nextTop = clamp(snapResult.snapped.y, minY, maxY);
-    const nextLeft = clamp(snapResult.snapped.x, minX, maxX);
+    const nextTop = clampValue(snapResult.snapped.y, minY, maxY);
+    const nextLeft = clampValue(snapResult.snapped.x, minX, maxX);
     Object.assign(target.style, {
       top: `${nextTop * ZOOM}px`,
       left: `${nextLeft * ZOOM}px`,
@@ -870,13 +870,13 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     if (isBlankPdf(basePdf)) {
       const [t, r, b, l] = basePdf.padding;
       topPadding = t * ZOOM;
-      rightPadding = mm2px(r);
-      bottomPadding = mm2px(b);
+      rightPadding = mmToPxCanvas(r);
+      bottomPadding = mmToPxCanvas(b);
       leftPadding = l * ZOOM;
     }
 
-    const pageWidth = mm2px(pageSize.width);
-    const pageHeight = mm2px(pageSize.height);
+    const pageWidth = mmToPxCanvas(pageSize.width);
+    const pageHeight = mmToPxCanvas(pageSize.height);
 
     const obj: { top?: string; left?: string; width: string; height: string } = {
       width: `${width}px`,
@@ -1809,8 +1809,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                   bounds={{
                     left: 0,
                     top: 0,
-                    bottom: mm2px(paperSize.height),
-                    right: mm2px(paperSize.width),
+                    bottom: mmToPxCanvas(paperSize.height),
+                    right: mmToPxCanvas(paperSize.width),
                   }}
                   horizontalGuidelines={getGuideLines(horizontalGuides.current, index)}
                   verticalGuidelines={getGuideLines(verticalGuides.current, index)}

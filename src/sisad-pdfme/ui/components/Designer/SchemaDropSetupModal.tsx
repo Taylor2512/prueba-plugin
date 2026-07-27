@@ -26,7 +26,7 @@ type SchemaDropSetupModalProps = {
   onConfirm: () => void;
 };
 
-const normalize = (value: string) => value.trim().toLowerCase();
+const normalizeSchemaDropName = (value: string) => value.trim().toLowerCase();
 
 const SchemaDropSetupModal = ({
   open,
@@ -37,9 +37,9 @@ const SchemaDropSetupModal = ({
   onCancel,
   onConfirm,
 }: SchemaDropSetupModalProps) => {
-  const normalizedName = normalize(draft.name || '');
+  const normalizedName = normalizeSchemaDropName(draft.name || '');
   const hasDuplicate =
-    normalizedName.length > 0 && existingNames.some((name) => normalize(String(name || '')) === normalizedName);
+    normalizedName.length > 0 && existingNames.some((name) => normalizeSchemaDropName(String(name || '')) === normalizedName);
   const requiresRecipient = recipients.length > 0;
   const hasRecipient = String(draft.ownerRecipientId || '').trim().length > 0;
   const canConfirm = normalizedName.length > 0 && !hasDuplicate && (!requiresRecipient || hasRecipient);

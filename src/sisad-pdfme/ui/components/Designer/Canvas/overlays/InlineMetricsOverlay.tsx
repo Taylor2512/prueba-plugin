@@ -18,7 +18,7 @@ const BADGE_SIZE = { width: 92, height: 22 };
 const BADGE_GAP = 6;
 const TOOLBAR_HEIGHT_HINT = 36;
 
-const clamp = (value: number, min: number, max: number) => Math.min(Math.max(min, value), max);
+const clampBadgeValue = (value: number, min: number, max: number) => Math.min(Math.max(min, value), max);
 
 const resolveBadgePosition = (bounds: NonNullable<InlineMetricsOverlayProps['bounds']>) => {
   const canvasRoot = typeof document !== 'undefined'
@@ -30,13 +30,13 @@ const resolveBadgePosition = (bounds: NonNullable<InlineMetricsOverlayProps['bou
   const viewportHeight = canvasRoot?.clientHeight ?? 0;
   const minLeft = viewportLeft + BADGE_GAP;
   const maxLeft = Math.max(minLeft, viewportLeft + viewportWidth - BADGE_SIZE.width - BADGE_GAP);
-  const left = clamp(bounds.left, minLeft, maxLeft);
+  const left = clampBadgeValue(bounds.left, minLeft, maxLeft);
   const enoughSpaceAbove = bounds.top - viewportTop >= TOOLBAR_HEIGHT_HINT + BADGE_SIZE.height + BADGE_GAP * 2;
   const preferredTop = enoughSpaceAbove
     ? bounds.bottom + BADGE_GAP
     : bounds.top - BADGE_SIZE.height - BADGE_GAP;
   const maxTop = Math.max(viewportTop + BADGE_GAP, viewportTop + viewportHeight - BADGE_SIZE.height - BADGE_GAP);
-  const top = clamp(preferredTop, viewportTop + BADGE_GAP, maxTop);
+  const top = clampBadgeValue(preferredTop, viewportTop + BADGE_GAP, maxTop);
 
   return { top, left };
 };

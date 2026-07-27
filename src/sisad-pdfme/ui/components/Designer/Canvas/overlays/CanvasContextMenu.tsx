@@ -19,7 +19,7 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { mergeClassNames } from '../../shared/className.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 import { OptionsContext } from '../../../../contexts.js';
-import { asRecord } from '../../shared/objectGuards.js';
+import { asRecord } from '../../../../../shared/objectGuards.js';
 import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
 
 /**

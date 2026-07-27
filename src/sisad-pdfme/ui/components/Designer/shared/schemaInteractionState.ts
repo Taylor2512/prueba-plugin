@@ -10,6 +10,7 @@ import type { SchemaForUI } from '@sisad-pdfme/common';
 import { resolveSchemaOwnerColor as resolveSchemaOwnerColorBase } from '../../../../collaboration/schemaOwnershipAppearance.js';
 import type { EffectiveCollaborationContext, ResolvedSchemaCollaborationState } from '../../../collaborationContext.js';
 import { resolveSchemaCollaborationState } from '../../../collaborationContext.js';
+import { normalizeText } from '../../../../shared/text.js';
 
 type OwnerColorContext = Pick<
   EffectiveCollaborationContext,
@@ -77,9 +78,7 @@ export type SchemaInteractionStateContext = {
   } | null;
 };
 
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
-
-const resolveLockOwnerLabel = (
+const resolveInteractionLockOwnerLabel = (
   lockOwnerId: string | null,
   collaborationContext?: OwnerColorContext | null,
   activeRecipient?: { id?: string | null; name?: string | null } | null,
@@ -107,7 +106,7 @@ const resolveLockOwnerId = (schema: SchemaForUI, context?: SchemaInteractionStat
  * Resuelve el color del owner usando el mismo orden de prioridad que el resto
  * del sistema colaborativo y cae a `actorColor` si hace falta.
  */
-const resolveSchemaOwnerColor = (schema: SchemaForUI, context?: OwnerColorContext | null): string => {
+const resolveDesignerSchemaOwnerColor = (schema: SchemaForUI, context?: OwnerColorContext | null): string => {
   const baseColor = resolveSchemaOwnerColorBase(schema, context?.recipientOptions || []);
   if (baseColor) return baseColor;
   return normalizeText(context?.actorColor);
@@ -169,7 +168,7 @@ export const resolveSchemaInteractionState = (
   const canReassign = Boolean(activeUserCanEdit && collaborationLock !== 'other');
   const isEditable = canEditProperties;
   const ownerColor =
-    resolveSchemaOwnerColor(schema, context?.collaborationContext || undefined) ||
+    resolveDesignerSchemaOwnerColor(schema, context?.collaborationContext || undefined) ||
     collaboration.ownerColor ||
     collaboration.userColor ||
     null;
@@ -178,7 +177,7 @@ export const resolveSchemaInteractionState = (
     !activeUserCanEdit
       ? 'Sin permiso de edición'
       : collaborationLock === 'other'
-        ? `Bloqueado por ${resolveLockOwnerLabel(lockOwnerId, context?.collaborationContext || undefined, context?.collaborationContext?.activeRecipient || null) || 'otro usuario'}`
+        ? `Bloqueado por ${resolveInteractionLockOwnerLabel(lockOwnerId, context?.collaborationContext || undefined, context?.collaborationContext?.activeRecipient || null) || 'otro usuario'}`
         : collaborationLock === 'mine'
           ? 'En edición por ti'
           : isReadOnly
@@ -241,7 +240,7 @@ export const resolveSchemaInteractionState = (
     lockOwnerId,
     lockOwnerLabel:
       lockOwnerId
-        ? resolveLockOwnerLabel(lockOwnerId, context?.collaborationContext || undefined, context?.collaborationContext?.activeRecipient || null) || null
+        ? resolveInteractionLockOwnerLabel(lockOwnerId, context?.collaborationContext || undefined, context?.collaborationContext?.activeRecipient || null) || null
         : null,
     isLocked,
     isReadOnly,

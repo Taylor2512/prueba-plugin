@@ -9,6 +9,7 @@ import {
   type Template,
 } from '@sisad-pdfme/common';
 import { findSchemaInPages } from '../common/schemaPageTraversal.js';
+import { normalizeLooseText } from '../shared/text.js';
 
 /**
  * Estado colaborativo soportado por este módulo.
@@ -54,7 +55,7 @@ type PresenceEntry = {
  * - espacios extra
  * - valores falsy
  */
-const normalizeText = (value: unknown) => String(value || '').trim();
+const normalizeCollaborationText = normalizeLooseText;
 
 /**
  * Normaliza un color recibido.
@@ -65,7 +66,7 @@ const normalizeText = (value: unknown) => String(value || '').trim();
  * No valida si el valor es un color CSS válido. Solo garantiza que
  * no tenga espacios extra ni valores null/undefined.
  */
-const normalizeColor = (value: unknown) => normalizeText(value);
+const normalizeCollaborationColor = (value: unknown) => normalizeCollaborationText(value);
 
 /**
  * Obtiene las páginas de schemas desde un CollaborationState.
@@ -111,13 +112,13 @@ const mapSchemaState = (
   schemaUid: string,
   updater: (_schema: SchemaForUI) => SchemaForUI,
 ) => {
-  const normalizedSchemaUid = normalizeText(schemaUid);
+  const normalizedSchemaUid = normalizeCollaborationText(schemaUid);
 
   if (!normalizedSchemaUid) return cloneDeep(state);
 
   const pages = getSchemaPages(state).map((page = []) =>
     page.map((schema) => {
-      const currentSchemaUid = normalizeText(
+      const currentSchemaUid = normalizeCollaborationText(
         schema.schemaUid || schema.id || schema.name,
       );
 
@@ -142,12 +143,12 @@ const mapSchemaState = (
  * Retorna el schema encontrado o null.
  */
 const findSchema = (state: CollaborationState, schemaUid: string) => {
-  const normalizedSchemaUid = normalizeText(schemaUid);
+  const normalizedSchemaUid = normalizeCollaborationText(schemaUid);
 
   if (!normalizedSchemaUid) return null;
 
   return findSchemaInPages(getSchemaPages(state), (schema) =>
-    normalizeText(schema.schemaUid || schema.id || schema.name) === normalizedSchemaUid,
+    normalizeCollaborationText(schema.schemaUid || schema.id || schema.name) === normalizedSchemaUid,
   );
 };
 
@@ -183,13 +184,13 @@ export const lockSchema = (
   mapSchemaState(state, schemaUid, (schema) => ({
     ...schema,
     state: 'locked',
-    userColor: normalizeColor(user.color) || schema.userColor,
-    lastModifiedBy: normalizeText(user.id) || schema.lastModifiedBy,
+    userColor: normalizeCollaborationColor(user.color) || schema.userColor,
+    lastModifiedBy: normalizeCollaborationText(user.id) || schema.lastModifiedBy,
     lock: {
-      lockedBy: normalizeText(user.id) || undefined,
+      lockedBy: normalizeCollaborationText(user.id) || undefined,
       lockedAt: Date.now(),
-      reason: normalizeText(user.reason) || undefined,
-      sessionId: normalizeText(user.sessionId) || undefined,
+      reason: normalizeCollaborationText(user.reason) || undefined,
+      sessionId: normalizeCollaborationText(user.sessionId) || undefined,
     },
   }));
 
@@ -216,8 +217,8 @@ export const unlockSchema = (
   mapSchemaState(state, schemaUid, (schema) => ({
     ...schema,
     state: schema.state === 'locked' ? 'draft' : schema.state,
-    userColor: normalizeColor(user.color) || schema.userColor,
-    lastModifiedBy: normalizeText(user.id) || schema.lastModifiedBy,
+    userColor: normalizeCollaborationColor(user.color) || schema.userColor,
+    lastModifiedBy: normalizeCollaborationText(user.id) || schema.lastModifiedBy,
     lock: undefined,
   }));
 
@@ -252,13 +253,13 @@ export const isSchemaLocked = (
  * aunque el schema venga con ownerRecipientId simple o ownerRecipientIds array.
  */
 export const getSchemaOwner = (schema: SchemaForUI) => ({
-  ownerRecipientId: normalizeText(schema?.ownerRecipientId) || null,
+  ownerRecipientId: normalizeCollaborationText(schema?.ownerRecipientId) || null,
   ownerRecipientIds: normalizeRecipientIds(
     schema?.ownerRecipientIds || schema?.ownerRecipientId,
   ),
   ownerMode: schema?.ownerMode || null,
-  createdBy: normalizeText(schema?.createdBy) || null,
-  lastModifiedBy: normalizeText(schema?.lastModifiedBy) || null,
+  createdBy: normalizeCollaborationText(schema?.createdBy) || null,
+  lastModifiedBy: normalizeCollaborationText(schema?.lastModifiedBy) || null,
 });
 
 /**
@@ -278,20 +279,20 @@ export const getSchemaOwner = (schema: SchemaForUI) => ({
  *
  * También actualiza lastModifiedBy y updatedAt.
  */
-export const assignSchemaOwner = (
+export const assignCollaborativeSchemaOwner = (
   schemaUid: string,
   recipientId: string | null,
   state: CollaborationState,
   userId?: string | null,
 ) => {
-  const normalizedRecipientId = normalizeText(recipientId);
+  const normalizedRecipientId = normalizeCollaborationText(recipientId);
 
   return mapSchemaState(state, schemaUid, (schema) => ({
     ...schema,
     ownerMode: normalizedRecipientId ? 'single' : 'shared',
     ownerRecipientId: normalizedRecipientId || undefined,
     ownerRecipientIds: normalizedRecipientId ? [normalizedRecipientId] : [],
-    lastModifiedBy: normalizeText(userId) || schema.lastModifiedBy,
+    lastModifiedBy: normalizeCollaborationText(userId) || schema.lastModifiedBy,
     updatedAt: Date.now(),
   }));
 };
@@ -309,7 +310,7 @@ export const setSchemaAuthorColor = (
 ) =>
   mapSchemaState(state, schemaUid, (schema) => ({
     ...schema,
-    userColor: normalizeColor(color) || schema.userColor,
+    userColor: normalizeCollaborationColor(color) || schema.userColor,
     updatedAt: Date.now(),
   }));
 
@@ -344,7 +345,7 @@ export const filterSchemasByCollaborationScope = (
     isGlobalView: scope.isGlobalView,
   });
 
-  const activeRecipientId = normalizeText(scope.activeRecipientId);
+  const activeRecipientId = normalizeCollaborationText(scope.activeRecipientId);
 
   /**
    * Si no hay recipient activo o la vista es global,
@@ -385,7 +386,7 @@ export const buildCollaborationPresenceState = (
   const latestByUser = new Map<string, PresenceEntry>();
 
   (presenceEntries || []).forEach((entry) => {
-    const userId = normalizeText(entry?.userId);
+    const userId = normalizeCollaborationText(entry?.userId);
 
     if (!userId) return;
 

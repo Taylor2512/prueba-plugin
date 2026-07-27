@@ -43,7 +43,7 @@ const createCheckboxGroupSchema = createCatalogOptionGroupFactory(
 const createRoutingShowcasePages = (config) =>
   createLabSchemaShowcasePages(config, EXTENDED_SCHEMA_EXAMPLE_OVERRIDES);
 
-const createUploadedDocument = (args) =>
+const createRoutingUploadedDocument = (args) =>
   createUploadedDocumentCore({ ...args, pdfResolver: getTemplatePdfUrl });
 
 const MULTI_DOCUMENT_ROUTING_PAGE_COUNT = 5
@@ -233,14 +233,14 @@ const multiDocumentRoutingTemplate = createTemplate(
 )
 
 const multiDocumentRoutingDocuments = [
-  createUploadedDocument({
+  createRoutingUploadedDocument({
     id: 'file-contract-a',
     name: 'Declaración de datos',
     pdfFileName: 'test.pdf',
     pageCount: MULTI_DOCUMENT_ROUTING_PAGE_COUNT,
     schemas: multiDocumentPrimarySchemas,
   }),
-  createUploadedDocument({
+  createRoutingUploadedDocument({
     id: 'file-contract-b',
     name: 'Certificado académico',
     pdfFileName: 'test.pdf',

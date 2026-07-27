@@ -13,7 +13,7 @@ import type {
   SisadPdfmeRecipientsSnapshot,
 } from './recipientTypes.js';
 
-const normalizeText = (value: unknown) => String(value ?? '').trim();
+const normalizeRecipientSnapshotText = (value: unknown) => String(value ?? '').trim();
 
 /** Serializa el estado del registry a la sección de recipients del snapshot. */
 export const recipientsToSnapshot = (
@@ -47,14 +47,14 @@ export const recipientsFromSnapshot = (
     .map((entry): SisadPdfmeRecipient | null => {
       if (!entry || typeof entry !== 'object') return null;
       const candidate = entry as Record<string, unknown>;
-      const id = normalizeText(candidate.id);
+      const id = normalizeRecipientSnapshotText(candidate.id);
       if (!id) return null;
       return {
         id,
-        label: normalizeText(candidate.label ?? candidate.name) || id,
-        role: normalizeText(candidate.role) || undefined,
-        email: normalizeText(candidate.email) || undefined,
-        color: normalizeText(candidate.color) || undefined,
+        label: normalizeRecipientSnapshotText(candidate.label ?? candidate.name) || id,
+        role: normalizeRecipientSnapshotText(candidate.role) || undefined,
+        email: normalizeRecipientSnapshotText(candidate.email) || undefined,
+        color: normalizeRecipientSnapshotText(candidate.color) || undefined,
         order:
           typeof candidate.order === 'number' && Number.isFinite(candidate.order)
             ? candidate.order
@@ -65,6 +65,6 @@ export const recipientsFromSnapshot = (
 
   return {
     recipients,
-    activeRecipientId: normalizeText(record.activeRecipientId) || null,
+    activeRecipientId: normalizeRecipientSnapshotText(record.activeRecipientId) || null,
   };
 };

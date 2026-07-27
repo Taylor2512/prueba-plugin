@@ -7,7 +7,8 @@
  */
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SchemaSemanticFamily } from '../../../../../schemas/schemaFamilies.js';
-import { asRecord, isRecord } from '../../shared/objectGuards.js';
+import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
+import { normalizeText as normalizeTextRaw } from '../../../../../shared/text.js';
 
 /**
  * Secciones canónicas actuales del DetailView.
@@ -136,7 +137,9 @@ export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { t
   },
 };
 
-const normalizeSchemaType = (schemaType?: string) => normalizeText(schemaType);
+const normalizeLowerText = (value: unknown) => normalizeTextRaw(value).toLowerCase();
+
+const normalizeDetailSchemaType = (schemaType?: string) => normalizeLowerText(schemaType);
 const EMPTY_TEXT_VALUES = new Set(['', '-', '—', '–', 'n/a', 'na', 'null', 'undefined']);
 
 /** Determina si metadata del inspector contiene un valor visible significativo. */
@@ -212,7 +215,7 @@ const DEFAULT_DETAIL_SECTION_VISIBILITY: CanonicalDetailSection[] = [
  * @returns Perfil canónico de detalle.
  */
 export const getDetailProfile = (schemaType: string): DetailProfile => {
-  const normalized = normalizeSchemaType(schemaType);
+  const normalized = normalizeDetailSchemaType(schemaType);
 
   if (normalized === 'attachment') {
     return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'dataBindings', 'help', 'collaboration', 'advanced'], ['identity', 'behavior', 'box']);
@@ -254,12 +257,12 @@ export const getDetailProfile = (schemaType: string): DetailProfile => {
 };
 
 /** Devuelve secciones abiertas por defecto para un tipo de schema. */
-export const getDefaultOpenSections = (schemaType: string): CanonicalDetailSection[] => {
+export const getCanonicalDefaultOpenSections = (schemaType: string): CanonicalDetailSection[] => {
   return getDetailProfile(schemaType).defaultOpenSections;
 };
 
 /** Devuelve secciones visibles para un tipo de schema. */
-export const getVisibleDetailSections = (schemaType: string): CanonicalDetailSection[] => {
+export const getCanonicalVisibleDetailSections = (schemaType: string): CanonicalDetailSection[] => {
   return getDetailProfile(schemaType).visibleSections;
 };
 
@@ -285,49 +288,47 @@ type NormalizedField = {
   schema?: unknown;
 };
 
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim().toLowerCase() : '');
-
 /** Normaliza diferentes formas de campo a un contrato uniforme. */
 const normalizeFieldEntry = (field: FieldLike): NormalizedField => {
   if (typeof field === 'string') {
-    return { key: normalizeText(field), hidden: false, disabled: false, widget: '' };
+    return { key: normalizeLowerText(field), hidden: false, disabled: false, widget: '' };
   }
 
   if (Array.isArray(field)) {
     const [key, schema] = field;
     return {
-      key: normalizeText(key),
+      key: normalizeLowerText(key),
       hidden: Boolean((schema as { hidden?: boolean } | undefined)?.hidden),
       disabled: Boolean((schema as { disabled?: boolean } | undefined)?.disabled),
-      widget: normalizeText((schema as { widget?: string } | undefined)?.widget),
+      widget: normalizeLowerText((schema as { widget?: string } | undefined)?.widget),
       schema,
     };
   }
 
   return {
-    key: normalizeText(field.key),
+    key: normalizeLowerText(field.key),
     hidden: Boolean(field.hidden),
     disabled: Boolean(field.disabled),
-    widget: normalizeText(field.widget),
+    widget: normalizeLowerText(field.widget),
     schema: field.schema,
   };
 };
 
 const fieldNames = (fields: FieldLike[] = []): NormalizedField[] => fields.map(normalizeFieldEntry).filter((field) => field.key && !field.hidden);
 
-const getSchemaValue = (schema: SchemaForUI, key: string) => {
+const getInspectorSchemaValue = (schema: SchemaForUI, key: string) => {
   const record = asRecord(schema);
   return record ? record[key] : undefined;
 };
 
 const hasDefinedSchemaValue = (schema: SchemaForUI, key: string) => {
-  const value = getSchemaValue(schema, key);
+  const value = getInspectorSchemaValue(schema, key);
   return value !== undefined && value !== null && value !== '';
 };
 
 const hasAnyValue = (schema: SchemaForUI, keys: string[]) => keys.some((key) => hasDefinedSchemaValue(schema, key));
 const hasMeaningfulSchemaValue = (schema: SchemaForUI, keys: string[]) =>
-  keys.some((key) => hasMeaningfulInspectorValue(getSchemaValue(schema, key)));
+  keys.some((key) => hasMeaningfulInspectorValue(getInspectorSchemaValue(schema, key)));
 
 const hasWidget = (fields: FieldLike[], widgetNames: string[]) => fieldNames(fields).some((field) => widgetNames.includes(field.widget));
 
@@ -339,7 +340,7 @@ const hasRenderableField = (fields: FieldLike[]) => fieldNames(fields).some((fie
  * Convierte una sección legacy o canónica a sección canónica.
  */
 export const toCanonicalDetailSection = (section: string): CanonicalDetailSection | null => {
-  const normalized = normalizeText(section) as LegacyDetailSection | CanonicalDetailSection;
+  const normalized = normalizeLowerText(section) as LegacyDetailSection | CanonicalDetailSection;
   if (!normalized) return null;
   if ((CANONICAL_DETAIL_SECTION_ORDER as readonly string[]).includes(normalized)) {
     return normalized as CanonicalDetailSection;
@@ -388,7 +389,7 @@ export function shouldRenderDetailSection(params: {
   const schemaObject = (isRecord(schema) ? schema : {}) as SchemaForUI;
   const hasVisibleFields = entries.some((field) => !field.disabled);
   const hasAnyFields = entries.length > 0;
-  const widgetNames = widgets.map((widget) => normalizeText(typeof widget === 'string' ? widget : widget.name || widget.widget));
+  const widgetNames = widgets.map((widget) => normalizeLowerText(typeof widget === 'string' ? widget : widget.name || widget.widget));
 
   if (section === 'identity') {
     return Boolean(schema);

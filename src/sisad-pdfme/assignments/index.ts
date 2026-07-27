@@ -6,6 +6,7 @@ import {
   type SchemaAssignments,
   type Template,
 } from '@sisad-pdfme/common';
+import { normalizeLooseText } from '../shared/text.js';
 
 /**
  * Representa un destinatario mínimo válido para filtrar assignments.
@@ -44,7 +45,7 @@ type DocumentLike = {
  * normalizeText(null) -> ''
  * normalizeText(undefined) -> ''
  */
-const normalizeText = (value: unknown) => String(value || '').trim();
+const normalizeAssignmentText = normalizeLooseText;
 
 /**
  * Normaliza el número de página usado como key dentro de assignments.
@@ -125,7 +126,7 @@ const projectAssignmentsForFile = (
   projection: FileAssignmentProjection,
   includeEmptyRecipients: boolean,
 ) => {
-  const normalizedFileId = normalizeText(fileId);
+  const normalizedFileId = normalizeAssignmentText(fileId);
   if (!normalizedFileId) return {};
 
   const entries = Object.entries(assignments || {}).flatMap(([recipientId, files]) => {
@@ -150,7 +151,7 @@ const projectAssignmentsForPage = (
   fileId: string | null | undefined,
   pageNumber: number | string | null | undefined,
 ) => {
-  const normalizedFileId = normalizeText(fileId);
+  const normalizedFileId = normalizeAssignmentText(fileId);
   if (!normalizedFileId) return {};
 
   const pageKey = normalizePageNumber(pageNumber);
@@ -166,7 +167,7 @@ const collectSchemaUids = (schemas: Schema[][] = []) => {
 
   (schemas || []).forEach((page = []) => {
     (page || []).forEach((schema) => {
-      const schemaUid = normalizeText(schema.schemaUid || schema.name);
+      const schemaUid = normalizeAssignmentText(schema.schemaUid || schema.name);
       if (schemaUid) ids.add(schemaUid);
     });
   });
@@ -288,7 +289,7 @@ export const reconcileAssignments = ({
    */
   const recipientIds = new Set(
     (recipients || [])
-      .map((recipient) => normalizeText(recipient?.id))
+      .map((recipient) => normalizeAssignmentText(recipient?.id))
       .filter(Boolean),
   );
 
@@ -304,7 +305,7 @@ export const reconcileAssignments = ({
   const fileIds = new Set(
     (documents || [])
       .map((document) =>
-        normalizeText(document?.id || document?.fileId || document?.fileTemplateId),
+        normalizeAssignmentText(document?.id || document?.fileId || document?.fileTemplateId),
       )
       .filter(Boolean),
   );
@@ -401,7 +402,7 @@ export const removeSchemaFromAssignments = (
   schemaUid: string,
   assignments: SchemaAssignments = {},
 ) => {
-  const normalizedSchemaUid = normalizeText(schemaUid);
+  const normalizedSchemaUid = normalizeAssignmentText(schemaUid);
 
   if (!normalizedSchemaUid) return cloneDeep(assignments || {});
 
@@ -449,10 +450,10 @@ export const moveSchemaAssignment = (
 ) => {
   const nextAssignments = removeSchemaFromAssignments(schemaUid, assignments);
 
-  const recipientId = normalizeText(target?.toRecipientId);
-  const fileId = normalizeText(target?.toFileId);
+  const recipientId = normalizeAssignmentText(target?.toRecipientId);
+  const fileId = normalizeAssignmentText(target?.toFileId);
   const pageKey = normalizePageNumber(target?.toPageNumber);
-  const normalizedSchemaUid = normalizeText(schemaUid);
+  const normalizedSchemaUid = normalizeAssignmentText(schemaUid);
 
   if (!recipientId || !fileId || !pageKey || !normalizedSchemaUid) {
     return nextAssignments;
@@ -480,7 +481,7 @@ export const getAssignmentsForRecipient = (
   assignments: SchemaAssignments = {},
   recipientId?: string | null,
 ) => {
-  const normalizedRecipientId = normalizeText(recipientId);
+  const normalizedRecipientId = normalizeAssignmentText(recipientId);
 
   if (!normalizedRecipientId) return {};
 

@@ -88,7 +88,7 @@ const getFontProp = ({
   };
 };
 
-export const pdfRender = async (arg: PDFRenderProps<TextSchema>) => {
+export const renderTextPdf = async (arg: PDFRenderProps<TextSchema>) => {
   const { value, pdfDoc, pdfLib, page, options, schema, _cache } = arg;
   if (!value) return;
 

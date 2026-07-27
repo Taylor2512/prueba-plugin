@@ -3,7 +3,7 @@ import type { SchemaForUI, Template } from '@sisad-pdfme/common';
 import { resolveCollaboratorById } from './appearance.js';
 import type { CollaboratorUser } from './recipientPalette.js';
 
-const normalizeId = (value: unknown): string =>
+const normalizeOwnerId = (value: unknown): string =>
   typeof value === 'string' ? value.trim() : '';
 
 type OwnerColorSource =
@@ -63,7 +63,7 @@ const buildOwnerIds = (schema: OwnerAwareSchema): string[] =>
     ...(schema?.ownerRecipientId ? [schema.ownerRecipientId] : []),
   ]);
 
-const resolveRecipientColor = (
+const resolveOwnerRecipientColor = (
   schema: OwnerAwareSchema,
   users: CollaboratorUser[],
 ): string => {
@@ -115,7 +115,7 @@ export function resolveSchemaOwnerColor(
       const c = typeof options.actorColor === 'string' ? options.actorColor.trim() : '';
       if (c) return c;
     } else if (source === 'recipient.color') {
-      const c = resolveRecipientColor(toneSchema, users);
+      const c = resolveOwnerRecipientColor(toneSchema, users);
       if (c) return c;
     }
   }
@@ -135,7 +135,7 @@ export function decorateSchemaWithCollaboration<T extends SchemaForUI>(
 
   const src = schema as OwnerAwareSchema;
   const ownerRecipientIds = buildOwnerIds(src);
-  const ownerRecipientId = normalizeId(src.ownerRecipientId) || ownerRecipientIds[0] || undefined;
+  const ownerRecipientId = normalizeOwnerId(src.ownerRecipientId) || ownerRecipientIds[0] || undefined;
 
   let ownerMode = src.ownerMode;
   if (!ownerMode) {

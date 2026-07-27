@@ -44,9 +44,9 @@ import {
   LEFT_SIDEBAR_WIDTH,
   DESIGNER_CLASSNAME,
   SELECTABLE_CLASSNAME,
-} from '../../constants.js';
+} from '../../constants.ts';
 import {
-  resolveSchemaAccessState,
+  resolveDesignerSchemaAccessState,
   canRunSchemaCommand,
 } from './shared/accessPolicy.js';
 import { I18nContext, OptionsContext, PluginsRegistry } from '../../contexts.js';
@@ -56,7 +56,7 @@ import {
   round,
   template2SchemasList,
   getPagesScrollTopByIndex,
-  changeSchemas as _changeSchemas,
+  applySchemaChanges as _changeSchemas,
   useMaxZoom,
 } from '../../helper.js';
 import { useUIPreProcessor, useScrollPageCursor, useInitEvents } from '../../hooks.js';
@@ -104,7 +104,7 @@ installPassiveTouchListenerGuard();
 
 import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
 import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
-import { asRecord } from './shared/objectGuards.js';
+import { asRecord } from '../../../shared/objectGuards.js';
 import {
   resolveDesignerEngine,
   attachSchemaIdentity,
@@ -933,7 +933,7 @@ const TemplateEditor = ({
         const schema = schemasList.flat().find((s) => s.id === uid);
         if (!schema) continue;
 
-        const accessState = resolveSchemaAccessState(schema, accessCtx);
+        const accessState = resolveDesignerSchemaAccessState(schema, accessCtx);
         if (!canRunSchemaCommand(command.id, accessState)) {
           console.warn(`[CommandBus] Access denied for command "${command.id}" on schema ${uid}`);
           return false;

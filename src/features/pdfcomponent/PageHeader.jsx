@@ -6,7 +6,7 @@ import { cn } from '@/sisad-pdfme/ui/utils/cn'
 import PopoverMenu from './PopoverMenu.jsx'
 
 const EMPTY_ARRAY = []
-const joinClasses = (...classes) => classes.filter(Boolean).join(' ')
+const joinPageHeaderClasses = (...classes) => classes.filter(Boolean).join(' ')
 const COLLABORATION_VIEW_OPTIONS = [
   { id: 'user', name: 'Usuario activo' },
   { id: 'global', name: 'Global' },
@@ -173,7 +173,7 @@ const getCollaborationViewItems = (isGlobalView, onToggleGlobalView) => [
 
 const renderSummaryChips = (items) =>
   items.map((item) => (
-    <span key={item.label} className={joinClasses(LAB_CHIP_BASE, LAB_CHIP_MUTED)}>
+    <span key={item.label} className={joinPageHeaderClasses(LAB_CHIP_BASE, LAB_CHIP_MUTED)}>
       {item.label}: {item.value}
     </span>
   ))
@@ -188,7 +188,7 @@ const renderCollaboratorButtons = (users, activeCollaboratorId, onActiveCollabor
       <li key={user.id} className="flex">
         <button
           type="button"
-          className={joinClasses(
+          className={joinPageHeaderClasses(
             LAB_CHIP_BASE,
             LAB_CHIP_BUTTON_BASE,
             toneClass,
@@ -217,7 +217,7 @@ const HeaderActionStack = ({ status = null, backLink = null, downloadLink = null
 
   return (
     <div
-      className={joinClasses(
+      className={joinPageHeaderClasses(
         'sisad-pdfme-lab-page-actions flex min-w-0 flex-wrap items-center justify-end gap-x-1 gap-y-1 rounded-[13px] border border-slate-200/75 bg-white/80 p-[0.22rem_0.28rem] shadow-[0_4px_12px_rgba(15,23,42,0.08)] backdrop-blur-[10px] max-[900px]:gap-x-[0.12rem] max-[900px]:gap-y-[0.12rem] max-[900px]:bg-transparent max-[900px]:shadow-none max-[900px]:p-0',
         isCompact && 'sisad-pdfme-lab-page-actions-compact',
       )}
@@ -482,7 +482,7 @@ export default function PageHeader({
           <div className={cn('sisad-pdfme-lab-page-copy flex min-w-0 flex-col gap-[0.12rem]', 'max-[900px]:gap-[0.04rem]')} style={PAGE_COPY_STYLE}>
             <div className="sisad-pdfme-lab-page-eyebrow inline-flex flex-wrap items-center gap-[0.3rem]">
               <span className="sisad-pdfme-lab-kicker mb-[0.12rem] text-[0.64rem] font-bold uppercase tracking-[0.12em] text-slate-600">Lab</span>
-              {modeLabel ? <span className={joinClasses(LAB_CHIP_BASE, LAB_CHIP_MUTED)}>{modeLabel}</span> : null}
+              {modeLabel ? <span className={joinPageHeaderClasses(LAB_CHIP_BASE, LAB_CHIP_MUTED)}>{modeLabel}</span> : null}
             </div>
             <h1 className="text-[clamp(1rem,1.15vw,1.18rem)] leading-none text-slate-950 max-[900px]:text-[clamp(1.02rem,_5.4vw,_1.35rem)]">{title}</h1>
             {showExpandedHeader && description ? (

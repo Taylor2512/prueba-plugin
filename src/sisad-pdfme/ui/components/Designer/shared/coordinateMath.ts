@@ -37,12 +37,12 @@ export type ResolveSelectionRegionParams = {
   zoom: number;
 };
 
-const normalizeZoom = (value: number | undefined) => {
+const normalizeCoordinateZoom = (value: number | undefined) => {
   if (!Number.isFinite(value) || (value || 0) <= 0) return 1;
   return value as number;
 };
 
-const getZoomRatio = (zoom: number | undefined) => normalizeZoom(zoom);
+const getZoomRatio = (zoom: number | undefined) => normalizeCoordinateZoom(zoom);
 
 const normalizeRect = (rect: Rect): Rect => {
   const left = Math.min(rect.left, rect.right);

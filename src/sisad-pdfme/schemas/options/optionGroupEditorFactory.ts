@@ -1,6 +1,7 @@
 import { clearSchemaRoot } from '../shared/schemaDom.js';
 import { createOptionIndicatorElement, type OptionIndicatorShape } from './optionIndicator.js';
 import { markInspectorInteractive, stopInspectorPointerEvent } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
+import { normalizeLooseText } from '../../shared/text.js';
 
 export type OptionGroupEditorItem = {
   optionId: string;
@@ -31,7 +32,7 @@ export type CreateOptionGroupOptionsEditorConfig<TOption extends OptionGroupEdit
   indicatorSize?: number;
 };
 
-const normalizeText = (value: unknown): string => String(value || '').trim();
+const normalizeOptionGroupEditorText = normalizeLooseText;
 
 const joinClassNames = (...parts: Array<string | false | null | undefined>): string =>
   parts.filter(Boolean).join(' ');
@@ -111,7 +112,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       removeBtn.addEventListener('mousedown', stopInspectorPointerEvent);
 
       labelInput.addEventListener('change', createAction((currentOptions) =>
-        config.createRenamedOptions(currentOptions, index, normalizeText(labelInput.value)),
+        config.createRenamedOptions(currentOptions, index, normalizeOptionGroupEditorText(labelInput.value)),
       ));
 
       removeBtn.addEventListener('click', (event) => {
@@ -164,7 +165,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       event.preventDefault();
       event.stopPropagation();
 
-      const label = normalizeText(newInput.value);
+      const label = normalizeOptionGroupEditorText(newInput.value);
       commitOptions(config.createAddedOptions(config.getOptions(), label));
       newInput.value = '';
     };

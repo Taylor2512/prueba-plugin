@@ -20,7 +20,7 @@ export type OptionIndicatorParams = {
 
 const isHexColor = (value: string): boolean => /^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(value.trim());
 
-const hexToRgb = (hex: string): [number, number, number] | null => {
+const hexToRgbChannels = (hex: string): [number, number, number] | null => {
   const clean = hex.replace('#', '').trim();
   if (!/^([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(clean)) return null;
   const expanded = clean.length === 3 || clean.length === 4 ? clean.split('').map((ch) => ch + ch).join('') : clean;
@@ -34,7 +34,7 @@ const hexToRgb = (hex: string): [number, number, number] | null => {
 const colorWithAlpha = (color: string, alpha: number): string => {
   const trimmed = String(color || '').trim();
   if (!trimmed) return `rgba(0, 157, 189, ${alpha})`;
-  const rgb = isHexColor(trimmed) ? hexToRgb(trimmed) : null;
+  const rgb = isHexColor(trimmed) ? hexToRgbChannels(trimmed) : null;
   if (!rgb) {
     if (trimmed.startsWith('rgb(') || trimmed.startsWith('rgba(') || trimmed.startsWith('var(') || trimmed.startsWith('color-mix(')) {
       return trimmed;

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CaseCard from '../CaseCard.jsx'
 
-const joinClasses = (...classes) => classes.filter(Boolean).join(' ')
+const joinPrimitiveClasses = (...classes) => classes.filter(Boolean).join(' ')
 
 // ── IconButton ────────────────────────────────────────────────────────────────
 
@@ -17,7 +17,7 @@ export function IconButton({
   ariaHasPopup,
   ariaExpanded,
 }) {
-  const classNameList = joinClasses('sisad-pdfme-compact-icon-button', isActive && 'is-active', className)
+  const classNameList = joinPrimitiveClasses('sisad-pdfme-compact-icon-button', isActive && 'is-active', className)
 
   return (
     <button

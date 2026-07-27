@@ -20,7 +20,7 @@
  * 10. select created schema, open DetailView if applicable
  */
 
-import { asRecord } from './objectGuards.js';
+import { asRecord } from '../../../../shared/objectGuards.js';
 import {
   clientPointToPagePoint,
   getPageRectInViewport,

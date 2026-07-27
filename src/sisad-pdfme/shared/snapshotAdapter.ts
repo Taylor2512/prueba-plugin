@@ -28,7 +28,8 @@ import {
   SNAPSHOT_VERSION,
   isLegacySnapshot,
 } from './snapshot.js';
-import { asRecord } from '../ui/components/Designer/shared/objectGuards.js';
+import { asRecord } from './objectGuards.js';
+import { normalizeLooseText } from './text.js';
 import { cloneDeep } from '@sisad-pdfme/common';
 
 export interface ValidationResult {
@@ -82,7 +83,7 @@ const resolveSnapshotConnectivityRecord = (snapshot: unknown): SnapshotConnectiv
   });
 };
 
-const normalizeConnectivityKey = (value: unknown): string => String(value || '').trim();
+const normalizeConnectivityKey = normalizeLooseText;
 
 class SnapshotAdapterImpl {
   /**
@@ -474,9 +475,9 @@ export const snapshotAdapter = new SnapshotAdapterImpl();
 /** Exportar también la clase para extensión en tests */
 export { SnapshotAdapterImpl };
 
-const normalizeText = (value: unknown) => String(value || '').trim();
+const normalizeSnapshotText = normalizeLooseText;
 
-const normalizeTemplate = (template: unknown) => {
+const normalizeSnapshotTemplate = (template: unknown) => {
   if (!template || typeof template !== 'object') return null;
   const record = asRecord(template) || {};
   return {
@@ -503,11 +504,11 @@ export const extractDocumentsFromSnapshot = (snapshot: unknown = {}) =>
   normalizeSnapshotDocuments(snapshot);
 
 export const resolveDocumentSnapshot = (snapshot: unknown = {}, documentId: string | null = null) => {
-  const normalizedId = normalizeText(documentId);
+  const normalizedId = normalizeSnapshotText(documentId);
   const documents = normalizeSnapshotDocuments(snapshot);
   if (!normalizedId) return documents[0] || null;
   return (
-    documents.find((document) => normalizeText((document as Record<string, unknown>)?.id) === normalizedId) ||
+    documents.find((document) => normalizeSnapshotText((document as Record<string, unknown>)?.id) === normalizedId) ||
     null
   );
 };
@@ -515,7 +516,7 @@ export const resolveDocumentSnapshot = (snapshot: unknown = {}, documentId: stri
 export const resolveDocumentTemplate = (snapshot: unknown = {}, documentId: string | null = null) => {
   const document = resolveDocumentSnapshot(snapshot, documentId) as Record<string, unknown> | null;
   if (!document) return null;
-  return normalizeTemplate(document.template || document.originalForm);
+  return normalizeSnapshotTemplate(document.template || document.originalForm);
 };
 
 export const extractOriginalFormFromSnapshot = (snapshot: unknown = {}, documentId: string | null = null) =>

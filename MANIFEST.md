@@ -1,122 +1,176 @@
-# Manifest V5
+# MANIFEST
 
-Total de archivos: 116
+Total de archivos Markdown: 168
 
-```text
-.agents/skills/sisad-dedup-triage/SKILL.md
-.agents/skills/sisad-designer-safety/SKILL.md
-.agents/skills/sisad-dry-refactor/SKILL.md
-.agents/skills/sisad-inspector-contract/SKILL.md
-.agents/skills/sisad-memory-scrum/SKILL.md
-.agents/skills/sisad-orchestrate-task/SKILL.md
-.agents/skills/sisad-quality-gates/SKILL.md
-.agents/skills/sisad-research-verify/SKILL.md
-.agents/skills/sisad-schema-plugin/SKILL.md
-.ai/AGENTS.md
-.ai/CONTEXT-POLICY.md
-.ai/DUPLICATION-POLICY.md
-.ai/MODEL-ROUTER.md
-.ai/ORCHESTRATION.md
-.ai/OWNER-MAP.md
-.ai/QUALITY-GATES.md
-.ai/SECURITY.md
-.ai/START.md
-.ai/VENDOR-GENERATED-POLICY.md
-.ai/memory/CURRENT.md
-.ai/memory/DECISIONS.md
-.ai/memory/HANDOFF.md
-.ai/memory/MEMORY-DELTA.template.md
-.ai/memory/METRICS.md
-.ai/memory/PROJECT.md
-.ai/memory/RISKS.md
-.ai/patterns/DUPLICATION-TAXONOMY.md
-.ai/patterns/PATTERN-DECISION-MATRIX.md
-.ai/patterns/SINGLE-SOURCE-OF-TRUTH.md
-.ai/prompts/ANALYZE_ONLY.prompt.md
-.ai/prompts/HANDOFF.prompt.md
-.ai/prompts/IMPLEMENT_TASK.prompt.md
-.ai/prompts/MASTER_EXECUTION.prompt.md
-.ai/prompts/RETROSPECTIVE.prompt.md
-.ai/prompts/REVIEW_DIFF.prompt.md
-.ai/prompts/SPRINT_PLANNING.prompt.md
-.ai/prompts/TRIAGE_JSCPD.prompt.md
-.ai/prompts/UPDATE_MEMORY.prompt.md
-.ai/routes/canvas.md
-.ai/routes/docs-memory.md
-.ai/routes/inspector.md
-.ai/routes/integration.md
-.ai/routes/quality-dedup.md
-.ai/routes/runtime-snapshot.md
-.ai/routes/schemas.md
-.ai/scrum/BOARD.md
-.ai/scrum/DEFINITION-OF-DONE.md
-.ai/scrum/DEFINITION-OF-READY.md
-.ai/scrum/PRODUCT-BACKLOG.md
-.ai/scrum/PRODUCT-GOAL.md
-.ai/scrum/RETROSPECTIVE.md
-.ai/scrum/SPRINT-CURRENT.md
-.ai/scrum/task-cards/DEDUP-001-smart-placement.md
-.ai/scrum/task-cards/DEDUP-002-keyboard-command-registry.md
-.ai/scrum/task-cards/DEDUP-003-comments-overlay.md
-.ai/scrum/task-cards/DEDUP-004-inline-edit-overlay.md
-.ai/scrum/task-cards/DEDUP-005-right-sidebar-actions.md
-.ai/scrum/task-cards/DEDUP-006-selection-commands.md
-.ai/scrum/task-cards/DEDUP-007-schema-clipboard.md
-.ai/scrum/task-cards/DEDUP-008-inspector-taxonomy.md
-.ai/scrum/task-cards/DEDUP-009-custom-field-modal.md
-.ai/scrum/task-cards/DEDUP-010-action-chrome.md
-.ai/scrum/task-cards/DOCS-001-canonical-common-docs.md
-.ai/scrum/task-cards/QUALITY-001-jscpd-profiles.md
-.ai/scrum/task-cards/TEMPLATE.md
-.claude/README.md
-.claude/agents/sisad-explorer.md
-.claude/agents/sisad-reviewer.md
-.claude/settings.json.example
-.codex/README.md
-.codex/agents/dedup-analyst.toml
-.codex/agents/docs-researcher.toml
-.codex/agents/explorer.toml
-.codex/agents/implementer.toml
-.codex/agents/qa.toml
-.codex/agents/reviewer.toml
-.codex/config.toml.example
-.codex/hooks/pre_tool_use_policy.py
-.codex/hooks/session_start.py
-.codex/hooks/stop_summary.py
-.codex/hooks.json.example
-.github/agents/sisad-dry-reviewer.agent.md
-.github/agents/sisad-task-planner.agent.md
-.github/copilot-instructions.md
-.github/instructions/canvas.instructions.md
-.github/instructions/quality.instructions.md
-.github/instructions/schemas.instructions.md
-.github/prompts/implement-task.prompt.md
-.github/prompts/triage-jscpd.prompt.md
-AGENTS.md
-CLAUDE.md
-INSTALL-CHECKLIST.md
-MANIFEST.md
-MIGRATION-FROM-V4.md
-PLAN_MAESTRO_ARQUITECTURA_IA_SISAD_PDFME_V5.md
-PROMPT_MAESTRO_CODEX_SISAD_PDFME.md
-README.md
-ROLLBACK.md
-SHA256SUMS.txt
-configs/jscpd-docs.json
-configs/jscpd-owned.json
-configs/jscpd-vendor.json
-research/CURRENT-DUPLICATION-BASELINE.md
-research/MODEL-MATRIX.md
-research/OFFICIAL-FINDINGS.md
-research/SOURCE-REGISTER.md
-research/V4-AUDIT.md
-src/sisad-pdfme/AGENTS.md
-src/sisad-pdfme/pdf-lib/AGENTS.md
-src/sisad-pdfme/schemas/AGENTS.md
-src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md
-src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md
-tools/ai-quality/README.md
-tools/ai-quality/check-markdown-duplicates.mjs
-tools/ai-quality/parse-jscpd-report.mjs
-tools/ai-quality/validate-ai-architecture.mjs
-```
+El hash de `MANIFEST.md` se omite para evitar autorreferencia.
+
+| Ruta | SHA256 | Bytes |
+|---|---|---:|
+| `.agents/skills/sisad-accessibility/SKILL.md` | `552cfc420ef6b130ff05827e5ed4a1ccb135536a7eab753067bd656df2ade2ac` | 413 |
+| `.agents/skills/sisad-canvas-interaction/SKILL.md` | `cf9184cfb94786e8438f1236a32709b14d8d9776098972e59e5b7950259291b8` | 445 |
+| `.agents/skills/sisad-collaboration-assignments/SKILL.md` | `bbda89279e5948189b3dc5981a4a62e1ccb255229760c021738d8d15e845bcb9` | 410 |
+| `.agents/skills/sisad-configuration-service/SKILL.md` | `8305a5cac3849242facb3bad78ae0884947c5f22e13b00538e069757fd64117c` | 422 |
+| `.agents/skills/sisad-context-budget/SKILL.md` | `d2f68ae320525fdf2800de167f36791016ce7f620f18b0d98e60ccb2ae61aded` | 442 |
+| `.agents/skills/sisad-dry-refactor/SKILL.md` | `9c2d5dce6457b32391b714ab7e48e0b4fad142e979a747a8482007ef8cacafe2` | 413 |
+| `.agents/skills/sisad-evidence-grounding/SKILL.md` | `746755b1bfdda6305477dfc043e1fa50b4d4f4c8d4055eb77cab34d1cb5f4073` | 435 |
+| `.agents/skills/sisad-frontend-component-architecture/SKILL.md` | `10a39709388963e96f637c9b11338595bd8c7a8007078dfe593052be642de377` | 466 |
+| `.agents/skills/sisad-incident-recovery/SKILL.md` | `5961abeb6b9ada1a6551b61fa9c500b19378a66c078f2f60c6f376e8b3e47634` | 387 |
+| `.agents/skills/sisad-inspector-contract/SKILL.md` | `09b4ef882cdf3e4d9cab50c1177e2ffe099b917c13f4f89cc8adb259d1b300a8` | 404 |
+| `.agents/skills/sisad-memory-delta/SKILL.md` | `c148824970d89c3f42a78847dc66d6904c62bb1f5c7652e936a94f2826dcacce` | 432 |
+| `.agents/skills/sisad-multi-document-routing/SKILL.md` | `a1b388e4768ef9ca9baf73c508c43164b50f379ef5b1cb56e8962e9bc340cd83` | 414 |
+| `.agents/skills/sisad-prompt-evaluation/SKILL.md` | `c15602815da056503be6e54255dd76cb3fb4f1c71ee4aaa8294c71398898deff` | 423 |
+| `.agents/skills/sisad-public-api-compatibility/SKILL.md` | `7c3567437969f7414d569d793d2032aef8eeefebe04b4345b227d37151eb5449` | 408 |
+| `.agents/skills/sisad-react-performance/SKILL.md` | `668c26e116154bb6a3cb3f642ece2a7f6708590b99ad55e348e9c10e4b4b2e9c` | 429 |
+| `.agents/skills/sisad-responsive-ux/SKILL.md` | `578e6104bfd90ff7cbc21a5d34e8678be5c056885b50187128f28554dac7ea3e` | 429 |
+| `.agents/skills/sisad-schema-plugin/SKILL.md` | `a70f8af4d491d8414ebf53776e2c56542915c0d5d2944caa20747cf8593f7596` | 407 |
+| `.agents/skills/sisad-security-privacy/SKILL.md` | `04d0113f91f3574027e278a5a7aa129426d1f5f7a612c8302b062bd440f53615` | 417 |
+| `.agents/skills/sisad-snapshot-compatibility/SKILL.md` | `85e0eb76f08845dd8a2bcb28eb1bd2d8a03574feedc33e69ec2eefabefd18e02` | 410 |
+| `.agents/skills/sisad-tailwind-design-system/SKILL.md` | `e2d2f5c0a0b8b890e93ba66f53d697bee6078185acb8694a19cdf71a075bd3ed` | 424 |
+| `.agents/skills/sisad-task-orchestration/SKILL.md` | `986377405d26f34df18fb1bb352029df4c9c5ce5d7c9c0d5d7ae4804ece399fc` | 476 |
+| `.agents/skills/sisad-testing-pyramid/SKILL.md` | `f19e42a3e9d4621f8aab04da4f0b10e83b86cee6d60a7c49c505575ae03d3aa4` | 427 |
+| `.agents/skills/sisad-visual-regression/SKILL.md` | `2d133bb307c09adf3cfd0cf2585a9e7d294f06846453d571ad02ec407f0cd949` | 426 |
+| `.ai/CONTEXT-BUDGET.md` | `eb4b80aad445612a2433c3e268d198fc2c0784dbc12f6130c4bf3cc3fc6f595d` | 1030 |
+| `.ai/CONTEXT-POLICY.md` | `7912d4b9e652789d07a0128dd86decd8f3c6208a57a82a478f6ebe8af3235837` | 845 |
+| `.ai/EVALS.md` | `c659d7525512b16e4338864cd8907f395e220f18573294630e11f97af4a163ff` | 848 |
+| `.ai/INDEX.md` | `ca497a365b5ac52991ad3410e261521bdc46c1a22bcdaef3e5bc6b7f258e4b8e` | 784 |
+| `.ai/MODEL-ROUTER.md` | `f8b0b75e61c01c470f924258be921b7af00864ec61c74041c34fac5c2389ce32` | 1210 |
+| `.ai/OBSERVABILITY.md` | `ba34f095ce447604fd185e75686b1eef083cd09a44548f915f356df3b5e2e32d` | 457 |
+| `.ai/ORCHESTRATION.md` | `cca9c4e44a543d17322603d97290b67d6b70d50b72466c5a36de28bda18772fb` | 893 |
+| `.ai/OWNER-MAP.md` | `af23d84dae9f051ba7bcf028c6dfb17cd0b01b9d0dd553479e21bbc9029ed987` | 716 |
+| `.ai/ROUTER.md` | `a0ceefeedbc014cc72f966a8037b0253783b543b6dcf6fc0e8d32933d459faf4` | 1590 |
+| `.ai/SCOPE.md` | `dd971cef520427646ad7a1d99d1298fe65c9e3bbb7e3eb4931995a52728f828f` | 812 |
+| `.ai/SECURITY.md` | `b8678234d914568cacf19903d1a816b8411fd58a485f7bdf4f44e35dbc24bdbe` | 694 |
+| `.ai/START.md` | `8abb8f5217c5e409c351ec6120bca5fa2d4eec76375520e76e6ba8b47a5c077a` | 763 |
+| `.ai/agents/ACCESSIBILITY.md` | `83f61bb59732c42b82f65a6d2df08969fcc6c3e88bdcfe3d495599cd306a81dd` | 408 |
+| `.ai/agents/ARCHITECT.md` | `c3802553824902af08222fd81ab3d87cb36a4b6332673ecf26098dae4bc07727` | 418 |
+| `.ai/agents/CANVAS-SPECIALIST.md` | `f851fdeccf1b508a85b5e887723ae925d00dc6fd1fbd953bf8d8010ea4472532` | 423 |
+| `.ai/agents/CONFIG-SPECIALIST.md` | `8a42096be5ad2582ea3204e0834aac9ed9284afccc28f0109e4c916a08155e60` | 433 |
+| `.ai/agents/COORDINATOR.md` | `fab9a3069c4f585abb3ed5bef51d45e9df108e1317276ab04c50db6938f9e644` | 516 |
+| `.ai/agents/EXPLORER.md` | `274c42b1cff4e5b45272b03c03770b3dd06a38e9325d54494dbc059b353d640a` | 403 |
+| `.ai/agents/IMPLEMENTER.md` | `e3c789d173d438710627e5c01cb4c7451f97e62e641d7f1957993d848cc1051a` | 374 |
+| `.ai/agents/INCIDENT-RESPONDER.md` | `93924170aef06b3625d541f1656d0649d9c9f73798d4f465525174630976386e` | 388 |
+| `.ai/agents/MEMORY-STEWARD.md` | `23f4d82864ddfbc5ee4e8c4001d82155308775af18114db04657ede06562e628` | 371 |
+| `.ai/agents/PERFORMANCE.md` | `9f65ca99fee01d3abe49dd1ba27551d1a402bd3727323f0674846190db486fd1` | 375 |
+| `.ai/agents/QA.md` | `bb16a2abea423c911f2ed739382390f748639d4001c0800438ca544772fef15a` | 375 |
+| `.ai/agents/REVIEWER.md` | `46b6e71927b629458e48c9b97cf47aa3d730352f459bb64bd3252e34857bee5a` | 401 |
+| `.ai/agents/RUNTIME-ARCHITECT.md` | `cbb7fff96c2e30e4d5c3129f59e1d094fc8e14d8ac0c98ea4528a706faf78c0f` | 390 |
+| `.ai/agents/SCHEMA-SPECIALIST.md` | `64cb3e7cf41608aabd7f7105e239ad7d91fc85fb1ed06bec4d4cafaffb4ecbd3` | 398 |
+| `.ai/agents/UX-DESIGNER.md` | `eb6f08cda6343851708bbe3d53af39fa60c007098bdcdd1bd5e1bf0f8a8f4ce4` | 461 |
+| `.ai/architecture/AGENT-LIFECYCLE.md` | `e489e84c575dd02d28be1be43ceb97f84612c4bccc140769b7a80c00ea75fceb` | 539 |
+| `.ai/architecture/ASSISTANT-SYSTEM.md` | `d4f06724910eb0a15206d6ffdfac20d473c52a529df8170ab9e1cbaa5fed2633` | 553 |
+| `.ai/architecture/CONFIGURATION-ARCHITECTURE.md` | `a18981ce504b6f7e82e3e25795151a9506cfd13e9a46bcc3c3e106f7ac973ce2` | 591 |
+| `.ai/architecture/DESIGN-SYSTEM.md` | `3b2df8695a06a88e781fee9fa4cde1afac28d8888c452b984718195cad2ccb1b` | 561 |
+| `.ai/architecture/FRONTEND-COMPONENT-ARCHITECTURE.md` | `556aff65d4e1d91eba3e55b7816d9ee759497612de8171632fa51bc8e68e434c` | 669 |
+| `.ai/architecture/LAYER-CONTRACTS.md` | `635ffc9920a4ac3d608b1004731d44e1b1322eee3dace5f596d2f92fbc844d87` | 759 |
+| `.ai/architecture/PATTERN-DECISION-MATRIX.md` | `bab941dd7c329be79e6c40af18d18be3c1b1e914ca44ddfdd861d0e53e4abca1` | 644 |
+| `.ai/architecture/PUBLIC-API-COMPATIBILITY.md` | `bf7d541da131438774b2cac12757e9f2def0d6f6b70746b866ca12f101205878` | 484 |
+| `.ai/governance/ANTI-HALLUCINATION.md` | `ef419bbdb658fb8661dbfbd733872cd54429013f7fde4af77fd2c7ded3e0493b` | 1231 |
+| `.ai/governance/ANTI-LOOP.md` | `bab475bc2a4f61850c5bd6ef5b2a48e2ad67162256aad6d467e6947a1e324a1e` | 1183 |
+| `.ai/governance/ANTI-OVERFLOW.md` | `d403840c41d0fa333f6c63b0c7bd71aed5705a06472b6ccd0084fb63f8532d9b` | 961 |
+| `.ai/governance/EVIDENCE-POLICY.md` | `f93029a89b012ecd33f251875da69ef840e3b5f1601bbb0259663126819c44f4` | 621 |
+| `.ai/governance/HUMAN-IN-THE-LOOP.md` | `aa4e918daaf975c351b9207c7f2364df85e3fb68674ece3155063e849dc5f877` | 428 |
+| `.ai/governance/MEMORY-POLICY.md` | `fb66fdbbcae0617fea2f105eb64853f2f20e13c286293c1967c66a2f832ae8d0` | 742 |
+| `.ai/governance/PARALLELISM-POLICY.md` | `7999a91956e0acd5ba4dcc13f73f8e025d6ff3350db5a5bacda73e4f801bfe0e` | 524 |
+| `.ai/governance/PROMPT-POLICY.md` | `e0ce1b098f8dd7cf6abdf452b71ba95e1919db51854899f4e0c31a5b73cac3de` | 496 |
+| `.ai/governance/QUALITY-POLICY.md` | `7a56237068fbd4d1d5d2b649a1e81c87ef92c7bcdae93d40ec3285a944ae742d` | 782 |
+| `.ai/governance/REVIEW-POLICY.md` | `f38701b2ad3306e1ed2de1493efd7fa51b3bd87a0405be28928111f371662d69` | 373 |
+| `.ai/governance/TOOL-POLICY.md` | `34037a74f2efeb4ab813bc83df39d92f186d40747112e1098a160db0a5b93965` | 579 |
+| `.ai/memory/CURRENT.md` | `d6f0146e04d9e17f9b7423a3394a2f8865e42c0fb7478c79f9456cd4e626e68a` | 189 |
+| `.ai/memory/DECISIONS.md` | `5eb7fd99667ad2308c6f9b19e7bc0c5d913d5c2ee9e66263f07fd92b26ae4b7b` | 195 |
+| `.ai/memory/HANDOFF.md` | `68eb6cdb2c737c9912728742ebd30fa57308b30f88e53ef2207664a39368adfa` | 194 |
+| `.ai/memory/MEMORY-DELTA.template.md` | `1666461cb474196bf6d29dbab6a19c49708ed9277b6aea633044d5494b9b2668` | 211 |
+| `.ai/memory/MEMORY-GC.md` | `53be521f06c5349b62f5ac3a2ad8ddd396214d0e744914412351ddb5480e7f90` | 389 |
+| `.ai/memory/METRICS.md` | `6732773d988dc999747929e267882bfa762d9c80f98d9c72cc10f5b1b50bc037` | 340 |
+| `.ai/memory/PROJECT.md` | `e02b9eff4cb89b92f79cd9e9bbfe96783ce0232ddd02ffe7f4286cb069784404` | 504 |
+| `.ai/memory/README.md` | `7ad3ce4670c730ab1a4741a54b53f06fc39483511c2526cbe5d9fa77a4722557` | 281 |
+| `.ai/memory/RISKS.md` | `d23acd76480807abb8004aaa6c006ad9e285aaa41e8a9246c2373fccee2afdd0` | 415 |
+| `.ai/plans/AI-ARCHITECTURE-MIGRATION.md` | `c4c03e479e7c605235f834221deed0670323a7194b9a58eef8e84ae2ecc97b7e` | 523 |
+| `.ai/plans/CONFIGURATION-CONTINUITY.md` | `0c07661783303c243fe33da32d19ca74013a3d699ad9055e60d0ad9a4e63c875` | 952 |
+| `.ai/plans/MASTER-PLAN-V6.md` | `620ad04d3618ba9702f0e41203459d9d8917823d73ad970dc9ec990a62bc6f59` | 781 |
+| `.ai/plans/UX-CONTINUITY.md` | `da27aa7116611330a3f08f4ad85ae3e88006c0221908938b4d133d08e429c3e9` | 438 |
+| `.ai/playbooks/ACCESSIBILITY-REVIEW.md` | `885b85465f805db926ba084d3552aa5338d97267cc87a1d261f0561583f5a714` | 233 |
+| `.ai/playbooks/BUILD-SCHEMA-PLUGIN.md` | `8c19a46b5f29c4ef081c06413dc2e76943a747fcb6899354cea6e312ff7326b0` | 232 |
+| `.ai/playbooks/CONFIGURE-COMPONENT.md` | `41cbec3ad730a166b4bc7f63347ccf6c6909640c94f11698b221e6740ef38c39` | 250 |
+| `.ai/playbooks/DEBUG-REGRESSION.md` | `638c33f88cee246bf8294d1b30af9119a4b89c9b3147257cb38136b1c0cf5ea5` | 265 |
+| `.ai/playbooks/EXECUTE-TASK.md` | `ade49ef05be97c70d954fb2de03b795ef04bba633060082bea550c5aca0a0e45` | 246 |
+| `.ai/playbooks/INCIDENT.md` | `6257df59e0ca7558ab9325fac501e3839761def98848472d69560cef9983254c` | 213 |
+| `.ai/playbooks/MIGRATE-TAILWIND.md` | `211f2323c58c93f65e1593543d896678a26edfe78c0bb8ed141f67a313a5f556` | 256 |
+| `.ai/playbooks/REFACTOR-DRY.md` | `ae970745cd3fdcab7b44858a56ec658f54b5b1b0485cf7df3bfa684745c6aeba` | 265 |
+| `.ai/playbooks/RELEASE.md` | `a82d2a22149c4e9562c948150a4c7a7fbace1955394762ccdfca4e4b7e4e91b6` | 224 |
+| `.ai/playbooks/UX-REVIEW.md` | `ef14d4255e526233a18b15cfc3cbd6c342214ea339ee187f7df1b9de9ee4aabc` | 233 |
+| `.ai/playbooks/VISUAL-REGRESSION.md` | `901fc645f7e7a82527f1ec3ae25c41096b5dee5464c305973a5f11c585e28126` | 227 |
+| `.ai/prompts/ANALYZE.prompt.md` | `29e0f72f3df1e234b3533ff1f8ea423410c1e89198e1aa200c61c241021c61d7` | 519 |
+| `.ai/prompts/HANDOFF.prompt.md` | `16e5f630c9abe9828b10bb8627a14e7a7a34953f112e0b8a68057f1dc7f9ccdc` | 521 |
+| `.ai/prompts/IMPLEMENT.prompt.md` | `6ef65fa0c1fe841f29bc13b4178d77f933f93ddc664de5ceb6ccdcab1d96d3ba` | 522 |
+| `.ai/prompts/INCIDENT.prompt.md` | `43fd2017d4bba6aeada0b5aabfaeb0aec321c185d7dca47284da326d2dc5f500` | 518 |
+| `.ai/prompts/MASTER.prompt.md` | `1949659b2c008025cce67079eba229a8dad109f1b571e8f8e1df738930a951cc` | 536 |
+| `.ai/prompts/MEMORY.prompt.md` | `c9e5724bdff169193731be0a067c09887bd4e241cb9083ffda3aa02a1327022a` | 519 |
+| `.ai/prompts/PLAN.prompt.md` | `c95cdcfe50415876bcab3f298312bc72be29dc4b9e3306d72645ccaa9d199313` | 533 |
+| `.ai/prompts/QA.prompt.md` | `66a2b76d19b008a824f87b1c7fab6177369859bc33a0515f0926aebfce7e42a0` | 514 |
+| `.ai/prompts/REVIEW.prompt.md` | `b11c560335d1d11e6e12aa85d9cfb621b047afd51ccf35b7a99cf13e8c245a97` | 510 |
+| `.ai/prompts/UX-AUDIT.prompt.md` | `15135eb70813195dd05d524310493460eeb6544502be28184122787c8b39dbb4` | 524 |
+| `.ai/research/ANTI-HALLUCINATION-FINDINGS.md` | `2a4f785446a67631dfe06947fa3aa10ce7132d68cfef6bf1eea2903d59c77771` | 458 |
+| `.ai/research/ARCHITECTURE-AUDIT-V5.md` | `8643d67b709608bd035a3ecefbe6235b8d11edf7293c93c8d6b1a329bac9f7b2` | 837 |
+| `.ai/research/OFFICIAL-SOURCES.md` | `a87b9eebb2402243210bd6086fe331d29cf145b914cf837d170b2902cf54f42f` | 1651 |
+| `.ai/research/TOKEN-EFFICIENCY.md` | `07f4c6f7b6d2d3b20790844d4401836e5dace0c46536701485675cd66b3ae789` | 650 |
+| `.ai/routes/accessibility.md` | `e3444a39e8e8bb1b7ebca4a8309d954a624d7a1a7ef62d0dd8f7f1f556fa8c7f` | 381 |
+| `.ai/routes/canvas.md` | `298ad492cc0558ad559025a2557bffe40108806f81103aa89dec83fe05070c47` | 452 |
+| `.ai/routes/configuration.md` | `85331c04c3327e7c5908fa86fb9a7cb5d631a39edb6ee65ead7bff4f7160ebc9` | 431 |
+| `.ai/routes/css-tailwind.md` | `7732a71c464d73fcd37c6d8658e4d1bac39c074a18f2e958eea43587d1ed4b54` | 414 |
+| `.ai/routes/docs-memory.md` | `a090d8cfc219d171d7ab3219040867205923343cb2659b1d090205ee25f41f96` | 391 |
+| `.ai/routes/inspector.md` | `f293d21a66d4607339893e7035ed551182138462e18599c1e5eb7fb213c521b8` | 420 |
+| `.ai/routes/left-sidebar.md` | `b271e194efdb97ac208a92d894838546ae5e195221d70680a5dd726d37376cf2` | 420 |
+| `.ai/routes/performance.md` | `a5142f38f68f5dc8c12608fbad147b445bc94292bd5c5980da13294c85ecd088` | 379 |
+| `.ai/routes/quality.md` | `ccd2e983a690d9caf5e8e0daea9326139bfa9362d43d60b36a5ecfbd8fc239df` | 420 |
+| `.ai/routes/right-sidebar.md` | `ce2adbc1b80ec93de22445aa8989057d8bf728be983b6f481bb8c10133bd6322` | 425 |
+| `.ai/routes/runtime.md` | `52451b40f275b385e1a413ddb6954b415c1b9c7b6acae8661323cf5bb1a109f9` | 418 |
+| `.ai/routes/schemas.md` | `384e825cbc4e25208168fa6c093164d45b318e59553a7e22268d543b28e36b1c` | 403 |
+| `.ai/routes/snapshot.md` | `71215b9541af868bcf8d5eafd11c66f605a40cee31ffa95235defa82c0b5d74f` | 399 |
+| `.ai/routes/testing.md` | `8d12e9e07f5eb5500b25962f3c637c8c923d75a5ae979f034af5352cc9328f03` | 382 |
+| `.ai/routes/ux-design.md` | `3c8a59238e2af1fe4b92146556eb530590b8b15922dc623764804b417e594bb7` | 392 |
+| `.ai/scrum/BOARD.md` | `656dfec13472d8f20fc67f5f39d13e0bb7803159ed5475e45910a17d17e15c98` | 98 |
+| `.ai/scrum/DEFINITION-OF-DONE.md` | `a7843d154a81dc4845b7729e30006631092e6cada445afd9a9c087e668fc8ef9` | 227 |
+| `.ai/scrum/DEFINITION-OF-READY.md` | `1ee4361b01478261b789fa27055a12a0dcc3850eeab90d72643f3745d78c1af7` | 220 |
+| `.ai/scrum/PRODUCT-GOAL.md` | `3bc55fc44cfebf6d0520cf812926ce8c9f014060e56c9fbbd4da948522b33ca2` | 222 |
+| `.ai/scrum/RETROSPECTIVE.md` | `76c1b941975689697083fc30ef998bf5baf3e5d879f8bb20396d60a308666b02` | 130 |
+| `.ai/tasks/ACTIVE.md` | `5ad3080cafaf9109571e199910ba57a50a46ba35c6ea761abcb9021329978749` | 182 |
+| `.ai/tasks/AI-001-anti-hallucination-gate.md` | `d44b8ca226d49cfa192a644fb99468239c05f6a89791be39d9825add6e3fa5ee` | 312 |
+| `.ai/tasks/AI-002-context-overflow-checkpoints.md` | `08abdc6185f0d65d18481fe308c689301fd4d2c3e74670ee4b10498574934ae3` | 252 |
+| `.ai/tasks/CONFIG-001-unified-config-service.md` | `33414954c0f3b049437c0d28fc6f336893996a2a6b1fa80a5688f028f9b13540` | 446 |
+| `.ai/tasks/README.md` | `9d7580208b836b175031f5a645e2ec8ab1f7907825f1a9a6d651c0a5c7f078f2` | 215 |
+| `.ai/tasks/TEMPLATE.md` | `f52fcbfce229b3ac200814336d5bed4645734920c8548d492f21714b4794f9ee` | 371 |
+| `.ai/templates/ADR.md` | `4955e59f8551e0906ffc0981bcb0adb100d34c4754b254d5d05948968fcb1e9c` | 101 |
+| `.ai/templates/CLAIM-LEDGER.md` | `f9c9fffee45c81aa046cd29d6f4b798db4beedc33e4a413669402ed890db7c03` | 92 |
+| `.ai/templates/CONTEXT-CHECKPOINT.md` | `6e7f601914e04142baa3d89aa86576ec16c4bd445619cf0476872cb1ceddfeae` | 156 |
+| `.ai/templates/DESIGN-AUDIT.md` | `628059b7b017a9a4ec16539c7012e5db61c5f10ecb9d2a28d7fbf5bed46bf49a` | 123 |
+| `.ai/templates/EVAL-CASE.md` | `8ed6fdac53caebec1383f4e0a62d833a87d5b3249c05ef0aa85064aba148e5d3` | 95 |
+| `.ai/templates/EVIDENCE.md` | `d979d3573656c022060f6bcdecf5bd7a8898d5c8b0cc6c5f90d0ea68cf8c9128` | 98 |
+| `.ai/templates/HANDOFF.md` | `4342b8b30eda489487ae2bbfb14de47a8fcd7cbf4ab6788c5edbc7b88d29ac4f` | 97 |
+| `.ai/templates/INCIDENT.md` | `bb4c8ae5a1a8b91720773edb5d0d2bf53ba97e56f29c7e65e2217ad7244b8ae8` | 117 |
+| `.ai/templates/PLAN.md` | `48d7f5b4a75a308ea544f78e57dc16e1ab5f7bc4d60abfb2c4b41ac1f1a5e27f` | 113 |
+| `.ai/templates/REVIEW.md` | `dc3df82fb56d9536cc2cad2eb7931a927ca44f6fb73ff2b3111dddd5f03c07f2` | 123 |
+| `.claude/README.md` | `9377d343d279213ee728aa717028f2c058b8c26186a55bb63327bf251984f2d0` | 291 |
+| `.claude/agents/sisad-explorer.md` | `cde8f1d7f30dc0e20c1e57bf2fe611efbeb0073b781c29074157484b8ff0a91b` | 197 |
+| `.claude/agents/sisad-reviewer.md` | `a5c895159bcff650a7d61092edad15a8622c143a2ffd0d1ca2671a1c5cb874ed` | 177 |
+| `.codex/README.md` | `268bf52a69a9aa7b7451d5a4a7116c725c1de465cf5ea1d75b43421af2711bea` | 364 |
+| `.github/agents/sisad-architect.agent.md` | `7485dcc6b61a02096ef92dab4fb5334c96b1a5ab25d84464c17986549cadf82e` | 295 |
+| `.github/agents/sisad-config.agent.md` | `0637dc52244dd859a090ee43408fc2c960296c7335c88304878252289d2a32f5` | 269 |
+| `.github/agents/sisad-implementer.agent.md` | `7b1eb805e90519e85a40f62d9f231dc752ab5397af273708c37ae013dc920c56` | 286 |
+| `.github/agents/sisad-qa.agent.md` | `f2737b8960e0d65eb7a05d100f1ffb6b4f959e70f0792ab50dadae12f7f249ad` | 255 |
+| `.github/agents/sisad-reviewer.agent.md` | `ee0d0126ee3b359d18f791ddcb2011c705593b4a73702496cf1a28861a24fc0f` | 268 |
+| `.github/agents/sisad-ux.agent.md` | `7bc6bb3f59105848659dfb022c1f4ca337f3300cb68e4e90e9b4181cd776d6cb` | 263 |
+| `.github/copilot-instructions.md` | `72b2b40de096912a9a98c02323b4cba2bc2575060d9f5609338e1f5d6e624d58` | 401 |
+| `.serena/memories/memory_maintenance.md` | `cbf48bec285789093ac728a70a18a0135671d44b8fe5c18189524deb6e3ae19f` | 303 |
+| `AGENTS.md` | `15cea46b842ea543db2680582666e22f24d9695ed1bcc78034c1293245efc927` | 1513 |
+| `CLAUDE.md` | `84833ba394278a0a28ad80b86cce7ab80400e49f5d1ef3f345a50d753f104b47` | 640 |
+| `INSTALLATION.md` | `8319739e021b561b3df5a8f969d0d570ce079b96d22c8f96d7e2aea75bdccb76` | 658 |
+| `MANIFEST.md` | `self` | 18803 |
+| `MIGRATION_V5_TO_V6.md` | `cb1bd9140fa5d637aa04fde55082af0e3fbe5e4bf249ecac797d4458f35ec844` | 1402 |
+| `README_ENTREGA.md` | `ecd00dd6ff4dcc317943bc48f503e6cb60c2087c3fc25274e071c7af13771cd1` | 1598 |
+| `TREE.md` | `32deae94dbc74b8ae5683ed066e0b33218c7e1c3a37ddcede56f38588a55d849` | 8153 |
+| `src/sisad-pdfme/AGENTS.md` | `a1d2250da6bbd31a9c2150260cc1e7acd22c14b77f6ec819bcef7efbdff40197` | 167 |
+| `src/sisad-pdfme/config/AGENTS.md` | `0c7facd1e3439adfb2daa9e0dec1166755acb9b212b3d5217af1dc80aeb4cddd` | 171 |
+| `src/sisad-pdfme/schemas/AGENTS.md` | `22cb8ed9930ec4c20dc443cb5c64bd79b51f9397cdb6c45c84233bb0c71c31e6` | 146 |
+| `src/sisad-pdfme/shared/AGENTS.md` | `03e0928cdb4c9266a81ca74cfb77ccdd994dfa93381ba2ac9591a805306cffd9` | 162 |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md` | `c845d988fe5cdbb25e9329420c72f956f944ab476c1992616e798103c37e4009` | 154 |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md` | `e9a4447937e51e8993cfb75de70b588f643071f6af400f40bc1f63743002397d` | 162 |

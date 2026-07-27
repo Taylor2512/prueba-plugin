@@ -64,7 +64,7 @@ const replaceUnsupportedChars = (text: string, fontKitFont: FontKitFont): string
     .join('');
 };
 
-export const uiRender = async (arg: UIRenderProps<TextSchema>) => {
+export const renderTextUi = async (arg: UIRenderProps<TextSchema>) => {
   const { value, schema, mode, onChange, stopEditing, tabIndex, placeholder, options, _cache } =
     arg;
   // FieldChromePolicy hooks (TASK-014): let CSS drive text-like chrome per mode.

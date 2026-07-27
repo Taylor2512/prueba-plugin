@@ -1,4 +1,6 @@
 import type { Schema } from '@sisad-pdfme/common';
+import { normalizeText } from '../../shared/text.js';
+import { asRecord } from '../../shared/objectGuards.js';
 
 export type SignatureMode = 'draw' | 'image' | 'p12' | 'provider';
 export type SignatureProviderKey = string;
@@ -144,8 +146,6 @@ const LEGACY_PROVIDER_MODE_MAP: Record<string, SignatureMode> = {
   local_p12: 'p12',
 };
 
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
-
 const SIGNATURE_PROVIDER_STATUS_VALUES = new Set<SignatureProviderStatus>([
   'pending',
   'ready',
@@ -153,9 +153,6 @@ const SIGNATURE_PROVIDER_STATUS_VALUES = new Set<SignatureProviderStatus>([
   'failed',
   'expired',
 ]);
-
-const asRecord = (value: unknown): Record<string, unknown> =>
-  value && typeof value === 'object' && !Array.isArray(value) ? { ...(value as Record<string, unknown>) } : {};
 
 const normalizeSignatureProviderDisplay = (
   value: unknown,

@@ -1,9 +1,9 @@
 import type { OptionItem } from './optionTypes.js';
-import { normalizeText } from './optionModel.js';
+import { normalizeOptionText } from './optionModel.js';
 
 const normalizeOptionIds = (ids: unknown, validIds: Set<string>): string[] => {
   if (!Array.isArray(ids)) return [];
-  return ids.map(normalizeText).filter((id) => id && validIds.has(id));
+  return ids.map(normalizeOptionText).filter((id) => id && validIds.has(id));
 };
 
 const getValidOptionIds = (options: OptionItem[]): Set<string> =>
@@ -23,10 +23,10 @@ export const matchOptionId = (
   options: OptionItem[],
 ): string | undefined => {
   const validIds = new Set(options.map((option) => option.optionId));
-  const byId = normalizeText(schemaSelected);
+  const byId = normalizeOptionText(schemaSelected);
   if (byId && validIds.has(byId)) return byId;
 
-  const byValue = options.find((option) => normalizeText(option.value) === byId);
+  const byValue = options.find((option) => normalizeOptionText(option.value) === byId);
   return byValue?.optionId;
 };
 
@@ -109,7 +109,7 @@ export const normalizeStringOptions = (options: unknown[]): string[] => {
   const seen = new Set<string>();
 
   for (const option of Array.isArray(options) ? options : []) {
-    const value = normalizeText(option);
+    const value = normalizeOptionText(option);
     if (!value || seen.has(value)) continue;
     seen.add(value);
     normalized.push(value);
@@ -119,7 +119,7 @@ export const normalizeStringOptions = (options: unknown[]): string[] => {
 };
 
 export const resolveCompactSelection = (currentValue: unknown, options: string[]): string => {
-  const normalizedValue = normalizeText(currentValue);
+  const normalizedValue = normalizeOptionText(currentValue);
   if (normalizedValue && options.includes(normalizedValue)) return normalizedValue;
   return options[0] || '';
 };

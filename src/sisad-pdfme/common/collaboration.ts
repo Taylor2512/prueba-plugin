@@ -144,7 +144,7 @@ export type CommentAuthorIdentity = {
  * Diferencia importante frente a otros helpers:
  * Si recibe number, boolean, object, null o undefined, retorna ''.
  */
-const normalizeText = (value: unknown) =>
+const normalizeCollaborationCommonText = (value: unknown) =>
   typeof value === 'string' ? value.trim() : '';
 
 /**
@@ -258,13 +258,13 @@ const resolveCommentScope = (
  * Se usa para vistas colaborativas por autor.
  */
 export const resolveSchemaAuthorId = (schema: SchemaForUI) =>
-  normalizeText(
+  normalizeCollaborationCommonText(
     (schema as SchemaForUI & {
       createdBy?: string;
       lastModifiedBy?: string;
     }).createdBy,
   ) ||
-  normalizeText(
+  normalizeCollaborationCommonText(
     (schema as SchemaForUI & {
       createdBy?: string;
       lastModifiedBy?: string;
@@ -289,7 +289,7 @@ export const schemaMatchesAuthorView = (
 ) => {
   if (filter.isGlobalView) return true;
 
-  const activeUserId = normalizeText(filter.activeUserId);
+  const activeUserId = normalizeCollaborationCommonText(filter.activeUserId);
 
   if (!activeUserId) return true;
 
@@ -356,7 +356,7 @@ export const createSchemaComment = (
    */
   ...(overrides as Record<string, unknown>),
 
-  id: normalizeText(overrides.id) || createEntityId('comment'),
+  id: normalizeCollaborationCommonText(overrides.id) || createEntityId('comment'),
 
   scope: resolveCommentScope(overrides.scope, {
     schemaUid: overrides.schemaUid,
@@ -364,7 +364,7 @@ export const createSchemaComment = (
     pageNumber: overrides.pageNumber,
   }),
 
-  fileId: normalizeText(overrides.fileId) || undefined,
+  fileId: normalizeCollaborationCommonText(overrides.fileId) || undefined,
 
   pageNumber:
     typeof overrides.pageNumber === 'number'
@@ -378,21 +378,21 @@ export const createSchemaComment = (
    * y ahora se usa schemaUid.
    */
   fieldId:
-    normalizeText(overrides.fieldId) ||
-    normalizeText(overrides.schemaUid) ||
+    normalizeCollaborationCommonText(overrides.fieldId) ||
+    normalizeCollaborationCommonText(overrides.schemaUid) ||
     undefined,
 
   schemaUid:
-    normalizeText(overrides.schemaUid) ||
-    normalizeText(overrides.fieldId) ||
+    normalizeCollaborationCommonText(overrides.schemaUid) ||
+    normalizeCollaborationCommonText(overrides.fieldId) ||
     undefined,
 
   /**
    * Identidad del autor.
    */
-  authorId: normalizeText(identity.authorId) || undefined,
-  authorName: normalizeText(identity.authorName) || undefined,
-  authorColor: normalizeText(identity.authorColor) || undefined,
+  authorId: normalizeCollaborationCommonText(identity.authorId) || undefined,
+  authorName: normalizeCollaborationCommonText(identity.authorName) || undefined,
+  authorColor: normalizeCollaborationCommonText(identity.authorColor) || undefined,
 
   /**
    * Fecha de creación.
@@ -441,7 +441,7 @@ export const createSchemaCommentAnchor = (
 ): CommentAnchor => ({
   ...(anchor as Record<string, unknown>),
 
-  id: normalizeText(anchor.id) || createEntityId('anchor'),
+  id: normalizeCollaborationCommonText(anchor.id) || createEntityId('anchor'),
 
   scope: resolveCommentScope(anchor.scope, {
     schemaUid: anchor.schemaUid,
@@ -449,14 +449,14 @@ export const createSchemaCommentAnchor = (
     pageNumber: anchor.pageNumber,
   }),
 
-  schemaUid: normalizeText(anchor.schemaUid) || undefined,
+  schemaUid: normalizeCollaborationCommonText(anchor.schemaUid) || undefined,
 
   fieldId:
-    normalizeText(anchor.fieldId) ||
-    normalizeText(anchor.schemaUid) ||
+    normalizeCollaborationCommonText(anchor.fieldId) ||
+    normalizeCollaborationCommonText(anchor.schemaUid) ||
     undefined,
 
-  fileId: normalizeText(anchor.fileId) || undefined,
+  fileId: normalizeCollaborationCommonText(anchor.fileId) || undefined,
 
   pageNumber:
     typeof anchor.pageNumber === 'number'
@@ -468,9 +468,9 @@ export const createSchemaCommentAnchor = (
 
   resolved: Boolean(anchor.resolved),
 
-  authorId: normalizeText(identity.authorId) || undefined,
-  authorName: normalizeText(identity.authorName) || undefined,
-  authorColor: normalizeText(identity.authorColor) || undefined,
+  authorId: normalizeCollaborationCommonText(identity.authorId) || undefined,
+  authorName: normalizeCollaborationCommonText(identity.authorName) || undefined,
+  authorColor: normalizeCollaborationCommonText(identity.authorColor) || undefined,
 });
 
 /**
@@ -709,13 +709,13 @@ export const buildUserRecipientAssignments = (
   options: UserRecipientAssignmentOptions = {},
 ): UserRecipientSchemaAssignments => {
   const sharedRecipientKey =
-    normalizeText(options.sharedRecipientKey) || SHARED_ASSIGNMENTS_BUCKET;
+    normalizeCollaborationCommonText(options.sharedRecipientKey) || SHARED_ASSIGNMENTS_BUCKET;
 
   const unassignedUserKey =
-    normalizeText(options.unassignedUserKey) || '__unassigned__';
+    normalizeCollaborationCommonText(options.unassignedUserKey) || '__unassigned__';
 
   const unassignedRecipientKey =
-    normalizeText(options.unassignedRecipientKey) || '__unassigned__';
+    normalizeCollaborationCommonText(options.unassignedRecipientKey) || '__unassigned__';
 
   const includeSharedRecipientBucket =
     options.includeSharedRecipientBucket !== false;

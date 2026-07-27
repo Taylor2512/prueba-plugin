@@ -61,7 +61,7 @@ export type CommentsRailProps = {
  * @param timestamp Marca de tiempo en milisegundos o segundos ya normalizada por la capa superior.
  * @returns Fecha legible o `Sin fecha` cuando el valor no es válido.
  */
-const formatTimestamp = (timestamp?: number) => {
+const formatCommentTimestamp = (timestamp?: number) => {
   if (!timestamp || !Number.isFinite(timestamp)) return 'Sin fecha';
 
   try {
@@ -105,7 +105,7 @@ const formatCommentMeta = (item: DesignerCommentItem) => {
   const segments: string[] = [];
   if (item.schemaUid) segments.push(`Campo ${item.schemaUid}`);
   if (item.pageNumber) segments.push(`Página ${item.pageNumber}`);
-  const timestamp = formatTimestamp(item.timestamp);
+  const timestamp = formatCommentTimestamp(item.timestamp);
   if (timestamp) segments.push(timestamp);
   return segments.join(' · ');
 };
@@ -325,7 +325,7 @@ const CommentsRail = ({
                         <div className="text-[12.5px] leading-[1.45] text-[var(--sisad-pdfme-text)]">{reply.text}</div>
 
                         <div className="text-[11.5px] text-[var(--sisad-pdfme-text-muted)]">
-                          {formatTimestamp(reply.timestamp)}
+                          {formatCommentTimestamp(reply.timestamp)}
                         </div>
                       </div>
                     ))}

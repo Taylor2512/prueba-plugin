@@ -24,7 +24,7 @@ import type {
   SisadPdfmeRecipientsSnapshot,
 } from './recipientTypes.js';
 
-const normalizeText = (value: unknown) => String(value ?? '').trim();
+const normalizeRecipientRegistryText = (value: unknown) => String(value ?? '').trim();
 
 /** Normaliza, deduplica por id y ordena (order asc, estable) una lista cruda. */
 export const normalizeRecipients = (
@@ -34,18 +34,18 @@ export const normalizeRecipients = (
 
   (Array.isArray(recipients) ? recipients : []).forEach((entry) => {
     if (!entry || typeof entry !== 'object') return;
-    const id = normalizeText(entry.id);
-    const label = normalizeText(entry.label) || normalizeText(entry.name) || id;
+    const id = normalizeRecipientRegistryText(entry.id);
+    const label = normalizeRecipientRegistryText(entry.label) || normalizeRecipientRegistryText(entry.name) || id;
     if (!id || byId.has(id)) return;
 
     byId.set(id, {
       ...entry,
       id,
       label: label || 'Recipient',
-      name: normalizeText(entry.name) || undefined,
-      role: normalizeText(entry.role) || undefined,
-      email: normalizeText(entry.email) || undefined,
-      color: normalizeText(entry.color) || undefined,
+      name: normalizeRecipientRegistryText(entry.name) || undefined,
+      role: normalizeRecipientRegistryText(entry.role) || undefined,
+      email: normalizeRecipientRegistryText(entry.email) || undefined,
+      color: normalizeRecipientRegistryText(entry.color) || undefined,
       order: typeof entry.order === 'number' && Number.isFinite(entry.order) ? entry.order : undefined,
       disabled: entry.disabled === true ? true : undefined,
     });
@@ -113,7 +113,7 @@ export const createRecipientRegistry = (
     recipients: SisadPdfmeRecipient[],
     requestedId: string | null,
   ): string | null => {
-    const normalized = normalizeText(requestedId);
+    const normalized = normalizeRecipientRegistryText(requestedId);
     if (normalized && recipients.some((recipient) => recipient.id === normalized)) {
       return normalized;
     }
@@ -146,13 +146,13 @@ export const createRecipientRegistry = (
   const registry: SisadPdfmeRecipientRegistry = {
     getState: () => state,
     getRecipients: () => state.recipients,
-    getRecipient: (recipientId) => state.byId.get(normalizeText(recipientId)) ?? null,
+    getRecipient: (recipientId) => state.byId.get(normalizeRecipientRegistryText(recipientId)) ?? null,
     getAssignableRecipients: () => state.recipients.filter((recipient) => recipient.disabled !== true),
     getActiveRecipient: () => state.activeRecipient,
     getActiveRecipientId: () => state.activeRecipientId,
     getActiveRecipientColor: () => state.activeRecipient?.color ?? null,
-    getRecipientColor: (recipientId) => state.colorById.get(normalizeText(recipientId)) ?? null,
-    getRecipientLabel: (recipientId) => state.labelById.get(normalizeText(recipientId)) ?? null,
+    getRecipientColor: (recipientId) => state.colorById.get(normalizeRecipientRegistryText(recipientId)) ?? null,
+    getRecipientLabel: (recipientId) => state.labelById.get(normalizeRecipientRegistryText(recipientId)) ?? null,
 
     setRecipients: (recipients) => {
       const previous = state;
@@ -167,7 +167,7 @@ export const createRecipientRegistry = (
 
     setActiveRecipient: (recipientId) => {
       const previous = state;
-      const normalized = normalizeText(recipientId);
+      const normalized = normalizeRecipientRegistryText(recipientId);
       const nextActiveId = normalized && state.byId.has(normalized) ? normalized : null;
       if (nextActiveId === state.activeRecipientId) return;
       state = buildState(state.recipients, nextActiveId);

@@ -68,12 +68,12 @@ const isFiniteNumber = (value: unknown): value is number =>
 /**
  * Normaliza zoom inválido a 1 para evitar divisiones inestables.
  */
-const normalizeZoom = (zoom: number) => (Number.isFinite(zoom) && zoom > 0 ? zoom : 1);
+const normalizePointerZoom = (zoom: number) => (Number.isFinite(zoom) && zoom > 0 ? zoom : 1);
 
 /**
  * Convierte píxeles de pantalla a milímetros del documento considerando zoom.
  */
-const toMm = (px: number, zoom: number) => px2mm(px / normalizeZoom(zoom));
+const toMm = (px: number, zoom: number) => px2mm(px / normalizePointerZoom(zoom));
 
 /**
  * Convierte un punto de viewport/client a coordenadas relativas al paper.

@@ -9,6 +9,7 @@ import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { basicsFields, helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
 import { normalizeStringOptions, resolveCompactSelection } from '../options/optionSelectionBehavior.js';
 import { markInspectorInteractive, stopInspectorPointerEvent } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
+import { normalizeLooseText } from '../../shared/text.js';
 
 const selectIcon = renderLucideIcon(ChevronDown);
 
@@ -17,7 +18,7 @@ interface Select extends TextSchema {
 }
 
 const resolveSelectPdfValue = (value: unknown, options: string[]): string => {
-  const normalizedValue = typeof value === 'string' ? value.trim() : String(value || '').trim();
+  const normalizedValue = normalizeLooseText(value);
   if (!normalizedValue) return '';
   return options.includes(normalizedValue) ? normalizedValue : '';
 };

@@ -8,7 +8,7 @@ import {
   buildDefaultOptionGroupOptions,
   normalizeOptionId,
   normalizeOptionGroupOptions,
-  normalizeText,
+  normalizeOptionText,
 } from '../options/optionModel.js';
 
 type RadioGroupSchema = SchemaForUI & {
@@ -51,11 +51,11 @@ import { renderOptionGroupPdf } from '../options/optionGroupPdfRender.js';
 
 type RadioOption = OptionItem;
 
-const normalizeOptions = (schema: RadioGroupSchema): RadioOption[] => {
+const normalizeRadioGroupOptions = (schema: RadioGroupSchema): RadioOption[] => {
   return normalizeOptionGroupOptions(schema.options, 'Opción') as RadioOption[];
 };
 
-const resolveSelectedOptionId = (
+const resolveRadioGroupSelectedOptionId = (
   schema: RadioGroupSchema,
   options: RadioOption[],
 ): string => {
@@ -67,7 +67,7 @@ const resolveSelectedOptionId = (
 };
 
 const createNextOption = (label: string, options: RadioOption[]): RadioOption => {
-  const clean = normalizeText(label) || `Opción ${options.length + 1}`;
+  const clean = normalizeOptionText(label) || `Opción ${options.length + 1}`;
   const base = normalizeOptionId(clean, options.length).replace(/_\d+$/, '') || 'option';
   const existing = new Set(options.map((option) => option.optionId));
   let nextIndex = options.length + 1;
@@ -90,8 +90,8 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
   rootElement.style.width = '100%';
   markInspectorInteractive(rootElement);
 
-  let currentOptions = normalizeOptions(schema);
-  let currentSelected = resolveSelectedOptionId(schema, currentOptions);
+  let currentOptions = normalizeRadioGroupOptions(schema);
+  let currentSelected = resolveRadioGroupSelectedOptionId(schema, currentOptions);
   const schemaId = schema.id;
 
   const commit = (patch: Record<string, unknown>) => {
@@ -173,8 +173,8 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
       const { schema, onChange, rootElement, mode } = arg;
 
       const radioSchema = schema as RadioGroupSchema;
-      const options = normalizeOptions(radioSchema);
-      const selectedOptionId = resolveSelectedOptionId(radioSchema, options);
+      const options = normalizeRadioGroupOptions(radioSchema);
+      const selectedOptionId = resolveRadioGroupSelectedOptionId(radioSchema, options);
       const editable = isEditable(mode, radioSchema);
       const isDesigner = mode === 'designer';
 
@@ -218,7 +218,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
     pdf: async (arg) => {
       const { page, schema } = arg;
       const radioSchema = schema as RadioGroupSchema;
-      const resolvedOptions = normalizeOptions(radioSchema);
+      const resolvedOptions = normalizeRadioGroupOptions(radioSchema);
 
       if (!resolvedOptions.length) return;
       renderOptionGroupPdf({
@@ -227,7 +227,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         options: resolvedOptions,
         selectionMode: 'single',
         indicatorShape: 'circle',
-        selectedOptionId: resolveSelectedOptionId(radioSchema, resolvedOptions),
+        selectedOptionId: resolveRadioGroupSelectedOptionId(radioSchema, resolvedOptions),
         color: radioSchema.color,
       });
     },

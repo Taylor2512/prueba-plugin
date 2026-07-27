@@ -1,5 +1,5 @@
 import { Schema } from '@sisad-pdfme/common';
-import { resolveSchemaFamily, type SchemaFamily } from './schemaFamilies.js';
+import { resolveDesignerSchemaFamily, type SchemaFamily } from './schemaFamilies.js';
 
 /**
  * Contexto extendido para evaluar el acceso a un schema.
@@ -39,11 +39,11 @@ type SchemaWithLock = Schema & {
 /**
  * Resuelve el estado de acceso de un schema basándose en el contexto y candados.
  */
-export function resolveSchemaAccessState(
+export function resolveDesignerSchemaAccessState(
   schema: Schema,
   ctx: SchemaAccessContext
 ): SchemaAccessState {
-  const family = resolveSchemaFamily(schema);
+  const family = resolveDesignerSchemaFamily(schema);
   const collab = ctx.collaborationContext;
 
   // 1. Detección de candado ajeno
@@ -115,4 +115,3 @@ export function canRunSchemaCommand(commandId: string, access: SchemaAccessState
 export function isTransformable(access: Pick<SchemaAccessState, 'isMovable' | 'isResizable' | 'isLockedByOther'>) {
   return !access.isLockedByOther && (access.isMovable || access.isResizable);
 }
-

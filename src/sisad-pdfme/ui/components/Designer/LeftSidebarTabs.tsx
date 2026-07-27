@@ -1,5 +1,5 @@
 import React from 'react';
-import { DESIGNER_CLASSNAME } from '../../constants.js';
+import { DESIGNER_CLASSNAME } from '../../constants.ts';
 import { mergeUniqueClassNames } from './shared/className.js';
 
 export type LeftSidebarTab = 'standard' | 'custom' | 'prefill';

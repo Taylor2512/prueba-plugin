@@ -2,6 +2,7 @@ import type { SchemaForUI } from '@sisad-pdfme/common';
 import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
 import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import { normalizeText } from '../../../../../shared/text.js';
 
 export type ListViewItemDescriptor = {
   primaryLabel: string;
@@ -14,8 +15,6 @@ export type ListViewItemDescriptor = {
   isReadOnly: boolean;
   isRequired: boolean;
 };
-
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 
 export const resolveListViewItemDescriptor = (
   schema: SchemaForUI,

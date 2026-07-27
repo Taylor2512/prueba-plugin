@@ -16,7 +16,7 @@ import {
   optionGroupDesignerWidthMM,
   isOptionGroupType,
 } from '../../../../schemas/options/optionGroupLayout.js';
-import { asRecord } from './objectGuards.js';
+import { asRecord } from '../../../../shared/objectGuards.js';
 import { resolveActiveSchemasFromElements } from './selectionIdentityResolver.js';
 import { resolveSchemaUid } from './schemaAssignmentService.js';
 

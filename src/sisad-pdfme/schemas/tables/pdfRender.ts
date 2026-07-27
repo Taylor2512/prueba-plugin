@@ -115,7 +115,7 @@ async function drawTable(arg: PDFRenderProps<TableSchema>, table: Table): Promis
   await drawTableBorder(arg, table, startPos, cursor);
 }
 
-export const pdfRender = async (arg: PDFRenderProps<TableSchema>) => {
+export const renderTablePdf = async (arg: PDFRenderProps<TableSchema>) => {
   const { value, schema, basePdf, options, _cache } = arg;
 
   const body = getBodyWithRange(

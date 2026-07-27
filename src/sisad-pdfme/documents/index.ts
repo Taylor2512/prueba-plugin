@@ -1,4 +1,5 @@
 import { cloneDeep, type SchemaForUI, type Template } from '@sisad-pdfme/common';
+import { normalizeLooseText } from '../shared/text.js';
 import { img2pdf, pdf2img, pdf2size } from '@sisad-pdfme/converter';
 import type { Img2PdfOptions, Pdf2ImgOptions, Pdf2SizeOptions } from '@sisad-pdfme/converter';
 
@@ -18,12 +19,12 @@ type DocumentLike = {
   [key: string]: unknown;
 };
 
-const normalizeText = (value: unknown) => String(value || '').trim();
+const normalizeDocumentText = normalizeLooseText;
 
 const resolveDocumentId = (document: DocumentLike, index: number) =>
-  normalizeText(document.id || document.fileId || document.fileTemplateId) || `document-${index + 1}`;
+  normalizeDocumentText(document.id || document.fileId || document.fileTemplateId) || `document-${index + 1}`;
 
-const normalizeTemplate = (template: Template | null | undefined) => {
+const normalizeDocumentTemplate = (template: Template | null | undefined) => {
   if (!template || typeof template !== 'object') return null;
   return {
     ...template,
@@ -64,11 +65,11 @@ export const normalizeDocuments = <T extends DocumentLike>(documents: T[] = []) 
     return {
       ...document,
       id,
-      fileId: normalizeText(document.fileId || document.fileTemplateId || id) || id,
-      fileTemplateId: normalizeText(document.fileTemplateId || document.fileId || id) || id,
-      name: normalizeText(document.name || document.title || id) || id,
-      title: normalizeText(document.title || document.name || id) || id,
-      template: normalizeTemplate(document.template),
+      fileId: normalizeDocumentText(document.fileId || document.fileTemplateId || id) || id,
+      fileTemplateId: normalizeDocumentText(document.fileTemplateId || document.fileId || id) || id,
+      name: normalizeDocumentText(document.name || document.title || id) || id,
+      title: normalizeDocumentText(document.title || document.name || id) || id,
+      template: normalizeDocumentTemplate(document.template),
     };
   });
 
@@ -77,7 +78,7 @@ export const resolveActiveDocument = <T extends DocumentLike>(
   activeDocumentId?: string | null,
 ) => {
   const normalizedDocuments = normalizeDocuments(documents);
-  const normalizedActiveId = normalizeText(activeDocumentId);
+  const normalizedActiveId = normalizeDocumentText(activeDocumentId);
   return (
     normalizedDocuments.find((document) => document.id === normalizedActiveId) ||
     normalizedDocuments[0] ||
@@ -102,13 +103,13 @@ export const filterSchemasByFileAndPage = (
   pageNumber?: number | null,
 ) => {
   const schemas = Array.isArray(source) ? source : source?.schemas || [];
-  const normalizedFileId = normalizeText(fileId);
+  const normalizedFileId = normalizeDocumentText(fileId);
   const normalizedPageNumber =
     Number.isFinite(pageNumber) && Number(pageNumber) > 0 ? Math.trunc(Number(pageNumber)) : null;
 
   return (schemas || []).flatMap((page = [], pageIndex) =>
     (page || []).filter((schema) => {
-      const schemaFileId = normalizeText(schema.fileId || schema.fileTemplateId);
+      const schemaFileId = normalizeDocumentText(schema.fileId || schema.fileTemplateId);
       const schemaPageNumber =
         Number.isFinite(schema.pageNumber) && Number(schema.pageNumber) > 0
           ? Math.trunc(Number(schema.pageNumber))
@@ -126,7 +127,7 @@ export const reconcileTemplateDocuments = <T extends DocumentLike>(
 ) =>
   normalizeDocuments(documents).map((document) => {
     const templateFromMap = templatesByDocumentId[document.id || ''];
-    const resolvedTemplate = normalizeTemplate(templateFromMap || document.template || null);
+    const resolvedTemplate = normalizeDocumentTemplate(templateFromMap || document.template || null);
     return {
       ...document,
       template: resolvedTemplate,
@@ -139,7 +140,7 @@ export const mergeDesignerDocumentIntoFile = <T extends DocumentLike>(
   documentId: string | null | undefined,
   document: DocumentLike | null | undefined,
 ) => {
-  const normalizedId = normalizeText(documentId || document?.id || existingFile?.id);
+  const normalizedId = normalizeDocumentText(documentId || document?.id || existingFile?.id);
   if (!normalizedId && !existingFile && !document) return null;
 
   const runtimeTemplate =
@@ -171,8 +172,8 @@ export const mergeDesignerDocumentIntoFile = <T extends DocumentLike>(
     id: normalizedId,
     fileId: normalizedId,
     fileTemplateId: normalizedId,
-    name: normalizeText(document?.name || existingFile?.name) || `Documento ${normalizedId}`,
-    title: normalizeText(document?.title || document?.name || existingFile?.title || existingFile?.name) || `Documento ${normalizedId}`,
+    name: normalizeDocumentText(document?.name || existingFile?.name) || `Documento ${normalizedId}`,
+    title: normalizeDocumentText(document?.title || document?.name || existingFile?.title || existingFile?.name) || `Documento ${normalizedId}`,
     pageCount: resolvedPageCount,
     pages: resolvedPageCount,
     basePdf: resolvedBasePdf,

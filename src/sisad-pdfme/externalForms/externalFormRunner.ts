@@ -12,6 +12,7 @@
  *   hidden    → no renderizado
  */
 import type { OfficialTemplateSnapshot, SnapshotAssignment, SchemaWithDesigner } from '../shared/snapshot.js';
+import { asRecord } from '../shared/objectGuards.js';
 
 // ── Estado del flujo ────────────────────────────────────────────────────────
 
@@ -107,38 +108,35 @@ export type ExternalFormRuntimeStateOptions = {
   isSignatureSchema?: (schema: SchemaWithDesigner) => boolean;
 };
 
-const normalizeText = (value: unknown): string => String(value ?? '').trim();
-
-const asRecord = (value: unknown): Record<string, unknown> =>
-  value && typeof value === 'object' ? (value as Record<string, unknown>) : {};
+const normalizeExternalFormText = (value: unknown): string => String(value ?? '').trim();
 
 const extractSchemaUid = (schema: SchemaWithDesigner): string => {
   const record = asRecord(schema);
   const designer = asRecord(record.__designer);
   const identity = asRecord(designer.identity);
   return (
-    normalizeText(identity.schemaUid) ||
-    normalizeText(designer.schemaUid) ||
-    normalizeText(record.schemaUid) ||
-    normalizeText(record.id) ||
-    normalizeText(record.name)
+    normalizeExternalFormText(identity.schemaUid) ||
+    normalizeExternalFormText(designer.schemaUid) ||
+    normalizeExternalFormText(record.schemaUid) ||
+    normalizeExternalFormText(record.id) ||
+    normalizeExternalFormText(record.name)
   );
 };
 
 const extractAssignment = (snapshot: OfficialTemplateSnapshot, schemaUid: string): SnapshotAssignment | undefined =>
-  snapshot.assignments.find((assignment) => normalizeText(assignment.schemaUid) === normalizeText(schemaUid));
+  snapshot.assignments.find((assignment) => normalizeExternalFormText(assignment.schemaUid) === normalizeExternalFormText(schemaUid));
 
 const extractSignatureSchema = (schema: SchemaWithDesigner): boolean => {
   const record = asRecord(schema);
-  const type = normalizeText(record.type);
+  const type = normalizeExternalFormText(record.type);
   if (type === 'signature') return true;
 
   const designer = asRecord(record.__designer);
   const runtimeSignature = asRecord(designer.signature);
   return (
-    Boolean(normalizeText(runtimeSignature.mode)) ||
-    Boolean(normalizeText(runtimeSignature.providerKey)) ||
-    Boolean(normalizeText(runtimeSignature.defaultProvider))
+    Boolean(normalizeExternalFormText(runtimeSignature.mode)) ||
+    Boolean(normalizeExternalFormText(runtimeSignature.providerKey)) ||
+    Boolean(normalizeExternalFormText(runtimeSignature.defaultProvider))
   );
 };
 
@@ -225,7 +223,7 @@ export function resolveExternalFormRuntimeState(
         );
 
         schemaStates.push({
-          documentId: normalizeText(document.documentId),
+          documentId: normalizeExternalFormText(document.documentId),
           pageNumber: Number(page.pageNumber) || 0,
           schemaUid,
           visibility,
@@ -244,8 +242,8 @@ export function resolveExternalFormRuntimeState(
   const documentsById = new Map<string, ExternalFormDocumentState>();
 
   for (const document of options.snapshot.documents || []) {
-    const documentId = normalizeText(document.documentId);
-    const documentName = normalizeText(document.name) || documentId || 'Documento';
+    const documentId = normalizeExternalFormText(document.documentId);
+    const documentName = normalizeExternalFormText(document.name) || documentId || 'Documento';
     const pageNumbers = Array.from(new Set((document.pages || []).map((page) => Number(page.pageNumber) || 0).filter((pageNumber) => pageNumber > 0)));
 
     documentsById.set(documentId, {
@@ -303,9 +301,9 @@ export function resolveExternalFormRuntimeState(
   }
 
   return {
-    snapshotVersion: normalizeText(options.snapshot.version),
-    templateSchemaVersion: normalizeText(options.snapshot.templateSchemaVersion) || null,
-    currentRecipientId: normalizeText(options.currentRecipientId),
+    snapshotVersion: normalizeExternalFormText(options.snapshot.version),
+    templateSchemaVersion: normalizeExternalFormText(options.snapshot.templateSchemaVersion) || null,
+    currentRecipientId: normalizeExternalFormText(options.currentRecipientId),
     mode: editableSchemaUids.length > 0 ? 'form' : 'viewer',
     documents: Array.from(documentsById.values()).sort((a, b) => a.order - b.order),
     pages: Array.from(pagesByKey.values()).sort((a, b) =>

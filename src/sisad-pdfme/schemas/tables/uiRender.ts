@@ -203,7 +203,7 @@ const resetEditingPosition = () => {
   bodyEditingPosition.colIndex = -1;
 };
 
-export const uiRender = async (arg: UIRenderProps<TableSchema>) => {
+export const renderTableUi = async (arg: UIRenderProps<TableSchema>) => {
   const { rootElement, onChange, schema, value, mode, scale} = arg;
   const body = getBody(value);
   const bodyWidthRange = getBodyWithRange(value, schema.__bodyRange);
@@ -219,7 +219,7 @@ export const uiRender = async (arg: UIRenderProps<TableSchema>) => {
     resetEditingPosition();
     editingPosition.rowIndex = newPosition.rowIndex;
     editingPosition.colIndex = newPosition.colIndex;
-    void uiRender(arg);
+    void renderTableUi(arg);
   };
 
   if (showHead) {

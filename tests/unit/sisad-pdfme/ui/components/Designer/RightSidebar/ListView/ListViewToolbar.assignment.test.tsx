@@ -112,14 +112,14 @@ describe('ListViewToolbar assignment action', () => {
     expect(screen.queryByTestId('right-sidebar-reassign')).toBeNull();
   });
 
-  it('hides the action when the host did not request it (no selection)', () => {
+  it('keeps the action visible but disabled when no selection exists', () => {
     render(
       <OptionsContext.Provider value={enabledOptions as any}>
         <ListViewToolbar {...baseProps} selectedCount={0} showBulkRecipientAction={false} />
       </OptionsContext.Provider>,
     );
 
-    expect(screen.queryByTestId('right-sidebar-reassign')).toBeNull();
+    expect(screen.getByTestId('right-sidebar-reassign')).toBeDisabled();
   });
 
   it('keeps an accessible label for the reassign intent', () => {

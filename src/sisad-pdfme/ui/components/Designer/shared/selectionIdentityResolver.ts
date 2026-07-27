@@ -10,7 +10,7 @@
  * activeElements exist — identity comes from the element's own dataset.
  */
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { asRecord } from './objectGuards.js';
+import { asRecord } from '../../../../shared/objectGuards.js';
 
 export type SchemaElementIdentity = {
   schemaId?: string;

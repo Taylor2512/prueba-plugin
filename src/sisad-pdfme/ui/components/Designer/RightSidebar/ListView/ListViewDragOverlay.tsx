@@ -39,56 +39,45 @@ const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon, d
   const activeSchema = schemas.find((schema) => schema.id === activeId);
   if (!activeSchema) return null;
   const activeDescriptor = resolveListViewItemDescriptor(activeSchema);
-  const selectedDescriptors = selectedSchemas
-    .filter((item) => item.id !== activeId)
-    .map((item) => ({
-      item,
-      descriptor: resolveListViewItemDescriptor(item),
-    }));
+  // Cuando se arrastran varios campos, no se apilan tarjetas (cubrirían el
+  // destino): la fila activa se muestra al ancho real y el resto se resume en
+  // un chip "+N".
+  const extraCount = selectedSchemas.filter((item) => item.id !== activeId).length;
 
   return createPortal(
-    <DragOverlay adjustScale>
-      <>
-        <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'ul-auto', 'space-y-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-lg')}>
-          <Item
-            icon={renderIcon(activeId)}
-            value={activeDescriptor.primaryLabel}
-            title={activeDescriptor.secondaryLabel || activeDescriptor.primaryLabel}
-            typeLabel={activeDescriptor.typeLabel}
-            required={activeDescriptor.isRequired}
-            readOnly={activeDescriptor.isReadOnly}
-            accentColor={activeDescriptor.ownerColor || undefined}
-            metaBadges={activeDescriptor.badges}
-            dragOverlay
-            densityMode={densityMode}
-            className={mergeClassNames(
-              DESIGNER_CLASSNAME + 'item-auto',
-              'flex items-center gap-[0.5rem] p-[0.375rem] cursor-pointer rounded-xl',
-            )}
-          />
-        </ul>
-        <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'ul-auto', 'space-y-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-lg')}>
-          {selectedDescriptors.map(({ item, descriptor }) => (
-            <Item
-              icon={renderIcon(item)}
-              key={item.id}
-              value={descriptor.primaryLabel}
-              title={descriptor.secondaryLabel || descriptor.primaryLabel}
-              typeLabel={descriptor.typeLabel}
-              required={descriptor.isRequired}
-              readOnly={descriptor.isReadOnly}
-              accentColor={descriptor.ownerColor || undefined}
-              metaBadges={descriptor.badges}
-              dragOverlay
-              densityMode={densityMode}
-              className={mergeClassNames(
-                DESIGNER_CLASSNAME + 'item-auto',
-                'flex items-center gap-[0.5rem] p-[0.375rem] cursor-pointer rounded-xl',
-              )}
-            />
-          ))}
-        </ul>
-      </>
+    // `adjustScale={false}` conserva el tamaño natural de la fila (sin
+    // deformar/ensanchar). El overlay no captura pointer events ni selecciona
+    // texto, y usa un drop-shadow moderado para "levantar" la fila.
+    <DragOverlay
+      adjustScale={false}
+      className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-drag-overlay', 'pointer-events-none select-none')}
+    >
+      <div className="pointer-events-none relative select-none [filter:drop-shadow(0_12px_24px_rgba(15,23,42,0.18))]">
+        <Item
+          icon={renderIcon(activeId)}
+          value={activeDescriptor.primaryLabel}
+          title={activeDescriptor.secondaryLabel || activeDescriptor.primaryLabel}
+          typeLabel={activeDescriptor.typeLabel}
+          required={activeDescriptor.isRequired}
+          readOnly={activeDescriptor.isReadOnly}
+          accentColor={activeDescriptor.ownerColor || undefined}
+          metaBadges={activeDescriptor.badges}
+          dragOverlay
+          densityMode={densityMode}
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'item-auto',
+            'w-full cursor-grabbing rounded-lg',
+          )}
+        />
+        {extraCount > 0 ? (
+          <span
+            aria-hidden="true"
+            className="absolute -right-2 -top-2 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full border border-sky-200 bg-sky-600 px-1 text-[0.625rem] font-semibold text-white shadow-md"
+          >
+            +{extraCount}
+          </span>
+        ) : null}
+      </div>
     </DragOverlay>,
     document.body,
   );

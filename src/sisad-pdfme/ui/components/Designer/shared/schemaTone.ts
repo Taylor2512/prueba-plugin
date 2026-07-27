@@ -48,7 +48,7 @@ type ToneAwareSchema = (SchemaForUI | Schema) & {
   strokeColor?: string;
 };
 
-const normalizeTypeKey = (value: unknown) =>
+const normalizeSchemaToneTypeKey = (value: unknown) =>
   typeof value === 'string' ? value.trim().toLowerCase() : '';
 
 const normalizeHexChannel = (value: string) => {
@@ -56,7 +56,7 @@ const normalizeHexChannel = (value: string) => {
   return Number.isFinite(numeric) ? numeric : 0;
 };
 
-const hexToRgb = (hex: string) => {
+const hexToRgbColor = (hex: string) => {
   const normalized = String(hex || '').trim().replace(/^#/, '');
   if (!/^[0-9a-fA-F]{3}$|^[0-9a-fA-F]{6}$/.test(normalized)) return null;
   const expanded =
@@ -86,7 +86,7 @@ export const resolveSchemaTone = (schema: SchemaForUI | Schema, fallback: string
     toneSchema.strokeColor ||
     toneSchema.color;
 
-  const typeTone = SCHEMA_TYPE_TONES[normalizeTypeKey((schema as SchemaForUI)?.type)];
+  const typeTone = SCHEMA_TYPE_TONES[normalizeSchemaToneTypeKey((schema as SchemaForUI)?.type)];
 
   if (typeof candidate === 'string' && candidate.trim()) return candidate;
   if (typeTone) return typeTone;
@@ -99,7 +99,7 @@ export const resolveSchemaToneSurface = (
   alpha = 0.14,
 ): string => {
   const tone = resolveSchemaTone(schema, fallback);
-  const rgb = hexToRgb(tone);
+  const rgb = hexToRgbColor(tone);
   if (!rgb) return tone;
   const resolvedAlpha = Math.max(0, Math.min(1, alpha));
   return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${resolvedAlpha})`;

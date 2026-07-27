@@ -1,26 +1,44 @@
-# AGENTS.md — reglas raíz
+# AGENTS.md — Contrato raíz para agentes
 
-## Objetivo
+## Inicio obligatorio
 
-Trabaja con cambios pequeños, verificables y reversibles. Conserva el comportamiento público de SISAD PDFME y reduce duplicidad real sin esconderla con exclusiones injustificadas.
+Lee únicamente:
 
-## Antes de editar
+1. `.ai/START.md`;
+2. `.ai/tasks/ACTIVE.md`;
+3. una task-card;
+4. el `AGENTS.md` más cercano a la ruta objetivo;
+5. una ruta y una skill activada por la tarea.
 
-1. Lee `.ai/START.md` y la task-card activa.
-2. Lee el `AGENTS.md` más cercano a los archivos objetivo.
-3. Confirma `git status --short`; no sobrescribas cambios ajenos.
-4. Clasifica la tarea con `.ai/MODEL-ROUTER.md` y `.ai/DUPLICATION-POLICY.md`.
-5. Define archivos permitidos, invariantes y comandos de cierre.
+No cargues todas las carpetas `.ai`, `.agents`, `docs` ni archivos consolidados.
 
-## Límites
+## Principios
 
-- Un solo agente escribe por task-card y worktree.
-- No modifiques `src/sisad-pdfme/pdf-lib` salvo tarea explícita de vendor.
-- No cambies Moveable, Selecto, geometría, snapshot o generator como efecto colateral.
-- No elimines APIs públicas solo porque Knip las marque como no usadas.
-- No introduzcas wrappers, hooks, factories o services que solo renombren una llamada.
-- No marques una tarea como terminada sin ejecutar gates focales.
+- Una task-card, un objetivo verificable y un escritor.
+- Evidencia antes de afirmar; test antes de refactor sensible.
+- El componente `src/sisad-pdfme` es reutilizable y no implementa negocio del host.
+- No modificar Canvas, Moveable, Selecto, Snapshot, Generator o contratos públicos por conveniencia visual.
+- No esconder duplicidad propia mediante exclusiones.
+- No mantener un modelo costoso después de completar el diagnóstico.
+- No continuar una búsqueda sin una nueva evidencia esperada.
+- No declarar éxito sin diff, gate o reproducción verificable.
 
-## Entrega
+## Estados de conocimiento
 
-Reporta: objetivo, archivos modificados, patrón aplicado, duplicidad eliminada, validaciones, riesgos y delta de memoria. Actualiza la task-card; solo modifica memoria durable cuando cambie una decisión, riesgo, métrica o estado estable.
+Toda conclusión técnica se marca como:
+
+- `CONFIRMADO`: sustentada por código, test, comando o fuente oficial;
+- `INFERIDO`: deducción explícita a partir de evidencia;
+- `HIPÓTESIS`: pendiente de validación;
+- `DESCONOCIDO`: no hay evidencia suficiente.
+
+## Parada inmediata
+
+Detente y entrega un handoff cuando:
+
+- se alcance el presupuesto;
+- tres intentos de parche fallen por la misma causa;
+- dos rondas de búsqueda no agreguen evidencia;
+- el alcance cambie de dominio;
+- exista conflicto de ownership;
+- se requiera tocar una frontera protegida no declarada.

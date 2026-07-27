@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { changeSchemas } from '@/sisad-pdfme/ui/helper.js';
+import { applySchemaChanges } from '@/sisad-pdfme/ui/helper.js';
 import { pluginRegistry } from '@/sisad-pdfme/common/pluginRegistry.js';
 import { flatSchemaPlugins } from '@/sisad-pdfme/schemas/index.js';
 import type { SchemaForUI } from '@/sisad-pdfme/common/types.js';
@@ -38,7 +38,7 @@ describe('checkbox → checkboxGroup conversion (changeSchemas contract)', () =>
 
   const runConversion = (checkbox: SchemaForUI) => {
     let committed: SchemaForUI[] = [];
-    changeSchemas({
+    applySchemaChanges({
       objs: conversionBatch(checkbox),
       schemas: [checkbox],
       basePdf: { width: 210, height: 297, padding: [0, 0, 0, 0] },

@@ -227,7 +227,9 @@ const ItemActions = ({
           }}
           title="Eliminar campo"
           className={mergeClassNames(
-            'pointer-events-auto relative z-20 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-rose-200 bg-white text-rose-600 shadow-[0_1px_2px_rgba(15,23,42,0.03)] opacity-100 transition-[opacity,background-color,border-color,box-shadow,transform] duration-150 hover:-translate-y-[1px] hover:border-rose-300 hover:bg-rose-50 hover:text-rose-700 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 focus-visible:ring-offset-1 group-hover:opacity-100 group-focus-within:opacity-100',
+            // Neutro en reposo; el peligro (rojo) aparece solo en hover/focus
+            // para no dominar la fila ni invitar al borrado accidental.
+            'pointer-events-auto relative z-20 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-[background-color,border-color,box-shadow,transform,color] duration-150 hover:-translate-y-[1px] hover:border-rose-300 hover:bg-rose-50 hover:text-rose-600 hover:shadow-sm focus-visible:border-rose-300 focus-visible:bg-rose-50 focus-visible:text-rose-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 focus-visible:ring-offset-1',
           )}
         >
           <Trash2 size={13} />
@@ -341,7 +343,11 @@ const Item = React.memo(
         ref={ref}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'list-view-item',
-          'group relative overflow-hidden rounded-lg border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.025)] transition-[background-color,border-color,box-shadow] duration-150 hover:border-slate-300 hover:bg-slate-50/70 hover:shadow-[0_2px_4px_rgba(15,23,42,0.035)] focus-within:ring-2 focus-within:ring-sky-100 data-[selected=true]:border-sky-200 data-[selected=true]:bg-sky-50/50 data-[selected=true]:ring-1 data-[selected=true]:ring-sky-100/70',
+          // `select-none` evita el resaltado azul accidental de texto al
+          // arrastrar o pasar el cursor; el estado seleccionado real se expresa
+          // con ring/fondo sky y el bloqueado con el candado (nunca por color de
+          // texto). `hidden` atenúa la fila sin confundirse con selección.
+          'group relative select-none overflow-hidden rounded-lg border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.025)] transition-[background-color,border-color,box-shadow,opacity] duration-150 hover:border-slate-300 hover:bg-slate-50/70 hover:shadow-[0_2px_4px_rgba(15,23,42,0.035)] focus-within:ring-2 focus-within:ring-sky-100 data-[hidden=true]:opacity-60 data-[selected=true]:border-sky-300 data-[selected=true]:bg-sky-50/60 data-[selected=true]:opacity-100 data-[selected=true]:ring-1 data-[selected=true]:ring-sky-200',
           className,
         )}
         style={dragStyle}
@@ -350,6 +356,8 @@ const Item = React.memo(
         data-fade-in={fadeIn ? 'true' : 'false'}
         data-selected={selected ? 'true' : 'false'}
         data-hovered={hovered ? 'true' : 'false'}
+        data-hidden={hidden ? 'true' : 'false'}
+        data-locked={readOnly ? 'true' : 'false'}
         data-testid="right-sidebar-field-item"
         data-schema-type={schemaType}
         data-schema-owner-color={accentColor || undefined}
@@ -387,11 +395,11 @@ const Item = React.memo(
             {...listeners}
             type="button"
             aria-label="Reordenar campo"
-            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'pointer-events-auto inline-flex shrink-0 items-center justify-center rounded-md border-0 bg-transparent p-0 text-slate-400 shadow-none opacity-55 transition-colors hover:bg-slate-100 hover:text-slate-700 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-200 cursor-grab active:cursor-grabbing', gripDensityClass)}
+            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'pointer-events-auto inline-flex shrink-0 touch-none select-none items-center justify-center rounded-md border-0 bg-transparent p-0 text-slate-400 shadow-none opacity-55 transition-colors hover:bg-slate-100 hover:text-slate-700 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-200 cursor-grab active:cursor-grabbing', gripDensityClass)}
           >
-            <GripVertical size={14} />
+            <GripVertical size={14} className="pointer-events-none" />
           </button>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-slate-600 shadow-none', iconDensityClass)}>{icon}</div>
+          <div draggable={false} className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex shrink-0 select-none items-center justify-center rounded-md border-0 bg-transparent text-slate-600 shadow-none [&_img]:pointer-events-none [&_img]:select-none [&_svg]:pointer-events-none', iconDensityClass)}>{icon}</div>
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'flex min-w-0 flex-[1_1_auto] flex-col gap-[0.125rem] mr-[0.2rem]')}>
             <div
               className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block min-w-0 truncate font-semibold leading-tight text-slate-800', valueDensityClass)}

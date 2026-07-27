@@ -1,3 +1,5 @@
+import { normalizeLooseText } from '../../../../shared/text.js';
+
 const DEFAULT_LABEL = 'Campo';
 
 const TYPE_LABELS: Record<string, string> = {
@@ -31,6 +33,19 @@ const TYPE_LABELS: Record<string, string> = {
   rectangle: 'Rectángulo',
   ellipse: 'Óvalo',
   table: 'Tabla',
+  // Tipos de flujos de firma/routing: se localizan aquí para que el filtro de
+  // tipos y las filas no mezclen español e inglés (Attachment/Approve/…).
+  attachment: 'Adjunto',
+  approve: 'Aprobar',
+  approval: 'Aprobar',
+  decline: 'Rechazar',
+  reject: 'Rechazar',
+  note: 'Nota',
+  title: 'Título',
+  email: 'Correo electrónico',
+  emailaddress: 'Correo electrónico',
+  initials: 'Iniciales',
+  datesigned: 'Fecha de firma',
 };
 
 const STATE_LABELS: Record<string, string> = {
@@ -54,7 +69,7 @@ const SIGNATURE_MODE_LABELS: Record<string, string> = {
   provider: 'Proveedor externo',
 };
 
-const normalizeKey = (value: unknown) => String(value || '').trim().toLowerCase();
+const normalizeKey = (value: unknown) => normalizeLooseText(value).toLowerCase();
 
 const titleCaseFallback = (value: string) =>
   value

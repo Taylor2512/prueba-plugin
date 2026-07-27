@@ -35,7 +35,7 @@ import {
 } from '../designerEngine.js';
 import { emitDesignerRuntimeEvent } from './Designer/shared/designerExtensions.js';
 import usePaperRefRegistry from './shared/usePaperRefRegistry.js';
-import { isRecord } from './Designer/shared/objectGuards.js';
+import { isRecord } from '../../shared/objectGuards.js';
 
 /**
  * Cache compartido para getDynamicTemplate.
@@ -110,7 +110,7 @@ const sortJsonValue = (value: unknown): unknown => {
  * Se usa como key de deduplicación para evitar rehidratar o recalcular
  * runtime cuando el contenido relevante no cambió.
  */
-const stableJsonSignature = (v: unknown) => {
+const buildPreviewStableJsonSignature = (v: unknown) => {
   try {
     return JSON.stringify(sortJsonValue(v));
   } catch {
@@ -179,7 +179,7 @@ const createPreviewRuntimeSignature = (template: Template) => {
     .map((schema: SchemaForUI) => getSchemaLayoutKey(schema))
     .join('|');
 
-  return stableJsonSignature({ documentKey, pageCount: template?.schemas?.length || 0, schemaSignature });
+  return buildPreviewStableJsonSignature({ documentKey, pageCount: template?.schemas?.length || 0, schemaSignature });
 };
 
 /**
@@ -197,7 +197,7 @@ const createInputRuntimeSignature = (template: Template, input: Record<string, s
   Object.entries(input || {}).forEach(([k, v]) => {
     if (dynamicNames.has(k)) filtered[k] = v;
   });
-  return stableJsonSignature(filtered);
+  return buildPreviewStableJsonSignature(filtered);
 };
 
 /**
@@ -366,7 +366,7 @@ const usePreviewRuntime = ({
     try {
       const tSig = createPreviewRuntimeSignature(template);
       const iSig = createInputRuntimeSignature(template, input || {});
-      return stableJsonSignature({ tSig, iSig });
+      return buildPreviewStableJsonSignature({ tSig, iSig });
     } catch {
       return '';
     }
@@ -451,7 +451,7 @@ const usePreviewRuntime = ({
       const currentInput = inputOverride ?? currentInputRef.current;
       const templateSig = createPreviewRuntimeSignature(nextTemplate);
       const inputSig = createInputRuntimeSignature(nextTemplate, currentInput);
-      const runtimeSignature = stableJsonSignature({ templateSig, inputSig });
+      const runtimeSignature = buildPreviewStableJsonSignature({ templateSig, inputSig });
       const cachedRuntime = runtimeTemplateCacheRef.current.get(runtimeSignature) as
         | { dynamicTemplate: Template; schemasList: SchemaForUI[][] }
         | undefined;

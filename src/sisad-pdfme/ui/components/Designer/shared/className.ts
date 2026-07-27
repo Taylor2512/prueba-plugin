@@ -1,4 +1,4 @@
-const tokenize = (value: string) =>
+const tokenizeClassName = (value: string) =>
   value
     .split(/\s+/)
     .map((token) => token.trim())
@@ -8,7 +8,7 @@ export const mergeClassNames = (...classes: Array<string | undefined | null | fa
   classes.filter(Boolean).join(' ');
 
 export const mergeUniqueClassNames = (...classes: Array<string | undefined | null | false>) =>
-  Array.from(new Set(classes.filter(Boolean).flatMap((value) => tokenize(String(value))))).join(' ');
+  Array.from(new Set(classes.filter(Boolean).flatMap((value) => tokenizeClassName(String(value))))).join(' ');
 
 export const resolveFirstClassSelector = (className: string | undefined, fallback: string) => {
   const normalized = (className || fallback).trim();

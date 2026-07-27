@@ -5,12 +5,12 @@ import type { ResolvedSisadPdfmeConfig, SisadPdfmeProviderProps, SisadPdfmeProvi
 
 export const SisadPdfmeContext = createContext<SisadPdfmeProviderValue | null>(null);
 
-const isResolvedConfig = (value: unknown): value is ResolvedSisadPdfmeConfig =>
+const isResolvedSisadPdfmeProviderConfig = (value: unknown): value is ResolvedSisadPdfmeConfig =>
   Boolean(value && typeof value === 'object' && 'config' in value && 'runtimeOptions' in value && 'designerEngine' in value);
 
 export const SisadPdfmeProvider = ({ children, config }: SisadPdfmeProviderProps) => {
   const value = useMemo<SisadPdfmeProviderValue>(() => {
-    const resolved: ResolvedSisadPdfmeConfig = isResolvedConfig(config)
+    const resolved: ResolvedSisadPdfmeConfig = isResolvedSisadPdfmeProviderConfig(config)
       ? config
       : createSisadPdfmeConfig(config);
     // Registry único por provider: los wrappers hijos (Designer/Form/Viewer)

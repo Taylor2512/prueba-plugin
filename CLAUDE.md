@@ -1,13 +1,12 @@
-# CLAUDE.md — adaptador ligero
+# Claude Code — Adaptador del repositorio
 
-La fuente canónica de reglas es `AGENTS.md` y `.ai/`. No dupliques esas instrucciones aquí.
+La fuente de verdad es `AGENTS.md` y `.ai/`. Este archivo no duplica playbooks.
 
-Al comenzar:
+## Uso
 
-1. Lee `.ai/START.md`.
-2. Selecciona una task-card en `.ai/scrum/task-cards/`.
-3. Para exploración amplia usa un subagente read-only; para implementación conserva un único escritor.
-4. Carga una skill de `.agents/skills/` solo cuando su descripción coincida con la tarea.
-5. Mantén el análisis acotado: evidencia primero, parche mínimo, gates focales, memoria por delta.
-
-No uses loops autónomos abiertos. Detente cuando se cumpla la Definition of Done o cuando el bloqueo requiera una nueva task-card.
+- Carga skills bajo demanda desde `.agents/skills/`.
+- Usa subagentes solo para investigaciones independientes y con herramientas restringidas.
+- Mantén un solo subagente escritor por worktree.
+- Usa hooks deterministas para bloquear acciones prohibidas; no dependas de un prompt para reglas mecánicas.
+- La memoria automática de Claude es auxiliar. La memoria durable del proyecto vive en `.ai/memory/`.
+- Al compactar o reanudar, valida la task-card, el commit base y el estado real del working tree.

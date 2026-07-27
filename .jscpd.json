@@ -37,9 +37,7 @@
     "**/*.spec.ts",
     "**/*.spec.tsx",
     "/.ai/**",
-    ".ai/**",
-    "**/pdf-lib/**",
-    "**/pdf-lib/**",
+    ".ai/**", 
 
     "public/**",
     "src/generated/**"
