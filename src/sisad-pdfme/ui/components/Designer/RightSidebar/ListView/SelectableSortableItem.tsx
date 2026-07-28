@@ -131,8 +131,11 @@ const SelectableSortableItem = ({
       metaBadges={collaborationBadges}
       icon={thisPlugin && <PluginIcon plugin={thisPlugin} label={pluginLabel} size={20} styles={collaborationColor ? { color: collaborationColor } : undefined} />}
       className={mergeClassNames(
+        // El layout interno (padding, gap, alturas por densidad) lo define
+        // `Item`; aquí solo se declara ancho, cursor y radio para que la fila
+        // ocupe todo el carril y las acciones queden pegadas al borde derecho.
         DESIGNER_CLASSNAME + 'item-auto',
-        'flex items-center gap-[0.5rem] p-[0.375rem] cursor-pointer rounded-2xl',
+        'w-full cursor-pointer rounded-lg',
       )}
     />
   );

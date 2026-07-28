@@ -360,32 +360,58 @@ const Sidebar = (props: RightSidebarProps) => {
     } as Record<'fields' | 'detail' | 'docs' | 'comments', SidebarModeMeta>;
   }, [props.modeMetaOverrides]);
 
-  /** Sincroniza auto-focus de detalle cuando el modo solicitado es `auto`. */
+  /**
+   * Firma estable de la selección activa.
+   *
+   * Permite distinguir un cambio real de selección de un simple re-render, para
+   * que el auto-focus de detalle solo se dispare cuando el usuario selecciona.
+   */
+  const selectionSignature = useMemo(
+    () => activeSchemaIds.join('|'),
+    [activeSchemaIds],
+  );
+  const lastSelectionSignatureRef = useRef<string | null>(null);
+
+  /** Normaliza el modo interno cuando el modo activo deja de estar disponible. */
   useEffect(() => {
     if (requestedViewMode !== 'auto') return;
+    if (visibleModes.includes(internalViewMode)) return;
+    setInternalViewMode(fallbackViewMode);
+    onViewModeChange?.(fallbackViewMode);
+  }, [fallbackViewMode, internalViewMode, onViewModeChange, requestedViewMode, visibleModes]);
 
-    if (!visibleModes.includes(internalViewMode)) {
-      setInternalViewMode(fallbackViewMode);
-      onViewModeChange?.(fallbackViewMode);
-      return;
-    }
+  /**
+   * Enfoca el panel de detalle en cuanto cambia la selección a un único schema.
+   *
+   * Se notifica siempre al host (aunque `viewMode` esté controlado) para que un
+   * host que refleja `onViewModeChange` en su estado siga mostrando el detalle
+   * inmediatamente después de seleccionar en el canvas.
+   */
+  useEffect(() => {
+    if (lastSelectionSignatureRef.current === selectionSignature) return;
+    lastSelectionSignatureRef.current = selectionSignature;
+    if (!autoFocusDetail) return;
 
-    if (activeSchemaCount === 1 && autoFocusDetail && internalViewMode !== 'detail' && visibleModes.includes('detail')) {
+    if (activeSchemaCount === 1 && visibleModes.includes('detail')) {
+      if (resolvedViewMode === 'detail') return;
       setInternalViewMode('detail');
       onViewModeChange?.('detail');
       return;
     }
 
-    if (activeSchemaCount !== 1 && internalViewMode === 'detail') {
+    if (resolvedViewMode === 'detail') {
       setInternalViewMode(fallbackViewMode);
       onViewModeChange?.(fallbackViewMode);
     }
-
-    if (!showCommentsRail && internalViewMode === 'comments') {
-      setInternalViewMode(fallbackViewMode);
-      onViewModeChange?.(fallbackViewMode);
-    }
-  }, [requestedViewMode, activeSchemaCount, autoFocusDetail, fallbackViewMode, internalViewMode, onViewModeChange, showCommentsRail, visibleModes]);
+  }, [
+    activeSchemaCount,
+    autoFocusDetail,
+    fallbackViewMode,
+    onViewModeChange,
+    resolvedViewMode,
+    selectionSignature,
+    visibleModes,
+  ]);
 
   if (!sidebarVisible || !hasVisibleModes) return null;
 
@@ -532,6 +558,52 @@ const Sidebar = (props: RightSidebarProps) => {
       />
     </div>
   ) : null;
+
+  /** Pila de paneles: solo el modo resuelto queda visible. */
+  const contentNode = (
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-panel-stack', 'min-h-0 flex flex-1 flex-col overflow-hidden')}>
+      <div
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-fields',
+          resolvedPanelMode === 'list' || resolvedPanelMode === 'bulk'
+            ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
+            : 'hidden',
+        )}
+      >
+        {listViewNode}
+      </div>
+      <div
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-detail',
+          resolvedPanelMode === 'detail'
+            ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
+            : 'hidden',
+        )}
+      >
+        {detailNode}
+      </div>
+      <div
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-comments',
+          resolvedPanelMode === 'comments'
+            ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
+            : 'hidden',
+        )}
+      >
+        {commentsNode}
+      </div>
+      <div
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-docs',
+          resolvedPanelMode === 'docs'
+            ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
+            : 'hidden',
+        )}
+      >
+        {docsNode}
+      </div>
+    </div>
+  );
 
   return (
     <aside
@@ -685,48 +757,7 @@ const Sidebar = (props: RightSidebarProps) => {
           ) : (
             <>
               {resolvedPanelMode !== 'docs' ? documentsRailNode : null}
-              <div className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-panel-stack', 'min-h-0 flex flex-1 flex-col overflow-hidden')}>
-                <div
-                  className={mergeClassNames(
-                    DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-fields',
-                    resolvedPanelMode === 'list' || resolvedPanelMode === 'bulk'
-                      ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
-                      : 'hidden',
-                  )}
-                >
-                  {listViewNode}
-                </div>
-                <div
-                  className={mergeClassNames(
-                    DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-detail',
-                    resolvedPanelMode === 'detail'
-                      ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
-                      : 'hidden',
-                  )}
-                >
-                  {detailNode}
-                </div>
-                <div
-                  className={mergeClassNames(
-                    DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-comments',
-                    resolvedPanelMode === 'comments'
-                      ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
-                      : 'hidden',
-                  )}
-                >
-                  {commentsNode}
-                </div>
-                <div
-                  className={mergeClassNames(
-                    DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-docs',
-                    resolvedPanelMode === 'docs'
-                      ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
-                      : 'hidden',
-                  )}
-                >
-                  {docsNode}
-                </div>
-              </div>
+              {contentNode}
             </>
           )}
         </div>

@@ -185,7 +185,7 @@ const ItemActions = ({
   isHovered?: boolean;
   label?: string;
 }) => (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-actions', 'relative z-20 flex shrink-0 items-center gap-1')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-actions', 'relative z-20 ml-auto flex shrink-0 items-center gap-1 pl-1')}>
       {readOnly ? (
         <span data-testid="right-sidebar-field-badge" data-badge="readonly" className="pointer-events-auto inline-flex">
           <Lock size={13} className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-lock', 'text-slate-500')} />
@@ -227,9 +227,10 @@ const ItemActions = ({
           }}
           title="Eliminar campo"
           className={mergeClassNames(
-            // Neutro en reposo; el peligro (rojo) aparece solo en hover/focus
-            // para no dominar la fila ni invitar al borrado accidental.
-            'pointer-events-auto relative z-20 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-[background-color,border-color,box-shadow,transform,color] duration-150 hover:-translate-y-[1px] hover:border-rose-300 hover:bg-rose-50 hover:text-rose-600 hover:shadow-sm focus-visible:border-rose-300 focus-visible:bg-rose-50 focus-visible:text-rose-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 focus-visible:ring-offset-1',
+            DESIGNER_CLASSNAME + 'list-view-item-delete',
+            // Semántica de peligro visible en reposo (rosa suave) y saturada en
+            // hover/focus, sin llegar al rojo pleno que dominaría la fila.
+            'pointer-events-auto relative z-20 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-rose-200 bg-rose-50 text-rose-500 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-[background-color,border-color,box-shadow,transform,color] duration-150 hover:-translate-y-[1px] hover:border-rose-400 hover:bg-rose-100 hover:text-rose-700 hover:shadow-sm focus-visible:border-rose-400 focus-visible:bg-rose-100 focus-visible:text-rose-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 focus-visible:ring-offset-1',
           )}
         >
           <Trash2 size={13} />
@@ -388,6 +389,10 @@ const Item = React.memo(
           }}
         />
         <div
+          // Sin `w-full`: el proyecto no aplica el preflight de Tailwind, así que
+          // `box-sizing` es `content-box` y un `width:100%` sumaría el padding
+          // horizontal y desbordaría la fila. Como bloque, el ancho automático
+          // ya llena el `li` y deja las acciones pegadas al borde derecho.
           className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'pointer-events-none relative z-10 flex min-w-0 items-center before:pointer-events-none before:absolute before:inset-y-1.5 before:left-0 before:w-[3px] before:rounded-r-full before:bg-[var(--schema-owner-color,_transparent)] before:opacity-55 before:content-[\'\'] group-data-[selected=true]:before:opacity-100', contentDensityClass)}
           {...props}
           aria-hidden="true">
@@ -400,7 +405,7 @@ const Item = React.memo(
             <GripVertical size={14} className="pointer-events-none" />
           </button>
           <div draggable={false} className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex shrink-0 select-none items-center justify-center rounded-md border-0 bg-transparent text-slate-600 shadow-none [&_img]:pointer-events-none [&_img]:select-none [&_svg]:pointer-events-none', iconDensityClass)}>{icon}</div>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'flex min-w-0 flex-[1_1_auto] flex-col gap-[0.125rem] mr-[0.2rem]')}>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'flex min-w-0 flex-1 shrink flex-col gap-[0.125rem]')}>
             <div
               className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block min-w-0 truncate font-semibold leading-tight text-slate-800', valueDensityClass)}
               data-testid="right-sidebar-field-label"
