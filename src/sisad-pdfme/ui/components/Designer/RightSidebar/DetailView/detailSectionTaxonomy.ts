@@ -175,8 +175,34 @@ const TEXT_LIKE_TYPES = new Set([
   'title',
 ]);
 const NUMBER_LIKE_TYPES = new Set(['number']);
+/**
+ * Fecha/hora son campos de entrada del destinatario: comparten el perfil de
+ * texto (obligatorio, formato, validación), no el genérico de objeto visual.
+ */
+const DATE_TIME_TYPES = new Set(['date', 'datetime', 'time']);
 const SIGNING_TYPES = new Set(['signature', 'initials', 'datesigned']);
 const ACTION_TYPES = new Set(['attachment', 'approve', 'decline', 'note']);
+/** Tipos visuales sin captura de datos: lo relevante es caja y formato. */
+const VISUAL_TYPES = new Set([
+  'image',
+  'svg',
+  'line',
+  'rectangle',
+  'ellipse',
+  'table',
+  'qrcode',
+  'japanpost',
+  'ean13',
+  'ean8',
+  'code39',
+  'code128',
+  'nw7',
+  'itf14',
+  'upca',
+  'upce',
+  'gs1datamatrix',
+  'pdf417',
+]);
 
 /**
  * Perfil de visibilidad del inspector para un tipo de schema.
@@ -237,8 +263,16 @@ export const getDetailProfile = (schemaType: string): DetailProfile => {
     return createDetailProfile(normalized, ['identity', 'options', 'validation', 'behavior', 'box', 'dataBindings', 'appearance', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'options']);
   }
 
-  if (TEXT_LIKE_TYPES.has(normalized) || NUMBER_LIKE_TYPES.has(normalized)) {
+  if (TEXT_LIKE_TYPES.has(normalized) || NUMBER_LIKE_TYPES.has(normalized) || DATE_TIME_TYPES.has(normalized)) {
     return createDetailProfile(normalized, ['identity', 'validation', 'behavior', 'box', 'appearance', 'dataBindings', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'validation', 'behavior']);
+  }
+
+  if (VISUAL_TYPES.has(normalized)) {
+    return createDetailProfile(
+      normalized,
+      ['identity', 'box', 'appearance', 'behavior', 'help', 'dataBindings', 'collaboration', 'comments', 'advanced'],
+      ['identity', 'box', 'appearance'],
+    );
   }
 
   if (SIGNING_TYPES.has(normalized)) {

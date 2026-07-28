@@ -56,7 +56,15 @@ import { DateSchema } from './types.js';
 import { getExtraFormatterSchema, Formatter } from '../text/extraFormatter.js';
 import { isEditable } from '../utils.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { hexColorFields, typographyFields } from '../propPanel/commonInspectorFields.js';
+import {
+  hexColorFields,
+  typographyFields,
+  basicsFields,
+  helpFields,
+  dataLabelFields,
+  validationMessageField,
+  COMMON_PROPERTY_MAP,
+} from '../propPanel/commonInspectorFields.js';
 
 interface AirDatepickerInstance {
   selectedDates: Date[];
@@ -402,6 +410,9 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
         ];
 
         const dateSchema: Record<string, PropPanelSchema> = {
+          // Fecha/hora son campos que rellena el destinatario: comparten con
+          // texto y número el bloque de obligatoriedad, ayuda y clave de datos.
+          ...basicsFields(),
           format: {
             title: i18n('schemas.date.format'),
             type: 'string',
@@ -443,16 +454,23 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
             },
             span: 12,
           },
+          validationMessage: validationMessageField(),
+          ...helpFields(),
+          ...dataLabelFields(),
         };
 
         return dateSchema;
       },
       inspector: createSchemaInspectorConfig('textual', {
         propertyMap: {
+          ...COMMON_PROPERTY_MAP,
           format: 'data',
           locale: 'data',
           defaultValueStrategy: 'data',
+          validationMessage: 'validation',
         },
+        includeValidation: true,
+        includeConnections: true,
       }),
       defaultSchema: {
         name: '',
@@ -460,6 +478,9 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
         type,
         content: '',
         defaultValueStrategy: 'none',
+        required: false,
+        readOnly: false,
+        validationMessage: '',
         position: { x: 0, y: 0 },
         width: 50,
         height: 10,

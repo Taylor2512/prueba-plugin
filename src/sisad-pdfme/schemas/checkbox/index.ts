@@ -2,7 +2,13 @@ import { Plugin, Schema } from '@sisad-pdfme/common';
 import svg from '../graphics/svg.js';
 import { isEditable } from '../utils.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
-import { hexColorField } from '../propPanel/commonInspectorFields.js';
+import {
+  hexColorField,
+  basicsFields,
+  helpFields,
+  dataLabelFields,
+  COMMON_PROPERTY_MAP,
+} from '../propPanel/commonInspectorFields.js';
 import { SquareCheck } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
@@ -151,6 +157,9 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
     })),
   propPanel: {
     schema: ({ i18n }) => ({
+      // Una casilla suelta también se rellena: necesita obligatoriedad, ayuda y
+      // clave de datos igual que el resto de campos de captura.
+      ...basicsFields(),
       color: hexColorField({
         title: i18n('schemas.color'),
         pattern: HEX_COLOR_PATTERN,
@@ -161,9 +170,12 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
         title: i18n('schemas.radioGroup.groupName'),
         type: 'string',
       },
+      ...helpFields(),
+      ...dataLabelFields(),
     }),
     inspector: createSchemaInspectorConfig('choice', {
-      propertyMap: { color: 'style' },
+      propertyMap: { ...COMMON_PROPERTY_MAP, color: 'style', groupId: 'data' },
+      includeConnections: true,
     }),
     defaultSchema: {
       name: '',
@@ -174,6 +186,8 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       height: 8,
       groupId: 'MyGroup',
       color: '#1677ff',
+      required: false,
+      readOnly: false,
     },
   },
   icon: getCheckedIcon(),

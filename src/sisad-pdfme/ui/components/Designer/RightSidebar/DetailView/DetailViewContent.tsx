@@ -106,6 +106,10 @@ const DetailViewContent = ({
               form={form}
               widgets={widgets}
               watchHandler={watchHandler}
+              // El perfil por tipo decide qué secciones nacen abiertas; sin esto
+              // todas se renderizaban expandidas y el inspector obligaba a
+              // scrollear para llegar a lo relevante del tipo activo.
+              defaultCollapsed={section.defaultCollapsed}
               resetToken={resetToken}
               readOnly={readOnly}
             />

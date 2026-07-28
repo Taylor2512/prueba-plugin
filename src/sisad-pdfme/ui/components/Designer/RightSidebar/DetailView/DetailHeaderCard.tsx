@@ -91,9 +91,14 @@ const DetailHeaderCard = ({
       ? { label: selectionCount === 1 ? '1 seleccionado' : `${selectionCount} seleccionados`, color: 'processing' as const }
       : null;
   const showDenseMeta = headerDensity === 'comfortable';
-  const showSubtitle = headerDensity !== 'minimal';
+  // El tipo del campo es la información que identifica qué se está editando, así
+  // que se muestra en cualquier densidad; en `minimal` se recorta el contexto
+  // extra en lugar de ocultar el subtítulo entero.
+  const isMinimalDensity = headerDensity === 'minimal';
   const resolvedSubtitle = showType
-    ? [typeLabel || headerSummary.schemaType, headerSummary.contextLabel].filter(Boolean).join(' · ')
+    ? [typeLabel || headerSummary.schemaType, isMinimalDensity ? '' : headerSummary.contextLabel]
+        .filter(Boolean)
+        .join(' · ')
     : headerSummary.contextLabel || (positionLabel || headerSummary.positionLabel);
 
   const backBtn = onBack ? (
@@ -145,7 +150,7 @@ const DetailHeaderCard = ({
         )}
         leading={leading || <Badge color={leadingColor} />}
         title={title || headerSummary.schemaName}
-        subtitle={showSubtitle ? (resolvedSubtitle || (resolvedShowPosition ? (positionLabel || headerSummary.positionLabel) : undefined)) : undefined}
+        subtitle={resolvedSubtitle || (resolvedShowPosition ? (positionLabel || headerSummary.positionLabel) : undefined)}
         badges={
           resolvedShowStateTags
             ? [
@@ -162,7 +167,7 @@ const DetailHeaderCard = ({
               ]
             : []
         }
-        trailing={showSubtitle ? trailingNode : undefined}
+        trailing={trailingNode}
       />
       {showDenseMeta && (headerSummary.uid || headerSummary.ownerName) && (
         <div className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-tech-row`, 'mt-0.5 flex flex-wrap items-center gap-1 px-2.5 pb-1 pt-1')}>

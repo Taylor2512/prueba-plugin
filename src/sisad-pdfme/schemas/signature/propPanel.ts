@@ -4,6 +4,7 @@ import type { PropPanel, PropPanelSchema, PropPanelWidgetProps } from '@sisad-pd
 import type { SignatureSchema, SignatureMode } from './types.js';
 import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { basicsFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
 import { markInspectorInteractive, stopInspectorPointerEvent } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
 import {
   getAvailableSignatureProviders,
@@ -460,6 +461,9 @@ export const propPanel: PropPanel<SignatureSchema> = {
     const showLocationField = !isProviderMode || currentProvider?.capabilities.supportsLocation !== false;
 
     return {
+      // Una firma obligatoria es el caso central de un documento para firmar:
+      // el inspector debe poder marcarla, igual que cualquier campo de captura.
+      ...basicsFields(),
       signatureMode: {
         type: 'void',
         widget: 'SignatureModeWidget',
@@ -653,6 +657,7 @@ export const propPanel: PropPanel<SignatureSchema> = {
   },
   inspector: createSchemaInspectorConfig('signature', {
     propertyMap: {
+      ...COMMON_PROPERTY_MAP,
       signatureMode: 'data',
       signatureProviderKey: 'data',
       signatureProviderStatus: 'data',
@@ -677,6 +682,8 @@ export const propPanel: PropPanel<SignatureSchema> = {
     rotate: 0,
     opacity: DEFAULT_OPACITY,
     placeholderText: 'Firmar aqui',
+    required: false,
+    readOnly: false,
     signatureMode: 'draw',
     signatureProviderKey: undefined,
     signatureProviderConfig: {},

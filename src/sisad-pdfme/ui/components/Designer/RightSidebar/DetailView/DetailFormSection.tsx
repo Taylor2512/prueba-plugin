@@ -118,10 +118,10 @@ const DetailFormSection = ({
             readOnly={readOnly}
             // form-render types only accept 'zh-CN' | 'en-US'. Use 'en-US' to satisfy typing.
             locale="en-US"
-            footer={{
-              reset: { hide: true },
-              submit: { hide: true },
-            }}
+            // `footer={{reset:{hide:true},submit:{hide:true}}}` seguía siendo
+            // truthy para form-render: ocultaba los botones pero mantenía un
+            // Row/Col/Form.Item vacío al pie de CADA sección. `false` lo elimina.
+            footer={false}
           />
         </div>
       )}
