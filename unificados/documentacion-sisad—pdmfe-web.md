@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-28T04:49:44.535Z`
+- **Fecha generación:** `2026-07-28T13:58:45.482Z`
 - **Extensiones incluidas:** `.md, .mdx`
 - **Archivos candidatos incluidos:** `417`
 - **Límite por archivo:** `120 KB`
@@ -729,9 +729,9 @@ prueba-plugin
 | 176 | `.ai/governance/QUALITY-POLICY.md` | markdown | 37 | 0.8 | completo |
 | 177 | `.ai/governance/REVIEW-POLICY.md` | markdown | 21 | 0.4 | completo |
 | 178 | `.ai/governance/TOOL-POLICY.md` | markdown | 12 | 0.6 | completo |
-| 179 | `.ai/memory/CURRENT.md` | markdown | 13 | 0.7 | completo |
+| 179 | `.ai/memory/CURRENT.md` | markdown | 13 | 0.8 | completo |
 | 180 | `.ai/memory/DECISIONS.md` | markdown | 14 | 0.2 | completo |
-| 181 | `.ai/memory/HANDOFF.md` | markdown | 14 | 2.0 | completo |
+| 181 | `.ai/memory/HANDOFF.md` | markdown | 14 | 2.8 | completo |
 | 182 | `.ai/memory/MEMORY-DELTA.template.md` | markdown | 23 | 0.2 | completo |
 | 183 | `.ai/memory/MEMORY-GC.md` | markdown | 14 | 0.4 | completo |
 | 184 | `.ai/memory/METRICS.md` | markdown | 19 | 0.3 | completo |
@@ -919,7 +919,7 @@ prueba-plugin
 | 366 | `.ai/scrum/task-cards/CONFIG-017-configure-documents-comments.md` | markdown | 145 | 4.8 | completo |
 | 367 | `.ai/scrum/task-cards/CONFIG-018-configure-signatures.md` | markdown | 145 | 4.7 | completo |
 | 368 | `.ai/scrum/task-cards/CONFIG-019-dynamic-configuration-controller.md` | markdown | 148 | 5.2 | completo |
-| 369 | `.ai/scrum/task-cards/CONFIG-020-configuration-qa-docs-gates.md` | markdown | 160 | 6.2 | completo |
+| 369 | `.ai/scrum/task-cards/CONFIG-020-configuration-qa-docs-gates.md` | markdown | 161 | 6.6 | completo |
 | 370 | `.ai/scrum/task-cards/DEDUP-001-smart-placement.md` | markdown | 54 | 2.2 | completo |
 | 371 | `.ai/scrum/task-cards/DEDUP-002-keyboard-command-registry.md` | markdown | 56 | 2.4 | completo |
 | 372 | `.ai/scrum/task-cards/DEDUP-003-comments-overlay.md` | markdown | 54 | 2.3 | completo |
@@ -971,13 +971,13 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1623
+- **extensión no incluida:** 1627
 - **directorio ignorado: dependencia/build/salida generada:** 6
 
 ## Totales
 
-- **KB originales candidatos:** `456.1`
-- **KB incluidos en contenido:** `455.5`
+- **KB originales candidatos:** `457.3`
+- **KB incluidos en contenido:** `456.7`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -7826,8 +7826,8 @@ Salida:
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
-- **Tamaño original:** `0.7 KB`
-- **SHA1 corto:** `0b6e86503e`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `c6e044d646`
 - **Estado:** `completo`
 
 ```markdown
@@ -7839,9 +7839,9 @@ Salida:
 - Task-card activa: CONFIG-020
 - Rama/worktree: `main` / `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`
 - Commit base: `23596c5`
-- Último gate: `npm run quality:dead-code` sigue fallando por baseline de export surface; `lint`, `vitest`, `playwright`, `duplicate-functions`, `direct-config-readers` y `knip --include exports` verdes.
-- Bloqueo: deuda heredada de `quality:dead-code` en exports/types, no en files; ya no quedan unused files.
-- Próxima acción: documentar la excepción o abrir una ola separada para integration/recipients export surface.
+- Último gate: `npm run quality:dead-code` sigue fallando por baseline heredada de deps/types y 3 duplicate exports semánticos; `lint`, `vitest`, `playwright`, `duplicate-functions`, `direct-config-readers` y `knip --include exports` verdes.
+- Bloqueo: deuda heredada de `quality:dead-code` ya no incluye unused files ni unused exports.
+- Próxima acción: documentar la excepción o abrir una ola separada para el último bloque de alias/constantes duplicadas.
 
 No incluir historial; reemplazar al cambiar el estado.
 ```
@@ -7879,24 +7879,24 @@ Formato:
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
-- **Tamaño original:** `2.0 KB`
-- **SHA1 corto:** `0c3e410785`
+- **Tamaño original:** `2.8 KB`
+- **SHA1 corto:** `e2dce08350`
 - **Estado:** `completo`
 
 ```markdown
 # HANDOFF
 
 - Task: CONFIG-020
-- Estado: in progress; gates focales verdes, `quality:dead-code` sigue baseline heredado de export surface
+- Estado: in progress; gates focales verdes, `quality:dead-code` sigue baseline heredado de deps/types y 3 duplicate exports semánticos
 - Rama/worktree: `main` / `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`
 - Commit base: `23596c5`
-- Archivos: `.ai/scrum/task-cards/CONFIG-020-configuration-qa-docs-gates.md`, `.ai/scrum/SPRINT-CURRENT.md`, `.ai/memory/HANDOFF.md`, `.ai/memory/CURRENT.md`, `src/sisad-pdfme/devtools/index.ts`, `tests/unit/sisad-pdfme/devtoolsPublicSurface.test.ts`, `tests/unit/sisad-pdfme/adaptersPublicSurface.test.ts`, `tests/unit/features/pdfcomponent/ui/primitivesPublicSurface.test.ts`
-- Causa confirmada: el baseline de `knip` ya no tiene unused files; lo que queda es export surface heredada, con un export incorrecto `downloadBytes` retirado del barrel devtools.
-- Cambios: eliminé el barrel muerto de `schemas/options`, corregí el barrel `devtools` (`downloadBytes`), y añadí smokes públicos para config, inspector, devtools, adapters y primitives.
-- Gates: `npm run lint` ✅, `npx vitest run tests/unit/sisad-pdfme/config/public-api.test.ts tests/unit/sisad-pdfme/ui/detailViewPublicModules.test.ts tests/unit/sisad-pdfme/devtoolsPublicSurface.test.ts tests/unit/sisad-pdfme/adaptersPublicSurface.test.ts tests/unit/features/pdfcomponent/ui/primitivesPublicSurface.test.ts` ✅, `npm run quality:duplicate-functions` ✅, `npm run quality:direct-config-readers` ✅, `npx knip --cache --reporter compact --include exports --max-show-issues 120` ✅, `npm run quality:dead-code` ❌ baseline heredado.
+- Archivos: `.ai/scrum/task-cards/CONFIG-020-configuration-qa-docs-gates.md`, `.ai/scrum/SPRINT-CURRENT.md`, `.ai/memory/HANDOFF.md`, `.ai/memory/CURRENT.md`, `src/sisad-pdfme/devtools/index.ts`, `tests/unit/sisad-pdfme/devtoolsPublicSurface.test.ts`, `tests/unit/sisad-pdfme/adaptersPublicSurface.test.ts`, `tests/unit/features/pdfcomponent/ui/primitivesPublicSurface.test.ts`, `tests/unit/sisad-pdfme/integrationPublicSurface.test.ts`, `tests/unit/sisad-pdfme/recipientsPublicSurface.test.ts`, `tests/unit/sisad-pdfme/optionsPublicSurface.test.ts`
+- Causa confirmada: el baseline de `knip` ya no tiene unused files ni unused exports; lo que queda es export surface heredada en deps/types y 3 duplicate exports semánticos aceptables en `text/constants`.
+- Cambios: eliminé el barrel muerto de `schemas/options`, corregí el barrel `devtools` (`downloadBytes`), recorté exports `default` redundantes en options/UI detail components, y añadí smokes públicos para config, inspector, devtools, adapters, primitives, integration, recipients y options.
+- Gates: `npm run lint` ✅, `npx vitest run tests/unit/sisad-pdfme/config/public-api.test.ts tests/unit/sisad-pdfme/ui/detailViewPublicModules.test.ts tests/unit/sisad-pdfme/devtoolsPublicSurface.test.ts tests/unit/sisad-pdfme/adaptersPublicSurface.test.ts tests/unit/features/pdfcomponent/ui/primitivesPublicSurface.test.ts tests/unit/sisad-pdfme/integrationPublicSurface.test.ts tests/unit/sisad-pdfme/recipientsPublicSurface.test.ts tests/unit/sisad-pdfme/optionsPublicSurface.test.ts tests/unit/sisad-pdfme/schemas/options/optionGroupRenderer.test.ts tests/unit/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.test.ts tests/unit/generated/assignments/assignments.lifecycle.test.ts` ✅, `npm run quality:duplicate-functions` ✅, `npm run quality:direct-config-readers` ✅, `npx knip --cache --reporter compact --include exports --max-show-issues 120` ✅, `npm run quality:dead-code` ❌ baseline heredado.
 - Claims no verificados: `quality:dead-code` completo sigue sin quedar en verde.
-- Riesgos: el restante de `quality:dead-code` está en barrels públicos y helpers exportados; seguir apretando sin una ola dedicada puede crecer mucho el diff.
-- Siguiente acción: si se continúa, o se abre una ola separada para export surface/integration o se documenta la excepción de `dead-code`.
+- Riesgos: el restante de `quality:dead-code` está en dependencias/tipos y 3 alias/constantes duplicadas heredadas; seguir apretando sin una ola dedicada puede crecer mucho el diff.
+- Siguiente acción: si se continúa, abrir una ola separada para el último bloque de alias/constantes o documentar la excepción de `dead-code`.
 - Condición de parada: si el siguiente intento exige tocar lógica real fuera de la surface de re-export, parar y documentar la excepción.
 ```
 
@@ -12474,7 +12474,7 @@ Máximo cinco acciones.
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
 - **Tamaño original:** `4.9 KB`
-- **SHA1 corto:** `465e8f6f19`
+- **SHA1 corto:** `49d11cfc74`
 - **Estado:** `completo`
 
 ```markdown
@@ -12515,7 +12515,7 @@ Notas operativas:
 | [CONFIG-017](task-cards/CONFIG-017-configure-documents-comments.md) | Done | runtime-architect | Terra high | actual | documents/comments desacoplados de visibilidad; vitest y build verdes |
 | [CONFIG-018](task-cards/CONFIG-018-configure-signatures.md) | Done | schema-specialist | Terra high | actual | firmas y providers validados; vitest y build verdes |
 | [CONFIG-019](task-cards/CONFIG-019-dynamic-configuration-controller.md) | Done | runtime-architect | Sol high | actual | controller público, hot update y rebuild controlado validados; vitest/playwright/build verdes |
-| [CONFIG-020](task-cards/CONFIG-020-configuration-qa-docs-gates.md) | In progress | qa-reviewer | Terra medium | actual | docs, checker y suite Playwright de configuración; 16 escenarios Playwright y direct-config-readers verdes; lint/build/duplicate/vitest ejecutados; smoke test del inspector, config, devtools, adapters y primitives verdes; dead-code ahora solo deja baseline de export surface (114 exports, 54 types, 18 duplicate exports; 0 unused files) |
+| [CONFIG-020](task-cards/CONFIG-020-configuration-qa-docs-gates.md) | In progress | qa-reviewer | Terra medium | actual | docs, checker y suite Playwright de configuración; 16 escenarios Playwright y direct-config-readers verdes; lint/build/duplicate/vitest ejecutados; smoke test del inspector, config, devtools, adapters, primitives, integration, recipients y options verdes; dead-code ahora solo deja baseline heredada de deps/types y 3 duplicate exports semánticos |
 
 WIP máximo: 3; cuentan `In progress` e `In review`. `SPRINT-CURRENT.md` es el único propietario del estado.
 ```
@@ -17842,9 +17842,9 @@ El handoff debe distinguir: modificado, observado, pendiente y no verificado.
 ### 0369 — `.ai/scrum/task-cards/CONFIG-020-configuration-qa-docs-gates.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `160`
-- **Tamaño original:** `6.2 KB`
-- **SHA1 corto:** `3d94572d37`
+- **Líneas:** `161`
+- **Tamaño original:** `6.6 KB`
+- **SHA1 corto:** `e0cf1c4acb`
 - **Estado:** `completo`
 
 ```markdown
@@ -17867,11 +17867,12 @@ Completar documentación, ejemplos, matriz de regresión y gates que impidan nue
 - Auditoría vigente: `reports/configuration/`.
 - Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
 - Ruta de contexto: `.ai/routes/configuration.md`.
-- `npm run quality:dead-code` falla por baseline del repositorio; no es una regresión introducida por CONFIG-020.
+- `npm run quality:dead-code` sigue fallando por baseline del repositorio; la surface de exports nueva quedó cubierta y ya no reporta unused exports, solo deuda heredada en deps/types/duplicate exports.
 - `npm run quality` incorpora `quality:direct-config-readers` como gate formal.
 - `npx vitest run tests/unit/sisad-pdfme/config/public-api.test.ts tests/unit/sisad-pdfme/ui/detailViewPublicModules.test.ts tests/unit/sisad-pdfme/devtoolsPublicSurface.test.ts tests/unit/sisad-pdfme/adaptersPublicSurface.test.ts tests/unit/features/pdfcomponent/ui/primitivesPublicSurface.test.ts` pasó; los contratos públicos de config/react, inspector, devtools, adapters y primitives quedaron validados.
 - `npx knip --cache --reporter compact --include exports --max-show-issues 120` quedó limpio en exports.
-- `npm run quality:dead-code` sigue fallando por deuda amplia heredada: 114 unused exports, 54 unused exported types y 18 duplicate exports; ya no reporta unused files.
+- `npx vitest run tests/unit/sisad-pdfme/integrationPublicSurface.test.ts tests/unit/sisad-pdfme/recipientsPublicSurface.test.ts tests/unit/sisad-pdfme/optionsPublicSurface.test.ts` pasó; la surface pública de integration/recipients/options quedó caracterizada.
+- `npm run quality:dead-code` sigue fallando por deuda amplia heredada: 5 unused dependencies, 12 unlisted dependencies, 6 unused exported types y 3 duplicate exports; ya no reporta unused files ni unused exports.
 
 ## Contexto mínimo obligatorio
 

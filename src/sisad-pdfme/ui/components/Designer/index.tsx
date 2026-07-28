@@ -3667,7 +3667,7 @@ const TemplateEditor = ({
         name: doc.name || `Documento ${index + 1}`,
         pageLabel: `${index + 1}`,
         selected: doc.id === activeDocumentId,
-        meta: `${doc.pageCount} pagina${doc.pageCount === 1 ? '' : 's'}`,
+        meta: `${doc.pageCount} página${doc.pageCount === 1 ? '' : 's'}`,
       })),
     [activeDocumentId, uploadedDocuments],
   );
