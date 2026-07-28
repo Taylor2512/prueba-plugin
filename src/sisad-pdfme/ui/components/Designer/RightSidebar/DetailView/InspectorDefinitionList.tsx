@@ -34,5 +34,3 @@ export const InspectorDefinitionList = ({ items, className, testId, density = 'd
     ))}
   </dl>
 );
-
-export default InspectorDefinitionList;

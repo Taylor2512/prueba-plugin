@@ -146,11 +146,18 @@ export const resolveSchemaOwnerColorValue = (schema: unknown): string => {
   );
 };
 
+/**
+ * Tono de dueño para el chrome del schema.
+ *
+ * Prioridad: color de dueño materializado → fallback del caller → gris neutro.
+ * El respaldo final es NEUTRO (no azul) para que un schema sin dueño resuelto no
+ * parezca asignado al recipient azul por defecto.
+ */
 export const resolveSchemaOwnerTone = (
   schema: unknown,
   fallback?: string | null,
 ): string =>
-  resolveSchemaOwnerColorValue(schema) || normalizeColor(fallback) || '#2563EB';
+  resolveSchemaOwnerColorValue(schema) || normalizeColor(fallback) || '#94A3B8';
 
 const resolveSchemaOwnerStyleVars = (
   schema: unknown,

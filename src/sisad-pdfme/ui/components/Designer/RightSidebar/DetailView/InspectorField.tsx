@@ -36,5 +36,3 @@ export const InspectorField = ({
     {children}
   </div>
 );
-
-export default InspectorField;

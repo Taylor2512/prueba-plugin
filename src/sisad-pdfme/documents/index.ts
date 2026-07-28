@@ -24,6 +24,88 @@ const normalizeDocumentText = normalizeLooseText;
 const resolveDocumentId = (document: DocumentLike, index: number) =>
   normalizeDocumentText(document.id || document.fileId || document.fileTemplateId) || `document-${index + 1}`;
 
+type DocumentsCapabilityFeatureState = {
+  id: string;
+  registered: boolean;
+  supported: boolean;
+  enabled: boolean;
+  visible: boolean;
+  permitted: boolean;
+  available: boolean;
+  active: boolean;
+  executable: boolean;
+  reason?: string;
+  sources?: string[];
+};
+
+export type DocumentsCapabilityContext = {
+  documents?: {
+    mode?: 'single' | 'multi' | null;
+    activeDocumentStrategy?: 'internal' | 'host' | null;
+    preserveDocumentSchemaRouting?: boolean | null;
+  } | null;
+  visibility?: {
+    sidebars?: {
+      right?: {
+        panels?: {
+          documents?: boolean;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
+};
+
+export type DocumentsCapabilityState = DocumentsCapabilityFeatureState & {
+  routingMode: 'single' | 'multi';
+  activeDocumentStrategy: 'internal' | 'host';
+  panelVisible: boolean;
+  preserveDocumentSchemaRouting: boolean;
+};
+
+const createDocumentsCapabilityState = (
+  partial: Partial<DocumentsCapabilityState>,
+): DocumentsCapabilityState => ({
+  id: 'documents',
+  registered: true,
+  supported: true,
+  enabled: true,
+  visible: true,
+  permitted: true,
+  available: true,
+  active: false,
+  executable: true,
+  routingMode: 'single',
+  activeDocumentStrategy: 'internal',
+  panelVisible: true,
+  preserveDocumentSchemaRouting: true,
+  sources: ['documents.mode', 'documents.activeDocumentStrategy', 'documents.preserveDocumentSchemaRouting', 'visibility.sidebars.right.panels.documents'],
+  ...partial,
+});
+
+export const resolveDocumentsCapabilityState = (
+  context: DocumentsCapabilityContext = {},
+): DocumentsCapabilityState => {
+  const mode = context.documents?.mode === 'multi' ? 'multi' : 'single';
+  const enabled = context.documents?.mode !== undefined;
+  const panelVisible = context.visibility?.sidebars?.right?.panels?.documents !== false;
+  const activeDocumentStrategy = context.documents?.activeDocumentStrategy === 'host' ? 'host' : 'internal';
+  const preserveDocumentSchemaRouting = context.documents?.preserveDocumentSchemaRouting !== false;
+
+  return createDocumentsCapabilityState({
+    enabled,
+    visible: panelVisible,
+    permitted: true,
+    available: enabled,
+    active: enabled,
+    executable: enabled,
+    reason: enabled ? undefined : 'documents-disabled',
+    routingMode: mode,
+    activeDocumentStrategy,
+    panelVisible,
+    preserveDocumentSchemaRouting,
+  });
+};
+
 const normalizeDocumentTemplate = (template: Template | null | undefined) => {
   if (!template || typeof template !== 'object') return null;
   return {
@@ -94,8 +176,6 @@ export const pdfToPageSizes = (pdf: ArrayBuffer | Uint8Array, options: Pdf2SizeO
 
 export const imagesToPdf = (images: ArrayBuffer[], options: Img2PdfOptions = {}) =>
   img2pdf(images, options);
-
-export const getPdfPageSizes = pdfToPageSizes;
 
 export const filterSchemasByFileAndPage = (
   source: Template | SchemaForUI[][] = [[]],

@@ -111,5 +111,3 @@ export const RegisteredUsersSelector = ({
     </label>
   );
 };
-
-export default RegisteredUsersSelector;

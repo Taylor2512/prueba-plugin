@@ -32,5 +32,3 @@ export const InspectorColorInput = ({
     />
   </label>
 );
-
-export default InspectorColorInput;

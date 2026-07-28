@@ -28,9 +28,7 @@ export const useSisadPdfmeRecipientRuntime = ({
     activeRecipientId:
       activeRecipientId !== undefined
         ? activeRecipientId
-        : resolvedConfig.config.recipients.activeRecipientId ??
-          resolvedConfig.config.collaboration.activeRecipientId ??
-          undefined,
+        : resolvedConfig.config.recipients.activeRecipientId ?? undefined,
   });
 
   const effectiveActiveRecipientId = recipientRegistry.state.activeRecipientId;

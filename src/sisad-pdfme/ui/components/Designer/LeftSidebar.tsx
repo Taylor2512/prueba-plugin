@@ -32,7 +32,7 @@ import { SidebarRail } from './shared/SidebarRail.js';
 import { CatalogLayoutToggle, type CatalogLayout } from './shared/CatalogLayoutToggle.js';
 import { getCatalogLabel } from './shared/designerLabels.js';
 import { lockDesignerSidebarScroll, unlockDesignerSidebarScroll } from './shared/interactionGuards.js';
-import SidebarCollapseHandle from './shared/SidebarCollapseHandle.js';
+import { SidebarCollapseHandle } from './shared/SidebarCollapseHandle.js';
 import { SisadPdfmeContext } from '../../../react/SisadPdfmeProvider.js';
 import { useSisadPdfmeConfig } from '../../../react/useSisadPdfmeConfig.js';
 

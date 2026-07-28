@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createSisadPdfmeConfig } from '@/sisad-pdfme/config/createSisadPdfmeConfig';
 import { actionConfigRegistry } from '@/sisad-pdfme/config/actionConfigRegistry';
+import { featureRegistry } from '@/sisad-pdfme/config/featureRegistry';
 
 describe('actionConfigRegistry', () => {
   it('maps delete-schema to its command id and honors selection state', () => {
@@ -26,5 +27,26 @@ describe('actionConfigRegistry', () => {
 
     expect(state.visible).toBe(false);
     expect(state.reason).toBe('assignment-disabled');
+  });
+
+  it('keeps reassign-recipient aligned with assignment feature state', () => {
+    const resolved = createSisadPdfmeConfig({
+      assignment: { enabled: true },
+      collaboration: { canEditStructure: true },
+    });
+    const context = {
+      selectionCount: 1,
+      recipientCount: 0,
+      canEditStructure: true,
+    };
+
+    const actionState = actionConfigRegistry['reassign-recipient'].resolve(resolved, context);
+    const featureState = featureRegistry.assignment.resolve(resolved, context);
+
+    expect(actionState.visible).toBe(featureState.visible);
+    expect(actionState.permitted).toBe(featureState.permitted);
+    expect(actionState.available).toBe(featureState.available);
+    expect(actionState.executable).toBe(featureState.executable);
+    expect(actionState.reason).toBe(featureState.reason);
   });
 });

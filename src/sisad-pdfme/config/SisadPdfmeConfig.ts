@@ -7,6 +7,8 @@ import type {
   SisadPdfmeRecipientRegistry,
   SisadPdfmeRecipientsConfig,
 } from '../recipients/recipientTypes.js';
+import type { SisadPdfmeConfigChange } from './SisadPdfmeConfigService.js';
+import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from './featureRegistry.js';
 
 export type SisadPdfmeDocument = {
   id: string;
@@ -29,6 +31,16 @@ export type SisadPdfmeController = {
   setTemplate(template: unknown): void;
   getSnapshot(): unknown;
   restoreSnapshot(snapshot: unknown): void;
+  getConfig(): SisadPdfmeGlobalConfig;
+  updateConfig(patch: Partial<SisadPdfmeGlobalConfig>): SisadPdfmeConfigChange;
+  resetConfig(): SisadPdfmeConfigChange;
+  getFeatureState(featureId: FeatureId, context?: FeatureContext): SisadPdfmeFeatureState;
+  explainConfiguration(): {
+    raw: SisadPdfmeGlobalConfig;
+    issues: unknown[];
+    migrationIssues: unknown[];
+    selectors: unknown;
+  };
   getSelectedSchemaIds(): string[];
   selectSchemas(ids: string[], mode?: 'replace' | 'add' | 'toggle'): void;
   clearSelection(): void;

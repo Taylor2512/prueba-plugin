@@ -1,4 +1,5 @@
 import type { ResolvedSisadPdfmeConfig } from './SisadPdfmeConfig.js';
+import { featureRegistry } from './featureRegistry.js';
 import type { SisadPdfmeFeatureState } from './featureRegistry.js';
 
 export type ActionId =
@@ -92,29 +93,16 @@ export const actionConfigRegistry: Record<ActionId, ActionDefinition> = {
     commandId: 'reassignSchemaOwner',
     sources: ['assignment.enabled', 'visibility.actions.reassign'],
     resolve: (config, context) => {
-      const enabled = config.config.assignment.enabled !== false;
-      const visible = enabled && config.visibility.actions?.reassign !== false;
-      const canEditStructure = context?.canEditStructure !== false && config.config.collaboration.canEditStructure !== false;
-      const selectionCount = context?.selectionCount ?? 0;
-      const recipientCount = context?.recipientCount ?? 0;
-      const available = selectionCount > 0 && recipientCount > 0;
+      const assignmentState = featureRegistry.assignment.resolve(config, context);
       return createActionState('reassign-recipient', 'reassignSchemaOwner', ['assignment.enabled', 'visibility.actions.reassign'], {
-        supported: enabled,
-        enabled: enabled && canEditStructure && available,
-        visible,
-        permitted: canEditStructure,
-        available,
-        active: visible,
-        executable: enabled && visible && canEditStructure && available,
-        reason: !enabled
-          ? 'assignment-disabled'
-          : !visible
-            ? 'hidden-by-config'
-            : !canEditStructure
-              ? 'permission-denied'
-              : !available
-                ? 'assignment-unavailable'
-                : undefined,
+        supported: assignmentState.supported,
+        enabled: assignmentState.enabled && assignmentState.available && assignmentState.permitted,
+        visible: assignmentState.visible,
+        permitted: assignmentState.permitted,
+        available: assignmentState.available,
+        active: assignmentState.active,
+        executable: assignmentState.executable,
+        reason: assignmentState.reason,
       });
     },
   },

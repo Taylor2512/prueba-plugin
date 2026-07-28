@@ -209,7 +209,7 @@ export const sanitizeSignatureMetadata = (
   input: Record<string, unknown> | undefined,
   mode: SignatureMode,
 ) => {
-  const next = asRecord(input);
+  const next = asRecord(input) || {};
 
   if (mode !== 'p12') {
     delete next.digestAlgorithm;

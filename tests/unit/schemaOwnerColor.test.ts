@@ -44,8 +44,10 @@ describe('resolveSchemaOwnerTone', () => {
     expect(resolveSchemaOwnerTone({}, '#0891B2')).toBe('#0891B2');
   });
 
-  it('uses the safe default when neither schema nor fallback provide a color', () => {
-    expect(resolveSchemaOwnerTone({}, null)).toBe('#2563EB');
+  it('uses a NEUTRAL default when neither schema nor fallback provide a color', () => {
+    // Antes era azul (#2563EB) y hacía que un schema sin dueño pareciera del
+    // recipient azul; el respaldo debe ser neutro.
+    expect(resolveSchemaOwnerTone({}, null)).toBe('#94A3B8');
   });
 
   it('schema ownership always beats the fallback', () => {

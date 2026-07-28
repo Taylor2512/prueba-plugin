@@ -1,5 +1,6 @@
 import type { SchemaConfigurationProfile } from './schemaConfigurationProfile.js';
 import type { SisadPdfmeFeatureState } from './featureRegistry.js';
+import { normalizeLooseText } from '../shared/text.js';
 
 export type SchemaCapabilityContext = {
   catalogEnabledTypes?: ReadonlyArray<string>;
@@ -30,7 +31,7 @@ export type SchemaCapabilityResolver = {
 };
 
 const normalizeTypeSet = (values?: ReadonlyArray<string>) =>
-  new Set((values || []).map((value) => String(value || '').trim().toLowerCase()).filter(Boolean));
+  new Set((values || []).map((value) => normalizeLooseText(value).toLowerCase()).filter(Boolean));
 
 const createState = (
   id: string,

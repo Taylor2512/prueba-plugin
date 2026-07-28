@@ -9,19 +9,23 @@
  *   (mismo patch que ListView/DetailView) y por tanto preserva locked/readOnly/
  *   objectLocked/lock y geometría; emite `onAssignmentChange`.
  */
-import { useMemo, type MutableRefObject } from 'react';
+import { useContext, useMemo, type MutableRefObject } from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import {
   assignSchemaOwner,
   resolveSchemaUid,
   resolveSelectionOwner,
 } from '../ui/components/Designer/shared/schemaAssignmentService.js';
+import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
+import { useSisadPdfmeConfigService } from './useSisadPdfmeConfigService.js';
 import { recipientsToSnapshot, recipientsFromSnapshot } from '../recipients/recipientSnapshot.js';
 import type {
   SisadPdfmeAssignmentChangePayload,
   SisadPdfmeRecipientRegistry,
 } from '../recipients/recipientTypes.js';
-import type { SisadPdfmeController } from '../config/SisadPdfmeConfig.js';
+import type { SisadPdfmeController, SisadPdfmeGlobalConfig } from '../config/SisadPdfmeConfig.js';
+import type { SisadPdfmeConfigService, SisadPdfmeConfigChange } from '../config/SisadPdfmeConfigService.js';
+import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from '../config/featureRegistry.js';
 
 type InstanceLike = {
   getTemplate?: () => unknown;
@@ -42,6 +46,7 @@ type InstanceLike = {
 export type SisadPdfmeControllerContext = {
   registry?: SisadPdfmeRecipientRegistry | null;
   onAssignmentChange?: (payload: SisadPdfmeAssignmentChangePayload) => void;
+  configService?: SisadPdfmeConfigService | null;
 };
 
 type TemplateLike = { schemas?: SchemaForUI[][] } & Record<string, unknown>;
@@ -64,7 +69,10 @@ export const useSisadPdfmeController = (
   instanceRef: MutableRefObject<InstanceLike | null>,
   context: SisadPdfmeControllerContext = {},
 ): SisadPdfmeController => {
+  const providerValue = useContext(SisadPdfmeContext);
+  const hookConfigService = useSisadPdfmeConfigService();
   const { registry = null, onAssignmentChange } = context;
+  const configService = context.configService ?? providerValue?.configService ?? hookConfigService;
   const controller = useMemo(() => ({
     getTemplate: () => instanceRef.current?.getTemplate?.() ?? null,
     setTemplate: (template) => {
@@ -83,6 +91,12 @@ export const useSisadPdfmeController = (
       }
       instanceRef.current?.updateTemplate?.(snapshot);
     },
+    getConfig: (): SisadPdfmeGlobalConfig => configService.getRawConfig(),
+    updateConfig: (patch: Partial<SisadPdfmeGlobalConfig>): SisadPdfmeConfigChange => configService.update(patch),
+    resetConfig: (): SisadPdfmeConfigChange => configService.reset(),
+    getFeatureState: (featureId: FeatureId, featureContext: FeatureContext = {}): SisadPdfmeFeatureState =>
+      configService.selectFeatureState(featureId, featureContext),
+    explainConfiguration: () => configService.explain(),
 
     getSelectedSchemaIds: () => {
       const instance = getInstance(instanceRef);
@@ -205,7 +219,7 @@ export const useSisadPdfmeController = (
     save: async () => {
       instanceRef.current?.saveTemplate?.();
     },
-  }), [instanceRef, registry, onAssignmentChange]);
+  }), [instanceRef, registry, onAssignmentChange, configService]);
 
   return controller as SisadPdfmeController;
 };

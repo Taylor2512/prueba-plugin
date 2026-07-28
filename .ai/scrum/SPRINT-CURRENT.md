@@ -2,6 +2,12 @@
 
 Objetivo: adoptar la arquitectura IA sin interrumpir el desarrollo de SISAD PDFME.
 
+Notas operativas:
+
+- `SPRINT-CURRENT.md` es la fuente única de estado durable.
+- `CLAIMS.md` contiene solo leases activas de escritura.
+- Cada task-card activa debe tener un writer único; los readers extra son read-only y acotados.
+
 | ID | Estado | Owner | Modelo | Worktree | Evidencia |
 |---|---|---|---|---|---|
 | [AI-001](tasks/AI-001.md) | Done | coordinator | Terra medium | actual | núcleo y enlaces verificados |
@@ -25,5 +31,10 @@ Objetivo: adoptar la arquitectura IA sin interrumpir el desarrollo de SISAD PDFM
 | [CONFIG-001](task-cards/CONFIG-001-repair-public-config-api.md) | In review | claude-opus | Opus 4.8 max | actual | Fase 1: barrel público restaurado; ~13 errores tsc resueltos, 0 nuevos; lint/build verdes; +3 tests contrato |
 | [CONFIG-002](task-cards/CONFIG-002-audit-configuration-sources.md) | Ready | config-specialist | Terra medium | pendiente | baseline de fuentes/readers y recursos |
 | [CONFIG-015](task-cards/CONFIG-015-migrate-schema-profiles.md) | Done | schema-specialist | Sol high | actual | perfiles por familia unificados; tests focales y build verdes |
+| [CONFIG-016](task-cards/CONFIG-016-unify-assignment-collaboration.md) | Done | runtime-architect | Sol high | actual | registry único y action state alineado; vitest/build/duplicate gate verdes |
+| [CONFIG-017](task-cards/CONFIG-017-configure-documents-comments.md) | Done | runtime-architect | Terra high | actual | documents/comments desacoplados de visibilidad; vitest y build verdes |
+| [CONFIG-018](task-cards/CONFIG-018-configure-signatures.md) | Done | schema-specialist | Terra high | actual | firmas y providers validados; vitest y build verdes |
+| [CONFIG-019](task-cards/CONFIG-019-dynamic-configuration-controller.md) | Done | runtime-architect | Sol high | actual | controller público, hot update y rebuild controlado validados; vitest/playwright/build verdes |
+| [CONFIG-020](task-cards/CONFIG-020-configuration-qa-docs-gates.md) | In progress | qa-reviewer | Terra medium | actual | docs, checker y suite Playwright de configuración; 16 escenarios Playwright y direct-config-readers verdes; lint/build/duplicate/vitest ejecutados; smoke test del inspector, config, devtools, adapters, primitives, integration, recipients y options verdes; dead-code ahora solo deja baseline heredada de deps/types y 3 duplicate exports semánticos |
 
 WIP máximo: 3; cuentan `In progress` e `In review`. `SPRINT-CURRENT.md` es el único propietario del estado.

@@ -6,6 +6,7 @@
 - API/snapshot protegidos;
 - no duplicidad nueva;
 - evidencia guardada;
+- claim liberado;
 - task-card actualizada;
 - handoff;
 - memory delta;

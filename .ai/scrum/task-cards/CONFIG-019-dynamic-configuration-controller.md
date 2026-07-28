@@ -1,6 +1,6 @@
 # CONFIG-019 — Implementar configuración dinámica y controller
 
-**Estado:** backlog  
+**Estado:** done
 **Owner:** runtime-architect  
 **Modelo sugerido:** Sol high  
 **Worktree/rama:** pendiente  
@@ -100,18 +100,18 @@ Antes del parche:
 
 ## Comandos/gates
 
-- [ ] `npx vitest run tests/integration/sisad-pdfme/config-dynamic.test.tsx`
-- [ ] `npx playwright test tests/playwright/configuration/dynamic-config.spec.ts`
-- [ ] `npm run build`
+- [x] `npx vitest run tests/integration/sisad-pdfme/config-dynamic.test.tsx`
+- [x] `npx playwright test tests/playwright/configuration/dynamic-config.spec.ts`
+- [x] `npm run build`
 
 ## Criterios de aceptación
 
-- [ ] Cambio visibility no remonta.
-- [ ] Cambio density preserva selección/zoom.
-- [ ] Cambio selecto/moveable usa impacto correcto.
-- [ ] Cambio runtime.mode remonta controladamente.
-- [ ] Fallo de rebuild restaura config/runtime anterior.
-- [ ] Interacción activa devuelve deferred/rejected reason.
+- [x] Cambio visibility no remonta.
+- [x] Cambio density preserva selección/zoom.
+- [x] Cambio selecto/moveable usa impacto correcto.
+- [x] Cambio runtime.mode remonta controladamente.
+- [x] Fallo de rebuild restaura config/runtime anterior.
+- [x] Interacción activa devuelve deferred/rejected reason.
 
 ## Presupuesto
 

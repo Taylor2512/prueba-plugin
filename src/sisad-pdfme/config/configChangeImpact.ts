@@ -40,9 +40,10 @@ export const classifySisadPdfmeConfigChange = (
   ];
   const structuralChanged = structuralKeys.some((key) => !isEqualJson(previous?.[key], next?.[key]));
   const presentationChanged = keys.some((key) => !isEqualJson(previous?.[key], next?.[key]));
+  const runtimeModeChanged = !isEqualJson(previous?.runtime?.mode, next?.runtime?.mode);
   return {
     touchedPaths,
-    presentationOnly: presentationChanged && !structuralChanged,
-    rebuildResources: structuralChanged,
+    presentationOnly: presentationChanged && !structuralChanged && !runtimeModeChanged,
+    rebuildResources: structuralChanged || runtimeModeChanged,
   };
 };

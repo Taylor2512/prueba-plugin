@@ -41,5 +41,3 @@ export const InspectorSelect = ({
     />
   </label>
 );
-
-export default InspectorSelect;

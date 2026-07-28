@@ -1,5 +1,6 @@
 import type { SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
 import { migrateSisadPdfmeConfig } from './configMigration.js';
+import { normalizeLooseText } from '../shared/text.js';
 
 export type SisadPdfmeConfigIssueSeverity = 'error' | 'warning';
 
@@ -26,7 +27,7 @@ const pushValidationIssue = (issues: SisadPdfmeConfigIssue[], issue: SisadPdfmeC
 };
 
 const getStringId = (value: unknown): string =>
-  typeof value === 'string' ? value.trim() : String(value || '').trim();
+  typeof value === 'string' ? value.trim() : normalizeLooseText(value);
 
 export const validateSisadPdfmeConfig = (
   input: SisadPdfmeGlobalConfig = {},

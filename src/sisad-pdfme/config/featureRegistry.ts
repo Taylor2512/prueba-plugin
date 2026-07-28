@@ -1,4 +1,6 @@
 import type { ResolvedSisadPdfmeConfig } from './SisadPdfmeConfig.js';
+import { resolveCommentsCapabilityState } from '../comments/index.js';
+import { resolveDocumentsCapabilityState } from '../documents/index.js';
 
 export type FeatureId =
   | 'runtime'
@@ -133,39 +135,19 @@ export const featureRegistry: Record<FeatureId, FeatureDefinition> = {
   },
   documents: {
     id: 'documents',
-    sources: ['documents.mode', 'visibility.sidebars.right.panels.documents'],
-    resolve: (config) => {
-      const visible = config.visibility.sidebars?.right?.panels?.documents !== false;
-      const enabled = config.config.documents.mode !== undefined;
-      return createFeatureState('documents', ['documents.mode', 'visibility.sidebars.right.panels.documents'], {
-        supported: true,
-        enabled,
-        visible,
-        permitted: true,
-        available: true,
-        active: visible,
-        executable: enabled && visible,
-        reason: visible ? undefined : 'documents-hidden',
-      });
-    },
+    sources: ['documents.mode', 'documents.activeDocumentStrategy', 'documents.preserveDocumentSchemaRouting', 'visibility.sidebars.right.panels.documents'],
+    resolve: (config) => resolveDocumentsCapabilityState({
+      documents: config.config.documents,
+      visibility: config.visibility,
+    }),
   },
   comments: {
     id: 'comments',
-    sources: ['visibility.modals.comments', 'visibility.sidebars.right.panels.comments'],
-    resolve: (config) => {
-      const visible =
-        config.visibility.modals?.comments !== false ||
-        config.visibility.sidebars?.right?.panels?.comments !== false;
-      return createFeatureState('comments', ['visibility.modals.comments', 'visibility.sidebars.right.panels.comments'], {
-        enabled: visible,
-        visible,
-        permitted: true,
-        available: true,
-        active: visible,
-        executable: visible,
-        reason: visible ? undefined : 'comments-hidden',
-      });
-    },
+    sources: ['comments.enabled', 'visibility.modals.comments', 'visibility.sidebars.right.panels.comments'],
+    resolve: (config) => resolveCommentsCapabilityState({
+      comments: (config.config as { comments?: { enabled?: boolean | null } | null }).comments,
+      visibility: config.visibility,
+    }),
   },
   signatures: {
     id: 'signatures',

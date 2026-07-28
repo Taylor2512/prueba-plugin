@@ -67,10 +67,13 @@ const resolveOwnerRecipientColor = (
   schema: OwnerAwareSchema,
   users: CollaboratorUser[],
 ): string => {
+  // El color de dueño debe reflejar al DUEÑO del schema, no a quién lo editó por
+  // última vez: los ids de owner (`ownerRecipientId`/`ownerRecipientIds`) tienen
+  // prioridad sobre `lastModifiedBy`/`createdBy`, que solo actúan como respaldo.
   const candidates = [
     schema?.ownerRecipientId,
-    schema?.lastModifiedBy,
     ...buildOwnerIds(schema),
+    schema?.lastModifiedBy,
     schema?.createdBy,
   ];
   for (const candidate of candidates) {

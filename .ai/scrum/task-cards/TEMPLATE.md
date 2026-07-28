@@ -5,6 +5,15 @@
 **Modelo sugerido:**  
 **Worktree/rama:**
 
+## Coordinación multi-asistente
+
+- Writer:
+- Readers:
+- Claim:
+- Lease:
+- Reviewers:
+- Ruta de handoff:
+
 ## Objetivo observable
 
 ## Evidencia

@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-27T20:11:50.045Z`
+- **Fecha generación:** `2026-07-28T04:49:44.535Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `391`
+- **Archivos candidatos incluidos:** `417`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -172,7 +172,9 @@ prueba-plugin
 │   │   ├── PATTERN-DECISION-MATRIX.md
 │   │   └── SINGLE-SOURCE-OF-TRUTH.md
 │   ├── plans
-│   │   └── PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md
+│   │   ├── CONFIGURATION-TASK-EXECUTION.md
+│   │   ├── PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md
+│   │   └── README-TASK-PACK-CONFIGURATION.md
 │   ├── playbooks
 │   │   ├── ACCESSIBILITY-REVIEW.md
 │   │   ├── BUILD-SCHEMA-PLUGIN.md
@@ -243,7 +245,10 @@ prueba-plugin
 │   │   └── ux-design.md
 │   ├── SCOPE.md
 │   ├── scrum
+│   │   ├── ACTIVE.md
 │   │   ├── BOARD.md
+│   │   ├── CLAIMS.md
+│   │   ├── COMPLETED.md
 │   │   ├── DEFINITION-OF-DONE.md
 │   │   ├── DEFINITION-OF-READY.md
 │   │   ├── PRODUCT-BACKLOG.md
@@ -253,6 +258,25 @@ prueba-plugin
 │   │   ├── SPRINT-CURRENT.md
 │   │   ├── task-cards
 │   │   │   ├── CONFIG-001-repair-public-config-api.md
+│   │   │   ├── CONFIG-002-audit-configuration-sources.md
+│   │   │   ├── CONFIG-003-canonicalize-config-v2.md
+│   │   │   ├── CONFIG-004-create-legacy-config-migration.md
+│   │   │   ├── CONFIG-005-create-config-validation.md
+│   │   │   ├── CONFIG-006-implement-config-service.md
+│   │   │   ├── CONFIG-007-implement-config-selectors.md
+│   │   │   ├── CONFIG-008-create-feature-registry.md
+│   │   │   ├── CONFIG-009-create-action-component-registries.md
+│   │   │   ├── CONFIG-010-integrate-provider-public-wrappers.md
+│   │   │   ├── CONFIG-011-migrate-right-sidebar-listview.md
+│   │   │   ├── CONFIG-012-migrate-left-sidebar.md
+│   │   │   ├── CONFIG-013-migrate-canvas-feature-flags.md
+│   │   │   ├── CONFIG-014-migrate-inspector-configuration.md
+│   │   │   ├── CONFIG-015-migrate-schema-profiles.md
+│   │   │   ├── CONFIG-016-unify-assignment-collaboration.md
+│   │   │   ├── CONFIG-017-configure-documents-comments.md
+│   │   │   ├── CONFIG-018-configure-signatures.md
+│   │   │   ├── CONFIG-019-dynamic-configuration-controller.md
+│   │   │   ├── CONFIG-020-configuration-qa-docs-gates.md
 │   │   │   ├── DEDUP-001-smart-placement.md
 │   │   │   ├── DEDUP-002-keyboard-command-registry.md
 │   │   │   ├── DEDUP-003-comments-overlay.md
@@ -464,6 +488,8 @@ prueba-plugin
 │   ├── configuration
 │   │   ├── behavior-matrix.md
 │   │   ├── config-sources-audit.md
+│   │   ├── config-task-pack-manifest.md
+│   │   ├── config-task-pack-tree.md
 │   │   ├── current-public-api.md
 │   │   ├── duplicate-config-paths.md
 │   │   └── visual-functional-baseline.md
@@ -546,7 +572,7 @@ prueba-plugin
 | 19 | `docs/02-conceptos/07-snapshot.md` | markdown | 19 | 0.3 | completo |
 | 20 | `docs/02-conceptos/README.md` | markdown | 9 | 0.3 | completo |
 | 21 | `docs/03-designer/01-designer-overview.md` | markdown | 16 | 0.4 | completo |
-| 22 | `docs/03-designer/02-props.md` | markdown | 24 | 0.5 | completo |
+| 22 | `docs/03-designer/02-props.md` | markdown | 32 | 0.9 | completo |
 | 23 | `docs/03-designer/03-canvas.md` | markdown | 17 | 0.4 | completo |
 | 24 | `docs/03-designer/04-left-sidebar.md` | markdown | 17 | 0.3 | completo |
 | 25 | `docs/03-designer/05-right-sidebar.md` | markdown | 14 | 0.3 | completo |
@@ -555,7 +581,7 @@ prueba-plugin
 | 28 | `docs/03-designer/08-toolbar-commandbus.md` | markdown | 14 | 0.2 | completo |
 | 29 | `docs/03-designer/09-comments.md` | markdown | 11 | 0.2 | completo |
 | 30 | `docs/03-designer/10-multi-documento.md` | markdown | 10 | 0.3 | completo |
-| 31 | `docs/03-designer/11-action-contract.md` | markdown | 53 | 1.2 | completo |
+| 31 | `docs/03-designer/11-action-contract.md` | markdown | 55 | 1.4 | completo |
 | 32 | `docs/03-designer/README.md` | markdown | 12 | 0.4 | completo |
 | 33 | `docs/04-schemas/01-schema-base.md` | markdown | 23 | 0.3 | completo |
 | 34 | `docs/04-schemas/02-familias.md` | markdown | 12 | 0.4 | completo |
@@ -565,7 +591,7 @@ prueba-plugin
 | 38 | `docs/04-schemas/06-action-based.md` | markdown | 15 | 0.2 | completo |
 | 39 | `docs/04-schemas/07-media-barcode-table-shapes.md` | markdown | 22 | 0.3 | completo |
 | 40 | `docs/04-schemas/08-custom-schemas.md` | markdown | 15 | 0.3 | completo |
-| 41 | `docs/04-schemas/09-inspector-contract.md` | markdown | 22 | 0.4 | completo |
+| 41 | `docs/04-schemas/09-inspector-contract.md` | markdown | 28 | 0.8 | completo |
 | 42 | `docs/04-schemas/10-docusing-mapping.md` | markdown | 17 | 0.4 | completo |
 | 43 | `docs/04-schemas/README.md` | markdown | 12 | 0.5 | completo |
 | 44 | `docs/05-runtime/01-form.md` | markdown | 13 | 0.2 | completo |
@@ -582,7 +608,7 @@ prueba-plugin
 | 55 | `docs/07-integraciones/02-host-app.md` | markdown | 18 | 0.3 | completo |
 | 56 | `docs/07-integraciones/03-signature-providers.md` | markdown | 14 | 0.3 | completo |
 | 57 | `docs/07-integraciones/04-external-forms.md` | markdown | 9 | 0.2 | completo |
-| 58 | `docs/07-integraciones/05-global-config.md` | markdown | 36 | 0.7 | completo |
+| 58 | `docs/07-integraciones/05-global-config.md` | markdown | 56 | 1.5 | completo |
 | 59 | `docs/07-integraciones/06-host-adapters.md` | markdown | 26 | 0.6 | completo |
 | 60 | `docs/07-integraciones/07-pdfcomponent-lab-as-host-reference.md` | markdown | 34 | 1.0 | completo |
 | 61 | `docs/07-integraciones/README.md` | markdown | 6 | 0.2 | completo |
@@ -600,7 +626,7 @@ prueba-plugin
 | 73 | `docs/09-theming/06-tailwind3-selector-dedup-plan.md` | markdown | 46 | 1.0 | completo |
 | 74 | `docs/09-theming/README.md` | markdown | 6 | 0.2 | completo |
 | 75 | `docs/10-testing-qa/01-manual-checklist.md` | markdown | 26 | 0.3 | completo |
-| 76 | `docs/10-testing-qa/02-regression-matrix.md` | markdown | 10 | 0.3 | completo |
+| 76 | `docs/10-testing-qa/02-regression-matrix.md` | markdown | 75 | 6.0 | completo |
 | 77 | `docs/10-testing-qa/03-playwright.md` | markdown | 12 | 0.2 | completo |
 | 78 | `docs/10-testing-qa/04-vitest.md` | markdown | 10 | 0.2 | completo |
 | 79 | `docs/10-testing-qa/README.md` | markdown | 6 | 0.2 | completo |
@@ -616,7 +642,7 @@ prueba-plugin
 | 89 | `docs/13-ejemplos/01-basic-designer.md` | markdown | 11 | 0.2 | completo |
 | 90 | `docs/13-ejemplos/02-multi-document-routing.md` | markdown | 10 | 0.2 | completo |
 | 91 | `docs/13-ejemplos/03-generator-runtime.md` | markdown | 9 | 0.1 | completo |
-| 92 | `docs/13-ejemplos/04-dynamic-host-integration-examples.md` | markdown | 21 | 0.6 | completo |
+| 92 | `docs/13-ejemplos/04-dynamic-host-integration-examples.md` | markdown | 272 | 6.8 | completo |
 | 93 | `docs/13-ejemplos/README.md` | markdown | 5 | 0.2 | completo |
 | 94 | `docs/14-seguridad/01-archivos.md` | markdown | 9 | 0.2 | completo |
 | 95 | `docs/14-seguridad/02-firma.md` | markdown | 5 | 0.2 | completo |
@@ -647,7 +673,7 @@ prueba-plugin
 | 120 | `.ai/ROUTER.md` | markdown | 21 | 1.6 | completo |
 | 121 | `.ai/SCOPE.md` | markdown | 29 | 0.8 | completo |
 | 122 | `.ai/SECURITY.md` | markdown | 14 | 0.7 | completo |
-| 123 | `.ai/START.md` | markdown | 39 | 0.7 | completo |
+| 123 | `.ai/START.md` | markdown | 40 | 0.8 | completo |
 | 124 | `.ai/VENDOR-GENERATED-POLICY.md` | markdown | 19 | 0.9 | completo |
 | 125 | `.claude/README.md` | markdown | 9 | 0.3 | completo |
 | 126 | `.codex/README.md` | markdown | 10 | 0.4 | completo |
@@ -703,9 +729,9 @@ prueba-plugin
 | 176 | `.ai/governance/QUALITY-POLICY.md` | markdown | 37 | 0.8 | completo |
 | 177 | `.ai/governance/REVIEW-POLICY.md` | markdown | 21 | 0.4 | completo |
 | 178 | `.ai/governance/TOOL-POLICY.md` | markdown | 12 | 0.6 | completo |
-| 179 | `.ai/memory/CURRENT.md` | markdown | 13 | 0.2 | completo |
+| 179 | `.ai/memory/CURRENT.md` | markdown | 13 | 0.7 | completo |
 | 180 | `.ai/memory/DECISIONS.md` | markdown | 14 | 0.2 | completo |
-| 181 | `.ai/memory/HANDOFF.md` | markdown | 14 | 0.2 | completo |
+| 181 | `.ai/memory/HANDOFF.md` | markdown | 14 | 2.0 | completo |
 | 182 | `.ai/memory/MEMORY-DELTA.template.md` | markdown | 23 | 0.2 | completo |
 | 183 | `.ai/memory/MEMORY-GC.md` | markdown | 14 | 0.4 | completo |
 | 184 | `.ai/memory/METRICS.md` | markdown | 19 | 0.3 | completo |
@@ -715,217 +741,243 @@ prueba-plugin
 | 188 | `.ai/patterns/DUPLICATION-TAXONOMY.md` | markdown | 22 | 0.6 | completo |
 | 189 | `.ai/patterns/PATTERN-DECISION-MATRIX.md` | markdown | 14 | 0.8 | completo |
 | 190 | `.ai/patterns/SINGLE-SOURCE-OF-TRUTH.md` | markdown | 12 | 0.5 | completo |
-| 191 | `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md` | markdown | 1944 | 36.6 | completo |
-| 192 | `.ai/playbooks/ACCESSIBILITY-REVIEW.md` | markdown | 20 | 0.2 | completo |
-| 193 | `.ai/playbooks/BUILD-SCHEMA-PLUGIN.md` | markdown | 19 | 0.2 | completo |
-| 194 | `.ai/playbooks/CODE-REVIEW.md` | markdown | 13 | 0.3 | completo |
-| 195 | `.ai/playbooks/CONFIGURE-COMPONENT.md` | markdown | 18 | 0.2 | completo |
-| 196 | `.ai/playbooks/DEBUG-REGRESSION.md` | markdown | 19 | 0.3 | completo |
-| 197 | `.ai/playbooks/EXECUTE-TASK.md` | markdown | 20 | 0.2 | completo |
-| 198 | `.ai/playbooks/INCIDENT.md` | markdown | 20 | 0.2 | completo |
-| 199 | `.ai/playbooks/MIGRATE-TAILWIND.md` | markdown | 18 | 0.3 | completo |
-| 200 | `.ai/playbooks/REFACTOR-DRY.md` | markdown | 19 | 0.3 | completo |
-| 201 | `.ai/playbooks/REFACTOR-DUPLICATION.md` | markdown | 11 | 0.4 | completo |
-| 202 | `.ai/playbooks/RELEASE.md` | markdown | 20 | 0.2 | completo |
-| 203 | `.ai/playbooks/REMOVE-DEAD-CODE.md` | markdown | 8 | 0.4 | completo |
-| 204 | `.ai/playbooks/SELECT-PATTERN.md` | markdown | 8 | 0.4 | completo |
-| 205 | `.ai/playbooks/SPRINT-PLANNING.md` | markdown | 9 | 0.3 | completo |
-| 206 | `.ai/playbooks/UPDATE-MEMORY.md` | markdown | 9 | 0.3 | completo |
-| 207 | `.ai/playbooks/UX-REVIEW.md` | markdown | 19 | 0.2 | completo |
-| 208 | `.ai/playbooks/VISUAL-REGRESSION.md` | markdown | 19 | 0.2 | completo |
-| 209 | `.ai/prompts/ANALYZE_ONLY.prompt.md` | markdown | 3 | 0.2 | completo |
-| 210 | `.ai/prompts/ANALYZE.prompt.md` | markdown | 24 | 0.5 | completo |
-| 211 | `.ai/prompts/HANDOFF.prompt.md` | markdown | 24 | 0.5 | completo |
-| 212 | `.ai/prompts/IMPLEMENT_TASK.prompt.md` | markdown | 3 | 0.2 | completo |
-| 213 | `.ai/prompts/IMPLEMENT.prompt.md` | markdown | 24 | 0.5 | completo |
-| 214 | `.ai/prompts/INCIDENT.prompt.md` | markdown | 24 | 0.5 | completo |
-| 215 | `.ai/prompts/MASTER_EXECUTION.prompt.md` | markdown | 3 | 0.2 | completo |
-| 216 | `.ai/prompts/MASTER.prompt.md` | markdown | 24 | 0.5 | completo |
-| 217 | `.ai/prompts/MEMORY.prompt.md` | markdown | 24 | 0.5 | completo |
-| 218 | `.ai/prompts/PLAN.prompt.md` | markdown | 24 | 0.5 | completo |
-| 219 | `.ai/prompts/QA.prompt.md` | markdown | 24 | 0.5 | completo |
-| 220 | `.ai/prompts/RETROSPECTIVE.prompt.md` | markdown | 3 | 0.1 | completo |
-| 221 | `.ai/prompts/REVIEW_DIFF.prompt.md` | markdown | 3 | 0.2 | completo |
-| 222 | `.ai/prompts/REVIEW.prompt.md` | markdown | 24 | 0.5 | completo |
-| 223 | `.ai/prompts/SPRINT_PLANNING.prompt.md` | markdown | 3 | 0.2 | completo |
-| 224 | `.ai/prompts/TRIAGE_JSCPD.prompt.md` | markdown | 3 | 0.2 | completo |
-| 225 | `.ai/prompts/UPDATE_MEMORY.prompt.md` | markdown | 3 | 0.2 | completo |
-| 226 | `.ai/prompts/UX-AUDIT.prompt.md` | markdown | 24 | 0.5 | completo |
-| 227 | `.ai/provider-adapters/README.md` | markdown | 21 | 0.6 | completo |
-| 228 | `.ai/research/AGENT-SKILLS-RESEARCH.md` | markdown | 23 | 1.0 | completo |
-| 229 | `.ai/research/ANTI-HALLUCINATION-FINDINGS.md` | markdown | 16 | 0.4 | completo |
-| 230 | `.ai/research/ARCHITECTURE-AUDIT-V5.md` | markdown | 29 | 0.8 | completo |
-| 231 | `.ai/research/CODEX-MODELS-2026-07-22.md` | markdown | 19 | 0.9 | completo |
-| 232 | `.ai/research/OFFICIAL-SOURCES.md` | markdown | 34 | 1.6 | completo |
-| 233 | `.ai/research/SOURCE-REPORTS.md` | markdown | 6 | 0.5 | completo |
-| 234 | `.ai/research/TOKEN-EFFICIENCY.md` | markdown | 25 | 0.6 | completo |
-| 235 | `.ai/routes/accessibility.md` | markdown | 24 | 0.4 | completo |
-| 236 | `.ai/routes/canvas.md` | markdown | 24 | 0.4 | completo |
-| 237 | `.ai/routes/configuration.md` | markdown | 24 | 0.4 | completo |
-| 238 | `.ai/routes/CSS-TAILWIND.md` | markdown | 24 | 0.4 | completo |
-| 239 | `.ai/routes/docs-memory.md` | markdown | 24 | 0.4 | completo |
-| 240 | `.ai/routes/inspector.md` | markdown | 24 | 0.4 | completo |
-| 241 | `.ai/routes/integration.md` | markdown | 7 | 0.2 | completo |
-| 242 | `.ai/routes/left-sidebar.md` | markdown | 24 | 0.4 | completo |
-| 243 | `.ai/routes/performance.md` | markdown | 24 | 0.4 | completo |
-| 244 | `.ai/routes/quality-dedup.md` | markdown | 7 | 0.2 | completo |
-| 245 | `.ai/routes/quality.md` | markdown | 24 | 0.4 | completo |
-| 246 | `.ai/routes/right-sidebar.md` | markdown | 24 | 0.4 | completo |
-| 247 | `.ai/routes/runtime-snapshot.md` | markdown | 7 | 0.2 | completo |
-| 248 | `.ai/routes/RUNTIME.md` | markdown | 24 | 0.4 | completo |
-| 249 | `.ai/routes/schemas.md` | markdown | 24 | 0.4 | completo |
-| 250 | `.ai/routes/SNAPSHOT.md` | markdown | 24 | 0.4 | completo |
-| 251 | `.ai/routes/testing.md` | markdown | 24 | 0.4 | completo |
-| 252 | `.ai/routes/ux-design.md` | markdown | 24 | 0.4 | completo |
-| 253 | `.ai/scrum/BOARD.md` | markdown | 15 | 0.1 | completo |
-| 254 | `.ai/scrum/DEFINITION-OF-DONE.md` | markdown | 12 | 0.2 | completo |
-| 255 | `.ai/scrum/DEFINITION-OF-READY.md` | markdown | 12 | 0.2 | completo |
-| 256 | `.ai/scrum/PRODUCT-BACKLOG.md` | markdown | 10 | 0.6 | completo |
-| 257 | `.ai/scrum/PRODUCT-GOAL.md` | markdown | 3 | 0.2 | completo |
-| 258 | `.ai/scrum/README.md` | markdown | 19 | 0.5 | completo |
-| 259 | `.ai/scrum/RETROSPECTIVE.md` | markdown | 6 | 0.1 | completo |
-| 260 | `.ai/scrum/SPRINT-CURRENT.md` | markdown | 27 | 3.1 | completo |
-| 261 | `.ai/tasks/ACTIVE.md` | markdown | 5 | 0.2 | completo |
-| 262 | `.ai/tasks/AI-001-anti-hallucination-gate.md` | markdown | 12 | 0.3 | completo |
-| 263 | `.ai/tasks/AI-002-context-overflow-checkpoints.md` | markdown | 12 | 0.2 | completo |
-| 264 | `.ai/tasks/CONFIG-001-unified-config-service.md` | markdown | 30 | 0.4 | completo |
-| 265 | `.ai/tasks/README.md` | markdown | 7 | 0.2 | completo |
-| 266 | `.ai/tasks/TEMPLATE.md` | markdown | 38 | 0.4 | completo |
-| 267 | `.ai/templates/ADR.md` | markdown | 9 | 0.1 | completo |
-| 268 | `.ai/templates/CLAIM-LEDGER.md` | markdown | 4 | 0.1 | completo |
-| 269 | `.ai/templates/CONTEXT-CHECKPOINT.md` | markdown | 12 | 0.2 | completo |
-| 270 | `.ai/templates/DESIGN-AUDIT.md` | markdown | 10 | 0.1 | completo |
-| 271 | `.ai/templates/EVAL-CASE.md` | markdown | 8 | 0.1 | completo |
-| 272 | `.ai/templates/EVIDENCE.md` | markdown | 8 | 0.1 | completo |
-| 273 | `.ai/templates/HANDOFF.md` | markdown | 9 | 0.1 | completo |
-| 274 | `.ai/templates/INCIDENT.md` | markdown | 10 | 0.1 | completo |
-| 275 | `.ai/templates/MEMORY-DELTA.md` | markdown | 8 | 0.2 | completo |
-| 276 | `.ai/templates/PLAN.md` | markdown | 10 | 0.1 | completo |
-| 277 | `.ai/templates/REFACTOR-REPORT.md` | markdown | 19 | 0.2 | completo |
-| 278 | `.ai/templates/REVIEW.md` | markdown | 8 | 0.1 | completo |
-| 279 | `.ai/templates/TASK-CARD.md` | markdown | 28 | 0.3 | completo |
-| 280 | `.claude/agents/sisad-explorer.md` | markdown | 7 | 0.2 | completo |
-| 281 | `.claude/agents/sisad-reviewer.md` | markdown | 7 | 0.2 | completo |
-| 282 | `.codex/agents/README.md` | markdown | 24 | 0.9 | completo |
-| 283 | `.github/agents/sisad-architect.agent.md` | markdown | 6 | 0.3 | completo |
-| 284 | `.github/agents/sisad-config.agent.md` | markdown | 6 | 0.3 | completo |
-| 285 | `.github/agents/sisad-dry-auditor.agent.md` | markdown | 7 | 0.3 | completo |
-| 286 | `.github/agents/sisad-dry-reviewer.agent.md` | markdown | 5 | 0.4 | completo |
-| 287 | `.github/agents/sisad-implementer.agent.md` | markdown | 6 | 0.3 | completo |
-| 288 | `.github/agents/sisad-qa.agent.md` | markdown | 6 | 0.2 | completo |
-| 289 | `.github/agents/sisad-reviewer.agent.md` | markdown | 6 | 0.3 | completo |
-| 290 | `.github/agents/sisad-scrum-coordinator.agent.md` | markdown | 7 | 0.3 | completo |
-| 291 | `.github/agents/sisad-task-planner.agent.md` | markdown | 5 | 0.3 | completo |
-| 292 | `.github/agents/sisad-test-specialist.agent.md` | markdown | 6 | 0.3 | completo |
-| 293 | `.github/agents/sisad-ux.agent.md` | markdown | 6 | 0.3 | completo |
-| 294 | `.github/instructions/canvas.instructions.md` | markdown | 4 | 0.3 | completo |
-| 295 | `.github/instructions/quality.instructions.md` | markdown | 4 | 0.2 | completo |
-| 296 | `.github/instructions/schemas.instructions.md` | markdown | 4 | 0.3 | completo |
-| 297 | `.github/prompts/implement-task.prompt.md` | markdown | 4 | 0.2 | completo |
-| 298 | `.github/prompts/triage-jscpd.prompt.md` | markdown | 4 | 0.3 | completo |
-| 299 | `.serena/memories/memory_maintenance.md` | markdown | 11 | 0.3 | completo |
-| 300 | `reports/configuration/behavior-matrix.md` | markdown | 22 | 2.1 | completo |
-| 301 | `reports/configuration/config-sources-audit.md` | markdown | 28 | 2.1 | completo |
-| 302 | `reports/configuration/current-public-api.md` | markdown | 13 | 1.1 | completo |
-| 303 | `reports/configuration/duplicate-config-paths.md` | markdown | 17 | 0.9 | completo |
-| 304 | `reports/configuration/visual-functional-baseline.md` | markdown | 22 | 1.2 | completo |
-| 305 | `src/sisad-pdfme/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 306 | `tools/ai-quality/README.md` | markdown | 7 | 0.4 | completo |
-| 307 | `.agents/skills/sisad-accessibility/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 308 | `.agents/skills/sisad-canvas-interaction/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 309 | `.agents/skills/sisad-canvas-safety/SKILL.md` | markdown | 12 | 0.6 | completo |
-| 310 | `.agents/skills/sisad-collaboration-assignments/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 311 | `.agents/skills/sisad-configuration-service/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 312 | `.agents/skills/sisad-context-budget/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 313 | `.agents/skills/sisad-css-tailwind/SKILL.md` | markdown | 12 | 0.5 | completo |
-| 314 | `.agents/skills/sisad-dedup-triage/SKILL.md` | markdown | 10 | 0.6 | completo |
-| 315 | `.agents/skills/sisad-designer-safety/SKILL.md` | markdown | 8 | 0.6 | completo |
-| 316 | `.agents/skills/sisad-dry-refactor/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 317 | `.agents/skills/sisad-dry-refactoring/SKILL.md` | markdown | 18 | 0.7 | completo |
-| 318 | `.agents/skills/sisad-evidence-grounding/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 319 | `.agents/skills/sisad-frontend-component-architecture/SKILL.md` | markdown | 25 | 0.5 | completo |
-| 320 | `.agents/skills/sisad-incident-recovery/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 321 | `.agents/skills/sisad-inspector-contract/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 322 | `.agents/skills/sisad-memory-delta/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 323 | `.agents/skills/sisad-memory-scrum/SKILL.md` | markdown | 8 | 0.5 | completo |
-| 324 | `.agents/skills/sisad-multi-document-routing/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 325 | `.agents/skills/sisad-orchestrate-task/SKILL.md` | markdown | 16 | 0.8 | completo |
-| 326 | `.agents/skills/sisad-pattern-selection/SKILL.md` | markdown | 12 | 0.6 | completo |
-| 327 | `.agents/skills/sisad-prompt-evaluation/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 328 | `.agents/skills/sisad-public-api-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 329 | `.agents/skills/sisad-quality-gates/SKILL.md` | markdown | 8 | 0.5 | completo |
-| 330 | `.agents/skills/sisad-react-performance/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 331 | `.agents/skills/sisad-research-verify/SKILL.md` | markdown | 8 | 0.6 | completo |
-| 332 | `.agents/skills/sisad-responsive-ux/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 333 | `.agents/skills/sisad-schema-family-refactor/SKILL.md` | markdown | 16 | 0.6 | completo |
-| 334 | `.agents/skills/sisad-schema-plugin/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 335 | `.agents/skills/sisad-security-privacy/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 336 | `.agents/skills/sisad-skill-evaluation/SKILL.md` | markdown | 16 | 0.6 | completo |
-| 337 | `.agents/skills/sisad-snapshot-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 338 | `.agents/skills/sisad-tailwind-design-system/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 339 | `.agents/skills/sisad-task-execution/SKILL.md` | markdown | 20 | 0.6 | completo |
-| 340 | `.agents/skills/sisad-task-orchestration/SKILL.md` | markdown | 25 | 0.5 | completo |
-| 341 | `.agents/skills/sisad-testing-pyramid/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 342 | `.agents/skills/sisad-visual-regression/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 343 | `.ai/scrum/task-cards/CONFIG-001-repair-public-config-api.md` | markdown | 55 | 3.0 | completo |
-| 344 | `.ai/scrum/task-cards/DEDUP-001-smart-placement.md` | markdown | 54 | 2.2 | completo |
-| 345 | `.ai/scrum/task-cards/DEDUP-002-keyboard-command-registry.md` | markdown | 56 | 2.4 | completo |
-| 346 | `.ai/scrum/task-cards/DEDUP-003-comments-overlay.md` | markdown | 54 | 2.3 | completo |
-| 347 | `.ai/scrum/task-cards/DEDUP-004-inline-edit-overlay.md` | markdown | 54 | 2.1 | completo |
-| 348 | `.ai/scrum/task-cards/DEDUP-005-right-sidebar-actions.md` | markdown | 54 | 1.8 | completo |
-| 349 | `.ai/scrum/task-cards/DEDUP-006-selection-commands.md` | markdown | 56 | 2.2 | completo |
-| 350 | `.ai/scrum/task-cards/DEDUP-007-schema-clipboard.md` | markdown | 56 | 2.2 | completo |
-| 351 | `.ai/scrum/task-cards/DEDUP-008-inspector-taxonomy.md` | markdown | 54 | 1.9 | completo |
-| 352 | `.ai/scrum/task-cards/DEDUP-009-custom-field-modal.md` | markdown | 54 | 1.8 | completo |
-| 353 | `.ai/scrum/task-cards/DEDUP-010-action-chrome.md` | markdown | 54 | 2.0 | completo |
-| 354 | `.ai/scrum/task-cards/DEDUP-011-strict-owned-residuals.md` | markdown | 39 | 1.8 | completo |
-| 355 | `.ai/scrum/task-cards/DOCS-001-canonical-common-docs.md` | markdown | 55 | 2.0 | completo |
-| 356 | `.ai/scrum/task-cards/QUALITY-001-jscpd-profiles.md` | markdown | 56 | 2.1 | completo |
-| 357 | `.ai/scrum/task-cards/TEMPLATE.md` | markdown | 32 | 0.4 | completo |
-| 358 | `.ai/scrum/task-cards/UX-001-right-sidebar-listview-compactness-and-dnd.md` | markdown | 79 | 5.1 | completo |
-| 359 | `.ai/scrum/tasks/AI-001.md` | markdown | 40 | 1.0 | completo |
-| 360 | `.ai/scrum/tasks/AI-002.md` | markdown | 40 | 1.3 | completo |
-| 361 | `.ai/scrum/tasks/AI-003.md` | markdown | 40 | 1.2 | completo |
-| 362 | `.ai/scrum/tasks/AI-004.md` | markdown | 43 | 1.0 | completo |
-| 363 | `.ai/scrum/tasks/AI-005.md` | markdown | 40 | 0.9 | completo |
-| 364 | `.ai/scrum/tasks/AI-006.md` | markdown | 40 | 0.9 | completo |
-| 365 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 39 | 1.6 | completo |
-| 366 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
-| 367 | `src/sisad-pdfme/config/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 368 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
-| 369 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
-| 370 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
-| 371 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
-| 372 | `src/sisad-pdfme/schemas/AGENTS.md` | markdown | 6 | 0.1 | completo |
-| 373 | `src/sisad-pdfme/shared/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 374 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
-| 375 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
-| 376 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
-| 377 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
-| 378 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
-| 379 | `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 380 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
-| 381 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
-| 382 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 383 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
-| 384 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
-| 385 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
-| 386 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
-| 387 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
-| 388 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
-| 389 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
-| 390 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
-| 391 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
+| 191 | `.ai/plans/CONFIGURATION-TASK-EXECUTION.md` | markdown | 72 | 4.6 | completo |
+| 192 | `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md` | markdown | 1944 | 37.3 | completo |
+| 193 | `.ai/plans/README-TASK-PACK-CONFIGURATION.md` | markdown | 23 | 0.8 | completo |
+| 194 | `.ai/playbooks/ACCESSIBILITY-REVIEW.md` | markdown | 20 | 0.2 | completo |
+| 195 | `.ai/playbooks/BUILD-SCHEMA-PLUGIN.md` | markdown | 19 | 0.2 | completo |
+| 196 | `.ai/playbooks/CODE-REVIEW.md` | markdown | 13 | 0.3 | completo |
+| 197 | `.ai/playbooks/CONFIGURE-COMPONENT.md` | markdown | 18 | 0.2 | completo |
+| 198 | `.ai/playbooks/DEBUG-REGRESSION.md` | markdown | 19 | 0.3 | completo |
+| 199 | `.ai/playbooks/EXECUTE-TASK.md` | markdown | 20 | 0.2 | completo |
+| 200 | `.ai/playbooks/INCIDENT.md` | markdown | 20 | 0.2 | completo |
+| 201 | `.ai/playbooks/MIGRATE-TAILWIND.md` | markdown | 18 | 0.3 | completo |
+| 202 | `.ai/playbooks/REFACTOR-DRY.md` | markdown | 19 | 0.3 | completo |
+| 203 | `.ai/playbooks/REFACTOR-DUPLICATION.md` | markdown | 11 | 0.4 | completo |
+| 204 | `.ai/playbooks/RELEASE.md` | markdown | 20 | 0.2 | completo |
+| 205 | `.ai/playbooks/REMOVE-DEAD-CODE.md` | markdown | 8 | 0.4 | completo |
+| 206 | `.ai/playbooks/SELECT-PATTERN.md` | markdown | 8 | 0.4 | completo |
+| 207 | `.ai/playbooks/SPRINT-PLANNING.md` | markdown | 9 | 0.3 | completo |
+| 208 | `.ai/playbooks/UPDATE-MEMORY.md` | markdown | 9 | 0.3 | completo |
+| 209 | `.ai/playbooks/UX-REVIEW.md` | markdown | 19 | 0.2 | completo |
+| 210 | `.ai/playbooks/VISUAL-REGRESSION.md` | markdown | 19 | 0.2 | completo |
+| 211 | `.ai/prompts/ANALYZE_ONLY.prompt.md` | markdown | 3 | 0.2 | completo |
+| 212 | `.ai/prompts/ANALYZE.prompt.md` | markdown | 24 | 0.5 | completo |
+| 213 | `.ai/prompts/HANDOFF.prompt.md` | markdown | 24 | 0.5 | completo |
+| 214 | `.ai/prompts/IMPLEMENT_TASK.prompt.md` | markdown | 3 | 0.2 | completo |
+| 215 | `.ai/prompts/IMPLEMENT.prompt.md` | markdown | 24 | 0.5 | completo |
+| 216 | `.ai/prompts/INCIDENT.prompt.md` | markdown | 24 | 0.5 | completo |
+| 217 | `.ai/prompts/MASTER_EXECUTION.prompt.md` | markdown | 3 | 0.2 | completo |
+| 218 | `.ai/prompts/MASTER.prompt.md` | markdown | 24 | 0.5 | completo |
+| 219 | `.ai/prompts/MEMORY.prompt.md` | markdown | 24 | 0.5 | completo |
+| 220 | `.ai/prompts/PLAN.prompt.md` | markdown | 24 | 0.5 | completo |
+| 221 | `.ai/prompts/QA.prompt.md` | markdown | 24 | 0.5 | completo |
+| 222 | `.ai/prompts/RETROSPECTIVE.prompt.md` | markdown | 3 | 0.1 | completo |
+| 223 | `.ai/prompts/REVIEW_DIFF.prompt.md` | markdown | 3 | 0.2 | completo |
+| 224 | `.ai/prompts/REVIEW.prompt.md` | markdown | 24 | 0.5 | completo |
+| 225 | `.ai/prompts/SPRINT_PLANNING.prompt.md` | markdown | 3 | 0.2 | completo |
+| 226 | `.ai/prompts/TRIAGE_JSCPD.prompt.md` | markdown | 3 | 0.2 | completo |
+| 227 | `.ai/prompts/UPDATE_MEMORY.prompt.md` | markdown | 3 | 0.2 | completo |
+| 228 | `.ai/prompts/UX-AUDIT.prompt.md` | markdown | 24 | 0.5 | completo |
+| 229 | `.ai/provider-adapters/README.md` | markdown | 21 | 0.6 | completo |
+| 230 | `.ai/research/AGENT-SKILLS-RESEARCH.md` | markdown | 23 | 1.0 | completo |
+| 231 | `.ai/research/ANTI-HALLUCINATION-FINDINGS.md` | markdown | 16 | 0.4 | completo |
+| 232 | `.ai/research/ARCHITECTURE-AUDIT-V5.md` | markdown | 29 | 0.8 | completo |
+| 233 | `.ai/research/CODEX-MODELS-2026-07-22.md` | markdown | 19 | 0.9 | completo |
+| 234 | `.ai/research/OFFICIAL-SOURCES.md` | markdown | 34 | 1.6 | completo |
+| 235 | `.ai/research/SOURCE-REPORTS.md` | markdown | 6 | 0.5 | completo |
+| 236 | `.ai/research/TOKEN-EFFICIENCY.md` | markdown | 25 | 0.6 | completo |
+| 237 | `.ai/routes/accessibility.md` | markdown | 24 | 0.4 | completo |
+| 238 | `.ai/routes/canvas.md` | markdown | 24 | 0.4 | completo |
+| 239 | `.ai/routes/configuration.md` | markdown | 24 | 0.4 | completo |
+| 240 | `.ai/routes/CSS-TAILWIND.md` | markdown | 24 | 0.4 | completo |
+| 241 | `.ai/routes/docs-memory.md` | markdown | 24 | 0.4 | completo |
+| 242 | `.ai/routes/inspector.md` | markdown | 24 | 0.4 | completo |
+| 243 | `.ai/routes/integration.md` | markdown | 7 | 0.2 | completo |
+| 244 | `.ai/routes/left-sidebar.md` | markdown | 24 | 0.4 | completo |
+| 245 | `.ai/routes/performance.md` | markdown | 24 | 0.4 | completo |
+| 246 | `.ai/routes/quality-dedup.md` | markdown | 7 | 0.2 | completo |
+| 247 | `.ai/routes/quality.md` | markdown | 24 | 0.4 | completo |
+| 248 | `.ai/routes/right-sidebar.md` | markdown | 24 | 0.4 | completo |
+| 249 | `.ai/routes/runtime-snapshot.md` | markdown | 7 | 0.2 | completo |
+| 250 | `.ai/routes/RUNTIME.md` | markdown | 24 | 0.4 | completo |
+| 251 | `.ai/routes/schemas.md` | markdown | 24 | 0.4 | completo |
+| 252 | `.ai/routes/SNAPSHOT.md` | markdown | 24 | 0.4 | completo |
+| 253 | `.ai/routes/testing.md` | markdown | 24 | 0.4 | completo |
+| 254 | `.ai/routes/ux-design.md` | markdown | 24 | 0.4 | completo |
+| 255 | `.ai/scrum/ACTIVE.md` | markdown | 24 | 0.7 | completo |
+| 256 | `.ai/scrum/BOARD.md` | markdown | 18 | 0.5 | completo |
+| 257 | `.ai/scrum/CLAIMS.md` | markdown | 21 | 0.7 | completo |
+| 258 | `.ai/scrum/COMPLETED.md` | markdown | 41 | 1.5 | completo |
+| 259 | `.ai/scrum/DEFINITION-OF-DONE.md` | markdown | 13 | 0.2 | completo |
+| 260 | `.ai/scrum/DEFINITION-OF-READY.md` | markdown | 15 | 0.3 | completo |
+| 261 | `.ai/scrum/PRODUCT-BACKLOG.md` | markdown | 33 | 2.7 | completo |
+| 262 | `.ai/scrum/PRODUCT-GOAL.md` | markdown | 3 | 0.2 | completo |
+| 263 | `.ai/scrum/README.md` | markdown | 55 | 2.0 | completo |
+| 264 | `.ai/scrum/RETROSPECTIVE.md` | markdown | 6 | 0.1 | completo |
+| 265 | `.ai/scrum/SPRINT-CURRENT.md` | markdown | 40 | 4.9 | completo |
+| 266 | `.ai/tasks/ACTIVE.md` | markdown | 13 | 0.3 | completo |
+| 267 | `.ai/tasks/AI-001-anti-hallucination-gate.md` | markdown | 12 | 0.3 | completo |
+| 268 | `.ai/tasks/AI-002-context-overflow-checkpoints.md` | markdown | 12 | 0.2 | completo |
+| 269 | `.ai/tasks/CONFIG-001-unified-config-service.md` | markdown | 30 | 0.4 | completo |
+| 270 | `.ai/tasks/README.md` | markdown | 7 | 0.2 | completo |
+| 271 | `.ai/tasks/TEMPLATE.md` | markdown | 38 | 0.4 | completo |
+| 272 | `.ai/templates/ADR.md` | markdown | 9 | 0.1 | completo |
+| 273 | `.ai/templates/CLAIM-LEDGER.md` | markdown | 4 | 0.1 | completo |
+| 274 | `.ai/templates/CONTEXT-CHECKPOINT.md` | markdown | 12 | 0.2 | completo |
+| 275 | `.ai/templates/DESIGN-AUDIT.md` | markdown | 10 | 0.1 | completo |
+| 276 | `.ai/templates/EVAL-CASE.md` | markdown | 8 | 0.1 | completo |
+| 277 | `.ai/templates/EVIDENCE.md` | markdown | 8 | 0.1 | completo |
+| 278 | `.ai/templates/HANDOFF.md` | markdown | 9 | 0.1 | completo |
+| 279 | `.ai/templates/INCIDENT.md` | markdown | 10 | 0.1 | completo |
+| 280 | `.ai/templates/MEMORY-DELTA.md` | markdown | 8 | 0.2 | completo |
+| 281 | `.ai/templates/PLAN.md` | markdown | 10 | 0.1 | completo |
+| 282 | `.ai/templates/REFACTOR-REPORT.md` | markdown | 19 | 0.2 | completo |
+| 283 | `.ai/templates/REVIEW.md` | markdown | 8 | 0.1 | completo |
+| 284 | `.ai/templates/TASK-CARD.md` | markdown | 28 | 0.3 | completo |
+| 285 | `.claude/agents/sisad-explorer.md` | markdown | 7 | 0.2 | completo |
+| 286 | `.claude/agents/sisad-reviewer.md` | markdown | 7 | 0.2 | completo |
+| 287 | `.codex/agents/README.md` | markdown | 24 | 0.9 | completo |
+| 288 | `.github/agents/sisad-architect.agent.md` | markdown | 6 | 0.3 | completo |
+| 289 | `.github/agents/sisad-config.agent.md` | markdown | 6 | 0.3 | completo |
+| 290 | `.github/agents/sisad-dry-auditor.agent.md` | markdown | 7 | 0.3 | completo |
+| 291 | `.github/agents/sisad-dry-reviewer.agent.md` | markdown | 5 | 0.4 | completo |
+| 292 | `.github/agents/sisad-implementer.agent.md` | markdown | 6 | 0.3 | completo |
+| 293 | `.github/agents/sisad-qa.agent.md` | markdown | 6 | 0.2 | completo |
+| 294 | `.github/agents/sisad-reviewer.agent.md` | markdown | 6 | 0.3 | completo |
+| 295 | `.github/agents/sisad-scrum-coordinator.agent.md` | markdown | 7 | 0.3 | completo |
+| 296 | `.github/agents/sisad-task-planner.agent.md` | markdown | 5 | 0.3 | completo |
+| 297 | `.github/agents/sisad-test-specialist.agent.md` | markdown | 6 | 0.3 | completo |
+| 298 | `.github/agents/sisad-ux.agent.md` | markdown | 6 | 0.3 | completo |
+| 299 | `.github/instructions/canvas.instructions.md` | markdown | 4 | 0.3 | completo |
+| 300 | `.github/instructions/quality.instructions.md` | markdown | 4 | 0.2 | completo |
+| 301 | `.github/instructions/schemas.instructions.md` | markdown | 4 | 0.3 | completo |
+| 302 | `.github/prompts/implement-task.prompt.md` | markdown | 4 | 0.2 | completo |
+| 303 | `.github/prompts/triage-jscpd.prompt.md` | markdown | 4 | 0.3 | completo |
+| 304 | `.serena/memories/memory_maintenance.md` | markdown | 11 | 0.3 | completo |
+| 305 | `reports/configuration/behavior-matrix.md` | markdown | 22 | 2.1 | completo |
+| 306 | `reports/configuration/config-sources-audit.md` | markdown | 28 | 2.1 | completo |
+| 307 | `reports/configuration/config-task-pack-manifest.md` | markdown | 36 | 3.9 | completo |
+| 308 | `reports/configuration/config-task-pack-tree.md` | markdown | 32 | 1.5 | completo |
+| 309 | `reports/configuration/current-public-api.md` | markdown | 13 | 1.1 | completo |
+| 310 | `reports/configuration/duplicate-config-paths.md` | markdown | 17 | 0.9 | completo |
+| 311 | `reports/configuration/visual-functional-baseline.md` | markdown | 22 | 1.2 | completo |
+| 312 | `src/sisad-pdfme/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 313 | `tools/ai-quality/README.md` | markdown | 7 | 0.4 | completo |
+| 314 | `.agents/skills/sisad-accessibility/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 315 | `.agents/skills/sisad-canvas-interaction/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 316 | `.agents/skills/sisad-canvas-safety/SKILL.md` | markdown | 12 | 0.6 | completo |
+| 317 | `.agents/skills/sisad-collaboration-assignments/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 318 | `.agents/skills/sisad-configuration-service/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 319 | `.agents/skills/sisad-context-budget/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 320 | `.agents/skills/sisad-css-tailwind/SKILL.md` | markdown | 12 | 0.5 | completo |
+| 321 | `.agents/skills/sisad-dedup-triage/SKILL.md` | markdown | 10 | 0.6 | completo |
+| 322 | `.agents/skills/sisad-designer-safety/SKILL.md` | markdown | 8 | 0.6 | completo |
+| 323 | `.agents/skills/sisad-dry-refactor/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 324 | `.agents/skills/sisad-dry-refactoring/SKILL.md` | markdown | 18 | 0.7 | completo |
+| 325 | `.agents/skills/sisad-evidence-grounding/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 326 | `.agents/skills/sisad-frontend-component-architecture/SKILL.md` | markdown | 25 | 0.5 | completo |
+| 327 | `.agents/skills/sisad-incident-recovery/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 328 | `.agents/skills/sisad-inspector-contract/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 329 | `.agents/skills/sisad-memory-delta/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 330 | `.agents/skills/sisad-memory-scrum/SKILL.md` | markdown | 8 | 0.5 | completo |
+| 331 | `.agents/skills/sisad-multi-document-routing/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 332 | `.agents/skills/sisad-orchestrate-task/SKILL.md` | markdown | 16 | 0.8 | completo |
+| 333 | `.agents/skills/sisad-pattern-selection/SKILL.md` | markdown | 12 | 0.6 | completo |
+| 334 | `.agents/skills/sisad-prompt-evaluation/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 335 | `.agents/skills/sisad-public-api-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 336 | `.agents/skills/sisad-quality-gates/SKILL.md` | markdown | 8 | 0.5 | completo |
+| 337 | `.agents/skills/sisad-react-performance/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 338 | `.agents/skills/sisad-research-verify/SKILL.md` | markdown | 8 | 0.6 | completo |
+| 339 | `.agents/skills/sisad-responsive-ux/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 340 | `.agents/skills/sisad-schema-family-refactor/SKILL.md` | markdown | 16 | 0.6 | completo |
+| 341 | `.agents/skills/sisad-schema-plugin/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 342 | `.agents/skills/sisad-security-privacy/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 343 | `.agents/skills/sisad-skill-evaluation/SKILL.md` | markdown | 16 | 0.6 | completo |
+| 344 | `.agents/skills/sisad-snapshot-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 345 | `.agents/skills/sisad-tailwind-design-system/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 346 | `.agents/skills/sisad-task-execution/SKILL.md` | markdown | 20 | 0.6 | completo |
+| 347 | `.agents/skills/sisad-task-orchestration/SKILL.md` | markdown | 25 | 0.5 | completo |
+| 348 | `.agents/skills/sisad-testing-pyramid/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 349 | `.agents/skills/sisad-visual-regression/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 350 | `.ai/scrum/task-cards/CONFIG-001-repair-public-config-api.md` | markdown | 55 | 3.0 | completo |
+| 351 | `.ai/scrum/task-cards/CONFIG-002-audit-configuration-sources.md` | markdown | 149 | 5.3 | completo |
+| 352 | `.ai/scrum/task-cards/CONFIG-003-canonicalize-config-v2.md` | markdown | 143 | 4.8 | completo |
+| 353 | `.ai/scrum/task-cards/CONFIG-004-create-legacy-config-migration.md` | markdown | 145 | 4.7 | completo |
+| 354 | `.ai/scrum/task-cards/CONFIG-005-create-config-validation.md` | markdown | 144 | 4.7 | completo |
+| 355 | `.ai/scrum/task-cards/CONFIG-006-implement-config-service.md` | markdown | 148 | 4.8 | completo |
+| 356 | `.ai/scrum/task-cards/CONFIG-007-implement-config-selectors.md` | markdown | 139 | 4.6 | completo |
+| 357 | `.ai/scrum/task-cards/CONFIG-008-create-feature-registry.md` | markdown | 143 | 4.7 | completo |
+| 358 | `.ai/scrum/task-cards/CONFIG-009-create-action-component-registries.md` | markdown | 143 | 4.7 | completo |
+| 359 | `.ai/scrum/task-cards/CONFIG-010-integrate-provider-public-wrappers.md` | markdown | 146 | 4.8 | completo |
+| 360 | `.ai/scrum/task-cards/CONFIG-011-migrate-right-sidebar-listview.md` | markdown | 146 | 5.3 | completo |
+| 361 | `.ai/scrum/task-cards/CONFIG-012-migrate-left-sidebar.md` | markdown | 142 | 5.0 | completo |
+| 362 | `.ai/scrum/task-cards/CONFIG-013-migrate-canvas-feature-flags.md` | markdown | 147 | 5.4 | completo |
+| 363 | `.ai/scrum/task-cards/CONFIG-014-migrate-inspector-configuration.md` | markdown | 145 | 5.2 | completo |
+| 364 | `.ai/scrum/task-cards/CONFIG-015-migrate-schema-profiles.md` | markdown | 145 | 4.7 | completo |
+| 365 | `.ai/scrum/task-cards/CONFIG-016-unify-assignment-collaboration.md` | markdown | 148 | 5.0 | completo |
+| 366 | `.ai/scrum/task-cards/CONFIG-017-configure-documents-comments.md` | markdown | 145 | 4.8 | completo |
+| 367 | `.ai/scrum/task-cards/CONFIG-018-configure-signatures.md` | markdown | 145 | 4.7 | completo |
+| 368 | `.ai/scrum/task-cards/CONFIG-019-dynamic-configuration-controller.md` | markdown | 148 | 5.2 | completo |
+| 369 | `.ai/scrum/task-cards/CONFIG-020-configuration-qa-docs-gates.md` | markdown | 160 | 6.2 | completo |
+| 370 | `.ai/scrum/task-cards/DEDUP-001-smart-placement.md` | markdown | 54 | 2.2 | completo |
+| 371 | `.ai/scrum/task-cards/DEDUP-002-keyboard-command-registry.md` | markdown | 56 | 2.4 | completo |
+| 372 | `.ai/scrum/task-cards/DEDUP-003-comments-overlay.md` | markdown | 54 | 2.3 | completo |
+| 373 | `.ai/scrum/task-cards/DEDUP-004-inline-edit-overlay.md` | markdown | 54 | 2.1 | completo |
+| 374 | `.ai/scrum/task-cards/DEDUP-005-right-sidebar-actions.md` | markdown | 54 | 1.8 | completo |
+| 375 | `.ai/scrum/task-cards/DEDUP-006-selection-commands.md` | markdown | 56 | 2.2 | completo |
+| 376 | `.ai/scrum/task-cards/DEDUP-007-schema-clipboard.md` | markdown | 56 | 2.2 | completo |
+| 377 | `.ai/scrum/task-cards/DEDUP-008-inspector-taxonomy.md` | markdown | 54 | 1.9 | completo |
+| 378 | `.ai/scrum/task-cards/DEDUP-009-custom-field-modal.md` | markdown | 54 | 1.8 | completo |
+| 379 | `.ai/scrum/task-cards/DEDUP-010-action-chrome.md` | markdown | 54 | 2.0 | completo |
+| 380 | `.ai/scrum/task-cards/DEDUP-011-strict-owned-residuals.md` | markdown | 39 | 1.8 | completo |
+| 381 | `.ai/scrum/task-cards/DOCS-001-canonical-common-docs.md` | markdown | 55 | 2.0 | completo |
+| 382 | `.ai/scrum/task-cards/QUALITY-001-jscpd-profiles.md` | markdown | 56 | 2.1 | completo |
+| 383 | `.ai/scrum/task-cards/TEMPLATE.md` | markdown | 41 | 0.5 | completo |
+| 384 | `.ai/scrum/task-cards/UX-001-right-sidebar-listview-compactness-and-dnd.md` | markdown | 79 | 5.1 | completo |
+| 385 | `.ai/scrum/tasks/AI-001.md` | markdown | 40 | 1.0 | completo |
+| 386 | `.ai/scrum/tasks/AI-002.md` | markdown | 40 | 1.3 | completo |
+| 387 | `.ai/scrum/tasks/AI-003.md` | markdown | 40 | 1.2 | completo |
+| 388 | `.ai/scrum/tasks/AI-004.md` | markdown | 43 | 1.0 | completo |
+| 389 | `.ai/scrum/tasks/AI-005.md` | markdown | 40 | 0.9 | completo |
+| 390 | `.ai/scrum/tasks/AI-006.md` | markdown | 40 | 0.9 | completo |
+| 391 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 39 | 1.6 | completo |
+| 392 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
+| 393 | `src/sisad-pdfme/config/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 394 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
+| 395 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
+| 396 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
+| 397 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
+| 398 | `src/sisad-pdfme/schemas/AGENTS.md` | markdown | 6 | 0.1 | completo |
+| 399 | `src/sisad-pdfme/shared/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 400 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
+| 401 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
+| 402 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 403 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
+| 404 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
+| 405 | `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 406 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
+| 407 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
+| 408 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 409 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
+| 410 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
+| 411 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
+| 412 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
+| 413 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
+| 414 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
+| 415 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
+| 416 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
+| 417 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1587
+- **extensión no incluida:** 1623
 - **directorio ignorado: dependencia/build/salida generada:** 6
 
 ## Totales
 
-- **KB originales candidatos:** `324.8`
-- **KB incluidos en contenido:** `324.4`
+- **KB originales candidatos:** `456.1`
+- **KB incluidos en contenido:** `455.5`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -1600,9 +1652,9 @@ El Designer controla UI interna. El host no debe duplicar sidebars, inspector, z
 ### 0022 — `docs/03-designer/02-props.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `24`
-- **Tamaño original:** `0.5 KB`
-- **SHA1 corto:** `80920c580b`
+- **Líneas:** `32`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `c7d4f8c6cc`
 - **Estado:** `completo`
 
 ```markdown
@@ -1630,6 +1682,14 @@ Ejemplo conceptual:
 | recipients | Destinatarios. |
 | activeRecipientId | Destinatario activo. |
 | onChangeTemplate | Callback de cambio. |
+| config | Config canónica del wrapper. |
+| onControllerReady | Expone el controller público. |
+
+## Reglas
+
+- No leer `visibility`, `assignment`, `sidebars`, `canvas` o `schemas` desde el host si ya existe `config`.
+- `documents`, `comments` y `signatures` deben resolverse desde configuración, no desde props ad hoc.
+- `onControllerReady` es el punto de extensión para lectura, reset y update dinámico.
 ```
 
 <a id="file-0023"></a>
@@ -1863,9 +1923,9 @@ Reglas:
 ### 0031 — `docs/03-designer/11-action-contract.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `53`
-- **Tamaño original:** `1.2 KB`
-- **SHA1 corto:** `97fd334047`
+- **Líneas:** `55`
+- **Tamaño original:** `1.4 KB`
+- **SHA1 corto:** `8fa8002bde`
 - **Estado:** `completo`
 
 ```markdown
@@ -1908,6 +1968,8 @@ type DesignerActionState = {
 - Las acciones que modifican schema pasan por CommandBus o servicio central.
 - Reasignar usa RecipientRegistry y schemaAssignmentService.
 - Lock/Unlock usa estado de acceso central.
+- El host no debe recalcular visibilidad leyendo `options.visibility` o `options.assignment` por su cuenta.
+- La configuración dinámica debe pasar por el controller público o por el registry canónico.
 
 ## Acciones críticas
 
@@ -2200,9 +2262,9 @@ No debe guardar datos sensibles en el schema.
 ### 0041 — `docs/04-schemas/09-inspector-contract.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `22`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `9619bd6ae8`
+- **Líneas:** `28`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `3f49b993f9`
 - **Estado:** `completo`
 
 ```markdown
@@ -2228,6 +2290,12 @@ type SchemaInspectorContract = {
 ``​`
 
 Esto evita que cada schema invente su propio sidebar.
+
+## Reglas de configuración
+
+- `signatureMode`, `signatureProviderKey`, `signatureProviderStatus` y `signatureProviderDisplay` son secciones propias de schemas de firma.
+- Un schema no debe leer `options.visibility` o `options.assignment` directamente para decidir secciones visibles.
+- La visibilidad del inspector debe salir del contrato canónico y de los selectores del wrapper.
 ```
 
 <a id="file-0042"></a>
@@ -2620,9 +2688,9 @@ snapshot -> resolve document -> resolve recipient -> Form -> values -> Viewer ->
 ### 0058 — `docs/07-integraciones/05-global-config.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `36`
-- **Tamaño original:** `0.7 KB`
-- **SHA1 corto:** `4685ea26d3`
+- **Líneas:** `56`
+- **Tamaño original:** `1.5 KB`
+- **SHA1 corto:** `9f85431bbe`
 - **Estado:** `completo`
 
 ```markdown
@@ -2651,6 +2719,26 @@ snapshot -> resolve document -> resolve recipient -> Form -> values -> Viewer ->
   onTemplateChange={setTemplate}
   onSave={handleSave}
 />
+``​`
+
+## Config canónica
+
+- `config` es la fuente de verdad.
+- `ui.visibility` controla presentación; `visibility` canónica sigue siendo la base resuelta.
+- `documents.mode`, `documents.preserveDocumentSchemaRouting` y `documents.activeDocumentStrategy` gobiernan el comportamiento de documentos.
+- `signatures.enabled`, `signatures.defaultMode` y `signatures.providers` gobiernan el flujo de firma.
+- `comments.enabled` gobierna si el feature existe; la visibilidad del panel no debe mutar la capacidad.
+
+## API dinámica pública
+
+Cuando el host necesita leer o mutar configuración en caliente, usa el controller público:
+
+``​`ts
+controller.getConfig();
+controller.updateConfig({ visibility: { ... } });
+controller.resetConfig();
+controller.getFeatureState('documents');
+controller.explainConfiguration();
 ``​`
 
 ## Separación de conceptos
@@ -3171,22 +3259,87 @@ Se elimina CSS solo cuando:
 ### 0076 — `docs/10-testing-qa/02-regression-matrix.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `10`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `3c7393a74d`
+- **Líneas:** `75`
+- **Tamaño original:** `6.0 KB`
+- **SHA1 corto:** `bf9169e289`
 - **Estado:** `completo`
 
 ```markdown
 # Regression Matrix
 
-| Área | Validación |
-|---|---|
-| Canvas | multipágina y coordenadas |
-| Selecto | root only |
-| Moveable | transforma root correcto |
-| Snapshot | metadata preservada |
-| Runtime | Form/Viewer parity |
-| PDF | sin chrome de diseñador |
+## Unit
+
+| Caso | Cobertura | Evidencia |
+|---|---|---|
+| defaults completos | `createSisadPdfmeConfig()` sin args resuelve una config usable | `tests/unit/sisad-pdfme/config/visibility.test.ts`, `tests/unit/sisad-pdfme/config/public-api.test.ts` |
+| merge profundo sin mutación | los cambios de config no rompen los snapshots de entrada | `tests/unit/sisad-pdfme/config/SisadPdfmeConfigService.test.ts` |
+| arrays reemplazados, no concatenados | la resolución conserva la semántica esperada de listas | `tests/unit/sisad-pdfme/config/configSelectors.test.ts`, `tests/unit/sisad-pdfme/config/configMigration.test.ts` |
+| precedencia canónica sobre legacy | la config canónica gana sobre aliases migrados | `tests/unit/sisad-pdfme/config/configMigration.test.ts`, `tests/unit/sisad-pdfme/config/public-api.test.ts` |
+| migración de aliases | los aliases viejos se normalizan al shape nuevo | `tests/unit/sisad-pdfme/config/configMigration.test.ts` |
+| combinaciones inválidas | la validación rechaza estados imposibles | `tests/unit/sisad-pdfme/config/configValidation.test.ts`, `tests/unit/sisad-pdfme/config/signatures.test.ts` |
+| feature dependencies | features y acciones derivadas respetan dependencias | `tests/unit/sisad-pdfme/config/featureRegistry.test.ts`, `tests/unit/sisad-pdfme/config/actionConfigRegistry.test.ts`, `tests/unit/sisad-pdfme/config/componentRegistry.test.ts` |
+| action state con razón | las acciones ocultas o deshabilitadas explican el motivo | `tests/unit/sisad-pdfme/ui/actions/designerActionState.test.ts`, `tests/unit/sisad-pdfme/config/designerUiMap.test.ts` |
+| change impact | se distinguen cambios de presentación de cambios de runtime | `tests/unit/sisad-pdfme/config/SisadPdfmeConfigService.test.ts`, `tests/unit/sisad-pdfme/config/designerUiMap.test.ts` |
+| subscribe/unsubscribe | los consumidores reciben updates puntuales y se liberan bien | `tests/unit/sisad-pdfme/config/SisadPdfmeConfigService.test.ts` |
+| transaction emite una sola actualización | una transacción agrupa cambios y notifica una sola vez | `tests/unit/sisad-pdfme/config/SisadPdfmeConfigService.test.ts` |
+
+## Contract
+
+| Caso | Cobertura | Evidencia |
+|---|---|---|
+| `createSisadPdfmeConfig()` funcional sin argumentos | el barrel público expone la fábrica y resuelve defaults | `tests/unit/sisad-pdfme/config/public-api.test.ts`, `tests/unit/generated/config/configResolver.test.ts` |
+| API pública sin imports internos | el host usa el barrel y hooks públicos, no internals | `tests/unit/sisad-pdfme/config/public-api.test.ts` |
+| config serializable sin handlers | la salida pública se mantiene compatible con transporte simple | `tests/unit/sisad-pdfme/config/public-api.test.ts` |
+| tipos públicos accesibles | los tipos del barrel siguen exportados | `tests/unit/sisad-pdfme/config/public-api.test.ts` |
+| misma entrada produce misma config canónica | resolver determinista para input equivalente | `tests/unit/generated/config/configResolver.test.ts`, `tests/unit/sisad-pdfme/config/public-api.test.ts` |
+
+## React
+
+| Caso | Cobertura | Evidencia |
+|---|---|---|
+| un service por Provider | cada provider mantiene su propia instancia de config | `tests/integration/sisad-pdfme/config-dynamic.test.tsx`, `tests/unit/sisad-pdfme/react/runtime-modes.test.tsx` |
+| un RecipientRegistry por Provider | el scope de recipients no se comparte por accidente | `tests/unit/useSisadPdfmeController.recipients.test.tsx`, `tests/unit/recipientRegistry.test.ts` |
+| wrappers comparten recursos | los wrappers del mismo host reusan recursos sin duplicarlos | `tests/unit/sisad-pdfme/react/runtime-modes.test.tsx`, `tests/integration/sisad-pdfme/config-dynamic.test.tsx` |
+| cambio visual no recrea EventHub | un update de presentación conserva engine y hub | `tests/integration/sisad-pdfme/config-dynamic.test.tsx` |
+| cambio de recipients no crea registry paralelo | los updates de recipients mutan el registry existente | `tests/unit/useSisadPdfmeController.recipients.test.tsx` |
+| `useSyncExternalStore` actualiza solo consumidores relevantes | los consumers derivan estado sin recalcular de más | `tests/unit/sisad-pdfme/config/configSelectors.test.ts`, `tests/unit/sisad-pdfme/config/SisadPdfmeConfigService.test.ts` |
+
+## Playwright
+
+| Escenario actual | Archivo | Qué valida |
+|---|---|---|
+| `presentation-only updates keep runtime resources stable` | `tests/playwright/configuration/dynamic-config.spec.ts` | cambios de visibilidad no reconstruyen `designerEngine` ni `eventHub` |
+| `runtime mode changes trigger controlled rebuilds` | `tests/playwright/configuration/dynamic-config.spec.ts` | el cambio de `runtime.mode` sí provoca rebuild controlado |
+| `reset restores the initial config and diagnostics` | `tests/playwright/configuration/dynamic-config.spec.ts` | `reset()` vuelve al estado inicial y conserva diagnósticos |
+
+### Escenarios de cierre
+
+La task-card pide 16 escenarios de regresión para esta suite. El orden recomendado es:
+
+1. deshabilitar `LeftSidebar`
+2. ocultar `LeftSidebar` sin desactivar comandos
+3. deshabilitar `RightSidebar`
+4. habilitar solo panel `Fields`
+5. habilitar `Fields` + `Detail`
+6. activar `Comments` y `Documents`
+7. deshabilitar `Moveable` manteniendo selección
+8. deshabilitar `Selecto` manteniendo click simple
+9. `readonly` permite inspeccionar y bloquea mutación
+10. ocultar `Delete`
+11. mostrar `Delete` deshabilitado con razón
+12. activar/desactivar `Reassign`
+13. cambiar densidad sin perder selección
+14. cambiar layout sin perder zoom
+15. cambiar flags calientes sin remount
+16. cambiar `runtime.mode` con remount controlado
+
+## Criterio de cierre
+
+- `unit` confirma defaults, merge, validación, dependencias y transaction semantics.
+- `contract` confirma barra pública, tipos y resolver determinista.
+- `react` confirma scope por provider y updates granulares.
+- `playwright` confirma estabilidad visual, rebuild controlado y reset.
+- `Config QA` solo cierra cuando el suite Playwright completo y las capas previas quedan verdes contra la misma configuración canónica.
 ```
 
 <a id="file-0077"></a>
@@ -3538,9 +3691,9 @@ Valida:
 ### 0092 — `docs/13-ejemplos/04-dynamic-host-integration-examples.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `21`
-- **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `ad5b6992da`
+- **Líneas:** `272`
+- **Tamaño original:** `6.8 KB`
+- **SHA1 corto:** `7052b55e85`
 - **Estado:** `completo`
 
 ```markdown
@@ -3558,13 +3711,264 @@ type HostExampleInput = {
 }
 ``​`
 
+Estos ejemplos asumen que el host ya normalizó aliases legacy y entrega una sola config canónica al provider o al controller. Si todavía recibes `ui.visibility`, resuélvelo antes de entrar a este nivel.
+
 ## Reglas
 
 - Los recipients no se duplican en `collaboration.users` y `runtimeOptions.collaboration.recipients`.
 - Los documents no se duplican en `uploadedDocuments` y `documents` si el wrapper ya soporta `documents`.
 - El host no crea contextos internos del diseñador.
-- Toda visualización se controla desde `config.visibility`.
-- Toda acción visible viene del action registry o controller público.
+- `enabled`, `visible`, `allowed` y `executable` no significan lo mismo.
+- La visualización sale de `config.visibility`, no de reglas dispersas en cada wrapper.
+- Las acciones visibles deben venir del action registry o del controller público.
+
+## Mapa de ejemplos
+
+| Ejemplo | Intención | Señal de QA |
+|---|---|---|
+| `minimal` | host base con la mínima config canónica | arranca sin extras y mantiene defaults previsibles |
+| `full` | host con todas las capacidades activas | valida combinaciones densas sin perder consistencia |
+| `reviewer` | lectura y revisión sin edición estructural | muestra comentarios/documentos pero bloquea mutación |
+| `form` | experiencia orientada a formulario | prioriza campos y firma por encima del chrome general |
+| `multi` | varios documentos con routing estable | conserva el documento activo y su enrutado |
+| `no-collab` | experiencia local sin colaboración | no registra usuarios ni estados compartidos |
+| `provider` | provider propio con scope aislado | verifica que el provider controla su propia config |
+| `dynamic` | actualizaciones en caliente por controller | distingue cambios de presentación y rebuilds controlados |
+
+## `minimal`
+
+``​`ts
+const minimalConfig: SisadPdfmeGlobalConfig = {
+  runtime: { mode: 'designer' },
+  documents: { mode: 'single' },
+  comments: { enabled: false },
+  signatures: { enabled: false },
+};
+``​`
+
+Uso: hosts simples que solo necesitan un template, guardar cambios y conservar los defaults del sistema.
+
+## `full`
+
+``​`ts
+const fullConfig: SisadPdfmeGlobalConfig = {
+  runtime: { mode: 'designer' },
+  assignment: { enabled: true },
+  collaboration: { canEditStructure: true, isGlobalView: true },
+  comments: { enabled: true },
+  documents: {
+    mode: 'multi',
+    preserveDocumentSchemaRouting: true,
+    activeDocumentStrategy: 'selected',
+  },
+  signatures: {
+    enabled: true,
+    defaultMode: 'provider',
+    providers: ['provider-a', 'provider-b'],
+  },
+  visibility: {
+    actions: {
+      reassign: true,
+      duplicate: true,
+      delete: true,
+    },
+    modals: {
+      assignment: true,
+      comments: true,
+    },
+    sidebars: {
+      right: {
+        panels: {
+          fields: true,
+          detail: true,
+          comments: true,
+          documents: true,
+        },
+      },
+    },
+  },
+};
+``​`
+
+Uso: host de máxima capacidad para validar que la config canónica sigue siendo consistente cuando todo está encendido.
+
+## `reviewer`
+
+``​`ts
+const reviewerConfig: SisadPdfmeGlobalConfig = {
+  runtime: { mode: 'viewer', readonly: true },
+  collaboration: { canEditStructure: false, isGlobalView: true },
+  comments: { enabled: true },
+  documents: { mode: 'single' },
+  visibility: {
+    actions: {
+      reassign: false,
+      duplicate: false,
+      delete: false,
+    },
+    modals: {
+      comments: true,
+    },
+    sidebars: {
+      right: {
+        panels: {
+          fields: false,
+          detail: true,
+          comments: true,
+          documents: true,
+        },
+      },
+    },
+  },
+};
+``​`
+
+Uso: perfiles de revisión donde el usuario inspecciona, comenta y navega, pero no muta la estructura.
+
+## `form`
+
+``​`ts
+const formConfig: SisadPdfmeGlobalConfig = {
+  runtime: { mode: 'designer' },
+  assignment: { enabled: true },
+  collaboration: { canEditStructure: true },
+  comments: { enabled: false },
+  documents: {
+    mode: 'single',
+    preserveDocumentSchemaRouting: true,
+    activeDocumentStrategy: 'selected',
+  },
+  signatures: {
+    enabled: true,
+    defaultMode: 'draw',
+    providers: ['local'],
+  },
+  visibility: {
+    sidebars: {
+      right: {
+        panels: {
+          fields: true,
+          detail: true,
+          comments: false,
+          documents: true,
+        },
+      },
+    },
+  },
+};
+``​`
+
+Uso: formularios con foco en campos y firma, sin ruido de colaboración o comentarios si el flujo no los necesita.
+
+## `multi`
+
+``​`ts
+const multiConfig: SisadPdfmeGlobalConfig = {
+  runtime: { mode: 'designer' },
+  documents: {
+    mode: 'multi',
+    preserveDocumentSchemaRouting: true,
+    activeDocumentStrategy: 'selected',
+  },
+  collaboration: { canEditStructure: true },
+  visibility: {
+    sidebars: {
+      right: {
+        panels: {
+          fields: true,
+          detail: true,
+          comments: false,
+          documents: true,
+        },
+      },
+    },
+  },
+};
+``​`
+
+Uso: escenarios con varios documentos donde el documento activo, el routing y el panel de documentos deben permanecer estables.
+
+## `no-collab`
+
+``​`ts
+const noCollabConfig: SisadPdfmeGlobalConfig = {
+  runtime: { mode: 'designer' },
+  assignment: { enabled: false },
+  collaboration: { canEditStructure: false, isGlobalView: false },
+  comments: { enabled: false },
+  visibility: {
+    actions: {
+      reassign: false,
+      duplicate: true,
+      delete: false,
+    },
+    sidebars: {
+      right: {
+        panels: {
+          fields: true,
+          detail: true,
+          comments: false,
+          documents: true,
+        },
+      },
+    },
+  },
+};
+``​`
+
+Uso: hosts locales o aislados donde no hay coedición, pero sí hace falta mantener edición individual y navegación de la plantilla.
+
+## `provider`
+
+``​`tsx
+const providerConfig: SisadPdfmeGlobalConfig = {
+  runtime: { mode: 'designer' },
+  comments: { enabled: true },
+  signatures: {
+    enabled: true,
+    defaultMode: 'provider',
+    providers: ['provider-x'],
+  },
+};
+
+<SisadPdfmeProvider config={providerConfig}>
+  <SisadPdfmeDesigner
+    template={template}
+    documents={documents}
+    onTemplateChange={setTemplate}
+  />
+</SisadPdfmeProvider>
+``​`
+
+Uso: el provider encierra una sola instancia de configuración, una sola capa de recursos y un solo scope de recipients por host.
+
+## `dynamic`
+
+``​`ts
+const service = createSisadPdfmeConfigService(minimalConfig);
+const controller = useSisadPdfmeController(instanceRef, { configService: service });
+
+controller.updateConfig({
+  visibility: {
+    sidebars: {
+      right: {
+        panels: {
+          documents: false,
+        },
+      },
+    },
+  },
+});
+
+controller.updateConfig({
+  runtime: { mode: 'viewer' },
+});
+
+controller.explainConfiguration();
+controller.resetConfig();
+``​`
+
+Uso: cambios en caliente. Lo que solo toca presentación no debe reconstruir recursos; los cambios de runtime sí deben hacerlo de forma controlada.
 ```
 
 <a id="file-0093"></a>
@@ -5124,9 +5528,9 @@ La autonomía nunca reemplaza revisión humana en releases, seguridad o contrato
 ### 0123 — `.ai/START.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `39`
-- **Tamaño original:** `0.7 KB`
-- **SHA1 corto:** `cee0487a8e`
+- **Líneas:** `40`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `589fba42b2`
 - **Estado:** `completo`
 
 ```markdown
@@ -5136,6 +5540,7 @@ La autonomía nunca reemplaza revisión humana en releases, seguridad o contrato
 
 - `AGENTS.md`;
 - `.ai/tasks/ACTIVE.md`;
+- `.ai/scrum/CLAIMS.md` cuando haya trabajo concurrente;
 - una task-card;
 - el `AGENTS.md` local;
 - una ruta;
@@ -7421,8 +7826,8 @@ Salida:
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `7cc065ec8b`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `0b6e86503e`
 - **Estado:** `completo`
 
 ```markdown
@@ -7430,13 +7835,13 @@ Salida:
 
 ## Sprint
 
-- Objetivo:
-- Task-card activa:
-- Rama/worktree:
-- Commit base:
-- Último gate:
-- Bloqueo:
-- Próxima acción:
+- Objetivo: cerrar CONFIG-020 con QA/documentación/gates coherentes y sin falsos verdes.
+- Task-card activa: CONFIG-020
+- Rama/worktree: `main` / `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`
+- Commit base: `23596c5`
+- Último gate: `npm run quality:dead-code` sigue fallando por baseline de export surface; `lint`, `vitest`, `playwright`, `duplicate-functions`, `direct-config-readers` y `knip --include exports` verdes.
+- Bloqueo: deuda heredada de `quality:dead-code` en exports/types, no en files; ya no quedan unused files.
+- Próxima acción: documentar la excepción o abrir una ola separada para integration/recipients export surface.
 
 No incluir historial; reemplazar al cambiar el estado.
 ```
@@ -7474,25 +7879,25 @@ Formato:
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `3956f8fe2d`
+- **Tamaño original:** `2.0 KB`
+- **SHA1 corto:** `0c3e410785`
 - **Estado:** `completo`
 
 ```markdown
 # HANDOFF
 
-- Task:
-- Estado:
-- Rama/worktree:
-- Commit base:
-- Archivos:
-- Causa confirmada:
-- Cambios:
-- Gates:
-- Claims no verificados:
-- Riesgos:
-- Siguiente acción:
-- Condición de parada:
+- Task: CONFIG-020
+- Estado: in progress; gates focales verdes, `quality:dead-code` sigue baseline heredado de export surface
+- Rama/worktree: `main` / `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`
+- Commit base: `23596c5`
+- Archivos: `.ai/scrum/task-cards/CONFIG-020-configuration-qa-docs-gates.md`, `.ai/scrum/SPRINT-CURRENT.md`, `.ai/memory/HANDOFF.md`, `.ai/memory/CURRENT.md`, `src/sisad-pdfme/devtools/index.ts`, `tests/unit/sisad-pdfme/devtoolsPublicSurface.test.ts`, `tests/unit/sisad-pdfme/adaptersPublicSurface.test.ts`, `tests/unit/features/pdfcomponent/ui/primitivesPublicSurface.test.ts`
+- Causa confirmada: el baseline de `knip` ya no tiene unused files; lo que queda es export surface heredada, con un export incorrecto `downloadBytes` retirado del barrel devtools.
+- Cambios: eliminé el barrel muerto de `schemas/options`, corregí el barrel `devtools` (`downloadBytes`), y añadí smokes públicos para config, inspector, devtools, adapters y primitives.
+- Gates: `npm run lint` ✅, `npx vitest run tests/unit/sisad-pdfme/config/public-api.test.ts tests/unit/sisad-pdfme/ui/detailViewPublicModules.test.ts tests/unit/sisad-pdfme/devtoolsPublicSurface.test.ts tests/unit/sisad-pdfme/adaptersPublicSurface.test.ts tests/unit/features/pdfcomponent/ui/primitivesPublicSurface.test.ts` ✅, `npm run quality:duplicate-functions` ✅, `npm run quality:direct-config-readers` ✅, `npx knip --cache --reporter compact --include exports --max-show-issues 120` ✅, `npm run quality:dead-code` ❌ baseline heredado.
+- Claims no verificados: `quality:dead-code` completo sigue sin quedar en verde.
+- Riesgos: el restante de `quality:dead-code` está en barrels públicos y helpers exportados; seguir apretando sin una ola dedicada puede crecer mucho el diff.
+- Siguiente acción: si se continúa, o se abre una ola separada para export surface/integration o se documenta la excepción de `dead-code`.
+- Condición de parada: si el siguiente intento exige tocar lógica real fuera de la surface de re-export, parar y documentar la excepción.
 ```
 
 <a id="file-0182"></a>
@@ -7747,12 +8152,97 @@ Ejemplos SISAD PDFME: owner color, access state, selected schemas, document/page
 
 <a id="file-0191"></a>
 
-### 0191 — `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`
+### 0191 — `.ai/plans/CONFIGURATION-TASK-EXECUTION.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `72`
+- **Tamaño original:** `4.6 KB`
+- **SHA1 corto:** `ca9e696de7`
+- **Estado:** `completo`
+
+```markdown
+# Ejecución de tareas — Configuración unificada
+
+Fuente: `PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+
+## Estado actual respetado
+
+- `CONFIG-001` ya está en `review`; no se reinicia.
+- `CONFIG-002` queda `ready` como auditoría/baseline faltante.
+- Las demás tareas permanecen en backlog hasta cumplir dependencias.
+- `SPRINT-CURRENT.md` es la única fuente de estado.
+
+## Orden
+
+``​`text
+CONFIG-002 (baseline pendiente)
+CONFIG-001 (review existente)
+  ↓
+CONFIG-003 → CONFIG-004 → CONFIG-005 → CONFIG-006 → CONFIG-007
+  ↓
+CONFIG-008 → CONFIG-009 → CONFIG-010
+  ├─ CONFIG-011
+  ├─ CONFIG-012
+  ├─ CONFIG-013
+  └─ CONFIG-014 → CONFIG-015
+       ├─ CONFIG-016
+       ├─ CONFIG-017
+       └─ CONFIG-018
+             ↓
+         CONFIG-019
+             ↓
+         CONFIG-020
+``​`
+
+## Task-cards
+
+| ID | Título | Dependencias | Prioridad | Estado inicial |
+|---|---|---|---|---|
+| [CONFIG-001](../scrum/task-cards/CONFIG-001-repair-public-config-api.md) | Reparar API pública de configuración (Fase 1) | — | P0 | review |
+| [CONFIG-002](../scrum/task-cards/CONFIG-002-audit-configuration-sources.md) | Auditar fuentes y lectores de configuración | — | P0 | ready |
+| [CONFIG-003](../scrum/task-cards/CONFIG-003-canonicalize-config-v2.md) | Canonicalizar contrato Config v2 | CONFIG-001, CONFIG-002 | P0 | backlog |
+| [CONFIG-004](../scrum/task-cards/CONFIG-004-create-legacy-config-migration.md) | Crear migrador de configuración legacy | CONFIG-003 | P0 | backlog |
+| [CONFIG-005](../scrum/task-cards/CONFIG-005-create-config-validation.md) | Crear validación de configuración | CONFIG-003, CONFIG-004 | P0 | backlog |
+| [CONFIG-006](../scrum/task-cards/CONFIG-006-implement-config-service.md) | Implementar SisadPdfmeConfigService | CONFIG-004, CONFIG-005 | P0 | backlog |
+| [CONFIG-007](../scrum/task-cards/CONFIG-007-implement-config-selectors.md) | Implementar selectores públicos | CONFIG-006 | P0 | backlog |
+| [CONFIG-008](../scrum/task-cards/CONFIG-008-create-feature-registry.md) | Crear FeatureRegistry y dependencias | CONFIG-006, CONFIG-007 | P0 | backlog |
+| [CONFIG-009](../scrum/task-cards/CONFIG-009-create-action-component-registries.md) | Crear ActionConfigRegistry y ComponentRegistry | CONFIG-008 | P0 | backlog |
+| [CONFIG-010](../scrum/task-cards/CONFIG-010-integrate-provider-public-wrappers.md) | Integrar Provider y wrappers públicos | CONFIG-006, CONFIG-007, CONFIG-008, CONFIG-009 | P0 | backlog |
+| [CONFIG-011](../scrum/task-cards/CONFIG-011-migrate-right-sidebar-listview.md) | Migrar RightSidebar y ListView | CONFIG-010 | P1 | backlog |
+| [CONFIG-012](../scrum/task-cards/CONFIG-012-migrate-left-sidebar.md) | Migrar LeftSidebar | CONFIG-010 | P1 | backlog |
+| [CONFIG-013](../scrum/task-cards/CONFIG-013-migrate-canvas-feature-flags.md) | Migrar flags de Canvas | CONFIG-010 | P1 | backlog |
+| [CONFIG-014](../scrum/task-cards/CONFIG-014-migrate-inspector-configuration.md) | Migrar Inspector | CONFIG-009, CONFIG-010 | P1 | backlog |
+| [CONFIG-015](../scrum/task-cards/CONFIG-015-migrate-schema-profiles.md) | Migrar perfiles de schemas | CONFIG-008, CONFIG-014 | P1 | backlog |
+| [CONFIG-016](../scrum/task-cards/CONFIG-016-unify-assignment-collaboration.md) | Unificar assignment y collaboration | CONFIG-009, CONFIG-010 | P1 | backlog |
+| [CONFIG-017](../scrum/task-cards/CONFIG-017-configure-documents-comments.md) | Configurar documentos y comentarios | CONFIG-008, CONFIG-010, CONFIG-011 | P1 | backlog |
+| [CONFIG-018](../scrum/task-cards/CONFIG-018-configure-signatures.md) | Configurar firmas y providers | CONFIG-008, CONFIG-015 | P1 | backlog |
+| [CONFIG-019](../scrum/task-cards/CONFIG-019-dynamic-configuration-controller.md) | Implementar configuración dinámica y controller | CONFIG-010, CONFIG-011, CONFIG-012, CONFIG-013, CONFIG-014, CONFIG-016, CONFIG-017, CONFIG-018 | P1 | backlog |
+| [CONFIG-020](../scrum/task-cards/CONFIG-020-configuration-qa-docs-gates.md) | Cerrar QA, documentación y quality gates | CONFIG-001, CONFIG-002, CONFIG-003, CONFIG-004, CONFIG-005, CONFIG-006, CONFIG-007, CONFIG-008, CONFIG-009, CONFIG-010, CONFIG-011, CONFIG-012, CONFIG-013, CONFIG-014, CONFIG-015, CONFIG-016, CONFIG-017, CONFIG-018, CONFIG-019 | P1 | backlog |
+
+## Paralelismo
+
+Después de `CONFIG-010`, `CONFIG-011`, `CONFIG-012`, `CONFIG-013` y `CONFIG-014`
+pueden ejecutarse en worktrees separados si no comparten writers. Solo una tarea
+crítica de Canvas/runtime puede estar `in-progress` simultáneamente.
+
+## Control de consumo
+
+- 8 archivos iniciales;
+- 5 archivos modificados;
+- 2 rondas de búsqueda;
+- 1 dominio;
+- 75 % de contexto = checkpoint/handoff;
+- 3 parches fallidos = detener.
+```
+
+<a id="file-0192"></a>
+
+### 0192 — `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `1944`
-- **Tamaño original:** `36.6 KB`
-- **SHA1 corto:** `e9423388a4`
+- **Tamaño original:** `37.3 KB`
+- **SHA1 corto:** `bf42786e22`
 - **Estado:** `completo`
 
 ```markdown
@@ -9702,9 +10192,45 @@ actualización caliente, rebuild o remount
 Esa es la continuidad correcta para convertir `src/sisad-pdfme` en un componente configurable, portable, predecible y reutilizable.
 ```
 
-<a id="file-0192"></a>
+<a id="file-0193"></a>
 
-### 0192 — `.ai/playbooks/ACCESSIBILITY-REVIEW.md`
+### 0193 — `.ai/plans/README-TASK-PACK-CONFIGURATION.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `c2b363c88f`
+- **Estado:** `completo`
+
+```markdown
+# Instalación del task pack de configuración
+
+Este ZIP reproduce la estructura del repositorio `prueba-plugin`.
+
+## Aplicación
+
+Copiar o fusionar la carpeta `prueba-plugin/` sobre la raíz real del proyecto.
+
+## Archivos existentes tratados con cuidado
+
+- `CONFIG-001-repair-public-config-api.md`: se conserva con estado `review`.
+- `SPRINT-CURRENT.md`: conserva el contenido actual y agrega `CONFIG-002` como Ready.
+- `PRODUCT-BACKLOG.md`: conserva las tareas existentes y agrega el bloque CONFIG.
+- `.ai/tasks/ACTIVE.md`: se convierte en puntero; no duplica estado.
+- El plan canónico se conserva en `.ai/plans/`.
+
+## No incluye
+
+- cambios de código TypeScript/React;
+- archivos CSS;
+- modificaciones de Moveable/Selecto;
+- resultados falsos de pruebas;
+- tareas fuera del plan de configuración unificada.
+```
+
+<a id="file-0194"></a>
+
+### 0194 — `.ai/playbooks/ACCESSIBILITY-REVIEW.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -9735,9 +10261,9 @@ Esa es la continuidad correcta para convertir `src/sisad-pdfme` en un componente
 - memory delta.
 ```
 
-<a id="file-0193"></a>
+<a id="file-0195"></a>
 
-### 0193 — `.ai/playbooks/BUILD-SCHEMA-PLUGIN.md`
+### 0195 — `.ai/playbooks/BUILD-SCHEMA-PLUGIN.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -9767,9 +10293,9 @@ Esa es la continuidad correcta para convertir `src/sisad-pdfme` en un componente
 - memory delta.
 ```
 
-<a id="file-0194"></a>
+<a id="file-0196"></a>
 
-### 0194 — `.ai/playbooks/CODE-REVIEW.md`
+### 0196 — `.ai/playbooks/CODE-REVIEW.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -9793,9 +10319,9 @@ Revisar en orden:
 Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 ```
 
-<a id="file-0195"></a>
+<a id="file-0197"></a>
 
-### 0195 — `.ai/playbooks/CONFIGURE-COMPONENT.md`
+### 0197 — `.ai/playbooks/CONFIGURE-COMPONENT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -9824,9 +10350,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 - memory delta.
 ```
 
-<a id="file-0196"></a>
+<a id="file-0198"></a>
 
-### 0196 — `.ai/playbooks/DEBUG-REGRESSION.md`
+### 0198 — `.ai/playbooks/DEBUG-REGRESSION.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -9856,9 +10382,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 - memory delta.
 ```
 
-<a id="file-0197"></a>
+<a id="file-0199"></a>
 
-### 0197 — `.ai/playbooks/EXECUTE-TASK.md`
+### 0199 — `.ai/playbooks/EXECUTE-TASK.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -9889,9 +10415,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 - memory delta.
 ```
 
-<a id="file-0198"></a>
+<a id="file-0200"></a>
 
-### 0198 — `.ai/playbooks/INCIDENT.md`
+### 0200 — `.ai/playbooks/INCIDENT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -9922,9 +10448,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 - memory delta.
 ```
 
-<a id="file-0199"></a>
+<a id="file-0201"></a>
 
-### 0199 — `.ai/playbooks/MIGRATE-TAILWIND.md`
+### 0201 — `.ai/playbooks/MIGRATE-TAILWIND.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -9953,9 +10479,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 - memory delta.
 ```
 
-<a id="file-0200"></a>
+<a id="file-0202"></a>
 
-### 0200 — `.ai/playbooks/REFACTOR-DRY.md`
+### 0202 — `.ai/playbooks/REFACTOR-DRY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -9985,9 +10511,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 - memory delta.
 ```
 
-<a id="file-0201"></a>
+<a id="file-0203"></a>
 
-### 0201 — `.ai/playbooks/REFACTOR-DUPLICATION.md`
+### 0203 — `.ai/playbooks/REFACTOR-DUPLICATION.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -10009,9 +10535,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 9. Revisar API, performance y snapshot.
 ```
 
-<a id="file-0202"></a>
+<a id="file-0204"></a>
 
-### 0202 — `.ai/playbooks/RELEASE.md`
+### 0204 — `.ai/playbooks/RELEASE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -10042,9 +10568,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 - memory delta.
 ```
 
-<a id="file-0203"></a>
+<a id="file-0205"></a>
 
-### 0203 — `.ai/playbooks/REMOVE-DEAD-CODE.md`
+### 0205 — `.ai/playbooks/REMOVE-DEAD-CODE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -10063,9 +10589,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 6. Actualizar exports/dependencies y documentar falsos positivos.
 ```
 
-<a id="file-0204"></a>
+<a id="file-0206"></a>
 
-### 0204 — `.ai/playbooks/SELECT-PATTERN.md`
+### 0206 — `.ai/playbooks/SELECT-PATTERN.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -10084,9 +10610,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 6. Rechaza la abstracción si aumenta acoplamiento o oculta semántica.
 ```
 
-<a id="file-0205"></a>
+<a id="file-0207"></a>
 
-### 0205 — `.ai/playbooks/SPRINT-PLANNING.md`
+### 0207 — `.ai/playbooks/SPRINT-PLANNING.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -10106,9 +10632,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 7. No planificar tareas que compiten por los mismos archivos en paralelo.
 ```
 
-<a id="file-0206"></a>
+<a id="file-0208"></a>
 
-### 0206 — `.ai/playbooks/UPDATE-MEMORY.md`
+### 0208 — `.ai/playbooks/UPDATE-MEMORY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -10128,9 +10654,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 7. Estado de task → `scrum/SPRINT-CURRENT.md`, nunca duplicarlo en memoria.
 ```
 
-<a id="file-0207"></a>
+<a id="file-0209"></a>
 
-### 0207 — `.ai/playbooks/UX-REVIEW.md`
+### 0209 — `.ai/playbooks/UX-REVIEW.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -10160,9 +10686,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 - memory delta.
 ```
 
-<a id="file-0208"></a>
+<a id="file-0210"></a>
 
-### 0208 — `.ai/playbooks/VISUAL-REGRESSION.md`
+### 0210 — `.ai/playbooks/VISUAL-REGRESSION.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -10192,9 +10718,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 - memory delta.
 ```
 
-<a id="file-0209"></a>
+<a id="file-0211"></a>
 
-### 0209 — `.ai/prompts/ANALYZE_ONLY.prompt.md`
+### 0211 — `.ai/prompts/ANALYZE_ONLY.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10208,9 +10734,9 @@ Reportar hallazgos por severidad con ruta, línea, impacto y corrección segura.
 Analiza {{SCOPE}} sin editar. Devuelve ruta de ejecución, clones/causas, fuente canónica candidata, riesgos, pruebas necesarias y una task-card propuesta. No produzcas un plan global.
 ```
 
-<a id="file-0210"></a>
+<a id="file-0212"></a>
 
-### 0210 — `.ai/prompts/ANALYZE.prompt.md`
+### 0212 — `.ai/prompts/ANALYZE.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10245,9 +10771,9 @@ pregunta, rutas, presupuesto
 evidence packet
 ```
 
-<a id="file-0211"></a>
+<a id="file-0213"></a>
 
-### 0211 — `.ai/prompts/HANDOFF.prompt.md`
+### 0213 — `.ai/prompts/HANDOFF.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10282,9 +10808,9 @@ estado git, decisiones, gates
 handoff compacto
 ```
 
-<a id="file-0212"></a>
+<a id="file-0214"></a>
 
-### 0212 — `.ai/prompts/IMPLEMENT_TASK.prompt.md`
+### 0214 — `.ai/prompts/IMPLEMENT_TASK.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10298,9 +10824,9 @@ handoff compacto
 Ejecuta {{TASK_CARD}} como único escritor. Aplica el parche mínimo completo, valida con los gates declarados y actualiza solo esa task-card. No amplíes el alcance.
 ```
 
-<a id="file-0213"></a>
+<a id="file-0215"></a>
 
-### 0213 — `.ai/prompts/IMPLEMENT.prompt.md`
+### 0215 — `.ai/prompts/IMPLEMENT.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10335,9 +10861,9 @@ plan aprobado, archivos permitidos
 diff + gates
 ```
 
-<a id="file-0214"></a>
+<a id="file-0216"></a>
 
-### 0214 — `.ai/prompts/INCIDENT.prompt.md`
+### 0216 — `.ai/prompts/INCIDENT.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10372,9 +10898,9 @@ síntoma, baseline, logs
 mitigación y causa
 ```
 
-<a id="file-0215"></a>
+<a id="file-0217"></a>
 
-### 0215 — `.ai/prompts/MASTER_EXECUTION.prompt.md`
+### 0217 — `.ai/prompts/MASTER_EXECUTION.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10388,9 +10914,9 @@ mitigación y causa
 Usa `PROMPT_MAESTRO_CODEX_SISAD_PDFME.md` con {{TASK_CARD}}. Mantén un único writer y hasta dos lectores auxiliares independientes.
 ```
 
-<a id="file-0216"></a>
+<a id="file-0218"></a>
 
-### 0216 — `.ai/prompts/MASTER.prompt.md`
+### 0218 — `.ai/prompts/MASTER.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10425,9 +10951,9 @@ task_card, route, skill, evidence
 handoff verificable
 ```
 
-<a id="file-0217"></a>
+<a id="file-0219"></a>
 
-### 0217 — `.ai/prompts/MEMORY.prompt.md`
+### 0219 — `.ai/prompts/MEMORY.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10462,9 +10988,9 @@ handoff y decisiones
 add/update/resolve/no-change
 ```
 
-<a id="file-0218"></a>
+<a id="file-0220"></a>
 
-### 0218 — `.ai/prompts/PLAN.prompt.md`
+### 0220 — `.ai/prompts/PLAN.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10499,9 +11025,9 @@ diagnóstico confirmado, invariantes
 fases, archivos, gates
 ```
 
-<a id="file-0219"></a>
+<a id="file-0221"></a>
 
-### 0219 — `.ai/prompts/QA.prompt.md`
+### 0221 — `.ai/prompts/QA.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10536,9 +11062,9 @@ criterios, escenario, build
 matriz pass/fail
 ```
 
-<a id="file-0220"></a>
+<a id="file-0222"></a>
 
-### 0220 — `.ai/prompts/RETROSPECTIVE.prompt.md`
+### 0222 — `.ai/prompts/RETROSPECTIVE.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10552,9 +11078,9 @@ matriz pass/fail
 Compara objetivo, métricas, rework, gates y consumo. Produce máximo cinco acciones específicas con dueño y señal de cierre.
 ```
 
-<a id="file-0221"></a>
+<a id="file-0223"></a>
 
-### 0221 — `.ai/prompts/REVIEW_DIFF.prompt.md`
+### 0223 — `.ai/prompts/REVIEW_DIFF.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10568,9 +11094,9 @@ Compara objetivo, métricas, rework, gates y consumo. Produce máximo cinco acci
 Revisa el diff {{BASE}}..{{HEAD}} en modo read-only. Prioriza regresiones funcionales, contratos, snapshot, canvas, seguridad, duplicidad nueva y pruebas faltantes. Reporta hallazgos por severidad con rutas y evidencia.
 ```
 
-<a id="file-0222"></a>
+<a id="file-0224"></a>
 
-### 0222 — `.ai/prompts/REVIEW.prompt.md`
+### 0224 — `.ai/prompts/REVIEW.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10605,9 +11131,9 @@ task-card, diff, tests
 hallazgos por severidad
 ```
 
-<a id="file-0223"></a>
+<a id="file-0225"></a>
 
-### 0223 — `.ai/prompts/SPRINT_PLANNING.prompt.md`
+### 0225 — `.ai/prompts/SPRINT_PLANNING.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10621,9 +11147,9 @@ hallazgos por severidad
 Con Product Goal, backlog, capacidad y dependencias, selecciona hasta tres task-cards. Define Sprint Goal y orden. No cree tareas sin evidencia.
 ```
 
-<a id="file-0224"></a>
+<a id="file-0226"></a>
 
-### 0224 — `.ai/prompts/TRIAGE_JSCPD.prompt.md`
+### 0226 — `.ai/prompts/TRIAGE_JSCPD.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10637,9 +11163,9 @@ Con Product Goal, backlog, capacidad y dependencias, selecciona hasta tres task-
 Procesa el JSON jscpd con `parse-jscpd-report.mjs`. Separa owned/vendor/generated, agrupa por responsabilidad, descarta falsos positivos y crea backlog ordenado. No sugieras refactor de vendor.
 ```
 
-<a id="file-0225"></a>
+<a id="file-0227"></a>
 
-### 0225 — `.ai/prompts/UPDATE_MEMORY.prompt.md`
+### 0227 — `.ai/prompts/UPDATE_MEMORY.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10653,9 +11179,9 @@ Procesa el JSON jscpd con `parse-jscpd-report.mjs`. Separa owned/vendor/generate
 Lee la task-card cerrada y produce un MEMORY-DELTA. Solo incluye hechos durables, decisiones, riesgos, métricas o estado estable. No copies el resumen del chat.
 ```
 
-<a id="file-0226"></a>
+<a id="file-0228"></a>
 
-### 0226 — `.ai/prompts/UX-AUDIT.prompt.md`
+### 0228 — `.ai/prompts/UX-AUDIT.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10690,9 +11216,9 @@ capturas, componentes, viewports
 diagnóstico y criterios
 ```
 
-<a id="file-0227"></a>
+<a id="file-0229"></a>
 
-### 0227 — `.ai/provider-adapters/README.md`
+### 0229 — `.ai/provider-adapters/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -10724,9 +11250,9 @@ diagnóstico y criterios
 Adapters contienen rutas y mínimos de arranque, no copias completas de governance, memoria o playbooks.
 ```
 
-<a id="file-0228"></a>
+<a id="file-0230"></a>
 
-### 0228 — `.ai/research/AGENT-SKILLS-RESEARCH.md`
+### 0230 — `.ai/research/AGENT-SKILLS-RESEARCH.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -10760,9 +11286,9 @@ Adapters contienen rutas y mínimos de arranque, no copias completas de governan
 - https://github.com/anthropics/skills
 ```
 
-<a id="file-0229"></a>
+<a id="file-0231"></a>
 
-### 0229 — `.ai/research/ANTI-HALLUCINATION-FINDINGS.md`
+### 0231 — `.ai/research/ANTI-HALLUCINATION-FINDINGS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -10789,9 +11315,9 @@ La fiabilidad no proviene solo de un prompt más estricto. Requiere:
 Para código, la unidad de grounding es `ruta + símbolo + ejecución/test`, no la explicación del modelo.
 ```
 
-<a id="file-0230"></a>
+<a id="file-0232"></a>
 
-### 0230 — `.ai/research/ARCHITECTURE-AUDIT-V5.md`
+### 0232 — `.ai/research/ARCHITECTURE-AUDIT-V5.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -10831,9 +11357,9 @@ Para código, la unidad de grounding es `ruta + símbolo + ejecución/test`, no 
 Evolucionar, no reemplazar: conservar el control plane y añadir grounding, observabilidad, evals y especialización frontend.
 ```
 
-<a id="file-0231"></a>
+<a id="file-0233"></a>
 
-### 0231 — `.ai/research/CODEX-MODELS-2026-07-22.md`
+### 0233 — `.ai/research/CODEX-MODELS-2026-07-22.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -10863,9 +11389,9 @@ Evolucionar, no reemplazar: conservar el control plane y añadir grounding, obse
 - https://developers.openai.com/api/docs/models
 ```
 
-<a id="file-0232"></a>
+<a id="file-0234"></a>
 
-### 0232 — `.ai/research/OFFICIAL-SOURCES.md`
+### 0234 — `.ai/research/OFFICIAL-SOURCES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -10910,9 +11436,9 @@ Evolucionar, no reemplazar: conservar el control plane y añadir grounding, obse
 - human review en cambios sensibles.
 ```
 
-<a id="file-0233"></a>
+<a id="file-0235"></a>
 
-### 0233 — `.ai/research/SOURCE-REPORTS.md`
+### 0235 — `.ai/research/SOURCE-REPORTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -10929,9 +11455,9 @@ Evolucionar, no reemplazar: conservar el control plane y añadir grounding, obse
 - Arquitectura previa `.ai`: router, presupuestos, task-cards y playbooks, consolidada aquí para evitar duplicación documental.
 ```
 
-<a id="file-0234"></a>
+<a id="file-0236"></a>
 
-### 0234 — `.ai/research/TOKEN-EFFICIENCY.md`
+### 0236 — `.ai/research/TOKEN-EFFICIENCY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -10967,9 +11493,9 @@ Evolucionar, no reemplazar: conservar el control plane y añadir grounding, obse
 - reabrir archivos ya resumidos sin invalidación.
 ```
 
-<a id="file-0235"></a>
+<a id="file-0237"></a>
 
-### 0235 — `.ai/routes/accessibility.md`
+### 0237 — `.ai/routes/accessibility.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11004,9 +11530,9 @@ Evolucionar, no reemplazar: conservar el control plane y añadir grounding, obse
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0236"></a>
+<a id="file-0238"></a>
 
-### 0236 — `.ai/routes/canvas.md`
+### 0238 — `.ai/routes/canvas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11041,14 +11567,14 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0237"></a>
+<a id="file-0239"></a>
 
-### 0237 — `.ai/routes/configuration.md`
+### 0239 — `.ai/routes/configuration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
 - **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `5b5c78f128`
+- **SHA1 corto:** `a0b4a41434`
 - **Estado:** `completo`
 
 ```markdown
@@ -11078,9 +11604,9 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0238"></a>
+<a id="file-0240"></a>
 
-### 0238 — `.ai/routes/CSS-TAILWIND.md`
+### 0240 — `.ai/routes/CSS-TAILWIND.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11115,9 +11641,9 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0239"></a>
+<a id="file-0241"></a>
 
-### 0239 — `.ai/routes/docs-memory.md`
+### 0241 — `.ai/routes/docs-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11152,9 +11678,9 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0240"></a>
+<a id="file-0242"></a>
 
-### 0240 — `.ai/routes/inspector.md`
+### 0242 — `.ai/routes/inspector.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11189,9 +11715,9 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0241"></a>
+<a id="file-0243"></a>
 
-### 0241 — `.ai/routes/integration.md`
+### 0243 — `.ai/routes/integration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -11209,9 +11735,9 @@ El core no conoce hosts. Usa config y adapters; evita props sueltas y imports in
 Evidencia, cambio o recomendación, gates y memory delta.
 ```
 
-<a id="file-0242"></a>
+<a id="file-0244"></a>
 
-### 0242 — `.ai/routes/left-sidebar.md`
+### 0244 — `.ai/routes/left-sidebar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11246,9 +11772,9 @@ Evidencia, cambio o recomendación, gates y memory delta.
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0243"></a>
+<a id="file-0245"></a>
 
-### 0243 — `.ai/routes/performance.md`
+### 0245 — `.ai/routes/performance.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11283,9 +11809,9 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0244"></a>
+<a id="file-0246"></a>
 
-### 0244 — `.ai/routes/quality-dedup.md`
+### 0246 — `.ai/routes/quality-dedup.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -11303,9 +11829,9 @@ Usa el parser jscpd, clasifica owned/vendor/generated, crea task-card y aplica l
 Evidencia, cambio o recomendación, gates y memory delta.
 ```
 
-<a id="file-0245"></a>
+<a id="file-0247"></a>
 
-### 0245 — `.ai/routes/quality.md`
+### 0247 — `.ai/routes/quality.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11340,9 +11866,9 @@ Evidencia, cambio o recomendación, gates y memory delta.
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0246"></a>
+<a id="file-0248"></a>
 
-### 0246 — `.ai/routes/right-sidebar.md`
+### 0248 — `.ai/routes/right-sidebar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11377,9 +11903,9 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0247"></a>
+<a id="file-0249"></a>
 
-### 0247 — `.ai/routes/runtime-snapshot.md`
+### 0249 — `.ai/routes/runtime-snapshot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -11397,9 +11923,9 @@ Añade caracterización round-trip antes de migrar estructuras. Conserva legacy 
 Evidencia, cambio o recomendación, gates y memory delta.
 ```
 
-<a id="file-0248"></a>
+<a id="file-0250"></a>
 
-### 0248 — `.ai/routes/RUNTIME.md`
+### 0250 — `.ai/routes/RUNTIME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11434,9 +11960,9 @@ Evidencia, cambio o recomendación, gates y memory delta.
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0249"></a>
+<a id="file-0251"></a>
 
-### 0249 — `.ai/routes/schemas.md`
+### 0251 — `.ai/routes/schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11471,9 +11997,9 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0250"></a>
+<a id="file-0252"></a>
 
-### 0250 — `.ai/routes/SNAPSHOT.md`
+### 0252 — `.ai/routes/SNAPSHOT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11508,9 +12034,9 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0251"></a>
+<a id="file-0253"></a>
 
-### 0251 — `.ai/routes/testing.md`
+### 0253 — `.ai/routes/testing.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11545,9 +12071,9 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0252"></a>
+<a id="file-0254"></a>
 
-### 0252 — `.ai/routes/ux-design.md`
+### 0254 — `.ai/routes/ux-design.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11582,42 +12108,170 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
 ```
 
-<a id="file-0253"></a>
+<a id="file-0255"></a>
 
-### 0253 — `.ai/scrum/BOARD.md`
+### 0255 — `.ai/scrum/ACTIVE.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `15`
-- **Tamaño original:** `0.1 KB`
-- **SHA1 corto:** `50f20038a4`
+- **Líneas:** `24`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `dac6808012`
+- **Estado:** `completo`
+
+```markdown
+# Active
+
+Vista corta de tareas en curso o en revisión. La fuente de verdad sigue siendo `SPRINT-CURRENT.md` y las leases activas viven en `CLAIMS.md`.
+
+Generada desde `SPRINT-CURRENT.md` con `npm run maintenance:sync-scrum-views`.
+
+## Claimed
+
+- Ninguna en este momento.
+
+## In progress
+
+- [CONFIG-020](task-cards/CONFIG-020-configuration-qa-docs-gates.md)
+
+## Review
+
+- [CONFIG-001](task-cards/CONFIG-001-repair-public-config-api.md)
+- [UX-001](task-cards/UX-001-right-sidebar-listview-compactness-and-dnd.md)
+
+## Blocked
+
+- Ninguna en este momento.
+
+Las tareas `Ready` se consultan en `PRODUCT-BACKLOG.md`; esta vista solo muestra lo que ya está siendo trabajado o revisado.
+```
+
+<a id="file-0256"></a>
+
+### 0256 — `.ai/scrum/BOARD.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `18`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `02bc04cfa8`
 - **Estado:** `completo`
 
 ```markdown
 # Board
 
-## Ready
+`BOARD.md` es un panel operativo corto. Para navegar por estado usa:
 
-- CONFIG-001
-- AI-001
-- AI-002
+- `ACTIVE.md` para trabajo en curso o revisión.
+- `PRODUCT-BACKLOG.md` para backlog priorizado.
+- `COMPLETED.md` para trabajo cerrado.
+- `CLAIMS.md` para leases activas.
+- `SPRINT-CURRENT.md` para el estado canónico.
 
-## In Progress
+## Señales
 
-## Review
-
-## Blocked
-
-## Done
+- Ready: mirar `PRODUCT-BACKLOG.md`.
+- Claimed: mirar `CLAIMS.md`.
+- In Progress: mirar `ACTIVE.md`.
+- Review: mirar `ACTIVE.md`.
+- Blocked: mirar `SPRINT-CURRENT.md`.
+- Done: mirar `COMPLETED.md`.
 ```
 
-<a id="file-0254"></a>
+<a id="file-0257"></a>
 
-### 0254 — `.ai/scrum/DEFINITION-OF-DONE.md`
+### 0257 — `.ai/scrum/CLAIMS.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `12`
+- **Líneas:** `21`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `9f5feec64f`
+- **Estado:** `completo`
+
+```markdown
+# Claims
+
+Ledger vivo de escrituras concurrentes.
+
+## Propósito
+
+Registrar el writer activo, su worktree y su alcance para evitar solapamiento entre asistentes.
+
+## Reglas
+
+- Una fila se abre antes del primer parche.
+- Una fila representa un solo writer y un solo worktree.
+- Los readers son read-only y se limitan a dos por task-card.
+- Si cambia el worktree o el writer, la fila anterior se cierra y se crea una nueva.
+- La fila se libera cuando la tarea pasa a `Review`, `Done` o `Blocked`.
+- Este archivo no es historial durable; los resultados finales viven en la task-card, `SPRINT-CURRENT.md` y `RETROSPECTIVE.md`.
+
+## Tabla
+
+| Task | Owner | Writer | Readers | Worktree | Scope | Lease | State | Updated | Notes |
+|---|---|---|---|---|---|---|---|---|---|
+```
+
+<a id="file-0258"></a>
+
+### 0258 — `.ai/scrum/COMPLETED.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `41`
+- **Tamaño original:** `1.5 KB`
+- **SHA1 corto:** `b29efa6860`
+- **Estado:** `completo`
+
+```markdown
+# Completed
+
+Vista navegable de tareas cerradas. La fuente de verdad sigue siendo `SPRINT-CURRENT.md`.
+
+Generada desde `SPRINT-CURRENT.md` con `npm run maintenance:sync-scrum-views`.
+
+## AI / estructura
+
+- [AI-001](tasks/AI-001.md)
+- [AI-002](tasks/AI-002.md)
+- [AI-003](tasks/AI-003.md)
+- [AI-004](tasks/AI-004.md)
+
+## DEDUP
+
+- [DEDUP-001](task-cards/DEDUP-001-smart-placement.md)
+- [DEDUP-002](task-cards/DEDUP-002-keyboard-command-registry.md)
+- [DEDUP-003](task-cards/DEDUP-003-comments-overlay.md)
+- [DEDUP-004](task-cards/DEDUP-004-inline-edit-overlay.md)
+- [DEDUP-005](task-cards/DEDUP-005-right-sidebar-actions.md)
+- [DEDUP-006](task-cards/DEDUP-006-selection-commands.md)
+- [DEDUP-007](task-cards/DEDUP-007-schema-clipboard.md)
+- [DEDUP-008](task-cards/DEDUP-008-inspector-taxonomy.md)
+- [DEDUP-009](task-cards/DEDUP-009-custom-field-modal.md)
+- [DEDUP-010](task-cards/DEDUP-010-action-chrome.md)
+- [DEDUP-011](task-cards/DEDUP-011-strict-owned-residuals.md)
+
+## Docs / quality
+
+- [DOCS-001](task-cards/DOCS-001-canonical-common-docs.md)
+- [QUALITY-001](task-cards/QUALITY-001-jscpd-profiles.md)
+
+## Configuración
+
+- [CONFIG-015](task-cards/CONFIG-015-migrate-schema-profiles.md)
+- [CONFIG-016](task-cards/CONFIG-016-unify-assignment-collaboration.md)
+- [CONFIG-017](task-cards/CONFIG-017-configure-documents-comments.md)
+- [CONFIG-018](task-cards/CONFIG-018-configure-signatures.md)
+- [CONFIG-019](task-cards/CONFIG-019-dynamic-configuration-controller.md)
+
+Las tareas `Ready` viven en `PRODUCT-BACKLOG.md`; las tareas activas o en revisión viven en `ACTIVE.md`.
+```
+
+<a id="file-0259"></a>
+
+### 0259 — `.ai/scrum/DEFINITION-OF-DONE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `13`
 - **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `9b6cee7b5f`
+- **SHA1 corto:** `d3d3c521ec`
 - **Estado:** `completo`
 
 ```markdown
@@ -11629,20 +12283,21 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 - API/snapshot protegidos;
 - no duplicidad nueva;
 - evidencia guardada;
+- claim liberado;
 - task-card actualizada;
 - handoff;
 - memory delta;
 - riesgos asignados.
 ```
 
-<a id="file-0255"></a>
+<a id="file-0260"></a>
 
-### 0255 — `.ai/scrum/DEFINITION-OF-READY.md`
+### 0260 — `.ai/scrum/DEFINITION-OF-READY.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `12`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `4e16ec09fd`
+- **Líneas:** `15`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `05069874c2`
 - **Estado:** `completo`
 
 ```markdown
@@ -11652,7 +12307,10 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 - objetivo verificable;
 - no-alcance;
 - owner;
+- writer propuesto o plan de claim;
+- readers read-only, si hacen falta, acotados a dos;
 - archivos orientativos;
+- worktree objetivo o regla de asignación;
 - invariantes;
 - test/gate;
 - presupuesto;
@@ -11660,18 +12318,20 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 - condición de parada.
 ```
 
-<a id="file-0256"></a>
+<a id="file-0261"></a>
 
-### 0256 — `.ai/scrum/PRODUCT-BACKLOG.md`
+### 0261 — `.ai/scrum/PRODUCT-BACKLOG.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `10`
-- **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `a650be117a`
+- **Líneas:** `33`
+- **Tamaño original:** `2.7 KB`
+- **SHA1 corto:** `75743f8f9f`
 - **Estado:** `completo`
 
 ```markdown
 # Product Backlog
+
+Backlog canónico priorizado. Las tareas activas viven en `ACTIVE.md` y las cerradas en `COMPLETED.md`.
 
 | ID | Prioridad | Título | Enlace |
 |---|---|---|---|
@@ -11681,11 +12341,32 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 | AI-004 | P1 | Integrar Scrum, memoria y handoffs | [task](tasks/AI-004.md) |
 | AI-005 | P1 | Automatizar auditorías de duplicidad y drift | [task](tasks/AI-005.md) |
 | AI-006 | P1 | Evaluar skills y routing de modelos | [task](tasks/AI-006.md) |
+
+## Configuración unificada
+
+| ID | Prioridad | Título | Enlace |
+|---|---|---|---|
+| CONFIG-001 | P0 | Reparar API pública de configuración (Fase 1) | [task](task-cards/CONFIG-001-repair-public-config-api.md) |
+| CONFIG-002 | P0 | Auditar fuentes y lectores de configuración | [task](task-cards/CONFIG-002-audit-configuration-sources.md) |
+| CONFIG-003 | P0 | Canonicalizar contrato Config v2 | [task](task-cards/CONFIG-003-canonicalize-config-v2.md) |
+| CONFIG-004 | P0 | Crear migrador de configuración legacy | [task](task-cards/CONFIG-004-create-legacy-config-migration.md) |
+| CONFIG-005 | P0 | Crear validación de configuración | [task](task-cards/CONFIG-005-create-config-validation.md) |
+| CONFIG-006 | P0 | Implementar SisadPdfmeConfigService | [task](task-cards/CONFIG-006-implement-config-service.md) |
+| CONFIG-007 | P0 | Implementar selectores públicos | [task](task-cards/CONFIG-007-implement-config-selectors.md) |
+| CONFIG-008 | P0 | Crear FeatureRegistry y dependencias | [task](task-cards/CONFIG-008-create-feature-registry.md) |
+| CONFIG-009 | P0 | Crear ActionConfigRegistry y ComponentRegistry | [task](task-cards/CONFIG-009-create-action-component-registries.md) |
+| CONFIG-010 | P0 | Integrar Provider y wrappers públicos | [task](task-cards/CONFIG-010-integrate-provider-public-wrappers.md) |
+| CONFIG-015 | P1 | Migrar perfiles de schemas | [task](task-cards/CONFIG-015-migrate-schema-profiles.md) |
+| CONFIG-016 | P1 | Unificar assignment y collaboration | [task](task-cards/CONFIG-016-unify-assignment-collaboration.md) |
+| CONFIG-017 | P1 | Configurar documentos y comentarios | [task](task-cards/CONFIG-017-configure-documents-comments.md) |
+| CONFIG-018 | P1 | Configurar firmas y providers | [task](task-cards/CONFIG-018-configure-signatures.md) |
+| CONFIG-019 | P1 | Implementar configuración dinámica y controller | [task](task-cards/CONFIG-019-dynamic-configuration-controller.md) |
+| CONFIG-020 | P1 | Cerrar QA, documentación y quality gates | [task](task-cards/CONFIG-020-configuration-qa-docs-gates.md) |
 ```
 
-<a id="file-0257"></a>
+<a id="file-0262"></a>
 
-### 0257 — `.ai/scrum/PRODUCT-GOAL.md`
+### 0262 — `.ai/scrum/PRODUCT-GOAL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11699,14 +12380,14 @@ Divide si el cambio cruza una frontera protegida o requiere más de un owner esc
 Entregar un componente PDF reusable, configurable, accesible y estable, con una arquitectura de ingeniería asistida por IA que aumente velocidad sin sacrificar evidencia, mantenibilidad ni control humano.
 ```
 
-<a id="file-0258"></a>
+<a id="file-0263"></a>
 
-### 0258 — `.ai/scrum/README.md`
+### 0263 — `.ai/scrum/README.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `19`
-- **Tamaño original:** `0.5 KB`
-- **SHA1 corto:** `65effa80ab`
+- **Líneas:** `55`
+- **Tamaño original:** `2.0 KB`
+- **SHA1 corto:** `dde2fbafe1`
 - **Estado:** `completo`
 
 ```markdown
@@ -11714,14 +12395,50 @@ Entregar un componente PDF reusable, configurable, accesible y estable, con una 
 
 ## Artefactos
 
-- `PRODUCT-BACKLOG.md`: prioridad y enlace, no estado detallado.
+- `PRODUCT-BACKLOG.md`: backlog canónico priorizado.
+- `ACTIVE.md`: tareas activas y en revisión, generadas desde `SPRINT-CURRENT.md`.
+- `COMPLETED.md`: tareas cerradas, generadas desde `SPRINT-CURRENT.md`.
+- `BOARD.md`: panel operativo corto.
+- `CLAIMS.md`: leases vivas de escritura y lectura.
 - `SPRINT-CURRENT.md`: fuente única de estado, owner, modelo y worktree.
-- Task-card: alcance técnico y aceptación, no duplica el board.
+- Task-card: alcance técnico, ownership y aceptación.
 - `RETROSPECTIVE.md`: aprendizaje del sprint.
+
+## Arquitectura multi-asistente
+
+Scrum separa cuatro responsabilidades para evitar colisiones:
+
+- `Backlog` define qué existe y qué se prioriza.
+- `Active` muestra lo que está en curso o en revisión.
+- `Board` resume el estado operativo en una vista corta.
+- `Claims` registra quién escribe, en qué worktree y sobre qué archivos.
+- `Completed` consolida lo ya cerrado.
+- `Sprint` consolida el estado canónico y la evidencia durable.
+
+La tarea siempre vive en una task-card; el claim vive en `CLAIMS.md`; el estado vive en `SPRINT-CURRENT.md`.
+`ACTIVE.md` y `COMPLETED.md` se regeneran con `npm run maintenance:sync-scrum-views`.
+
+## Roles
+
+- `Coordinator`: asigna writer, readers y reviewer.
+- `Writer`: único escritor por task-card.
+- `Reader`: hasta dos lectores read-only por task-card.
+- `Reviewer`: valida el diff sin editar.
+- `Memory Steward`: consolida deltas durables.
 
 ## Flujo
 
-Backlog → Ready → In Progress → Review → Done / Blocked.
+Backlog → Ready → Claimed → In Progress → Review → Done / Blocked.
+
+## Reglas de paralelismo
+
+- Un writer por task-card.
+- Un worktree por writer.
+- Dos readers read-only como máximo por task-card.
+- Dos writers nunca comparten archivos ni fronteras protegidas.
+- Si dos tareas chocan en la misma frontera, se serializan o se dividen antes de editar.
+- `CLAIMS.md` se actualiza antes del primer parche y al liberar la tarea.
+- `SPRINT-CURRENT.md` sigue siendo la fuente de verdad del estado.
 
 ## Límites
 
@@ -11731,9 +12448,9 @@ Backlog → Ready → In Progress → Review → Done / Blocked.
 - Review separado para tareas L.
 ```
 
-<a id="file-0259"></a>
+<a id="file-0264"></a>
 
-### 0259 — `.ai/scrum/RETROSPECTIVE.md`
+### 0264 — `.ai/scrum/RETROSPECTIVE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -11750,20 +12467,26 @@ Máximo cinco acciones.
 |---|---|---|---|---|---|
 ```
 
-<a id="file-0260"></a>
+<a id="file-0265"></a>
 
-### 0260 — `.ai/scrum/SPRINT-CURRENT.md`
+### 0265 — `.ai/scrum/SPRINT-CURRENT.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `27`
-- **Tamaño original:** `3.1 KB`
-- **SHA1 corto:** `ecbf0432c3`
+- **Líneas:** `40`
+- **Tamaño original:** `4.9 KB`
+- **SHA1 corto:** `465e8f6f19`
 - **Estado:** `completo`
 
 ```markdown
 # Sprint actual
 
 Objetivo: adoptar la arquitectura IA sin interrumpir el desarrollo de SISAD PDFME.
+
+Notas operativas:
+
+- `SPRINT-CURRENT.md` es la fuente única de estado durable.
+- `CLAIMS.md` contiene solo leases activas de escritura.
+- Cada task-card activa debe tener un writer único; los readers extra son read-only y acotados.
 
 | ID | Estado | Owner | Modelo | Worktree | Evidencia |
 |---|---|---|---|---|---|
@@ -11786,31 +12509,46 @@ Objetivo: adoptar la arquitectura IA sin interrumpir el desarrollo de SISAD PDFM
 | [DEDUP-011](task-cards/DEDUP-011-strict-owned-residuals.md) | Done | coordinator | Sol high | actual | owned 4→1; strict 65→62 |
 | [UX-001](task-cards/UX-001-right-sidebar-listview-compactness-and-dnd.md) | In review | claude-opus | Opus 4.8 max | actual | contador único, filtro accesible, delete seguro, overlay alineado; lint/build/unit verdes (36 tests) |
 | [CONFIG-001](task-cards/CONFIG-001-repair-public-config-api.md) | In review | claude-opus | Opus 4.8 max | actual | Fase 1: barrel público restaurado; ~13 errores tsc resueltos, 0 nuevos; lint/build verdes; +3 tests contrato |
+| [CONFIG-002](task-cards/CONFIG-002-audit-configuration-sources.md) | Ready | config-specialist | Terra medium | pendiente | baseline de fuentes/readers y recursos |
+| [CONFIG-015](task-cards/CONFIG-015-migrate-schema-profiles.md) | Done | schema-specialist | Sol high | actual | perfiles por familia unificados; tests focales y build verdes |
+| [CONFIG-016](task-cards/CONFIG-016-unify-assignment-collaboration.md) | Done | runtime-architect | Sol high | actual | registry único y action state alineado; vitest/build/duplicate gate verdes |
+| [CONFIG-017](task-cards/CONFIG-017-configure-documents-comments.md) | Done | runtime-architect | Terra high | actual | documents/comments desacoplados de visibilidad; vitest y build verdes |
+| [CONFIG-018](task-cards/CONFIG-018-configure-signatures.md) | Done | schema-specialist | Terra high | actual | firmas y providers validados; vitest y build verdes |
+| [CONFIG-019](task-cards/CONFIG-019-dynamic-configuration-controller.md) | Done | runtime-architect | Sol high | actual | controller público, hot update y rebuild controlado validados; vitest/playwright/build verdes |
+| [CONFIG-020](task-cards/CONFIG-020-configuration-qa-docs-gates.md) | In progress | qa-reviewer | Terra medium | actual | docs, checker y suite Playwright de configuración; 16 escenarios Playwright y direct-config-readers verdes; lint/build/duplicate/vitest ejecutados; smoke test del inspector, config, devtools, adapters y primitives verdes; dead-code ahora solo deja baseline de export surface (114 exports, 54 types, 18 duplicate exports; 0 unused files) |
 
 WIP máximo: 3; cuentan `In progress` e `In review`. `SPRINT-CURRENT.md` es el único propietario del estado.
 ```
 
-<a id="file-0261"></a>
+<a id="file-0266"></a>
 
-### 0261 — `.ai/tasks/ACTIVE.md`
+### 0266 — `.ai/tasks/ACTIVE.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `5`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `dbaaed2898`
+- **Líneas:** `13`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `05fa4bd5ef`
 - **Estado:** `completo`
 
 ```markdown
 # ACTIVE
 
-| ID | Estado | Owner | Dominio | Worktree | Próximo gate |
-|---|---|---|---|---|---|
-| CONFIG-001 | ready | Config Specialist | configuration | pendiente | unit config |
+La fuente única de estado es:
+
+- `.ai/scrum/SPRINT-CURRENT.md`
+
+Task-cards de configuración relevantes:
+
+- `CONFIG-001`: en revisión; no reiniciar.
+- `CONFIG-002`: ready; siguiente tarea ejecutable.
+- `CONFIG-015..020`: backlog controlado por dependencias.
+
+No duplicar estado, owner, modelo ni worktree en este archivo.
 ```
 
-<a id="file-0262"></a>
+<a id="file-0267"></a>
 
-### 0262 — `.ai/tasks/AI-001-anti-hallucination-gate.md`
+### 0267 — `.ai/tasks/AI-001-anti-hallucination-gate.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -11833,9 +12571,9 @@ Incorporar claim ledger y validación de evidencia en task-cards y reviews.
 - memory delta requiere procedencia.
 ```
 
-<a id="file-0263"></a>
+<a id="file-0268"></a>
 
-### 0263 — `.ai/tasks/AI-002-context-overflow-checkpoints.md`
+### 0268 — `.ai/tasks/AI-002-context-overflow-checkpoints.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -11858,9 +12596,9 @@ Aplicar protocolo 60/75/85 en sesiones largas.
 - no se pierde alcance negativo.
 ```
 
-<a id="file-0264"></a>
+<a id="file-0269"></a>
 
-### 0264 — `.ai/tasks/CONFIG-001-unified-config-service.md`
+### 0269 — `.ai/tasks/CONFIG-001-unified-config-service.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -11901,9 +12639,9 @@ Crear la base del `SisadPdfmeConfigService` sin migrar aún todos los consumidor
 - build.
 ```
 
-<a id="file-0265"></a>
+<a id="file-0270"></a>
 
-### 0265 — `.ai/tasks/README.md`
+### 0270 — `.ai/tasks/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -11921,9 +12659,9 @@ Estados: `backlog`, `ready`, `in-progress`, `review`, `blocked`, `done`, `cancel
 WIP máximo: tres; solo una tarea sensible por dominio.
 ```
 
-<a id="file-0266"></a>
+<a id="file-0271"></a>
 
-### 0266 — `.ai/tasks/TEMPLATE.md`
+### 0271 — `.ai/tasks/TEMPLATE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -11972,9 +12710,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 ## Memory delta
 ```
 
-<a id="file-0267"></a>
+<a id="file-0272"></a>
 
-### 0267 — `.ai/templates/ADR.md`
+### 0272 — `.ai/templates/ADR.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -11994,9 +12732,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 - Evidencia:
 ```
 
-<a id="file-0268"></a>
+<a id="file-0273"></a>
 
-### 0268 — `.ai/templates/CLAIM-LEDGER.md`
+### 0273 — `.ai/templates/CLAIM-LEDGER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -12011,9 +12749,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 |---|---|---|---:|---|
 ```
 
-<a id="file-0269"></a>
+<a id="file-0274"></a>
 
-### 0269 — `.ai/templates/CONTEXT-CHECKPOINT.md`
+### 0274 — `.ai/templates/CONTEXT-CHECKPOINT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -12036,9 +12774,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 - Siguiente acción:
 ```
 
-<a id="file-0270"></a>
+<a id="file-0275"></a>
 
-### 0270 — `.ai/templates/DESIGN-AUDIT.md`
+### 0275 — `.ai/templates/DESIGN-AUDIT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -12059,9 +12797,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 - Antes/después:
 ```
 
-<a id="file-0271"></a>
+<a id="file-0276"></a>
 
-### 0271 — `.ai/templates/EVAL-CASE.md`
+### 0276 — `.ai/templates/EVAL-CASE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -12080,9 +12818,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 - Métricas:
 ```
 
-<a id="file-0272"></a>
+<a id="file-0277"></a>
 
-### 0272 — `.ai/templates/EVIDENCE.md`
+### 0277 — `.ai/templates/EVIDENCE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -12101,9 +12839,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 - Limitación:
 ```
 
-<a id="file-0273"></a>
+<a id="file-0278"></a>
 
-### 0273 — `.ai/templates/HANDOFF.md`
+### 0278 — `.ai/templates/HANDOFF.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -12123,9 +12861,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 - Próximo paso:
 ```
 
-<a id="file-0274"></a>
+<a id="file-0279"></a>
 
-### 0274 — `.ai/templates/INCIDENT.md`
+### 0279 — `.ai/templates/INCIDENT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -12146,9 +12884,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 - Prevención:
 ```
 
-<a id="file-0275"></a>
+<a id="file-0280"></a>
 
-### 0275 — `.ai/templates/MEMORY-DELTA.md`
+### 0280 — `.ai/templates/MEMORY-DELTA.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -12167,9 +12905,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 - Contenido obsoleto que debe retirarse:
 ```
 
-<a id="file-0276"></a>
+<a id="file-0281"></a>
 
-### 0276 — `.ai/templates/PLAN.md`
+### 0281 — `.ai/templates/PLAN.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -12190,9 +12928,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 ## Parada
 ```
 
-<a id="file-0277"></a>
+<a id="file-0282"></a>
 
-### 0277 — `.ai/templates/REFACTOR-REPORT.md`
+### 0282 — `.ai/templates/REFACTOR-REPORT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -12222,9 +12960,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 ## Pendientes
 ```
 
-<a id="file-0278"></a>
+<a id="file-0283"></a>
 
-### 0278 — `.ai/templates/REVIEW.md`
+### 0283 — `.ai/templates/REVIEW.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -12243,9 +12981,9 @@ WIP máximo: tres; solo una tarea sensible por dominio.
 - Recomendación:
 ```
 
-<a id="file-0279"></a>
+<a id="file-0284"></a>
 
-### 0279 — `.ai/templates/TASK-CARD.md`
+### 0284 — `.ai/templates/TASK-CARD.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -12284,9 +13022,9 @@ S / M / L
 ## Evidencia final
 ```
 
-<a id="file-0280"></a>
+<a id="file-0285"></a>
 
-### 0280 — `.claude/agents/sisad-explorer.md`
+### 0285 — `.claude/agents/sisad-explorer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -12304,9 +13042,9 @@ tools: Read, Grep, Glob
 Usa `.ai/agents/EXPLORER.md`. Devuelve evidence packet. No edites.
 ```
 
-<a id="file-0281"></a>
+<a id="file-0286"></a>
 
-### 0281 — `.claude/agents/sisad-reviewer.md`
+### 0286 — `.claude/agents/sisad-reviewer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -12324,9 +13062,9 @@ tools: Read, Grep, Bash
 Usa `.ai/agents/REVIEWER.md` y `.ai/governance/REVIEW-POLICY.md`.
 ```
 
-<a id="file-0282"></a>
+<a id="file-0287"></a>
 
-### 0282 — `.codex/agents/README.md`
+### 0287 — `.codex/agents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -12361,9 +13099,9 @@ Perfiles recomendados:
 No copie instrucciones extensas en TOML; apunte al archivo canónico.
 ```
 
-<a id="file-0283"></a>
+<a id="file-0288"></a>
 
-### 0283 — `.github/agents/sisad-architect.agent.md`
+### 0288 — `.github/agents/sisad-architect.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12380,9 +13118,9 @@ description: Arquitectura y contratos; lectura y propuestas, no implementación 
 Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
 ```
 
-<a id="file-0284"></a>
+<a id="file-0289"></a>
 
-### 0284 — `.github/agents/sisad-config.agent.md`
+### 0289 — `.github/agents/sisad-config.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12399,9 +13137,9 @@ description: Configuración unificada, selectors y API pública.
 Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
 ```
 
-<a id="file-0285"></a>
+<a id="file-0290"></a>
 
-### 0285 — `.github/agents/sisad-dry-auditor.agent.md`
+### 0290 — `.github/agents/sisad-dry-auditor.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -12419,9 +13157,9 @@ tools: ["read", "search"]
 Lee `AGENTS.md`, `.ai/START.md` y [EXPLORER-DRY](../../.ai/agents/EXPLORER-DRY.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
 ```
 
-<a id="file-0286"></a>
+<a id="file-0291"></a>
 
-### 0286 — `.github/agents/sisad-dry-reviewer.agent.md`
+### 0291 — `.github/agents/sisad-dry-reviewer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -12437,9 +13175,9 @@ description: Reviews proposed or completed SISAD PDFME refactors for safe dedupl
 Operate read-only. Classify each clone, verify the canonical owner, look for boolean-heavy abstractions, confirm characterization tests and ensure vendor/generated paths are not treated as owned debt.
 ```
 
-<a id="file-0287"></a>
+<a id="file-0292"></a>
 
-### 0287 — `.github/agents/sisad-implementer.agent.md`
+### 0292 — `.github/agents/sisad-implementer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12456,9 +13194,9 @@ description: Implementación focal de una task-card con archivos permitidos.
 Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
 ```
 
-<a id="file-0288"></a>
+<a id="file-0293"></a>
 
-### 0288 — `.github/agents/sisad-qa.agent.md`
+### 0293 — `.github/agents/sisad-qa.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12475,9 +13213,9 @@ description: Pruebas focales y evidencia reproducible.
 Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
 ```
 
-<a id="file-0289"></a>
+<a id="file-0294"></a>
 
-### 0289 — `.github/agents/sisad-reviewer.agent.md`
+### 0294 — `.github/agents/sisad-reviewer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12494,9 +13232,9 @@ description: Revisión independiente de diff, tests y claims.
 Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
 ```
 
-<a id="file-0290"></a>
+<a id="file-0295"></a>
 
-### 0290 — `.github/agents/sisad-scrum-coordinator.agent.md`
+### 0295 — `.github/agents/sisad-scrum-coordinator.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -12514,9 +13252,9 @@ tools: ["read", "search"]
 Lee `AGENTS.md`, `.ai/START.md` y [COORDINATOR](../../.ai/agents/COORDINATOR.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
 ```
 
-<a id="file-0291"></a>
+<a id="file-0296"></a>
 
-### 0291 — `.github/agents/sisad-task-planner.agent.md`
+### 0296 — `.github/agents/sisad-task-planner.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -12532,9 +13270,9 @@ description: Converts a bounded SISAD PDFME problem into a Ready task-card with 
 Do not edit application code. Produce one task-card, not a project-wide roadmap. Respect WIP and link to canonical policies rather than copying them.
 ```
 
-<a id="file-0292"></a>
+<a id="file-0297"></a>
 
-### 0292 — `.github/agents/sisad-test-specialist.agent.md`
+### 0297 — `.github/agents/sisad-test-specialist.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12551,9 +13289,9 @@ description: Diseña y revisa pruebas unitarias y Playwright focales para SISAD 
 Lee `AGENTS.md`, `.ai/START.md` y [QA-REVIEWER](../../.ai/agents/QA-REVIEWER.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
 ```
 
-<a id="file-0293"></a>
+<a id="file-0298"></a>
 
-### 0293 — `.github/agents/sisad-ux.agent.md`
+### 0298 — `.github/agents/sisad-ux.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12570,9 +13308,9 @@ description: UX responsive, accesibilidad y visual regression.
 Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
 ```
 
-<a id="file-0294"></a>
+<a id="file-0299"></a>
 
-### 0294 — `.github/instructions/canvas.instructions.md`
+### 0299 — `.github/instructions/canvas.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -12587,9 +13325,9 @@ applyTo: "src/sisad-pdfme/ui/components/Designer/Canvas/**/*.{ts,tsx}"
 Preserve coordinates, scale, scroll, page refs, Moveable/Selecto and selection-versus-transform semantics. Require reproduction and Playwright for pointer/layout changes. Do not use timing or z-index workarounds.
 ```
 
-<a id="file-0295"></a>
+<a id="file-0300"></a>
 
-### 0295 — `.github/instructions/quality.instructions.md`
+### 0300 — `.github/instructions/quality.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -12604,9 +13342,9 @@ applyTo: "{scripts,tools,configs,.ai}/**/*"
 Separate owned, vendor and generated metrics. Keep documentation canonical and link rather than copy. Validate skills, relative links, TOML/JSON and Markdown duplication.
 ```
 
-<a id="file-0296"></a>
+<a id="file-0301"></a>
 
-### 0296 — `.github/instructions/schemas.instructions.md`
+### 0301 — `.github/instructions/schemas.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -12621,9 +13359,9 @@ applyTo: "src/sisad-pdfme/schemas/**/*.{ts,tsx}"
 Preserve schema identity, routing, geometry, ownership and designer metadata. Validate Designer, inspector, Form, Viewer, Generator and snapshot. Use family-level factories/registries only when variants share a real contract.
 ```
 
-<a id="file-0297"></a>
+<a id="file-0302"></a>
 
-### 0297 — `.github/prompts/implement-task.prompt.md`
+### 0302 — `.github/prompts/implement-task.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -12638,9 +13376,9 @@ description: Implement one approved SISAD PDFME task-card safely.
 Read the task-card and nearest AGENTS, confirm one writer, characterize behavior, implement the smallest complete change, run gates and prepare memory delta.
 ```
 
-<a id="file-0298"></a>
+<a id="file-0303"></a>
 
-### 0298 — `.github/prompts/triage-jscpd.prompt.md`
+### 0303 — `.github/prompts/triage-jscpd.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -12655,9 +13393,9 @@ description: Classify the current jscpd JSON and prepare an ordered owned-code b
 Run the project parser, separate owned/vendor/generated, apply `.ai/DUPLICATION-POLICY.md`, and create/update task-cards. Do not refactor vendor or modify thresholds to make the report green.
 ```
 
-<a id="file-0299"></a>
+<a id="file-0304"></a>
 
-### 0299 — `.serena/memories/memory_maintenance.md`
+### 0304 — `.serena/memories/memory_maintenance.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -12679,9 +13417,9 @@ Serena memory is auxiliary.
 - never store secrets.
 ```
 
-<a id="file-0300"></a>
+<a id="file-0305"></a>
 
-### 0300 — `reports/configuration/behavior-matrix.md`
+### 0305 — `reports/configuration/behavior-matrix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -12714,9 +13452,9 @@ Modelo único por feature: `registered · supported · enabled · visible · per
 Regla transversal: **visible ≠ enabled ≠ permitted**; ocultar del catálogo no elimina schema del canvas/snapshot; cambiar visibilidad de panel nunca cambia routing.
 ```
 
-<a id="file-0301"></a>
+<a id="file-0306"></a>
 
-### 0301 — `reports/configuration/config-sources-audit.md`
+### 0306 — `reports/configuration/config-sources-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -12755,9 +13493,103 @@ SisadPdfmeGlobalConfig (host)
 3. Separar **enabled/visible/permitted/available/executable** en un modelo único (`SisadPdfmeFeatureState`) elimina los booleans aislados en `actionRegistry`/`designerActionState`.
 ```
 
-<a id="file-0302"></a>
+<a id="file-0307"></a>
 
-### 0302 — `reports/configuration/current-public-api.md`
+### 0307 — `reports/configuration/config-task-pack-manifest.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `36`
+- **Tamaño original:** `3.9 KB`
+- **SHA1 corto:** `ca1c3ea460`
+- **Estado:** `completo`
+
+```markdown
+# Manifest — tareas configuración unificada
+
+- Task-cards: 20
+- Archivos del overlay: 28
+- Raíz: `prueba-plugin/`
+
+| Ruta | SHA256 | Bytes |
+|---|---|---:|
+| `.ai/plans/CONFIGURATION-TASK-EXECUTION.md` | `0ae504ba5d03ec82faec5a3b076583ce7a8e0ecbe58a7686fb290461ed4c6402` | 4718 |
+| `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md` | `5bce3aeacfdeb1b4219876aae35442374e5fb1bcccfac28d9ebdb3200da004a4` | 38180 |
+| `.ai/plans/README-TASK-PACK-CONFIGURATION.md` | `bc37424c41587eaadc889a010d2726ddda94085a7d1d41d0d8c8edd80b31bec5` | 814 |
+| `.ai/routes/configuration.md` | `a6793d19acc6e3ab393a1e879165a0bc8d1c8d6a99deed0d8d428dcd4b47a0f4` | 429 |
+| `.ai/scrum/PRODUCT-BACKLOG.md` | `304c14bb9f9e211fee8b8827d54e61b8b4e6992a1ccfd850a38da4c16176f25b` | 3071 |
+| `.ai/scrum/SPRINT-CURRENT.md` | `daacf7ed00cf071046a457ff85906fee1ee6350c886a40dfe69e5e0bb45794b4` | 3383 |
+| `.ai/scrum/task-cards/CONFIG-001-repair-public-config-api.md` | `a98d53b071aa9f83587e1c53467d4f1ce86a339f9075dd098cd271e9f5785dce` | 3107 |
+| `.ai/scrum/task-cards/CONFIG-002-audit-configuration-sources.md` | `11a10661b038b130cbdaf1584bf8f4a49c220f685cacb1223bf574f95befaab7` | 5473 |
+| `.ai/scrum/task-cards/CONFIG-003-canonicalize-config-v2.md` | `c27817184309dc61f204fea0bc6415228c5f4caa9d230fcb30a37661cbf06482` | 4880 |
+| `.ai/scrum/task-cards/CONFIG-004-create-legacy-config-migration.md` | `584f356f21fffbfe2793e3ef871c6538cb3bd81818cb87c2cdb3ca614cc10f4f` | 4852 |
+| `.ai/scrum/task-cards/CONFIG-005-create-config-validation.md` | `f54786197fd8e1d89afc7796fc655fb355e59ed1104a328820450eedab025f3c` | 4830 |
+| `.ai/scrum/task-cards/CONFIG-006-implement-config-service.md` | `d4c978b7d8d3116587b717834e9002cd2726a5f2310eedb962efc18ab764df2d` | 4956 |
+| `.ai/scrum/task-cards/CONFIG-007-implement-config-selectors.md` | `8fb8b406a6344f65e0d3ce2ad6799f1b6c1e5b003a4dbea8a7b2ad080a9cd8b1` | 4701 |
+| `.ai/scrum/task-cards/CONFIG-008-create-feature-registry.md` | `a397bb6f3a7d2464e6b2629f3583525076a773205ee287ec5705dd7d29f8804b` | 4803 |
+| `.ai/scrum/task-cards/CONFIG-009-create-action-component-registries.md` | `eb909330e20acb436a934daca6ce8cce19f1f9294970d7d214494093d68e54b4` | 4776 |
+| `.ai/scrum/task-cards/CONFIG-010-integrate-provider-public-wrappers.md` | `ec87bd8dfdfa20ce63fda0b0a6259c0b8d49d2356ec47921f5e8491aa9d69152` | 4900 |
+| `.ai/scrum/task-cards/CONFIG-011-migrate-right-sidebar-listview.md` | `bee7208eee29879ecde20e59f731905939660d80f973b39b7afcebb365771a68` | 5107 |
+| `.ai/scrum/task-cards/CONFIG-012-migrate-left-sidebar.md` | `82e6fc68d28373e8c6bb9bbea407bbbecde8e36542ce477fffbf5fe651e8b00a` | 4707 |
+| `.ai/scrum/task-cards/CONFIG-013-migrate-canvas-feature-flags.md` | `8c745d1ffa2e1919d5e2b00db275045d813dec6329665816899089c273fd7909` | 5142 |
+| `.ai/scrum/task-cards/CONFIG-014-migrate-inspector-configuration.md` | `ff9a9e7084e452b554e721b78306294a2c3509a9e518b721dbf7b72298d021e7` | 4996 |
+| `.ai/scrum/task-cards/CONFIG-015-migrate-schema-profiles.md` | `a707acd7fc5739fac2005a1e3a2b0dfca8cc7f0246d0ce73f2c763455f5736f8` | 4879 |
+| `.ai/scrum/task-cards/CONFIG-016-unify-assignment-collaboration.md` | `e322cae8a30e747f5bca0acee3556fbd68bef44ee899aafbeede2d406671b47e` | 4858 |
+| `.ai/scrum/task-cards/CONFIG-017-configure-documents-comments.md` | `37c7a0761b102686ab926adc27ee351a72ecd22dd5bf47eaf86f1ec84447c807` | 4893 |
+| `.ai/scrum/task-cards/CONFIG-018-configure-signatures.md` | `9dc224c43c4a392d16912569633ff44de9416e4ca71d4ebf9644822551e53813` | 4794 |
+| `.ai/scrum/task-cards/CONFIG-019-dynamic-configuration-controller.md` | `a0e195893ff7e86b0b76bd35847a9e829affd8a9150b73526d7698e50f1a9e77` | 5299 |
+| `.ai/scrum/task-cards/CONFIG-020-configuration-qa-docs-gates.md` | `9723d08f7b3330819e9f798e9037546588048112c00f38ed8fa1ba6dd99a3ae3` | 5581 |
+| `.ai/tasks/ACTIVE.md` | `34d9d1b7b1e9f5e685369d0a916d63509997675a24170281503fe0a928188b38` | 334 |
+| `reports/configuration/config-task-pack-tree.md` | `9c5cf84724c7f657ced39f54709ee60ce6e1213beb80db560e15f7e4c116ff60` | 1489 |
+```
+
+<a id="file-0308"></a>
+
+### 0308 — `reports/configuration/config-task-pack-tree.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `1.5 KB`
+- **SHA1 corto:** `48b4369fba`
+- **Estado:** `completo`
+
+```markdown
+# Árbol del paquete
+
+``​`text
+prueba-plugin
+    └── CONFIGURATION-TASK-EXECUTION.md
+    └── PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md
+    └── README-TASK-PACK-CONFIGURATION.md
+    └── configuration.md
+    └── PRODUCT-BACKLOG.md
+    └── SPRINT-CURRENT.md
+      └── CONFIG-001-repair-public-config-api.md
+      └── CONFIG-002-audit-configuration-sources.md
+      └── CONFIG-003-canonicalize-config-v2.md
+      └── CONFIG-004-create-legacy-config-migration.md
+      └── CONFIG-005-create-config-validation.md
+      └── CONFIG-006-implement-config-service.md
+      └── CONFIG-007-implement-config-selectors.md
+      └── CONFIG-008-create-feature-registry.md
+      └── CONFIG-009-create-action-component-registries.md
+      └── CONFIG-010-integrate-provider-public-wrappers.md
+      └── CONFIG-011-migrate-right-sidebar-listview.md
+      └── CONFIG-012-migrate-left-sidebar.md
+      └── CONFIG-013-migrate-canvas-feature-flags.md
+      └── CONFIG-014-migrate-inspector-configuration.md
+      └── CONFIG-015-migrate-schema-profiles.md
+      └── CONFIG-016-unify-assignment-collaboration.md
+      └── CONFIG-017-configure-documents-comments.md
+      └── CONFIG-018-configure-signatures.md
+      └── CONFIG-019-dynamic-configuration-controller.md
+      └── CONFIG-020-configuration-qa-docs-gates.md
+    └── ACTIVE.md
+``​`
+```
+
+<a id="file-0309"></a>
+
+### 0309 — `reports/configuration/current-public-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -12781,9 +13613,9 @@ Barrel `@/sisad-pdfme/config` y `@/sisad-pdfme/integration` (main). Tras CONFIG-
 Pendiente: no re-exportar internals de UI/Canvas (objetivo plan §20).
 ```
 
-<a id="file-0303"></a>
+<a id="file-0310"></a>
 
-### 0303 — `reports/configuration/duplicate-config-paths.md`
+### 0310 — `reports/configuration/duplicate-config-paths.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -12811,9 +13643,9 @@ Rutas equivalentes que obligan al resolver a decidir precedencia. **Canónica ga
 Migración implementada en **CONFIG-003** (`configMigration.ts`): normaliza aliases → canónico con warning solo en debug; idempotente.
 ```
 
-<a id="file-0304"></a>
+<a id="file-0311"></a>
 
-### 0304 — `reports/configuration/visual-functional-baseline.md`
+### 0311 — `reports/configuration/visual-functional-baseline.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -12846,9 +13678,9 @@ Selección/zoom/scroll/página/documento activo; routing multi-documento; snapsh
 Playwright de configuración (`tests/playwright/configuration/*`) con los 16 escenarios del plan §16.4 — requiere webServer configurado (ver memoria UXQA). Se difiere a CONFIG-020.
 ```
 
-<a id="file-0305"></a>
+<a id="file-0312"></a>
 
-### 0305 — `src/sisad-pdfme/AGENTS.md`
+### 0312 — `src/sisad-pdfme/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12865,9 +13697,9 @@ Playwright de configuración (`tests/playwright/configuration/*`) con los 16 esc
 - Usar adapters/config/events.
 ```
 
-<a id="file-0306"></a>
+<a id="file-0313"></a>
 
-### 0306 — `tools/ai-quality/README.md`
+### 0313 — `tools/ai-quality/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -12885,9 +13717,9 @@ Playwright de configuración (`tests/playwright/configuration/*`) con los 16 esc
 Los scripts usan Node estándar y no escriben código de aplicación.
 ```
 
-<a id="file-0307"></a>
+<a id="file-0314"></a>
 
-### 0307 — `.agents/skills/sisad-accessibility/SKILL.md`
+### 0314 — `.agents/skills/sisad-accessibility/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -12923,9 +13755,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0308"></a>
+<a id="file-0315"></a>
 
-### 0308 — `.agents/skills/sisad-canvas-interaction/SKILL.md`
+### 0315 — `.agents/skills/sisad-canvas-interaction/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -12961,9 +13793,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0309"></a>
+<a id="file-0316"></a>
 
-### 0309 — `.agents/skills/sisad-canvas-safety/SKILL.md`
+### 0316 — `.agents/skills/sisad-canvas-safety/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -12986,9 +13818,9 @@ metadata:
 Antes de editar, identifica sistema de coordenadas, paper root, scroll y zoom. Selección e inspección son independientes de edición. No uses z-index o timeouts para ocultar colisiones. Ejecuta Playwright focal en página 1 y página >1, paneles abiertos/cerrados y selección múltiple.
 ```
 
-<a id="file-0310"></a>
+<a id="file-0317"></a>
 
-### 0310 — `.agents/skills/sisad-collaboration-assignments/SKILL.md`
+### 0317 — `.agents/skills/sisad-collaboration-assignments/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13024,9 +13856,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0311"></a>
+<a id="file-0318"></a>
 
-### 0311 — `.agents/skills/sisad-configuration-service/SKILL.md`
+### 0318 — `.agents/skills/sisad-configuration-service/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13062,9 +13894,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0312"></a>
+<a id="file-0319"></a>
 
-### 0312 — `.agents/skills/sisad-context-budget/SKILL.md`
+### 0319 — `.agents/skills/sisad-context-budget/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13100,9 +13932,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0313"></a>
+<a id="file-0320"></a>
 
-### 0313 — `.agents/skills/sisad-css-tailwind/SKILL.md`
+### 0320 — `.agents/skills/sisad-css-tailwind/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -13125,9 +13957,9 @@ metadata:
 Usa Tailwind para presentación y tokens CSS para variables. Mantén CSS técnico solo cuando Moveable/Selecto, pseudo-elementos o geometría lo exijan. Centraliza variantes y className builders. No uses `!important` o z-index como parche. Ejecuta gates visuales.
 ```
 
-<a id="file-0314"></a>
+<a id="file-0321"></a>
 
-### 0314 — `.agents/skills/sisad-dedup-triage/SKILL.md`
+### 0321 — `.agents/skills/sisad-dedup-triage/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -13148,9 +13980,9 @@ Run the report parser. Group clones by shared responsibility, not file proximity
 Use `.ai/DUPLICATION-POLICY.md` and `.ai/patterns/DUPLICATION-TAXONOMY.md`.
 ```
 
-<a id="file-0315"></a>
+<a id="file-0322"></a>
 
-### 0315 — `.agents/skills/sisad-designer-safety/SKILL.md`
+### 0322 — `.agents/skills/sisad-designer-safety/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -13169,9 +14001,9 @@ description: Protect canvas geometry, Moveable, Selecto, multipage routing, over
 Trace documentId, pageNumber, scale, scroll, paper rect and schema coordinates. Preserve selection versus transform semantics, modal suspension, locked/readOnly behavior and owner color. Do not use setTimeout or z-index to hide ordering bugs. Require Playwright when layout or pointer behavior changes.
 ```
 
-<a id="file-0316"></a>
+<a id="file-0323"></a>
 
-### 0316 — `.agents/skills/sisad-dry-refactor/SKILL.md`
+### 0323 — `.agents/skills/sisad-dry-refactor/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13207,9 +14039,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0317"></a>
+<a id="file-0324"></a>
 
-### 0317 — `.agents/skills/sisad-dry-refactoring/SKILL.md`
+### 0324 — `.agents/skills/sisad-dry-refactoring/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -13238,9 +14070,9 @@ metadata:
 - Nunca excluyas código propio para ocultar clones.
 ```
 
-<a id="file-0318"></a>
+<a id="file-0325"></a>
 
-### 0318 — `.agents/skills/sisad-evidence-grounding/SKILL.md`
+### 0325 — `.agents/skills/sisad-evidence-grounding/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13276,9 +14108,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0319"></a>
+<a id="file-0326"></a>
 
-### 0319 — `.agents/skills/sisad-frontend-component-architecture/SKILL.md`
+### 0326 — `.agents/skills/sisad-frontend-component-architecture/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13314,9 +14146,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0320"></a>
+<a id="file-0327"></a>
 
-### 0320 — `.agents/skills/sisad-incident-recovery/SKILL.md`
+### 0327 — `.agents/skills/sisad-incident-recovery/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13352,9 +14184,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0321"></a>
+<a id="file-0328"></a>
 
-### 0321 — `.agents/skills/sisad-inspector-contract/SKILL.md`
+### 0328 — `.agents/skills/sisad-inspector-contract/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13390,9 +14222,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0322"></a>
+<a id="file-0329"></a>
 
-### 0322 — `.agents/skills/sisad-memory-delta/SKILL.md`
+### 0329 — `.agents/skills/sisad-memory-delta/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13428,9 +14260,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0323"></a>
+<a id="file-0330"></a>
 
-### 0323 — `.agents/skills/sisad-memory-scrum/SKILL.md`
+### 0330 — `.agents/skills/sisad-memory-scrum/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -13449,9 +14281,9 @@ description: Update SISAD PDFME Scrum artifacts and durable memory by delta afte
 Update task-card first, then board and sprint. Produce MEMORY-DELTA and integrate only durable changes into PROJECT/CURRENT/DECISIONS/RISKS/METRICS. Keep raw logs and temporary hypotheses out of memory. Enforce WIP and Definition of Done.
 ```
 
-<a id="file-0324"></a>
+<a id="file-0331"></a>
 
-### 0324 — `.agents/skills/sisad-multi-document-routing/SKILL.md`
+### 0331 — `.agents/skills/sisad-multi-document-routing/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13487,9 +14319,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0325"></a>
+<a id="file-0332"></a>
 
-### 0325 — `.agents/skills/sisad-orchestrate-task/SKILL.md`
+### 0332 — `.agents/skills/sisad-orchestrate-task/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -13516,9 +14348,9 @@ description: Orchestrate one SISAD PDFME task-card with bounded context, model r
 Read `.ai/ORCHESTRATION.md` for constraints. Do not create a multi-agent workflow for a small single-file task.
 ```
 
-<a id="file-0326"></a>
+<a id="file-0333"></a>
 
-### 0326 — `.agents/skills/sisad-pattern-selection/SKILL.md`
+### 0333 — `.agents/skills/sisad-pattern-selection/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -13541,9 +14373,9 @@ metadata:
 Describe primero la variación y el owner. Consulta la matriz canónica. Prefiere composición y funciones puras. Introduce infraestructura solo cuando reduzca puntos de cambio reales. Rechaza hooks triviales, wrappers vacíos, registries redundantes y factories sin semántica.
 ```
 
-<a id="file-0327"></a>
+<a id="file-0334"></a>
 
-### 0327 — `.agents/skills/sisad-prompt-evaluation/SKILL.md`
+### 0334 — `.agents/skills/sisad-prompt-evaluation/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13579,9 +14411,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0328"></a>
+<a id="file-0335"></a>
 
-### 0328 — `.agents/skills/sisad-public-api-compatibility/SKILL.md`
+### 0335 — `.agents/skills/sisad-public-api-compatibility/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13617,9 +14449,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0329"></a>
+<a id="file-0336"></a>
 
-### 0329 — `.agents/skills/sisad-quality-gates/SKILL.md`
+### 0336 — `.agents/skills/sisad-quality-gates/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -13638,9 +14470,9 @@ description: Select and execute the correct lint, build, unit, Playwright, dupli
 Read the task-card and `.ai/QUALITY-GATES.md`. Run the smallest focal set during iteration, then the declared close set. Capture command, exit code and relevant summary. Do not claim green for commands not executed. Distinguish pre-existing failures from introduced failures with evidence.
 ```
 
-<a id="file-0330"></a>
+<a id="file-0337"></a>
 
-### 0330 — `.agents/skills/sisad-react-performance/SKILL.md`
+### 0337 — `.agents/skills/sisad-react-performance/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13676,9 +14508,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0331"></a>
+<a id="file-0338"></a>
 
-### 0331 — `.agents/skills/sisad-research-verify/SKILL.md`
+### 0338 — `.agents/skills/sisad-research-verify/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -13697,9 +14529,9 @@ description: Verify current technical behavior against primary official document
 State the exact uncertainty. Prefer official docs, specifications and upstream repositories. Record access date and version scope. Separate source fact, inference and project recommendation. Do not browse when the answer is fully determined by local code. Do not implement code in this skill.
 ```
 
-<a id="file-0332"></a>
+<a id="file-0339"></a>
 
-### 0332 — `.agents/skills/sisad-responsive-ux/SKILL.md`
+### 0339 — `.agents/skills/sisad-responsive-ux/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13735,9 +14567,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0333"></a>
+<a id="file-0340"></a>
 
-### 0333 — `.agents/skills/sisad-schema-family-refactor/SKILL.md`
+### 0340 — `.agents/skills/sisad-schema-family-refactor/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -13764,9 +14596,9 @@ metadata:
 - Preserva identidad, routing, ownership, grupos y opciones.
 ```
 
-<a id="file-0334"></a>
+<a id="file-0341"></a>
 
-### 0334 — `.agents/skills/sisad-schema-plugin/SKILL.md`
+### 0341 — `.agents/skills/sisad-schema-plugin/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13802,9 +14634,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0335"></a>
+<a id="file-0342"></a>
 
-### 0335 — `.agents/skills/sisad-security-privacy/SKILL.md`
+### 0342 — `.agents/skills/sisad-security-privacy/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13840,9 +14672,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0336"></a>
+<a id="file-0343"></a>
 
-### 0336 — `.agents/skills/sisad-skill-evaluation/SKILL.md`
+### 0343 — `.agents/skills/sisad-skill-evaluation/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -13869,9 +14701,9 @@ metadata:
 - Fusiona skills solapadas y elimina las que no mejoran resultados.
 ```
 
-<a id="file-0337"></a>
+<a id="file-0344"></a>
 
-### 0337 — `.agents/skills/sisad-snapshot-compatibility/SKILL.md`
+### 0344 — `.agents/skills/sisad-snapshot-compatibility/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13907,9 +14739,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0338"></a>
+<a id="file-0345"></a>
 
-### 0338 — `.agents/skills/sisad-tailwind-design-system/SKILL.md`
+### 0345 — `.agents/skills/sisad-tailwind-design-system/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13945,9 +14777,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0339"></a>
+<a id="file-0346"></a>
 
-### 0339 — `.agents/skills/sisad-task-execution/SKILL.md`
+### 0346 — `.agents/skills/sisad-task-execution/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -13978,9 +14810,9 @@ metadata:
 No termines en análisis si puedes completar un cambio seguro. No inventes validaciones que no ejecutaste.
 ```
 
-<a id="file-0340"></a>
+<a id="file-0347"></a>
 
-### 0340 — `.agents/skills/sisad-task-orchestration/SKILL.md`
+### 0347 — `.agents/skills/sisad-task-orchestration/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -14016,9 +14848,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0341"></a>
+<a id="file-0348"></a>
 
-### 0341 — `.agents/skills/sisad-testing-pyramid/SKILL.md`
+### 0348 — `.agents/skills/sisad-testing-pyramid/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -14054,9 +14886,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0342"></a>
+<a id="file-0349"></a>
 
-### 0342 — `.agents/skills/sisad-visual-regression/SKILL.md`
+### 0349 — `.agents/skills/sisad-visual-regression/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -14092,14 +14924,14 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0343"></a>
+<a id="file-0350"></a>
 
-### 0343 — `.ai/scrum/task-cards/CONFIG-001-repair-public-config-api.md`
+### 0350 — `.ai/scrum/task-cards/CONFIG-001-repair-public-config-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
 - **Tamaño original:** `3.0 KB`
-- **SHA1 corto:** `694a33c853`
+- **SHA1 corto:** `f29543d60c`
 - **Estado:** `completo`
 
 ```markdown
@@ -14160,9 +14992,3027 @@ Riesgo bajo (sólo superficie de exports). El resto del delta `tsc` del árbol p
 Sin delta durable nuevo; la nota de `[[listview-rightsidebar-testing-notes]]` sobre fallos antd en vitest sigue vigente.
 ```
 
-<a id="file-0344"></a>
+<a id="file-0351"></a>
 
-### 0344 — `.ai/scrum/task-cards/DEDUP-001-smart-placement.md`
+### 0351 — `.ai/scrum/task-cards/CONFIG-002-audit-configuration-sources.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `149`
+- **Tamaño original:** `5.3 KB`
+- **SHA1 corto:** `b44a419469`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-002 — Auditar fuentes y lectores de configuración
+
+**Estado:** ready
+**Owner:** config-specialist
+**Modelo sugerido:** Terra medium
+**Worktree/rama:** pendiente
+**Prioridad:** P0
+**Dependencias:** ninguna
+
+## Objetivo observable
+
+Construir un mapa verificable de todas las fuentes, aliases, lectores y comportamientos configurables antes de modificar código.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/config/SisadPdfmeConfig.ts
+- src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts
+- src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts
+- src/sisad-pdfme/config/createSisadPdfmeConfig.ts
+- src/sisad-pdfme/config/index.ts
+- src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts
+- src/sisad-pdfme/ui/components/Designer/shared/visibilityConfig.ts
+- src/sisad-pdfme/react/SisadPdfmeProvider.tsx
+
+## Archivos prohibidos
+
+- No modificar comportamiento.
+- No crear ConfigService.
+- No migrar componentes.
+- No corregir CSS o UX.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+El plan identifica rutas duplicadas entre `visibility` y `ui.visibility`, `sidebars` y `ui.sidebars`, `theme.density` y `ui.density`, además de lecturas paralelas desde `OptionsContext`, `designerUiConfig` y componentes.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Inventariar fuentes de configuración raíz, defaults, resolver, runtimeOptions y contexts.
+- Mapear componente/acción → ruta actual de configuración.
+- Detectar lecturas directas de visibility, assignment, sidebars, canvas, schemas y collaboration.
+- Identificar dónde se crean DesignerEngine, EventHub, adapters y RecipientRegistry.
+- Clasificar cada lector como canonical, legacy, bridge o incorrecto.
+
+## Pasos
+
+1. Crear `reports/configuration/`.
+2. Ejecutar las búsquedas `rg` definidas en el plan.
+3. Consolidar resultados por ruta de configuración.
+4. Registrar conflictos de precedencia.
+5. Registrar recursos recreados por resolución.
+6. Crear matriz de comportamiento actual.
+7. Capturar baseline visual/funcional de escenarios críticos.
+
+## Comandos/gates
+
+- [ ] `git diff --check`
+- [ ] Verificación manual de que solo se agregaron reportes.
+- [ ] Revisión cruzada del Config Architect.
+
+## Criterios de aceptación
+
+- [ ] Existe un mapa completo componente/acción → configuración.
+- [ ] Cada alias duplicado tiene propuesta canónica.
+- [ ] Se identifican readers directos que deberán migrarse.
+- [ ] Se documenta qué recursos se recrean actualmente.
+- [ ] No cambia ningún archivo funcional.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Eliminar únicamente los reportes creados; no existe rollback funcional.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0352"></a>
+
+### 0352 — `.ai/scrum/task-cards/CONFIG-003-canonicalize-config-v2.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `143`
+- **Tamaño original:** `4.8 KB`
+- **SHA1 corto:** `307f1318cd`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-003 — Canonicalizar contrato Config v2
+
+**Estado:** done
+**Owner:** config-specialist
+**Modelo sugerido:** Terra high
+**Worktree/rama:** pendiente
+**Prioridad:** P0
+**Dependencias:** CONFIG-001, CONFIG-002
+
+## Objetivo observable
+
+Definir el contrato canónico V2, separar presentación de comportamiento y documentar precedencia oficial.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/config/SisadPdfmeConfig.ts
+- src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts
+- src/sisad-pdfme/config/index.ts
+- docs/07-integraciones/05-global-config.md
+
+## Archivos prohibidos
+
+- No implementar todavía el migrador.
+- No migrar componentes.
+- No cambiar runtime behavior.
+- No eliminar campos legacy.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+La configuración actual contiene rutas equivalentes que pueden controlar el mismo resultado.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Agregar `configVersion?: 2`.
+- Definir rutas canónicas para visibility, density, sidebars y activeRecipient.
+- Reducir `ui` a layout, medidas, preset y classNames.
+- Definir aliases deprecated sin eliminarlos aún.
+- Definir orden de precedencia.
+
+## Pasos
+
+1. Crear tipos V2 sin romper V1.
+2. Agregar `sidebars.right.defaultOpen` si falta.
+3. Marcar `ui.visibility`, `ui.density`, `ui.sidebars` como deprecated.
+4. Marcar `collaboration.activeRecipientId` como alias legacy.
+5. Definir precedencia defaults → preset → legacy → canonical → overrides → permissions/context.
+6. Agregar ejemplos tipados.
+
+## Comandos/gates
+
+- [x] `npm run build`
+- [x] `npx vitest run tests/unit/sisad-pdfme/config`
+- [x] Typecheck de ejemplos V1 y V2.
+
+## Criterios de aceptación
+
+- [x] `ui` deja de ser fuente funcional nueva.
+- [x] La configuración canónica tiene nombres únicos.
+- [x] El contrato sigue aceptando configuración legacy.
+- [x] No existen ambigüedades de precedencia.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Revertir el contrato V2 y documentación; no debe haber migraciones de datos en esta tarea.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0353"></a>
+
+### 0353 — `.ai/scrum/task-cards/CONFIG-004-create-legacy-config-migration.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `145`
+- **Tamaño original:** `4.7 KB`
+- **SHA1 corto:** `ccf6f1e9a5`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-004 — Crear migrador de configuración legacy
+
+**Estado:** done
+**Owner:** config-specialist
+**Modelo sugerido:** Terra medium
+**Worktree/rama:** pendiente
+**Prioridad:** P0
+**Dependencias:** CONFIG-003
+
+## Objetivo observable
+
+Normalizar configuraciones V1/legacy hacia una única representación V2 antes de resolver defaults y runtime.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/config/configMigration.ts
+- src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts
+- src/sisad-pdfme/config/index.ts
+- tests/unit/sisad-pdfme/config/configMigration.test.ts
+
+## Archivos prohibidos
+
+- No validar combinaciones todavía.
+- No crear ConfigService.
+- No migrar consumidores.
+- No emitir warnings en producción por defecto.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+Los aliases legacy deben continuar funcionando durante la ventana de migración, pero nunca competir con rutas canónicas.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Crear `configMigration.ts`.
+- Migrar aliases definidos en el plan.
+- Preservar funciones, arrays y valores explícitos.
+- Generar warnings solo en development/debug.
+- Registrar conflictos canonical vs legacy.
+
+## Pasos
+
+1. Implementar migración pura y sin mutación.
+2. Migrar `ui.visibility` a `visibility`.
+3. Migrar `ui.density` a `theme.density`.
+4. Migrar `ui.sidebars.*` a `sidebars.*`.
+5. Migrar activeRecipient legacy.
+6. Definir canonical-wins.
+7. Agregar warnings estructurados y deduplicados.
+8. Probar configuraciones mixtas, parciales y vacías.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/configMigration.test.ts`
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] La entrada original no se muta.
+- [x] La misma entrada produce la misma salida.
+- [x] Canonical siempre gana.
+- [x] Los arrays no se concatenan accidentalmente.
+- [x] Warnings no se duplican en una resolución.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Desconectar el migrador del resolver y revertir el archivo nuevo.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0354"></a>
+
+### 0354 — `.ai/scrum/task-cards/CONFIG-005-create-config-validation.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `144`
+- **Tamaño original:** `4.7 KB`
+- **SHA1 corto:** `7f52aff739`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-005 — Crear validación de configuración
+
+**Estado:** done
+**Owner:** config-specialist
+**Modelo sugerido:** Terra medium
+**Worktree/rama:** pendiente
+**Prioridad:** P0
+**Dependencias:** CONFIG-003, CONFIG-004
+
+## Objetivo observable
+
+Detectar configuraciones inválidas, incompatibles o incompletas antes de crear runtimeOptions, engine o providers.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/config/configValidation.ts
+- src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts
+- src/sisad-pdfme/config/index.ts
+- tests/unit/sisad-pdfme/config/configValidation.test.ts
+
+## Archivos prohibidos
+
+- No corregir automáticamente valores ambiguos.
+- No validar lógica específica del host.
+- No montar runtime.
+- No crear UI de diagnóstico.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+El plan enumera combinaciones como provider signature sin providers, autosave sin persistencia y cambios incompatibles durante interacción.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Crear `configValidation.ts`.
+- Separar errors y warnings.
+- Validar dependencias entre secciones.
+- Retornar paths y mensajes estables.
+- Evitar throw para warnings recuperables.
+
+## Pasos
+
+1. Definir `SisadPdfmeConfigIssue`.
+2. Validar signatures provider/defaultMode.
+3. Validar persistence/autosave/adapter mode.
+4. Validar panel default incluido y visible.
+5. Validar runtime mode y capabilities.
+6. Validar plugin IDs duplicados.
+7. Validar configuración single/multi documents.
+8. Agregar mensajes con source paths.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/configValidation.test.ts`
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Errores críticos se distinguen de warnings.
+- [x] Cada issue tiene code, path, message y severity.
+- [x] Config válida no produce issues.
+- [x] El validador no muta ni crea recursos.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Desconectar la validación del resolver y revertir archivos nuevos.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0355"></a>
+
+### 0355 — `.ai/scrum/task-cards/CONFIG-006-implement-config-service.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `148`
+- **Tamaño original:** `4.8 KB`
+- **SHA1 corto:** `83f8fc4868`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-006 — Implementar SisadPdfmeConfigService
+
+**Estado:** done
+**Owner:** runtime-architect
+**Modelo sugerido:** Sol high
+**Worktree/rama:** pendiente
+**Prioridad:** P0
+**Dependencias:** CONFIG-004, CONFIG-005
+
+## Objetivo observable
+
+Crear una fachada única por Provider que conserve configuración raw/resuelta, overrides, subscriptions y transacciones.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/config/SisadPdfmeConfigService.ts
+- src/sisad-pdfme/config/configChangeImpact.ts
+- src/sisad-pdfme/config/index.ts
+- tests/unit/sisad-pdfme/config/SisadPdfmeConfigService.test.ts
+
+## Archivos prohibidos
+
+- No integrar React todavía.
+- No crear registries de features.
+- No migrar UI.
+- No reconstruir engine automáticamente sin clasificador.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+El servicio debe ser una fachada, no un singleton global ni un God Object.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Implementar getRawConfig/getResolvedConfig.
+- Implementar replace/update/reset y overrides.
+- Implementar subscribe/unsubscribe.
+- Implementar transaction.
+- Conservar snapshots inmutables.
+- Delegar migración, validación y resolución.
+
+## Pasos
+
+1. Definir interfaces públicas.
+2. Implementar creación por factory o constructor controlado.
+3. Almacenar raw canonical + runtime overrides.
+4. Resolver de forma lazy/memoizada cuando sea seguro.
+5. Implementar listeners sin leaks.
+6. Agrupar cambios en transaction.
+7. Retornar change result.
+8. Agregar `explain` básico con sources.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/SisadPdfmeConfigService.test.ts`
+- [x] `npm run build`
+- [x] `npm run quality:duplicate-functions`
+
+## Criterios de aceptación
+
+- [x] No existe singleton global.
+- [x] Dos instancias no comparten estado.
+- [x] Una transaction notifica una sola vez.
+- [x] Un listener eliminado no vuelve a ejecutarse.
+- [x] La entrada y snapshots no se mutan.
+- [x] El servicio no recrea recursos por sí mismo.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Revertir service, barrel y tests; no hay datos persistidos.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0356"></a>
+
+### 0356 — `.ai/scrum/task-cards/CONFIG-007-implement-config-selectors.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `139`
+- **Tamaño original:** `4.6 KB`
+- **SHA1 corto:** `23f963356b`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-007 — Implementar selectores públicos
+
+**Estado:** done
+**Owner:** config-specialist
+**Modelo sugerido:** Terra medium
+**Worktree/rama:** pendiente
+**Prioridad:** P0
+**Dependencias:** CONFIG-006
+
+## Objetivo observable
+
+Crear selectores puros, estables y reutilizables para que los consumidores no reciban el objeto completo.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/config/configSelectors.ts
+- src/sisad-pdfme/config/SisadPdfmeConfigService.ts
+- src/sisad-pdfme/config/index.ts
+- tests/unit/sisad-pdfme/config/configSelectors.test.ts
+
+## Archivos prohibidos
+
+- No integrar hooks React.
+- No migrar componentes.
+- No incluir lógica visual local.
+- No acceder a OptionsContext.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+Los componentes deben consultar fragmentos específicos y no volver a interpretar configuración.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Crear `configSelectors.ts`.
+- Exponer selectores por dominio.
+- Agregar selector factories para schema, feature, action y component.
+- Definir igualdad/referential stability cuando aplique.
+
+## Pasos
+
+1. Implementar selectors de runtime, canvas, sidebars, inspector, schemas, recipients, assignment, documents, signatures y persistence.
+2. Implementar selectFeatureState/selectActionState/selectComponentState como delegación inicial.
+3. Probar inputs vacíos y V2.
+4. Verificar que selectors no muten.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/configSelectors.test.ts`
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Cada selector retorna solo el fragmento requerido.
+- [x] Misma config sin cambios produce resultado estable cuando corresponde.
+- [x] No hay imports desde UI.
+- [x] Selectores pueden usarse fuera de React.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Revertir selectors y sus exports.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0357"></a>
+
+### 0357 — `.ai/scrum/task-cards/CONFIG-008-create-feature-registry.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `143`
+- **Tamaño original:** `4.7 KB`
+- **SHA1 corto:** `e2f770ccef`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-008 — Crear FeatureRegistry y dependencias
+
+**Estado:** done
+**Owner:** config-specialist
+**Modelo sugerido:** Sol high
+**Worktree/rama:** pendiente
+**Prioridad:** P0
+**Dependencias:** CONFIG-006, CONFIG-007
+
+## Objetivo observable
+
+Registrar capacidades mediante IDs estables y resolver su estado efectivo con dependencias y razones.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/config/featureRegistry.ts
+- src/sisad-pdfme/config/featureDependencies.ts
+- src/sisad-pdfme/config/SisadPdfmeConfigService.ts
+- tests/unit/sisad-pdfme/config/featureRegistry.test.ts
+
+## Archivos prohibidos
+
+- No crear acciones todavía.
+- No migrar componentes.
+- No duplicar permisos de CommandBus.
+- No registrar cada widget individual en esta tarea.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+El plan define los estados registered, supported, enabled, visible, permitted, available, active y executable.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Crear featureRegistry.ts y featureDependencies.ts.
+- Registrar runtime, canvas, sidebars, inspector, documents, comments y signatures.
+- Resolver dependencias sin if/else masivo.
+- Producir reason y sources.
+
+## Pasos
+
+1. Definir FeatureId y FeatureDefinition.
+2. Implementar registro inmutable/extensible.
+3. Registrar capabilities iniciales del plan.
+4. Resolver renderable y executable por separado.
+5. Resolver dependencies/conflicts.
+6. Agregar reason codes.
+7. Probar runtime designer/form/viewer y readonly.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/featureRegistry.test.ts`
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Toda feature registrada devuelve estado completo.
+- [x] Visible no implica executable.
+- [x] Enabled=false impide comportamiento.
+- [x] Reasons son estables y testeables.
+- [x] No hay switch global por feature ID.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Desconectar registry del service y revertir archivos.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0358"></a>
+
+### 0358 — `.ai/scrum/task-cards/CONFIG-009-create-action-component-registries.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `143`
+- **Tamaño original:** `4.7 KB`
+- **SHA1 corto:** `a66a07329e`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-009 — Crear ActionConfigRegistry y ComponentRegistry
+
+**Estado:** done
+**Owner:** runtime-architect
+**Modelo sugerido:** Sol high
+**Worktree/rama:** pendiente
+**Prioridad:** P0
+**Dependencias:** CONFIG-008
+
+## Objetivo observable
+
+Centralizar visible, enabled, executable, reason y commandId para acciones y componentes configurables.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/config/actionConfigRegistry.ts
+- src/sisad-pdfme/config/componentRegistry.ts
+- src/sisad-pdfme/config/SisadPdfmeConfigService.ts
+- tests/unit/sisad-pdfme/config/actionConfigRegistry.test.ts
+
+## Archivos prohibidos
+
+- No migrar botones.
+- No modificar CommandBus.
+- No crear dialogs.
+- No cambiar behavior de acciones existentes.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+Reassign, delete, duplicate, copy, paste, lock, hide, align y otras acciones no deben recomponer permisos en cada botón.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Crear actionConfigRegistry.ts.
+- Crear componentRegistry.ts.
+- Integrar feature/access/context dependencies.
+- Definir state shape compartido.
+- Conectar commandId sin ejecutar comandos.
+
+## Pasos
+
+1. Inventariar acciones actuales desde CONFIG-002.
+2. Registrar IDs canónicos.
+3. Resolver single/bulk selection.
+4. Resolver readOnly, locks, canEditStructure y recipients.
+5. Registrar componentes de sidebars/panels/collapse.
+6. Agregar reasons y sources.
+7. Probar reassign/delete/duplicate/hide.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/actionConfigRegistry.test.ts`
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Cada acción tiene visible/enabled/executable/reason/commandId.
+- [x] Reassign usa una sola fórmula.
+- [x] Component visible y feature enabled son conceptos separados.
+- [x] No se ejecuta CommandBus durante resolución.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Desconectar registries y revertir archivos.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0359"></a>
+
+### 0359 — `.ai/scrum/task-cards/CONFIG-010-integrate-provider-public-wrappers.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `146`
+- **Tamaño original:** `4.8 KB`
+- **SHA1 corto:** `54fa0e49cc`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-010 — Integrar Provider y wrappers públicos
+
+**Estado:** done
+**Owner:** runtime-architect
+**Modelo sugerido:** Sol high
+**Worktree/rama:** pendiente
+**Prioridad:** P0
+**Dependencias:** CONFIG-006, CONFIG-007, CONFIG-008, CONFIG-009
+
+## Objetivo observable
+
+Crear una instancia estable de ConfigService, RecipientRegistry, EventHub y adapters por árbol de Provider.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/react/SisadPdfmeProvider.tsx
+- src/sisad-pdfme/react/useSisadPdfmeConfig.ts
+- src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts
+- src/sisad-pdfme/react/SisadPdfmeDesigner.tsx
+- src/sisad-pdfme/react/SisadPdfmeForm.tsx
+- src/sisad-pdfme/react/SisadPdfmeViewer.tsx
+
+## Archivos prohibidos
+
+- No migrar sidebars/canvas.
+- No cambiar snapshot.
+- No convertir recursos en singleton.
+- No modificar geometría.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+Dos diseñadores montados en la misma página deben ser completamente independientes.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Extender ProviderValue con configService.
+- Conservar config resuelta por compatibilidad.
+- Crear hooks con useSyncExternalStore.
+- Reutilizar recursos en Designer/Form/Viewer.
+- Actualizar handlers sin recrear EventHub.
+
+## Pasos
+
+1. Crear ConfigService una sola vez.
+2. Crear/reusar RecipientRegistry una sola vez.
+3. Conservar EventHub estable.
+4. Implementar hooks `useSisadPdfmeConfigService`, `useSisadPdfmeFeature`, `useSisadPdfmeAction` y `useSisadPdfmeComponent`.
+5. Usar useSyncExternalStore.
+6. Probar dos Providers.
+7. Probar update de handler y config visual.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/react`
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Una instancia por Provider.
+- [x] Dos Providers no comparten recipients/eventos/flags.
+- [x] Cambio visual no recrea EventHub.
+- [x] Wrappers comparten recursos del Provider.
+- [x] No hay memory leaks al desmontar.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Restaurar Provider anterior y remover hooks nuevos.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0360"></a>
+
+### 0360 — `.ai/scrum/task-cards/CONFIG-011-migrate-right-sidebar-listview.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `146`
+- **Tamaño original:** `5.3 KB`
+- **SHA1 corto:** `06567d9656`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-011 — Migrar RightSidebar y ListView
+
+**Estado:** done
+**Owner:** implementer
+**Modelo sugerido:** Terra high
+**Worktree/rama:** pendiente
+**Prioridad:** P1
+**Dependencias:** CONFIG-010
+
+## Objetivo observable
+
+Migrar acciones, panels, toolbar, filas y collapse del RightSidebar al ConfigService sin alterar DnD ni selección.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx
+- src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts
+
+## Archivos prohibidos
+
+- No reescribir DnD.
+- No cambiar reorder filtrado.
+- No modificar Moveable/Selecto.
+- No rediseñar visualmente salvo lo necesario para disabled reason.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+RightSidebar, ListViewToolbar y DetailView actualmente combinan visibility, assignment, collaboration y contexto local.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Migrar acciones del RightSidebar.
+- Migrar ListViewToolbar.
+- Migrar DetailView actions.
+- Migrar panel visibility y collapse.
+- Conservar designerUiConfig como adapter temporal.
+
+## Pasos
+
+1. Mapear cada acción al ActionRegistry.
+2. Reemplazar lecturas directas por hooks.
+3. Mostrar disabled reason donde corresponda.
+4. Migrar panels fields/detail/comments/documents.
+5. Migrar collapse handle.
+6. Mantener adapter legacy para OptionsContext.
+7. Agregar tests de density, selection y panel combinations.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/public-api.test.ts tests/unit/sisad-pdfme/config/designerUiMap.test.ts tests/unit/sisad-pdfme/config/inspectorConfigurationResolver.test.ts tests/unit/sisad-pdfme/ui/components/Designer/LeftSidebar.test.ts tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.test.ts tests/unit/sisad-pdfme/ui/components/Designer/Canvas/Canvas.test.ts`
+- [ ] `npx playwright test tests/playwright/configuration/right-sidebar.spec.ts` (no existe spec en el repo)
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Reassign/delete/duplicate usan ActionState.
+- [x] Solo se montan panels enabled.
+- [x] Ocultar panel no cambia routing ni selección.
+- [x] Reorder filtrado sigue preservando hidden items.
+- [x] No se pierde scroll al cambiar flags calientes.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Revertir consumidores a adapter legacy; registries permanecen.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0361"></a>
+
+### 0361 — `.ai/scrum/task-cards/CONFIG-012-migrate-left-sidebar.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `142`
+- **Tamaño original:** `5.0 KB`
+- **SHA1 corto:** `66e4745641`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-012 — Migrar LeftSidebar
+
+**Estado:** done
+**Owner:** implementer
+**Modelo sugerido:** Terra medium
+**Worktree/rama:** pendiente
+**Prioridad:** P1
+**Dependencias:** CONFIG-010
+
+## Objetivo observable
+
+Migrar habilitación, visibilidad, búsqueda, tabs, layout, custom fields y collapse del catálogo.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx
+- src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx
+- src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx
+- src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts
+
+## Archivos prohibidos
+
+- No cambiar drop position.
+- No cambiar plugins.
+- No rediseñar categorías.
+- No modificar CSS técnico del canvas.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+LeftSidebar debe diferenciar enabled=false de visible=false y catalog visibility de runtime schemas.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Migrar LeftSidebar y subcontroles.
+- Usar selectors de component/feature.
+- Preservar layout elegido.
+- Desmontar listeners cuando enabled=false.
+
+## Pasos
+
+1. Mapear search/tabs/catalog/layout/custom/favorites/recents.
+2. Reemplazar lecturas directas.
+3. Separar enabled, visible y supported.
+4. Preservar elección manual de layout.
+5. Probar narrow/compact.
+6. Verificar DnD smoke.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/public-api.test.ts tests/unit/sisad-pdfme/config/designerUiMap.test.ts tests/unit/sisad-pdfme/config/inspectorConfigurationResolver.test.ts tests/unit/sisad-pdfme/ui/components/Designer/LeftSidebar.test.ts tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.test.ts tests/unit/sisad-pdfme/ui/components/Designer/Canvas/Canvas.test.ts`
+- [ ] `npx playwright test tests/playwright/configuration/left-sidebar.spec.ts` (no existe spec en el repo)
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] enabled=false no monta DnD/listeners.
+- [x] visible=false oculta UI sin eliminar schemas existentes.
+- [x] Resize no sobrescribe layout elegido.
+- [x] El catálogo respeta enabledTypes y catalog visibility.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Revertir LeftSidebar a adapter legacy.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0362"></a>
+
+### 0362 — `.ai/scrum/task-cards/CONFIG-013-migrate-canvas-feature-flags.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `147`
+- **Tamaño original:** `5.4 KB`
+- **SHA1 corto:** `2dbf595ffe`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-013 — Migrar flags de Canvas
+
+**Estado:** done
+**Owner:** canvas-specialist
+**Modelo sugerido:** Sol high
+**Worktree/rama:** pendiente
+**Prioridad:** P1
+**Dependencias:** CONFIG-010
+
+## Objetivo observable
+
+Pasar capacidades resueltas al Canvas y overlays existentes sin reescribir algoritmos de selección, geometría o transformación.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx
+- src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx
+- src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx
+- src/sisad-pdfme/ui/components/Designer/Canvas/overlays
+- src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts
+
+## Archivos prohibidos
+
+- No cambiar coordinateMath.
+- No reescribir Moveable o Selecto.
+- No cambiar x/y/width/height.
+- No cambiar drop pipeline.
+- No tocar snapshot/generator.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+El plan requiere flags separados para select, multiSelect, move, resize, rotate, guides, snapLines, contextMenu, floatingToolbar, shortcuts y modal suspension.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Caracterizar comportamiento actual.
+- Pasar feature states al Canvas.
+- Separar move/resize/rotate.
+- Migrar context menu, toolbar y shortcuts.
+- Respetar readonly e interacción modal.
+
+## Pasos
+
+1. Agregar characterization tests antes del parche.
+2. Resolver capability props en el owner superior.
+3. Pasar flags a Moveable/Selecto sin cambiar cálculo.
+4. Bloquear transformaciones según access state.
+5. Migrar guides/snap/context toolbar/shortcuts.
+6. Probar modal open/close.
+7. Probar zoom, scroll, selección y readonly.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/public-api.test.ts tests/unit/sisad-pdfme/config/designerUiMap.test.ts tests/unit/sisad-pdfme/config/inspectorConfigurationResolver.test.ts tests/unit/sisad-pdfme/ui/components/Designer/LeftSidebar.test.ts tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.test.ts tests/unit/sisad-pdfme/ui/components/Designer/Canvas/Canvas.test.ts`
+- [ ] `npx playwright test tests/playwright/configuration/canvas-flags.spec.ts` (no existe spec en el repo)
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Moveable disabled no impide inspección si el contrato lo permite.
+- [x] Selecto disabled mantiene click simple.
+- [x] Readonly selecciona e inspecciona, pero no muta.
+- [x] Zoom/scroll/coordenadas no cambian.
+- [x] Cambio de flag caliente no pierde selección.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Revertir únicamente el paso de flags; conservar tests caracterizadores.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0363"></a>
+
+### 0363 — `.ai/scrum/task-cards/CONFIG-014-migrate-inspector-configuration.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `145`
+- **Tamaño original:** `5.2 KB`
+- **SHA1 corto:** `0e5fcdb7da`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-014 — Migrar Inspector
+
+**Estado:** done
+**Owner:** schema-specialist
+**Modelo sugerido:** Sol high
+**Worktree/rama:** pendiente
+**Prioridad:** P1
+**Dependencias:** CONFIG-009, CONFIG-010
+
+## Objetivo observable
+
+Migrar secciones, campos, advanced, technical, collaboration y comments al estado efectivo del servicio.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx
+- src/sisad-pdfme/config/InspectorConfigurationResolver.ts
+
+## Archivos prohibidos
+
+- No migrar aún perfiles completos de familias.
+- No reescribir widgets funcionales.
+- No cambiar schema values.
+- No tocar snapshot.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+Visibilidad no debe determinar editabilidad; los widgets deben distinguir visible, readonly, disabled y unsupported.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Crear InspectorConfigurationResolver.
+- Migrar secciones y fields.
+- Integrar action/access states.
+- Conservar detailSchemas como bridge.
+- Probar selection única/múltiple y narrow layout.
+
+## Pasos
+
+1. Definir resolver de inspector.
+2. Resolver inspector.visible.
+3. Resolver section/field global.
+4. Resolver disabled reason por access.
+5. Migrar advanced/technical/collaboration/comments.
+6. Conservar bridge para plugin propPanel.
+7. Agregar tests de property paths y visibilidad.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/public-api.test.ts tests/unit/sisad-pdfme/config/designerUiMap.test.ts tests/unit/sisad-pdfme/config/inspectorConfigurationResolver.test.ts tests/unit/sisad-pdfme/ui/components/Designer/LeftSidebar.test.ts tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.test.ts tests/unit/sisad-pdfme/ui/components/Designer/Canvas/Canvas.test.ts`
+- [ ] `npx playwright test tests/playwright/configuration/inspector.spec.ts` (no existe spec en el repo)
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Campo visible no implica editable.
+- [x] Technical solo aparece cuando config lo permite.
+- [x] Readonly muestra razón.
+- [x] Mixed selection no expone controles inválidos.
+- [x] No hay control visible sin read/write o estado informativo explícito.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Desconectar resolver y volver a detailSchemas bridge.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0364"></a>
+
+### 0364 — `.ai/scrum/task-cards/CONFIG-015-migrate-schema-profiles.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `145`
+- **Tamaño original:** `4.7 KB`
+- **SHA1 corto:** `8b34b09bf9`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-015 — Migrar perfiles de schemas
+
+**Estado:** done
+**Owner:** schema-specialist
+**Modelo sugerido:** Sol high
+**Worktree/rama:** pendiente
+**Prioridad:** P1
+**Dependencias:** CONFIG-008, CONFIG-014
+
+## Objetivo observable
+
+Crear perfiles por familia para catalog, canvas, inspector, runtime, capabilities y configuración.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: confirmada por código, test y build.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/config/schemaConfigurationProfile.ts
+- src/sisad-pdfme/config/schemaCapabilityResolver.ts
+- src/sisad-pdfme/schemas/schemaFamilies.ts
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts
+- tests/unit/sisad-pdfme/config/schemaProfiles.test.ts
+
+## Archivos prohibidos
+
+- No reescribir renderers.
+- No cambiar valores persistidos.
+- No eliminar propPanels legacy en una sola pasada.
+- No modificar generator.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+El plan define familias text-like, option-based, signing-based, action-based, media, barcodes, tables, shapes y custom.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Crear SchemaConfigurationProfile.
+- Crear SchemaCapabilityResolver.
+- Migrar una familia piloto.
+- Extender por familia con pruebas.
+- Preservar plugins custom.
+
+## Pasos
+
+1. Definir contrato de perfil.
+2. Mapear familia piloto text-like.
+3. Mapear option-based.
+4. Mapear signing/action/media/barcodes/tables/shapes.
+5. Agregar fallback custom.
+6. Resolver catalog/canvas/inspector/runtime por separado.
+7. Probar snapshots existentes como smoke.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/schemaProfiles.test.ts`
+- [x] `npx vitest run tests/unit/sisad-pdfme/schemas`
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Ocultar del catálogo no oculta del runtime.
+- [x] Un schema existente no desaparece por enabledTypes salvo política explícita.
+- [x] Cada familia comparte reglas sin switch disperso.
+- [x] Custom plugins tienen fallback estable.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Desactivar perfiles y conservar bridge legacy.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0365"></a>
+
+### 0365 — `.ai/scrum/task-cards/CONFIG-016-unify-assignment-collaboration.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `148`
+- **Tamaño original:** `5.0 KB`
+- **SHA1 corto:** `ac9ae464c3`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-016 — Unificar assignment y collaboration
+
+**Estado:** done
+**Owner:** runtime-architect
+**Modelo sugerido:** Sol high
+**Worktree/rama:** pendiente
+**Prioridad:** P1
+**Dependencias:** CONFIG-009, CONFIG-010
+
+## Objetivo observable
+
+Centralizar recipients, activeRecipient, permissions, ownership y reasignación single/bulk.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: confirmada por código, test y build.
+- Validación: `npx vitest run tests/unit/sisad-pdfme/assignments tests/unit/sisad-pdfme/collaboration`, `npm run build`, `npm run quality:duplicate-functions`.
+- Playwright solicitado en la tarjeta no existe en este checkout.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts
+- src/sisad-pdfme/assignments
+- src/sisad-pdfme/collaboration
+- src/sisad-pdfme/ui/components/Designer/SchemaAssignmentDialog.tsx
+- src/sisad-pdfme/config/actionConfigRegistry.ts
+
+## Archivos prohibidos
+
+- No rediseñar modal.
+- No cambiar backend/host.
+- No modificar snapshot format.
+- No cambiar selection policy.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+RecipientRegistry debe ser la única fuente de recipients y `recipients.activeRecipientId` la ruta canónica.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Eliminar registries paralelos.
+- Migrar active recipient.
+- Resolver assignment single/bulk.
+- Conectar ActionRegistry y modal.
+- Preservar locks y owner colors.
+
+## Pasos
+
+1. Auditar recipients duplicados.
+2. Migrar activeRecipient legacy.
+3. Resolver permission/canEditStructure.
+4. Conectar single/bulk action states.
+5. Usar RecipientRegistry en dialog.
+6. Preservar lock/readOnly/owner metadata.
+7. Emitir eventos públicos.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/assignments tests/unit/sisad-pdfme/collaboration`
+- [ ] `npx playwright test tests/playwright/configuration/assignment.spec.ts` (no existe en este checkout)
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Recipients se registran una vez.
+- [x] Reassign visible/executable responde al mismo state.
+- [x] Cambiar active recipient no cambia owner de schemas existentes.
+- [x] Bulk preserva locks según config.
+- [x] Dos Providers no comparten recipients.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Volver al adapter legacy de recipients y desactivar integración nueva.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0366"></a>
+
+### 0366 — `.ai/scrum/task-cards/CONFIG-017-configure-documents-comments.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `145`
+- **Tamaño original:** `4.8 KB`
+- **SHA1 corto:** `f3a3e14700`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-017 — Configurar documentos y comentarios
+
+**Estado:** done
+**Owner:** runtime-architect
+**Modelo sugerido:** Terra high
+**Worktree/rama:** pendiente
+**Prioridad:** P1
+**Dependencias:** CONFIG-008, CONFIG-010, CONFIG-011
+
+## Objetivo observable
+
+Resolver enabled, visible, available y routing para documentos y comentarios sin acoplar paneles a persistencia.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/documents
+- src/sisad-pdfme/comments
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx
+- src/sisad-pdfme/config/featureRegistry.ts
+
+## Archivos prohibidos
+
+- No cambiar snapshot schema.
+- No reescribir document routing.
+- No rediseñar rails.
+- No cambiar comment data model.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+Ocultar un panel no debe cambiar routing ni desactivar capacidades programáticas.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Configurar documents single/multi.
+- Configurar panel y activeDocumentStrategy.
+- Agregar contrato comments.enabled y capabilities.
+- Migrar panels/modals/overlays.
+- Probar host/internal strategy.
+
+## Pasos
+
+1. Definir comments config pública.
+2. Registrar document/comment features.
+3. Migrar DocumentsRail/CommentsRail.
+4. Separar panel visible de capability enabled.
+5. Resolver strategy host/internal.
+6. Probar single/multi y panel hidden.
+7. Probar comments por API sin panel.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/documents tests/unit/sisad-pdfme/comments`
+- [ ] `npx playwright test tests/playwright/configuration/documents-comments.spec.ts`
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Panel oculto no altera documentId/page.
+- [x] mode=single no obliga a montar DocumentsRail.
+- [x] comments.enabled=false no registra overlays/comandos.
+- [x] comments enabled + panel hidden sigue disponible por API si está permitido.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Revertir consumers y feature registrations.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0367"></a>
+
+### 0367 — `.ai/scrum/task-cards/CONFIG-018-configure-signatures.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `145`
+- **Tamaño original:** `4.7 KB`
+- **SHA1 corto:** `596278d0d7`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-018 — Configurar firmas y providers
+
+**Estado:** done
+**Owner:** schema-specialist
+**Modelo sugerido:** Terra high
+**Worktree/rama:** pendiente
+**Prioridad:** P1
+**Dependencias:** CONFIG-008, CONFIG-015
+
+## Objetivo observable
+
+Resolver modos draw/image/p12/provider, capabilities y providers externos mediante configuración genérica.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/config/featureRegistry.ts
+- src/sisad-pdfme/schemas/signature
+- src/sisad-pdfme/adapters/signatureProviderAdapter.ts
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView
+- tests/unit/sisad-pdfme/config/signatures.test.ts
+
+## Archivos prohibidos
+
+- No implementar proveedor real.
+- No cambiar API backend.
+- No cambiar generator global.
+- No guardar secretos en config.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+El core no debe incorporar reglas de Uanataca u otro proveedor específico.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Registrar signature features.
+- Validar defaultMode/providers.
+- Resolver capabilities por runtime.
+- Migrar schemas signing-based y DetailView.
+- Probar Designer/Form/Viewer.
+
+## Pasos
+
+1. Definir capabilities por modo.
+2. Resolver provider requirements.
+3. Migrar inspector visibility por mode.
+4. Ocultar provider config en modos no provider.
+5. Probar invalid config reason.
+6. Probar renderer por runtime.
+7. Verificar snapshot smoke.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/signatures.test.ts tests/unit/sisad-pdfme/schemas/signature`
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] enabled=false no registra interacción de firma configurable.
+- [x] defaultMode=provider sin providers produce error/reason.
+- [x] Designer muestra placeholder.
+- [x] Form ejecuta capability permitida.
+- [x] Viewer no permite interacción.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Desconectar profile/feature config y volver a behavior legacy.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0368"></a>
+
+### 0368 — `.ai/scrum/task-cards/CONFIG-019-dynamic-configuration-controller.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `148`
+- **Tamaño original:** `5.2 KB`
+- **SHA1 corto:** `f751253dda`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-019 — Implementar configuración dinámica y controller
+
+**Estado:** done
+**Owner:** runtime-architect
+**Modelo sugerido:** Sol high
+**Worktree/rama:** pendiente
+**Prioridad:** P1
+**Dependencias:** CONFIG-010, CONFIG-011, CONFIG-012, CONFIG-013, CONFIG-014, CONFIG-016, CONFIG-017, CONFIG-018
+
+## Objetivo observable
+
+Exponer lectura, actualización, reset, feature state y explicación con hot update, engine rebuild o runtime remount controlado.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- src/sisad-pdfme/react/useSisadPdfmeController.ts
+- src/sisad-pdfme/config/configChangeImpact.ts
+- src/sisad-pdfme/config/SisadPdfmeConfigService.ts
+- src/sisad-pdfme/react/SisadPdfmeProvider.tsx
+- tests/integration/sisad-pdfme/config-dynamic.test.tsx
+
+## Archivos prohibidos
+
+- No cambiar engine internals sin evidencia.
+- No forzar remount para cambios visuales.
+- No aplicar cambios incompatibles durante drag/resize/inline edit.
+- No ocultar pérdida de estado.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+Los cambios dinámicos deben preservar selección, zoom, scroll, página, documento activo y panel cuando siga permitido.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Agregar API pública al controller.
+- Conectar configChangeImpact.
+- Implementar hot update.
+- Implementar rebuild/remount controlado.
+- Bloquear o posponer cambios durante interacción activa.
+
+## Pasos
+
+1. Exponer getConfig/updateConfig/resetConfig/getFeatureState/explainConfiguration.
+2. Definir change result.
+3. Aplicar ui-state sin remount.
+4. Actualizar runtimeOptions cuando soporte update.
+5. Rebuild engine preservando estado compatible.
+6. Remount solo por mode/constructor/plugin incompatibility.
+7. Posponer cambios prohibidos durante interacción.
+8. Agregar rollback a config previa ante fallo.
+
+## Comandos/gates
+
+- [x] `npx vitest run tests/integration/sisad-pdfme/config-dynamic.test.tsx`
+- [x] `npx playwright test tests/playwright/configuration/dynamic-config.spec.ts`
+- [x] `npm run build`
+
+## Criterios de aceptación
+
+- [x] Cambio visibility no remonta.
+- [x] Cambio density preserva selección/zoom.
+- [x] Cambio selecto/moveable usa impacto correcto.
+- [x] Cambio runtime.mode remonta controladamente.
+- [x] Fallo de rebuild restaura config/runtime anterior.
+- [x] Interacción activa devuelve deferred/rejected reason.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Restaurar controller anterior y deshabilitar updateConfig público.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0369"></a>
+
+### 0369 — `.ai/scrum/task-cards/CONFIG-020-configuration-qa-docs-gates.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `160`
+- **Tamaño original:** `6.2 KB`
+- **SHA1 corto:** `3d94572d37`
+- **Estado:** `completo`
+
+```markdown
+# CONFIG-020 — Cerrar QA, documentación y quality gates
+
+**Estado:** in progress
+**Owner:** qa-reviewer
+**Modelo sugerido:** Terra medium
+**Worktree/rama:** pendiente
+**Prioridad:** P1
+**Dependencias:** CONFIG-001, CONFIG-002, CONFIG-003, CONFIG-004, CONFIG-005, CONFIG-006, CONFIG-007, CONFIG-008, CONFIG-009, CONFIG-010, CONFIG-011, CONFIG-012, CONFIG-013, CONFIG-014, CONFIG-015, CONFIG-016, CONFIG-017, CONFIG-018, CONFIG-019
+
+## Objetivo observable
+
+Completar documentación, ejemplos, matriz de regresión y gates que impidan nuevas lecturas directas de configuración.
+
+## Evidencia
+
+- Plan canónico: `.ai/plans/PLAN_CONTINUIDAD_CONFIGURACION_UNIFICADA_SISAD_PDFME.md`.
+- Auditoría vigente: `reports/configuration/`.
+- Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
+- Ruta de contexto: `.ai/routes/configuration.md`.
+- `npm run quality:dead-code` falla por baseline del repositorio; no es una regresión introducida por CONFIG-020.
+- `npm run quality` incorpora `quality:direct-config-readers` como gate formal.
+- `npx vitest run tests/unit/sisad-pdfme/config/public-api.test.ts tests/unit/sisad-pdfme/ui/detailViewPublicModules.test.ts tests/unit/sisad-pdfme/devtoolsPublicSurface.test.ts tests/unit/sisad-pdfme/adaptersPublicSurface.test.ts tests/unit/features/pdfcomponent/ui/primitivesPublicSurface.test.ts` pasó; los contratos públicos de config/react, inspector, devtools, adapters y primitives quedaron validados.
+- `npx knip --cache --reporter compact --include exports --max-show-issues 120` quedó limpio en exports.
+- `npm run quality:dead-code` sigue fallando por deuda amplia heredada: 114 unused exports, 54 unused exported types y 18 duplicate exports; ya no reporta unused files.
+
+## Contexto mínimo obligatorio
+
+1. `.ai/START.md`
+2. `.ai/routes/configuration.md`
+3. `.ai/governance/ANTI-HALLUCINATION.md`
+4. `.ai/governance/ANTI-LOOP.md`
+5. `.ai/governance/ANTI-OVERFLOW.md`
+6. `.agents/skills/sisad-configuration-service/SKILL.md`
+7. Esta task-card
+
+No cargar el plan completo si esta tarjeta contiene el alcance necesario.
+
+## Archivos permitidos
+
+> Confirmar las rutas con búsqueda simbólica antes de editar. No es obligatorio abrirlos todos.
+
+- docs/07-integraciones/05-global-config.md
+- docs/03-designer/02-props.md
+- docs/03-designer/11-action-contract.md
+- docs/04-schemas/09-inspector-contract.md
+- docs/13-ejemplos/04-dynamic-host-integration-examples.md
+- docs/10-testing-qa/02-regression-matrix.md
+- tests/playwright/configuration
+- scripts/quality/check-direct-config-readers.mjs
+
+## Archivos prohibidos
+
+- No introducir funcionalidades nuevas.
+- No ampliar API sin task-card.
+- No reescribir tests ajenos.
+- No eliminar legacy antes de la ventana acordada.
+
+Adicionalmente, quedan protegidos salvo autorización explícita de esta task-card:
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+
+## Invariantes
+
+- Una instancia de configuración por `SisadPdfmeProvider`, nunca singleton global.
+- Canonical config gana sobre aliases legacy.
+- `enabled`, `visible`, `permitted`, `available` y `executable` no son equivalentes.
+- Los cambios visuales no deben reconstruir EventHub, RecipientRegistry ni DesignerEngine.
+- Dos Providers no comparten recipients, eventos, permisos ni overrides.
+- No introducir imports específicos de SISAD-WEB dentro de `src/sisad-pdfme`.
+- No afirmar que una prueba pasó si no fue ejecutada.
+
+## Caracterización previa
+
+El cierre exige una sola config canónica, recursos estables, selectors en consumidores, compatibilidad legacy y pruebas por comportamiento.
+
+Antes del parche:
+
+- registrar `git status --short`;
+- registrar commit base;
+- realizar máximo 2 rondas de búsqueda;
+- abrir máximo 8 archivos inicialmente;
+- escribir la hipótesis principal;
+- elegir al menos un test focal que falle o caracterice el comportamiento.
+
+## Diseño/patrón
+
+- Actualizar documentación indicada por el plan.
+- Crear ocho ejemplos de configuración.
+- Crear matriz QA.
+- Crear Playwright configuration suite.
+- Agregar gate contra readers directos.
+- Ejecutar quality gates globales.
+
+## Pasos
+
+1. Documentar config canónica y aliases.
+2. Documentar estados de feature/action/component.
+3. Crear ejemplos minimal/full/reviewer/form/multi/no-collab/provider/dynamic.
+4. Crear matriz unit/contract/react/playwright.
+5. Implementar checker de readers directos.
+6. Ejecutar lint/build/vitest/playwright/dup/dead-code.
+7. Registrar excepciones justificadas.
+8. Crear reporte final de cierre.
+
+## Comandos/gates
+
+- [x] `npm run lint`
+- [x] `npm run build`
+- [x] `npx vitest run`
+- [x] `npx playwright test tests/playwright/configuration`
+- [x] `npm run quality:duplicate-functions`
+- [x] `npm run quality:direct-config-readers`
+- [ ] `npm run quality:dead-code`
+
+## Criterios de aceptación
+
+- [ ] Todos los criterios de cierre del plan están marcados con evidencia.
+- [ ] Ningún componente nuevo lee options.visibility/assignment/sidebars/canvas/schemas.
+- [ ] Legacy funciona durante la ventana.
+- [ ] El host integra sin internals.
+- [ ] Los 16 escenarios Playwright pasan.
+- [ ] No existe duplicidad funcional nueva.
+
+## Presupuesto
+
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 5 archivos modificados.
+- Máximo 2 rondas de búsqueda.
+- Un solo dominio por sesión.
+- Máximo 3 intentos de parche sobre la misma causa.
+- WIP global máximo 3.
+
+## Condición de parada
+
+- Dos búsquedas consecutivas no agregan evidencia.
+- Se requieren más de 5 archivos modificados.
+- La causa pertenece a otra task-card.
+- Se alcanza el 75% del contexto sin confirmar la causa.
+- Aparece una decisión de API/UX/producto que necesita aprobación.
+- Un cambio requiere tocar Moveable, Selecto, geometría, snapshot o generator fuera del alcance.
+
+## Rollback
+
+Revertir únicamente documentación/checker/tests nuevos; no revertir implementación validada.
+
+## Handoff
+
+Actualizar:
+
+- `.ai/scrum/SPRINT-CURRENT.md`;
+- `.ai/memory/HANDOFF.md`;
+- `.ai/memory/CURRENT.md` solo con continuidad inmediata;
+- `.ai/memory/DECISIONS.md` solo si hubo decisión durable;
+- `.ai/memory/RISKS.md` solo si apareció un riesgo nuevo.
+
+El handoff debe distinguir: modificado, observado, pendiente y no verificado.
+```
+
+<a id="file-0370"></a>
+
+### 0370 — `.ai/scrum/task-cards/DEDUP-001-smart-placement.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `54`
@@ -14227,9 +18077,9 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 - Riesgo residual: no cambiaron coordenadas, orden de candidatos ni contratos públicos.
 ```
 
-<a id="file-0345"></a>
+<a id="file-0371"></a>
 
-### 0345 — `.ai/scrum/task-cards/DEDUP-002-keyboard-command-registry.md`
+### 0371 — `.ai/scrum/task-cards/DEDUP-002-keyboard-command-registry.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -14296,9 +18146,9 @@ Actualizar métricas y decisiones solo si nace una nueva fuente canónica o pol�
 - Memory delta: no cambia política durable; la fuente canónica ya estaba definida por la tarjeta.
 ```
 
-<a id="file-0346"></a>
+<a id="file-0372"></a>
 
-### 0346 — `.ai/scrum/task-cards/DEDUP-003-comments-overlay.md`
+### 0372 — `.ai/scrum/task-cards/DEDUP-003-comments-overlay.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `54`
@@ -14363,9 +18213,9 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 - Riesgo residual: el Playwright existente es un smoke placeholder y no caracteriza routing; el cambio no altera DOM, geometría ni eventos.
 ```
 
-<a id="file-0347"></a>
+<a id="file-0373"></a>
 
-### 0347 — `.ai/scrum/task-cards/DEDUP-004-inline-edit-overlay.md`
+### 0373 — `.ai/scrum/task-cards/DEDUP-004-inline-edit-overlay.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `54`
@@ -14430,9 +18280,9 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 - Riesgo residual: la suite disponible no ejercita Enter/Escape/blur/readOnly; se preservaron handlers, condiciones y props existentes.
 ```
 
-<a id="file-0348"></a>
+<a id="file-0374"></a>
 
-### 0348 — `.ai/scrum/task-cards/DEDUP-005-right-sidebar-actions.md`
+### 0374 — `.ai/scrum/task-cards/DEDUP-005-right-sidebar-actions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `54`
@@ -14497,9 +18347,9 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 Sin delta durable: el contrato queda local al único componente que lo consume.
 ```
 
-<a id="file-0349"></a>
+<a id="file-0375"></a>
 
-### 0349 — `.ai/scrum/task-cards/DEDUP-006-selection-commands.md`
+### 0375 — `.ai/scrum/task-cards/DEDUP-006-selection-commands.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -14566,9 +18416,9 @@ Actualizar métricas y decisiones solo si nace una nueva fuente canónica o pol�
 - Memory delta: no cambia una decisión durable fuera de esta tarjeta.
 ```
 
-<a id="file-0350"></a>
+<a id="file-0376"></a>
 
-### 0350 — `.ai/scrum/task-cards/DEDUP-007-schema-clipboard.md`
+### 0376 — `.ai/scrum/task-cards/DEDUP-007-schema-clipboard.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -14635,9 +18485,9 @@ Actualizar métricas y decisiones solo si nace una nueva fuente canónica o pol�
 - Memory delta: se documenta localmente la inyección de identidad; no requiere nueva política durable.
 ```
 
-<a id="file-0351"></a>
+<a id="file-0377"></a>
 
-### 0351 — `.ai/scrum/task-cards/DEDUP-008-inspector-taxonomy.md`
+### 0377 — `.ai/scrum/task-cards/DEDUP-008-inspector-taxonomy.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `54`
@@ -14702,9 +18552,9 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 Sin delta durable: `detailSectionTaxonomy.ts` ya era la fuente documentada de verdad.
 ```
 
-<a id="file-0352"></a>
+<a id="file-0378"></a>
 
-### 0352 — `.ai/scrum/task-cards/DEDUP-009-custom-field-modal.md`
+### 0378 — `.ai/scrum/task-cards/DEDUP-009-custom-field-modal.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `54`
@@ -14769,9 +18619,9 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 Sin delta durable: la abstracción permanece local al modal.
 ```
 
-<a id="file-0353"></a>
+<a id="file-0379"></a>
 
-### 0353 — `.ai/scrum/task-cards/DEDUP-010-action-chrome.md`
+### 0379 — `.ai/scrum/task-cards/DEDUP-010-action-chrome.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `54`
@@ -14836,9 +18686,9 @@ Mantener un commit de caracterización separado y revertir la extracción si aum
 Nueva fuente canónica local de familia: el chrome PDF de acciones vive en `actionSchemaFactory.ts`.
 ```
 
-<a id="file-0354"></a>
+<a id="file-0380"></a>
 
-### 0354 — `.ai/scrum/task-cards/DEDUP-011-strict-owned-residuals.md`
+### 0380 — `.ai/scrum/task-cards/DEDUP-011-strict-owned-residuals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -14888,9 +18738,9 @@ Contrato local para metadata de anchors, cleanup único de animación y función
 Se registra que fuentes analizadas no equivalen a archivos por modificar: 526 fuentes produjeron únicamente 4 hallazgos owned en esta ola.
 ```
 
-<a id="file-0355"></a>
+<a id="file-0381"></a>
 
-### 0355 — `.ai/scrum/task-cards/DOCS-001-canonical-common-docs.md`
+### 0381 — `.ai/scrum/task-cards/DOCS-001-canonical-common-docs.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -14956,9 +18806,9 @@ Actualizar métricas y decisiones solo si nace una nueva fuente canónica o pol�
 - Memory delta: se confirma la decisión durable de documentar junto al módulo propietario y no regenerar consolidaciones activas.
 ```
 
-<a id="file-0356"></a>
+<a id="file-0382"></a>
 
-### 0356 — `.ai/scrum/task-cards/QUALITY-001-jscpd-profiles.md`
+### 0382 — `.ai/scrum/task-cards/QUALITY-001-jscpd-profiles.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -15025,14 +18875,14 @@ Actualizar métricas y decisiones solo si nace una nueva fuente canónica o pol�
 - Memory delta: quedan institucionalizados tres perfiles explícitos y ejecutables desde `package.json`.
 ```
 
-<a id="file-0357"></a>
+<a id="file-0383"></a>
 
-### 0357 — `.ai/scrum/task-cards/TEMPLATE.md`
+### 0383 — `.ai/scrum/task-cards/TEMPLATE.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `32`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `48a8b0b162`
+- **Líneas:** `41`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `d066af6b6f`
 - **Estado:** `completo`
 
 ```markdown
@@ -15042,6 +18892,15 @@ Actualizar métricas y decisiones solo si nace una nueva fuente canónica o pol�
 **Owner:**
 **Modelo sugerido:**
 **Worktree/rama:**
+
+## Coordinación multi-asistente
+
+- Writer:
+- Readers:
+- Claim:
+- Lease:
+- Reviewers:
+- Ruta de handoff:
 
 ## Objetivo observable
 
@@ -15070,9 +18929,9 @@ Actualizar métricas y decisiones solo si nace una nueva fuente canónica o pol�
 ## Memory delta
 ```
 
-<a id="file-0358"></a>
+<a id="file-0384"></a>
 
-### 0358 — `.ai/scrum/task-cards/UX-001-right-sidebar-listview-compactness-and-dnd.md`
+### 0384 — `.ai/scrum/task-cards/UX-001-right-sidebar-listview-compactness-and-dnd.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `79`
@@ -15162,9 +19021,9 @@ Nota durable: en el field-list el contador es único (`meta`) y el filtro de tip
 Pasada transversal de calidad ejecutada en paralelo: `npm run quality:duplicate-functions` quedó en `0`, con ESLint y Vitest focales en verde sobre los módulos tocados en esta ronda.
 ```
 
-<a id="file-0359"></a>
+<a id="file-0385"></a>
 
-### 0359 — `.ai/scrum/tasks/AI-001.md`
+### 0385 — `.ai/scrum/tasks/AI-001.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -15215,9 +19074,9 @@ Validador de enlaces Markdown, `npm run lint`, `npm run build`, `npm run quality
 Comandos, diff, riesgos y delta durable en memoria.
 ```
 
-<a id="file-0360"></a>
+<a id="file-0386"></a>
 
-### 0360 — `.ai/scrum/tasks/AI-002.md`
+### 0386 — `.ai/scrum/tasks/AI-002.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -15268,9 +19127,9 @@ Validador de enlaces y auditoría de párrafos duplicados.
 Auditoría read-only: 208 Markdown activos, 78 enlaces locales sin roturas, ningún archivo idéntico y dos párrafos compartidos clasificados como plantillas esenciales. `TREE.md`, `MANIFEST.md`, `SHA256.md` y `README_ENTREGA.md` quedan pendientes de clasificar como artefactos generados/históricos; no se editaron sin owner confirmado.
 ```
 
-<a id="file-0361"></a>
+<a id="file-0387"></a>
 
-### 0361 — `.ai/scrum/tasks/AI-003.md`
+### 0387 — `.ai/scrum/tasks/AI-003.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -15321,9 +19180,9 @@ Validación estructural, enlaces Markdown y pruebas de triggers.
 Se validaron 11 skills canónicas con frontmatter y nombre de directorio coherentes. Todos los adapters miden como máximo 30 líneas; los cuatro perfiles GitHub ahora enlazan su agente canónico explícito. Los solapamientos se conservan por tener responsabilidades distinguibles.
 ```
 
-<a id="file-0362"></a>
+<a id="file-0388"></a>
 
-### 0362 — `.ai/scrum/tasks/AI-004.md`
+### 0388 — `.ai/scrum/tasks/AI-004.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -15377,9 +19236,9 @@ Revisión de DoR/DoD, enlaces y WIP.
 Diff documental y delta durable.
 ```
 
-<a id="file-0363"></a>
+<a id="file-0389"></a>
 
-### 0363 — `.ai/scrum/tasks/AI-005.md`
+### 0389 — `.ai/scrum/tasks/AI-005.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -15430,9 +19289,9 @@ Tests focales del script y gates mínimos del repositorio.
 Fixtures, resultados y baseline.
 ```
 
-<a id="file-0364"></a>
+<a id="file-0390"></a>
 
-### 0364 — `.ai/scrum/tasks/AI-006.md`
+### 0390 — `.ai/scrum/tasks/AI-006.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -15483,9 +19342,9 @@ Validación del catálogo y revisión independiente.
 Métricas, decisiones y riesgos.
 ```
 
-<a id="file-0365"></a>
+<a id="file-0391"></a>
 
-### 0365 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
+### 0391 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -15535,9 +19394,9 @@ de cada módulo. Actualiza el módulo propietario y, si cambia una regla transve
 redistribuye una responsabilidad de `common`.
 ```
 
-<a id="file-0366"></a>
+<a id="file-0392"></a>
 
-### 0366 — `src/sisad-pdfme/common/README.md`
+### 0392 — `src/sisad-pdfme/common/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -15581,9 +19440,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Revisar alineación de `ownerRecipientIds` entre Zod (`string[]`) y utilidades que aceptan `string | string[]`.
 ```
 
-<a id="file-0367"></a>
+<a id="file-0393"></a>
 
-### 0367 — `src/sisad-pdfme/config/AGENTS.md`
+### 0393 — `src/sisad-pdfme/config/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -15600,9 +19459,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Tests de merge, migración y selectors.
 ```
 
-<a id="file-0368"></a>
+<a id="file-0394"></a>
 
-### 0368 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
+### 0394 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -15781,9 +19640,9 @@ Debe exponer utilidades puras consumibles por UI, generator, importadores o adap
 ``​`
 ```
 
-<a id="file-0369"></a>
+<a id="file-0395"></a>
 
-### 0369 — `src/sisad-pdfme/converter/README.md`
+### 0395 — `src/sisad-pdfme/converter/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -15836,9 +19695,9 @@ Este módulo no debe conocer:
 Debe mantenerse como utilidad técnica reutilizable por el runtime.
 ```
 
-<a id="file-0370"></a>
+<a id="file-0396"></a>
 
-### 0370 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
+### 0396 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `151`
@@ -16000,9 +19859,9 @@ Riesgos técnicos:
 ``​`
 ```
 
-<a id="file-0371"></a>
+<a id="file-0397"></a>
 
-### 0371 — `src/sisad-pdfme/runtime/README.md`
+### 0397 — `src/sisad-pdfme/runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -16028,9 +19887,9 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
 ```
 
-<a id="file-0372"></a>
+<a id="file-0398"></a>
 
-### 0372 — `src/sisad-pdfme/schemas/AGENTS.md`
+### 0398 — `src/sisad-pdfme/schemas/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16047,9 +19906,9 @@ Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reg
 - No switches dispersos.
 ```
 
-<a id="file-0373"></a>
+<a id="file-0399"></a>
 
-### 0373 — `src/sisad-pdfme/shared/AGENTS.md`
+### 0399 — `src/sisad-pdfme/shared/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16066,9 +19925,9 @@ Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reg
 - Roundtrip obligatorio.
 ```
 
-<a id="file-0374"></a>
+<a id="file-0400"></a>
 
-### 0374 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
+### 0400 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -16247,9 +20106,9 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 | types.ts | 147 | 161 |
 ```
 
-<a id="file-0375"></a>
+<a id="file-0401"></a>
 
-### 0375 — `src/sisad-pdfme/ui/README.md`
+### 0401 — `src/sisad-pdfme/ui/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -16298,9 +20157,9 @@ git diff -- src/sisad-pdfme/ui
 ``​`
 ```
 
-<a id="file-0376"></a>
+<a id="file-0402"></a>
 
-### 0376 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0402 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -16387,9 +20246,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0377"></a>
+<a id="file-0403"></a>
 
-### 0377 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
+### 0403 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -16430,9 +20289,9 @@ Este bloque contiene la base visual y funcional usada por Preview/Form/Viewer en
 6. Validar persistencia/prefill/API del hook sin sobrescribir valores ya digitados por usuario.
 ```
 
-<a id="file-0378"></a>
+<a id="file-0404"></a>
 
-### 0378 — `src/sisad-pdfme/ui/components/README.md`
+### 0404 — `src/sisad-pdfme/ui/components/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -16471,9 +20330,9 @@ Este paquete contiene una copia completa de los archivos runtime/base UI enviado
 Este bloque es sensible porque conecta el runtime visual con plugins imperativos (`Renderer`), preprocesamiento de PDF (`Paper`/`Preview`) y sincronización de datos (`usePreviewRuntime`). La documentación refuerza que la geometría del canvas debe seguir controlada por schemas y servicios internos, no por estilos arbitrarios de plugins o hosts.
 ```
 
-<a id="file-0379"></a>
+<a id="file-0405"></a>
 
-### 0379 — `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md`
+### 0405 — `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16490,9 +20349,9 @@ Este bloque es sensible porque conecta el runtime visual con plugins imperativos
 - Playwright focal.
 ```
 
-<a id="file-0380"></a>
+<a id="file-0406"></a>
 
-### 0380 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
+### 0406 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -16521,9 +20380,9 @@ Este bloque es sensible porque conecta el runtime visual con plugins imperativos
 - `Guides.tsx`, `Mask.tsx` y `Padding.tsx` quedan como slots visuales puros.
 ```
 
-<a id="file-0381"></a>
+<a id="file-0407"></a>
 
-### 0381 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
+### 0407 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -16558,9 +20417,9 @@ Este paquete contiene copias completas de los archivos del core visual/interacti
 Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ContentCustomForm`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
 ```
 
-<a id="file-0382"></a>
+<a id="file-0408"></a>
 
-### 0382 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md`
+### 0408 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16577,9 +20436,9 @@ Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar 
 - No duplicar lógica de selección.
 ```
 
-<a id="file-0383"></a>
+<a id="file-0409"></a>
 
-### 0383 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
+### 0409 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -16605,9 +20464,9 @@ Se documentó el bloque de composición del sidebar derecho del diseñador SISAD
 Estos archivos deben mantenerse como capa de composición visual y navegación del sidebar. No deberían incorporar reglas internas del canvas, manipulación directa de Moveable/Selecto, ni persistencia de negocio. Las mutaciones deben seguir delegándose a callbacks, bridges o comandos ya recibidos por props.
 ```
 
-<a id="file-0384"></a>
+<a id="file-0410"></a>
 
-### 0384 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
+### 0410 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -16636,9 +20495,9 @@ Este paquete contiene versiones documentadas de los archivos del sidebar derecho
 - Se conservó la separación esperada: el sidebar orquesta vistas, pero no manipula canvas, Moveable, Selecto ni schemas directamente.
 ```
 
-<a id="file-0385"></a>
+<a id="file-0411"></a>
 
-### 0385 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
+### 0411 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -16670,9 +20529,9 @@ Se generó documentación para los 18 archivos de overlays del canvas:
 5. Documentar restricciones arquitectónicas importantes cuando aplicaba.
 ```
 
-<a id="file-0386"></a>
+<a id="file-0412"></a>
 
-### 0386 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
+### 0412 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -16718,9 +20577,9 @@ Este paquete contiene copias completas de los archivos enviados, con documentaci
 Estos módulos pertenecen a la capa visual/interactiva del canvas. Deben seguir sin contener reglas de negocio del host, lógica Uanataca, persistencia HTTP, manipulación directa de Moveable/Selecto ni hacks de z-index para ocultar problemas.
 ```
 
-<a id="file-0387"></a>
+<a id="file-0413"></a>
 
-### 0387 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
+### 0413 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -16773,9 +20632,9 @@ La documentación se agregó con JSDoc en puntos de extensión y mantenimiento:
 5. En colaboración, validar casos de owner único, multi-owner, shared, locked by me y locked by other.
 ```
 
-<a id="file-0388"></a>
+<a id="file-0414"></a>
 
-### 0388 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
+### 0414 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -16824,9 +20683,9 @@ Wrapper de compatibilidad para widgets imperativos de plugins. Se documentaron:
 - Confirmar que clicks dentro del inspector no disparen Selecto, Moveable ni drag/drop del canvas.
 ```
 
-<a id="file-0389"></a>
+<a id="file-0415"></a>
 
-### 0389 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
+### 0415 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -16857,9 +20716,9 @@ Este paquete contiene copias documentadas de tres archivos del inspector del dis
 - `WidgetRenderer` conserva el render imperativo en cada render para no cambiar el contrato heredado.
 ```
 
-<a id="file-0390"></a>
+<a id="file-0416"></a>
 
-### 0390 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
+### 0416 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -16901,9 +20760,9 @@ El bloque `ListView` representa la lista lateral derecha de campos/schemas del d
 - Si se cambia el DOM del row, preservar `data-testid="right-sidebar-field-item"` y el drag handle.
 ```
 
-<a id="file-0391"></a>
+<a id="file-0417"></a>
 
-### 0391 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
+### 0417 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`

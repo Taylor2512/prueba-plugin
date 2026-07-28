@@ -303,5 +303,3 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
   }
   return wrapper;
 };
-
-export default createOptionGroupRuntime;

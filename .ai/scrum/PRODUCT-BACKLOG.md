@@ -1,5 +1,7 @@
 # Product Backlog
 
+Backlog canónico priorizado. Las tareas activas viven en `ACTIVE.md` y las cerradas en `COMPLETED.md`.
+
 | ID | Prioridad | Título | Enlace |
 |---|---|---|---|
 | AI-001 | P0 | Instalar arquitectura canónica `.ai/` | [task](tasks/AI-001.md) |

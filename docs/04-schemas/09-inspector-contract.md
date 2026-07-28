@@ -20,3 +20,9 @@ type SchemaInspectorContract = {
 ```
 
 Esto evita que cada schema invente su propio sidebar.
+
+## Reglas de configuración
+
+- `signatureMode`, `signatureProviderKey`, `signatureProviderStatus` y `signatureProviderDisplay` son secciones propias de schemas de firma.
+- Un schema no debe leer `options.visibility` o `options.assignment` directamente para decidir secciones visibles.
+- La visibilidad del inspector debe salir del contrato canónico y de los selectores del wrapper.

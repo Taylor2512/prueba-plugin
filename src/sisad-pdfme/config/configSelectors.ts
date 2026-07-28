@@ -17,7 +17,7 @@ export type SisadPdfmeConfigSelectors = {
 const isResolvedConfigSnapshot = (value: unknown): value is ResolvedSisadPdfmeConfig =>
   Boolean(value && typeof value === 'object' && 'config' in value && 'visibility' in value);
 
-export const resolveConfigSnapshot = (input: SisadPdfmeConfigSource): SisadPdfmeConfigSnapshot =>
+const resolveConfigSnapshot = (input: SisadPdfmeConfigSource): SisadPdfmeConfigSnapshot =>
   isResolvedConfigSnapshot(input) ? { config: input.config, visibility: input.visibility } : input;
 
 const createUnknownState = (

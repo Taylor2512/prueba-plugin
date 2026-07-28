@@ -1,6 +1,6 @@
 # CONFIG-016 — Unificar assignment y collaboration
 
-**Estado:** backlog  
+**Estado:** done
 **Owner:** runtime-architect  
 **Modelo sugerido:** Sol high  
 **Worktree/rama:** pendiente  
@@ -17,7 +17,9 @@ Centralizar recipients, activeRecipient, permissions, ownership y reasignación 
 - Auditoría vigente: `reports/configuration/`.
 - Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
 - Ruta de contexto: `.ai/routes/configuration.md`.
-- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+- Estado inicial de la afirmación principal: confirmada por código, test y build.
+- Validación: `npx vitest run tests/unit/sisad-pdfme/assignments tests/unit/sisad-pdfme/collaboration`, `npm run build`, `npm run quality:duplicate-functions`.
+- Playwright solicitado en la tarjeta no existe en este checkout.
 
 ## Contexto mínimo obligatorio
 
@@ -99,17 +101,17 @@ Antes del parche:
 
 ## Comandos/gates
 
-- [ ] `npx vitest run tests/unit/sisad-pdfme/assignments tests/unit/sisad-pdfme/collaboration`
-- [ ] `npx playwright test tests/playwright/configuration/assignment.spec.ts`
-- [ ] `npm run build`
+- [x] `npx vitest run tests/unit/sisad-pdfme/assignments tests/unit/sisad-pdfme/collaboration`
+- [ ] `npx playwright test tests/playwright/configuration/assignment.spec.ts` (no existe en este checkout)
+- [x] `npm run build`
 
 ## Criterios de aceptación
 
-- [ ] Recipients se registran una vez.
-- [ ] Reassign visible/executable responde al mismo state.
-- [ ] Cambiar active recipient no cambia owner de schemas existentes.
-- [ ] Bulk preserva locks según config.
-- [ ] Dos Providers no comparten recipients.
+- [x] Recipients se registran una vez.
+- [x] Reassign visible/executable responde al mismo state.
+- [x] Cambiar active recipient no cambia owner de schemas existentes.
+- [x] Bulk preserva locks según config.
+- [x] Dos Providers no comparten recipients.
 
 ## Presupuesto
 

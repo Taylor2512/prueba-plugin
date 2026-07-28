@@ -42,5 +42,3 @@ export const InspectorNumberInput = ({
     />
   </label>
 );
-
-export default InspectorNumberInput;

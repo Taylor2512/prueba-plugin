@@ -3,7 +3,6 @@ import {
   buildFileAssignments,
   buildPageAssignments,
   getAssignmentsForFile,
-  getAssignmentsForPage,
   getAssignmentsForRecipient,
   moveSchemaAssignment,
   reconcileAssignments,
@@ -19,7 +18,7 @@ describe('assignments lifecycle', () => {
     expect(buildPageAssignments(assignments, 'file-a', 1)['recipient-2']).toEqual(['schema-4']);
     expect(getAssignmentsForRecipient(assignments, 'recipient-1')).not.toBe(assignments['recipient-1']);
     expect(getAssignmentsForFile(assignments, 'file-a')['recipient-1']['2']).toEqual(['schema-3']);
-    expect(getAssignmentsForPage(assignments, 'file-a', 2)['recipient-1']).toEqual(['schema-3']);
+    expect(buildPageAssignments(assignments, 'file-a', 2)['recipient-1']).toEqual(['schema-3']);
   });
 
   it('mueve schema globalmente y deduplica destino', () => {

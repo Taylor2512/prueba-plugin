@@ -502,7 +502,6 @@ export const getAssignmentsForFile = (
  *   recipientB: []
  * }
  */
-export const getAssignmentsForPage = buildPageAssignments;
 
 /**
  * Valida la consistencia interna de assignments.

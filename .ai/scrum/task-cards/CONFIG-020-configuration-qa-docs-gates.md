@@ -1,6 +1,6 @@
 # CONFIG-020 — Cerrar QA, documentación y quality gates
 
-**Estado:** backlog  
+**Estado:** in progress
 **Owner:** qa-reviewer  
 **Modelo sugerido:** Terra medium  
 **Worktree/rama:** pendiente  
@@ -17,7 +17,12 @@ Completar documentación, ejemplos, matriz de regresión y gates que impidan nue
 - Auditoría vigente: `reports/configuration/`.
 - Estado único: `.ai/scrum/SPRINT-CURRENT.md`.
 - Ruta de contexto: `.ai/routes/configuration.md`.
-- Estado inicial de la afirmación principal: `HIPÓTESIS` hasta confirmarla mediante código, test o comando.
+- `npm run quality:dead-code` sigue fallando por baseline del repositorio; la surface de exports nueva quedó cubierta y ya no reporta unused exports, solo deuda heredada en deps/types/duplicate exports.
+- `npm run quality` incorpora `quality:direct-config-readers` como gate formal.
+- `npx vitest run tests/unit/sisad-pdfme/config/public-api.test.ts tests/unit/sisad-pdfme/ui/detailViewPublicModules.test.ts tests/unit/sisad-pdfme/devtoolsPublicSurface.test.ts tests/unit/sisad-pdfme/adaptersPublicSurface.test.ts tests/unit/features/pdfcomponent/ui/primitivesPublicSurface.test.ts` pasó; los contratos públicos de config/react, inspector, devtools, adapters y primitives quedaron validados.
+- `npx knip --cache --reporter compact --include exports --max-show-issues 120` quedó limpio en exports.
+- `npx vitest run tests/unit/sisad-pdfme/integrationPublicSurface.test.ts tests/unit/sisad-pdfme/recipientsPublicSurface.test.ts tests/unit/sisad-pdfme/optionsPublicSurface.test.ts` pasó; la surface pública de integration/recipients/options quedó caracterizada.
+- `npm run quality:dead-code` sigue fallando por deuda amplia heredada: 5 unused dependencies, 12 unlisted dependencies, 6 unused exported types y 3 duplicate exports; ya no reporta unused files ni unused exports.
 
 ## Contexto mínimo obligatorio
 
@@ -104,11 +109,12 @@ Antes del parche:
 
 ## Comandos/gates
 
-- [ ] `npm run lint`
-- [ ] `npm run build`
-- [ ] `npx vitest run`
-- [ ] `npx playwright test tests/playwright/configuration`
-- [ ] `npm run quality:duplicate-functions`
+- [x] `npm run lint`
+- [x] `npm run build`
+- [x] `npx vitest run`
+- [x] `npx playwright test tests/playwright/configuration`
+- [x] `npm run quality:duplicate-functions`
+- [x] `npm run quality:direct-config-readers`
 - [ ] `npm run quality:dead-code`
 
 ## Criterios de aceptación

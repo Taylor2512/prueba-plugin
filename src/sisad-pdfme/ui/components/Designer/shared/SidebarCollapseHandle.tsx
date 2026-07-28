@@ -62,5 +62,3 @@ export const SidebarCollapseHandle = ({
     </Tooltip>
   );
 };
-
-export default SidebarCollapseHandle;

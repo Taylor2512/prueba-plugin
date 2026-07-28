@@ -40,7 +40,7 @@ import {
   type OptionGroupType,
 } from './optionGroupLayout.js';
 import { buildDefaultOptionGroupOptions, normalizeOptionText } from './optionModel.js';
-import createOptionGroupRuntime from './optionGroupRenderer.js';
+import { createOptionGroupRuntime } from './optionGroupRenderer.js';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 import { createOptionIndicatorElement } from './optionIndicator.js';
 

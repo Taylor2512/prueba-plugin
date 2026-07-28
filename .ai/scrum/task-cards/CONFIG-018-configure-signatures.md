@@ -1,6 +1,6 @@
 # CONFIG-018 — Configurar firmas y providers
 
-**Estado:** backlog  
+**Estado:** done
 **Owner:** schema-specialist  
 **Modelo sugerido:** Terra high  
 **Worktree/rama:** pendiente  
@@ -99,16 +99,16 @@ Antes del parche:
 
 ## Comandos/gates
 
-- [ ] `npx vitest run tests/unit/sisad-pdfme/config/signatures.test.ts tests/unit/sisad-pdfme/schemas/signature`
-- [ ] `npm run build`
+- [x] `npx vitest run tests/unit/sisad-pdfme/config/signatures.test.ts tests/unit/sisad-pdfme/schemas/signature`
+- [x] `npm run build`
 
 ## Criterios de aceptación
 
-- [ ] enabled=false no registra interacción de firma configurable.
-- [ ] defaultMode=provider sin providers produce error/reason.
-- [ ] Designer muestra placeholder.
-- [ ] Form ejecuta capability permitida.
-- [ ] Viewer no permite interacción.
+- [x] enabled=false no registra interacción de firma configurable.
+- [x] defaultMode=provider sin providers produce error/reason.
+- [x] Designer muestra placeholder.
+- [x] Form ejecuta capability permitida.
+- [x] Viewer no permite interacción.
 
 ## Presupuesto
 

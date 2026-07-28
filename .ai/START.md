@@ -4,6 +4,7 @@
 
 - `AGENTS.md`;
 - `.ai/tasks/ACTIVE.md`;
+- `.ai/scrum/CLAIMS.md` cuando haya trabajo concurrente;
 - una task-card;
 - el `AGENTS.md` local;
 - una ruta;

@@ -41,7 +41,9 @@ export const setSchemaRootAttributes = <TSchema extends SisadSchemaBase>(
     ownerColor?: string;
   } = {},
 ): void => {
-  const tone = options.ownerColor ?? schema.ownerColor ?? schema.recipientColor ?? '#2563eb';
+  // Respaldo neutro (no azul): un schema sin color de dueño no debe parecer
+  // asignado al recipient azul por defecto.
+  const tone = options.ownerColor ?? schema.ownerColor ?? schema.recipientColor ?? '#94A3B8';
 
   if (options.family) root.dataset.schemaFamily = options.family;
   if (schema.documentId) {

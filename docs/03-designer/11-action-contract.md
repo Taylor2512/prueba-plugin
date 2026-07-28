@@ -37,6 +37,8 @@ type DesignerActionState = {
 - Las acciones que modifican schema pasan por CommandBus o servicio central.
 - Reasignar usa RecipientRegistry y schemaAssignmentService.
 - Lock/Unlock usa estado de acceso central.
+- El host no debe recalcular visibilidad leyendo `options.visibility` o `options.assignment` por su cuenta.
+- La configuración dinámica debe pasar por el controller público o por el registry canónico.
 
 ## Acciones críticas
 

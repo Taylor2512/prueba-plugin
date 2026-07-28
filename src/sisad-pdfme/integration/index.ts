@@ -26,7 +26,7 @@ export {
   resolveSisadPdfmeConfig,
   createInspectorConfigurationResolver,
 } from '../config/index.js';
-export {
+import {
   SisadPdfmeProvider,
   SisadPdfmeDesigner,
   SisadPdfmeForm,
@@ -38,6 +38,18 @@ export {
   useSisadPdfmeAction,
   useSisadPdfmeComponent,
 } from '../react/index.js';
+export {
+  SisadPdfmeProvider,
+  SisadPdfmeDesigner,
+  SisadPdfmeForm,
+  SisadPdfmeViewer,
+  useSisadPdfmeConfigService,
+  useSisadPdfmeConfig,
+  useSisadPdfmeController,
+  useSisadPdfmeFeature,
+  useSisadPdfmeAction,
+  useSisadPdfmeComponent,
+};
 export type {
   ResolvedSisadPdfmeConfig,
   SisadPdfmeController,
@@ -115,7 +127,7 @@ export {
   pdfToImages,
   pdfToPageSizes,
   imagesToPdf,
-  getPdfPageSizes as getDocumentPdfPageSizes,
+  pdfToPageSizes as getDocumentPdfPageSizes,
   filterSchemasByFileAndPage,
   reconcileTemplateDocuments,
   mergeDesignerDocumentIntoFile,

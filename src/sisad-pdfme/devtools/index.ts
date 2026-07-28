@@ -48,7 +48,7 @@ export {
 
 // Browser helpers
 export { createObjectUrl, revokeObjectUrls } from '../browser/objectUrls.js';
-export { downloadUrl, downloadJson, downloadBytes } from '../browser/downloads.js';
+export { downloadUrl, downloadJson } from '../browser/downloads.js';
 
 // Templates + collaboration appearance
 export { createDefaultTemplate } from '../templates/createDefaultTemplate.js';

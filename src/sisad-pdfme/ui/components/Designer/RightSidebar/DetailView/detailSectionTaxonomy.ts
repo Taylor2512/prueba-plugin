@@ -256,16 +256,6 @@ export const getDetailProfile = (schemaType: string): DetailProfile => {
   return createDetailProfile(normalized, [...DEFAULT_DETAIL_SECTION_VISIBILITY], ['identity', 'box']);
 };
 
-/** Devuelve secciones abiertas por defecto para un tipo de schema. */
-export const getCanonicalDefaultOpenSections = (schemaType: string): CanonicalDetailSection[] => {
-  return getDetailProfile(schemaType).defaultOpenSections;
-};
-
-/** Devuelve secciones visibles para un tipo de schema. */
-export const getCanonicalVisibleDetailSections = (schemaType: string): CanonicalDetailSection[] => {
-  return getDetailProfile(schemaType).visibleSections;
-};
-
 /** Entrada flexible de campo usada por reglas de visibilidad. */
 type FieldLike =
   | string

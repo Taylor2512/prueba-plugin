@@ -1,6 +1,6 @@
 # CONFIG-017 — Configurar documentos y comentarios
 
-**Estado:** backlog  
+**Estado:** done
 **Owner:** runtime-architect  
 **Modelo sugerido:** Terra high  
 **Worktree/rama:** pendiente  
@@ -99,16 +99,16 @@ Antes del parche:
 
 ## Comandos/gates
 
-- [ ] `npx vitest run tests/unit/sisad-pdfme/documents tests/unit/sisad-pdfme/comments`
+- [x] `npx vitest run tests/unit/sisad-pdfme/documents tests/unit/sisad-pdfme/comments`
 - [ ] `npx playwright test tests/playwright/configuration/documents-comments.spec.ts`
-- [ ] `npm run build`
+- [x] `npm run build`
 
 ## Criterios de aceptación
 
-- [ ] Panel oculto no altera documentId/page.
-- [ ] mode=single no obliga a montar DocumentsRail.
-- [ ] comments.enabled=false no registra overlays/comandos.
-- [ ] comments enabled + panel hidden sigue disponible por API si está permitido.
+- [x] Panel oculto no altera documentId/page.
+- [x] mode=single no obliga a montar DocumentsRail.
+- [x] comments.enabled=false no registra overlays/comandos.
+- [x] comments enabled + panel hidden sigue disponible por API si está permitido.
 
 ## Presupuesto
 

@@ -28,4 +28,64 @@ describe('createSisadPdfmeConfigService', () => {
     service.update({ debug: { enabled: false } });
     expect(listener).toHaveBeenCalledTimes(1);
   });
+
+  it('preserves runtime resources for presentation-only updates and rebuilds on runtime mode changes', () => {
+    const service = createSisadPdfmeConfigService({
+      runtime: { mode: 'designer' },
+      visibility: {
+        sidebars: {
+          right: {
+            panels: {
+              documents: true,
+            },
+          },
+        },
+      },
+      ui: {
+        visibility: {
+          sidebars: {
+            right: {
+              panels: {
+                documents: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    const initial = service.getResolvedConfig();
+    const presentationChange = service.update({
+      ui: {
+        visibility: {
+          sidebars: {
+            right: {
+              panels: {
+                documents: false,
+              },
+            },
+          },
+        },
+      },
+    });
+    const afterPresentation = service.getResolvedConfig();
+
+    expect(presentationChange.impact.presentationOnly).toBe(true);
+    expect(presentationChange.impact.rebuildResources).toBe(false);
+    expect(afterPresentation.designerEngine).toBe(initial.designerEngine);
+    expect(afterPresentation.eventHub).toBe(initial.eventHub);
+    expect(afterPresentation.adapters).toBe(initial.adapters);
+
+    const runtimeChange = service.update({
+      runtime: {
+        mode: 'viewer',
+      },
+    });
+    const afterRuntime = service.getResolvedConfig();
+
+    expect(runtimeChange.impact.rebuildResources).toBe(true);
+    expect(afterRuntime.designerEngine).not.toBe(afterPresentation.designerEngine);
+    expect(afterRuntime.eventHub).not.toBe(afterPresentation.eventHub);
+    expect(afterRuntime.adapters).not.toBe(afterPresentation.adapters);
+  });
 });

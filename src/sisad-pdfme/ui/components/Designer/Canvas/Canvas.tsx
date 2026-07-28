@@ -102,7 +102,6 @@ import {
 } from './overlays/overlayState.js';
 import { useCanvasRenderState } from '../../../../canvas/useCanvasRenderState.js';
 import { isCanvasInteractive } from '../../../../canvas/canvasRenderState.js';
-import { asRecord } from '../../../../shared/objectGuards.js';
 
 /**
  * Convierte milímetros a píxeles usando el factor CSS estándar de 96 DPI.

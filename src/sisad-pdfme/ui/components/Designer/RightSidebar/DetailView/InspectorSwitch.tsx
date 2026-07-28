@@ -43,5 +43,3 @@ export const InspectorSwitch = ({
     <Switch checked={Boolean(checked)} disabled={disabled || readOnly} />
   </button>
 );
-
-export default InspectorSwitch;

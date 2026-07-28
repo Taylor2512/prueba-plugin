@@ -83,6 +83,82 @@ interface PdfCommentEntry {
  */
 const normalizeCommentText = normalizeLooseText;
 
+type CommentsCapabilityFeatureState = {
+  id: string;
+  registered: boolean;
+  supported: boolean;
+  enabled: boolean;
+  visible: boolean;
+  permitted: boolean;
+  available: boolean;
+  active: boolean;
+  executable: boolean;
+  reason?: string;
+  sources?: string[];
+};
+
+export type CommentsCapabilityContext = {
+  comments?: {
+    enabled?: boolean | null;
+  } | null;
+  visibility?: {
+    modals?: {
+      comments?: boolean;
+    } | null;
+    sidebars?: {
+      right?: {
+        panels?: {
+          comments?: boolean;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
+};
+
+export type CommentsCapabilityState = CommentsCapabilityFeatureState & {
+  panelVisible: boolean;
+  modalVisible: boolean;
+};
+
+const createCommentsCapabilityState = (
+  partial: Partial<CommentsCapabilityState>,
+): CommentsCapabilityState => ({
+  id: 'comments',
+  registered: true,
+  supported: true,
+  enabled: true,
+  visible: true,
+  permitted: true,
+  available: true,
+  active: false,
+  executable: true,
+  panelVisible: true,
+  modalVisible: true,
+  sources: ['comments.enabled', 'visibility.modals.comments', 'visibility.sidebars.right.panels.comments'],
+  ...partial,
+});
+
+export const resolveCommentsCapabilityState = (
+  context: CommentsCapabilityContext = {},
+): CommentsCapabilityState => {
+  const enabled = context.comments?.enabled !== false;
+  const panelVisible = context.visibility?.sidebars?.right?.panels?.comments !== false;
+  const modalVisible = context.visibility?.modals?.comments !== false;
+  const visible = panelVisible || modalVisible;
+
+  return createCommentsCapabilityState({
+    enabled,
+    visible,
+    permitted: true,
+    available: enabled,
+    active: enabled,
+    executable: enabled,
+    reason: enabled ? undefined : 'comments-disabled',
+    panelVisible,
+    modalVisible,
+  });
+};
+
 /**
  * Actualiza los valores de un CommentAnchor sin mutar el objeto original.
  *

@@ -307,5 +307,3 @@ export const useDesignerKeyboardShortcuts = (params: UseDesignerKeyboardShortcut
     return () => window.removeEventListener('keydown', onKeyDown, true);
   }, [enabled]);
 };
-
-export default useDesignerKeyboardShortcuts;

@@ -29,5 +29,3 @@ export const OptionListEditor: React.FC<Props> = ({ value, onChange }) => {
     </div>
   );
 };
-
-export default OptionListEditor;

@@ -17,7 +17,10 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './tests/unit/setupTests.ts',
-    include: ['tests/unit/**/*.test.{ts,tsx,js,jsx}'],
+    include: [
+      'tests/unit/**/*.test.{ts,tsx,js,jsx}',
+      'tests/integration/**/*.test.{ts,tsx,js,jsx}',
+    ],
     server: {
       deps: {
         inline: ['antd', 'rc-util'],
