@@ -52,7 +52,12 @@ describe('buildInspectorSections', () => {
 
     expect(byKey.has('identity')).toBe(true);
     expect(byKey.has('box')).toBe(true);
-    expect(byKey.has('behavior')).toBe(false);
+    // Interacción se renderiza porque aloja el único control de solo lectura:
+    // el fallback `editable` dejó de sintetizarse en Reglas de llenado
+    // (docs/03-designer/12-inspector-taxonomy.md §2, regla 2).
+    expect(byKey.has('behavior')).toBe(true);
+    expect(byKey.get('behavior')?.schema.properties?.editable).toBeDefined();
+    expect(byKey.get('validation')?.schema.properties?.editable).toBeUndefined();
     expect(byKey.has('advanced')).toBe(false);
 
     const identity = byKey.get('identity');

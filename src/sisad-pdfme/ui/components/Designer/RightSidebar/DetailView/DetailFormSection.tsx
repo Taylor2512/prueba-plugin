@@ -79,11 +79,11 @@ const DetailFormSection = ({
 
   return (
     <DetailSectionCard
-      key={resetToken || sectionKey || title}
       sectionKey={sectionKey}
       title={title}
       description={description}
       defaultCollapsed={defaultCollapsed}
+      resetToken={resetToken}
     >
       {directWidget ? (
         // DetailSectionCard → widget. No form shell / Ant Card levels in between.

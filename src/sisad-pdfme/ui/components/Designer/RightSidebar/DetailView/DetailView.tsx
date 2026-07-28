@@ -430,7 +430,10 @@ const DetailView = (props: DetailViewProps) => {
     validatePosition,
     visibility,
   });
-  const detailViewResetToken = schemaFingerprint(activeSchema);
+  // Resetear el estado de colapso solo al cambiar de schema activo, no en cada
+  // modificación de campos. Si no, cualquier cambio de input remonta las
+  // secciones y borra la interacción del inspector.
+  const detailViewResetToken = activeSchema.id;
 
   return (
     <DetailViewContent

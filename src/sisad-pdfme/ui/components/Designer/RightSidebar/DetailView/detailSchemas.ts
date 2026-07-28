@@ -146,6 +146,8 @@ const createSectionField = (
   ...extra,
 });
 
+const DEFAULT_BOUNDED_NUMBER_FIELD_SPAN = 12;
+
 /**
  * Crea un campo numérico acotado por página/padding y validación externa.
  */
@@ -156,21 +158,24 @@ const createBoundedNumberField = (
   typedI18n: (key: string) => string,
   fieldName: 'x' | 'y' | 'width' | 'height',
   extra: Omit<PropPanelSchema, 'title' | 'type'> = {},
-): PropPanelSchema =>
-  createSectionField(title, 'number', {
-    ...extra,
+): PropPanelSchema => {
+  const { span = DEFAULT_BOUNDED_NUMBER_FIELD_SPAN, props, rules, ...restExtra } = extra;
+
+  return createSectionField(title, 'number', {
+    ...restExtra,
     widget: 'inputNumber',
     required: true,
-    span: 12,
-    props: { min: 0, max, ...(extra.props || {}) },
+    span,
+    props: { min: 0, max, ...(props || {}) },
     rules: [
       {
         validator: (_: unknown, value: number) => validatePosition(_, value, fieldName),
         message: typedI18n('validation.outOfBounds'),
       },
-      ...(extra.rules || []),
+      ...(rules || []),
     ],
   });
+};
 
 /**
  * Reemplaza widgets `color` legacy por el widget `nativeColor` soportado.
@@ -310,7 +315,7 @@ export const buildInspectorSections = ({
     'name',
     createSectionField('Nombre del campo', 'string', {
       required: true,
-      span: 24,
+      span: 12,
       rules: [
         {
           validator: validateUniqueSchemaName,
@@ -327,7 +332,7 @@ export const buildInspectorSections = ({
     'inlineEditActions',
     createSectionField('', 'void', {
       widget: 'InlineEditActionsWidget',
-      span: 24,
+      span: 12,
     }),
   );
 
@@ -379,7 +384,7 @@ export const buildInspectorSections = ({
       default: 0,
       max: 360,
       props: { min: 0 },
-      span: 24,
+      span: 8,
     }),
   );
 
@@ -425,20 +430,19 @@ export const buildInspectorSections = ({
         widget: 'inputNumber',
         disabled: defaultSchema.opacity === undefined,
         props: { step: 0.1, min: 0, max: 1 },
-        span: 24,
+        span: 12,
       }),
     );
   }
 
-  // Fill-rule fallback toggles — synthesized into the validation ("fill rules")
-  // section so the inspector always exposes "editable"/"required" even when a
-  // schema plugin declares neither the field nor its inverse. A plugin-declared
-  // equivalent wins (skipped to avoid duplicates). Kept out of the behavior
-  // bucket so schemas with no data fields don't render an empty behavior card.
+  // Fallbacks sintetizados cuando el plugin no declara el campo ni su inverso.
+  // Cada concepto cae en su única sección (docs/03-designer/12-inspector-taxonomy.md):
+  // editable/readOnly → Interacción; required/mandatory → Reglas de llenado.
+  // Un campo declarado por el plugin siempre gana, para no duplicar el control.
   if (!pluginFieldKeys.has('editable') && !pluginFieldKeys.has('readonly')) {
     addFieldToSection(
       sectionProperties,
-      'validation',
+      'data',
       'editable',
       createSectionField(typedI18n('editable'), 'boolean', { span: 12 }),
     );

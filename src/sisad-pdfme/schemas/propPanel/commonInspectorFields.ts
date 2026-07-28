@@ -342,10 +342,12 @@ export const COMMON_PROPERTY_MAP: Partial<Record<string, 'general' | 'layout' | 
   allowNegative: 'data',
   positiveFormat: 'data',
   negativeFormat: 'data',
-  // permissions → collaboration
+  // permissions → cada concepto en su única sección:
+  // obligatoriedad en Reglas de llenado, capacidad de edición en Interacción,
+  // y solo ownership/lock quedan en Asignación y bloqueo.
   mandatory: 'validation',
-  editableBySender: 'collaboration',
-  editableByRecipient: 'collaboration',
+  editableBySender: 'data',
+  editableByRecipient: 'data',
 };
 // ── Shared typography / color definitions ────────────────────────────────
 

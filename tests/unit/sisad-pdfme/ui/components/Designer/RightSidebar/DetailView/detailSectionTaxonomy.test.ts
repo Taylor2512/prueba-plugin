@@ -175,13 +175,16 @@ describe('detail section visibility by type', () => {
     expect(getDefaultOpenSections('attachment')).toEqual(['identity', 'behavior', 'box']);
   });
 
+  // Contrato alineado con la matriz de docs/03-designer/12-inspector-taxonomy.md §3:
+  // Formato es transversal a todas las familias y las reglas de llenado dejan de
+  // ser exclusivas de los campos de texto.
   it('exposes a profile contract per schema family', () => {
     expect(getDetailProfile('select').visibleSections).toContain('options');
-    expect(getDetailProfile('checkboxgroup').defaultOpenSections).toEqual(['identity', 'options']);
-    expect(getDetailProfile('attachment').visibleSections).not.toContain('appearance');
+    expect(getDetailProfile('checkboxgroup').defaultOpenSections).toEqual(['identity', 'options', 'validation']);
+    expect(getDetailProfile('attachment').visibleSections).toContain('appearance');
     expect(getDetailProfile('note').visibleSections).toContain('appearance');
     expect(getDetailProfile('signature').visibleSections).toContain('appearance');
-    expect(getDetailProfile('signature').defaultOpenSections).toEqual(['identity', 'behavior', 'box', 'appearance']);
+    expect(getDetailProfile('signature').defaultOpenSections).toEqual(['identity', 'behavior', 'validation']);
   });
 
   it('does not treat signature-specific controls as standalone appearance content', () => {

@@ -190,10 +190,16 @@ const DetailSectionCard = ({
   footer,
   bodyClassName,
   className,
+  resetToken,
 }: DetailSectionCardProps) => {
   const [collapsed, setCollapsed] = React.useState(() => defaultCollapsed);
   const resolvedCollapsed = typeof controlledCollapsed === 'boolean' ? controlledCollapsed : collapsed;
   const bodyId = `${sectionKey || title}`.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+  React.useEffect(() => {
+    setCollapsed(defaultCollapsed);
+  }, [defaultCollapsed, resetToken]);
+
   const setNextCollapsed = (next: boolean) => {
     if (typeof controlledCollapsed !== 'boolean') {
       setCollapsed(next);

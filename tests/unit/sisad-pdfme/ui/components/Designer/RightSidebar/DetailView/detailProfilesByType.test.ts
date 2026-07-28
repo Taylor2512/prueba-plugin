@@ -32,7 +32,7 @@ describe('detail profiles by schema type', () => {
     for (const type of ['select', 'dropdown', 'radioGroup', 'checkboxGroup']) {
       const profile = getDetailProfile(type);
       expect(profile.visibleSections).toContain('options');
-      expect(profile.defaultOpenSections).toEqual(['identity', 'options']);
+      expect(profile.defaultOpenSections).toEqual(['identity', 'options', 'validation']);
     }
   });
 
@@ -42,9 +42,12 @@ describe('detail profiles by schema type', () => {
     expect(profile.defaultOpenSections).toEqual(['identity', 'validation', 'behavior']);
   });
 
-  it('prioriza firma y apariencia en los tipos de firma', () => {
+  it('prioriza el bloque de firma y sus reglas de llenado', () => {
     for (const type of ['signature', 'initials', 'dateSigned']) {
-      expect(getDetailProfile(type).defaultOpenSections).toEqual(['identity', 'behavior', 'box', 'appearance']);
+      const profile = getDetailProfile(type);
+      expect(profile.defaultOpenSections).toEqual(['identity', 'behavior', 'validation']);
+      // una firma puede exigirse: Reglas de llenado deja de estar oculta
+      expect(profile.visibleSections).toContain('validation');
     }
   });
 
@@ -54,9 +57,11 @@ describe('detail profiles by schema type', () => {
     }
   });
 
-  it('cae al perfil genérico para tipos desconocidos', () => {
+  it('trata los tipos desconocidos como campos de captura', () => {
+    // Un plugin de terceros sin familia declarada recibe el perfil text-like:
+    // es el único que expone nombre, reglas de llenado e interacción.
     const profile = getDetailProfile('custom-plugin-type');
-    expect(profile.defaultOpenSections).toEqual(['identity', 'box']);
+    expect(profile.defaultOpenSections).toEqual(['identity', 'validation', 'behavior']);
     expect(profile.visibleSections).toContain('identity');
   });
 });

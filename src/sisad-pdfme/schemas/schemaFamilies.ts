@@ -290,6 +290,42 @@ export const resolveSchemaSemanticFamily = (schemaType: string): SchemaSemanticF
   return 'text';
 };
 
+/**
+ * Familias del inspector derecho.
+ *
+ * Es la ÚNICA clasificación que decide qué secciones ve un schema en el
+ * DetailView. No se confunde con `SchemaFamily` (que gobierna acciones y
+ * estrategias de plugin) ni con `SchemaSemanticFamily` (etiquetado semántico):
+ * se deriva de esta última para no reabrir una tercera lista de tipos.
+ *
+ * Contrato documentado en `docs/03-designer/12-inspector-taxonomy.md`.
+ */
+export type InspectorFamily = 'text-like' | 'choice' | 'signature' | 'action' | 'visual';
+
+/** Familia semántica → familia de inspector. */
+const INSPECTOR_FAMILY_BY_SEMANTIC: Record<SchemaSemanticFamily, InspectorFamily> = {
+  text: 'text-like',
+  multiVariableText: 'text-like',
+  dateTime: 'text-like',
+  choice: 'choice',
+  boolean: 'choice',
+  signature: 'signature',
+  action: 'action',
+  media: 'visual',
+  shape: 'visual',
+  barcode: 'visual',
+  table: 'visual',
+};
+
+/**
+ * Resuelve la familia de inspector de un tipo de schema.
+ *
+ * @param schemaType Tipo declarado por el plugin.
+ * @returns Familia de inspector; `text-like` para tipos desconocidos.
+ */
+export const resolveInspectorFamily = (schemaType: string): InspectorFamily =>
+  INSPECTOR_FAMILY_BY_SEMANTIC[resolveSchemaSemanticFamily(schemaType)] || 'text-like';
+
 export const getSchemaFamilyInspectorPreset = (family: SchemaFamily | LegacySchemaFamily): FamilyPreset => {
   const normalized = normalizeSchemaFamily(family);
   const preset = FAMILY_PRESETS[normalized];

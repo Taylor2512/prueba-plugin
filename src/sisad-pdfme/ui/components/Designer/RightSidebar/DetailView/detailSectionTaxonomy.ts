@@ -6,7 +6,11 @@
  * widgets y señales de contenido real.
  */
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import type { SchemaSemanticFamily } from '../../../../../schemas/schemaFamilies.js';
+import {
+  resolveInspectorFamily,
+  type InspectorFamily,
+  type SchemaSemanticFamily,
+} from '../../../../../schemas/schemaFamilies.js';
 import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
 import { normalizeText as normalizeTextRaw } from '../../../../../shared/text.js';
 
@@ -164,45 +168,12 @@ export const hasMeaningfulInspectorValue = (value: unknown): boolean => {
   return normalized.length > 0 && !EMPTY_TEXT_VALUES.has(normalized);
 };
 
-const OPTION_BASED_TYPES = new Set(['select', 'dropdown', 'radiogroup', 'checkboxgroup']);
-const CHECKBOX_TYPES = new Set(['checkbox']);
-const TEXT_LIKE_TYPES = new Set([
-  'text',
-  'multivariabletext',
-  'fullname',
-  'emailaddress',
-  'company',
-  'title',
-]);
-const NUMBER_LIKE_TYPES = new Set(['number']);
 /**
- * Fecha/hora son campos de entrada del destinatario: comparten el perfil de
- * texto (obligatorio, formato, validación), no el genérico de objeto visual.
+ * Única lista de tipos que sobrevive en este módulo: la casilla suelta es la
+ * excepción documentada dentro de la familia `choice` (no tiene lista de
+ * opciones). El resto de la clasificación vive en `resolveInspectorFamily`.
  */
-const DATE_TIME_TYPES = new Set(['date', 'datetime', 'time']);
-const SIGNING_TYPES = new Set(['signature', 'initials', 'datesigned']);
-const ACTION_TYPES = new Set(['attachment', 'approve', 'decline', 'note']);
-/** Tipos visuales sin captura de datos: lo relevante es caja y formato. */
-const VISUAL_TYPES = new Set([
-  'image',
-  'svg',
-  'line',
-  'rectangle',
-  'ellipse',
-  'table',
-  'qrcode',
-  'japanpost',
-  'ean13',
-  'ean8',
-  'code39',
-  'code128',
-  'nw7',
-  'itf14',
-  'upca',
-  'upce',
-  'gs1datamatrix',
-  'pdf417',
-]);
+const CHECKBOX_TYPES = new Set(['checkbox']);
 
 /**
  * Perfil de visibilidad del inspector para un tipo de schema.
@@ -234,6 +205,52 @@ const DEFAULT_DETAIL_SECTION_VISIBILITY: CanonicalDetailSection[] = [
   'advanced',
 ];
 
+/** Secciones transversales que ve cualquier familia. */
+const SHARED_SECTIONS: CanonicalDetailSection[] = [
+  'identity',
+  'behavior',
+  'box',
+  'appearance',
+  'help',
+  'dataBindings',
+  'collaboration',
+  'comments',
+  'advanced',
+];
+
+/**
+ * Matriz canónica sección × familia de inspector.
+ *
+ * Fuente única de verdad: `docs/03-designer/12-inspector-taxonomy.md` §3.
+ * `visible` se ordena por `CANONICAL_DETAIL_SECTION_ORDER`; `open` conserva el
+ * orden de lectura de cada familia (qué mira primero quien edita ese tipo).
+ */
+const INSPECTOR_FAMILY_SECTIONS: Record<
+  InspectorFamily,
+  { visible: CanonicalDetailSection[]; open: CanonicalDetailSection[] }
+> = {
+  'text-like': {
+    visible: [...SHARED_SECTIONS, 'validation'],
+    open: ['identity', 'validation', 'behavior'],
+  },
+  choice: {
+    visible: [...SHARED_SECTIONS, 'validation', 'options'],
+    open: ['identity', 'options', 'validation'],
+  },
+  signature: {
+    visible: [...SHARED_SECTIONS, 'validation'],
+    open: ['identity', 'behavior', 'validation'],
+  },
+  action: {
+    visible: [...SHARED_SECTIONS],
+    open: ['identity', 'behavior', 'box'],
+  },
+  visual: {
+    visible: [...SHARED_SECTIONS],
+    open: ['identity', 'box', 'appearance'],
+  },
+};
+
 /**
  * Resuelve el perfil de secciones visibles y abiertas por defecto.
  *
@@ -242,52 +259,26 @@ const DEFAULT_DETAIL_SECTION_VISIBILITY: CanonicalDetailSection[] = [
  */
 export const getDetailProfile = (schemaType: string): DetailProfile => {
   const normalized = normalizeDetailSchemaType(schemaType);
+  const familySections = INSPECTOR_FAMILY_SECTIONS[resolveInspectorFamily(normalized)];
 
-  if (normalized === 'attachment') {
-    return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'dataBindings', 'help', 'collaboration', 'advanced'], ['identity', 'behavior', 'box']);
+  if (!familySections) {
+    return createDetailProfile(normalized, [...DEFAULT_DETAIL_SECTION_VISIBILITY], ['identity', 'box']);
   }
 
-  if (normalized === 'approve' || normalized === 'decline') {
-    return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'collaboration', 'advanced'], ['identity', 'behavior', 'box']);
-  }
+  // Única excepción dentro de una familia: la casilla suelta pertenece a
+  // `choice` pero no tiene lista de opciones que editar, así que abre reglas de
+  // llenado en lugar de una sección que nunca se renderiza.
+  const isLoneCheckbox = CHECKBOX_TYPES.has(normalized);
 
-  if (normalized === 'note') {
-    return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'appearance', 'help', 'advanced'], ['identity', 'behavior', 'box']);
-  }
-
-  if (CHECKBOX_TYPES.has(normalized)) {
-    return createDetailProfile(normalized, ['identity', 'validation', 'behavior', 'box', 'appearance', 'dataBindings', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'validation', 'behavior']);
-  }
-
-  if (OPTION_BASED_TYPES.has(normalized)) {
-    return createDetailProfile(normalized, ['identity', 'options', 'validation', 'behavior', 'box', 'dataBindings', 'appearance', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'options']);
-  }
-
-  if (TEXT_LIKE_TYPES.has(normalized) || NUMBER_LIKE_TYPES.has(normalized) || DATE_TIME_TYPES.has(normalized)) {
-    return createDetailProfile(normalized, ['identity', 'validation', 'behavior', 'box', 'appearance', 'dataBindings', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'validation', 'behavior']);
-  }
-
-  if (VISUAL_TYPES.has(normalized)) {
-    return createDetailProfile(
-      normalized,
-      ['identity', 'box', 'appearance', 'behavior', 'help', 'dataBindings', 'collaboration', 'comments', 'advanced'],
-      ['identity', 'box', 'appearance'],
-    );
-  }
-
-  if (SIGNING_TYPES.has(normalized)) {
-    return createDetailProfile(
-      normalized,
-      ['identity', 'behavior', 'box', 'appearance', 'collaboration', 'help', 'comments', 'advanced'],
-      ['identity', 'behavior', 'box', 'appearance'],
-    );
-  }
-
-  if (ACTION_TYPES.has(normalized)) {
-    return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'collaboration', 'advanced'], ['identity', 'behavior', 'box']);
-  }
-
-  return createDetailProfile(normalized, [...DEFAULT_DETAIL_SECTION_VISIBILITY], ['identity', 'box']);
+  return createDetailProfile(
+    normalized,
+    sortCanonicalDetailSections(
+      isLoneCheckbox
+        ? familySections.visible.filter((section) => section !== 'options')
+        : familySections.visible,
+    ),
+    isLoneCheckbox ? ['identity', 'validation', 'behavior'] : [...familySections.open],
+  );
 };
 
 /** Entrada flexible de campo usada por reglas de visibilidad. */
