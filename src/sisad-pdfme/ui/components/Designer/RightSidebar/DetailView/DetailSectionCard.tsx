@@ -62,6 +62,21 @@ type SectionTextProps = {
 };
 
 /**
+ * Clases compartidas por las cuatro variantes de encabezado.
+ *
+ * El encabezado es parte de la superficie de la sección, no una tarjeta dentro
+ * de otra: sin borde ni sombra propios. `border-0` es obligatorio y no opcional:
+ * el proyecto desactiva el preflight de Tailwind (`tailwind.config.js`), así que
+ * un `<button>` sin borde declarado hereda el `2px outset` del navegador.
+ */
+const SECTION_HEAD_BASE =
+  'flex min-h-[1.875rem] w-full items-center justify-between gap-1.5 rounded-[0.85rem] border-0 bg-transparent px-2 py-1 text-left';
+
+/** Añadidos cuando el encabezado es interactivo (sección colapsable). */
+const SECTION_HEAD_INTERACTIVE =
+  'group appearance-none transition-colors duration-150 hover:bg-slate-100/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50';
+
+/**
  * Renderiza título y descripción de sección con truncado compacto.
  */
 const SectionText = ({ title, description }: SectionTextProps) => (
@@ -69,7 +84,7 @@ const SectionText = ({ title, description }: SectionTextProps) => (
       <div
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-title',
-          'truncate text-[0.68rem] font-semibold leading-tight text-slate-950',
+          'truncate text-[0.72rem] font-semibold leading-tight text-slate-950',
         )}
         data-has-description={description ? 'true' : 'false'}
       >
@@ -98,15 +113,23 @@ type SectionHeadProps = SectionTextProps & {
  * Renderiza el encabezado de sección y su control de colapso.
  */
 const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, description, leading, trailing, header }: SectionHeadProps) => {
+  const toggleIcon = (
+    <span
+      className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'detail-section-card-toggle',
+        'ml-0.5 inline-flex h-4 w-4 flex-none items-center justify-center rounded-md text-slate-400 transition-[transform,color] duration-200 group-hover:text-slate-600',
+        !collapsed && 'rotate-180',
+      )}
+      aria-hidden="true"
+    >
+      <ChevronDown size={12} strokeWidth={2.25} />
+    </span>
+  );
+
   if (header) {
     if (!collapsible) {
       return (
-        <div
-          className={mergeClassNames(
-            DESIGNER_CLASSNAME + 'detail-section-card-head',
-            'flex min-h-[22px] w-full items-center justify-between gap-1 rounded-[0.75rem] border border-slate-200/70 bg-white px-1.5 py-[0.22rem] shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
-          )}
-        >
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', SECTION_HEAD_BASE)}>
           {header}
         </div>
       );
@@ -117,7 +140,8 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         type="button"
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-head',
-          'group flex min-h-[22px] w-full appearance-none items-center justify-between gap-1 rounded-[0.75rem] border border-slate-200/70 bg-white px-1.5 py-[0.22rem] text-left shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+          SECTION_HEAD_BASE,
+          SECTION_HEAD_INTERACTIVE,
         )}
         aria-expanded={!collapsed}
         aria-controls={`${bodyId}-body`}
@@ -125,24 +149,17 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         onClick={onToggle}
       >
         {header}
-        <span className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-toggle', 'inline-flex h-[1.375rem] w-[1.375rem] flex-none items-center justify-center rounded-lg text-slate-400 transition-colors group-hover:text-slate-600')} aria-hidden="true">
-          <ChevronDown size={11} />
-        </span>
+        {toggleIcon}
       </button>
     );
   }
 
   if (!collapsible) {
     return (
-      <div
-        className={mergeClassNames(
-          DESIGNER_CLASSNAME + 'detail-section-card-head',
-          'flex min-h-[22px] w-full items-center justify-between gap-1 rounded-[0.75rem] border border-slate-200/70 bg-white px-1.5 py-[0.18rem] shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
-        )}
-      >
-        {leading ? <div className={DESIGNER_CLASSNAME + 'detail-section-card-leading'}>{leading}</div> : null}
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', SECTION_HEAD_BASE)}>
+        {leading ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-leading', 'flex-none')}>{leading}</div> : null}
         <SectionText title={title} description={description} />
-        {trailing ? <div className={DESIGNER_CLASSNAME + 'detail-section-card-trailing'}>{trailing}</div> : null}
+        {trailing ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-trailing', 'flex-none')}>{trailing}</div> : null}
       </div>
     );
   }
@@ -152,7 +169,8 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
       type="button"
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card-head',
-        'group flex min-h-[22px] w-full appearance-none items-center justify-between gap-[0.3125rem] rounded-[0.75rem] border border-slate-200/70 bg-white px-1.5 py-[0.22rem] text-left shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+        SECTION_HEAD_BASE,
+        SECTION_HEAD_INTERACTIVE,
       )}
       aria-expanded={!collapsed}
       aria-controls={`${bodyId}-body`}
@@ -162,9 +180,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
       {leading ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-leading', 'flex-none')}>{leading}</div> : null}
       <SectionText title={title} description={description} />
       {trailing ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-trailing', 'flex-none')}>{trailing}</div> : null}
-      <span className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-toggle', 'ml-0.5 inline-flex h-3.5 w-3.5 items-center justify-center text-slate-400 transition-transform duration-200 group-hover:text-slate-600', !collapsed && 'rotate-180')} aria-hidden="true">
-        <ChevronDown size={10} strokeWidth={2.5} />
-      </span>
+      {toggleIcon}
     </button>
   );
 };
@@ -211,7 +227,10 @@ const DetailSectionCard = ({
     <section
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card',
-        'overflow-hidden rounded-[0.9rem] border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+        // Sin borde: la sección se separa del panel por su fondo y una sombra
+        // muy suave, no por una línea. Mantiene la superficie única del §6 del
+        // contrato del inspector.
+        'overflow-hidden rounded-[0.9rem] border-0 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.06)]',
         className,
       )}
       data-section={sectionKey}
@@ -233,7 +252,9 @@ const DetailSectionCard = ({
         id={`${bodyId}-body`}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-body',
-          'mt-px px-2 pb-1.5 pt-1',
+          // Colapsada, el cuerpo no debe reservar padding: si no, cada sección
+          // cerrada suma varios píxeles muertos bajo su título.
+          resolvedCollapsed ? 'h-0 overflow-hidden p-0' : 'px-2 pb-2 pt-0.5',
           bodyClassName,
         )}
         aria-hidden={resolvedCollapsed ? 'true' : 'false'}

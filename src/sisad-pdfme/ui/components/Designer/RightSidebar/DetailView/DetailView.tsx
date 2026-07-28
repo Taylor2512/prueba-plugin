@@ -265,6 +265,18 @@ const DetailView = (props: DetailViewProps) => {
     return '#000000';
   }, []);
 
+  const updateSchemaConfig = useCallback(
+    (patch: Partial<SchemaDesignerConfig>) => {
+      const currentConfig = getSchemaDesignerConfig(activeSchema, designerEngine) || {};
+      const nextSchema = mergeSchemaDesignerConfig(activeSchema, patch, designerEngine);
+      const storageKey = getSchemaConfigStorageKey(designerEngine);
+      const nextConfig = getSchemaDesignerConfig(nextSchema, designerEngine) || {};
+      if (JSON.stringify(currentConfig) === JSON.stringify(nextConfig)) return;
+      changeSchemas([{ schemaId: activeSchema.id, key: storageKey, value: nextConfig }]);
+    },
+    [activeSchema, changeSchemas, designerEngine],
+  );
+
   const widgets = React.useMemo(
     () =>
       buildDetailWidgets({
@@ -277,14 +289,7 @@ const DetailView = (props: DetailViewProps) => {
           ...props,
           designerEngine,
           schemaConfig,
-          updateSchemaConfig: (patch: Partial<SchemaDesignerConfig>) => {
-            const currentConfig = getSchemaDesignerConfig(activeSchema, designerEngine) || {};
-            const nextSchema = mergeSchemaDesignerConfig(activeSchema, patch, designerEngine);
-            const storageKey = getSchemaConfigStorageKey(designerEngine);
-            const nextConfig = getSchemaDesignerConfig(nextSchema, designerEngine) || {};
-            if (JSON.stringify(currentConfig) === JSON.stringify(nextConfig)) return;
-            changeSchemas([{ schemaId: activeSchema.id, key: storageKey, value: nextConfig }]);
-          },
+          updateSchemaConfig,
         },
       }),
     [
@@ -296,6 +301,7 @@ const DetailView = (props: DetailViewProps) => {
       resolvedConfig.config,
       props,
       schemaConfig,
+      updateSchemaConfig,
       token,
       typedI18n,
     ],
@@ -453,51 +459,20 @@ const DetailView = (props: DetailViewProps) => {
 };
 
 /**
- * Construye una huella estable para evitar renders innecesarios del DetailView.
- */
-const schemaFingerprint = (schema: SchemaForUI) => {
-  const coreKeys = new Set([
-    'id',
-    'name',
-    'type',
-    'content',
-    'width',
-    'height',
-    'required',
-    'readOnly',
-    'rotate',
-    'opacity',
-    'position',
-  ]);
-  const rawSchema = asRecord(schema) || {};
-  const extraFingerprint = Object.keys(rawSchema)
-    .filter((key) => !coreKeys.has(key))
-    .sort()
-    .map((key) => `${key}:${JSON.stringify(rawSchema[key])}`)
-    .join('|');
-  const rawPosition = asRecord(rawSchema.position);
-
-  return [
-    rawSchema.id,
-    rawSchema.name,
-    rawSchema.type,
-    rawSchema.content,
-    rawSchema.width,
-    rawSchema.height,
-    rawSchema.required ? '1' : '0',
-    rawSchema.readOnly ? '1' : '0',
-    rawSchema.rotate ?? '',
-    rawSchema.opacity ?? '',
-    rawPosition?.x ?? '',
-    rawPosition?.y ?? '',
-    extraFingerprint,
-  ].join('|');
-};
-
-/**
- * Comparador personalizado para React.memo basado en huella del schema activo.
+ * Comparador personalizado para React.memo basado en referencias estables de
+ * props que afectan al inspector visible.
  */
 const propsAreUnchanged = (prevProps: DetailViewProps, nextProps: DetailViewProps) =>
-  schemaFingerprint(prevProps.activeSchema) === schemaFingerprint(nextProps.activeSchema);
+  prevProps.activeSchema === nextProps.activeSchema &&
+  prevProps.activeElements === nextProps.activeElements &&
+  prevProps.schemas === nextProps.schemas &&
+  prevProps.schemasList === nextProps.schemasList &&
+  prevProps.pageSize === nextProps.pageSize &&
+  prevProps.basePdf === nextProps.basePdf &&
+  prevProps.changeSchemas === nextProps.changeSchemas &&
+  prevProps.deselectSchema === nextProps.deselectSchema &&
+  prevProps.collaborationContext === nextProps.collaborationContext &&
+  prevProps.size === nextProps.size &&
+  prevProps.selectionCommands === nextProps.selectionCommands;
 
 export default React.memo(DetailView, propsAreUnchanged);

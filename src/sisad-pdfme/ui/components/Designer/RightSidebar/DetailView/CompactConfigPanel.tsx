@@ -75,7 +75,7 @@ const CompactConfigPanel = ({
   }, [open]);
 
   return (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'flex flex-col gap-2 rounded-[0.95rem] border border-slate-200/70 bg-white/96 p-2.5 shadow-[0_1px_3px_rgba(15,23,42,0.04)]')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'flex flex-col gap-2 rounded-[0.95rem] border-0 bg-transparent p-0 shadow-none')}>
       <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-head', 'flex items-start justify-between gap-2')}>
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-copy', 'min-w-0 flex-1')}>
           <div

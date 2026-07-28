@@ -112,14 +112,11 @@ const SECTION_META: Record<DetailInspectorSectionKey, Omit<DetailInspectorSectio
   ]),
 ) as Record<DetailInspectorSectionKey, Omit<DetailInspectorSection, 'schema'>>;
 
-/**
- * Envuelve propiedades de una sección en un schema object de form-render.
- */
-const buildSectionSchema = (properties: Record<string, PropPanelSchema>): PropPanelSchema => ({
-  type: 'object',
-  column: 2,
-  properties,
-});
+const DETAIL_FIELD_SPAN = {
+  full: 24,
+  half: 12,
+  compact: 8,
+} as const;
 
 /**
  * Agrega un campo al bucket legacy indicado.
@@ -147,6 +144,22 @@ const createSectionField = (
 });
 
 const DEFAULT_BOUNDED_NUMBER_FIELD_SPAN = 12;
+
+const hasAnyTruthyInspectorField = (
+  record: Record<string, unknown> | null | undefined,
+  fieldKeys: readonly string[],
+): boolean => Boolean(record && fieldKeys.some((fieldKey) => Boolean(record[fieldKey])));
+
+const hasAnyFilledInspectorArrayField = (
+  record: Record<string, unknown> | null | undefined,
+  fieldKeys: readonly string[],
+): boolean =>
+  Boolean(
+    record &&
+      fieldKeys.some(
+        (fieldKey) => Array.isArray(record[fieldKey]) && (record[fieldKey] as unknown[]).length > 0,
+      ),
+  );
 
 /**
  * Crea un campo numérico acotado por página/padding y validación externa.
@@ -242,35 +255,29 @@ export const buildInspectorSections = ({
       schemaConfig?.prefill?.enabled ||
       (schemaConfig?.integrations?.length || 0) > 0,
   );
-  const hasSchemaCollaboration = Boolean(
-    schemaConfig?.collaboration ||
-      (activeSchemaRecord &&
-        (activeSchemaRecord.ownerRecipientId ||
-          activeSchemaRecord.ownerRecipientIds ||
-          activeSchemaRecord.ownerRecipientName ||
-          activeSchemaRecord.ownerColor ||
-          activeSchemaRecord.userColor ||
-          activeSchemaRecord.createdBy ||
-          activeSchemaRecord.lastModifiedBy ||
-          activeSchemaRecord.lockedBy ||
-          activeSchemaRecord.lock ||
-          activeSchemaRecord.state)),
-  );
-  const hasSchemaComments = Boolean(
-    activeSchemaRecord &&
-      (activeSchemaRecord.commentsCount ||
-        (Array.isArray(activeSchemaRecord.comments) && activeSchemaRecord.comments.length > 0) ||
-        (Array.isArray(activeSchemaRecord.commentAnchors) && activeSchemaRecord.commentAnchors.length > 0) ||
-        (Array.isArray(activeSchemaRecord.commentsAnchors) && activeSchemaRecord.commentsAnchors.length > 0)),
-  );
-  const hasSchemaHelpContent = Boolean(
-    activeSchemaRecord &&
-      (hasMeaningfulInspectorValue(activeSchemaRecord.tooltip) ||
-        hasMeaningfulInspectorValue(activeSchemaRecord.helpText) ||
-        hasMeaningfulInspectorValue(activeSchemaRecord.helptext) ||
-        hasMeaningfulInspectorValue(activeSchemaRecord.description) ||
-        hasMeaningfulInspectorValue(activeSchemaRecord.helpDescription)),
-  );
+  const hasSchemaCollaboration =
+    Boolean(schemaConfig?.collaboration) ||
+    hasAnyTruthyInspectorField(activeSchemaRecord, [
+      'ownerRecipientId',
+      'ownerRecipientIds',
+      'ownerRecipientName',
+      'ownerColor',
+      'userColor',
+      'createdBy',
+      'lastModifiedBy',
+      'lockedBy',
+      'lock',
+      'state',
+    ]);
+  const hasSchemaComments =
+    Boolean(activeSchemaRecord?.commentsCount) ||
+    hasAnyFilledInspectorArrayField(activeSchemaRecord, ['comments', 'commentAnchors', 'commentsAnchors']);
+  const hasSchemaHelpContent =
+    hasMeaningfulInspectorValue(activeSchemaRecord?.tooltip) ||
+    hasMeaningfulInspectorValue(activeSchemaRecord?.helpText) ||
+    hasMeaningfulInspectorValue(activeSchemaRecord?.helptext) ||
+    hasMeaningfulInspectorValue(activeSchemaRecord?.description) ||
+    hasMeaningfulInspectorValue(activeSchemaRecord?.helpDescription);
   const hasExplicitOpacity =
     activeSchemaRecord?.opacity !== undefined ||
     (typeof (defaultSchema as { opacity?: unknown }).opacity !== 'undefined' &&
@@ -315,7 +322,7 @@ export const buildInspectorSections = ({
     'name',
     createSectionField('Nombre del campo', 'string', {
       required: true,
-      span: 12,
+      span: DETAIL_FIELD_SPAN.half,
       rules: [
         {
           validator: validateUniqueSchemaName,
@@ -332,7 +339,7 @@ export const buildInspectorSections = ({
     'inlineEditActions',
     createSectionField('', 'void', {
       widget: 'InlineEditActionsWidget',
-      span: 12,
+      span: DETAIL_FIELD_SPAN.half,
     }),
   );
 
@@ -350,11 +357,11 @@ export const buildInspectorSections = ({
     column: 2,
     properties: {
       x: createBoundedNumberField('X mm', pageSize.width - paddingRight, validatePosition, typedI18n, 'x', {
-        span: 12,
+        span: DETAIL_FIELD_SPAN.half,
         props: { min: paddingLeft },
       }),
       y: createBoundedNumberField('Y mm', pageSize.height - paddingBottom, validatePosition, typedI18n, 'y', {
-        span: 12,
+        span: DETAIL_FIELD_SPAN.half,
         props: { min: paddingTop },
       }),
     },
@@ -384,7 +391,7 @@ export const buildInspectorSections = ({
       default: 0,
       max: 360,
       props: { min: 0 },
-      span: 8,
+      span: DETAIL_FIELD_SPAN.compact,
     }),
   );
 
@@ -430,7 +437,7 @@ export const buildInspectorSections = ({
         widget: 'inputNumber',
         disabled: defaultSchema.opacity === undefined,
         props: { step: 0.1, min: 0, max: 1 },
-        span: 12,
+        span: DETAIL_FIELD_SPAN.half,
       }),
     );
   }
@@ -444,7 +451,7 @@ export const buildInspectorSections = ({
       sectionProperties,
       'data',
       'editable',
-      createSectionField(typedI18n('editable'), 'boolean', { span: 12 }),
+      createSectionField(typedI18n('editable'), 'boolean', { span: DETAIL_FIELD_SPAN.half }),
     );
   }
   if (!pluginFieldKeys.has('required') && !pluginFieldKeys.has('mandatory')) {
@@ -452,7 +459,7 @@ export const buildInspectorSections = ({
       sectionProperties,
       'validation',
       'required',
-      createSectionField(typedI18n('required'), 'boolean', { span: 12 }),
+      createSectionField(typedI18n('required'), 'boolean', { span: DETAIL_FIELD_SPAN.half }),
     );
   }
 
@@ -589,7 +596,11 @@ export const buildInspectorSections = ({
   const sections = visibleSections.map((sectionKey) => {
     const sectionFields = filteredCanonicalSectionProperties[sectionKey];
     if (!sectionFields || Object.keys(sectionFields).length === 0) return null;
-    const schema = replaceColorWidget(buildSectionSchema(sectionFields)) as PropPanelSchema;
+    const schema = replaceColorWidget({
+      type: 'object',
+      column: 2,
+      properties: sectionFields,
+    }) as PropPanelSchema;
     const defaultCollapsed = !defaultOpenSections.has(sectionKey);
 
     return {
