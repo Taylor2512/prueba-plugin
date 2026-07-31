@@ -1,14 +1,13 @@
-# Garbage collection de memoria
+# Memory GC
 
-Mensualmente:
+Ejecutar cuando:
 
-1. verificar hechos contra código;
-2. marcar decisiones superseded;
-3. cerrar riesgos resueltos;
-4. eliminar duplicados;
-5. mover evidencia histórica fuera de memoria;
-6. revisar TTL;
-7. comprobar enlaces;
-8. reducir `CURRENT.md` a estado vigente.
+- INDEX >180 líneas o 22 KB;
+- CURRENT contiene historial;
+- HANDOFF describe más de una task;
+- decisiones duplicadas;
+- TTL vencido;
+- source/commit obsoleto.
 
-No eliminar decisiones que expliquen compatibilidad o migraciones; márcalas históricas.
+Acciones: merge, supersede, archive, delete ephemeral, repair links y actualizar
+verifiedAt. Nunca borrar una decisión vigente sin registrar supersesión.

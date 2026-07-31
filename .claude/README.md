@@ -1,9 +1,8 @@
-# Claude adapter
+# Claude adapter V7
 
-- fuente: `AGENTS.md` y `.ai/`;
-- skills: `.agents/skills/`;
-- subagentes con descripción precisa y contexto aislado;
-- memoria automática auxiliar, no canónica;
-- hooks para controles deterministas;
-- plan mode antes de tareas L;
-- worktrees para escritores paralelos.
+- `CLAUDE.md` is short and points to vendor-neutral sources.
+- `.claude/agents/` isolates verbose exploration and review.
+- `.agents/skills/` is the canonical skill location.
+- Claude auto-memory is auxiliary; do not let it replace `.ai/memory/`.
+- Keep MEMORY index below provider limits and details in topic files.
+- Hooks may enforce deterministic policy; see `settings.example.json`.

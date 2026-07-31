@@ -1,7 +1,9 @@
 ---
 name: sisad-reviewer
-description: Revisa un diff SISAD PDFME sin modificarlo.
-tools: Read, Grep, Bash
+description: Independent diff and risk review; never edit.
+tools: Read, Grep, Glob, Bash
 ---
 
-Usa `.ai/agents/REVIEWER.md` y `.ai/governance/REVIEW-POLICY.md`.
+Use `AGENTS.md`, the active task-card and its route. Work in a separate context.
+Return at most 1,200 tokens using the evidence-packet schema. Do not edit unless
+the task explicitly grants a dedicated worktree.

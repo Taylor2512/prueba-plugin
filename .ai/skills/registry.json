@@ -1,0 +1,324 @@
+[
+  {
+    "name": "sisad-ai-architecture",
+    "description": "Diseña o migra la arquitectura de agentes, rutas, memoria y proveedores sin duplicar fuentes.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-context-packet",
+    "description": "Construye un paquete mínimo de contexto desde una task-card y controla presupuesto.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-knowledge-gc",
+    "description": "Compacta memoria, invalida hechos stale y conserva decisiones trazables.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-behavior-traceability",
+    "description": "Relaciona casos, comportamientos, métodos, eventos, efectos, tests y tareas.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-method-registry",
+    "description": "Genera y revisa el registro de símbolos públicos e internos de sisad-pdfme.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-capability-audit",
+    "description": "Distingue capacidad implementada, desconectada, parcial, duplicada o ausente.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-event-effect-contract",
+    "description": "Audita Intent→Command→Event→Effect y callbacks legacy.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-command-history",
+    "description": "Diseña comandos, undo/redo, mementos, rechazo y correlación.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-controller-parity",
+    "description": "Alinea tipos, wrapper, ejecución y capability states del controller.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-action-state",
+    "description": "Centraliza visible/enabled/reason/handler/executable por actionId.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-recipient-assignment-policy",
+    "description": "Valida recipients asignables, ownership, locks y reasignación segura.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-right-sidebar-contract",
+    "description": "Revisa Fields/Detail/Documents/Comments, scroll, actions y inspector.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-left-sidebar-catalog",
+    "description": "Revisa catálogo, favoritos, layouts, búsqueda, DnD y accesibilidad.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-schema-behavior-matrix",
+    "description": "Cubre una familia en Designer/Inspector/Form/Viewer/Generator/Snapshot.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-form-viewer-parity",
+    "description": "Alinea values, validation, recipient filters, events y readonly.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-provider-adapter-sync",
+    "description": "Sincroniza AGENTS, Claude, Codex y Copilot sin copiar governance.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-worktree-coordination",
+    "description": "Asigna claims, leases, worktrees y handoffs sin solapamiento.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-test-log-distillation",
+    "description": "Ejecuta o resume logs extensos y devuelve evidencia compacta.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-context-rot-check",
+    "description": "Detecta contexto contaminado, checkpoint y necesidad de nueva sesión.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-decision-record",
+    "description": "Crea ADR mínima, evidencia, alternativas, consecuencias y supersesión.",
+    "status": "canonical"
+  },
+  {
+    "name": "sisad-accessibility",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-canvas-interaction",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-canvas-safety",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-collaboration-assignments",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-configuration-service",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-context-budget",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-css-tailwind",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-declarative-instance",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-dedup-triage",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-designer-safety",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-dry-refactor",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-dry-refactoring",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": "sisad-dry-refactor"
+  },
+  {
+    "name": "sisad-evidence-grounding",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-frontend-component-architecture",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-incident-recovery",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-inspector-contract",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-memory-delta",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-memory-scrum",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-multi-document-routing",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-orchestrate-task",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": "sisad-task-orchestration"
+  },
+  {
+    "name": "sisad-pattern-selection",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-prompt-evaluation",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-public-api-compatibility",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-quality-gates",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-react-performance",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-research-verify",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-responsive-ux",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-schema-family-refactor",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-schema-plugin",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-security-privacy",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-skill-evaluation",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-snapshot-compatibility",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-tailwind-design-system",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-task-execution",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-task-orchestration",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-testing-pyramid",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  },
+  {
+    "name": "sisad-visual-regression",
+    "description": "existing project skill",
+    "status": "existing",
+    "aliasOf": null
+  }
+]

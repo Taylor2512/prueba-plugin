@@ -1,0 +1,1901 @@
+[
+  {
+    "id": "BHV-001",
+    "useCaseId": "VIS-001",
+    "domain": "VIS",
+    "name": "Workspace de tres zonas",
+    "contract": "LeftSidebar, Canvas y RightSidebar mantienen jerarquía estable.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-002",
+    "useCaseId": "VIS-002",
+    "domain": "VIS",
+    "name": "Modo con sidebars colapsados",
+    "contract": "Los rails siguen visibles y permiten restaurar cada panel.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-003",
+    "useCaseId": "VIS-003",
+    "domain": "VIS",
+    "name": "Modo enfoque",
+    "contract": "Cierra ambos paneles sin perder selección, zoom, scroll ni página.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-004",
+    "useCaseId": "VIS-004",
+    "domain": "VIS",
+    "name": "Toolbar superior central",
+    "contract": "Página y selección se muestran una sola vez.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-005",
+    "useCaseId": "VIS-005",
+    "domain": "VIS",
+    "name": "Toolbar superior derecha",
+    "contract": "Guardar, estado y menú Más no se superponen al panel.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-006",
+    "useCaseId": "VIS-006",
+    "domain": "VIS",
+    "name": "Toolbar inferior",
+    "contract": "Undo, redo, fit y zoom permanecen visibles sin recorte.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-007",
+    "useCaseId": "VIS-007",
+    "domain": "VIS",
+    "name": "Tooltips controlados",
+    "contract": "No se depende de title nativo para acciones esenciales.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-008",
+    "useCaseId": "VIS-008",
+    "domain": "VIS",
+    "name": "Menú Más agrupado",
+    "contract": "Vista, página, documento y ayuda tienen jerarquía consistente.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-009",
+    "useCaseId": "VIS-009",
+    "domain": "VIS",
+    "name": "Grid y reglas discretas",
+    "contract": "La precisión no compite visualmente con el PDF.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-010",
+    "useCaseId": "VIS-010",
+    "domain": "VIS",
+    "name": "Chrome de selección",
+    "contract": "Selección, owner, required y lock no dependen solo del color.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-011",
+    "useCaseId": "VIS-011",
+    "domain": "VIS",
+    "name": "Nombres largos",
+    "contract": "Ellipsis y tooltip preservan el nombre completo.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-012",
+    "useCaseId": "VIS-012",
+    "domain": "VIS",
+    "name": "Safe areas",
+    "contract": "El chrome respeta notch, barras móviles y viewport dinámico.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-013",
+    "useCaseId": "VIS-013",
+    "domain": "VIS",
+    "name": "Reduced motion",
+    "contract": "Animaciones se desactivan con prefers-reduced-motion.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-014",
+    "useCaseId": "VIS-014",
+    "domain": "VIS",
+    "name": "Aislamiento visual",
+    "contract": "El host no altera internals de sisad-pdfme.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-015",
+    "useCaseId": "VIS-015",
+    "domain": "VIS",
+    "name": "Tema dinámico",
+    "contract": "Tokens y densidad cambian sin reconstruir el engine.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-016",
+    "useCaseId": "CMD-001",
+    "domain": "CMD",
+    "name": "Undo",
+    "contract": "Deshace el último comando ejecutable y actualiza disponibilidad.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-017",
+    "useCaseId": "CMD-002",
+    "domain": "CMD",
+    "name": "Redo",
+    "contract": "Rehace el último comando deshecho.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-018",
+    "useCaseId": "CMD-003",
+    "domain": "CMD",
+    "name": "Fit page",
+    "contract": "Ajusta toda la página al viewport.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-019",
+    "useCaseId": "CMD-004",
+    "domain": "CMD",
+    "name": "Fit width",
+    "contract": "Ajusta el ancho de la página.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-020",
+    "useCaseId": "CMD-005",
+    "domain": "CMD",
+    "name": "Zoom",
+    "contract": "Usa decimal interno y porcentaje visible.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-021",
+    "useCaseId": "CMD-006",
+    "domain": "CMD",
+    "name": "Insertar página",
+    "contract": "Agrega página después de la actual y es deshacerable.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-022",
+    "useCaseId": "CMD-007",
+    "domain": "CMD",
+    "name": "Duplicar página",
+    "contract": "Duplica página, schemas, routing e identidades válidas.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-023",
+    "useCaseId": "CMD-008",
+    "domain": "CMD",
+    "name": "Eliminar página",
+    "contract": "Protege página inicial y pide confirmación cuando corresponde.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-024",
+    "useCaseId": "CMD-009",
+    "domain": "CMD",
+    "name": "Toggle grid",
+    "contract": "Cambia visibilidad mediante comando y configuración canónica.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-025",
+    "useCaseId": "CMD-010",
+    "domain": "CMD",
+    "name": "Toggle guides",
+    "contract": "Cambia guías sin manipulación DOM local.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-026",
+    "useCaseId": "CMD-011",
+    "domain": "CMD",
+    "name": "Toggle snap",
+    "contract": "Cambia ajuste magnético y comunica estado.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-027",
+    "useCaseId": "CMD-012",
+    "domain": "CMD",
+    "name": "Toggle padding",
+    "contract": "Cambia chrome de padding sin alterar geometría persistida.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-028",
+    "useCaseId": "CMD-013",
+    "domain": "CMD",
+    "name": "Exportar",
+    "contract": "Genera artefacto con preflight y estados de progreso.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-029",
+    "useCaseId": "CMD-014",
+    "domain": "CMD",
+    "name": "Guardar",
+    "contract": "Ejecuta una sola acción global con estados semánticos.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-030",
+    "useCaseId": "CMD-015",
+    "domain": "CMD",
+    "name": "Atajos",
+    "contract": "Cada atajo delega en command/action registry y respeta contexto.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-031",
+    "useCaseId": "EVT-001",
+    "domain": "EVT",
+    "name": "Designer ready",
+    "contract": "Emite una vez con controller, capacidades y versión.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-032",
+    "useCaseId": "EVT-002",
+    "domain": "EVT",
+    "name": "Template changed",
+    "contract": "Emite revisión y causa sin duplicar onChange.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-033",
+    "useCaseId": "EVT-003",
+    "domain": "EVT",
+    "name": "Schema changed",
+    "contract": "Distingue add, update, remove, duplicate y reorder.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-034",
+    "useCaseId": "EVT-004",
+    "domain": "EVT",
+    "name": "Selection changed",
+    "contract": "Emite ids, modo, documento y página.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-035",
+    "useCaseId": "EVT-005",
+    "domain": "EVT",
+    "name": "Interaction phase changed",
+    "contract": "Emite idle, selecting, dragging, resizing, rotating, editing y modal.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-036",
+    "useCaseId": "EVT-006",
+    "domain": "EVT",
+    "name": "Page changed",
+    "contract": "Emite página previa/nueva y documento.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-037",
+    "useCaseId": "EVT-007",
+    "domain": "EVT",
+    "name": "Zoom changed",
+    "contract": "Emite valor anterior/nuevo y causa.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-038",
+    "useCaseId": "EVT-008",
+    "domain": "EVT",
+    "name": "Sidebar changed",
+    "contract": "Emite lado, modo, abierto/cerrado y causa responsive/usuario.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-039",
+    "useCaseId": "EVT-009",
+    "domain": "EVT",
+    "name": "View feature changed",
+    "contract": "Emite grid, guides, snap y padding.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-040",
+    "useCaseId": "EVT-010",
+    "domain": "EVT",
+    "name": "Recipients changed",
+    "contract": "Emite registry revision y recipients serializables.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-041",
+    "useCaseId": "EVT-011",
+    "domain": "EVT",
+    "name": "Active recipient changed",
+    "contract": "Emite anterior/nuevo y fuente.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-042",
+    "useCaseId": "EVT-012",
+    "domain": "EVT",
+    "name": "Assignment changed",
+    "contract": "Emite schemas, owner anterior/nuevo y lock preservado.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-043",
+    "useCaseId": "EVT-013",
+    "domain": "EVT",
+    "name": "Document changed",
+    "contract": "Emite documento activo y routing.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-044",
+    "useCaseId": "EVT-014",
+    "domain": "EVT",
+    "name": "Comment lifecycle",
+    "contract": "Emite create, reply, resolve, reopen, move y delete.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-045",
+    "useCaseId": "EVT-015",
+    "domain": "EVT",
+    "name": "Save/export/error lifecycle",
+    "contract": "Emite requested, started, succeeded y failed con correlationId.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-046",
+    "useCaseId": "INT-001",
+    "domain": "INT",
+    "name": "Selección simple",
+    "contract": "Click reemplaza selección.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-047",
+    "useCaseId": "INT-002",
+    "domain": "INT",
+    "name": "Multiselección macOS",
+    "contract": "Command alterna y Command+Shift acumula.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-048",
+    "useCaseId": "INT-003",
+    "domain": "INT",
+    "name": "Multiselección Windows/Linux",
+    "contract": "Control alterna y Control+Shift acumula.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-049",
+    "useCaseId": "INT-004",
+    "domain": "INT",
+    "name": "Selección regional",
+    "contract": "Selecto respeta intención acumulativa.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-050",
+    "useCaseId": "INT-005",
+    "domain": "INT",
+    "name": "Inspección bloqueada",
+    "contract": "Un schema bloqueado sigue siendo seleccionable para inspección.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-051",
+    "useCaseId": "INT-006",
+    "domain": "INT",
+    "name": "Drag",
+    "contract": "Solo schemas editables se mueven y el evento es deshacerable.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-052",
+    "useCaseId": "INT-007",
+    "domain": "INT",
+    "name": "Resize",
+    "contract": "Respeta acceso, límites y ratio por familia.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-053",
+    "useCaseId": "INT-008",
+    "domain": "INT",
+    "name": "Rotate",
+    "contract": "Respeta permisos y normaliza valor.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-054",
+    "useCaseId": "INT-009",
+    "domain": "INT",
+    "name": "Inline edit",
+    "contract": "No compite con selección, drag ni shortcuts.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-055",
+    "useCaseId": "INT-010",
+    "domain": "INT",
+    "name": "Doble click en opciones",
+    "contract": "Designer cambia opción solo mediante doble click.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-056",
+    "useCaseId": "INT-011",
+    "domain": "INT",
+    "name": "Modal suspend",
+    "contract": "Moveable, Selecto y shortcuts se suspenden al abrir modal.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-057",
+    "useCaseId": "INT-012",
+    "domain": "INT",
+    "name": "Modal restore",
+    "contract": "Cancelar/restaurar conserva selección y foco coherente.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-058",
+    "useCaseId": "INT-013",
+    "domain": "INT",
+    "name": "Copy/paste",
+    "contract": "Preserva metadata y aplica offset/routing seguro.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-059",
+    "useCaseId": "INT-014",
+    "domain": "INT",
+    "name": "Group/ungroup",
+    "contract": "Opciones internas no se convierten en schemas independientes.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-060",
+    "useCaseId": "INT-015",
+    "domain": "INT",
+    "name": "No overlap",
+    "contract": "Drop y duplicación respetan documento, página y owner.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-061",
+    "useCaseId": "SID-001",
+    "domain": "SID",
+    "name": "Catálogo list",
+    "contract": "Vista lista compacta con icono, label y favorito.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-062",
+    "useCaseId": "SID-002",
+    "domain": "SID",
+    "name": "Catálogo tiles",
+    "contract": "Dos o más columnas sin tarjetas anidadas.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-063",
+    "useCaseId": "SID-003",
+    "domain": "SID",
+    "name": "Catálogo icons",
+    "contract": "Grid adaptativo con tooltip accesible.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-064",
+    "useCaseId": "SID-004",
+    "domain": "SID",
+    "name": "Búsqueda",
+    "contract": "Filtra por nombre, tipo, familia y aliases.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-065",
+    "useCaseId": "SID-005",
+    "domain": "SID",
+    "name": "Favoritos y recientes",
+    "contract": "Persistencia configurable sin duplicar catálogos.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-066",
+    "useCaseId": "SID-006",
+    "domain": "SID",
+    "name": "Custom fields",
+    "contract": "Presets y plugins se registran por API.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-067",
+    "useCaseId": "SID-007",
+    "domain": "SID",
+    "name": "Recipient filter",
+    "contract": "Selector activo usa registry único.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-068",
+    "useCaseId": "SID-008",
+    "domain": "SID",
+    "name": "Fields list",
+    "contract": "Fila estándar con drag, nombre, tipo, owner, página y estado.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-069",
+    "useCaseId": "SID-009",
+    "domain": "SID",
+    "name": "List/canvas sync",
+    "contract": "Seleccionar fila localiza y enfoca schema.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-070",
+    "useCaseId": "SID-010",
+    "domain": "SID",
+    "name": "Rename",
+    "contract": "Diferencia nombre técnico y label visible.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-071",
+    "useCaseId": "SID-011",
+    "domain": "SID",
+    "name": "Reorder",
+    "contract": "Preserva schemas filtrados y snapshot.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-072",
+    "useCaseId": "SID-012",
+    "domain": "SID",
+    "name": "Delete",
+    "contract": "Respeta access state y confirmación.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-073",
+    "useCaseId": "SID-013",
+    "domain": "SID",
+    "name": "Reassign",
+    "contract": "Solo aparece con más de un recipient asignable y selección.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-074",
+    "useCaseId": "SID-014",
+    "domain": "SID",
+    "name": "Documents panel",
+    "contract": "Carga, activa, reordena y elimina documentos.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-075",
+    "useCaseId": "SID-015",
+    "domain": "SID",
+    "name": "Comments panel",
+    "contract": "Navega comentarios por documento, página y schema.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-076",
+    "useCaseId": "INS-001",
+    "domain": "INS",
+    "name": "Header de schema",
+    "contract": "Resume identidad, tipo, owner, selección y estado.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-077",
+    "useCaseId": "INS-002",
+    "domain": "INS",
+    "name": "Identity section",
+    "contract": "Nombre, label, fieldKey y descripción sin duplicar.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-078",
+    "useCaseId": "INS-003",
+    "domain": "INS",
+    "name": "Content section",
+    "contract": "Valor, placeholder o acción según familia.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-079",
+    "useCaseId": "INS-004",
+    "domain": "INS",
+    "name": "Options section",
+    "contract": "Opciones, default, orden y add/remove.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-080",
+    "useCaseId": "INS-005",
+    "domain": "INS",
+    "name": "Fill rules",
+    "contract": "Required y validación viven solo aquí.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-081",
+    "useCaseId": "INS-006",
+    "domain": "INS",
+    "name": "Interaction section",
+    "contract": "ReadOnly, orientación, espaciado y visibilidad runtime.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-082",
+    "useCaseId": "INS-007",
+    "domain": "INS",
+    "name": "Geometry section",
+    "contract": "X, Y, ancho, alto, rotación y alineación adaptativa.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-083",
+    "useCaseId": "INS-008",
+    "domain": "INS",
+    "name": "Connections section",
+    "contract": "Binding, dataLabel, tabLabel y fieldKey sin subtarjeta duplicada.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-084",
+    "useCaseId": "INS-009",
+    "domain": "INS",
+    "name": "Format section",
+    "contract": "Solo propiedades visuales aplicables.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-085",
+    "useCaseId": "INS-010",
+    "domain": "INS",
+    "name": "Assignment section",
+    "contract": "Owner, lock, reason, reassign y auditoría.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-086",
+    "useCaseId": "INS-011",
+    "domain": "INS",
+    "name": "Advanced section",
+    "contract": "UID, documentId, pageNumber y legacy ocultos por defecto.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-087",
+    "useCaseId": "INS-012",
+    "domain": "INS",
+    "name": "Profile by family",
+    "contract": "Cada familia muestra solo secciones útiles.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-088",
+    "useCaseId": "INS-013",
+    "domain": "INS",
+    "name": "Widget read/write",
+    "contract": "Todo control visible tiene propertyPath y writer real.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-089",
+    "useCaseId": "INS-014",
+    "domain": "INS",
+    "name": "Widget visibility/access",
+    "contract": "visibleWhen y disabledWhen usan config/access canónicos.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-090",
+    "useCaseId": "INS-015",
+    "domain": "INS",
+    "name": "Inspector responsive",
+    "contract": "No hay inputs cortados ni scroll horizontal.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-091",
+    "useCaseId": "SCH-001",
+    "domain": "SCH",
+    "name": "Identidad estable",
+    "contract": "schemaUid no cambia por rename, copy o document switch.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-092",
+    "useCaseId": "SCH-002",
+    "domain": "SCH",
+    "name": "Routing estable",
+    "contract": "documentId y pageNumber sobreviven a operaciones.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-093",
+    "useCaseId": "SCH-003",
+    "domain": "SCH",
+    "name": "Owner estable",
+    "contract": "ownerRecipientId y owner color se preservan.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-094",
+    "useCaseId": "SCH-004",
+    "domain": "SCH",
+    "name": "Text-like",
+    "contract": "Texto y presets comparten contrato sin duplicar plugins.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-095",
+    "useCaseId": "SCH-005",
+    "domain": "SCH",
+    "name": "Number",
+    "contract": "Formato, rango y decimales se validan.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-096",
+    "useCaseId": "SCH-006",
+    "domain": "SCH",
+    "name": "Date/time",
+    "contract": "Fecha, hora y fecha-hora tienen formato y required/readOnly.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-097",
+    "useCaseId": "SCH-007",
+    "domain": "SCH",
+    "name": "Checkbox",
+    "contract": "Designer selecciona con click y alterna con doble click.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-098",
+    "useCaseId": "SCH-008",
+    "domain": "SCH",
+    "name": "CheckboxGroup",
+    "contract": "Selección múltiple, optionId y botón + externo.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-099",
+    "useCaseId": "SCH-009",
+    "domain": "SCH",
+    "name": "RadioGroup",
+    "contract": "Selección única, optionId y botón + externo.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-100",
+    "useCaseId": "SCH-010",
+    "domain": "SCH",
+    "name": "Select/dropdown",
+    "contract": "Placeholder Seleccionar y opciones únicas.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-101",
+    "useCaseId": "SCH-011",
+    "domain": "SCH",
+    "name": "Signature family",
+    "contract": "Firma, iniciales y dateSigned usan modos y providers coherentes.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-102",
+    "useCaseId": "SCH-012",
+    "domain": "SCH",
+    "name": "Action schemas",
+    "contract": "Attachment, note, approve y decline tienen perfiles propios.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-103",
+    "useCaseId": "SCH-013",
+    "domain": "SCH",
+    "name": "Visual schemas",
+    "contract": "Imagen, SVG, tabla, shapes y barcodes no muestran reglas de captura impropias.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-104",
+    "useCaseId": "SCH-014",
+    "domain": "SCH",
+    "name": "Custom schema",
+    "contract": "Factory/registry/plugin con Designer/Form/Viewer/Generator.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-105",
+    "useCaseId": "SCH-015",
+    "domain": "SCH",
+    "name": "Owner chrome",
+    "contract": "Canvas, catálogo, lista e inspector comparten owner tone.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-106",
+    "useCaseId": "DOC-001",
+    "domain": "DOC",
+    "name": "Documento único",
+    "contract": "Template y basePdf se preservan.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-107",
+    "useCaseId": "DOC-002",
+    "domain": "DOC",
+    "name": "Multidocumento",
+    "contract": "Cada documento conserva páginas y schemas.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-108",
+    "useCaseId": "DOC-003",
+    "domain": "DOC",
+    "name": "Documento activo interno",
+    "contract": "El core controla activeDocumentId.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-109",
+    "useCaseId": "DOC-004",
+    "domain": "DOC",
+    "name": "Documento activo host",
+    "contract": "El host controla y recibe cambios.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-110",
+    "useCaseId": "DOC-005",
+    "domain": "DOC",
+    "name": "Documento sin schemas",
+    "contract": "Se muestra y permite insertar campos.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-111",
+    "useCaseId": "DOC-006",
+    "domain": "DOC",
+    "name": "Reordenar documentos",
+    "contract": "No cambia IDs ni routing.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-112",
+    "useCaseId": "DOC-007",
+    "domain": "DOC",
+    "name": "Agregar documento",
+    "contract": "Normaliza metadatos y crea estado válido.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-113",
+    "useCaseId": "DOC-008",
+    "domain": "DOC",
+    "name": "Eliminar documento",
+    "contract": "Reasigna documento activo y limpia recursos.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-114",
+    "useCaseId": "DOC-009",
+    "domain": "DOC",
+    "name": "Página activa",
+    "contract": "Se conserva por documento cuando la política lo permite.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-115",
+    "useCaseId": "DOC-010",
+    "domain": "DOC",
+    "name": "Comentarios por documento",
+    "contract": "Filtra sin perder comentarios globales.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-116",
+    "useCaseId": "DOC-011",
+    "domain": "DOC",
+    "name": "Assignments por documento",
+    "contract": "Mantiene owner y página.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-117",
+    "useCaseId": "DOC-012",
+    "domain": "DOC",
+    "name": "Snapshot documentos",
+    "contract": "Round-trip de orden, activeDocument y templates.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-118",
+    "useCaseId": "DOC-013",
+    "domain": "DOC",
+    "name": "Object URLs",
+    "contract": "Se revocan al reemplazar/eliminar.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-119",
+    "useCaseId": "DOC-014",
+    "domain": "DOC",
+    "name": "PDF converters",
+    "contract": "Size/images/pdf usan APIs públicas.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-120",
+    "useCaseId": "DOC-015",
+    "domain": "DOC",
+    "name": "Export multidocumento",
+    "contract": "Explicita estrategia merge/separado.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-121",
+    "useCaseId": "RUN-001",
+    "domain": "RUN",
+    "name": "Designer mode",
+    "contract": "Edición completa y config dinámica.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-122",
+    "useCaseId": "RUN-002",
+    "domain": "RUN",
+    "name": "Form mode",
+    "contract": "Inputs editables y validación.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-123",
+    "useCaseId": "RUN-003",
+    "domain": "RUN",
+    "name": "Viewer mode",
+    "contract": "Solo lectura sin handlers mutables.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-124",
+    "useCaseId": "RUN-004",
+    "domain": "RUN",
+    "name": "Values initial",
+    "contract": "Derivados o declarados sin lógica host duplicada.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-125",
+    "useCaseId": "RUN-005",
+    "domain": "RUN",
+    "name": "Required validation",
+    "contract": "Diferente para diseño, llenado, generación y envío.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-126",
+    "useCaseId": "RUN-006",
+    "domain": "RUN",
+    "name": "Signature request",
+    "contract": "Provider genérico y evento público.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-127",
+    "useCaseId": "RUN-007",
+    "domain": "RUN",
+    "name": "Generator preflight",
+    "contract": "No genera si faltan requisitos.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-128",
+    "useCaseId": "RUN-008",
+    "domain": "RUN",
+    "name": "Autosave",
+    "contract": "Adapter y debounce cancelable.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-129",
+    "useCaseId": "RUN-009",
+    "domain": "RUN",
+    "name": "Async hydration",
+    "contract": "No pisa edición local.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-130",
+    "useCaseId": "RUN-010",
+    "domain": "RUN",
+    "name": "Controller parity",
+    "contract": "Tipo, wrapper y ejecución coinciden.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-131",
+    "useCaseId": "RUN-011",
+    "domain": "RUN",
+    "name": "Capability explain",
+    "contract": "supported/available/reason/methods.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-132",
+    "useCaseId": "RUN-012",
+    "domain": "RUN",
+    "name": "Config hot update",
+    "contract": "Cambios presentacionales no remontan.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-133",
+    "useCaseId": "RUN-013",
+    "domain": "RUN",
+    "name": "Config rebuild",
+    "contract": "Cambios estructurales reconstruyen de forma controlada.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-134",
+    "useCaseId": "RUN-014",
+    "domain": "RUN",
+    "name": "Snapshot runtime",
+    "contract": "Form/Viewer consumen artefacto canónico.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-135",
+    "useCaseId": "RUN-015",
+    "domain": "RUN",
+    "name": "Error recovery",
+    "contract": "Errores se exponen sin congelar la instancia.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-136",
+    "useCaseId": "QLT-001",
+    "domain": "QLT",
+    "name": "Core TypeScript",
+    "contract": "Código nuevo de sisad-pdfme usa TS/TSX.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-137",
+    "useCaseId": "QLT-002",
+    "domain": "QLT",
+    "name": "Sin host imports",
+    "contract": "No importa src/examples/features/modules.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-138",
+    "useCaseId": "QLT-003",
+    "domain": "QLT",
+    "name": "Sin deep readers",
+    "contract": "Config se consume por selectors/service.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-139",
+    "useCaseId": "QLT-004",
+    "domain": "QLT",
+    "name": "Sin acción duplicada",
+    "contract": "Una definición por actionId.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-140",
+    "useCaseId": "QLT-005",
+    "domain": "QLT",
+    "name": "Sin evento string libre",
+    "contract": "Catálogo tipado y versionado.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-141",
+    "useCaseId": "QLT-006",
+    "domain": "QLT",
+    "name": "Sin listeners huérfanos",
+    "contract": "Toda suscripción se limpia.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-142",
+    "useCaseId": "QLT-007",
+    "domain": "QLT",
+    "name": "Sin setTimeout de coordinación",
+    "contract": "Efectos usan lifecycle explícito.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-143",
+    "useCaseId": "QLT-008",
+    "domain": "QLT",
+    "name": "Sin z-index arbitrario",
+    "contract": "Capas usan tokens canónicos.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-144",
+    "useCaseId": "QLT-009",
+    "domain": "QLT",
+    "name": "Sin CSS global",
+    "contract": "Tailwind-first y tokens.css.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-145",
+    "useCaseId": "QLT-010",
+    "domain": "QLT",
+    "name": "Unit contracts",
+    "contract": "Políticas, reducers, factories y events tienen pruebas.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-146",
+    "useCaseId": "QLT-011",
+    "domain": "QLT",
+    "name": "Playwright",
+    "contract": "Desktop/tablet/mobile y estados críticos.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-147",
+    "useCaseId": "QLT-012",
+    "domain": "QLT",
+    "name": "Visual regression",
+    "contract": "Screenshots focales estables.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-148",
+    "useCaseId": "QLT-013",
+    "domain": "QLT",
+    "name": "Performance",
+    "contract": "No remount y budgets de renders.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-149",
+    "useCaseId": "QLT-014",
+    "domain": "QLT",
+    "name": "Dead code",
+    "contract": "Exports públicos justificados.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-150",
+    "useCaseId": "QLT-015",
+    "domain": "QLT",
+    "name": "Docs/release",
+    "contract": "Manual, migración y changelog verificables.",
+    "state": "expected",
+    "source": "COREUX"
+  },
+  {
+    "id": "BHV-151",
+    "useCaseId": "DECL-UC-001",
+    "domain": "Designer",
+    "name": "Designer declarativo mínimo",
+    "contract": "Montar Designer con una definición JSON y un template por defecto.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-152",
+    "useCaseId": "DECL-UC-002",
+    "domain": "Designer",
+    "name": "Designer controlado",
+    "contract": "El host controla template y recibe cambios sin reconstruir el runtime.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-153",
+    "useCaseId": "DECL-UC-003",
+    "domain": "Designer",
+    "name": "Designer no controlado",
+    "contract": "La instancia conserva internamente el template cuando el host no lo controla.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-154",
+    "useCaseId": "DECL-UC-004",
+    "domain": "Runtime",
+    "name": "Form declarativo",
+    "contract": "Montar Form con definition.mode=form y valores iniciales.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-155",
+    "useCaseId": "DECL-UC-005",
+    "domain": "Runtime",
+    "name": "Viewer declarativo",
+    "contract": "Montar Viewer readonly con definition.mode=viewer.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-156",
+    "useCaseId": "DECL-UC-006",
+    "domain": "Runtime",
+    "name": "Cambio de modo",
+    "contract": "Cambiar Designer/Form/Viewer mediante definición, con impacto explícito y sin estado fantasma.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-157",
+    "useCaseId": "DECL-UC-007",
+    "domain": "Recipients",
+    "name": "Un recipient",
+    "contract": "Registrar un usuario y asignarlo como owner por defecto.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-158",
+    "useCaseId": "DECL-UC-008",
+    "domain": "Recipients",
+    "name": "Múltiples recipients",
+    "contract": "Registrar dos o más usuarios con selector interno y recipient activo.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-159",
+    "useCaseId": "DECL-UC-009",
+    "domain": "Recipients",
+    "name": "Color explícito",
+    "contract": "Respetar el color declarado por recipient.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-160",
+    "useCaseId": "DECL-UC-010",
+    "domain": "Recipients",
+    "name": "Color automático",
+    "contract": "Asignar paleta estable cuando falta color.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-161",
+    "useCaseId": "DECL-UC-011",
+    "domain": "Recipients",
+    "name": "Recipient deshabilitado",
+    "contract": "Excluir recipients no asignables sin perder su metadata.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-162",
+    "useCaseId": "DECL-UC-012",
+    "domain": "Recipients",
+    "name": "Recipient de copia",
+    "contract": "Permitir recipient informativo, pero excluirlo de firma y reasignación.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-163",
+    "useCaseId": "DECL-UC-013",
+    "domain": "Recipients",
+    "name": "Recipient activo controlado",
+    "contract": "El host controla activeRecipientId.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-164",
+    "useCaseId": "DECL-UC-014",
+    "domain": "Recipients",
+    "name": "Recipient activo no controlado",
+    "contract": "La instancia resuelve y conserva recipient activo.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-165",
+    "useCaseId": "DECL-UC-015",
+    "domain": "Assignment",
+    "name": "Reasignar oculto con 0–1 recipients",
+    "contract": "No mostrar Reasignar responsable con menos de dos recipients asignables.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-166",
+    "useCaseId": "DECL-UC-016",
+    "domain": "Assignment",
+    "name": "Reasignar visible con 2+ recipients",
+    "contract": "Mostrar Reasignar al existir selección y más de un recipient asignable.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-167",
+    "useCaseId": "DECL-UC-017",
+    "domain": "Assignment",
+    "name": "Reasignar deshabilitado por permiso",
+    "contract": "Mostrar estado deshabilitado con razón estable si no puede editar estructura.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-168",
+    "useCaseId": "DECL-UC-018",
+    "domain": "Assignment",
+    "name": "Reasignación masiva",
+    "contract": "Asignar múltiples schemas y preservar locks/readonly/geometría.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-169",
+    "useCaseId": "DECL-UC-019",
+    "domain": "Assignment",
+    "name": "Owner compartido",
+    "contract": "Representar ownership multi/shared sin duplicar fuentes.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-170",
+    "useCaseId": "DECL-UC-020",
+    "domain": "Assignment",
+    "name": "Schema sin owner",
+    "contract": "Permitir unassigned únicamente cuando la configuración lo autoriza.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-171",
+    "useCaseId": "DECL-UC-021",
+    "domain": "Collaboration",
+    "name": "Vista global",
+    "contract": "Mostrar todos los owners sin cambiar ownership.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-172",
+    "useCaseId": "DECL-UC-022",
+    "domain": "Collaboration",
+    "name": "Filtro por recipient",
+    "contract": "Form/Designer filtran campos según recipient activo.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-173",
+    "useCaseId": "DECL-UC-023",
+    "domain": "Collaboration",
+    "name": "Lock y readOnly",
+    "contract": "Preservar lock, lockedBy y readOnly en cambios de recipient y snapshot.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-174",
+    "useCaseId": "DECL-UC-024",
+    "domain": "Comments",
+    "name": "Comentarios",
+    "contract": "Comentarios de documento, página y schema con resolve/reopen.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-175",
+    "useCaseId": "DECL-UC-026",
+    "domain": "Documents",
+    "name": "Múltiples documentos",
+    "contract": "Montar documentos con routing independiente.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-176",
+    "useCaseId": "DECL-UC-028",
+    "domain": "Documents",
+    "name": "Documento activo controlado",
+    "contract": "El host controla activeDocumentId y recibe cambios.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-177",
+    "useCaseId": "DECL-UC-030",
+    "domain": "Documents",
+    "name": "Routing documento/página",
+    "contract": "Conservar documentId, pageNumber y schemaUid.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-178",
+    "useCaseId": "DECL-UC-031",
+    "domain": "Documents",
+    "name": "Orden de documentos",
+    "contract": "Reordenar documentos sin perder routing.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-179",
+    "useCaseId": "DECL-UC-032",
+    "domain": "Schemas",
+    "name": "Allowlist de schemas",
+    "contract": "enabledTypes limita capacidades registradas disponibles.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-180",
+    "useCaseId": "DECL-UC-033",
+    "domain": "Schemas",
+    "name": "Denylist de schemas",
+    "contract": "disabledTypes excluye tipos después de la allowlist.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-181",
+    "useCaseId": "DECL-UC-034",
+    "domain": "Schemas",
+    "name": "Visibilidad por superficie",
+    "contract": "Catálogo, Canvas, inspector y runtime pueden ocultar tipos sin desregistrarlos.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-182",
+    "useCaseId": "DECL-UC-035",
+    "domain": "Schemas",
+    "name": "Plugins custom",
+    "contract": "Registrar plugins TypeScript y referenciarlos desde la definición mediante resources.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-183",
+    "useCaseId": "DECL-UC-037",
+    "domain": "Schemas",
+    "name": "Número y fechas",
+    "contract": "Número, fecha, fecha-hora y hora soportan required/readOnly/prefill.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-184",
+    "useCaseId": "DECL-UC-038",
+    "domain": "Schemas",
+    "name": "Select y dropdown",
+    "contract": "Opciones, placeholder Seleccionar y valores se resuelven de forma única.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-185",
+    "useCaseId": "DECL-UC-039",
+    "domain": "Schemas",
+    "name": "Radio y checkbox groups",
+    "contract": "Grupos, optionId estable, botón + y selección root funcionan.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-186",
+    "useCaseId": "DECL-UC-040",
+    "domain": "Schemas",
+    "name": "Firma",
+    "contract": "Firma, iniciales y fecha firmada soportan required y providers.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-187",
+    "useCaseId": "DECL-UC-041",
+    "domain": "Schemas",
+    "name": "Acciones",
+    "contract": "Attachment, note, approve y decline conservan capacidades y validación.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-188",
+    "useCaseId": "DECL-UC-042",
+    "domain": "Schemas",
+    "name": "Visuales",
+    "contract": "Imagen, SVG, tabla, formas y barcodes se crean desde recipe sin reglas de captura impropias.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-189",
+    "useCaseId": "DECL-UC-043",
+    "domain": "Templates",
+    "name": "Recipe de template",
+    "contract": "Crear template de demostración desde grupos/tipos sin lógica en examples.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-190",
+    "useCaseId": "DECL-UC-044",
+    "domain": "Templates",
+    "name": "Layout multipágina",
+    "contract": "Distribuir schemas con límites, salto de fila y salto de página.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-191",
+    "useCaseId": "DECL-UC-045",
+    "domain": "Runtime",
+    "name": "Inputs iniciales",
+    "contract": "Derivar values desde template o aceptar values declarados.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-192",
+    "useCaseId": "DECL-UC-046",
+    "domain": "Validation",
+    "name": "Validación por perfil",
+    "contract": "Separar validación de diseño, llenado, generación y envío.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-193",
+    "useCaseId": "DECL-UC-047",
+    "domain": "Events",
+    "name": "Eventos",
+    "contract": "onReady/onChange/onSave/onError/selection/recipient/assignment/document/signature.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-194",
+    "useCaseId": "DECL-UC-048",
+    "domain": "Controller",
+    "name": "Controller opcional",
+    "contract": "Exponer controller solo cuando el host lo solicita.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-195",
+    "useCaseId": "DECL-UC-049",
+    "domain": "Configuration",
+    "name": "Config dinámica",
+    "contract": "Actualizar presentación sin remount y clasificar cambios estructurales.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-196",
+    "useCaseId": "DECL-UC-050",
+    "domain": "Persistence",
+    "name": "Snapshot completo",
+    "contract": "Round-trip de template, recipients, documents, assignments, comments y firma.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-197",
+    "useCaseId": "DECL-UC-051",
+    "domain": "Persistence",
+    "name": "Bundle portable",
+    "contract": "Exportar/importar definición, snapshot y assets sin identidad de laboratorio.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-198",
+    "useCaseId": "DECL-UC-052",
+    "domain": "Persistence",
+    "name": "Autosave host/local",
+    "contract": "Delegar storage y autosave mediante adapter sin lógica en examples.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-199",
+    "useCaseId": "DECL-UC-053",
+    "domain": "Integration",
+    "name": "Datos asíncronos",
+    "contract": "Hidratar recipients/documents/config sin perder edición local.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-200",
+    "useCaseId": "DECL-UC-054",
+    "domain": "Artifacts",
+    "name": "Generator",
+    "contract": "Generar PDF con preflight desde la instancia.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-201",
+    "useCaseId": "DECL-UC-055",
+    "domain": "Artifacts",
+    "name": "Converter",
+    "contract": "PDF→size, PDF→images e images→PDF mediante API pública.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-202",
+    "useCaseId": "DECL-UC-056",
+    "domain": "Integration",
+    "name": "DigitalAgreements",
+    "contract": "Consumir definición declarativa sin internals y conservar snapshot.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-203",
+    "useCaseId": "DECL-UC-057",
+    "domain": "Integration",
+    "name": "ExternalForms",
+    "contract": "Consumir el mismo template/snapshot en Form y Viewer.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-204",
+    "useCaseId": "DECL-UC-058",
+    "domain": "UX",
+    "name": "Responsive",
+    "contract": "Designer ocupa viewport y sidebars se adaptan sin cambiar geometría.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-205",
+    "useCaseId": "DECL-UC-059",
+    "domain": "UX",
+    "name": "Touch y accesibilidad",
+    "contract": "Targets, foco, Escape, reduced motion y teclado móvil.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-206",
+    "useCaseId": "DECL-UC-061",
+    "domain": "Examples",
+    "name": "Ejemplo básico ≤30 líneas",
+    "contract": "La página solo importa definición y monta la instancia.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-207",
+    "useCaseId": "DECL-UC-062",
+    "domain": "Quality",
+    "name": "Examples solo JS/JSX/JSON",
+    "contract": "No existen TS/TSX ni imports .ts profundos en examples.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-208",
+    "useCaseId": "DECL-UC-063",
+    "domain": "Quality",
+    "name": "Core solo TS/TSX",
+    "contract": "Nuevas utilidades del componente no se implementan en JS/JSX.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-209",
+    "useCaseId": "DECL-UC-064",
+    "domain": "Quality",
+    "name": "No deep imports",
+    "contract": "Examples consumen únicamente entrypoints públicos.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-210",
+    "useCaseId": "DECL-UC-065",
+    "domain": "Performance",
+    "name": "No remount",
+    "contract": "Cambiar recipient, abrir info o actualizar UI no reconstruye engine.",
+    "state": "expected",
+    "source": "DECL"
+  },
+  {
+    "id": "BHV-211",
+    "useCaseId": "DECL-UC-066",
+    "domain": "Compatibility",
+    "name": "Compatibilidad API baja",
+    "contract": "Designer/Form/Viewer actuales siguen disponibles.",
+    "state": "expected",
+    "source": "DECL"
+  }
+]

@@ -1,19 +1,24 @@
-# Observabilidad del trabajo IA
+# Observabilidad V7
 
-Cada task-card registra:
+Cada task-card registra métricas mínimas:
 
-- modelo/clase y esfuerzo;
-- archivos abiertos y modificados;
-- búsquedas realizadas;
-- tool calls relevantes;
-- contexto aproximado;
-- intentos de parche;
-- gates;
-- tiempo de ciclo;
-- rework;
-- decisión de escalamiento;
-- memory delta.
+```txt
+provider/model class/effort
+input context files/tokens estimados
+skills activadas
+subagents y sus outputs
+búsquedas y archivos abiertos
+tool calls relevantes
+patch attempts
+gates
+cycle time
+rework
+context checkpoints
+memory delta
+trace coverage
+```
 
-No registres chain-of-thought, secretos ni conversaciones privadas.
+No registrar chain-of-thought, prompts privados, secretos ni transcripciones.
 
-Los reportes crudos son evidencia temporal; `METRICS.md` conserva tendencias resumidas.
+Los datos crudos viven en `.ai/evidence/<task>/`; `.ai/memory/METRICS.md`
+conserva tendencias agregadas.

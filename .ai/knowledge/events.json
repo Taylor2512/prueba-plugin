@@ -1,0 +1,407 @@
+[
+  {
+    "id": "EVT-001",
+    "name": "designer.ready",
+    "domain": "lifecycle",
+    "producer": "Designer",
+    "trigger": "Una vez por instancia/rebuild",
+    "payload": "controller, capabilities, configVersion",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-002",
+    "name": "designer.disposed",
+    "domain": "lifecycle",
+    "producer": "Designer",
+    "trigger": "Antes de liberar recursos",
+    "payload": "instanceId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-003",
+    "name": "designer.error",
+    "domain": "lifecycle",
+    "producer": "cualquier",
+    "trigger": "Error recuperable/no recuperable",
+    "payload": "code, message, cause, recoverable",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-004",
+    "name": "config.changed",
+    "domain": "configuration",
+    "producer": "ConfigService",
+    "trigger": "Hot update o rebuild",
+    "payload": "paths, impact, revision",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-005",
+    "name": "template.changed",
+    "domain": "template",
+    "producer": "Designer/Runtime",
+    "trigger": "Cambio de template",
+    "payload": "revision, cause, changedSchemaIds",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-006",
+    "name": "schema.added",
+    "domain": "schema",
+    "producer": "Canvas/Catalog",
+    "trigger": "Schema creado",
+    "payload": "schemaId, type, documentId, pageNumber",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-007",
+    "name": "schema.updated",
+    "domain": "schema",
+    "producer": "Inspector/Canvas",
+    "trigger": "Patch aplicado",
+    "payload": "schemaId, patch, cause",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-008",
+    "name": "schema.removed",
+    "domain": "schema",
+    "producer": "List/Canvas",
+    "trigger": "Schema eliminado",
+    "payload": "schemaIds",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-009",
+    "name": "schema.duplicated",
+    "domain": "schema",
+    "producer": "CommandBus",
+    "trigger": "Duplicación",
+    "payload": "sourceIds, createdIds",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-010",
+    "name": "schema.reordered",
+    "domain": "schema",
+    "producer": "ListView",
+    "trigger": "Orden cambiado",
+    "payload": "schemaIds, before/after",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-011",
+    "name": "selection.changed",
+    "domain": "selection",
+    "producer": "Canvas/ListView",
+    "trigger": "Selección efectiva cambió",
+    "payload": "ids, mode, documentId, pageNumber",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-012",
+    "name": "interaction.phase.changed",
+    "domain": "interaction",
+    "producer": "InteractionMachine",
+    "trigger": "Fase cambió",
+    "payload": "previous, current, reason",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-013",
+    "name": "inline-edit.started",
+    "domain": "interaction",
+    "producer": "Canvas",
+    "trigger": "Inicio de edición",
+    "payload": "schemaId, target",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-014",
+    "name": "inline-edit.committed",
+    "domain": "interaction",
+    "producer": "Canvas",
+    "trigger": "Edición aplicada",
+    "payload": "schemaId, patch",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-015",
+    "name": "inline-edit.cancelled",
+    "domain": "interaction",
+    "producer": "Canvas",
+    "trigger": "Edición cancelada",
+    "payload": "schemaId, reason",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-016",
+    "name": "page.changed",
+    "domain": "navigation",
+    "producer": "CtlBar/Scroll",
+    "trigger": "Página cambió",
+    "payload": "previous, current, total, documentId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-017",
+    "name": "zoom.changed",
+    "domain": "navigation",
+    "producer": "CtlBar/Controller",
+    "trigger": "Zoom cambió",
+    "payload": "previous, current, cause",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-018",
+    "name": "viewport.fit",
+    "domain": "navigation",
+    "producer": "CtlBar",
+    "trigger": "Fit page/width",
+    "payload": "mode, zoom",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-019",
+    "name": "sidebar.changed",
+    "domain": "surface",
+    "producer": "SurfaceState",
+    "trigger": "Panel abierto/cerrado",
+    "payload": "side, expanded, presentation, cause",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-020",
+    "name": "right-panel.changed",
+    "domain": "surface",
+    "producer": "RightSidebar",
+    "trigger": "Fields/detail/docs/comments",
+    "payload": "previous, current",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-021",
+    "name": "view-feature.changed",
+    "domain": "view",
+    "producer": "CtlBar",
+    "trigger": "Grid/guides/snap/padding",
+    "payload": "feature, enabled",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-022",
+    "name": "recipient.registry.changed",
+    "domain": "recipients",
+    "producer": "RecipientRegistry",
+    "trigger": "Lista cambió",
+    "payload": "revision, recipients",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-023",
+    "name": "recipient.active.changed",
+    "domain": "recipients",
+    "producer": "RecipientRegistry",
+    "trigger": "Actor activo cambió",
+    "payload": "previousId, currentId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-024",
+    "name": "assignment.changed",
+    "domain": "assignment",
+    "producer": "AssignmentService",
+    "trigger": "Owner cambió",
+    "payload": "schemaIds, previousOwnerIds, ownerId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-025",
+    "name": "document.added",
+    "domain": "documents",
+    "producer": "DocumentController",
+    "trigger": "Documento agregado",
+    "payload": "documentId, index",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-026",
+    "name": "document.changed",
+    "domain": "documents",
+    "producer": "DocumentController",
+    "trigger": "Activo cambió",
+    "payload": "previousId, currentId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-027",
+    "name": "document.reordered",
+    "domain": "documents",
+    "producer": "DocumentController",
+    "trigger": "Orden cambió",
+    "payload": "order",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-028",
+    "name": "document.removed",
+    "domain": "documents",
+    "producer": "DocumentController",
+    "trigger": "Documento eliminado",
+    "payload": "documentId, nextActiveId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-029",
+    "name": "comment.created",
+    "domain": "comments",
+    "producer": "Comments",
+    "trigger": "Comentario creado",
+    "payload": "commentId, scope, anchor",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-030",
+    "name": "comment.replied",
+    "domain": "comments",
+    "producer": "Comments",
+    "trigger": "Respuesta creada",
+    "payload": "commentId, replyId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-031",
+    "name": "comment.resolved",
+    "domain": "comments",
+    "producer": "Comments",
+    "trigger": "Resuelto",
+    "payload": "commentId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-032",
+    "name": "comment.reopened",
+    "domain": "comments",
+    "producer": "Comments",
+    "trigger": "Reabierto",
+    "payload": "commentId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-033",
+    "name": "comment.moved",
+    "domain": "comments",
+    "producer": "Comments",
+    "trigger": "Anchor movido",
+    "payload": "commentId, anchor",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-034",
+    "name": "comment.deleted",
+    "domain": "comments",
+    "producer": "Comments",
+    "trigger": "Eliminado",
+    "payload": "commentId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-035",
+    "name": "signature.requested",
+    "domain": "signature",
+    "producer": "Signature",
+    "trigger": "Solicitud externa",
+    "payload": "schemaId, recipientId, providerKey",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-036",
+    "name": "signature.completed",
+    "domain": "signature",
+    "producer": "Signature",
+    "trigger": "Firma completada",
+    "payload": "schemaId, status, metadata",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-037",
+    "name": "signature.failed",
+    "domain": "signature",
+    "producer": "Signature",
+    "trigger": "Firma falló",
+    "payload": "schemaId, error",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-038",
+    "name": "validation.completed",
+    "domain": "validation",
+    "producer": "Validator",
+    "trigger": "Validación ejecutada",
+    "payload": "profile, valid, issues",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-039",
+    "name": "save.requested",
+    "domain": "persistence",
+    "producer": "CtlBar/Controller",
+    "trigger": "Usuario solicita guardado",
+    "payload": "correlationId, revision",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-040",
+    "name": "save.started",
+    "domain": "persistence",
+    "producer": "Persistence",
+    "trigger": "Guardado inicia",
+    "payload": "correlationId",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-041",
+    "name": "save.succeeded",
+    "domain": "persistence",
+    "producer": "Persistence",
+    "trigger": "Guardado termina",
+    "payload": "correlationId, revision",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-042",
+    "name": "save.failed",
+    "domain": "persistence",
+    "producer": "Persistence",
+    "trigger": "Guardado falla",
+    "payload": "correlationId, error",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-043",
+    "name": "export.started",
+    "domain": "artifacts",
+    "producer": "Artifacts",
+    "trigger": "Export inicia",
+    "payload": "correlationId, format",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-044",
+    "name": "export.succeeded",
+    "domain": "artifacts",
+    "producer": "Artifacts",
+    "trigger": "Export termina",
+    "payload": "correlationId, size",
+    "status": "proposed"
+  },
+  {
+    "id": "EVT-045",
+    "name": "export.failed",
+    "domain": "artifacts",
+    "producer": "Artifacts",
+    "trigger": "Export falla",
+    "payload": "correlationId, error",
+    "status": "proposed"
+  }
+]

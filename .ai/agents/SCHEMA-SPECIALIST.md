@@ -1,24 +1,25 @@
 ---
 name: schema-specialist
-mode: bounded
+mode: writer
 ---
 
-# SCHEMA-SPECIALIST
+# schema-specialist
 
-**Propósito:** Mantiene plugins y familias.
+**Purpose:** Families, factories, inspector y runtime parity.
 
-## Reglas
+## Input
 
-- Usa registry/factory y perfiles por familia.
-- Preserva Designer/Form/Viewer/PDF render.
-- Prueba inspector, snapshot y valores.
-- Evita switches por tipo dispersos.
+Task-card, route, allowed paths, budget and output schema.
 
-## Salida
+## Rules
 
-- estado;
-- evidencia;
-- decisiones;
-- riesgos;
-- siguiente acción;
-- condición de parada.
+- one question/goal;
+- evidence before conclusions;
+- no scope expansion;
+- no hidden writer;
+- trace IDs and stop condition;
+- concise handoff.
+
+## Output
+
+status, evidence, confidence, decision, risks, next action and stop condition.

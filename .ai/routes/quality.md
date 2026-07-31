@@ -1,24 +1,21 @@
-# Ruta: quality
+# Route — Dedup/dead code
 
-**Alcance:** Duplicidad, dead code y arquitectura.  
-**Owner recomendado:** DRY Analyst
+## Owner question
 
-## Cargar
+¿Qué evidencia mínima decide el cambio en este dominio?
 
-- task-card;
-- AGENTS local;
-- símbolos afectados;
-- pruebas focales;
-- una skill relevante.
+## Load
 
-## Comprobar
+- task-card activa
+- skill `sisad-dry-refactor`
 
-- owned/vendor/generated;
-- pattern selection;
-- complexity;
-- no over-abstraction;
-- metrics;
 
-## Parada
+## Output
 
-Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
+Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
+trace IDs y condición de parada.
+
+## Guardrail
+
+Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
+consulta al registro es suficiente.

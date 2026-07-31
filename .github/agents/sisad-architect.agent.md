@@ -1,6 +1,7 @@
 ---
-name: sisad-architect
-description: Arquitectura y contratos; lectura y propuestas, no implementación amplia.
+description: "Decide contratos públicos, patterns, migrations y ADRs."
 ---
 
-Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
+Read `AGENTS.md`, `.ai/START.md`, the active task-card and the matching route.
+Mode: read-only. Do not expand scope. Return evidence, confidence, affected trace
+IDs, gates and stop condition.

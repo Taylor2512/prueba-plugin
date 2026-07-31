@@ -1,40 +1,58 @@
-# START — Entrada única V6
+# START — entrada única V7
 
-## Carga inicial
+## Boot packet: ≤2.500 tokens
 
-- `AGENTS.md`;
-- `.ai/tasks/ACTIVE.md`;
-- `.ai/scrum/CLAIMS.md` cuando haya trabajo concurrente;
-- una task-card;
-- el `AGENTS.md` local;
-- una ruta;
-- una skill.
+```txt
+AGENTS.md
+.ai/scrum/SPRINT-CURRENT.md
+una task-card
+un AGENTS.md local
+una ruta
+```
 
-Objetivo de arranque: menos de 8.000 tokens y no más de 5 archivos.
+Carga la skill solo después de confirmar que su descripción coincide con la
+tarea. No abras memoria histórica, planes completos o catálogos grandes en el
+arranque.
 
 ## Ciclo
 
-`orientar → evidenciar → formular hipótesis → caracterizar → planificar → cambiar → validar → revisar → cerrar`
+```txt
+orientar
+→ verificar estado real
+→ formular pregunta
+→ obtener evidence packet
+→ decidir
+→ caracterizar con test
+→ cambiar
+→ validar
+→ review
+→ memory delta
+```
 
-## Checkpoint obligatorio
+## Checkpoint previo al parche
 
-Antes del primer parche registra en la task-card:
+Registra:
 
-- causa probable;
-- evidencia actual;
-- invariantes;
-- archivos permitidos;
-- test focal;
-- presupuesto restante;
-- condición de parada.
+```txt
+task/claim/worktree/base
+causa probable
+evidencia y confianza
+invariantes
+archivos permitidos
+test focal
+presupuesto
+condición de parada
+trace IDs afectados
+```
+
+## Fuente de estado
+
+- Estado durable: `.ai/scrum/SPRINT-CURRENT.md`
+- Claim/lease: `.ai/scrum/CLAIMS.md`
+- Continuidad inmediata: `.ai/memory/HANDOFF.md`
+- `.ai/scrum/ACTIVE.md` es una vista generada, no autoridad.
 
 ## Reanudación
 
-No confíes solo en el resumen previo. Verifica:
-
-- rama y worktree;
-- `git status`;
-- commit base;
-- task-card;
-- último gate;
-- archivos realmente modificados.
+Verifica `pwd`, rama, worktree, `git status`, commit base, task-card, último
+gate y archivos modificados. No confíes únicamente en el resumen de sesión.

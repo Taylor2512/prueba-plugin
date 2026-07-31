@@ -1,24 +1,21 @@
-# Ruta: schemas
+# Route — Schema families
 
-**Alcance:** Plugins, familias y renderers.  
-**Owner recomendado:** Schema Specialist
+## Owner question
 
-## Cargar
+¿Qué evidencia mínima decide el cambio en este dominio?
 
-- task-card;
-- AGENTS local;
-- símbolos afectados;
-- pruebas focales;
-- una skill relevante.
+## Load
 
-## Comprobar
+- task-card activa
+- skill `sisad-schema-behavior-matrix`
+- `.ai/memory/topics/schemas.md` solo si responde una incógnita
 
-- Designer/Form/Viewer/PDF;
-- values;
-- snapshot;
-- factory/registry;
-- tests;
+## Output
 
-## Parada
+Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
+trace IDs y condición de parada.
 
-Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
+## Guardrail
+
+Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
+consulta al registro es suficiente.

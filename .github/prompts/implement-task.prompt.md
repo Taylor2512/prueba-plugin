@@ -1,4 +1,7 @@
 ---
-description: Implement one approved SISAD PDFME task-card safely.
+mode: agent
 ---
-Read the task-card and nearest AGENTS, confirm one writer, characterize behavior, implement the smallest complete change, run gates and prepare memory delta.
+
+Implement only the active task-card, within its file and token budget.
+
+Use `AGENTS.md` and `.ai/templates/EVIDENCE-PACKET.md`.

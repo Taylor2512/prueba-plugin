@@ -1,24 +1,21 @@
-# Ruta: left-sidebar
+# Route — Left catalog
 
-**Alcance:** Catálogo, búsqueda, tabs, layout y custom fields.  
-**Owner recomendado:** Schema + UX
+## Owner question
 
-## Cargar
+¿Qué evidencia mínima decide el cambio en este dominio?
 
-- task-card;
-- AGENTS local;
-- símbolos afectados;
-- pruebas focales;
-- una skill relevante.
+## Load
 
-## Comprobar
+- task-card activa
+- skill `sisad-left-sidebar-catalog`
+- `.ai/knowledge/domain/COREUX-USE-CASES.md` solo si responde una incógnita
 
-- plugin registry;
-- drag source;
-- filters;
-- responsive;
-- accessibility;
+## Output
 
-## Parada
+Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
+trace IDs y condición de parada.
 
-Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
+## Guardrail
+
+Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
+consulta al registro es suficiente.

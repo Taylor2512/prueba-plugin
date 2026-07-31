@@ -1,24 +1,21 @@
-# Ruta: configuration
+# Route — Config/selectors/actions
 
-**Alcance:** Config raíz, provider, selectors y feature state.
-**Owner recomendado:** Config Specialist
+## Owner question
 
-## Cargar
+¿Qué evidencia mínima decide el cambio en este dominio?
 
-- task-card;
-- AGENTS local;
-- símbolos afectados;
-- pruebas focales;
-- una skill relevante.
+## Load
 
-## Comprobar
+- task-card activa
+- skill `sisad-configuration-service`
+- `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md` solo si responde una incógnita
 
-- canonical paths;
-- legacy migration;
-- hot updates;
-- resources;
-- public API;
+## Output
 
-## Parada
+Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
+trace IDs y condición de parada.
 
-Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
+## Guardrail
+
+Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
+consulta al registro es suficiente.

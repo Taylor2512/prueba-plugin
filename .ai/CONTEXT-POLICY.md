@@ -1,40 +1,52 @@
-# Política de contexto
+# Política de contexto V7
 
 ## Progressive disclosure
 
-Cada capa se carga solo cuando responde una pregunta concreta:
+```txt
+task-card
+→ route manifest
+→ symbol index
+→ evidence packet
+→ test
+→ skill
+→ deep reference solo para una incógnita
+```
 
-1. task-card;
-2. ruta;
-3. símbolos;
-4. pruebas;
-5. skill;
-6. referencia amplia, solo si sigue una incógnita.
+## Context Manifest
+
+Toda task-card declara:
+
+```yaml
+context:
+  route: right-sidebar
+  skills: [sisad-right-sidebar-contract]
+  required:
+    - path#symbol
+  optional:
+    - test path
+  forbidden:
+    - generated reports
+  maxFiles: 8
+  maxTokens: 12000
+```
 
 ## Evidence packet
 
-Cada investigación devuelve:
+```txt
+question
+base commit
+symbols
+evidence
+confidence
+contradictions
+conclusion
+unknowns
+next check
+```
 
-- pregunta;
-- archivos/símbolos;
-- evidencia;
-- conclusión;
-- confianza;
-- incógnitas;
-- recomendación;
-- siguiente acción.
-
-No devuelve narración de comandos ni copias extensas.
-
-## Contexto prohibido por defecto
-
-- `node_modules`, bundles y cobertura;
-- backups y documentos generados;
-- conversaciones completas;
-- todos los prompts y skills a la vez;
-- memoria histórica completa;
-- vendor cuando no es el objetivo.
+No incluye narración de comandos ni archivos completos.
 
 ## Invalidación
 
-Un resumen queda obsoleto si cambia el commit base, la ruta propietaria, el contrato público o un test caracterizador.
+Un packet queda stale cuando cambia commit base, contrato público, test
+caracterizador, route owner o decisión relacionada.

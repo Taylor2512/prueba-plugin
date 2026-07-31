@@ -1,0 +1,1065 @@
+{
+  "name": "SISAD_PDFME_AI_ARCHITECTURE_V7_2026-07-31",
+  "target": "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin",
+  "generatedAt": "2026-07-31T17:50:48.906518+00:00",
+  "functionalCodeModified": false,
+  "taskCards": 30,
+  "useCases": 211,
+  "behaviors": 211,
+  "events": 45,
+  "effects": 20,
+  "methods": 319,
+  "newSkills": 20,
+  "files": [
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-action-state/SKILL.md",
+      "bytes": 692,
+      "sha256": "f1e87c4d49df5739248babf7546273c6e656327faa073d67ab52f95a69e0d6d5"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-ai-architecture/SKILL.md",
+      "bytes": 754,
+      "sha256": "a77dd2d0994518a3706a4f44e60ee3f7236821776e2555c63687ddc0581eb420"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-behavior-traceability/SKILL.md",
+      "bytes": 732,
+      "sha256": "bad6407bcc71310f5ee4b6774449a29917071482556cd5ae9628fec539c9d766"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-capability-audit/SKILL.md",
+      "bytes": 722,
+      "sha256": "f519624bd229544094a4c4e09b7d85dc59458bc0c56cd5c976d92b5d7bc6db87"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-command-history/SKILL.md",
+      "bytes": 690,
+      "sha256": "7aa14bca43ee27dbcf6c3e32dbf1ec45858e6ceef3bfd6b72411b2a05e68987a"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-context-packet/SKILL.md",
+      "bytes": 732,
+      "sha256": "ba582da6b69c79da80326c99d6031a046c59ca43f02d26b90705a75e0e9ba2aa"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-context-rot-check/SKILL.md",
+      "bytes": 710,
+      "sha256": "084ccb1575ed697693a5b5e64dd6c31dbda67e332ebd0f7f6b739af200f932a6"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-controller-parity/SKILL.md",
+      "bytes": 708,
+      "sha256": "19a311b75be2725ed0f1dc11fffdfa07cda56f0accd243fd7a3f12a4e8c73345"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-decision-record/SKILL.md",
+      "bytes": 710,
+      "sha256": "96a0dac68097e739a999bb937e2f9edb2675271a975ce67ddc94b027dba408ba"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-event-effect-contract/SKILL.md",
+      "bytes": 698,
+      "sha256": "a36ac17c68395eb1c8e2fe49e11633a60390abfaccd21c0b3af98a52736aa78b"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-form-viewer-parity/SKILL.md",
+      "bytes": 700,
+      "sha256": "c835b62484ee7f674eb652c992f06b80684d75ff89befdc37f64b63cb8684eee"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-knowledge-gc/SKILL.md",
+      "bytes": 704,
+      "sha256": "4d3deb47cd8116dda566cc46535a6200bc99f5aec5e83ff00d61ebe3c23518cb"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-left-sidebar-catalog/SKILL.md",
+      "bytes": 714,
+      "sha256": "ee9590829ec4df012642f3dd76116a14ac76fa4dcece2590eed5b7b563418ce6"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-method-registry/SKILL.md",
+      "bytes": 720,
+      "sha256": "63d5b7370b6fc5a9180f92d143324341faf448f7bd7f14ab8476c034fa7de399"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-provider-adapter-sync/SKILL.md",
+      "bytes": 708,
+      "sha256": "92e5d58d69ae793d205ba9e7d7e35290ec7d0a02b144398382a3281802c9b613"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-recipient-assignment-policy/SKILL.md",
+      "bytes": 730,
+      "sha256": "b1d450de9c732e3945be3a47c5bb38e71a735d753f0cc33b21a584e73bdfa163"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-right-sidebar-contract/SKILL.md",
+      "bytes": 718,
+      "sha256": "7c955516be76715536f25d364eb5e11c30e7e75f20a45942d5b20068ef5e8505"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-schema-behavior-matrix/SKILL.md",
+      "bytes": 722,
+      "sha256": "a2e14854d39a48f5c425ce9ab2440d7025984f6d36f08c5dd3c8d40a3caf2180"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-test-log-distillation/SKILL.md",
+      "bytes": 700,
+      "sha256": "dc6f553340a8295a13d2e75764d8a14fff05a91bbf45a008e7959cdf96aa6f34"
+    },
+    {
+      "path": "prueba-plugin/.agents/skills/sisad-worktree-coordination/SKILL.md",
+      "bytes": 700,
+      "sha256": "df88a9c0e33252982e2079a08c5bb5d5d749de29e6353ca6a3ba14c5d9c7bb20"
+    },
+    {
+      "path": "prueba-plugin/.ai/CONTEXT-BUDGET.md",
+      "bytes": 1315,
+      "sha256": "054ac926fb52b9abb1eb477fd1278d91b7d0b46b8b8d11d8a579e661ad6563d4"
+    },
+    {
+      "path": "prueba-plugin/.ai/CONTEXT-POLICY.md",
+      "bytes": 785,
+      "sha256": "33f9daf0c493390b0bf78121cc41d28a5bff5fdfff292087013aac9114447ee5"
+    },
+    {
+      "path": "prueba-plugin/.ai/MODEL-ROUTER.md",
+      "bytes": 1166,
+      "sha256": "d2fd5093526c38ab2dc588d340e41ab053981c5b4d0d0cc5affa87a895492477"
+    },
+    {
+      "path": "prueba-plugin/.ai/OBSERVABILITY.md",
+      "bytes": 508,
+      "sha256": "87bb9b7505c3e8cdd2e6ac98b007df8836754e3adf341ba3be25229259454d2f"
+    },
+    {
+      "path": "prueba-plugin/.ai/ORCHESTRATION.md",
+      "bytes": 831,
+      "sha256": "116973fb2f81fc45ab2512dbf03f0447fa2c8b8aa92e7b91f699ed579308a36a"
+    },
+    {
+      "path": "prueba-plugin/.ai/ROUTER.md",
+      "bytes": 2254,
+      "sha256": "071d2e77cdecfc1ebad2fd936ea53811133ffda4b46811c2be71b0c5389f60c7"
+    },
+    {
+      "path": "prueba-plugin/.ai/START.md",
+      "bytes": 1126,
+      "sha256": "dfa89aadc006c358c75c0079fa38f1b00736922f0536e7ca5adecbee3a667a03"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/ARCHITECT.md",
+      "bytes": 441,
+      "sha256": "3535c624b080893055ff6b9d764305ba7e77e82b074fdcbe03db539a3ebd9255"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/CANVAS-SPECIALIST.md",
+      "bytes": 447,
+      "sha256": "ecedad953d0936f6c38e377e28033f053ec4d56f8ecddabfd28ee751cdd87290"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/COORDINATOR.md",
+      "bytes": 448,
+      "sha256": "ac26e7d64da50242385358bc9b893c2ef7054d50db16c23f6eeb856683d50d39"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/EXPLORER.md",
+      "bytes": 444,
+      "sha256": "dfec09c0e500b4ce7fa96a2b4906055d450d692348594f4bae29218674e7c3d3"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/IMPLEMENTER.md",
+      "bytes": 430,
+      "sha256": "b66b995e5fa647d4d232450d01ff1c717e8b69dec8e865151194474607855b8c"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/MEMORY-STEWARD.md",
+      "bytes": 438,
+      "sha256": "f471c331eef14e60f618a1245c4224b5c327a347992c9ec7e1f94b43de2beccb"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/PROVIDER-ADAPTER-STEWARD.md",
+      "bytes": 462,
+      "sha256": "be1f1a4884cca3f93a24d96a23ceac24809bee846f3f2f692b0da53138ffbb02"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/QA.md",
+      "bytes": 419,
+      "sha256": "b15a0874c9dc3305809dd28c5fe60afbe0199fa1e88cb80006ea2406da3e8b65"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/REGISTRY.md",
+      "bytes": 1228,
+      "sha256": "57ea6f3310f59c8f87203e551300743102aeeb82206cce0ec98448da002e0bd7"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/REVIEWER.md",
+      "bytes": 427,
+      "sha256": "64d195750a8d44ddfb52cd4e43369b18ba4aa6cfa4566be5b348ac2d80240933"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/RUNTIME-ARCHITECT.md",
+      "bytes": 448,
+      "sha256": "1f39d26e9204808e9c683572e947fe93db2ab81dcf8d1617929701c08cba89e5"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/SCHEMA-SPECIALIST.md",
+      "bytes": 446,
+      "sha256": "c4b45e576733d0b6ba64856b651a84b36bcda6ac1a6eb4d57d9459522a994895"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/TOKEN-STEWARD.md",
+      "bytes": 441,
+      "sha256": "cd988d35c2ff100dcbcfe5763448a99b9c7760ebdc05ae5d4aac4c0e6d826944"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/TRACEABILITY-STEWARD.md",
+      "bytes": 444,
+      "sha256": "cb6e976bdb2238566940fcd52ceea5e1f064f53ab02fe57f658f3313eeec4142"
+    },
+    {
+      "path": "prueba-plugin/.ai/agents/UX-DESIGNER.md",
+      "bytes": 443,
+      "sha256": "33281d06e9a8ca243d1e7164826009eb70618ad1b10c19361e04db5f4bde6cee"
+    },
+    {
+      "path": "prueba-plugin/.ai/architecture/AI-ASSISTANT-ARCHITECTURE-V7.md",
+      "bytes": 931,
+      "sha256": "76128b0ebf0f211ba13ae8be755d09190b4ae7013e9c45437996946c25546e06"
+    },
+    {
+      "path": "prueba-plugin/.ai/architecture/KNOWLEDGE-GRAPH.md",
+      "bytes": 538,
+      "sha256": "f0b8a273abe053d0f7ea26e8dc614b8be706b14e4902f7bfb455b842f3ae2fb6"
+    },
+    {
+      "path": "prueba-plugin/.ai/architecture/MEMORY-ARCHITECTURE-V7.md",
+      "bytes": 703,
+      "sha256": "c650ceab9523c7f89b0bfef5af91e0d33e39ebe19753647e843ab136420743da"
+    },
+    {
+      "path": "prueba-plugin/.ai/architecture/PROVIDER-COMPATIBILITY.md",
+      "bytes": 809,
+      "sha256": "1d8d3204c3c6f6512c539855af32f25eb9c0cfa0ae92220c59137abcfc0de9e4"
+    },
+    {
+      "path": "prueba-plugin/.ai/evals/EVAL-001.md",
+      "bytes": 259,
+      "sha256": "48957eb566ff111acfc3f181043160094b3013bb06ea18f8905f73148985931f"
+    },
+    {
+      "path": "prueba-plugin/.ai/evals/EVAL-002.md",
+      "bytes": 252,
+      "sha256": "bc6c5889771ae29d1b9eb34ac8c7de4845b5a39e60b3c45cdc7b79a37f35877b"
+    },
+    {
+      "path": "prueba-plugin/.ai/evals/EVAL-003.md",
+      "bytes": 255,
+      "sha256": "965116a73e4bec348eb5bb70af9df3356f23fb88e80df899b5008008d88b18e4"
+    },
+    {
+      "path": "prueba-plugin/.ai/evals/EVAL-004.md",
+      "bytes": 254,
+      "sha256": "bff4ab92c0051e01cdc15185a0ac138865110447bcbbad46e1b4adf42808a73b"
+    },
+    {
+      "path": "prueba-plugin/.ai/evals/EVAL-005.md",
+      "bytes": 248,
+      "sha256": "730250a636897cd272ce6c3bae607d45fbca5b779f88d496b8c98a768e794eaa"
+    },
+    {
+      "path": "prueba-plugin/.ai/evals/EVAL-006.md",
+      "bytes": 258,
+      "sha256": "cd4d8f6144f665f40849915a402ed7280a2df09a0572cad91a9ce0ca4e77557a"
+    },
+    {
+      "path": "prueba-plugin/.ai/evals/EVAL-007.md",
+      "bytes": 237,
+      "sha256": "c9558c075f20c4bcfb23ecfe64c1d33bd73ee01b140b8aa0d93132cb39bb7741"
+    },
+    {
+      "path": "prueba-plugin/.ai/evals/EVAL-008.md",
+      "bytes": 247,
+      "sha256": "72b0a13d88214e12231084b456adb1389e8f38bf3b2029408ea2ce3842e8d207"
+    },
+    {
+      "path": "prueba-plugin/.ai/evals/EVAL-009.md",
+      "bytes": 244,
+      "sha256": "9e4f93122b0f3b49052d54fedec4c25c48e3692a98a3c7b10c05021322fb8fca"
+    },
+    {
+      "path": "prueba-plugin/.ai/evals/EVAL-010.md",
+      "bytes": 257,
+      "sha256": "00182e32c399b54fcdda73576776268b25bb3698f3099de36cd5d57b7093ff48"
+    },
+    {
+      "path": "prueba-plugin/.ai/governance/PROVIDER-DRIFT-POLICY.md",
+      "bytes": 378,
+      "sha256": "7de999577e81320e7c6fec72294cf242b0fae3c85bd1bbb871f41223f13d5bb6"
+    },
+    {
+      "path": "prueba-plugin/.ai/governance/SUBAGENT-COST-POLICY.md",
+      "bytes": 463,
+      "sha256": "f879b6b783811f9934effcd5ec9193502a3a06731b57d9054dc318c304c90a9f"
+    },
+    {
+      "path": "prueba-plugin/.ai/governance/TOKEN-RESOURCE-POLICY.md",
+      "bytes": 481,
+      "sha256": "cbf1d03c5395b3a0b826932150ad79cb810e18b951d5bc923b5b5bd64c2bc310"
+    },
+    {
+      "path": "prueba-plugin/.ai/governance/TRACEABILITY-POLICY.md",
+      "bytes": 461,
+      "sha256": "3541472db02acf0fa52a8a70e181b7fb2e860e7875eb048a2065ec3dd40b617f"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/EFFECT-CATALOG.md",
+      "bytes": 1785,
+      "sha256": "c2bf2f192194c717998452e3107091c3a834fd48d9bba2380a334d4f16165efc"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/EVENT-CATALOG.md",
+      "bytes": 3694,
+      "sha256": "0f583248c71b64a52d1c78c2bb1cbce88b42c7741d252d86a02a26c9fb9b94bb"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/SOURCE-REGISTER.md",
+      "bytes": 676,
+      "sha256": "cdb2c1b2776d120985e39c2dd5b61a7c962d83d4f5f3aa30ff4e9204f80eacc9"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/USE-CASE-INDEX.md",
+      "bytes": 10371,
+      "sha256": "5062739273b07592f363ac5dd10853ba7811f5c991cc73b7a2661d4cb25a37e5"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/behaviors.json",
+      "bytes": 49047,
+      "sha256": "2b523d64e8d4ca2ba8780d39637da9250638ff32b6c8e085217166aaa844508a"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md",
+      "bytes": 2199,
+      "sha256": "1e9326a2a91d9b58e5fdb5b58553651317e166710e899b506394010972acdf3f"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/domain/COREUX-EFFECTS.md",
+      "bytes": 1856,
+      "sha256": "bd2dd75e6746b0fed5888374a865ed73864e5852500287fee1fdabf9534413fc"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/domain/COREUX-EVENTS.md",
+      "bytes": 5019,
+      "sha256": "62f9037d560f7f00ffcaf0a7e01872744bc3a3ac64b1357e5e34e3ee8a190129"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/domain/COREUX-PATTERNS.md",
+      "bytes": 1566,
+      "sha256": "f6564dc813759b2fe3e45850c16d9f0cc6e09f70645e64fbe0123804ad52734d"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/domain/COREUX-USE-CASES.md",
+      "bytes": 13015,
+      "sha256": "a294ea77d5403fcc58793d80b0b73f5cc9e56131132f19a25e699f57142d4483"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/domain/CURRENT-PUBLIC-API.md",
+      "bytes": 1151,
+      "sha256": "bb7aadbd5ac78e0f02b466f1ace0cfbf497051d1f132b44783b1b17e5580878c"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/domain/DECLARATIVE-API.md",
+      "bytes": 1479,
+      "sha256": "119680137ede3f1911c8e7ce89994c2fdfcd1d7c50c20daca23e527c8e9a79f4"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/domain/DECLARATIVE-BASELINE.md",
+      "bytes": 6581,
+      "sha256": "d7f68a3df8b631b34a8e59380c772cf0a1cd4d478318a9b26bdfb5824c0cab50"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/domain/DECLARATIVE-USE-CASES.md",
+      "bytes": 7319,
+      "sha256": "8e0a2b162d2a961f2c4c49a800c9a82b24e615de5bd523143098bc83f2f42dca"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/effects.json",
+      "bytes": 3932,
+      "sha256": "f213ab68a969b80bebe97240e57d586264b3041d6f1dffd67d9a320e3f538818"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/events.json",
+      "bytes": 9979,
+      "sha256": "8f22ff80a28d972d3139ad9a989d12cffe64b54b7bff4ff60e4f1d2592282648"
+    },
+    {
+      "path": "prueba-plugin/.ai/knowledge/use-cases.json",
+      "bytes": 43561,
+      "sha256": "bc0fd62999c3a73e61756481693c469cc518fad646cc4a8395b36ba683ca163a"
+    },
+    {
+      "path": "prueba-plugin/.ai/memory/CURRENT.template.md",
+      "bytes": 189,
+      "sha256": "641e5399a12b8b31625ad4ce3b728c400b5097986ea882e459925abf82c0fb32"
+    },
+    {
+      "path": "prueba-plugin/.ai/memory/HANDOFF.template.md",
+      "bytes": 210,
+      "sha256": "456f333219dd1303242512e7be4996777f144acfe5e4c485c39ae81b93109eaa"
+    },
+    {
+      "path": "prueba-plugin/.ai/memory/INDEX.md",
+      "bytes": 787,
+      "sha256": "90e00577f7d02a0fd27c51f8661743a22f0441cf447afb4a611dd2a0dcecadfb"
+    },
+    {
+      "path": "prueba-plugin/.ai/memory/MEMORY-GC.md",
+      "bytes": 351,
+      "sha256": "bcaf1a36b7e81ff6b110bf7072e020dcd16a7a65cd0dc4cf2b0ecc79c127a2b1"
+    },
+    {
+      "path": "prueba-plugin/.ai/memory/PROJECT.md",
+      "bytes": 666,
+      "sha256": "a3051090a53baafdcce47e0c4625d4669d4d69afa580e0fb7b6194b3fb5d1386"
+    },
+    {
+      "path": "prueba-plugin/.ai/memory/topics/ai-architecture.md",
+      "bytes": 118,
+      "sha256": "c2befe05cc6ff04551571ff11a5d346af9ba4d4f8c7932135043c5fbef82fa44"
+    },
+    {
+      "path": "prueba-plugin/.ai/memory/topics/canvas.md",
+      "bytes": 95,
+      "sha256": "1b86515f4e9e87440cfa4df1edf91d97983d661cbf44e333041dcc2387000a7e"
+    },
+    {
+      "path": "prueba-plugin/.ai/memory/topics/configuration.md",
+      "bytes": 117,
+      "sha256": "6a088cc29aa185bcc315821c496b1bca02f77b7f885842639b6d6bc7e36d41be"
+    },
+    {
+      "path": "prueba-plugin/.ai/memory/topics/runtime.md",
+      "bytes": 84,
+      "sha256": "98c9210158df448676b7256f1ff235509ddfd2e1f6bbba47b30429f7c02b310f"
+    },
+    {
+      "path": "prueba-plugin/.ai/memory/topics/schemas.md",
+      "bytes": 100,
+      "sha256": "5e0d07be5cdf0d214b85f29a24121154b6d266106f93997eb72e1b273064bfab"
+    },
+    {
+      "path": "prueba-plugin/.ai/plans/AIARCH-V7-EXECUTION-ORDER.md",
+      "bytes": 488,
+      "sha256": "0528e88af4fbd15d578d6dd9d5852cba9208140d63046d2981283accbead3488"
+    },
+    {
+      "path": "prueba-plugin/.ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE-V7.md",
+      "bytes": 930,
+      "sha256": "c350d7776806025f76577d88df1cf975709f79a1acc9a4ad94ff7e9f6fc4966e"
+    },
+    {
+      "path": "prueba-plugin/.ai/playbooks/EXECUTE-TASK-V7.md",
+      "bytes": 351,
+      "sha256": "ad2a5915f9d3c6933e25220394caaf9f512fdff4ca55fa75924c39da77a467a3"
+    },
+    {
+      "path": "prueba-plugin/.ai/playbooks/MAINTAIN-TRACEABILITY.md",
+      "bytes": 253,
+      "sha256": "81b9f2a38184649fee65db6592f11bfd23d0c0e460218c7c2171bcab10773375"
+    },
+    {
+      "path": "prueba-plugin/.ai/playbooks/UPDATE-MEMORY-V7.md",
+      "bytes": 262,
+      "sha256": "d3f8a348fcb9676354146ee8ecfea22c0dc35f43b15cca45046384faac4afc5e"
+    },
+    {
+      "path": "prueba-plugin/.ai/prompts/CREATE-TASK.prompt.md",
+      "bytes": 241,
+      "sha256": "522fb976828f679afc0e6f40582355243a6e1bbb2b819773c08ad69f97488634"
+    },
+    {
+      "path": "prueba-plugin/.ai/prompts/DIAGNOSE.prompt.md",
+      "bytes": 232,
+      "sha256": "992d676e9e87e3d53f8a743cb88993668834364465c1ed0cfb9c17cfd781ec18"
+    },
+    {
+      "path": "prueba-plugin/.ai/prompts/DISTILL-LOG.prompt.md",
+      "bytes": 238,
+      "sha256": "938aabffc3f44aabb21dcc9f10800f9de667a20288bfbede781265c8a43b3806"
+    },
+    {
+      "path": "prueba-plugin/.ai/prompts/IMPLEMENT.prompt.md",
+      "bytes": 234,
+      "sha256": "a2f1c2ef33e57b929f7132f7cb071785f0ca62988b0e29158794f63cf98c23ed"
+    },
+    {
+      "path": "prueba-plugin/.ai/prompts/MEMORY-DELTA.prompt.md",
+      "bytes": 230,
+      "sha256": "bc14cb620cf50c2a946a5d18133e251e4be5a57ca5d35224094b3012830ea036"
+    },
+    {
+      "path": "prueba-plugin/.ai/prompts/PROVIDER-SYNC.prompt.md",
+      "bytes": 235,
+      "sha256": "9fd589df2392ee904e6ebfe3f37fb4627f3ec8900e940525621132c8db9f298e"
+    },
+    {
+      "path": "prueba-plugin/.ai/prompts/REVIEW.prompt.md",
+      "bytes": 225,
+      "sha256": "39f293ef447dbaa5b3fbf974af4fb16db247e4614c6114922f2f485bb0ec2f3b"
+    },
+    {
+      "path": "prueba-plugin/.ai/prompts/TRACEABILITY.prompt.md",
+      "bytes": 230,
+      "sha256": "2f43577f86640f6533a2b1543c9621ce69300c3df34f26564951248f93d27dfc"
+    },
+    {
+      "path": "prueba-plugin/.ai/research/OFFICIAL-PROVIDER-FINDINGS-2026-07-31.md",
+      "bytes": 2261,
+      "sha256": "f887d92182d0120ab9cdba9dcc5ecf34fb7dc0d290d134e0786e3c6b9fe3798c"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/ai-architecture.md",
+      "bytes": 576,
+      "sha256": "cecdd804b5295dd403cf32da9205039f13cfa58bbb6c35698168bb7e31a7c27b"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/assignments.md",
+      "bytes": 517,
+      "sha256": "3bd6e7b3673405bceae801f8a85871a277d778fd0e7c118584dbbacf6bb0af76"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/canvas.md",
+      "bytes": 492,
+      "sha256": "f9c84c4f56c5662aa065c49765adc62268972acac5490183ff3a451a6a227627"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/capabilities.md",
+      "bytes": 507,
+      "sha256": "c939677aa5929ca25166be33948b875521ff8f32459b6711018ff39eab5b7957"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/commands.md",
+      "bytes": 497,
+      "sha256": "a9f0b4bc316f0f5fd08348b5ab19630d6e35a14d4b016b8c73fa7d7c0a03af15"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/configuration.md",
+      "bytes": 527,
+      "sha256": "71426aeee59c21eadfbdf049362d7f17f6ea9ed51221a44e15ffc065b7c14564"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/controller.md",
+      "bytes": 509,
+      "sha256": "c5f9216fe875b3b190db4a6cc9665bff6317c6a51d75bb0d573e3e281b62839b"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/css-tailwind.md",
+      "bytes": 430,
+      "sha256": "71433ba218b272d0a7bea961c90bb528d3075d3184944d43354d6bfdbae26c8c"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/docs-memory.md",
+      "bytes": 557,
+      "sha256": "5d673811ef988add177ae603784e4c142ee2905f3b61fd17ea2bf82014c9d929"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/events-effects.md",
+      "bytes": 566,
+      "sha256": "5d7b453ee80390a78b38b2b0f8d760a0b073457739d6bf5a4d17d71a81108ecc"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/left-sidebar.md",
+      "bytes": 501,
+      "sha256": "065560d2bb6f5571879d486571fd0c1ffa82023e3ae5b23819937b6e62b4422e"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/provider-adapters.md",
+      "bytes": 505,
+      "sha256": "2ca4ad169382c19d35113a79337eb77b5656e289def857352752ec698b11dff6"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/quality.md",
+      "bytes": 420,
+      "sha256": "8c946d29a9c22ed05b860ff02b259dd69b81ccc8a16244d8324b079ac4397c74"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/right-sidebar.md",
+      "bytes": 514,
+      "sha256": "5a79d5940d7eba23130b1b118abc93a6add7bc44eec128698fb7f3b65304eedc"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/runtime-snapshot.md",
+      "bytes": 497,
+      "sha256": "24919ca39e0f1aae496b2a6dbf5fb6dde68d02316b254830896cd462ccd85751"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/runtime.md",
+      "bytes": 510,
+      "sha256": "b6b71c27f9dcab48b771cac75eb99e13181389693ecabe87d73869f7e52d7f13"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/schemas.md",
+      "bytes": 494,
+      "sha256": "b0ac5ddf6e831e7d4440d5735df840b38c54e58cdfd84b367586774d63ce9a8e"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/testing.md",
+      "bytes": 424,
+      "sha256": "de775f20aea129cf168d642f614bb714971055bc30292e55deec5669953720ee"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/token-context.md",
+      "bytes": 548,
+      "sha256": "78b94c61d3a5d9ebaa9ae99293a70d5254693a077b03675f27ee26b57e6934ec"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/traceability.md",
+      "bytes": 565,
+      "sha256": "ee9b89fb68a07e701367f2030686b876c669435f4a13615f6c8a5edfd492f367"
+    },
+    {
+      "path": "prueba-plugin/.ai/routes/ux-design.md",
+      "bytes": 506,
+      "sha256": "cfcc927bbfced176978b6f1465f35d88d9df4003813982aeb900d33b47277fac"
+    },
+    {
+      "path": "prueba-plugin/.ai/scripts/distill-log.mjs",
+      "bytes": 432,
+      "sha256": "06302319fc011fc5b38898824c294ba0254879dc68d7df8ed3d2cc85e321210c"
+    },
+    {
+      "path": "prueba-plugin/.ai/scripts/generate-method-registry.mjs",
+      "bytes": 931,
+      "sha256": "cdb042472aa685db4eb2bfbf9fe4b8fee1040842b85717a394e2aa98a224ac99"
+    },
+    {
+      "path": "prueba-plugin/.ai/scripts/memory-gc.mjs",
+      "bytes": 329,
+      "sha256": "5952ef5a2964f1a19e256b0b19a97b5f3f5abc5d4bd6af43de6e510ab6ed24f8"
+    },
+    {
+      "path": "prueba-plugin/.ai/scripts/validate-ai-architecture.mjs",
+      "bytes": 782,
+      "sha256": "9b542bab67e38a3dbaf2d68875acdf83b64beefc9c45d770d4ab08ab519ad17e"
+    },
+    {
+      "path": "prueba-plugin/.ai/scripts/validate-context-manifests.mjs",
+      "bytes": 496,
+      "sha256": "f594bade863d774d0f8c972d1d62457cad8a5f2dfcde2eeec51a711a62926337"
+    },
+    {
+      "path": "prueba-plugin/.ai/scripts/validate-provider-adapters.mjs",
+      "bytes": 478,
+      "sha256": "404fc02fba0cadc6b653ccba231dafdf47211f047fd0cd9e62f65bb3c49a39f9"
+    },
+    {
+      "path": "prueba-plugin/.ai/scripts/validate-skill-budget.mjs",
+      "bytes": 606,
+      "sha256": "240e774acc027cbf27208816c0cf350a1f99c01f78bf319d5b3d189797f47b9b"
+    },
+    {
+      "path": "prueba-plugin/.ai/scripts/validate-traceability.mjs",
+      "bytes": 513,
+      "sha256": "bf6ee51bb3cd8f6bca53267de1bc64981794efe8ebbfa072cffdd88435daa812"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/MERGE-INSTRUCTIONS-V7.md",
+      "bytes": 417,
+      "sha256": "a1261419b339e3d309d942034ebb46b61167dcb4a4740d64a8ba00469f29d788"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/PRODUCT-BACKLOG-ROWS-V7.md",
+      "bytes": 3863,
+      "sha256": "65d0bd214cd21307a05a41f5aa3a21806be683f16de7e3c53b77268e7c3da389"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline-v6.md",
+      "bytes": 1648,
+      "sha256": "a6dfc634d1e45963c2fa0d704b7b86d2c8adbecd2331dc519d6502f28cdbf317"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-002-corregir-fuente-de-estado-y-arranque.md",
+      "bytes": 1667,
+      "sha256": "e5b63bdb367215cab6f00a2e5b8f9ece2ec2050c2d9bbcac733470760326c717"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz-v7.md",
+      "bytes": 1637,
+      "sha256": "7477b51a34f1af04b6748d89040b09f616f3f8b0e790e2f51e6bbdd208857d5f"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md",
+      "bytes": 1652,
+      "sha256": "dc19788b7669a7b3d9b264b7d9c324174441bdf631945cf6cf4ae32c6f027340"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md",
+      "bytes": 1622,
+      "sha256": "8543237e48b2219995c9ec042da5c3811bacf7e1e14257653562bbf421d79e3d"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md",
+      "bytes": 1644,
+      "sha256": "aec8e1f008d754056c47ac0e5562fe41e714f8cb89311dcc3a4f37bac4ada33d"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md",
+      "bytes": 1627,
+      "sha256": "f75a73fdf788944dcdffb44eada440f98ee739b2fad106819114902e3c6d8adb"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md",
+      "bytes": 1648,
+      "sha256": "b8b3cd908880a1d645af9345eaf7573f5fd0fab5cb66d49ede39a4a87fab48ee"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md",
+      "bytes": 1625,
+      "sha256": "a47e9417f32db1dd50479b740e4166fa52383fabaf0bc3cddef358635dbb018e"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-010-generar-method-registry-desde-codigo.md",
+      "bytes": 1660,
+      "sha256": "191a5f3fe1a16eca595e6ff165930402469bb47f45ea3b6aa0571ce0af52753d"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-011-consolidar-casos-y-behavior-catalog.md",
+      "bytes": 1651,
+      "sha256": "ee3e822e1408376bb7f67852ce266d81052fb424d46aed41306b78cf4332b645"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-012-consolidar-event-effect-catalogs.md",
+      "bytes": 1628,
+      "sha256": "80c7f1d133b2705671d6b546f7875941c15e21e1cf55a17e90357d638fd79e3b"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-013-construir-trace-matrix-y-coverage-gate.md",
+      "bytes": 1683,
+      "sha256": "ce625f81beb8982cc1cba143846b81174e828658de8e9d364b34e128491b15ea"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-014-depurar-skill-registry-y-aliases.md",
+      "bytes": 1630,
+      "sha256": "522276d73c5ffe007c70b0b45f30981da4297f5214db9d34d380abbfeb69b1fd"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md",
+      "bytes": 1630,
+      "sha256": "aedcc9c9ac323be3906fe9dd5d547a9cb97408899e558c5b05bd4cb9bc084ed5"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-016-consolidar-agent-registry.md",
+      "bytes": 1619,
+      "sha256": "7fac8336e3fc448a2d55f96b4be81f18c2d448d50bc6eb680deceae7857b2822"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md",
+      "bytes": 1632,
+      "sha256": "2cdf7dde52eddbc8486760c9708a46fba29be730872ac42350c331f2498c254a"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-018-actualizar-adapter-de-claude.md",
+      "bytes": 1663,
+      "sha256": "a09edc3e1678280c7e692d409b5c0fe0edacc6f086b5d72f1127168a89c71d3a"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-019-actualizar-adapter-de-codex.md",
+      "bytes": 1653,
+      "sha256": "dddfb56e24c5923e60bdeb84595f012c68bc94f3e2744e69434ae6ac569e5643"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-020-actualizar-adapter-de-copilot.md",
+      "bytes": 1662,
+      "sha256": "b27c992b918810006b56ff2d507e03480f9fbecca396ea0a8b774afd4be47200"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-021-implementar-provider-drift-gate.md",
+      "bytes": 1631,
+      "sha256": "aeef3716233807040e02bf9285f6ef0e75a049be35ee2e19f2b7f3a5acf30934"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema-v7.md",
+      "bytes": 1642,
+      "sha256": "4de2d38645098e899f6cef36fabf55ee3d84a2e49750663d3729eb9d04af6274"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-023-consolidar-scrum-claims-y-vistas.md",
+      "bytes": 1632,
+      "sha256": "0f9020f59369ea46f22d10d1573fb5ebbaaec11bf1adfe3688fc137cabb766e4"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-024-crear-evidence-store-y-log-distillation.md",
+      "bytes": 1628,
+      "sha256": "101cbe513b984fb2b870fec398b0debc9ec1996f50be5fc32d4f077ffba4ce4f"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos-v7.md",
+      "bytes": 1657,
+      "sha256": "3c27ab382ba8da7a4e54767030ec1b8ff51bec76af37165bbf1dc22a84023ab7"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md",
+      "bytes": 1633,
+      "sha256": "9eace84b6b4a310f887e1bd71a4e46a365382cc01f33a5d741f1979a41f92b9c"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-027-migrar-planes-coreux-decl-restore.md",
+      "bytes": 1633,
+      "sha256": "38aaff93853a34f22430e81151e8d266fc15ae53fb76719f1dc82c24e8a463b6"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md",
+      "bytes": 1652,
+      "sha256": "ef7bd510164b9b884c941186e4b09d0d096b039c76cecbfe7b3a7d5a4e0466d1"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-029-integrar-scripts-en-package-ci.md",
+      "bytes": 1614,
+      "sha256": "3826d34005c2d14b976a51ea90ecd9b4e511347a4f9a3562200a4287f35abeb0"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md",
+      "bytes": 1662,
+      "sha256": "be701055e998adbb56b780c8b8efe6de4a9d1d7f6a3771af9ca2eaf72eb07860"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-index-v7.json",
+      "bytes": 10303,
+      "sha256": "93f6a65c381ad547b5774c1eb1ec8c395d5d37c44db22af02f485ca4ef4dc3ab"
+    },
+    {
+      "path": "prueba-plugin/.ai/skills/README.md",
+      "bytes": 5001,
+      "sha256": "de6488b1bb0f37fffffa388f8019ef742128f1949b7e1eafac7f2ccfdba70f11"
+    },
+    {
+      "path": "prueba-plugin/.ai/skills/registry.json",
+      "bytes": 8554,
+      "sha256": "c434b0b7900b32d48a1937cc8bef745c77f1a8bdfa246555a9fa69de68eb64bf"
+    },
+    {
+      "path": "prueba-plugin/.ai/subagents/DECISION-MATRIX.md",
+      "bytes": 513,
+      "sha256": "c003e14e8c48a92a6c64f0a6a316727d4bf1d460fc2208c1a5561fc6c4ca1c06"
+    },
+    {
+      "path": "prueba-plugin/.ai/templates/BEHAVIOR-RECORD.md",
+      "bytes": 147,
+      "sha256": "88d1ac275982a147790c913d7bff7cf8ef57ca7ed360aa7175467aa33ab7c844"
+    },
+    {
+      "path": "prueba-plugin/.ai/templates/CONTEXT-MANIFEST.md",
+      "bytes": 126,
+      "sha256": "5359a88670a937c198fbca30c5304b78c51faaffcc1e34cd68c40e7213019874"
+    },
+    {
+      "path": "prueba-plugin/.ai/templates/EVIDENCE-PACKET.md",
+      "bytes": 161,
+      "sha256": "ca8085300b79ea8bab851a0d7fd6cf8b9b9ff78aa55212f2266cd9bdbb011b3b"
+    },
+    {
+      "path": "prueba-plugin/.ai/templates/METHOD-RECORD.md",
+      "bytes": 159,
+      "sha256": "207c485b40d97706a7a95ba0a64245d80dccf49186d0cc3b16e471527de31e8f"
+    },
+    {
+      "path": "prueba-plugin/.ai/templates/TASK-CARD-V7.md",
+      "bytes": 420,
+      "sha256": "9f2fbce88b027652037a0f124a6ec0b207d71bc632e7128cac669a0e48463d0e"
+    },
+    {
+      "path": "prueba-plugin/.ai/traceability/METHOD-REGISTRY.md",
+      "bytes": 41904,
+      "sha256": "3a4013cbcb8355b29411b71da4ce1df4928184d13be68897dfb55df94751ad33"
+    },
+    {
+      "path": "prueba-plugin/.ai/traceability/method-registry.json",
+      "bytes": 128039,
+      "sha256": "716ac5adbb0fcc775aab3d43381084af82d5f312a0a25857c2f8462130235bdd"
+    },
+    {
+      "path": "prueba-plugin/.ai/traceability/trace-candidates.json",
+      "bytes": 123175,
+      "sha256": "785e99f4847c07a438e42af4ab208f7812cb1cc4a401bdbf65862839bd4e7fc7"
+    },
+    {
+      "path": "prueba-plugin/.claude/README.md",
+      "bytes": 409,
+      "sha256": "1aa07503dcac35f1ddf6415d1cab63a8d601f880d6be2a06486784a18c3011af"
+    },
+    {
+      "path": "prueba-plugin/.claude/agents/sisad-explorer.md",
+      "bytes": 345,
+      "sha256": "4ba9d9eccb7b8008ac442716ccb1b2363a19a58218e6390f9927beed5589818f"
+    },
+    {
+      "path": "prueba-plugin/.claude/agents/sisad-log-distiller.md",
+      "bytes": 359,
+      "sha256": "dd2756d1c4acbca5760eab49ffddc92c7dbff4ff8f1168637b3fbf438bc19d6f"
+    },
+    {
+      "path": "prueba-plugin/.claude/agents/sisad-provider-auditor.md",
+      "bytes": 340,
+      "sha256": "8e1827605164b738d857c0047c797be0adc495ce488dd7dfd141193a8db9d08a"
+    },
+    {
+      "path": "prueba-plugin/.claude/agents/sisad-reviewer.md",
+      "bytes": 330,
+      "sha256": "5399f7894c27d045f943f0e94759d42beea5bf5c14defc99faaba8d0911b04bd"
+    },
+    {
+      "path": "prueba-plugin/.claude/agents/sisad-traceability.md",
+      "bytes": 343,
+      "sha256": "a4ab00fca94d5ea341c4b63cadad51981d4bd2025ea2d797c887bdb93f25ac6d"
+    },
+    {
+      "path": "prueba-plugin/.claude/settings.example.json",
+      "bytes": 298,
+      "sha256": "4363172c27471fa65c831e0c695b594dc87321bafcf3df0e840bec2fdc67ce6c"
+    },
+    {
+      "path": "prueba-plugin/.codex/README.md",
+      "bytes": 398,
+      "sha256": "3c43324ab0cf100e059504d9e70a55452aff880e643ad3418c38a86831d8e7ed"
+    },
+    {
+      "path": "prueba-plugin/.codex/agents/README.md",
+      "bytes": 250,
+      "sha256": "808d57d25527834e9718d78fde9b383eae182433734269702c861c6178fc7c35"
+    },
+    {
+      "path": "prueba-plugin/.codex/config.example.toml",
+      "bytes": 252,
+      "sha256": "192b9b81f23e947adb685278ab7905a7cf5e274d8cb8731ec1bcb3d2ee168837"
+    },
+    {
+      "path": "prueba-plugin/.github/agents/sisad-architect.agent.md",
+      "bytes": 273,
+      "sha256": "0b4ccc204ead72782470f4d20cf532c642ca2ca5df0038fa6db17f7ecde5511d"
+    },
+    {
+      "path": "prueba-plugin/.github/agents/sisad-coordinator.agent.md",
+      "bytes": 276,
+      "sha256": "f4bcd48ceb6e2d9d7cd84a30b6921e571d8f0b92f06c70dda0e5f219838142b8"
+    },
+    {
+      "path": "prueba-plugin/.github/agents/sisad-explorer.agent.md",
+      "bytes": 278,
+      "sha256": "30eafc9caf0fc567945eb14b586c3c89a9cbacf34a506429bf19037c189ffffc"
+    },
+    {
+      "path": "prueba-plugin/.github/agents/sisad-implementer.agent.md",
+      "bytes": 258,
+      "sha256": "8f4e6f922955d818f754c7b3b3cbbd965f37f83dfab1806d16fd2893e9851314"
+    },
+    {
+      "path": "prueba-plugin/.github/agents/sisad-memory-steward.agent.md",
+      "bytes": 260,
+      "sha256": "2aa62556e8c1042d32175ba675d2051c41cf5f93c50a7fe18068eea40866863e"
+    },
+    {
+      "path": "prueba-plugin/.github/agents/sisad-provider-adapter-steward.agent.md",
+      "bytes": 264,
+      "sha256": "c417483b0333e42c9e8332c3a909a16357a38803ac2b964a3a924ed2c79ea493"
+    },
+    {
+      "path": "prueba-plugin/.github/agents/sisad-qa.agent.md",
+      "bytes": 265,
+      "sha256": "f88c2b98e05f2174f91c4c78f9bb24aa7395ce90aabcc966c5c2bf0548a7acdd"
+    },
+    {
+      "path": "prueba-plugin/.github/agents/sisad-reviewer.agent.md",
+      "bytes": 261,
+      "sha256": "3e3f88d33fd40bbfc05800e91dd67f82b902d239a75ad20c5e2384defae8c098"
+    },
+    {
+      "path": "prueba-plugin/.github/agents/sisad-token-steward.agent.md",
+      "bytes": 265,
+      "sha256": "5eaa559407b2131b8139c0b5ca9c43e3c28060636fa70f8f8eaf2ecc4fc1a78b"
+    },
+    {
+      "path": "prueba-plugin/.github/agents/sisad-traceability-steward.agent.md",
+      "bytes": 254,
+      "sha256": "0361efd989ac88362337375052b6cb536cdb45fbe7593139b8c06ae4057a8326"
+    },
+    {
+      "path": "prueba-plugin/.github/copilot-instructions.md",
+      "bytes": 537,
+      "sha256": "7a93aa5fe32be1daef27af38f32159b170e5f5b25271306cbadef3cc329f7bbb"
+    },
+    {
+      "path": "prueba-plugin/.github/instructions/ai-docs.instructions.md",
+      "bytes": 249,
+      "sha256": "01894e16b802ab14a1fb7183cbafd556913cc2fe87c75c31500d0174afd5dd9b"
+    },
+    {
+      "path": "prueba-plugin/.github/instructions/canvas.instructions.md",
+      "bytes": 248,
+      "sha256": "a0c3f017f3c970c7109fae69604b27ed7a9c5a7805cd793c02c82284d2b258d5"
+    },
+    {
+      "path": "prueba-plugin/.github/instructions/schemas.instructions.md",
+      "bytes": 198,
+      "sha256": "71d4307b8257939f46f4af6938dd9505dbe6c4d57a2bf6f75748f84c14ff813e"
+    },
+    {
+      "path": "prueba-plugin/.github/instructions/sisad-core.instructions.md",
+      "bytes": 234,
+      "sha256": "e5f34e4e6e894ad1b321ddbfd31fd21afc9815f13bd01b0fefcc26803579bcee"
+    },
+    {
+      "path": "prueba-plugin/.github/prompts/diagnose-task.prompt.md",
+      "bytes": 164,
+      "sha256": "8b81de0151b944dce8f295fc0e42e0f28641486a92fd08c1b8c26aa65c70269b"
+    },
+    {
+      "path": "prueba-plugin/.github/prompts/implement-task.prompt.md",
+      "bytes": 149,
+      "sha256": "95c92c898d85f675bd3308a6bd40460940ea5df906da6ec9d58ed0805ea614a2"
+    },
+    {
+      "path": "prueba-plugin/.github/prompts/review-diff.prompt.md",
+      "bytes": 148,
+      "sha256": "f9c43df4dd03ba95890b944774a798e9bdd5261ee8eb86844326d3b059c19797"
+    },
+    {
+      "path": "prueba-plugin/.github/prompts/update-traceability.prompt.md",
+      "bytes": 135,
+      "sha256": "01eaf862c98908bec987871aed261d27b2f7312f7fe96945c364097536b2a260"
+    },
+    {
+      "path": "prueba-plugin/AGENTS.md",
+      "bytes": 967,
+      "sha256": "69f8f0957592d4c13fe4f9440c306cdab9f9714a068f81339396d6c61fa03e9b"
+    },
+    {
+      "path": "prueba-plugin/CLAUDE.md",
+      "bytes": 502,
+      "sha256": "0998b19cf9a40093cf7691efedf4c8452f93efaafe5140dfffd9530691481848"
+    },
+    {
+      "path": "prueba-plugin/CODEX.md",
+      "bytes": 454,
+      "sha256": "7498857f4fdafaf7733fafdeae00c14d6fa817e7263a9487d542c60e45cd3288"
+    },
+    {
+      "path": "prueba-plugin/MANIFEST-ACTIONS.json",
+      "bytes": 1273,
+      "sha256": "95295b8423b1cec8c6f79c9171b65e42205bd67906a57f169dd58fcb64c7b5aa"
+    },
+    {
+      "path": "prueba-plugin/MIGRATION-V6-TO-V7.md",
+      "bytes": 749,
+      "sha256": "17644f6e23f5bfd742b2814fa31beb53a18cd4b27699d806f887204cfd7c65bf"
+    },
+    {
+      "path": "prueba-plugin/README-AI-ARCHITECTURE-V7.md",
+      "bytes": 685,
+      "sha256": "4d4128729952ee77763ae5e530432439f0cc96dd974f39e36124911909de1e27"
+    },
+    {
+      "path": "prueba-plugin/TREE-V7.md",
+      "bytes": 10210,
+      "sha256": "314f97a8cfb7d9d22fed18612594a92a9276993ac6c2c481b62c3ef5ec07152d"
+    }
+  ]
+}

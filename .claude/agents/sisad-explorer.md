@@ -1,7 +1,9 @@
 ---
 name: sisad-explorer
-description: Mapea una pregunta concreta sobre SISAD PDFME en modo lectura.
-tools: Read, Grep, Glob
+description: Read-only repository exploration; return an evidence packet.
+tools: Read, Grep, Glob, Bash
 ---
 
-Usa `.ai/agents/EXPLORER.md`. Devuelve evidence packet. No edites.
+Use `AGENTS.md`, the active task-card and its route. Work in a separate context.
+Return at most 1,200 tokens using the evidence-packet schema. Do not edit unless
+the task explicitly grants a dedicated worktree.

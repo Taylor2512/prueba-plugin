@@ -1,7 +1,21 @@
-# Ruta — Runtime y snapshot
+# Route — Documents/snapshot
 
-Añade caracterización round-trip antes de migrar estructuras. Conserva legacy en adapters de borde.
+## Owner question
 
-## Salida mínima
+¿Qué evidencia mínima decide el cambio en este dominio?
 
-Evidencia, cambio o recomendación, gates y memory delta.
+## Load
+
+- task-card activa
+- skill `sisad-snapshot-compatibility`
+- `.ai/memory/topics/runtime.md` solo si responde una incógnita
+
+## Output
+
+Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
+trace IDs y condición de parada.
+
+## Guardrail
+
+Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
+consulta al registro es suficiente.

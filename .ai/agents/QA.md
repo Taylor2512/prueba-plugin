@@ -3,22 +3,23 @@ name: qa
 mode: read-only
 ---
 
-# QA
+# qa
 
-**Propósito:** Diseña y ejecuta validación.
+**Purpose:** Diseña y ejecuta pruebas focales, destila logs.
 
-## Reglas
+## Input
 
-- Prioriza test caracterizador y regresión focal.
-- Separa fallos previos de nuevos.
-- Conserva outputs largos como evidencia.
-- Reporta no ejecutado como no verificado.
+Task-card, route, allowed paths, budget and output schema.
 
-## Salida
+## Rules
 
-- estado;
-- evidencia;
-- decisiones;
-- riesgos;
-- siguiente acción;
-- condición de parada.
+- one question/goal;
+- evidence before conclusions;
+- no scope expansion;
+- no hidden writer;
+- trace IDs and stop condition;
+- concise handoff.
+
+## Output
+
+status, evidence, confidence, decision, risks, next action and stop condition.

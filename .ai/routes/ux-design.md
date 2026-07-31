@@ -1,24 +1,21 @@
-# Ruta: ux-design
+# Route — Responsive/accessibility
 
-**Alcance:** Diseño visual y experiencia.  
-**Owner recomendado:** UX Designer
+## Owner question
 
-## Cargar
+¿Qué evidencia mínima decide el cambio en este dominio?
 
-- task-card;
-- AGENTS local;
-- símbolos afectados;
-- pruebas focales;
-- una skill relevante.
+## Load
 
-## Comprobar
+- task-card activa
+- skill `sisad-responsive-ux`
+- `.ai/knowledge/domain/COREUX-USE-CASES.md` solo si responde una incógnita
 
-- hierarchy;
-- alignment;
-- responsive;
-- feedback;
-- visual regression;
+## Output
 
-## Parada
+Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
+trace IDs y condición de parada.
 
-Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
+## Guardrail
+
+Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
+consulta al registro es suficiente.

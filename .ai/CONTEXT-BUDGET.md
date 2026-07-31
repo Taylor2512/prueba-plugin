@@ -1,28 +1,44 @@
-# Presupuesto de contexto y tokens
+# Presupuesto de contexto V7
 
-## Perfil por defecto
+## Niveles
 
-| Fase | Objetivo | Límite recomendado |
+| Nivel | Contenido | Límite |
 |---|---|---:|
-| orientación | localizar contrato y task-card | 8k tokens / 5 archivos |
-| diagnóstico | confirmar causa | 24k / 8 archivos |
-| diseño | decidir cambio mínimo | 12k / 4 referencias |
-| implementación | editar y revisar | 32k / 5 archivos |
-| validación | tests y diff | 16k / salidas resumidas |
-| cierre | handoff y memoria | 8k |
+| L0 boot | AGENTS + sprint + task + route | 2.5k tokens / 4 archivos |
+| L1 diagnóstico | símbolos, tests y evidence packets | 12k / 8 archivos |
+| L2 diseño | ADR/policy focal | 10k / 4 referencias |
+| L3 implementación | diff + archivos productivos | 28k / 5 archivos |
+| L4 validación | salidas destiladas | 12k |
+| cierre | handoff + memory delta | 4k |
 
-Objetivo de contexto activo: ≤48k. Techo operativo: 80k salvo tarea L explícita.
+Contexto activo objetivo: ≤40k. Techo operativo: 64k salvo task-card `size: L`.
+
+## Skill budget
+
+- nombre ≤64 caracteres;
+- descripción ≤160 caracteres;
+- `SKILL.md` ideal ≤4 KB;
+- referencias grandes bajo `references/`;
+- no precargar más de dos skills;
+- aliases no duplican contenido.
+
+## Subagent budget
+
+- máximo dos readers;
+- salida ≤1.200 tokens;
+- logs crudos guardados como evidencia;
+- no delegar una tarea que cuesta menos que describirla;
+- no equipos multiagente por defecto.
 
 ## Marcas de agua
 
-- 60%: compactar resultados y crear `CONTEXT-CHECKPOINT`;
-- 75%: detener exploración, cerrar hipótesis y guardar evidencia;
-- 85%: no iniciar nuevos cambios; crear handoff o sesión nueva.
+- 50%: resumir búsqueda y fijar hipótesis;
+- 65%: crear `CONTEXT-CHECKPOINT`;
+- 75%: detener exploración;
+- 85%: handoff/sesión nueva, sin nuevos cambios.
 
-## Outputs
+## Prohibido
 
-- logs >100 líneas se guardan como evidencia y se resumen;
-- no pegar archivos completos cuando bastan símbolos/rangos;
-- no cargar documentos consolidados;
-- procesar reportes con scripts antes de enviarlos al modelo;
-- no repetir código sin cambios en el hilo.
+Archivos consolidados, conversaciones completas, todos los skills, todos los
+task-cards, logs >100 líneas, coverage/vendor/backups y memoria histórica
+completa.

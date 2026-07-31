@@ -1,24 +1,21 @@
-# Ruta: css-tailwind
+# Route — Tailwind/tokens
 
-**Alcance:** Tailwind, tokens y styles scoped.  
-**Owner recomendado:** Design System
+## Owner question
 
-## Cargar
+¿Qué evidencia mínima decide el cambio en este dominio?
 
-- task-card;
-- AGENTS local;
-- símbolos afectados;
-- pruebas focales;
-- una skill relevante.
+## Load
 
-## Comprobar
+- task-card activa
+- skill `sisad-tailwind-design-system`
 
-- single source;
-- class variants;
-- responsive;
-- no geometry regressions;
-- bundle;
 
-## Parada
+## Output
 
-Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
+Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
+trace IDs y condición de parada.
+
+## Guardrail
+
+Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
+consulta al registro es suficiente.

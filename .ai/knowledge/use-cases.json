@@ -1,0 +1,1690 @@
+[
+  {
+    "id": "VIS-001",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Workspace de tres zonas",
+    "expected": "LeftSidebar, Canvas y RightSidebar mantienen jerarquía estable.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-002",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Modo con sidebars colapsados",
+    "expected": "Los rails siguen visibles y permiten restaurar cada panel.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-003",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Modo enfoque",
+    "expected": "Cierra ambos paneles sin perder selección, zoom, scroll ni página.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-004",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Toolbar superior central",
+    "expected": "Página y selección se muestran una sola vez.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-005",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Toolbar superior derecha",
+    "expected": "Guardar, estado y menú Más no se superponen al panel.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-006",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Toolbar inferior",
+    "expected": "Undo, redo, fit y zoom permanecen visibles sin recorte.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-007",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Tooltips controlados",
+    "expected": "No se depende de title nativo para acciones esenciales.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-008",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Menú Más agrupado",
+    "expected": "Vista, página, documento y ayuda tienen jerarquía consistente.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-009",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Grid y reglas discretas",
+    "expected": "La precisión no compite visualmente con el PDF.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-010",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Chrome de selección",
+    "expected": "Selección, owner, required y lock no dependen solo del color.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-011",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Nombres largos",
+    "expected": "Ellipsis y tooltip preservan el nombre completo.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-012",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Safe areas",
+    "expected": "El chrome respeta notch, barras móviles y viewport dinámico.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-013",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Reduced motion",
+    "expected": "Animaciones se desactivan con prefers-reduced-motion.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-014",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Aislamiento visual",
+    "expected": "El host no altera internals de sisad-pdfme.",
+    "status": "canonical"
+  },
+  {
+    "id": "VIS-015",
+    "source": "COREUX",
+    "domain": "VIS",
+    "name": "Tema dinámico",
+    "expected": "Tokens y densidad cambian sin reconstruir el engine.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-001",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Undo",
+    "expected": "Deshace el último comando ejecutable y actualiza disponibilidad.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-002",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Redo",
+    "expected": "Rehace el último comando deshecho.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-003",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Fit page",
+    "expected": "Ajusta toda la página al viewport.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-004",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Fit width",
+    "expected": "Ajusta el ancho de la página.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-005",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Zoom",
+    "expected": "Usa decimal interno y porcentaje visible.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-006",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Insertar página",
+    "expected": "Agrega página después de la actual y es deshacerable.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-007",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Duplicar página",
+    "expected": "Duplica página, schemas, routing e identidades válidas.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-008",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Eliminar página",
+    "expected": "Protege página inicial y pide confirmación cuando corresponde.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-009",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Toggle grid",
+    "expected": "Cambia visibilidad mediante comando y configuración canónica.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-010",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Toggle guides",
+    "expected": "Cambia guías sin manipulación DOM local.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-011",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Toggle snap",
+    "expected": "Cambia ajuste magnético y comunica estado.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-012",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Toggle padding",
+    "expected": "Cambia chrome de padding sin alterar geometría persistida.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-013",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Exportar",
+    "expected": "Genera artefacto con preflight y estados de progreso.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-014",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Guardar",
+    "expected": "Ejecuta una sola acción global con estados semánticos.",
+    "status": "canonical"
+  },
+  {
+    "id": "CMD-015",
+    "source": "COREUX",
+    "domain": "CMD",
+    "name": "Atajos",
+    "expected": "Cada atajo delega en command/action registry y respeta contexto.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-001",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Designer ready",
+    "expected": "Emite una vez con controller, capacidades y versión.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-002",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Template changed",
+    "expected": "Emite revisión y causa sin duplicar onChange.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-003",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Schema changed",
+    "expected": "Distingue add, update, remove, duplicate y reorder.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-004",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Selection changed",
+    "expected": "Emite ids, modo, documento y página.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-005",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Interaction phase changed",
+    "expected": "Emite idle, selecting, dragging, resizing, rotating, editing y modal.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-006",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Page changed",
+    "expected": "Emite página previa/nueva y documento.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-007",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Zoom changed",
+    "expected": "Emite valor anterior/nuevo y causa.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-008",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Sidebar changed",
+    "expected": "Emite lado, modo, abierto/cerrado y causa responsive/usuario.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-009",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "View feature changed",
+    "expected": "Emite grid, guides, snap y padding.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-010",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Recipients changed",
+    "expected": "Emite registry revision y recipients serializables.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-011",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Active recipient changed",
+    "expected": "Emite anterior/nuevo y fuente.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-012",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Assignment changed",
+    "expected": "Emite schemas, owner anterior/nuevo y lock preservado.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-013",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Document changed",
+    "expected": "Emite documento activo y routing.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-014",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Comment lifecycle",
+    "expected": "Emite create, reply, resolve, reopen, move y delete.",
+    "status": "canonical"
+  },
+  {
+    "id": "EVT-015",
+    "source": "COREUX",
+    "domain": "EVT",
+    "name": "Save/export/error lifecycle",
+    "expected": "Emite requested, started, succeeded y failed con correlationId.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-001",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Selección simple",
+    "expected": "Click reemplaza selección.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-002",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Multiselección macOS",
+    "expected": "Command alterna y Command+Shift acumula.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-003",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Multiselección Windows/Linux",
+    "expected": "Control alterna y Control+Shift acumula.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-004",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Selección regional",
+    "expected": "Selecto respeta intención acumulativa.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-005",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Inspección bloqueada",
+    "expected": "Un schema bloqueado sigue siendo seleccionable para inspección.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-006",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Drag",
+    "expected": "Solo schemas editables se mueven y el evento es deshacerable.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-007",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Resize",
+    "expected": "Respeta acceso, límites y ratio por familia.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-008",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Rotate",
+    "expected": "Respeta permisos y normaliza valor.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-009",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Inline edit",
+    "expected": "No compite con selección, drag ni shortcuts.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-010",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Doble click en opciones",
+    "expected": "Designer cambia opción solo mediante doble click.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-011",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Modal suspend",
+    "expected": "Moveable, Selecto y shortcuts se suspenden al abrir modal.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-012",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Modal restore",
+    "expected": "Cancelar/restaurar conserva selección y foco coherente.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-013",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Copy/paste",
+    "expected": "Preserva metadata y aplica offset/routing seguro.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-014",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "Group/ungroup",
+    "expected": "Opciones internas no se convierten en schemas independientes.",
+    "status": "canonical"
+  },
+  {
+    "id": "INT-015",
+    "source": "COREUX",
+    "domain": "INT",
+    "name": "No overlap",
+    "expected": "Drop y duplicación respetan documento, página y owner.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-001",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Catálogo list",
+    "expected": "Vista lista compacta con icono, label y favorito.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-002",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Catálogo tiles",
+    "expected": "Dos o más columnas sin tarjetas anidadas.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-003",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Catálogo icons",
+    "expected": "Grid adaptativo con tooltip accesible.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-004",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Búsqueda",
+    "expected": "Filtra por nombre, tipo, familia y aliases.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-005",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Favoritos y recientes",
+    "expected": "Persistencia configurable sin duplicar catálogos.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-006",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Custom fields",
+    "expected": "Presets y plugins se registran por API.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-007",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Recipient filter",
+    "expected": "Selector activo usa registry único.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-008",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Fields list",
+    "expected": "Fila estándar con drag, nombre, tipo, owner, página y estado.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-009",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "List/canvas sync",
+    "expected": "Seleccionar fila localiza y enfoca schema.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-010",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Rename",
+    "expected": "Diferencia nombre técnico y label visible.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-011",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Reorder",
+    "expected": "Preserva schemas filtrados y snapshot.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-012",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Delete",
+    "expected": "Respeta access state y confirmación.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-013",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Reassign",
+    "expected": "Solo aparece con más de un recipient asignable y selección.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-014",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Documents panel",
+    "expected": "Carga, activa, reordena y elimina documentos.",
+    "status": "canonical"
+  },
+  {
+    "id": "SID-015",
+    "source": "COREUX",
+    "domain": "SID",
+    "name": "Comments panel",
+    "expected": "Navega comentarios por documento, página y schema.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-001",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Header de schema",
+    "expected": "Resume identidad, tipo, owner, selección y estado.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-002",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Identity section",
+    "expected": "Nombre, label, fieldKey y descripción sin duplicar.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-003",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Content section",
+    "expected": "Valor, placeholder o acción según familia.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-004",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Options section",
+    "expected": "Opciones, default, orden y add/remove.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-005",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Fill rules",
+    "expected": "Required y validación viven solo aquí.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-006",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Interaction section",
+    "expected": "ReadOnly, orientación, espaciado y visibilidad runtime.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-007",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Geometry section",
+    "expected": "X, Y, ancho, alto, rotación y alineación adaptativa.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-008",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Connections section",
+    "expected": "Binding, dataLabel, tabLabel y fieldKey sin subtarjeta duplicada.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-009",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Format section",
+    "expected": "Solo propiedades visuales aplicables.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-010",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Assignment section",
+    "expected": "Owner, lock, reason, reassign y auditoría.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-011",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Advanced section",
+    "expected": "UID, documentId, pageNumber y legacy ocultos por defecto.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-012",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Profile by family",
+    "expected": "Cada familia muestra solo secciones útiles.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-013",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Widget read/write",
+    "expected": "Todo control visible tiene propertyPath y writer real.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-014",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Widget visibility/access",
+    "expected": "visibleWhen y disabledWhen usan config/access canónicos.",
+    "status": "canonical"
+  },
+  {
+    "id": "INS-015",
+    "source": "COREUX",
+    "domain": "INS",
+    "name": "Inspector responsive",
+    "expected": "No hay inputs cortados ni scroll horizontal.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-001",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Identidad estable",
+    "expected": "schemaUid no cambia por rename, copy o document switch.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-002",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Routing estable",
+    "expected": "documentId y pageNumber sobreviven a operaciones.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-003",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Owner estable",
+    "expected": "ownerRecipientId y owner color se preservan.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-004",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Text-like",
+    "expected": "Texto y presets comparten contrato sin duplicar plugins.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-005",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Number",
+    "expected": "Formato, rango y decimales se validan.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-006",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Date/time",
+    "expected": "Fecha, hora y fecha-hora tienen formato y required/readOnly.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-007",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Checkbox",
+    "expected": "Designer selecciona con click y alterna con doble click.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-008",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "CheckboxGroup",
+    "expected": "Selección múltiple, optionId y botón + externo.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-009",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "RadioGroup",
+    "expected": "Selección única, optionId y botón + externo.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-010",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Select/dropdown",
+    "expected": "Placeholder Seleccionar y opciones únicas.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-011",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Signature family",
+    "expected": "Firma, iniciales y dateSigned usan modos y providers coherentes.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-012",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Action schemas",
+    "expected": "Attachment, note, approve y decline tienen perfiles propios.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-013",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Visual schemas",
+    "expected": "Imagen, SVG, tabla, shapes y barcodes no muestran reglas de captura impropias.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-014",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Custom schema",
+    "expected": "Factory/registry/plugin con Designer/Form/Viewer/Generator.",
+    "status": "canonical"
+  },
+  {
+    "id": "SCH-015",
+    "source": "COREUX",
+    "domain": "SCH",
+    "name": "Owner chrome",
+    "expected": "Canvas, catálogo, lista e inspector comparten owner tone.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-001",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Documento único",
+    "expected": "Template y basePdf se preservan.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-002",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Multidocumento",
+    "expected": "Cada documento conserva páginas y schemas.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-003",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Documento activo interno",
+    "expected": "El core controla activeDocumentId.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-004",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Documento activo host",
+    "expected": "El host controla y recibe cambios.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-005",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Documento sin schemas",
+    "expected": "Se muestra y permite insertar campos.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-006",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Reordenar documentos",
+    "expected": "No cambia IDs ni routing.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-007",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Agregar documento",
+    "expected": "Normaliza metadatos y crea estado válido.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-008",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Eliminar documento",
+    "expected": "Reasigna documento activo y limpia recursos.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-009",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Página activa",
+    "expected": "Se conserva por documento cuando la política lo permite.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-010",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Comentarios por documento",
+    "expected": "Filtra sin perder comentarios globales.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-011",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Assignments por documento",
+    "expected": "Mantiene owner y página.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-012",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Snapshot documentos",
+    "expected": "Round-trip de orden, activeDocument y templates.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-013",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Object URLs",
+    "expected": "Se revocan al reemplazar/eliminar.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-014",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "PDF converters",
+    "expected": "Size/images/pdf usan APIs públicas.",
+    "status": "canonical"
+  },
+  {
+    "id": "DOC-015",
+    "source": "COREUX",
+    "domain": "DOC",
+    "name": "Export multidocumento",
+    "expected": "Explicita estrategia merge/separado.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-001",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Designer mode",
+    "expected": "Edición completa y config dinámica.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-002",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Form mode",
+    "expected": "Inputs editables y validación.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-003",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Viewer mode",
+    "expected": "Solo lectura sin handlers mutables.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-004",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Values initial",
+    "expected": "Derivados o declarados sin lógica host duplicada.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-005",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Required validation",
+    "expected": "Diferente para diseño, llenado, generación y envío.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-006",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Signature request",
+    "expected": "Provider genérico y evento público.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-007",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Generator preflight",
+    "expected": "No genera si faltan requisitos.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-008",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Autosave",
+    "expected": "Adapter y debounce cancelable.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-009",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Async hydration",
+    "expected": "No pisa edición local.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-010",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Controller parity",
+    "expected": "Tipo, wrapper y ejecución coinciden.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-011",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Capability explain",
+    "expected": "supported/available/reason/methods.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-012",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Config hot update",
+    "expected": "Cambios presentacionales no remontan.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-013",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Config rebuild",
+    "expected": "Cambios estructurales reconstruyen de forma controlada.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-014",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Snapshot runtime",
+    "expected": "Form/Viewer consumen artefacto canónico.",
+    "status": "canonical"
+  },
+  {
+    "id": "RUN-015",
+    "source": "COREUX",
+    "domain": "RUN",
+    "name": "Error recovery",
+    "expected": "Errores se exponen sin congelar la instancia.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-001",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Core TypeScript",
+    "expected": "Código nuevo de sisad-pdfme usa TS/TSX.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-002",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Sin host imports",
+    "expected": "No importa src/examples/features/modules.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-003",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Sin deep readers",
+    "expected": "Config se consume por selectors/service.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-004",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Sin acción duplicada",
+    "expected": "Una definición por actionId.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-005",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Sin evento string libre",
+    "expected": "Catálogo tipado y versionado.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-006",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Sin listeners huérfanos",
+    "expected": "Toda suscripción se limpia.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-007",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Sin setTimeout de coordinación",
+    "expected": "Efectos usan lifecycle explícito.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-008",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Sin z-index arbitrario",
+    "expected": "Capas usan tokens canónicos.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-009",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Sin CSS global",
+    "expected": "Tailwind-first y tokens.css.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-010",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Unit contracts",
+    "expected": "Políticas, reducers, factories y events tienen pruebas.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-011",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Playwright",
+    "expected": "Desktop/tablet/mobile y estados críticos.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-012",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Visual regression",
+    "expected": "Screenshots focales estables.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-013",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Performance",
+    "expected": "No remount y budgets de renders.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-014",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Dead code",
+    "expected": "Exports públicos justificados.",
+    "status": "canonical"
+  },
+  {
+    "id": "QLT-015",
+    "source": "COREUX",
+    "domain": "QLT",
+    "name": "Docs/release",
+    "expected": "Manual, migración y changelog verificables.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-001",
+    "source": "DECL",
+    "domain": "Designer",
+    "name": "Designer declarativo mínimo",
+    "expected": "Montar Designer con una definición JSON y un template por defecto.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-002",
+    "source": "DECL",
+    "domain": "Designer",
+    "name": "Designer controlado",
+    "expected": "El host controla template y recibe cambios sin reconstruir el runtime.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-003",
+    "source": "DECL",
+    "domain": "Designer",
+    "name": "Designer no controlado",
+    "expected": "La instancia conserva internamente el template cuando el host no lo controla.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-004",
+    "source": "DECL",
+    "domain": "Runtime",
+    "name": "Form declarativo",
+    "expected": "Montar Form con definition.mode=form y valores iniciales.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-005",
+    "source": "DECL",
+    "domain": "Runtime",
+    "name": "Viewer declarativo",
+    "expected": "Montar Viewer readonly con definition.mode=viewer.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-006",
+    "source": "DECL",
+    "domain": "Runtime",
+    "name": "Cambio de modo",
+    "expected": "Cambiar Designer/Form/Viewer mediante definición, con impacto explícito y sin estado fantasma.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-007",
+    "source": "DECL",
+    "domain": "Recipients",
+    "name": "Un recipient",
+    "expected": "Registrar un usuario y asignarlo como owner por defecto.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-008",
+    "source": "DECL",
+    "domain": "Recipients",
+    "name": "Múltiples recipients",
+    "expected": "Registrar dos o más usuarios con selector interno y recipient activo.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-009",
+    "source": "DECL",
+    "domain": "Recipients",
+    "name": "Color explícito",
+    "expected": "Respetar el color declarado por recipient.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-010",
+    "source": "DECL",
+    "domain": "Recipients",
+    "name": "Color automático",
+    "expected": "Asignar paleta estable cuando falta color.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-011",
+    "source": "DECL",
+    "domain": "Recipients",
+    "name": "Recipient deshabilitado",
+    "expected": "Excluir recipients no asignables sin perder su metadata.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-012",
+    "source": "DECL",
+    "domain": "Recipients",
+    "name": "Recipient de copia",
+    "expected": "Permitir recipient informativo, pero excluirlo de firma y reasignación.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-013",
+    "source": "DECL",
+    "domain": "Recipients",
+    "name": "Recipient activo controlado",
+    "expected": "El host controla activeRecipientId.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-014",
+    "source": "DECL",
+    "domain": "Recipients",
+    "name": "Recipient activo no controlado",
+    "expected": "La instancia resuelve y conserva recipient activo.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-015",
+    "source": "DECL",
+    "domain": "Assignment",
+    "name": "Reasignar oculto con 0–1 recipients",
+    "expected": "No mostrar Reasignar responsable con menos de dos recipients asignables.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-016",
+    "source": "DECL",
+    "domain": "Assignment",
+    "name": "Reasignar visible con 2+ recipients",
+    "expected": "Mostrar Reasignar al existir selección y más de un recipient asignable.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-017",
+    "source": "DECL",
+    "domain": "Assignment",
+    "name": "Reasignar deshabilitado por permiso",
+    "expected": "Mostrar estado deshabilitado con razón estable si no puede editar estructura.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-018",
+    "source": "DECL",
+    "domain": "Assignment",
+    "name": "Reasignación masiva",
+    "expected": "Asignar múltiples schemas y preservar locks/readonly/geometría.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-019",
+    "source": "DECL",
+    "domain": "Assignment",
+    "name": "Owner compartido",
+    "expected": "Representar ownership multi/shared sin duplicar fuentes.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-020",
+    "source": "DECL",
+    "domain": "Assignment",
+    "name": "Schema sin owner",
+    "expected": "Permitir unassigned únicamente cuando la configuración lo autoriza.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-021",
+    "source": "DECL",
+    "domain": "Collaboration",
+    "name": "Vista global",
+    "expected": "Mostrar todos los owners sin cambiar ownership.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-022",
+    "source": "DECL",
+    "domain": "Collaboration",
+    "name": "Filtro por recipient",
+    "expected": "Form/Designer filtran campos según recipient activo.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-023",
+    "source": "DECL",
+    "domain": "Collaboration",
+    "name": "Lock y readOnly",
+    "expected": "Preservar lock, lockedBy y readOnly en cambios de recipient y snapshot.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-024",
+    "source": "DECL",
+    "domain": "Comments",
+    "name": "Comentarios",
+    "expected": "Comentarios de documento, página y schema con resolve/reopen.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-026",
+    "source": "DECL",
+    "domain": "Documents",
+    "name": "Múltiples documentos",
+    "expected": "Montar documentos con routing independiente.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-028",
+    "source": "DECL",
+    "domain": "Documents",
+    "name": "Documento activo controlado",
+    "expected": "El host controla activeDocumentId y recibe cambios.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-030",
+    "source": "DECL",
+    "domain": "Documents",
+    "name": "Routing documento/página",
+    "expected": "Conservar documentId, pageNumber y schemaUid.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-031",
+    "source": "DECL",
+    "domain": "Documents",
+    "name": "Orden de documentos",
+    "expected": "Reordenar documentos sin perder routing.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-032",
+    "source": "DECL",
+    "domain": "Schemas",
+    "name": "Allowlist de schemas",
+    "expected": "enabledTypes limita capacidades registradas disponibles.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-033",
+    "source": "DECL",
+    "domain": "Schemas",
+    "name": "Denylist de schemas",
+    "expected": "disabledTypes excluye tipos después de la allowlist.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-034",
+    "source": "DECL",
+    "domain": "Schemas",
+    "name": "Visibilidad por superficie",
+    "expected": "Catálogo, Canvas, inspector y runtime pueden ocultar tipos sin desregistrarlos.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-035",
+    "source": "DECL",
+    "domain": "Schemas",
+    "name": "Plugins custom",
+    "expected": "Registrar plugins TypeScript y referenciarlos desde la definición mediante resources.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-037",
+    "source": "DECL",
+    "domain": "Schemas",
+    "name": "Número y fechas",
+    "expected": "Número, fecha, fecha-hora y hora soportan required/readOnly/prefill.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-038",
+    "source": "DECL",
+    "domain": "Schemas",
+    "name": "Select y dropdown",
+    "expected": "Opciones, placeholder Seleccionar y valores se resuelven de forma única.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-039",
+    "source": "DECL",
+    "domain": "Schemas",
+    "name": "Radio y checkbox groups",
+    "expected": "Grupos, optionId estable, botón + y selección root funcionan.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-040",
+    "source": "DECL",
+    "domain": "Schemas",
+    "name": "Firma",
+    "expected": "Firma, iniciales y fecha firmada soportan required y providers.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-041",
+    "source": "DECL",
+    "domain": "Schemas",
+    "name": "Acciones",
+    "expected": "Attachment, note, approve y decline conservan capacidades y validación.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-042",
+    "source": "DECL",
+    "domain": "Schemas",
+    "name": "Visuales",
+    "expected": "Imagen, SVG, tabla, formas y barcodes se crean desde recipe sin reglas de captura impropias.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-043",
+    "source": "DECL",
+    "domain": "Templates",
+    "name": "Recipe de template",
+    "expected": "Crear template de demostración desde grupos/tipos sin lógica en examples.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-044",
+    "source": "DECL",
+    "domain": "Templates",
+    "name": "Layout multipágina",
+    "expected": "Distribuir schemas con límites, salto de fila y salto de página.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-045",
+    "source": "DECL",
+    "domain": "Runtime",
+    "name": "Inputs iniciales",
+    "expected": "Derivar values desde template o aceptar values declarados.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-046",
+    "source": "DECL",
+    "domain": "Validation",
+    "name": "Validación por perfil",
+    "expected": "Separar validación de diseño, llenado, generación y envío.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-047",
+    "source": "DECL",
+    "domain": "Events",
+    "name": "Eventos",
+    "expected": "onReady/onChange/onSave/onError/selection/recipient/assignment/document/signature.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-048",
+    "source": "DECL",
+    "domain": "Controller",
+    "name": "Controller opcional",
+    "expected": "Exponer controller solo cuando el host lo solicita.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-049",
+    "source": "DECL",
+    "domain": "Configuration",
+    "name": "Config dinámica",
+    "expected": "Actualizar presentación sin remount y clasificar cambios estructurales.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-050",
+    "source": "DECL",
+    "domain": "Persistence",
+    "name": "Snapshot completo",
+    "expected": "Round-trip de template, recipients, documents, assignments, comments y firma.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-051",
+    "source": "DECL",
+    "domain": "Persistence",
+    "name": "Bundle portable",
+    "expected": "Exportar/importar definición, snapshot y assets sin identidad de laboratorio.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-052",
+    "source": "DECL",
+    "domain": "Persistence",
+    "name": "Autosave host/local",
+    "expected": "Delegar storage y autosave mediante adapter sin lógica en examples.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-053",
+    "source": "DECL",
+    "domain": "Integration",
+    "name": "Datos asíncronos",
+    "expected": "Hidratar recipients/documents/config sin perder edición local.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-054",
+    "source": "DECL",
+    "domain": "Artifacts",
+    "name": "Generator",
+    "expected": "Generar PDF con preflight desde la instancia.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-055",
+    "source": "DECL",
+    "domain": "Artifacts",
+    "name": "Converter",
+    "expected": "PDF→size, PDF→images e images→PDF mediante API pública.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-056",
+    "source": "DECL",
+    "domain": "Integration",
+    "name": "DigitalAgreements",
+    "expected": "Consumir definición declarativa sin internals y conservar snapshot.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-057",
+    "source": "DECL",
+    "domain": "Integration",
+    "name": "ExternalForms",
+    "expected": "Consumir el mismo template/snapshot en Form y Viewer.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-058",
+    "source": "DECL",
+    "domain": "UX",
+    "name": "Responsive",
+    "expected": "Designer ocupa viewport y sidebars se adaptan sin cambiar geometría.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-059",
+    "source": "DECL",
+    "domain": "UX",
+    "name": "Touch y accesibilidad",
+    "expected": "Targets, foco, Escape, reduced motion y teclado móvil.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-061",
+    "source": "DECL",
+    "domain": "Examples",
+    "name": "Ejemplo básico ≤30 líneas",
+    "expected": "La página solo importa definición y monta la instancia.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-062",
+    "source": "DECL",
+    "domain": "Quality",
+    "name": "Examples solo JS/JSX/JSON",
+    "expected": "No existen TS/TSX ni imports .ts profundos en examples.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-063",
+    "source": "DECL",
+    "domain": "Quality",
+    "name": "Core solo TS/TSX",
+    "expected": "Nuevas utilidades del componente no se implementan en JS/JSX.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-064",
+    "source": "DECL",
+    "domain": "Quality",
+    "name": "No deep imports",
+    "expected": "Examples consumen únicamente entrypoints públicos.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-065",
+    "source": "DECL",
+    "domain": "Performance",
+    "name": "No remount",
+    "expected": "Cambiar recipient, abrir info o actualizar UI no reconstruye engine.",
+    "status": "canonical"
+  },
+  {
+    "id": "DECL-UC-066",
+    "source": "DECL",
+    "domain": "Compatibility",
+    "name": "Compatibilidad API baja",
+    "expected": "Designer/Form/Viewer actuales siguen disponibles.",
+    "status": "canonical"
+  }
+]

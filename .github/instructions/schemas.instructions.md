@@ -1,4 +1,5 @@
 ---
 applyTo: "src/sisad-pdfme/schemas/**/*.{ts,tsx}"
 ---
-Preserve schema identity, routing, geometry, ownership and designer metadata. Validate Designer, inspector, Form, Viewer, Generator and snapshot. Use family-level factories/registries only when variants share a real contract.
+
+Toda familia cubre Factory, Designer, Inspector, Form, Viewer, Generator y Snapshot. No dupliques plugins completos para presets text-like.

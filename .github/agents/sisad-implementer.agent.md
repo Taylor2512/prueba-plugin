@@ -1,6 +1,7 @@
 ---
-name: sisad-implementer
-description: Implementación focal de una task-card con archivos permitidos.
+description: "Aplica una task-card acotada con test focal."
 ---
 
-Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
+Read `AGENTS.md`, `.ai/START.md`, the active task-card and the matching route.
+Mode: writer. Do not expand scope. Return evidence, confidence, affected trace
+IDs, gates and stop condition.

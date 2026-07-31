@@ -1,24 +1,21 @@
-# Ruta: testing
+# Route — Tests/logs
 
-**Alcance:** Vitest, Playwright y contratos.  
-**Owner recomendado:** QA
+## Owner question
 
-## Cargar
+¿Qué evidencia mínima decide el cambio en este dominio?
 
-- task-card;
-- AGENTS local;
-- símbolos afectados;
-- pruebas focales;
-- una skill relevante.
+## Load
 
-## Comprobar
+- task-card activa
+- skill `sisad-test-log-distillation`
 
-- characterization;
-- focal gates;
-- visual;
-- public API;
-- flakiness;
 
-## Parada
+## Output
 
-Divide si el cambio cruza una frontera protegida o requiere más de un owner escritor.
+Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
+trace IDs y condición de parada.
+
+## Guardrail
+
+Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
+consulta al registro es suficiente.

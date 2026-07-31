@@ -1,12 +1,11 @@
-# Claude Code — Adaptador del repositorio
+# Claude Code — adaptador delgado
 
-La fuente de verdad es `AGENTS.md` y `.ai/`. Este archivo no duplica playbooks.
+Fuente canónica: `AGENTS.md` y `.ai/`.
 
-## Uso
-
-- Carga skills bajo demanda desde `.agents/skills/`.
-- Usa subagentes solo para investigaciones independientes y con herramientas restringidas.
-- Mantén un solo subagente escritor por worktree.
-- Usa hooks deterministas para bloquear acciones prohibidas; no dependas de un prompt para reglas mecánicas.
-- La memoria automática de Claude es auxiliar. La memoria durable del proyecto vive en `.ai/memory/`.
-- Al compactar o reanudar, valida la task-card, el commit base y el estado real del working tree.
+- Carga una sola task-card, ruta y skill.
+- Usa subagentes para exploración/logs que contaminarían el contexto principal.
+- No uses agent teams por defecto: su coste es sustancialmente mayor.
+- La memoria automática de Claude es auxiliar; `.ai/memory/` es la memoria
+  durable compartida.
+- Usa hooks para políticas mecánicas, no prompts largos.
+- Revalida rama, worktree, commit base y diff tras compactar o reanudar.

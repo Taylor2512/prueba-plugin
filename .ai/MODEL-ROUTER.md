@@ -1,35 +1,29 @@
-# Router de modelos por capacidad
+# Router de modelos V7
 
-No fijes la arquitectura a nombres comerciales. Selecciona la capacidad mínima que cumple el criterio de éxito.
+La arquitectura usa clases de capacidad. Los adapters traducen a modelos
+disponibles en cada proveedor.
 
-## Clases
-
-| Clase | Uso | Razonamiento |
+| Clase | Trabajo | Esfuerzo |
 |---|---|---|
-| Extractor | inventario, clasificación, summaries, memory delta | bajo |
-| Implementador | cambios claros, tests, documentación | bajo/medio |
-| Diagnóstico | bugs ambiguos, visuales o transversales | medio/alto |
-| Arquitecto | contratos públicos, snapshot, canvas, migraciones | alto |
-| Revisor independiente | diff de alto riesgo | medio/alto |
+| Extractor | inventario, clasificación, índices, memory delta | bajo |
+| Implementer | parche focal, tests, documentación | bajo/medio |
+| Diagnostician | bug ambiguo o visual reproducible | medio/alto |
+| Architect | API, Canvas, snapshot, migración | alto |
+| Reviewer | diff independiente y riesgos | medio/alto |
 
-## Ejemplos actuales
+## Mapeo orientativo actual
 
-- GPT-5.6 Luna: Extractor.
-- GPT-5.6 Terra: Implementador y diagnóstico acotado.
-- GPT-5.6 Sol: Arquitectura y revisión de alto riesgo.
-- Claude rápido/medio: exploración o implementación delimitada.
-- Claude avanzado: diagnóstico complejo, no tareas mecánicas.
-- Copilot: edición focal con instrucciones de ruta y tests.
+- Codex Luna: extracción y tareas mecánicas.
+- Codex Terra: implementación diaria y diagnóstico acotado.
+- Codex Sol: contratos y alto riesgo.
+- Claude rápido: búsqueda/logs/subagentes lectores.
+- Claude avanzado: arquitectura o diagnóstico difícil.
+- Copilot: implementación focal, revisión y tareas issue-driven.
 
 ## Escalamiento
 
-Escala solo cuando existan dos señales:
+Escala cuando haya al menos dos señales: hipótesis incompatibles, tres dominios,
+contrato público, migración, fallo no reproducido o tres intentos distintos.
 
-- hipótesis incompatibles;
-- más de tres dominios;
-- falta de caracterización;
-- contrato público o migración;
-- comportamiento visual no reproducido;
-- tres fallos diferentes.
-
-Desescala inmediatamente después de aislar la causa.
+Desescala inmediatamente al aislar la causa. No mantengas un modelo caro para
+renames, tablas, documentación o ejecución mecánica.

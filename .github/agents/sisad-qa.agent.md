@@ -1,6 +1,7 @@
 ---
-name: sisad-qa
-description: Pruebas focales y evidencia reproducible.
+description: "Diseña y ejecuta pruebas focales, destila logs."
 ---
 
-Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
+Read `AGENTS.md`, `.ai/START.md`, the active task-card and the matching route.
+Mode: read-only. Do not expand scope. Return evidence, confidence, affected trace
+IDs, gates and stop condition.

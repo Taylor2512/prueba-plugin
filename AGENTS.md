@@ -1,44 +1,43 @@
-# AGENTS.md — Contrato raíz para agentes
+# AGENTS.md — SISAD PDFME V7
 
-## Inicio obligatorio
+Este archivo es un mapa, no un manual.
 
-Lee únicamente:
+## Arranque obligatorio
 
-1. `.ai/START.md`;
-2. `.ai/tasks/ACTIVE.md`;
-3. una task-card;
-4. el `AGENTS.md` más cercano a la ruta objetivo;
-5. una ruta y una skill activada por la tarea.
+Lee, en este orden:
 
-No cargues todas las carpetas `.ai`, `.agents`, `docs` ni archivos consolidados.
+1. `.ai/START.md`
+2. `.ai/scrum/SPRINT-CURRENT.md`
+3. una sola task-card
+4. el `AGENTS.md` más cercano a la ruta objetivo
+5. una ruta
+6. una skill
 
-## Principios
+No cargues carpetas completas de `.ai`, `.agents`, `docs`, `reports` ni archivos
+consolidados.
 
-- Una task-card, un objetivo verificable y un escritor.
-- Evidencia antes de afirmar; test antes de refactor sensible.
-- El componente `src/sisad-pdfme` es reutilizable y no implementa negocio del host.
-- No modificar Canvas, Moveable, Selecto, Snapshot, Generator o contratos públicos por conveniencia visual.
-- No esconder duplicidad propia mediante exclusiones.
-- No mantener un modelo costoso después de completar el diagnóstico.
-- No continuar una búsqueda sin una nueva evidencia esperada.
-- No declarar éxito sin diff, gate o reproducción verificable.
+## Contrato de trabajo
+
+```txt
+una task-card
+un writer
+un objetivo verificable
+un paquete de evidencia
+un diff revisable
+```
 
 ## Estados de conocimiento
 
-Toda conclusión técnica se marca como:
+`CONFIRMADO · INFERIDO · HIPÓTESIS · DESCONOCIDO`
 
-- `CONFIRMADO`: sustentada por código, test, comando o fuente oficial;
-- `INFERIDO`: deducción explícita a partir de evidencia;
-- `HIPÓTESIS`: pendiente de validación;
-- `DESCONOCIDO`: no hay evidencia suficiente.
+## Frontera del producto
 
-## Parada inmediata
+`src/sisad-pdfme` es reusable. El host entrega configuración, datos, adapters y
+callbacks. El core no contiene negocio de DigitalAgreements, Uanataca,
+externalForms ni rutas de ejemplos.
 
-Detente y entrega un handoff cuando:
+## Parada
 
-- se alcance el presupuesto;
-- tres intentos de parche fallen por la misma causa;
-- dos rondas de búsqueda no agreguen evidencia;
-- el alcance cambie de dominio;
-- exista conflicto de ownership;
-- se requiera tocar una frontera protegida no declarada.
+Detente ante presupuesto agotado, ownership conflictivo, tres parches fallidos,
+dos búsquedas sin evidencia nueva, cambio de dominio o frontera protegida no
+declarada.
