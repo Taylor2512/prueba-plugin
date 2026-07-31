@@ -1,8 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import * as moduleUnderTest from '@/features/pdfcomponent/integration/createLabPdfmeConfig';
+import * as moduleUnderTest from '@/examples/index.jsx';
 
-describe('features/pdfcomponent/integration/createLabPdfmeConfig.ts', ()=>{
-  it('imports without crashing', ()=>{
+describe('sisad-pdfme/examples barrel', () => {
+  it('exposes the example builders used by the examples folder', () => {
     expect(moduleUnderTest).toBeTruthy();
+    expect(typeof moduleUnderTest.createExample).toBe('function');
+    expect(typeof moduleUnderTest.buildExampleBundle).toBe('function');
   });
 });

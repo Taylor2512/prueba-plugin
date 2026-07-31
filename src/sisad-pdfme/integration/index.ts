@@ -26,6 +26,14 @@ export {
   resolveSisadPdfmeConfig,
   createInspectorConfigurationResolver,
 } from '../config/index.js';
+export {
+  normalizeHostData,
+} from './normalizeHostData.js';
+export type {
+  SisadPdfmeHostDataAdapters,
+  SisadPdfmeHostDataInput,
+  SisadPdfmeNormalizedHostData,
+} from './normalizeHostData.js';
 import {
   SisadPdfmeProvider,
   SisadPdfmeDesigner,
@@ -53,6 +61,8 @@ export {
 export type {
   ResolvedSisadPdfmeConfig,
   SisadPdfmeController,
+  SisadPdfmeControllerCapabilityDomain,
+  SisadPdfmeControllerCapabilityState,
   SisadPdfmeDocument,
   SisadPdfmeDocumentsAdapter,
   SisadPdfmeEventHandlers,

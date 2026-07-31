@@ -1,64 +1,35 @@
 import { describe, expect, it } from 'vitest';
-import { createLabPdfmeConfig } from '@/features/pdfcomponent/integration/createLabPdfmeConfig';
+import { createSisadPdfmeConfig } from '@/sisad-pdfme/config';
 
-describe('features/pdfcomponent/integration/createLabPdfmeConfig', () => {
+describe('sisad-pdfme/config integration', () => {
   it('propagates active recipient overrides and global view into collaboration config', () => {
-    const config = createLabPdfmeConfig({
-      example: {
-        id: 'example-1',
-        title: 'Example',
-        template: { schemas: [[]] } as any,
-        collaboration: {
-          activeUserId: 'recipient-1',
-          isGlobalView: false,
-          users: [{ id: 'recipient-1', name: 'Cliente' }],
-        },
-      } as any,
-      normalized: {
-        template: { schemas: [[]] } as any,
-        inputs: [],
-        recipients: [{ id: 'recipient-1', name: 'Cliente' }],
-        documents: [],
+    const resolved = createSisadPdfmeConfig({
+      collaboration: {
         activeRecipientId: 'recipient-1',
-        signatureProviders: [],
+        isGlobalView: true,
+        enabled: true,
+        canEditStructure: true,
       },
-      activeRecipientId: 'recipient-2',
-      isGlobalView: true,
     });
 
-    expect(config.config.collaboration.activeRecipientId).toBe('recipient-2');
-    expect(config.config.collaboration.isGlobalView).toBe(true);
-    expect(config.runtimeOptions.collaboration?.activeRecipientId).toBe('recipient-2');
-    expect(config.runtimeOptions.collaboration?.isGlobalView).toBe(true);
+    expect(resolved.config.collaboration.activeRecipientId).toBe('recipient-1');
+    expect(resolved.config.collaboration.isGlobalView).toBe(true);
+    expect(resolved.runtimeOptions.collaboration?.activeRecipientId).toBe('recipient-1');
+    expect(resolved.runtimeOptions.collaboration?.isGlobalView).toBe(true);
   });
 
-  it('opens the docs tab by default for multi-document routing examples', () => {
-    const config = createLabPdfmeConfig({
-      example: {
-        id: 'multi-document-routing',
-        title: 'Multidocumento integral',
-        template: { schemas: [[]] } as any,
-        runtimeOptions: {
-          uploadedDocuments: [
-            { id: 'doc-a', name: 'Documento A' },
-            { id: 'doc-b', name: 'Documento B' },
-          ],
-          rightSidebarViewMode: 'docs',
+  it('opens the docs tab by default for document sidebar presets', () => {
+    const resolved = createSisadPdfmeConfig({
+      sidebars: {
+        right: {
+          defaultPanel: 'documents',
         },
-      } as any,
-      normalized: {
-        template: { schemas: [[]] } as any,
-        inputs: [],
-        recipients: [],
-        documents: [
-          { id: 'doc-a', label: 'Documento A' },
-          { id: 'doc-b', label: 'Documento B' },
-        ],
-        activeRecipientId: null,
-        signatureProviders: [],
+      },
+      documents: {
+        mode: 'multi',
       },
     });
 
-    expect(config.runtimeOptions.rightSidebarViewMode).toBe('docs');
+    expect(resolved.runtimeOptions.rightSidebarViewMode).toBe('docs');
   });
 });

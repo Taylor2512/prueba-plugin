@@ -132,9 +132,16 @@ export type DesignerRuntimeApi = {
   toggleSidebar: () => void;
   focusField: (fieldName: string) => void;
   highlightField: (fieldName: string) => void;
+  getSelectedSchemaIds?: () => string[];
+  selectSchemas?: (ids: string[], mode?: 'replace' | 'add' | 'toggle') => void;
+  clearSelection?: () => void;
   addSchema: (schema: SchemaForUI) => void;
   addSchemaByType: (schemaType: string) => void;
   duplicatePage?: () => void;
+  removeSchemas?: (schemaIds: string[]) => void;
+  duplicateSchemas?: (schemaIds: string[]) => void;
+  setActiveDocument?: (documentId: string) => void;
+  validate?: () => Promise<unknown>;
   setCanvasFeatureToggle?: (key: 'selecto' | 'snapLines' | 'guides' | 'padding' | 'mask' | 'moveable' | 'deleteButton', value: boolean) => void;
   getCanvasFeatureToggles?: () => {
     selecto?: boolean;

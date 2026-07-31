@@ -14,11 +14,17 @@ export const createDocumentsAdapter = <THostDocument = unknown>(): SisadPdfmeDoc
           ? (record.metadata as Record<string, unknown>).template
           : undefined);
       const template = templateSource && typeof templateSource === 'object' ? templateSource : undefined;
+      const pageCount =
+        typeof record.pageCount === 'number'
+          ? record.pageCount
+          : template && typeof template === 'object' && Array.isArray((template as Record<string, unknown>).schemas)
+            ? ((template as Record<string, unknown>).schemas as unknown[]).length
+            : undefined;
       return {
         id: id || label || 'document',
         label: label || id || 'Document',
         name: label || id || 'Document',
-        pageCount: typeof record.pageCount === 'number' ? record.pageCount : undefined,
+        pageCount,
         basePdf: record.basePdf,
         template,
         metadata: record,

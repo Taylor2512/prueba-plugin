@@ -26,6 +26,27 @@ export type SisadPdfmeDocument = {
   metadata?: Record<string, unknown>;
 };
 
+export type SisadPdfmeControllerCapabilityDomain =
+  | 'template'
+  | 'schema'
+  | 'selection'
+  | 'pages'
+  | 'viewport'
+  | 'sidebars'
+  | 'documents'
+  | 'recipients'
+  | 'validation'
+  | 'snapshot'
+  | 'save';
+
+export type SisadPdfmeControllerCapabilityState = {
+  domain: SisadPdfmeControllerCapabilityDomain;
+  supported: boolean;
+  available: boolean;
+  reason?: string;
+  methods: string[];
+};
+
 export type SisadPdfmeController = {
   getTemplate(): unknown;
   setTemplate(template: unknown): void;
@@ -35,6 +56,7 @@ export type SisadPdfmeController = {
   updateConfig(patch: Partial<SisadPdfmeGlobalConfig>): SisadPdfmeConfigChange;
   resetConfig(): SisadPdfmeConfigChange;
   getFeatureState(featureId: FeatureId, context?: FeatureContext): SisadPdfmeFeatureState;
+  getCapabilityState(domain: SisadPdfmeControllerCapabilityDomain): SisadPdfmeControllerCapabilityState;
   explainConfiguration(): {
     raw: SisadPdfmeGlobalConfig;
     issues: unknown[];
@@ -42,21 +64,21 @@ export type SisadPdfmeController = {
     selectors: unknown;
   };
   getSelectedSchemaIds(): string[];
-  selectSchemas(ids: string[], mode?: 'replace' | 'add' | 'toggle'): void;
-  clearSelection(): void;
-  addSchema(type: string, options?: Record<string, unknown>): string;
-  updateSchema(schemaId: string, patch: Record<string, unknown>): void;
-  removeSchemas(schemaIds: string[]): void;
-  duplicateSchemas(schemaIds: string[]): void;
+  selectSchemas(ids: string[], mode?: 'replace' | 'add' | 'toggle'): void | SisadPdfmeControllerCapabilityState;
+  clearSelection(): void | SisadPdfmeControllerCapabilityState;
+  addSchema(type: string, options?: Record<string, unknown>): string | SisadPdfmeControllerCapabilityState;
+  updateSchema(schemaId: string, patch: Record<string, unknown>): boolean | SisadPdfmeControllerCapabilityState;
+  removeSchemas(schemaIds: string[]): void | SisadPdfmeControllerCapabilityState;
+  duplicateSchemas(schemaIds: string[]): void | SisadPdfmeControllerCapabilityState;
   getRecipients(): SisadPdfmeRecipient[];
   setRecipients(recipients: SisadPdfmeRecipient[]): void;
   getRecipientById(recipientId: string): SisadPdfmeRecipient | null;
   getActiveRecipient(): SisadPdfmeRecipient | null;
   assignSchemasToRecipient(schemaIds: string[], recipientId: string): void;
   setActiveRecipient(recipientId: string | null): void;
-  setActiveDocument(documentId: string): void;
+  setActiveDocument(documentId: string): void | SisadPdfmeControllerCapabilityState;
   setZoom(zoom: number): void;
-  validate(): Promise<unknown>;
+  validate(): Promise<unknown | SisadPdfmeControllerCapabilityState>;
   save(): Promise<void>;
 };
 

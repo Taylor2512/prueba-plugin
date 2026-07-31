@@ -1,11 +1,30 @@
 /**
- * style.css — neutralizado (dedup Tailwind).
+ * style.css — baseline mínimo del documento.
  *
- * index.html enlaza esta hoja, pero las directivas @tailwind viven ahora
- * en src/styles/tailwind.css (importada por src/main.jsx). Mantener las
- * directivas aquí generaba DOBLE emisión de Tailwind (base+components+utilities
- * duplicados en el bundle). Se deja vacío a propósito para no romper el
- * <link> de index.html.
- *
+ * Las directivas @tailwind viven en src/styles/tailwind.css (importada por
+ * src/main.jsx). Mantenerlas aquí generaba DOBLE emisión de Tailwind.
  * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
+ *
+ * Este archivo solo define la cadena de tamaño html/body/#root. Tailwind
+ * preflight sigue desactivado a propósito (canvas, PDF, inputs, Ant Design,
+ * Moveable y Selecto dependen de los defaults del navegador), así que el
+ * único reset permitido aquí es el margen del body y el alto del documento.
+ *
+ * Prohibido: resets universales de input/button/select/headings y cualquier
+ * selector que alcance internals de src/sisad-pdfme.
  */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background: #020617;
+}

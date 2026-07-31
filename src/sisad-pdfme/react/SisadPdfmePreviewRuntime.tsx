@@ -10,6 +10,7 @@ import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeIn
 import Form from '../ui/Form.js';
 import Viewer from '../ui/Viewer.js';
 import { useSisadPdfmeRecipientRuntime } from './useSisadPdfmeRecipientRuntime.js';
+import { mergeHostSurfaceClassName } from './hostSurface.js';
 
 type PreviewMode = 'form' | 'viewer';
 
@@ -25,6 +26,10 @@ export type SisadPdfmePreviewRuntimeProps = {
     name: string;
     value: unknown;
   }) => void;
+  /** Clases adicionales del host. Se suman al contrato base de dimensiones. */
+  className?: string;
+  /** Estilos inline del host. El host es dueño del viewport. */
+  style?: React.CSSProperties;
 };
 
 const runtimeByMode = {
@@ -40,6 +45,8 @@ export const SisadPdfmePreviewRuntime = ({
   recipients,
   activeRecipientId,
   onInputChange,
+  className,
+  style,
 }: SisadPdfmePreviewRuntimeProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { resolvedConfig, collaborationOptions } =
@@ -88,5 +95,12 @@ export const SisadPdfmePreviewRuntime = ({
 
   usePdfmeRuntimeInstance(runtimeConfig);
 
-  return <div ref={containerRef} data-sisad-pdfme-root={mode} />;
+  return (
+    <div
+      ref={containerRef}
+      data-sisad-pdfme-root={mode}
+      className={mergeHostSurfaceClassName(className)}
+      style={style}
+    />
+  );
 };

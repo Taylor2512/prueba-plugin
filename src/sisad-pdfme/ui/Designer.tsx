@@ -281,6 +281,41 @@ class Designer extends BaseUIClass {
     this.runtimeApi?.addSchemaByType(schemaType);
   }
 
+  public getSelectedSchemaIds() {
+    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+    return this.runtimeApi?.getSelectedSchemaIds?.() ?? [];
+  }
+
+  public selectSchemas(ids: string[], mode: 'replace' | 'add' | 'toggle' = 'replace') {
+    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+    this.runtimeApi?.selectSchemas?.(ids, mode);
+  }
+
+  public clearSelection() {
+    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+    this.runtimeApi?.clearSelection?.();
+  }
+
+  public removeSchemas(schemaIds: string[]) {
+    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+    this.runtimeApi?.removeSchemas?.(schemaIds);
+  }
+
+  public duplicateSchemas(schemaIds: string[]) {
+    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+    this.runtimeApi?.duplicateSchemas?.(schemaIds);
+  }
+
+  public setActiveDocument(documentId: string) {
+    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+    this.runtimeApi?.setActiveDocument?.(documentId);
+  }
+
+  public validate() {
+    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+    return Promise.resolve(this.runtimeApi?.validate?.() ?? null);
+  }
+
   public getSchemaConfig(
     schemaIdOrName: string,
     matcher: SchemaConfigMatcher = 'id',
@@ -308,6 +343,11 @@ class Designer extends BaseUIClass {
 
   public getPageCursor() {
     return this.pageCursor;
+  }
+
+  public getPage() {
+    if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
+    return this.runtimeApi?.getPage?.() ?? this.pageCursor + 1;
   }
 
   public getTotalPages() {

@@ -21,6 +21,8 @@ export { createInspectorConfigurationResolver } from './InspectorConfigurationRe
 
 export type {
   SisadPdfmeController,
+  SisadPdfmeControllerCapabilityDomain,
+  SisadPdfmeControllerCapabilityState,
   SisadPdfmeDocument,
   SisadPdfmeRecipientsAdapter,
   SisadPdfmeDocumentsAdapter,

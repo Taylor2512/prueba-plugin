@@ -34,6 +34,7 @@ import {
 import {
   copySchemasToClipboard,
   cutSchemasToClipboard,
+  duplicateSchemas as duplicateSchemasFromClipboard,
   pasteSchemasFromClipboard,
   type SchemaClipboardPayload,
 } from './shared/schemaClipboard.js';
@@ -70,6 +71,7 @@ import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
 import type { DesignerRuntimeApi, DesignerSidebarPresentation, DesignerCommentItem } from '../../types.js';
 import type { SchemaComment, SchemaCommentAnchor } from '../../designerEngine.js';
 import { useSisadPdfmeConfig } from '../../../react/useSisadPdfmeConfig.js';
+import { validateTemplate } from '../../../shared/templateValidator.js';
 import {
   extractClientPoint,
 } from './Canvas/overlays/pointerGeometry.js';
@@ -131,6 +133,14 @@ const stableHashSchemas = (schemas: Schema[][]) => {
   } catch {
     return `schemas:${schemas.length}`;
   }
+};
+
+const normalizeSchemaIds = (ids: string[]) =>
+  [...new Set(ids.map((id) => String(id || '').trim()).filter(Boolean))];
+
+const schemaMatchesAnyId = (schema: SchemaForUI, ids: Set<string>) => {
+  const schemaUid = String((schema as { schemaUid?: string }).schemaUid || '').trim();
+  return ids.has(schema.id) || (schemaUid ? ids.has(schemaUid) : false);
 };
 
 const isValidRealBasePdf = (basePdf: Template['basePdf']) =>
@@ -1468,7 +1478,7 @@ const TemplateEditor = ({
 
   const removeSchemas = useCallback(
     (ids: string[]) => {
-      const normalizedIds = new Set(ids.map((id) => String(id || '').trim()).filter(Boolean));
+      const normalizedIds = new Set(normalizeSchemaIds(ids));
       if (!normalizedIds.size) return;
 
       // Access Control Guard - Blocks deletion of locked schemas
@@ -1483,18 +1493,20 @@ const TemplateEditor = ({
         if (!isAllowed) return;
       }
 
-      const activeElement = activeElements.find((element) => normalizedIds.has(String(element.dataset.schemaId || element.id || '').trim()));
+      const activeElement = activeElements.find((element) =>
+        normalizedIds.has(String(element.dataset.schemaId || element.dataset.schemaUid || element.id || '').trim()),
+      );
       const activePageIndex = Number(activeElement?.dataset.pageIndex);
       const resolvedPageIndex =
         Number.isInteger(activePageIndex) && activePageIndex >= 0
           ? activePageIndex
           : schemasListRef.current.findIndex((pageSchemas) =>
-              (pageSchemas || []).some((schema) => normalizedIds.has(schema.id)),
+              (pageSchemas || []).some((schema) => schemaMatchesAnyId(schema, normalizedIds)),
             );
 
       const targetPageIndex = resolvedPageIndex >= 0 ? resolvedPageIndex : pageCursor;
       const pageSchemas = schemasListRef.current[targetPageIndex] || [];
-      commitSchemas(pageSchemas.filter((schema) => !normalizedIds.has(schema.id)), targetPageIndex);
+      commitSchemas(pageSchemas.filter((schema) => !schemaMatchesAnyId(schema, normalizedIds)), targetPageIndex);
       onEditEnd();
     },
     [activeElements, commitSchemas, onEditEnd, pageCursor],
@@ -2915,6 +2927,16 @@ const TemplateEditor = ({
     updatePage,
   ]);
 
+  const emitActiveDocumentChange = useCallback(
+    (document: UploadedPdfDocument | null) => {
+      const handler = (options as Record<string, unknown>).onActiveDocumentChange;
+      if (typeof handler === 'function') {
+        handler(document?.id || null, document);
+      }
+    },
+    [options],
+  );
+
   const runtimeApi: DesignerRuntimeApi = useMemo(
     () => ({
       undo: undoExternal,
@@ -2954,6 +2976,17 @@ const TemplateEditor = ({
       },
       focusField: focusFieldExternal,
       highlightField: focusFieldExternal,
+      getSelectedSchemaIds: () =>
+        [...new Set(resolveActiveSchemasGlobal().map((schema) => String(schema.id || '').trim()).filter(Boolean))],
+      selectSchemas: (ids: string[], mode = 'replace') => {
+        selectSchemasByIds(ids, { mode });
+      },
+      clearSelection: () => {
+        pendingSelectionIdsRef.current = null;
+        setActiveElements([]);
+        setHoveringSchemaId(null);
+        onEditEnd();
+      },
       addSchema: (schema: Schema) => {
         const schemaId = schema?.id ? String(schema.id) : null;
         emitDesignerEvent({
@@ -2974,6 +3007,43 @@ const TemplateEditor = ({
         });
         addSchemaByType(schemaType);
       },
+      removeSchemas: (schemaIds: string[]) => {
+        removeSchemas(schemaIds);
+      },
+      duplicateSchemas: (schemaIds: string[]) => {
+        const normalizedIds = normalizeSchemaIds(schemaIds);
+        if (!normalizedIds.length) return;
+        const idSet = new Set(normalizedIds);
+        let targetPageIndex = pageCursor;
+        for (let index = 0; index < schemasList.length; index++) {
+          if ((schemasList[index] || []).some((schema) => schemaMatchesAnyId(schema, idSet))) {
+            targetPageIndex = index;
+            break;
+          }
+        }
+        const pageSchemas = schemasList[targetPageIndex] || [];
+        const selectedSchemas = pageSchemas.filter((schema) => schemaMatchesAnyId(schema, idSet));
+        if (!selectedSchemas.length) return;
+        const clones = duplicateSchemasFromClipboard(selectedSchemas, {
+          pageIndex: targetPageIndex,
+          pageSize: pageSizes[targetPageIndex],
+          pageCount: schemasList.length,
+          fileId: activeDocumentId || null,
+          collaborationContext: {
+            fileId: collaborationContext.fileId || null,
+            actorId: collaborationContext.actorId || null,
+            ownerRecipientId: collaborationContext.ownerRecipientId || null,
+            ownerRecipientIds: collaborationContext.ownerRecipientIds,
+            ownerRecipientName: collaborationContext.ownerRecipientName || null,
+            ownerColor: collaborationContext.ownerColor || null,
+            userColor: collaborationContext.userColor || null,
+          },
+          existingSchemas: pageSchemas,
+        });
+        if (!clones.length) return;
+        pendingSelectionIdsRef.current = clones.map((schema) => schema.id);
+        commitSchemas([...pageSchemas, ...clones], targetPageIndex);
+      },
       duplicatePage: () => {
         emitDesignerEvent({
           type: 'designer.action.page.duplicate',
@@ -2983,6 +3053,28 @@ const TemplateEditor = ({
         });
         handleDuplicatePageAfter();
       },
+      setActiveDocument: (documentId: string) => {
+        const targetDocumentId = String(documentId || '').trim();
+        if (!targetDocumentId || targetDocumentId === activeDocumentId) return;
+        const targetDoc = uploadedDocumentsRef.current.find((doc) => doc.id === targetDocumentId);
+        if (!targetDoc) return;
+        onEditEnd();
+        persistActiveDocumentSnapshot('runtime.setActiveDocument');
+        setActiveDocumentId(targetDoc.id);
+        emitActiveDocumentChange(targetDoc);
+        void loadDocumentIntoCanvas(targetDoc, 0);
+      },
+      validate: () =>
+        Promise.resolve(
+          validateTemplate({
+            schemasByPage: schemasList,
+            pageSizes: pageSizes.map((size) => ({ width: size.width, height: size.height })),
+            recipients: collaborationContext.recipientOptions.map((recipient) => ({
+              id: recipient.id,
+              name: recipient.name,
+            })),
+          }),
+        ),
       setCanvasFeatureToggle: (key: keyof CanvasFeatureToggles, value: boolean) => {
         setCanvasFeatureOverrides((prev) => ({ ...prev, [key]: Boolean(value) }));
         emitDesignerEvent({
@@ -3043,24 +3135,47 @@ const TemplateEditor = ({
       addSchemaAtCenter,
       addSchemaByType,
       canvasFeatureToggles,
+      collaborationContext.actorId,
+      collaborationContext.fileId,
+      collaborationContext.ownerColor,
+      collaborationContext.ownerRecipientId,
+      collaborationContext.ownerRecipientIds,
+      collaborationContext.ownerRecipientName,
+      collaborationContext.recipientOptions,
+      collaborationContext.userColor,
+      commitSchemas,
+      duplicateSchemasFromClipboard,
       emitDesignerEvent,
+      emitActiveDocumentChange,
       handleDuplicatePageAfter,
       applyViewportMode,
+      loadDocumentIntoCanvas,
       designerEngine,
       findSchemaLocation,
       focusFieldExternal,
       getCanvasMetrics,
       activeBasePdf,
+      onEditEnd,
       pageCursor,
+      pageSizes,
+      pendingSelectionIdsRef,
+      persistActiveDocumentSnapshot,
       redoExternal,
+      removeSchemas,
       resolveTargetPageIndex,
+      resolveActiveSchemasGlobal,
       pushTemplateUpdate,
       schemasList,
+      selectSchemasByIds,
+      setActiveDocumentId,
+      setActiveElements,
+      setHoveringSchemaId,
       viewportMode,
       setPageCursorWithScroll,
       setSchemasList,
       setZoomExternal,
       undoExternal,
+      uploadedDocumentsRef,
       zoomLevel,
     ],
   );
@@ -3383,16 +3498,6 @@ const TemplateEditor = ({
       };
     });
   }, [designerEngine.canvas?.featureToggles]);
-
-  const emitActiveDocumentChange = useCallback(
-    (document: UploadedPdfDocument | null) => {
-      const handler = (options as Record<string, unknown>).onActiveDocumentChange;
-      if (typeof handler === 'function') {
-        handler(document?.id || null, document);
-      }
-    },
-    [options],
-  );
 
   const handleUploadPdfClick = useCallback(() => {
     pdfUploadInputRef.current?.click();

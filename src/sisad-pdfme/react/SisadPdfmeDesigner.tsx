@@ -15,6 +15,7 @@ import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
 import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
 import { useSisadPdfmeController } from './useSisadPdfmeController.js';
+import { mergeHostSurfaceClassName } from './hostSurface.js';
 import { buildCollaborationSyncFromRegistry } from '../recipients/recipientResolver.js';
 import { useSisadPdfmeRecipientRuntime } from './useSisadPdfmeRecipientRuntime.js';
 import type {
@@ -40,6 +41,10 @@ type DesignerProps = {
   onRecipientsChange?: (recipients: SisadPdfmeRecipient[]) => void;
   onActiveRecipientChange?: (recipient: SisadPdfmeRecipient | null) => void;
   onAssignmentChange?: (payload: SisadPdfmeAssignmentChangePayload) => void;
+  /** Clases adicionales del host. Se suman al contrato base de dimensiones. */
+  className?: string;
+  /** Estilos inline del host. El host es dueño del viewport. */
+  style?: React.CSSProperties;
 };
 
 export const SisadPdfmeDesigner = ({
@@ -54,6 +59,8 @@ export const SisadPdfmeDesigner = ({
   onRecipientsChange,
   onActiveRecipientChange,
   onAssignmentChange,
+  className,
+  style,
 }: DesignerProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const {
@@ -144,5 +151,12 @@ export const SisadPdfmeDesigner = ({
     instance.onSaveTemplate?.(() => onSave(instance.getTemplate?.() ?? template));
   }, [instanceRef, onSave, template]);
 
-  return <div ref={containerRef} data-sisad-pdfme-root="designer" />;
+  return (
+    <div
+      ref={containerRef}
+      data-sisad-pdfme-root="designer"
+      className={mergeHostSurfaceClassName(className)}
+      style={style}
+    />
+  );
 };

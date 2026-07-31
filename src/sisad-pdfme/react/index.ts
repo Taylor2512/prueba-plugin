@@ -13,6 +13,10 @@ export { SisadPdfmeProvider } from './SisadPdfmeProvider.js';
 export { SisadPdfmeDesigner } from './SisadPdfmeDesigner.js';
 export { SisadPdfmeForm } from './SisadPdfmeForm.js';
 export { SisadPdfmeViewer } from './SisadPdfmeViewer.js';
+export {
+  SISAD_PDFME_HOST_SURFACE_CLASS,
+  mergeHostSurfaceClassName,
+} from './hostSurface.js';
 export { useSisadPdfmeConfigService } from './useSisadPdfmeConfigService.js';
 export { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
 export { useSisadPdfmeController } from './useSisadPdfmeController.js';

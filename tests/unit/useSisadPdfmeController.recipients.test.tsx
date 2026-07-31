@@ -143,22 +143,31 @@ describe('useSisadPdfmeController + RecipientRegistry', () => {
     expect(freshInstance.updateTemplate).toHaveBeenCalledWith(snapshot);
   });
 
-  test('selection methods avisan cuando el runtime no expone soporte de selección', () => {
-    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+  test('selection methods exponen capability state cuando el runtime no expone soporte de selección', () => {
     const registry = makeRegistry();
     const { result } = renderHook(() =>
       useSisadPdfmeController({ current: null }, { registry }),
     );
 
     expect(result.current.getSelectedSchemaIds()).toEqual([]);
-    result.current.selectSchemas(['schema-1']);
-    result.current.clearSelection();
-
-    expect(warn).toHaveBeenCalledWith('[sisad-pdfme] Controller method not implemented: getSelectedSchemaIds');
-    expect(warn).toHaveBeenCalledWith('[sisad-pdfme] Controller method not implemented: selectSchemas');
-    expect(warn).toHaveBeenCalledWith('[sisad-pdfme] Controller method not implemented: clearSelection');
-
-    warn.mockRestore();
+    expect(result.current.getCapabilityState('selection')).toMatchObject({
+      domain: 'selection',
+      supported: false,
+      available: false,
+      reason: 'selection-unavailable',
+    });
+    expect(result.current.selectSchemas(['schema-1'])).toMatchObject({
+      domain: 'selection',
+      supported: false,
+      available: false,
+      reason: 'selection-unavailable',
+    });
+    expect(result.current.clearSelection()).toMatchObject({
+      domain: 'selection',
+      supported: false,
+      available: false,
+      reason: 'selection-unavailable',
+    });
   });
 
   test('selection methods delegan en el runtime cuando existen', () => {
@@ -180,6 +189,36 @@ describe('useSisadPdfmeController + RecipientRegistry', () => {
 
     expect(instance.selectSchemas).toHaveBeenCalledWith(['uid-1'], 'add');
     expect(instance.clearSelection).toHaveBeenCalledTimes(1);
+    expect(warn).not.toHaveBeenCalled();
+
+    warn.mockRestore();
+  });
+
+  test('removeSchemas, duplicateSchemas, setActiveDocument y validate delegan en el runtime', async () => {
+    const registry = makeRegistry();
+    const instance = {
+      ...makeInstance(makeTemplate()),
+      removeSchemas: vi.fn(),
+      duplicateSchemas: vi.fn(),
+      setActiveDocument: vi.fn(),
+      validate: vi.fn(async () => ({ valid: true })),
+    };
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const { result } = renderHook(() =>
+      useSisadPdfmeController({ current: instance }, { registry }),
+    );
+
+    act(() => result.current.removeSchemas(['uid-1']));
+    act(() => result.current.duplicateSchemas(['uid-1']));
+    act(() => result.current.setActiveDocument('doc-1'));
+    await act(async () => {
+      await result.current.validate();
+    });
+
+    expect(instance.removeSchemas).toHaveBeenCalledWith(['uid-1']);
+    expect(instance.duplicateSchemas).toHaveBeenCalledWith(['uid-1']);
+    expect(instance.setActiveDocument).toHaveBeenCalledWith('doc-1');
+    expect(instance.validate).toHaveBeenCalledTimes(1);
     expect(warn).not.toHaveBeenCalled();
 
     warn.mockRestore();

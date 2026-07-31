@@ -1,0 +1,72 @@
+{
+  "name": "SISAD_PDFME_EJEMPLOS_UX_UI_2026-07-30",
+  "target": "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin",
+  "functional_code_modified": false,
+  "files": [
+    {
+      "path": "prueba-plugin/.ai/plans/PLAN_UX_UI_EJEMPLOS_SISAD_PDFME_2026-07-30.md",
+      "bytes": 13158,
+      "sha256": "fcb483eb71e149522139d2025d8672bcac26a324377c5857e906ec682561adb8"
+    },
+    {
+      "path": "prueba-plugin/.ai/prompts/PROMPT_MAESTRO_CORREGIR_UX_UI_EJEMPLOS_SISAD_PDFME.md",
+      "bytes": 7133,
+      "sha256": "7491c568fa37caf9603c70ed15daac7d828915042eee1bc77b198d600475569b"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/EXAMPLES-UX-001-caracterizar-dimensiones-y-estilos-efectivos.md",
+      "bytes": 2365,
+      "sha256": "ad27255960cf4d69e0bbd77c1cf7b189d273b5ab331ab6ab11c79b86bf0046c0"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/EXAMPLES-UX-002-corregir-baseline-del-documento-y-consolidar-postcss.md",
+      "bytes": 2263,
+      "sha256": "25e2107065a0d7c764fd2d51f7fb4261b0278503fa518140a3f5002e1cea4838"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/EXAMPLES-UX-003-definir-contrato-p-blico-de-dimensiones.md",
+      "bytes": 2369,
+      "sha256": "5f08239b4afbc2011c5d672164186e95e4fb714935ef50d4e3ef939b86d7931b"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/EXAMPLES-UX-004-separar-shells-documental-e-inmersivo.md",
+      "bytes": 2382,
+      "sha256": "458d6fb92967dcb20ad2f2c80deaf1b460a770c47441373776ed82accc85bec6"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/EXAMPLES-UX-005-convertir-rutas-designer-a-canvas-first.md",
+      "bytes": 2371,
+      "sha256": "30c061ab6145bcbe36735fd1be1fcd52b1511b473917403849264e7108ccc1ee"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/EXAMPLES-UX-006-convertir-form-viewer-y-familias-a-modo-inmersivo.md",
+      "bytes": 2328,
+      "sha256": "145b12b84234ba41b634f51f8f9550ca8fbc7783c74057d71cd1591f4c4a4ae0"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/EXAMPLES-UX-007-compactar-navegaci-n-y-mover-metadatos-a-superficies-secundarias.md",
+      "bytes": 2360,
+      "sha256": "2e5baa3847b460c6bf38b809ad8bab1b74b634ab7f3a895bebeb12d0a530910f"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/EXAMPLES-UX-008-responsive-touch-y-accesibilidad.md",
+      "bytes": 2320,
+      "sha256": "3bc4ad567983632d798018a51a08886a323b8a209779fba7596a99c37fbb4a9c"
+    },
+    {
+      "path": "prueba-plugin/.ai/scrum/task-cards/EXAMPLES-UX-009-boundary-de-estilos-y-regresi-n-visual.md",
+      "bytes": 2329,
+      "sha256": "82600f5d6bb6cadba1fc95b62df5bfd9bd37698f19d461e4f77e919111525d15"
+    },
+    {
+      "path": "prueba-plugin/README-EJEMPLOS-UX-UI.md",
+      "bytes": 463,
+      "sha256": "3607198784da0ba8bfd3322a171d2703ba3984342266448ed71438f70c139b79"
+    },
+    {
+      "path": "prueba-plugin/reports/examples-ux/MATRIZ_QA_RESPONSIVE.md",
+      "bytes": 1448,
+      "sha256": "81e7b49522b20ffffd3b66ae9ae9f14fa581fb318a84e80af1d292c817f28678"
+    }
+  ]
+}

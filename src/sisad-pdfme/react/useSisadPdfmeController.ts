@@ -23,7 +23,12 @@ import type {
   SisadPdfmeAssignmentChangePayload,
   SisadPdfmeRecipientRegistry,
 } from '../recipients/recipientTypes.js';
-import type { SisadPdfmeController, SisadPdfmeGlobalConfig } from '../config/SisadPdfmeConfig.js';
+import type {
+  SisadPdfmeController,
+  SisadPdfmeControllerCapabilityDomain,
+  SisadPdfmeControllerCapabilityState,
+  SisadPdfmeGlobalConfig,
+} from '../config/SisadPdfmeConfig.js';
 import type { SisadPdfmeConfigService, SisadPdfmeConfigChange } from '../config/SisadPdfmeConfigService.js';
 import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from '../config/featureRegistry.js';
 
@@ -37,10 +42,19 @@ type InstanceLike = {
   getSelectedSchemaIds?: () => string[];
   selectSchemas?: (ids: string[], mode?: 'replace' | 'add' | 'toggle') => void;
   clearSelection?: () => void;
+  removeSchemas?: (schemaIds: string[]) => void;
+  duplicateSchemas?: (schemaIds: string[]) => void;
+  setActiveDocument?: (documentId: string) => void;
+  validate?: () => Promise<unknown>;
   fitToPage?: () => void;
   fitToWidth?: () => void;
   setPage?: (page: number) => void;
   addSchemaByType?: (schemaType: string) => void;
+  setSchemaConfig?: (
+    schemaIdOrName: string,
+    patch: Record<string, unknown>,
+    matcher?: 'id' | 'name' | 'identity' | 'prefill-source',
+  ) => boolean;
 };
 
 export type SisadPdfmeControllerContext = {
@@ -57,13 +71,64 @@ const getTemplatePages = (template: unknown): SchemaForUI[][] | null => {
   return Array.isArray(pages) ? pages : null;
 };
 
-const warnUnsupported = (method: string) => {
-  if (process.env.NODE_ENV !== 'production') {
-    console.warn(`[sisad-pdfme] Controller method not implemented: ${method}`);
+const getInstance = (instanceRef: MutableRefObject<InstanceLike | null>) => instanceRef.current;
+
+const makeCapabilityState = (
+  domain: SisadPdfmeControllerCapabilityDomain,
+  methods: string[],
+  supported: boolean,
+  reason?: string,
+): SisadPdfmeControllerCapabilityState => ({
+  domain,
+  methods,
+  supported,
+  available: supported,
+  reason,
+});
+
+const resolveControllerCapabilityState = (
+  instance: InstanceLike | null,
+  registry: SisadPdfmeRecipientRegistry | null,
+  domain: SisadPdfmeControllerCapabilityDomain,
+): SisadPdfmeControllerCapabilityState => {
+  const has = (key: keyof InstanceLike) => typeof instance?.[key] === 'function';
+  switch (domain) {
+    case 'template':
+      return makeCapabilityState(domain, ['getTemplate', 'setTemplate'], has('getTemplate') && has('updateTemplate'));
+    case 'schema':
+      return makeCapabilityState(
+        domain,
+        ['addSchema', 'updateSchema', 'removeSchemas', 'duplicateSchemas'],
+        has('addSchemaByType') && has('setSchemaConfig') && has('removeSchemas') && has('duplicateSchemas'),
+        has('addSchemaByType') ? undefined : 'schema-actions-unavailable',
+      );
+    case 'selection':
+      return makeCapabilityState(
+        domain,
+        ['getSelectedSchemaIds', 'selectSchemas', 'clearSelection'],
+        has('getSelectedSchemaIds') && has('selectSchemas') && has('clearSelection'),
+        has('selectSchemas') ? undefined : 'selection-unavailable',
+      );
+    case 'pages':
+      return makeCapabilityState(domain, ['setPage', 'fitToPage', 'fitToWidth'], has('setPage') && has('fitToPage') && has('fitToWidth'), has('setPage') ? undefined : 'pages-unavailable');
+    case 'viewport':
+      return makeCapabilityState(domain, ['setZoom', 'getZoom'], has('setZoom') && has('getZoom'), has('setZoom') ? undefined : 'viewport-unavailable');
+    case 'sidebars':
+      return makeCapabilityState(domain, [], false, 'sidebars-unavailable');
+    case 'documents':
+      return makeCapabilityState(domain, ['setActiveDocument'], has('setActiveDocument'), has('setActiveDocument') ? undefined : 'documents-unavailable');
+    case 'recipients':
+      return makeCapabilityState(domain, ['getRecipients', 'setRecipients', 'setActiveRecipient'], registry != null, registry ? undefined : 'recipients-unavailable');
+    case 'validation':
+      return makeCapabilityState(domain, ['validate'], has('validate'), has('validate') ? undefined : 'validation-unavailable');
+    case 'snapshot':
+      return makeCapabilityState(domain, ['getSnapshot', 'restoreSnapshot'], has('getTemplate') && has('updateTemplate'), has('getTemplate') ? undefined : 'snapshot-unavailable');
+    case 'save':
+      return makeCapabilityState(domain, ['save'], has('saveTemplate'), has('saveTemplate') ? undefined : 'save-unavailable');
+    default:
+      return makeCapabilityState(domain, [], false, 'unknown-capability');
   }
 };
-
-const getInstance = (instanceRef: MutableRefObject<InstanceLike | null>) => instanceRef.current;
 
 export const useSisadPdfmeController = (
   instanceRef: MutableRefObject<InstanceLike | null>,
@@ -96,6 +161,8 @@ export const useSisadPdfmeController = (
     resetConfig: (): SisadPdfmeConfigChange => configService.reset(),
     getFeatureState: (featureId: FeatureId, featureContext: FeatureContext = {}): SisadPdfmeFeatureState =>
       configService.selectFeatureState(featureId, featureContext),
+    getCapabilityState: (domain: SisadPdfmeControllerCapabilityDomain) =>
+      resolveControllerCapabilityState(instanceRef.current, registry, domain),
     explainConfiguration: () => configService.explain(),
 
     getSelectedSchemaIds: () => {
@@ -104,7 +171,6 @@ export const useSisadPdfmeController = (
       if (Array.isArray(ids)) {
         return ids.map((id) => String(id ?? '').trim()).filter(Boolean);
       }
-      warnUnsupported('getSelectedSchemaIds');
       return [];
     },
     selectSchemas: (ids, mode) => {
@@ -113,7 +179,7 @@ export const useSisadPdfmeController = (
         instance.selectSchemas(ids, mode);
         return;
       }
-      warnUnsupported('selectSchemas');
+      return resolveControllerCapabilityState(instance, registry, 'selection');
     },
     clearSelection: () => {
       const instance = getInstance(instanceRef);
@@ -121,22 +187,46 @@ export const useSisadPdfmeController = (
         instance.clearSelection();
         return;
       }
-      warnUnsupported('clearSelection');
+      return resolveControllerCapabilityState(instance, registry, 'selection');
     },
-    addSchema: () => {
-      warnUnsupported('addSchema');
-      return '';
+    addSchema: (schemaType, _options) => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.addSchemaByType === 'function') {
+        instance.addSchemaByType(schemaType);
+        return String(schemaType || '').trim();
+      }
+      return resolveControllerCapabilityState(instance, registry, 'schema');
     },
-    updateSchema: () => warnUnsupported('updateSchema'),
-    removeSchemas: () => warnUnsupported('removeSchemas'),
-    duplicateSchemas: () => warnUnsupported('duplicateSchemas'),
+    updateSchema: (schemaId, patch) => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.setSchemaConfig === 'function') {
+        return instance.setSchemaConfig(schemaId, patch, 'id');
+      }
+      return resolveControllerCapabilityState(instance, registry, 'schema');
+    },
+    removeSchemas: (schemaIds) => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.removeSchemas === 'function') {
+        instance.removeSchemas(schemaIds);
+        return;
+      }
+      return resolveControllerCapabilityState(instance, registry, 'schema');
+    },
+    duplicateSchemas: (schemaIds) => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.duplicateSchemas === 'function') {
+        instance.duplicateSchemas(schemaIds);
+        return;
+      }
+      return resolveControllerCapabilityState(instance, registry, 'schema');
+    },
     fitToPage: () => {
       const instance = getInstance(instanceRef);
       if (typeof instance?.fitToPage === 'function') {
         instance.fitToPage();
         return;
       }
-      warnUnsupported('fitToPage');
+      return resolveControllerCapabilityState(instance, registry, 'pages');
     },
     fitToWidth: () => {
       const instance = getInstance(instanceRef);
@@ -144,7 +234,7 @@ export const useSisadPdfmeController = (
         instance.fitToWidth();
         return;
       }
-      warnUnsupported('fitToWidth');
+      return resolveControllerCapabilityState(instance, registry, 'pages');
     },
     setPage: (page) => {
       const instance = getInstance(instanceRef);
@@ -152,7 +242,7 @@ export const useSisadPdfmeController = (
         instance.setPage(page);
         return;
       }
-      warnUnsupported('setPage');
+      return resolveControllerCapabilityState(instance, registry, 'pages');
     },
     addSchemaByType: (schemaType) => {
       const instance = getInstance(instanceRef);
@@ -160,7 +250,7 @@ export const useSisadPdfmeController = (
         instance.addSchemaByType(schemaType);
         return;
       }
-      warnUnsupported('addSchemaByType');
+      return resolveControllerCapabilityState(instance, registry, 'schema');
     },
 
     getRecipients: () => registry?.getRecipients() ?? [],
@@ -211,11 +301,24 @@ export const useSisadPdfmeController = (
       });
     },
 
-    setActiveDocument: () => warnUnsupported('setActiveDocument'),
+    setActiveDocument: (documentId) => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.setActiveDocument === 'function') {
+        instance.setActiveDocument(documentId);
+        return;
+      }
+      return resolveControllerCapabilityState(instance, registry, 'documents');
+    },
     setZoom: (zoom) => {
       instanceRef.current?.setZoom?.(zoom);
     },
-    validate: async () => null,
+    validate: async () => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.validate === 'function') {
+        return instance.validate();
+      }
+      return resolveControllerCapabilityState(instance, registry, 'validation');
+    },
     save: async () => {
       instanceRef.current?.saveTemplate?.();
     },
