@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-31T17:35:26.222Z`
+- **Fecha generación:** `2026-07-31T19:58:05.540Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `10`
 - **Límite por archivo:** `80 KB`
@@ -63,7 +63,7 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 2097
+- **extensión no incluida:** 2192
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales

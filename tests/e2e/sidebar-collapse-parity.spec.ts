@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+const ROUTE = '/examples/designer/single-user';
+
 const openCatalog = async (page: import('@playwright/test').Page) => {
   const toggle = page.getByRole('button', { name: /Abrir catálogo de campos|Cerrar catálogo de campos/i }).first();
   await expect(toggle).toBeVisible();
@@ -10,7 +12,7 @@ const openCatalog = async (page: import('@playwright/test').Page) => {
 
 test.describe('sidebar collapse parity', () => {
   test('left and right sidebars keep a visible handle and a compact rail', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await page.goto(ROUTE);
     await openCatalog(page);
 
     const leftSidebar = page.getByTestId('left-sidebar').first();
@@ -34,6 +36,9 @@ test.describe('sidebar collapse parity', () => {
     await expect(leftSidebar).toHaveAttribute('data-left-sidebar-expanded', 'false');
     await expect(leftToggle).toHaveAttribute('aria-expanded', 'false');
     await expect(leftToggle).toBeVisible();
+    const collapsedLeftSidebarBox = await leftSidebar.boundingBox();
+    expect(collapsedLeftSidebarBox).not.toBeNull();
+    expect((collapsedLeftSidebarBox?.width || 0)).toBeLessThan(96);
     await leftToggle.click();
     await expect(leftSidebar).toHaveAttribute('data-left-sidebar-expanded', 'true');
 

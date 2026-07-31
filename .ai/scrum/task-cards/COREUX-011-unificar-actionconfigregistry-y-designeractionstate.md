@@ -1,6 +1,6 @@
 # COREUX-011 — Unificar ActionConfigRegistry y designerActionState
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W1  
 **Prioridad:** P0  
 **Riesgo:** Muy alto  
@@ -97,10 +97,15 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Una acción tiene una definición.
-- [ ] Sin handler no se renderiza.
-- [ ] Disabled siempre tiene reason.
-- [ ] Reassign usa recipients asignables en COREUX-026.
+- [x] Una acción tiene una definición: sin ids duplicados, todas resolubles y
+      sin alias huérfanos.
+- [x] Sin handler no se renderiza (verificado sobre las 41 acciones).
+- [x] Disabled siempre tiene reason (barrido de 6 contextos × 41 acciones).
+- [ ] Reassign con recipients asignables: pertenece a COREUX-026.
+
+La unificación ya estaba implementada; lo que faltaba era el gate que impide
+volver a divergir. 13/13 en
+`tests/unit/sisad-pdfme/actions/actionDefinitionConformance.test.ts`.
 
 ## Gates focales
 

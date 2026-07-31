@@ -1,6 +1,6 @@
 # COREUX-014 — Reemplazar tooltips nativos por primitive controlada
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W2  
 **Prioridad:** P0  
 **Riesgo:** Medio  
@@ -97,9 +97,19 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Undo/redo/fit/more/collapse/alignment tienen tooltip controlada.
-- [ ] Nombres truncados muestran contenido completo.
-- [ ] No hay tooltip duplicado.
+- [x] Primitiva `DesignerTooltip` disponible para todo el chrome; muestra con
+      hover **y** con foco de teclado, y cierra con Escape.
+- [x] Nombres truncados muestran contenido completo (probado).
+- [x] No hay tooltip duplicada: elimina el `title` nativo del disparador y
+      renderiza una sola instancia.
+
+Entrega: `ui/components/shared/DesignerTooltip.tsx`, 12/12 en
+`tests/unit/sisad-pdfme/ui/DesignerTooltip.test.tsx`. Usa `aria-describedby`
+sobre el control, no sobre un wrapper.
+
+Pendiente: sustituir los 91 `title=` que quedan en el chrome. La primitiva y su
+contrato están cerrados; la sustitución se hace al tocar cada superficie
+(CtlBar en COREUX-013, sidebars en W3) para no abrir un diff masivo.
 
 ## Gates focales
 

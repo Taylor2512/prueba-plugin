@@ -1,6 +1,6 @@
 # COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W0  
 **Prioridad:** P0  
 **Riesgo:** Alto  
@@ -96,9 +96,13 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Cada concepto tiene un propietario propuesto.
-- [ ] No se proponen APIs paralelas.
-- [ ] Se documentan dependencias con CONFIG/DECL.
+- [x] Cada concepto tiene un propietario propuesto.
+- [x] No se proponen APIs paralelas.
+- [x] Se documentan dependencias con CONFIG/DECL.
+
+Entrega: `reports/core-ux/09-SOURCE-OF-TRUTH-MAP.md`. Siete conceptos con más de
+un propietario; el crítico es que el controller opera sobre un config service
+VACÍO fuera de Provider. Defecto SOT-01 en `configMigration.ts:85`.
 
 ## Gates focales
 

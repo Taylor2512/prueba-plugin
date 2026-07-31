@@ -1,6 +1,6 @@
 # COREUX-016 — Completar comandos de página
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W2  
 **Prioridad:** P0  
 **Riesgo:** Muy alto  
@@ -97,9 +97,15 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Insert/duplicate/remove son deshacerables.
-- [ ] No se elimina última página inválidamente.
-- [ ] Snapshot round-trip.
+- [x] Insert/duplicate/remove deshacerables vía CommandBus.
+- [x] No se elimina la última página: rechazo con motivo `last-page`, y el
+      factory devuelve la razón en lugar de un comando inerte.
+- [x] Snapshot round-trip exacto, incluido undo/redo repetido sin deriva.
+
+Entrega: `applyPageStructure` (pura) y `createPageStructureCommand` en
+`ui/commands/designerCommands.ts`. `duplicate` regenera ids/uids/nombres para no
+romper la unicidad del template. 15/15 en
+`tests/unit/sisad-pdfme/commands/pageCommands.test.ts`.
 
 ## Gates focales
 

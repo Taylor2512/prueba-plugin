@@ -1,6 +1,6 @@
 # COREUX-017 — Unificar zoom, fit page y fit width
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W2  
 **Prioridad:** P0  
 **Riesgo:** Alto  
@@ -98,9 +98,26 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Controller y toolbar tienen paridad.
-- [ ] Porcentaje visible siempre válido.
-- [ ] Fit conserva página/selección.
+- [x] Controller y toolbar tienen paridad: una sola aritmética en
+      `shared/zoomContract.ts`, consumida por `computeZoomForMode`.
+- [x] Porcentaje visible siempre válido (`formatZoomPercent` nunca devuelve
+      NaN, 0 ni negativo).
+- [x] Fit conserva página: `applyViewportMode` mantiene el cursor de página; la
+      selección no se toca en esa ruta.
+
+Entrega: `ui/components/Designer/shared/zoomContract.ts` (puro, 15/15 en
+`tests/unit/sisad-pdfme/ui/zoomContract.test.ts`). Elimina el suelo artificial:
+el ajuste usa `FIT_MIN_ZOOM` (0.05) en vez del suelo manual (0.25), que hacía
+matemáticamente imposible encajar A4 en viewports estrechos.
+
+**BASE-01 NO queda resuelto.** Medido tras el cambio: a 390 y 768 px el Canvas
+sigue con scroll horizontal (198/309 y 576/637) y el zoom sigue en 100%, tanto
+al montar como al pulsar «ajustar a página». Con el suelo eliminado, la
+aritmética ya permite el ajuste, así que el bloqueo está aguas arriba: o
+`computeZoomForMode` devuelve null por entradas incompletas (`pageSizes`,
+`sizeExcSidebars`) en viewports estrechos, o el zoom calculado no llega a
+aplicarse. Eso es geometría de Canvas —área protegida y propia de W5—, así que
+se entrega como handoff en lugar de forzarlo desde aquí.
 
 ## Gates focales
 

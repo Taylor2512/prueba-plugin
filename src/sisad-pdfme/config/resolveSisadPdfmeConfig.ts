@@ -194,6 +194,23 @@ export const resolveSisadPdfmeConfig = (
 
   const designerEngine = designerEngineBuilder.build();
 
+  /**
+   * Conecta el hub de runtime con el punto donde el Designer lo busca.
+   *
+   * `Designer/index.tsx` lee `designerEngine.extensions?.events`, y
+   * `emitDesignerRuntimeEvent` es `hub?.emit(...)`: sin esto el hub quedaba
+   * huérfano y toda emisión interna era un no-op silencioso (COREUX-003).
+   *
+   * Fue posible al dejar de pasar `options` como configuración
+   * (`configFromRuntimeOptions`): antes, colgar una función de `designerEngine`
+   * hacía fallar el `structuredClone` del ConfigService.
+   */
+  const eventHub = createDesignerRuntimeEventHub();
+  designerEngine.extensions = {
+    ...(designerEngine.extensions || {}),
+    events: designerEngine.extensions?.events ?? eventHub,
+  };
+
   const resolvedSidebars = {
     ...baseConfig.sidebars,
     left: {
@@ -279,6 +296,7 @@ export const resolveSisadPdfmeConfig = (
       persistence: createPersistenceAdapter(),
       signatures: createSignatureProviderAdapter(),
     },
-    eventHub: createDesignerRuntimeEventHub(),
+    // Misma instancia que `designerEngine.extensions.events`: un hub por config.
+    eventHub: designerEngine.extensions?.events ?? eventHub,
   };
 };

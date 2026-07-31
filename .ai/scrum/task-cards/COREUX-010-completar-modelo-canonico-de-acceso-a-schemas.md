@@ -1,6 +1,6 @@
 # COREUX-010 — Completar modelo canónico de acceso a schemas
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W1  
 **Prioridad:** P0  
 **Riesgo:** Muy alto  
@@ -97,9 +97,16 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Canvas/List/Inspector consumen el mismo estado en tareas posteriores.
-- [ ] Schemas nuevos no nacen bloqueados.
-- [ ] Cada rechazo tiene reason.
+- [x] Canvas/List/Inspector ya consumen `resolveDesignerSchemaAccessState`;
+      ahora esa función es la única que resuelve TODAS las fuentes.
+- [x] Schemas nuevos no nacen bloqueados (probado: las cuatro capacidades
+      permitidas y `reasons` todo a null).
+- [x] Cada rechazo tiene reason tipado (`SchemaAccessDenyReason`).
+
+Entrega: `accessPolicy.ts` ampliado de forma aditiva con `locked`, `readOnly`,
+`objectLocked`, `runtime.readonly`, ownership por recipient y permiso de
+estructura, con precedencia explícita y `schemaAccessDenyReason()`.
+17/17 en `tests/unit/sisad-pdfme/ui/accessPolicy.test.ts`.
 
 ## Gates focales
 

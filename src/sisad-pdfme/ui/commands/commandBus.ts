@@ -57,6 +57,27 @@ export const buildCommandMeta = (
 
 type CommandListener = (_event: CommandObserverPayload) => void;
 
+/** Fase del ciclo de vida de un comando. */
+export type CommandLifecyclePhase = 'executed' | 'rejected' | 'undone' | 'redone';
+
+/**
+ * Envelope del ciclo de vida.
+ *
+ * Acompaña a cada transición con el estado del historial, para que la toolbar
+ * no tenga que consultarlo aparte y quedarse desincronizada.
+ */
+export type CommandLifecycleEvent = {
+  phase: CommandLifecyclePhase;
+  commandId: string;
+  label: string;
+  timestamp: number;
+  /** Solo en `rejected`. */
+  reason?: 'invalid-command' | 'blocked-by-guard';
+  history: { canUndo: boolean; canRedo: boolean; undoDepth: number; redoDepth: number };
+};
+
+type CommandLifecycleListener = (event: CommandLifecycleEvent) => void;
+
 /**
  * Optional pre-execution guard.
  * Return `true` to allow the command, `false` to block it.
@@ -84,6 +105,8 @@ export class CommandBus {
 
   private guards: CommandGuard[] = [];
 
+  private lifecycleListeners = new Set<CommandLifecycleListener>();
+
   /**
    * Register a pre-execution guard. Returns an unsubscribe function.
    * Guards are checked in order; the first `false` blocks execution.
@@ -101,12 +124,71 @@ export class CommandBus {
     return this.guards.every((guard) => guard(command as Command));
   }
 
+  /** Suscribe al ciclo de vida (ejecución/rechazo/undo/redo). */
+  subscribeLifecycle(listener: CommandLifecycleListener) {
+    this.lifecycleListeners.add(listener);
+    return () => {
+      this.lifecycleListeners.delete(listener);
+    };
+  }
+
+  /** Estado del historial; es lo que la toolbar necesita para undo/redo. */
+  historyState() {
+    return {
+      canUndo: this.canUndo(),
+      canRedo: this.canRedo(),
+      undoDepth: this.undoStack.length,
+      redoDepth: this.redoStack.length,
+    };
+  }
+
+  private emitLifecycle(
+    phase: CommandLifecyclePhase,
+    command: Pick<Command, 'id' | 'label'>,
+    reason?: CommandLifecycleEvent['reason'],
+  ) {
+    const event: CommandLifecycleEvent = {
+      phase,
+      commandId: String(command.id || ''),
+      label: String(command.label || ''),
+      timestamp: Date.now(),
+      ...(reason ? { reason } : {}),
+      history: this.historyState(),
+    };
+    // Un observador que falla no puede tumbar la ejecución del comando.
+    this.lifecycleListeners.forEach((listener) => {
+      try {
+        listener(event);
+      } catch {
+        /* observador aislado */
+      }
+    });
+  }
+
   async execute(command: Command) {
-    if (!this.check(command)) return;
+    if (!hasRequiredBaseCommandFields(command)) {
+      this.emitLifecycle('rejected', command, 'invalid-command');
+      return;
+    }
+    if (!this.guards.every((guard) => guard(command))) {
+      // Rechazado: no se ejecuta, no muta y no toca el historial.
+      this.emitLifecycle('rejected', command, 'blocked-by-guard');
+      return;
+    }
+
     const context = createExecutionContext(this.listeners);
     await command.execute(context);
-    this.undoStack.push(command);
-    this.redoStack = [];
+
+    // `undoable: false` (cambios de vista, por ejemplo) NO entra al historial.
+    // El contrato lo decía desde el principio, pero no se comprobaba: los
+    // comandos de vista ensuciaban la pila y un undo deshacía algo que el
+    // usuario no había hecho.
+    if (command.meta?.undoable !== false) {
+      this.undoStack.push(command);
+      this.redoStack = [];
+    }
+
+    this.emitLifecycle('executed', command);
   }
 
   async undo() {
@@ -115,6 +197,7 @@ export class CommandBus {
     const context = createExecutionContext(this.listeners);
     await command.undo(context);
     this.redoStack.push(command);
+    this.emitLifecycle('undone', command);
   }
 
   async redo() {
@@ -127,6 +210,7 @@ export class CommandBus {
       await command.execute(context);
     }
     this.undoStack.push(command);
+    this.emitLifecycle('redone', command);
   }
 
   canUndo() {

@@ -15,7 +15,14 @@ import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
 import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
 import { useSisadPdfmeController } from './useSisadPdfmeController.js';
+import { useSisadPdfmeConfigService } from './useSisadPdfmeConfigService.js';
 import { mergeHostSurfaceClassName } from './hostSurface.js';
+import {
+  createInstanceEventDispatcher,
+  type SisadPdfmeHostCallbacks,
+} from '../runtime/instanceEventDispatcher.js';
+import { bridgeRuntimeEventHub } from '../runtime/runtimeEventBridge.js';
+import type { SisadPdfmeAnyEvent } from '../contracts/events.js';
 import { buildCollaborationSyncFromRegistry } from '../recipients/recipientResolver.js';
 import { useSisadPdfmeRecipientRuntime } from './useSisadPdfmeRecipientRuntime.js';
 import type {
@@ -24,10 +31,12 @@ import type {
 } from '../recipients/recipientTypes.js';
 import type {
   SisadPdfmeController,
-  SisadPdfmeEventName,
   SisadPdfmeGlobalConfig,
   ResolvedSisadPdfmeConfig,
 } from '../config/SisadPdfmeConfig.js';
+
+/** Identificador de instancia para correlacionar eventos del mismo montaje. */
+let instanceSequence = 0;
 
 type DesignerProps = {
   config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
@@ -41,6 +50,14 @@ type DesignerProps = {
   onRecipientsChange?: (recipients: SisadPdfmeRecipient[]) => void;
   onActiveRecipientChange?: (recipient: SisadPdfmeRecipient | null) => void;
   onAssignmentChange?: (payload: SisadPdfmeAssignmentChangePayload) => void;
+  /**
+   * Flujo único de eventos canónicos de la instancia.
+   *
+   * Recibe todo lo que pasa por el dispatcher: lo emitido por el wrapper y lo
+   * traducido desde el hub interno del Designer. Es la vía tipada; los `onX`
+   * históricos se mantienen como adapter legacy.
+   */
+  onEvent?: (event: SisadPdfmeAnyEvent) => void;
   /** Clases adicionales del host. Se suman al contrato base de dimensiones. */
   className?: string;
   /** Estilos inline del host. El host es dueño del viewport. */
@@ -59,41 +76,97 @@ export const SisadPdfmeDesigner = ({
   onRecipientsChange,
   onActiveRecipientChange,
   onAssignmentChange,
+  onEvent,
   className,
   style,
 }: DesignerProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const configService = useSisadPdfmeConfigService(config);
   const {
     resolvedConfig,
     recipientRegistry: { registry, state: recipientState },
   } = useSisadPdfmeRecipientRuntime({ config, recipients, activeRecipientId });
 
-  // Despacha a config.events (si es función) y al prop equivalente. Se asigna
-  // en un effect sin deps para capturar siempre los handlers más recientes.
-  const emitEventRef = useRef<(name: SisadPdfmeEventName, payload: Record<string, unknown>) => void>(() => undefined);
-  useEffect(() => {
-    emitEventRef.current = (name, payload) => {
-      const handler = resolvedConfig.config.events?.[name];
-      if (typeof handler === 'function') handler(payload);
-      if (name === 'onRecipientsChange') onRecipientsChange?.(payload.recipients as SisadPdfmeRecipient[]);
-      if (name === 'onActiveRecipientChange') onActiveRecipientChange?.(payload.recipient as SisadPdfmeRecipient | null);
-      if (name === 'onAssignmentChange') onAssignmentChange?.(payload as SisadPdfmeAssignmentChangePayload);
-    };
-  });
+  /**
+   * Los props del host se leen en el momento de emitir, no se capturan: así el
+   * dispatcher nunca invoca un callback de un render anterior.
+   */
+  const hostCallbacksRef = useRef<SisadPdfmeHostCallbacks>({});
+  hostCallbacksRef.current = {
+    onRecipientsChange: (payload) =>
+      onRecipientsChange?.(payload.recipients as SisadPdfmeRecipient[]),
+    onActiveRecipientChange: (payload) =>
+      onActiveRecipientChange?.(payload.recipient as SisadPdfmeRecipient | null),
+    onAssignmentChange: (payload) =>
+      onAssignmentChange?.(payload as unknown as SisadPdfmeAssignmentChangePayload),
+  };
+
+  const configEventsRef = useRef(resolvedConfig.config.events);
+  configEventsRef.current = resolvedConfig.config.events;
+
+  /**
+   * Dispatcher único de la instancia: reparte a listeners internos y al
+   * adapter legacy `onX`. Se crea una sola vez por montaje.
+   */
+  const instanceId = useMemo(() => `designer-${instanceSequence++}`, []);
+  const dispatcher = useMemo(
+    () =>
+      createInstanceEventDispatcher({
+        instanceId,
+        getConfigEvents: () => configEventsRef.current,
+        getHostCallbacks: () => hostCallbacksRef.current,
+      }),
+    [instanceId],
+  );
+
+  /**
+   * Los eventos que el Designer emite por el hub interno se traducen al
+   * catálogo canónico y salen por el mismo dispatcher, así que el host recibe
+   * un único flujo tipado sin importar quién los originó.
+   */
+  useEffect(
+    () => bridgeRuntimeEventHub(resolvedConfig.eventHub, dispatcher, instanceId),
+    [dispatcher, instanceId, resolvedConfig.eventHub],
+  );
+
+  // El listener se lee por ref para no resuscribir en cada render del host.
+  const onEventRef = useRef(onEvent);
+  onEventRef.current = onEvent;
+  useEffect(
+    () => dispatcher.subscribe((event) => onEventRef.current?.(event)),
+    [dispatcher],
+  );
 
   // Eventos de recipients: derivados del registry, no de props sueltos.
   useEffect(() => {
     let previous = registry.getState();
     return registry.subscribe((state) => {
       if (state.recipients !== previous.recipients) {
-        emitEventRef.current('onRecipientsChange', { recipients: state.recipients });
+        dispatcher.emit(
+          'recipient.registry.changed',
+          {
+            revision: Date.now(),
+            recipients: (state.recipients as Array<{ id: string; name?: string }>).map(
+              ({ id, name }) => ({ id, name }),
+            ),
+          },
+          // El contrato histórico entrega los recipients completos.
+          { legacyPayload: { recipients: state.recipients } },
+        );
       }
       if (state.activeRecipientId !== previous.activeRecipientId) {
-        emitEventRef.current('onActiveRecipientChange', { recipient: state.activeRecipient });
+        dispatcher.emit(
+          'recipient.active.changed',
+          {
+            previousId: previous.activeRecipientId ?? null,
+            currentId: state.activeRecipientId ?? null,
+          },
+          { legacyPayload: { recipient: state.activeRecipient } },
+        );
       }
       previous = state;
     });
-  }, [registry]);
+  }, [dispatcher, registry]);
 
   const runtime = useMemo(() => ({
     Designer,
@@ -133,9 +206,21 @@ export const SisadPdfmeDesigner = ({
 
   const controllerContext = useMemo(() => ({
     registry,
+    // COREUX-004: sin esto el controller caía a un ConfigService VACÍO, así que
+    // getConfig/updateConfig/getFeatureState/explainConfiguration no operaban
+    // sobre la configuración que el Designer estaba ejecutando.
+    configService,
     onAssignmentChange: (payload: SisadPdfmeAssignmentChangePayload) =>
-      emitEventRef.current('onAssignmentChange', payload),
-  }), [registry]);
+      dispatcher.emit(
+        'assignment.changed',
+        {
+          schemaIds: (payload.schemaIds as string[]) ?? [],
+          previousOwnerIds: (payload.previousOwnerIds as string[]) ?? [],
+          ownerId: (payload.ownerId as string | null) ?? null,
+        },
+        { legacyPayload: payload as unknown as Record<string, unknown> },
+      ),
+  }), [configService, dispatcher, registry]);
   const controller = useSisadPdfmeController(instanceRef, controllerContext);
 
   useEffect(() => {

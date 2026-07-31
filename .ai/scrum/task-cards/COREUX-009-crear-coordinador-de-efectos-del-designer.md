@@ -1,6 +1,6 @@
 # COREUX-009 — Crear coordinador de efectos del Designer
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W1  
 **Prioridad:** P0  
 **Riesgo:** Muy alto  
@@ -97,9 +97,20 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Ningún efecto deja body bloqueado.
-- [ ] Cancelar modal restaura foco y selección.
-- [ ] Todos los subscriptions se limpian.
+- [x] Ningún efecto deja el body bloqueado: refcount por token y `dispose()`
+      que libera aunque una limpieza lance.
+- [x] Cancelar modal restaura el foco al disparador (pila, soporta anidados) y
+      la selección la preserva el reducer de COREUX-008.
+- [x] Todas las suscripciones se limpian; `dispose` es idempotente.
+
+Entrega: `ui/components/Designer/shared/designerEffectCoordinator.ts` con
+bloqueo de scroll por token, pila de foco, región `aria-live` única y registro
+de limpiezas. 16/16 en
+`tests/unit/sisad-pdfme/ui/designerEffectCoordinator.test.ts`.
+
+Pendiente de integración en `Designer/index.tsx` (4.000 líneas): se entrega el
+coordinador probado y su adopción se hace al tocar cada superficie en W2/W3,
+para no abrir un cambio masivo en un archivo compartido.
 
 ## Gates focales
 

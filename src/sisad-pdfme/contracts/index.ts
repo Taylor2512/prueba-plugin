@@ -232,3 +232,35 @@ export {
   getAvailableProvidersForSchema,
   getDefaultProviderForSchema,
 } from '../shared/signatureRegistry.js';
+/**
+ * Catálogo canónico de eventos.
+ *
+ * Unión discriminada + sobre versionado que reemplaza el `type: string` libre
+ * del hub de runtime. Es contrato puro: no transporta ni emite.
+ */
+export {
+  SISAD_PDFME_EVENT_VERSION,
+  SISAD_PDFME_EVENTS,
+  SISAD_PDFME_EVENT_NAMES,
+  SISAD_PDFME_EVENT_DOMAIN_BY_NAME,
+  isSisadPdfmeEventName,
+  isSisadPdfmeCustomEventName,
+  isSisadPdfmeEvent,
+  isSisadPdfmeEventOf,
+  createSisadPdfmeEvent,
+  createSisadPdfmeCustomEvent,
+} from './events.js';
+
+export type {
+  SisadPdfmeEventDomain,
+  SisadPdfmeEventName,
+  SisadPdfmeCustomEventName,
+  SisadPdfmeAnyEventName,
+  SisadPdfmeEventPayloads,
+  SisadPdfmeEventEnvelope,
+  SisadPdfmeEvent,
+  SisadPdfmeCustomEvent,
+  SisadPdfmeAnyEvent,
+  SisadPdfmeSerializable,
+  CreateEventContext,
+} from './events.js';

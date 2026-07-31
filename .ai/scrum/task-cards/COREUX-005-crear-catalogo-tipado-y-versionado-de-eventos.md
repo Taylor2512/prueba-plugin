@@ -1,6 +1,6 @@
 # COREUX-005 — Crear catálogo tipado y versionado de eventos
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W1  
 **Prioridad:** P0  
 **Riesgo:** Alto  
@@ -96,9 +96,14 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] El catálogo cubre `03-EVENT-CATALOG.md`.
-- [ ] Payloads son serializables.
-- [ ] Type tests y unit tests verdes.
+- [x] El catálogo cubre `03-EVENT-CATALOG.md` (45 eventos, 13 dominios + `custom:`).
+- [x] Payloads son serializables (probado con JSON round-trip y structuredClone).
+- [x] Type tests y unit tests verdes (12/12).
+
+Entrega: `src/sisad-pdfme/contracts/events.ts`, exportado por `contracts/index.ts`.
+Incluye sobre versionado (version/eventId/timestamp/instanceId/correlationId),
+guards y extensión controlada `custom:*`. Tests:
+`tests/unit/sisad-pdfme/events/eventCatalog.test.ts`.
 
 ## Gates focales
 

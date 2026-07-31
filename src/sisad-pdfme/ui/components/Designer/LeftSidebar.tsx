@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useMemo, useCallback, useRef } 
 import { Schema, Plugin, BasePdf, getFallbackFontName, cloneDeep } from '@sisad-pdfme/common';
 import { Button } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
-import { DESIGNER_CLASSNAME } from '../../constants.ts';
+import { DESIGNER_CLASSNAME, LEFT_SIDEBAR_WIDTH } from '../../constants.ts';
 import { normalizeLooseText } from '../../../shared/text.js';
 import { setFontNameRecursively } from '../../helper.js';
 import { OptionsContext, PluginsRegistry } from '../../contexts.js';
@@ -1170,22 +1170,24 @@ const LeftSidebar = ({
     },
     [],
   );
+  const sidebarExpandedWidthClass = variant === 'compact'
+    ? mergeClassNames(
+        '!min-w-[var(--sisad-pdfme-ls-rail-width)]',
+        '!w-[13.75rem] !max-w-[13.75rem]',
+        'max-[48rem]:!w-[13.75rem] max-[48rem]:!max-w-[13.75rem] max-[48rem]:overflow-visible',
+      )
+    : 'w-[var(--sisad-pdfme-ls-width)] max-w-[var(--sisad-pdfme-ls-width)]';
+  const sidebarCollapsedWidthClass = mergeClassNames(
+    'w-[var(--sisad-pdfme-ls-collapsed-width)] min-w-[var(--sisad-pdfme-ls-collapsed-width)] max-w-[var(--sisad-pdfme-ls-collapsed-width)] overflow-hidden',
+    'max-[48rem]:w-0 max-[48rem]:min-w-0 max-[48rem]:max-w-0',
+  );
   const sidebarClass = mergeClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar`,
     `${DESIGNER_CLASSNAME}left-sidebar-${variant}`,
-    'relative flex h-full min-h-0 w-[var(--sisad-pdfme-ls-width)] max-w-[var(--sisad-pdfme-ls-width)] shrink-0 flex-col bg-[var(--color-bg-elevated)] border-r border-slate-200/70',
+    'relative flex h-full min-h-0 shrink-0 flex-col bg-[var(--color-bg-elevated)] border-r border-slate-200/70',
+    sidebarExpanded ? sidebarExpandedWidthClass : sidebarCollapsedWidthClass,
     'max-[48rem]:absolute max-[48rem]:left-0 max-[48rem]:top-0 max-[48rem]:bottom-0 max-[48rem]:z-[20] max-[48rem]:w-0 max-[48rem]:overflow-hidden max-[48rem]:[transition:width_0.22s_var(--wix-ease-out)]',
-    variant === 'compact'
-      ? mergeClassNames(
-          `${DESIGNER_CLASSNAME}left-sidebar-compact`,
-          '!min-w-[var(--sisad-pdfme-ls-rail-width)]',
-          sidebarExpanded
-            ? resolvedPresentation === 'overlay'
-              ? '!w-[13.75rem] !max-w-[13.75rem] max-[48rem]:!w-[13.75rem] max-[48rem]:!max-w-[13.75rem] max-[48rem]:overflow-visible'
-              : '!w-[13.75rem] !max-w-[13.75rem] max-[48rem]:!w-[13.75rem] max-[48rem]:!max-w-[13.75rem] max-[48rem]:overflow-visible'
-            : '!w-[var(--sisad-pdfme-ls-rail-width)] !min-w-[var(--sisad-pdfme-ls-rail-width)] !max-w-[var(--sisad-pdfme-ls-rail-width)] overflow-hidden',
-        )
-      : '',
+    variant === 'compact' ? `${DESIGNER_CLASSNAME}left-sidebar-compact` : '',
     detached ? `${DESIGNER_CLASSNAME}left-sidebar-detached` : '',
     classNames?.container,
     className,
@@ -1773,6 +1775,7 @@ const LeftSidebar = ({
       data-sidebar-scroll-locked={isDragging ? 'true' : 'false'}
       style={{
         '--left-sidebar-live-width': `${sidebarLiveWidth}px`,
+        '--sisad-pdfme-ls-collapsed-width': `${LEFT_SIDEBAR_WIDTH}px`,
         transition: 'width 220ms var(--wix-ease-out), max-width 220ms var(--wix-ease-out), opacity 150ms ease, transform 220ms var(--wix-ease-out)',
       } as React.CSSProperties}>
       <SidebarCollapseHandle

@@ -183,3 +183,124 @@ export const createCommentCommandEvent = (
  * Construye una entrada top-level de comentario para snapshots globales.
  */
 export const buildTopLevelCommentEntry = (entry: TopLevelPdfCommentEntry): TopLevelPdfCommentEntry => entry;
+
+/* ------------------------------------------------------------------ */
+/* Comandos de estructura de página (COREUX-016)                       */
+/* ------------------------------------------------------------------ */
+
+export type PageStructureOperation = 'insert' | 'duplicate' | 'remove';
+
+/** Motivo por el que una operación de página se rechaza. */
+export type PageStructureRejection = 'last-page' | 'index-out-of-range';
+
+export type PageStructureResult<T> =
+  | { ok: true; pages: T[][] }
+  | { ok: false; reason: PageStructureRejection };
+
+/** Sufija ids repetidos para que duplicar no rompa la unicidad del template. */
+const withUniqueIds = <T extends Record<string, unknown>>(
+  schemas: T[],
+  taken: Set<string>,
+): T[] =>
+  schemas.map((schema) => {
+    const next = cloneDeep(schema) as Record<string, unknown>;
+    ['id', 'schemaUid', 'name'].forEach((key) => {
+      const value = next[key];
+      if (typeof value !== 'string' || !value) return;
+      let candidate = `${value}-copy`;
+      let counter = 2;
+      while (taken.has(candidate)) {
+        candidate = `${value}-copy-${counter}`;
+        counter += 1;
+      }
+      taken.add(candidate);
+      next[key] = candidate;
+    });
+    return next as T;
+  });
+
+/**
+ * Aplica una operación de estructura sobre las páginas.
+ *
+ * Función pura: devuelve páginas nuevas o el motivo del rechazo. No muta la
+ * entrada, así que sirve tanto para ejecutar como para previsualizar si la
+ * operación sería válida (por ejemplo, para deshabilitar un botón con motivo).
+ */
+export const applyPageStructure = <T extends Record<string, unknown>>(
+  pages: T[][],
+  operation: PageStructureOperation,
+  pageIndex: number,
+): PageStructureResult<T> => {
+  const source = Array.isArray(pages) ? pages : [];
+  if (!Number.isInteger(pageIndex) || pageIndex < 0 || pageIndex >= source.length) {
+    return { ok: false, reason: 'index-out-of-range' };
+  }
+
+  if (operation === 'remove') {
+    // Un template sin páginas no es representable: el Canvas se queda sin
+    // superficie y el snapshot deja de ser válido.
+    if (source.length <= 1) return { ok: false, reason: 'last-page' };
+    return { ok: true, pages: source.filter((_, index) => index !== pageIndex) };
+  }
+
+  const next = source.map((page) => cloneDeep(page));
+
+  if (operation === 'insert') {
+    next.splice(pageIndex + 1, 0, [] as T[]);
+    return { ok: true, pages: next };
+  }
+
+  const taken = new Set<string>();
+  source.flat().forEach((schema) => {
+    ['id', 'schemaUid', 'name'].forEach((key) => {
+      const value = (schema as Record<string, unknown>)[key];
+      if (typeof value === 'string' && value) taken.add(value);
+    });
+  });
+  next.splice(pageIndex + 1, 0, withUniqueIds(source[pageIndex] || [], taken));
+  return { ok: true, pages: next };
+};
+
+export type PageStructureCommandArgs<T extends Record<string, unknown>> = {
+  operation: PageStructureOperation;
+  pageIndex: number;
+  /** Estado de páginas antes de ejecutar. */
+  pages: T[][];
+  /** Aplica el nuevo conjunto de páginas al template. */
+  applyPages: (pages: T[][]) => void;
+  meta?: Record<string, unknown>;
+};
+
+/**
+ * Comando reversible de estructura de página.
+ *
+ * Guarda snapshots completos de antes y después, de modo que undo y redo son
+ * simétricos y el round-trip devuelve exactamente el estado original.
+ *
+ * @returns `null` cuando la operación no es válida; el caller debe mostrar el
+ * motivo en lugar de ejecutar un comando que no muta nada.
+ */
+export const createPageStructureCommand = <T extends Record<string, unknown>>({
+  operation,
+  pageIndex,
+  pages,
+  applyPages,
+  meta = {},
+}: PageStructureCommandArgs<T>): { command: Command } | { rejection: PageStructureRejection } => {
+  const result = applyPageStructure(pages, operation, pageIndex);
+  if (!result.ok) return { rejection: result.reason };
+
+  const before = cloneDeep(pages);
+  const after = cloneDeep(result.pages);
+
+  return {
+    command: {
+      id: `page.${operation}`,
+      label: `Página: ${operation}`,
+      meta,
+      execute: () => applyPages(cloneDeep(after)),
+      undo: () => applyPages(cloneDeep(before)),
+      redo: () => applyPages(cloneDeep(after)),
+    } as Command,
+  };
+};

@@ -1,6 +1,6 @@
 # COREUX-002 — Inventariar capacidades y funcionalidades ejecutables
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W0  
 **Prioridad:** P0  
 **Riesgo:** Alto  
@@ -94,9 +94,14 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Cada capacidad tiene evidencia de símbolo/ruta.
-- [ ] Se identifica dueño canónico.
-- [ ] No se crea código.
+- [x] Cada capacidad tiene evidencia de símbolo/ruta.
+- [x] Se identifica dueño canónico.
+- [x] No se crea código de core.
+
+Entrega: `reports/core-ux/08-CAPABILITY-INVENTORY.md`. Corrige la auditoría del
+30/07: `ead5b6e` implementó los cinco métodos de selección/schema que eran
+no-op. Hallazgo colateral CAP-01 (crash del log de eventos) corregido en
+`src/examples/index.jsx` con test `tests/unit/examples/exampleEventLog.test.tsx`.
 
 ## Gates focales
 

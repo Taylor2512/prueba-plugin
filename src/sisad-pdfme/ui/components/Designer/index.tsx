@@ -125,6 +125,8 @@ import {
   createTemplateSnapshotCommand,
 } from '../../../commands/index.js';
 import { emitDesignerRuntimeEvent } from '../Designer/shared/designerExtensions.js';
+import { configFromRuntimeOptions } from '../../../config/configFromRuntimeOptions.js';
+import { computeFitZoom, type ViewportFitMode } from './shared/zoomContract.js';
 const DESIGNER_THEME_STYLE_ID = DESIGNER_CLASSNAME + 'theme-base';
 
 const stableHashSchemas = (schemas: Schema[][]) => {
@@ -558,7 +560,10 @@ const TemplateEditor = ({
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
-  const resolvedConfig = useSisadPdfmeConfig(options);
+  // `options` es transporte de runtime, no configuración: entregarlo entero al
+  // ConfigService rompía el montaje al clonarlo (ver configFromRuntimeOptions).
+  const configFromOptions = useMemo(() => configFromRuntimeOptions(options), [options]);
+  const resolvedConfig = useSisadPdfmeConfig(configFromOptions);
   const designerEngine = useMemo(
     () => resolveDesignerEngine(options as Record<string, unknown>),
     [options],
@@ -2492,29 +2497,17 @@ const TemplateEditor = ({
         return null;
       }
 
-      const pageWidthPx = Math.max(1, pageSize.width * ZOOM);
-      const pageHeightPx = Math.max(1, pageSize.height * ZOOM);
-      const widthScale = usableCanvasWidth / pageWidthPx;
-      const heightScale = usableCanvasHeight / pageHeightPx;
-
-      const resolvedMode: Exclude<ViewportMode, 'auto'> =
-        mode === 'auto' ? (viewportWidth <= 980 ? 'fit-width' : 'fit-page') : mode;
-
-      let targetScale = getBaseScale();
-      if (resolvedMode === 'fit-width') {
-        targetScale = widthScale;
-      } else if (resolvedMode === 'fit-page') {
-        targetScale = Math.min(widthScale, heightScale);
-      } else if (resolvedMode === 'actual-size') {
-        targetScale = 1;
-      }
-
-      if (!Number.isFinite(targetScale) || targetScale <= 0) return null;
-
-      const baseScale = getBaseScale();
-      const zoom = targetScale / Math.max(0.0001, baseScale);
-      const safeZoom = Math.max(0.25, Math.min(maxZoom, zoom));
-      return Number.isFinite(safeZoom) ? safeZoom : null;
+      // La aritmética vive en `zoomContract` para que toolbar, controller y
+      // atajos compartan exactamente el mismo cálculo y sea comprobable sin
+      // montar el Designer.
+      return computeFitZoom(mode as ViewportFitMode, {
+        pageSize,
+        canvas: { width: usableCanvasWidth, height: usableCanvasHeight },
+        unitScale: ZOOM,
+        baseScale: getBaseScale(),
+        maxZoom,
+        viewportWidth,
+      });
     },
     [getBaseScale, maxZoom, pageSizes, resolveTargetPageIndex, usableCanvasHeight, usableCanvasWidth, viewportWidth],
   );

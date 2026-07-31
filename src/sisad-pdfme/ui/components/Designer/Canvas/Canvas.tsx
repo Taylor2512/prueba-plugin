@@ -51,6 +51,7 @@ import { round, flatten } from '../../../helper.js';
 import Paper from '../../Paper.js';
 import Renderer from '../../Renderer.js';
 import { useSisadPdfmeConfig } from '../../../../react/useSisadPdfmeConfig.js';
+import { configFromRuntimeOptions } from '../../../../config/configFromRuntimeOptions.js';
 import Selecto from './Selecto.js';
 import Moveable from './Moveable.js';
 import Guides from './Guides.js';
@@ -436,7 +437,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
    */
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
-  const resolvedConfig = useSisadPdfmeConfig(options);
+  const configFromOptions = useMemo(() => configFromRuntimeOptions(options), [options]);
+  const resolvedConfig = useSisadPdfmeConfig(configFromOptions);
   const canvasVisibility = resolvedConfig.visibility.canvas;
   /**
    * Plataforma detectada para normalización de atajos y selección.

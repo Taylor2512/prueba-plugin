@@ -1,6 +1,6 @@
 # COREUX-012 — Conectar CommandBus, eventos e historial
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W1  
 **Prioridad:** P0  
 **Riesgo:** Muy alto  
@@ -97,9 +97,18 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Undo/redo reflejan historial real.
-- [ ] Comando rechazado no emite mutación.
-- [ ] Eventos y estados de toolbar sincronizados.
+- [x] Undo/redo reflejan historial real. **Bug corregido**: `execute` apilaba
+      TODOS los comandos ignorando `meta.undoable`, pese a que el contrato decía
+      lo contrario; un cambio de vista ensuciaba la pila y un undo deshacía algo
+      que el usuario no había hecho.
+- [x] Comando rechazado no ejecuta, no muta y no toca el historial; emite
+      `rejected` con motivo (`invalid-command` / `blocked-by-guard`).
+- [x] Eventos y toolbar sincronizados: cada fase lleva
+      `{canUndo, canRedo, undoDepth, redoDepth}`.
+
+Entrega: envelope `CommandLifecycleEvent` y `subscribeLifecycle()` dentro del
+CommandBus existente — sin segundo bus. 13/13 en
+`tests/unit/sisad-pdfme/commands/commandLifecycle.test.ts`.
 
 ## Gates focales
 

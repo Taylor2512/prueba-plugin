@@ -1,6 +1,6 @@
 # COREUX-019 — Cerrar lifecycle de exportación y artifacts
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W2  
 **Prioridad:** P0  
 **Riesgo:** Alto  
@@ -98,9 +98,18 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] No hay object URL huérfana.
-- [ ] Errores llegan a dispatcher.
-- [ ] Menú comunica estado/disabled reason.
+- [x] No hay object URL huérfana: `usePdfmeArtifacts` ya revocaba la anterior
+      antes de crear la nueva y al desmontar; queda cubierto por prueba de
+      emparejamiento create/revoke, incluido entorno sin API de URL.
+- [x] Los errores llegan al dispatcher como `export.failed` canónico, con
+      `correlationId` para encadenar inicio y resultado.
+- [ ] Menú comunica estado/disabled reason: pertenece a CtlBar (COREUX-013).
+
+Entrega: `runtime/artifactEvents.ts`, traducción pura de `onStatus` —canal
+libre que solo entendía el host— a `export.started/succeeded/failed`. Distingue
+formato por familia (pdf/images/sizes) e ignora `validation-error`, que es del
+dominio de validación. 11/11 en
+`tests/unit/sisad-pdfme/runtime/artifacts.test.ts`.
 
 ## Gates focales
 

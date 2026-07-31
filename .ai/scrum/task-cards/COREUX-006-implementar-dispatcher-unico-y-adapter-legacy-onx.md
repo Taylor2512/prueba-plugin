@@ -1,6 +1,6 @@
 # COREUX-006 — Implementar dispatcher único y adapter legacy onX
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W1  
 **Prioridad:** P0  
 **Riesgo:** Muy alto  
@@ -98,9 +98,24 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Cada evento llega una vez.
-- [ ] config.events=false desactiva callback legacy, no el evento interno.
-- [ ] Un listener fallido no bloquea los demás.
+- [x] Cada evento llega una vez (Set de listeners; probado con doble registro).
+- [x] `config.events=false` desactiva el callback legacy, no el evento interno.
+- [x] Un listener fallido no bloquea los demás (diagnostics, sin throw).
+
+Entrega: `src/sisad-pdfme/runtime/instanceEventDispatcher.ts` + cableado en
+`react/SisadPdfmeDesigner.tsx`. 13/13 en
+`tests/unit/sisad-pdfme/events/instanceEventDispatcher.test.ts`.
+
+Incluye la corrección de COREUX-004: se inyecta `configService` en el
+`controllerContext`; antes el controller operaba sobre una config VACÍA.
+Verificado: `explainConfiguration` pasó de «0 migraciones» a «1 migración».
+
+HANDOFF a COREUX-007 — cablear el hub quedó BLOQUEADO. `Designer/index.tsx:561`
+y `Canvas.tsx:439` hacen `useSisadPdfmeConfig(options)` y el ConfigService clona
+esas opciones con structuredClone, así que colgar el hub de
+`designerEngine.extensions.events` lanza DataCloneError al montar (9 por
+montaje, medido). Primero hay que dejar de pasar `options` como config.
+Estado fijado en `tests/unit/sisad-pdfme/events/eventHubWiring.test.ts`.
 
 ## Gates focales
 

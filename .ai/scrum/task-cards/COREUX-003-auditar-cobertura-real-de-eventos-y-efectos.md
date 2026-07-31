@@ -1,6 +1,6 @@
 # COREUX-003 — Auditar cobertura real de eventos y efectos
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W0  
 **Prioridad:** P0  
 **Riesgo:** Alto  
@@ -98,9 +98,13 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Matriz producer→event→consumer→test.
-- [ ] Claims etiquetados confirmado/inferido/desconocido.
-- [ ] No se modifica código.
+- [x] Matriz producer→event→consumer→test.
+- [x] Claims etiquetados confirmado/inferido/desconocido.
+- [x] No se modifica código.
+
+Entrega: `reports/core-ux/11-EVENT-EFFECT-COVERAGE.md`. Hallazgo principal: el
+hub de runtime emite ~40 eventos al vacío porque `designerEngine.extensions.events`
+nunca se puebla con el `eventHub` que ya crea `resolveSisadPdfmeConfig:282`.
 
 ## Gates focales
 

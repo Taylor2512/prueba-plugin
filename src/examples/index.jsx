@@ -279,6 +279,7 @@ export function DesignerSingleUserPage() {
     controllerRef.current = controller;
   }, []);
   const getController = useCallback(() => controllerRef.current, []);
+  const handleCanonicalEvent = useMemo(() => recordCanonicalEvent(record), [record]);
 
   const handleTemplateChange = useCallback(
     (nextTemplate) => {
@@ -353,6 +354,7 @@ export function DesignerSingleUserPage() {
           onTemplateChange={handleTemplateChange}
           onSave={handleSave}
           onControllerReady={handleControllerReady}
+          onEvent={handleCanonicalEvent}
         />
       </RuntimeViewport>
     </ExampleImmersiveShell>
@@ -383,6 +385,7 @@ export function DesignerMultiUserPage() {
     controllerRef.current = controller;
   }, []);
   const getController = useCallback(() => controllerRef.current, []);
+  const handleCanonicalEvent = useMemo(() => recordCanonicalEvent(record), [record]);
 
   const handleAssignmentChange = useCallback(
     (payload) => {
@@ -492,6 +495,7 @@ export function DesignerMultiUserPage() {
           onTemplateChange={setTemplate}
           onSave={handleSave}
           onControllerReady={handleControllerReady}
+          onEvent={handleCanonicalEvent}
           onRecipientsChange={handleRecipientsChange}
           onActiveRecipientChange={handleActiveRecipientChange}
           onAssignmentChange={handleAssignmentChange}
@@ -716,7 +720,7 @@ function ExampleRouteNav({ current }) {
         data-testid="example-route-nav"
         value={current}
         onChange={(event) => navigate(event.target.value)}
-        className="box-border h-10 w-full min-w-0 max-w-[10rem] appearance-none truncate rounded-full border border-white/15 bg-white/5 px-3 text-xs font-medium text-slate-100 outline-none transition hover:border-white/30 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-8 md:max-w-[15rem]"
+        className="box-border h-11 w-full min-w-0 max-w-[10rem] appearance-none truncate rounded-full border border-white/15 bg-white/5 px-3 text-xs font-medium text-slate-100 outline-none transition hover:border-white/30 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-9 md:max-w-[15rem]"
       >
         {IMMERSIVE_ROUTE_OPTIONS.map((route) => (
           <option key={route.path} value={route.path} className="bg-slate-900 text-slate-100">
@@ -773,7 +777,7 @@ function ExampleInfoDrawer({ open, onClose, title, children }) {
           <button
             type="button"
             onClick={onClose}
-            className="box-border inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:border-white/25 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-8 md:w-8"
+            className="box-border inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:border-white/25 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-9 md:w-9"
           >
             <span aria-hidden="true">✕</span>
             <span className="sr-only">Cerrar</span>
@@ -803,7 +807,7 @@ export function ExampleTopbar({
       <Link
         to="/"
         aria-label="Volver al catálogo"
-        className="box-border inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-base text-slate-200 no-underline transition hover:border-white/25 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-8 md:w-8"
+        className="box-border inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-base text-slate-200 no-underline transition hover:border-white/25 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-9 md:w-9"
       >
         <span aria-hidden="true">←</span>
       </Link>
@@ -825,7 +829,7 @@ export function ExampleTopbar({
           aria-expanded={infoOpen}
           aria-controls="example-info-drawer"
           onClick={onToggleInfo}
-          className="box-border inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 text-xs font-medium text-slate-100 transition hover:border-white/30 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-8"
+          className="box-border inline-flex h-11 shrink-0 items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 text-xs font-medium text-slate-100 transition hover:border-white/30 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-9"
         >
           <span aria-hidden="true">ⓘ</span>
           <span className="hidden md:inline">Información</span>
@@ -958,6 +962,41 @@ export function RuntimeViewport({ children, name }) {
   );
 }
 
+/**
+ * Convierte el payload de un evento en texto renderizable.
+ *
+ * Los callbacks del wrapper entregan objetos (`{ recipient }`, `{ recipients }`,
+ * …). Renderizarlos directamente lanza «Objects are not valid as a React child»
+ * y tumba toda la aplicación, así que la normalización vive aquí, en el único
+ * punto de render, y cubre a cualquier emisor presente o futuro.
+ */
+function describeEventDetail(detail) {
+  if (detail === null || detail === undefined) return '';
+  if (typeof detail === 'string') return detail;
+  if (typeof detail !== 'object') return String(detail);
+  if (Array.isArray(detail)) return `${detail.length} elementos`;
+
+  return Object.entries(detail)
+    .slice(0, 3)
+    .map(([key, value]) => {
+      if (Array.isArray(value)) return `${key}: ${value.length}`;
+      if (value && typeof value === 'object') {
+        return `${key}: ${String(value.name ?? value.id ?? 'objeto')}`;
+      }
+      return `${key}: ${String(value)}`;
+    })
+    .join(' · ');
+}
+
+/**
+ * Muestra el flujo canónico de eventos del componente.
+ *
+ * `onEvent` entrega la unión discriminada completa; el log solo necesita el
+ * nombre y un resumen del payload.
+ */
+const recordCanonicalEvent = (record) => (event) =>
+  record(event.name, event.payload);
+
 export function ExampleEventLog({ events, onClear }) {
   return (
     <div className="space-y-2">
@@ -977,20 +1016,21 @@ export function ExampleEventLog({ events, onClear }) {
         </p>
       ) : (
         <ul className="m-0 list-none space-y-1 p-0" data-testid="example-event-log">
-          {events.map((event) => (
-            <li
-              key={event.id}
-              className="box-border rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs"
-            >
-              <div className="flex items-baseline justify-between gap-2">
-                <span className="font-semibold text-amber-200">{event.name}</span>
-                <span className="shrink-0 text-[10px] text-slate-500">{event.at}</span>
-              </div>
-              {event.detail ? (
-                <div className="mt-1 truncate text-slate-400">{event.detail}</div>
-              ) : null}
-            </li>
-          ))}
+          {events.map((event) => {
+            const detail = describeEventDetail(event.detail);
+            return (
+              <li
+                key={event.id}
+                className="box-border rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs"
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="font-semibold text-amber-200">{event.name}</span>
+                  <span className="shrink-0 text-[10px] text-slate-500">{event.at}</span>
+                </div>
+                {detail ? <div className="mt-1 truncate text-slate-400">{detail}</div> : null}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

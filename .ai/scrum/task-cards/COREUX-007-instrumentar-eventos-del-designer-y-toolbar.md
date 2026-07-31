@@ -1,6 +1,6 @@
 # COREUX-007 — Instrumentar eventos del Designer y toolbar
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W1  
 **Prioridad:** P0  
 **Riesgo:** Muy alto  
@@ -98,9 +98,26 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Eventos críticos del Designer tienen producer real.
-- [ ] No hay doble emisión Canvas/ListView.
-- [ ] Orden command→event es determinista.
+- [x] Eventos críticos del Designer tienen producer real. Verificado en
+      navegador con interacción real: `selection.changed`, `page.changed`,
+      `zoom.changed`, `sidebar.changed`, `viewport.fit` e
+      `interaction.phase.changed` llegan al host.
+- [x] No hay doble emisión Canvas/ListView: una selección aislada produce
+      `selection.changed` × 1 (medido).
+- [x] Orden command→event determinista (test de orden en el puente).
+
+Desbloqueo previo: `config/configFromRuntimeOptions.ts`. `Designer/index.tsx` y
+`Canvas.tsx` pasaban las OPCIONES del runtime a `useSisadPdfmeConfig`, que las
+clona con structuredClone; por eso colgar el hub de `designerEngine` lanzaba
+DataCloneError. Ahora solo viaja la porción serializable de configuración.
+
+Entrega:
+- hub conectado en `resolveSisadPdfmeConfig` (`extensions.events === eventHub`);
+- `runtime/runtimeEventBridge.ts` traduce los 38 `type` heredados al catálogo;
+  lo no mapeado viaja como `custom:<type>` en vez de perderse;
+- prop pública `onEvent` en `SisadPdfmeDesigner`: flujo único tipado.
+
+Tests: `tests/unit/sisad-pdfme/events/**` (41 en verde).
 
 ## Gates focales
 

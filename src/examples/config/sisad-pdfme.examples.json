@@ -1,5 +1,5 @@
 {
-  "README": "Configuración global de los ejemplos SISAD PDFME. `base` activa TODAS las funcionalidades del componente; `profiles` solo declara la diferencia de cada ruta. Para encender o apagar algo, edita este archivo: no hay configuración embebida en las páginas. La forma de `base` y de cada perfil es SisadPdfmeGlobalConfig (ver docs/08-api-reference/04-configuracion-completa.md). IMPORTANTE: este archivo debe permanecer JSON puro. El componente clona la config con structuredClone, así que una función en `events` rompe el montaje; por eso los eventos se declaran como \"host\" y los callbacks reales viajan como props del wrapper.",
+  "README": "Configuración global de los ejemplos SISAD PDFME. `base` activa TODAS las funcionalidades del componente; `profiles` solo declara la diferencia de cada ruta. Para encender o apagar algo, edita este archivo: no hay configuración embebida en las páginas. La forma de `base` y de cada perfil es SisadPdfmeGlobalConfig (ver docs/08-api-reference/04-configuracion-completa.md). IMPORTANTE: este archivo debe permanecer JSON puro. El componente clona la config con structuredClone, así que una función en `events` rompe el montaje; por eso los eventos se declaran como \"host\" y los callbacks reales viajan como props del wrapper. `ui.density` NO se declara: es alias legacy de `theme.density` y declarar ambos produce el aviso config-canonical-wins.",
   "base": {
     "configVersion": 2,
     "app": {
@@ -237,7 +237,6 @@
     "ui": {
       "visualPreset": "classic-designer",
       "layoutPreset": "three-panel",
-      "density": "comfortable",
       "gap": "0.5rem",
       "padding": "0.5rem",
       "baseWidth": "100%",

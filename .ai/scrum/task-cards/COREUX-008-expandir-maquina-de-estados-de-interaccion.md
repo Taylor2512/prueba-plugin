@@ -1,6 +1,6 @@
 # COREUX-008 — Expandir máquina de estados de interacción
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W1  
 **Prioridad:** P0  
 **Riesgo:** Muy alto  
@@ -95,9 +95,14 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Transiciones inválidas se rechazan.
-- [ ] Modal bloquea transform sin borrar selección.
-- [ ] Reducer puro con tests de tabla.
+- [x] Transiciones inválidas se rechazan con motivo tipado (`lastRejection`).
+- [x] Modal bloquea transform y edición sin borrar selección (probado).
+- [x] Reducer puro con tabla de transiciones (24/24).
+
+Entrega: `ui/components/Designer/shared/interactionReducer.ts`. Reutiliza
+`deriveInteractionState` para no duplicar el cálculo de fase; añade la fase
+`modal`, guards explícitos y `canApplyInteractionEvent` para habilitar controles
+sin mutar. Tests: `tests/unit/sisad-pdfme/ui/interactionReducer.test.ts`.
 
 ## Gates focales
 

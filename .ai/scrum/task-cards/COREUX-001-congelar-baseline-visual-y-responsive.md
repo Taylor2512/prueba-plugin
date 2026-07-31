@@ -1,6 +1,6 @@
 # COREUX-001 — Congelar baseline visual y responsive
 
-**Estado:** backlog  
+**Estado:** done  
 **Wave:** W0  
 **Prioridad:** P0  
 **Riesgo:** Medio  
@@ -94,9 +94,15 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Existe baseline en 390, 768, 1024, 1280, 1440 y 1920 px.
-- [ ] No se modifica código productivo.
-- [ ] Cada screenshot tiene estado/config documentado.
+- [x] Existe baseline en 390, 768, 1024, 1280, 1440 y 1920 px.
+- [x] No se modifica código productivo.
+- [x] Cada screenshot tiene estado/config documentado.
+
+Entrega: `reports/core-ux/10-VISUAL-BASELINE.md`, evidencia en
+`reports/core-ux/baseline/` y spec `tests/playwright/coreux-visual-baseline.spec.ts`
+(6/6 en verde). Hallazgos de core: BASE-01 desborde horizontal ≤768 px,
+BASE-02 colapsar rails no devuelve superficie, BASE-03 el zoom no refleja la
+escala real.
 
 ## Gates focales
 

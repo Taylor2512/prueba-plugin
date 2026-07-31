@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `react`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-31T17:35:25.764Z`
+- **Fecha generación:** `2026-07-31T19:58:05.040Z`
 - **Extensiones incluidas:** `.js, .jsx, .ts, .tsx, .mjs, .cjs, .json`
-- **Archivos candidatos incluidos:** `419`
+- **Archivos candidatos incluidos:** `435`
 - **Límite por archivo:** `90 KB`
 - **Límite total de contenido:** `2500 KB`
 
@@ -29,6 +29,16 @@ prueba-plugin
 │       └── es
 │           └── theme
 │               └── internal.js
+├── .ai
+│   └── scripts
+│       ├── distill-log.mjs
+│       ├── generate-method-registry.mjs
+│       ├── memory-gc.mjs
+│       ├── validate-ai-architecture.mjs
+│       ├── validate-context-manifests.mjs
+│       ├── validate-provider-adapters.mjs
+│       ├── validate-skill-budget.mjs
+│       └── validate-traceability.mjs
 ├── .eslintrc.cjs
 ├── eslint.config.cjs
 ├── package.json
@@ -107,6 +117,7 @@ prueba-plugin
 │   │   │   ├── actionConfigRegistry.ts
 │   │   │   ├── componentRegistry.ts
 │   │   │   ├── configChangeImpact.ts
+│   │   │   ├── configFromRuntimeOptions.ts
 │   │   │   ├── configMigration.ts
 │   │   │   ├── configSelectors.ts
 │   │   │   ├── configValidation.ts
@@ -127,6 +138,7 @@ prueba-plugin
 │   │   │   ├── assignments.ts
 │   │   │   ├── commands.ts
 │   │   │   ├── comments.ts
+│   │   │   ├── events.ts
 │   │   │   ├── index.ts
 │   │   │   ├── plugins.ts
 │   │   │   └── schema.ts
@@ -187,7 +199,9 @@ prueba-plugin
 │   │   │   ├── recipientTypes.ts
 │   │   │   └── useRecipientRegistry.ts
 │   │   ├── runtime
+│   │   │   ├── instanceEventDispatcher.ts
 │   │   │   ├── options.ts
+│   │   │   ├── runtimeEventBridge.ts
 │   │   │   ├── runtimeModes.ts
 │   │   │   ├── usePdfmeArtifacts.ts
 │   │   │   └── usePdfmeRuntimeInstance.ts
@@ -378,12 +392,14 @@ prueba-plugin
 │   │       │   │   │   ├── designerActionState.ts
 │   │       │   │   │   ├── DesignerContextSummary.tsx
 │   │       │   │   │   ├── designerCoordinateService.ts
+│   │       │   │   │   ├── designerEffectCoordinator.ts
 │   │       │   │   │   ├── designerExtensions.ts
 │   │       │   │   │   ├── designerInteractionReset.ts
 │   │       │   │   │   ├── designerLabels.ts
 │   │       │   │   │   ├── designerUiConfig.ts
 │   │       │   │   │   ├── interactionExclusions.ts
 │   │       │   │   │   ├── interactionGuards.ts
+│   │       │   │   │   ├── interactionReducer.ts
 │   │       │   │   │   ├── interactionState.ts
 │   │       │   │   │   ├── interactionTargetPolicy.ts
 │   │       │   │   │   ├── interactionTargetResolver.ts
@@ -412,7 +428,8 @@ prueba-plugin
 │   │       │   │   │   ├── useDesignerKeyboardShortcuts.ts
 │   │       │   │   │   ├── useDesignerUiConfig.ts
 │   │       │   │   │   ├── useResponsiveDensity.ts
-│   │       │   │   │   └── visibilityConfig.ts
+│   │       │   │   │   ├── visibilityConfig.ts
+│   │       │   │   │   └── zoomContract.ts
 │   │       │   │   ├── Shortcuts
 │   │       │   │   │   ├── ShortcutHelpButton.tsx
 │   │       │   │   │   └── ShortcutHelpPanel.tsx
@@ -425,6 +442,7 @@ prueba-plugin
 │   │       │   ├── Root.tsx
 │   │       │   ├── RuntimeFormPanel.tsx
 │   │       │   ├── shared
+│   │       │   │   ├── DesignerTooltip.tsx
 │   │       │   │   ├── pageMetadata.ts
 │   │       │   │   └── usePaperRefRegistry.ts
 │   │       │   ├── Spinner.tsx
@@ -479,428 +497,444 @@ prueba-plugin
 | 11 | `vitest.config.ts` | typescript | 30 | 1.0 | completo |
 | 12 | `scripts/add-labelpath-to-selects.mjs` | javascript | 67 | 2.1 | completo |
 | 13 | `scripts/validate-samples.mjs` | javascript | 107 | 3.7 | completo |
-| 14 | `scripts/ai/sync-scrum-views.mjs` | javascript | 187 | 6.0 | completo |
-| 15 | `scripts/lib/ast.js` | javascript | 68 | 1.8 | completo |
-| 16 | `scripts/lib/cli.js` | javascript | 55 | 1.6 | completo |
-| 17 | `scripts/lib/collections.js` | javascript | 21 | 0.5 | completo |
-| 18 | `scripts/lib/files.js` | javascript | 80 | 1.9 | completo |
-| 19 | `scripts/lib/json.js` | javascript | 28 | 0.8 | completo |
-| 20 | `scripts/quality/check-direct-config-readers.mjs` | javascript | 46 | 1.4 | completo |
-| 21 | `scripts/quality/check-example-style-boundary.mjs` | javascript | 83 | 3.2 | completo |
-| 22 | `scripts/quality/check-js-jsx-file-size-range.js` | javascript | 19 | 0.9 | completo |
-| 23 | `scripts/quality/check-source-language-boundary.mjs` | javascript | 103 | 3.2 | completo |
-| 24 | `scripts/quality/find-css-duplicates.js` | javascript | 38 | 1.4 | completo |
-| 25 | `scripts/quality/find-line-duplicates-sensitive.js` | javascript | 53 | 2.2 | completo |
-| 26 | `scripts/quality/find-symbol-name-duplicates.js` | javascript | 41 | 1.7 | completo |
-| 27 | `scripts/quality/find-wrapper-components.js` | javascript | 756 | 24.5 | completo |
-| 28 | `scripts/quality/inspect-signing-har.js` | javascript | 78 | 2.5 | completo |
-| 29 | `scripts/quality/list-large-files.js` | javascript | 17 | 0.7 | completo |
-| 30 | `scripts/quality/remove-from-filenames.js` | javascript | 132 | 4.4 | completo |
-| 31 | `scripts/quality/validate-form-template-runtime-references.mjs` | javascript | 111 | 3.8 | completo |
-| 32 | `src/examples/index.jsx` | jsx | 1197 | 41.9 | completo |
-| 33 | `src/types/custom.d.ts` | typescript | 23 | 0.5 | completo |
-| 34 | `tools/ai-quality/check-markdown-duplicates.mjs` | javascript | 37 | 1.5 | completo |
-| 35 | `tools/ai-quality/parse-jscpd-report.mjs` | javascript | 42 | 1.7 | completo |
-| 36 | `tools/ai-quality/validate-ai-architecture.mjs` | javascript | 31 | 1.4 | completo |
-| 37 | `src/sisad-pdfme/adapters/documentsAdapter.ts` | typescript | 39 | 1.7 | completo |
-| 38 | `src/sisad-pdfme/adapters/index.ts` | typescript | 13 | 0.5 | completo |
-| 39 | `src/sisad-pdfme/adapters/persistenceAdapter.ts` | typescript | 17 | 0.5 | completo |
-| 40 | `src/sisad-pdfme/adapters/recipientsAdapter.ts` | typescript | 26 | 1.1 | completo |
-| 41 | `src/sisad-pdfme/adapters/signatureProviderAdapter.ts` | typescript | 25 | 1.0 | completo |
-| 42 | `src/sisad-pdfme/assignments/index.ts` | typescript | 588 | 15.2 | completo |
-| 43 | `src/sisad-pdfme/browser/downloads.ts` | typescript | 39 | 1.3 | completo |
-| 44 | `src/sisad-pdfme/browser/objectUrls.ts` | typescript | 32 | 1.0 | completo |
-| 45 | `src/sisad-pdfme/canvas/canvasRenderState.ts` | typescript | 146 | 4.9 | completo |
-| 46 | `src/sisad-pdfme/canvas/overlayManager.ts` | typescript | 249 | 7.4 | completo |
-| 47 | `src/sisad-pdfme/canvas/useCanvasRenderState.ts` | typescript | 152 | 4.8 | completo |
-| 48 | `src/sisad-pdfme/collaboration/appearance.ts` | typescript | 55 | 1.8 | completo |
-| 49 | `src/sisad-pdfme/collaboration/index.ts` | typescript | 441 | 11.9 | completo |
-| 50 | `src/sisad-pdfme/collaboration/lockManager.ts` | typescript | 253 | 7.5 | completo |
-| 51 | `src/sisad-pdfme/collaboration/recipientPalette.ts` | typescript | 69 | 2.1 | completo |
-| 52 | `src/sisad-pdfme/collaboration/schemaLockGuard.ts` | typescript | 96 | 2.9 | completo |
-| 53 | `src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts` | typescript | 194 | 6.8 | completo |
-| 54 | `src/sisad-pdfme/commands/index.ts` | typescript | 214 | 5.4 | completo |
-| 55 | `src/sisad-pdfme/comments/index.ts` | typescript | 494 | 12.7 | completo |
-| 56 | `src/sisad-pdfme/common/collaboration.ts` | typescript | 841 | 20.9 | completo |
-| 57 | `src/sisad-pdfme/common/comments.ts` | typescript | 308 | 11.8 | completo |
-| 58 | `src/sisad-pdfme/common/constants.ts` | typescript | 40 | 171.0 | omitido minificado |
-| 59 | `src/sisad-pdfme/common/dynamicTemplate.ts` | typescript | 336 | 10.1 | completo |
-| 60 | `src/sisad-pdfme/common/expression.ts` | typescript | 486 | 15.3 | completo |
-| 61 | `src/sisad-pdfme/common/helper.ts` | typescript | 347 | 11.1 | completo |
-| 62 | `src/sisad-pdfme/common/index.ts` | typescript | 142 | 3.3 | completo |
-| 63 | `src/sisad-pdfme/common/pluginRegistry.ts` | typescript | 85 | 3.6 | completo |
-| 64 | `src/sisad-pdfme/common/schema.ts` | typescript | 334 | 10.6 | completo |
-| 65 | `src/sisad-pdfme/common/schemaPageTraversal.ts` | typescript | 31 | 0.9 | completo |
-| 66 | `src/sisad-pdfme/common/types.ts` | typescript | 272 | 11.5 | completo |
-| 67 | `src/sisad-pdfme/common/version.ts` | typescript | 10 | 0.3 | completo |
-| 68 | `src/sisad-pdfme/config/actionConfigRegistry.ts` | typescript | 256 | 9.7 | completo |
-| 69 | `src/sisad-pdfme/config/componentRegistry.ts` | typescript | 185 | 5.3 | completo |
-| 70 | `src/sisad-pdfme/config/configChangeImpact.ts` | typescript | 49 | 1.4 | completo |
-| 71 | `src/sisad-pdfme/config/configMigration.ts` | typescript | 115 | 3.9 | completo |
-| 72 | `src/sisad-pdfme/config/configSelectors.ts` | typescript | 120 | 4.6 | completo |
-| 73 | `src/sisad-pdfme/config/configValidation.ts` | typescript | 103 | 3.7 | completo |
-| 74 | `src/sisad-pdfme/config/createSisadPdfmeConfig.ts` | typescript | 5 | 0.3 | completo |
-| 75 | `src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts` | typescript | 231 | 5.2 | completo |
-| 76 | `src/sisad-pdfme/config/featureDependencies.ts` | typescript | 14 | 0.4 | completo |
-| 77 | `src/sisad-pdfme/config/featureRegistry.ts` | typescript | 232 | 7.5 | completo |
-| 78 | `src/sisad-pdfme/config/index.ts` | typescript | 61 | 2.3 | completo |
-| 79 | `src/sisad-pdfme/config/InspectorConfigurationResolver.ts` | typescript | 31 | 1.3 | completo |
-| 80 | `src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts` | typescript | 284 | 11.4 | completo |
-| 81 | `src/sisad-pdfme/config/schemaCapabilityResolver.ts` | typescript | 151 | 4.8 | completo |
-| 82 | `src/sisad-pdfme/config/schemaConfigurationProfile.ts` | typescript | 192 | 5.7 | completo |
-| 83 | `src/sisad-pdfme/config/SisadPdfmeConfig.ts` | typescript | 418 | 12.2 | completo |
-| 84 | `src/sisad-pdfme/config/SisadPdfmeConfigService.ts` | typescript | 232 | 8.3 | completo |
-| 85 | `src/sisad-pdfme/context/RecipientContext.ts` | typescript | 111 | 4.0 | completo |
-| 86 | `src/sisad-pdfme/contracts/assignments.ts` | typescript | 72 | 1.8 | completo |
-| 87 | `src/sisad-pdfme/contracts/commands.ts` | typescript | 247 | 5.7 | completo |
-| 88 | `src/sisad-pdfme/contracts/comments.ts` | typescript | 278 | 6.3 | completo |
-| 89 | `src/sisad-pdfme/contracts/index.ts` | typescript | 234 | 6.9 | completo |
-| 90 | `src/sisad-pdfme/contracts/plugins.ts` | typescript | 439 | 8.8 | completo |
-| 91 | `src/sisad-pdfme/contracts/schema.ts` | typescript | 190 | 5.0 | completo |
-| 92 | `src/sisad-pdfme/converter/createEnvironmentConverters.ts` | typescript | 33 | 1.1 | completo |
-| 93 | `src/sisad-pdfme/converter/img2pdf.ts` | typescript | 193 | 5.9 | completo |
-| 94 | `src/sisad-pdfme/converter/index.browser.ts` | typescript | 59 | 2.0 | completo |
-| 95 | `src/sisad-pdfme/converter/index.node.ts` | typescript | 46 | 1.6 | completo |
-| 96 | `src/sisad-pdfme/converter/index.shared.ts` | typescript | 5 | 0.2 | completo |
-| 97 | `src/sisad-pdfme/converter/index.ts` | typescript | 23 | 0.8 | completo |
-| 98 | `src/sisad-pdfme/converter/modules.d.ts` | typescript | 19 | 0.5 | completo |
-| 99 | `src/sisad-pdfme/converter/pdf2img.ts` | typescript | 110 | 3.3 | completo |
-| 100 | `src/sisad-pdfme/converter/pdf2size.ts` | typescript | 51 | 1.5 | completo |
-| 101 | `src/sisad-pdfme/converter/types.d.ts` | typescript | 8 | 0.2 | completo |
-| 102 | `src/sisad-pdfme/devtools/index.ts` | typescript | 68 | 2.1 | completo |
-| 103 | `src/sisad-pdfme/documents/index.ts` | typescript | 269 | 9.4 | completo |
-| 104 | `src/sisad-pdfme/editor/index.ts` | typescript | 178 | 5.0 | completo |
-| 105 | `src/sisad-pdfme/externalForms/externalFormRunner.ts` | typescript | 381 | 13.6 | completo |
-| 106 | `src/sisad-pdfme/generator/constants.ts` | typescript | 1 | 0.1 | completo |
-| 107 | `src/sisad-pdfme/generator/generate.ts` | typescript | 167 | 5.0 | completo |
-| 108 | `src/sisad-pdfme/generator/helper.ts` | typescript | 171 | 5.5 | completo |
-| 109 | `src/sisad-pdfme/generator/index.ts` | typescript | 27 | 1.0 | completo |
-| 110 | `src/sisad-pdfme/generator/preflight.ts` | typescript | 447 | 13.0 | completo |
-| 111 | `src/sisad-pdfme/generator/types.ts` | typescript | 5 | 0.2 | completo |
-| 112 | `src/sisad-pdfme/integration/index.ts` | typescript | 220 | 6.0 | completo |
-| 113 | `src/sisad-pdfme/integration/normalizeHostData.ts` | typescript | 83 | 2.6 | completo |
-| 114 | `src/sisad-pdfme/integration/schemaController.ts` | typescript | 91 | 3.8 | completo |
-| 115 | `src/sisad-pdfme/labs/index.ts` | typescript | 740 | 23.1 | completo |
-| 116 | `src/sisad-pdfme/react/hostSurface.ts` | typescript | 25 | 1.0 | completo |
-| 117 | `src/sisad-pdfme/react/index.ts` | typescript | 25 | 1.1 | completo |
-| 118 | `src/sisad-pdfme/react/SisadPdfmeDesigner.tsx` | tsx | 162 | 6.5 | completo |
-| 119 | `src/sisad-pdfme/react/SisadPdfmeForm.tsx` | tsx | 14 | 0.4 | completo |
-| 120 | `src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx` | tsx | 106 | 2.9 | completo |
-| 121 | `src/sisad-pdfme/react/SisadPdfmeProvider.tsx` | tsx | 31 | 1.6 | completo |
-| 122 | `src/sisad-pdfme/react/SisadPdfmeViewer.tsx` | tsx | 15 | 0.4 | completo |
-| 123 | `src/sisad-pdfme/react/useSisadPdfmeAction.ts` | typescript | 15 | 0.6 | completo |
-| 124 | `src/sisad-pdfme/react/useSisadPdfmeComponent.ts` | typescript | 15 | 0.6 | completo |
-| 125 | `src/sisad-pdfme/react/useSisadPdfmeConfig.ts` | typescript | 12 | 0.5 | completo |
-| 126 | `src/sisad-pdfme/react/useSisadPdfmeConfigService.ts` | typescript | 28 | 1.3 | completo |
-| 127 | `src/sisad-pdfme/react/useSisadPdfmeController.ts` | typescript | 328 | 13.3 | completo |
-| 128 | `src/sisad-pdfme/react/useSisadPdfmeFeature.ts` | typescript | 15 | 0.6 | completo |
-| 129 | `src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts` | typescript | 52 | 1.8 | completo |
-| 130 | `src/sisad-pdfme/recipients/index.ts` | typescript | 53 | 1.5 | completo |
-| 131 | `src/sisad-pdfme/recipients/recipientColorResolver.ts` | typescript | 52 | 2.0 | completo |
-| 132 | `src/sisad-pdfme/recipients/recipientPermissionResolver.ts` | typescript | 64 | 2.3 | completo |
-| 133 | `src/sisad-pdfme/recipients/recipientRegistry.ts` | typescript | 196 | 7.6 | completo |
-| 134 | `src/sisad-pdfme/recipients/recipientResolver.ts` | typescript | 170 | 6.2 | completo |
-| 135 | `src/sisad-pdfme/recipients/recipientSnapshot.ts` | typescript | 70 | 2.7 | completo |
-| 136 | `src/sisad-pdfme/recipients/recipientTypes.ts` | typescript | 115 | 3.9 | completo |
-| 137 | `src/sisad-pdfme/recipients/useRecipientRegistry.ts` | typescript | 83 | 3.2 | completo |
-| 138 | `src/sisad-pdfme/runtime/options.ts` | typescript | 140 | 4.1 | completo |
-| 139 | `src/sisad-pdfme/runtime/runtimeModes.ts` | typescript | 68 | 2.5 | completo |
-| 140 | `src/sisad-pdfme/runtime/usePdfmeArtifacts.ts` | typescript | 285 | 10.8 | completo |
-| 141 | `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts` | typescript | 316 | 11.8 | completo |
-| 142 | `src/sisad-pdfme/schemas/constants.ts` | typescript | 2 | 0.1 | completo |
-| 143 | `src/sisad-pdfme/schemas/groupSchemaRender.ts` | typescript | 252 | 7.6 | completo |
-| 144 | `src/sisad-pdfme/schemas/index.ts` | typescript | 415 | 13.2 | completo |
-| 145 | `src/sisad-pdfme/schemas/modules.d.ts` | typescript | 32 | 0.9 | completo |
-| 146 | `src/sisad-pdfme/schemas/schemaBuilder.ts` | typescript | 167 | 5.2 | completo |
-| 147 | `src/sisad-pdfme/schemas/schemaFamilies.ts` | typescript | 364 | 12.3 | completo |
-| 148 | `src/sisad-pdfme/schemas/utils.ts` | typescript | 294 | 8.6 | completo |
-| 149 | `src/sisad-pdfme/shared/commandTypes.ts` | typescript | 129 | 4.0 | completo |
-| 150 | `src/sisad-pdfme/shared/index.ts` | typescript | 133 | 3.4 | completo |
-| 151 | `src/sisad-pdfme/shared/interactionGuards.ts` | typescript | 167 | 5.1 | completo |
-| 152 | `src/sisad-pdfme/shared/keyboardShortcuts.ts` | typescript | 339 | 9.9 | completo |
-| 153 | `src/sisad-pdfme/shared/localFormStorage.ts` | typescript | 218 | 8.0 | completo |
-| 154 | `src/sisad-pdfme/shared/localMode.ts` | typescript | 187 | 7.2 | completo |
-| 155 | `src/sisad-pdfme/shared/localSnapshotStore.ts` | typescript | 181 | 6.7 | completo |
-| 156 | `src/sisad-pdfme/shared/objectGuards.ts` | typescript | 5 | 0.3 | completo |
-| 157 | `src/sisad-pdfme/shared/schemaDesignerMeta.ts` | typescript | 299 | 9.4 | completo |
-| 158 | `src/sisad-pdfme/shared/schemaMigration.ts` | typescript | 124 | 5.0 | completo |
-| 159 | `src/sisad-pdfme/shared/signatureRegistry.ts` | typescript | 166 | 5.5 | completo |
-| 160 | `src/sisad-pdfme/shared/snapshot.ts` | typescript | 230 | 6.7 | completo |
-| 161 | `src/sisad-pdfme/shared/snapshotAdapter.ts` | typescript | 571 | 21.4 | completo |
-| 162 | `src/sisad-pdfme/shared/templateValidator.ts` | typescript | 323 | 10.9 | completo |
-| 163 | `src/sisad-pdfme/shared/text.ts` | typescript | 10 | 0.4 | completo |
-| 164 | `src/sisad-pdfme/shared/webStorage.ts` | typescript | 48 | 1.2 | completo |
-| 165 | `src/sisad-pdfme/templates/createDefaultTemplate.ts` | typescript | 37 | 1.3 | completo |
-| 166 | `src/sisad-pdfme/ui/class.ts` | typescript | 324 | 8.9 | completo |
-| 167 | `src/sisad-pdfme/ui/collaboration.ts` | typescript | 1524 | 50.6 | completo |
-| 168 | `src/sisad-pdfme/ui/collaborationContext.ts` | typescript | 277 | 11.1 | completo |
-| 169 | `src/sisad-pdfme/ui/constants.ts` | typescript | 33 | 0.9 | completo |
-| 170 | `src/sisad-pdfme/ui/contexts.ts` | typescript | 26 | 1.0 | completo |
-| 171 | `src/sisad-pdfme/ui/Designer.tsx` | tsx | 412 | 13.0 | completo |
-| 172 | `src/sisad-pdfme/ui/designerEngine.ts` | typescript | 1417 | 48.1 | completo |
-| 173 | `src/sisad-pdfme/ui/Form.tsx` | tsx | 107 | 3.6 | completo |
-| 174 | `src/sisad-pdfme/ui/helper.ts` | typescript | 629 | 18.1 | completo |
-| 175 | `src/sisad-pdfme/ui/hooks.ts` | typescript | 508 | 16.6 | completo |
-| 176 | `src/sisad-pdfme/ui/i18n.ts` | typescript | 915 | 37.7 | completo |
-| 177 | `src/sisad-pdfme/ui/index.ts` | typescript | 47 | 1.7 | completo |
-| 178 | `src/sisad-pdfme/ui/PagedPreviewUI.tsx` | tsx | 58 | 1.7 | completo |
-| 179 | `src/sisad-pdfme/ui/runtimeStyles.ts` | typescript | 353 | 10.1 | completo |
-| 180 | `src/sisad-pdfme/ui/theme.ts` | typescript | 75 | 1.7 | completo |
-| 181 | `src/sisad-pdfme/ui/types.ts` | typescript | 168 | 5.6 | completo |
-| 182 | `src/sisad-pdfme/ui/Viewer.tsx` | tsx | 30 | 0.9 | completo |
-| 183 | `__mocks__/antd/es/theme/internal.js` | javascript | 5 | 0.1 | completo |
-| 184 | `src/sisad-pdfme/schemas/actions/actionSchemaFactory.ts` | typescript | 159 | 5.0 | completo |
-| 185 | `src/sisad-pdfme/schemas/actions/approve.ts` | typescript | 19 | 0.7 | completo |
-| 186 | `src/sisad-pdfme/schemas/actions/attachment.ts` | typescript | 206 | 7.2 | completo |
-| 187 | `src/sisad-pdfme/schemas/actions/createDecisionActionPlugin.ts` | typescript | 212 | 6.3 | completo |
-| 188 | `src/sisad-pdfme/schemas/actions/decline.ts` | typescript | 18 | 0.7 | completo |
-| 189 | `src/sisad-pdfme/schemas/actions/note.ts` | typescript | 116 | 3.6 | completo |
-| 190 | `src/sisad-pdfme/schemas/barcodes/constants.ts` | typescript | 23 | 0.4 | completo |
-| 191 | `src/sisad-pdfme/schemas/barcodes/helper.ts` | typescript | 186 | 6.4 | completo |
-| 192 | `src/sisad-pdfme/schemas/barcodes/index.ts` | typescript | 23 | 0.8 | completo |
-| 193 | `src/sisad-pdfme/schemas/barcodes/pdfRender.ts` | typescript | 37 | 1.2 | completo |
-| 194 | `src/sisad-pdfme/schemas/barcodes/propPanel.ts` | typescript | 238 | 5.4 | completo |
-| 195 | `src/sisad-pdfme/schemas/barcodes/types.ts` | typescript | 12 | 0.3 | completo |
-| 196 | `src/sisad-pdfme/schemas/barcodes/uiRender.ts` | typescript | 97 | 3.3 | completo |
-| 197 | `src/sisad-pdfme/schemas/checkbox/index.ts` | typescript | 203 | 7.3 | completo |
-| 198 | `src/sisad-pdfme/schemas/checkboxGroup/index.ts` | typescript | 343 | 12.5 | completo |
-| 199 | `src/sisad-pdfme/schemas/date/date.ts` | typescript | 16 | 0.5 | completo |
-| 200 | `src/sisad-pdfme/schemas/date/dateTime.ts` | typescript | 16 | 0.5 | completo |
-| 201 | `src/sisad-pdfme/schemas/date/helper.ts` | typescript | 502 | 36.5 | completo |
-| 202 | `src/sisad-pdfme/schemas/date/time.ts` | typescript | 16 | 0.4 | completo |
-| 203 | `src/sisad-pdfme/schemas/date/types.ts` | typescript | 21 | 0.5 | completo |
-| 204 | `src/sisad-pdfme/schemas/graphics/image.ts` | typescript | 229 | 7.5 | completo |
-| 205 | `src/sisad-pdfme/schemas/graphics/imagehelper.ts` | typescript | 156 | 4.4 | completo |
-| 206 | `src/sisad-pdfme/schemas/graphics/svg.ts` | typescript | 123 | 6.8 | completo |
-| 207 | `src/sisad-pdfme/schemas/multiVariableText/helper.ts` | typescript | 91 | 2.5 | completo |
-| 208 | `src/sisad-pdfme/schemas/multiVariableText/index.ts` | typescript | 23 | 0.9 | completo |
-| 209 | `src/sisad-pdfme/schemas/multiVariableText/pdfRender.ts` | typescript | 21 | 0.6 | completo |
-| 210 | `src/sisad-pdfme/schemas/multiVariableText/propPanel.ts` | typescript | 166 | 5.7 | completo |
-| 211 | `src/sisad-pdfme/schemas/multiVariableText/types.ts` | typescript | 6 | 0.2 | completo |
-| 212 | `src/sisad-pdfme/schemas/multiVariableText/uiRender.ts` | typescript | 170 | 5.5 | completo |
-| 213 | `src/sisad-pdfme/schemas/number/index.ts` | typescript | 86 | 2.3 | completo |
-| 214 | `src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts` | typescript | 205 | 8.6 | completo |
-| 215 | `src/sisad-pdfme/schemas/options/optionGroupFactory.ts` | typescript | 555 | 16.9 | completo |
-| 216 | `src/sisad-pdfme/schemas/options/optionGroupLayout.ts` | typescript | 76 | 2.7 | completo |
-| 217 | `src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts` | typescript | 74 | 2.2 | completo |
-| 218 | `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts` | typescript | 305 | 11.8 | completo |
-| 219 | `src/sisad-pdfme/schemas/options/optionIndicator.ts` | typescript | 240 | 9.1 | completo |
-| 220 | `src/sisad-pdfme/schemas/options/OptionListWidget.tsx` | tsx | 12 | 0.4 | completo |
-| 221 | `src/sisad-pdfme/schemas/options/optionModel.ts` | typescript | 78 | 2.3 | completo |
-| 222 | `src/sisad-pdfme/schemas/options/optionPropPanel.tsx` | tsx | 31 | 0.8 | completo |
-| 223 | `src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts` | typescript | 125 | 3.9 | completo |
-| 224 | `src/sisad-pdfme/schemas/options/optionTypes.ts` | typescript | 19 | 0.3 | completo |
-| 225 | `src/sisad-pdfme/schemas/options/optionValueAdapter.ts` | typescript | 46 | 1.8 | completo |
-| 226 | `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts` | typescript | 467 | 12.8 | completo |
-| 227 | `src/sisad-pdfme/schemas/radioGroup/index.ts` | typescript | 280 | 9.3 | completo |
-| 228 | `src/sisad-pdfme/schemas/select/index.ts` | typescript | 338 | 13.9 | completo |
-| 229 | `src/sisad-pdfme/schemas/shapes/line.ts` | typescript | 100 | 2.7 | completo |
-| 230 | `src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts` | typescript | 150 | 4.4 | completo |
-| 231 | `src/sisad-pdfme/schemas/shared/fieldChrome.ts` | typescript | 423 | 15.1 | completo |
-| 232 | `src/sisad-pdfme/schemas/shared/imageFileInput.ts` | typescript | 40 | 1.1 | completo |
-| 233 | `src/sisad-pdfme/schemas/shared/renderSchemaWithChrome.ts` | typescript | 80 | 2.2 | completo |
-| 234 | `src/sisad-pdfme/schemas/shared/schemaDom.ts` | typescript | 131 | 4.3 | completo |
-| 235 | `src/sisad-pdfme/schemas/shared/schemaGuards.ts` | typescript | 165 | 5.4 | completo |
-| 236 | `src/sisad-pdfme/schemas/shared/schemaTypes.ts` | typescript | 171 | 5.4 | completo |
-| 237 | `src/sisad-pdfme/schemas/signature/dateSigned.ts` | typescript | 136 | 4.4 | omitido generado |
-| 238 | `src/sisad-pdfme/schemas/signature/index.ts` | typescript | 304 | 10.6 | completo |
-| 239 | `src/sisad-pdfme/schemas/signature/initials.ts` | typescript | 44 | 1.4 | completo |
-| 240 | `src/sisad-pdfme/schemas/signature/propPanel.ts` | typescript | 721 | 26.1 | completo |
-| 241 | `src/sisad-pdfme/schemas/signature/providerRegistry.ts` | typescript | 207 | 6.8 | completo |
-| 242 | `src/sisad-pdfme/schemas/signature/signingSchemaFactory.ts` | typescript | 125 | 3.9 | omitido generado |
-| 243 | `src/sisad-pdfme/schemas/signature/types.ts` | typescript | 337 | 10.4 | completo |
-| 244 | `src/sisad-pdfme/schemas/signature/validation.ts` | typescript | 72 | 2.3 | completo |
-| 245 | `src/sisad-pdfme/schemas/tables/cell.ts` | typescript | 152 | 4.8 | completo |
-| 246 | `src/sisad-pdfme/schemas/tables/classes.ts` | typescript | 402 | 11.7 | completo |
-| 247 | `src/sisad-pdfme/schemas/tables/dynamicTemplate.ts` | typescript | 88 | 3.0 | completo |
-| 248 | `src/sisad-pdfme/schemas/tables/helper.ts` | typescript | 172 | 4.6 | completo |
-| 249 | `src/sisad-pdfme/schemas/tables/index.ts` | typescript | 22 | 0.7 | completo |
-| 250 | `src/sisad-pdfme/schemas/tables/pdfRender.ts` | typescript | 144 | 4.0 | completo |
-| 251 | `src/sisad-pdfme/schemas/tables/propPanel.ts` | typescript | 119 | 3.7 | completo |
-| 252 | `src/sisad-pdfme/schemas/tables/tableHelper.ts` | typescript | 278 | 8.1 | completo |
-| 253 | `src/sisad-pdfme/schemas/tables/types.ts` | typescript | 87 | 2.0 | completo |
-| 254 | `src/sisad-pdfme/schemas/tables/uiRender.ts` | typescript | 454 | 15.4 | completo |
-| 255 | `src/sisad-pdfme/schemas/text/constants.ts` | typescript | 104 | 1.9 | completo |
-| 256 | `src/sisad-pdfme/schemas/text/extraFormatter.ts` | typescript | 83 | 2.2 | completo |
-| 257 | `src/sisad-pdfme/schemas/text/helper.ts` | typescript | 544 | 17.7 | completo |
-| 258 | `src/sisad-pdfme/schemas/text/index.ts` | typescript | 23 | 0.7 | completo |
-| 259 | `src/sisad-pdfme/schemas/text/pdfRender.ts` | typescript | 236 | 7.4 | completo |
-| 260 | `src/sisad-pdfme/schemas/text/propPanel.ts` | typescript | 173 | 5.3 | completo |
-| 261 | `src/sisad-pdfme/schemas/text/types.ts` | typescript | 30 | 0.8 | completo |
-| 262 | `src/sisad-pdfme/schemas/text/uiRender.ts` | typescript | 314 | 10.0 | completo |
-| 263 | `src/sisad-pdfme/schemas/textLike/textLikePresets.ts` | typescript | 44 | 1.4 | completo |
-| 264 | `src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts` | typescript | 85 | 2.5 | completo |
-| 265 | `src/sisad-pdfme/schemas/values/schemaValueAdapter.ts` | typescript | 42 | 1.5 | completo |
-| 266 | `src/sisad-pdfme/ui/collaboration/schemaRuntimeAccess.ts` | typescript | 765 | 19.1 | completo |
-| 267 | `src/sisad-pdfme/ui/commands/commandBus.ts` | typescript | 153 | 4.9 | completo |
-| 268 | `src/sisad-pdfme/ui/commands/designerCommands.ts` | typescript | 185 | 4.1 | completo |
-| 269 | `src/sisad-pdfme/ui/components/AppContextProvider.tsx` | tsx | 116 | 3.8 | completo |
-| 270 | `src/sisad-pdfme/ui/components/CtlBar.tsx` | tsx | 615 | 29.5 | completo |
-| 271 | `src/sisad-pdfme/ui/components/ErrorScreen.tsx` | tsx | 40 | 1.5 | completo |
-| 272 | `src/sisad-pdfme/ui/components/Paper.tsx` | tsx | 256 | 8.4 | completo |
-| 273 | `src/sisad-pdfme/ui/components/Preview.tsx` | tsx | 233 | 8.3 | completo |
-| 274 | `src/sisad-pdfme/ui/components/RegisteredUsersSelector.tsx` | tsx | 113 | 4.1 | completo |
-| 275 | `src/sisad-pdfme/ui/components/Renderer.tsx` | tsx | 421 | 14.4 | completo |
-| 276 | `src/sisad-pdfme/ui/components/Root.tsx` | tsx | 61 | 2.0 | completo |
-| 277 | `src/sisad-pdfme/ui/components/RuntimeFormPanel.tsx` | tsx | 17 | 0.6 | completo |
-| 278 | `src/sisad-pdfme/ui/components/Spinner.tsx` | tsx | 31 | 0.8 | completo |
-| 279 | `src/sisad-pdfme/ui/components/StaticSchema.tsx` | tsx | 73 | 2.0 | completo |
-| 280 | `src/sisad-pdfme/ui/components/UnitPager.tsx` | tsx | 124 | 3.4 | completo |
-| 281 | `src/sisad-pdfme/ui/components/usePreviewRuntime.ts` | typescript | 781 | 27.0 | completo |
-| 282 | `src/sisad-pdfme/ui/types/customSchemaRegistry.ts` | typescript | 32 | 1.0 | completo |
-| 283 | `src/sisad-pdfme/ui/utils/cn.ts` | typescript | 8 | 0.3 | completo |
-| 284 | `src/sisad-pdfme/schemas/text/icons/index.ts` | typescript | 30 | 1.0 | completo |
-| 285 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 4390 | 166.7 | truncado 83.0 KB |
-| 286 | `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1893 | 73.6 | completo |
-| 287 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx` | tsx | 310 | 9.5 | completo |
-| 288 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` | tsx | 94 | 3.7 | completo |
-| 289 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx` | tsx | 139 | 4.7 | completo |
-| 290 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx` | tsx | 43 | 1.6 | completo |
-| 291 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx` | tsx | 87 | 3.8 | completo |
-| 292 | `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx` | tsx | 160 | 5.0 | completo |
-| 293 | `src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.tsx` | tsx | 94 | 3.0 | completo |
-| 294 | `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts` | typescript | 212 | 6.5 | completo |
-| 295 | `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts` | typescript | 156 | 5.0 | completo |
-| 296 | `src/sisad-pdfme/ui/components/shared/pageMetadata.ts` | typescript | 52 | 1.4 | completo |
-| 297 | `src/sisad-pdfme/ui/components/shared/usePaperRefRegistry.ts` | typescript | 20 | 0.5 | completo |
-| 298 | `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx` | tsx | 2017 | 72.1 | completo |
-| 299 | `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx` | tsx | 127 | 4.0 | completo |
-| 300 | `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx` | tsx | 52 | 1.5 | completo |
-| 301 | `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx` | tsx | 149 | 4.9 | completo |
-| 302 | `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx` | tsx | 100 | 2.6 | completo |
-| 303 | `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx` | tsx | 138 | 4.7 | completo |
-| 304 | `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx` | tsx | 345 | 10.5 | completo |
-| 305 | `src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx` | tsx | 167 | 4.3 | completo |
-| 306 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx` | tsx | 343 | 13.6 | completo |
-| 307 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts` | typescript | 44 | 1.4 | completo |
-| 308 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx` | tsx | 370 | 17.0 | completo |
-| 309 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | tsx | 110 | 3.5 | completo |
-| 310 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx` | tsx | 769 | 30.7 | completo |
-| 311 | `src/sisad-pdfme/ui/components/Designer/shared/accessPolicy.ts` | typescript | 117 | 3.5 | completo |
-| 312 | `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts` | typescript | 521 | 15.3 | completo |
-| 313 | `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts` | typescript | 203 | 7.0 | completo |
-| 314 | `src/sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle.tsx` | tsx | 108 | 3.3 | completo |
-| 315 | `src/sisad-pdfme/ui/components/Designer/shared/className.ts` | typescript | 17 | 0.7 | completo |
-| 316 | `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts` | typescript | 143 | 3.8 | completo |
-| 317 | `src/sisad-pdfme/ui/components/Designer/shared/designerActionState.ts` | typescript | 189 | 7.0 | completo |
-| 318 | `src/sisad-pdfme/ui/components/Designer/shared/DesignerContextSummary.tsx` | tsx | 97 | 4.4 | completo |
-| 319 | `src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts` | typescript | 168 | 5.3 | completo |
-| 320 | `src/sisad-pdfme/ui/components/Designer/shared/designerExtensions.ts` | typescript | 98 | 2.7 | completo |
-| 321 | `src/sisad-pdfme/ui/components/Designer/shared/designerInteractionReset.ts` | typescript | 85 | 2.8 | completo |
-| 322 | `src/sisad-pdfme/ui/components/Designer/shared/designerLabels.ts` | typescript | 113 | 3.2 | completo |
-| 323 | `src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts` | typescript | 158 | 6.5 | completo |
-| 324 | `src/sisad-pdfme/ui/components/Designer/shared/interactionExclusions.ts` | typescript | 50 | 1.5 | completo |
-| 325 | `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts` | typescript | 258 | 8.5 | completo |
-| 326 | `src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts` | typescript | 62 | 1.4 | completo |
-| 327 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy.ts` | typescript | 46 | 1.9 | completo |
-| 328 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver.ts` | typescript | 136 | 4.8 | completo |
-| 329 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts` | typescript | 74 | 1.9 | completo |
-| 330 | `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts` | typescript | 290 | 8.7 | completo |
-| 331 | `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts` | typescript | 568 | 16.8 | completo |
-| 332 | `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts` | typescript | 38 | 1.4 | completo |
-| 333 | `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` | typescript | 143 | 4.2 | completo |
-| 334 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts` | typescript | 210 | 6.5 | completo |
-| 335 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` | typescript | 62 | 2.3 | completo |
-| 336 | `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` | typescript | 580 | 21.0 | completo |
-| 337 | `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | 3.7 | completo |
-| 338 | `src/sisad-pdfme/ui/components/Designer/shared/schemaFamilies.ts` | typescript | 43 | 1.2 | completo |
-| 339 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts` | typescript | 115 | 3.8 | completo |
-| 340 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts` | typescript | 266 | 9.0 | completo |
-| 341 | `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts` | typescript | 106 | 2.9 | completo |
-| 342 | `src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts` | typescript | 49 | 1.5 | completo |
-| 343 | `src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts` | typescript | 34 | 1.4 | completo |
-| 344 | `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts` | typescript | 957 | 32.7 | completo |
-| 345 | `src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts` | typescript | 117 | 4.2 | completo |
-| 346 | `src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts` | typescript | 87 | 2.7 | completo |
-| 347 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx` | tsx | 64 | 2.1 | completo |
-| 348 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState.tsx` | tsx | 81 | 2.2 | completo |
-| 349 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx` | tsx | 93 | 3.3 | completo |
-| 350 | `src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts` | typescript | 29 | 1.3 | completo |
-| 351 | `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts` | typescript | 309 | 10.1 | completo |
-| 352 | `src/sisad-pdfme/ui/components/Designer/shared/useDesignerUiConfig.ts` | typescript | 22 | 0.9 | completo |
-| 353 | `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts` | typescript | 81 | 2.3 | completo |
-| 354 | `src/sisad-pdfme/ui/components/Designer/shared/visibilityConfig.ts` | typescript | 45 | 1.8 | completo |
-| 355 | `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx` | tsx | 43 | 1.2 | completo |
-| 356 | `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx` | tsx | 171 | 6.2 | completo |
-| 357 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx` | tsx | 609 | 17.8 | completo |
-| 358 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx` | tsx | 2133 | 56.6 | completo |
-| 359 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx` | tsx | 430 | 12.1 | completo |
-| 360 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx` | tsx | 167 | 7.1 | completo |
-| 361 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx` | tsx | 332 | 10.6 | completo |
-| 362 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts` | typescript | 120 | 4.3 | completo |
-| 363 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` | tsx | 117 | 4.4 | completo |
-| 364 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` | tsx | 230 | 8.2 | completo |
-| 365 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx` | tsx | 66 | 2.5 | completo |
-| 366 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts` | typescript | 62 | 1.5 | completo |
-| 367 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts` | typescript | 180 | 5.1 | completo |
-| 368 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | tsx | 69 | 2.3 | completo |
-| 369 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | tsx | 139 | 4.2 | completo |
-| 370 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | tsx | 80 | 2.3 | completo |
-| 371 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | tsx | 347 | 13.8 | completo |
-| 372 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` | typescript | 227 | 5.7 | completo |
-| 373 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | tsx | 56 | 1.9 | completo |
-| 374 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts` | typescript | 69 | 2.5 | completo |
-| 375 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx` | tsx | 92 | 4.3 | completo |
-| 376 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx` | tsx | 118 | 4.5 | completo |
-| 377 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx` | tsx | 170 | 6.4 | completo |
-| 378 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx` | tsx | 132 | 6.9 | completo |
-| 379 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx` | tsx | 193 | 7.7 | completo |
-| 380 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts` | typescript | 143 | 6.1 | completo |
-| 381 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts` | typescript | 657 | 21.8 | completo |
-| 382 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx` | tsx | 270 | 9.1 | completo |
-| 383 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts` | typescript | 595 | 19.0 | completo |
-| 384 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx` | tsx | 478 | 15.6 | completo |
-| 385 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx` | tsx | 123 | 4.4 | completo |
-| 386 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx` | tsx | 182 | 7.1 | completo |
-| 387 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx` | tsx | 162 | 7.2 | omitido por presupuesto total |
-| 388 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorColorInput.tsx` | tsx | 34 | 0.9 | omitido por presupuesto total |
-| 389 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts` | typescript | 386 | 8.8 | omitido por presupuesto total |
-| 390 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorDefinitionList.tsx` | tsx | 36 | 1.2 | omitido por presupuesto total |
-| 391 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorField.tsx` | tsx | 38 | 1.1 | omitido por presupuesto total |
-| 392 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.ts` | typescript | 46 | 1.9 | omitido por presupuesto total |
-| 393 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorNumberInput.tsx` | tsx | 44 | 1.0 | omitido por presupuesto total |
-| 394 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx` | tsx | 337 | 11.2 | omitido por presupuesto total |
-| 395 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSelect.tsx` | tsx | 43 | 1.3 | omitido por presupuesto total |
-| 396 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSwitch.tsx` | tsx | 45 | 1.3 | omitido por presupuesto total |
-| 397 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts` | typescript | 27 | 1.2 | omitido por presupuesto total |
-| 398 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | tsx | 526 | 22.6 | omitido por presupuesto total |
-| 399 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx` | tsx | 250 | 9.1 | omitido por presupuesto total |
-| 400 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts` | typescript | 102 | 3.0 | omitido por presupuesto total |
-| 401 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx` | tsx | 1074 | 40.1 | omitido por presupuesto total |
-| 402 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDetailProfiles.ts` | typescript | 9 | 0.2 | omitido por presupuesto total |
-| 403 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDisplayInfo.ts` | typescript | 23 | 0.8 | omitido por presupuesto total |
-| 404 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx` | tsx | 446 | 16.8 | omitido por presupuesto total |
-| 405 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaInteractionState.ts` | typescript | 7 | 0.2 | omitido por presupuesto total |
-| 406 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx` | tsx | 585 | 23.0 | omitido por presupuesto total |
-| 407 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx` | tsx | 97 | 3.1 | omitido por presupuesto total |
-| 408 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx` | tsx | 472 | 19.0 | omitido por presupuesto total |
-| 409 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx` | tsx | 442 | 15.8 | omitido por presupuesto total |
-| 410 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx` | tsx | 86 | 3.4 | omitido por presupuesto total |
-| 411 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx` | tsx | 79 | 2.7 | omitido por presupuesto total |
-| 412 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/listViewItemResolver.ts` | typescript | 63 | 2.8 | omitido por presupuesto total |
-| 413 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx` | tsx | 353 | 14.0 | omitido por presupuesto total |
-| 414 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/reassignActionState.ts` | typescript | 72 | 2.8 | omitido por presupuesto total |
-| 415 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx` | tsx | 447 | 12.9 | omitido por presupuesto total |
-| 416 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx` | tsx | 144 | 4.7 | omitido por presupuesto total |
-| 417 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/TypeFilterSelect.tsx` | tsx | 299 | 10.6 | omitido por presupuesto total |
-| 418 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SchemaAssignmentDialog.tsx` | tsx | 354 | 13.6 | omitido por presupuesto total |
-| 419 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | tsx | 401 | 10.2 | omitido por presupuesto total |
+| 14 | `.ai/scripts/distill-log.mjs` | javascript | 13 | 0.4 | completo |
+| 15 | `.ai/scripts/generate-method-registry.mjs` | javascript | 24 | 0.9 | completo |
+| 16 | `.ai/scripts/memory-gc.mjs` | javascript | 11 | 0.3 | completo |
+| 17 | `.ai/scripts/validate-ai-architecture.mjs` | javascript | 29 | 0.8 | completo |
+| 18 | `.ai/scripts/validate-context-manifests.mjs` | javascript | 15 | 0.5 | completo |
+| 19 | `.ai/scripts/validate-provider-adapters.mjs` | javascript | 16 | 0.5 | completo |
+| 20 | `.ai/scripts/validate-skill-budget.mjs` | javascript | 19 | 0.6 | completo |
+| 21 | `.ai/scripts/validate-traceability.mjs` | javascript | 14 | 0.5 | completo |
+| 22 | `scripts/ai/sync-scrum-views.mjs` | javascript | 187 | 6.0 | completo |
+| 23 | `scripts/lib/ast.js` | javascript | 68 | 1.8 | completo |
+| 24 | `scripts/lib/cli.js` | javascript | 55 | 1.6 | completo |
+| 25 | `scripts/lib/collections.js` | javascript | 21 | 0.5 | completo |
+| 26 | `scripts/lib/files.js` | javascript | 80 | 1.9 | completo |
+| 27 | `scripts/lib/json.js` | javascript | 28 | 0.8 | completo |
+| 28 | `scripts/quality/check-direct-config-readers.mjs` | javascript | 46 | 1.4 | completo |
+| 29 | `scripts/quality/check-example-style-boundary.mjs` | javascript | 83 | 3.2 | completo |
+| 30 | `scripts/quality/check-js-jsx-file-size-range.js` | javascript | 19 | 0.9 | completo |
+| 31 | `scripts/quality/check-source-language-boundary.mjs` | javascript | 103 | 3.2 | completo |
+| 32 | `scripts/quality/find-css-duplicates.js` | javascript | 38 | 1.4 | completo |
+| 33 | `scripts/quality/find-line-duplicates-sensitive.js` | javascript | 53 | 2.2 | completo |
+| 34 | `scripts/quality/find-symbol-name-duplicates.js` | javascript | 41 | 1.7 | completo |
+| 35 | `scripts/quality/find-wrapper-components.js` | javascript | 756 | 24.5 | completo |
+| 36 | `scripts/quality/inspect-signing-har.js` | javascript | 78 | 2.5 | completo |
+| 37 | `scripts/quality/list-large-files.js` | javascript | 17 | 0.7 | completo |
+| 38 | `scripts/quality/remove-from-filenames.js` | javascript | 132 | 4.4 | completo |
+| 39 | `scripts/quality/validate-form-template-runtime-references.mjs` | javascript | 111 | 3.8 | completo |
+| 40 | `src/examples/index.jsx` | jsx | 1237 | 43.5 | completo |
+| 41 | `src/types/custom.d.ts` | typescript | 23 | 0.5 | completo |
+| 42 | `tools/ai-quality/check-markdown-duplicates.mjs` | javascript | 37 | 1.5 | completo |
+| 43 | `tools/ai-quality/parse-jscpd-report.mjs` | javascript | 42 | 1.7 | completo |
+| 44 | `tools/ai-quality/validate-ai-architecture.mjs` | javascript | 31 | 1.4 | completo |
+| 45 | `src/sisad-pdfme/adapters/documentsAdapter.ts` | typescript | 39 | 1.7 | completo |
+| 46 | `src/sisad-pdfme/adapters/index.ts` | typescript | 13 | 0.5 | completo |
+| 47 | `src/sisad-pdfme/adapters/persistenceAdapter.ts` | typescript | 17 | 0.5 | completo |
+| 48 | `src/sisad-pdfme/adapters/recipientsAdapter.ts` | typescript | 26 | 1.1 | completo |
+| 49 | `src/sisad-pdfme/adapters/signatureProviderAdapter.ts` | typescript | 25 | 1.0 | completo |
+| 50 | `src/sisad-pdfme/assignments/index.ts` | typescript | 588 | 15.2 | completo |
+| 51 | `src/sisad-pdfme/browser/downloads.ts` | typescript | 39 | 1.3 | completo |
+| 52 | `src/sisad-pdfme/browser/objectUrls.ts` | typescript | 32 | 1.0 | completo |
+| 53 | `src/sisad-pdfme/canvas/canvasRenderState.ts` | typescript | 146 | 4.9 | completo |
+| 54 | `src/sisad-pdfme/canvas/overlayManager.ts` | typescript | 249 | 7.4 | completo |
+| 55 | `src/sisad-pdfme/canvas/useCanvasRenderState.ts` | typescript | 152 | 4.8 | completo |
+| 56 | `src/sisad-pdfme/collaboration/appearance.ts` | typescript | 55 | 1.8 | completo |
+| 57 | `src/sisad-pdfme/collaboration/index.ts` | typescript | 441 | 11.9 | completo |
+| 58 | `src/sisad-pdfme/collaboration/lockManager.ts` | typescript | 253 | 7.5 | completo |
+| 59 | `src/sisad-pdfme/collaboration/recipientPalette.ts` | typescript | 69 | 2.1 | completo |
+| 60 | `src/sisad-pdfme/collaboration/schemaLockGuard.ts` | typescript | 96 | 2.9 | completo |
+| 61 | `src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts` | typescript | 194 | 6.8 | completo |
+| 62 | `src/sisad-pdfme/commands/index.ts` | typescript | 214 | 5.4 | completo |
+| 63 | `src/sisad-pdfme/comments/index.ts` | typescript | 494 | 12.7 | completo |
+| 64 | `src/sisad-pdfme/common/collaboration.ts` | typescript | 841 | 20.9 | completo |
+| 65 | `src/sisad-pdfme/common/comments.ts` | typescript | 308 | 11.8 | completo |
+| 66 | `src/sisad-pdfme/common/constants.ts` | typescript | 40 | 171.0 | omitido minificado |
+| 67 | `src/sisad-pdfme/common/dynamicTemplate.ts` | typescript | 336 | 10.1 | completo |
+| 68 | `src/sisad-pdfme/common/expression.ts` | typescript | 486 | 15.3 | completo |
+| 69 | `src/sisad-pdfme/common/helper.ts` | typescript | 347 | 11.1 | completo |
+| 70 | `src/sisad-pdfme/common/index.ts` | typescript | 142 | 3.3 | completo |
+| 71 | `src/sisad-pdfme/common/pluginRegistry.ts` | typescript | 85 | 3.6 | completo |
+| 72 | `src/sisad-pdfme/common/schema.ts` | typescript | 334 | 10.6 | completo |
+| 73 | `src/sisad-pdfme/common/schemaPageTraversal.ts` | typescript | 31 | 0.9 | completo |
+| 74 | `src/sisad-pdfme/common/types.ts` | typescript | 272 | 11.5 | completo |
+| 75 | `src/sisad-pdfme/common/version.ts` | typescript | 10 | 0.3 | completo |
+| 76 | `src/sisad-pdfme/config/actionConfigRegistry.ts` | typescript | 256 | 9.7 | completo |
+| 77 | `src/sisad-pdfme/config/componentRegistry.ts` | typescript | 185 | 5.3 | completo |
+| 78 | `src/sisad-pdfme/config/configChangeImpact.ts` | typescript | 49 | 1.4 | completo |
+| 79 | `src/sisad-pdfme/config/configFromRuntimeOptions.ts` | typescript | 79 | 2.6 | completo |
+| 80 | `src/sisad-pdfme/config/configMigration.ts` | typescript | 115 | 3.9 | completo |
+| 81 | `src/sisad-pdfme/config/configSelectors.ts` | typescript | 120 | 4.6 | completo |
+| 82 | `src/sisad-pdfme/config/configValidation.ts` | typescript | 103 | 3.7 | completo |
+| 83 | `src/sisad-pdfme/config/createSisadPdfmeConfig.ts` | typescript | 5 | 0.3 | completo |
+| 84 | `src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts` | typescript | 231 | 5.2 | completo |
+| 85 | `src/sisad-pdfme/config/featureDependencies.ts` | typescript | 14 | 0.4 | completo |
+| 86 | `src/sisad-pdfme/config/featureRegistry.ts` | typescript | 232 | 7.5 | completo |
+| 87 | `src/sisad-pdfme/config/index.ts` | typescript | 61 | 2.3 | completo |
+| 88 | `src/sisad-pdfme/config/InspectorConfigurationResolver.ts` | typescript | 31 | 1.3 | completo |
+| 89 | `src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts` | typescript | 302 | 12.2 | completo |
+| 90 | `src/sisad-pdfme/config/schemaCapabilityResolver.ts` | typescript | 151 | 4.8 | completo |
+| 91 | `src/sisad-pdfme/config/schemaConfigurationProfile.ts` | typescript | 192 | 5.7 | completo |
+| 92 | `src/sisad-pdfme/config/SisadPdfmeConfig.ts` | typescript | 418 | 12.2 | completo |
+| 93 | `src/sisad-pdfme/config/SisadPdfmeConfigService.ts` | typescript | 232 | 8.3 | completo |
+| 94 | `src/sisad-pdfme/context/RecipientContext.ts` | typescript | 111 | 4.0 | completo |
+| 95 | `src/sisad-pdfme/contracts/assignments.ts` | typescript | 72 | 1.8 | completo |
+| 96 | `src/sisad-pdfme/contracts/commands.ts` | typescript | 247 | 5.7 | completo |
+| 97 | `src/sisad-pdfme/contracts/comments.ts` | typescript | 278 | 6.3 | completo |
+| 98 | `src/sisad-pdfme/contracts/events.ts` | typescript | 334 | 12.3 | completo |
+| 99 | `src/sisad-pdfme/contracts/index.ts` | typescript | 266 | 7.7 | completo |
+| 100 | `src/sisad-pdfme/contracts/plugins.ts` | typescript | 439 | 8.8 | completo |
+| 101 | `src/sisad-pdfme/contracts/schema.ts` | typescript | 190 | 5.0 | completo |
+| 102 | `src/sisad-pdfme/converter/createEnvironmentConverters.ts` | typescript | 33 | 1.1 | completo |
+| 103 | `src/sisad-pdfme/converter/img2pdf.ts` | typescript | 193 | 5.9 | completo |
+| 104 | `src/sisad-pdfme/converter/index.browser.ts` | typescript | 59 | 2.0 | completo |
+| 105 | `src/sisad-pdfme/converter/index.node.ts` | typescript | 46 | 1.6 | completo |
+| 106 | `src/sisad-pdfme/converter/index.shared.ts` | typescript | 5 | 0.2 | completo |
+| 107 | `src/sisad-pdfme/converter/index.ts` | typescript | 23 | 0.8 | completo |
+| 108 | `src/sisad-pdfme/converter/modules.d.ts` | typescript | 19 | 0.5 | completo |
+| 109 | `src/sisad-pdfme/converter/pdf2img.ts` | typescript | 110 | 3.3 | completo |
+| 110 | `src/sisad-pdfme/converter/pdf2size.ts` | typescript | 51 | 1.5 | completo |
+| 111 | `src/sisad-pdfme/converter/types.d.ts` | typescript | 8 | 0.2 | completo |
+| 112 | `src/sisad-pdfme/devtools/index.ts` | typescript | 68 | 2.1 | completo |
+| 113 | `src/sisad-pdfme/documents/index.ts` | typescript | 269 | 9.4 | completo |
+| 114 | `src/sisad-pdfme/editor/index.ts` | typescript | 178 | 5.0 | completo |
+| 115 | `src/sisad-pdfme/externalForms/externalFormRunner.ts` | typescript | 381 | 13.6 | completo |
+| 116 | `src/sisad-pdfme/generator/constants.ts` | typescript | 1 | 0.1 | completo |
+| 117 | `src/sisad-pdfme/generator/generate.ts` | typescript | 167 | 5.0 | completo |
+| 118 | `src/sisad-pdfme/generator/helper.ts` | typescript | 171 | 5.5 | completo |
+| 119 | `src/sisad-pdfme/generator/index.ts` | typescript | 27 | 1.0 | completo |
+| 120 | `src/sisad-pdfme/generator/preflight.ts` | typescript | 447 | 13.0 | completo |
+| 121 | `src/sisad-pdfme/generator/types.ts` | typescript | 5 | 0.2 | completo |
+| 122 | `src/sisad-pdfme/integration/index.ts` | typescript | 220 | 6.0 | completo |
+| 123 | `src/sisad-pdfme/integration/normalizeHostData.ts` | typescript | 83 | 2.6 | completo |
+| 124 | `src/sisad-pdfme/integration/schemaController.ts` | typescript | 91 | 3.8 | completo |
+| 125 | `src/sisad-pdfme/labs/index.ts` | typescript | 740 | 23.1 | completo |
+| 126 | `src/sisad-pdfme/react/hostSurface.ts` | typescript | 25 | 1.0 | completo |
+| 127 | `src/sisad-pdfme/react/index.ts` | typescript | 25 | 1.1 | completo |
+| 128 | `src/sisad-pdfme/react/SisadPdfmeDesigner.tsx` | tsx | 247 | 9.4 | completo |
+| 129 | `src/sisad-pdfme/react/SisadPdfmeForm.tsx` | tsx | 14 | 0.4 | completo |
+| 130 | `src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx` | tsx | 106 | 2.9 | completo |
+| 131 | `src/sisad-pdfme/react/SisadPdfmeProvider.tsx` | tsx | 31 | 1.6 | completo |
+| 132 | `src/sisad-pdfme/react/SisadPdfmeViewer.tsx` | tsx | 15 | 0.4 | completo |
+| 133 | `src/sisad-pdfme/react/useSisadPdfmeAction.ts` | typescript | 15 | 0.6 | completo |
+| 134 | `src/sisad-pdfme/react/useSisadPdfmeComponent.ts` | typescript | 15 | 0.6 | completo |
+| 135 | `src/sisad-pdfme/react/useSisadPdfmeConfig.ts` | typescript | 12 | 0.5 | completo |
+| 136 | `src/sisad-pdfme/react/useSisadPdfmeConfigService.ts` | typescript | 28 | 1.3 | completo |
+| 137 | `src/sisad-pdfme/react/useSisadPdfmeController.ts` | typescript | 328 | 13.3 | completo |
+| 138 | `src/sisad-pdfme/react/useSisadPdfmeFeature.ts` | typescript | 15 | 0.6 | completo |
+| 139 | `src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts` | typescript | 52 | 1.8 | completo |
+| 140 | `src/sisad-pdfme/recipients/index.ts` | typescript | 53 | 1.5 | completo |
+| 141 | `src/sisad-pdfme/recipients/recipientColorResolver.ts` | typescript | 52 | 2.0 | completo |
+| 142 | `src/sisad-pdfme/recipients/recipientPermissionResolver.ts` | typescript | 64 | 2.3 | completo |
+| 143 | `src/sisad-pdfme/recipients/recipientRegistry.ts` | typescript | 196 | 7.6 | completo |
+| 144 | `src/sisad-pdfme/recipients/recipientResolver.ts` | typescript | 170 | 6.2 | completo |
+| 145 | `src/sisad-pdfme/recipients/recipientSnapshot.ts` | typescript | 70 | 2.7 | completo |
+| 146 | `src/sisad-pdfme/recipients/recipientTypes.ts` | typescript | 115 | 3.9 | completo |
+| 147 | `src/sisad-pdfme/recipients/useRecipientRegistry.ts` | typescript | 83 | 3.2 | completo |
+| 148 | `src/sisad-pdfme/runtime/instanceEventDispatcher.ts` | typescript | 196 | 6.7 | completo |
+| 149 | `src/sisad-pdfme/runtime/options.ts` | typescript | 140 | 4.1 | completo |
+| 150 | `src/sisad-pdfme/runtime/runtimeEventBridge.ts` | typescript | 161 | 5.9 | completo |
+| 151 | `src/sisad-pdfme/runtime/runtimeModes.ts` | typescript | 68 | 2.5 | completo |
+| 152 | `src/sisad-pdfme/runtime/usePdfmeArtifacts.ts` | typescript | 285 | 10.8 | completo |
+| 153 | `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts` | typescript | 316 | 11.8 | completo |
+| 154 | `src/sisad-pdfme/schemas/constants.ts` | typescript | 2 | 0.1 | completo |
+| 155 | `src/sisad-pdfme/schemas/groupSchemaRender.ts` | typescript | 252 | 7.6 | completo |
+| 156 | `src/sisad-pdfme/schemas/index.ts` | typescript | 415 | 13.2 | completo |
+| 157 | `src/sisad-pdfme/schemas/modules.d.ts` | typescript | 32 | 0.9 | completo |
+| 158 | `src/sisad-pdfme/schemas/schemaBuilder.ts` | typescript | 167 | 5.2 | completo |
+| 159 | `src/sisad-pdfme/schemas/schemaFamilies.ts` | typescript | 364 | 12.3 | completo |
+| 160 | `src/sisad-pdfme/schemas/utils.ts` | typescript | 294 | 8.6 | completo |
+| 161 | `src/sisad-pdfme/shared/commandTypes.ts` | typescript | 129 | 4.0 | completo |
+| 162 | `src/sisad-pdfme/shared/index.ts` | typescript | 133 | 3.4 | completo |
+| 163 | `src/sisad-pdfme/shared/interactionGuards.ts` | typescript | 167 | 5.1 | completo |
+| 164 | `src/sisad-pdfme/shared/keyboardShortcuts.ts` | typescript | 339 | 9.9 | completo |
+| 165 | `src/sisad-pdfme/shared/localFormStorage.ts` | typescript | 218 | 8.0 | completo |
+| 166 | `src/sisad-pdfme/shared/localMode.ts` | typescript | 187 | 7.2 | completo |
+| 167 | `src/sisad-pdfme/shared/localSnapshotStore.ts` | typescript | 181 | 6.7 | completo |
+| 168 | `src/sisad-pdfme/shared/objectGuards.ts` | typescript | 5 | 0.3 | completo |
+| 169 | `src/sisad-pdfme/shared/schemaDesignerMeta.ts` | typescript | 299 | 9.4 | completo |
+| 170 | `src/sisad-pdfme/shared/schemaMigration.ts` | typescript | 124 | 5.0 | completo |
+| 171 | `src/sisad-pdfme/shared/signatureRegistry.ts` | typescript | 166 | 5.5 | completo |
+| 172 | `src/sisad-pdfme/shared/snapshot.ts` | typescript | 230 | 6.7 | completo |
+| 173 | `src/sisad-pdfme/shared/snapshotAdapter.ts` | typescript | 571 | 21.4 | completo |
+| 174 | `src/sisad-pdfme/shared/templateValidator.ts` | typescript | 323 | 10.9 | completo |
+| 175 | `src/sisad-pdfme/shared/text.ts` | typescript | 10 | 0.4 | completo |
+| 176 | `src/sisad-pdfme/shared/webStorage.ts` | typescript | 48 | 1.2 | completo |
+| 177 | `src/sisad-pdfme/templates/createDefaultTemplate.ts` | typescript | 37 | 1.3 | completo |
+| 178 | `src/sisad-pdfme/ui/class.ts` | typescript | 324 | 8.9 | completo |
+| 179 | `src/sisad-pdfme/ui/collaboration.ts` | typescript | 1524 | 50.6 | completo |
+| 180 | `src/sisad-pdfme/ui/collaborationContext.ts` | typescript | 277 | 11.1 | completo |
+| 181 | `src/sisad-pdfme/ui/constants.ts` | typescript | 33 | 0.9 | completo |
+| 182 | `src/sisad-pdfme/ui/contexts.ts` | typescript | 26 | 1.0 | completo |
+| 183 | `src/sisad-pdfme/ui/Designer.tsx` | tsx | 412 | 13.0 | completo |
+| 184 | `src/sisad-pdfme/ui/designerEngine.ts` | typescript | 1417 | 48.1 | completo |
+| 185 | `src/sisad-pdfme/ui/Form.tsx` | tsx | 107 | 3.6 | completo |
+| 186 | `src/sisad-pdfme/ui/helper.ts` | typescript | 629 | 18.1 | completo |
+| 187 | `src/sisad-pdfme/ui/hooks.ts` | typescript | 508 | 16.6 | completo |
+| 188 | `src/sisad-pdfme/ui/i18n.ts` | typescript | 915 | 37.7 | completo |
+| 189 | `src/sisad-pdfme/ui/index.ts` | typescript | 47 | 1.7 | completo |
+| 190 | `src/sisad-pdfme/ui/PagedPreviewUI.tsx` | tsx | 58 | 1.7 | completo |
+| 191 | `src/sisad-pdfme/ui/runtimeStyles.ts` | typescript | 353 | 10.1 | completo |
+| 192 | `src/sisad-pdfme/ui/theme.ts` | typescript | 75 | 1.7 | completo |
+| 193 | `src/sisad-pdfme/ui/types.ts` | typescript | 168 | 5.6 | completo |
+| 194 | `src/sisad-pdfme/ui/Viewer.tsx` | tsx | 30 | 0.9 | completo |
+| 195 | `__mocks__/antd/es/theme/internal.js` | javascript | 5 | 0.1 | completo |
+| 196 | `src/sisad-pdfme/schemas/actions/actionSchemaFactory.ts` | typescript | 159 | 5.0 | completo |
+| 197 | `src/sisad-pdfme/schemas/actions/approve.ts` | typescript | 19 | 0.7 | completo |
+| 198 | `src/sisad-pdfme/schemas/actions/attachment.ts` | typescript | 206 | 7.2 | completo |
+| 199 | `src/sisad-pdfme/schemas/actions/createDecisionActionPlugin.ts` | typescript | 212 | 6.3 | completo |
+| 200 | `src/sisad-pdfme/schemas/actions/decline.ts` | typescript | 18 | 0.7 | completo |
+| 201 | `src/sisad-pdfme/schemas/actions/note.ts` | typescript | 116 | 3.6 | completo |
+| 202 | `src/sisad-pdfme/schemas/barcodes/constants.ts` | typescript | 23 | 0.4 | completo |
+| 203 | `src/sisad-pdfme/schemas/barcodes/helper.ts` | typescript | 186 | 6.4 | completo |
+| 204 | `src/sisad-pdfme/schemas/barcodes/index.ts` | typescript | 23 | 0.8 | completo |
+| 205 | `src/sisad-pdfme/schemas/barcodes/pdfRender.ts` | typescript | 37 | 1.2 | completo |
+| 206 | `src/sisad-pdfme/schemas/barcodes/propPanel.ts` | typescript | 238 | 5.4 | completo |
+| 207 | `src/sisad-pdfme/schemas/barcodes/types.ts` | typescript | 12 | 0.3 | completo |
+| 208 | `src/sisad-pdfme/schemas/barcodes/uiRender.ts` | typescript | 97 | 3.3 | completo |
+| 209 | `src/sisad-pdfme/schemas/checkbox/index.ts` | typescript | 203 | 7.3 | completo |
+| 210 | `src/sisad-pdfme/schemas/checkboxGroup/index.ts` | typescript | 343 | 12.5 | completo |
+| 211 | `src/sisad-pdfme/schemas/date/date.ts` | typescript | 16 | 0.5 | completo |
+| 212 | `src/sisad-pdfme/schemas/date/dateTime.ts` | typescript | 16 | 0.5 | completo |
+| 213 | `src/sisad-pdfme/schemas/date/helper.ts` | typescript | 502 | 36.5 | completo |
+| 214 | `src/sisad-pdfme/schemas/date/time.ts` | typescript | 16 | 0.4 | completo |
+| 215 | `src/sisad-pdfme/schemas/date/types.ts` | typescript | 21 | 0.5 | completo |
+| 216 | `src/sisad-pdfme/schemas/graphics/image.ts` | typescript | 229 | 7.5 | completo |
+| 217 | `src/sisad-pdfme/schemas/graphics/imagehelper.ts` | typescript | 156 | 4.4 | completo |
+| 218 | `src/sisad-pdfme/schemas/graphics/svg.ts` | typescript | 123 | 6.8 | completo |
+| 219 | `src/sisad-pdfme/schemas/multiVariableText/helper.ts` | typescript | 91 | 2.5 | completo |
+| 220 | `src/sisad-pdfme/schemas/multiVariableText/index.ts` | typescript | 23 | 0.9 | completo |
+| 221 | `src/sisad-pdfme/schemas/multiVariableText/pdfRender.ts` | typescript | 21 | 0.6 | completo |
+| 222 | `src/sisad-pdfme/schemas/multiVariableText/propPanel.ts` | typescript | 166 | 5.7 | completo |
+| 223 | `src/sisad-pdfme/schemas/multiVariableText/types.ts` | typescript | 6 | 0.2 | completo |
+| 224 | `src/sisad-pdfme/schemas/multiVariableText/uiRender.ts` | typescript | 170 | 5.5 | completo |
+| 225 | `src/sisad-pdfme/schemas/number/index.ts` | typescript | 86 | 2.3 | completo |
+| 226 | `src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts` | typescript | 205 | 8.6 | completo |
+| 227 | `src/sisad-pdfme/schemas/options/optionGroupFactory.ts` | typescript | 555 | 16.9 | completo |
+| 228 | `src/sisad-pdfme/schemas/options/optionGroupLayout.ts` | typescript | 76 | 2.7 | completo |
+| 229 | `src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts` | typescript | 74 | 2.2 | completo |
+| 230 | `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts` | typescript | 305 | 11.8 | completo |
+| 231 | `src/sisad-pdfme/schemas/options/optionIndicator.ts` | typescript | 240 | 9.1 | completo |
+| 232 | `src/sisad-pdfme/schemas/options/OptionListWidget.tsx` | tsx | 12 | 0.4 | completo |
+| 233 | `src/sisad-pdfme/schemas/options/optionModel.ts` | typescript | 78 | 2.3 | completo |
+| 234 | `src/sisad-pdfme/schemas/options/optionPropPanel.tsx` | tsx | 31 | 0.8 | completo |
+| 235 | `src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts` | typescript | 125 | 3.9 | completo |
+| 236 | `src/sisad-pdfme/schemas/options/optionTypes.ts` | typescript | 19 | 0.3 | completo |
+| 237 | `src/sisad-pdfme/schemas/options/optionValueAdapter.ts` | typescript | 46 | 1.8 | completo |
+| 238 | `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts` | typescript | 467 | 12.8 | completo |
+| 239 | `src/sisad-pdfme/schemas/radioGroup/index.ts` | typescript | 280 | 9.3 | completo |
+| 240 | `src/sisad-pdfme/schemas/select/index.ts` | typescript | 338 | 13.9 | completo |
+| 241 | `src/sisad-pdfme/schemas/shapes/line.ts` | typescript | 100 | 2.7 | completo |
+| 242 | `src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts` | typescript | 150 | 4.4 | completo |
+| 243 | `src/sisad-pdfme/schemas/shared/fieldChrome.ts` | typescript | 423 | 15.1 | completo |
+| 244 | `src/sisad-pdfme/schemas/shared/imageFileInput.ts` | typescript | 40 | 1.1 | completo |
+| 245 | `src/sisad-pdfme/schemas/shared/renderSchemaWithChrome.ts` | typescript | 80 | 2.2 | completo |
+| 246 | `src/sisad-pdfme/schemas/shared/schemaDom.ts` | typescript | 131 | 4.3 | completo |
+| 247 | `src/sisad-pdfme/schemas/shared/schemaGuards.ts` | typescript | 165 | 5.4 | completo |
+| 248 | `src/sisad-pdfme/schemas/shared/schemaTypes.ts` | typescript | 171 | 5.4 | completo |
+| 249 | `src/sisad-pdfme/schemas/signature/dateSigned.ts` | typescript | 136 | 4.4 | omitido generado |
+| 250 | `src/sisad-pdfme/schemas/signature/index.ts` | typescript | 304 | 10.6 | completo |
+| 251 | `src/sisad-pdfme/schemas/signature/initials.ts` | typescript | 44 | 1.4 | completo |
+| 252 | `src/sisad-pdfme/schemas/signature/propPanel.ts` | typescript | 721 | 26.1 | completo |
+| 253 | `src/sisad-pdfme/schemas/signature/providerRegistry.ts` | typescript | 207 | 6.8 | completo |
+| 254 | `src/sisad-pdfme/schemas/signature/signingSchemaFactory.ts` | typescript | 125 | 3.9 | omitido generado |
+| 255 | `src/sisad-pdfme/schemas/signature/types.ts` | typescript | 337 | 10.4 | completo |
+| 256 | `src/sisad-pdfme/schemas/signature/validation.ts` | typescript | 72 | 2.3 | completo |
+| 257 | `src/sisad-pdfme/schemas/tables/cell.ts` | typescript | 152 | 4.8 | completo |
+| 258 | `src/sisad-pdfme/schemas/tables/classes.ts` | typescript | 402 | 11.7 | completo |
+| 259 | `src/sisad-pdfme/schemas/tables/dynamicTemplate.ts` | typescript | 88 | 3.0 | completo |
+| 260 | `src/sisad-pdfme/schemas/tables/helper.ts` | typescript | 172 | 4.6 | completo |
+| 261 | `src/sisad-pdfme/schemas/tables/index.ts` | typescript | 22 | 0.7 | completo |
+| 262 | `src/sisad-pdfme/schemas/tables/pdfRender.ts` | typescript | 144 | 4.0 | completo |
+| 263 | `src/sisad-pdfme/schemas/tables/propPanel.ts` | typescript | 119 | 3.7 | completo |
+| 264 | `src/sisad-pdfme/schemas/tables/tableHelper.ts` | typescript | 278 | 8.1 | completo |
+| 265 | `src/sisad-pdfme/schemas/tables/types.ts` | typescript | 87 | 2.0 | completo |
+| 266 | `src/sisad-pdfme/schemas/tables/uiRender.ts` | typescript | 454 | 15.4 | completo |
+| 267 | `src/sisad-pdfme/schemas/text/constants.ts` | typescript | 104 | 1.9 | completo |
+| 268 | `src/sisad-pdfme/schemas/text/extraFormatter.ts` | typescript | 83 | 2.2 | completo |
+| 269 | `src/sisad-pdfme/schemas/text/helper.ts` | typescript | 544 | 17.7 | completo |
+| 270 | `src/sisad-pdfme/schemas/text/index.ts` | typescript | 23 | 0.7 | completo |
+| 271 | `src/sisad-pdfme/schemas/text/pdfRender.ts` | typescript | 236 | 7.4 | completo |
+| 272 | `src/sisad-pdfme/schemas/text/propPanel.ts` | typescript | 173 | 5.3 | completo |
+| 273 | `src/sisad-pdfme/schemas/text/types.ts` | typescript | 30 | 0.8 | completo |
+| 274 | `src/sisad-pdfme/schemas/text/uiRender.ts` | typescript | 314 | 10.0 | completo |
+| 275 | `src/sisad-pdfme/schemas/textLike/textLikePresets.ts` | typescript | 44 | 1.4 | completo |
+| 276 | `src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts` | typescript | 85 | 2.5 | completo |
+| 277 | `src/sisad-pdfme/schemas/values/schemaValueAdapter.ts` | typescript | 42 | 1.5 | completo |
+| 278 | `src/sisad-pdfme/ui/collaboration/schemaRuntimeAccess.ts` | typescript | 765 | 19.1 | completo |
+| 279 | `src/sisad-pdfme/ui/commands/commandBus.ts` | typescript | 237 | 7.5 | completo |
+| 280 | `src/sisad-pdfme/ui/commands/designerCommands.ts` | typescript | 306 | 8.2 | completo |
+| 281 | `src/sisad-pdfme/ui/components/AppContextProvider.tsx` | tsx | 116 | 3.8 | completo |
+| 282 | `src/sisad-pdfme/ui/components/CtlBar.tsx` | tsx | 615 | 29.5 | completo |
+| 283 | `src/sisad-pdfme/ui/components/ErrorScreen.tsx` | tsx | 40 | 1.5 | completo |
+| 284 | `src/sisad-pdfme/ui/components/Paper.tsx` | tsx | 256 | 8.4 | completo |
+| 285 | `src/sisad-pdfme/ui/components/Preview.tsx` | tsx | 233 | 8.3 | completo |
+| 286 | `src/sisad-pdfme/ui/components/RegisteredUsersSelector.tsx` | tsx | 113 | 4.1 | completo |
+| 287 | `src/sisad-pdfme/ui/components/Renderer.tsx` | tsx | 421 | 14.4 | completo |
+| 288 | `src/sisad-pdfme/ui/components/Root.tsx` | tsx | 61 | 2.0 | completo |
+| 289 | `src/sisad-pdfme/ui/components/RuntimeFormPanel.tsx` | tsx | 17 | 0.6 | completo |
+| 290 | `src/sisad-pdfme/ui/components/Spinner.tsx` | tsx | 31 | 0.8 | completo |
+| 291 | `src/sisad-pdfme/ui/components/StaticSchema.tsx` | tsx | 73 | 2.0 | completo |
+| 292 | `src/sisad-pdfme/ui/components/UnitPager.tsx` | tsx | 124 | 3.4 | completo |
+| 293 | `src/sisad-pdfme/ui/components/usePreviewRuntime.ts` | typescript | 781 | 27.0 | completo |
+| 294 | `src/sisad-pdfme/ui/types/customSchemaRegistry.ts` | typescript | 32 | 1.0 | completo |
+| 295 | `src/sisad-pdfme/ui/utils/cn.ts` | typescript | 8 | 0.3 | completo |
+| 296 | `src/sisad-pdfme/schemas/text/icons/index.ts` | typescript | 30 | 1.0 | completo |
+| 297 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 4383 | 166.6 | truncado 83.0 KB |
+| 298 | `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1896 | 73.8 | completo |
+| 299 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx` | tsx | 310 | 9.5 | completo |
+| 300 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` | tsx | 94 | 3.7 | completo |
+| 301 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx` | tsx | 139 | 4.7 | completo |
+| 302 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx` | tsx | 43 | 1.6 | completo |
+| 303 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx` | tsx | 87 | 3.8 | completo |
+| 304 | `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx` | tsx | 160 | 5.0 | completo |
+| 305 | `src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.tsx` | tsx | 94 | 3.0 | completo |
+| 306 | `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts` | typescript | 212 | 6.5 | completo |
+| 307 | `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts` | typescript | 156 | 5.0 | completo |
+| 308 | `src/sisad-pdfme/ui/components/shared/DesignerTooltip.tsx` | tsx | 153 | 5.3 | completo |
+| 309 | `src/sisad-pdfme/ui/components/shared/pageMetadata.ts` | typescript | 52 | 1.4 | completo |
+| 310 | `src/sisad-pdfme/ui/components/shared/usePaperRefRegistry.ts` | typescript | 20 | 0.5 | completo |
+| 311 | `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx` | tsx | 2019 | 72.3 | completo |
+| 312 | `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx` | tsx | 127 | 4.0 | completo |
+| 313 | `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx` | tsx | 52 | 1.5 | completo |
+| 314 | `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx` | tsx | 149 | 4.9 | completo |
+| 315 | `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx` | tsx | 100 | 2.6 | completo |
+| 316 | `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx` | tsx | 138 | 4.7 | completo |
+| 317 | `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx` | tsx | 345 | 10.5 | completo |
+| 318 | `src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx` | tsx | 167 | 4.3 | completo |
+| 319 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx` | tsx | 343 | 13.6 | completo |
+| 320 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts` | typescript | 44 | 1.4 | completo |
+| 321 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx` | tsx | 370 | 17.0 | completo |
+| 322 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | tsx | 110 | 3.5 | completo |
+| 323 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx` | tsx | 769 | 30.7 | completo |
+| 324 | `src/sisad-pdfme/ui/components/Designer/shared/accessPolicy.ts` | typescript | 208 | 6.8 | completo |
+| 325 | `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts` | typescript | 521 | 15.3 | completo |
+| 326 | `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts` | typescript | 203 | 7.0 | completo |
+| 327 | `src/sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle.tsx` | tsx | 108 | 3.3 | completo |
+| 328 | `src/sisad-pdfme/ui/components/Designer/shared/className.ts` | typescript | 17 | 0.7 | completo |
+| 329 | `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts` | typescript | 143 | 3.8 | completo |
+| 330 | `src/sisad-pdfme/ui/components/Designer/shared/designerActionState.ts` | typescript | 189 | 7.0 | completo |
+| 331 | `src/sisad-pdfme/ui/components/Designer/shared/DesignerContextSummary.tsx` | tsx | 97 | 4.4 | completo |
+| 332 | `src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts` | typescript | 168 | 5.3 | completo |
+| 333 | `src/sisad-pdfme/ui/components/Designer/shared/designerEffectCoordinator.ts` | typescript | 152 | 4.7 | completo |
+| 334 | `src/sisad-pdfme/ui/components/Designer/shared/designerExtensions.ts` | typescript | 98 | 2.7 | completo |
+| 335 | `src/sisad-pdfme/ui/components/Designer/shared/designerInteractionReset.ts` | typescript | 85 | 2.8 | completo |
+| 336 | `src/sisad-pdfme/ui/components/Designer/shared/designerLabels.ts` | typescript | 113 | 3.2 | completo |
+| 337 | `src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts` | typescript | 158 | 6.5 | completo |
+| 338 | `src/sisad-pdfme/ui/components/Designer/shared/interactionExclusions.ts` | typescript | 50 | 1.5 | completo |
+| 339 | `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts` | typescript | 258 | 8.5 | completo |
+| 340 | `src/sisad-pdfme/ui/components/Designer/shared/interactionReducer.ts` | typescript | 185 | 6.2 | completo |
+| 341 | `src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts` | typescript | 62 | 1.4 | completo |
+| 342 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy.ts` | typescript | 46 | 1.9 | completo |
+| 343 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver.ts` | typescript | 136 | 4.8 | completo |
+| 344 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts` | typescript | 74 | 1.9 | completo |
+| 345 | `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts` | typescript | 290 | 8.7 | completo |
+| 346 | `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts` | typescript | 568 | 16.8 | completo |
+| 347 | `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts` | typescript | 38 | 1.4 | completo |
+| 348 | `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` | typescript | 143 | 4.2 | completo |
+| 349 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts` | typescript | 210 | 6.5 | completo |
+| 350 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` | typescript | 62 | 2.3 | completo |
+| 351 | `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` | typescript | 580 | 21.0 | completo |
+| 352 | `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | 3.7 | completo |
+| 353 | `src/sisad-pdfme/ui/components/Designer/shared/schemaFamilies.ts` | typescript | 43 | 1.2 | completo |
+| 354 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts` | typescript | 115 | 3.8 | completo |
+| 355 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts` | typescript | 266 | 9.0 | completo |
+| 356 | `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts` | typescript | 106 | 2.9 | completo |
+| 357 | `src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts` | typescript | 49 | 1.5 | completo |
+| 358 | `src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts` | typescript | 34 | 1.4 | completo |
+| 359 | `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts` | typescript | 957 | 32.7 | completo |
+| 360 | `src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts` | typescript | 117 | 4.2 | completo |
+| 361 | `src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts` | typescript | 87 | 2.7 | completo |
+| 362 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx` | tsx | 64 | 2.1 | completo |
+| 363 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState.tsx` | tsx | 81 | 2.2 | completo |
+| 364 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx` | tsx | 93 | 3.3 | completo |
+| 365 | `src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts` | typescript | 29 | 1.3 | completo |
+| 366 | `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts` | typescript | 309 | 10.1 | completo |
+| 367 | `src/sisad-pdfme/ui/components/Designer/shared/useDesignerUiConfig.ts` | typescript | 22 | 0.9 | completo |
+| 368 | `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts` | typescript | 81 | 2.3 | completo |
+| 369 | `src/sisad-pdfme/ui/components/Designer/shared/visibilityConfig.ts` | typescript | 45 | 1.8 | completo |
+| 370 | `src/sisad-pdfme/ui/components/Designer/shared/zoomContract.ts` | typescript | 135 | 5.1 | completo |
+| 371 | `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx` | tsx | 43 | 1.2 | completo |
+| 372 | `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx` | tsx | 171 | 6.2 | completo |
+| 373 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx` | tsx | 609 | 17.8 | completo |
+| 374 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx` | tsx | 2133 | 56.6 | completo |
+| 375 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx` | tsx | 430 | 12.1 | completo |
+| 376 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx` | tsx | 167 | 7.1 | completo |
+| 377 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx` | tsx | 332 | 10.6 | completo |
+| 378 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts` | typescript | 120 | 4.3 | completo |
+| 379 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` | tsx | 117 | 4.4 | completo |
+| 380 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` | tsx | 230 | 8.2 | completo |
+| 381 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx` | tsx | 66 | 2.5 | completo |
+| 382 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts` | typescript | 62 | 1.5 | completo |
+| 383 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts` | typescript | 180 | 5.1 | completo |
+| 384 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | tsx | 69 | 2.3 | completo |
+| 385 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | tsx | 139 | 4.2 | completo |
+| 386 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | tsx | 80 | 2.3 | completo |
+| 387 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | tsx | 347 | 13.8 | completo |
+| 388 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` | typescript | 227 | 5.7 | completo |
+| 389 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | tsx | 56 | 1.9 | completo |
+| 390 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts` | typescript | 69 | 2.5 | completo |
+| 391 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx` | tsx | 92 | 4.3 | completo |
+| 392 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx` | tsx | 118 | 4.5 | completo |
+| 393 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx` | tsx | 170 | 6.4 | completo |
+| 394 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx` | tsx | 132 | 6.9 | completo |
+| 395 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx` | tsx | 193 | 7.7 | completo |
+| 396 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts` | typescript | 143 | 6.1 | completo |
+| 397 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts` | typescript | 657 | 21.8 | truncado 6.8 KB |
+| 398 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx` | tsx | 270 | 9.1 | omitido por presupuesto total |
+| 399 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts` | typescript | 595 | 19.0 | omitido por presupuesto total |
+| 400 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx` | tsx | 478 | 15.6 | omitido por presupuesto total |
+| 401 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx` | tsx | 123 | 4.4 | omitido por presupuesto total |
+| 402 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx` | tsx | 182 | 7.1 | omitido por presupuesto total |
+| 403 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx` | tsx | 162 | 7.2 | omitido por presupuesto total |
+| 404 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorColorInput.tsx` | tsx | 34 | 0.9 | omitido por presupuesto total |
+| 405 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts` | typescript | 386 | 8.8 | omitido por presupuesto total |
+| 406 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorDefinitionList.tsx` | tsx | 36 | 1.2 | omitido por presupuesto total |
+| 407 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorField.tsx` | tsx | 38 | 1.1 | omitido por presupuesto total |
+| 408 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.ts` | typescript | 46 | 1.9 | omitido por presupuesto total |
+| 409 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorNumberInput.tsx` | tsx | 44 | 1.0 | omitido por presupuesto total |
+| 410 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx` | tsx | 337 | 11.2 | omitido por presupuesto total |
+| 411 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSelect.tsx` | tsx | 43 | 1.3 | omitido por presupuesto total |
+| 412 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSwitch.tsx` | tsx | 45 | 1.3 | omitido por presupuesto total |
+| 413 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts` | typescript | 27 | 1.2 | omitido por presupuesto total |
+| 414 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | tsx | 526 | 22.6 | omitido por presupuesto total |
+| 415 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx` | tsx | 250 | 9.1 | omitido por presupuesto total |
+| 416 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts` | typescript | 102 | 3.0 | omitido por presupuesto total |
+| 417 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx` | tsx | 1074 | 40.1 | omitido por presupuesto total |
+| 418 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDetailProfiles.ts` | typescript | 9 | 0.2 | omitido por presupuesto total |
+| 419 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDisplayInfo.ts` | typescript | 23 | 0.8 | omitido por presupuesto total |
+| 420 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx` | tsx | 446 | 16.8 | omitido por presupuesto total |
+| 421 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaInteractionState.ts` | typescript | 7 | 0.2 | omitido por presupuesto total |
+| 422 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx` | tsx | 585 | 23.0 | omitido por presupuesto total |
+| 423 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx` | tsx | 97 | 3.1 | omitido por presupuesto total |
+| 424 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx` | tsx | 472 | 19.0 | omitido por presupuesto total |
+| 425 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx` | tsx | 442 | 15.8 | omitido por presupuesto total |
+| 426 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx` | tsx | 86 | 3.4 | omitido por presupuesto total |
+| 427 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx` | tsx | 79 | 2.7 | omitido por presupuesto total |
+| 428 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/listViewItemResolver.ts` | typescript | 63 | 2.8 | omitido por presupuesto total |
+| 429 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx` | tsx | 353 | 14.0 | omitido por presupuesto total |
+| 430 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/reassignActionState.ts` | typescript | 72 | 2.8 | omitido por presupuesto total |
+| 431 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx` | tsx | 447 | 12.9 | omitido por presupuesto total |
+| 432 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx` | tsx | 144 | 4.7 | omitido por presupuesto total |
+| 433 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/TypeFilterSelect.tsx` | tsx | 299 | 10.6 | omitido por presupuesto total |
+| 434 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SchemaAssignmentDialog.tsx` | tsx | 354 | 13.6 | omitido por presupuesto total |
+| 435 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | tsx | 401 | 10.2 | omitido por presupuesto total |
 
 ## Resumen de exclusiones
 
-- **test omitido:** 1027
-- **extensión no incluida:** 636
-- **json de datos omitido en perfil react:** 24
+- **test omitido:** 1040
+- **extensión no incluida:** 690
+- **json de datos omitido en perfil react:** 36
 - **directorio ignorado: dependencia/build/salida generada:** 7
 - **generado detectado por contenido:** 2
 - **archivo binario/minificado/lock ignorado:** 1
 - **minificado detectado por contenido:** 1
-- **omitidos por presupuesto total:** 33
+- **omitidos por presupuesto total:** 38
 
 ## Totales
 
-- **KB originales candidatos:** `3031.9`
-- **KB incluidos en contenido:** `2500.0`
+- **KB originales candidatos:** `3101.5`
+- **KB incluidos en contenido:** `2499.6`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -1840,7 +1874,253 @@ function printResult(title, result) {
 
 <a id="file-0014"></a>
 
-### 0014 — `scripts/ai/sync-scrum-views.mjs`
+### 0014 — `.ai/scripts/distill-log.mjs`
+
+- **Lenguaje:** `javascript`
+- **Líneas:** `13`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `92579646fb`
+- **Estado:** `completo`
+
+```javascript
+import fs from 'node:fs';
+
+const file = process.argv[2];
+if (!file) throw new Error('usage: node distill-log.mjs <log>');
+const lines = fs.readFileSync(file,'utf8').split(/\r?\n/);
+const failures = lines.filter(l => /error|fail|exception|warning/i.test(l)).slice(0,20);
+console.log(JSON.stringify({
+  file,
+  lineCount: lines.length,
+  firstLines: lines.slice(0,10),
+  signals: failures,
+  lastLines: lines.slice(-10)
+}, null, 2));
+```
+
+<a id="file-0015"></a>
+
+### 0015 — `.ai/scripts/generate-method-registry.mjs`
+
+- **Lenguaje:** `javascript`
+- **Líneas:** `24`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `c9e6e7462b`
+- **Estado:** `completo`
+- **Símbolos detectados:** `function: walk`
+
+```javascript
+// Baseline implementation. Replace heuristic only after AIARCH-010 review.
+import fs from 'node:fs';
+import path from 'node:path';
+
+function walk(dir, out=[]) {
+  for (const entry of fs.readdirSync(dir,{withFileTypes:true})) {
+    const p = path.join(dir,entry.name);
+    if (entry.isDirectory()) walk(p,out);
+    else if (/\.(ts|tsx)$/.test(entry.name)) out.push(p);
+  }
+  return out;
+}
+const files = walk('src/sisad-pdfme');
+const rows = [];
+const regex = /^(?:export\s+)?(?:async\s+)?(?:function|class|const|type|interface|enum)\s+([A-Za-z_$][\w$]*)/gm;
+for (const file of files) {
+  const text = fs.readFileSync(file,'utf8');
+  let m;
+  while ((m = regex.exec(text))) {
+    rows.push({path:file,name:m[1],line:text.slice(0,m.index).split('\n').length,status:'candidate'});
+  }
+}
+fs.writeFileSync('.ai/traceability/method-registry.generated.json', JSON.stringify(rows,null,2));
+console.log(`generated ${rows.length} symbols`);
+```
+
+<a id="file-0016"></a>
+
+### 0016 — `.ai/scripts/memory-gc.mjs`
+
+- **Lenguaje:** `javascript`
+- **Líneas:** `11`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `0b0716becc`
+- **Estado:** `completo`
+
+```javascript
+import fs from 'node:fs';
+
+const file = '.ai/memory/INDEX.md';
+const text = fs.readFileSync(file,'utf8');
+const lines = text.split(/\r?\n/).length;
+const bytes = Buffer.byteLength(text);
+console.log({lines, bytes});
+if (lines > 200 || bytes > 25000) {
+  console.error('memory index exceeds startup budget');
+  process.exit(1);
+}
+```
+
+<a id="file-0017"></a>
+
+### 0017 — `.ai/scripts/validate-ai-architecture.mjs`
+
+- **Lenguaje:** `javascript`
+- **Líneas:** `29`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `76a85d5bfd`
+- **Estado:** `completo`
+
+```javascript
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const required = [
+  'AGENTS.md', '.ai/START.md', '.ai/ROUTER.md', '.ai/CONTEXT-BUDGET.md',
+  '.ai/scrum/SPRINT-CURRENT.md', '.ai/scrum/CLAIMS.md'
+];
+let failed = false;
+for (const rel of required) {
+  if (!fs.existsSync(path.join(root, rel))) {
+    console.error(`missing: ${rel}`);
+    failed = true;
+  }
+}
+const limits = {
+  'AGENTS.md': 5000,
+  'CLAUDE.md': 3000,
+  '.github/copilot-instructions.md': 6000,
+  '.ai/START.md': 5000,
+};
+for (const [rel, max] of Object.entries(limits)) {
+  const file = path.join(root, rel);
+  if (fs.existsSync(file) && fs.statSync(file).size > max) {
+    console.error(`too large: ${rel} > ${max} bytes`);
+    failed = true;
+  }
+}
+process.exit(failed ? 1 : 0);
+```
+
+<a id="file-0018"></a>
+
+### 0018 — `.ai/scripts/validate-context-manifests.mjs`
+
+- **Lenguaje:** `javascript`
+- **Líneas:** `15`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `7a5a4f21f2`
+- **Estado:** `completo`
+
+```javascript
+import fs from 'node:fs';
+import path from 'node:path';
+
+const dir = path.join(process.cwd(), '.ai/scrum/task-cards');
+let failed = false;
+for (const name of fs.readdirSync(dir).filter(n => n.endsWith('.md'))) {
+  const text = fs.readFileSync(path.join(dir, name), 'utf8');
+  for (const token of ['context:', 'maxFiles:', 'maxTokens:', '## Stop']) {
+    if (!text.includes(token)) {
+      console.error(`${name}: missing ${token}`);
+      failed = true;
+    }
+  }
+}
+process.exit(failed ? 1 : 0);
+```
+
+<a id="file-0019"></a>
+
+### 0019 — `.ai/scripts/validate-provider-adapters.mjs`
+
+- **Lenguaje:** `javascript`
+- **Líneas:** `16`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `26a023e917`
+- **Estado:** `completo`
+
+```javascript
+import fs from 'node:fs';
+
+const files = ['AGENTS.md','CLAUDE.md','CODEX.md','.github/copilot-instructions.md'];
+let failed = false;
+for (const file of files) {
+  const text = fs.readFileSync(file, 'utf8');
+  if (!text.includes('AGENTS.md') && file !== 'AGENTS.md') {
+    console.error(`${file}: must reference AGENTS.md`);
+    failed = true;
+  }
+  if (text.length > 7000) {
+    console.error(`${file}: adapter too long`);
+    failed = true;
+  }
+}
+process.exit(failed ? 1 : 0);
+```
+
+<a id="file-0020"></a>
+
+### 0020 — `.ai/scripts/validate-skill-budget.mjs`
+
+- **Lenguaje:** `javascript`
+- **Líneas:** `19`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `ee1564c2fa`
+- **Estado:** `completo`
+
+```javascript
+import fs from 'node:fs';
+import path from 'node:path';
+
+const dir = '.agents/skills';
+let failed = false;
+let descriptionChars = 0;
+for (const name of fs.readdirSync(dir)) {
+  const file = path.join(dir,name,'SKILL.md');
+  if (!fs.existsSync(file)) continue;
+  const text = fs.readFileSync(file,'utf8');
+  const desc = text.match(/^description:\s*(.+)$/m)?.[1] ?? '';
+  descriptionChars += desc.length;
+  if (desc.length > 160 || Buffer.byteLength(text) > 12000) {
+    console.error(`${name}: exceeds skill budget`);
+    failed = true;
+  }
+}
+console.log({descriptionChars});
+process.exit(failed ? 1 : 0);
+```
+
+<a id="file-0021"></a>
+
+### 0021 — `.ai/scripts/validate-traceability.mjs`
+
+- **Lenguaje:** `javascript`
+- **Líneas:** `14`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `7c6a50937d`
+- **Estado:** `completo`
+
+```javascript
+import fs from 'node:fs';
+
+const methods = JSON.parse(fs.readFileSync('.ai/traceability/method-registry.json','utf8'));
+const traces = JSON.parse(fs.readFileSync('.ai/traceability/trace-candidates.json','utf8'));
+const ids = new Set(methods.map(x => x.id));
+let failed = false;
+for (const row of traces) {
+  if (!ids.has(row.methodId)) {
+    console.error(`unknown method: ${row.methodId}`);
+    failed = true;
+  }
+}
+console.log(`methods=${methods.length} traces=${traces.length}`);
+process.exit(failed ? 1 : 0);
+```
+
+<a id="file-0022"></a>
+
+### 0022 — `scripts/ai/sync-scrum-views.mjs`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `187`
@@ -2039,9 +2319,9 @@ if (isExecutedDirectly) {
 export { buildActiveMarkdown, buildCompletedMarkdown, parseTableRows };
 ```
 
-<a id="file-0015"></a>
+<a id="file-0023"></a>
 
-### 0015 — `scripts/lib/ast.js`
+### 0023 — `scripts/lib/ast.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `68`
@@ -2121,9 +2401,9 @@ export function collectTopLevelFunctionNames(program) {
 }
 ```
 
-<a id="file-0016"></a>
+<a id="file-0024"></a>
 
-### 0016 — `scripts/lib/cli.js`
+### 0024 — `scripts/lib/cli.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `55`
@@ -2190,9 +2470,9 @@ export function setExitCode(condition, code = 1) {
 }
 ```
 
-<a id="file-0017"></a>
+<a id="file-0025"></a>
 
-### 0017 — `scripts/lib/collections.js`
+### 0025 — `scripts/lib/collections.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `21`
@@ -2225,9 +2505,9 @@ export function uniqueBy(items, keySelector) {
 }
 ```
 
-<a id="file-0018"></a>
+<a id="file-0026"></a>
 
-### 0018 — `scripts/lib/files.js`
+### 0026 — `scripts/lib/files.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `80`
@@ -2319,9 +2599,9 @@ export function collectLineCounts(root, options = {}) {
 }
 ```
 
-<a id="file-0019"></a>
+<a id="file-0027"></a>
 
-### 0019 — `scripts/lib/json.js`
+### 0027 — `scripts/lib/json.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `28`
@@ -2361,9 +2641,9 @@ export function walkJson(value, visitor, path = "") {
 }
 ```
 
-<a id="file-0020"></a>
+<a id="file-0028"></a>
 
-### 0020 — `scripts/quality/check-direct-config-readers.mjs`
+### 0028 — `scripts/quality/check-direct-config-readers.mjs`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `46`
@@ -2420,9 +2700,9 @@ for (const match of matches) {
 if (matches.length > 0) process.exitCode = 1;
 ```
 
-<a id="file-0021"></a>
+<a id="file-0029"></a>
 
-### 0021 — `scripts/quality/check-example-style-boundary.mjs`
+### 0029 — `scripts/quality/check-example-style-boundary.mjs`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `83`
@@ -2517,9 +2797,9 @@ if (violations.length > 0) {
 console.log('✓ src/examples no alcanza internals de src/sisad-pdfme');
 ```
 
-<a id="file-0022"></a>
+<a id="file-0030"></a>
 
-### 0022 — `scripts/quality/check-js-jsx-file-size-range.js`
+### 0030 — `scripts/quality/check-js-jsx-file-size-range.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `19`
@@ -2549,9 +2829,9 @@ for (const row of over) console.log(`${row.lines}\t${row.file}`);
 setExitCode(over.length > 0);
 ```
 
-<a id="file-0023"></a>
+<a id="file-0031"></a>
 
-### 0023 — `scripts/quality/check-source-language-boundary.mjs`
+### 0031 — `scripts/quality/check-source-language-boundary.mjs`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `103`
@@ -2666,9 +2946,9 @@ if (violations.length > 0) {
 console.log('✓ src/examples usa solo JS/JSX/JSON y entrypoints públicos');
 ```
 
-<a id="file-0024"></a>
+<a id="file-0032"></a>
 
-### 0024 — `scripts/quality/find-css-duplicates.js`
+### 0032 — `scripts/quality/find-css-duplicates.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `38`
@@ -2718,9 +2998,9 @@ function normalizeWhitespace(value) {
 }
 ```
 
-<a id="file-0025"></a>
+<a id="file-0033"></a>
 
-### 0025 — `scripts/quality/find-line-duplicates-sensitive.js`
+### 0033 — `scripts/quality/find-line-duplicates-sensitive.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `53`
@@ -2785,9 +3065,9 @@ function normalizeBlock(lines, selectedMode, requiredLines) {
 }
 ```
 
-<a id="file-0026"></a>
+<a id="file-0034"></a>
 
-### 0026 — `scripts/quality/find-symbol-name-duplicates.js`
+### 0034 — `scripts/quality/find-symbol-name-duplicates.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `41`
@@ -2839,9 +3119,9 @@ if (parseErrors.length) {
 setExitCode(duplicates.length > 0 || (strictParse && parseErrors.length > 0));
 ```
 
-<a id="file-0027"></a>
+<a id="file-0035"></a>
 
-### 0027 — `scripts/quality/find-wrapper-components.js`
+### 0035 — `scripts/quality/find-wrapper-components.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `756`
@@ -3609,9 +3889,9 @@ function print(results, errors, currentOptions) {
 }
 ```
 
-<a id="file-0028"></a>
+<a id="file-0036"></a>
 
-### 0028 — `scripts/quality/inspect-signing-har.js`
+### 0036 — `scripts/quality/inspect-signing-har.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `78`
@@ -3701,9 +3981,9 @@ function stripQuery(value) {
 }
 ```
 
-<a id="file-0029"></a>
+<a id="file-0037"></a>
 
-### 0029 — `scripts/quality/list-large-files.js`
+### 0037 — `scripts/quality/list-large-files.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `17`
@@ -3731,9 +4011,9 @@ for (const offender of offenders) {
 setExitCode(offenders.length > 0);
 ```
 
-<a id="file-0030"></a>
+<a id="file-0038"></a>
 
-### 0030 — `scripts/quality/remove-from-filenames.js`
+### 0038 — `scripts/quality/remove-from-filenames.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `132`
@@ -3877,9 +4157,9 @@ function escapeRegExp(value) {
 }
 ```
 
-<a id="file-0031"></a>
+<a id="file-0039"></a>
 
-### 0031 — `scripts/quality/validate-form-template-runtime-references.mjs`
+### 0039 — `scripts/quality/validate-form-template-runtime-references.mjs`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `111`
@@ -4002,16 +4282,16 @@ function propertyName(node) {
 }
 ```
 
-<a id="file-0032"></a>
+<a id="file-0040"></a>
 
-### 0032 — `src/examples/index.jsx`
+### 0040 — `src/examples/index.jsx`
 
 - **Lenguaje:** `jsx`
-- **Líneas:** `1197`
-- **Tamaño original:** `41.9 KB`
-- **SHA1 corto:** `45f1f96dc6`
+- **Líneas:** `1237`
+- **Tamaño original:** `43.5 KB`
+- **SHA1 corto:** `a87b1598d5`
 - **Estado:** `completo`
-- **Símbolos detectados:** `export function: createRuntimeConfig`, `export function: getLabExamples`, `export function: CatalogPage`, `export function: SchemasCatalogPage`, `export function: DesignerSingleUserPage`, `export function: DesignerMultiUserPage`, `export function: RuntimeFormPage`, `export function: RuntimeViewerPage`, `export function: SchemaFamilyPage`, `export function: ExampleDocumentationShell`, `export function: ExampleTopbar`, `export function: ExampleImmersiveShell`, `export const: EXAMPLE_CONFIG_PROFILES`, `function: deepMerge`, `function: RecipientSelect`, `function: ExampleRouteNav`, `function: ExampleInfoDrawer`, `function: isCapabilityState`, `function: formatCapabilityState`, `function: formatActionResult`
+- **Símbolos detectados:** `export function: createRuntimeConfig`, `export function: getLabExamples`, `export function: CatalogPage`, `export function: SchemasCatalogPage`, `export function: DesignerSingleUserPage`, `export function: DesignerMultiUserPage`, `export function: RuntimeFormPage`, `export function: RuntimeViewerPage`, `export function: SchemaFamilyPage`, `export function: ExampleDocumentationShell`, `export function: ExampleTopbar`, `export function: ExampleImmersiveShell`, `export const: EXAMPLE_CONFIG_PROFILES`, `function: deepMerge`, `function: RecipientSelect`, `function: ExampleRouteNav`, `function: ExampleInfoDrawer`, `function: describeEventDetail`, `function: isCapabilityState`, `function: formatCapabilityState`, `function: formatActionResult`
 
 ```jsx
 /**
@@ -4295,6 +4575,7 @@ export function DesignerSingleUserPage() {
     controllerRef.current = controller;
   }, []);
   const getController = useCallback(() => controllerRef.current, []);
+  const handleCanonicalEvent = useMemo(() => recordCanonicalEvent(record), [record]);
 
   const handleTemplateChange = useCallback(
     (nextTemplate) => {
@@ -4369,6 +4650,7 @@ export function DesignerSingleUserPage() {
           onTemplateChange={handleTemplateChange}
           onSave={handleSave}
           onControllerReady={handleControllerReady}
+          onEvent={handleCanonicalEvent}
         />
       </RuntimeViewport>
     </ExampleImmersiveShell>
@@ -4399,6 +4681,7 @@ export function DesignerMultiUserPage() {
     controllerRef.current = controller;
   }, []);
   const getController = useCallback(() => controllerRef.current, []);
+  const handleCanonicalEvent = useMemo(() => recordCanonicalEvent(record), [record]);
 
   const handleAssignmentChange = useCallback(
     (payload) => {
@@ -4508,6 +4791,7 @@ export function DesignerMultiUserPage() {
           onTemplateChange={setTemplate}
           onSave={handleSave}
           onControllerReady={handleControllerReady}
+          onEvent={handleCanonicalEvent}
           onRecipientsChange={handleRecipientsChange}
           onActiveRecipientChange={handleActiveRecipientChange}
           onAssignmentChange={handleAssignmentChange}
@@ -4732,7 +5016,7 @@ function ExampleRouteNav({ current }) {
         data-testid="example-route-nav"
         value={current}
         onChange={(event) => navigate(event.target.value)}
-        className="box-border h-10 w-full min-w-0 max-w-[10rem] appearance-none truncate rounded-full border border-white/15 bg-white/5 px-3 text-xs font-medium text-slate-100 outline-none transition hover:border-white/30 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-8 md:max-w-[15rem]"
+        className="box-border h-11 w-full min-w-0 max-w-[10rem] appearance-none truncate rounded-full border border-white/15 bg-white/5 px-3 text-xs font-medium text-slate-100 outline-none transition hover:border-white/30 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-9 md:max-w-[15rem]"
       >
         {IMMERSIVE_ROUTE_OPTIONS.map((route) => (
           <option key={route.path} value={route.path} className="bg-slate-900 text-slate-100">
@@ -4789,7 +5073,7 @@ function ExampleInfoDrawer({ open, onClose, title, children }) {
           <button
             type="button"
             onClick={onClose}
-            className="box-border inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:border-white/25 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-8 md:w-8"
+            className="box-border inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:border-white/25 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-9 md:w-9"
           >
             <span aria-hidden="true">✕</span>
             <span className="sr-only">Cerrar</span>
@@ -4819,7 +5103,7 @@ export function ExampleTopbar({
       <Link
         to="/"
         aria-label="Volver al catálogo"
-        className="box-border inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-base text-slate-200 no-underline transition hover:border-white/25 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-8 md:w-8"
+        className="box-border inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-base text-slate-200 no-underline transition hover:border-white/25 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-9 md:w-9"
       >
         <span aria-hidden="true">←</span>
       </Link>
@@ -4841,7 +5125,7 @@ export function ExampleTopbar({
           aria-expanded={infoOpen}
           aria-controls="example-info-drawer"
           onClick={onToggleInfo}
-          className="box-border inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 text-xs font-medium text-slate-100 transition hover:border-white/30 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-8"
+          className="box-border inline-flex h-11 shrink-0 items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 text-xs font-medium text-slate-100 transition hover:border-white/30 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-9"
         >
           <span aria-hidden="true">ⓘ</span>
           <span className="hidden md:inline">Información</span>
@@ -4974,6 +5258,41 @@ export function RuntimeViewport({ children, name }) {
   );
 }
 
+/**
+ * Convierte el payload de un evento en texto renderizable.
+ *
+ * Los callbacks del wrapper entregan objetos (`{ recipient }`, `{ recipients }`,
+ * …). Renderizarlos directamente lanza «Objects are not valid as a React child»
+ * y tumba toda la aplicación, así que la normalización vive aquí, en el único
+ * punto de render, y cubre a cualquier emisor presente o futuro.
+ */
+function describeEventDetail(detail) {
+  if (detail === null || detail === undefined) return '';
+  if (typeof detail === 'string') return detail;
+  if (typeof detail !== 'object') return String(detail);
+  if (Array.isArray(detail)) return `${detail.length} elementos`;
+
+  return Object.entries(detail)
+    .slice(0, 3)
+    .map(([key, value]) => {
+      if (Array.isArray(value)) return `${key}: ${value.length}`;
+      if (value && typeof value === 'object') {
+        return `${key}: ${String(value.name ?? value.id ?? 'objeto')}`;
+      }
+      return `${key}: ${String(value)}`;
+    })
+    .join(' · ');
+}
+
+/**
+ * Muestra el flujo canónico de eventos del componente.
+ *
+ * `onEvent` entrega la unión discriminada completa; el log solo necesita el
+ * nombre y un resumen del payload.
+ */
+const recordCanonicalEvent = (record) => (event) =>
+  record(event.name, event.payload);
+
 export function ExampleEventLog({ events, onClear }) {
   return (
     <div className="space-y-2">
@@ -4993,20 +5312,21 @@ export function ExampleEventLog({ events, onClear }) {
         </p>
       ) : (
         <ul className="m-0 list-none space-y-1 p-0" data-testid="example-event-log">
-          {events.map((event) => (
-            <li
-              key={event.id}
-              className="box-border rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs"
-            >
-              <div className="flex items-baseline justify-between gap-2">
-                <span className="font-semibold text-amber-200">{event.name}</span>
-                <span className="shrink-0 text-[10px] text-slate-500">{event.at}</span>
-              </div>
-              {event.detail ? (
-                <div className="mt-1 truncate text-slate-400">{event.detail}</div>
-              ) : null}
-            </li>
-          ))}
+          {events.map((event) => {
+            const detail = describeEventDetail(event.detail);
+            return (
+              <li
+                key={event.id}
+                className="box-border rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs"
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="font-semibold text-amber-200">{event.name}</span>
+                  <span className="shrink-0 text-[10px] text-slate-500">{event.at}</span>
+                </div>
+                {detail ? <div className="mt-1 truncate text-slate-400">{detail}</div> : null}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>
@@ -5213,9 +5533,9 @@ export {
 } from '@/sisad-pdfme/labs';
 ```
 
-<a id="file-0033"></a>
+<a id="file-0041"></a>
 
-### 0033 — `src/types/custom.d.ts`
+### 0041 — `src/types/custom.d.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `23`
@@ -5250,9 +5570,9 @@ declare module '*.worker.js?url' {
 }
 ```
 
-<a id="file-0034"></a>
+<a id="file-0042"></a>
 
-### 0034 — `tools/ai-quality/check-markdown-duplicates.mjs`
+### 0042 — `tools/ai-quality/check-markdown-duplicates.mjs`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `37`
@@ -5301,9 +5621,9 @@ console.log(JSON.stringify({ files: files.length, duplicateParagraphs: duplicate
 process.exitCode = duplicates.length ? 1 : 0;
 ```
 
-<a id="file-0035"></a>
+<a id="file-0043"></a>
 
-### 0035 — `tools/ai-quality/parse-jscpd-report.mjs`
+### 0043 — `tools/ai-quality/parse-jscpd-report.mjs`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `42`
@@ -5357,9 +5677,9 @@ const summary = Object.fromEntries(Object.entries(out).map(([k,v]) => [k, v.leng
 console.log(JSON.stringify({ source: path.resolve(input), summary, clones: out }, null, 2));
 ```
 
-<a id="file-0036"></a>
+<a id="file-0044"></a>
 
-### 0036 — `tools/ai-quality/validate-ai-architecture.mjs`
+### 0044 — `tools/ai-quality/validate-ai-architecture.mjs`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `31`
@@ -5402,9 +5722,9 @@ if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
 console.log('Arquitectura IA válida.');
 ```
 
-<a id="file-0037"></a>
+<a id="file-0045"></a>
 
-### 0037 — `src/sisad-pdfme/adapters/documentsAdapter.ts`
+### 0045 — `src/sisad-pdfme/adapters/documentsAdapter.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `39`
@@ -5455,9 +5775,9 @@ export const createDocumentsAdapter = <THostDocument = unknown>(): SisadPdfmeDoc
 });
 ```
 
-<a id="file-0038"></a>
+<a id="file-0046"></a>
 
-### 0038 — `src/sisad-pdfme/adapters/index.ts`
+### 0046 — `src/sisad-pdfme/adapters/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `13`
@@ -5481,9 +5801,9 @@ export type {
 } from '../config/SisadPdfmeConfig.js';
 ```
 
-<a id="file-0039"></a>
+<a id="file-0047"></a>
 
-### 0039 — `src/sisad-pdfme/adapters/persistenceAdapter.ts`
+### 0047 — `src/sisad-pdfme/adapters/persistenceAdapter.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `17`
@@ -5512,9 +5832,9 @@ export const createPersistenceAdapter = <TSnapshot = unknown>(): SisadPdfmePersi
 });
 ```
 
-<a id="file-0040"></a>
+<a id="file-0048"></a>
 
-### 0040 — `src/sisad-pdfme/adapters/recipientsAdapter.ts`
+### 0048 — `src/sisad-pdfme/adapters/recipientsAdapter.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `26`
@@ -5552,9 +5872,9 @@ export const createRecipientsAdapter = <THostUser = unknown>(): SisadPdfmeRecipi
 });
 ```
 
-<a id="file-0041"></a>
+<a id="file-0049"></a>
 
-### 0041 — `src/sisad-pdfme/adapters/signatureProviderAdapter.ts`
+### 0049 — `src/sisad-pdfme/adapters/signatureProviderAdapter.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `25`
@@ -5591,9 +5911,9 @@ export const createSignatureProviderAdapter = <TInput = unknown>(): SisadPdfmeSi
 });
 ```
 
-<a id="file-0042"></a>
+<a id="file-0050"></a>
 
-### 0042 — `src/sisad-pdfme/assignments/index.ts`
+### 0050 — `src/sisad-pdfme/assignments/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `588`
@@ -6193,9 +6513,9 @@ export const validateAssignmentsConsistency = ({
 export { buildSchemaAssignments, buildUserSchemaAssignments };
 ```
 
-<a id="file-0043"></a>
+<a id="file-0051"></a>
 
-### 0043 — `src/sisad-pdfme/browser/downloads.ts`
+### 0051 — `src/sisad-pdfme/browser/downloads.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `39`
@@ -6246,9 +6566,9 @@ export function downloadJson(data: unknown, filename: string): string {
 }
 ```
 
-<a id="file-0044"></a>
+<a id="file-0052"></a>
 
-### 0044 — `src/sisad-pdfme/browser/objectUrls.ts`
+### 0052 — `src/sisad-pdfme/browser/objectUrls.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `32`
@@ -6292,9 +6612,9 @@ export function revokeObjectUrls(
 }
 ```
 
-<a id="file-0045"></a>
+<a id="file-0053"></a>
 
-### 0045 — `src/sisad-pdfme/canvas/canvasRenderState.ts`
+### 0053 — `src/sisad-pdfme/canvas/canvasRenderState.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `146`
@@ -6452,9 +6772,9 @@ export function isOfflineMode(state: CanvasRenderState): boolean {
 }
 ```
 
-<a id="file-0046"></a>
+<a id="file-0054"></a>
 
-### 0046 — `src/sisad-pdfme/canvas/overlayManager.ts`
+### 0054 — `src/sisad-pdfme/canvas/overlayManager.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `249`
@@ -6715,9 +7035,9 @@ export function createOverlayManager(): OverlayManager {
 }
 ```
 
-<a id="file-0047"></a>
+<a id="file-0055"></a>
 
-### 0047 — `src/sisad-pdfme/canvas/useCanvasRenderState.ts`
+### 0055 — `src/sisad-pdfme/canvas/useCanvasRenderState.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `152`
@@ -6881,9 +7201,9 @@ export function deriveCanvasRenderState(input: CanvasRenderStateInput): CanvasRe
 }
 ```
 
-<a id="file-0048"></a>
+<a id="file-0056"></a>
 
-### 0048 — `src/sisad-pdfme/collaboration/appearance.ts`
+### 0056 — `src/sisad-pdfme/collaboration/appearance.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `55`
@@ -6950,9 +7270,9 @@ export function buildCollaboratorChipStyle(
 }
 ```
 
-<a id="file-0049"></a>
+<a id="file-0057"></a>
 
-### 0049 — `src/sisad-pdfme/collaboration/index.ts`
+### 0057 — `src/sisad-pdfme/collaboration/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `441`
@@ -7405,9 +7725,9 @@ export {
 };
 ```
 
-<a id="file-0050"></a>
+<a id="file-0058"></a>
 
-### 0050 — `src/sisad-pdfme/collaboration/lockManager.ts`
+### 0058 — `src/sisad-pdfme/collaboration/lockManager.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `253`
@@ -7672,9 +7992,9 @@ export function createLockManager(
 }
 ```
 
-<a id="file-0051"></a>
+<a id="file-0059"></a>
 
-### 0051 — `src/sisad-pdfme/collaboration/recipientPalette.ts`
+### 0059 — `src/sisad-pdfme/collaboration/recipientPalette.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `69`
@@ -7755,9 +8075,9 @@ export function decorateCollaborationUsers<T extends CollaboratorUser>(
 }
 ```
 
-<a id="file-0052"></a>
+<a id="file-0060"></a>
 
-### 0052 — `src/sisad-pdfme/collaboration/schemaLockGuard.ts`
+### 0060 — `src/sisad-pdfme/collaboration/schemaLockGuard.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `96`
@@ -7865,9 +8185,9 @@ export function createSchemaLockGuard(
 }
 ```
 
-<a id="file-0053"></a>
+<a id="file-0061"></a>
 
-### 0053 — `src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts`
+### 0061 — `src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `194`
@@ -8073,9 +8393,9 @@ export function decorateTemplateWithCollaboration(
 }
 ```
 
-<a id="file-0054"></a>
+<a id="file-0062"></a>
 
-### 0054 — `src/sisad-pdfme/commands/index.ts`
+### 0062 — `src/sisad-pdfme/commands/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `214`
@@ -8301,9 +8621,9 @@ export type {
 } from '../ui/components/Designer/shared/selectionCommands.js';
 ```
 
-<a id="file-0055"></a>
+<a id="file-0063"></a>
 
-### 0055 — `src/sisad-pdfme/comments/index.ts`
+### 0063 — `src/sisad-pdfme/comments/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `494`
@@ -8809,9 +9129,9 @@ export {
 };
 ```
 
-<a id="file-0056"></a>
+<a id="file-0064"></a>
 
-### 0056 — `src/sisad-pdfme/common/collaboration.ts`
+### 0064 — `src/sisad-pdfme/common/collaboration.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `841`
@@ -9664,9 +9984,9 @@ export const validateCollaborativeSchemas = (
 };
 ```
 
-<a id="file-0057"></a>
+<a id="file-0065"></a>
 
-### 0057 — `src/sisad-pdfme/common/comments.ts`
+### 0065 — `src/sisad-pdfme/common/comments.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `308`
@@ -9986,9 +10306,9 @@ export default {
 };
 ```
 
-<a id="file-0059"></a>
+<a id="file-0067"></a>
 
-### 0059 — `src/sisad-pdfme/common/dynamicTemplate.ts`
+### 0067 — `src/sisad-pdfme/common/dynamicTemplate.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `336`
@@ -10336,9 +10656,9 @@ export const getDynamicTemplate = async (
 };
 ```
 
-<a id="file-0060"></a>
+<a id="file-0068"></a>
 
-### 0060 — `src/sisad-pdfme/common/expression.ts`
+### 0068 — `src/sisad-pdfme/common/expression.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `486`
@@ -10836,9 +11156,9 @@ export const replacePlaceholders = (arg: {
 };
 ```
 
-<a id="file-0061"></a>
+<a id="file-0069"></a>
 
-### 0061 — `src/sisad-pdfme/common/helper.ts`
+### 0069 — `src/sisad-pdfme/common/helper.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `347`
@@ -11197,9 +11517,9 @@ export const checkGenerateProps = (data: unknown) => {
 };
 ```
 
-<a id="file-0062"></a>
+<a id="file-0070"></a>
 
-### 0062 — `src/sisad-pdfme/common/index.ts`
+### 0070 — `src/sisad-pdfme/common/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `142`
@@ -11352,9 +11672,9 @@ export type {
 } from './types.js';
 ```
 
-<a id="file-0063"></a>
+<a id="file-0071"></a>
 
-### 0063 — `src/sisad-pdfme/common/pluginRegistry.ts`
+### 0071 — `src/sisad-pdfme/common/pluginRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `85`
@@ -11451,9 +11771,9 @@ getVisibleSectionsByType(type: string) {
 };
 ```
 
-<a id="file-0064"></a>
+<a id="file-0072"></a>
 
-### 0064 — `src/sisad-pdfme/common/schema.ts`
+### 0072 — `src/sisad-pdfme/common/schema.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `334`
@@ -11799,9 +12119,9 @@ export const PreviewProps = UIProps.extend({ inputs: Inputs }).strict();
 export const DesignerProps = UIProps.extend({}).strict();
 ```
 
-<a id="file-0065"></a>
+<a id="file-0073"></a>
 
-### 0065 — `src/sisad-pdfme/common/schemaPageTraversal.ts`
+### 0073 — `src/sisad-pdfme/common/schemaPageTraversal.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `31`
@@ -11844,9 +12164,9 @@ export const findSchemaInPages = <T>(
 };
 ```
 
-<a id="file-0066"></a>
+<a id="file-0074"></a>
 
-### 0066 — `src/sisad-pdfme/common/types.ts`
+### 0074 — `src/sisad-pdfme/common/types.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `272`
@@ -12130,9 +12450,9 @@ export type SchemaPageArray = z.infer<typeof SchemaPageArray>;
 export type LegacySchemaPageArray = z.infer<typeof LegacySchemaPageArray>;
 ```
 
-<a id="file-0067"></a>
+<a id="file-0075"></a>
 
-### 0067 — `src/sisad-pdfme/common/version.ts`
+### 0075 — `src/sisad-pdfme/common/version.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `10`
@@ -12154,9 +12474,9 @@ export type LegacySchemaPageArray = z.infer<typeof LegacySchemaPageArray>;
 export const PDFME_VERSION = '5.5.8';
 ```
 
-<a id="file-0068"></a>
+<a id="file-0076"></a>
 
-### 0068 — `src/sisad-pdfme/config/actionConfigRegistry.ts`
+### 0076 — `src/sisad-pdfme/config/actionConfigRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `256`
@@ -12424,9 +12744,9 @@ export const actionConfigRegistry: Record<ActionId, ActionDefinition> = {
 };
 ```
 
-<a id="file-0069"></a>
+<a id="file-0077"></a>
 
-### 0069 — `src/sisad-pdfme/config/componentRegistry.ts`
+### 0077 — `src/sisad-pdfme/config/componentRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `185`
@@ -12623,9 +12943,9 @@ export const componentRegistry: Record<ComponentId, ComponentDefinition> = {
 };
 ```
 
-<a id="file-0070"></a>
+<a id="file-0078"></a>
 
-### 0070 — `src/sisad-pdfme/config/configChangeImpact.ts`
+### 0078 — `src/sisad-pdfme/config/configChangeImpact.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `49`
@@ -12686,9 +13006,102 @@ export const classifySisadPdfmeConfigChange = (
 };
 ```
 
-<a id="file-0071"></a>
+<a id="file-0079"></a>
 
-### 0071 — `src/sisad-pdfme/config/configMigration.ts`
+### 0079 — `src/sisad-pdfme/config/configFromRuntimeOptions.ts`
+
+- **Lenguaje:** `typescript`
+- **Líneas:** `79`
+- **Tamaño original:** `2.6 KB`
+- **SHA1 corto:** `4bda595e3b`
+- **Estado:** `completo`
+- **Símbolos detectados:** `export const: configFromRuntimeOptions`
+
+```typescript
+/**
+ * Extrae la configuración serializable que viaja dentro de las opciones de runtime.
+ *
+ * Por qué existe: el Designer y el Canvas reciben `options` por contexto y
+ * hacían `useSisadPdfmeConfig(options)`, es decir, trataban las OPCIONES como
+ * si fueran configuración. El ConfigService clona su entrada con
+ * `structuredClone`, así que cualquier valor vivo dentro de las opciones
+ * —`designerEngine` con su hub de eventos o sus renderers, por ejemplo— hacía
+ * fallar el montaje con `DataCloneError`.
+ *
+ * Este picker deja pasar únicamente las ramas que son configuración de verdad
+ * y descarta lo que es transporte de runtime. Es la condición previa para
+ * poder colgar el hub de eventos de `designerEngine` (COREUX-006/007).
+ */
+import type { SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
+
+/**
+ * Claves de `SisadPdfmeGlobalConfig`. Todo lo demás que aparezca en las
+ * opciones (designerEngine, uploadedDocuments, i18n, flags de layout ya
+ * resueltos…) es runtime y no debe llegar al ConfigService.
+ */
+const CONFIG_KEYS = [
+  'configVersion',
+  'app',
+  'runtime',
+  'theme',
+  'canvas',
+  'sidebars',
+  'schemas',
+  'recipients',
+  'collaboration',
+  'assignment',
+  'documents',
+  'signatures',
+  'persistence',
+  'events',
+  'debug',
+  'visibility',
+  'ui',
+] as const satisfies readonly (keyof SisadPdfmeGlobalConfig)[];
+
+/**
+ * `events` puede contener funciones cuando el host las pasa programáticamente.
+ * No sobreviven a `structuredClone`, así que se filtran a los valores
+ * declarativos (`'host' | false`) que sí son configuración.
+ */
+const sanitizeEvents = (events: unknown): Record<string, unknown> | undefined => {
+  if (!events || typeof events !== 'object') return undefined;
+  const entries = Object.entries(events as Record<string, unknown>).filter(
+    ([, value]) => value === 'host' || value === false,
+  );
+  return entries.length > 0 ? Object.fromEntries(entries) : undefined;
+};
+
+/**
+ * Devuelve la porción de configuración contenida en `options`.
+ *
+ * El resultado es siempre serializable, así que es seguro entregarlo al
+ * ConfigService.
+ */
+export const configFromRuntimeOptions = (
+  options: unknown,
+): SisadPdfmeGlobalConfig => {
+  if (!options || typeof options !== 'object') return {};
+  const source = options as Record<string, unknown>;
+  const config: Record<string, unknown> = {};
+
+  CONFIG_KEYS.forEach((key) => {
+    if (!(key in source) || source[key] === undefined) return;
+    if (key === 'events') {
+      const events = sanitizeEvents(source[key]);
+      if (events) config[key] = events;
+      return;
+    }
+    config[key] = source[key];
+  });
+
+  return config as SisadPdfmeGlobalConfig;
+};
+```
+
+<a id="file-0080"></a>
+
+### 0080 — `src/sisad-pdfme/config/configMigration.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `115`
@@ -12815,9 +13228,9 @@ export const migrateSisadPdfmeConfig = (
 };
 ```
 
-<a id="file-0072"></a>
+<a id="file-0081"></a>
 
-### 0072 — `src/sisad-pdfme/config/configSelectors.ts`
+### 0081 — `src/sisad-pdfme/config/configSelectors.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `120`
@@ -12949,9 +13362,9 @@ export const createSisadPdfmeConfigSelectors = (
 });
 ```
 
-<a id="file-0073"></a>
+<a id="file-0082"></a>
 
-### 0073 — `src/sisad-pdfme/config/configValidation.ts`
+### 0082 — `src/sisad-pdfme/config/configValidation.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `103`
@@ -13066,9 +13479,9 @@ export const validateSisadPdfmeConfig = (
 };
 ```
 
-<a id="file-0074"></a>
+<a id="file-0083"></a>
 
-### 0074 — `src/sisad-pdfme/config/createSisadPdfmeConfig.ts`
+### 0083 — `src/sisad-pdfme/config/createSisadPdfmeConfig.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `5`
@@ -13085,9 +13498,9 @@ export const createSisadPdfmeConfig = (input: SisadPdfmeGlobalConfig = {}): Reso
   resolveSisadPdfmeConfig(input);
 ```
 
-<a id="file-0075"></a>
+<a id="file-0084"></a>
 
-### 0075 — `src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts`
+### 0084 — `src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `231`
@@ -13330,9 +13743,9 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
 };
 ```
 
-<a id="file-0076"></a>
+<a id="file-0085"></a>
 
-### 0076 — `src/sisad-pdfme/config/featureDependencies.ts`
+### 0085 — `src/sisad-pdfme/config/featureDependencies.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `14`
@@ -13358,9 +13771,9 @@ export const featureDependencies: Record<FeatureId, FeatureId[]> = {
 };
 ```
 
-<a id="file-0077"></a>
+<a id="file-0086"></a>
 
-### 0077 — `src/sisad-pdfme/config/featureRegistry.ts`
+### 0086 — `src/sisad-pdfme/config/featureRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `232`
@@ -13604,9 +14017,9 @@ export const featureRegistry: Record<FeatureId, FeatureDefinition> = {
 };
 ```
 
-<a id="file-0078"></a>
+<a id="file-0087"></a>
 
-### 0078 — `src/sisad-pdfme/config/index.ts`
+### 0087 — `src/sisad-pdfme/config/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `61`
@@ -13678,9 +14091,9 @@ export type {
 export type { SisadPdfmeRecipient } from '../recipients/recipientTypes.js';
 ```
 
-<a id="file-0079"></a>
+<a id="file-0088"></a>
 
-### 0079 — `src/sisad-pdfme/config/InspectorConfigurationResolver.ts`
+### 0088 — `src/sisad-pdfme/config/InspectorConfigurationResolver.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `31`
@@ -13723,14 +14136,14 @@ export const createInspectorConfigurationResolver = (
 };
 ```
 
-<a id="file-0080"></a>
+<a id="file-0089"></a>
 
-### 0080 — `src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts`
+### 0089 — `src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `284`
-- **Tamaño original:** `11.4 KB`
-- **SHA1 corto:** `1bc2259485`
+- **Líneas:** `302`
+- **Tamaño original:** `12.2 KB`
+- **SHA1 corto:** `8f5d135e06`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export const: resolveSisadPdfmeConfig`
 
@@ -13931,6 +14344,23 @@ export const resolveSisadPdfmeConfig = (
 
   const designerEngine = designerEngineBuilder.build();
 
+  /**
+   * Conecta el hub de runtime con el punto donde el Designer lo busca.
+   *
+   * `Designer/index.tsx` lee `designerEngine.extensions?.events`, y
+   * `emitDesignerRuntimeEvent` es `hub?.emit(...)`: sin esto el hub quedaba
+   * huérfano y toda emisión interna era un no-op silencioso (COREUX-003).
+   *
+   * Fue posible al dejar de pasar `options` como configuración
+   * (`configFromRuntimeOptions`): antes, colgar una función de `designerEngine`
+   * hacía fallar el `structuredClone` del ConfigService.
+   */
+  const eventHub = createDesignerRuntimeEventHub();
+  designerEngine.extensions = {
+    ...(designerEngine.extensions || {}),
+    events: designerEngine.extensions?.events ?? eventHub,
+  };
+
   const resolvedSidebars = {
     ...baseConfig.sidebars,
     left: {
@@ -14016,14 +14446,15 @@ export const resolveSisadPdfmeConfig = (
       persistence: createPersistenceAdapter(),
       signatures: createSignatureProviderAdapter(),
     },
-    eventHub: createDesignerRuntimeEventHub(),
+    // Misma instancia que `designerEngine.extensions.events`: un hub por config.
+    eventHub: designerEngine.extensions?.events ?? eventHub,
   };
 };
 ```
 
-<a id="file-0081"></a>
+<a id="file-0090"></a>
 
-### 0081 — `src/sisad-pdfme/config/schemaCapabilityResolver.ts`
+### 0090 — `src/sisad-pdfme/config/schemaCapabilityResolver.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `151`
@@ -14186,9 +14617,9 @@ export const createSchemaCapabilityResolver = (
 };
 ```
 
-<a id="file-0082"></a>
+<a id="file-0091"></a>
 
-### 0082 — `src/sisad-pdfme/config/schemaConfigurationProfile.ts`
+### 0091 — `src/sisad-pdfme/config/schemaConfigurationProfile.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `192`
@@ -14392,9 +14823,9 @@ export const createSchemaConfigurationProfile = (schemaType: string): SchemaConf
 export { resolveSchemaConfigurationFamily };
 ```
 
-<a id="file-0083"></a>
+<a id="file-0092"></a>
 
-### 0083 — `src/sisad-pdfme/config/SisadPdfmeConfig.ts`
+### 0092 — `src/sisad-pdfme/config/SisadPdfmeConfig.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `418`
@@ -14824,9 +15255,9 @@ export type SisadPdfmeProviderProps = {
 };
 ```
 
-<a id="file-0084"></a>
+<a id="file-0093"></a>
 
-### 0084 — `src/sisad-pdfme/config/SisadPdfmeConfigService.ts`
+### 0093 — `src/sisad-pdfme/config/SisadPdfmeConfigService.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `232`
@@ -15070,9 +15501,9 @@ export const createSisadPdfmeConfigService = (
 ): SisadPdfmeConfigService => new SisadPdfmeConfigServiceImpl(initial);
 ```
 
-<a id="file-0085"></a>
+<a id="file-0094"></a>
 
-### 0085 — `src/sisad-pdfme/context/RecipientContext.ts`
+### 0094 — `src/sisad-pdfme/context/RecipientContext.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `111`
@@ -15195,9 +15626,9 @@ export function reconcileRecipientColor(
 }
 ```
 
-<a id="file-0086"></a>
+<a id="file-0095"></a>
 
-### 0086 — `src/sisad-pdfme/contracts/assignments.ts`
+### 0095 — `src/sisad-pdfme/contracts/assignments.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `72`
@@ -15281,9 +15712,9 @@ export type LegacySchemaAssignments = Record<
 >;
 ```
 
-<a id="file-0087"></a>
+<a id="file-0096"></a>
 
-### 0087 — `src/sisad-pdfme/contracts/commands.ts`
+### 0096 — `src/sisad-pdfme/contracts/commands.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `247`
@@ -15542,9 +15973,9 @@ export type Command = {
 export type SchemaDesignerConfig = Record<string, unknown>;
 ```
 
-<a id="file-0088"></a>
+<a id="file-0097"></a>
 
-### 0088 — `src/sisad-pdfme/contracts/comments.ts`
+### 0097 — `src/sisad-pdfme/contracts/comments.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `278`
@@ -15834,14 +16265,362 @@ export type TopLevelPdfCommentEntry = {
 };
 ```
 
-<a id="file-0089"></a>
+<a id="file-0098"></a>
 
-### 0089 — `src/sisad-pdfme/contracts/index.ts`
+### 0098 — `src/sisad-pdfme/contracts/events.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `234`
-- **Tamaño original:** `6.9 KB`
-- **SHA1 corto:** `bb1e37f73b`
+- **Líneas:** `334`
+- **Tamaño original:** `12.3 KB`
+- **SHA1 corto:** `002268a5c3`
+- **Estado:** `completo`
+- **Símbolos detectados:** `export function: createSisadPdfmeEvent`, `export function: createSisadPdfmeCustomEvent`, `export type/class: SisadPdfmeEventDomain`, `export type/class: SisadPdfmeEventName`, `export type/class: SisadPdfmeCustomEventName`, `export type/class: SisadPdfmeAnyEventName`, `export type/class: SisadPdfmeSerializable`, `export type/class: SisadPdfmeEventPayloads`, `export type/class: SisadPdfmeEventEnvelope`, `export type/class: SisadPdfmeEvent`, `export type/class: SisadPdfmeCustomEvent`, `export type/class: SisadPdfmeAnyEvent`, `export type/class: CreateEventContext`, `export const: SISAD_PDFME_EVENT_VERSION`, `export const: SISAD_PDFME_EVENTS`, `export const: SISAD_PDFME_EVENT_NAMES`, `export const: SISAD_PDFME_EVENT_DOMAIN_BY_NAME`, `export const: isSisadPdfmeEventName`, `export const: isSisadPdfmeCustomEventName`, `export const: isSisadPdfmeEvent`, `export const: isSisadPdfmeEventOf`
+
+```typescript
+/**
+ * Catálogo canónico, tipado y versionado de eventos SISAD PDFME.
+ *
+ * Sustituye el `type: string` libre del hub de runtime por una unión
+ * discriminada. Este archivo es **solo contrato**: no crea un segundo bus ni
+ * emite nada. El transporte sigue siendo el hub existente
+ * (`createDesignerRuntimeEventHub`) y el enrutado hacia los callbacks públicos
+ * es responsabilidad del dispatcher (COREUX-006).
+ *
+ * Reglas del catálogo (`reports/core-ux/03-EVENT-CATALOG.md`):
+ *
+ * - un evento describe un hecho consumado; una intención entra por Command;
+ * - todo evento lleva `version`, `eventId`, `timestamp` e `instanceId`, y
+ *   opcionalmente `correlationId` para encadenar solicitud → resultado;
+ * - los payloads son serializables: nada de funciones, nodos DOM ni instancias.
+ *   Esto permite atravesar `postMessage`, logs y snapshots de diagnóstico.
+ */
+
+/** Versión del contrato de eventos. Sube al romper forma de payload. */
+export const SISAD_PDFME_EVENT_VERSION = 1;
+
+/**
+ * Nombres canónicos agrupados por dominio.
+ *
+ * El objeto es la fuente única: el tipo unión se deriva de él, así que añadir
+ * un evento aquí lo hace válido en todo el sistema sin tocar más sitios.
+ */
+export const SISAD_PDFME_EVENTS = {
+  lifecycle: ['designer.ready', 'designer.disposed', 'designer.error'],
+  configuration: ['config.changed'],
+  template: ['template.changed'],
+  schema: [
+    'schema.added',
+    'schema.updated',
+    'schema.removed',
+    'schema.duplicated',
+    'schema.reordered',
+  ],
+  selection: ['selection.changed'],
+  interaction: [
+    'interaction.phase.changed',
+    'inline-edit.started',
+    'inline-edit.committed',
+    'inline-edit.cancelled',
+  ],
+  navigation: ['page.changed', 'zoom.changed', 'viewport.fit'],
+  surface: ['sidebar.changed', 'right-panel.changed', 'view-feature.changed'],
+  recipients: ['recipient.registry.changed', 'recipient.active.changed'],
+  assignment: ['assignment.changed'],
+  documents: [
+    'document.added',
+    'document.changed',
+    'document.reordered',
+    'document.removed',
+  ],
+  comments: [
+    'comment.created',
+    'comment.replied',
+    'comment.resolved',
+    'comment.reopened',
+    'comment.moved',
+    'comment.deleted',
+  ],
+  signature: ['signature.requested', 'signature.completed', 'signature.failed'],
+  validation: ['validation.completed'],
+  persistence: ['save.requested', 'save.started', 'save.succeeded', 'save.failed'],
+  artifacts: ['export.started', 'export.succeeded', 'export.failed'],
+} as const;
+
+export type SisadPdfmeEventDomain = keyof typeof SISAD_PDFME_EVENTS;
+
+/** Unión cerrada de nombres canónicos. */
+export type SisadPdfmeEventName =
+  (typeof SISAD_PDFME_EVENTS)[SisadPdfmeEventDomain][number];
+
+/**
+ * Extensión controlada para eventos de host o de plugin.
+ *
+ * No se admite cualquier string: el prefijo obliga a declarar que el evento
+ * está fuera del catálogo, así que un typo en un nombre canónico sigue siendo
+ * un error de tipos.
+ */
+export type SisadPdfmeCustomEventName = `custom:${string}`;
+
+export type SisadPdfmeAnyEventName = SisadPdfmeEventName | SisadPdfmeCustomEventName;
+
+/** Lista plana, útil para validaciones y pruebas de cobertura. */
+export const SISAD_PDFME_EVENT_NAMES = Object.values(SISAD_PDFME_EVENTS).flat() as
+  readonly SisadPdfmeEventName[];
+
+/** Dominio al que pertenece cada nombre canónico. */
+export const SISAD_PDFME_EVENT_DOMAIN_BY_NAME = Object.fromEntries(
+  (Object.entries(SISAD_PDFME_EVENTS) as Array<[SisadPdfmeEventDomain, readonly string[]]>)
+    .flatMap(([domain, names]) => names.map((name) => [name, domain] as const)),
+) as Record<SisadPdfmeEventName, SisadPdfmeEventDomain>;
+
+/* ------------------------------------------------------------------ */
+/* Payloads                                                            */
+/* ------------------------------------------------------------------ */
+
+/** Valor serializable: lo único admitido dentro de un payload. */
+export type SisadPdfmeSerializable =
+  | string
+  | number
+  | boolean
+  | null
+  | SisadPdfmeSerializable[]
+  | { [key: string]: SisadPdfmeSerializable };
+
+type SchemaRef = { schemaId: string; documentId?: string | null; pageNumber?: number };
+
+type ErrorPayload = {
+  code: string;
+  message: string;
+  cause?: string | null;
+  recoverable?: boolean;
+};
+
+/**
+ * Forma del payload de cada evento canónico.
+ *
+ * Todos los campos son serializables por construcción: identificadores,
+ * primitivos y registros planos. Nunca instancias del runtime.
+ */
+export type SisadPdfmeEventPayloads = {
+  'designer.ready': { capabilities: string[]; configVersion: number };
+  'designer.disposed': { reason?: string };
+  'designer.error': ErrorPayload;
+
+  'config.changed': { paths: string[]; revision: number; impact?: string };
+
+  'template.changed': { revision: number; cause: string; changedSchemaIds: string[] };
+
+  'schema.added': SchemaRef & { type: string };
+  'schema.updated': SchemaRef & { patch: Record<string, SisadPdfmeSerializable>; cause: string };
+  'schema.removed': { schemaIds: string[]; documentId?: string | null };
+  'schema.duplicated': { sourceIds: string[]; createdIds: string[] };
+  'schema.reordered': { schemaIds: string[]; before?: number; after?: number };
+
+  'selection.changed': {
+    ids: string[];
+    mode: 'replace' | 'add' | 'toggle' | 'clear';
+    documentId?: string | null;
+    pageNumber?: number;
+  };
+
+  'interaction.phase.changed': { previous: string; current: string; reason?: string };
+  'inline-edit.started': SchemaRef & { target?: string };
+  'inline-edit.committed': SchemaRef & { patch: Record<string, SisadPdfmeSerializable> };
+  'inline-edit.cancelled': SchemaRef & { reason?: string };
+
+  'page.changed': { previous: number; current: number; total: number; documentId?: string | null };
+  'zoom.changed': { previous: number; current: number; cause: string };
+  'viewport.fit': { mode: 'page' | 'width' | 'device' | 'actual-size'; zoom: number };
+
+  'sidebar.changed': {
+    side: 'left' | 'right';
+    expanded: boolean;
+    presentation: 'docked' | 'overlay' | 'auto';
+    cause?: string;
+  };
+  'right-panel.changed': {
+    previous: 'fields' | 'detail' | 'comments' | 'documents' | null;
+    current: 'fields' | 'detail' | 'comments' | 'documents';
+  };
+  'view-feature.changed': { feature: string; enabled: boolean };
+
+  'recipient.registry.changed': {
+    revision: number;
+    recipients: Array<{ id: string; name?: string }>;
+  };
+  'recipient.active.changed': { previousId: string | null; currentId: string | null };
+
+  'assignment.changed': {
+    schemaIds: string[];
+    previousOwnerIds: string[];
+    ownerId: string | null;
+  };
+
+  'document.added': { documentId: string; index: number };
+  'document.changed': { previousId: string | null; currentId: string };
+  'document.reordered': { order: string[] };
+  'document.removed': { documentId: string; nextActiveId: string | null };
+
+  'comment.created': { commentId: string; scope: string; anchor?: Record<string, SisadPdfmeSerializable> };
+  'comment.replied': { commentId: string; replyId: string };
+  'comment.resolved': { commentId: string };
+  'comment.reopened': { commentId: string };
+  'comment.moved': { commentId: string; anchor: Record<string, SisadPdfmeSerializable> };
+  'comment.deleted': { commentId: string };
+
+  'signature.requested': { schemaId: string; recipientId: string | null; providerKey: string };
+  'signature.completed': { schemaId: string; status: string; metadata?: Record<string, SisadPdfmeSerializable> };
+  'signature.failed': { schemaId: string; error: ErrorPayload };
+
+  'validation.completed': { profile: string; valid: boolean; issues: number };
+
+  'save.requested': { revision: number };
+  'save.started': Record<string, never>;
+  'save.succeeded': { revision: number };
+  'save.failed': { error: ErrorPayload };
+
+  'export.started': { format: string };
+  'export.succeeded': { format: string; size: number };
+  'export.failed': { format: string; error: ErrorPayload };
+};
+
+/* ------------------------------------------------------------------ */
+/* Sobre del evento                                                    */
+/* ------------------------------------------------------------------ */
+
+/** Metadatos comunes a todo evento del catálogo. */
+export type SisadPdfmeEventEnvelope = {
+  version: number;
+  eventId: string;
+  timestamp: number;
+  instanceId: string;
+  /** Encadena solicitud → resultado (p. ej. `save.requested` → `save.succeeded`). */
+  correlationId?: string;
+  source?: string;
+};
+
+export type SisadPdfmeEvent<TName extends SisadPdfmeEventName = SisadPdfmeEventName> =
+  SisadPdfmeEventEnvelope & {
+    name: TName;
+    domain: SisadPdfmeEventDomain;
+    payload: SisadPdfmeEventPayloads[TName];
+  };
+
+/** Evento fuera del catálogo, con payload libre pero serializable. */
+export type SisadPdfmeCustomEvent = SisadPdfmeEventEnvelope & {
+  name: SisadPdfmeCustomEventName;
+  domain: 'custom';
+  payload: Record<string, SisadPdfmeSerializable>;
+};
+
+/** Unión discriminada por `name`, que es lo que consumen los listeners. */
+export type SisadPdfmeAnyEvent =
+  | { [K in SisadPdfmeEventName]: SisadPdfmeEvent<K> }[SisadPdfmeEventName]
+  | SisadPdfmeCustomEvent;
+
+/* ------------------------------------------------------------------ */
+/* Guards y factory                                                    */
+/* ------------------------------------------------------------------ */
+
+const KNOWN_NAMES = new Set<string>(SISAD_PDFME_EVENT_NAMES);
+
+/** ¿El nombre pertenece al catálogo canónico? */
+export const isSisadPdfmeEventName = (value: unknown): value is SisadPdfmeEventName =>
+  typeof value === 'string' && KNOWN_NAMES.has(value);
+
+/** ¿El nombre es una extensión controlada de host/plugin? */
+export const isSisadPdfmeCustomEventName = (
+  value: unknown,
+): value is SisadPdfmeCustomEventName =>
+  typeof value === 'string' && value.startsWith('custom:') && value.length > 'custom:'.length;
+
+/** ¿El valor es un evento con sobre completo? */
+export const isSisadPdfmeEvent = (value: unknown): value is SisadPdfmeAnyEvent => {
+  if (!value || typeof value !== 'object') return false;
+  const event = value as Partial<SisadPdfmeAnyEvent>;
+  return (
+    (isSisadPdfmeEventName(event.name) || isSisadPdfmeCustomEventName(event.name)) &&
+    typeof event.version === 'number' &&
+    typeof event.eventId === 'string' &&
+    typeof event.timestamp === 'number' &&
+    typeof event.instanceId === 'string'
+  );
+};
+
+/** Guard estrecho por nombre, para listeners que solo atienden un evento. */
+export const isSisadPdfmeEventOf = <TName extends SisadPdfmeEventName>(
+  name: TName,
+  value: unknown,
+): value is SisadPdfmeEvent<TName> => isSisadPdfmeEvent(value) && value.name === name;
+
+let eventSequence = 0;
+
+/**
+ * Identificador de evento estable y ordenable.
+ *
+ * No usa `crypto.randomUUID` para no depender de contexto seguro: el par
+ * timestamp + secuencia basta para correlacionar y ordenar dentro de una
+ * instancia, que es el alcance del contrato.
+ */
+const nextEventId = (instanceId: string): string => {
+  eventSequence += 1;
+  return `${instanceId}:${Date.now().toString(36)}:${eventSequence.toString(36)}`;
+};
+
+export type CreateEventContext = {
+  instanceId: string;
+  correlationId?: string;
+  source?: string;
+  timestamp?: number;
+};
+
+/** Construye el sobre canónico de un evento del catálogo. */
+export function createSisadPdfmeEvent<TName extends SisadPdfmeEventName>(
+  name: TName,
+  payload: SisadPdfmeEventPayloads[TName],
+  context: CreateEventContext,
+): SisadPdfmeEvent<TName> {
+  return {
+    name,
+    domain: SISAD_PDFME_EVENT_DOMAIN_BY_NAME[name],
+    version: SISAD_PDFME_EVENT_VERSION,
+    eventId: nextEventId(context.instanceId),
+    timestamp: context.timestamp ?? Date.now(),
+    instanceId: context.instanceId,
+    ...(context.correlationId ? { correlationId: context.correlationId } : {}),
+    ...(context.source ? { source: context.source } : {}),
+    payload,
+  };
+}
+
+/** Construye el sobre de un evento fuera del catálogo. */
+export function createSisadPdfmeCustomEvent(
+  name: SisadPdfmeCustomEventName,
+  payload: Record<string, SisadPdfmeSerializable>,
+  context: CreateEventContext,
+): SisadPdfmeCustomEvent {
+  return {
+    name,
+    domain: 'custom',
+    version: SISAD_PDFME_EVENT_VERSION,
+    eventId: nextEventId(context.instanceId),
+    timestamp: context.timestamp ?? Date.now(),
+    instanceId: context.instanceId,
+    ...(context.correlationId ? { correlationId: context.correlationId } : {}),
+    ...(context.source ? { source: context.source } : {}),
+    payload,
+  };
+}
+```
+
+<a id="file-0099"></a>
+
+### 0099 — `src/sisad-pdfme/contracts/index.ts`
+
+- **Lenguaje:** `typescript`
+- **Líneas:** `266`
+- **Tamaño original:** `7.7 KB`
+- **SHA1 corto:** `44bf1b9fa0`
 - **Estado:** `completo`
 
 ```typescript
@@ -16079,11 +16858,43 @@ export {
   getAvailableProvidersForSchema,
   getDefaultProviderForSchema,
 } from '../shared/signatureRegistry.js';
+/**
+ * Catálogo canónico de eventos.
+ *
+ * Unión discriminada + sobre versionado que reemplaza el `type: string` libre
+ * del hub de runtime. Es contrato puro: no transporta ni emite.
+ */
+export {
+  SISAD_PDFME_EVENT_VERSION,
+  SISAD_PDFME_EVENTS,
+  SISAD_PDFME_EVENT_NAMES,
+  SISAD_PDFME_EVENT_DOMAIN_BY_NAME,
+  isSisadPdfmeEventName,
+  isSisadPdfmeCustomEventName,
+  isSisadPdfmeEvent,
+  isSisadPdfmeEventOf,
+  createSisadPdfmeEvent,
+  createSisadPdfmeCustomEvent,
+} from './events.js';
+
+export type {
+  SisadPdfmeEventDomain,
+  SisadPdfmeEventName,
+  SisadPdfmeCustomEventName,
+  SisadPdfmeAnyEventName,
+  SisadPdfmeEventPayloads,
+  SisadPdfmeEventEnvelope,
+  SisadPdfmeEvent,
+  SisadPdfmeCustomEvent,
+  SisadPdfmeAnyEvent,
+  SisadPdfmeSerializable,
+  CreateEventContext,
+} from './events.js';
 ```
 
-<a id="file-0090"></a>
+<a id="file-0100"></a>
 
-### 0090 — `src/sisad-pdfme/contracts/plugins.ts`
+### 0100 — `src/sisad-pdfme/contracts/plugins.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `439`
@@ -16534,9 +17345,9 @@ export type PluginFamilyDefinition = {
 };
 ```
 
-<a id="file-0091"></a>
+<a id="file-0101"></a>
 
-### 0091 — `src/sisad-pdfme/contracts/schema.ts`
+### 0101 — `src/sisad-pdfme/contracts/schema.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `190`
@@ -16738,9 +17549,9 @@ export {
 } from '../shared/schemaDesignerMeta.js';
 ```
 
-<a id="file-0092"></a>
+<a id="file-0102"></a>
 
-### 0092 — `src/sisad-pdfme/converter/createEnvironmentConverters.ts`
+### 0102 — `src/sisad-pdfme/converter/createEnvironmentConverters.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `33`
@@ -16785,9 +17596,9 @@ export const createEnvironmentConverters = (
 });
 ```
 
-<a id="file-0093"></a>
+<a id="file-0103"></a>
 
-### 0093 — `src/sisad-pdfme/converter/img2pdf.ts`
+### 0103 — `src/sisad-pdfme/converter/img2pdf.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `193`
@@ -16992,9 +17803,9 @@ export async function img2pdf(
 }
 ```
 
-<a id="file-0094"></a>
+<a id="file-0104"></a>
 
-### 0094 — `src/sisad-pdfme/converter/index.browser.ts`
+### 0104 — `src/sisad-pdfme/converter/index.browser.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `59`
@@ -17065,9 +17876,9 @@ export { pdf2img, pdf2size };
 export * from './index.shared.js';
 ```
 
-<a id="file-0095"></a>
+<a id="file-0105"></a>
 
-### 0095 — `src/sisad-pdfme/converter/index.node.ts`
+### 0105 — `src/sisad-pdfme/converter/index.node.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `46`
@@ -17124,9 +17935,9 @@ export { pdf2img, pdf2size };
 export * from './index.shared.js';
 ```
 
-<a id="file-0096"></a>
+<a id="file-0106"></a>
 
-### 0096 — `src/sisad-pdfme/converter/index.shared.ts`
+### 0106 — `src/sisad-pdfme/converter/index.shared.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `5`
@@ -17142,9 +17953,9 @@ export type { Pdf2ImgOptions } from './pdf2img.js';
 export type { Pdf2SizeOptions } from './pdf2size.js';
 ```
 
-<a id="file-0097"></a>
+<a id="file-0107"></a>
 
-### 0097 — `src/sisad-pdfme/converter/index.ts`
+### 0107 — `src/sisad-pdfme/converter/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `23`
@@ -17178,9 +17989,9 @@ export type { Img2PdfOptions } from './img2pdf.js';
 export type { ImageType } from './types.js';
 ```
 
-<a id="file-0098"></a>
+<a id="file-0108"></a>
 
-### 0098 — `src/sisad-pdfme/converter/modules.d.ts`
+### 0108 — `src/sisad-pdfme/converter/modules.d.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `19`
@@ -17210,9 +18021,9 @@ declare module 'pdfjs-dist/legacy/build/pdf.worker.js' {
 }
 ```
 
-<a id="file-0099"></a>
+<a id="file-0109"></a>
 
-### 0099 — `src/sisad-pdfme/converter/pdf2img.ts`
+### 0109 — `src/sisad-pdfme/converter/pdf2img.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `110`
@@ -17334,9 +18145,9 @@ export async function pdf2img(
 }
 ```
 
-<a id="file-0100"></a>
+<a id="file-0110"></a>
 
-### 0100 — `src/sisad-pdfme/converter/pdf2size.ts`
+### 0110 — `src/sisad-pdfme/converter/pdf2size.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `51`
@@ -17399,9 +18210,9 @@ export async function pdf2size(
 }
 ```
 
-<a id="file-0101"></a>
+<a id="file-0111"></a>
 
-### 0101 — `src/sisad-pdfme/converter/types.d.ts`
+### 0111 — `src/sisad-pdfme/converter/types.d.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `8`
@@ -17421,9 +18232,9 @@ export async function pdf2size(
 export type ImageType = 'jpeg' | 'png';
 ```
 
-<a id="file-0102"></a>
+<a id="file-0112"></a>
 
-### 0102 — `src/sisad-pdfme/devtools/index.ts`
+### 0112 — `src/sisad-pdfme/devtools/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `68`
@@ -17502,9 +18313,9 @@ export {
 } from '../collaboration/schemaOwnershipAppearance.js';
 ```
 
-<a id="file-0103"></a>
+<a id="file-0113"></a>
 
-### 0103 — `src/sisad-pdfme/documents/index.ts`
+### 0113 — `src/sisad-pdfme/documents/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `269`
@@ -17785,9 +18596,9 @@ export const mergeDesignerDocumentIntoFile = <T extends DocumentLike>(
 };
 ```
 
-<a id="file-0104"></a>
+<a id="file-0114"></a>
 
-### 0104 — `src/sisad-pdfme/editor/index.ts`
+### 0114 — `src/sisad-pdfme/editor/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `178`
@@ -17977,9 +18788,9 @@ export {
 } from '../ui/components/Designer/shared/designerExtensions.js';
 ```
 
-<a id="file-0105"></a>
+<a id="file-0115"></a>
 
-### 0105 — `src/sisad-pdfme/externalForms/externalFormRunner.ts`
+### 0115 — `src/sisad-pdfme/externalForms/externalFormRunner.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `381`
@@ -18372,9 +19183,9 @@ export class InMemoryExternalFormStorage implements ExternalFormStorage {
 }
 ```
 
-<a id="file-0106"></a>
+<a id="file-0116"></a>
 
-### 0106 — `src/sisad-pdfme/generator/constants.ts`
+### 0116 — `src/sisad-pdfme/generator/constants.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `1`
@@ -18387,9 +19198,9 @@ export class InMemoryExternalFormStorage implements ExternalFormStorage {
 export const TOOL_NAME = 'sisad-pdfme (https://sisad-pdfme.com/)';
 ```
 
-<a id="file-0107"></a>
+<a id="file-0117"></a>
 
-### 0107 — `src/sisad-pdfme/generator/generate.ts`
+### 0117 — `src/sisad-pdfme/generator/generate.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `167`
@@ -18567,9 +19378,9 @@ const generate = async (props: GenerateProps): Promise<Uint8Array<ArrayBuffer>> 
 export default generate;
 ```
 
-<a id="file-0108"></a>
+<a id="file-0118"></a>
 
-### 0108 — `src/sisad-pdfme/generator/helper.ts`
+### 0118 — `src/sisad-pdfme/generator/helper.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `171`
@@ -18752,9 +19563,9 @@ export const insertPage = (arg: {
 };
 ```
 
-<a id="file-0109"></a>
+<a id="file-0119"></a>
 
-### 0109 — `src/sisad-pdfme/generator/index.ts`
+### 0119 — `src/sisad-pdfme/generator/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `27`
@@ -18793,9 +19604,9 @@ export const generatePdfBuffer = async (props: GenerateProps): Promise<ArrayBuff
 };
 ```
 
-<a id="file-0110"></a>
+<a id="file-0120"></a>
 
-### 0110 — `src/sisad-pdfme/generator/preflight.ts`
+### 0120 — `src/sisad-pdfme/generator/preflight.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `447`
@@ -19254,9 +20065,9 @@ export const createPdfPreflightReport = async (props: GenerateProps): Promise<Pd
 };
 ```
 
-<a id="file-0111"></a>
+<a id="file-0121"></a>
 
-### 0111 — `src/sisad-pdfme/generator/types.ts`
+### 0121 — `src/sisad-pdfme/generator/types.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `5`
@@ -19273,9 +20084,9 @@ export type EmbedPdfBox = {
 };
 ```
 
-<a id="file-0112"></a>
+<a id="file-0122"></a>
 
-### 0112 — `src/sisad-pdfme/integration/index.ts`
+### 0122 — `src/sisad-pdfme/integration/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `220`
@@ -19507,9 +20318,9 @@ export const normalizeTemplateForRuntime = (templateValue: unknown) => {
 };
 ```
 
-<a id="file-0113"></a>
+<a id="file-0123"></a>
 
-### 0113 — `src/sisad-pdfme/integration/normalizeHostData.ts`
+### 0123 — `src/sisad-pdfme/integration/normalizeHostData.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `83`
@@ -19604,9 +20415,9 @@ export const normalizeHostData = ({
 };
 ```
 
-<a id="file-0114"></a>
+<a id="file-0124"></a>
 
-### 0114 — `src/sisad-pdfme/integration/schemaController.ts`
+### 0124 — `src/sisad-pdfme/integration/schemaController.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `91`
@@ -19709,9 +20520,9 @@ export const createSchemaController = (customConfig: Record<string, unknown> = {
 };
 ```
 
-<a id="file-0115"></a>
+<a id="file-0125"></a>
 
-### 0115 — `src/sisad-pdfme/labs/index.ts`
+### 0125 — `src/sisad-pdfme/labs/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `740`
@@ -20463,9 +21274,9 @@ export const buildExampleHref = async (example: ExampleDefinition, options: Exam
 };
 ```
 
-<a id="file-0116"></a>
+<a id="file-0126"></a>
 
-### 0116 — `src/sisad-pdfme/react/hostSurface.ts`
+### 0126 — `src/sisad-pdfme/react/hostSurface.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `25`
@@ -20502,9 +21313,9 @@ export const mergeHostSurfaceClassName = (className?: string): string =>
   [SISAD_PDFME_HOST_SURFACE_CLASS, className].filter(Boolean).join(' ');
 ```
 
-<a id="file-0117"></a>
+<a id="file-0127"></a>
 
-### 0117 — `src/sisad-pdfme/react/index.ts`
+### 0127 — `src/sisad-pdfme/react/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `25`
@@ -20540,14 +21351,14 @@ export { useSisadPdfmeAction } from './useSisadPdfmeAction.js';
 export { useSisadPdfmeComponent } from './useSisadPdfmeComponent.js';
 ```
 
-<a id="file-0118"></a>
+<a id="file-0128"></a>
 
-### 0118 — `src/sisad-pdfme/react/SisadPdfmeDesigner.tsx`
+### 0128 — `src/sisad-pdfme/react/SisadPdfmeDesigner.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `162`
-- **Tamaño original:** `6.5 KB`
-- **SHA1 corto:** `7232bf02aa`
+- **Líneas:** `247`
+- **Tamaño original:** `9.4 KB`
+- **SHA1 corto:** `29d2c26a62`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export const: SisadPdfmeDesigner`
 
@@ -20569,7 +21380,14 @@ import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
 import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
 import { useSisadPdfmeController } from './useSisadPdfmeController.js';
+import { useSisadPdfmeConfigService } from './useSisadPdfmeConfigService.js';
 import { mergeHostSurfaceClassName } from './hostSurface.js';
+import {
+  createInstanceEventDispatcher,
+  type SisadPdfmeHostCallbacks,
+} from '../runtime/instanceEventDispatcher.js';
+import { bridgeRuntimeEventHub } from '../runtime/runtimeEventBridge.js';
+import type { SisadPdfmeAnyEvent } from '../contracts/events.js';
 import { buildCollaborationSyncFromRegistry } from '../recipients/recipientResolver.js';
 import { useSisadPdfmeRecipientRuntime } from './useSisadPdfmeRecipientRuntime.js';
 import type {
@@ -20578,10 +21396,12 @@ import type {
 } from '../recipients/recipientTypes.js';
 import type {
   SisadPdfmeController,
-  SisadPdfmeEventName,
   SisadPdfmeGlobalConfig,
   ResolvedSisadPdfmeConfig,
 } from '../config/SisadPdfmeConfig.js';
+
+/** Identificador de instancia para correlacionar eventos del mismo montaje. */
+let instanceSequence = 0;
 
 type DesignerProps = {
   config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
@@ -20595,6 +21415,14 @@ type DesignerProps = {
   onRecipientsChange?: (recipients: SisadPdfmeRecipient[]) => void;
   onActiveRecipientChange?: (recipient: SisadPdfmeRecipient | null) => void;
   onAssignmentChange?: (payload: SisadPdfmeAssignmentChangePayload) => void;
+  /**
+   * Flujo único de eventos canónicos de la instancia.
+   *
+   * Recibe todo lo que pasa por el dispatcher: lo emitido por el wrapper y lo
+   * traducido desde el hub interno del Designer. Es la vía tipada; los `onX`
+   * históricos se mantienen como adapter legacy.
+   */
+  onEvent?: (event: SisadPdfmeAnyEvent) => void;
   /** Clases adicionales del host. Se suman al contrato base de dimensiones. */
   className?: string;
   /** Estilos inline del host. El host es dueño del viewport. */
@@ -20613,41 +21441,97 @@ export const SisadPdfmeDesigner = ({
   onRecipientsChange,
   onActiveRecipientChange,
   onAssignmentChange,
+  onEvent,
   className,
   style,
 }: DesignerProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const configService = useSisadPdfmeConfigService(config);
   const {
     resolvedConfig,
     recipientRegistry: { registry, state: recipientState },
   } = useSisadPdfmeRecipientRuntime({ config, recipients, activeRecipientId });
 
-  // Despacha a config.events (si es función) y al prop equivalente. Se asigna
-  // en un effect sin deps para capturar siempre los handlers más recientes.
-  const emitEventRef = useRef<(name: SisadPdfmeEventName, payload: Record<string, unknown>) => void>(() => undefined);
-  useEffect(() => {
-    emitEventRef.current = (name, payload) => {
-      const handler = resolvedConfig.config.events?.[name];
-      if (typeof handler === 'function') handler(payload);
-      if (name === 'onRecipientsChange') onRecipientsChange?.(payload.recipients as SisadPdfmeRecipient[]);
-      if (name === 'onActiveRecipientChange') onActiveRecipientChange?.(payload.recipient as SisadPdfmeRecipient | null);
-      if (name === 'onAssignmentChange') onAssignmentChange?.(payload as SisadPdfmeAssignmentChangePayload);
-    };
-  });
+  /**
+   * Los props del host se leen en el momento de emitir, no se capturan: así el
+   * dispatcher nunca invoca un callback de un render anterior.
+   */
+  const hostCallbacksRef = useRef<SisadPdfmeHostCallbacks>({});
+  hostCallbacksRef.current = {
+    onRecipientsChange: (payload) =>
+      onRecipientsChange?.(payload.recipients as SisadPdfmeRecipient[]),
+    onActiveRecipientChange: (payload) =>
+      onActiveRecipientChange?.(payload.recipient as SisadPdfmeRecipient | null),
+    onAssignmentChange: (payload) =>
+      onAssignmentChange?.(payload as unknown as SisadPdfmeAssignmentChangePayload),
+  };
+
+  const configEventsRef = useRef(resolvedConfig.config.events);
+  configEventsRef.current = resolvedConfig.config.events;
+
+  /**
+   * Dispatcher único de la instancia: reparte a listeners internos y al
+   * adapter legacy `onX`. Se crea una sola vez por montaje.
+   */
+  const instanceId = useMemo(() => `designer-${instanceSequence++}`, []);
+  const dispatcher = useMemo(
+    () =>
+      createInstanceEventDispatcher({
+        instanceId,
+        getConfigEvents: () => configEventsRef.current,
+        getHostCallbacks: () => hostCallbacksRef.current,
+      }),
+    [instanceId],
+  );
+
+  /**
+   * Los eventos que el Designer emite por el hub interno se traducen al
+   * catálogo canónico y salen por el mismo dispatcher, así que el host recibe
+   * un único flujo tipado sin importar quién los originó.
+   */
+  useEffect(
+    () => bridgeRuntimeEventHub(resolvedConfig.eventHub, dispatcher, instanceId),
+    [dispatcher, instanceId, resolvedConfig.eventHub],
+  );
+
+  // El listener se lee por ref para no resuscribir en cada render del host.
+  const onEventRef = useRef(onEvent);
+  onEventRef.current = onEvent;
+  useEffect(
+    () => dispatcher.subscribe((event) => onEventRef.current?.(event)),
+    [dispatcher],
+  );
 
   // Eventos de recipients: derivados del registry, no de props sueltos.
   useEffect(() => {
     let previous = registry.getState();
     return registry.subscribe((state) => {
       if (state.recipients !== previous.recipients) {
-        emitEventRef.current('onRecipientsChange', { recipients: state.recipients });
+        dispatcher.emit(
+          'recipient.registry.changed',
+          {
+            revision: Date.now(),
+            recipients: (state.recipients as Array<{ id: string; name?: string }>).map(
+              ({ id, name }) => ({ id, name }),
+            ),
+          },
+          // El contrato histórico entrega los recipients completos.
+          { legacyPayload: { recipients: state.recipients } },
+        );
       }
       if (state.activeRecipientId !== previous.activeRecipientId) {
-        emitEventRef.current('onActiveRecipientChange', { recipient: state.activeRecipient });
+        dispatcher.emit(
+          'recipient.active.changed',
+          {
+            previousId: previous.activeRecipientId ?? null,
+            currentId: state.activeRecipientId ?? null,
+          },
+          { legacyPayload: { recipient: state.activeRecipient } },
+        );
       }
       previous = state;
     });
-  }, [registry]);
+  }, [dispatcher, registry]);
 
   const runtime = useMemo(() => ({
     Designer,
@@ -20687,9 +21571,21 @@ export const SisadPdfmeDesigner = ({
 
   const controllerContext = useMemo(() => ({
     registry,
+    // COREUX-004: sin esto el controller caía a un ConfigService VACÍO, así que
+    // getConfig/updateConfig/getFeatureState/explainConfiguration no operaban
+    // sobre la configuración que el Designer estaba ejecutando.
+    configService,
     onAssignmentChange: (payload: SisadPdfmeAssignmentChangePayload) =>
-      emitEventRef.current('onAssignmentChange', payload),
-  }), [registry]);
+      dispatcher.emit(
+        'assignment.changed',
+        {
+          schemaIds: (payload.schemaIds as string[]) ?? [],
+          previousOwnerIds: (payload.previousOwnerIds as string[]) ?? [],
+          ownerId: (payload.ownerId as string | null) ?? null,
+        },
+        { legacyPayload: payload as unknown as Record<string, unknown> },
+      ),
+  }), [configService, dispatcher, registry]);
   const controller = useSisadPdfmeController(instanceRef, controllerContext);
 
   useEffect(() => {
@@ -20716,9 +21612,9 @@ export const SisadPdfmeDesigner = ({
 };
 ```
 
-<a id="file-0119"></a>
+<a id="file-0129"></a>
 
-### 0119 — `src/sisad-pdfme/react/SisadPdfmeForm.tsx`
+### 0129 — `src/sisad-pdfme/react/SisadPdfmeForm.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `14`
@@ -20744,9 +21640,9 @@ export const SisadPdfmeForm = ({ values, ...props }: Props) => (
 );
 ```
 
-<a id="file-0120"></a>
+<a id="file-0130"></a>
 
-### 0120 — `src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx`
+### 0130 — `src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `106`
@@ -20864,9 +21760,9 @@ export const SisadPdfmePreviewRuntime = ({
 };
 ```
 
-<a id="file-0121"></a>
+<a id="file-0131"></a>
 
-### 0121 — `src/sisad-pdfme/react/SisadPdfmeProvider.tsx`
+### 0131 — `src/sisad-pdfme/react/SisadPdfmeProvider.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `31`
@@ -20909,9 +21805,9 @@ export const SisadPdfmeProvider = ({ children, config }: SisadPdfmeProviderProps
 };
 ```
 
-<a id="file-0122"></a>
+<a id="file-0132"></a>
 
-### 0122 — `src/sisad-pdfme/react/SisadPdfmeViewer.tsx`
+### 0132 — `src/sisad-pdfme/react/SisadPdfmeViewer.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `15`
@@ -20938,9 +21834,9 @@ export const SisadPdfmeViewer = (props: Props) => (
 );
 ```
 
-<a id="file-0123"></a>
+<a id="file-0133"></a>
 
-### 0123 — `src/sisad-pdfme/react/useSisadPdfmeAction.ts`
+### 0133 — `src/sisad-pdfme/react/useSisadPdfmeAction.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `15`
@@ -20967,9 +21863,9 @@ export const useSisadPdfmeAction = (
 };
 ```
 
-<a id="file-0124"></a>
+<a id="file-0134"></a>
 
-### 0124 — `src/sisad-pdfme/react/useSisadPdfmeComponent.ts`
+### 0134 — `src/sisad-pdfme/react/useSisadPdfmeComponent.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `15`
@@ -20996,9 +21892,9 @@ export const useSisadPdfmeComponent = (
 };
 ```
 
-<a id="file-0125"></a>
+<a id="file-0135"></a>
 
-### 0125 — `src/sisad-pdfme/react/useSisadPdfmeConfig.ts`
+### 0135 — `src/sisad-pdfme/react/useSisadPdfmeConfig.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `12`
@@ -21022,9 +21918,9 @@ export const useSisadPdfmeConfig = (config?: SisadPdfmeConfigInput): ResolvedSis
 };
 ```
 
-<a id="file-0126"></a>
+<a id="file-0136"></a>
 
-### 0126 — `src/sisad-pdfme/react/useSisadPdfmeConfigService.ts`
+### 0136 — `src/sisad-pdfme/react/useSisadPdfmeConfigService.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `28`
@@ -21064,9 +21960,9 @@ export const useSisadPdfmeConfigService = (
 };
 ```
 
-<a id="file-0127"></a>
+<a id="file-0137"></a>
 
-### 0127 — `src/sisad-pdfme/react/useSisadPdfmeController.ts`
+### 0137 — `src/sisad-pdfme/react/useSisadPdfmeController.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `328`
@@ -21406,9 +22302,9 @@ export const useSisadPdfmeController = (
 };
 ```
 
-<a id="file-0128"></a>
+<a id="file-0138"></a>
 
-### 0128 — `src/sisad-pdfme/react/useSisadPdfmeFeature.ts`
+### 0138 — `src/sisad-pdfme/react/useSisadPdfmeFeature.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `15`
@@ -21435,9 +22331,9 @@ export const useSisadPdfmeFeature = (
 };
 ```
 
-<a id="file-0129"></a>
+<a id="file-0139"></a>
 
-### 0129 — `src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts`
+### 0139 — `src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `52`
@@ -21501,9 +22397,9 @@ export const useSisadPdfmeRecipientRuntime = ({
 };
 ```
 
-<a id="file-0130"></a>
+<a id="file-0140"></a>
 
-### 0130 — `src/sisad-pdfme/recipients/index.ts`
+### 0140 — `src/sisad-pdfme/recipients/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `53`
@@ -21567,9 +22463,9 @@ export {
 } from './useRecipientRegistry.js';
 ```
 
-<a id="file-0131"></a>
+<a id="file-0141"></a>
 
-### 0131 — `src/sisad-pdfme/recipients/recipientColorResolver.ts`
+### 0141 — `src/sisad-pdfme/recipients/recipientColorResolver.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `52`
@@ -21633,9 +22529,9 @@ export const buildRecipientColorMap = (
   );
 ```
 
-<a id="file-0132"></a>
+<a id="file-0142"></a>
 
-### 0132 — `src/sisad-pdfme/recipients/recipientPermissionResolver.ts`
+### 0142 — `src/sisad-pdfme/recipients/recipientPermissionResolver.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `64`
@@ -21711,9 +22607,9 @@ export const createRecipientPermissionResolver = (
 };
 ```
 
-<a id="file-0133"></a>
+<a id="file-0143"></a>
 
-### 0133 — `src/sisad-pdfme/recipients/recipientRegistry.ts`
+### 0143 — `src/sisad-pdfme/recipients/recipientRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `196`
@@ -21921,9 +22817,9 @@ export const createRecipientRegistry = (
 };
 ```
 
-<a id="file-0134"></a>
+<a id="file-0144"></a>
 
-### 0134 — `src/sisad-pdfme/recipients/recipientResolver.ts`
+### 0144 — `src/sisad-pdfme/recipients/recipientResolver.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `170`
@@ -22105,9 +23001,9 @@ export const buildAssignmentContextFromRegistry = (
 };
 ```
 
-<a id="file-0135"></a>
+<a id="file-0145"></a>
 
-### 0135 — `src/sisad-pdfme/recipients/recipientSnapshot.ts`
+### 0145 — `src/sisad-pdfme/recipients/recipientSnapshot.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `70`
@@ -22189,9 +23085,9 @@ export const recipientsFromSnapshot = (
 };
 ```
 
-<a id="file-0136"></a>
+<a id="file-0146"></a>
 
-### 0136 — `src/sisad-pdfme/recipients/recipientTypes.ts`
+### 0146 — `src/sisad-pdfme/recipients/recipientTypes.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `115`
@@ -22318,9 +23214,9 @@ export type SisadPdfmeRecipientsSnapshot = {
 };
 ```
 
-<a id="file-0137"></a>
+<a id="file-0147"></a>
 
-### 0137 — `src/sisad-pdfme/recipients/useRecipientRegistry.ts`
+### 0147 — `src/sisad-pdfme/recipients/useRecipientRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `83`
@@ -22415,9 +23311,219 @@ export const useRecipientRegistry = (
 };
 ```
 
-<a id="file-0138"></a>
+<a id="file-0148"></a>
 
-### 0138 — `src/sisad-pdfme/runtime/options.ts`
+### 0148 — `src/sisad-pdfme/runtime/instanceEventDispatcher.ts`
+
+- **Lenguaje:** `typescript`
+- **Líneas:** `196`
+- **Tamaño original:** `6.7 KB`
+- **SHA1 corto:** `9ba3a6522c`
+- **Estado:** `completo`
+- **Símbolos detectados:** `export type/class: SisadPdfmeEventListener`, `export type/class: SisadPdfmeDispatcherDiagnostic`, `export type/class: SisadPdfmeHostCallbacks`, `export type/class: InstanceEventDispatcherOptions`, `export type/class: EmitContext`, `export type/class: InstanceEventDispatcher`, `export const: CANONICAL_TO_LEGACY_CALLBACK`, `export const: createInstanceEventDispatcher`
+
+```typescript
+/**
+ * Dispatcher único de eventos de una instancia SISAD PDFME.
+ *
+ * Antes había tres caminos que no se tocaban: el hub de runtime (que emitía al
+ * vacío), `config.events` y los props del wrapper. Este dispatcher es el único
+ * punto por el que pasa un evento y desde el que se reparte:
+ *
+ *   emit(name, payload)
+ *     → listeners suscritos          (canal interno, siempre)
+ *     → adapter legacy `onX`         (config.events + props del host)
+ *
+ * Reglas que implementa:
+ *
+ * - cada listener recibe el evento **una sola vez** por emisión;
+ * - `config.events.onX === false` apaga el callback legacy pero **no** el
+ *   evento interno: los listeners lo siguen recibiendo;
+ * - un listener que lanza no bloquea a los demás; el fallo se reporta como
+ *   diagnóstico, nunca se traga en silencio;
+ * - los handlers se leen en el momento de emitir, no se capturan al crear el
+ *   dispatcher, para evitar closures obsoletos.
+ *
+ * No es un segundo bus: `createDesignerRuntimeEventHub` sigue siendo el
+ * transporte interno y este dispatcher se apoya en él.
+ */
+import {
+  createSisadPdfmeEvent,
+  type SisadPdfmeAnyEvent,
+  type SisadPdfmeEvent,
+  type SisadPdfmeEventName,
+  type SisadPdfmeEventPayloads,
+} from '../contracts/events.js';
+import type { SisadPdfmeEventHandlers, SisadPdfmeEventName as LegacyCallbackName } from '../config/SisadPdfmeConfig.js';
+
+export type SisadPdfmeEventListener = (event: SisadPdfmeAnyEvent) => void;
+
+export type SisadPdfmeDispatcherDiagnostic = {
+  code: 'listener-failed' | 'legacy-callback-failed';
+  eventName: string;
+  error: unknown;
+};
+
+/**
+ * Mapa canónico → callback legacy del host.
+ *
+ * Es intencionadamente parcial: solo los eventos con contrato público
+ * histórico tienen `onX`. El resto vive únicamente en el canal interno.
+ * `designer.error` y `save.failed` comparten `onError` a propósito.
+ */
+export const CANONICAL_TO_LEGACY_CALLBACK: Partial<
+  Record<SisadPdfmeEventName, LegacyCallbackName>
+> = {
+  'designer.ready': 'onReady',
+  'designer.error': 'onError',
+  'save.failed': 'onError',
+  'template.changed': 'onChange',
+  'save.succeeded': 'onSave',
+  'selection.changed': 'onSelectionChange',
+  'recipient.registry.changed': 'onRecipientsChange',
+  'recipient.active.changed': 'onActiveRecipientChange',
+  'assignment.changed': 'onAssignmentChange',
+  'document.changed': 'onDocumentChange',
+  'signature.requested': 'onSignatureRequest',
+};
+
+/** Callbacks que el host entrega como props del wrapper. */
+export type SisadPdfmeHostCallbacks = Partial<
+  Record<LegacyCallbackName, (payload: Record<string, unknown>) => void>
+>;
+
+export type InstanceEventDispatcherOptions = {
+  instanceId: string;
+  /** Se lee en cada emisión: `config.events` puede cambiar en caliente. */
+  getConfigEvents?: () => SisadPdfmeEventHandlers | undefined;
+  /** Se lee en cada emisión: los props del host cambian en cada render. */
+  getHostCallbacks?: () => SisadPdfmeHostCallbacks | undefined;
+  onDiagnostic?: (diagnostic: SisadPdfmeDispatcherDiagnostic) => void;
+};
+
+/** Contexto opcional de una emisión. */
+export type EmitContext = {
+  correlationId?: string;
+  source?: string;
+  /** Datos ricos solo para el adapter legacy `onX`; no viajan en el evento. */
+  legacyPayload?: Record<string, unknown>;
+};
+
+export type InstanceEventDispatcher = {
+  emit<TName extends SisadPdfmeEventName>(
+    name: TName,
+    payload: SisadPdfmeEventPayloads[TName],
+    context?: EmitContext,
+  ): SisadPdfmeEvent<TName>;
+  /** Reemite un evento ya construido (p. ej. traducido desde el hub interno). */
+  dispatch(event: SisadPdfmeAnyEvent, legacyPayload?: Record<string, unknown>): SisadPdfmeAnyEvent;
+  subscribe(listener: SisadPdfmeEventListener): () => void;
+  listenerCount(): number;
+  clear(): void;
+};
+
+const reportDiagnostic = (
+  onDiagnostic: InstanceEventDispatcherOptions['onDiagnostic'],
+  diagnostic: SisadPdfmeDispatcherDiagnostic,
+) => {
+  if (onDiagnostic) {
+    onDiagnostic(diagnostic);
+    return;
+  }
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(`[sisad-pdfme] ${diagnostic.code} en ${diagnostic.eventName}`, diagnostic.error);
+  }
+};
+
+export const createInstanceEventDispatcher = (
+  options: InstanceEventDispatcherOptions,
+): InstanceEventDispatcher => {
+  const { instanceId, getConfigEvents, getHostCallbacks, onDiagnostic } = options;
+  const listeners = new Set<SisadPdfmeEventListener>();
+
+  /**
+   * Reparte a los listeners internos.
+   *
+   * Se itera sobre una copia: un listener que se desuscribe a sí mismo durante
+   * la emisión no debe alterar el recorrido ni saltarse a otro.
+   */
+  const notifyListeners = (event: SisadPdfmeAnyEvent) => {
+    [...listeners].forEach((listener) => {
+      try {
+        listener(event);
+      } catch (error) {
+        reportDiagnostic(onDiagnostic, { code: 'listener-failed', eventName: event.name, error });
+      }
+    });
+  };
+
+  /**
+   * Adapter legacy: traduce el evento canónico al callback `onX`.
+   *
+   * Precedencia: `config.events[onX]` manda. Si es `false`, no hay callback.
+   * Si es función, se invoca. Si es `'host'` o no está declarado, se usa el
+   * prop del wrapper.
+   */
+  const notifyLegacy = (
+    event: SisadPdfmeAnyEvent,
+    legacyPayload?: Record<string, unknown>,
+  ) => {
+    const canonicalName = event.name as SisadPdfmeEventName;
+    const legacyName = CANONICAL_TO_LEGACY_CALLBACK[canonicalName];
+    if (!legacyName) return;
+
+    const configured = getConfigEvents?.()?.[legacyName];
+    if (configured === false) return;
+
+    // El payload canónico es serializable por contrato, pero los callbacks
+    // `onX` histórricos reciben objetos ricos del runtime (recipients
+    // completos, etc.). `legacyPayload` preserva ese contrato sin ensuciar el
+    // evento canónico.
+    const payload = { ...(event.payload as Record<string, unknown>), ...legacyPayload, event };
+
+    try {
+      if (typeof configured === 'function') {
+        configured(payload);
+        return;
+      }
+      getHostCallbacks?.()?.[legacyName]?.(payload);
+    } catch (error) {
+      reportDiagnostic(onDiagnostic, {
+        code: 'legacy-callback-failed',
+        eventName: event.name,
+        error,
+      });
+    }
+  };
+
+  const dispatch = (event: SisadPdfmeAnyEvent, legacyPayload?: Record<string, unknown>) => {
+    notifyListeners(event);
+    notifyLegacy(event, legacyPayload);
+    return event;
+  };
+
+  return {
+    emit(name, payload, context) {
+      const event = createSisadPdfmeEvent(name, payload, { instanceId, ...context });
+      dispatch(event, context?.legacyPayload);
+      return event;
+    },
+    dispatch,
+    subscribe(listener) {
+      listeners.add(listener);
+      return () => {
+        listeners.delete(listener);
+      };
+    },
+    listenerCount: () => listeners.size,
+    clear: () => listeners.clear(),
+  };
+};
+```
+
+<a id="file-0149"></a>
+
+### 0149 — `src/sisad-pdfme/runtime/options.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `140`
@@ -22569,9 +23675,184 @@ export const buildRuntimeViewerOptions = ({
 export { DEFAULT_THEME_TOKEN as DEFAULT_RUNTIME_THEME_TOKEN };
 ```
 
-<a id="file-0139"></a>
+<a id="file-0150"></a>
 
-### 0139 — `src/sisad-pdfme/runtime/runtimeModes.ts`
+### 0150 — `src/sisad-pdfme/runtime/runtimeEventBridge.ts`
+
+- **Lenguaje:** `typescript`
+- **Líneas:** `161`
+- **Tamaño original:** `5.9 KB`
+- **SHA1 corto:** `a55ddf5363`
+- **Estado:** `completo`
+- **Símbolos detectados:** `export const: LEGACY_TYPE_TO_CANONICAL`, `export const: bridgeRuntimeEventHub`
+
+```typescript
+/**
+ * Puente entre el hub interno del runtime y el catálogo canónico de eventos.
+ *
+ * El Designer, el Preview y el ListView emiten eventos con `type: string`
+ * heredado (`designer.selection.changed`, `runtime.view.zoom.changed`…). El
+ * contrato público, en cambio, es la unión discriminada de
+ * `contracts/events.ts`.
+ *
+ * Este puente traduce y reenvía por el dispatcher único:
+ *
+ *   hub interno ──traduce──► evento canónico ──► listeners + callbacks `onX`
+ *
+ * Nada se pierde: lo que no tiene equivalente canónico viaja como
+ * `custom:<type>`, así que el host sigue viendo el hecho aunque todavía no
+ * exista contrato tipado para él. A medida que COREUX-007 mueva cada emisor a
+ * nombres canónicos, su entrada desaparece de este mapa.
+ */
+import type { DesignerRuntimeEvent, DesignerRuntimeEventHub } from '../ui/components/Designer/shared/designerExtensions.js';
+import type { SisadPdfmeEventName } from '../contracts/events.js';
+import { createSisadPdfmeCustomEvent } from '../contracts/events.js';
+import type { InstanceEventDispatcher } from './instanceEventDispatcher.js';
+
+/** Traducción de los `type` internos vigentes a nombres del catálogo. */
+export const LEGACY_TYPE_TO_CANONICAL: Record<string, SisadPdfmeEventName> = {
+  'designer.selection.changed': 'selection.changed',
+  'designer.view.page.changed': 'page.changed',
+  'runtime.view.page.changed': 'page.changed',
+  'designer.view.zoom.changed': 'zoom.changed',
+  'runtime.view.zoom.changed': 'zoom.changed',
+  'designer.view.viewport-mode.changed': 'viewport.fit',
+  'designer.view.sidebar.changed': 'sidebar.changed',
+  'designer.component.interaction.changed': 'interaction.phase.changed',
+  'designer.schema.change': 'schema.updated',
+  'schema.locked': 'schema.updated',
+  'schema.unlocked': 'schema.updated',
+  'comment.created': 'comment.created',
+  'comment.deleted': 'comment.deleted',
+  'comment.updated': 'comment.moved',
+};
+
+/** Extrae los ids de schema del evento heredado, que los expone de dos formas. */
+const readSchemaIds = (event: DesignerRuntimeEvent): string[] => {
+  if (Array.isArray(event.schemaIds)) return event.schemaIds.filter(Boolean);
+  return event.schemaId ? [event.schemaId] : [];
+};
+
+const asNumber = (value: unknown, fallback = 0): number =>
+  typeof value === 'number' && Number.isFinite(value) ? value : fallback;
+
+/**
+ * Construye el payload canónico a partir del evento heredado.
+ *
+ * Devuelve `null` cuando el evento no trae datos suficientes: es preferible no
+ * emitir a emitir un payload inventado.
+ */
+const toCanonicalPayload = (
+  name: SisadPdfmeEventName,
+  event: DesignerRuntimeEvent,
+): Record<string, unknown> | null => {
+  const details = (event.details || {}) as Record<string, unknown>;
+
+  switch (name) {
+    case 'selection.changed':
+      return {
+        ids: readSchemaIds(event),
+        mode: (details.mode as string) || 'replace',
+        documentId: (details.documentId as string) ?? null,
+        pageNumber: asNumber(event.pageIndex, 0) + 1,
+      };
+    case 'page.changed':
+      return {
+        previous: asNumber(details.previous),
+        current: asNumber(details.current ?? event.pageIndex),
+        total: asNumber(details.total),
+        documentId: (details.documentId as string) ?? null,
+      };
+    case 'zoom.changed':
+      return {
+        previous: asNumber(details.previous),
+        current: asNumber(details.current ?? event.value),
+        cause: (event.action as string) || (event.source as string) || 'runtime',
+      };
+    case 'viewport.fit':
+      return {
+        mode: ((details.mode ?? event.value) as 'page' | 'width' | 'device' | 'actual-size') || 'page',
+        zoom: asNumber(details.zoom),
+      };
+    case 'sidebar.changed':
+      return {
+        side: ((details.side as 'left' | 'right') || 'right'),
+        expanded: Boolean(details.expanded ?? event.value),
+        presentation: ((details.presentation as 'docked' | 'overlay' | 'auto') || 'auto'),
+        cause: event.action as string | undefined,
+      };
+    case 'interaction.phase.changed':
+      return {
+        previous: String(details.previous ?? ''),
+        current: String(details.current ?? event.value ?? ''),
+        reason: event.action as string | undefined,
+      };
+    case 'schema.updated': {
+      const [schemaId] = readSchemaIds(event);
+      if (!schemaId) return null;
+      return {
+        schemaId,
+        documentId: (details.documentId as string) ?? null,
+        pageNumber: asNumber(event.pageIndex, 0) + 1,
+        patch: (event.patch || {}) as Record<string, unknown>,
+        cause: (event.action as string) || (event.type as string),
+      };
+    }
+    case 'comment.created':
+    case 'comment.deleted':
+    case 'comment.moved':
+      return {
+        commentId: String(details.commentId ?? event.value ?? ''),
+        scope: String(details.scope ?? 'schema'),
+        anchor: (details.anchor || {}) as Record<string, unknown>,
+      };
+    default:
+      return null;
+  }
+};
+
+/**
+ * Suscribe el dispatcher al hub interno.
+ *
+ * @returns función para cancelar la suscripción.
+ */
+export const bridgeRuntimeEventHub = (
+  hub: DesignerRuntimeEventHub | null | undefined,
+  dispatcher: InstanceEventDispatcher,
+  instanceId: string,
+): (() => void) => {
+  if (!hub) return () => undefined;
+
+  return hub.subscribe((event) => {
+    const canonicalName = LEGACY_TYPE_TO_CANONICAL[event.type];
+
+    if (canonicalName) {
+      const payload = toCanonicalPayload(canonicalName, event);
+      if (!payload) return;
+      dispatcher.emit(
+        canonicalName,
+        payload as never,
+        { source: (event.source as string) || 'runtime', legacyPayload: { legacyEvent: event } },
+      );
+      return;
+    }
+
+    // Sin equivalente canónico todavía: se preserva como extensión controlada
+    // en lugar de descartarlo.
+    dispatcher.dispatch(
+      createSisadPdfmeCustomEvent(
+        `custom:${event.type}`,
+        { legacyType: event.type },
+        { instanceId, source: (event.source as string) || 'runtime' },
+      ),
+    );
+  });
+};
+```
+
+<a id="file-0151"></a>
+
+### 0151 — `src/sisad-pdfme/runtime/runtimeModes.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `68`
@@ -22651,9 +23932,9 @@ export function resolveInitialUxMode({
 }
 ```
 
-<a id="file-0140"></a>
+<a id="file-0152"></a>
 
-### 0140 — `src/sisad-pdfme/runtime/usePdfmeArtifacts.ts`
+### 0152 — `src/sisad-pdfme/runtime/usePdfmeArtifacts.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `285`
@@ -22950,9 +24231,9 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
 }
 ```
 
-<a id="file-0141"></a>
+<a id="file-0153"></a>
 
-### 0141 — `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts`
+### 0153 — `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `316`
@@ -23280,9 +24561,9 @@ export function usePdfmeRuntimeInstance(
 }
 ```
 
-<a id="file-0142"></a>
+<a id="file-0154"></a>
 
-### 0142 — `src/sisad-pdfme/schemas/constants.ts`
+### 0154 — `src/sisad-pdfme/schemas/constants.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `2`
@@ -23296,9 +24577,9 @@ export const DEFAULT_OPACITY = 1;
 export const HEX_COLOR_PATTERN = '^#(?:[A-Fa-f0-9]{6})$';
 ```
 
-<a id="file-0143"></a>
+<a id="file-0155"></a>
 
-### 0143 — `src/sisad-pdfme/schemas/groupSchemaRender.ts`
+### 0155 — `src/sisad-pdfme/schemas/groupSchemaRender.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `252`
@@ -23562,9 +24843,9 @@ export const buildAddOptionButton = (color: string, title: string, dataAttr: str
 };
 ```
 
-<a id="file-0144"></a>
+<a id="file-0156"></a>
 
-### 0144 — `src/sisad-pdfme/schemas/index.ts`
+### 0156 — `src/sisad-pdfme/schemas/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `415`
@@ -23991,9 +25272,9 @@ export {
 } from './utils.js';
 ```
 
-<a id="file-0145"></a>
+<a id="file-0157"></a>
 
-### 0145 — `src/sisad-pdfme/schemas/modules.d.ts`
+### 0157 — `src/sisad-pdfme/schemas/modules.d.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `32`
@@ -24037,9 +25318,9 @@ declare namespace Intl {
 }
 ```
 
-<a id="file-0146"></a>
+<a id="file-0158"></a>
 
-### 0146 — `src/sisad-pdfme/schemas/schemaBuilder.ts`
+### 0158 — `src/sisad-pdfme/schemas/schemaBuilder.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `167`
@@ -24218,9 +25499,9 @@ export const listSchemaDefinitions = (plugins: SchemaPluginMap) =>
     .filter(Boolean) as SchemaDefinition[];
 ```
 
-<a id="file-0147"></a>
+<a id="file-0159"></a>
 
-### 0147 — `src/sisad-pdfme/schemas/schemaFamilies.ts`
+### 0159 — `src/sisad-pdfme/schemas/schemaFamilies.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `364`
@@ -24596,9 +25877,9 @@ export const createSchemaInspectorConfig = (
 };
 ```
 
-<a id="file-0148"></a>
+<a id="file-0160"></a>
 
-### 0148 — `src/sisad-pdfme/schemas/utils.ts`
+### 0160 — `src/sisad-pdfme/schemas/utils.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `294`
@@ -24904,9 +26185,9 @@ export const createSvgStr = (icon: IconNode | unknown, attrs?: Record<string, st
 };
 ```
 
-<a id="file-0149"></a>
+<a id="file-0161"></a>
 
-### 0149 — `src/sisad-pdfme/shared/commandTypes.ts`
+### 0161 — `src/sisad-pdfme/shared/commandTypes.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `129`
@@ -25047,9 +26328,9 @@ export type CommandPayloadMap = {
 };
 ```
 
-<a id="file-0150"></a>
+<a id="file-0162"></a>
 
-### 0150 — `src/sisad-pdfme/shared/index.ts`
+### 0162 — `src/sisad-pdfme/shared/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `133`
@@ -25193,9 +26474,9 @@ export {
 export { normalizeLooseText, normalizeText } from './text.js';
 ```
 
-<a id="file-0151"></a>
+<a id="file-0163"></a>
 
-### 0151 — `src/sisad-pdfme/shared/interactionGuards.ts`
+### 0163 — `src/sisad-pdfme/shared/interactionGuards.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `167`
@@ -25374,9 +26655,9 @@ export function getAllowedSchemas(
 }
 ```
 
-<a id="file-0152"></a>
+<a id="file-0164"></a>
 
-### 0152 — `src/sisad-pdfme/shared/keyboardShortcuts.ts`
+### 0164 — `src/sisad-pdfme/shared/keyboardShortcuts.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `339`
@@ -25727,9 +27008,9 @@ export function findShortcut(keyCombo: string): ShortcutDefinition | undefined {
 }
 ```
 
-<a id="file-0153"></a>
+<a id="file-0165"></a>
 
-### 0153 — `src/sisad-pdfme/shared/localFormStorage.ts`
+### 0165 — `src/sisad-pdfme/shared/localFormStorage.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `218`
@@ -25959,9 +27240,9 @@ export function createLocalFormStorage(options: LocalFormStorageOptions): LocalF
 }
 ```
 
-<a id="file-0154"></a>
+<a id="file-0166"></a>
 
-### 0154 — `src/sisad-pdfme/shared/localMode.ts`
+### 0166 — `src/sisad-pdfme/shared/localMode.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `187`
@@ -26160,9 +27441,9 @@ export function diagnoseLocalMode(): LocalModeDiagnostics {
 }
 ```
 
-<a id="file-0155"></a>
+<a id="file-0167"></a>
 
-### 0155 — `src/sisad-pdfme/shared/localSnapshotStore.ts`
+### 0167 — `src/sisad-pdfme/shared/localSnapshotStore.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `181`
@@ -26355,9 +27636,9 @@ export class LocalSnapshotStoreImpl {
 export const localSnapshotStore = new LocalSnapshotStoreImpl();
 ```
 
-<a id="file-0156"></a>
+<a id="file-0168"></a>
 
-### 0156 — `src/sisad-pdfme/shared/objectGuards.ts`
+### 0168 — `src/sisad-pdfme/shared/objectGuards.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `5`
@@ -26374,9 +27655,9 @@ export const asRecord = (value: unknown): Record<string, unknown> | null =>
   isRecord(value) ? value : null;
 ```
 
-<a id="file-0157"></a>
+<a id="file-0169"></a>
 
-### 0157 — `src/sisad-pdfme/shared/schemaDesignerMeta.ts`
+### 0169 — `src/sisad-pdfme/shared/schemaDesignerMeta.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `299`
@@ -26687,9 +27968,9 @@ function generateSchemaUid(): string {
 }
 ```
 
-<a id="file-0158"></a>
+<a id="file-0170"></a>
 
-### 0158 — `src/sisad-pdfme/shared/schemaMigration.ts`
+### 0170 — `src/sisad-pdfme/shared/schemaMigration.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `124`
@@ -26825,9 +28106,9 @@ export function isDesignerConfigV3(value: unknown): value is DesignerConfigV3 {
 }
 ```
 
-<a id="file-0159"></a>
+<a id="file-0171"></a>
 
-### 0159 — `src/sisad-pdfme/shared/signatureRegistry.ts`
+### 0171 — `src/sisad-pdfme/shared/signatureRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `166`
@@ -27005,9 +28286,9 @@ export function getDefaultProviderForSchema(
 }
 ```
 
-<a id="file-0160"></a>
+<a id="file-0172"></a>
 
-### 0160 — `src/sisad-pdfme/shared/snapshot.ts`
+### 0172 — `src/sisad-pdfme/shared/snapshot.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `230`
@@ -27249,9 +28530,9 @@ export function makeEmptySnapshot(overrides?: Partial<OfficialTemplateSnapshot>)
 }
 ```
 
-<a id="file-0161"></a>
+<a id="file-0173"></a>
 
-### 0161 — `src/sisad-pdfme/shared/snapshotAdapter.ts`
+### 0173 — `src/sisad-pdfme/shared/snapshotAdapter.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `571`
@@ -27834,9 +29115,9 @@ export const resolveSnapshotConnectivityBySchema = (
 export const serializeSnapshotForTxt = (snapshot: unknown = {}) => JSON.stringify(snapshot || {}, null, 2);
 ```
 
-<a id="file-0162"></a>
+<a id="file-0174"></a>
 
-### 0162 — `src/sisad-pdfme/shared/templateValidator.ts`
+### 0174 — `src/sisad-pdfme/shared/templateValidator.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `323`
@@ -28171,9 +29452,9 @@ export function isTemplateValid(input: ValidateTemplateInput): boolean {
 }
 ```
 
-<a id="file-0163"></a>
+<a id="file-0175"></a>
 
-### 0163 — `src/sisad-pdfme/shared/text.ts`
+### 0175 — `src/sisad-pdfme/shared/text.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `10`
@@ -28195,9 +29476,9 @@ export const normalizeLooseText = (value: unknown): string => String(value || ''
 export const normalizeText = (value: unknown): string => (typeof value === 'string' ? value.trim() : '');
 ```
 
-<a id="file-0164"></a>
+<a id="file-0176"></a>
 
-### 0164 — `src/sisad-pdfme/shared/webStorage.ts`
+### 0176 — `src/sisad-pdfme/shared/webStorage.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `48`
@@ -28257,9 +29538,9 @@ export const resolveBrowserStorage = (
 };
 ```
 
-<a id="file-0165"></a>
+<a id="file-0177"></a>
 
-### 0165 — `src/sisad-pdfme/templates/createDefaultTemplate.ts`
+### 0177 — `src/sisad-pdfme/templates/createDefaultTemplate.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `37`
@@ -28308,9 +29589,9 @@ export function createDefaultTemplate(
 }
 ```
 
-<a id="file-0166"></a>
+<a id="file-0178"></a>
 
-### 0166 — `src/sisad-pdfme/ui/class.ts`
+### 0178 — `src/sisad-pdfme/ui/class.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `324`
@@ -28646,9 +29927,9 @@ function convertToStingObjectArray(data: DataItem[]): StringifiedDataItem[] {
 }
 ```
 
-<a id="file-0167"></a>
+<a id="file-0179"></a>
 
-### 0167 — `src/sisad-pdfme/ui/collaboration.ts`
+### 0179 — `src/sisad-pdfme/ui/collaboration.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `1524`
@@ -30184,9 +31465,9 @@ export const useCollaborationSync = ({
 };
 ```
 
-<a id="file-0168"></a>
+<a id="file-0180"></a>
 
-### 0168 — `src/sisad-pdfme/ui/collaborationContext.ts`
+### 0180 — `src/sisad-pdfme/ui/collaborationContext.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `277`
@@ -30475,9 +31756,9 @@ export const filterSchemasForCollaborationView = (
 ) => schemas.filter((schema) => schemaMatchesCollaborationView(schema, collaborationContext));
 ```
 
-<a id="file-0169"></a>
+<a id="file-0181"></a>
 
-### 0169 — `src/sisad-pdfme/ui/constants.ts`
+### 0181 — `src/sisad-pdfme/ui/constants.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `33`
@@ -30522,9 +31803,9 @@ export const DESIGNER_CLASSNAME = 'sisad-pdfme-designer-';
 export const UI_CLASSNAME = 'sisad-pdfme-ui-';
 ```
 
-<a id="file-0170"></a>
+<a id="file-0182"></a>
 
-### 0170 — `src/sisad-pdfme/ui/contexts.ts`
+### 0182 — `src/sisad-pdfme/ui/contexts.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `26`
@@ -30562,9 +31843,9 @@ export const OptionsContext = createContext<UIOptions>({});
 export const CacheContext = createContext<Map<string | number, unknown>>(new Map());
 ```
 
-<a id="file-0171"></a>
+<a id="file-0183"></a>
 
-### 0171 — `src/sisad-pdfme/ui/Designer.tsx`
+### 0183 — `src/sisad-pdfme/ui/Designer.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `412`
@@ -30987,9 +32268,9 @@ class Designer extends BaseUIClass {
 export default Designer;
 ```
 
-<a id="file-0172"></a>
+<a id="file-0184"></a>
 
-### 0172 — `src/sisad-pdfme/ui/designerEngine.ts`
+### 0184 — `src/sisad-pdfme/ui/designerEngine.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `1417`
@@ -32418,9 +33699,9 @@ export class DesignerEngineBuilder {
 }
 ```
 
-<a id="file-0173"></a>
+<a id="file-0185"></a>
 
-### 0173 — `src/sisad-pdfme/ui/Form.tsx`
+### 0185 — `src/sisad-pdfme/ui/Form.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `107`
@@ -32538,9 +33819,9 @@ class Form extends PagedPreviewUI {
 export default Form;
 ```
 
-<a id="file-0174"></a>
+<a id="file-0186"></a>
 
-### 0174 — `src/sisad-pdfme/ui/helper.ts`
+### 0186 — `src/sisad-pdfme/ui/helper.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `629`
@@ -33181,9 +34462,9 @@ export const setFontNameRecursively = (
 };
 ```
 
-<a id="file-0175"></a>
+<a id="file-0187"></a>
 
-### 0175 — `src/sisad-pdfme/ui/hooks.ts`
+### 0187 — `src/sisad-pdfme/ui/hooks.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `508`
@@ -33703,9 +34984,9 @@ export const useInitEvents = ({
 };
 ```
 
-<a id="file-0176"></a>
+<a id="file-0188"></a>
 
-### 0176 — `src/sisad-pdfme/ui/i18n.ts`
+### 0188 — `src/sisad-pdfme/ui/i18n.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `915`
@@ -34632,9 +35913,9 @@ export const getDict = (lang: Lang): Dict => dictionaries[lang] || dictionaries[
 export const i18n = (key: keyof Dict, dict?: Dict) => (dict || getDict(DEFAULT_LANG))[key];
 ```
 
-<a id="file-0177"></a>
+<a id="file-0189"></a>
 
-### 0177 — `src/sisad-pdfme/ui/index.ts`
+### 0189 — `src/sisad-pdfme/ui/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `47`
@@ -34693,9 +35974,9 @@ export {
 } from '../react/index.js';
 ```
 
-<a id="file-0178"></a>
+<a id="file-0190"></a>
 
-### 0178 — `src/sisad-pdfme/ui/PagedPreviewUI.tsx`
+### 0190 — `src/sisad-pdfme/ui/PagedPreviewUI.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `58`
@@ -34764,9 +36045,9 @@ export abstract class PagedPreviewUI extends PreviewUI {
 }
 ```
 
-<a id="file-0179"></a>
+<a id="file-0191"></a>
 
-### 0179 — `src/sisad-pdfme/ui/runtimeStyles.ts`
+### 0191 — `src/sisad-pdfme/ui/runtimeStyles.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `353`
@@ -35130,9 +36411,9 @@ ensureSisadPdfmeRuntimeStyles();
 export {};
 ```
 
-<a id="file-0180"></a>
+<a id="file-0192"></a>
 
-### 0180 — `src/sisad-pdfme/ui/theme.ts`
+### 0192 — `src/sisad-pdfme/ui/theme.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `75`
@@ -35219,9 +36500,9 @@ export const sisadTheme: ThemeConfig = {
 };
 ```
 
-<a id="file-0181"></a>
+<a id="file-0193"></a>
 
-### 0181 — `src/sisad-pdfme/ui/types.ts`
+### 0193 — `src/sisad-pdfme/ui/types.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `168`
@@ -35401,9 +36682,9 @@ export type DesignerRuntimeApi = {
 };
 ```
 
-<a id="file-0182"></a>
+<a id="file-0194"></a>
 
-### 0182 — `src/sisad-pdfme/ui/Viewer.tsx`
+### 0194 — `src/sisad-pdfme/ui/Viewer.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `30`
@@ -35444,9 +36725,9 @@ class Viewer extends PagedPreviewUI {
 export default Viewer;
 ```
 
-<a id="file-0183"></a>
+<a id="file-0195"></a>
 
-### 0183 — `__mocks__/antd/es/theme/internal.js`
+### 0195 — `__mocks__/antd/es/theme/internal.js`
 
 - **Lenguaje:** `javascript`
 - **Líneas:** `5`
@@ -35462,9 +36743,9 @@ module.exports = {
 };
 ```
 
-<a id="file-0184"></a>
+<a id="file-0196"></a>
 
-### 0184 — `src/sisad-pdfme/schemas/actions/actionSchemaFactory.ts`
+### 0196 — `src/sisad-pdfme/schemas/actions/actionSchemaFactory.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `159`
@@ -35635,9 +36916,9 @@ export const createAttachmentContainerEl = (schema: AttachmentSchema): HTMLDivEl
 };
 ```
 
-<a id="file-0185"></a>
+<a id="file-0197"></a>
 
-### 0185 — `src/sisad-pdfme/schemas/actions/approve.ts`
+### 0197 — `src/sisad-pdfme/schemas/actions/approve.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `19`
@@ -35667,9 +36948,9 @@ const approvePlugin = createDecisionActionPlugin({
 export default approvePlugin;
 ```
 
-<a id="file-0186"></a>
+<a id="file-0198"></a>
 
-### 0186 — `src/sisad-pdfme/schemas/actions/attachment.ts`
+### 0198 — `src/sisad-pdfme/schemas/actions/attachment.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `206`
@@ -35886,9 +37167,9 @@ const attachmentPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
 export default attachmentPlugin;
 ```
 
-<a id="file-0187"></a>
+<a id="file-0199"></a>
 
-### 0187 — `src/sisad-pdfme/schemas/actions/createDecisionActionPlugin.ts`
+### 0199 — `src/sisad-pdfme/schemas/actions/createDecisionActionPlugin.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `212`
@@ -36112,9 +37393,9 @@ export const createDecisionActionPlugin = ({
   );
 ```
 
-<a id="file-0188"></a>
+<a id="file-0200"></a>
 
-### 0188 — `src/sisad-pdfme/schemas/actions/decline.ts`
+### 0200 — `src/sisad-pdfme/schemas/actions/decline.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `18`
@@ -36143,9 +37424,9 @@ const declinePlugin = createDecisionActionPlugin({
 export default declinePlugin;
 ```
 
-<a id="file-0189"></a>
+<a id="file-0201"></a>
 
-### 0189 — `src/sisad-pdfme/schemas/actions/note.ts`
+### 0201 — `src/sisad-pdfme/schemas/actions/note.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `116`
@@ -36272,9 +37553,9 @@ const notePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
 export default notePlugin;
 ```
 
-<a id="file-0190"></a>
+<a id="file-0202"></a>
 
-### 0190 — `src/sisad-pdfme/schemas/barcodes/constants.ts`
+### 0202 — `src/sisad-pdfme/schemas/barcodes/constants.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `23`
@@ -36309,9 +37590,9 @@ export const DEFAULT_BARCODE_COLOR = '#000000';
 export const DEFAULT_BARCODE_INCLUDETEXT = true;
 ```
 
-<a id="file-0191"></a>
+<a id="file-0203"></a>
 
-### 0191 — `src/sisad-pdfme/schemas/barcodes/helper.ts`
+### 0203 — `src/sisad-pdfme/schemas/barcodes/helper.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `186`
@@ -36509,9 +37790,9 @@ export const createBarCode = async (arg: {
 };
 ```
 
-<a id="file-0192"></a>
+<a id="file-0204"></a>
 
-### 0192 — `src/sisad-pdfme/schemas/barcodes/index.ts`
+### 0204 — `src/sisad-pdfme/schemas/barcodes/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `23`
@@ -36545,9 +37826,9 @@ const barcodes = BARCODE_TYPES.reduce(
 export default barcodes;
 ```
 
-<a id="file-0193"></a>
+<a id="file-0205"></a>
 
-### 0193 — `src/sisad-pdfme/schemas/barcodes/pdfRender.ts`
+### 0205 — `src/sisad-pdfme/schemas/barcodes/pdfRender.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `37`
@@ -36596,9 +37877,9 @@ export const renderBarcodePdf = async (arg: PDFRenderProps<BarcodeSchema>) => {
 };
 ```
 
-<a id="file-0194"></a>
+<a id="file-0206"></a>
 
-### 0194 — `src/sisad-pdfme/schemas/barcodes/propPanel.ts`
+### 0206 — `src/sisad-pdfme/schemas/barcodes/propPanel.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `238`
@@ -36848,9 +38129,9 @@ export const getPropPanelByBarcodeType = (barcodeType: string): PropPanel<Barcod
 };
 ```
 
-<a id="file-0195"></a>
+<a id="file-0207"></a>
 
-### 0195 — `src/sisad-pdfme/schemas/barcodes/types.ts`
+### 0207 — `src/sisad-pdfme/schemas/barcodes/types.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `12`
@@ -36874,9 +38155,9 @@ export interface BarcodeSchema extends Schema {
 export type BarcodeTypes = (typeof BARCODE_TYPES)[number];
 ```
 
-<a id="file-0196"></a>
+<a id="file-0208"></a>
 
-### 0196 — `src/sisad-pdfme/schemas/barcodes/uiRender.ts`
+### 0208 — `src/sisad-pdfme/schemas/barcodes/uiRender.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `97`
@@ -36985,9 +38266,9 @@ export const renderBarcodeUi = async (arg: UIRenderProps<BarcodeSchema>) => {
 };
 ```
 
-<a id="file-0197"></a>
+<a id="file-0209"></a>
 
-### 0197 — `src/sisad-pdfme/schemas/checkbox/index.ts`
+### 0209 — `src/sisad-pdfme/schemas/checkbox/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `203`
@@ -37201,9 +38482,9 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
 export default schema;
 ```
 
-<a id="file-0198"></a>
+<a id="file-0210"></a>
 
-### 0198 — `src/sisad-pdfme/schemas/checkboxGroup/index.ts`
+### 0210 — `src/sisad-pdfme/schemas/checkboxGroup/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `343`
@@ -37558,9 +38839,9 @@ export const __test__ = {
 export default schema;
 ```
 
-<a id="file-0199"></a>
+<a id="file-0211"></a>
 
-### 0199 — `src/sisad-pdfme/schemas/date/date.ts`
+### 0211 — `src/sisad-pdfme/schemas/date/date.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `16`
@@ -37587,9 +38868,9 @@ export default createSchemaPlugin(getPlugin({ type, icon }), {
 });
 ```
 
-<a id="file-0200"></a>
+<a id="file-0212"></a>
 
-### 0200 — `src/sisad-pdfme/schemas/date/dateTime.ts`
+### 0212 — `src/sisad-pdfme/schemas/date/dateTime.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `16`
@@ -37616,9 +38897,9 @@ export default createSchemaPlugin(getPlugin({ type, icon }), {
 });
 ```
 
-<a id="file-0201"></a>
+<a id="file-0213"></a>
 
-### 0201 — `src/sisad-pdfme/schemas/date/helper.ts`
+### 0213 — `src/sisad-pdfme/schemas/date/helper.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `502`
@@ -38132,9 +39413,9 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
 };
 ```
 
-<a id="file-0202"></a>
+<a id="file-0214"></a>
 
-### 0202 — `src/sisad-pdfme/schemas/date/time.ts`
+### 0214 — `src/sisad-pdfme/schemas/date/time.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `16`
@@ -38161,9 +39442,9 @@ export default createSchemaPlugin(getPlugin({ type, icon }), {
 });
 ```
 
-<a id="file-0203"></a>
+<a id="file-0215"></a>
 
-### 0203 — `src/sisad-pdfme/schemas/date/types.ts`
+### 0215 — `src/sisad-pdfme/schemas/date/types.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `21`
@@ -38196,9 +39477,9 @@ export interface DateSchema extends Schema {
 }
 ```
 
-<a id="file-0204"></a>
+<a id="file-0216"></a>
 
-### 0204 — `src/sisad-pdfme/schemas/graphics/image.ts`
+### 0216 — `src/sisad-pdfme/schemas/graphics/image.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `229`
@@ -38438,9 +39719,9 @@ const imageSchema: Plugin<ImageSchema> = {
 export default imageSchema;
 ```
 
-<a id="file-0205"></a>
+<a id="file-0217"></a>
 
-### 0205 — `src/sisad-pdfme/schemas/graphics/imagehelper.ts`
+### 0217 — `src/sisad-pdfme/schemas/graphics/imagehelper.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `156`
@@ -38608,9 +39889,9 @@ const imageSize = (imgBuffer: Uint8Array): { height: number; width: number } => 
 // ----------------------------
 ```
 
-<a id="file-0206"></a>
+<a id="file-0218"></a>
 
-### 0206 — `src/sisad-pdfme/schemas/graphics/svg.ts`
+### 0218 — `src/sisad-pdfme/schemas/graphics/svg.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `123`
@@ -38745,9 +40026,9 @@ const svgSchema: Plugin<SVGSchema> = {
 export default svgSchema;
 ```
 
-<a id="file-0207"></a>
+<a id="file-0219"></a>
 
-### 0207 — `src/sisad-pdfme/schemas/multiVariableText/helper.ts`
+### 0219 — `src/sisad-pdfme/schemas/multiVariableText/helper.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `91`
@@ -38850,9 +40131,9 @@ export const validateVariables = (value: string, schema: MultiVariableTextSchema
 };
 ```
 
-<a id="file-0208"></a>
+<a id="file-0220"></a>
 
-### 0208 — `src/sisad-pdfme/schemas/multiVariableText/index.ts`
+### 0220 — `src/sisad-pdfme/schemas/multiVariableText/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `23`
@@ -38886,9 +40167,9 @@ const schema: Plugin<MultiVariableTextSchema> = createSchemaPlugin<MultiVariable
 export default schema;
 ```
 
-<a id="file-0209"></a>
+<a id="file-0221"></a>
 
-### 0209 — `src/sisad-pdfme/schemas/multiVariableText/pdfRender.ts`
+### 0221 — `src/sisad-pdfme/schemas/multiVariableText/pdfRender.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `21`
@@ -38921,9 +40202,9 @@ export const renderMultiVariableTextPdf = async (arg: PDFRenderProps<MultiVariab
 };
 ```
 
-<a id="file-0210"></a>
+<a id="file-0222"></a>
 
-### 0210 — `src/sisad-pdfme/schemas/multiVariableText/propPanel.ts`
+### 0222 — `src/sisad-pdfme/schemas/multiVariableText/propPanel.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `166`
@@ -39101,9 +40382,9 @@ const updateVariablesFromText = (text: string, variables: Record<string, string>
 };
 ```
 
-<a id="file-0211"></a>
+<a id="file-0223"></a>
 
-### 0211 — `src/sisad-pdfme/schemas/multiVariableText/types.ts`
+### 0223 — `src/sisad-pdfme/schemas/multiVariableText/types.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `6`
@@ -39121,9 +40402,9 @@ export interface MultiVariableTextSchema extends TextSchema {
 }
 ```
 
-<a id="file-0212"></a>
+<a id="file-0224"></a>
 
-### 0212 — `src/sisad-pdfme/schemas/multiVariableText/uiRender.ts`
+### 0224 — `src/sisad-pdfme/schemas/multiVariableText/uiRender.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `170`
@@ -39305,9 +40586,9 @@ const keyPressShouldBeChecked = (event: KeyboardEvent) => {
 };
 ```
 
-<a id="file-0213"></a>
+<a id="file-0225"></a>
 
-### 0213 — `src/sisad-pdfme/schemas/number/index.ts`
+### 0225 — `src/sisad-pdfme/schemas/number/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `86`
@@ -39404,9 +40685,9 @@ const schema: Plugin<Schema> = createSchemaPlugin<Schema>(
 export default schema;
 ```
 
-<a id="file-0214"></a>
+<a id="file-0226"></a>
 
-### 0214 — `src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts`
+### 0226 — `src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `205`
@@ -39623,9 +40904,9 @@ export const createOptionGroupOptionsEditor = <TOption extends OptionGroupEditor
   });
 ```
 
-<a id="file-0215"></a>
+<a id="file-0227"></a>
 
-### 0215 — `src/sisad-pdfme/schemas/options/optionGroupFactory.ts`
+### 0227 — `src/sisad-pdfme/schemas/options/optionGroupFactory.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `555`
@@ -40192,9 +41473,9 @@ function createOptionGroupSchemaPlugin(config: OptionGroupPluginConfig): {
 }
 ```
 
-<a id="file-0216"></a>
+<a id="file-0228"></a>
 
-### 0216 — `src/sisad-pdfme/schemas/options/optionGroupLayout.ts`
+### 0228 — `src/sisad-pdfme/schemas/options/optionGroupLayout.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `76`
@@ -40282,9 +41563,9 @@ export const normalizeOptionGroupType = (type: string): OptionGroupType | null =
 export const isOptionGroupType = (type: string): boolean => OPTION_GROUP_TYPES.has(String(type || '').trim().toLowerCase());
 ```
 
-<a id="file-0217"></a>
+<a id="file-0229"></a>
 
-### 0217 — `src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts`
+### 0229 — `src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `74`
@@ -40370,9 +41651,9 @@ export const renderOptionGroupPdf = ({
 };
 ```
 
-<a id="file-0218"></a>
+<a id="file-0230"></a>
 
-### 0218 — `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts`
+### 0230 — `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `305`
@@ -40689,9 +41970,9 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
 };
 ```
 
-<a id="file-0219"></a>
+<a id="file-0231"></a>
 
-### 0219 — `src/sisad-pdfme/schemas/options/optionIndicator.ts`
+### 0231 — `src/sisad-pdfme/schemas/options/optionIndicator.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `240`
@@ -40943,9 +42224,9 @@ export const createOptionIndicatorElement = (params: OptionIndicatorParams): HTM
 };
 ```
 
-<a id="file-0220"></a>
+<a id="file-0232"></a>
 
-### 0220 — `src/sisad-pdfme/schemas/options/OptionListWidget.tsx`
+### 0232 — `src/sisad-pdfme/schemas/options/OptionListWidget.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `12`
@@ -40969,9 +42250,9 @@ export const OptionListWidget: React.FC<Props> = ({ value, onChange }) => {
 };
 ```
 
-<a id="file-0221"></a>
+<a id="file-0233"></a>
 
-### 0221 — `src/sisad-pdfme/schemas/options/optionModel.ts`
+### 0233 — `src/sisad-pdfme/schemas/options/optionModel.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `78`
@@ -41061,9 +42342,9 @@ export const ensureAtLeastOneOption = (options: OptionItem[]) =>
   options.length ? options : [{ optionId: 'option_1', label: 'Opción 1' }];
 ```
 
-<a id="file-0222"></a>
+<a id="file-0234"></a>
 
-### 0222 — `src/sisad-pdfme/schemas/options/optionPropPanel.tsx`
+### 0234 — `src/sisad-pdfme/schemas/options/optionPropPanel.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `31`
@@ -41106,9 +42387,9 @@ export const OptionListEditor: React.FC<Props> = ({ value, onChange }) => {
 };
 ```
 
-<a id="file-0223"></a>
+<a id="file-0235"></a>
 
-### 0223 — `src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts`
+### 0235 — `src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `125`
@@ -41245,9 +42526,9 @@ export const resolveCompactSelection = (currentValue: unknown, options: string[]
 };
 ```
 
-<a id="file-0224"></a>
+<a id="file-0236"></a>
 
-### 0224 — `src/sisad-pdfme/schemas/options/optionTypes.ts`
+### 0236 — `src/sisad-pdfme/schemas/options/optionTypes.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `19`
@@ -41278,9 +42559,9 @@ interface OptionGroupConfig {
 }
 ```
 
-<a id="file-0225"></a>
+<a id="file-0237"></a>
 
-### 0225 — `src/sisad-pdfme/schemas/options/optionValueAdapter.ts`
+### 0237 — `src/sisad-pdfme/schemas/options/optionValueAdapter.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `46`
@@ -41338,9 +42619,9 @@ const resolveOptionValueSelectedId = (
 export const resolveSelectedOptionId = resolveOptionValueSelectedId;
 ```
 
-<a id="file-0226"></a>
+<a id="file-0238"></a>
 
-### 0226 — `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts`
+### 0238 — `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `467`
@@ -41819,9 +43100,9 @@ export const horizontalAlignmentOptions = (
 ];
 ```
 
-<a id="file-0227"></a>
+<a id="file-0239"></a>
 
-### 0227 — `src/sisad-pdfme/schemas/radioGroup/index.ts`
+### 0239 — `src/sisad-pdfme/schemas/radioGroup/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `280`
@@ -42113,9 +43394,9 @@ export const __test__ = {
 };
 ```
 
-<a id="file-0228"></a>
+<a id="file-0240"></a>
 
-### 0228 — `src/sisad-pdfme/schemas/select/index.ts`
+### 0240 — `src/sisad-pdfme/schemas/select/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `338`
@@ -42464,9 +43745,9 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
 export default schema;
 ```
 
-<a id="file-0229"></a>
+<a id="file-0241"></a>
 
-### 0229 — `src/sisad-pdfme/schemas/shapes/line.ts`
+### 0241 — `src/sisad-pdfme/schemas/shapes/line.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `100`
@@ -42577,9 +43858,9 @@ const lineSchema: Plugin<LineSchema> = {
 export default lineSchema;
 ```
 
-<a id="file-0230"></a>
+<a id="file-0242"></a>
 
-### 0230 — `src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts`
+### 0242 — `src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `150`
@@ -42741,9 +44022,9 @@ export const ellipse = {
 };
 ```
 
-<a id="file-0231"></a>
+<a id="file-0243"></a>
 
-### 0231 — `src/sisad-pdfme/schemas/shared/fieldChrome.ts`
+### 0243 — `src/sisad-pdfme/schemas/shared/fieldChrome.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `423`
@@ -43178,9 +44459,9 @@ export const applyFieldChrome = <TSchema extends SisadSchemaBase>(
 };
 ```
 
-<a id="file-0232"></a>
+<a id="file-0244"></a>
 
-### 0232 — `src/sisad-pdfme/schemas/shared/imageFileInput.ts`
+### 0244 — `src/sisad-pdfme/schemas/shared/imageFileInput.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `40`
@@ -43232,9 +44513,9 @@ export const applyCenteredImageFileInputStyle = (input: HTMLInputElement): void 
 };
 ```
 
-<a id="file-0233"></a>
+<a id="file-0245"></a>
 
-### 0233 — `src/sisad-pdfme/schemas/shared/renderSchemaWithChrome.ts`
+### 0245 — `src/sisad-pdfme/schemas/shared/renderSchemaWithChrome.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `80`
@@ -43326,9 +44607,9 @@ export function renderSchemaWithChrome<TSchema extends SisadSchemaBase>(
 }
 ```
 
-<a id="file-0234"></a>
+<a id="file-0246"></a>
 
-### 0234 — `src/sisad-pdfme/schemas/shared/schemaDom.ts`
+### 0246 — `src/sisad-pdfme/schemas/shared/schemaDom.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `131`
@@ -43471,9 +44752,9 @@ export const createActionButtonEl = (opts: ActionButtonOptions): HTMLButtonEleme
 };
 ```
 
-<a id="file-0235"></a>
+<a id="file-0247"></a>
 
-### 0235 — `src/sisad-pdfme/schemas/shared/schemaGuards.ts`
+### 0247 — `src/sisad-pdfme/schemas/shared/schemaGuards.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `165`
@@ -43650,9 +44931,9 @@ export function resolveSchemaIdByIdentity(
 import { isRecord } from '../../shared/objectGuards.js';
 ```
 
-<a id="file-0236"></a>
+<a id="file-0248"></a>
 
-### 0236 — `src/sisad-pdfme/schemas/shared/schemaTypes.ts`
+### 0248 — `src/sisad-pdfme/schemas/shared/schemaTypes.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `171`
@@ -43835,9 +45116,9 @@ type SigningSchemaBase<TExtra extends UnknownRecord = UnknownRecord> =
   };
 ```
 
-<a id="file-0238"></a>
+<a id="file-0250"></a>
 
-### 0238 — `src/sisad-pdfme/schemas/signature/index.ts`
+### 0250 — `src/sisad-pdfme/schemas/signature/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `304`
@@ -44153,9 +45434,9 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
 export default signatureSchema;
 ```
 
-<a id="file-0239"></a>
+<a id="file-0251"></a>
 
-### 0239 — `src/sisad-pdfme/schemas/signature/initials.ts`
+### 0251 — `src/sisad-pdfme/schemas/signature/initials.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `44`
@@ -44210,9 +45491,9 @@ const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
 export default initialsPlugin;
 ```
 
-<a id="file-0240"></a>
+<a id="file-0252"></a>
 
-### 0240 — `src/sisad-pdfme/schemas/signature/propPanel.ts`
+### 0252 — `src/sisad-pdfme/schemas/signature/propPanel.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `721`
@@ -44945,9 +46226,9 @@ export const propPanel: PropPanel<SignatureSchema> = {
 };
 ```
 
-<a id="file-0241"></a>
+<a id="file-0253"></a>
 
-### 0241 — `src/sisad-pdfme/schemas/signature/providerRegistry.ts`
+### 0253 — `src/sisad-pdfme/schemas/signature/providerRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `207`
@@ -45166,9 +46447,9 @@ registerSignatureProviders([
 ]);
 ```
 
-<a id="file-0243"></a>
+<a id="file-0255"></a>
 
-### 0243 — `src/sisad-pdfme/schemas/signature/types.ts`
+### 0255 — `src/sisad-pdfme/schemas/signature/types.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `337`
@@ -45517,9 +46798,9 @@ export const normalizeSignatureSchema = (
 };
 ```
 
-<a id="file-0244"></a>
+<a id="file-0256"></a>
 
-### 0244 — `src/sisad-pdfme/schemas/signature/validation.ts`
+### 0256 — `src/sisad-pdfme/schemas/signature/validation.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `72`
@@ -45603,9 +46884,9 @@ export const validateSignatureSchema = (
 };
 ```
 
-<a id="file-0245"></a>
+<a id="file-0257"></a>
 
-### 0245 — `src/sisad-pdfme/schemas/tables/cell.ts`
+### 0257 — `src/sisad-pdfme/schemas/tables/cell.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `152`
@@ -45768,9 +47049,9 @@ const cellSchema: Plugin<CellSchema> = {
 export default cellSchema;
 ```
 
-<a id="file-0246"></a>
+<a id="file-0258"></a>
 
-### 0246 — `src/sisad-pdfme/schemas/tables/classes.ts`
+### 0258 — `src/sisad-pdfme/schemas/tables/classes.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `402`
@@ -46184,9 +47465,9 @@ function getStringWidth(cell: Cell, fontKitFont: FontKitFont) {
 }
 ```
 
-<a id="file-0247"></a>
+<a id="file-0259"></a>
 
-### 0247 — `src/sisad-pdfme/schemas/tables/dynamicTemplate.ts`
+### 0259 — `src/sisad-pdfme/schemas/tables/dynamicTemplate.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `88`
@@ -46286,9 +47567,9 @@ export const getDynamicHeightsForTable = async (
 };
 ```
 
-<a id="file-0248"></a>
+<a id="file-0260"></a>
 
-### 0248 — `src/sisad-pdfme/schemas/tables/helper.ts`
+### 0260 — `src/sisad-pdfme/schemas/tables/helper.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `172`
@@ -46472,9 +47753,9 @@ export const getBodyWithRange = (
 };
 ```
 
-<a id="file-0249"></a>
+<a id="file-0261"></a>
 
-### 0249 — `src/sisad-pdfme/schemas/tables/index.ts`
+### 0261 — `src/sisad-pdfme/schemas/tables/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `22`
@@ -46507,9 +47788,9 @@ const tableSchema: Plugin<TableSchema> = createSchemaPlugin<TableSchema>({
 export default tableSchema;
 ```
 
-<a id="file-0250"></a>
+<a id="file-0262"></a>
 
-### 0250 — `src/sisad-pdfme/schemas/tables/pdfRender.ts`
+### 0262 — `src/sisad-pdfme/schemas/tables/pdfRender.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `144`
@@ -46665,9 +47946,9 @@ export const renderTablePdf = async (arg: PDFRenderProps<TableSchema>) => {
 };
 ```
 
-<a id="file-0251"></a>
+<a id="file-0263"></a>
 
-### 0251 — `src/sisad-pdfme/schemas/tables/propPanel.ts`
+### 0263 — `src/sisad-pdfme/schemas/tables/propPanel.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `119`
@@ -46798,9 +48079,9 @@ export const propPanel: PropPanel<TableSchema> = {
 };
 ```
 
-<a id="file-0252"></a>
+<a id="file-0264"></a>
 
-### 0252 — `src/sisad-pdfme/schemas/tables/tableHelper.ts`
+### 0264 — `src/sisad-pdfme/schemas/tables/tableHelper.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `278`
@@ -47090,9 +48371,9 @@ export function createSingleTable(body: string[][], args: CreateTableArgs) {
 }
 ```
 
-<a id="file-0253"></a>
+<a id="file-0265"></a>
 
-### 0253 — `src/sisad-pdfme/schemas/tables/types.ts`
+### 0265 — `src/sisad-pdfme/schemas/tables/types.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `87`
@@ -47191,9 +48472,9 @@ export interface StylesProps {
 export type Section = 'head' | 'body';
 ```
 
-<a id="file-0254"></a>
+<a id="file-0266"></a>
 
-### 0254 — `src/sisad-pdfme/schemas/tables/uiRender.ts`
+### 0266 — `src/sisad-pdfme/schemas/tables/uiRender.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `454`
@@ -47659,9 +48940,9 @@ export const renderTableUi = async (arg: UIRenderProps<TableSchema>) => {
 };
 ```
 
-<a id="file-0255"></a>
+<a id="file-0267"></a>
 
-### 0255 — `src/sisad-pdfme/schemas/text/constants.ts`
+### 0267 — `src/sisad-pdfme/schemas/text/constants.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `104`
@@ -47777,9 +49058,9 @@ export const LINE_END_FORBIDDEN_CHARS = [
 ];
 ```
 
-<a id="file-0256"></a>
+<a id="file-0268"></a>
 
-### 0256 — `src/sisad-pdfme/schemas/text/extraFormatter.ts`
+### 0268 — `src/sisad-pdfme/schemas/text/extraFormatter.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `83`
@@ -47874,9 +49155,9 @@ export function getExtraFormatterSchema(i18n: (key: string) => string): {
 }
 ```
 
-<a id="file-0257"></a>
+<a id="file-0269"></a>
 
-### 0257 — `src/sisad-pdfme/schemas/text/helper.ts`
+### 0269 — `src/sisad-pdfme/schemas/text/helper.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `544`
@@ -48432,9 +49713,9 @@ export const filterEndJP = (lines: string[]): string[] => {
 };
 ```
 
-<a id="file-0258"></a>
+<a id="file-0270"></a>
 
-### 0258 — `src/sisad-pdfme/schemas/text/index.ts`
+### 0270 — `src/sisad-pdfme/schemas/text/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `23`
@@ -48468,9 +49749,9 @@ const textSchema: Plugin<TextSchema> = createSchemaPlugin<TextSchema>({
 export default textSchema;
 ```
 
-<a id="file-0259"></a>
+<a id="file-0271"></a>
 
-### 0259 — `src/sisad-pdfme/schemas/text/pdfRender.ts`
+### 0271 — `src/sisad-pdfme/schemas/text/pdfRender.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `236`
@@ -48718,9 +49999,9 @@ export const renderTextPdf = async (arg: PDFRenderProps<TextSchema>) => {
 };
 ```
 
-<a id="file-0260"></a>
+<a id="file-0272"></a>
 
-### 0260 — `src/sisad-pdfme/schemas/text/propPanel.ts`
+### 0272 — `src/sisad-pdfme/schemas/text/propPanel.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `173`
@@ -48905,9 +50186,9 @@ export const propPanel: PropPanel<TextSchema> = {
 };
 ```
 
-<a id="file-0261"></a>
+<a id="file-0273"></a>
 
-### 0261 — `src/sisad-pdfme/schemas/text/types.ts`
+### 0273 — `src/sisad-pdfme/schemas/text/types.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `30`
@@ -48949,9 +50230,9 @@ export interface TextSchema extends Schema {
 }
 ```
 
-<a id="file-0262"></a>
+<a id="file-0274"></a>
 
-### 0262 — `src/sisad-pdfme/schemas/text/uiRender.ts`
+### 0274 — `src/sisad-pdfme/schemas/text/uiRender.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `314`
@@ -49277,9 +50558,9 @@ const getBackgroundColor = (value: string, schema: { backgroundColor?: string })
 };
 ```
 
-<a id="file-0263"></a>
+<a id="file-0275"></a>
 
-### 0263 — `src/sisad-pdfme/schemas/textLike/textLikePresets.ts`
+### 0275 — `src/sisad-pdfme/schemas/textLike/textLikePresets.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `44`
@@ -49335,9 +50616,9 @@ export const title = createTextLikeSchemaPlugin({
 });
 ```
 
-<a id="file-0264"></a>
+<a id="file-0276"></a>
 
-### 0264 — `src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts`
+### 0276 — `src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `85`
@@ -49434,9 +50715,9 @@ export function createTextLikeSchemaPlugin(config: TextLikePresetConfig): Plugin
 }
 ```
 
-<a id="file-0265"></a>
+<a id="file-0277"></a>
 
-### 0265 — `src/sisad-pdfme/schemas/values/schemaValueAdapter.ts`
+### 0277 — `src/sisad-pdfme/schemas/values/schemaValueAdapter.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `42`
@@ -49490,9 +50771,9 @@ export const getSchemaOptionSelection = (schema: SchemaRecord): { single?: strin
 };
 ```
 
-<a id="file-0266"></a>
+<a id="file-0278"></a>
 
-### 0266 — `src/sisad-pdfme/ui/collaboration/schemaRuntimeAccess.ts`
+### 0278 — `src/sisad-pdfme/ui/collaboration/schemaRuntimeAccess.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `765`
@@ -50269,16 +51550,16 @@ export const countRuntimeAccess = (
 };
 ```
 
-<a id="file-0267"></a>
+<a id="file-0279"></a>
 
-### 0267 — `src/sisad-pdfme/ui/commands/commandBus.ts`
+### 0279 — `src/sisad-pdfme/ui/commands/commandBus.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `153`
-- **Tamaño original:** `4.9 KB`
-- **SHA1 corto:** `fd9e6e2d58`
+- **Líneas:** `237`
+- **Tamaño original:** `7.5 KB`
+- **SHA1 corto:** `55c81866ff`
 - **Estado:** `completo`
-- **Símbolos detectados:** `export type/class: CommandMeta`, `export type/class: CommandGuard`, `export type/class: CommandBus`, `export const: buildCommandMeta`, `export const: createCommandBus`
+- **Símbolos detectados:** `export type/class: CommandMeta`, `export type/class: CommandLifecyclePhase`, `export type/class: CommandLifecycleEvent`, `export type/class: CommandGuard`, `export type/class: CommandBus`, `export const: buildCommandMeta`, `export const: createCommandBus`
 
 ```typescript
 import type { Command, CommandExecutionContext, CommandObserverPayload } from '@sisad-pdfme/common';
@@ -50340,6 +51621,27 @@ export const buildCommandMeta = (
 
 type CommandListener = (_event: CommandObserverPayload) => void;
 
+/** Fase del ciclo de vida de un comando. */
+export type CommandLifecyclePhase = 'executed' | 'rejected' | 'undone' | 'redone';
+
+/**
+ * Envelope del ciclo de vida.
+ *
+ * Acompaña a cada transición con el estado del historial, para que la toolbar
+ * no tenga que consultarlo aparte y quedarse desincronizada.
+ */
+export type CommandLifecycleEvent = {
+  phase: CommandLifecyclePhase;
+  commandId: string;
+  label: string;
+  timestamp: number;
+  /** Solo en `rejected`. */
+  reason?: 'invalid-command' | 'blocked-by-guard';
+  history: { canUndo: boolean; canRedo: boolean; undoDepth: number; redoDepth: number };
+};
+
+type CommandLifecycleListener = (event: CommandLifecycleEvent) => void;
+
 /**
  * Optional pre-execution guard.
  * Return `true` to allow the command, `false` to block it.
@@ -50367,6 +51669,8 @@ export class CommandBus {
 
   private guards: CommandGuard[] = [];
 
+  private lifecycleListeners = new Set<CommandLifecycleListener>();
+
   /**
    * Register a pre-execution guard. Returns an unsubscribe function.
    * Guards are checked in order; the first `false` blocks execution.
@@ -50384,12 +51688,71 @@ export class CommandBus {
     return this.guards.every((guard) => guard(command as Command));
   }
 
+  /** Suscribe al ciclo de vida (ejecución/rechazo/undo/redo). */
+  subscribeLifecycle(listener: CommandLifecycleListener) {
+    this.lifecycleListeners.add(listener);
+    return () => {
+      this.lifecycleListeners.delete(listener);
+    };
+  }
+
+  /** Estado del historial; es lo que la toolbar necesita para undo/redo. */
+  historyState() {
+    return {
+      canUndo: this.canUndo(),
+      canRedo: this.canRedo(),
+      undoDepth: this.undoStack.length,
+      redoDepth: this.redoStack.length,
+    };
+  }
+
+  private emitLifecycle(
+    phase: CommandLifecyclePhase,
+    command: Pick<Command, 'id' | 'label'>,
+    reason?: CommandLifecycleEvent['reason'],
+  ) {
+    const event: CommandLifecycleEvent = {
+      phase,
+      commandId: String(command.id || ''),
+      label: String(command.label || ''),
+      timestamp: Date.now(),
+      ...(reason ? { reason } : {}),
+      history: this.historyState(),
+    };
+    // Un observador que falla no puede tumbar la ejecución del comando.
+    this.lifecycleListeners.forEach((listener) => {
+      try {
+        listener(event);
+      } catch {
+        /* observador aislado */
+      }
+    });
+  }
+
   async execute(command: Command) {
-    if (!this.check(command)) return;
+    if (!hasRequiredBaseCommandFields(command)) {
+      this.emitLifecycle('rejected', command, 'invalid-command');
+      return;
+    }
+    if (!this.guards.every((guard) => guard(command))) {
+      // Rechazado: no se ejecuta, no muta y no toca el historial.
+      this.emitLifecycle('rejected', command, 'blocked-by-guard');
+      return;
+    }
+
     const context = createExecutionContext(this.listeners);
     await command.execute(context);
-    this.undoStack.push(command);
-    this.redoStack = [];
+
+    // `undoable: false` (cambios de vista, por ejemplo) NO entra al historial.
+    // El contrato lo decía desde el principio, pero no se comprobaba: los
+    // comandos de vista ensuciaban la pila y un undo deshacía algo que el
+    // usuario no había hecho.
+    if (command.meta?.undoable !== false) {
+      this.undoStack.push(command);
+      this.redoStack = [];
+    }
+
+    this.emitLifecycle('executed', command);
   }
 
   async undo() {
@@ -50398,6 +51761,7 @@ export class CommandBus {
     const context = createExecutionContext(this.listeners);
     await command.undo(context);
     this.redoStack.push(command);
+    this.emitLifecycle('undone', command);
   }
 
   async redo() {
@@ -50410,6 +51774,7 @@ export class CommandBus {
       await command.execute(context);
     }
     this.undoStack.push(command);
+    this.emitLifecycle('redone', command);
   }
 
   canUndo() {
@@ -50436,16 +51801,16 @@ export class CommandBus {
 export const createCommandBus = () => new CommandBus();
 ```
 
-<a id="file-0268"></a>
+<a id="file-0280"></a>
 
-### 0268 — `src/sisad-pdfme/ui/commands/designerCommands.ts`
+### 0280 — `src/sisad-pdfme/ui/commands/designerCommands.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `185`
-- **Tamaño original:** `4.1 KB`
-- **SHA1 corto:** `2eae0f5b7f`
+- **Líneas:** `306`
+- **Tamaño original:** `8.2 KB`
+- **SHA1 corto:** `ba89f58580`
 - **Estado:** `completo`
-- **Símbolos detectados:** `export const: createPageSnapshotCommand`, `export const: createTemplateSnapshotCommand`, `export const: createCommentCommand`, `export const: createCommentCommandEvent`, `export const: buildTopLevelCommentEntry`
+- **Símbolos detectados:** `export type/class: PageStructureOperation`, `export type/class: PageStructureRejection`, `export type/class: PageStructureResult`, `export type/class: PageStructureCommandArgs`, `export const: createPageSnapshotCommand`, `export const: createTemplateSnapshotCommand`, `export const: createCommentCommand`, `export const: createCommentCommandEvent`, `export const: buildTopLevelCommentEntry`, `export const: applyPageStructure`, `export const: createPageStructureCommand`
 
 ```typescript
 import { cloneDeep } from '@sisad-pdfme/common';
@@ -50633,11 +51998,132 @@ export const createCommentCommandEvent = (
  * Construye una entrada top-level de comentario para snapshots globales.
  */
 export const buildTopLevelCommentEntry = (entry: TopLevelPdfCommentEntry): TopLevelPdfCommentEntry => entry;
+
+/* ------------------------------------------------------------------ */
+/* Comandos de estructura de página (COREUX-016)                       */
+/* ------------------------------------------------------------------ */
+
+export type PageStructureOperation = 'insert' | 'duplicate' | 'remove';
+
+/** Motivo por el que una operación de página se rechaza. */
+export type PageStructureRejection = 'last-page' | 'index-out-of-range';
+
+export type PageStructureResult<T> =
+  | { ok: true; pages: T[][] }
+  | { ok: false; reason: PageStructureRejection };
+
+/** Sufija ids repetidos para que duplicar no rompa la unicidad del template. */
+const withUniqueIds = <T extends Record<string, unknown>>(
+  schemas: T[],
+  taken: Set<string>,
+): T[] =>
+  schemas.map((schema) => {
+    const next = cloneDeep(schema) as Record<string, unknown>;
+    ['id', 'schemaUid', 'name'].forEach((key) => {
+      const value = next[key];
+      if (typeof value !== 'string' || !value) return;
+      let candidate = `${value}-copy`;
+      let counter = 2;
+      while (taken.has(candidate)) {
+        candidate = `${value}-copy-${counter}`;
+        counter += 1;
+      }
+      taken.add(candidate);
+      next[key] = candidate;
+    });
+    return next as T;
+  });
+
+/**
+ * Aplica una operación de estructura sobre las páginas.
+ *
+ * Función pura: devuelve páginas nuevas o el motivo del rechazo. No muta la
+ * entrada, así que sirve tanto para ejecutar como para previsualizar si la
+ * operación sería válida (por ejemplo, para deshabilitar un botón con motivo).
+ */
+export const applyPageStructure = <T extends Record<string, unknown>>(
+  pages: T[][],
+  operation: PageStructureOperation,
+  pageIndex: number,
+): PageStructureResult<T> => {
+  const source = Array.isArray(pages) ? pages : [];
+  if (!Number.isInteger(pageIndex) || pageIndex < 0 || pageIndex >= source.length) {
+    return { ok: false, reason: 'index-out-of-range' };
+  }
+
+  if (operation === 'remove') {
+    // Un template sin páginas no es representable: el Canvas se queda sin
+    // superficie y el snapshot deja de ser válido.
+    if (source.length <= 1) return { ok: false, reason: 'last-page' };
+    return { ok: true, pages: source.filter((_, index) => index !== pageIndex) };
+  }
+
+  const next = source.map((page) => cloneDeep(page));
+
+  if (operation === 'insert') {
+    next.splice(pageIndex + 1, 0, [] as T[]);
+    return { ok: true, pages: next };
+  }
+
+  const taken = new Set<string>();
+  source.flat().forEach((schema) => {
+    ['id', 'schemaUid', 'name'].forEach((key) => {
+      const value = (schema as Record<string, unknown>)[key];
+      if (typeof value === 'string' && value) taken.add(value);
+    });
+  });
+  next.splice(pageIndex + 1, 0, withUniqueIds(source[pageIndex] || [], taken));
+  return { ok: true, pages: next };
+};
+
+export type PageStructureCommandArgs<T extends Record<string, unknown>> = {
+  operation: PageStructureOperation;
+  pageIndex: number;
+  /** Estado de páginas antes de ejecutar. */
+  pages: T[][];
+  /** Aplica el nuevo conjunto de páginas al template. */
+  applyPages: (pages: T[][]) => void;
+  meta?: Record<string, unknown>;
+};
+
+/**
+ * Comando reversible de estructura de página.
+ *
+ * Guarda snapshots completos de antes y después, de modo que undo y redo son
+ * simétricos y el round-trip devuelve exactamente el estado original.
+ *
+ * @returns `null` cuando la operación no es válida; el caller debe mostrar el
+ * motivo en lugar de ejecutar un comando que no muta nada.
+ */
+export const createPageStructureCommand = <T extends Record<string, unknown>>({
+  operation,
+  pageIndex,
+  pages,
+  applyPages,
+  meta = {},
+}: PageStructureCommandArgs<T>): { command: Command } | { rejection: PageStructureRejection } => {
+  const result = applyPageStructure(pages, operation, pageIndex);
+  if (!result.ok) return { rejection: result.reason };
+
+  const before = cloneDeep(pages);
+  const after = cloneDeep(result.pages);
+
+  return {
+    command: {
+      id: `page.${operation}`,
+      label: `Página: ${operation}`,
+      meta,
+      execute: () => applyPages(cloneDeep(after)),
+      undo: () => applyPages(cloneDeep(before)),
+      redo: () => applyPages(cloneDeep(after)),
+    } as Command,
+  };
+};
 ```
 
-<a id="file-0269"></a>
+<a id="file-0281"></a>
 
-### 0269 — `src/sisad-pdfme/ui/components/AppContextProvider.tsx`
+### 0281 — `src/sisad-pdfme/ui/components/AppContextProvider.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `116`
@@ -50765,9 +52251,9 @@ const AppContextProvider = ({ children, lang, font, plugins, options }: Props) =
 export default AppContextProvider;
 ```
 
-<a id="file-0270"></a>
+<a id="file-0282"></a>
 
-### 0270 — `src/sisad-pdfme/ui/components/CtlBar.tsx`
+### 0282 — `src/sisad-pdfme/ui/components/CtlBar.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `615`
@@ -51394,9 +52880,9 @@ const CtlBar = (props: CtlBarProps) => {
 export default CtlBar;
 ```
 
-<a id="file-0271"></a>
+<a id="file-0283"></a>
 
-### 0271 — `src/sisad-pdfme/ui/components/ErrorScreen.tsx`
+### 0283 — `src/sisad-pdfme/ui/components/ErrorScreen.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `40`
@@ -51448,9 +52934,9 @@ const ErrorScreen = ({ size, error }: { size: Size; error: Error }) => {
 export default ErrorScreen;
 ```
 
-<a id="file-0272"></a>
+<a id="file-0284"></a>
 
-### 0272 — `src/sisad-pdfme/ui/components/Paper.tsx`
+### 0284 — `src/sisad-pdfme/ui/components/Paper.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `256`
@@ -51718,9 +53204,9 @@ const Paper = (props: {
 export default Paper;
 ```
 
-<a id="file-0273"></a>
+<a id="file-0285"></a>
 
-### 0273 — `src/sisad-pdfme/ui/components/Preview.tsx`
+### 0285 — `src/sisad-pdfme/ui/components/Preview.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `233`
@@ -51965,9 +53451,9 @@ const Preview = ({
 export default Preview;
 ```
 
-<a id="file-0274"></a>
+<a id="file-0286"></a>
 
-### 0274 — `src/sisad-pdfme/ui/components/RegisteredUsersSelector.tsx`
+### 0286 — `src/sisad-pdfme/ui/components/RegisteredUsersSelector.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `113`
@@ -52092,9 +53578,9 @@ export const RegisteredUsersSelector = ({
 };
 ```
 
-<a id="file-0275"></a>
+<a id="file-0287"></a>
 
-### 0275 — `src/sisad-pdfme/ui/components/Renderer.tsx`
+### 0287 — `src/sisad-pdfme/ui/components/Renderer.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `421`
@@ -52527,9 +54013,9 @@ const areRendererPropsEqual = (prev: RendererProps, next: RendererProps) => {
 export default React.memo(Renderer, areRendererPropsEqual);
 ```
 
-<a id="file-0276"></a>
+<a id="file-0288"></a>
 
-### 0276 — `src/sisad-pdfme/ui/components/Root.tsx`
+### 0288 — `src/sisad-pdfme/ui/components/Root.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `61`
@@ -52602,9 +54088,9 @@ const Root = ({ size, scale, children }: Props, ref: Ref<HTMLDivElement>) => {
 export default forwardRef<HTMLDivElement, Props>(Root);
 ```
 
-<a id="file-0277"></a>
+<a id="file-0289"></a>
 
-### 0277 — `src/sisad-pdfme/ui/components/RuntimeFormPanel.tsx`
+### 0289 — `src/sisad-pdfme/ui/components/RuntimeFormPanel.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `17`
@@ -52633,9 +54119,9 @@ import Preview from './Preview.js';
 export const RuntimeFormPanel = Preview;
 ```
 
-<a id="file-0278"></a>
+<a id="file-0290"></a>
 
-### 0278 — `src/sisad-pdfme/ui/components/Spinner.tsx`
+### 0290 — `src/sisad-pdfme/ui/components/Spinner.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `31`
@@ -52677,9 +54163,9 @@ const Spinner: React.FC = () => {
 export default Spinner;
 ```
 
-<a id="file-0279"></a>
+<a id="file-0291"></a>
 
-### 0279 — `src/sisad-pdfme/ui/components/StaticSchema.tsx`
+### 0291 — `src/sisad-pdfme/ui/components/StaticSchema.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `73`
@@ -52764,9 +54250,9 @@ const StaticSchema = (props: {
 export default React.memo(StaticSchema);
 ```
 
-<a id="file-0280"></a>
+<a id="file-0292"></a>
 
-### 0280 — `src/sisad-pdfme/ui/components/UnitPager.tsx`
+### 0292 — `src/sisad-pdfme/ui/components/UnitPager.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `124`
@@ -52902,9 +54388,9 @@ const UnitPager = ({ size, unitCursor, unitNum, setUnitCursor }: Props) => {
 export default UnitPager;
 ```
 
-<a id="file-0281"></a>
+<a id="file-0293"></a>
 
-### 0281 — `src/sisad-pdfme/ui/components/usePreviewRuntime.ts`
+### 0293 — `src/sisad-pdfme/ui/components/usePreviewRuntime.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `781`
@@ -53696,9 +55182,9 @@ const usePreviewRuntime = ({
 export default usePreviewRuntime;
 ```
 
-<a id="file-0282"></a>
+<a id="file-0294"></a>
 
-### 0282 — `src/sisad-pdfme/ui/types/customSchemaRegistry.ts`
+### 0294 — `src/sisad-pdfme/ui/types/customSchemaRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `32`
@@ -53742,9 +55228,9 @@ export type CustomSchemaRegistryPort = {
 };
 ```
 
-<a id="file-0283"></a>
+<a id="file-0295"></a>
 
-### 0283 — `src/sisad-pdfme/ui/utils/cn.ts`
+### 0295 — `src/sisad-pdfme/ui/utils/cn.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `8`
@@ -53764,9 +55250,9 @@ export function cn(...values: Array<string | false | null | undefined>): string 
 }
 ```
 
-<a id="file-0284"></a>
+<a id="file-0296"></a>
 
-### 0284 — `src/sisad-pdfme/schemas/text/icons/index.ts`
+### 0296 — `src/sisad-pdfme/schemas/text/icons/index.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `30`
@@ -53808,14 +55294,14 @@ export const TextVerticalAlignMiddleIcon = `<svg xmlns="http://www.w3.org/2000/s
 export const TextVerticalAlignBottomIcon = createSvgStr(ArrowDownToLine);
 ```
 
-<a id="file-0285"></a>
+<a id="file-0297"></a>
 
-### 0285 — `src/sisad-pdfme/ui/components/Designer/index.tsx`
+### 0297 — `src/sisad-pdfme/ui/components/Designer/index.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `4390`
-- **Tamaño original:** `166.7 KB`
-- **SHA1 corto:** `41bcc3931e`
+- **Líneas:** `4383`
+- **Tamaño original:** `166.6 KB`
+- **SHA1 corto:** `1c372765af`
 - **Estado:** `truncado 83.0 KB`
 - **Símbolos detectados:** `function: resolveChangedSchemaUids`, `function: handleRemovePage`, `function: handleAddPageAfter`, `component/const: DetachedHost`, `component/const: TemplateEditor`
 
@@ -53947,6 +55433,8 @@ import {
   createTemplateSnapshotCommand,
 } from '../../../commands/index.js';
 import { emitDesignerRuntimeEvent } from '../Designer/shared/designerExtensions.js';
+import { configFromRuntimeOptions } from '../../../config/configFromRuntimeOptions.js';
+import { computeFitZoom, type ViewportFitMode } from './shared/zoomContract.js';
 const DESIGNER_THEME_STYLE_ID = DESIGNER_CLASSNAME + 'theme-base';
 
 const stableHashSchemas = (schemas: Schema[][]) => {
@@ -54380,7 +55868,10 @@ const TemplateEditor = ({
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
-  const resolvedConfig = useSisadPdfmeConfig(options);
+  // `options` es transporte de runtime, no configuración: entregarlo entero al
+  // ConfigService rompía el montaje al clonarlo (ver configFromRuntimeOptions).
+  const configFromOptions = useMemo(() => configFromRuntimeOptions(options), [options]);
+  const resolvedConfig = useSisadPdfmeConfig(configFromOptions);
   const designerEngine = useMemo(
     () => resolveDesignerEngine(options as Record<string, unknown>),
     [options],
@@ -55396,17 +56887,9 @@ const TemplateEditor = ({
     if (!pasted.length) return;
     // Select the pasted group once it renders; clears the previous selection.
     pendingSelectionIdsRef.current = pasted.map((schema) => schema.id);
-    commitSchemas([...pageSchemas, ...pasted], targetPageIndex);
-  }, [activeDocumentId, activeElements, collaborationContext, commitSchemas, pageCursor, pageSizes]);
+    commitSchemas([...pageSchemas, ...pa
 
-  const handleCutSelection = useCallback(() => {
-    const schemas = resolveActiveSchemasGlobal();
-    if (!schemas.length) return;
-    schemaClipboardRef.current = cutSchemasToClipboard(schemas, resolveSelectionPageIndex());
-    removeSchemas(schemas.map((s) => s.id));
-  }, [removeSchemas, resolveAc
-
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 85860 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 85735 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
      : null;
   const rightSidebarDomId = DESIGNER_CLASSNAME + 'right-sidebar-panel';
@@ -55907,14 +57390,14 @@ const TemplateEditor = ({
 export default TemplateEditor;
 ```
 
-<a id="file-0286"></a>
+<a id="file-0298"></a>
 
-### 0286 — `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
+### 0298 — `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `1893`
-- **Tamaño original:** `73.6 KB`
-- **SHA1 corto:** `925b60734f`
+- **Líneas:** `1896`
+- **Tamaño original:** `73.8 KB`
+- **SHA1 corto:** `979c9af04b`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: CatalogLayout`, `export type/class: SidebarDensity`, `export type/class: CatalogQuickFilter`, `export type/class: CatalogCapability`, `export type/class: LeftSidebarProps`, `component/const: SidebarButtons`, `component/const: Draggable`, `component/const: SidebarShell`, `component/const: LeftSidebar`
 
@@ -55923,7 +57406,7 @@ import React, { useContext, useState, useEffect, useMemo, useCallback, useRef } 
 import { Schema, Plugin, BasePdf, getFallbackFontName, cloneDeep } from '@sisad-pdfme/common';
 import { Button } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
-import { DESIGNER_CLASSNAME } from '../../constants.ts';
+import { DESIGNER_CLASSNAME, LEFT_SIDEBAR_WIDTH } from '../../constants.ts';
 import { normalizeLooseText } from '../../../shared/text.js';
 import { setFontNameRecursively } from '../../helper.js';
 import { OptionsContext, PluginsRegistry } from '../../contexts.js';
@@ -57091,22 +58574,24 @@ const LeftSidebar = ({
     },
     [],
   );
+  const sidebarExpandedWidthClass = variant === 'compact'
+    ? mergeClassNames(
+        '!min-w-[var(--sisad-pdfme-ls-rail-width)]',
+        '!w-[13.75rem] !max-w-[13.75rem]',
+        'max-[48rem]:!w-[13.75rem] max-[48rem]:!max-w-[13.75rem] max-[48rem]:overflow-visible',
+      )
+    : 'w-[var(--sisad-pdfme-ls-width)] max-w-[var(--sisad-pdfme-ls-width)]';
+  const sidebarCollapsedWidthClass = mergeClassNames(
+    'w-[var(--sisad-pdfme-ls-collapsed-width)] min-w-[var(--sisad-pdfme-ls-collapsed-width)] max-w-[var(--sisad-pdfme-ls-collapsed-width)] overflow-hidden',
+    'max-[48rem]:w-0 max-[48rem]:min-w-0 max-[48rem]:max-w-0',
+  );
   const sidebarClass = mergeClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar`,
     `${DESIGNER_CLASSNAME}left-sidebar-${variant}`,
-    'relative flex h-full min-h-0 w-[var(--sisad-pdfme-ls-width)] max-w-[var(--sisad-pdfme-ls-width)] shrink-0 flex-col bg-[var(--color-bg-elevated)] border-r border-slate-200/70',
+    'relative flex h-full min-h-0 shrink-0 flex-col bg-[var(--color-bg-elevated)] border-r border-slate-200/70',
+    sidebarExpanded ? sidebarExpandedWidthClass : sidebarCollapsedWidthClass,
     'max-[48rem]:absolute max-[48rem]:left-0 max-[48rem]:top-0 max-[48rem]:bottom-0 max-[48rem]:z-[20] max-[48rem]:w-0 max-[48rem]:overflow-hidden max-[48rem]:[transition:width_0.22s_var(--wix-ease-out)]',
-    variant === 'compact'
-      ? mergeClassNames(
-          `${DESIGNER_CLASSNAME}left-sidebar-compact`,
-          '!min-w-[var(--sisad-pdfme-ls-rail-width)]',
-          sidebarExpanded
-            ? resolvedPresentation === 'overlay'
-              ? '!w-[13.75rem] !max-w-[13.75rem] max-[48rem]:!w-[13.75rem] max-[48rem]:!max-w-[13.75rem] max-[48rem]:overflow-visible'
-              : '!w-[13.75rem] !max-w-[13.75rem] max-[48rem]:!w-[13.75rem] max-[48rem]:!max-w-[13.75rem] max-[48rem]:overflow-visible'
-            : '!w-[var(--sisad-pdfme-ls-rail-width)] !min-w-[var(--sisad-pdfme-ls-rail-width)] !max-w-[var(--sisad-pdfme-ls-rail-width)] overflow-hidden',
-        )
-      : '',
+    variant === 'compact' ? `${DESIGNER_CLASSNAME}left-sidebar-compact` : '',
     detached ? `${DESIGNER_CLASSNAME}left-sidebar-detached` : '',
     classNames?.container,
     className,
@@ -57694,6 +59179,7 @@ const LeftSidebar = ({
       data-sidebar-scroll-locked={isDragging ? 'true' : 'false'}
       style={{
         '--left-sidebar-live-width': `${sidebarLiveWidth}px`,
+        '--sisad-pdfme-ls-collapsed-width': `${LEFT_SIDEBAR_WIDTH}px`,
         transition: 'width 220ms var(--wix-ease-out), max-width 220ms var(--wix-ease-out), opacity 150ms ease, transform 220ms var(--wix-ease-out)',
       } as React.CSSProperties}>
       <SidebarCollapseHandle
@@ -57814,9 +59300,9 @@ const LeftSidebar = ({
 export default LeftSidebar;
 ```
 
-<a id="file-0287"></a>
+<a id="file-0299"></a>
 
-### 0287 — `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx`
+### 0299 — `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `310`
@@ -58138,9 +59624,9 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
 export default CustomFieldModal;
 ```
 
-<a id="file-0288"></a>
+<a id="file-0300"></a>
 
-### 0288 — `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx`
+### 0300 — `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `94`
@@ -58246,9 +59732,9 @@ export type { RuntimeCustomSchemaDefinition };
 export default LeftSidebarCustomPanel;
 ```
 
-<a id="file-0289"></a>
+<a id="file-0301"></a>
 
-### 0289 — `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx`
+### 0301 — `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `139`
@@ -58399,9 +59885,9 @@ export const LeftSidebarEmptyState = ({ description, density = 'comfortable' }: 
 );
 ```
 
-<a id="file-0290"></a>
+<a id="file-0302"></a>
 
-### 0290 — `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx`
+### 0302 — `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `43`
@@ -58456,9 +59942,9 @@ const LeftSidebarSearch = ({
 export default LeftSidebarSearch;
 ```
 
-<a id="file-0291"></a>
+<a id="file-0303"></a>
 
-### 0291 — `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx`
+### 0303 — `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `87`
@@ -58557,9 +60043,9 @@ const LeftSidebarTabs = ({
 export default LeftSidebarTabs;
 ```
 
-<a id="file-0292"></a>
+<a id="file-0304"></a>
 
-### 0292 — `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx`
+### 0304 — `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `160`
@@ -58731,9 +60217,9 @@ const PluginIcon = (props: PluginIconProps) => {
 export default PluginIcon;
 ```
 
-<a id="file-0293"></a>
+<a id="file-0305"></a>
 
-### 0293 — `src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.tsx`
+### 0305 — `src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `94`
@@ -58839,9 +60325,9 @@ const SchemaDropSetupModal = ({
 export default SchemaDropSetupModal;
 ```
 
-<a id="file-0294"></a>
+<a id="file-0306"></a>
 
-### 0294 — `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts`
+### 0306 — `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `212`
@@ -59065,9 +60551,9 @@ export const createCustomSchemaFromDefinition = (args: CreateSchemaArgs): Schema
 export type { CustomSchemaDefinition };
 ```
 
-<a id="file-0295"></a>
+<a id="file-0307"></a>
 
-### 0295 — `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts`
+### 0307 — `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `156`
@@ -59234,9 +60720,176 @@ const useLeftSidebarCatalogState = ({ catalogLayout }: UseLeftSidebarCatalogStat
 export default useLeftSidebarCatalogState;
 ```
 
-<a id="file-0296"></a>
+<a id="file-0308"></a>
 
-### 0296 — `src/sisad-pdfme/ui/components/shared/pageMetadata.ts`
+### 0308 — `src/sisad-pdfme/ui/components/shared/DesignerTooltip.tsx`
+
+- **Lenguaje:** `tsx`
+- **Líneas:** `153`
+- **Tamaño original:** `5.3 KB`
+- **SHA1 corto:** `0fe4b3998c`
+- **Estado:** `completo`
+- **Símbolos detectados:** `export type/class: DesignerTooltipPlacement`, `export type/class: DesignerTooltipProps`, `export const: DesignerTooltip`
+
+```tsx
+/**
+ * Tooltip controlada del Designer.
+ *
+ * Sustituye al atributo `title` nativo, que tiene tres problemas para chrome de
+ * producto: el navegador decide el retardo y la posición, no es accesible por
+ * teclado de forma consistente, y no se puede estilar ni truncar.
+ *
+ * Reglas que implementa:
+ *
+ * - se muestra con hover **y** con foco de teclado;
+ * - `Escape` la cierra sin cerrar la superficie que la contiene;
+ * - el disparador queda descrito por `aria-describedby`, así que el lector de
+ *   pantalla anuncia el texto sin depender de `title`;
+ * - si el hijo ya trae `title`, se elimina: dos tooltips sobre el mismo control
+ *   es peor que ninguna.
+ *
+ * No usa `setTimeout` para el ciclo de vida — solo para el retardo de
+ * aparición, que es presentación, no coordinación.
+ */
+import React, { cloneElement, isValidElement, useCallback, useEffect, useId, useRef, useState } from 'react';
+
+export type DesignerTooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
+
+export type DesignerTooltipProps = {
+  /** Texto a mostrar. Vacío o ausente ⇒ no se renderiza tooltip. */
+  label?: string | null;
+  placement?: DesignerTooltipPlacement;
+  /** Retardo de aparición en ms. 0 muestra de inmediato. */
+  delay?: number;
+  /** Control externo opcional; sin él la tooltip se gobierna sola. */
+  open?: boolean;
+  children: React.ReactElement;
+};
+
+const PLACEMENT_CLASS: Record<DesignerTooltipPlacement, string> = {
+  top: 'bottom-full left-1/2 -translate-x-1/2 mb-1',
+  bottom: 'top-full left-1/2 -translate-x-1/2 mt-1',
+  left: 'right-full top-1/2 -translate-y-1/2 mr-1',
+  right: 'left-full top-1/2 -translate-y-1/2 ml-1',
+};
+
+
+/**
+ * Añade los handlers de la tooltip al disparador.
+ *
+ * Vive fuera del componente a propósito: `cloneElement` dentro del cuerpo de
+ * render hace que el linter lo trate como acceso a refs durante el render.
+ * Los handlers originales del hijo se preservan y se ejecutan primero.
+ */
+const decorateTrigger = (
+  child: React.ReactElement,
+  options: { describedBy?: string; show: (immediate?: boolean) => void; hide: () => void },
+): React.ReactElement => {
+  const childProps = child.props as Record<string, unknown>;
+  const chain = <E,>(original: unknown, next: () => void) => (event: E) => {
+    (original as ((e: E) => void) | undefined)?.(event);
+    next();
+  };
+
+  return cloneElement(child, {
+    // Evita la tooltip nativa duplicada sobre el mismo control.
+    title: undefined,
+    'aria-describedby': options.describedBy,
+    onMouseEnter: chain<React.MouseEvent>(childProps.onMouseEnter, () => options.show()),
+    onMouseLeave: chain<React.MouseEvent>(childProps.onMouseLeave, options.hide),
+    // El foco muestra de inmediato: quien navega con teclado no debe esperar.
+    onFocus: chain<React.FocusEvent>(childProps.onFocus, () => options.show(true)),
+    onBlur: chain<React.FocusEvent>(childProps.onBlur, options.hide),
+  } as Record<string, unknown>);
+};
+
+export const DesignerTooltip = ({
+  label,
+  placement = 'top',
+  delay = 250,
+  open,
+  children,
+}: DesignerTooltipProps) => {
+  const [visible, setVisible] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tooltipId = useId();
+
+  const clearTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  const show = useCallback(
+    (immediate = false) => {
+      clearTimer();
+      if (immediate || delay <= 0) {
+        setVisible(true);
+        return;
+      }
+      timerRef.current = setTimeout(() => setVisible(true), delay);
+    },
+    [clearTimer, delay],
+  );
+
+  const hide = useCallback(() => {
+    clearTimer();
+    setVisible(false);
+  }, [clearTimer]);
+
+  // El timer nunca puede sobrevivir al desmontaje.
+  useEffect(() => clearTimer, [clearTimer]);
+
+  useEffect(() => {
+    if (!visible) return undefined;
+    const onKeyDown = (event: KeyboardEvent) => {
+      // `stopPropagation` no: Escape debe poder cerrar también la superficie si
+      // la tooltip ya estaba cerrada. Aquí solo se cierra a sí misma.
+      if (event.key === 'Escape') hide();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [hide, visible]);
+
+  if (!isValidElement(children)) return children ?? null;
+  const text = typeof label === 'string' ? label.trim() : '';
+  if (!text) return children;
+
+  const isOpen = open ?? visible;
+  /* eslint-disable react-hooks/refs -- no se lee ninguna ref: se componen props
+     sobre el hijo. La alternativa (no clonar) obligaría a mover
+     `aria-describedby` a un wrapper que el lector de pantalla no asocia al
+     control, perdiendo justo la accesibilidad que motiva esta primitiva. */
+  const trigger = decorateTrigger(children, {
+    describedBy: isOpen ? tooltipId : undefined,
+    show,
+    hide,
+  });
+  /* eslint-enable react-hooks/refs */
+
+  return (
+    <span className="relative inline-flex" data-designer-tooltip-anchor="true">
+      {trigger}
+      {isOpen ? (
+        <span
+          id={tooltipId}
+          role="tooltip"
+          data-testid="designer-tooltip"
+          data-placement={placement}
+          className={`pointer-events-none absolute z-[60] whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium text-white shadow-md ${PLACEMENT_CLASS[placement]}`}
+        >
+          {text}
+        </span>
+      ) : null}
+    </span>
+  );
+};
+```
+
+<a id="file-0309"></a>
+
+### 0309 — `src/sisad-pdfme/ui/components/shared/pageMetadata.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `52`
@@ -59300,9 +60953,9 @@ export const applyPageMetadataDataset = (
 };
 ```
 
-<a id="file-0297"></a>
+<a id="file-0310"></a>
 
-### 0297 — `src/sisad-pdfme/ui/components/shared/usePaperRefRegistry.ts`
+### 0310 — `src/sisad-pdfme/ui/components/shared/usePaperRefRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `20`
@@ -59333,14 +60986,14 @@ const usePaperRefRegistry = () => {
 export default usePaperRefRegistry;
 ```
 
-<a id="file-0298"></a>
+<a id="file-0311"></a>
 
-### 0298 — `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
+### 0311 — `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `2017`
-- **Tamaño original:** `72.1 KB`
-- **SHA1 corto:** `85f4ed7312`
+- **Líneas:** `2019`
+- **Tamaño original:** `72.3 KB`
+- **SHA1 corto:** `1095705231`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: CanvasFeatureToggles`, `export type/class: CanvasStyleOverrides`, `export type/class: CanvasClassNames`, `export type/class: CanvasComponentSlots`, `export type/class: CanvasProps`, `component/const: Canvas`
 
@@ -59398,6 +61051,7 @@ import { round, flatten } from '../../../helper.js';
 import Paper from '../../Paper.js';
 import Renderer from '../../Renderer.js';
 import { useSisadPdfmeConfig } from '../../../../react/useSisadPdfmeConfig.js';
+import { configFromRuntimeOptions } from '../../../../config/configFromRuntimeOptions.js';
 import Selecto from './Selecto.js';
 import Moveable from './Moveable.js';
 import Guides from './Guides.js';
@@ -59783,7 +61437,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
    */
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
-  const resolvedConfig = useSisadPdfmeConfig(options);
+  const configFromOptions = useMemo(() => configFromRuntimeOptions(options), [options]);
+  const resolvedConfig = useSisadPdfmeConfig(configFromOptions);
   const canvasVisibility = resolvedConfig.visibility.canvas;
   /**
    * Plataforma detectada para normalización de atajos y selección.
@@ -61364,9 +63019,9 @@ ForwardedCanvas.displayName = 'Canvas';
 export default ForwardedCanvas;
 ```
 
-<a id="file-0299"></a>
+<a id="file-0312"></a>
 
-### 0299 — `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx`
+### 0312 — `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `127`
@@ -61505,9 +63160,9 @@ const Guides = ({
 export default Guides;
 ```
 
-<a id="file-0300"></a>
+<a id="file-0313"></a>
 
-### 0300 — `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx`
+### 0313 — `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `52`
@@ -61571,9 +63226,9 @@ const Mask = ({ width, height, className, style, maskColor, blur = 1 }: MaskProp
 export default Mask;
 ```
 
-<a id="file-0301"></a>
+<a id="file-0314"></a>
 
-### 0301 — `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+### 0314 — `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `149`
@@ -61734,9 +63389,9 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
 export default forwardRef<MoveableComponent, Props>(Moveable);
 ```
 
-<a id="file-0302"></a>
+<a id="file-0315"></a>
 
-### 0302 — `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx`
+### 0315 — `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `100`
@@ -61848,9 +63503,9 @@ const Padding = ({ basePdf, className, style, color, opacity = 0.25 }: PaddingPr
 export default Padding;
 ```
 
-<a id="file-0303"></a>
+<a id="file-0316"></a>
 
-### 0303 — `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+### 0316 — `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `138`
@@ -62000,9 +63655,9 @@ const Selecto = (props: Props) => {
 export default Selecto;
 ```
 
-<a id="file-0304"></a>
+<a id="file-0317"></a>
 
-### 0304 — `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx`
+### 0317 — `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `345`
@@ -62359,9 +64014,9 @@ export function computeSnapResult(
 }
 ```
 
-<a id="file-0305"></a>
+<a id="file-0318"></a>
 
-### 0305 — `src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx`
+### 0318 — `src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `167`
@@ -62540,9 +64195,9 @@ const CommentDialog = ({
 export default CommentDialog;
 ```
 
-<a id="file-0306"></a>
+<a id="file-0319"></a>
 
-### 0306 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx`
+### 0319 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `343`
@@ -62897,9 +64552,9 @@ const CommentsRail = ({
 export default CommentsRail;
 ```
 
-<a id="file-0307"></a>
+<a id="file-0320"></a>
 
-### 0307 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts`
+### 0320 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `44`
@@ -62955,9 +64610,9 @@ export const resolveRightSidebarContextHeader = (
 };
 ```
 
-<a id="file-0308"></a>
+<a id="file-0321"></a>
 
-### 0308 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx`
+### 0321 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `370`
@@ -63339,9 +64994,9 @@ const DocumentsRail = ({
 export default DocumentsRail;
 ```
 
-<a id="file-0309"></a>
+<a id="file-0322"></a>
 
-### 0309 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx`
+### 0322 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `110`
@@ -63463,9 +65118,9 @@ export const SidebarFooter = ({ children, className, ...props }: SectionProps) =
 );
 ```
 
-<a id="file-0310"></a>
+<a id="file-0323"></a>
 
-### 0310 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+### 0323 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `769`
@@ -64246,16 +65901,16 @@ const Sidebar = (props: RightSidebarProps) => {
 export default React.memo(Sidebar);
 ```
 
-<a id="file-0311"></a>
+<a id="file-0324"></a>
 
-### 0311 — `src/sisad-pdfme/ui/components/Designer/shared/accessPolicy.ts`
+### 0324 — `src/sisad-pdfme/ui/components/Designer/shared/accessPolicy.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `117`
-- **Tamaño original:** `3.5 KB`
-- **SHA1 corto:** `ac430bdeb6`
+- **Líneas:** `208`
+- **Tamaño original:** `6.8 KB`
+- **SHA1 corto:** `34f94d885b`
 - **Estado:** `completo`
-- **Símbolos detectados:** `export function: resolveDesignerSchemaAccessState`, `export function: canRunSchemaCommand`, `export function: isTransformable`, `export type/class: SchemaAccessContext`, `export type/class: SchemaAccessState`
+- **Símbolos detectados:** `export function: resolveDesignerSchemaAccessState`, `export function: schemaAccessDenyReason`, `export function: canRunSchemaCommand`, `export function: isTransformable`, `export type/class: SchemaAccessContext`, `export type/class: SchemaAccessCapability`, `export type/class: SchemaAccessDenyReason`, `export type/class: SchemaAccessState`
 
 ```typescript
 import { Schema } from '@sisad-pdfme/common';
@@ -64272,7 +65927,34 @@ export type SchemaAccessContext = {
     canEditStructure: boolean;
   };
   canEditStructure?: boolean;
+  /** `runtime.readonly` de la configuración: gana sobre cualquier otra fuente. */
+  runtimeReadonly?: boolean;
+  /**
+   * Filtro por recipient activo. Cuando está activo, un schema de otro owner
+   * no es editable aunque no tenga candado.
+   */
+  enforceOwnership?: boolean;
 };
+
+/** Capacidades cuyo rechazo debe poder explicarse. */
+export type SchemaAccessCapability = 'move' | 'resize' | 'edit' | 'delete';
+
+/**
+ * Motivo por el que se deniega una capacidad.
+ *
+ * Un control visible siempre debe tener handler o `reason`: sin esto la UI
+ * muestra botones inertes sin explicar por qué.
+ */
+export type SchemaAccessDenyReason =
+  | 'runtime-readonly'
+  | 'locked-by-other'
+  | 'schema-locked'
+  | 'schema-readonly'
+  | 'object-locked'
+  | 'not-owner'
+  | 'structure-locked'
+  | 'family-not-resizable'
+  | 'family-not-deletable';
 
 /**
  * Representa los permisos efectivos sobre un componente schema en la UI.
@@ -64287,6 +65969,8 @@ export type SchemaAccessState = {
   isDeletable: boolean;
   isLockedByOther: boolean;
   lockingActorId: string | null;
+  /** `null` cuando la capacidad está permitida. */
+  reasons: Record<SchemaAccessCapability, SchemaAccessDenyReason | null>;
 };
 
 /**
@@ -64294,6 +65978,32 @@ export type SchemaAccessState = {
  */
 type SchemaWithLock = Schema & {
   lockedByActorId?: string | null;
+  locked?: boolean;
+  readOnly?: boolean;
+  objectLocked?: boolean;
+  ownerRecipientId?: string | null;
+  ownerRecipientIds?: string[];
+};
+
+/**
+ * Primer motivo que aplica, en orden de precedencia.
+ *
+ * El orden importa: `runtime-readonly` gana sobre todo porque desactiva la
+ * edición entera, y el candado ajeno gana sobre las banderas propias del
+ * schema porque es una condición de colaboración.
+ */
+const firstReason = (
+  candidates: Array<[boolean, SchemaAccessDenyReason]>,
+): SchemaAccessDenyReason | null => candidates.find(([applies]) => applies)?.[1] ?? null;
+
+/** ¿El schema pertenece al actor activo? Sin owner declarado, es de todos. */
+const isOwnedByActor = (schema: SchemaWithLock, actorId?: string): boolean => {
+  const owners = [
+    ...(schema.ownerRecipientIds || []),
+    ...(schema.ownerRecipientId ? [schema.ownerRecipientId] : []),
+  ].filter(Boolean);
+  if (owners.length === 0) return true;
+  return Boolean(actorId) && owners.includes(actorId as string);
 };
 
 /**
@@ -64317,17 +66027,53 @@ export function resolveDesignerSchemaAccessState(
   const isLayout = family === 'layout';
   const isInteractive = family === 'interactive';
 
+  // 4. Fuentes de bloqueo que antes no se consultaban aquí y cada superficie
+  //    interpretaba por su cuenta.
+  const withLock = schema as SchemaWithLock;
+  const runtimeReadonly = ctx.runtimeReadonly === true;
+  const schemaLocked = withLock.locked === true;
+  const schemaReadOnly = withLock.readOnly === true;
+  const objectLocked = withLock.objectLocked === true;
+  const notOwner = ctx.enforceOwnership === true && !isOwnedByActor(withLock, ctx.activeActorId);
+
+  /** Motivos comunes a toda capacidad, en orden de precedencia. */
+  const commonReasons: Array<[boolean, SchemaAccessDenyReason]> = [
+    [runtimeReadonly, 'runtime-readonly'],
+    [isLockedByOther, 'locked-by-other'],
+    [schemaLocked, 'schema-locked'],
+    [objectLocked, 'object-locked'],
+    [notOwner, 'not-owner'],
+    [!canEditBase, 'structure-locked'],
+  ];
+
+  const reasons: Record<SchemaAccessCapability, SchemaAccessDenyReason | null> = {
+    move: firstReason(commonReasons),
+    resize: firstReason([...commonReasons, [isInteractive, 'family-not-resizable']]),
+    // La edición de contenido añade `readOnly`, que no impide mover ni borrar.
+    edit: firstReason([...commonReasons, [schemaReadOnly, 'schema-readonly']]),
+    delete: firstReason([...commonReasons, [isLayout, 'family-not-deletable']]),
+  };
+
   return {
     uid: schema.id,
     family,
     isSelectable: true, // Siempre seleccionable para inspección
-    isMovable: canEditBase && !isLockedByOther,
-    isResizable: canEditBase && !isLockedByOther && !isInteractive, // Firmas suelen tener ratio fijo
-    isEditable: canEditBase && !isLockedByOther,
-    isDeletable: canEditBase && !isLockedByOther && !isLayout, // Evitar borrar layout por error sin confirmación específica
+    isMovable: reasons.move === null,
+    isResizable: reasons.resize === null, // Firmas suelen tener ratio fijo
+    isEditable: reasons.edit === null,
+    isDeletable: reasons.delete === null, // Evitar borrar layout sin confirmación específica
     isLockedByOther,
     lockingActorId: lockedBy || null,
+    reasons,
   };
+}
+
+/** Motivo por el que una capacidad está denegada, o `null` si está permitida. */
+export function schemaAccessDenyReason(
+  access: SchemaAccessState,
+  capability: SchemaAccessCapability,
+): SchemaAccessDenyReason | null {
+  return access.reasons[capability];
 }
 
 /**
@@ -64377,9 +66123,9 @@ export function isTransformable(access: Pick<SchemaAccessState, 'isMovable' | 'i
 }
 ```
 
-<a id="file-0312"></a>
+<a id="file-0325"></a>
 
-### 0312 — `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts`
+### 0325 — `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `521`
@@ -64912,9 +66658,9 @@ const CORE_ACTIONS: SchemaActionDefinition[] = [
 registerActions(CORE_ACTIONS);
 ```
 
-<a id="file-0313"></a>
+<a id="file-0326"></a>
 
-### 0313 — `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts`
+### 0326 — `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `203`
@@ -65129,9 +66875,9 @@ export const clampDropPositionToPage = (
 });
 ```
 
-<a id="file-0314"></a>
+<a id="file-0327"></a>
 
-### 0314 — `src/sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle.tsx`
+### 0327 — `src/sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `108`
@@ -65251,9 +66997,9 @@ export const CatalogLayoutToggle = ({
 };
 ```
 
-<a id="file-0315"></a>
+<a id="file-0328"></a>
 
-### 0315 — `src/sisad-pdfme/ui/components/Designer/shared/className.ts`
+### 0328 — `src/sisad-pdfme/ui/components/Designer/shared/className.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `17`
@@ -65282,9 +67028,9 @@ export const resolveFirstClassSelector = (className: string | undefined, fallbac
 };
 ```
 
-<a id="file-0316"></a>
+<a id="file-0329"></a>
 
-### 0316 — `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+### 0329 — `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `143`
@@ -65439,9 +67185,9 @@ export const resolveSelectionRegion = ({
 export { normalizeRect };
 ```
 
-<a id="file-0317"></a>
+<a id="file-0330"></a>
 
-### 0317 — `src/sisad-pdfme/ui/components/Designer/shared/designerActionState.ts`
+### 0330 — `src/sisad-pdfme/ui/components/Designer/shared/designerActionState.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `189`
@@ -65642,9 +67388,9 @@ export const describeDisabledReason = (reason: DesignerActionState['reason']): s
 };
 ```
 
-<a id="file-0318"></a>
+<a id="file-0331"></a>
 
-### 0318 — `src/sisad-pdfme/ui/components/Designer/shared/DesignerContextSummary.tsx`
+### 0331 — `src/sisad-pdfme/ui/components/Designer/shared/DesignerContextSummary.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `97`
@@ -65753,9 +67499,9 @@ const DesignerContextSummary = ({
 export default React.memo(DesignerContextSummary);
 ```
 
-<a id="file-0319"></a>
+<a id="file-0332"></a>
 
-### 0319 — `src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts`
+### 0332 — `src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `168`
@@ -65935,9 +67681,175 @@ export class DesignerCoordinateService {
 }
 ```
 
-<a id="file-0320"></a>
+<a id="file-0333"></a>
 
-### 0320 — `src/sisad-pdfme/ui/components/Designer/shared/designerExtensions.ts`
+### 0333 — `src/sisad-pdfme/ui/components/Designer/shared/designerEffectCoordinator.ts`
+
+- **Lenguaje:** `typescript`
+- **Líneas:** `152`
+- **Tamaño original:** `4.7 KB`
+- **SHA1 corto:** `e19f666177`
+- **Estado:** `completo`
+- **Símbolos detectados:** `export type/class: DesignerEffectCoordinatorOptions`, `export type/class: DesignerEffectCoordinator`, `export const: createDesignerEffectCoordinator`
+
+```typescript
+/**
+ * Coordinador de efectos del Designer.
+ *
+ * Centraliza los efectos que hoy están repartidos: bloqueo de scroll del body,
+ * foco, anuncios accesibles y limpieza de suscripciones. Sin un dueño único
+ * aparecen dos fallos recurrentes:
+ *
+ * - **body bloqueado para siempre**: dos superficies bloquean el scroll y la
+ *   primera en cerrarse lo desbloquea, o ninguna lo hace al desmontar;
+ * - **foco perdido**: al cerrar un modal el foco se queda en el `body` en vez
+ *   de volver al control que lo abrió.
+ *
+ * Por eso el bloqueo es por token con refcount y el foco es una pila.
+ * `dispose()` libera todo, pase lo que pase: es la garantía de que ningún
+ * efecto sobrevive al desmontaje.
+ *
+ * No decide *cuándo* ocurre un efecto —eso es del reducer de interacción— solo
+ * lo ejecuta y lo revierte.
+ */
+
+export type DesignerEffectCoordinatorOptions = {
+  /** Inyectable para pruebas y para hosts con múltiples documentos. */
+  documentRef?: Document;
+};
+
+export type DesignerEffectCoordinator = {
+  lockBodyScroll(token: [REDACTED];
+  unlockBodyScroll(token: [REDACTED];
+  isBodyLocked(): boolean;
+  activeLockTokens(): string[];
+  captureFocus(): void;
+  restoreFocus(): void;
+  focusDepth(): number;
+  announce(message: string, politeness?: 'polite' | 'assertive'): void;
+  register(cleanup: () => void): () => void;
+  pendingCleanups(): number;
+  dispose(): void;
+};
+
+const ANNOUNCER_ATTRIBUTE = 'data-sisad-pdfme-announcer';
+
+export const createDesignerEffectCoordinator = (
+  options: DesignerEffectCoordinatorOptions = {},
+): DesignerEffectCoordinator => {
+  const doc = options.documentRef ?? (typeof document !== 'undefined' ? document : undefined);
+
+  /** Tokens vivos de bloqueo. Set, no contador: desbloquear dos veces es idempotente. */
+  const lockTokens = new Set<string>();
+  /** Pila de foco: soporta modales anidados. */
+  const focusStack: Array<Element | null> = [];
+  const cleanups = new Set<() => void>();
+  /** Valor original del `overflow` para restaurarlo tal cual estaba. */
+  let previousOverflow: string | null = null;
+  let announcer: HTMLElement | null = null;
+
+  const applyBodyLock = () => {
+    if (!doc?.body) return;
+    if (lockTokens.size > 0) {
+      if (previousOverflow === null) {
+        previousOverflow = doc.body.style.overflow;
+        doc.body.style.overflow = 'hidden';
+      }
+      return;
+    }
+    if (previousOverflow !== null) {
+      doc.body.style.overflow = previousOverflow;
+      previousOverflow = null;
+    }
+  };
+
+  const ensureAnnouncer = (): HTMLElement | null => {
+    if (!doc?.body) return null;
+    if (announcer?.isConnected) return announcer;
+    announcer = doc.createElement('div');
+    announcer.setAttribute(ANNOUNCER_ATTRIBUTE, 'true');
+    announcer.setAttribute('aria-live', 'polite');
+    announcer.setAttribute('aria-atomic', 'true');
+    // Fuera de pantalla pero accesible a lectores: `display:none` no se anuncia.
+    announcer.style.cssText =
+      'position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0';
+    doc.body.appendChild(announcer);
+    return announcer;
+  };
+
+  return {
+    lockBodyScroll(token) {
+      lockTokens.add(token);
+      applyBodyLock();
+    },
+
+    unlockBodyScroll(token) {
+      lockTokens.delete(token);
+      applyBodyLock();
+    },
+
+    isBodyLocked: () => lockTokens.size > 0,
+    activeLockTokens: () => [...lockTokens],
+
+    captureFocus() {
+      focusStack.push(doc?.activeElement ?? null);
+    },
+
+    restoreFocus() {
+      const target = focusStack.pop();
+      if (!target) return;
+      // Un elemento desconectado ya no puede recibir foco: devolverlo al body
+      // sería peor que dejarlo donde está.
+      if (!target.isConnected) return;
+      (target as HTMLElement).focus?.();
+    },
+
+    focusDepth: () => focusStack.length,
+
+    announce(message, politeness = 'polite') {
+      const node = ensureAnnouncer();
+      if (!node) return;
+      node.setAttribute('aria-live', politeness);
+      // Reasignar el mismo texto no dispara anuncio; se limpia primero.
+      node.textContent = '';
+      node.textContent = message;
+    },
+
+    register(cleanup) {
+      cleanups.add(cleanup);
+      return () => {
+        cleanups.delete(cleanup);
+      };
+    },
+
+    pendingCleanups: () => cleanups.size,
+
+    dispose() {
+      cleanups.forEach((cleanup) => {
+        try {
+          cleanup();
+        } catch {
+          // Una limpieza fallida no puede impedir las demás ni dejar el body
+          // bloqueado: por eso se traga aquí y se sigue.
+        }
+      });
+      cleanups.clear();
+
+      lockTokens.clear();
+      applyBodyLock();
+
+      focusStack.length = 0;
+
+      if (announcer?.isConnected) announcer.remove();
+      announcer = null;
+    },
+  };
+};
+```
+
+<a id="file-0334"></a>
+
+### 0334 — `src/sisad-pdfme/ui/components/Designer/shared/designerExtensions.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `98`
@@ -66047,9 +67959,9 @@ export type DesignerRuntimeExtensions = {
 };
 ```
 
-<a id="file-0321"></a>
+<a id="file-0335"></a>
 
-### 0321 — `src/sisad-pdfme/ui/components/Designer/shared/designerInteractionReset.ts`
+### 0335 — `src/sisad-pdfme/ui/components/Designer/shared/designerInteractionReset.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `85`
@@ -66146,9 +68058,9 @@ export const resetDesignerTransientInteractionState = ({
 };
 ```
 
-<a id="file-0322"></a>
+<a id="file-0336"></a>
 
-### 0322 — `src/sisad-pdfme/ui/components/Designer/shared/designerLabels.ts`
+### 0336 — `src/sisad-pdfme/ui/components/Designer/shared/designerLabels.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `113`
@@ -66273,9 +68185,9 @@ export const getCatalogLabel = (label: unknown, type: unknown, source?: 'builtin
 };
 ```
 
-<a id="file-0323"></a>
+<a id="file-0337"></a>
 
-### 0323 — `src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts`
+### 0337 — `src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `158`
@@ -66445,9 +68357,9 @@ export const buildDesignerUiMap = (options: unknown): ResolvedDesignerUiMap => {
 };
 ```
 
-<a id="file-0324"></a>
+<a id="file-0338"></a>
 
-### 0324 — `src/sisad-pdfme/ui/components/Designer/shared/interactionExclusions.ts`
+### 0338 — `src/sisad-pdfme/ui/components/Designer/shared/interactionExclusions.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `50`
@@ -66509,9 +68421,9 @@ export const stopDesignerControlEvent = (event: {
 };
 ```
 
-<a id="file-0325"></a>
+<a id="file-0339"></a>
 
-### 0325 — `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts`
+### 0339 — `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `258`
@@ -66781,9 +68693,208 @@ export const unlockDesignerSidebarScroll = (release: SidebarScrollLockRelease | 
 };
 ```
 
-<a id="file-0326"></a>
+<a id="file-0340"></a>
 
-### 0326 — `src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts`
+### 0340 — `src/sisad-pdfme/ui/components/Designer/shared/interactionReducer.ts`
+
+- **Lenguaje:** `typescript`
+- **Líneas:** `185`
+- **Tamaño original:** `6.2 KB`
+- **SHA1 corto:** `ca5e3626da`
+- **Estado:** `completo`
+- **Símbolos detectados:** `export type/class: TransformKind`, `export type/class: InteractionMachineState`, `export type/class: InteractionRejectionReason`, `export type/class: InteractionEvent`, `export const: initialInteractionMachineState`, `export const: interactionReducer`, `export const: canApplyInteractionEvent`
+
+```typescript
+/**
+ * Máquina de estados de interacción del Designer.
+ *
+ * `interactionState.ts` deriva una fase a partir de señales sueltas del Canvas.
+ * Eso describe el presente pero no protege las transiciones: no hay forma de
+ * rechazar «empezar a arrastrar con un modal abierto» ni de explicar por qué se
+ * rechazó.
+ *
+ * Este reducer añade esa capa sin duplicar la derivación: el cálculo de fase
+ * sigue siendo `deriveInteractionState`, y aquí vive únicamente el estado
+ * acumulado y los guards.
+ *
+ * Reglas que fija:
+ *
+ * - un modal **bloquea** transform y edición, pero **no** borra la selección;
+ * - una transición inválida no muta el estado y deja `lastRejection` con motivo;
+ * - el reducer es puro: mismo estado + mismo evento ⇒ mismo resultado.
+ */
+import {
+  deriveInteractionState,
+  type InteractionPhase,
+  type InteractionState,
+} from './interactionState.js';
+
+export type TransformKind = 'drag' | 'resize' | 'rotate';
+
+export type InteractionMachineState = {
+  /** Fase derivada; `modal` gana sobre cualquier otra. */
+  phase: InteractionPhase | 'modal';
+  selectionCount: number;
+  hoverSchemaId: string | null;
+  editing: boolean;
+  transform: TransformKind | null;
+  modalOpen: boolean;
+  /** Último intento rechazado por un guard. `null` tras una transición válida. */
+  lastRejection: { event: InteractionEvent['type']; reason: InteractionRejectionReason } | null;
+};
+
+export type InteractionRejectionReason =
+  | 'modal-open'
+  | 'no-selection'
+  | 'requires-single-selection'
+  | 'already-transforming'
+  | 'no-transform-in-progress'
+  | 'not-editing';
+
+export type InteractionEvent =
+  | { type: 'hover.enter'; schemaId: string }
+  | { type: 'hover.leave' }
+  | { type: 'selection.set'; count: number }
+  | { type: 'edit.start' }
+  | { type: 'edit.commit' }
+  | { type: 'edit.cancel' }
+  | { type: 'transform.start'; kind: TransformKind }
+  | { type: 'transform.end' }
+  | { type: 'modal.open' }
+  | { type: 'modal.close' }
+  | { type: 'reset' };
+
+export const initialInteractionMachineState: InteractionMachineState = {
+  phase: 'idle',
+  selectionCount: 0,
+  hoverSchemaId: null,
+  editing: false,
+  transform: null,
+  modalOpen: false,
+  lastRejection: null,
+};
+
+/**
+ * Fase efectiva del estado acumulado.
+ *
+ * Delega en `deriveInteractionState` para no tener dos definiciones de fase.
+ * `modal` no existe allí porque no es una señal del Canvas sino del shell.
+ */
+const resolvePhase = (state: Omit<InteractionMachineState, 'phase' | 'lastRejection'>) => {
+  if (state.modalOpen) return 'modal' as const;
+
+  const derived: InteractionState = deriveInteractionState({
+    // La derivación solo mira la longitud, así que basta un array del tamaño.
+    activeElements: new Array(state.selectionCount).fill(null) as HTMLElement[],
+    hoveringSchemaId: state.hoverSchemaId,
+    editing: state.editing,
+    isDragging: state.transform === 'drag',
+    isResizing: state.transform === 'resize',
+    isRotating: state.transform === 'rotate',
+  });
+
+  return derived.phase;
+};
+
+const commit = (
+  next: Omit<InteractionMachineState, 'phase' | 'lastRejection'>,
+): InteractionMachineState => ({
+  ...next,
+  phase: resolvePhase(next),
+  lastRejection: null,
+});
+
+const reject = (
+  state: InteractionMachineState,
+  event: InteractionEvent['type'],
+  reason: InteractionRejectionReason,
+): InteractionMachineState => ({ ...state, lastRejection: { event, reason } });
+
+/**
+ * Aplica un evento de interacción.
+ *
+ * Devuelve siempre un estado nuevo; si el guard rechaza, el estado funcional es
+ * idéntico y solo cambia `lastRejection`.
+ */
+export const interactionReducer = (
+  state: InteractionMachineState,
+  event: InteractionEvent,
+): InteractionMachineState => {
+  const base = {
+    selectionCount: state.selectionCount,
+    hoverSchemaId: state.hoverSchemaId,
+    editing: state.editing,
+    transform: state.transform,
+    modalOpen: state.modalOpen,
+  };
+
+  switch (event.type) {
+    case 'hover.enter':
+      // El hover sigue registrándose bajo modal: es información, no acción.
+      return commit({ ...base, hoverSchemaId: event.schemaId });
+
+    case 'hover.leave':
+      return commit({ ...base, hoverSchemaId: null });
+
+    case 'selection.set': {
+      const count = Math.max(0, Math.trunc(event.count));
+      // Cambiar la selección cierra cualquier edición en curso: se estaba
+      // editando otro schema.
+      return commit({
+        ...base,
+        selectionCount: count,
+        editing: count === 1 ? state.editing : false,
+      });
+    }
+
+    case 'edit.start':
+      if (state.modalOpen) return reject(state, event.type, 'modal-open');
+      if (state.selectionCount === 0) return reject(state, event.type, 'no-selection');
+      if (state.selectionCount > 1) return reject(state, event.type, 'requires-single-selection');
+      if (state.transform) return reject(state, event.type, 'already-transforming');
+      return commit({ ...base, editing: true });
+
+    case 'edit.commit':
+    case 'edit.cancel':
+      if (!state.editing) return reject(state, event.type, 'not-editing');
+      return commit({ ...base, editing: false });
+
+    case 'transform.start':
+      if (state.modalOpen) return reject(state, event.type, 'modal-open');
+      if (state.selectionCount === 0) return reject(state, event.type, 'no-selection');
+      if (state.transform) return reject(state, event.type, 'already-transforming');
+      // Transformar cancela la edición inline en curso, no la selección.
+      return commit({ ...base, transform: event.kind, editing: false });
+
+    case 'transform.end':
+      if (!state.transform) return reject(state, event.type, 'no-transform-in-progress');
+      return commit({ ...base, transform: null });
+
+    case 'modal.open':
+      // Abrir un modal conserva selección y hover; solo congela la interacción.
+      return commit({ ...base, modalOpen: true, transform: null, editing: false });
+
+    case 'modal.close':
+      return commit({ ...base, modalOpen: false });
+
+    case 'reset':
+      return { ...initialInteractionMachineState };
+
+    default:
+      return state;
+  }
+};
+
+/** ¿El evento sería aceptado en este estado? Útil para habilitar controles. */
+export const canApplyInteractionEvent = (
+  state: InteractionMachineState,
+  event: InteractionEvent,
+): boolean => interactionReducer(state, event).lastRejection === null;
+```
+
+<a id="file-0341"></a>
+
+### 0341 — `src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `62`
@@ -66857,9 +68968,9 @@ export const deriveInteractionState = (input: InteractionStateInput): Interactio
 };
 ```
 
-<a id="file-0327"></a>
+<a id="file-0342"></a>
 
-### 0327 — `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy.ts`
+### 0342 — `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `46`
@@ -66917,9 +69028,9 @@ export const isCanvasTransformExcludedTarget = (target: EventTarget | null | und
 };
 ```
 
-<a id="file-0328"></a>
+<a id="file-0343"></a>
 
-### 0328 — `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver.ts`
+### 0343 — `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `136`
@@ -67067,9 +69178,9 @@ export function shouldIgnoreForSelecto(result: InteractionTargetResult): boolean
 }
 ```
 
-<a id="file-0329"></a>
+<a id="file-0344"></a>
 
-### 0329 — `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts`
+### 0344 — `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `74`
@@ -67155,9 +69266,9 @@ export const ANTD_POPUP_SELECTORS = [
 export const buildSelectorList = (selectors: readonly string[]): string => selectors.join(', ');
 ```
 
-<a id="file-0330"></a>
+<a id="file-0345"></a>
 
-### 0330 — `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts`
+### 0345 — `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `290`
@@ -67459,9 +69570,9 @@ export const formatShortcutForPlatform = (
 registerShortcuts(DESIGNER_SHORTCUTS);
 ```
 
-<a id="file-0331"></a>
+<a id="file-0346"></a>
 
-### 0331 — `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts`
+### 0346 — `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `568`
@@ -68041,9 +70152,9 @@ const common = {
 export const DESIGNER_SHORTCUTS: ShortcutDefinition[] = Object.values(common);
 ```
 
-<a id="file-0332"></a>
+<a id="file-0347"></a>
 
-### 0332 — `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts`
+### 0347 — `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `38`
@@ -68093,9 +70204,9 @@ export const installPassiveTouchListenerGuard = () => {
 };
 ```
 
-<a id="file-0333"></a>
+<a id="file-0348"></a>
 
-### 0333 — `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts`
+### 0348 — `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `143`
@@ -68250,9 +70361,9 @@ export function resolveAllRecipientColors(
 }
 ```
 
-<a id="file-0334"></a>
+<a id="file-0349"></a>
 
-### 0334 — `src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts`
+### 0349 — `src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `210`
@@ -68474,9 +70585,9 @@ export const resolveSelectionOwner = (
 };
 ```
 
-<a id="file-0335"></a>
+<a id="file-0350"></a>
 
-### 0335 — `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts`
+### 0350 — `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `62`
@@ -68550,9 +70661,9 @@ export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown>
 };
 ```
 
-<a id="file-0336"></a>
+<a id="file-0351"></a>
 
-### 0336 — `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts`
+### 0351 — `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `580`
@@ -69144,9 +71255,9 @@ export const duplicateSchemas = (schemas: SchemaForUI[], context: SchemaClipboar
   pasteSchemasFromClipboard(copySchemasToClipboard(schemas, context.pageIndex), context);
 ```
 
-<a id="file-0337"></a>
+<a id="file-0352"></a>
 
-### 0337 — `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts`
+### 0352 — `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `101`
@@ -69259,9 +71370,9 @@ export const filterSchemasByCollisionScope = (
 };
 ```
 
-<a id="file-0338"></a>
+<a id="file-0353"></a>
 
-### 0338 — `src/sisad-pdfme/ui/components/Designer/shared/schemaFamilies.ts`
+### 0353 — `src/sisad-pdfme/ui/components/Designer/shared/schemaFamilies.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `43`
@@ -69316,9 +71427,9 @@ export function resolveDesignerSchemaFamily(schema: Schema): SchemaFamily {
 }
 ```
 
-<a id="file-0339"></a>
+<a id="file-0354"></a>
 
-### 0339 — `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts`
+### 0354 — `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `115`
@@ -69445,9 +71556,9 @@ export const schemaIsOptionBased = (schemaType: string): boolean =>
 import { isOptionGroupType } from '../../../../schemas/options/optionGroupLayout.js';
 ```
 
-<a id="file-0340"></a>
+<a id="file-0355"></a>
 
-### 0340 — `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts`
+### 0355 — `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `266`
@@ -69725,9 +71836,9 @@ export const resolveSchemaInteractionState = (
 };
 ```
 
-<a id="file-0341"></a>
+<a id="file-0356"></a>
 
-### 0341 — `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts`
+### 0356 — `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `106`
@@ -69845,9 +71956,9 @@ export const resolveSchemaToneSurface = (
 };
 ```
 
-<a id="file-0342"></a>
+<a id="file-0357"></a>
 
-### 0342 — `src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts`
+### 0357 — `src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `49`
@@ -69908,9 +72019,9 @@ export const createUniqueSchemaVariableName = (
 };
 ```
 
-<a id="file-0343"></a>
+<a id="file-0358"></a>
 
-### 0343 — `src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts`
+### 0358 — `src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `34`
@@ -69956,9 +72067,9 @@ export const isSelectoExcludedTarget = (target: EventTarget | null | undefined):
 export const getSelectoTargetSelector = (): string => `.${SELECTABLE_CLASSNAME}`;
 ```
 
-<a id="file-0344"></a>
+<a id="file-0359"></a>
 
-### 0344 — `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts`
+### 0359 — `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `957`
@@ -70927,9 +73038,9 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 };
 ```
 
-<a id="file-0345"></a>
+<a id="file-0360"></a>
 
-### 0345 — `src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts`
+### 0360 — `src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `117`
@@ -71058,9 +73169,9 @@ export const isSameDocumentPageSelection = (activeElements: HTMLElement[]): bool
   resolveSelectionPageScope(activeElements).isSinglePage;
 ```
 
-<a id="file-0346"></a>
+<a id="file-0361"></a>
 
-### 0346 — `src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts`
+### 0361 — `src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `87`
@@ -71159,9 +73270,9 @@ export function isAdditiveSelectionIntent(intent: SelectionIntent): boolean {
 }
 ```
 
-<a id="file-0347"></a>
+<a id="file-0362"></a>
 
-### 0347 — `src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx`
+### 0362 — `src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `64`
@@ -71237,9 +73348,9 @@ export const SidebarCollapseHandle = ({
 };
 ```
 
-<a id="file-0348"></a>
+<a id="file-0363"></a>
 
-### 0348 — `src/sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState.tsx`
+### 0363 — `src/sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `81`
@@ -71332,9 +73443,9 @@ export const SidebarEmptyState = ({
 };
 ```
 
-<a id="file-0349"></a>
+<a id="file-0364"></a>
 
-### 0349 — `src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx`
+### 0364 — `src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `93`
@@ -71439,9 +73550,9 @@ export const SidebarRail = ({
 };
 ```
 
-<a id="file-0350"></a>
+<a id="file-0365"></a>
 
-### 0350 — `src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts`
+### 0365 — `src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `29`
@@ -71482,9 +73593,9 @@ export const filterMoveableTargets = (elements: HTMLElement[]): HTMLElement[] =>
   elements.filter(isMoveableTarget);
 ```
 
-<a id="file-0351"></a>
+<a id="file-0366"></a>
 
-### 0351 — `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts`
+### 0366 — `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `309`
@@ -71805,9 +73916,9 @@ export const useDesignerKeyboardShortcuts = (params: UseDesignerKeyboardShortcut
 };
 ```
 
-<a id="file-0352"></a>
+<a id="file-0367"></a>
 
-### 0352 — `src/sisad-pdfme/ui/components/Designer/shared/useDesignerUiConfig.ts`
+### 0367 — `src/sisad-pdfme/ui/components/Designer/shared/useDesignerUiConfig.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `22`
@@ -71841,9 +73952,9 @@ export const useDesignerUiConfig = (): ResolvedDesignerUiMap => {
 };
 ```
 
-<a id="file-0353"></a>
+<a id="file-0368"></a>
 
-### 0353 — `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts`
+### 0368 — `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `81`
@@ -71936,9 +74047,9 @@ export const useResponsiveDensity = <T extends HTMLElement>(
 };
 ```
 
-<a id="file-0354"></a>
+<a id="file-0369"></a>
 
-### 0354 — `src/sisad-pdfme/ui/components/Designer/shared/visibilityConfig.ts`
+### 0369 — `src/sisad-pdfme/ui/components/Designer/shared/visibilityConfig.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `45`
@@ -71995,9 +74106,158 @@ export const shouldShowInspectorSection = (
 };
 ```
 
-<a id="file-0355"></a>
+<a id="file-0370"></a>
 
-### 0355 — `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx`
+### 0370 — `src/sisad-pdfme/ui/components/Designer/shared/zoomContract.ts`
+
+- **Lenguaje:** `typescript`
+- **Líneas:** `135`
+- **Tamaño original:** `5.1 KB`
+- **SHA1 corto:** `42bda9b61a`
+- **Estado:** `completo`
+- **Símbolos detectados:** `export type/class: ViewportFitMode`, `export type/class: FitInput`, `export const: MANUAL_MIN_ZOOM`, `export const: FIT_MIN_ZOOM`, `export const: AUTO_FIT_WIDTH_BREAKPOINT`, `export const: resolveAutoFitMode`, `export const: clampZoom`, `export const: computeFitZoom`, `export const: fitFitsWithinCanvas`, `export const: formatZoomPercent`
+
+```typescript
+/**
+ * Contrato de zoom y ajuste de viewport.
+ *
+ * La aritmética vivía embebida en `Designer/index.tsx`, así que la toolbar, el
+ * controller y los atajos podían divergir y no era comprobable sin montar el
+ * Designer entero. Aquí es pura y se prueba sola.
+ *
+ * Hallazgo que corrige (baseline COREUX-001, BASE-01): el ajuste aplicaba el
+ * mismo suelo de zoom que el zoom manual (0.25), de modo que en 390 y 768 px la
+ * página A4 no cabía y el Canvas arrancaba con scroll horizontal obligatorio.
+ * «Ajustar» debe poder bajar más que «alejar a mano»: son dos intenciones
+ * distintas y ahora tienen dos límites distintos.
+ */
+
+export type ViewportFitMode = 'fit-width' | 'fit-page' | 'actual-size' | 'manual' | 'auto';
+
+/** Suelo del zoom manual: por debajo el documento deja de ser utilizable. */
+export const MANUAL_MIN_ZOOM = 0.25;
+
+/**
+ * Suelo del ajuste automático.
+ *
+ * Más bajo a propósito: si el usuario pide «ajustar a la página», el resultado
+ * debe caber aunque implique una escala pequeña. Clamparlo al mínimo manual
+ * produce exactamente el bug que documenta BASE-01.
+ */
+export const FIT_MIN_ZOOM = 0.05;
+
+/** Ancho de viewport por debajo del cual `auto` prefiere ajustar a lo ancho. */
+export const AUTO_FIT_WIDTH_BREAKPOINT = 980;
+
+export type FitInput = {
+  /** Tamaño de la página en unidades de template. */
+  pageSize: { width: number; height: number };
+  /** Espacio utilizable del canvas, en píxeles. */
+  canvas: { width: number; height: number };
+  /** Píxeles por unidad de template a zoom 1. */
+  unitScale: number;
+  /** Escala base actual (scale / zoomLevel). */
+  baseScale: number;
+  /** Techo de zoom del entorno. */
+  maxZoom: number;
+  /** Ancho del viewport, para resolver `auto`. */
+  viewportWidth: number;
+};
+
+const isPositiveFinite = (value: number): boolean => Number.isFinite(value) && value > 0;
+
+/** Resuelve `auto` al modo concreto que corresponde al viewport. */
+export const resolveAutoFitMode = (
+  mode: ViewportFitMode,
+  viewportWidth: number,
+): Exclude<ViewportFitMode, 'auto'> => {
+  if (mode !== 'auto') return mode;
+  return viewportWidth <= AUTO_FIT_WIDTH_BREAKPOINT ? 'fit-width' : 'fit-page';
+};
+
+/** Limita el zoom al rango del modo. `manual` usa un suelo más alto que el ajuste. */
+export const clampZoom = (
+  zoom: number,
+  maxZoom: number,
+  mode: 'manual' | 'fit' = 'manual',
+): number => {
+  const min = mode === 'fit' ? FIT_MIN_ZOOM : MANUAL_MIN_ZOOM;
+  const ceiling = isPositiveFinite(maxZoom) ? maxZoom : min;
+  return Math.max(min, Math.min(ceiling, zoom));
+};
+
+/**
+ * Calcula el zoom que corresponde a un modo de ajuste.
+ *
+ * @returns `null` cuando faltan datos para decidir; el caller debe conservar el
+ * zoom actual en lugar de inventar uno.
+ */
+export const computeFitZoom = (mode: ViewportFitMode, input: FitInput): number | null => {
+  const { pageSize, canvas, unitScale, baseScale, maxZoom, viewportWidth } = input;
+
+  if (!isPositiveFinite(pageSize?.width) || !isPositiveFinite(pageSize?.height)) return null;
+  if (!isPositiveFinite(canvas?.width) || !isPositiveFinite(canvas?.height)) return null;
+  if (!isPositiveFinite(unitScale) || !isPositiveFinite(baseScale)) return null;
+
+  const resolved = resolveAutoFitMode(mode, viewportWidth);
+  if (resolved === 'manual') return null;
+
+  const pageWidthPx = Math.max(1, pageSize.width * unitScale);
+  const pageHeightPx = Math.max(1, pageSize.height * unitScale);
+  const widthScale = canvas.width / pageWidthPx;
+  const heightScale = canvas.height / pageHeightPx;
+
+  let targetScale: number;
+  if (resolved === 'fit-width') targetScale = widthScale;
+  else if (resolved === 'fit-page') targetScale = Math.min(widthScale, heightScale);
+  else targetScale = 1; // actual-size
+
+  if (!isPositiveFinite(targetScale)) return null;
+
+  const zoom = targetScale / Math.max(0.0001, baseScale);
+  // `actual-size` es una posición de zoom manual; el ajuste usa su propio suelo.
+  const clamped = clampZoom(zoom, maxZoom, resolved === 'actual-size' ? 'manual' : 'fit');
+  return Number.isFinite(clamped) ? clamped : null;
+};
+
+/**
+ * ¿El ajuste cupo de verdad?
+ *
+ * Si el zoom quedó topado por los límites, la página sigue desbordando y la UI
+ * debería decirlo en vez de anunciar un ajuste que no ocurrió.
+ */
+export const fitFitsWithinCanvas = (mode: ViewportFitMode, input: FitInput): boolean => {
+  const zoom = computeFitZoom(mode, input);
+  if (zoom === null) return false;
+
+  const resolved = resolveAutoFitMode(mode, input.viewportWidth);
+  const scale = zoom * input.baseScale;
+  const width = input.pageSize.width * input.unitScale * scale;
+  const height = input.pageSize.height * input.unitScale * scale;
+
+  const fitsWidth = width <= input.canvas.width + 0.5;
+  const fitsHeight = height <= input.canvas.height + 0.5;
+
+  if (resolved === 'fit-width') return fitsWidth;
+  if (resolved === 'fit-page') return fitsWidth && fitsHeight;
+  return true;
+};
+
+/**
+ * Porcentaje mostrado en la UI.
+ *
+ * Siempre devuelve un valor válido: un indicador que dice `NaN%` o `0%` es peor
+ * que uno que dice `100%`.
+ */
+export const formatZoomPercent = (zoom: number): string => {
+  const normalized = isPositiveFinite(zoom) ? zoom : 1;
+  return `${Math.round(normalized * 100)}%`;
+};
+```
+
+<a id="file-0371"></a>
+
+### 0371 — `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `43`
@@ -72052,9 +74312,9 @@ const ShortcutHelpButton = ({
 export default React.memo(ShortcutHelpButton);
 ```
 
-<a id="file-0356"></a>
+<a id="file-0372"></a>
 
-### 0356 — `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx`
+### 0372 — `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `171`
@@ -72237,9 +74497,9 @@ const ShortcutHelpPanel = ({
 export default React.memo(ShortcutHelpPanel);
 ```
 
-<a id="file-0357"></a>
+<a id="file-0373"></a>
 
-### 0357 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx`
+### 0373 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `609`
@@ -72860,9 +75120,9 @@ const CanvasContextMenu = ({
 export default CanvasContextMenu;
 ```
 
-<a id="file-0358"></a>
+<a id="file-0374"></a>
 
-### 0358 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx`
+### 0374 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `2133`
@@ -75007,9 +77267,9 @@ export const buildCanvasContextMenuGroups = (
 };
 ```
 
-<a id="file-0359"></a>
+<a id="file-0375"></a>
 
-### 0359 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx`
+### 0375 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `430`
@@ -75451,9 +77711,9 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
 export default React.memo(CanvasOverlayManager);
 ```
 
-<a id="file-0360"></a>
+<a id="file-0376"></a>
 
-### 0360 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx`
+### 0376 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `167`
@@ -75632,9 +77892,9 @@ export default function CanvasStateOverlay({
 }
 ```
 
-<a id="file-0361"></a>
+<a id="file-0377"></a>
 
-### 0361 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx`
+### 0377 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `332`
@@ -75978,9 +78238,9 @@ const CommentsOverlay = ({
 export default React.memo(CommentsOverlay);
 ```
 
-<a id="file-0362"></a>
+<a id="file-0378"></a>
 
-### 0362 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts`
+### 0378 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `120`
@@ -76112,9 +78372,9 @@ export const resolveAnchoredFloatingSurfacePosition = (
 };
 ```
 
-<a id="file-0363"></a>
+<a id="file-0379"></a>
 
-### 0363 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx`
+### 0379 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `117`
@@ -76243,9 +78503,9 @@ const GroupOptionFloatingAction = ({
 export default React.memo(GroupOptionFloatingAction);
 ```
 
-<a id="file-0364"></a>
+<a id="file-0380"></a>
 
-### 0364 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx`
+### 0380 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `230`
@@ -76487,9 +78747,9 @@ export type { InlineEditSession };
 export default InlineEditOverlay;
 ```
 
-<a id="file-0365"></a>
+<a id="file-0381"></a>
 
-### 0365 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx`
+### 0381 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `66`
@@ -76567,9 +78827,9 @@ const InlineMetricsOverlay = ({ bounds }: InlineMetricsOverlayProps) => {
 export default InlineMetricsOverlay;
 ```
 
-<a id="file-0366"></a>
+<a id="file-0382"></a>
 
-### 0366 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts`
+### 0382 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `62`
@@ -76643,9 +78903,9 @@ export const shouldDisplayBlockingMask = (
 };
 ```
 
-<a id="file-0367"></a>
+<a id="file-0383"></a>
 
-### 0367 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts`
+### 0383 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `180`
@@ -76837,9 +79097,9 @@ export const extractClientPoint = (event: Event | null | undefined): PointLike |
 };
 ```
 
-<a id="file-0368"></a>
+<a id="file-0384"></a>
 
-### 0368 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx`
+### 0384 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `69`
@@ -76920,9 +79180,9 @@ const SchemaDragPreview = ({
 export default SchemaDragPreview;
 ```
 
-<a id="file-0369"></a>
+<a id="file-0385"></a>
 
-### 0369 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
+### 0385 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `139`
@@ -77073,9 +79333,9 @@ const SchemaDropCommitFlash = ({
 export default SchemaDropCommitFlash;
 ```
 
-<a id="file-0370"></a>
+<a id="file-0386"></a>
 
-### 0370 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx`
+### 0386 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `80`
@@ -77167,9 +79427,9 @@ const SchemaDropPlaceholder = ({
 export default SchemaDropPlaceholder;
 ```
 
-<a id="file-0371"></a>
+<a id="file-0387"></a>
 
-### 0371 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx`
+### 0387 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `347`
@@ -77528,9 +79788,9 @@ const SelectionContextToolbar = ({
 export default SelectionContextToolbar;
 ```
 
-<a id="file-0372"></a>
+<a id="file-0388"></a>
 
-### 0372 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts`
+### 0388 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `227`
@@ -77769,9 +80029,9 @@ export const resolveNonOverlappingDropPosition = ({
 }: SmartPlacementInput) => resolveDropPosition(input, () => null);
 ```
 
-<a id="file-0373"></a>
+<a id="file-0389"></a>
 
-### 0373 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx`
+### 0389 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `56`
@@ -77839,9 +80099,9 @@ const SnapFeedbackOverlay = ({ bounds, snapLines }: SnapFeedbackOverlayProps) =>
 export default SnapFeedbackOverlay;
 ```
 
-<a id="file-0374"></a>
+<a id="file-0390"></a>
 
-### 0374 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts`
+### 0390 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `69`
@@ -77922,9 +80182,9 @@ export const useFloatingToolbarPosition = (
 };
 ```
 
-<a id="file-0375"></a>
+<a id="file-0391"></a>
 
-### 0375 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx`
+### 0391 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `92`
@@ -78028,9 +80288,9 @@ const AlignWidget = (props: PropPanelWidgetProps & { selectionCommands?: Selecti
 export default AlignWidget;
 ```
 
-<a id="file-0376"></a>
+<a id="file-0392"></a>
 
-### 0376 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx`
+### 0392 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `118`
@@ -78160,9 +80420,9 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
 export default ButtonGroupWidget;
 ```
 
-<a id="file-0377"></a>
+<a id="file-0393"></a>
 
-### 0377 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx`
+### 0393 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `170`
@@ -78344,9 +80604,9 @@ const CompactConfigPanel = ({
 export default CompactConfigPanel;
 ```
 
-<a id="file-0378"></a>
+<a id="file-0394"></a>
 
-### 0378 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx`
+### 0394 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `132`
@@ -78490,9 +80750,9 @@ const DetailFormSection = ({
 export default DetailFormSection;
 ```
 
-<a id="file-0379"></a>
+<a id="file-0395"></a>
 
-### 0379 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx`
+### 0395 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx`
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `193`
@@ -78697,9 +80957,9 @@ const DetailHeaderCard = ({
 export default DetailHeaderCard;
 ```
 
-<a id="file-0380"></a>
+<a id="file-0396"></a>
 
-### 0380 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts`
+### 0396 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `143`
@@ -78854,15 +81114,15 @@ export const buildDetailHeaderSummary = (
 };
 ```
 
-<a id="file-0381"></a>
+<a id="file-0397"></a>
 
-### 0381 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts`
+### 0397 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts`
 
 - **Lenguaje:** `typescript`
 - **Líneas:** `657`
 - **Tamaño original:** `21.8 KB`
 - **SHA1 corto:** `a692f352e3`
-- **Estado:** `completo`
+- **Estado:** `truncado 6.8 KB`
 - **Símbolos detectados:** `export type/class: DetailInspectorSectionKey`, `export type/class: DetailInspectorSection`, `export type/class: InspectorProfile`, `export const: getInspectorProfile`, `export const: getInspectorVisibleDetailSections`, `export const: getInspectorDefaultOpenSections`, `export const: buildInspectorSections`, `export const: getSectionWidgets`
 
 ```typescript
@@ -79004,480 +81264,11 @@ const addFieldToSection = (
 const createSectionField = (
   title: string,
   type: PropPanelSchema['type'],
-  extra: Omit<PropPanelSchema, 'title' | 'type'> = {},
-): PropPanelSchema => ({
-  title,
-  type,
-  ...extra,
-});
+  extra: O
 
-const DEFAULT_BOUNDED_NUMBER_FIELD_SPAN = 12;
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 15494 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-const hasAnyTruthyInspectorField = (
-  record: Record<string, unknown> | null | undefined,
-  fieldKeys: readonly string[],
-): boolean => Boolean(record && fieldKeys.some((fieldKey) => Boolean(record[fieldKey])));
-
-const hasAnyFilledInspectorArrayField = (
-  record: Record<string, unknown> | null | undefined,
-  fieldKeys: readonly string[],
-): boolean =>
-  Boolean(
-    record &&
-      fieldKeys.some(
-        (fieldKey) => Array.isArray(record[fieldKey]) && (record[fieldKey] as unknown[]).length > 0,
-      ),
-  );
-
-/**
- * Crea un campo numérico acotado por página/padding y validación externa.
- */
-const createBoundedNumberField = (
-  title: string,
-  max: number,
-  validatePosition: (_: unknown, value: number, fieldName: string) => boolean,
-  typedI18n: (key: string) => string,
-  fieldName: 'x' | 'y' | 'width' | 'height',
-  extra: Omit<PropPanelSchema, 'title' | 'type'> = {},
-): PropPanelSchema => {
-  const { span = DEFAULT_BOUNDED_NUMBER_FIELD_SPAN, props, rules, ...restExtra } = extra;
-
-  return createSectionField(title, 'number', {
-    ...restExtra,
-    widget: 'inputNumber',
-    required: true,
-    span,
-    props: { min: 0, max, ...(props || {}) },
-    rules: [
-      {
-        validator: (_: unknown, value: number) => validatePosition(_, value, fieldName),
-        message: typedI18n('validation.outOfBounds'),
-      },
-      ...(rules || []),
-    ],
-  });
-};
-
-/**
- * Reemplaza widgets `color` legacy por el widget `nativeColor` soportado.
- */
-const replaceColorWidget = (schemaNode: unknown): unknown => {
-  if (!isRecord(schemaNode)) {
-    return schemaNode;
-  }
-  const nextNode: Record<string, unknown> = { ...schemaNode };
-
-  if (nextNode.widget === 'color') {
-    nextNode.widget = 'nativeColor';
-  }
-
-  if (isRecord(nextNode.properties)) {
-    const propsObj = nextNode.properties;
-    const nextProps: Record<string, unknown> = {};
-    Object.entries(propsObj).forEach(([propKey, propValue]) => {
-      nextProps[propKey] = replaceColorWidget(propValue);
-    });
-    nextNode.properties = nextProps;
-  }
-
-  return nextNode;
-};
-
-/**
- * Construye las secciones visibles del inspector para el schema activo.
- *
- * Combina preset por familia, contrato del inspector, plugin props, metadata del
- * schema y reglas de visibilidad para entregar una lista canónica filtrada.
- *
- * @param params Contexto completo del schema activo y límites de página.
- * @returns Secciones del DetailView listas para renderizar.
- */
-export const buildInspectorSections = ({
-  activeSchemaType,
-  activeSchema,
-  schemaConfig,
-  typedI18n,
-  defaultSchema,
-  pluginProps,
-  inspectorConfig,
-  pageSize,
-  paddingTop,
-  paddingRight,
-  paddingBottom,
-  paddingLeft,
-  maxWidth,
-  maxHeight,
-  validateUniqueSchemaName,
-  validatePosition,
-  visibility,
-}: BuildInspectorSchemasParams) => {
-  const schemaProfile = createSchemaConfigurationProfile(activeSchemaType);
-  const familyPreset = schemaProfile.inspectorPreset;
-  const semanticFamily = schemaProfile.semanticFamily;
-  const inspectorContract = resolveInspectorContract(activeSchemaType);
-  const activeSchemaRecord = asRecord(activeSchema);
-  const hasSchemaBindings = Boolean(
-    schemaConfig?.persistence?.enabled ||
-      schemaConfig?.api?.enabled ||
-      schemaConfig?.form?.enabled ||
-      schemaConfig?.prefill?.enabled ||
-      (schemaConfig?.integrations?.length || 0) > 0,
-  );
-  const hasSchemaCollaboration =
-    Boolean(schemaConfig?.collaboration) ||
-    hasAnyTruthyInspectorField(activeSchemaRecord, [
-      'ownerRecipientId',
-      'ownerRecipientIds',
-      'ownerRecipientName',
-      'ownerColor',
-      'userColor',
-      'createdBy',
-      'lastModifiedBy',
-      'lockedBy',
-      'lock',
-      'state',
-    ]);
-  const hasSchemaComments =
-    Boolean(activeSchemaRecord?.commentsCount) ||
-    hasAnyFilledInspectorArrayField(activeSchemaRecord, ['comments', 'commentAnchors', 'commentsAnchors']);
-  const hasSchemaHelpContent =
-    hasMeaningfulInspectorValue(activeSchemaRecord?.tooltip) ||
-    hasMeaningfulInspectorValue(activeSchemaRecord?.helpText) ||
-    hasMeaningfulInspectorValue(activeSchemaRecord?.helptext) ||
-    hasMeaningfulInspectorValue(activeSchemaRecord?.description) ||
-    hasMeaningfulInspectorValue(activeSchemaRecord?.helpDescription);
-  const hasExplicitOpacity =
-    activeSchemaRecord?.opacity !== undefined ||
-    (typeof (defaultSchema as { opacity?: unknown }).opacity !== 'undefined' &&
-      (defaultSchema as { opacity?: unknown }).opacity !== null);
-  const contractSupportsConnections = contractSectionEnabled(inspectorContract, 'dataBindings');
-  const contractSupportsCollaboration = contractSectionEnabled(inspectorContract, 'collaboration');
-  const shouldShowConnections =
-    Boolean(inspectorConfig?.supportsConnections ?? inspectorConfig?.includeConnections ?? familyPreset.supportsConnections) ||
-    contractSupportsConnections ||
-    hasSchemaBindings;
-  const shouldShowCollaboration =
-    Boolean(inspectorConfig?.supportsCollaboration ?? inspectorConfig?.includeCollaboration) ||
-    contractSupportsCollaboration ||
-    hasSchemaCollaboration;
-  const shouldShowComments = hasSchemaComments;
-  const fieldSections = {
-    ...familyPreset.propertyMap,
-    ...(inspectorConfig?.propertyMap || {}),
-    ...(inspectorConfig?.fieldSections || {}),
-  };
-  const pluginFieldKeys = new Set(
-    Object.keys(pluginProps).map((fieldKey) => fieldKey.trim().toLowerCase()),
-  );
-
-  const sectionProperties: Record<LegacyDetailSection, Record<string, PropPanelSchema>> = {
-    general: {},
-    options: {},
-    layout: {},
-    style: {},
-    data: {},
-    connections: {},
-    help: {},
-    collaboration: {},
-    validation: {},
-    advanced: {},
-    comments: {},
-  };
-
-  addFieldToSection(
-    sectionProperties,
-    'general',
-    'name',
-    createSectionField('Nombre del campo', 'string', {
-      required: true,
-      span: DETAIL_FIELD_SPAN.half,
-      rules: [
-        {
-          validator: validateUniqueSchemaName,
-          message: typedI18n('validation.uniqueName'),
-        },
-      ],
-      props: { autoComplete: 'off' },
-    }),
-  );
-
-  addFieldToSection(
-    sectionProperties,
-    'general',
-    'inlineEditActions',
-    createSectionField('', 'void', {
-      widget: 'InlineEditActionsWidget',
-      span: DETAIL_FIELD_SPAN.half,
-    }),
-  );
-
-  addFieldToSection(
-    sectionProperties,
-    'layout',
-    'align',
-    createSectionField(typedI18n('align'), 'void', {
-      widget: 'AlignWidget',
-    }),
-  );
-
-  addFieldToSection(sectionProperties, 'layout', 'position', {
-    type: 'object',
-    column: 2,
-    properties: {
-      x: createBoundedNumberField('X mm', pageSize.width - paddingRight, validatePosition, typedI18n, 'x', {
-        span: DETAIL_FIELD_SPAN.half,
-        props: { min: paddingLeft },
-      }),
-      y: createBoundedNumberField('Y mm', pageSize.height - paddingBottom, validatePosition, typedI18n, 'y', {
-        span: DETAIL_FIELD_SPAN.half,
-        props: { min: paddingTop },
-      }),
-    },
-  });
-
-  addFieldToSection(
-    sectionProperties,
-    'layout',
-    'width',
-    createBoundedNumberField('Ancho mm', maxWidth, validatePosition, typedI18n, 'width'),
-  );
-
-  addFieldToSection(
-    sectionProperties,
-    'layout',
-    'height',
-    createBoundedNumberField('Alto mm', maxHeight, validatePosition, typedI18n, 'height'),
-  );
-
-  addFieldToSection(
-    sectionProperties,
-    'layout',
-    'rotate',
-    createSectionField('Rotación', 'number', {
-      widget: 'inputNumber',
-      disabled: defaultSchema.rotate === undefined,
-      default: 0,
-      max: 360,
-      props: { min: 0 },
-      span: DETAIL_FIELD_SPAN.compact,
-    }),
-  );
-
-  if (shouldShowConnections) {
-    addFieldToSection(
-      sectionProperties,
-      'connections',
-      'schemaConnections',
-      createSectionField('Conexiones', 'void', {
-        widget: 'SchemaConnectionsWidget',
-      }),
-    );
-  }
-
-  if (shouldShowCollaboration) {
-    addFieldToSection(
-      sectionProperties,
-      'collaboration',
-      'collaboration',
-      createSectionField('Colaboración', 'void', {
-        widget: 'SchemaCollaborationWidget',
-      }),
-    );
-  }
-
-  if (shouldShowComments) {
-    addFieldToSection(
-      sectionProperties,
-      'comments',
-      'fieldComments',
-      createSectionField('Comentarios', 'void', {
-        widget: 'SchemaFieldCommentsWidget',
-      }),
-    );
-  }
-
-  if (hasExplicitOpacity) {
-    addFieldToSection(
-      sectionProperties,
-      'style',
-      'opacity',
-      createSectionField(typedI18n('opacity'), 'number', {
-        widget: 'inputNumber',
-        disabled: defaultSchema.opacity === undefined,
-        props: { step: 0.1, min: 0, max: 1 },
-        span: DETAIL_FIELD_SPAN.half,
-      }),
-    );
-  }
-
-  // Fallbacks sintetizados cuando el plugin no declara el campo ni su inverso.
-  // Cada concepto cae en su única sección (docs/03-designer/12-inspector-taxonomy.md):
-  // editable/readOnly → Interacción; required/mandatory → Reglas de llenado.
-  // Un campo declarado por el plugin siempre gana, para no duplicar el control.
-  if (!pluginFieldKeys.has('editable') && !pluginFieldKeys.has('readonly')) {
-    addFieldToSection(
-      sectionProperties,
-      'data',
-      'editable',
-      createSectionField(typedI18n('editable'), 'boolean', { span: DETAIL_FIELD_SPAN.half }),
-    );
-  }
-  if (!pluginFieldKeys.has('required') && !pluginFieldKeys.has('mandatory')) {
-    addFieldToSection(
-      sectionProperties,
-      'validation',
-      'required',
-      createSectionField(typedI18n('required'), 'boolean', { span: DETAIL_FIELD_SPAN.half }),
-    );
-  }
-
-  const isOptionsSectionField = (fieldKey: string, fieldSchema: PropPanelSchema) => {
-    const normalizedFieldKey = fieldKey.trim().toLowerCase();
-    const normalizedWidget = String(fieldSchema.widget || '').trim().toLowerCase();
-    return (
-      normalizedFieldKey === 'optionscontainer' ||
-      normalizedFieldKey === 'options' ||
-      normalizedFieldKey.includes('option') ||
-      normalizedWidget.includes('option')
-    );
-  };
-
-  Object.entries(pluginProps).forEach(([fieldKey, fieldSchema]) => {
-    if (/^-+$/.test(fieldKey)) return;
-    const normalizedFieldKey = fieldKey.trim().toLowerCase();
-    if (normalizedFieldKey === 'mandatory' && pluginFieldKeys.has('required')) return;
-    if (normalizedFieldKey === 'readonly' && pluginFieldKeys.has('editable')) return;
-    const nextFieldSchema =
-      activeSchemaType === 'attachment' && normalizedFieldKey === 'allowreplace'
-        ? {
-            ...fieldSchema,
-            title: 'Reemplazo',
-          }
-        : fieldSchema;
-    const baseSectionKey =
-      normalizedFieldKey === 'rotate'
-        ? 'layout'
-        : normalizedFieldKey === 'opacity'
-          ? 'style'
-          : (fieldSections[fieldKey] || 'advanced');
-    const sectionKey =
-      contractSectionEnabled(inspectorContract, 'options') && isOptionsSectionField(fieldKey, fieldSchema)
-        ? 'options'
-        : (baseSectionKey as LegacyDetailSection);
-    addFieldToSection(sectionProperties, sectionKey, fieldKey, nextFieldSchema);
-  });
-
-  const canonicalSectionProperties: Record<CanonicalDetailSection, Record<string, PropPanelSchema>> = {
-    identity: { ...sectionProperties.general },
-    options: { ...sectionProperties.options },
-    validation: { ...sectionProperties.validation },
-    box: { ...sectionProperties.layout },
-    appearance: { ...sectionProperties.style },
-    behavior: { ...sectionProperties.data },
-    help: { ...sectionProperties.help },
-    dataBindings: { ...sectionProperties.connections },
-    collaboration: { ...sectionProperties.collaboration },
-    comments: { ...sectionProperties.comments },
-    advanced: { ...sectionProperties.advanced },
-  };
-
-  const inspectorVisibility = visibility?.inspector;
-  if (inspectorVisibility?.visible === false) return [];
-
-  const visibleFieldsBySchemaType =
-    inspectorVisibility?.fieldsBySchemaType?.[activeSchemaType] ??
-    inspectorVisibility?.fieldsBySchemaType?.[activeSchemaType.toLowerCase()] ??
-    {};
-
-  const isFieldVisible = (fieldKey: string): boolean => {
-    if (inspectorVisibility?.fields?.[fieldKey] === false) return false;
-    if (visibleFieldsBySchemaType[fieldKey] === false) return false;
-    return true;
-  };
-
-  const filteredCanonicalSectionProperties: Record<CanonicalDetailSection, Record<string, PropPanelSchema>> =
-    Object.fromEntries(
-      Object.entries(canonicalSectionProperties).map(([sectionKey, fields]) => [
-        sectionKey,
-        Object.fromEntries(
-          Object.entries(fields).filter(([fieldKey]) => isFieldVisible(fieldKey)),
-        ),
-      ]),
-    ) as Record<CanonicalDetailSection, Record<string, PropPanelSchema>>;
-
-  const sectionContext = {
-    isMultiUser: shouldShowCollaboration,
-    hasComments: hasSchemaComments,
-    hasAnchors: hasSchemaComments,
-    hasDataBindings: hasSchemaBindings,
-    hasHelpContent: hasSchemaHelpContent,
-    hasCollaborationContent: hasSchemaCollaboration,
-    hasAdvancedOverrides:
-      hasMeaningfulInspectorValue(activeSchemaRecord?.schemaUid) ||
-      hasMeaningfulInspectorValue(activeSchemaRecord?.documentId) ||
-      hasMeaningfulInspectorValue(activeSchemaRecord?.pageNumber) ||
-      hasMeaningfulInspectorValue(activeSchemaRecord?.metadata) ||
-      hasMeaningfulInspectorValue(activeSchemaRecord?.debug) ||
-      hasMeaningfulInspectorValue(activeSchemaRecord?.__designer),
-    supportsComments: shouldShowComments,
-    supportsCollaboration: shouldShowCollaboration,
-    supportsDataBindings: shouldShowConnections,
-    supportsAppearance: true,
-    supportsBehavior: true,
-    supportsBox: true,
-  };
-
-  const visibilitySchema = (activeSchema || (defaultSchema as SchemaForUI)) as SchemaForUI;
-  const detailProfile = getInspectorProfile(activeSchemaType, activeSchema);
-  const visibleSections = detailProfile.visibleSections.filter((sectionKey) => {
-    return shouldShowInspectorSection(sectionKey, visibility);
-  });
-  const defaultOpenSections = new Set(detailProfile.defaultOpenSections);
-
-  const resolveSectionMeta = (sectionKey: CanonicalDetailSection) => {
-    const base = SECTION_META[sectionKey];
-    if (activeSchemaType === 'attachment') {
-      if (sectionKey === 'behavior') {
-        return {
-          ...base,
-          title: 'Reglas del archivo',
-          description: 'Tipo, tamaño y reemplazo.',
-        };
-      }
-      if (sectionKey === 'box') {
-        return {
-          ...base,
-          description: 'Posición, tamaño y rotación.',
-        };
-      }
-    }
-    if (sectionKey === 'appearance' && activeSchemaType === 'attachment') {
-      return {
-        ...base,
-        title: 'Formato',
-        description: 'Estilo visual y opacidad.',
-      };
-    }
-    return base;
-  };
-
-  const sections = visibleSections.map((sectionKey) => {
-    const sectionFields = filteredCanonicalSectionProperties[sectionKey];
-    if (!sectionFields || Object.keys(sectionFields).length === 0) return null;
-    const schema = replaceColorWidget({
-      type: 'object',
-      column: 2,
-      properties: sectionFields,
-    }) as PropPanelSchema;
-    const defaultCollapsed = !defaultOpenSections.has(sectionKey);
-
-    return {
-      ...resolveSectionMeta(sectionKey),
-      defaultCollapsed,
-      schema,
-      canonicalKey: sectionKey,
-    } as DetailInspectorSection & { canonicalKey: CanonicalDetailSection };
-  }).filter((section): section is DetailInspectorSection & { canonicalKey: CanonicalDetailSection } => Boolean(section)).filter((section) =>
+lter((section): section is DetailInspectorSection & { canonicalKey: CanonicalDetailSection } => Boolean(section)).filter((section) =>
     shouldRenderDetailSection({
       section: section.canonicalKey,
       schema: visibilitySchema,
@@ -79523,1724 +81314,6 @@ export const getSectionWidgets = (
   _schema?: SchemaForUI | Record<string, unknown> | null,
   _context?: unknown,
 ): string[] => sectionWidgetsFromSection(section);
-```
-
-<a id="file-0382"></a>
-
-### 0382 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx`
-
-- **Lenguaje:** `tsx`
-- **Líneas:** `270`
-- **Tamaño original:** `9.1 KB`
-- **SHA1 corto:** `8db9567b1a`
-- **Estado:** `completo`
-- **Símbolos detectados:** `component/const: SectionText`, `component/const: SectionHead`, `component/const: DetailSectionCard`
-
-```tsx
-/**
- * DetailSectionCard — contenedor visual colapsable para secciones del inspector.
- *
- * Provee estructura, test ids estables, encabezado accesible, estado colapsado y
- * slots de leading/trailing/header/footer. Debe mantenerse genérico para servir a
- * todas las secciones del DetailView.
- */
-import React from 'react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { ChevronDown } from 'lucide-react';
-import { mergeClassNames } from '../../shared/className.js';
-
-/**
- * Props del contenedor de sección del inspector.
- */
-type DetailSectionCardProps = {
-  sectionKey?: string;
-  title: string;
-  description?: string;
-  children: React.ReactNode;
-  collapsible?: boolean;
-  defaultCollapsed?: boolean;
-  collapsed?: boolean;
-  onCollapsedChange?: (collapsed: boolean) => void;
-  leading?: React.ReactNode;
-  trailing?: React.ReactNode;
-  header?: React.ReactNode;
-  footer?: React.ReactNode;
-  bodyClassName?: string;
-  className?: string;
-  resetToken?: unknown;
-};
-
-/** Canonical section key → stable test id (contract for e2e specs). */
-/**
- * Mapa de sección canónica a test id estable para Playwright/Vitest.
- */
-const SECTION_TESTIDS: Record<string, string> = {
-  identity: 'detail-section-info',
-  options: 'detail-section-options',
-  validation: 'detail-section-fill-rules',
-  box: 'detail-section-layout',
-  appearance: 'detail-section-format',
-  behavior: 'detail-section-behavior',
-  dataBindings: 'detail-section-data',
-  help: 'detail-section-help',
-  collaboration: 'detail-section-assignment',
-  comments: 'detail-section-comments',
-  advanced: 'detail-section-technical',
-};
-
-/**
- * Resuelve el test id público de una sección.
- */
-const resolveSectionTestId = (sectionKey?: string): string | undefined =>
-  sectionKey ? SECTION_TESTIDS[sectionKey] || `detail-section-${sectionKey}` : undefined;
-
-/** Props del bloque textual del header de sección. */
-type SectionTextProps = {
-  title: string;
-  description?: string;
-};
-
-/**
- * Clases compartidas por las cuatro variantes de encabezado.
- *
- * El encabezado es parte de la superficie de la sección, no una tarjeta dentro
- * de otra: sin borde ni sombra propios. `border-0` es obligatorio y no opcional:
- * el proyecto desactiva el preflight de Tailwind (`tailwind.config.js`), así que
- * un `<button>` sin borde declarado hereda el `2px outset` del navegador.
- */
-const SECTION_HEAD_BASE =
-  'flex min-h-[1.875rem] w-full items-center justify-between gap-1.5 rounded-[0.85rem] border-0 bg-transparent px-2 py-1 text-left';
-
-/** Añadidos cuando el encabezado es interactivo (sección colapsable). */
-const SECTION_HEAD_INTERACTIVE =
-  'group appearance-none transition-colors duration-150 hover:bg-slate-100/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50';
-
-/**
- * Renderiza título y descripción de sección con truncado compacto.
- */
-const SectionText = ({ title, description }: SectionTextProps) => (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head-main', 'min-w-0 flex-1 space-y-0')}>
-      <div
-        className={mergeClassNames(
-          DESIGNER_CLASSNAME + 'detail-section-card-title',
-          'truncate text-[0.72rem] font-semibold leading-tight text-slate-950',
-        )}
-        data-has-description={description ? 'true' : 'false'}
-      >
-        {title}
-      </div>
-    {description ? (
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'truncate text-[0.62rem] leading-tight text-slate-600')}>
-        {description}
-      </div>
-    ) : null}
-  </div>
-);
-
-/** Props del encabezado colapsable/no colapsable. */
-type SectionHeadProps = SectionTextProps & {
-  collapsible: boolean;
-  collapsed: boolean;
-  bodyId: string;
-  onToggle: () => void;
-  leading?: React.ReactNode;
-  trailing?: React.ReactNode;
-  header?: React.ReactNode;
-};
-
-/**
- * Renderiza el encabezado de sección y su control de colapso.
- */
-const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, description, leading, trailing, header }: SectionHeadProps) => {
-  const toggleIcon = (
-    <span
-      className={mergeClassNames(
-        DESIGNER_CLASSNAME + 'detail-section-card-toggle',
-        'ml-0.5 inline-flex h-4 w-4 flex-none items-center justify-center rounded-md text-slate-400 transition-[transform,color] duration-200 group-hover:text-slate-600',
-        !collapsed && 'rotate-180',
-      )}
-      aria-hidden="true"
-    >
-      <ChevronDown size={12} strokeWidth={2.25} />
-    </span>
-  );
-
-  if (header) {
-    if (!collapsible) {
-      return (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', SECTION_HEAD_BASE)}>
-          {header}
-        </div>
-      );
-    }
-
-    return (
-      <button
-        type="button"
-        className={mergeClassNames(
-          DESIGNER_CLASSNAME + 'detail-section-card-head',
-          SECTION_HEAD_BASE,
-          SECTION_HEAD_INTERACTIVE,
-        )}
-        aria-expanded={!collapsed}
-        aria-controls={`${bodyId}-body`}
-        aria-label={`${collapsed ? 'Expandir' : 'Colapsar'} sección ${title}`}
-        onClick={onToggle}
-      >
-        {header}
-        {toggleIcon}
-      </button>
-    );
-  }
-
-  if (!collapsible) {
-    return (
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', SECTION_HEAD_BASE)}>
-        {leading ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-leading', 'flex-none')}>{leading}</div> : null}
-        <SectionText title={title} description={description} />
-        {trailing ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-trailing', 'flex-none')}>{trailing}</div> : null}
-      </div>
-    );
-  }
-
-  return (
-    <button
-      type="button"
-      className={mergeClassNames(
-        DESIGNER_CLASSNAME + 'detail-section-card-head',
-        SECTION_HEAD_BASE,
-        SECTION_HEAD_INTERACTIVE,
-      )}
-      aria-expanded={!collapsed}
-      aria-controls={`${bodyId}-body`}
-      aria-label={`${collapsed ? 'Expandir' : 'Colapsar'} sección ${title}`}
-      onClick={onToggle}
-    >
-      {leading ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-leading', 'flex-none')}>{leading}</div> : null}
-      <SectionText title={title} description={description} />
-      {trailing ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-trailing', 'flex-none')}>{trailing}</div> : null}
-      {toggleIcon}
-    </button>
-  );
-};
-
-/**
- * Card colapsable usada por cada sección del DetailView.
- *
- * @param props Configuración visual y contenido de la sección.
- * @returns Contenedor semántico de sección.
- */
-const DetailSectionCard = ({
-  sectionKey,
-  title,
-  description,
-  children,
-  collapsible = true,
-  defaultCollapsed = false,
-  collapsed: controlledCollapsed,
-  onCollapsedChange,
-  leading,
-  trailing,
-  header,
-  footer,
-  bodyClassName,
-  className,
-  resetToken,
-}: DetailSectionCardProps) => {
-  const [collapsed, setCollapsed] = React.useState(() => defaultCollapsed);
-  const resolvedCollapsed = typeof controlledCollapsed === 'boolean' ? controlledCollapsed : collapsed;
-  const bodyId = `${sectionKey || title}`.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-
-  React.useEffect(() => {
-    setCollapsed(defaultCollapsed);
-  }, [defaultCollapsed, resetToken]);
-
-  const setNextCollapsed = (next: boolean) => {
-    if (typeof controlledCollapsed !== 'boolean') {
-      setCollapsed(next);
-    }
-    onCollapsedChange?.(next);
-  };
-
-  return (
-    <section
-      className={mergeClassNames(
-        DESIGNER_CLASSNAME + 'detail-section-card',
-        // Sin borde: la sección se separa del panel por su fondo y una sombra
-        // muy suave, no por una línea. Mantiene la superficie única del §6 del
-        // contrato del inspector.
-        'overflow-hidden rounded-[0.9rem] border-0 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.06)]',
-        className,
-      )}
-      data-section={sectionKey}
-      data-testid={resolveSectionTestId(sectionKey)}
-      data-collapsible={collapsible ? 'true' : 'false'}
-      data-collapsed={resolvedCollapsed ? 'true' : 'false'}>
-      <SectionHead
-        collapsible={collapsible}
-        collapsed={resolvedCollapsed}
-        bodyId={bodyId}
-        onToggle={() => setNextCollapsed(!resolvedCollapsed)}
-        title={title}
-        description={description}
-        leading={leading}
-        trailing={trailing}
-        header={header}
-      />
-      <div
-        id={`${bodyId}-body`}
-        className={mergeClassNames(
-          DESIGNER_CLASSNAME + 'detail-section-card-body',
-          // Colapsada, el cuerpo no debe reservar padding: si no, cada sección
-          // cerrada suma varios píxeles muertos bajo su título.
-          resolvedCollapsed ? 'h-0 overflow-hidden p-0' : 'px-2 pb-2 pt-0.5',
-          bodyClassName,
-        )}
-        aria-hidden={resolvedCollapsed ? 'true' : 'false'}
-        data-collapsed={resolvedCollapsed ? 'true' : 'false'}
-      >
-        {resolvedCollapsed ? null : children}
-      </div>
-      {footer ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-footer', 'mt-px px-1 pb-[0.1875rem]')}>{footer}</div> : null}
-    </section>
-  );
-};
-
-export default DetailSectionCard;
-```
-
-<a id="file-0383"></a>
-
-### 0383 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts`
-
-- **Lenguaje:** `typescript`
-- **Líneas:** `595`
-- **Tamaño original:** `19.0 KB`
-- **SHA1 corto:** `cdf43dc916`
-- **Estado:** `completo`
-- **Símbolos detectados:** `export function: shouldRenderDetailSection`, `export type/class: CanonicalDetailSection`, `export type/class: LegacyDetailSection`, `export type/class: DetailProfile`, `export const: LEGACY_TO_CANONICAL_DETAIL_SECTION`, `export const: CANONICAL_DETAIL_SECTION_ORDER`, `export const: CANONICAL_DETAIL_SECTION_LABELS`, `export const: hasMeaningfulInspectorValue`, `export const: getDetailProfile`, `export const: toCanonicalDetailSection`, `export const: sortCanonicalDetailSections`
-
-```typescript
-/**
- * detailSectionTaxonomy — taxonomía canónica de secciones del DetailView.
- *
- * Mapea nombres legacy a secciones actuales, define orden/labels y decide si una
- * sección debe renderizarse según tipo de schema, familia semántica, campos,
- * widgets y señales de contenido real.
- */
-import type { SchemaForUI } from '@sisad-pdfme/common';
-import {
-  resolveInspectorFamily,
-  type InspectorFamily,
-  type SchemaSemanticFamily,
-} from '../../../../../schemas/schemaFamilies.js';
-import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
-import { normalizeText as normalizeTextRaw } from '../../../../../shared/text.js';
-
-/**
- * Secciones canónicas actuales del DetailView.
- */
-export type CanonicalDetailSection =
-  | 'identity'
-  | 'options'
-  | 'validation'
-  | 'behavior'
-  | 'box'
-  | 'appearance'
-  | 'help'
-  | 'dataBindings'
-  | 'collaboration'
-  | 'comments'
-  | 'advanced';
-
-/**
- * Secciones legacy aceptadas para compatibilidad con plugins existentes.
- */
-export type LegacyDetailSection =
-  | 'general'
-  | 'options'
-  | 'layout'
-  | 'style'
-  | 'data'
-  | 'connections'
-  | 'help'
-  | 'validation'
-  | 'collaboration'
-  | 'comments'
-  | 'advanced';
-
-/**
- * Mapa de normalización desde secciones legacy a secciones canónicas.
- */
-export const LEGACY_TO_CANONICAL_DETAIL_SECTION = {
-  general: 'identity',
-  options: 'options',
-  layout: 'box',
-  style: 'appearance',
-  data: 'behavior',
-  connections: 'dataBindings',
-  help: 'help',
-  validation: 'behavior',
-  collaboration: 'collaboration',
-  comments: 'comments',
-  advanced: 'advanced',
-} as const satisfies Record<LegacyDetailSection, CanonicalDetailSection>;
-
-/**
- * Orden visual estable del inspector.
- */
-export const CANONICAL_DETAIL_SECTION_ORDER = [
-  'identity',
-  'options',
-  'validation',
-  'behavior',
-  'box',
-  'appearance',
-  'help',
-  'dataBindings',
-  'collaboration',
-  'comments',
-  'advanced',
-] as const satisfies readonly CanonicalDetailSection[];
-
-/**
- * Labels y descripciones por sección canónica.
- */
-export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { title: string; description: string; defaultCollapsed?: boolean }> = {
-  identity: {
-    title: 'Información del campo',
-    description: 'Nombre visible y metadatos.',
-    defaultCollapsed: false,
-  },
-  options: {
-    title: 'Opciones',
-    description: 'Valores, orden y selección del campo.',
-    defaultCollapsed: true,
-  },
-  validation: {
-    title: 'Reglas de llenado',
-    description: 'Reglas y restricciones del valor.',
-    defaultCollapsed: true,
-  },
-  box: {
-    title: 'Ubicación y tamaño',
-    description: 'Posición, tamaño y rotación.',
-    defaultCollapsed: false,
-  },
-  appearance: {
-    title: 'Formato',
-    description: 'Estilo visual y opacidad.',
-    defaultCollapsed: true,
-  },
-  behavior: {
-    title: 'Interacción',
-    description: 'Edición y visibilidad.',
-    defaultCollapsed: true,
-  },
-  help: {
-    title: 'Ayuda del campo',
-    description: 'Texto de ayuda y descripción.',
-    defaultCollapsed: true,
-  },
-  dataBindings: {
-    title: 'Datos y conexiones',
-    description: 'Persistencia, JSON y API.',
-    defaultCollapsed: true,
-  },
-  collaboration: {
-    title: 'Asignación y bloqueo',
-    description: 'Permisos, estado y auditoría.',
-    defaultCollapsed: true,
-  },
-  comments: {
-    title: 'Comentarios',
-    description: 'Hilos y referencias.',
-    defaultCollapsed: true,
-  },
-  advanced: {
-    title: 'Técnico',
-    description: 'IDs y metadata de depuración.',
-    defaultCollapsed: true,
-  },
-};
-
-const normalizeLowerText = (value: unknown) => normalizeTextRaw(value).toLowerCase();
-
-const normalizeDetailSchemaType = (schemaType?: string) => normalizeLowerText(schemaType);
-const EMPTY_TEXT_VALUES = new Set(['', '-', '—', '–', 'n/a', 'na', 'null', 'undefined']);
-
-/** Determina si metadata del inspector contiene un valor visible significativo. */
-export const hasMeaningfulInspectorValue = (value: unknown): boolean => {
-  if (Array.isArray(value)) {
-    return value.some((entry) => hasMeaningfulInspectorValue(entry));
-  }
-
-  if (isRecord(value)) {
-    return Object.values(value).some((entry) => hasMeaningfulInspectorValue(entry));
-  }
-
-  if (typeof value === 'number' || typeof value === 'boolean') {
-    return true;
-  }
-
-  if (typeof value !== 'string') {
-    return false;
-  }
-
-  const normalized = value.trim().toLowerCase();
-  return normalized.length > 0 && !EMPTY_TEXT_VALUES.has(normalized);
-};
-
-/**
- * Única lista de tipos que sobrevive en este módulo: la casilla suelta es la
- * excepción documentada dentro de la familia `choice` (no tiene lista de
- * opciones). El resto de la clasificación vive en `resolveInspectorFamily`.
- */
-const CHECKBOX_TYPES = new Set(['checkbox']);
-
-/**
- * Perfil de visibilidad del inspector para un tipo de schema.
- */
-export type DetailProfile = {
-  schemaType: string;
-  visibleSections: CanonicalDetailSection[];
-  defaultOpenSections: CanonicalDetailSection[];
-};
-
-/**
- * Factory de perfil de detalle.
- */
-const createDetailProfile = (schemaType: string, visibleSections: CanonicalDetailSection[], defaultOpenSections: CanonicalDetailSection[]): DetailProfile => ({
-  schemaType,
-  visibleSections,
-  defaultOpenSections,
-});
-
-const DEFAULT_DETAIL_SECTION_VISIBILITY: CanonicalDetailSection[] = [
-  'identity',
-  'box',
-  'appearance',
-  'behavior',
-  'help',
-  'dataBindings',
-  'collaboration',
-  'comments',
-  'advanced',
-];
-
-/** Secciones transversales que ve cualquier familia. */
-const SHARED_SECTIONS: CanonicalDetailSection[] = [
-  'identity',
-  'behavior',
-  'box',
-  'appearance',
-  'help',
-  'dataBindings',
-  'collaboration',
-  'comments',
-  'advanced',
-];
-
-/**
- * Matriz canónica sección × familia de inspector.
- *
- * Fuente única de verdad: `docs/03-designer/12-inspector-taxonomy.md` §3.
- * `visible` se ordena por `CANONICAL_DETAIL_SECTION_ORDER`; `open` conserva el
- * orden de lectura de cada familia (qué mira primero quien edita ese tipo).
- */
-const INSPECTOR_FAMILY_SECTIONS: Record<
-  InspectorFamily,
-  { visible: CanonicalDetailSection[]; open: CanonicalDetailSection[] }
-> = {
-  'text-like': {
-    visible: [...SHARED_SECTIONS, 'validation'],
-    open: ['identity', 'validation', 'behavior'],
-  },
-  choice: {
-    visible: [...SHARED_SECTIONS, 'validation', 'options'],
-    open: ['identity', 'options', 'validation'],
-  },
-  signature: {
-    visible: [...SHARED_SECTIONS, 'validation'],
-    open: ['identity', 'behavior', 'validation'],
-  },
-  action: {
-    visible: [...SHARED_SECTIONS],
-    open: ['identity', 'behavior', 'box'],
-  },
-  visual: {
-    visible: [...SHARED_SECTIONS],
-    open: ['identity', 'box', 'appearance'],
-  },
-};
-
-/**
- * Resuelve el perfil de secciones visibles y abiertas por defecto.
- *
- * @param schemaType Tipo del schema activo.
- * @returns Perfil canónico de detalle.
- */
-export const getDetailProfile = (schemaType: string): DetailProfile => {
-  const normalized = normalizeDetailSchemaType(schemaType);
-  const familySections = INSPECTOR_FAMILY_SECTIONS[resolveInspectorFamily(normalized)];
-
-  if (!familySections) {
-    return createDetailProfile(normalized, [...DEFAULT_DETAIL_SECTION_VISIBILITY], ['identity', 'box']);
-  }
-
-  // Única excepción dentro de una familia: la casilla suelta pertenece a
-  // `choice` pero no tiene lista de opciones que editar, así que abre reglas de
-  // llenado en lugar de una sección que nunca se renderiza.
-  const isLoneCheckbox = CHECKBOX_TYPES.has(normalized);
-
-  return createDetailProfile(
-    normalized,
-    sortCanonicalDetailSections(
-      isLoneCheckbox
-        ? familySections.visible.filter((section) => section !== 'options')
-        : familySections.visible,
-    ),
-    isLoneCheckbox ? ['identity', 'validation', 'behavior'] : [...familySections.open],
-  );
-};
-
-/** Entrada flexible de campo usada por reglas de visibilidad. */
-type FieldLike =
-  | string
-  | [string, unknown]
-  | {
-      key?: string;
-      widget?: string;
-      type?: string;
-      hidden?: boolean;
-      disabled?: boolean;
-      schema?: unknown;
-    };
-
-/** Campo normalizado para reglas internas de sección. */
-type NormalizedField = {
-  key: string;
-  hidden: boolean;
-  disabled: boolean;
-  widget: string;
-  schema?: unknown;
-};
-
-/** Normaliza diferentes formas de campo a un contrato uniforme. */
-const normalizeFieldEntry = (field: FieldLike): NormalizedField => {
-  if (typeof field === 'string') {
-    return { key: normalizeLowerText(field), hidden: false, disabled: false, widget: '' };
-  }
-
-  if (Array.isArray(field)) {
-    const [key, schema] = field;
-    return {
-      key: normalizeLowerText(key),
-      hidden: Boolean((schema as { hidden?: boolean } | undefined)?.hidden),
-      disabled: Boolean((schema as { disabled?: boolean } | undefined)?.disabled),
-      widget: normalizeLowerText((schema as { widget?: string } | undefined)?.widget),
-      schema,
-    };
-  }
-
-  return {
-    key: normalizeLowerText(field.key),
-    hidden: Boolean(field.hidden),
-    disabled: Boolean(field.disabled),
-    widget: normalizeLowerText(field.widget),
-    schema: field.schema,
-  };
-};
-
-const fieldNames = (fields: FieldLike[] = []): NormalizedField[] => fields.map(normalizeFieldEntry).filter((field) => field.key && !field.hidden);
-
-const getInspectorSchemaValue = (schema: SchemaForUI, key: string) => {
-  const record = asRecord(schema);
-  return record ? record[key] : undefined;
-};
-
-const hasDefinedSchemaValue = (schema: SchemaForUI, key: string) => {
-  const value = getInspectorSchemaValue(schema, key);
-  return value !== undefined && value !== null && value !== '';
-};
-
-const hasAnyValue = (schema: SchemaForUI, keys: string[]) => keys.some((key) => hasDefinedSchemaValue(schema, key));
-const hasMeaningfulSchemaValue = (schema: SchemaForUI, keys: string[]) =>
-  keys.some((key) => hasMeaningfulInspectorValue(getInspectorSchemaValue(schema, key)));
-
-const hasWidget = (fields: FieldLike[], widgetNames: string[]) => fieldNames(fields).some((field) => widgetNames.includes(field.widget));
-
-const hasField = (fields: FieldLike[], names: string[]) => fieldNames(fields).some((field) => names.includes(field.key));
-
-const hasRenderableField = (fields: FieldLike[]) => fieldNames(fields).some((field) => !field.hidden && !field.disabled);
-
-/**
- * Convierte una sección legacy o canónica a sección canónica.
- */
-export const toCanonicalDetailSection = (section: string): CanonicalDetailSection | null => {
-  const normalized = normalizeLowerText(section) as LegacyDetailSection | CanonicalDetailSection;
-  if (!normalized) return null;
-  if ((CANONICAL_DETAIL_SECTION_ORDER as readonly string[]).includes(normalized)) {
-    return normalized as CanonicalDetailSection;
-  }
-  return LEGACY_TO_CANONICAL_DETAIL_SECTION[normalized as LegacyDetailSection] || null;
-};
-
-/** Ordena y deduplica secciones según el orden canónico. */
-export const sortCanonicalDetailSections = (sections: CanonicalDetailSection[]) =>
-  [...new Set(sections)].sort(
-    (left, right) => CANONICAL_DETAIL_SECTION_ORDER.indexOf(left) - CANONICAL_DETAIL_SECTION_ORDER.indexOf(right),
-  );
-
-/**
- * Determina si una sección debe renderizarse para el schema/contexto actual.
- *
- * @param params Contexto del schema, campos, widgets y señales de contenido.
- * @returns `true` si la sección contiene información o capacidades relevantes.
- */
-export function shouldRenderDetailSection(params: {
-  section: CanonicalDetailSection;
-  legacySection?: LegacyDetailSection | string;
-  schema: SchemaForUI | Record<string, unknown> | null | undefined;
-  schemaType: string;
-  semanticFamily?: SchemaSemanticFamily | string;
-  fields?: FieldLike[];
-  widgets?: Array<string | { name?: string; widget?: string }>;
-    context?: {
-      isMultiUser?: boolean;
-      hasComments?: boolean;
-      hasAnchors?: boolean;
-      hasHelpContent?: boolean;
-      hasCollaborationContent?: boolean;
-      hasDataBindings?: boolean;
-      hasAdvancedOverrides?: boolean;
-      supportsComments?: boolean;
-    supportsCollaboration?: boolean;
-    supportsDataBindings?: boolean;
-    supportsAppearance?: boolean;
-    supportsBehavior?: boolean;
-    supportsBox?: boolean;
-  };
-}): boolean {
-  const { section, schema, fields = [], widgets = [], context = {} } = params;
-  const entries = fieldNames(fields);
-  const schemaObject = (isRecord(schema) ? schema : {}) as SchemaForUI;
-  const hasVisibleFields = entries.some((field) => !field.disabled);
-  const hasAnyFields = entries.length > 0;
-  const widgetNames = widgets.map((widget) => normalizeLowerText(typeof widget === 'string' ? widget : widget.name || widget.widget));
-
-  if (section === 'identity') {
-    return Boolean(schema);
-  }
-
-  if (section === 'options') {
-    const optionFields = [
-      'optionscontainer',
-      'options',
-      'defaultselectedoptionid',
-      'selectedoptionid',
-      'defaultvalue',
-      'placeholder',
-      'placeholdertext',
-      'selectionmode',
-      'orientation',
-      'group',
-      'groupname',
-    ];
-    return hasField(entries, optionFields) || hasWidget(fields, widgetNames) || hasAnyValue(schemaObject, ['options', 'optionsContainer', 'defaultSelectedOptionId', 'selectedOptionId', 'placeholder', 'placeholderText', 'selectionMode', 'orientation']);
-  }
-
-  if (section === 'validation') {
-    const validationFields = ['required', 'validation', 'validation.type', 'validation.pattern', 'validation.message', 'min', 'max', 'minLength', 'maxLength', 'decimals'];
-    return Boolean(context.supportsBehavior !== false) && (hasField(entries, validationFields) || hasAnyValue(schemaObject, ['required', 'validation', 'min', 'max', 'minLength', 'maxLength', 'decimals']));
-  }
-
-  if (section === 'box') {
-    return Boolean(context.supportsBox !== false) && (hasAnyValue(schemaObject, ['position', 'width', 'height', 'rotate']) || hasField(entries, ['position', 'x', 'y', 'width', 'height', 'rotate']) || hasRenderableField(entries));
-  }
-
-  if (section === 'appearance') {
-    const signatureVisualKeys = new Set([
-      'signaturemode',
-      'signatureproviderkey',
-      'signatureproviderstatus',
-      'signatureproviderdisplay',
-      'signaturecapabilities',
-      'signaturedisplay',
-      'signatureproviderconfig',
-      'signatureproviderconfigaction',
-      'signaturemetadata',
-    ]);
-    const appearanceFields = entries.filter((field) => !signatureVisualKeys.has(field.key));
-    const visualFields = [
-      'align',
-      'fontname',
-      'fontsize',
-      'characterspacing',
-      'lineheight',
-      'usedynamicfontsize',
-      'dynamicfontsize',
-      'fontcolor',
-      'textcolor',
-      'backgroundcolor',
-      'strokecolor',
-      'bordercolor',
-      'borderwidth',
-      'color',
-      'radius',
-      'barcolor',
-      'tablestyles',
-      'headstyles',
-      'bodystyles',
-      'columnstyles',
-      'placeholdertext',
-      'optionscontainer',
-    ];
-    return Boolean(context.supportsAppearance !== false) && (hasField(appearanceFields, visualFields) || hasWidget(appearanceFields, widgetNames) || hasRenderableField(appearanceFields) || hasAnyValue(schemaObject, ['fontName', 'fontSize', 'fontColor', 'textColor', 'backgroundColor', 'strokeColor', 'borderColor', 'borderWidth', 'color', 'radius', 'barColor', 'tableStyles', 'headStyles', 'bodyStyles', 'columnStyles', 'placeholderText', 'optionsContainer', 'opacity']));
-  }
-
-  if (section === 'behavior') {
-    const behaviorFields = [
-      'editable',
-      'readonly',
-      'readOnly',
-      'locked',
-      'restrictchanges',
-      'restrictChanges',
-      'format',
-      'locale',
-      'options',
-      'group',
-      'showhead',
-      'repeathead',
-      'includetext',
-      'validation',
-      'validation.type',
-      'validation.pattern',
-      'validation.message',
-      'type',
-      'placeholder',
-      'defaultvalue',
-      'defaultValue',
-      'maxlength',
-      'maxLength',
-      'masked',
-      'fixedwidth',
-      'fixedWidth',
-      'variables',
-      'readvalue',
-      'writevalue',
-      'mandatory',
-      'editablebysender',
-      'editablebyrecipient',
-    ];
-    return Boolean(context.supportsBehavior !== false) && (hasField(entries, behaviorFields) || hasRenderableField(entries) || hasAnyValue(schemaObject, ['editable', 'readOnly', 'locked', 'format', 'locale', 'options', 'group']));
-  }
-
-  if (section === 'help') {
-    return Boolean(context.hasHelpContent) && hasMeaningfulSchemaValue(schemaObject, ['tooltip', 'helpText', 'helptext', 'description', 'helpDescription']);
-  }
-
-  if (section === 'dataBindings') {
-    const bindingFields = [
-      'schemaconnections',
-      'persistence',
-      'api',
-      'form',
-      'prefill',
-      'rootkey',
-      'endpoint',
-      'baseurl',
-      'headers',
-      'params',
-      'storagekey',
-      'requestmapping',
-      'responsemapping',
-      'mapping',
-      // data label / integration fields
-      'datalabel',
-      'dataLabel',
-      'tablabel',
-      'tabLabel',
-      'fieldkey',
-      'fieldKey',
-      'externalkey',
-      'externalKey',
-    ];
-    // Render la sección también cuando la familia soporta conexiones aunque el
-    // schema aún no tenga bindings, para poder crear la PRIMERA conexión desde el
-    // SchemaConnectionsWidget (antes: `hasDataBindings` bloqueaba el chicken-and-egg).
-    return Boolean(context.hasDataBindings || context.supportsDataBindings) && (hasField(entries, bindingFields) || hasWidget(fields, widgetNames) || hasAnyValue(schemaObject, ['schemaConnections', 'persistence', 'api', 'form', 'prefill', 'rootKey', 'endpoint', 'baseUrl', 'headers', 'params', 'storageKey', 'requestMapping', 'responseMapping', 'mapping', 'dataLabel', 'tabLabel', 'fieldKey']));
-  }
-
-  if (section === 'collaboration') {
-    const collaborationFields = [
-      'ownerrecipientid',
-      'ownerrecipientids',
-      'ownermode',
-      'ownerrecipientname',
-      'ownercolor',
-      'usercolor',
-      'createdby',
-      'createdat',
-      'lastmodifiedby',
-      'lastmodifiedat',
-      'lockedby',
-      'lockedat',
-      'state',
-      'lock',
-      'authorid',
-      'authorname',
-      'authorcolor',
-    ];
-    return Boolean(context.hasCollaborationContent || context.isMultiUser) && (hasField(entries, collaborationFields) || hasAnyValue(schemaObject, ['ownerRecipientId', 'ownerRecipientIds', 'ownerMode', 'ownerColor', 'userColor', 'lock', 'state', 'createdBy', 'lastModifiedBy']) || hasWidget(fields, widgetNames));
-  }
-
-  if (section === 'comments') {
-    const commentCount = Number((schemaObject as { commentsCount?: number }).commentsCount || 0);
-    const comments = (schemaObject as { comments?: unknown[] }).comments;
-    const anchors = (schemaObject as { commentAnchors?: unknown[]; commentsAnchors?: unknown[] }).commentAnchors || (schemaObject as { commentsAnchors?: unknown[] }).commentsAnchors;
-    const hasComments = Boolean(context.hasComments || context.hasAnchors || commentCount > 0 || (Array.isArray(comments) && comments.length > 0) || (Array.isArray(anchors) && anchors.length > 0));
-    return hasComments;
-  }
-
-  if (section === 'advanced') {
-    const advancedFields = ['schemauid', 'documentid', 'pagenumber', 'metadata', 'debug', '__designer'];
-    return (
-      Boolean(context.hasAdvancedOverrides) &&
-      (hasMeaningfulSchemaValue(schemaObject, advancedFields) ||
-        hasWidget(fields, widgetNames) ||
-        hasAnyFields)
-    );
-  }
-
-  return hasVisibleFields || hasAnyFields;
-}
-```
-
-<a id="file-0384"></a>
-
-### 0384 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx`
-
-- **Lenguaje:** `tsx`
-- **Líneas:** `478`
-- **Tamaño original:** `15.6 KB`
-- **SHA1 corto:** `598d66040b`
-- **Estado:** `completo`
-- **Símbolos detectados:** `component/const: DetailView`
-
-```tsx
-/**
- * DetailView — inspector principal del schema activo.
- *
- * Orquesta hidratación del formulario, validaciones de posición/nombre,
- * construcción de widgets, generación de secciones y emisión de cambios al
- * canvas. Este componente debe coordinar contratos, pero no manipular DOM del
- * canvas, Moveable ni Selecto.
- */
-import { useForm } from 'form-render';
-import React, { useContext, useEffect, useCallback, useMemo, useState } from 'react';
-import type {
-  Dict,
-  ChangeSchemaItem,
-  PropPanelInspectorConfig,
-  PropPanelSchema,
-  SchemaForUI,
-} from '@sisad-pdfme/common';
-import { isBlankPdf } from '@sisad-pdfme/common';
-import type { SidebarProps } from '../../../../types.js';
-import { I18nContext, PluginsRegistry } from '../../../../contexts.js';
-import { debounce } from '../../../../helper.js';
-import { theme } from 'antd';
-import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
-import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
-import {
-  resolveDesignerSchemaAccessState,
-  type SchemaAccessState,
-  type SchemaAccessContext,
-} from '../../shared/accessPolicy.js';
-import { buildInspectorSections } from './detailSchemas.js';
-import buildDetailWidgets from './detailWidgetRegistry.js';
-import DetailViewContent from './DetailViewContent.js';
-import { createInspectorConfigurationResolver } from '../../../../../config/InspectorConfigurationResolver.js';
-import {
-  getSchemaConfigStorageKey,
-  getSchemaDesignerConfig,
-  mergeSchemaDesignerConfig,
-  type SchemaDesignerConfig,
-} from '../../../../designerEngine.js';
-import { useSisadPdfmeConfig } from '../../../../../react/useSisadPdfmeConfig.js';
-
-/**
- * Props requeridas por el inspector principal del schema activo.
- */
-type DetailViewProps = Pick<
-  SidebarProps,
-  | 'size'
-  | 'schemas'
-  | 'schemasList'
-  | 'pageSize'
-  | 'basePdf'
-  | 'changeSchemas'
-  | 'activeElements'
-  | 'deselectSchema'
-  | 'collaborationContext'
-> & {
-  activeSchema: SchemaForUI;
-  selectionCommands?: SelectionCommandSet;
-};
-
-/** Campos geométricos validados por límites de página. */
-type PositionFieldName = 'x' | 'y' | 'width' | 'height';
-
-/** Límites efectivos usados para validar posición y tamaño. */
-type PositionBounds = {
-  pageWidth: number;
-  pageHeight: number;
-  paddingTop: number;
-  paddingRight: number;
-  paddingBottom: number;
-  paddingLeft: number;
-};
-
-/**
- * Crea valores iniciales para hidratar form-render desde un schema.
- */
-const createHydrationValues = (schema: SchemaForUI): Record<string, unknown> => {
-  const values: Record<string, unknown> = { ...schema };
-  values.editable = !Boolean(values.readOnly);
-  return values;
-};
-
-/**
- * Crea un validador de posición/tamaño acotado por página y padding.
- */
-const createPositionValidator =
-  (getFormValues: () => Record<string, unknown>, bounds: PositionBounds) =>
-  (_: unknown, value: number, fieldName: PositionFieldName): boolean => {
-    const formValues = getFormValues();
-    const position = asRecord(formValues.position) || undefined;
-    const width = typeof formValues.width === 'number' ? formValues.width : undefined;
-    const height = typeof formValues.height === 'number' ? formValues.height : undefined;
-    const positionX = typeof position?.x === 'number' ? position.x : undefined;
-    const positionY = typeof position?.y === 'number' ? position.y : undefined;
-
-    if (positionX === undefined || positionY === undefined || width === undefined || height === undefined) return true;
-
-    const validators: Record<PositionFieldName, () => boolean> = {
-      x: () => {
-        if (value < bounds.paddingLeft || value > bounds.pageWidth - bounds.paddingRight) return true;
-        if (width > 0 && value + width > bounds.pageWidth - bounds.paddingRight) return false;
-        return true;
-      },
-      y: () => {
-        if (value < bounds.paddingTop || value > bounds.pageHeight - bounds.paddingBottom) return true;
-        if (height > 0 && value + height > bounds.pageHeight - bounds.paddingBottom) return false;
-        return true;
-      },
-      width: () => {
-        if (positionX < bounds.paddingLeft || positionX > bounds.pageWidth - bounds.paddingRight) return true;
-        if (value > 0 && positionX + value > bounds.pageWidth - bounds.paddingRight) return false;
-        return true;
-      },
-      height: () => {
-        if (positionY < bounds.paddingTop || positionY > bounds.pageHeight - bounds.paddingBottom) return true;
-        if (value > 0 && positionY + value > bounds.pageHeight - bounds.paddingBottom) return false;
-        return true;
-      },
-    };
-
-    return validators[fieldName]();
-  };
-
-/**
- * Compara valores de formulario contra el schema actual y genera cambios.
- */
-const buildChangeSet = (nextValues: Record<string, unknown>, currentSchema: SchemaForUI): ChangeSchemaItem[] => {
-  const ignoredKeys = new Set(['id', 'content']);
-  const nullableKeys = new Set(['rotate', 'opacity']);
-  const changes: ChangeSchemaItem[] = [];
-  const currentValues = asRecord(currentSchema) || {};
-
-  const valuesDiffer = (formValue: unknown, schemaValue: unknown): boolean => {
-    if (typeof formValue === 'object' && formValue !== null) {
-      return JSON.stringify(formValue) !== JSON.stringify(schemaValue);
-    }
-    return formValue !== schemaValue;
-  };
-
-  for (const key in nextValues) {
-    if (ignoredKeys.has(key)) continue;
-
-    let value = nextValues[key];
-    if (!valuesDiffer(value, currentValues[key])) continue;
-
-    if (value === null && nullableKeys.has(key)) {
-      value = undefined;
-    }
-
-    if (key === 'editable') {
-      const readOnlyValue = !value;
-      changes.push({ key: 'readOnly', value: readOnlyValue, schemaId: currentSchema.id });
-      if (readOnlyValue) {
-        changes.push({ key: 'required', value: false, schemaId: currentSchema.id });
-      }
-      continue;
-    }
-
-    changes.push({ key, value, schemaId: currentSchema.id });
-  }
-
-  return changes;
-};
-
-/**
- * Remueve cambios cuyo campo está reportado como inválido por form-render.
- */
-const filterInvalidChanges = (
-  changes: ChangeSchemaItem[],
-  reason: ValidateErrorEntity,
-): ChangeSchemaItem[] =>
-  changes.filter(
-    (change) =>
-      !reason.errorFields.some((field: { name: InternalNamePath; errors: string[] }) =>
-        field.name.includes(change.key),
-      ),
-  );
-
-/**
- * Inspector principal del schema activo.
- *
- * @param props Contexto del sidebar, schema activo y comandos de selección.
- * @returns Vista de detalle con header y secciones dinámicas.
- */
-const DetailView = (props: DetailViewProps) => {
-  const { token } = theme.useToken();
-  const {
-    schemasList,
-    changeSchemas,
-    deselectSchema,
-    activeSchema,
-    activeElements,
-    pageSize,
-    basePdf,
-    collaborationContext,
-  } = props;
-  const form = useForm();
-  const i18n = useContext(I18nContext);
-  const pluginsRegistry = useContext(PluginsRegistry);
-  const resolvedConfig = useSisadPdfmeConfig();
-  const designerEngine = resolvedConfig.designerEngine;
-  const inspectorResolver = useMemo(
-    () => createInspectorConfigurationResolver(resolvedConfig),
-    [resolvedConfig],
-  );
-
-  const accessContext = useMemo<SchemaAccessContext>(
-    () => ({
-      actorId: collaborationContext?.actorId || null,
-      isGlobalView: collaborationContext?.isGlobalView ?? false,
-      canEditStructure: collaborationContext?.canEditStructure ?? true,
-    }),
-    [collaborationContext],
-  );
-
-  const accessState = useMemo<SchemaAccessState>(
-    () => resolveDesignerSchemaAccessState(activeSchema, accessContext),
-    [activeSchema, accessContext],
-  );
-  const selectionCount = Array.isArray(activeElements) ? activeElements.length : 0;
-
-  const isReadOnly = useMemo(() => accessState.isLockedByOther || !accessState.isEditable, [accessState]);
-
-  const schemaConfig = useMemo(
-    () => getSchemaDesignerConfig(activeSchema, designerEngine) || null,
-    [activeSchema, designerEngine],
-  );
-  const [isHydratingForm, setIsHydratingForm] = useState(false);
-
-  const typedI18n = useCallback(
-    (key: string): string => {
-      return typeof i18n === 'function' ? i18n(key as keyof Dict) : key;
-    },
-    [i18n],
-  );
-
-  const normalizeColorHex = useCallback((value: unknown): string => {
-    if (typeof value !== 'string') return '#000000';
-    const hexMatch = value.trim().match(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/);
-    if (hexMatch) {
-      const raw = hexMatch[1];
-      if (raw.length === 3) {
-        return `#${raw
-          .split('')
-          .map((c) => `${c}${c}`)
-          .join('')}`;
-      }
-      return `#${raw}`;
-    }
-
-    const rgbMatch = value
-      .replace(/\s+/g, '')
-      .match(/^rgba?\((\d{1,3}),(\d{1,3}),(\d{1,3})(?:,[0-9.]+)?\)$/i);
-    if (rgbMatch) {
-      const [r, g, b] = rgbMatch.slice(1, 4).map((n) => {
-        const parsed = Number(n);
-        return Math.max(0, Math.min(255, Number.isFinite(parsed) ? parsed : 0));
-      });
-      return `#${[r, g, b]
-        .map((channel) => channel.toString(16).padStart(2, '0'))
-        .join('')}`;
-    }
-    return '#000000';
-  }, []);
-
-  const updateSchemaConfig = useCallback(
-    (patch: Partial<SchemaDesignerConfig>) => {
-      const currentConfig = getSchemaDesignerConfig(activeSchema, designerEngine) || {};
-      const nextSchema = mergeSchemaDesignerConfig(activeSchema, patch, designerEngine);
-      const storageKey = getSchemaConfigStorageKey(designerEngine);
-      const nextConfig = getSchemaDesignerConfig(nextSchema, designerEngine) || {};
-      if (JSON.stringify(currentConfig) === JSON.stringify(nextConfig)) return;
-      changeSchemas([{ schemaId: activeSchema.id, key: storageKey, value: nextConfig }]);
-    },
-    [activeSchema, changeSchemas, designerEngine],
-  );
-
-  const widgets = React.useMemo(
-    () =>
-      buildDetailWidgets({
-        pluginsRegistry,
-        options: resolvedConfig.config as unknown as import('@sisad-pdfme/common').UIOptions,
-        token,
-        typedI18n,
-        normalizeColorHex,
-        props: {
-          ...props,
-          designerEngine,
-          schemaConfig,
-          updateSchemaConfig,
-        },
-      }),
-    [
-      activeSchema,
-      changeSchemas,
-      designerEngine,
-      normalizeColorHex,
-      pluginsRegistry,
-      resolvedConfig.config,
-      props,
-      schemaConfig,
-      updateSchemaConfig,
-      token,
-      typedI18n,
-    ],
-  );
-
-  useEffect(() => {
-    const values = createHydrationValues(activeSchema);
-
-    let resetTimeoutId: ReturnType<typeof setTimeout> | undefined;
-    const timeoutId = setTimeout(() => {
-      setIsHydratingForm(true);
-      if (typeof form.setValues === 'function') {
-        form.setValues(values);
-      }
-      resetTimeoutId = setTimeout(() => {
-        setIsHydratingForm(false);
-      }, 0);
-    }, 0);
-
-    return () => {
-      clearTimeout(timeoutId);
-      if (resetTimeoutId !== undefined) {
-        clearTimeout(resetTimeoutId);
-      }
-    };
-  }, [activeSchema, form]);
-
-  const validateUniqueSchemaName = useCallback(
-    (_: unknown, value: string): boolean => {
-      for (const page of schemasList) {
-        for (const schema of Object.values(page)) {
-          if (schema.name === value && schema.id !== activeSchema.id) {
-            return false;
-          }
-        }
-      }
-      return true;
-    },
-    [schemasList, activeSchema.id],
-  );
-
-  const [paddingTop, paddingRight, paddingBottom, paddingLeft] = isBlankPdf(basePdf)
-    ? basePdf.padding
-    : [0, 0, 0, 0];
-
-  const validatePosition = createPositionValidator(
-    () => asRecord(form.getValues()) || {},
-    {
-      pageWidth: pageSize.width,
-      pageHeight: pageSize.height,
-      paddingTop,
-      paddingRight,
-      paddingBottom,
-      paddingLeft,
-    },
-  );
-
-  const handleWatch = debounce(function (...args: unknown[]) {
-    if (isHydratingForm) return;
-    const formSchema = asRecord(args[0]) || {};
-    let changes = buildChangeSet(formSchema, activeSchema);
-
-    if (changes.length) {
-      form
-        .validateFields()
-        .then(() => changeSchemas(changes))
-        .catch((reason: ValidateErrorEntity) => {
-          if (reason.errorFields.length) {
-            changes = filterInvalidChanges(changes, reason);
-          }
-          if (changes.length) {
-            changeSchemas(changes);
-          }
-        });
-    }
-  }, 100);
-
-  const activePlugin = pluginsRegistry.findByType(activeSchema.type);
-  if (!activePlugin) {
-    throw Error(`[@sisad-pdfme/ui] Failed to find plugin used for ${activeSchema.type}`);
-  }
-
-  const defaultSchema: Record<string, unknown> = isRecord(activePlugin?.propPanel?.defaultSchema)
-    ? { ...activePlugin.propPanel.defaultSchema }
-    : {};
-
-  let pluginProps: Record<string, PropPanelSchema> = {};
-  if (typeof activePlugin.propPanel.schema === 'function') {
-    const { size, schemas, pageSize, changeSchemas, activeElements, deselectSchema, activeSchema } = props;
-    const propPanelProps = {
-      size,
-      schemas,
-      pageSize,
-      changeSchemas,
-      activeElements,
-      deselectSchema,
-      activeSchema,
-    };
-    const functionResult = activePlugin.propPanel.schema({
-      ...propPanelProps,
-      options: resolvedConfig.config as unknown as import('@sisad-pdfme/common').UIOptions,
-      theme: token,
-      i18n: typedI18n,
-    });
-    if (isRecord(functionResult)) {
-      pluginProps = functionResult as Record<string, PropPanelSchema>;
-    }
-  } else if (activePlugin.propPanel.schema && typeof activePlugin.propPanel.schema === 'object') {
-    pluginProps = activePlugin.propPanel.schema as Record<string, PropPanelSchema>;
-  }
-  const inspectorConfig = (activePlugin.propPanel.inspector || undefined) as PropPanelInspectorConfig | undefined;
-
-  const maxWidth = pageSize.width - paddingLeft - paddingRight;
-  const maxHeight = pageSize.height - paddingTop - paddingBottom;
-  const visibility = inspectorResolver.visibility as SisadPdfmeVisibilityConfig;
-  const sections = buildInspectorSections({
-    activeSchemaType: activeSchema.type,
-    activeSchema,
-    schemaConfig,
-    typedI18n,
-    defaultSchema,
-    pluginProps,
-    inspectorConfig,
-    pageSize,
-    paddingTop,
-    paddingRight,
-    paddingBottom,
-    paddingLeft,
-    maxWidth,
-    maxHeight,
-    validateUniqueSchemaName,
-    validatePosition,
-    visibility,
-  });
-  // Resetear el estado de colapso solo al cambiar de schema activo, no en cada
-  // modificación de campos. Si no, cualquier cambio de input remonta las
-  // secciones y borra la interacción del inspector.
-  const detailViewResetToken = activeSchema.id;
-
-  return (
-    <DetailViewContent
-      activeSchema={activeSchema}
-      resetToken={detailViewResetToken}
-      schemaConfig={schemaConfig}
-      selectionCount={selectionCount}
-      deselectSchema={deselectSchema}
-      form={form}
-      sections={sections}
-      widgets={widgets}
-      watchHandler={handleWatch}
-      readOnly={isReadOnly}
-      accessState={accessState}
-    />
-  );
-};
-
-/**
- * Comparador personalizado para React.memo basado en referencias estables de
- * props que afectan al inspector visible.
- */
-const propsAreUnchanged = (prevProps: DetailViewProps, nextProps: DetailViewProps) =>
-  prevProps.activeSchema === nextProps.activeSchema &&
-  prevProps.activeElements === nextProps.activeElements &&
-  prevProps.schemas === nextProps.schemas &&
-  prevProps.schemasList === nextProps.schemasList &&
-  prevProps.pageSize === nextProps.pageSize &&
-  prevProps.basePdf === nextProps.basePdf &&
-  prevProps.changeSchemas === nextProps.changeSchemas &&
-  prevProps.deselectSchema === nextProps.deselectSchema &&
-  prevProps.collaborationContext === nextProps.collaborationContext &&
-  prevProps.size === nextProps.size &&
-  prevProps.selectionCommands === nextProps.selectionCommands;
-
-export default React.memo(DetailView, propsAreUnchanged);
-```
-
-<a id="file-0385"></a>
-
-### 0385 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx`
-
-- **Lenguaje:** `tsx`
-- **Líneas:** `123`
-- **Tamaño original:** `4.4 KB`
-- **SHA1 corto:** `aab4210a4e`
-- **Estado:** `completo`
-- **Símbolos detectados:** `component/const: DetailViewContent`
-
-```tsx
-/**
- * DetailViewContent — layout visual del inspector de propiedades.
- *
- * Renderiza header y secciones del DetailView dentro del frame de sidebar, además
- * de marcar el área como interactiva para que el canvas no capture clicks,
- * arrastres o context menu provenientes del inspector.
- */
-import React from 'react';
-import type { SchemaForUI, PropPanelWidgetProps } from '@sisad-pdfme/common';
-import type { useForm } from 'form-render';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { SidebarBody, SidebarFrame } from '../layout.js';
-import DetailHeaderCard from './DetailHeaderCard.js';
-import DetailFormSection from './DetailFormSection.js';
-import { Lock } from 'lucide-react';
-import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
-import type { DetailInspectorSection } from './detailSchemas.js';
-import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
-import type { SchemaAccessState } from '../../shared/accessPolicy.js';
-
-/**
- * Props del layout visual del DetailView.
- */
-type DetailViewContentProps = {
-  activeSchema: SchemaForUI;
-  resetToken?: string;
-  schemaConfig: SchemaDesignerConfig | null;
-  selectionCount?: number;
-  deselectSchema: () => void;
-  form: ReturnType<typeof useForm>;
-  sections: DetailInspectorSection[];
-  widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
-  watchHandler: (..._args: unknown[]) => void;
-  backTooltip?: string;
-  readOnly?: boolean;
-  accessState?: SchemaAccessState;
-};
-
-/**
- * Renderiza header y secciones del inspector dentro del sidebar.
- *
- * @param props Datos visuales y form state del DetailView.
- * @returns Contenido interactivo del inspector.
- */
-const DetailViewContent = ({
-  activeSchema,
-  resetToken,
-  schemaConfig,
-  selectionCount,
-  deselectSchema,
-  form,
-  sections,
-  widgets,
-  watchHandler,
-  backTooltip = 'Volver a campos',
-  readOnly = false,
-  accessState,
-}: DetailViewContentProps) => {
-  const isLockedByOther = accessState?.isLockedByOther ?? false;
-
-  return (
-    <SidebarFrame
-      className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view', 'flex h-full min-h-0 flex-col')}
-      data-testid="detail-view"
-    >
-      <SidebarBody
-        tabIndex={0}
-        aria-label="Secciones del detalle del campo"
-        data-sisad-inspector-interactive="true"
-        data-selecto-ignore="true"
-        data-moveable-ignore="true"
-        data-canvas-drop-ignore="true"
-        onPointerDown={stopInspectorPointerEvent}
-        onMouseDown={stopInspectorPointerEvent}
-        onClick={stopInspectorPointerEvent}
-        onDoubleClick={stopInspectorPointerEvent}
-        onDragStart={stopInspectorPointerEvent}
-        onDrop={stopInspectorPointerEvent}
-        onContextMenu={stopInspectorPointerEvent}
-      >
-        <DetailHeaderCard
-          activeSchema={activeSchema}
-          schemaConfig={schemaConfig}
-          selectionCount={selectionCount}
-          onBack={deselectSchema}
-          backTooltip={backTooltip}
-          showPosition={false}
-        />
-
-        {isLockedByOther && (
-          <div className="mx-2 my-1.5 flex items-start gap-1.5 rounded-lg border border-amber-200/80 bg-amber-50/90 px-2 py-1 text-[0.61rem] leading-tight text-amber-700">
-            <Lock size={14} className="shrink-0" />
-            <span>Este campo está siendo editado por otro usuario y no puede modificarse.</span>
-          </div>
-        )}
-
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view-sections', 'mt-0.5 space-y-1 pb-1.5')}>
-          {sections.map((section) => (
-            <DetailFormSection
-              key={section.key}
-              sectionKey={section.key}
-              title={section.title}
-              description={section.description}
-              schema={section.schema}
-              form={form}
-              widgets={widgets}
-              watchHandler={watchHandler}
-              // El perfil por tipo decide qué secciones nacen abiertas; sin esto
-              // todas se renderizaban expandidas y el inspector obligaba a
-              // scrollear para llegar a lo relevante del tipo activo.
-              defaultCollapsed={section.defaultCollapsed}
-              resetToken={resetToken}
-              readOnly={readOnly}
-            />
-          ))}
-        </div>
-      </SidebarBody>
-    </SidebarFrame>
-  );
-};
-
-export default DetailViewContent;
-```
-
-<a id="file-0386"></a>
-
-### 0386 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx`
-
-- **Lenguaje:** `tsx`
-- **Líneas:** `182`
-- **Tamaño original:** `7.1 KB`
-- **SHA1 corto:** `ba59f3e9ef`
-- **Estado:** `completo`
-- **Símbolos detectados:** `component/const: SchemaFieldCommentsWidgetRenderer`, `component/const: SchemaConnectionsWidgetRenderer`, `component/const: SchemaCollaborationWidgetRenderer`
-
-```tsx
-/**
- * detailWidgetRegistry — registro de widgets disponibles para form-render.
- *
- * Construye el mapa final de widgets combinando primitives internas, widgets de
- * colaboración/conexiones/comentarios y widgets declarados por plugins. Mantiene
- * el DetailView desacoplado de implementaciones específicas.
- */
-import React from 'react';
-import type { GlobalToken, PropPanelWidgetProps, SchemaForUI, UIOptions } from '@sisad-pdfme/common';
-import { Button, Divider, Tooltip } from 'antd';
-import { Pencil, Type } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import AlignWidget from './AlignWidget.js';
-import ButtonGroupWidget from './ButtonGroupWidget.js';
-import WidgetRenderer from './WidgetRenderer.js';
-import SchemaCollaborationWidget from './SchemaCollaborationWidget.js';
-import SchemaConnectionsWidget from './SchemaConnectionsWidget.js';
-import SchemaFieldCommentsWidget from './SchemaFieldCommentsWidget.js';
-import SchemaOptionsEditor from './SchemaOptionsEditor.js';
-import { getSchemaTypeInspectorPreset, INLINE_EDITABLE_TEXT_TYPES } from '../../../../../schemas/schemaFamilies.js';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import type { DesignerEngine, SchemaDesignerConfig } from '../../../../designerEngine.js';
-import type { SidebarProps } from '../../../../types.js';
-import { BooleanSwitchWidget } from './InspectorPrimitives.js';
-import { ColorPickerWidget } from './detailWidgets.js';
-import { asRecord } from '../../../../../shared/objectGuards.js';
-
-/**
- * Parámetros usados para construir el registro final de widgets.
- */
-type BuildWidgetsParams = {
-  pluginsRegistry: {
-    values: () => Iterable<{
-      propPanel: {
-        widgets?: Record<string, (props: PropPanelWidgetProps) => void>;
-      };
-    }>;
-  };
-  options: UIOptions;
-  token: [REDACTED];
-  typedI18n: (key: string) => string;
-  normalizeColorHex: (value: unknown) => string;
-  props: Pick<
-    SidebarProps,
-    'size' | 'schemas' | 'schemasList' | 'pageSize' | 'basePdf' | 'changeSchemas' | 'activeElements' | 'deselectSchema'
-  > & {
-    activeSchema: SchemaForUI;
-    selectionCommands?: SelectionCommandSet;
-    designerEngine?: DesignerEngine;
-    schemaConfig?: SchemaDesignerConfig | null;
-    updateSchemaConfig: (patch: Partial<SchemaDesignerConfig>) => void;
-  };
-};
-
-/**
- * Construye el mapa de widgets que form-render puede usar en el DetailView.
- *
- * @param params Registry de plugins, opciones, tema y props del sidebar.
- * @returns Registro de widgets internos y de plugin.
- */
-const buildDetailWidgets = ({
-  pluginsRegistry,
-  options,
-  token,
-  typedI18n,
-  normalizeColorHex,
-  props,
-}: BuildWidgetsParams): Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element> => {
-  const activeSchemaType = typeof props?.activeSchema?.type === 'string' ? props.activeSchema.type : '';
-  const familyPreset = getSchemaTypeInspectorPreset(activeSchemaType);
-  const widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element> = {
-    AlignWidget: (p) => <AlignWidget {...p} {...props} options={options} selectionCommands={props.selectionCommands} />,
-    Divider: () => (
-      <Divider
-        className={`${DESIGNER_CLASSNAME}detail-view-divider my-1.5 border-slate-200/70`}
-      />
-    ),
-    ButtonGroup: (p) => <ButtonGroupWidget {...p} {...props} options={options} />,
-    nativeColor: (p) => <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />,
-    // Unified React options editor (select/radioGroup/checkboxGroup) — replaces
-    // the imperative rootElement editors inside the DetailView.
-    SchemaOptionsEditor: () => (
-      <SchemaOptionsEditor activeSchema={props.activeSchema} changeSchemas={props.changeSchemas} />
-    ),
-    switch: (p) => (
-      <BooleanSwitchWidget
-        value={p.value}
-        onChange={(nextValue) => p.onChange?.(nextValue)}
-        disabled={p.disabled}
-        readOnly={p.readOnly}
-      />
-    ),
-    InlineEditActionsWidget: () => {
-      const schemaType = typeof props.activeSchema?.type === 'string' ? props.activeSchema.type : '';
-      const isTextType = INLINE_EDITABLE_TEXT_TYPES.has(schemaType);
-      const canEdit = props.selectionCommands?.canEditStructure !== false;
-      const visibility = asRecord(asRecord(options)?.visibility);
-      const actionsVisibility = asRecord(visibility?.actions);
-      const showRename = actionsVisibility?.rename !== false;
-      return (
-        <div className={`${DESIGNER_CLASSNAME}inline-edit-actions`}>
-          {showRename ? (
-            <Tooltip title="Renombrar campo (F2)" placement="bottom">
-              <Button
-                size="small"
-                icon={<Pencil size={12} />}
-                disabled={!canEdit}
-                onClick={() => props.selectionCommands?.renameLabel?.()}
-                className={`${DESIGNER_CLASSNAME}inline-edit-btn`}
-              >
-                Renombrar campo
-              </Button>
-            </Tooltip>
-          ) : null}
-          {isTextType && (
-            <Tooltip title="Editar texto (Enter)" placement="bottom">
-              <Button
-                size="small"
-                icon={<Type size={12} />}
-                disabled={!canEdit}
-                onClick={() => props.selectionCommands?.editTextInline?.()}
-                className={`${DESIGNER_CLASSNAME}inline-edit-btn`}
-              >
-                Editar texto
-              </Button>
-            </Tooltip>
-          )}
-        </div>
-      );
-    },
-  };
-
-  if (familyPreset.supportsComments) {
-    const SchemaFieldCommentsWidgetRenderer = function SchemaFieldCommentsWidgetRenderer(
-      p: PropPanelWidgetProps,
-    ) {
-      return <SchemaFieldCommentsWidget {...p} {...props} />;
-    };
-    SchemaFieldCommentsWidgetRenderer.displayName = 'SchemaFieldCommentsWidget';
-    widgets.SchemaFieldCommentsWidget = SchemaFieldCommentsWidgetRenderer;
-  }
-
-  if (familyPreset.supportsConnections) {
-    const SchemaConnectionsWidgetRenderer = function SchemaConnectionsWidgetRenderer(
-      p: PropPanelWidgetProps,
-    ) {
-      return <SchemaConnectionsWidget {...p} {...props} />;
-    };
-    SchemaConnectionsWidgetRenderer.displayName = 'SchemaConnectionsWidget';
-    widgets.SchemaConnectionsWidget = SchemaConnectionsWidgetRenderer;
-  }
-
-  if (familyPreset.supportsCollaboration) {
-    const SchemaCollaborationWidgetRenderer = function SchemaCollaborationWidgetRenderer(
-      p: PropPanelWidgetProps,
-    ) {
-      return <SchemaCollaborationWidget {...p} {...props} />;
-    };
-    SchemaCollaborationWidgetRenderer.displayName = 'SchemaCollaborationWidget';
-    widgets.SchemaCollaborationWidget = SchemaCollaborationWidgetRenderer;
-  }
-
-  for (const plugin of pluginsRegistry.values()) {
-    const pluginWidgets = plugin.propPanel.widgets || {};
-    Object.entries(pluginWidgets).forEach(([widgetKey, widgetValue]) => {
-      widgets[widgetKey] = (p) => (
-        <WidgetRenderer
-          {...p}
-          {...props}
-          options={options}
-          theme={token}
-          i18n={typedI18n}
-          widget={widgetValue}
-        />
-      );
-    });
-  }
-
-  return widgets;
-};
-
-export default buildDetailWidgets;
 ```
 
 ---
