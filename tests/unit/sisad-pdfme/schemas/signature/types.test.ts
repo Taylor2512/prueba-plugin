@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   createModeAwareCapabilities,
   normalizeSignatureSchema,
-  resolveLegacySignatureMode,
+  resolveSignatureMode,
 } from '@/sisad-pdfme/schemas/signature/types';
 
 describe('sisad-pdfme/schemas/signature/types.ts', ()=>{
@@ -13,16 +13,16 @@ describe('sisad-pdfme/schemas/signature/types.ts', ()=>{
   it('normalizes signatureType to the resolved signatureMode', () => {
     const normalized = normalizeSignatureSchema({
       signatureMode: 'provider',
-      signatureType: 'legacy-draw',
+      signatureType: 'source-draw',
       signatureProviderKey: 'external-provider',
     });
 
     expect(normalized.signatureMode).toBe('provider');
     expect(normalized.signatureType).toBe('provider');
-    expect(resolveLegacySignatureMode(normalized)).toBe('provider');
+    expect(resolveSignatureMode(normalized)).toBe('provider');
   });
 
-  it('resolves legacy signatureType when signatureMode is missing', () => {
+  it('resolves signatureType alias when signatureMode is missing', () => {
     const normalized = normalizeSignatureSchema({
       signatureType: 'image',
       signatureProviderKey: null,
@@ -30,7 +30,7 @@ describe('sisad-pdfme/schemas/signature/types.ts', ()=>{
 
     expect(normalized.signatureMode).toBe('image');
     expect(normalized.signatureType).toBe('image');
-    expect(resolveLegacySignatureMode(normalized)).toBe('image');
+    expect(resolveSignatureMode(normalized)).toBe('image');
   });
 
   it('clears provider state when the mode is not provider', () => {

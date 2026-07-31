@@ -5,7 +5,7 @@
  * la URL pública del asset. TypeScript no conoce ese sufijo por defecto,
  * por eso se declara aquí.
  */
-declare module 'pdfjs-dist/legacy/build/pdf.worker.min.js?url' {
+declare module 'pdfjs-dist//build/pdf.worker.min.js?url' {
   const workerUrl: string;
   export default workerUrl;
 }
@@ -13,7 +13,7 @@ declare module 'pdfjs-dist/legacy/build/pdf.worker.min.js?url' {
 /**
  * Declaración para el worker usado en la variante Node.
  */
-declare module 'pdfjs-dist/legacy/build/pdf.worker.js' {
+declare module 'pdfjs-dist//build/pdf.worker.js' {
   const workerSrc: string;
   export default workerSrc;
 }

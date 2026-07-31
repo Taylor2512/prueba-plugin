@@ -8,7 +8,7 @@
  * - El mapa compone `visibilityConfig` (config declarativa) con
  *   `resolveDesignerActionState` (reglas por acción del ActionRegistry), de
  *   modo que ambos mundos comparten una sola puerta.
- * - Config legacy intacta: este módulo solo LEE las mismas options que ya
+ * - Config  intacta: este módulo solo LEE las mismas options que ya
  *   viajan por OptionsContext.
  */
 import type { ResolvedSisadPdfmeConfig, SisadPdfmeVisibilityConfig } from '../../../../config/SisadPdfmeConfig.js';

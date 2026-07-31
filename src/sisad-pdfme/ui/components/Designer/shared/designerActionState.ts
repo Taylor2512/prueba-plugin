@@ -11,7 +11,7 @@
  * - Un botón deshabilitado siempre lleva `reason` para tooltip/menu.
  *
  * Los ids kebab-case de chrome (save, undo, reassign-recipient, …) son
- * canónicos para superficies; los legacy camelCase del registry se resuelven
+ * canónicos para superficies; los  camelCase del registry se resuelven
  * vía alias para no duplicar definiciones.
  */
 import {

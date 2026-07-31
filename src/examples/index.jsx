@@ -7,6 +7,7 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { getInputFromTemplate } from '@sisad-pdfme/common';
+import { createProfiledConfig } from '@/sisad-pdfme/config';
 import { SisadPdfmeDesigner, SisadPdfmeForm, SisadPdfmeViewer } from '@/sisad-pdfme/react';
 import { SISAD_PDFME_HOST_SURFACE_CLASS } from '@/sisad-pdfme/react/hostSurface';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
@@ -22,29 +23,10 @@ import {
 } from '@/sisad-pdfme/labs';
 import examplesConfig from './config/sisad-pdfme.examples.json';
 
-const isPlainObject = (value) =>
-  typeof value === 'object' && value !== null && !Array.isArray(value);
-
-function deepMerge(base, patch) {
-  const result = { ...base };
-
-  for (const [key, value] of Object.entries(patch)) {
-    const current = result[key];
-    result[key] = isPlainObject(current) && isPlainObject(value)
-      ? deepMerge(current, value)
-      : value;
-  }
-
-  return result;
-}
-
 export const EXAMPLE_CONFIG_PROFILES = Object.keys(examplesConfig.profiles);
 
 export function createRuntimeConfig(profile, overrides = {}) {
-  const base = structuredClone(examplesConfig.base);
-  const profilePatch = structuredClone(profile ? examplesConfig.profiles[profile] : {});
-
-  return deepMerge(deepMerge(base, profilePatch), overrides);
+  return createProfiledConfig(examplesConfig.base, examplesConfig.profiles, profile, overrides);
 }
 
 const ROUTE_PATHS = {
@@ -279,7 +261,7 @@ export function DesignerSingleUserPage() {
     controllerRef.current = controller;
   }, []);
   const getController = useCallback(() => controllerRef.current, []);
-  const handleCanonicalEvent = useMemo(() => recordCanonicalEvent(record), [record]);
+  const handleEvent = useMemo(() => recordEvent(record), [record]);
 
   const handleTemplateChange = useCallback(
     (nextTemplate) => {
@@ -354,7 +336,7 @@ export function DesignerSingleUserPage() {
           onTemplateChange={handleTemplateChange}
           onSave={handleSave}
           onControllerReady={handleControllerReady}
-          onEvent={handleCanonicalEvent}
+          onEvent={handleEvent}
         />
       </RuntimeViewport>
     </ExampleImmersiveShell>
@@ -385,7 +367,7 @@ export function DesignerMultiUserPage() {
     controllerRef.current = controller;
   }, []);
   const getController = useCallback(() => controllerRef.current, []);
-  const handleCanonicalEvent = useMemo(() => recordCanonicalEvent(record), [record]);
+  const handleEvent = useMemo(() => recordEvent(record), [record]);
 
   const handleAssignmentChange = useCallback(
     (payload) => {
@@ -495,7 +477,7 @@ export function DesignerMultiUserPage() {
           onTemplateChange={setTemplate}
           onSave={handleSave}
           onControllerReady={handleControllerReady}
-          onEvent={handleCanonicalEvent}
+          onEvent={handleEvent}
           onRecipientsChange={handleRecipientsChange}
           onActiveRecipientChange={handleActiveRecipientChange}
           onAssignmentChange={handleAssignmentChange}
@@ -994,7 +976,7 @@ function describeEventDetail(detail) {
  * `onEvent` entrega la unión discriminada completa; el log solo necesita el
  * nombre y un resumen del payload.
  */
-const recordCanonicalEvent = (record) => (event) =>
+const recordEvent = (record) => (event) =>
   record(event.name, event.payload);
 
 export function ExampleEventLog({ events, onClear }) {

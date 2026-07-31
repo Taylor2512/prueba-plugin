@@ -49,7 +49,7 @@ describe('standard schema support', () => {
     expect((schema as { __designer?: { group?: { groupType?: string; lockedAsGroup?: boolean } } }).__designer?.group?.lockedAsGroup).toBe(true);
   });
 
-  test('resolves dropdown as an alias for select without changing the canonical contract', () => {
+  test('resolves dropdown as an alias for select without changing the normalized contract', () => {
     expect(getSchemaPluginByType('dropdown')).toBeDefined();
 
     const definition = getSchemaDefinition('dropdown');

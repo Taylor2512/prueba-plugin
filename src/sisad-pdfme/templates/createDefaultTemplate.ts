@@ -3,7 +3,7 @@ import type { Template, SchemaForUI } from '@sisad-pdfme/common';
 export type CreateDefaultTemplateOptions = {
   /** Explicit basePdf. When provided, `pageSize`/`padding` are ignored. */
   basePdf?: Template['basePdf'];
-  /** Blank-page size. Defaults to 390×400 (legacy lab default). */
+  /** Blank-page size. Defaults to 390×400 ( lab default). */
   pageSize?: { width: number; height: number };
   /** Blank-page padding [top, right, bottom, left]. Defaults to [12,12,12,12]. */
   padding?: [number, number, number, number];
@@ -15,7 +15,7 @@ const DEFAULT_PAGE_SIZE = { width: 390, height: 400 };
 const DEFAULT_PADDING: [number, number, number, number] = [12, 12, 12, 12];
 
 /**
- * Builds a minimal, valid pdfme template. Defaults reproduce the legacy
+ * Builds a minimal, valid pdfme template. Defaults reproduce the
  * `createInitialPdfmeTemplate()` from the lab, so existing callers get
  * identical output while gaining configurability.
  */

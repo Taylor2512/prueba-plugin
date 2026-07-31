@@ -144,15 +144,15 @@ describe('snapshotAdapter', () => {
     expect(restored.signaturePolicyId).toBe('sisad');
   });
 
-  test('migrates legacy snapshots and preserves recipient color precedence', () => {
+  test('migrates imported snapshots and preserves recipient color precedence', () => {
     const migrated = snapshotAdapter.migrate({
-      name: 'Legacy template',
+      name: 'Imported template',
       schemas: [[
         {
-          id: 'legacy-1',
-          name: 'legacy_field',
+          id: 'source-1',
+          name: 'source_field',
           type: 'text',
-          content: 'legacy',
+          content: 'imported',
           position: { x: 1, y: 2 },
           width: 80,
           height: 18,
@@ -163,7 +163,7 @@ describe('snapshotAdapter', () => {
       basePdf: 'data:application/pdf;base64,AAA=',
       singType: 'oneshot',
       connectivityMapping: {
-        'legacy-doc': { route: 'connected' },
+        'source-doc': { route: 'connected' },
       },
     });
 
@@ -172,7 +172,7 @@ describe('snapshotAdapter', () => {
     expect(migrated.documents[0]?.pages[0]?.schemas[0]?.__designer.recipientColor).toBe('#112233');
     expect(migrated.signaturePolicyId).toBe('oneshot');
     expect(migrated.signatureMode).toBe('provider');
-    expect(migrated.connectivity?.byFile?.['legacy-doc']).toMatchObject({ route: 'connected' });
+    expect(migrated.connectivity?.byFile?.['source-doc']).toMatchObject({ route: 'connected' });
   });
 
   test('normalizes connectivity helper lookups when bySchema is nested by file', () => {
@@ -342,12 +342,12 @@ describe('snapshotAdapter', () => {
     expect(group?.lockedAsGroup).toBe(true);
   });
 
-  test('legacy migration preserves an existing __designer.group', () => {
+  test('imported migration preserves an existing __designer.group', () => {
     const migrated = snapshotAdapter.migrate({
-      name: 'Legacy with group',
+      name: 'Imported with group',
       schemas: [[
         {
-          id: 'legacy-group-1',
+          id: 'source-group-1',
           name: 'beneficios',
           type: 'checkboxGroup',
           position: { x: 1, y: 2 },

@@ -31,7 +31,7 @@ type DetailSectionCardProps = {
   resetToken?: unknown;
 };
 
-/** Canonical section key → stable test id (contract for e2e specs). */
+/**  section key → stable test id (contract for e2e specs). */
 /**
  * Mapa de sección canónica a test id estable para Playwright/Vitest.
  */

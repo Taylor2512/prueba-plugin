@@ -51,4 +51,16 @@ describe('resolveListViewItemDescriptor', () => {
       expect.objectContaining({ label: 'Asignado a ti', color: '#2563EB' }),
     ]);
   });
+
+  it('prefers the explicit ownerColor for the row accent', () => {
+    const descriptor = resolveListViewItemDescriptor(
+      makeSchema({ id: 'field-2', ownerColor: '#D97706', ownerRecipientId: 'recipient-2' }),
+      collaborationContext,
+    );
+
+    expect(descriptor.ownerColor).toBe('#D97706');
+    expect(descriptor.badges).toEqual([
+      expect.objectContaining({ label: 'Asignado a Avalista', color: '#D97706' }),
+    ]);
+  });
 });

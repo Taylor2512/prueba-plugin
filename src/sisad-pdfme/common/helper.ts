@@ -1,14 +1,14 @@
 /**
  * @file helper.ts
  *
- * Helpers comunes para conversión de unidades, fuentes, PDF base64, migración legacy
+ * Helpers comunes para conversión de unidades, fuentes, PDF base64, migración versionada
  * y validación Zod de contratos públicos.
  *
  * Responsabilidades:
  * - convertir mm/pt/px;
  * - cargar PDF base en data URI;
  * - validar template/inputs/options/props;
- * - migrar schemas legacy keyed-object a arreglo por página;
+ * - migrar schemas  keyed-object a arreglo por página;
  * - validar fuentes y fallback font.
  */
 
@@ -20,7 +20,6 @@ import {
   BasePdf,
   Plugins,
   BlankPdf,
-  LegacySchemaPageArray,
   SchemaPageArray,
 } from './types.js';
 import {
@@ -148,7 +147,7 @@ export const isHexValid = (hex: string): boolean => {
 };
 
 /**
- * Migrate from legacy keyed object format to array format
+ * Migrate from  keyed object format to array format
  * @param template Template
  */
 export const migrateTemplate = (template: Template) => {
@@ -161,7 +160,7 @@ export const migrateTemplate = (template: Template) => {
     template.schemas.length > 0 &&
     !Array.isArray(template.schemas[0])
   ) {
-    template.schemas = (template.schemas as unknown as LegacySchemaPageArray).map(
+    template.schemas = (template.schemas as unknown as SchemaPageArray).map(
       (page: Record<string, Schema>) =>
         Object.entries(page).map(([key, value]) => ({
           ...value,

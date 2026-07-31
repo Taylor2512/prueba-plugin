@@ -5,7 +5,7 @@
  * - Define eventos colaborativos de schemas, comentarios, locks, presencia e historial.
  * - Aplica eventos sobre `SchemaForUI[][]` de forma inmutable.
  * - Calcula diffs entre listas de schemas para generar eventos colaborativos.
- * - Implementa adaptadores de sincronización legacy/Yjs para sesiones locales o compartidas.
+ * - Implementa adaptadores de sincronización /Yjs para sesiones locales o compartidas.
  * - Expone `useCollaborationSync` para conectar el runtime React con la sincronización.
  *
  * Fuente de verdad:
@@ -174,7 +174,7 @@ type RoomEntry = {
 
 const ROOM_REGISTRY_KEY = '__sisad_pdfme_yjs_rooms__';
 const YJS_LOCAL_PROVIDER: CollaborationProviderName = 'yjs';
-const LEGACY_PROVIDER: CollaborationProviderName = 'legacy';
+const _PROVIDER: CollaborationProviderName = '';
 
 const getRoomsRegistry = (): Map<string, RoomEntry> => {
   const globalScope = globalThis as typeof globalThis & {
@@ -749,7 +749,7 @@ export const diffCollaborationEvents = (
   return events;
 };
 
-const createLegacyCollaborationProvider = ({
+const createCollaborationProvider = ({
   enabled,
   url,
   protocols,
@@ -1409,12 +1409,12 @@ export const createYjsCollaborationProvider = ({
 };
 
 const resolveProviderName = (config: CollaborationSyncConfig): CollaborationProviderName =>
-  config.provider || (config.url ? LEGACY_PROVIDER : YJS_LOCAL_PROVIDER);
+  config.provider || (config.url ? _PROVIDER : YJS_LOCAL_PROVIDER);
 
 const createCollaborationAdapter = (config: CollaborationSyncConfig): CollaborationAdapter =>
   resolveProviderName(config) === YJS_LOCAL_PROVIDER
     ? createYjsCollaborationProvider(config)
-    : createLegacyCollaborationProvider(config);
+    : createCollaborationProvider(config);
 
 export const useCollaborationSync = ({
   enabled,

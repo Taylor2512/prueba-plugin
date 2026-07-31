@@ -2,7 +2,7 @@
  * useDesignerUiConfig — hook React del mapa consolidado de UI (TASK-RUNTIME-015).
  *
  * Lee la configuración canónica del provider de SISAD PDFME cuando existe y
- * cae a `OptionsContext` para compatibilidad legacy.
+ * cae a `OptionsContext` para compatibilidad .
  */
 import { useContext, useMemo } from 'react';
 import { OptionsContext } from '../../../contexts.js';

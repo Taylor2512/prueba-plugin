@@ -309,7 +309,7 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
 
         // Rendered by the DetailView as a direct React editor (SchemaOptionsEditor):
         // no Ant Card, no nested form properties. `addOptions` (imperative) stays
-        // registered in `widgets` only as a legacy fallback for other hosts.
+        // registered in `widgets` only as a  fallback for other hosts.
         optionsContainer: {
           title: (propPanelProps as PropPanelWidgetProps).i18n('schemas.select.options'),
           type: 'string',

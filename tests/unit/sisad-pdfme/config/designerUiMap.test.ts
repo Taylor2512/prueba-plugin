@@ -66,7 +66,7 @@ describe('buildDesignerUiMap', () => {
     expect(map.resolveAction('add-comment', { hasHandler: true }).visible).toBe(false);
   });
 
-  it('config vacía deja todo visible/habilitado por defecto (legacy intacta)', () => {
+  it('config vacía deja todo visible/habilitado por defecto', () => {
     const map = buildDesignerUiMap(undefined);
     expect(map.permissions.canEditStructure).toBe(true);
     expect(map.resolveAction('duplicate-schema', { hasHandler: true, selectionCount: 1 }).enabled).toBe(true);

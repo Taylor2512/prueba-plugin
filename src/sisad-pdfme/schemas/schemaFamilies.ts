@@ -8,7 +8,7 @@ import type {
 } from '../common/types.js';
 
 export type SchemaFamily = 'text' | 'mediaVisual' | 'boolean' | 'shapeBarcode' | 'table';
-export type LegacySchemaFamily = 'textual' | 'media' | 'signature' | 'choice' | 'shape' | 'barcode' | 'table';
+export type SchemaFamily = 'textual' | 'media' | 'signature' | 'choice' | 'shape' | 'barcode' | 'table';
 export type SchemaSemanticFamily =
   | 'text'
   | 'multiVariableText'
@@ -249,7 +249,7 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
   }),
 };
 
-const LEGACY_TO_CANONICAL: Record<LegacySchemaFamily, SchemaFamily> = {
+const _TO_: Record<SchemaFamily, SchemaFamily> = {
   textual: 'text',
   media: 'mediaVisual',
   signature: 'text',
@@ -259,8 +259,8 @@ const LEGACY_TO_CANONICAL: Record<LegacySchemaFamily, SchemaFamily> = {
   table: 'table',
 };
 
-export const normalizeSchemaFamily = (family: SchemaFamily | LegacySchemaFamily): SchemaFamily =>
-  family in LEGACY_TO_CANONICAL ? LEGACY_TO_CANONICAL[family as LegacySchemaFamily] : (family as SchemaFamily);
+export const normalizeSchemaFamily = (family: SchemaFamily | SchemaFamily): SchemaFamily =>
+  family in _TO_ ? _TO_[family as SchemaFamily] : (family as SchemaFamily);
 
 export const resolveSchemaFamily = (schemaType: string): SchemaFamily => {
   const normalizedType = String(schemaType || '').trim().toLowerCase();
@@ -326,7 +326,7 @@ const INSPECTOR_FAMILY_BY_SEMANTIC: Record<SchemaSemanticFamily, InspectorFamily
 export const resolveInspectorFamily = (schemaType: string): InspectorFamily =>
   INSPECTOR_FAMILY_BY_SEMANTIC[resolveSchemaSemanticFamily(schemaType)] || 'text-like';
 
-export const getSchemaFamilyInspectorPreset = (family: SchemaFamily | LegacySchemaFamily): FamilyPreset => {
+export const getSchemaFamilyInspectorPreset = (family: SchemaFamily | SchemaFamily): FamilyPreset => {
   const normalized = normalizeSchemaFamily(family);
   const preset = FAMILY_PRESETS[normalized];
   return {
@@ -342,7 +342,7 @@ export const getSchemaTypeInspectorPreset = (schemaType: string): FamilyPreset =
   getSchemaFamilyInspectorPreset(resolveSchemaFamily(schemaType));
 
 export const createSchemaInspectorConfig = (
-  family: SchemaFamily | LegacySchemaFamily,
+  family: SchemaFamily | SchemaFamily,
   overrides: PropPanelInspectorConfig = {},
 ): PropPanelInspectorConfig => {
   const preset = getSchemaFamilyInspectorPreset(family);

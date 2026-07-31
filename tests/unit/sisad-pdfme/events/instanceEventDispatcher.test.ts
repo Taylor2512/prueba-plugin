@@ -1,13 +1,14 @@
 /**
- * COREUX-006 — Dispatcher único y adapter legacy `onX`.
+ * COREUX-006 — Dispatcher único y adapter del host `onX`.
  *
  * Cubre los tres criterios de aceptación de la task-card:
  *   1. cada evento llega una vez;
- *   2. `config.events.onX = false` apaga el callback legacy, no el evento interno;
+ *   2. `config.events.onX = false` apaga el callback del host, no el evento interno;
  *   3. un listener fallido no bloquea a los demás.
  */
 import { describe, expect, it, vi } from 'vitest';
 import {
+  EVENT_TO_HOST_CALLBACK,
   CANONICAL_TO_LEGACY_CALLBACK,
   createInstanceEventDispatcher,
 } from '@/sisad-pdfme/runtime/instanceEventDispatcher';
@@ -63,8 +64,8 @@ describe('entrega única', () => {
   });
 });
 
-describe('adapter legacy onX', () => {
-  it('mapea el evento canónico al callback del host', () => {
+describe('adapter del host onX', () => {
+  it('mapea el evento de dominio al callback del host', () => {
     const onSelectionChange = vi.fn();
     const dispatcher = createInstanceEventDispatcher({
       ...baseOptions,
@@ -77,7 +78,7 @@ describe('adapter legacy onX', () => {
     expect(onSelectionChange.mock.calls[0][0]).toMatchObject({ ids: ['a'], mode: 'replace' });
   });
 
-  it('config.events = false apaga el callback legacy pero NO el evento interno', () => {
+  it('config.events = false apaga el callback del host pero NO el evento interno', () => {
     const listener = vi.fn();
     const onSelectionChange = vi.fn();
     const dispatcher = createInstanceEventDispatcher({
@@ -121,7 +122,7 @@ describe('adapter legacy onX', () => {
     expect(hostProp).toHaveBeenCalledTimes(1);
   });
 
-  it('no inventa callbacks para eventos sin contrato legacy', () => {
+  it('no inventa callbacks para eventos sin contrato de compatibilidad', () => {
     const hostCallbacks = { onChange: vi.fn(), onSave: vi.fn() };
     const dispatcher = createInstanceEventDispatcher({
       ...baseOptions,
@@ -132,10 +133,10 @@ describe('adapter legacy onX', () => {
 
     expect(hostCallbacks.onChange).not.toHaveBeenCalled();
     expect(hostCallbacks.onSave).not.toHaveBeenCalled();
-    expect(CANONICAL_TO_LEGACY_CALLBACK['view-feature.changed']).toBeUndefined();
+    expect(EVENT_TO_HOST_CALLBACK['view-feature.changed']).toBeUndefined();
   });
 
-  it('legacyPayload preserva el contrato rico sin ensuciar el evento canónico', () => {
+  it('hostCallbackPayload preserva el contrato rico sin ensuciar el evento de dominio', () => {
     const onRecipientsChange = vi.fn();
     const listener = vi.fn();
     const richRecipients = [{ id: 'a', name: 'Alice', color: '#fff', extra: () => null }];
@@ -148,7 +149,7 @@ describe('adapter legacy onX', () => {
     dispatcher.emit(
       'recipient.registry.changed',
       { revision: 1, recipients: [{ id: 'a', name: 'Alice' }] },
-      { legacyPayload: { recipients: richRecipients } },
+      { hostCallbackPayload: { recipients: richRecipients } },
     );
 
     // El host recibe los objetos completos…
@@ -178,7 +179,7 @@ describe('adapter legacy onX', () => {
 });
 
 describe('aislamiento de fallos', () => {
-  it('un listener que lanza no bloquea a los demás ni al callback legacy', () => {
+  it('un listener que lanza no bloquea a los demás ni al callback del host', () => {
     const diagnostics: unknown[] = [];
     const healthy = vi.fn();
     const onSave = vi.fn();
@@ -200,7 +201,7 @@ describe('aislamiento de fallos', () => {
     expect(diagnostics[0]).toMatchObject({ code: 'listener-failed', eventName: 'save.succeeded' });
   });
 
-  it('un callback legacy que lanza se reporta como diagnóstico', () => {
+  it('un callback del host que lanza se reporta como diagnóstico', () => {
     const diagnostics: unknown[] = [];
     const dispatcher = createInstanceEventDispatcher({
       ...baseOptions,
@@ -213,6 +214,10 @@ describe('aislamiento de fallos', () => {
     });
 
     expect(() => dispatcher.emit('save.succeeded', { revision: 1 })).not.toThrow();
-    expect(diagnostics[0]).toMatchObject({ code: 'legacy-callback-failed' });
+    expect(diagnostics[0]).toMatchObject({ code: 'host-callback-failed' });
+  });
+
+  it('conserva el alias de compatibilidad del mapa de callbacks', () => {
+    expect(CANONICAL_TO_LEGACY_CALLBACK).toBe(EVENT_TO_HOST_CALLBACK);
   });
 });

@@ -36,33 +36,33 @@ const pushMigrationIssue = (
   issues.push(issue);
 };
 
-const moveLegacyValue = (
+const migrateConfigPath = (
   target: Record<string, unknown>,
-  canonicalPath: string,
+  targetPath: string,
   value: unknown,
-  legacyPath: string,
+  sourcePath: string,
   issues: SisadPdfmeConfigMigrationIssue[],
   severity: SisadPdfmeConfigMigrationSeverity = 'info',
 ) => {
   if (value === undefined) return;
-  const existing = target[canonicalPath];
+  const existing = target[targetPath];
   if (existing === undefined) {
-    target[canonicalPath] = cloneDeep(value);
+    target[targetPath] = cloneDeep(value);
     pushMigrationIssue(issues, {
-      code: 'config-legacy-migrated',
+      code: 'config-path-migrated',
       severity,
-      path: canonicalPath,
-      message: `${legacyPath} migrado a ${canonicalPath}`,
-      sourcePaths: [legacyPath, canonicalPath],
+      path: targetPath,
+      message: `${sourcePath} migrado a ${targetPath}`,
+      sourcePaths: [sourcePath, targetPath],
     });
     return;
   }
   pushMigrationIssue(issues, {
-    code: 'config-canonical-wins',
+    code: 'config-target-path-preserved',
     severity: 'warning',
-    path: canonicalPath,
-    message: `${canonicalPath} tiene prioridad sobre ${legacyPath}`,
-    sourcePaths: [canonicalPath, legacyPath],
+    path: targetPath,
+    message: `${targetPath} tiene prioridad sobre ${sourcePath}`,
+    sourcePaths: [targetPath, sourcePath],
   });
 };
 
@@ -82,26 +82,26 @@ export const migrateSisadPdfmeConfig = (
   const recipients = ensureObject(next, 'recipients');
   const collaboration = ensureObject(next, 'collaboration');
 
-  moveLegacyValue(next, 'visibility', next.visibility, 'visibility', issues);
+  migrateConfigPath(next, 'visibility', next.visibility, 'visibility', issues);
   if (ui) {
-    moveLegacyValue(next, 'visibility', ui.visibility, 'ui.visibility', issues);
-    moveLegacyValue(theme, 'density', ui.density, 'ui.density', issues);
+    migrateConfigPath(next, 'visibility', ui.visibility, 'ui.visibility', issues);
+    migrateConfigPath(theme, 'density', ui.density, 'ui.density', issues);
 
     if (isMigrationRecord(ui.sidebars)) {
-      const legacyLeft = ui.sidebars.left;
-      const legacyRight = ui.sidebars.right;
-      if (isMigrationRecord(legacyLeft)) {
-        moveLegacyValue(leftSidebar, 'defaultOpen', legacyLeft.defaultOpen, 'ui.sidebars.left.defaultOpen', issues);
-        moveLegacyValue(leftSidebar, 'catalogLayout', legacyLeft.catalogLayout, 'ui.sidebars.left.catalogLayout', issues);
+      const Left = ui.sidebars.left;
+      const Right = ui.sidebars.right;
+      if (isMigrationRecord(Left)) {
+        migrateConfigPath(leftSidebar, 'defaultOpen', Left.defaultOpen, 'ui.sidebars.left.defaultOpen', issues);
+        migrateConfigPath(leftSidebar, 'catalogLayout', Left.catalogLayout, 'ui.sidebars.left.catalogLayout', issues);
       }
-      if (isMigrationRecord(legacyRight)) {
-        moveLegacyValue(rightSidebar, 'defaultOpen', legacyRight.defaultOpen, 'ui.sidebars.right.defaultOpen', issues);
-        moveLegacyValue(rightSidebar, 'defaultPanel', legacyRight.defaultPanel, 'ui.sidebars.right.defaultPanel', issues);
+      if (isMigrationRecord(Right)) {
+        migrateConfigPath(rightSidebar, 'defaultOpen', Right.defaultOpen, 'ui.sidebars.right.defaultOpen', issues);
+        migrateConfigPath(rightSidebar, 'defaultPanel', Right.defaultPanel, 'ui.sidebars.right.defaultPanel', issues);
       }
     }
   }
 
-  moveLegacyValue(recipients, 'activeRecipientId', collaboration.activeRecipientId, 'collaboration.activeRecipientId', issues);
+  migrateConfigPath(recipients, 'activeRecipientId', collaboration.activeRecipientId, 'collaboration.activeRecipientId', issues);
 
   next.theme = theme;
   next.sidebars = sidebars;

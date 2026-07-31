@@ -151,7 +151,7 @@ export type CollaborationHistoryEntry = {
   payload?: Record<string, unknown>;
 };
 
-export type CollaborationProviderName = 'legacy' | 'yjs';
+export type CollaborationProviderName = '' | 'yjs';
 
 export type SchemaCollaborativeMetadata = {
   schemaUid?: string;

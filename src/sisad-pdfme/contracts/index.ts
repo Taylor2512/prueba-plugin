@@ -26,9 +26,9 @@
  * Contratos de assignments de schemas.
  *
  * `SchemaAssignments` representa el formato normalizado actual.
- * `LegacySchemaAssignments` conserva compatibilidad con snapshots antiguos.
+ * `SchemaAssignments` conserva compatibilidad con snapshots antiguos.
  */
-export type { SchemaAssignments, LegacySchemaAssignments } from './assignments.js';
+export type { SchemaAssignments, SchemaAssignments } from './assignments.js';
 
 /**
  * Contratos base del sistema de comandos.
@@ -183,10 +183,10 @@ export type {
  * Utilidades base del snapshot oficial.
  *
  * `SNAPSHOT_VERSION` define la versión vigente del contrato.
- * `isLegacySnapshot` detecta formatos anteriores.
+ * `isPreSnapshot` detecta formatos anteriores.
  * `makeEmptySnapshot` crea un snapshot vacío válido.
  */
-export { SNAPSHOT_VERSION, isLegacySnapshot, makeEmptySnapshot } from '../shared/snapshot.js';
+export { SNAPSHOT_VERSION, isPreSnapshot, makeEmptySnapshot } from '../shared/snapshot.js';
 
 /**
  * Adaptador oficial para serializar, hidratar, validar y migrar entre

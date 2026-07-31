@@ -1,5 +1,5 @@
-import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
-import PDFJSWorkerUrl from 'pdfjs-dist/legacy/build/pdf.worker.min.js?url';
+import * as pdfjsLib from 'pdfjs-dist//build/pdf';
+import PDFJSWorkerUrl from 'pdfjs-dist//build/pdf.worker.min.js?url';
 import { createEnvironmentConverters } from './createEnvironmentConverters.js';
 
 /**

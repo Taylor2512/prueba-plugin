@@ -6,6 +6,9 @@ import type { CollaboratorUser } from './recipientPalette.js';
 const normalizeOwnerId = (value: unknown): string =>
   typeof value === 'string' ? value.trim() : '';
 
+const normalizeColor = (value: unknown): string =>
+  typeof value === 'string' && value.trim() ? value.trim() : '';
+
 type OwnerColorSource =
   | 'schema.userColor'
   | 'schema.ownerColor'
@@ -19,12 +22,25 @@ type OwnerColorSource =
 
 export type SchemaOwnershipAppearanceOptions = {
   /**
-   * Order in which an owner color is resolved. Default reproduces the legacy
+   * Order in which an owner color is resolved. Default reproduces the us
    * lab behavior: explicit schema.userColor, then schema.ownerColor, then the
    * resolved recipient/author color, then empty.
    */
   ownerColorPriority?: readonly OwnerColorSource[];
   actorColor?: string;
+};
+
+type OwnerColorAwareSchema = SchemaForUI & {
+  ownerColor?: string;
+  userColor?: string;
+  recipientColor?: string;
+  __designer?: {
+    ownerColor?: string;
+    recipientColor?: string;
+    collaboration?: {
+      recipientColor?: string;
+    };
+  };
 };
 
 const DEFAULT_PRIORITY: readonly OwnerColorSource[] = [
@@ -62,6 +78,24 @@ const buildOwnerIds = (schema: OwnerAwareSchema): string[] =>
     ...(Array.isArray(schema?.ownerRecipientIds) ? schema.ownerRecipientIds : []),
     ...(schema?.ownerRecipientId ? [schema.ownerRecipientId] : []),
   ]);
+
+/**
+ * Resolves the raw ownership color stored on a schema without consulting the
+ * collaborator registry. This is the shared fallback used by designer chrome,
+ * field chrome and tone helpers.
+ */
+export function resolveSchemaOwnerColorValue(schema: SchemaForUI | null | undefined): string {
+  const source = schema as OwnerColorAwareSchema | null | undefined;
+  return (
+    normalizeColor(source?.ownerColor) ||
+    normalizeColor(source?.userColor) ||
+    normalizeColor(source?.recipientColor) ||
+    normalizeColor(source?.__designer?.collaboration?.recipientColor) ||
+    normalizeColor(source?.__designer?.ownerColor) ||
+    normalizeColor(source?.__designer?.recipientColor) ||
+    ''
+  );
+}
 
 const resolveOwnerRecipientColor = (
   schema: OwnerAwareSchema,
@@ -127,7 +161,7 @@ export function resolveSchemaOwnerColor(
 
 /**
  * Returns a copy of the schema with normalized owner fields and derived
- * owner/author colors. Mirrors the legacy lab `decorateSchemaWithCollaboration`.
+ * owner/author colors. Mirrors the us lab `decorateSchemaWithCollaboration`.
  */
 export function decorateSchemaWithCollaboration<T extends SchemaForUI>(
   schema: T,
@@ -176,7 +210,7 @@ export function decorateSchemaWithCollaboration<T extends SchemaForUI>(
 
 /**
  * Returns a deep-cloned template with every schema decorated. Mirrors the
- * legacy lab `decorateTemplateWithCollaboration`.
+ * us lab `decorateTemplateWithCollaboration`.
  */
 export function decorateTemplateWithCollaboration(
   template: Template,

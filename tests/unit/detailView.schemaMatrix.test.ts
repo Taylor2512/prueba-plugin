@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import checkboxGroup from '@/sisad-pdfme/schemas/checkboxGroup/index.js';
 import { buildInspectorSections } from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.js';
-import { CANONICAL_DETAIL_SECTION_ORDER } from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.js';
+import { DETAIL_SECTION_ORDER } from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.js';
 import type { SchemaForUI } from '@/sisad-pdfme/common/index.js';
 
 const schema = {
@@ -155,11 +155,11 @@ describe('DetailView schema matrix', () => {
     expectProperty(allSections, 'optionsContainer');
   });
 
-  test('keeps canonical section ordering stable for inspector UX', () => {
+  test('keeps normalized section ordering stable for inspector UX', () => {
     const allSections = sections();
     const keys = allSections.map((section) => section.key);
-    const canonicalOrder = [...CANONICAL_DETAIL_SECTION_ORDER];
-    const sorted = [...keys].sort((a, b) => canonicalOrder.indexOf(a) - canonicalOrder.indexOf(b));
+    const detailOrder = [...DETAIL_SECTION_ORDER];
+    const sorted = [...keys].sort((a, b) => detailOrder.indexOf(a) - detailOrder.indexOf(b));
     expect(keys).toEqual(sorted);
   });
 });

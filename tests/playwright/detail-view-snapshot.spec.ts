@@ -67,15 +67,15 @@ test.describe('detail-view snapshot contract', () => {
     expect(restored.comments?.[0]?.text).toBe('OK');
   });
 
-  test('migrates legacy snapshots into v2 without losing owner data', () => {
+  test('migrates imported snapshots without losing owner data', () => {
     const migrated = snapshotAdapter.migrate({
-      name: 'Legacy',
+      name: 'Imported',
       schemas: [[
         {
-          id: 'legacy-1',
-          name: 'legacy_name',
+          id: 'source-1',
+          name: 'source_name',
           type: 'text',
-          content: 'legacy',
+          content: 'source',
           position: { x: 1, y: 2 },
           width: 50,
           height: 18,

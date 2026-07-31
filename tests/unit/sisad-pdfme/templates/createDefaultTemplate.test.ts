@@ -3,7 +3,7 @@ import type { Template } from '@sisad-pdfme/common';
 import { createDefaultTemplate } from '@/sisad-pdfme/templates/createDefaultTemplate';
 
 describe('createDefaultTemplate', () => {
-  it('reproduces the legacy default (390x400, padding 12, one empty page)', () => {
+  it('reproduces the default contract (390x400, padding 12, one empty page)', () => {
     const t = createDefaultTemplate();
     expect(t.basePdf).toEqual({ width: 390, height: 400, padding: [12, 12, 12, 12] });
     expect(t.schemas).toEqual([[]]);

@@ -21,7 +21,7 @@ import { createSisadPdfmeCustomEvent } from '../contracts/events.js';
 import type { InstanceEventDispatcher } from './instanceEventDispatcher.js';
 
 /** Traducción de los `type` internos vigentes a nombres del catálogo. */
-export const LEGACY_TYPE_TO_CANONICAL: Record<string, SisadPdfmeEventName> = {
+export const RUNTIME_EVENT_TO_DOMAIN_EVENT: Record<string, SisadPdfmeEventName> = {
   'designer.selection.changed': 'selection.changed',
   'designer.view.page.changed': 'page.changed',
   'runtime.view.page.changed': 'page.changed',
@@ -53,13 +53,16 @@ const asNumber = (value: unknown, fallback = 0): number =>
  * Devuelve `null` cuando el evento no trae datos suficientes: es preferible no
  * emitir a emitir un payload inventado.
  */
-const toCanonicalPayload = (
-  name: SisadPdfmeEventName,
+/** @deprecated Use RUNTIME_EVENT_TO_DOMAIN_EVENT. */
+export const _TYPE_TO_ = RUNTIME_EVENT_TO_DOMAIN_EVENT;
+
+const toDomainEventPayload = (
+  domainEventName: SisadPdfmeEventName,
   event: DesignerRuntimeEvent,
 ): Record<string, unknown> | null => {
   const details = (event.details || {}) as Record<string, unknown>;
 
-  switch (name) {
+  switch (domainEventName) {
     case 'selection.changed':
       return {
         ids: readSchemaIds(event),
@@ -135,15 +138,15 @@ export const bridgeRuntimeEventHub = (
   if (!hub) return () => undefined;
 
   return hub.subscribe((event) => {
-    const canonicalName = LEGACY_TYPE_TO_CANONICAL[event.type];
+    const domainEventName = RUNTIME_EVENT_TO_DOMAIN_EVENT[event.type];
 
-    if (canonicalName) {
-      const payload = toCanonicalPayload(canonicalName, event);
+    if (domainEventName) {
+      const payload = toDomainEventPayload(domainEventName, event);
       if (!payload) return;
       dispatcher.emit(
-        canonicalName,
+        domainEventName,
         payload as never,
-        { source: (event.source as string) || 'runtime', legacyPayload: { legacyEvent: event } },
+        { source: (event.source as string) || 'runtime', hostCallbackPayload: { domainEvent: event } },
       );
       return;
     }
@@ -153,7 +156,7 @@ export const bridgeRuntimeEventHub = (
     dispatcher.dispatch(
       createSisadPdfmeCustomEvent(
         `custom:${event.type}`,
-        { legacyType: event.type },
+        { sourceType: event.type },
         { instanceId, source: (event.source as string) || 'runtime' },
       ),
     );

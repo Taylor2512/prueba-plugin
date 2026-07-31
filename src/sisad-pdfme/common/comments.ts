@@ -5,7 +5,7 @@
  *
  * Maneja dos modelos de almacenamiento:
  * - comentarios embebidos en schema.comments / schema.commentAnchors;
- * - comentarios top-level en template.pdfComments y alias legacy __commentAnchors.
+ * - comentarios top-level en template.pdfComments y alias de compatibilidad __commentAnchors.
  *
  * Regla arquitectónica:
  * Este módulo solo manipula datos. No debe pintar CommentsRail ni depender de UI.
@@ -24,13 +24,13 @@ import {
 /** Identidad mínima del autor usada para comments y anchors. */
 type Identity = { authorId?: string | null; authorName?: string | null; authorColor?: string | null };
 
-/** Template extendido con almacenamiento canónico y legacy de comentarios top-level. */
+/** Template extendido con almacenamiento principal y alias de compatibilidad de comentarios top-level. */
 type TemplateWithComments = Template & {
   pdfComments?: TopLevelPdfCommentEntry[];
   __commentAnchors?: Array<{ id: string; anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
 };
 
-/** Obtiene comentarios top-level desde pdfComments o desde el alias legacy __commentAnchors. */
+/** Obtiene comentarios top-level desde pdfComments o desde el alias de compatibilidad __commentAnchors. */
 const getTopLevelEntries = (template: TemplateWithComments): TopLevelPdfCommentEntry[] => {
   if (Array.isArray(template.pdfComments)) {
     return template.pdfComments as TopLevelPdfCommentEntry[];
@@ -45,7 +45,7 @@ const getTopLevelEntries = (template: TemplateWithComments): TopLevelPdfCommentE
   return [];
 };
 
-/** Sincroniza comentarios top-level en pdfComments y __commentAnchors para compatibilidad legacy. */
+/** Sincroniza comentarios top-level en pdfComments y __commentAnchors para compatibilidad. */
 const setTopLevelEntries = (template: TemplateWithComments, entries: TopLevelPdfCommentEntry[]) => {
   template.pdfComments = entries.map((entry) => ({
     id: entry.id,
@@ -160,7 +160,7 @@ export const addCommentWithAnchorToTemplate = (
     return next;
   }
 
-  // Canonical top-level storage for comments that do not belong to a concrete field.
+  //  top-level storage for comments that do not belong to a concrete field.
   const createdAnchor = cloneAnchor({
     ...anchor,
     authorId: identity.authorId || undefined,

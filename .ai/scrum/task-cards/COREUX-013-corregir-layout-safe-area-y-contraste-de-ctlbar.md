@@ -1,6 +1,6 @@
 # COREUX-013 — Corregir layout, safe area y contraste de CtlBar
 
-**Estado:** backlog  
+**Estado:** done
 **Wave:** W2  
 **Prioridad:** P0  
 **Riesgo:** Alto  
@@ -96,10 +96,24 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Toolbar visible completa.
-- [ ] No cubre PDF crítico.
-- [ ] Sin overflow horizontal.
-- [ ] Reduced motion respetado.
+- [x] Toolbar visible completa en 390/768/1280/1920. **Defecto corregido**:
+      `.sisad-pdfme-designer-stage` tenía padding con `box-sizing: content-box`
+      (preflight desactivado), así que con `height: 100%` medía 16 px más que su
+      contenedor y empujaba el cluster inferior fuera del viewport en TODOS los
+      tamaños. Medido antes: bottom 848/1028/904 con viewport 844/1024/900;
+      después: 832/1012/888, y el stage termina exactamente en el borde.
+- [x] No cubre PDF crítico: ningún cluster se recorta por ningún borde.
+- [x] Sin overflow horizontal de documento en los cuatro viewports.
+- [x] Reduced motion respetado. Las transiciones venían de Ant Design, no de
+      nuestras clases, así que una utilidad `motion-reduce` en el JSX no las
+      alcanzaba; se neutralizan en la hoja del propio runtime acotadas a sus
+      clusters.
+
+Añadido además safe-area en el cluster inferior
+(`bottom-[max(0.75rem,env(safe-area-inset-bottom))]`) y `motion-reduce` en las
+8 transiciones propias de CtlBar.
+
+Regresión: `tests/playwright/coreux-toolbar.spec.ts` (5/5).
 
 ## Gates focales
 

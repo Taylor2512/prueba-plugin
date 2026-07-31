@@ -1,12 +1,12 @@
 /**
- * Puente entre el ciclo de vida de artifacts y el catálogo canónico.
+ * Puente entre el ciclo de vida de artifacts y el catálogo de exportación.
  *
  * `usePdfmeArtifacts` informa con `onStatus({ type, message, context })`, un
  * canal libre que solo entiende el host que lo montó. El contrato público, en
  * cambio, tiene `export.started`, `export.succeeded` y `export.failed`, con
  * `correlationId` para encadenar inicio y resultado.
  *
- * Esta traducción es pura: no emite, solo decide qué evento canónico
+ * Esta traducción es pura: no emite, solo decide qué evento de exportación
  * corresponde. Quien emite es el dispatcher de la instancia.
  */
 import type { SisadPdfmeEventName, SisadPdfmeEventPayloads } from '../contracts/events.js';
@@ -17,7 +17,7 @@ export type ArtifactStatusEvent = {
   context?: unknown;
 };
 
-export type ArtifactCanonicalEvent =
+export type ArtifactEvent =
   | { name: 'export.started'; payload: SisadPdfmeEventPayloads['export.started'] }
   | { name: 'export.succeeded'; payload: SisadPdfmeEventPayloads['export.succeeded'] }
   | { name: 'export.failed'; payload: SisadPdfmeEventPayloads['export.failed'] };
@@ -39,15 +39,15 @@ const parseStatusType = (type: string): { prefix: string; phase: string } | null
 };
 
 /**
- * Traduce un status de artifact al evento canónico correspondiente.
+ * Traduce un status de artifact al evento de exportación correspondiente.
  *
  * @returns `null` cuando el status no describe una fase de exportación
  * (por ejemplo `validation-error`, que pertenece al dominio de validación).
  */
-export const artifactStatusToCanonicalEvent = (
+export const artifactStatusToExportEvent = (
   status: ArtifactStatusEvent,
   options: { size?: number } = {},
-): ArtifactCanonicalEvent | null => {
+): ArtifactEvent | null => {
   const parsed = parseStatusType(status?.type);
   if (!parsed) return null;
 
@@ -82,8 +82,8 @@ export const artifactStatusToCanonicalEvent = (
   return null;
 };
 
-/** Nombres canónicos que este puente puede producir. Útil para pruebas. */
-export const ARTIFACT_CANONICAL_EVENT_NAMES: SisadPdfmeEventName[] = [
+/** Nombres de exportación que este puente puede producir. Útil para pruebas. */
+export const ARTIFACT_EVENT_NAMES: SisadPdfmeEventName[] = [
   'export.started',
   'export.succeeded',
   'export.failed',

@@ -55,7 +55,7 @@ type DesignerProps = {
    *
    * Recibe todo lo que pasa por el dispatcher: lo emitido por el wrapper y lo
    * traducido desde el hub interno del Designer. Es la vía tipada; los `onX`
-   * históricos se mantienen como adapter legacy.
+   * históricos se mantienen como adapter de compatibilidad.
    */
   onEvent?: (event: SisadPdfmeAnyEvent) => void;
   /** Clases adicionales del host. Se suman al contrato base de dimensiones. */
@@ -106,7 +106,7 @@ export const SisadPdfmeDesigner = ({
 
   /**
    * Dispatcher único de la instancia: reparte a listeners internos y al
-   * adapter legacy `onX`. Se crea una sola vez por montaje.
+   * adapter del host `onX`. Se crea una sola vez por montaje.
    */
   const instanceId = useMemo(() => `designer-${instanceSequence++}`, []);
   const dispatcher = useMemo(
@@ -151,7 +151,7 @@ export const SisadPdfmeDesigner = ({
             ),
           },
           // El contrato histórico entrega los recipients completos.
-          { legacyPayload: { recipients: state.recipients } },
+          { hostCallbackPayload: { recipients: state.recipients } },
         );
       }
       if (state.activeRecipientId !== previous.activeRecipientId) {
@@ -161,7 +161,7 @@ export const SisadPdfmeDesigner = ({
             previousId: previous.activeRecipientId ?? null,
             currentId: state.activeRecipientId ?? null,
           },
-          { legacyPayload: { recipient: state.activeRecipient } },
+          { hostCallbackPayload: { recipient: state.activeRecipient } },
         );
       }
       previous = state;
@@ -218,7 +218,7 @@ export const SisadPdfmeDesigner = ({
           previousOwnerIds: (payload.previousOwnerIds as string[]) ?? [],
           ownerId: (payload.ownerId as string | null) ?? null,
         },
-        { legacyPayload: payload as unknown as Record<string, unknown> },
+        { hostCallbackPayload: payload as unknown as Record<string, unknown> },
       ),
   }), [configService, dispatcher, registry]);
   const controller = useSisadPdfmeController(instanceRef, controllerContext);

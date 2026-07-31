@@ -6,8 +6,8 @@ const read = (relative: string) => fs.readFileSync(path.resolve(process.cwd(), r
 
 describe('Tailwind source contract', () => {
   it('mantiene una sola entrada canónica de Tailwind', () => {
-    const canonical = read('src/styles/tailwind.css');
-    expect(canonical.match(/@tailwind\s+(base|components|utilities)/g)).toHaveLength(3);
+    const tailwindCss = read('src/styles/tailwind.css');
+    expect(tailwindCss.match(/@tailwind\s+(base|components|utilities)/g)).toHaveLength(3);
     expect(read('src/style.css')).not.toMatch(/@tailwind\s+(base|components|utilities)/);
   });
 

@@ -100,8 +100,8 @@ const getAllRegisteredSchemaPlugins = () => ({
     acc[normalizeSchemaType(key)] = plugin;
     return acc;
   }, {}),
-  ...Object.entries(builtInTypeAliases).reduce<Record<string, Plugin<Schema>>>((acc, [canonicalType, aliases]) => {
-    const plugin = flatSchemaPlugins[canonicalType] || flatSchemaPlugins[normalizeSchemaType(canonicalType)];
+  ...Object.entries(builtInTypeAliases).reduce<Record<string, Plugin<Schema>>>((acc, [primaryType, aliases]) => {
+    const plugin = flatSchemaPlugins[primaryType] || flatSchemaPlugins[normalizeSchemaType(primaryType)];
     if (!plugin) return acc;
     aliases.forEach((alias) => {
       acc[alias] = plugin;

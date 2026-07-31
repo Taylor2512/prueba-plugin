@@ -20,7 +20,7 @@
  * (RadioGroup, CheckboxGroup, signatureBlock, table, repeatable).
  */
 export interface GroupMeta {
-  /** UUID v4 del grupo — estable durante toda la vida del grupo */
+  /** UUID  del grupo — estable durante toda la vida del grupo */
   groupId: string;
   /**
    * Tipo de grupo:
@@ -72,7 +72,7 @@ export interface DesignerIntegrationBinding {
 }
 
 export interface SchemaDesignerMeta {
-  /** UUID v4 inmutable — generado en schema.create, nunca regenerado excepto en colisión de import */
+  /** UUID  inmutable — generado en schema.create, nunca regenerado excepto en colisión de import */
   schemaUid: string;
   /** Semver del template completo. Ej: "2.0.0". Versiona el documento, no el schema individual. */
   templateVersion: string;
@@ -124,7 +124,7 @@ export interface SchemaDesignerMeta {
   updatedAt?: string;
 }
 
-// ── __designer V3 canonical contract ─────────────────────────────────────────
+// ── __designer   contract ─────────────────────────────────────────
 
 /** Identidad inmutable del schema. Escrita en creación, nunca sobreescrita. */
 export interface DesignerIdentity {
@@ -171,11 +171,11 @@ export interface DesignerRuntime {
 }
 
 /**
- * Contrato V3 del campo __designer.
- * Organiza los metadatos en sub-objetos semánticos en vez del objeto plano V2.
+ * Contrato  del campo __designer.
+ * Organiza los metadatos en sub-objetos semánticos en vez del objeto plano .
  * Backward compatible: el campo plano `SchemaDesignerMeta` sigue funcionando.
  */
-export interface DesignerConfigV3 {
+export interface DesignerConfig {
   _v: 3;
   identity: DesignerIdentity;
   collaboration?: DesignerCollaboration;
@@ -184,15 +184,15 @@ export interface DesignerConfigV3 {
   runtime?: DesignerRuntime;
 }
 
-/** Genera un __designer V3 inicial para un schema nuevo */
-export function createDesignerConfigV3(params: {
+/** Genera un __designer  inicial para un schema nuevo */
+export function createDesignerConfig(params: {
   documentId: string;
   pageNumber: number;
   templateVersion: string;
   recipientId?: string;
   recipientName?: string;
   recipientColor?: string;
-}): DesignerConfigV3 {
+}): DesignerConfig {
   const now = new Date().toISOString();
   return {
     _v: 3,
@@ -216,7 +216,7 @@ export function createDesignerConfigV3(params: {
   };
 }
 
-// ── Legacy flat contract (V2) — kept for backward compatibility ───────────────
+// ──  flat contract () — kept for backward compatibility ───────────────
 
 /** Genera un __designer inicial para un schema nuevo */
 export function createSchemaDesignerMeta(params: {
@@ -285,7 +285,7 @@ export function pasteSchemaDesignerMeta(
   };
 }
 
-/** Genera un UUID v4 compatible con browser y Node */
+/** Genera un UUID  compatible con browser y Node */
 function generateSchemaUid(): string {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
     return crypto.randomUUID();

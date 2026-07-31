@@ -12,17 +12,21 @@ export type {
   DesignerBindings,
   DesignerUI,
   DesignerRuntime,
-  DesignerConfigV3,
+  DesignerConfig,
 } from './schemaDesignerMeta.js';
 export {
   createSchemaDesignerMeta,
   duplicateSchemaDesignerMeta,
   pasteSchemaDesignerMeta,
-  createDesignerConfigV3,
+  createDesignerConfig,
 } from './schemaDesignerMeta.js';
 
-// Schema migration: V2 legacy → V3 canonical
-export { migrateSchemaToV3, flattenV3ToLegacy, isDesignerConfigV3 } from './schemaMigration.js';
+// Schema migration: flat -> structured
+export {
+  migrateDesignerMetaToConfig,
+  serializeDesignerConfig,
+  isDesignerConfig,
+} from './schemaMigration.js';
 
 // Fase 2 — Guards e Interaction Layer
 export type {
@@ -80,7 +84,7 @@ export type {
   SchemaWithDesigner,
   SerializeOptions,
 } from './snapshot.js';
-export { SNAPSHOT_VERSION, isLegacySnapshot, makeEmptySnapshot } from './snapshot.js';
+export { SNAPSHOT_VERSION, isPreSnapshot, makeEmptySnapshot } from './snapshot.js';
 
 // Fase 7 — Snapshot Adapter
 export type { ValidationResult, DesignerState } from './snapshotAdapter.js';

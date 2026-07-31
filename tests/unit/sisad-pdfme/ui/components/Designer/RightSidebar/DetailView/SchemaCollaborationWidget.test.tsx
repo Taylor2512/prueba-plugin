@@ -19,6 +19,7 @@ describe('sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaColla
       position: { x: 12, y: 18 },
       width: 80,
       height: 24,
+      ownerColor: '#D97706',
       ownerRecipientId: 'recipient-1',
       ownerRecipientName: 'Cliente Principal',
       state: 'locked',
@@ -30,6 +31,7 @@ describe('sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaColla
     expect(screen.getByText('Estado de acceso')).toBeInTheDocument();
     expect(screen.getByText('Propietario, bloqueo y auditoría.')).toBeInTheDocument();
     expect(screen.getByText('Bloqueado por recipient-1')).toBeInTheDocument();
+    expect(screen.getByTestId('schema-collaboration-widget')).toHaveAttribute('data-schema-owner-color', '#D97706');
     expect(screen.getByRole('button', { name: 'Cambiar propietario' })).toBeInTheDocument();
     expect(screen.queryByText('Estado')).toBeNull();
     expect(screen.queryByText(/Propietario y permi/i)).toBeNull();

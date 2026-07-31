@@ -48,7 +48,7 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 - Define `CollaborationEvent`.
 - Aplica eventos a schemas.
 - Calcula diffs de eventos.
-- Soporta locks, comments, presence/history y adaptadores Yjs/legacy.
+- Soporta locks, comments, presence/history y adaptadores Yjs/.
 
 ### Riesgos / notas
 - Cuidar eventos obsoletos por timestamp.

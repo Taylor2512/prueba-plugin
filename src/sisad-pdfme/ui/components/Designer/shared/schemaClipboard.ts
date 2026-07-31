@@ -18,7 +18,7 @@ import { isOptionGroupType } from '../../../../schemas/options/optionGroupLayout
  *
  * - preserveAssignments: keeps the original recipientId/color from the copied schema.
  *   Used when duplicating within the same recipient context.
- * - assignToActiveRecipient: strips legacy assignment and applies the currently active
+ * - assignToActiveRecipient: strips  assignment and applies the currently active
  *   recipient from collaborationContext. Used when dropping into a different recipient slot.
  */
 type ClipboardPasteMode = 'preserveAssignments' | 'assignToActiveRecipient';

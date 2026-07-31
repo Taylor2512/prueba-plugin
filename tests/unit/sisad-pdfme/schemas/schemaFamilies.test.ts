@@ -102,7 +102,7 @@ describe('resolveSchemaSemanticFamily', () => {
 });
 
 describe('normalizeSchemaFamily', () => {
-  it('maps legacy to canonical', () => {
+  it('maps source aliases to normalized families', () => {
     expect(normalizeSchemaFamily('textual')).toBe('text');
     expect(normalizeSchemaFamily('media')).toBe('mediaVisual');
     expect(normalizeSchemaFamily('signature')).toBe('text');
@@ -112,7 +112,7 @@ describe('normalizeSchemaFamily', () => {
     expect(normalizeSchemaFamily('table')).toBe('table');
   });
 
-  it('passthrough for canonical families', () => {
+  it('passthrough for normalized families', () => {
     expect(normalizeSchemaFamily('text')).toBe('text');
     expect(normalizeSchemaFamily('boolean')).toBe('boolean');
     expect(normalizeSchemaFamily('mediaVisual')).toBe('mediaVisual');

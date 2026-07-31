@@ -5,7 +5,7 @@ import { COMMON_PROPERTY_MAP } from '@/sisad-pdfme/schemas/propPanel/commonInspe
  * Reglas no negociables de la taxonomía del inspector
  * (docs/03-designer/12-inspector-taxonomy.md §2).
  *
- * El mapa usa claves legacy: general=Información, validation=Reglas de llenado,
+ * El mapa usa claves previas: general=Información, validation=Reglas de llenado,
  * data=Interacción, connections=Datos y conexiones, style=Formato,
  * layout=Ubicación, collaboration=Asignación y bloqueo.
  */

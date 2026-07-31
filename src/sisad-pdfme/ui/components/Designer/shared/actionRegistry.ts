@@ -112,7 +112,7 @@ export const registerActions = (definitions: SchemaActionDefinition[]): void => 
 export const getAction = (id: string): SchemaActionDefinition | undefined =>
   _registry.get(id);
 
-/** Resolve an action by canonical id or by one of the designer aliases. */
+/** Resolve an action by primary id or by one of the designer aliases. */
 export const resolveActionDefinition = (id: string): SchemaActionDefinition | undefined =>
   getAction(id) ?? getAction(DESIGNER_ACTION_ALIASES[id as DesignerActionAliasId] ?? '');
 
@@ -176,7 +176,7 @@ export const clearActionRegistry = (): void => _registry.clear();
 
 // ── Built-in core actions ──────────────────────────────────────────────────────
 //
-// These are the canonical action definitions for the built-in designer.
+// These are the  action definitions for the built-in designer.
 // Each plugin or feature can call `registerAction` to extend the registry.
 
 const CORE_ACTIONS: SchemaActionDefinition[] = [

@@ -10,7 +10,7 @@ Este paquete contiene los archivos del runtime UI documentados con comentarios d
 | Form.tsx | Form.tsx | Runtime interactivo de llenado basado en Preview. |
 | Viewer.tsx | Viewer.tsx | Runtime de solo lectura basado en Preview. |
 | class.ts | class.ts | BaseUIClass y PreviewUI: lifecycle, root React, ResizeObserver, opciones, plugins e inputs. |
-| collaboration.ts | collaboration(1).ts | Eventos colaborativos, locks, comentarios, presencia, historial, Yjs/legacy sync. |
+| collaboration.ts | collaboration(1).ts | Eventos colaborativos, locks, comentarios, presencia, historial, Yjs/ sync. |
 | collaborationContext.ts | collaborationContext.ts | Recipient activo, permisos, owner/color y estado colaborativo efectivo. |
 | constants.ts | constants(1).ts | Constantes visuales y de runtime. |
 | contexts.ts | contexts.ts | Contextos React de i18n, font, plugins, options y cache. |

@@ -155,15 +155,23 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
 
   const schemaUid = collaborative.schemaUid || activeSchema.id;
   const state = collaborative.state || 'draft';
-  const ownerRecipientIds = normalizeRecipientIds(
-    collaborative.ownerRecipientIds || collaborative.ownerRecipientId || activeSchema.ownerRecipientIds || activeSchema.ownerRecipientId,
-  );
+  const ownerRecipientIds =
+    normalizeRecipientIds(
+      collaborative.ownerRecipientIds || collaborative.ownerRecipientId || activeSchema.ownerRecipientIds || activeSchema.ownerRecipientId || [],
+    ) || [];
   const resolvedSchemaState = resolveSchemaCollaborationState(activeSchema, collaborationContext);
   const interactionState = useMemo(
     () => resolveSchemaInteractionState(activeSchema, { collaborationContext }),
     [activeSchema, collaborationContext],
   );
-  const ownerMode = collaborative.ownerMode || resolvedSchemaState.ownerMode || resolveOwnerMode(ownerRecipientIds);
+  const resolvedOwnerColor =
+    interactionState.ownerColor ||
+    resolvedSchemaState.ownerColor ||
+    collaborative.ownerColor ||
+    activeSchema.ownerColor ||
+    activeSchema.userColor ||
+    null;
+  const ownerMode = collaborative.ownerMode || resolvedSchemaState.ownerMode || resolveOwnerMode(Array.isArray(ownerRecipientIds) ? ownerRecipientIds : []);
   const lock = collaborative.lock || activeSchema.lock;
   const selectedCount = Array.isArray(props.activeElements) ? props.activeElements.length : 0;
   const selectedSchemaIds = useMemo(() => {
@@ -237,16 +245,21 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   const stateTagColor = accessState.statusTone;
 
   return (
-    <CompactConfigPanel
-      title={props.summaryTitle || 'Estado de acceso'}
-      description={props.summaryDescription || `Propietario, bloqueo y auditoría${selectionHint}.`}
-      statusTags={[{ label: stateLabel, color: stateTagColor }]}
-      modalTitle={props.modalTitle || 'Gestionar asignación y bloqueo'}
-      modalTriggerLabel={props.modalTriggerLabel ?? 'Reasignar'}
-      modalTriggerIcon={<Users size={14} />}
-      modalTriggerAriaLabel={props.modalTitle || 'Cambiar propietario'}
+    <div
+      data-testid="schema-collaboration-widget"
+      data-schema-owner-color={resolvedOwnerColor || undefined}
+      style={{ '--schema-owner-color': resolvedOwnerColor || undefined } as React.CSSProperties}
     >
-      <div className={WIDGET_ROOT}>
+      <CompactConfigPanel
+        title={props.summaryTitle || 'Estado de acceso'}
+        description={props.summaryDescription || `Propietario, bloqueo y auditoría${selectionHint}.`}
+        statusTags={[{ label: stateLabel, color: stateTagColor }]}
+        modalTitle={props.modalTitle || 'Gestionar asignación y bloqueo'}
+        modalTriggerLabel={props.modalTriggerLabel ?? 'Reasignar'}
+        modalTriggerIcon={<Users size={14} />}
+        modalTriggerAriaLabel={props.modalTitle || 'Cambiar propietario'}
+      >
+        <div className={WIDGET_ROOT}>
         {/* ── Vista normal: solo campos de negocio ─────────────────────────── */}
         <div data-testid="collaboration-normal-view">
           <div className={GRID_2}>
@@ -266,7 +279,13 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
             </div>
           </div>
           <div className={FIELD}>
-            <div className={FIELD_LABEL}>Propietario registrado</div>
+            <div className={FIELD_LABEL}>
+              <span
+                className="inline-flex h-2 w-2 shrink-0 rounded-full bg-[var(--schema-owner-color,_transparent)]"
+                aria-hidden="true"
+              />
+              Propietario registrado
+            </div>
             {hasRecipientOptions ? (
               <Select
                 id="collaboration-owner"
@@ -275,7 +294,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                 options={recipientSelectOptions}
                 onChange={(value) => {
                   const nextRecipient = recipientOptions.find((recipient) => recipient.id === value) || null;
-                  const nextRecipientColor = nextRecipient?.color || collaborative.ownerColor || activeSchema.ownerColor || activeSchema.userColor || undefined;
+                  const nextRecipientColor = nextRecipient?.color || resolvedOwnerColor || undefined;
 
                   commitOwnerPatch({
                     ownerRecipientIds: value ? [value] : [],
@@ -497,7 +516,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                       <Input
                         id="collaboration-owner-color"
                         name="collaboration-owner-color"
-                        value={activeSchema.ownerColor || collaborative.ownerColor || resolvedSchemaState.ownerColor || ''}
+                        value={resolvedOwnerColor || ''}
                         onChange={(event) => commit({ ownerColor: event.target.value || undefined })}
                         placeholder="#2563EB"
                       />
@@ -518,8 +537,9 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
             },
           ]}
         />
-      </div>
-    </CompactConfigPanel>
+        </div>
+      </CompactConfigPanel>
+    </div>
   );
 };
 

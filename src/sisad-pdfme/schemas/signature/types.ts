@@ -140,7 +140,7 @@ const MODE_DISPLAY: Record<SignatureMode, SignatureDisplayConfig> = {
   },
 };
 
-const LEGACY_PROVIDER_MODE_MAP: Record<string, SignatureMode> = {
+const SIGNATURE_PROVIDER_MODE_ALIASES: Record<string, SignatureMode> = {
   local_draw: 'draw',
   local_image: 'image',
   local_p12: 'p12',
@@ -181,26 +181,26 @@ const normalizeSignatureProviderStatus = (value: unknown): SignatureProviderStat
 const isSignatureMode = (value: unknown): value is SignatureMode =>
   value === 'draw' || value === 'image' || value === 'p12' || value === 'provider';
 
-export const resolveLegacySignatureMode = (schema: Partial<SignatureSchema> | undefined): SignatureMode => {
+export const resolveSignatureMode = (schema: Partial<SignatureSchema> | undefined): SignatureMode => {
   const explicitMode = schema?.signatureMode;
   if (isSignatureMode(explicitMode)) return explicitMode;
 
-  const legacyType = schema?.signatureType;
-  if (isSignatureMode(legacyType)) return legacyType;
+  const signatureTypeCandidate = schema?.signatureType;
+  if (isSignatureMode(signatureTypeCandidate)) return signatureTypeCandidate;
 
   const providerKey = normalizeText(schema?.signatureProviderKey || schema?.signatureProvider);
   if (!providerKey) return 'draw';
-  if (LEGACY_PROVIDER_MODE_MAP[providerKey]) return LEGACY_PROVIDER_MODE_MAP[providerKey];
+  if (SIGNATURE_PROVIDER_MODE_ALIASES[providerKey]) return SIGNATURE_PROVIDER_MODE_ALIASES[providerKey];
   return 'provider';
 };
 
 const resolveSignatureProviderKey = (schema: Partial<SignatureSchema> | undefined, mode?: SignatureMode) => {
-  const resolvedMode = mode || resolveLegacySignatureMode(schema);
+  const resolvedMode = mode || resolveSignatureMode(schema);
   if (resolvedMode !== 'provider') return null;
 
   const explicitProviderKey = normalizeText(schema?.signatureProviderKey);
-  const legacyProvider = normalizeText(schema?.signatureProvider);
-  const providerKey = explicitProviderKey || legacyProvider;
+  const providerKeyCandidate = normalizeText(schema?.signatureProvider);
+  const providerKey = explicitProviderKey || providerKeyCandidate;
   if (!providerKey) return undefined;
   return providerKey;
 };
@@ -314,7 +314,7 @@ export const normalizeSignatureSchema = (
   providerSupport?: SignatureProviderSupport,
 ): SignatureSchema => {
   const baseSchema = (schema || {}) as SignatureSchema;
-  const signatureMode = resolveLegacySignatureMode(baseSchema);
+  const signatureMode = resolveSignatureMode(baseSchema);
   const signatureProviderKey = resolveSignatureProviderKey(baseSchema, signatureMode);
   const signatureProviderConfig = signatureMode === 'provider' ? asRecord(baseSchema.signatureProviderConfig) : {};
   const signatureProviderStatus =

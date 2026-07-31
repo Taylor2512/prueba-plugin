@@ -162,7 +162,7 @@ export const buildEffectiveCollaborationContext = (
     fileId,
     actorId,
     ownerRecipientId,
-    ownerRecipientIds: ownerRecipientId ? [ownerRecipientId] : undefined,
+    ownerRecipientIds: ownerRecipientId ? [ownerRecipientId] : [],
     ownerRecipientName: activeRecipient?.name || null,
     ownerColor,
     userColor: ownerColor,
@@ -188,9 +188,10 @@ export const resolveOwnerMode = (
   value: unknown,
   ownerRecipientIds: string[],
 ): 'single' | 'multi' | 'shared' | undefined => {
+  const normalizedOwnerRecipientIds = Array.isArray(ownerRecipientIds) ? ownerRecipientIds : [];
   if (value === 'single' || value === 'multi' || value === 'shared') return value;
-  if (ownerRecipientIds.length > 1) return 'multi';
-  if (ownerRecipientIds.length === 1) return 'single';
+  if (normalizedOwnerRecipientIds.length > 1) return 'multi';
+  if (normalizedOwnerRecipientIds.length === 1) return 'single';
   return undefined;
 };
 

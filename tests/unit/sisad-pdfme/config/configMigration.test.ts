@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { migrateSisadPdfmeConfig } from '@/sisad-pdfme/config/configMigration';
 
 describe('migrateSisadPdfmeConfig', () => {
-  it('migrates legacy ui and collaboration aliases into canonical paths without mutating input', () => {
+  it('migrates ui and collaboration aliases into normalized paths without mutating input', () => {
     const input = {
       ui: {
         visibility: {
@@ -31,7 +31,7 @@ describe('migrateSisadPdfmeConfig', () => {
     expect(result.config.sidebars?.right?.defaultPanel).toBe('comments');
     expect(result.config.recipients?.activeRecipientId).toBe('recipient-1');
     expect(result.issues.map((issue) => issue.code)).toEqual(
-      expect.arrayContaining(['config-legacy-migrated']),
+      expect.arrayContaining(['config-path-migrated']),
     );
   });
 });

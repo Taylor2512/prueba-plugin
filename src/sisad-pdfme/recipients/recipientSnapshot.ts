@@ -4,7 +4,7 @@
  * Rol arquitectónico:
  * - Produce la sección de recipients de un snapshot en el formato compatible
  *   con `SnapshotRecipient` (`shared/snapshot.ts`): { id, name, color, role, order }.
- * - Rehidrata desde snapshots v2 ({ recipients, activeRecipientId }) o desde
+ * - Rehidrata desde snapshots  ({ recipients, activeRecipientId }) o desde
  *   cualquier objeto con esa forma, tolerando campos faltantes.
  */
 import type {

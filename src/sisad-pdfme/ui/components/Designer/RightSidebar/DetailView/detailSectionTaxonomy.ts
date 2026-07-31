@@ -1,9 +1,9 @@
 /**
- * detailSectionTaxonomy — taxonomía canónica de secciones del DetailView.
+ * detailSectionTaxonomy - taxonomía estable de secciones del DetailView.
  *
- * Mapea nombres legacy a secciones actuales, define orden/labels y decide si una
- * sección debe renderizarse según tipo de schema, familia semántica, campos,
- * widgets y señales de contenido real.
+ * Mapea nombres de compatibilidad a secciones actuales, define orden/labels y
+ * decide si una sección debe renderizarse según tipo de schema, familia
+ * semántica, campos, widgets y señales de contenido real.
  */
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import {
@@ -15,9 +15,9 @@ import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
 import { normalizeText as normalizeTextRaw } from '../../../../../shared/text.js';
 
 /**
- * Secciones canónicas actuales del DetailView.
+ * Claves de sección actuales del DetailView.
  */
-export type CanonicalDetailSection =
+export type DetailSectionKey =
   | 'identity'
   | 'options'
   | 'validation'
@@ -31,9 +31,9 @@ export type CanonicalDetailSection =
   | 'advanced';
 
 /**
- * Secciones legacy aceptadas para compatibilidad con plugins existentes.
+ * Claves heredadas aceptadas para compatibilidad con plugins existentes.
  */
-export type LegacyDetailSection =
+export type PluginSectionKey =
   | 'general'
   | 'options'
   | 'layout'
@@ -47,9 +47,9 @@ export type LegacyDetailSection =
   | 'advanced';
 
 /**
- * Mapa de normalización desde secciones legacy a secciones canónicas.
+ * Mapa de normalización desde claves heredadas a claves actuales.
  */
-export const LEGACY_TO_CANONICAL_DETAIL_SECTION = {
+export const DETAIL_SECTION_ALIASES = {
   general: 'identity',
   options: 'options',
   layout: 'box',
@@ -61,12 +61,12 @@ export const LEGACY_TO_CANONICAL_DETAIL_SECTION = {
   collaboration: 'collaboration',
   comments: 'comments',
   advanced: 'advanced',
-} as const satisfies Record<LegacyDetailSection, CanonicalDetailSection>;
+} as const satisfies Record<PluginSectionKey, DetailSectionKey>;
 
 /**
  * Orden visual estable del inspector.
  */
-export const CANONICAL_DETAIL_SECTION_ORDER = [
+export const DETAIL_SECTION_ORDER = [
   'identity',
   'options',
   'validation',
@@ -78,12 +78,12 @@ export const CANONICAL_DETAIL_SECTION_ORDER = [
   'collaboration',
   'comments',
   'advanced',
-] as const satisfies readonly CanonicalDetailSection[];
+] as const satisfies readonly DetailSectionKey[];
 
 /**
- * Labels y descripciones por sección canónica.
+ * Labels y descripciones por clave de sección.
  */
-export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { title: string; description: string; defaultCollapsed?: boolean }> = {
+export const DETAIL_SECTION_LABELS: Record<DetailSectionKey, { title: string; description: string; defaultCollapsed?: boolean }> = {
   identity: {
     title: 'Información del campo',
     description: 'Nombre visible y metadatos.',
@@ -180,20 +180,20 @@ const CHECKBOX_TYPES = new Set(['checkbox']);
  */
 export type DetailProfile = {
   schemaType: string;
-  visibleSections: CanonicalDetailSection[];
-  defaultOpenSections: CanonicalDetailSection[];
+  visibleSections: DetailSectionKey[];
+  defaultOpenSections: DetailSectionKey[];
 };
 
 /**
  * Factory de perfil de detalle.
  */
-const createDetailProfile = (schemaType: string, visibleSections: CanonicalDetailSection[], defaultOpenSections: CanonicalDetailSection[]): DetailProfile => ({
+const createDetailProfile = (schemaType: string, visibleSections: DetailSectionKey[], defaultOpenSections: DetailSectionKey[]): DetailProfile => ({
   schemaType,
   visibleSections,
   defaultOpenSections,
 });
 
-const DEFAULT_DETAIL_SECTION_VISIBILITY: CanonicalDetailSection[] = [
+const DEFAULT_DETAIL_SECTION_VISIBILITY: DetailSectionKey[] = [
   'identity',
   'box',
   'appearance',
@@ -206,7 +206,7 @@ const DEFAULT_DETAIL_SECTION_VISIBILITY: CanonicalDetailSection[] = [
 ];
 
 /** Secciones transversales que ve cualquier familia. */
-const SHARED_SECTIONS: CanonicalDetailSection[] = [
+const SHARED_SECTIONS: DetailSectionKey[] = [
   'identity',
   'behavior',
   'box',
@@ -219,15 +219,15 @@ const SHARED_SECTIONS: CanonicalDetailSection[] = [
 ];
 
 /**
- * Matriz canónica sección × familia de inspector.
+ * Matriz estable sección x familia de inspector.
  *
  * Fuente única de verdad: `docs/03-designer/12-inspector-taxonomy.md` §3.
- * `visible` se ordena por `CANONICAL_DETAIL_SECTION_ORDER`; `open` conserva el
+ * `visible` se ordena por `DETAIL_SECTION_ORDER`; `open` conserva el
  * orden de lectura de cada familia (qué mira primero quien edita ese tipo).
  */
 const INSPECTOR_FAMILY_SECTIONS: Record<
   InspectorFamily,
-  { visible: CanonicalDetailSection[]; open: CanonicalDetailSection[] }
+  { visible: DetailSectionKey[]; open: DetailSectionKey[] }
 > = {
   'text-like': {
     visible: [...SHARED_SECTIONS, 'validation'],
@@ -272,7 +272,7 @@ export const getDetailProfile = (schemaType: string): DetailProfile => {
 
   return createDetailProfile(
     normalized,
-    sortCanonicalDetailSections(
+    sortDetailSections(
       isLoneCheckbox
         ? familySections.visible.filter((section) => section !== 'options')
         : familySections.visible,
@@ -352,21 +352,21 @@ const hasField = (fields: FieldLike[], names: string[]) => fieldNames(fields).so
 const hasRenderableField = (fields: FieldLike[]) => fieldNames(fields).some((field) => !field.hidden && !field.disabled);
 
 /**
- * Convierte una sección legacy o canónica a sección canónica.
+ * Convierte una sección heredada o actual a una clave de sección.
  */
-export const toCanonicalDetailSection = (section: string): CanonicalDetailSection | null => {
-  const normalized = normalizeLowerText(section) as LegacyDetailSection | CanonicalDetailSection;
+export const toDetailSectionKey = (section: string): DetailSectionKey | null => {
+  const normalized = normalizeLowerText(section) as PluginSectionKey | DetailSectionKey;
   if (!normalized) return null;
-  if ((CANONICAL_DETAIL_SECTION_ORDER as readonly string[]).includes(normalized)) {
-    return normalized as CanonicalDetailSection;
+  if ((DETAIL_SECTION_ORDER as readonly string[]).includes(normalized)) {
+    return normalized as DetailSectionKey;
   }
-  return LEGACY_TO_CANONICAL_DETAIL_SECTION[normalized as LegacyDetailSection] || null;
+  return DETAIL_SECTION_ALIASES[normalized as PluginSectionKey] || null;
 };
 
-/** Ordena y deduplica secciones según el orden canónico. */
-export const sortCanonicalDetailSections = (sections: CanonicalDetailSection[]) =>
+/** Ordena y deduplica secciones según el orden estable. */
+export const sortDetailSections = (sections: DetailSectionKey[]) =>
   [...new Set(sections)].sort(
-    (left, right) => CANONICAL_DETAIL_SECTION_ORDER.indexOf(left) - CANONICAL_DETAIL_SECTION_ORDER.indexOf(right),
+    (left, right) => DETAIL_SECTION_ORDER.indexOf(left) - DETAIL_SECTION_ORDER.indexOf(right),
   );
 
 /**
@@ -376,8 +376,8 @@ export const sortCanonicalDetailSections = (sections: CanonicalDetailSection[]) 
  * @returns `true` si la sección contiene información o capacidades relevantes.
  */
 export function shouldRenderDetailSection(params: {
-  section: CanonicalDetailSection;
-  legacySection?: LegacyDetailSection | string;
+  section: DetailSectionKey;
+  Section?: PluginSectionKey | string;
   schema: SchemaForUI | Record<string, unknown> | null | undefined;
   schemaType: string;
   semanticFamily?: SchemaSemanticFamily | string;

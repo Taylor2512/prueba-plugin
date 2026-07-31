@@ -239,8 +239,8 @@ export const CustomPdf = z.union([z.string(), ArrayBufferSchema, Uint8ArraySchem
 /** Contrato de PDF base, custom o blank. */
 export const BasePdf = z.union([CustomPdf, BlankPdf]);
 
-// Legacy keyed structure for BC - we convert to SchemaPageArray on import
-export const LegacySchemaPageArray = z.array(z.record(z.string(), Schema));
+// Keyed structure kept only for import compatibility with older payloads.
+export const SchemaPageArrayByKey = z.array(z.record(z.string(), Schema));
 export const SchemaPageArray = z.array(z.array(Schema));
 
 /** Contrato runtime del template completo. */

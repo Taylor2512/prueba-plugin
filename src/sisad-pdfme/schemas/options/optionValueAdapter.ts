@@ -31,7 +31,7 @@ export const buildCheckboxToGroupPatch = (
 };
 
 /**
- * Adapter: stored schema value ↔ canonical optionId.
+ * Adapter: stored schema value ↔  optionId.
  *
  * Delegates the actual id/value matching to the single core matcher in
  * optionSelectionBehavior so checkboxGroup/radioGroup/select share one

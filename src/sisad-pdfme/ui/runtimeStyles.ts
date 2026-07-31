@@ -84,6 +84,23 @@ const SISAD_PDFME_RUNTIME_CSS = `
   align-items: stretch;
 }
 
+/*
+ * Reduced motion en el chrome del diseñador.
+ *
+ * Las transiciones de los botones vienen de Ant Design, no de nuestras clases,
+ * asi que una utilidad motion-reduce en el JSX no las alcanza. Se neutralizan
+ * aqui, dentro de la hoja del propio runtime y acotado a sus clusters.
+ * El !important es necesario por la especificidad de antd; no cruza ningun
+ * limite de estilos porque apunta a superficies propias.
+ */
+@media (prefers-reduced-motion: reduce) {
+  [class*='control-bar-cluster'],
+  [class*='control-bar-cluster'] * {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+  }
+}
+
 .sisad-pdfme-designer-stage {
   position: relative;
   display: flex;
@@ -94,6 +111,13 @@ const SISAD_PDFME_RUNTIME_CSS = `
   flex: 1 1 auto;
   flex-direction: column;
   overflow: hidden;
+  /*
+   * Obligatorio: Tailwind preflight esta desactivado, asi que el box model por
+   * defecto es content-box. Con height 100% y padding por utilidades, el stage
+   * medía 16px mas que su contenedor y empujaba el cluster inferior de la
+   * CtlBar fuera del viewport (medido: bottom 848 con viewport 844).
+   */
+  box-sizing: border-box;
 }
 
 .sisad-pdfme-ui-preview-scroll {

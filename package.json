@@ -29,6 +29,8 @@
     "quality:large-files": "node scripts/quality/list-large-files.js --max-lines=700",
     "quality:direct-config-readers": "node scripts/quality/check-direct-config-readers.mjs",
     "quality:source-language-boundary": "node scripts/quality/check-source-language-boundary.mjs",
+    "quality:compatibility-language": "node scripts/quality/audit-compatibility-language.mjs",
+    "quality:compatibility-language:strict": "node scripts/quality/audit-compatibility-language.mjs --strict",
     "quality:example-style-boundary": "node scripts/quality/check-example-style-boundary.mjs",
     "quality:duplicate-functions": "node scripts/quality/find-symbol-name-duplicates.js --mode=all",
     "quality:wrapper-components": "node scripts/quality/find-wrapper-components.js",

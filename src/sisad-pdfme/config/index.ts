@@ -12,6 +12,7 @@
 export { defaultSisadPdfmeConfig } from './defaultSisadPdfmeConfig.js';
 export { createSisadPdfmeConfig } from './createSisadPdfmeConfig.js';
 export { resolveSisadPdfmeConfig } from './resolveSisadPdfmeConfig.js';
+export { createProfiledConfig, deepMergeProfileConfig } from './profiledConfig.js';
 export { migrateSisadPdfmeConfig } from './configMigration.js';
 export { validateSisadPdfmeConfig } from './configValidation.js';
 export { classifySisadPdfmeConfigChange } from './configChangeImpact.js';

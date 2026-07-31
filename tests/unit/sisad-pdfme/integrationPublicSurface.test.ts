@@ -160,7 +160,7 @@ describe('sisad-pdfme integration public surface', () => {
       integrationApi.filterSchemasByFileAndPage,
       integrationApi.reconcileTemplateDocuments,
       integrationApi.mergeDesignerDocumentIntoFile,
-      integrationApi.configurePdfjsLegacyWorker,
+      integrationApi.configurePdfjsWorker,
       integrationApi.getSchemaCatalog,
       integrationApi.normalizeTemplateForRuntime,
       integrationApi.CommandBus,

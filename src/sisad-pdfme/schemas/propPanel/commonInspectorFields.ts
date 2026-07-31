@@ -1,7 +1,7 @@
 /**
  * Reusable field definitions for the inspector sidebar.
  * Import specific groups and spread into any schema's propPanel.schema().
- * All fields map to canonical sections via the inspector propertyMap.
+ * All fields map to  sections via the inspector propertyMap.
  */
 
 import type { PropPanelSchema } from '@sisad-pdfme/common';

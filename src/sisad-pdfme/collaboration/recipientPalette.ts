@@ -33,7 +33,7 @@ export type RecipientAppearanceOptions = {
 /**
  * Assigns a stable color to each collaborator. Users with a valid explicit hex
  * keep it (normalized to #RRGGBB); the rest get palette slots that skip colors
- * already claimed by explicit users. Behavior matches the legacy lab
+ * already claimed by explicit users. Behavior matches the  lab
  * `decorateCollaborationUsers` when called with the default palette.
  */
 export function decorateCollaborationUsers<T extends CollaboratorUser>(

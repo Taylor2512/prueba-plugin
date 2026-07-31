@@ -32,7 +32,7 @@ export const isTransformableCanvasTarget = (element: Element | null | undefined)
 
 /** Target (or ancestor) that must suppress Selecto region/click selection. */
 export const isCanvasSelectionExcludedTarget = (target: EventTarget | null | undefined): boolean => {
-  // Sin target no hay nada que excluir (contrato legacy de los guards).
+  // Sin target no hay nada que excluir (contrato  de los guards).
   if (!(target instanceof Element)) return false;
   const result = resolveInteractionTarget(target);
   return shouldIgnoreForSelecto(result);

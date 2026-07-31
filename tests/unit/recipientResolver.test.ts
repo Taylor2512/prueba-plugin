@@ -87,7 +87,7 @@ describe('buildCollaborationSyncFromRegistry', () => {
   test('deriva recipientOptions/users/activeRecipientId de la misma fuente', () => {
     const registry = makeRegistry();
     const sync = buildCollaborationSyncFromRegistry(registry, {
-      base: { url: 'ws://collab', actorId: 'legacy-actor' },
+      base: { url: 'ws://collab', actorId: 'source-actor' },
       enabled: true,
     });
 
@@ -110,10 +110,10 @@ describe('buildCollaborationSyncFromRegistry', () => {
       config: { defaultOwnerStrategy: 'none' },
     });
     const sync = buildCollaborationSyncFromRegistry(registry, {
-      base: { actorId: 'legacy-actor' },
+      base: { actorId: 'source-actor' },
     });
     expect(sync.activeRecipientId).toBeNull();
-    expect(sync.actorId).toBe('legacy-actor');
+    expect(sync.actorId).toBe('source-actor');
   });
 });
 

@@ -2,7 +2,7 @@
  * FASE 7 — Snapshot Adapter
  *
  * Serializa/deserializa el estado del designer hacia/desde OfficialTemplateSnapshot.
- * Migra snapshots legacy (pdfme ~4.x sin campo version) a v2.
+ * Migra snapshots anteriores al contrato actual (pdfme ~4.x sin campo version).
  *
  * Estrategia de migración:
  *   - Detección: ausencia de 'version' o version < "2.0.0"
@@ -26,7 +26,7 @@ import type {
 } from './snapshot.js';
 import {
   SNAPSHOT_VERSION,
-  isLegacySnapshot,
+  isPreSnapshot,
 } from './snapshot.js';
 import { asRecord } from './objectGuards.js';
 import { normalizeLooseText } from './text.js';
@@ -58,28 +58,28 @@ export const normalizeSnapshotConnectivity = (
   const byFile = normalizeConnectivityRecord<Record<string, SnapshotFileConnectivity>>(connectivity.byFile);
   const bySchema = normalizeConnectivityRecord<Record<string, Record<string, SnapshotSchemaConnectivity>>>(connectivity.bySchema);
   const byRecipient = normalizeConnectivityRecord<Record<string, unknown>>(connectivity.byRecipient);
-  const legacyMapping = normalizeConnectivityRecord<Record<string, unknown>>(connectivity.legacyMapping);
+  const sourceMapping = normalizeConnectivityRecord<Record<string, unknown>>(connectivity.sourceMapping);
 
-  if (!byFile && !bySchema && !byRecipient && !legacyMapping) return undefined;
+  if (!byFile && !bySchema && !byRecipient && !sourceMapping) return undefined;
 
   return {
-    byFile: byFile || legacyMapping || undefined,
+    byFile: byFile || sourceMapping || undefined,
     bySchema: bySchema || undefined,
     byRecipient: byRecipient || undefined,
-    legacyMapping: legacyMapping || undefined,
+    sourceMapping: sourceMapping || undefined,
   };
 };
 
 const resolveSnapshotConnectivityRecord = (snapshot: unknown): SnapshotConnectivity | undefined => {
   const record = asRecord(snapshot) || {};
   const connectivity = asRecord(record.connectivity);
-  const legacyMapping = asRecord(record.connectivityMapping);
-  if (!connectivity && !legacyMapping) return undefined;
+  const sourceMapping = asRecord(record.connectivityMapping);
+  if (!connectivity && !sourceMapping) return undefined;
   return normalizeSnapshotConnectivity({
-    byFile: asRecord(connectivity?.byFile) || legacyMapping || undefined,
+    byFile: asRecord(connectivity?.byFile) || sourceMapping || undefined,
     bySchema: asRecord(connectivity?.bySchema) || undefined,
     byRecipient: asRecord(connectivity?.byRecipient) || undefined,
-    legacyMapping: legacyMapping || undefined,
+    sourceMapping: sourceMapping || undefined,
   });
 };
 
@@ -157,40 +157,40 @@ class SnapshotAdapterImpl {
   }
 
   /**
-   * Migra un snapshot de cualquier versión anterior a v2.
-   * Siempre retorna un OfficialTemplateSnapshot válido en v2.
+   * Migra un snapshot de cualquier versión anterior a .
+   * Siempre retorna un OfficialTemplateSnapshot válido en .
    * Ejecutar en import time.
    */
   migrate(raw: unknown): OfficialTemplateSnapshot {
-    if (!isLegacySnapshot(raw)) {
-      // Ya es v2 (o superior) — retornar tal cual
+    if (!isPreSnapshot(raw)) {
+      // Ya es  (o superior) — retornar tal cual
       return raw as OfficialTemplateSnapshot;
     }
 
-    // Legacy pdfme ~4.x: { schemas: SchemaPageArray[][], basePdf?: string, ... }
-    const legacy = asRecord(raw) || {};
+    // Pre- pdfme ~4.x: { schemas: SchemaPageArray[][], basePdf?: string, ... }
+    const sourceSnapshot = asRecord(raw) || {};
     const now = new Date().toISOString();
-    const legacySchemas = this._extractLegacySchemas(legacy);
-    const legacyRecipients = this._extractLegacyRecipients(legacy);
+    const sourceSchemas = this._extractSchemas(sourceSnapshot);
+    const sourceRecipients = this._extractRecipients(sourceSnapshot);
     const uploadedDocuments =
-      Array.isArray(legacy.uploadedDocuments) && legacy.uploadedDocuments.length > 0
-        ? (legacy.uploadedDocuments as SnapshotDocument[])
+      Array.isArray(sourceSnapshot.uploadedDocuments) && sourceSnapshot.uploadedDocuments.length > 0
+        ? (sourceSnapshot.uploadedDocuments as SnapshotDocument[])
         : undefined;
-    const legacySignaturePolicyId = this._resolveLegacySignaturePolicyId(legacy);
-    const legacySignatureMode = this._resolveLegacySignatureMode(legacy, legacySignaturePolicyId);
-    const legacyConnectivity = this._resolveLegacyConnectivity(legacy);
+    const sourceSignaturePolicyId = this._resolveSignaturePolicyId(sourceSnapshot);
+    const sourceSignatureMode = this._resolveSignatureMode(sourceSnapshot, sourceSignaturePolicyId);
+    const sourceConnectivity = this._resolveConnectivity(sourceSnapshot);
 
     const documents: SnapshotDocument[] = [
       {
         documentId: this._generateId(),
-        name: typeof legacy.name === 'string' ? legacy.name : 'Documento importado',
+        name: typeof sourceSnapshot.name === 'string' ? sourceSnapshot.name : 'Documento importado',
         order: 0,
-        pages: legacySchemas.map((pageSchemas, index) => ({
+        pages: sourceSchemas.map((pageSchemas, index) => ({
           pageNumber: index + 1,
           schemas: pageSchemas.map((schema) =>
             this._migrateSchema(schema, index + 1, 'doc-0'),
           ),
-          background: this._migrateBackground(legacy, index),
+          background: this._migrateBackground(sourceSnapshot, index),
         })),
       },
     ];
@@ -198,50 +198,50 @@ class SnapshotAdapterImpl {
     return {
       version: SNAPSHOT_VERSION,
       templateSchemaVersion:
-        typeof legacy.templateSchemaVersion === 'string'
-          ? legacy.templateSchemaVersion
+        typeof sourceSnapshot.templateSchemaVersion === 'string'
+          ? sourceSnapshot.templateSchemaVersion
           : SNAPSHOT_VERSION,
-      templateId: typeof legacy.templateId === 'string' ? legacy.templateId : this._generateId(),
+      templateId: typeof sourceSnapshot.templateId === 'string' ? sourceSnapshot.templateId : this._generateId(),
       createdAt: now,
       updatedAt: now,
       metadata: {
-        name: typeof legacy.name === 'string' ? legacy.name : 'Template migrado',
+        name: typeof sourceSnapshot.name === 'string' ? sourceSnapshot.name : 'Template migrado',
         createdByUserId: 'migration',
-        description: 'Migrado automáticamente desde formato pdfme v1',
+        description: 'Migrado automáticamente desde formato pdfme ',
       },
       activeDocumentId:
-        typeof legacy.activeDocumentId === 'string' && legacy.activeDocumentId.trim()
-          ? legacy.activeDocumentId.trim()
+        typeof sourceSnapshot.activeDocumentId === 'string' && sourceSnapshot.activeDocumentId.trim()
+          ? sourceSnapshot.activeDocumentId.trim()
           : documents[0]?.documentId ?? null,
       documents,
       uploadedDocuments: uploadedDocuments ?? documents,
-      recipients: legacyRecipients,
-      assignments: this._extractLegacyAssignments(legacySchemas),
-      connectivity: normalizeSnapshotConnectivity(legacyConnectivity),
-      inputs: Array.isArray(legacy.inputs) ? (legacy.inputs as Array<Record<string, unknown>>) : undefined,
-      contributors: Array.isArray(legacy.contributors)
-        ? (legacy.contributors as SnapshotContributor[])
+      recipients: sourceRecipients,
+      assignments: this._extractAssignments(sourceSchemas),
+      connectivity: normalizeSnapshotConnectivity(sourceConnectivity),
+      inputs: Array.isArray(sourceSnapshot.inputs) ? (sourceSnapshot.inputs as Array<Record<string, unknown>>) : undefined,
+      contributors: Array.isArray(sourceSnapshot.contributors)
+        ? (sourceSnapshot.contributors as SnapshotContributor[])
         : undefined,
-      history: Array.isArray(legacy.history) ? (legacy.history as Array<Record<string, unknown>>) : undefined,
+      history: Array.isArray(sourceSnapshot.history) ? (sourceSnapshot.history as Array<Record<string, unknown>>) : undefined,
       signatureConfig: {
-        defaultMode: legacySignatureMode,
+        defaultMode: sourceSignatureMode,
         allowedModes: ['draw', 'image', 'p12', 'provider'],
       },
-      signaturePolicyId: legacySignaturePolicyId,
-      signatureMode: legacySignatureMode,
+      signaturePolicyId: sourceSignaturePolicyId,
+      signatureMode: sourceSignatureMode,
       signatureProviderKey:
-        typeof legacy.signatureProviderKey === 'string'
-          ? legacy.signatureProviderKey
-          : typeof legacy.signatureProvider === 'string'
-            ? legacy.signatureProvider
+        typeof sourceSnapshot.signatureProviderKey === 'string'
+          ? sourceSnapshot.signatureProviderKey
+          : typeof sourceSnapshot.signatureProvider === 'string'
+            ? sourceSnapshot.signatureProvider
             : null,
       providerConfig: {
-        defaultProvider: legacySignatureMode === 'provider' ? 'provider' : 'draw',
+        defaultProvider: sourceSignatureMode === 'provider' ? 'provider' : 'draw',
         allowedProviders: ['draw', 'image', 'p12', 'provider'],
       },
-      delivery: asRecord(legacy.delivery) || undefined,
-      message: asRecord(legacy.message) || undefined,
-      security: asRecord(legacy.security) || undefined,
+      delivery: asRecord(sourceSnapshot.delivery) || undefined,
+      message: asRecord(sourceSnapshot.message) || undefined,
+      security: asRecord(sourceSnapshot.security) || undefined,
     };
   }
 
@@ -285,9 +285,9 @@ class SnapshotAdapterImpl {
 
   // ── Privados de migración ──────────────────────────────────────────────
 
-  private _extractLegacySchemas(legacy: unknown): unknown[][] {
-    const record = asRecord(legacy) || {};
-    // pdfme v4: { schemas: [[...], [...]] } o { schemas: { '0': [...] } }
+  private _extractSchemas(sourceSnapshot: unknown): unknown[][] {
+    const record = asRecord(sourceSnapshot) || {};
+    // pdfme : { schemas: [[...], [...]] } o { schemas: { '0': [...] } }
     const schemas = record.schemas;
     if (Array.isArray(schemas)) return schemas as unknown[][];
     if (schemas && typeof schemas === 'object' && !Array.isArray(schemas)) {
@@ -296,9 +296,9 @@ class SnapshotAdapterImpl {
     return [[]];
   }
 
-  private _extractLegacyRecipients(legacy: unknown): SnapshotRecipient[] {
-    const record = asRecord(legacy) || {};
-    // pdfme v4 no tiene recipients nativos — retornar vacío
+  private _extractRecipients(sourceSnapshot: unknown): SnapshotRecipient[] {
+    const record = asRecord(sourceSnapshot) || {};
+    // pdfme  no tiene recipients nativos — retornar vacío
     const recipients = record.recipients;
     if (Array.isArray(recipients)) {
       return recipients as SnapshotRecipient[];
@@ -306,9 +306,9 @@ class SnapshotAdapterImpl {
     return [];
   }
 
-  private _extractLegacyAssignments(legacyPages: unknown[][]): SnapshotAssignment[] {
+  private _extractAssignments(Pages: unknown[][]): SnapshotAssignment[] {
     const assignments: SnapshotAssignment[] = [];
-    for (const page of legacyPages) {
+    for (const page of Pages) {
       for (const schema of page) {
         const schemaRecord = asRecord(schema);
         if (!schemaRecord) continue;
@@ -338,43 +338,43 @@ class SnapshotAdapterImpl {
     return assignments;
   }
 
-  private _resolveLegacyConnectivity(legacy: Record<string, unknown>): SnapshotConnectivity | undefined {
-    const legacyMapping = asRecord(legacy.connectivityMapping);
-    const connectivity = asRecord(legacy.connectivity);
+  private _resolveConnectivity(sourceSnapshot: Record<string, unknown>): SnapshotConnectivity | undefined {
+    const sourceMapping = asRecord(sourceSnapshot.connectivityMapping);
+    const connectivity = asRecord(sourceSnapshot.connectivity);
     const byFile = asRecord(connectivity?.byFile);
     const bySchema = asRecord(connectivity?.bySchema);
     const byRecipient = asRecord(connectivity?.byRecipient);
 
-    if (!legacyMapping && !byFile && !bySchema && !byRecipient) return undefined;
+    if (!sourceMapping && !byFile && !bySchema && !byRecipient) return undefined;
 
     return normalizeSnapshotConnectivity({
-      byFile: byFile || legacyMapping || undefined,
+      byFile: byFile || sourceMapping || undefined,
       bySchema: bySchema || undefined,
       byRecipient: byRecipient || undefined,
-      legacyMapping: legacyMapping || undefined,
+      sourceMapping: sourceMapping || undefined,
     });
   }
 
-  private _resolveLegacySignaturePolicyId(legacy: Record<string, unknown>): string | null {
-    const policy = typeof legacy.signaturePolicyId === 'string'
-      ? legacy.signaturePolicyId.trim()
-      : typeof legacy.singType === 'string'
-        ? legacy.singType.trim()
-        : typeof legacy.signaturePolicy === 'string'
-          ? legacy.signaturePolicy.trim()
+  private _resolveSignaturePolicyId(sourceSnapshot: Record<string, unknown>): string | null {
+    const policy = typeof sourceSnapshot.signaturePolicyId === 'string'
+      ? sourceSnapshot.signaturePolicyId.trim()
+      : typeof sourceSnapshot.singType === 'string'
+        ? sourceSnapshot.singType.trim()
+        : typeof sourceSnapshot.signaturePolicy === 'string'
+          ? sourceSnapshot.signaturePolicy.trim()
           : '';
 
     return policy || null;
   }
 
-  private _resolveLegacySignatureMode(
-    legacy: Record<string, unknown>,
+  private _resolveSignatureMode(
+    sourceSnapshot: Record<string, unknown>,
     signaturePolicyId: string | null,
   ): SignatureConfig['defaultMode'] {
-    const rawMode = typeof legacy.signatureMode === 'string'
-      ? legacy.signatureMode.trim()
-      : typeof legacy.signatureType === 'string'
-        ? legacy.signatureType.trim()
+    const rawMode = typeof sourceSnapshot.signatureMode === 'string'
+      ? sourceSnapshot.signatureMode.trim()
+      : typeof sourceSnapshot.signatureType === 'string'
+        ? sourceSnapshot.signatureType.trim()
         : '';
 
     const normalizedMode = rawMode.toLowerCase();
@@ -436,10 +436,10 @@ class SnapshotAdapterImpl {
   }
 
   private _migrateBackground(
-    legacy: unknown,
+    sourceSnapshot: unknown,
     _pageIndex: number,
   ): SnapshotPage['background'] {
-    const record = asRecord(legacy) || {};
+    const record = asRecord(sourceSnapshot) || {};
     const basePdf = record.basePdf;
     if (!basePdf) return { type: 'none' };
     if (typeof basePdf === 'string') {

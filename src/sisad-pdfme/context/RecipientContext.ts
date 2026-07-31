@@ -103,9 +103,9 @@ export function reconcileRecipientColor(
   recipients: Recipient[],
 ): string | undefined {
   if (!schemaRecipientId) return undefined;
-  const canonical = recipients.find((r) => r.id === schemaRecipientId);
+  const resolvedRecipient = recipients.find((r) => r.id === schemaRecipientId);
   // Si el recipient fue eliminado, conservar el color del schema
-  if (!canonical) return schemaRecipientColor;
-  // El color canónico del recipient siempre gana
-  return canonical.color;
+  if (!resolvedRecipient) return schemaRecipientColor;
+  // El color resuelto del recipient siempre gana
+  return resolvedRecipient.color;
 }

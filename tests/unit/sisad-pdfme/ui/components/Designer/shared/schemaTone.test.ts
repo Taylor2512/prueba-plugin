@@ -20,6 +20,17 @@ describe('resolveSchemaTone', () => {
     expect(resolveSchemaTone(s, '#000')).toBe('#AABBCC');
   });
 
+  it('keeps the owner color ahead of semantic chrome colors', () => {
+    const s = schema({
+      ownerColor: '#00FF00',
+      color: '#FF0000',
+      borderColor: '#123456',
+      strokeColor: '#654321',
+      type: 'text',
+    });
+    expect(resolveSchemaTone(s, '#000')).toBe('#00FF00');
+  });
+
   it('falls through to type tone for text schema', () => {
     const s = schema({ type: 'text' });
     expect(resolveSchemaTone(s, '#111')).toBe('#4F8EF7');

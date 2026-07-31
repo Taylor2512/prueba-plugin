@@ -1,4 +1,4 @@
-// Utilities to adapt legacy schema storage shapes into typed values
+// Utilities to adapt  schema storage shapes into typed values
 
 type SchemaRecord = Record<string, unknown>;
 

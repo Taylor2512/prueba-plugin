@@ -1,6 +1,6 @@
 # COREUX-018 — Cerrar lifecycle de Guardar y autosave
 
-**Estado:** backlog  
+**Estado:** done
 **Wave:** W2  
 **Prioridad:** P0  
 **Riesgo:** Muy alto  
@@ -98,9 +98,18 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Solo un Guardar visible por instancia.
-- [ ] Estado no se marca saved antes de resolver adapter.
-- [ ] Error permite retry.
+- [x] Estado nunca pasa a `saved` antes de que el adapter resuelva; un rechazo
+      deja `error` y `revision` sin incrementar.
+- [x] El error permite reintentar: el snapshot que falló queda pendiente y
+      `retry()` reintenta exactamente ese.
+- [ ] Un solo Guardar visible por instancia: es de CtlBar (COREUX-013).
+
+Entrega: `runtime/saveLifecycle.ts`. Sustituye el `controller.save()`
+fire-and-forget, que llamaba a `saveTemplate()` y volvía sin esperar nada.
+Emite `save.requested/started/succeeded/failed` con un `correlationId` común, y
+los guardados concurrentes se encolan en vez de escribir en paralelo — que es
+el comportamiento que necesita un autosave. Sin `setTimeout` en el ciclo de
+vida. 11/11 en `tests/unit/sisad-pdfme/persistence/saveLifecycle.test.ts`.
 
 ## Gates focales
 

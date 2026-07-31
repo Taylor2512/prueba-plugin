@@ -2,10 +2,10 @@
  * FASE 7 — Snapshot oficial
  *
  * Estructura única de snapshot usada por guardar, descargar, importar,
- * externalForms y migración legacy. Una sola fuente de verdad.
+ * externalForms y migración versionada. Una sola fuente de verdad.
  *
  * Versión: "2.0.0" para este formato.
- * Legacy: snapshots pdfme ~4.x sin campo version, o version < "2.0.0".
+ * Formato anterior al actual: snapshots pdfme ~4.x sin campo version, o version < "2.0.0".
  *
  * Regla de reconciliación de color:
  *   SnapshotRecipient.color tiene prioridad sobre __designer.recipientColor.
@@ -21,7 +21,7 @@ export const SNAPSHOT_VERSION = '2.0.0';
 export interface SchemaWithDesigner {
   // Todos los campos base de Schema pdfme
   [key: string]: unknown;
-  /** Metadata de identidad del designer — siempre presente en snapshots v2 */
+  /** Metadata de identidad del designer — siempre presente en el snapshot actual. */
   __designer: SchemaDesignerMeta;
 }
 
@@ -68,7 +68,7 @@ export interface SnapshotConnectivity {
   byFile?: Record<string, SnapshotFileConnectivity>;
   bySchema?: Record<string, Record<string, SnapshotSchemaConnectivity>>;
   byRecipient?: Record<string, unknown>;
-  legacyMapping?: Record<string, unknown>;
+  sourceMapping?: Record<string, unknown>;
 }
 
 export interface SnapshotFileConnectivity {
@@ -176,14 +176,14 @@ export interface SerializeOptions {
   backgroundMode: 'url' | 'base64';
 }
 
-/** Helper: detecta si un objeto crudo es un snapshot legacy (pdfme ~4.x) */
-export function isLegacySnapshot(raw: unknown): boolean {
+/** Helper: detecta si un objeto crudo es un snapshot pre- (pdfme ~4.x) */
+export function isPreSnapshot(raw: unknown): boolean {
   if (!raw || typeof raw !== 'object') return false;
   const obj = asRecord(raw);
   if (!obj) return false;
-  // Sin campo version → legacy pdfme 4.x
+  // Sin campo version → pre- pdfme 4.x
   if (!obj.version) return true;
-  // version < "2.0.0" → legacy
+  // version < "2.0.0" → pre-
   if (typeof obj.version === 'string') {
     return compareVersions(obj.version, SNAPSHOT_VERSION) < 0;
   }

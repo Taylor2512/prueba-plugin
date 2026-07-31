@@ -29,7 +29,7 @@
  *
  * Nota:
  * Esta es la estructura recomendada para snapshots nuevos porque conserva
- * más contexto que el formato legacy.
+ * más contexto que el formato .
  */
 export type SchemaAssignments = Record<
   string,
@@ -37,7 +37,7 @@ export type SchemaAssignments = Record<
 >;
 
 /**
- * Assignments legacy de schemas por destinatario, archivo y página.
+ * Assignments  de schemas por destinatario, archivo y página.
  *
  * Estructura:
  *
@@ -66,7 +66,7 @@ export type SchemaAssignments = Record<
  * No conserva el primer nivel `userId`, por lo que no permite distinguir
  * con precisión qué usuario creó, modificó o administra la asignación.
  */
-export type LegacySchemaAssignments = Record<
+export type SchemaAssignments = Record<
   string,
   Record<string, Record<string, string[]>>
 >;

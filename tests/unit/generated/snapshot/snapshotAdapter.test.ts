@@ -38,9 +38,9 @@ describe('snapshot adapter', () => {
     expect(result.errors.join(' ')).toContain('documents');
   });
 
-  it('migra legacy preservando schemas, recipient y policy de firma', () => {
+  it('migra un snapshot importado preservando schemas, recipient y policy de firma', () => {
     const migrated = adapter.migrate({
-      name: 'Legacy',
+      name: 'Imported snapshot',
       schemas: [[{ id: 'schema-1', name: 'firma', type: 'signature', ownerRecipientId: 'r1' }]],
       recipients: [{ id: 'r1', name: 'Cliente', order: 0 }],
       singType: 'oneshot',

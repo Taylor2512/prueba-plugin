@@ -9,6 +9,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { createDesignerRuntimeEventHub } from '@/sisad-pdfme/ui/components/Designer/shared/designerExtensions';
 import { createInstanceEventDispatcher } from '@/sisad-pdfme/runtime/instanceEventDispatcher';
 import {
+  RUNTIME_EVENT_TO_DOMAIN_EVENT,
   LEGACY_TYPE_TO_CANONICAL,
   bridgeRuntimeEventHub,
 } from '@/sisad-pdfme/runtime/runtimeEventBridge';
@@ -23,9 +24,9 @@ const setup = () => {
   return { hub, received, unsubscribe };
 };
 
-describe('mapa legacy → canónico', () => {
+describe('mapa runtime → dominio', () => {
   it('solo apunta a nombres del catálogo', () => {
-    Object.values(LEGACY_TYPE_TO_CANONICAL).forEach((name) => {
+    Object.values(RUNTIME_EVENT_TO_DOMAIN_EVENT).forEach((name) => {
       expect(isSisadPdfmeEventName(name)).toBe(true);
     });
   });
@@ -101,7 +102,7 @@ describe('eventos sin equivalente canónico', () => {
 
     expect(received).toHaveLength(1);
     expect(received[0].name).toBe('custom:sidebar.list.search.changed');
-    expect(received[0].payload).toEqual({ legacyType: 'sidebar.list.search.changed' });
+    expect(received[0].payload).toEqual({ sourceType: 'sidebar.list.search.changed' });
   });
 });
 

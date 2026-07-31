@@ -1,31 +1,33 @@
 import { describe, it, expect } from 'vitest';
 import {
-  CANONICAL_DETAIL_SECTION_ORDER,
-  LEGACY_TO_CANONICAL_DETAIL_SECTION,
-  CANONICAL_DETAIL_SECTION_LABELS,
+  DETAIL_SECTION_ORDER,
+  DETAIL_SECTION_ALIASES,
+  DETAIL_SECTION_LABELS,
   getDetailProfile,
-  getDefaultOpenSections,
-  getVisibleDetailSections,
-  toCanonicalDetailSection,
+  toDetailSectionKey,
   shouldRenderDetailSection,
-  sortCanonicalDetailSections,
+  sortDetailSections,
 } from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.js';
+import {
+  getInspectorDefaultOpenSections,
+  getInspectorVisibleDetailSections,
+} from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.js';
 
 type DetailSectionParams = Parameters<typeof shouldRenderDetailSection>[0];
 type DetailSchema = DetailSectionParams['schema'];
-type CanonicalSection = Parameters<typeof sortCanonicalDetailSections>[0][number];
+type DetailSection = Parameters<typeof sortDetailSections>[0][number];
 
-describe('CANONICAL_DETAIL_SECTION_ORDER', () => {
+describe('DETAIL_SECTION_ORDER', () => {
   it('contains help section between behavior and dataBindings', () => {
-    const behaviorIdx = CANONICAL_DETAIL_SECTION_ORDER.indexOf('behavior');
-    const helpIdx = CANONICAL_DETAIL_SECTION_ORDER.indexOf('help');
-    const dataBindingsIdx = CANONICAL_DETAIL_SECTION_ORDER.indexOf('dataBindings');
+    const behaviorIdx = DETAIL_SECTION_ORDER.indexOf('behavior');
+    const helpIdx = DETAIL_SECTION_ORDER.indexOf('help');
+    const dataBindingsIdx = DETAIL_SECTION_ORDER.indexOf('dataBindings');
     expect(helpIdx).toBeGreaterThan(behaviorIdx);
     expect(helpIdx).toBeLessThan(dataBindingsIdx);
   });
 
-  it('contains all expected canonical sections', () => {
-    const sections = [...CANONICAL_DETAIL_SECTION_ORDER];
+  it('contains all expected sections', () => {
+    const sections = [...DETAIL_SECTION_ORDER];
     expect(sections).toContain('identity');
     expect(sections).toContain('box');
     expect(sections).toContain('appearance');
@@ -38,61 +40,61 @@ describe('CANONICAL_DETAIL_SECTION_ORDER', () => {
   });
 });
 
-describe('LEGACY_TO_CANONICAL_DETAIL_SECTION', () => {
-  it('maps help -> help (identity)', () => {
-    expect(LEGACY_TO_CANONICAL_DETAIL_SECTION.help).toBe('help');
+describe('DETAIL_SECTION_ALIASES', () => {
+  it('maps help -> help', () => {
+    expect(DETAIL_SECTION_ALIASES.help).toBe('help');
   });
 
-  it('maps all legacy sections correctly', () => {
-    expect(LEGACY_TO_CANONICAL_DETAIL_SECTION.general).toBe('identity');
-    expect(LEGACY_TO_CANONICAL_DETAIL_SECTION.layout).toBe('box');
-    expect(LEGACY_TO_CANONICAL_DETAIL_SECTION.style).toBe('appearance');
-    expect(LEGACY_TO_CANONICAL_DETAIL_SECTION.data).toBe('behavior');
-    expect(LEGACY_TO_CANONICAL_DETAIL_SECTION.connections).toBe('dataBindings');
-    expect(LEGACY_TO_CANONICAL_DETAIL_SECTION.validation).toBe('behavior');
-    expect(LEGACY_TO_CANONICAL_DETAIL_SECTION.collaboration).toBe('collaboration');
-    expect(LEGACY_TO_CANONICAL_DETAIL_SECTION.comments).toBe('comments');
-    expect(LEGACY_TO_CANONICAL_DETAIL_SECTION.advanced).toBe('advanced');
+  it('maps all compatibility sections correctly', () => {
+    expect(DETAIL_SECTION_ALIASES.general).toBe('identity');
+    expect(DETAIL_SECTION_ALIASES.layout).toBe('box');
+    expect(DETAIL_SECTION_ALIASES.style).toBe('appearance');
+    expect(DETAIL_SECTION_ALIASES.data).toBe('behavior');
+    expect(DETAIL_SECTION_ALIASES.connections).toBe('dataBindings');
+    expect(DETAIL_SECTION_ALIASES.validation).toBe('behavior');
+    expect(DETAIL_SECTION_ALIASES.collaboration).toBe('collaboration');
+    expect(DETAIL_SECTION_ALIASES.comments).toBe('comments');
+    expect(DETAIL_SECTION_ALIASES.advanced).toBe('advanced');
   });
 });
 
-describe('CANONICAL_DETAIL_SECTION_LABELS', () => {
+describe('DETAIL_SECTION_LABELS', () => {
   it('has label for help section', () => {
-    expect(CANONICAL_DETAIL_SECTION_LABELS.help).toBeTruthy();
-    expect(CANONICAL_DETAIL_SECTION_LABELS.help.title).toBeTruthy();
-    expect(CANONICAL_DETAIL_SECTION_LABELS.help.defaultCollapsed).toBe(true);
+    expect(DETAIL_SECTION_LABELS.help).toBeTruthy();
+    expect(DETAIL_SECTION_LABELS.help.title).toBeTruthy();
+    expect(DETAIL_SECTION_LABELS.help.defaultCollapsed).toBe(true);
   });
 
-  it('all canonical sections have labels', () => {
-    for (const section of CANONICAL_DETAIL_SECTION_ORDER) {
-      expect(CANONICAL_DETAIL_SECTION_LABELS[section], `missing label for ${section}`).toBeTruthy();
+  it('all sections have labels', () => {
+    for (const section of DETAIL_SECTION_ORDER) {
+      expect(DETAIL_SECTION_LABELS[section], `missing label for ${section}`).toBeTruthy();
     }
   });
 });
 
-describe('toCanonicalDetailSection', () => {
+describe('detail section key resolution', () => {
   it('resolves help -> help', () => {
-    expect(toCanonicalDetailSection('help')).toBe('help');
+    expect(toDetailSectionKey('help')).toBe('help');
   });
 
-  it('resolves legacy sections', () => {
-    expect(toCanonicalDetailSection('general')).toBe('identity');
-    expect(toCanonicalDetailSection('connections')).toBe('dataBindings');
-    expect(toCanonicalDetailSection('validation')).toBe('validation');
+  it('resolves compatibility sections', () => {
+    expect(toDetailSectionKey('general')).toBe('identity');
+    expect(toDetailSectionKey('connections')).toBe('dataBindings');
+    expect(toDetailSectionKey('validation')).toBe('validation');
   });
 
-  it('passes through lowercase canonical sections', () => {
-    expect(toCanonicalDetailSection('behavior')).toBe('behavior');
-    expect(toCanonicalDetailSection('advanced')).toBe('advanced');
-    expect(toCanonicalDetailSection('identity')).toBe('identity');
-    // camelCase canonical names (e.g. 'dataBindings') are normalized to lowercase
-    // and won't match — use the legacy alias 'connections' instead
-    expect(toCanonicalDetailSection('connections')).toBe('dataBindings');
+  it('passes through lowercase sections', () => {
+    expect(toDetailSectionKey('behavior')).toBe('behavior');
+    expect(toDetailSectionKey('advanced')).toBe('advanced');
+    expect(toDetailSectionKey('identity')).toBe('identity');
+    // camelCase section names (e.g. 'dataBindings') are normalized to lowercase
+    // and won't match — use the compatibility alias 'connections' instead
+    expect(toDetailSectionKey('connections')).toBe('dataBindings');
   });
 
   it('returns null for unknown section', () => {
-    expect(toCanonicalDetailSection('')).toBeNull();
-    expect(toCanonicalDetailSection('nonexistent')).toBeNull();
+    expect(toDetailSectionKey('')).toBeNull();
+    expect(toDetailSectionKey('nonexistent')).toBeNull();
   });
 });
 
@@ -163,16 +165,18 @@ describe('shouldRenderDetailSection - advanced', () => {
 
 describe('detail section visibility by type', () => {
   it('uses attachment-specific sections and defaults', () => {
-    expect(getVisibleDetailSections('attachment')).toEqual([
+    expect(getInspectorVisibleDetailSections('attachment')).toEqual([
       'identity',
       'behavior',
       'box',
-      'dataBindings',
+      'appearance',
       'help',
+      'dataBindings',
       'collaboration',
+      'comments',
       'advanced',
     ]);
-    expect(getDefaultOpenSections('attachment')).toEqual(['identity', 'behavior', 'box']);
+    expect(getInspectorDefaultOpenSections('attachment')).toEqual(['identity', 'behavior', 'box']);
   });
 
   // Contrato alineado con la matriz de docs/03-designer/12-inspector-taxonomy.md §3:
@@ -220,15 +224,15 @@ describe('detail section visibility by type', () => {
   });
 
   it('does not route checkbox fields into the option-group profile', () => {
-    expect(getVisibleDetailSections('checkbox')).not.toContain('options');
-    expect(getDefaultOpenSections('checkbox')).toEqual(['identity', 'validation', 'behavior']);
+    expect(getInspectorVisibleDetailSections('checkbox')).not.toContain('options');
+    expect(getInspectorDefaultOpenSections('checkbox')).toEqual(['identity', 'validation', 'behavior']);
   });
 });
 
-describe('sortCanonicalDetailSections', () => {
+describe('sortDetailSections', () => {
   it('orders help between behavior and dataBindings', () => {
-    const unsorted = ['advanced', 'help', 'identity', 'behavior', 'dataBindings'] as CanonicalSection[];
-    const sorted = sortCanonicalDetailSections(unsorted);
+    const unsorted = ['advanced', 'help', 'identity', 'behavior', 'dataBindings'] as DetailSection[];
+    const sorted = sortDetailSections(unsorted);
     expect(sorted[0]).toBe('identity');
     const helpIdx = sorted.indexOf('help');
     const behaviorIdx = sorted.indexOf('behavior');
@@ -239,8 +243,8 @@ describe('sortCanonicalDetailSections', () => {
   });
 
   it('deduplicates sections', () => {
-    const dupes = ['help', 'help', 'identity'] as CanonicalSection[];
-    const sorted = sortCanonicalDetailSections(dupes);
+    const dupes = ['help', 'help', 'identity'] as DetailSection[];
+    const sorted = sortDetailSections(dupes);
     expect(sorted.filter((s) => s === 'help').length).toBe(1);
   });
 });

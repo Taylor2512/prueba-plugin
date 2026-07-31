@@ -19,7 +19,7 @@ const ensureCategoryOpen = async (page: import('@playwright/test').Page, categor
 };
 
 test.describe('standard fields catalog', () => {
-  test('exposes canonical labels for number and dropdown/select and renders the expected schema types', async ({ page }) => {
+  test('exposes normalized labels for number and dropdown/select and renders the expected schema types', async ({ page }) => {
     const consoleErrors: string[] = [];
     page.on('console', (msg) => {
       if (msg.type() === 'error') consoleErrors.push(msg.text());

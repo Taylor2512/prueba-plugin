@@ -183,17 +183,17 @@ export {
   generateUniqueSchemaName,
 } from '../schemas/index.js';
 export { createSchemaController } from './schemaController.js';
-import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
-import PDFJSWorkerUrl from 'pdfjs-dist/legacy/build/pdf.worker.min.js?url';
+import * as pdfjsLib from 'pdfjs-dist//build/pdf';
+import PDFJSWorkerUrl from 'pdfjs-dist//build/pdf.worker.min.js?url';
 import { getBuiltInFields as getBuiltInFieldsLocal } from '../schemas/index.js';
 
 /**
- * Configura PDF.js para el worker legacy usado por SISAD.
+ * Configura PDF.js para el worker  usado por SISAD.
  *
  * Se mantiene en la capa de integración para que los consumidores del host
  * no dependan de detalles internos del converter.
  */
-export const configurePdfjsLegacyWorker = async () => {
+export const configurePdfjsWorker = async () => {
   pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJSWorkerUrl as string;
 
   return { pdfjsLib };

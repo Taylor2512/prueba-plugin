@@ -293,8 +293,6 @@ const DetailView = (props: DetailViewProps) => {
         },
       }),
     [
-      activeSchema,
-      changeSchemas,
       designerEngine,
       normalizeColorHex,
       pluginsRegistry,

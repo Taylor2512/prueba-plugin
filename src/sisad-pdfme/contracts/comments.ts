@@ -47,7 +47,7 @@ export type CommentAnchor = {
   pageNumber?: number;
 
   /**
-   * Alias legacy o alternativo del campo asociado.
+   * Alias  o alternativo del campo asociado.
    *
    * Se mantiene para compatibilidad con estructuras anteriores donde
    * el comentario se vinculaba mediante fieldId en vez de schemaUid.
@@ -177,7 +177,7 @@ export type PdfComment = {
   anchor: CommentAnchor;
 
   /**
-   * Alias legacy o alternativo del campo asociado.
+   * Alias  o alternativo del campo asociado.
    *
    * Se mantiene para compatibilidad con flujos anteriores.
    */

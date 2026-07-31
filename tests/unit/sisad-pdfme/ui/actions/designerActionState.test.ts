@@ -62,7 +62,7 @@ describe('resolveDesignerActionState', () => {
     expect(state.reason).toBe('assignment.enabled=false');
   });
 
-  it('resuelve alias kebab-case hacia definiciones legacy del registry', () => {
+  it('resuelve alias kebab-case hacia definiciones del registry', () => {
     expect(getDesignerActionDescriptor('duplicate-schema')?.id).toBe('duplicate');
     expect(getDesignerActionDescriptor('fit-to-page')?.id).toBe('fitPage');
     expect(getDesignerActionDescriptor('lock-position')?.label).toBe('Bloquear posición');

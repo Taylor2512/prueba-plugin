@@ -394,7 +394,7 @@ export const createOptionGroupPropPanelConfig = (config: OptionGroupPropPanelCon
       : {}),
     // Rendered by the DetailView as a direct React editor (SchemaOptionsEditor):
     // no Ant Card wrapper. The imperative `config.optionsWidget` remains
-    // registered in `widgets` only as a legacy fallback for other hosts.
+    // registered in `widgets` only as a  fallback for other hosts.
     optionsContainer: {
       title: config.optionsTitle,
       type: 'string',
@@ -497,7 +497,7 @@ type SyncParams = {
 };
 
 /**
- * Synchronizes legacy or oversized schemas to compact designer geometry.
+ * Synchronizes  or oversized schemas to compact designer geometry.
  * Each schema type uses a distinct datasetKey to avoid double-sync triggers.
  */
 const syncOptionGroupDesignerGeometry = ({

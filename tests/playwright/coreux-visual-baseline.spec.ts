@@ -39,7 +39,9 @@ const collected: BaselineMetrics[] = [];
 /** Espera a que el runtime tenga tamaño real antes de medir. */
 async function gotoDesigner(page: Page) {
   await page.goto(ROUTE);
-  await expect(page.locator('[data-sisad-pdfme-root]')).toBeVisible();
+  // El montaje del runtime puede tardar más que el timeout por defecto de
+  // expect (5 s); usar el suyo evita flakes que no son regresiones.
+  await expect(page.locator('[data-sisad-pdfme-root]')).toBeVisible({ timeout: 20_000 });
   await expect
     .poll(async () => (await page.locator('[data-sisad-pdfme-root]').boundingBox())?.width ?? 0, {
       timeout: 20_000,

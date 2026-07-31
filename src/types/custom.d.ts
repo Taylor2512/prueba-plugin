@@ -12,7 +12,7 @@ export {};
 
 declare module 'canvas';
 
-declare module 'pdfjs-dist/legacy/build/pdf.worker.min.js?url' {
+declare module 'pdfjs-dist//build/pdf.worker.min.js?url' {
     const value: string;
     export default value;
 }

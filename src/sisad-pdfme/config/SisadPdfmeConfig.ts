@@ -13,7 +13,7 @@ import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from './featur
 export type SisadPdfmeDocument = {
   id: string;
   label: string;
-  /** Alias del label para consumidores legacy (UploadedPdfDocument.name). */
+  /** Alias del label para consumidores  (UploadedPdfDocument.name). */
   name?: string;
   pageCount?: number;
   basePdf?: unknown;
@@ -282,9 +282,9 @@ export type SisadPdfmeGlobalConfig = {
   /**
    * Versión del esquema de configuración.
    *
-   * v2 marca rutas canónicas (los aliases `ui.visibility`, `ui.density`,
+   *  marca rutas canónicas (los aliases `ui.visibility`, `ui.density`,
    * `ui.sidebars.*` y `collaboration.activeRecipientId` quedan deprecated y se
-   * migran con `migrateSisadPdfmeConfig`). Ausente = compatibilidad v1.
+   * migran con `migrateSisadPdfmeConfig`). Ausente = compatibilidad .
    */
   configVersion?: 1 | 2;
   app?: {

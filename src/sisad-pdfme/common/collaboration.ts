@@ -343,7 +343,7 @@ export const filterSchemasByAuthorView = (
  * - replies.
  *
  * También permite overrides para preservar compatibilidad con snapshots
- * o estructuras legacy.
+ * o estructuras .
  */
 export const createSchemaComment = (
   text: string,

@@ -39,15 +39,18 @@ export const renderLucideIcon = (icon: unknown, attrs?: Record<string, string>) 
 // Wrap UI handlers to dedupe identical onChange emissions using a stable JSON signature.
 const buildSchemaBuilderStableJsonSignature = (v: unknown) => {
   try {
-    const canon = (function canon(x: unknown): unknown {
+    const normalize = (x: unknown): unknown => {
       if (x === null || typeof x !== 'object') return x;
-      if (Array.isArray(x)) return x.map(canon);
+      if (Array.isArray(x)) return x.map((item) => normalize(item));
       const keys = Object.keys(x).sort();
       const out: Record<string, unknown> = {};
-      keys.forEach((k) => (out[k] = canon(x[k])));
+      keys.forEach((k) => {
+        out[k] = normalize((x as Record<string, unknown>)[k]);
+      });
       return out;
-    })(v);
-    return JSON.stringify(canon);
+    };
+    const normalized = normalize(v);
+    return JSON.stringify(normalized);
   } catch {
     return String(v || '');
   }

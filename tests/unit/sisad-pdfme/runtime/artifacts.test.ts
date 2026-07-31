@@ -6,32 +6,32 @@
  */
 import { describe, expect, it, vi } from 'vitest';
 import {
-  ARTIFACT_CANONICAL_EVENT_NAMES,
-  artifactStatusToCanonicalEvent,
+  ARTIFACT_EVENT_NAMES,
+  artifactStatusToExportEvent,
 } from '@/sisad-pdfme/runtime/artifactEvents';
 import { createInstanceEventDispatcher } from '@/sisad-pdfme/runtime/instanceEventDispatcher';
 import { isSisadPdfmeEventName } from '@/sisad-pdfme/contracts/events';
 import { createObjectUrl, revokeObjectUrls } from '@/sisad-pdfme/browser/objectUrls';
 
-describe('traducción a eventos canónicos', () => {
+describe('traducción a eventos de exportación', () => {
   it('solo produce nombres del catálogo', () => {
-    ARTIFACT_CANONICAL_EVENT_NAMES.forEach((name) => {
+    ARTIFACT_EVENT_NAMES.forEach((name) => {
       expect(isSisadPdfmeEventName(name)).toBe(true);
     });
   });
 
   it('mapea inicio, éxito y error de generación', () => {
-    expect(artifactStatusToCanonicalEvent({ type: 'generate-start' })).toEqual({
+    expect(artifactStatusToExportEvent({ type: 'generate-start' })).toEqual({
       name: 'export.started',
       payload: { format: 'pdf' },
     });
 
-    expect(artifactStatusToCanonicalEvent({ type: 'generate-success' }, { size: 2048 })).toEqual({
+    expect(artifactStatusToExportEvent({ type: 'generate-success' }, { size: 2048 })).toEqual({
       name: 'export.succeeded',
       payload: { format: 'pdf', size: 2048 },
     });
 
-    const failed = artifactStatusToCanonicalEvent({
+    const failed = artifactStatusToExportEvent({
       type: 'generate-error',
       message: 'fuente no encontrada',
     });
@@ -43,28 +43,28 @@ describe('traducción a eventos canónicos', () => {
   });
 
   it('distingue el formato por familia de artifact', () => {
-    expect(artifactStatusToCanonicalEvent({ type: 'pdf2img-start' })?.payload).toEqual({
+    expect(artifactStatusToExportEvent({ type: 'pdf2img-start' })?.payload).toEqual({
       format: 'images',
     });
-    expect(artifactStatusToCanonicalEvent({ type: 'pdf2size-start' })?.payload).toEqual({
+    expect(artifactStatusToExportEvent({ type: 'pdf2size-start' })?.payload).toEqual({
       format: 'sizes',
     });
   });
 
   it('ignora estados que no son de exportación', () => {
     // `validation-error` pertenece al dominio de validación, no al de artifacts.
-    expect(artifactStatusToCanonicalEvent({ type: 'validation-error' })).toBeNull();
-    expect(artifactStatusToCanonicalEvent({ type: '' })).toBeNull();
-    expect(artifactStatusToCanonicalEvent({ type: 'ready' })).toBeNull();
+    expect(artifactStatusToExportEvent({ type: 'validation-error' })).toBeNull();
+    expect(artifactStatusToExportEvent({ type: '' })).toBeNull();
+    expect(artifactStatusToExportEvent({ type: 'ready' })).toBeNull();
   });
 
   it('usa un mensaje por defecto cuando el error no lo trae', () => {
-    const failed = artifactStatusToCanonicalEvent({ type: 'pdf2img-error' });
+    const failed = artifactStatusToExportEvent({ type: 'pdf2img-error' });
     expect((failed?.payload as { error: { message: string } }).error.message).toBeTruthy();
   });
 
   it('tamaño ausente no produce NaN', () => {
-    const ok = artifactStatusToCanonicalEvent({ type: 'generate-success' });
+    const ok = artifactStatusToExportEvent({ type: 'generate-success' });
     expect((ok?.payload as { size: number }).size).toBe(0);
   });
 });
@@ -75,11 +75,11 @@ describe('los errores llegan al dispatcher', () => {
     const received: string[] = [];
     dispatcher.subscribe((event) => received.push(event.name));
 
-    const canonical = artifactStatusToCanonicalEvent({
+    const exportEvent = artifactStatusToExportEvent({
       type: 'generate-error',
       message: 'boom',
     });
-    if (canonical) dispatcher.emit(canonical.name, canonical.payload as never);
+    if (exportEvent) dispatcher.emit(exportEvent.name, exportEvent.payload as never);
 
     expect(received).toEqual(['export.failed']);
   });

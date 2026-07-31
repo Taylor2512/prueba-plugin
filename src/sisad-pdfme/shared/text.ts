@@ -1,5 +1,5 @@
 /**
- * Normaliza texto de forma laxa para valores unknown o payloads legacy.
+ * Normaliza texto de forma laxa para valores unknown o payloads .
  */
 export const normalizeLooseText = (value: unknown): string => String(value || '').trim();
 

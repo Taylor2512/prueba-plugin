@@ -46,7 +46,7 @@ const createParams = (overrides?: Partial<Parameters<typeof buildInspectorSectio
 });
 
 describe('buildInspectorSections', () => {
-  test('builds canonical sections with key fields for DetailView use cases', () => {
+  test('builds normalized sections with key fields for DetailView use cases', () => {
     const sections = buildInspectorSections(createParams());
     const byKey = new Map(sections.map((section) => [section.key, section]));
 

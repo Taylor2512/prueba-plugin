@@ -1,4 +1,5 @@
 import { Schema, SchemaForUI } from '@sisad-pdfme/common';
+import { resolveSchemaOwnerColorValue } from '../../../../collaboration/schemaOwnershipAppearance.js';
 
 const SCHEMA_TYPE_TONES: Record<string, string> = {
   text: '#4F8EF7',
@@ -33,16 +34,6 @@ const SCHEMA_TYPE_TONES: Record<string, string> = {
 };
 
 type ToneAwareSchema = (SchemaForUI | Schema) & {
-  userColor?: string;
-  ownerColor?: string;
-  recipientColor?: string;
-  __designer?: {
-    ownerColor?: string;
-    recipientColor?: string;
-    collaboration?: {
-      recipientColor?: string;
-    };
-  };
   borderColor?: string;
   color?: string;
   strokeColor?: string;
@@ -76,12 +67,7 @@ const hexToRgbColor = (hex: string) => {
 export const resolveSchemaTone = (schema: SchemaForUI | Schema, fallback: string): string => {
   const toneSchema = schema as ToneAwareSchema;
   const candidate =
-    toneSchema.ownerColor ||
-    toneSchema.userColor ||
-    toneSchema.recipientColor ||
-    toneSchema.__designer?.collaboration?.recipientColor ||
-    toneSchema.__designer?.ownerColor ||
-    toneSchema.__designer?.recipientColor ||
+    resolveSchemaOwnerColorValue(schema) ||
     toneSchema.borderColor ||
     toneSchema.strokeColor ||
     toneSchema.color;

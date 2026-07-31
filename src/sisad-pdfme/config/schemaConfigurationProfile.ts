@@ -1,7 +1,7 @@
 import { getSchemaInteractionCapabilities } from '../ui/components/Designer/shared/schemaInteractionCapabilities.js';
 import {
   getDetailProfile,
-  type CanonicalDetailSection,
+  type DetailSectionKey,
 } from '../ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.js';
 import {
   getSchemaTypeInspectorPreset,
@@ -33,8 +33,8 @@ export type SchemaConfigurationProfile = {
     customFallback: boolean;
   };
   inspector: {
-    visibleSections: CanonicalDetailSection[];
-    defaultOpenSections: CanonicalDetailSection[];
+    visibleSections: DetailSectionKey[];
+    defaultOpenSections: DetailSectionKey[];
     supportsConnections: boolean;
     supportsCollaboration: boolean;
     supportsValidation: boolean;

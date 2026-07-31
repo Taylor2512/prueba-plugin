@@ -1261,10 +1261,10 @@ const TemplateEditor = ({
   const pendingAnchorRef = useRef<null | CommentAnchorDraft>(null);
 
   const normalizeCommentPageIndex = useCallback(
-    (pageIndex?: number | null, pageNumber?: number | null, legacyPage?: number | null) => {
+    (pageIndex?: number | null, pageNumber?: number | null, Page?: number | null) => {
       if (Number.isInteger(pageIndex) && (pageIndex as number) >= 0) return Math.trunc(pageIndex as number);
       if (Number.isInteger(pageNumber) && (pageNumber as number) > 0) return Math.trunc((pageNumber as number) - 1);
-      if (Number.isInteger(legacyPage) && (legacyPage as number) >= 0) return Math.trunc(legacyPage as number);
+      if (Number.isInteger(Page) && (Page as number) >= 0) return Math.trunc(Page as number);
       return pageCursor;
     },
     [pageCursor],
@@ -3136,8 +3136,8 @@ const TemplateEditor = ({
       collaborationContext.ownerRecipientName,
       collaborationContext.recipientOptions,
       collaborationContext.userColor,
+      activeDocumentId,
       commitSchemas,
-      duplicateSchemasFromClipboard,
       emitDesignerEvent,
       emitActiveDocumentChange,
       handleDuplicatePageAfter,

@@ -48,7 +48,7 @@ export type SchemaInteractionState = {
   isLocked: boolean;
   isReadOnly: boolean;
   isEditable: boolean;
-  /** Alias legacy directos (no recalculan nada). */
+  /** Alias  directos (no recalculan nada). */
   isObjectLocked: boolean;
   isReadonly: boolean;
   canEdit: boolean;

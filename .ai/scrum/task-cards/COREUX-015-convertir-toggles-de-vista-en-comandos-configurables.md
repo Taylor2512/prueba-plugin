@@ -1,6 +1,6 @@
 # COREUX-015 — Convertir toggles de vista en comandos configurables
 
-**Estado:** backlog  
+**Estado:** done
 **Wave:** W2  
 **Prioridad:** P0  
 **Riesgo:** Alto  
@@ -98,9 +98,23 @@ Archivos candidatos y existe prueba focal roja.
 
 ## Criterios de aceptación
 
-- [ ] Menú y canvas muestran el mismo estado.
-- [ ] Undo policy documentada.
-- [ ] Cambiar toggle no remonta engine.
+- [x] Menú y canvas muestran el mismo estado: `resolveViewFeatureState` es el
+      único resolutor. Antes se combinaban `canvas.*` (comportamiento) y
+      `visibility.canvas.*` (presencia) por separado en cada superficie, que es
+      cómo el menú podía decir «guías activas» sin que el canvas las pintara.
+      Precedencia fijada: `visibility` apaga pero nunca enciende; dentro de lo
+      visible manda la sesión y, en su defecto, `canvas`.
+- [x] Undo policy documentada **y probada**: los toggles de vista se declaran
+      `meta.undoable: false` y NO entran al historial, así que un Ctrl+Z tras
+      activar la rejilla deshace el trabajo del usuario, no la rejilla.
+      Depende del arreglo de COREUX-012.
+- [x] Cambiar un toggle solo invoca el aplicador de sesión; no reconstruye el
+      engine.
+
+Entrega: `ui/commands/viewCommands.ts` con `resolveViewFeatureState`,
+`canToggleViewFeature`, `viewFeatureDisabledReason` (motivo `hidden-by-config`)
+y `createViewToggleCommand`. 11/11 en
+`tests/unit/sisad-pdfme/commands/viewCommands.test.ts`.
 
 ## Gates focales
 

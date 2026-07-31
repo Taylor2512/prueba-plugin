@@ -7,6 +7,7 @@
  *    so CSS can drive all visual state without inline Object.assign(style).
  */
 import type { SchemaVisualFamily, SchemaVisualState, SisadSchemaBase } from './schemaTypes.js';
+import { resolveSchemaOwnerColorValue as resolveSchemaOwnerColorValueFromAppearance } from '../../collaboration/schemaOwnershipAppearance.js';
 
 // ─── Designer option box constants ────────────────────────────────────────────
 // Used in JS indicator builders AND in CSS (same literal value).
@@ -106,45 +107,15 @@ const normalizeColor = (value: unknown): string =>
   typeof value === 'string' && value.trim() ? value.trim() : '';
 
 /**
- * Single source of truth for a schema's OWNERSHIP tone (who the field belongs
- * to), independent of any semantic content color (approve=green, decline=red…).
- *
- * Priority: ownerColor → userColor → recipientColor → __designer.ownerColor →
- * __designer.recipientColor → caller fallback (active recipient for NEW schemas
- * / catalog cards only) → #2563EB.
- *
- * Deliberately does NOT read buttonColor/textColor/schema.color — those are
- * semantic/content colors, never ownership.
- */
-type OwnerColorAwareSchema = {
-  ownerColor?: string;
-  userColor?: string;
-  recipientColor?: string;
-  __designer?: {
-    ownerColor?: string;
-    recipientColor?: string;
-    collaboration?: { recipientColor?: string };
-  };
-};
-
-/**
  * Raw ownership color: same chain as `resolveSchemaOwnerTone` but WITHOUT any
  * fallback — returns '' when the schema has no owner color at all. Use this
  * when the consumer needs to distinguish "no owner" (e.g. data attributes)
  * from "render something anyway" (chrome tones).
  */
-export const resolveSchemaOwnerColorValue = (schema: unknown): string => {
-  const source = schema as OwnerColorAwareSchema | null | undefined;
-  return (
-    normalizeColor(source?.ownerColor) ||
-    normalizeColor(source?.userColor) ||
-    normalizeColor(source?.recipientColor) ||
-    normalizeColor(source?.__designer?.collaboration?.recipientColor) ||
-    normalizeColor(source?.__designer?.ownerColor) ||
-    normalizeColor(source?.__designer?.recipientColor) ||
-    ''
+export const resolveSchemaOwnerColorValue = (schema: unknown): string =>
+  resolveSchemaOwnerColorValueFromAppearance(
+    schema as Parameters<typeof resolveSchemaOwnerColorValueFromAppearance>[0],
   );
-};
 
 /**
  * Tono de dueño para el chrome del schema.

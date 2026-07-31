@@ -7,12 +7,12 @@
  *
  *   emit(name, payload)
  *     → listeners suscritos          (canal interno, siempre)
- *     → adapter legacy `onX`         (config.events + props del host)
+ *     → adapter host `onX`           (config.events + props del host)
  *
  * Reglas que implementa:
  *
  * - cada listener recibe el evento **una sola vez** por emisión;
- * - `config.events.onX === false` apaga el callback legacy pero **no** el
+ * - `config.events.onX === false` apaga el callback del host pero **no** el
  *   evento interno: los listeners lo siguen recibiendo;
  * - un listener que lanza no bloquea a los demás; el fallo se reporta como
  *   diagnóstico, nunca se traga en silencio;
@@ -29,25 +29,25 @@ import {
   type SisadPdfmeEventName,
   type SisadPdfmeEventPayloads,
 } from '../contracts/events.js';
-import type { SisadPdfmeEventHandlers, SisadPdfmeEventName as LegacyCallbackName } from '../config/SisadPdfmeConfig.js';
+import type { SisadPdfmeEventHandlers, SisadPdfmeEventName as HostCallbackName } from '../config/SisadPdfmeConfig.js';
 
 export type SisadPdfmeEventListener = (event: SisadPdfmeAnyEvent) => void;
 
 export type SisadPdfmeDispatcherDiagnostic = {
-  code: 'listener-failed' | 'legacy-callback-failed';
+  code: 'listener-failed' | 'host-callback-failed';
   eventName: string;
   error: unknown;
 };
 
 /**
- * Mapa canónico → callback legacy del host.
+ * Mapa de evento de dominio → callback del host.
  *
  * Es intencionadamente parcial: solo los eventos con contrato público
  * histórico tienen `onX`. El resto vive únicamente en el canal interno.
  * `designer.error` y `save.failed` comparten `onError` a propósito.
  */
-export const CANONICAL_TO_LEGACY_CALLBACK: Partial<
-  Record<SisadPdfmeEventName, LegacyCallbackName>
+export const EVENT_TO_HOST_CALLBACK: Partial<
+  Record<SisadPdfmeEventName, HostCallbackName>
 > = {
   'designer.ready': 'onReady',
   'designer.error': 'onError',
@@ -62,9 +62,12 @@ export const CANONICAL_TO_LEGACY_CALLBACK: Partial<
   'signature.requested': 'onSignatureRequest',
 };
 
+/** @deprecated Use EVENT_TO_HOST_CALLBACK. */
+export const _TO__CALLBACK = EVENT_TO_HOST_CALLBACK;
+
 /** Callbacks que el host entrega como props del wrapper. */
 export type SisadPdfmeHostCallbacks = Partial<
-  Record<LegacyCallbackName, (payload: Record<string, unknown>) => void>
+  Record<HostCallbackName, (payload: Record<string, unknown>) => void>
 >;
 
 export type InstanceEventDispatcherOptions = {
@@ -80,8 +83,10 @@ export type InstanceEventDispatcherOptions = {
 export type EmitContext = {
   correlationId?: string;
   source?: string;
-  /** Datos ricos solo para el adapter legacy `onX`; no viajan en el evento. */
-  legacyPayload?: Record<string, unknown>;
+  /** Datos ricos solo para el adapter `onX` del host; no viajan en el evento. */
+  hostCallbackPayload?: Record<string, unknown>;
+  /** @deprecated Use hostCallbackPayload. */
+  Payload?: Record<string, unknown>;
 };
 
 export type InstanceEventDispatcher = {
@@ -91,7 +96,7 @@ export type InstanceEventDispatcher = {
     context?: EmitContext,
   ): SisadPdfmeEvent<TName>;
   /** Reemite un evento ya construido (p. ej. traducido desde el hub interno). */
-  dispatch(event: SisadPdfmeAnyEvent, legacyPayload?: Record<string, unknown>): SisadPdfmeAnyEvent;
+  dispatch(event: SisadPdfmeAnyEvent, hostCallbackPayload?: Record<string, unknown>): SisadPdfmeAnyEvent;
   subscribe(listener: SisadPdfmeEventListener): () => void;
   listenerCount(): number;
   clear(): void;
@@ -133,54 +138,54 @@ export const createInstanceEventDispatcher = (
   };
 
   /**
-   * Adapter legacy: traduce el evento canónico al callback `onX`.
+   * Adapter host: traduce el evento de dominio al callback `onX`.
    *
    * Precedencia: `config.events[onX]` manda. Si es `false`, no hay callback.
    * Si es función, se invoca. Si es `'host'` o no está declarado, se usa el
    * prop del wrapper.
    */
-  const notifyLegacy = (
+  const notifyHostCallback = (
     event: SisadPdfmeAnyEvent,
-    legacyPayload?: Record<string, unknown>,
+    hostCallbackPayload?: Record<string, unknown>,
   ) => {
-    const canonicalName = event.name as SisadPdfmeEventName;
-    const legacyName = CANONICAL_TO_LEGACY_CALLBACK[canonicalName];
-    if (!legacyName) return;
+    const eventName = event.name as SisadPdfmeEventName;
+    const hostCallbackName = EVENT_TO_HOST_CALLBACK[eventName];
+    if (!hostCallbackName) return;
 
-    const configured = getConfigEvents?.()?.[legacyName];
+    const configured = getConfigEvents?.()?.[hostCallbackName];
     if (configured === false) return;
 
     // El payload canónico es serializable por contrato, pero los callbacks
     // `onX` histórricos reciben objetos ricos del runtime (recipients
-    // completos, etc.). `legacyPayload` preserva ese contrato sin ensuciar el
+    // completos, etc.). `hostCallbackPayload` preserva ese contrato sin ensuciar el
     // evento canónico.
-    const payload = { ...(event.payload as Record<string, unknown>), ...legacyPayload, event };
+    const payload = { ...(event.payload as Record<string, unknown>), ...hostCallbackPayload, event };
 
     try {
       if (typeof configured === 'function') {
         configured(payload);
         return;
       }
-      getHostCallbacks?.()?.[legacyName]?.(payload);
+      getHostCallbacks?.()?.[hostCallbackName]?.(payload);
     } catch (error) {
       reportDiagnostic(onDiagnostic, {
-        code: 'legacy-callback-failed',
+        code: 'host-callback-failed',
         eventName: event.name,
         error,
       });
     }
   };
 
-  const dispatch = (event: SisadPdfmeAnyEvent, legacyPayload?: Record<string, unknown>) => {
+  const dispatch = (event: SisadPdfmeAnyEvent, hostCallbackPayload?: Record<string, unknown>) => {
     notifyListeners(event);
-    notifyLegacy(event, legacyPayload);
+    notifyHostCallback(event, hostCallbackPayload);
     return event;
   };
 
   return {
     emit(name, payload, context) {
       const event = createSisadPdfmeEvent(name, payload, { instanceId, ...context });
-      dispatch(event, context?.legacyPayload);
+      dispatch(event, context?.hostCallbackPayload ?? context?.Payload);
       return event;
     },
     dispatch,

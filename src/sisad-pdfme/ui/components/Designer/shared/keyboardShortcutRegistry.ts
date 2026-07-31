@@ -75,7 +75,7 @@ const normalizePattern = (pattern: string) => {
     }
   }
 
-  // Sort modifiers alphabetically for canonical comparison regardless of
+  // Sort modifiers alphabetically for normalized comparison regardless of
   // the order they appear in the definition string (e.g. "mod+shift" = "shift+mod").
   return { modifiers: [...modifiers].sort(), key };
 };
@@ -130,7 +130,7 @@ const getEventModifierVariants = (event: KeyboardEvent, platform: ShortcutPlatfo
     variants.push(common);
   }
 
-  // Sort tokens alphabetically for canonical modifier order.
+  // Sort tokens alphabetically for normalized modifier order.
   // Keep empty-string entries (no-modifier case) so the outer loop always runs
   // at least once and can add plain-key signatures (e.g. Backspace, Escape, 't').
   const rendered = variants.map((tokens) => Array.from(new Set(tokens)).filter(Boolean).sort().join('+'));

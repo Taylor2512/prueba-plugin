@@ -1,75 +1,103 @@
 import type {
-  SchemaDesignerMeta,
-  DesignerConfigV3,
-  DesignerIdentity,
-  DesignerCollaboration,
-  DesignerRuntime,
   DesignerBindings,
+  DesignerCollaboration,
+  DesignerConfig,
+  DesignerIdentity,
+  DesignerRuntime,
   DesignerUI,
+  SchemaDesignerMeta,
 } from './schemaDesignerMeta.js';
 
+const isPlainObject = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);
+
 /**
- * Migrates a legacy flat SchemaDesignerMeta (V2) to the structured V3 format.
- * Non-destructive: original object is not mutated.
- *
- * Migration map (legacy field → V3 path):
- *   schemaUid, templateVersion, documentId, pageNumber, version, createdAt, updatedAt → identity.*
- *   recipientId, recipientName, recipientColor, assignment, ownership → collaboration.*
- *   ownerRecipientId (root-level legacy) → collaboration.ownership.ownerRecipientId
- *   integration → bindings.integration
- *   group → ui.group
- *   signature, state → runtime.*
+ * Convierte el contrato plano `SchemaDesignerMeta` en `DesignerConfig`.
  */
-export function migrateSchemaToV3(legacy: SchemaDesignerMeta & Record<string, unknown>): DesignerConfigV3 {
+export function migrateDesignerMetaToConfig(sourceMeta: SchemaDesignerMeta & Record<string, unknown>): DesignerConfig {
   const identity: DesignerIdentity = {
-    schemaUid: legacy.schemaUid,
-    templateVersion: legacy.templateVersion,
-    documentId: legacy.documentId,
-    pageNumber: legacy.pageNumber,
-    version: legacy.version,
-    createdAt: legacy.createdAt,
-    updatedAt: legacy.updatedAt,
+    schemaUid: sourceMeta.schemaUid,
+    templateVersion: sourceMeta.templateVersion,
+    documentId: sourceMeta.documentId,
+    pageNumber: sourceMeta.pageNumber,
+    version: sourceMeta.version,
+    createdAt: sourceMeta.createdAt,
+    updatedAt: sourceMeta.updatedAt,
   };
 
   const collaboration: DesignerCollaboration = {};
   let hasCollaboration = false;
 
-  if (legacy.recipientId !== undefined) { collaboration.recipientId = legacy.recipientId; hasCollaboration = true; }
-  if (legacy.recipientName !== undefined) { collaboration.recipientName = legacy.recipientName; hasCollaboration = true; }
-  if (legacy.recipientColor !== undefined) { collaboration.recipientColor = legacy.recipientColor; hasCollaboration = true; }
-  if (legacy.assignment !== undefined) { collaboration.assignment = legacy.assignment; hasCollaboration = true; }
+  if (sourceMeta.recipientId !== undefined) {
+    collaboration.recipientId = sourceMeta.recipientId;
+    hasCollaboration = true;
+  }
+  if (sourceMeta.recipientName !== undefined) {
+    collaboration.recipientName = sourceMeta.recipientName;
+    hasCollaboration = true;
+  }
+  if (sourceMeta.recipientColor !== undefined) {
+    collaboration.recipientColor = sourceMeta.recipientColor;
+    hasCollaboration = true;
+  }
+  if (sourceMeta.assignment !== undefined) {
+    collaboration.assignment = sourceMeta.assignment;
+    hasCollaboration = true;
+  }
 
-  const ownershipBase = legacy.ownership ?? {};
-  const legacyOwnerRecipientId = (legacy as Record<string, unknown>)['ownerRecipientId'] as string | undefined;
-  if (legacy.ownership !== undefined || legacyOwnerRecipientId !== undefined) {
+  const ownershipBase = isPlainObject(sourceMeta.ownership) ? sourceMeta.ownership : {};
+  const sourceOwnerRecipientId = typeof sourceMeta.ownerRecipientId === 'string' ? sourceMeta.ownerRecipientId : undefined;
+  if (sourceMeta.ownership !== undefined || sourceOwnerRecipientId !== undefined) {
     collaboration.ownership = {
       ...ownershipBase,
-      ownerRecipientId: ownershipBase.ownerRecipientId ?? legacyOwnerRecipientId,
+      ownerRecipientId:
+        typeof (ownershipBase as Record<string, unknown>).ownerRecipientId === 'string'
+          ? (ownershipBase as Record<string, unknown>).ownerRecipientId
+          : sourceOwnerRecipientId,
     };
     hasCollaboration = true;
   }
 
-  // Legacy root-level collaboration fields (comments, lock)
-  const legacyLock = (legacy as Record<string, unknown>)['lock'] as DesignerCollaboration['lock'] | undefined;
-  if (legacyLock !== undefined) { collaboration.lock = legacyLock; hasCollaboration = true; }
-  const legacyComments = (legacy as Record<string, unknown>)['comments'] as unknown[] | undefined;
-  if (legacyComments !== undefined) { collaboration.comments = legacyComments; hasCollaboration = true; }
-  const legacyAnchors = (legacy as Record<string, unknown>)['commentAnchors'] as unknown[] | undefined;
-  if (legacyAnchors !== undefined) { collaboration.commentAnchors = legacyAnchors; hasCollaboration = true; }
+  const sourceLock = isPlainObject(sourceMeta.lock) ? sourceMeta.lock : undefined;
+  if (sourceLock !== undefined) {
+    collaboration.lock = sourceLock as DesignerCollaboration['lock'];
+    hasCollaboration = true;
+  }
+  const sourceComments = Array.isArray(sourceMeta.comments) ? sourceMeta.comments : undefined;
+  if (sourceComments !== undefined) {
+    collaboration.comments = sourceComments;
+    hasCollaboration = true;
+  }
+  const sourceAnchors = Array.isArray(sourceMeta.commentAnchors) ? sourceMeta.commentAnchors : undefined;
+  if (sourceAnchors !== undefined) {
+    collaboration.commentAnchors = sourceAnchors;
+    hasCollaboration = true;
+  }
 
   const bindings: DesignerBindings = {};
   let hasBindings = false;
-  if (legacy.integration !== undefined) { bindings.integration = legacy.integration; hasBindings = true; }
+  if (sourceMeta.integration !== undefined) {
+    bindings.integration = sourceMeta.integration;
+    hasBindings = true;
+  }
 
   const ui: DesignerUI = {};
   let hasUI = false;
-  if (legacy.group !== undefined) { ui.group = legacy.group; hasUI = true; }
+  if (sourceMeta.group !== undefined) {
+    ui.group = sourceMeta.group;
+    hasUI = true;
+  }
 
   const runtime: DesignerRuntime = {};
   let hasRuntime = false;
-  if (legacy.signature !== undefined) { runtime.signature = legacy.signature; hasRuntime = true; }
-  const legacyState = (legacy as Record<string, unknown>)['state'] as string | undefined;
-  if (legacyState !== undefined) { runtime.state = legacyState; hasRuntime = true; }
+  if (sourceMeta.signature !== undefined) {
+    runtime.signature = sourceMeta.signature;
+    hasRuntime = true;
+  }
+  if (sourceMeta.state !== undefined) {
+    runtime.state = sourceMeta.state;
+    hasRuntime = true;
+  }
 
   return {
     _v: 3,
@@ -82,11 +110,11 @@ export function migrateSchemaToV3(legacy: SchemaDesignerMeta & Record<string, un
 }
 
 /**
- * Flattens a V3 DesignerConfigV3 back to a legacy flat SchemaDesignerMeta.
- * Used for backward compatibility with code that still reads the flat contract.
+ * Convierte `DesignerConfig` de vuelta a `SchemaDesignerMeta`.
  */
-export function flattenV3ToLegacy(v3: DesignerConfigV3): SchemaDesignerMeta {
-  const { identity, collaboration, bindings, ui, runtime } = v3;
+export function serializeDesignerConfig(designerConfig: DesignerConfig): SchemaDesignerMeta {
+  const { identity, collaboration, bindings, ui, runtime } = designerConfig;
+
   return {
     schemaUid: identity.schemaUid,
     templateVersion: identity.templateVersion,
@@ -95,30 +123,26 @@ export function flattenV3ToLegacy(v3: DesignerConfigV3): SchemaDesignerMeta {
     version: identity.version,
     createdAt: identity.createdAt,
     updatedAt: identity.updatedAt,
-
     recipientId: collaboration?.recipientId,
     recipientName: collaboration?.recipientName,
     recipientColor: collaboration?.recipientColor,
     assignment: collaboration?.assignment,
     ownership: collaboration?.ownership,
-
-    integration: bindings?.integration,
-
-    group: ui?.group,
-
     signature: runtime?.signature,
+    group: ui?.group,
+    integration: bindings?.integration,
   };
 }
 
-/** Type guard: returns true if a __designer value is V3. */
-export function isDesignerConfigV3(value: unknown): value is DesignerConfigV3 {
+/** Guarda compatibilidad con el contrato estructurado. */
+export function isDesignerConfig(value: unknown): value is DesignerConfig {
   if (typeof value !== 'object' || value === null) return false;
   const obj = value as Record<string, unknown>;
-  if (obj['_v'] !== 3) return false;
-  const identity = obj['identity'];
-  return (
-    typeof identity === 'object' &&
-    identity !== null &&
-    typeof (identity as Record<string, unknown>)['schemaUid'] === 'string'
+  if (obj._v !== 3) return false;
+  const identity = obj.identity;
+  return Boolean(
+    identity &&
+      typeof identity === 'object' &&
+      typeof (identity as Record<string, unknown>).schemaUid === 'string',
   );
 }

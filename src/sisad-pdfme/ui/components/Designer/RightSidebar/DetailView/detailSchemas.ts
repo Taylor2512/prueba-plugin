@@ -11,18 +11,18 @@ import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfm
 import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
 import {
   hasMeaningfulInspectorValue,
-  CANONICAL_DETAIL_SECTION_LABELS,
-  CANONICAL_DETAIL_SECTION_ORDER,
-  type CanonicalDetailSection,
-  type LegacyDetailSection,
+  DETAIL_SECTION_LABELS,
+  DETAIL_SECTION_ORDER,
+  type DetailSectionKey,
+  type PluginSectionKey,
   shouldRenderDetailSection,
 } from './detailSectionTaxonomy.js';
 import { contractSectionEnabled, resolveInspectorContract } from './inspectorContracts.js';
 import { shouldShowInspectorSection } from '../../shared/visibilityConfig.js';
 import { createSchemaConfigurationProfile } from '../../../../../config/schemaConfigurationProfile.js';
 
-/** Clave canónica de sección usada por el DetailView. */
-export type DetailInspectorSectionKey = CanonicalDetailSection;
+/** Clave de sección usada por el DetailView. */
+export type DetailInspectorSectionKey = DetailSectionKey;
 
 /**
  * Sección final que DetailViewContent puede renderizar.
@@ -44,8 +44,8 @@ export type DetailInspectorSection = {
 export type InspectorProfile = {
   schemaType: string;
   family: string;
-  visibleSections: CanonicalDetailSection[];
-  defaultOpenSections: CanonicalDetailSection[];
+  visibleSections: DetailSectionKey[];
+  defaultOpenSections: DetailSectionKey[];
 };
 
 /**
@@ -94,20 +94,20 @@ export const getInspectorProfile = (schema: InspectorProfileInput, _context?: un
 };
 
 /** Devuelve las secciones visibles para un schema activo. */
-export const getInspectorVisibleDetailSections = (schema: InspectorProfileInput, context?: unknown): CanonicalDetailSection[] =>
+export const getInspectorVisibleDetailSections = (schema: InspectorProfileInput, context?: unknown): DetailSectionKey[] =>
   getInspectorProfile(schema, context).visibleSections;
 
 /** Devuelve las secciones abiertas por defecto para un schema activo. */
-export const getInspectorDefaultOpenSections = (schema: InspectorProfileInput, context?: unknown): CanonicalDetailSection[] =>
+export const getInspectorDefaultOpenSections = (schema: InspectorProfileInput, context?: unknown): DetailSectionKey[] =>
   getInspectorProfile(schema, context).defaultOpenSections;
 
 /** Metadata visual base por sección canónica. */
 const SECTION_META: Record<DetailInspectorSectionKey, Omit<DetailInspectorSection, 'schema'>> = Object.fromEntries(
-  CANONICAL_DETAIL_SECTION_ORDER.map((sectionKey) => [
+  DETAIL_SECTION_ORDER.map((sectionKey) => [
     sectionKey,
     {
       key: sectionKey,
-      ...CANONICAL_DETAIL_SECTION_LABELS[sectionKey],
+      ...DETAIL_SECTION_LABELS[sectionKey],
     },
   ]),
 ) as Record<DetailInspectorSectionKey, Omit<DetailInspectorSection, 'schema'>>;
@@ -119,11 +119,11 @@ const DETAIL_FIELD_SPAN = {
 } as const;
 
 /**
- * Agrega un campo al bucket legacy indicado.
+ * Agrega un campo al bucket de sección indicado.
  */
 const addFieldToSection = (
-  sectionProperties: Record<LegacyDetailSection, Record<string, PropPanelSchema>>,
-  sectionKey: LegacyDetailSection,
+  sectionProperties: Record<PluginSectionKey, Record<string, PropPanelSchema>>,
+  sectionKey: PluginSectionKey,
   fieldKey: string,
   fieldSchema: PropPanelSchema,
 ) => {
@@ -191,7 +191,7 @@ const createBoundedNumberField = (
 };
 
 /**
- * Reemplaza widgets `color` legacy por el widget `nativeColor` soportado.
+ * Reemplaza widgets `color`  por el widget `nativeColor` soportado.
  */
 const replaceColorWidget = (schemaNode: unknown): unknown => {
   if (!isRecord(schemaNode)) {
@@ -302,7 +302,7 @@ export const buildInspectorSections = ({
     Object.keys(pluginProps).map((fieldKey) => fieldKey.trim().toLowerCase()),
   );
 
-  const sectionProperties: Record<LegacyDetailSection, Record<string, PropPanelSchema>> = {
+  const sectionProperties: Record<PluginSectionKey, Record<string, PropPanelSchema>> = {
     general: {},
     options: {},
     layout: {},
@@ -495,11 +495,11 @@ export const buildInspectorSections = ({
     const sectionKey =
       contractSectionEnabled(inspectorContract, 'options') && isOptionsSectionField(fieldKey, fieldSchema)
         ? 'options'
-        : (baseSectionKey as LegacyDetailSection);
+        : (baseSectionKey as PluginSectionKey);
     addFieldToSection(sectionProperties, sectionKey, fieldKey, nextFieldSchema);
   });
 
-  const canonicalSectionProperties: Record<CanonicalDetailSection, Record<string, PropPanelSchema>> = {
+  const detailSectionProperties: Record<DetailSectionKey, Record<string, PropPanelSchema>> = {
     identity: { ...sectionProperties.general },
     options: { ...sectionProperties.options },
     validation: { ...sectionProperties.validation },
@@ -527,15 +527,15 @@ export const buildInspectorSections = ({
     return true;
   };
 
-  const filteredCanonicalSectionProperties: Record<CanonicalDetailSection, Record<string, PropPanelSchema>> =
+  const filteredDetailSectionProperties: Record<DetailSectionKey, Record<string, PropPanelSchema>> =
     Object.fromEntries(
-      Object.entries(canonicalSectionProperties).map(([sectionKey, fields]) => [
+      Object.entries(detailSectionProperties).map(([sectionKey, fields]) => [
         sectionKey,
         Object.fromEntries(
           Object.entries(fields).filter(([fieldKey]) => isFieldVisible(fieldKey)),
         ),
       ]),
-    ) as Record<CanonicalDetailSection, Record<string, PropPanelSchema>>;
+    ) as Record<DetailSectionKey, Record<string, PropPanelSchema>>;
 
   const sectionContext = {
     isMultiUser: shouldShowCollaboration,
@@ -566,7 +566,7 @@ export const buildInspectorSections = ({
   });
   const defaultOpenSections = new Set(detailProfile.defaultOpenSections);
 
-  const resolveSectionMeta = (sectionKey: CanonicalDetailSection) => {
+  const resolveSectionMeta = (sectionKey: DetailSectionKey) => {
     const base = SECTION_META[sectionKey];
     if (activeSchemaType === 'attachment') {
       if (sectionKey === 'behavior') {
@@ -594,7 +594,7 @@ export const buildInspectorSections = ({
   };
 
   const sections = visibleSections.map((sectionKey) => {
-    const sectionFields = filteredCanonicalSectionProperties[sectionKey];
+    const sectionFields = filteredDetailSectionProperties[sectionKey];
     if (!sectionFields || Object.keys(sectionFields).length === 0) return null;
     const schema = replaceColorWidget({
       type: 'object',
@@ -607,11 +607,11 @@ export const buildInspectorSections = ({
       ...resolveSectionMeta(sectionKey),
       defaultCollapsed,
       schema,
-      canonicalKey: sectionKey,
-    } as DetailInspectorSection & { canonicalKey: CanonicalDetailSection };
-  }).filter((section): section is DetailInspectorSection & { canonicalKey: CanonicalDetailSection } => Boolean(section)).filter((section) =>
+      sectionKey,
+    } as DetailInspectorSection & { sectionKey: DetailSectionKey };
+  }).filter((section): section is DetailInspectorSection & { sectionKey: DetailSectionKey } => Boolean(section)).filter((section) =>
     shouldRenderDetailSection({
-      section: section.canonicalKey,
+      section: section.sectionKey,
       schema: visibilitySchema,
       schemaType: activeSchemaType,
       semanticFamily,
@@ -627,7 +627,7 @@ export const buildInspectorSections = ({
 /**
  * Extrae metadata mínima de campos desde una sección ya construida.
  */
-const sectionFieldsFromSection = (section: DetailInspectorSection & { canonicalKey?: CanonicalDetailSection }) =>
+const sectionFieldsFromSection = (section: DetailInspectorSection & { sectionKey?: DetailSectionKey }) =>
   Object.entries((section.schema as { properties?: Record<string, PropPanelSchema> }).properties || {}).map(([fieldKey, fieldSchema]) => ({
     key: fieldKey,
     hidden: Boolean((fieldSchema as { hidden?: boolean }).hidden),
@@ -639,7 +639,7 @@ const sectionFieldsFromSection = (section: DetailInspectorSection & { canonicalK
 /**
  * Extrae nombres de widgets presentes en una sección.
  */
-const sectionWidgetsFromSection = (section: DetailInspectorSection & { canonicalKey?: CanonicalDetailSection }) =>
+const sectionWidgetsFromSection = (section: DetailInspectorSection & { sectionKey?: DetailSectionKey }) =>
   sectionFieldsFromSection(section)
     .map((field) => field.widget)
     .filter((widget): widget is string => Boolean(widget));

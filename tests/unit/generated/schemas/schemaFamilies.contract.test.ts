@@ -24,7 +24,7 @@ describe('schema families e inspector declarativo', () => {
     expect(resolveSchemaSemanticFamily(type)).toBe(family);
   });
 
-  it('normaliza familias legacy', () => {
+  it('normaliza familias importadas', () => {
     expect(normalizeSchemaFamily('textual')).toBe('text');
     expect(normalizeSchemaFamily('choice')).toBe('boolean');
     expect(normalizeSchemaFamily('barcode')).toBe('shapeBarcode');
