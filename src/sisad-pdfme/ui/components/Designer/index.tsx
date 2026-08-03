@@ -666,11 +666,17 @@ const TemplateEditor = ({
     leftSidebarMinWidth,
     Math.min(leftSidebarWidthRawBase, leftSidebarViewportLimit),
   );
+  const [leftSidebarLiveWidth, setLeftSidebarLiveWidth] = useState(
+    leftSidebarVisible && leftSidebarPresentation === 'docked' ? responsiveLeftSidebarWidthRaw : 0,
+  );
   const shouldReserveLeftSidebarSpace =
     leftSidebarVisible &&
     leftSidebarReserveSpace === true &&
     leftSidebarPresentation === 'docked';
-  const leftSidebarWidth = shouldReserveLeftSidebarSpace ? responsiveLeftSidebarWidthRaw : 0;
+  const leftSidebarWidth = shouldReserveLeftSidebarSpace ? leftSidebarLiveWidth : 0;
+  const leftSidebarContentOffsetX = shouldReserveLeftSidebarSpace
+    ? Math.max(0, (responsiveLeftSidebarWidthRaw - leftSidebarWidth) / 2)
+    : 0;
 
   const [hoveringSchemaId, setHoveringSchemaId] = useState<string | null>(null);
   const [activeElements, setActiveElements] = useState<HTMLElement[]>([]);
@@ -3853,6 +3859,7 @@ const TemplateEditor = ({
       viewportWidth={viewportWidth}
       catalogLayout={catalogLayoutOption}
       onCatalogLayoutChange={onCatalogLayoutChangeOption}
+      onWidthChange={setLeftSidebarLiveWidth}
       className={
         [
           typeof options.leftSidebarClassName === 'string' ? options.leftSidebarClassName : '',
@@ -4340,6 +4347,7 @@ const TemplateEditor = ({
             sidebarOpen={sidebarOpen}
             sidebarWidth={rightSidebarWidth}
             preserveSidebarSpace={shouldReserveRightSidebarSpace}
+            contentOffsetX={leftSidebarContentOffsetX}
             onEdit={onEdit}
             featureToggles={canvasFeatureToggles}
             styleOverrides={designerEngine.canvas?.styleOverrides}

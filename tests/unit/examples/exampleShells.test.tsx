@@ -22,6 +22,7 @@ vi.mock('@/sisad-pdfme/react/hostSurface', () => ({
 }));
 
 import { ExampleImmersiveShell, RuntimeViewport } from '@/examples/index.jsx';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
 function renderShell(children: React.ReactNode) {
   return render(
@@ -29,7 +30,7 @@ function renderShell(children: React.ReactNode) {
       <ExampleImmersiveShell
         title="Designer · prueba"
         modeBadge="designer"
-        currentPath="/examples/designer/single-user"
+        currentPath={EXAMPLE_ROUTE_PATHS.designerSingleUser}
         infoTitle="Resumen"
         info={<div data-testid="info-body">métricas</div>}
       >

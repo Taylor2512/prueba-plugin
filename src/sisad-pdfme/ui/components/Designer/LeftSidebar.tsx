@@ -658,6 +658,7 @@ export type LeftSidebarProps = {
   extensions?: DesignerRuntimeExtensions;
   catalogLayout?: CatalogLayout;
   onCatalogLayoutChange?: (layout: CatalogLayout) => void;
+  onWidthChange?: (width: number) => void;
 };
 
 const LeftSidebar = ({
@@ -680,6 +681,7 @@ const LeftSidebar = ({
   onCatalogLayoutChange,
   showCatalogViewSwitcher = true,
   extensions,
+  onWidthChange,
 }: LeftSidebarProps) => {
   const pluginsRegistry = useContext(PluginsRegistry);
   const providerValue = useContext(SisadPdfmeContext);
@@ -1149,6 +1151,11 @@ const LeftSidebar = ({
   }, [resolvedPresentation]);
 
   useEffect(() => {
+    if (sidebarLiveWidth <= 0) return;
+    onWidthChange?.(sidebarLiveWidth);
+  }, [onWidthChange, sidebarLiveWidth]);
+
+  useEffect(() => {
     const root = sidebarRootRef.current;
     if (!root) return;
 
@@ -1181,11 +1188,17 @@ const LeftSidebar = ({
     'w-[var(--sisad-pdfme-ls-collapsed-width)] min-w-[var(--sisad-pdfme-ls-collapsed-width)] max-w-[var(--sisad-pdfme-ls-collapsed-width)] overflow-hidden',
     'max-[48rem]:w-0 max-[48rem]:min-w-0 max-[48rem]:max-w-0',
   );
+  // El panel izquierdo sigue siendo overlay para no reservar espacio en el
+  // canvas; al colapsar solo cambia su huella visual.
+  const sidebarWidthClass = sidebarExpanded
+    ? sidebarExpandedWidthClass
+    : sidebarCollapsedWidthClass;
   const sidebarClass = mergeClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar`,
     `${DESIGNER_CLASSNAME}left-sidebar-${variant}`,
-    'relative flex h-full min-h-0 shrink-0 flex-col bg-[var(--color-bg-elevated)] border-r border-slate-200/70',
-    sidebarExpanded ? sidebarExpandedWidthClass : sidebarCollapsedWidthClass,
+    detached ? 'relative' : resolvedPresentation === 'docked' ? 'relative' : 'absolute inset-y-0 left-0 z-[70]',
+    'flex h-full min-h-0 shrink-0 flex-col bg-[var(--color-bg-elevated)] border-r border-slate-200/70',
+    sidebarWidthClass,
     'max-[48rem]:absolute max-[48rem]:left-0 max-[48rem]:top-0 max-[48rem]:bottom-0 max-[48rem]:z-[20] max-[48rem]:w-0 max-[48rem]:overflow-hidden max-[48rem]:[transition:width_0.22s_var(--wix-ease-out)]',
     variant === 'compact' ? `${DESIGNER_CLASSNAME}left-sidebar-compact` : '',
     detached ? `${DESIGNER_CLASSNAME}left-sidebar-detached` : '',

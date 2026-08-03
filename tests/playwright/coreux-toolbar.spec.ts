@@ -14,8 +14,9 @@
  *     npx playwright test tests/playwright/coreux-toolbar.spec.ts
  */
 import { expect, test, type Page } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
-const ROUTE = '/examples/designer/single-user';
+const ROUTE = EXAMPLE_ROUTE_PATHS.designerSingleUser;
 
 const VIEWPORTS = [
   { name: '390', width: 390, height: 844 },

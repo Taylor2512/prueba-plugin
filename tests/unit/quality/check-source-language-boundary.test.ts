@@ -27,8 +27,8 @@ describe('check-source-language-boundary', () => {
       join(root, 'src/examples/ok.js'),
       [
         "import React from 'react';",
-        "import { buildShowcaseTemplate } from '@/sisad-pdfme/labs';",
-        'export const ok = buildShowcaseTemplate([{ title: "Demo", types: ["text"] }]);',
+        "import { createDefaultTemplate } from '@/sisad-pdfme/devtools';",
+        'export const ok = createDefaultTemplate({ schemas: [[]] });',
       ].join('\n'),
     );
     writeFileSync(join(root, 'src/sisad-pdfme/core.ts'), 'export const core = true;\n');

@@ -17,8 +17,9 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { expect, test, type Page } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
-const ROUTE = '/examples/designer/single-user';
+const ROUTE = EXAMPLE_ROUTE_PATHS.designerSingleUser;
 const CONFIG_PROFILE = 'designer-single-user';
 const EVIDENCE_DIR = resolve(process.cwd(), 'reports/core-ux/baseline');
 

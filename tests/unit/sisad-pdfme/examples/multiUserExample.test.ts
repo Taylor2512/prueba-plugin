@@ -21,8 +21,8 @@ vi.mock('@sisad-pdfme/schemas', () => {
 
 import {
   buildMultiUserShowcaseTemplate,
-  MULTI_USER_RECIPIENTS,
-} from '@/sisad-pdfme/labs';
+} from '@/examples/builders/multiUserShowcase.js';
+import { MULTI_USER_RECIPIENTS } from '@/examples/fixtures/recipients.js';
 
 describe('buildMultiUserShowcaseTemplate', () => {
   it('propaga el ownership y el color del recipient en los schemas del diseñador', () => {

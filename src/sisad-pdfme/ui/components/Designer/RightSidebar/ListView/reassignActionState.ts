@@ -20,6 +20,7 @@ export type ReassignActionStateInput = {
   reassignVisible: boolean;
   assignmentModalVisible: boolean;
   selectedCount: number;
+  assignableRecipientCount: number;
   hasHandler: boolean;
   hasAssignableRecipients: boolean;
   bulkRecipientDisabled: boolean;
@@ -35,12 +36,19 @@ export type ReassignActionState = {
 
 export function resolveReassignActionState(input: ReassignActionStateInput): ReassignActionState {
   const selectedCount = Number.isFinite(input.selectedCount) ? Math.max(0, Math.trunc(input.selectedCount)) : 0;
+  const assignableRecipientCount = Number.isFinite(input.assignableRecipientCount)
+    ? Math.max(0, Math.trunc(input.assignableRecipientCount))
+    : 0;
+  const hasEnoughRecipientsForReassign = assignableRecipientCount > 2;
   const canEditStructure = input.collaborationContext?.canEditStructure !== false;
   // `reassignVisible` ya incorpora assignment.enabled + visibility.actions.reassign.
-  const visibleByConfig = input.reassignVisible && input.assignmentModalVisible;
+  // El trigger vive en el toolbar; la presencia del modal la resuelve su propia
+  // superficie. Si el modal se oculta aquí, el usuario se queda sin affordance
+  // para abrir la reasignación aunque la acción esté habilitada.
+  const visibleByConfig = input.assignmentEnabled && input.reassignVisible;
 
   const action = resolveDesignerActionState('reassign-recipient', {
-    hasHandler: true,
+    hasHandler: input.hasHandler !== false,
     selectionCount: selectedCount,
     canEditStructure,
     visibleByConfig,
@@ -49,7 +57,7 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
   // Usamos una selección hipotética para conservar el gating de visibilidad
   // del registry sin esconder el affordance cuando la selección real es 0.
   const visibility = resolveDesignerActionState('reassign-recipient', {
-    hasHandler: true,
+    hasHandler: input.hasHandler !== false,
     selectionCount: 1,
     canEditStructure,
     visibleByConfig,
@@ -64,9 +72,10 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
       input.bulkRecipientDisabled ||
       !input.hasAssignableRecipients ||
       !input.hasHandler ||
+      !hasEnoughRecipientsForReassign ||
       selectedCount === 0,
     showSelectionHint:
-      selectedCount === 0 && visibility.visible && visibility.enabled,
+      selectedCount === 0 && visibility.visible && visibility.enabled && hasEnoughRecipientsForReassign,
     selectionHintLabel: selectedCount === 0 ? 'Selecciona campos' : null,
   };
 }

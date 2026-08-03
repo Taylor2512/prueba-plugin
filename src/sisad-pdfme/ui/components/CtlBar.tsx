@@ -125,6 +125,7 @@ type ZoomProps = {
   setZoomLevel: (zoom: number) => void;
   iconColor?: string;
   density?: ToolbarDensity;
+  forceStepperButtons?: boolean;
 };
 
 /**
@@ -133,7 +134,7 @@ type ZoomProps = {
  * Expone presets de escala y, en modo comfortable, botones de incremento y
  * decremento respetando los límites de zoom calculados por useMaxZoom.
  */
-const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: ZoomProps) => {
+const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable', forceStepperButtons }: ZoomProps) => {
   const zoomStep = 0.25;
   const maxZoom = useMaxZoom();
   const minZoom = 0.25;
@@ -151,7 +152,7 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: Z
 
   const nextZoomOut = zoomLevel - zoomStep;
   const nextZoomIn = zoomLevel + zoomStep;
-  const showStepButtons = density === 'comfortable';
+  const showStepButtons = forceStepperButtons ?? density === 'comfortable';
 
   return (
     <div className={mergeClassNames(UI_CLASSNAME + 'zoom', 'inline-flex items-center gap-[0.1rem] rounded-[0.45rem] border border-[var(--border-soft)] bg-[var(--color-gray-100)] p-[0.1rem_0.2rem]')}>
@@ -328,6 +329,10 @@ const CtlBar = (props: CtlBarProps) => {
   const densityOption = String(
     options && typeof options === 'object' ? ((options as { density?: unknown }).density ?? '') : '',
   ).toLowerCase();
+  const zoomControlsVisible =
+    (options && typeof options === 'object'
+      ? ((options as { visibility?: { canvas?: { zoomControls?: boolean } } }).visibility?.canvas?.zoomControls)
+      : undefined) !== false;
   // Densidad explícita del preset gana SIEMPRE (incluida 'comfortable').
   // El fallback por ancho usa el área real del canvas (ya descontados los
   // sidebars reservados del preset three-panel), por eso los umbrales son
@@ -342,7 +347,7 @@ const CtlBar = (props: CtlBarProps) => {
           : 'minimal';
 
   const showPageNavButtons = pageNum > 1 && toolbarDensity === 'comfortable';
-  const showZoomStepper = toolbarDensity === 'comfortable';
+  const showZoomStepper = zoomControlsVisible;
   const showSaveButtonText = toolbarDensity === 'comfortable';
   const showSaveStatusText = toolbarDensity === 'comfortable' && !sidebarOpen;
   const showFitAction = toolbarDensity === 'comfortable';
@@ -590,7 +595,12 @@ const CtlBar = (props: CtlBarProps) => {
             />
           ) : null}
           {showZoomStepper ? (
-            <Zoom zoomLevel={zoomLevel} setZoomLevel={zoomChangeHandler} density={toolbarDensity} />
+            <Zoom
+              zoomLevel={zoomLevel}
+              setZoomLevel={zoomChangeHandler}
+              density={toolbarDensity}
+              forceStepperButtons={zoomControlsVisible}
+            />
           ) : (
             <Select
               size="small"

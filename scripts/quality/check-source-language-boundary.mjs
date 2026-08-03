@@ -15,8 +15,8 @@ const EXAMPLES_DIR = join(ROOT, 'src/examples');
 
 const ALLOWED_EXTENSIONS = new Set(['.js', '.jsx', '.json']);
 const ALLOWED_PUBLIC_IMPORTS = [
-  '@/sisad-pdfme/labs',
   '@/sisad-pdfme/config',
+  '@/sisad-pdfme/devtools',
   '@/sisad-pdfme/integration',
   '@/sisad-pdfme/react',
   '@sisad-pdfme/common',

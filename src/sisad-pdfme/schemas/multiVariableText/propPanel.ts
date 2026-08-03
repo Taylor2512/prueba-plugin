@@ -2,13 +2,14 @@ import { propPanel as parentPropPanel } from '../text/propPanel.js';
 import { PropPanel, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import { MultiVariableTextSchema } from './types.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { parseVariablesInput } from './helper.js';
 
 const mapDynamicVariables = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n, options } = props;
 
   const mvtSchema = activeSchema as unknown as MultiVariableTextSchema;
   const text = mvtSchema.text || '';
-  const variables = JSON.parse(mvtSchema.content || '{}') as Record<string, string>;
+  const variables = parseVariablesInput(mvtSchema.content as string | Record<string, string>);
   const variablesChanged = updateVariablesFromText(text, variables);
   const varNames = Object.keys(variables);
 

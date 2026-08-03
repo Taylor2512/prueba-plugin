@@ -351,6 +351,7 @@ const ListView = (
           collaborationContext={collaborationContext}
           selectionCommands={selectionCommands}
           showBulkRecipientAction={recipientOptions.length > 0}
+          assignableRecipientCount={recipientOptions.length}
           bulkRecipientDisabled={!canAssignSelected}
           onBulkAssignRecipient={openAssignmentDialog}
           bulkRecipientLabel={

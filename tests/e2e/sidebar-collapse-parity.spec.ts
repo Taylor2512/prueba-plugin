@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
-const ROUTE = '/examples/designer/single-user';
+const ROUTE = EXAMPLE_ROUTE_PATHS.designerSingleUser;
 
 const openCatalog = async (page: import('@playwright/test').Page) => {
   const toggle = page.getByRole('button', { name: /Abrir catálogo de campos|Cerrar catálogo de campos/i }).first();

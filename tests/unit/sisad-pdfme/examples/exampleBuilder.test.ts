@@ -6,7 +6,7 @@ import {
   createTemplate,
   createUploadedDocument,
   cloneExample,
-} from '@/sisad-pdfme/labs';
+} from '@/examples/domain/exampleBuilder.js';
 
 describe('sisad-pdfme/examples/exampleBuilder', () => {
   it('pads templates to the requested page count', () => {

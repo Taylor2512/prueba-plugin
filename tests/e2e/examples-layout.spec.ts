@@ -9,14 +9,16 @@
  * dueño de su scroll interno.
  */
 import { expect, test, type Page } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
-const DESIGNER_SINGLE = '/examples/designer/single-user';
-const DESIGNER_MULTI = '/examples/designer/multi-user';
-const RUNTIME_FORM = '/examples/runtime/form';
-const RUNTIME_VIEWER = '/examples/runtime/viewer';
+const DESIGNER_SINGLE = EXAMPLE_ROUTE_PATHS.designerSingleUser;
+const DESIGNER_MULTI = EXAMPLE_ROUTE_PATHS.designerMultiUser;
+const RUNTIME_FORM = EXAMPLE_ROUTE_PATHS.runtimeForm;
+const RUNTIME_VIEWER = EXAMPLE_ROUTE_PATHS.runtimeViewer;
 
 const RUNTIME_ROOT = '[data-sisad-pdfme-root]';
 const RUNTIME_VIEWPORT = '[data-testid="example-runtime-viewport"]';
+const DESIGNER_PAPER = '[data-paper-page], [data-canvas-page], .sisad-pdfme-ui-paper';
 
 /** El runtime tarda en montar el Canvas; esperamos a que tenga tamaño real. */
 async function gotoRuntimeRoute(page: Page, route: string) {
@@ -119,6 +121,26 @@ test.describe('rutas Designer', () => {
     await expect(page.getByTestId('designer-save')).toHaveCount(1);
     await expect(page.getByTestId('designer-zoom-select')).toHaveCount(1);
     await expect(page.locator('[data-example-topbar] [data-testid="designer-save"]')).toHaveCount(0);
+  });
+
+  test('el collapse del sidebar izquierdo no desplaza el papel del diseñador', async ({ page }) => {
+    await gotoRuntimeRoute(page, DESIGNER_MULTI);
+
+    const paper = page.locator(DESIGNER_PAPER).first();
+    await expect(paper).toBeVisible();
+
+    const readCenterX = async () => {
+      const box = await paper.boundingBox();
+      if (!box) throw new Error('paper no medible');
+      return box.x + box.width / 2;
+    };
+
+    const before = await readCenterX();
+    await page.getByTestId('sidebar-collapse-left').click();
+    await expect.poll(async () => Math.abs((await readCenterX()) - before), { timeout: 10_000 }).toBeLessThanOrEqual(2);
+
+    await page.getByTestId('sidebar-collapse-left').click();
+    await expect.poll(async () => Math.abs((await readCenterX()) - before), { timeout: 10_000 }).toBeLessThanOrEqual(2);
   });
 
   test('el drawer de información no consume espacio ni remonta el runtime', async ({ page }) => {

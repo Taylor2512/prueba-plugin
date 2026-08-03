@@ -56,6 +56,14 @@ describe('contrato de dimensiones del host', () => {
 
     expect(host).not.toBeNull();
     expect(host?.className).toBe(SISAD_PDFME_HOST_SURFACE_CLASS);
+
+    if (mode === 'designer') {
+      expect(usePdfmeRuntimeInstance).toHaveBeenCalled();
+      expect(usePdfmeRuntimeInstance.mock.calls.at(-1)?.[0]).toMatchObject({
+        autoFit: 'none',
+        mode: 'designer',
+      });
+    }
   });
 
   it('acepta className y style del host de forma aditiva', () => {

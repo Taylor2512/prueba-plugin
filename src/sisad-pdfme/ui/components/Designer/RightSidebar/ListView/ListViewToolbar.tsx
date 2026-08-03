@@ -58,6 +58,7 @@ type Props = {
   clearLabel?: React.ReactNode;
   showBulkAction?: boolean;
   showBulkRecipientAction?: boolean;
+  assignableRecipientCount?: number;
   bulkRecipientDisabled?: boolean;
   onBulkAssignRecipient?: () => void;
   collaborationContext?: Pick<EffectiveCollaborationContext, 'activeRecipient' | 'canEditStructure'> | null;
@@ -95,6 +96,7 @@ const ListViewToolbar = ({
   useDefaultStyles,
   showBulkAction = true,
   showBulkRecipientAction = false,
+  assignableRecipientCount = 0,
   bulkRecipientDisabled = false,
   onBulkAssignRecipient,
   collaborationContext,
@@ -106,6 +108,7 @@ const ListViewToolbar = ({
     reassignVisible,
     assignmentModalVisible,
     selectedCount,
+    assignableRecipientCount,
     hasHandler: typeof onBulkAssignRecipient === 'function',
     hasAssignableRecipients: showBulkRecipientAction,
     bulkRecipientDisabled,

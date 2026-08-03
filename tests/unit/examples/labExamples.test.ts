@@ -54,6 +54,7 @@ vi.mock('@sisad-pdfme/schemas', () => {
 
   return {
     builtInSchemaDefinitions,
+    getBuiltInFields: () => builtInSchemaDefinitions.map((definition) => ({ ...definition })),
     createDefaultSchema: (type: string, context: Record<string, unknown> = {}) => ({
       type,
       name: `${type}-${String(context.id || 'schema')}`,
@@ -63,32 +64,36 @@ vi.mock('@sisad-pdfme/schemas', () => {
       ...(naturalSizeByType[type] || { width: 45, height: 7 }),
       content: '',
     }),
+    getSchemaFamily: (type: string) => familyByType[type] || 'text',
     resolveSchemaFamily: (type: string) => familyByType[type] || 'text',
   };
 });
 
+import { FAMILY_EXAMPLES } from '@/examples/catalog/familyCatalog.js';
+import { buildShowcaseTemplate } from '@/examples/builders/showcaseTemplate.js';
+import { createRuntimeConfig } from '@/examples/config/runtimeConfig.js';
 import {
-  FAMILY_EXAMPLES,
+  EXAMPLE_ROUTE_PATHS,
   PRIMARY_ROUTE_GROUPS,
-  buildShowcaseTemplate,
-  getLabExamples,
-} from '@/examples/index.jsx';
+  getExampleRouteCatalog,
+  getExampleSchemaRoute,
+} from '@/examples/routes/routeDefinitions.js';
 
 describe('src/examples/labExamples', () => {
   it('exposes the primary routes and one route per schema family', () => {
-    const routes = getLabExamples();
+    const routes = getExampleRouteCatalog();
     const paths = routes.map((route) => route.path);
 
-    expect(paths).toContain('/');
-    expect(paths).toContain('/examples/designer/single-user');
-    expect(paths).toContain('/examples/designer/multi-user');
-    expect(paths).toContain('/examples/runtime/form');
-    expect(paths).toContain('/examples/runtime/viewer');
-    expect(paths).toContain('/examples/schemas');
-    expect(paths).toContain('/examples/schemas/boolean');
+    expect(paths).toContain(EXAMPLE_ROUTE_PATHS.catalog);
+    expect(paths).toContain(EXAMPLE_ROUTE_PATHS.designerSingleUser);
+    expect(paths).toContain(EXAMPLE_ROUTE_PATHS.designerMultiUser);
+    expect(paths).toContain(EXAMPLE_ROUTE_PATHS.runtimeForm);
+    expect(paths).toContain(EXAMPLE_ROUTE_PATHS.runtimeViewer);
+    expect(paths).toContain(EXAMPLE_ROUTE_PATHS.schemas);
+    expect(paths).toContain(getExampleSchemaRoute('boolean'));
 
     FAMILY_EXAMPLES.forEach((family) => {
-      expect(paths).toContain(`/examples/schemas/${family.slug}`);
+      expect(paths).toContain(getExampleSchemaRoute(family.slug));
     });
 
     expect(new Set(paths).size).toBe(paths.length);

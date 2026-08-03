@@ -2,15 +2,17 @@ import { describe, expect, it } from 'vitest';
 
 import {
   appendTemplatePages,
-  buildExampleBundle,
-  buildExampleHref,
   createCollaboration,
   createExample,
   createTemplate,
   createUploadedDocument,
+} from '@/examples/domain/exampleBuilder.js';
+import {
+  buildExampleBundle,
+  buildExampleHref,
   getExampleBundleFilename,
   normalizeExampleHostData,
-} from '@/examples/index.jsx';
+} from '@/examples/exporters/exampleBundle.js';
 
 describe('sisad-pdfme/examples bundle and builder helpers', () => {
   it('normaliza el host ejemplo con recipients, documentos y providers', () => {

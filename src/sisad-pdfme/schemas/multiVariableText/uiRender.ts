@@ -7,7 +7,7 @@ import {
 } from '../text/uiRender.js';
 import { isEditable } from '../utils.js';
 import { getFontKitFont } from '../text/helper.js';
-import { substituteVariables } from './helper.js';
+import { parseVariablesInput, substituteVariables } from './helper.js';
 
 export const renderMultiVariableTextUi = async (arg: UIRenderProps<MultiVariableTextSchema>) => {
   const { value, schema, rootElement, mode, onChange, ...rest } = arg;
@@ -68,9 +68,7 @@ const formUiRender = async (arg: UIRenderProps<MultiVariableTextSchema>) => {
     rootElement.parentElement.style.outline = '';
   }
 
-  const variables: Record<string, string> = value
-    ? (JSON.parse(value) as Record<string, string>) || {}
-    : {};
+  const variables = parseVariablesInput(value as string | Record<string, string>);
   const variableIndices = getVariableIndices(rawText);
   const substitutedText = substituteVariables(rawText, variables);
   const font = options?.font || getDefaultFont();

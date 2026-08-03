@@ -23,7 +23,6 @@ describe('CtlBar density', () => {
     const { container } = render(<CtlBar {...baseProps} size={{ width: 980, height: 700 }} />);
     const bar = container.querySelector('.sisad-pdfme-ui-control-bar');
     expect(bar).toHaveAttribute('data-density', 'compact');
-    expect(container.querySelector('.sisad-pdfme-ui-control-bar-cluster--top-left')).toBeInTheDocument();
     expect(container.querySelector('.sisad-pdfme-ui-control-bar-cluster--top-center')).toBeInTheDocument();
     expect(container.querySelector('.sisad-pdfme-ui-control-bar-cluster--top-right')).toBeInTheDocument();
     expect(container.querySelector('.sisad-pdfme-ui-control-bar-cluster--bottom-right')).toBeInTheDocument();
@@ -33,5 +32,11 @@ describe('CtlBar density', () => {
     render(<CtlBar {...baseProps} size={{ width: 760, height: 700 }} />);
     const save = screen.getByTitle('Guardar');
     expect(save).toBeInTheDocument();
+  });
+
+  test('keeps zoom stepper controls visible in compact density', () => {
+    render(<CtlBar {...baseProps} size={{ width: 760, height: 700 }} />);
+    expect(screen.getByTestId('designer-zoom-out')).toBeInTheDocument();
+    expect(screen.getByTestId('designer-zoom-in')).toBeInTheDocument();
   });
 });

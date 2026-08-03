@@ -200,7 +200,9 @@ export const SisadPdfmeDesigner = ({
     },
     plugins: flatSchemaPlugins,
     runtime: runtime as UsePdfmeRuntimeInstanceConfig['runtime'],
-    autoFit: 'page' as const,
+    // El wrapper público arranca con zoom visible al 100%; el host puede
+    // pedir un fit explícito después si lo necesita.
+    autoFit: 'none' as const,
   }), [documents, recipientState, resolvedConfig, runtime, template, onTemplateChange]);
   const { instanceRef } = usePdfmeRuntimeInstance(runtimeConfig as UsePdfmeRuntimeInstanceConfig);
 

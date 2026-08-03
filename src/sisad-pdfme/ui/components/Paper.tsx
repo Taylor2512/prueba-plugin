@@ -125,8 +125,9 @@ const Paper = (props: {
   renderSchema: (arg: { index: number; pageIndex: number; schema: SchemaForUI }) => ReactNode;
   hasRulers?: boolean;
   registerPaperRef: (paperIndex: number, element: HTMLDivElement | null) => void;
+  contentOffsetX?: number;
 }) => {
-  const { scale, schemasList, pageSizes, backgrounds, documentId, renderPaper, renderSchema, hasRulers, registerPaperRef } = props;
+  const { scale, schemasList, pageSizes, backgrounds, documentId, renderPaper, renderSchema, hasRulers, registerPaperRef, contentOffsetX = 0 } = props;
   const font = useContext(FontContext);
 
   const normalizedSchemasList =
@@ -224,6 +225,8 @@ const Paper = (props: {
       style={{
         '--paper-root-width': `${scaledRootWidth}px`,
         '--paper-root-height': `${scaledRootHeight}px`,
+        transform: contentOffsetX ? `translateX(${contentOffsetX}px)` : undefined,
+        willChange: contentOffsetX ? 'transform' : undefined,
       } as React.CSSProperties}
     >
       <div

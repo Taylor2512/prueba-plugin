@@ -319,6 +319,7 @@ export interface CanvasProps {
   sidebarOpen: boolean;
   sidebarWidth?: number;
   preserveSidebarSpace?: boolean;
+  contentOffsetX?: number;
   featureToggles?: CanvasFeatureToggles;
   styleOverrides?: CanvasStyleOverrides;
   classNames?: CanvasClassNames;
@@ -377,6 +378,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     onChangeHoveringSchemaId,
     paperRefs,
     registerPaperRef,
+    contentOffsetX = 0,
     featureToggles,
     styleOverrides,
     classNames,
@@ -1746,6 +1748,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
         documentId={activeDocumentId}
         hasRulers={true}
         registerPaperRef={registerPaperRef}
+        contentOffsetX={contentOffsetX}
         renderPaper={({ index, paperSize }) => (
           <>
             {feature.padding ? (

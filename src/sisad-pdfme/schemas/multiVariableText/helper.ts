@@ -10,6 +10,9 @@ export const parseVariablesInput = (variablesIn: string | Record<string, string>
   }
 
   if (typeof variablesIn !== 'string') {
+    if (typeof variablesIn !== 'object' || Array.isArray(variablesIn)) {
+      return {};
+    }
     return variablesIn;
   }
 
