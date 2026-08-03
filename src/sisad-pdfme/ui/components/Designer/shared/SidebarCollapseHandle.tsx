@@ -26,6 +26,7 @@ export const SidebarCollapseHandle = ({
   className,
 }: SidebarCollapseHandleProps) => {
   const isLeft = side === 'left';
+  const compactTouchTarget = typeof window !== 'undefined' && window.innerWidth <= 768;
   const Icon = expanded
     ? isLeft
       ? PanelLeftClose
@@ -48,12 +49,14 @@ export const SidebarCollapseHandle = ({
         data-presentation={presentation}
         data-density={density}
         onClick={onToggle}
+        style={compactTouchTarget ? { width: 44, height: 44 } : undefined}
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}sidebar-toggle-btn`,
           `${DESIGNER_CLASSNAME}sidebar-collapse-handle`,
           `${DESIGNER_CLASSNAME}sidebar-collapse-handle-${side}`,
           'inline-flex items-center justify-center rounded-full border border-slate-200/80 bg-white/95 text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-200',
           density === 'minimal' ? 'h-7 w-7' : 'h-8 w-8',
+          'max-[48rem]:!h-11 max-[48rem]:!w-11',
           className,
         )}
       >

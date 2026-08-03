@@ -29,6 +29,7 @@ export const SidebarRail = ({
   className,
   topSpacer = true,
 }: SidebarRailProps) => {
+  const compactTouchTarget = typeof window !== 'undefined' && window.innerWidth <= 768;
   const railPaddingClass = density === 'minimal'
     ? 'py-1 px-0.5 gap-0.5'
     : density === 'compact'
@@ -67,8 +68,10 @@ export const SidebarRail = ({
                 `${DESIGNER_CLASSNAME}sidebar-rail-btn`,
                 'group relative inline-flex items-center justify-center border border-slate-200 bg-white text-slate-500 transition-all duration-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-200',
                 buttonSizeClass,
+                'max-[48rem]:!h-11 max-[48rem]:!w-11',
                 item.active && 'bg-sky-50 text-sky-600 border-sky-200 ring-1 ring-sky-200/60'
               )}
+              style={compactTouchTarget ? { width: 44, height: 44 } : undefined}
               disabled={item.disabled}
               data-active={item.active ? 'true' : 'false'}
               data-testid={`sidebar-rail-${side}-${item.key}`}

@@ -130,7 +130,7 @@ type ZoomProps = {
 
 const CONTROL_BAR_ICON_BUTTON_CLASS_NAME = mergeClassNames(
   UI_CLASSNAME + 'control-bar-icon-btn',
-  'inline-flex items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-slate-700 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-100 disabled:text-slate-300',
+  'inline-flex items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-slate-800 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:!bg-transparent hover:!border-transparent hover:!text-slate-950 disabled:cursor-not-allowed disabled:opacity-100 disabled:text-slate-500',
 );
 
 /**
@@ -147,7 +147,7 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable', for
   const zoomButtonClassName =
     mergeClassNames(
       UI_CLASSNAME + 'zoom-button',
-      'inline-flex h-5 w-5 min-w-5 items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-slate-700 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-100 disabled:text-slate-300',
+      'inline-flex h-5 w-5 min-w-5 items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-slate-800 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:!bg-transparent hover:!border-transparent hover:!text-slate-950 disabled:cursor-not-allowed disabled:opacity-100 disabled:text-slate-500',
     );
   const zoomSelectClassName = mergeClassNames(
     UI_CLASSNAME + 'zoom-select',
@@ -516,7 +516,7 @@ const CtlBar = (props: CtlBarProps) => {
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-9 items-center gap-0.5 rounded-lg border border-slate-200 bg-white p-0.5 shadow-sm')}>
           {saveAction.visible ? (
             <Button
-              className={mergeClassNames(UI_CLASSNAME + 'control-bar-text-btn', 'inline-flex h-[30px] items-center rounded-md border border-transparent bg-transparent px-2 text-[12px] font-semibold text-slate-800 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-100')}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-text-btn', 'inline-flex h-[30px] items-center rounded-md border border-transparent bg-transparent px-2 text-[12px] font-semibold text-slate-800 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:!bg-transparent hover:!border-transparent hover:!text-slate-900 disabled:cursor-not-allowed disabled:opacity-100')}
               type="text"
               onClick={onSave}
               disabled={!saveAction.enabled || isSaving}

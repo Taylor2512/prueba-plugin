@@ -3,6 +3,7 @@
  * porcentaje (nunca decimal), +/- respetan límites y fit-page es accionable.
  */
 import { expect, test } from '@playwright/test';
+import { openDesigner } from './generated/fixtures/designer.fixture';
 
 const readZoomTriggerText = async (page: import('@playwright/test').Page): Promise<string> => {
   const select = page.getByTestId('designer-zoom-select').first();
@@ -12,7 +13,7 @@ const readZoomTriggerText = async (page: import('@playwright/test').Page): Promi
 
 test.describe('zoom toolbar contract', () => {
   test('zoom trigger shows a percentage, never a decimal', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await openDesigner(page);
 
     const triggerText = (await readZoomTriggerText(page)).trim();
     expect(triggerText).toMatch(/^\d+%$/);
@@ -20,7 +21,7 @@ test.describe('zoom toolbar contract', () => {
   });
 
   test('zoom in/out buttons are actionable and keep percentage display', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await openDesigner(page);
 
     const zoomIn = page.getByTestId('designer-zoom-in').first();
     const zoomOut = page.getByTestId('designer-zoom-out').first();
@@ -43,7 +44,7 @@ test.describe('zoom toolbar contract', () => {
   });
 
   test('selecting a preset updates the canvas zoom', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await openDesigner(page);
 
     const select = page.getByTestId('designer-zoom-select').first();
     await select.click();
@@ -56,7 +57,7 @@ test.describe('zoom toolbar contract', () => {
   });
 
   test('fit-page, undo and redo carry stable test ids', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await openDesigner(page);
 
     await expect(page.getByTestId('designer-fit-page').first()).toBeVisible();
     await expect(page.getByTestId('designer-undo').first()).toBeVisible();
