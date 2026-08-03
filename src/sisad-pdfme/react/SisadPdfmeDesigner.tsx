@@ -29,6 +29,7 @@ import type {
   SisadPdfmeAssignmentChangePayload,
   SisadPdfmeRecipient,
 } from '../recipients/recipientTypes.js';
+import type { SignatureProviderDefinition } from '../schemas/signature/providerRegistry.js';
 import type {
   SisadPdfmeController,
   SisadPdfmeGlobalConfig,
@@ -44,11 +45,15 @@ type DesignerProps = {
   documents?: unknown[];
   recipients?: unknown[];
   activeRecipientId?: string | null;
+  activeDocumentId?: string | null;
+  signatureProviders?: unknown[];
+  plugins?: Record<string, unknown> | null;
   onTemplateChange?: (template: unknown) => void;
   onSave?: (template: unknown) => void;
   onControllerReady?: (controller: SisadPdfmeController) => void;
   onRecipientsChange?: (recipients: SisadPdfmeRecipient[]) => void;
   onActiveRecipientChange?: (recipient: SisadPdfmeRecipient | null) => void;
+  onUploadedDocumentsChange?: (documents: unknown[], activeDocumentId: string | null) => void;
   onAssignmentChange?: (payload: SisadPdfmeAssignmentChangePayload) => void;
   /**
    * Flujo único de eventos canónicos de la instancia.
@@ -70,11 +75,15 @@ export const SisadPdfmeDesigner = ({
   documents = [],
   recipients,
   activeRecipientId,
+  activeDocumentId,
+  signatureProviders = [],
+  plugins,
   onTemplateChange,
   onSave,
   onControllerReady,
   onRecipientsChange,
   onActiveRecipientChange,
+  onUploadedDocumentsChange,
   onAssignmentChange,
   onEvent,
   className,
@@ -103,6 +112,54 @@ export const SisadPdfmeDesigner = ({
 
   const configEventsRef = useRef(resolvedConfig.config.events);
   configEventsRef.current = resolvedConfig.config.events;
+
+  const runtimePlugins = useMemo(
+    () => ({
+      ...flatSchemaPlugins,
+      ...(plugins || {}),
+    }),
+    [plugins],
+  );
+
+  const normalizeSignatureProvider = (provider: unknown): SignatureProviderDefinition | null => {
+    if (!provider || typeof provider !== 'object') return null;
+    const record = provider as Record<string, unknown>;
+    const capabilities = record.capabilities && typeof record.capabilities === 'object'
+      ? (record.capabilities as Record<string, boolean>)
+      : {};
+    return {
+      key: String(record.key ?? '').trim() || 'provider',
+      label: String(record.label ?? '').trim() || 'Provider',
+      description: String(record.description ?? '').trim() || undefined,
+      internal: false,
+      capabilities: {
+        supportsVisibleSignature: capabilities.supportsVisibleSignature !== false,
+        supportsWebhook: capabilities.supportsWebhook === true,
+        supportsPolling: capabilities.supportsPolling === true,
+        supportsCertificateMetadata: capabilities.supportsCertificateMetadata === true,
+        supportsReason: capabilities.supportsReason === true,
+        supportsLocation: capabilities.supportsLocation === true,
+        supportsOtp: capabilities.supportsOtp === true,
+        supportsBiometric: capabilities.supportsBiometric === true,
+      },
+      defaultConfig: record.metadata && typeof record.metadata === 'object'
+        ? (record.metadata as Record<string, unknown>)
+        : undefined,
+    };
+  };
+
+  const mergedSignatureProviders = useMemo(() => {
+    const baseProviders = resolvedConfig.designerEngine.signature?.providers || [];
+    const extraProviders = Array.isArray(signatureProviders)
+      ? signatureProviders.map(normalizeSignatureProvider).filter(Boolean) as SignatureProviderDefinition[]
+      : [];
+    const byKey = new Map<string, SignatureProviderDefinition>();
+    [...baseProviders, ...extraProviders].forEach((provider) => {
+      if (!provider?.key) return;
+      byKey.set(provider.key, provider);
+    });
+    return Array.from(byKey.values());
+  }, [resolvedConfig.designerEngine.signature?.providers, signatureProviders]);
 
   /**
    * Dispatcher único de la instancia: reparte a listeners internos y al
@@ -182,6 +239,7 @@ export const SisadPdfmeDesigner = ({
     onPageChange: () => undefined,
     options: {
       ...resolvedConfig.runtimeOptions,
+      onUploadedDocumentsChange,
       designerEngine: {
         ...resolvedConfig.designerEngine,
         // collaborationContext interno nace del registry: una sola fuente para
@@ -191,19 +249,41 @@ export const SisadPdfmeDesigner = ({
           enabled: Boolean(resolvedConfig.config.collaboration.enabled),
           isGlobalView: resolvedConfig.config.collaboration.isGlobalView === true,
         }),
+        signature: {
+          ...(resolvedConfig.designerEngine.signature || {}),
+          providers: mergedSignatureProviders,
+        },
         sidebars: {
           ...(resolvedConfig.designerEngine.sidebars || {}),
         },
       },
       uploadedDocuments: (Array.isArray(documents) ? documents : []).map((document) => resolvedConfig.adapters.documents.toDocument(document as unknown)),
-      activeDocumentId: (Array.isArray(documents) && documents.length > 0 ? resolvedConfig.adapters.documents.toDocument(documents[0] as unknown).id : null),
+      activeDocumentId:
+        typeof activeDocumentId === 'string'
+          ? activeDocumentId
+          : (Array.isArray(documents) && documents.length > 0
+              ? resolvedConfig.adapters.documents.toDocument(documents[0] as unknown).id
+              : null),
     },
-    plugins: flatSchemaPlugins,
+    plugins: runtimePlugins,
     runtime: runtime as UsePdfmeRuntimeInstanceConfig['runtime'],
     // El wrapper público arranca con zoom visible al 100%; el host puede
     // pedir un fit explícito después si lo necesita.
     autoFit: 'none' as const,
-  }), [documents, recipientState, resolvedConfig, runtime, template, onTemplateChange]);
+  }), [
+    activeDocumentId,
+    documents,
+    mergedSignatureProviders,
+    onTemplateChange,
+    onUploadedDocumentsChange,
+    plugins,
+    recipientState,
+    resolvedConfig,
+    runtime,
+    signatureProviders,
+    template,
+    runtimePlugins,
+  ]);
   const { instanceRef } = usePdfmeRuntimeInstance(runtimeConfig as UsePdfmeRuntimeInstanceConfig);
 
   const controllerContext = useMemo(() => ({

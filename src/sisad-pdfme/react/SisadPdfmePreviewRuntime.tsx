@@ -21,6 +21,9 @@ export type SisadPdfmePreviewRuntimeProps = {
   inputs?: unknown[];
   recipients?: unknown[];
   activeRecipientId?: string | null;
+  activeDocumentId?: string | null;
+  signatureProviders?: unknown[];
+  plugins?: Record<string, unknown> | null;
   onInputChange?: (payload: {
     index: number;
     name: string;
@@ -44,6 +47,7 @@ export const SisadPdfmePreviewRuntime = ({
   inputs,
   recipients,
   activeRecipientId,
+  plugins,
   onInputChange,
   className,
   style,
@@ -57,7 +61,7 @@ export const SisadPdfmePreviewRuntime = ({
     });
   const runtimeInputs = useMemo(
     () =>
-      Array.isArray(inputs) && inputs.length > 0
+      Array.isArray(inputs)
         ? inputs
         : getInputFromTemplate(
             template as UsePdfmeRuntimeInstanceConfig['template'],
@@ -78,12 +82,16 @@ export const SisadPdfmePreviewRuntime = ({
         designerEngine: resolvedConfig.designerEngine,
         collaboration: collaborationOptions,
       },
-      plugins: flatSchemaPlugins,
+      plugins: {
+        ...flatSchemaPlugins,
+        ...(plugins || {}),
+      },
       runtime: runtimeByMode[mode],
       ...(mode === 'form' ? { onInputChange } : {}),
     }),
     [
       collaborationOptions,
+      plugins,
       mode,
       onInputChange,
       resolvedConfig.designerEngine,

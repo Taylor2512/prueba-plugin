@@ -46,12 +46,20 @@ export {
   resolveSisadPdfmeInstance,
   useSisadPdfmeInstance,
 } from './SisadPdfmeInstance.js';
+export {
+  validateSisadPdfmeInstanceDefinition,
+} from './validateSisadPdfmeInstanceDefinition.js';
+export type {
+  SisadPdfmeInstanceDefinitionIssue,
+  SisadPdfmeInstanceDefinitionIssueSeverity,
+} from './validateSisadPdfmeInstanceDefinition.js';
 export type {
   SisadPdfmeInstanceDefinition,
   SisadPdfmeInstanceHandlers,
   SisadPdfmeInstanceMode,
   SisadPdfmeInstanceProps,
   SisadPdfmeInstanceResolution,
+  SisadPdfmeInstanceRuntimeState,
   SisadPdfmeInstanceState,
   SisadPdfmeInstanceStateField,
   SisadPdfmeInstanceStateFieldSource,

@@ -14,7 +14,7 @@ export type SisadPdfmeTemplateRecipe = {
   padding?: CreateDefaultTemplateOptions['padding'];
 };
 
-const PAGE_GAP = 6;
+const COLUMN_GAP = 6;
 const ROW_GAP = 6;
 const DEFAULT_PAGE_SIZE = { width: 390, height: 400 };
 const DEFAULT_PADDING: [number, number, number, number] = [12, 12, 12, 12];
@@ -30,109 +30,125 @@ const resolveNaturalSize = (schema: SchemaForUI, contentWidth: number, contentHe
   };
 };
 
-const layoutGroup = (
-  group: SisadPdfmeTemplateRecipeGroup,
-  pageIndex: number,
-  existingSchemas: SchemaForUI[],
+const normalizePageSize = (
+  recipe: SisadPdfmeTemplateRecipe,
+) => {
+  const fallbackPageWidth = recipe.pageSize?.width ?? DEFAULT_PAGE_SIZE.width;
+  const fallbackPageHeight = recipe.pageSize?.height ?? DEFAULT_PAGE_SIZE.height;
+  const basePdf = recipe.basePdf && typeof recipe.basePdf === 'object'
+    ? (recipe.basePdf as Record<string, unknown>)
+    : {};
+
+  const padding = Array.isArray(recipe.padding)
+    ? recipe.padding
+    : Array.isArray(basePdf.padding)
+      ? (basePdf.padding as [number, number, number, number])
+      : DEFAULT_PADDING;
+
+  const pageWidth = Number(basePdf.width);
+  const pageHeight = Number(basePdf.height);
+  const resolvedPageWidth = Number.isFinite(pageWidth) && pageWidth > 0 ? pageWidth : fallbackPageWidth;
+  const resolvedPageHeight = Number.isFinite(pageHeight) && pageHeight > 0 ? pageHeight : fallbackPageHeight;
+
+  return {
+    basePdf: {
+      ...basePdf,
+      width: resolvedPageWidth,
+      height: resolvedPageHeight,
+      padding,
+    } as Template['basePdf'],
+    contentWidth: Math.max(1, resolvedPageWidth - padding[1] - padding[3]),
+    contentHeight: Math.max(1, resolvedPageHeight - padding[0] - padding[2]),
+    paddingTop: padding[0],
+    paddingLeft: padding[3],
+  };
+};
+
+const layoutRecipe = (
+  groups: SisadPdfmeTemplateRecipeGroup[],
   contentWidth: number,
   contentHeight: number,
   paddingTop: number,
   paddingLeft: number,
 ) => {
-  const pages: SchemaForUI[][] = [];
+  const pages: SchemaForUI[][] = [[]];
   const placedSchemas: SchemaForUI[] = [];
-  let currentPage: SchemaForUI[] = [];
+  let currentPageIndex = 0;
   let cursorX = paddingLeft;
   let cursorY = paddingTop;
   let rowHeight = 0;
-  let currentPageIndex = pageIndex;
 
-  const breakRow = () => {
+  const currentPage = () => pages[currentPageIndex];
+
+  const startNewRow = () => {
     cursorX = paddingLeft;
     cursorY += rowHeight + ROW_GAP;
     rowHeight = 0;
   };
 
-  const breakPage = () => {
-    pages.push(currentPage);
-    currentPage = [];
+  const startNewPage = () => {
+    pages.push([]);
+    currentPageIndex += 1;
     cursorX = paddingLeft;
     cursorY = paddingTop;
     rowHeight = 0;
-    currentPageIndex += 1;
   };
 
-  (group.types || []).forEach((type, typeIndex) => {
-    const schema = createDefaultSchema(type, {
-      pageNumber: currentPageIndex + 1,
-      id: `${type}-${pageIndex}-${typeIndex}`,
-      schemaUid: `${type}-${pageIndex}-${typeIndex}`,
-      existingSchemas: existingSchemas.concat(placedSchemas),
+  groups.forEach((group) => {
+    (group.types || []).forEach((type, typeIndex) => {
+      const normalizedType = String(type || '').trim();
+      if (!normalizedType) return;
+
+      const schema = createDefaultSchema(normalizedType, {
+        pageNumber: currentPageIndex + 1,
+        id: `${normalizedType}-${currentPageIndex}-${typeIndex}`,
+        schemaUid: `${normalizedType}-${currentPageIndex}-${typeIndex}`,
+        existingSchemas: placedSchemas,
+      });
+      const size = resolveNaturalSize(schema, contentWidth, contentHeight);
+
+      if (currentPage().length > 0 && cursorX + size.width > paddingLeft + contentWidth) {
+        startNewRow();
+      }
+      if (currentPage().length > 0 && cursorY + size.height > paddingTop + contentHeight) {
+        startNewPage();
+      }
+
+      const nextSchema = {
+        ...schema,
+        id: `${normalizedType}-${currentPageIndex}-${typeIndex}`,
+        schemaUid: `${normalizedType}-${currentPageIndex}-${typeIndex}`,
+        pageNumber: currentPageIndex + 1,
+        name: schema.name || group.title || schema.type || `field-${typeIndex + 1}`,
+        position: { x: cursorX, y: cursorY },
+        width: size.width,
+        height: size.height,
+        groupTitle: group.title,
+      } as SchemaForUI & { groupTitle?: string };
+
+      currentPage().push(nextSchema);
+      placedSchemas.push(nextSchema);
+
+      cursorX += size.width + COLUMN_GAP;
+      rowHeight = Math.max(rowHeight, size.height);
     });
-    const size = resolveNaturalSize(schema, contentWidth, contentHeight);
-
-    if (cursorX + size.width > paddingLeft + contentWidth && currentPage.length > 0) {
-      breakRow();
-    }
-    if (cursorY + size.height > paddingTop + contentHeight && currentPage.length > 0) {
-      breakPage();
-    }
-
-    const nextSchema = {
-      ...schema,
-      name: schema.name || group.title || schema.type || `field-${typeIndex + 1}`,
-      position: { x: cursorX, y: cursorY },
-      width: size.width,
-      height: size.height,
-      groupTitle: group.title,
-    } as SchemaForUI & { groupTitle?: string };
-
-    currentPage.push(nextSchema);
-    placedSchemas.push(nextSchema);
-
-    cursorX += size.width + PAGE_GAP;
-    rowHeight = Math.max(rowHeight, size.height);
   });
 
-  if (currentPage.length > 0) {
-    pages.push(currentPage);
-  }
-
-  return pages;
+  return pages.filter((page) => page.length > 0);
 };
 
 export function createTemplateFromRecipe(recipe: SisadPdfmeTemplateRecipe = {}): Template {
-  const pageSize = recipe.pageSize ?? DEFAULT_PAGE_SIZE;
-  const padding = recipe.padding ?? DEFAULT_PADDING;
-  const basePdf =
-    recipe.basePdf ?? {
-      width: pageSize.width,
-      height: pageSize.height,
-      padding,
-    };
-  const contentWidth = Number(basePdf.width) - Number(basePdf.padding?.[1] ?? padding[1]) - Number(basePdf.padding?.[3] ?? padding[3]);
-  const contentHeight = Number(basePdf.height) - Number(basePdf.padding?.[0] ?? padding[0]) - Number(basePdf.padding?.[2] ?? padding[2]);
-  const paddingTop = Number(basePdf.padding?.[0] ?? padding[0]);
-  const paddingLeft = Number(basePdf.padding?.[3] ?? padding[3]);
-
-  const pages = (recipe.groups || []).reduce<SchemaForUI[][]>(
-    (accumulator, group, index) =>
-      accumulator.concat(
-        layoutGroup(
-          group,
-          accumulator.length,
-          accumulator.flat(),
-          contentWidth,
-          contentHeight,
-          paddingTop,
-          paddingLeft,
-        ),
-      ),
-    [],
+  const layout = normalizePageSize(recipe);
+  const pages = layoutRecipe(
+    recipe.groups || [],
+    layout.contentWidth,
+    layout.contentHeight,
+    layout.paddingTop,
+    layout.paddingLeft,
   );
 
   return createDefaultTemplate({
-    basePdf,
+    basePdf: layout.basePdf,
     schemas: pages.length > 0 ? cloneDeep(pages) : [[]],
   });
 }

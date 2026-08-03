@@ -5,7 +5,12 @@ import {
   type SisadPdfmeHostDataAdapters,
   type SisadPdfmeNormalizedHostData,
 } from './normalizeHostData.js';
+import {
+  validateSisadPdfmeInstanceDefinition,
+  type SisadPdfmeInstanceDefinitionIssue,
+} from './validateSisadPdfmeInstanceDefinition.js';
 import type {
+  SisadPdfmeDocument,
   ResolvedSisadPdfmeConfig,
   SisadPdfmeController,
   SisadPdfmeGlobalConfig,
@@ -25,10 +30,14 @@ export type SisadPdfmeInstanceStateInput = {
   documents?: unknown[] | null;
   signatureProviders?: unknown[] | null;
   activeRecipientId?: string | null;
+  activeDocumentId?: string | null;
 };
+
+export type SisadPdfmeInstanceRuntimeState = Partial<SisadPdfmeInstanceStateInput>;
 
 export type SisadPdfmeInstanceStateFieldSource =
   | 'state'
+  | 'runtime'
   | 'defaultState'
   | 'definition'
   | 'resources'
@@ -46,23 +55,26 @@ export type SisadPdfmeInstanceState = {
   documents: SisadPdfmeInstanceStateField<unknown[]>;
   signatureProviders: SisadPdfmeInstanceStateField<unknown[]>;
   activeRecipientId: SisadPdfmeInstanceStateField<string | null>;
+  activeDocumentId: SisadPdfmeInstanceStateField<string | null>;
 };
 
 export type SisadPdfmeInstanceDefinition = {
   version?: number;
-  mode?: SisadPdfmeInstanceMode;
+  mode?: SisadPdfmeInstanceMode | string | null;
   config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
   state?: SisadPdfmeInstanceStateInput | null;
   defaultState?: SisadPdfmeInstanceStateInput | null;
   template?: unknown;
   templateKey?: string;
   templateRecipe?: SisadPdfmeTemplateRecipe | null;
+  plugins?: Record<string, unknown> | null;
   inputs?: unknown[] | null;
   values?: unknown[] | null;
   recipients?: unknown[] | null;
   documents?: unknown[] | null;
   signatureProviders?: unknown[] | null;
   activeRecipientId?: string | null;
+  activeDocumentId?: string | null;
 };
 
 export type SisadPdfmeInstanceResources = {
@@ -71,6 +83,7 @@ export type SisadPdfmeInstanceResources = {
   defaultState?: SisadPdfmeInstanceStateInput | null;
   template?: unknown;
   templateRecipe?: SisadPdfmeTemplateRecipe | null;
+  plugins?: Record<string, unknown> | null;
   inputs?: unknown[] | null;
   recipients?: unknown[] | null;
   documents?: unknown[] | null;
@@ -85,6 +98,7 @@ export type SisadPdfmeInstanceHandlers = {
   onControllerReady?: (controller: SisadPdfmeController) => void;
   onRecipientsChange?: (recipients: SisadPdfmeRecipient[]) => void;
   onActiveRecipientChange?: (recipient: SisadPdfmeRecipient | null) => void;
+  onUploadedDocumentsChange?: (documents: SisadPdfmeDocument[], activeDocumentId: string | null) => void;
   onAssignmentChange?: (payload: SisadPdfmeAssignmentChangePayload) => void;
   onInputChange?: (payload: { index: number; name: string; value: unknown }) => void;
   onEvent?: (event: SisadPdfmeAnyEvent) => void;
@@ -104,6 +118,8 @@ export type SisadPdfmeInstanceResolution = {
   props: Record<string, unknown>;
   normalized: SisadPdfmeNormalizedHostData;
   state: SisadPdfmeInstanceState;
+  issues: SisadPdfmeInstanceDefinitionIssue[];
+  valid: boolean;
 };
 
 const isPlainObject = (value: unknown): value is Record<string, unknown> =>
@@ -113,18 +129,47 @@ const mergeConfigs = (
   base?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig,
   override?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig,
 ) => {
+  const deepMerge = <T extends Record<string, unknown>>(left: T, right?: Record<string, unknown>): T => {
+    if (!isPlainObject(right)) return { ...left };
+    const next = { ...left } as Record<string, unknown>;
+    Object.entries(right).forEach(([key, value]) => {
+      const current = next[key];
+      if (isPlainObject(current) && isPlainObject(value)) {
+        next[key] = deepMerge(current, value);
+        return;
+      }
+      if (Array.isArray(value)) {
+        next[key] = value.slice();
+        return;
+      }
+      next[key] = value;
+    });
+    return next as T;
+  };
+
   if (base && override && isPlainObject(base) && isPlainObject(override)) {
-    return { ...base, ...override };
+    return deepMerge(base, override);
   }
   return override ?? base;
 };
 
+const mergePluginMaps = (
+  base?: Record<string, unknown> | null,
+  override?: Record<string, unknown> | null,
+) => ({
+  ...(base || {}),
+  ...(override || {}),
+});
+
 const resolveInstanceState = (
   definition: SisadPdfmeInstanceDefinition,
   resources: SisadPdfmeInstanceResources,
+  runtimeState: SisadPdfmeInstanceRuntimeState | null = null,
 ) => {
-  const controlledState = definition.state ?? resources.state ?? null;
-  const defaultState = definition.defaultState ?? resources.defaultState ?? null;
+  const definitionState = definition.state ?? null;
+  const resourceState = resources.state ?? null;
+  const definitionDefaultState = definition.defaultState ?? null;
+  const resourceDefaultState = resources.defaultState ?? null;
 
   const templateKey =
     typeof definition.template === 'string'
@@ -151,8 +196,11 @@ const resolveInstanceState = (
   return {
     template: resolveField(
       [
-        { value: controlledState?.template, source: 'state' },
-        { value: defaultState?.template, source: 'defaultState' },
+        { value: definitionState?.template, source: 'state' },
+        { value: resourceState?.template, source: 'state' },
+        { value: runtimeState?.template, source: 'runtime' },
+        { value: definitionDefaultState?.template, source: 'defaultState' },
+        { value: resourceDefaultState?.template, source: 'defaultState' },
         { value: definition.template !== undefined && typeof definition.template !== 'string' ? definition.template : undefined, source: 'definition' },
         {
           value: templateKey && isPlainObject(resources.templates) && templateKey in resources.templates
@@ -167,8 +215,11 @@ const resolveInstanceState = (
     ),
     inputs: resolveField(
       [
-        { value: controlledState?.inputs, source: 'state' },
-        { value: defaultState?.inputs, source: 'defaultState' },
+        { value: definitionState?.inputs, source: 'state' },
+        { value: resourceState?.inputs, source: 'state' },
+        { value: runtimeState?.inputs, source: 'runtime' },
+        { value: definitionDefaultState?.inputs, source: 'defaultState' },
+        { value: resourceDefaultState?.inputs, source: 'defaultState' },
         { value: definition.values, source: 'definition' },
         { value: definition.inputs, source: 'definition' },
         { value: resources.inputs, source: 'resources' },
@@ -177,8 +228,11 @@ const resolveInstanceState = (
     ),
     recipients: resolveField(
       [
-        { value: controlledState?.recipients, source: 'state' },
-        { value: defaultState?.recipients, source: 'defaultState' },
+        { value: definitionState?.recipients, source: 'state' },
+        { value: resourceState?.recipients, source: 'state' },
+        { value: runtimeState?.recipients, source: 'runtime' },
+        { value: definitionDefaultState?.recipients, source: 'defaultState' },
+        { value: resourceDefaultState?.recipients, source: 'defaultState' },
         { value: definition.recipients, source: 'definition' },
         { value: resources.recipients, source: 'resources' },
       ],
@@ -186,8 +240,11 @@ const resolveInstanceState = (
     ),
     documents: resolveField(
       [
-        { value: controlledState?.documents, source: 'state' },
-        { value: defaultState?.documents, source: 'defaultState' },
+        { value: definitionState?.documents, source: 'state' },
+        { value: resourceState?.documents, source: 'state' },
+        { value: runtimeState?.documents, source: 'runtime' },
+        { value: definitionDefaultState?.documents, source: 'defaultState' },
+        { value: resourceDefaultState?.documents, source: 'defaultState' },
         { value: definition.documents, source: 'definition' },
         { value: resources.documents, source: 'resources' },
       ],
@@ -195,8 +252,11 @@ const resolveInstanceState = (
     ),
     signatureProviders: resolveField(
       [
-        { value: controlledState?.signatureProviders, source: 'state' },
-        { value: defaultState?.signatureProviders, source: 'defaultState' },
+        { value: definitionState?.signatureProviders, source: 'state' },
+        { value: resourceState?.signatureProviders, source: 'state' },
+        { value: runtimeState?.signatureProviders, source: 'runtime' },
+        { value: definitionDefaultState?.signatureProviders, source: 'defaultState' },
+        { value: resourceDefaultState?.signatureProviders, source: 'defaultState' },
         { value: definition.signatureProviders, source: 'definition' },
         { value: resources.signatureProviders, source: 'resources' },
       ],
@@ -204,11 +264,26 @@ const resolveInstanceState = (
     ),
     activeRecipientId: resolveField(
       [
-        { value: controlledState?.activeRecipientId, source: 'state' },
-        { value: defaultState?.activeRecipientId, source: 'defaultState' },
+        { value: definitionState?.activeRecipientId, source: 'state' },
+        { value: resourceState?.activeRecipientId, source: 'state' },
+        { value: runtimeState?.activeRecipientId, source: 'runtime' },
+        { value: definitionDefaultState?.activeRecipientId, source: 'defaultState' },
+        { value: resourceDefaultState?.activeRecipientId, source: 'defaultState' },
         { value: definition.activeRecipientId, source: 'definition' },
       ],
       '',
+      { allowNull: true },
+    ),
+    activeDocumentId: resolveField(
+      [
+        { value: definitionState?.activeDocumentId, source: 'state' },
+        { value: resourceState?.activeDocumentId, source: 'state' },
+        { value: runtimeState?.activeDocumentId, source: 'runtime' },
+        { value: definitionDefaultState?.activeDocumentId, source: 'defaultState' },
+        { value: resourceDefaultState?.activeDocumentId, source: 'defaultState' },
+        { value: definition.activeDocumentId, source: 'definition' },
+      ],
+      null,
       { allowNull: true },
     ),
   } satisfies SisadPdfmeInstanceState;
@@ -220,9 +295,13 @@ export const resolveSisadPdfmeInstance = ({
   handlers = {},
   className,
   style,
-}: SisadPdfmeInstanceProps): SisadPdfmeInstanceResolution => {
-  const mode = definition.mode ?? 'designer';
-  const state = resolveInstanceState(definition, resources);
+}: SisadPdfmeInstanceProps, runtimeState: SisadPdfmeInstanceRuntimeState | null = null): SisadPdfmeInstanceResolution => {
+  const issues = validateSisadPdfmeInstanceDefinition(definition);
+  const mode =
+    definition.mode === 'designer' || definition.mode === 'form' || definition.mode === 'viewer'
+      ? definition.mode
+      : 'designer';
+  const state = resolveInstanceState(definition, resources, runtimeState);
   const template = state.template.value ?? createDefaultTemplate();
   const normalized = normalizeHostData({
     template,
@@ -233,6 +312,8 @@ export const resolveSisadPdfmeInstance = ({
     activeRecipientId: state.activeRecipientId.value,
     adapters: resources.adapters,
   });
+  const activeDocumentId = state.activeDocumentId.value ?? normalized.documents[0]?.id ?? null;
+  const plugins = mergePluginMaps(resources.plugins, definition.plugins);
 
   const config = mergeConfigs(resources.config, definition.config);
   const sharedProps = {
@@ -247,17 +328,23 @@ export const resolveSisadPdfmeInstance = ({
       surface: 'designer',
       normalized,
       state,
+      issues,
+      valid: issues.length === 0,
       props: {
         ...sharedProps,
         template: normalized.template,
         documents: normalized.documents,
         recipients: normalized.recipients,
         activeRecipientId: normalized.activeRecipientId,
+        activeDocumentId,
+        signatureProviders: normalized.signatureProviders,
+        plugins,
         onTemplateChange: handlers.onTemplateChange,
         onSave: handlers.onSave,
         onControllerReady: handlers.onControllerReady,
         onRecipientsChange: handlers.onRecipientsChange,
         onActiveRecipientChange: handlers.onActiveRecipientChange,
+        onUploadedDocumentsChange: handlers.onUploadedDocumentsChange,
         onAssignmentChange: handlers.onAssignmentChange,
         onEvent: handlers.onEvent,
       },
@@ -270,6 +357,9 @@ export const resolveSisadPdfmeInstance = ({
     inputs: normalized.inputs,
     recipients: normalized.recipients,
     activeRecipientId: normalized.activeRecipientId,
+    activeDocumentId,
+    signatureProviders: normalized.signatureProviders,
+    plugins,
   };
 
   return {
@@ -277,6 +367,8 @@ export const resolveSisadPdfmeInstance = ({
     surface: mode,
     normalized,
     state,
+    issues,
+    valid: issues.length === 0,
     props:
       mode === 'form'
         ? {
