@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
 
-import { ExampleImmersiveShell, ExampleInfoPanelStack, FamilyBadgeList, MetricGrid, RuntimeViewport } from '../components/exampleUi.jsx';
 import { buildShowcaseTemplate } from '../builders/showcaseTemplate.js';
 import { buildFamiliesForKeys } from '../helpers/familyGroups.js';
+import { ExampleInfoPanelStack, FamilyBadgeList, MetricGrid } from '../components/exampleUi.jsx';
 import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
 import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
+import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { SisadPdfmeViewer } from '@/sisad-pdfme/react';
 
 export function RuntimeViewerPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeViewer }) {
@@ -23,7 +24,7 @@ export function RuntimeViewerPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeVie
   const config = useExampleRuntimeConfig('runtime-viewer');
 
   return (
-    <ExampleImmersiveShell
+    <RuntimePageShell
       title="Runtime · Viewer de solo lectura"
       modeBadge="viewer"
       currentPath={currentPath}
@@ -55,10 +56,9 @@ export function RuntimeViewerPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeVie
           ]}
         />
       }
+      viewportName="runtime-viewer"
     >
-      <RuntimeViewport name="runtime-viewer">
-        <SisadPdfmeViewer config={config} template={template} />
-      </RuntimeViewport>
-    </ExampleImmersiveShell>
+      <SisadPdfmeViewer config={config} template={template} />
+    </RuntimePageShell>
   );
 }

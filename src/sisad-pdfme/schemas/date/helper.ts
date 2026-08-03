@@ -256,6 +256,12 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
 
       const input = document.createElement('input');
       Object.assign(input.style, { visibility: 'hidden', position: 'absolute' });
+      if (mode === 'viewer') {
+        input.readOnly = true;
+        input.disabled = true;
+        input.tabIndex = -1;
+        input.setAttribute('aria-hidden', 'true');
+      }
 
       const commitChange = (date: Date | null) => {
         if (onChange) {

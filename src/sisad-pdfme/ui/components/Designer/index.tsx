@@ -684,14 +684,10 @@ const TemplateEditor = ({
       leftSidebarExpandedWidthRef.current = leftSidebarLiveWidth;
     }
   }, [leftSidebarLiveWidth, shouldReserveLeftSidebarSpace]);
-  const leftSidebarCollapsedRailThreshold = 96;
-  const leftSidebarContentOffsetX =
-    shouldReserveLeftSidebarSpace &&
-    leftSidebarLiveWidth > 0 &&
-    leftSidebarLiveWidth <= leftSidebarCollapsedRailThreshold &&
-    leftSidebarLiveWidth < leftSidebarExpandedWidthRef.current
-      ? Math.max(0, (leftSidebarExpandedWidthRef.current - leftSidebarLiveWidth) * 0.75)
-      : 0;
+  // The stage already reserves the sidebar column; adding a paper translation
+  // here creates a visible drift when the sidebar collapses. Keep the paper
+  // anchored to the stage viewport and let the grid recompute the free space.
+  const leftSidebarContentOffsetX = 0;
 
   const [hoveringSchemaId, setHoveringSchemaId] = useState<string | null>(null);
   const [activeElements, setActiveElements] = useState<HTMLElement[]>([]);

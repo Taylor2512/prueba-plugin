@@ -1,11 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { ExampleEventLog, ExampleImmersiveShell, ExampleInfoPanelStack, MetricGrid, RuntimeViewport } from '../components/exampleUi.jsx';
 import { buildShowcaseTemplate } from '../builders/showcaseTemplate.js';
 import { buildFamiliesForKeys } from '../helpers/familyGroups.js';
+import { ExampleEventLog, ExampleInfoPanelStack, MetricGrid } from '../components/exampleUi.jsx';
 import { useExampleEventLog } from '../hooks/useExampleEventLog.js';
 import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
 import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
+import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { getInputFromTemplate } from '@sisad-pdfme/common';
 import { SisadPdfmeForm } from '@/sisad-pdfme/react';
 
@@ -36,7 +37,7 @@ export function RuntimeFormPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeForm 
   );
 
   return (
-    <ExampleImmersiveShell
+    <RuntimePageShell
       title="Runtime · Form para captura de datos"
       modeBadge="form"
       currentPath={currentPath}
@@ -68,10 +69,9 @@ export function RuntimeFormPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeForm 
           ]}
         />
       }
+      viewportName="runtime-form"
     >
-      <RuntimeViewport name="runtime-form">
-        <SisadPdfmeForm config={config} template={template} values={values} onInputChange={handleInputChange} />
-      </RuntimeViewport>
-    </ExampleImmersiveShell>
+      <SisadPdfmeForm config={config} template={template} values={values} onInputChange={handleInputChange} />
+    </RuntimePageShell>
   );
 }

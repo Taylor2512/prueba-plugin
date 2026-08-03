@@ -5,16 +5,15 @@ import { buildShowcaseTemplate } from '../builders/showcaseTemplate.js';
 import {
   ExampleControllerPanel,
   ExampleEventLog,
-  ExampleImmersiveShell,
   ExampleInfoPanelStack,
   FamilyBadgeList,
   MetricGrid,
-  RuntimeViewport,
 } from '../components/exampleUi.jsx';
 import { useExampleController } from '../hooks/useExampleController.js';
 import { useExampleEventLog } from '../hooks/useExampleEventLog.js';
 import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
 import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
+import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { SisadPdfmeDesigner } from '@/sisad-pdfme/react';
 
 export function DesignerSingleUserPage({ currentPath = EXAMPLE_ROUTE_PATHS.designerSingleUser }) {
@@ -49,7 +48,7 @@ export function DesignerSingleUserPage({ currentPath = EXAMPLE_ROUTE_PATHS.desig
   const schemaCount = template.schemas?.flat().length ?? 0;
 
   return (
-    <ExampleImmersiveShell
+    <RuntimePageShell
       title="Designer · una persona, todas las familias"
       modeBadge="designer"
       currentPath={currentPath}
@@ -105,17 +104,16 @@ export function DesignerSingleUserPage({ currentPath = EXAMPLE_ROUTE_PATHS.desig
           ]}
         />
       }
+      viewportName="designer-single-user"
     >
-      <RuntimeViewport name="designer-single-user">
-        <SisadPdfmeDesigner
-          config={config}
-          template={template}
-          onTemplateChange={handleTemplateChange}
-          onSave={handleSave}
-          onControllerReady={handleControllerReady}
-          onEvent={handleEvent}
-        />
-      </RuntimeViewport>
-    </ExampleImmersiveShell>
+      <SisadPdfmeDesigner
+        config={config}
+        template={template}
+        onTemplateChange={handleTemplateChange}
+        onSave={handleSave}
+        onControllerReady={handleControllerReady}
+        onEvent={handleEvent}
+      />
+    </RuntimePageShell>
   );
 }

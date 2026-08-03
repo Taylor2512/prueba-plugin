@@ -6,16 +6,15 @@ import { MULTI_USER_FAMILY_KEYS, MULTI_USER_RECIPIENTS } from '../fixtures/recip
 import {
   ExampleControllerPanel,
   ExampleEventLog,
-  ExampleImmersiveShell,
   ExampleInfoPanelStack,
   MetricGrid,
-  RuntimeViewport,
 } from '../components/exampleUi.jsx';
 import { useExampleController } from '../hooks/useExampleController.js';
 import { useExampleEventLog } from '../hooks/useExampleEventLog.js';
 import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
 import { buildMultiUserShowcaseTemplate } from '../builders/multiUserShowcase.js';
 import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
+import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { SisadPdfmeDesigner } from '@/sisad-pdfme/react';
 
 function RecipientSelect({ value, onChange }) {
@@ -83,7 +82,7 @@ export function DesignerMultiUserPage({ currentPath = EXAMPLE_ROUTE_PATHS.design
   );
 
   return (
-    <ExampleImmersiveShell
+    <RuntimePageShell
       title="Designer · flujo multiusuario"
       modeBadge="colaboración"
       currentPath={currentPath}
@@ -166,23 +165,22 @@ export function DesignerMultiUserPage({ currentPath = EXAMPLE_ROUTE_PATHS.design
           ]}
         />
       }
+      viewportName="designer-multi-user"
     >
-      <RuntimeViewport name="designer-multi-user">
-        <SisadPdfmeDesigner
-          config={config}
-          template={template}
-          documents={DEMO_DOCUMENTS}
-          recipients={MULTI_USER_RECIPIENTS}
-          activeRecipientId={activeRecipientId}
-          onTemplateChange={setTemplate}
-          onSave={handleSave}
-          onControllerReady={handleControllerReady}
-          onEvent={handleEvent}
-          onRecipientsChange={handleRecipientsChange}
-          onActiveRecipientChange={handleActiveRecipientChange}
-          onAssignmentChange={handleAssignmentChange}
-        />
-      </RuntimeViewport>
-    </ExampleImmersiveShell>
+      <SisadPdfmeDesigner
+        config={config}
+        template={template}
+        documents={DEMO_DOCUMENTS}
+        recipients={MULTI_USER_RECIPIENTS}
+        activeRecipientId={activeRecipientId}
+        onTemplateChange={setTemplate}
+        onSave={handleSave}
+        onControllerReady={handleControllerReady}
+        onEvent={handleEvent}
+        onRecipientsChange={handleRecipientsChange}
+        onActiveRecipientChange={handleActiveRecipientChange}
+        onAssignmentChange={handleAssignmentChange}
+      />
+    </RuntimePageShell>
   );
 }

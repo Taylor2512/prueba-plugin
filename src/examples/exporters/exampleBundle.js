@@ -1,65 +1,49 @@
 import { cloneDeep, getB64BasePdf, getInputFromTemplate } from '@sisad-pdfme/common';
+import { createDocumentsAdapter, createRecipientsAdapter, createSignatureProviderAdapter } from '../../sisad-pdfme/adapters/index.ts';
+import { normalizeHostData } from '../../sisad-pdfme/integration/normalizeHostData.ts';
 import { decorateCollaborationUsers, decorateTemplateWithCollaboration } from '@/sisad-pdfme/devtools';
 import { cloneExample, sanitizeIdentifier } from '../domain/exampleBuilder.js';
 
-const buildDocumentLabel = (document) =>
-  String(document?.name || document?.id || 'Documento').trim() || 'Documento';
-
-const normalizeExampleDocuments = (runtimeOptions, users) => {
-  if (!runtimeOptions || !Array.isArray(runtimeOptions.uploadedDocuments)) return [];
-
-  return runtimeOptions.uploadedDocuments
-    .map((document) => {
-      const originalDocument = cloneDeep(document || {});
-      const template = document?.template;
-      const templateRecord = template && typeof template === 'object' ? template : null;
-      const basePdf = templateRecord ? templateRecord.basePdf : undefined;
-      const pageCount =
-        typeof document?.pageCount === 'number'
-          ? document.pageCount
-          : Array.isArray(templateRecord?.schemas)
-            ? templateRecord.schemas.length
-            : undefined;
-
-      return {
-        ...originalDocument,
-        id: String(document?.id || document?.name || 'document').trim() || 'document',
-        name: buildDocumentLabel(document),
-        label: buildDocumentLabel(document),
-        pageCount,
-        basePdf,
-        template: template ? decorateTemplateWithCollaboration(template, users) : undefined,
-        metadata: {
-          ...cloneDeep(document || {}),
-          template,
-        },
-      };
-    })
-    .filter((document) => Boolean(document.id));
-};
-
 export const normalizeExampleHostData = (example) => {
-  const collaborationUsers = decorateCollaborationUsers((example?.collaboration?.users || []));
+  const normalized = normalizeHostData({
+    template: cloneDeep(example?.template || { schemas: [[]] }),
+    inputs: Array.isArray(example?.inputs) ? cloneDeep(example.inputs) : null,
+    recipients: example?.collaboration?.users || [],
+    documents: example?.runtimeOptions?.uploadedDocuments || [],
+    signatureProviders: example?.runtimeOptions?.signatureProviders || [],
+    activeRecipientId:
+      example?.collaboration?.activeUserId ||
+      example?.collaboration?.actorId ||
+      null,
+    adapters: {
+      recipients: createRecipientsAdapter(),
+      documents: createDocumentsAdapter(),
+      signatures: createSignatureProviderAdapter(),
+    },
+  });
+  const collaborationUsers = decorateCollaborationUsers(normalized.recipients);
   const template = decorateTemplateWithCollaboration(
-    cloneDeep(example?.template || { schemas: [[]] }),
+    cloneDeep(normalized.template),
     collaborationUsers,
   );
-  const inputs = Array.isArray(example?.inputs) ? cloneDeep(example.inputs) : getInputFromTemplate(template);
-  const activeRecipientId =
-    example?.collaboration?.activeUserId ||
-    example?.collaboration?.actorId ||
-    collaborationUsers[0]?.id ||
-    '';
+  const inputs = Array.isArray(example?.inputs)
+    ? cloneDeep(example.inputs)
+    : getInputFromTemplate(template);
+  const documents = normalized.documents.map((document) => ({
+    ...document,
+    template: document.template
+      ? decorateTemplateWithCollaboration(document.template, collaborationUsers)
+      : document.template,
+  }));
+  const activeRecipientId = normalized.activeRecipientId || collaborationUsers[0]?.id || '';
 
   return {
     template,
     inputs,
     recipients: collaborationUsers,
-    documents: normalizeExampleDocuments(example?.runtimeOptions, collaborationUsers),
+    documents,
     activeRecipientId,
-    signatureProviders: Array.isArray(example?.runtimeOptions?.signatureProviders)
-      ? cloneDeep(example.runtimeOptions.signatureProviders)
-      : [],
+    signatureProviders: normalized.signatureProviders,
   };
 };
 
@@ -126,7 +110,7 @@ export const buildExampleBundle = async (example, options = {}) => {
       initialSchemaType: safeExample.initialSchemaType,
     },
     template,
-    inputs: safeExample.inputs,
+    inputs: normalized.inputs,
     recipients: normalized.recipients,
     documents,
     config: {
