@@ -34,6 +34,30 @@ export type {
   SisadPdfmeHostDataInput,
   SisadPdfmeNormalizedHostData,
 } from './normalizeHostData.js';
+export {
+  createTemplateFromRecipe,
+} from '../templates/index.js';
+export type {
+  SisadPdfmeTemplateRecipe,
+  SisadPdfmeTemplateRecipeGroup,
+} from '../templates/index.js';
+export {
+  SisadPdfmeInstance,
+  resolveSisadPdfmeInstance,
+  useSisadPdfmeInstance,
+} from './SisadPdfmeInstance.js';
+export type {
+  SisadPdfmeInstanceDefinition,
+  SisadPdfmeInstanceHandlers,
+  SisadPdfmeInstanceMode,
+  SisadPdfmeInstanceProps,
+  SisadPdfmeInstanceResolution,
+  SisadPdfmeInstanceState,
+  SisadPdfmeInstanceStateField,
+  SisadPdfmeInstanceStateFieldSource,
+  SisadPdfmeInstanceStateInput,
+  SisadPdfmeInstanceResources,
+} from './resolveSisadPdfmeInstance.js';
 import {
   SisadPdfmeProvider,
   SisadPdfmeDesigner,
