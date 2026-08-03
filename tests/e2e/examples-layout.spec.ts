@@ -19,6 +19,14 @@ const RUNTIME_VIEWER = EXAMPLE_ROUTE_PATHS.runtimeViewer;
 const RUNTIME_ROOT = '[data-sisad-pdfme-root]';
 const RUNTIME_VIEWPORT = '[data-testid="example-runtime-viewport"]';
 const DESIGNER_PAPER = '[data-paper-page], [data-canvas-page], .sisad-pdfme-ui-paper';
+const DESIGNER_CANVAS = '.sisad-pdfme-designer-canvas';
+const DESIGNER_VIEWPORTS = [
+  { name: 'tablet-768', width: 768, height: 1024, maxCenterDelta: 4 },
+  { name: 'desktop-1280', width: 1280, height: 720, maxCenterDelta: 4 },
+  { name: 'desktop-1440', width: 1440, height: 900, maxCenterDelta: 4 },
+  { name: 'desktop-1600', width: 1600, height: 1200, maxCenterDelta: 4 },
+  { name: 'desktop-1920', width: 1920, height: 1080, maxCenterDelta: 4 },
+];
 
 /** El runtime tarda en montar el Canvas; esperamos a que tenga tamaño real. */
 async function gotoRuntimeRoute(page: Page, route: string) {
@@ -123,24 +131,50 @@ test.describe('rutas Designer', () => {
     await expect(page.locator('[data-example-topbar] [data-testid="designer-save"]')).toHaveCount(0);
   });
 
-  test('el collapse del sidebar izquierdo no desplaza el papel del diseñador', async ({ page }) => {
-    await gotoRuntimeRoute(page, DESIGNER_MULTI);
+  test.describe('matriz responsive del collapse del sidebar izquierdo', () => {
+    for (const viewport of DESIGNER_VIEWPORTS) {
+      test(`mantiene el papel centrado en ${viewport.name}`, async ({ page }) => {
+        await page.setViewportSize({ width: viewport.width, height: viewport.height });
+        await gotoRuntimeRoute(page, DESIGNER_MULTI);
 
-    const paper = page.locator(DESIGNER_PAPER).first();
-    await expect(paper).toBeVisible();
+        const paper = page.locator(DESIGNER_PAPER).first();
+        await expect(paper).toBeVisible();
+        const canvas = page.locator(DESIGNER_CANVAS).first();
+        await expect(canvas).toBeVisible();
 
-    const readCenterX = async () => {
-      const box = await paper.boundingBox();
-      if (!box) throw new Error('paper no medible');
-      return box.x + box.width / 2;
-    };
+        const sidebar = page.getByTestId('left-sidebar');
+        await expect(sidebar).toBeVisible();
+        const ensureSidebarExpanded = async () => {
+          const collapsed = await sidebar.getAttribute('data-sidebar-collapsed');
+          if (collapsed === 'true') {
+            await page.getByTestId('sidebar-collapse-left').click();
+            await expect.poll(async () => sidebar.getAttribute('data-sidebar-collapsed'), { timeout: 10_000 }).toBe('false');
+          }
+        };
+        await ensureSidebarExpanded();
 
-    const before = await readCenterX();
-    await page.getByTestId('sidebar-collapse-left').click();
-    await expect.poll(async () => Math.abs((await readCenterX()) - before), { timeout: 10_000 }).toBeLessThanOrEqual(2);
+        const readCenters = async () => {
+          const paperBox = await paper.boundingBox();
+          const canvasBox = await canvas.boundingBox();
+          if (!paperBox) throw new Error('paper no medible');
+          if (!canvasBox) throw new Error('canvas no medible');
+          return {
+            paperCenterX: paperBox.x + paperBox.width / 2,
+            canvasCenterX: canvasBox.x + canvasBox.width / 2,
+          };
+        };
 
-    await page.getByTestId('sidebar-collapse-left').click();
-    await expect.poll(async () => Math.abs((await readCenterX()) - before), { timeout: 10_000 }).toBeLessThanOrEqual(2);
+        const before = await readCenters();
+        expect(Math.abs(before.paperCenterX - before.canvasCenterX)).toBeLessThanOrEqual(viewport.maxCenterDelta);
+        await page.getByTestId('sidebar-collapse-left').click();
+        await expect
+          .poll(async () => {
+            const { paperCenterX, canvasCenterX } = await readCenters();
+            return Math.abs(paperCenterX - canvasCenterX);
+          }, { timeout: 10_000 })
+          .toBeLessThanOrEqual(viewport.maxCenterDelta);
+      });
+    }
   });
 
   test('el drawer de información no consume espacio ni remonta el runtime', async ({ page }) => {

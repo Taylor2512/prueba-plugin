@@ -684,9 +684,13 @@ const TemplateEditor = ({
       leftSidebarExpandedWidthRef.current = leftSidebarLiveWidth;
     }
   }, [leftSidebarLiveWidth, shouldReserveLeftSidebarSpace]);
+  const leftSidebarCollapsedRailThreshold = 96;
   const leftSidebarContentOffsetX =
-    shouldReserveLeftSidebarSpace && leftSidebarLiveWidth > 0 && leftSidebarLiveWidth < leftSidebarExpandedWidthRef.current
-      ? Math.max(0, (leftSidebarExpandedWidthRef.current - leftSidebarLiveWidth) * 0.6)
+    shouldReserveLeftSidebarSpace &&
+    leftSidebarLiveWidth > 0 &&
+    leftSidebarLiveWidth <= leftSidebarCollapsedRailThreshold &&
+    leftSidebarLiveWidth < leftSidebarExpandedWidthRef.current
+      ? Math.max(0, (leftSidebarExpandedWidthRef.current - leftSidebarLiveWidth) * 0.75)
       : 0;
 
   const [hoveringSchemaId, setHoveringSchemaId] = useState<string | null>(null);
