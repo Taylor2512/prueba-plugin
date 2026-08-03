@@ -165,12 +165,12 @@ const attachmentPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
       inspector: createSchemaInspectorConfig('textual', {
         propertyMap: {
           ...COMMON_PROPERTY_MAP,
-          allowedMimeTypes: 'data',
-          maxFiles: 'data',
-          maxSizeMb: 'data',
-          allowReplace: 'data',
-          showFileName: 'data',
-          showUploadStatus: 'data',
+          allowedMimeTypes: 'validation',
+          maxFiles: 'validation',
+          maxSizeMb: 'validation',
+          allowReplace: 'validation',
+          showFileName: 'validation',
+          showUploadStatus: 'validation',
         },
         includeConnections: true,
       }),

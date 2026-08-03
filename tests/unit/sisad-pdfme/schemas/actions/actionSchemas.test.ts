@@ -42,7 +42,9 @@ describe('attachment schema', () => {
     expect(propertyMap.required).toBe('validation');
     expect(propertyMap.tooltip).toBe('help');
     expect(propertyMap.dataLabel).toBe('connections');
-    expect(propertyMap.allowedMimeTypes).toBe('data');
+    expect(propertyMap.allowedMimeTypes).toBe('validation');
+    expect(propertyMap.maxFiles).toBe('validation');
+    expect(propertyMap.showUploadStatus).toBe('validation');
   });
 });
 

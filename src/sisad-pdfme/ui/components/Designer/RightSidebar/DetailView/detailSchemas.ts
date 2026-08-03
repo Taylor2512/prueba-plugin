@@ -569,11 +569,11 @@ export const buildInspectorSections = ({
   const resolveSectionMeta = (sectionKey: DetailSectionKey) => {
     const base = SECTION_META[sectionKey];
     if (activeSchemaType === 'attachment') {
-      if (sectionKey === 'behavior') {
+      if (sectionKey === 'validation') {
         return {
           ...base,
           title: 'Reglas del archivo',
-          description: 'Tipo, tamaño y reemplazo.',
+          description: 'Tipos, límites y reemplazo.',
         };
       }
       if (sectionKey === 'box') {

@@ -265,6 +265,14 @@ export const getDetailProfile = (schemaType: string): DetailProfile => {
     return createDetailProfile(normalized, [...DEFAULT_DETAIL_SECTION_VISIBILITY], ['identity', 'box']);
   }
 
+  if (normalized === 'attachment') {
+    return createDetailProfile(
+      normalized,
+      sortDetailSections([...familySections.visible, 'validation']),
+      ['identity', 'validation', 'behavior'],
+    );
+  }
+
   // Única excepción dentro de una familia: la casilla suelta pertenece a
   // `choice` pero no tiene lista de opciones que editar, así que abre reglas de
   // llenado en lugar de una sección que nunca se renderiza.
@@ -428,7 +436,24 @@ export function shouldRenderDetailSection(params: {
   }
 
   if (section === 'validation') {
-    const validationFields = ['required', 'validation', 'validation.type', 'validation.pattern', 'validation.message', 'min', 'max', 'minLength', 'maxLength', 'decimals'];
+    const validationFields = [
+      'required',
+      'validation',
+      'validation.type',
+      'validation.pattern',
+      'validation.message',
+      'min',
+      'max',
+      'minLength',
+      'maxLength',
+      'decimals',
+      'allowedmimetypes',
+      'maxfiles',
+      'maxsizemb',
+      'allowreplace',
+      'showfilename',
+      'showuploadstatus',
+    ];
     return Boolean(context.supportsBehavior !== false) && (hasField(entries, validationFields) || hasAnyValue(schemaObject, ['required', 'validation', 'min', 'max', 'minLength', 'maxLength', 'decimals']));
   }
 

@@ -163,10 +163,34 @@ describe('shouldRenderDetailSection - advanced', () => {
   });
 });
 
+describe('shouldRenderDetailSection - validation', () => {
+  it('renders attachment file rules inside validation', () => {
+    expect(
+      shouldRenderDetailSection({
+        section: 'validation',
+        schema: {
+          type: 'attachment',
+          allowedMimeTypes: '*',
+          maxFiles: 2,
+          maxSizeMb: 10,
+        } as DetailSchema,
+        schemaType: 'attachment',
+        fields: [
+          { key: 'allowedMimeTypes', widget: 'select' },
+          { key: 'maxFiles', widget: 'inputNumber' },
+          { key: 'maxSizeMb', widget: 'inputNumber' },
+        ],
+        context: { supportsBehavior: true },
+      }),
+    ).toBe(true);
+  });
+});
+
 describe('detail section visibility by type', () => {
   it('uses attachment-specific sections and defaults', () => {
     expect(getInspectorVisibleDetailSections('attachment')).toEqual([
       'identity',
+      'validation',
       'behavior',
       'box',
       'appearance',
@@ -176,7 +200,7 @@ describe('detail section visibility by type', () => {
       'comments',
       'advanced',
     ]);
-    expect(getInspectorDefaultOpenSections('attachment')).toEqual(['identity', 'behavior', 'box']);
+    expect(getInspectorDefaultOpenSections('attachment')).toEqual(['identity', 'validation', 'behavior']);
   });
 
   // Contrato alineado con la matriz de docs/03-designer/12-inspector-taxonomy.md §3:
@@ -186,6 +210,7 @@ describe('detail section visibility by type', () => {
     expect(getDetailProfile('select').visibleSections).toContain('options');
     expect(getDetailProfile('checkboxgroup').defaultOpenSections).toEqual(['identity', 'options', 'validation']);
     expect(getDetailProfile('attachment').visibleSections).toContain('appearance');
+    expect(getDetailProfile('attachment').visibleSections).toContain('validation');
     expect(getDetailProfile('note').visibleSections).toContain('appearance');
     expect(getDetailProfile('signature').visibleSections).toContain('appearance');
     expect(getDetailProfile('signature').defaultOpenSections).toEqual(['identity', 'behavior', 'validation']);

@@ -7,7 +7,7 @@
  * canvas, Moveable ni Selecto.
  */
 import { useForm } from 'form-render';
-import React, { useContext, useEffect, useCallback, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useCallback, useMemo, useRef } from 'react';
 import type {
   Dict,
   ChangeSchemaItem,
@@ -18,7 +18,6 @@ import type {
 import { isBlankPdf } from '@sisad-pdfme/common';
 import type { SidebarProps } from '../../../../types.js';
 import { I18nContext, PluginsRegistry } from '../../../../contexts.js';
-import { debounce } from '../../../../helper.js';
 import { theme } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
@@ -192,6 +191,8 @@ const filterInvalidChanges = (
 const DetailView = (props: DetailViewProps) => {
   const { token } = theme.useToken();
   const {
+    size,
+    schemas,
     schemasList,
     changeSchemas,
     deselectSchema,
@@ -200,12 +201,19 @@ const DetailView = (props: DetailViewProps) => {
     pageSize,
     basePdf,
     collaborationContext,
+    selectionCommands,
   } = props;
   const form = useForm();
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const resolvedConfig = useSisadPdfmeConfig();
   const designerEngine = resolvedConfig.designerEngine;
+  const activeSchemaRef = useRef(activeSchema);
+  const hydratingFormRef = useRef(false);
+  const hydrationKeyRef = useRef<string | null>(null);
+  const hydrationClearTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pendingWatchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pendingWatchValuesRef = useRef<Record<string, unknown> | null>(null);
   const inspectorResolver = useMemo(
     () => createInspectorConfigurationResolver(resolvedConfig),
     [resolvedConfig],
@@ -228,11 +236,14 @@ const DetailView = (props: DetailViewProps) => {
 
   const isReadOnly = useMemo(() => accessState.isLockedByOther || !accessState.isEditable, [accessState]);
 
+  useEffect(() => {
+    activeSchemaRef.current = activeSchema;
+  }, [activeSchema]);
+
   const schemaConfig = useMemo(
     () => getSchemaDesignerConfig(activeSchema, designerEngine) || null,
     [activeSchema, designerEngine],
   );
-  const [isHydratingForm, setIsHydratingForm] = useState(false);
 
   const typedI18n = useCallback(
     (key: string): string => {
@@ -282,7 +293,22 @@ const DetailView = (props: DetailViewProps) => {
     [activeSchema, changeSchemas, designerEngine],
   );
 
-  const widgets = React.useMemo(
+  const propPanelProps = useMemo(
+    () => ({
+      size,
+      schemas,
+      schemasList,
+      pageSize,
+      basePdf,
+      changeSchemas,
+      activeElements,
+      deselectSchema,
+      activeSchema,
+    }),
+    [activeElements, activeSchema, basePdf, changeSchemas, deselectSchema, pageSize, schemas, schemasList, size],
+  );
+
+  const widgets = useMemo(
     () =>
       buildDetailWidgets({
         pluginsRegistry,
@@ -291,7 +317,8 @@ const DetailView = (props: DetailViewProps) => {
         typedI18n,
         normalizeColorHex,
         props: {
-          ...props,
+          ...propPanelProps,
+          selectionCommands,
           designerEngine,
           schemaConfig,
           updateSchemaConfig,
@@ -301,39 +328,56 @@ const DetailView = (props: DetailViewProps) => {
       designerEngine,
       normalizeColorHex,
       pluginsRegistry,
+      propPanelProps,
       resolvedConfig.config,
-      props,
       schemaConfig,
-      updateSchemaConfig,
+      selectionCommands,
       token,
       typedI18n,
+      updateSchemaConfig,
     ],
   );
 
-  useEffect(() => {
-    const values = createHydrationValues(activeSchema);
+  const hydrationKey = `${activeSchema.id}:${activeSchema.type}`;
 
-    let resetTimeoutId: ReturnType<typeof setTimeout> | undefined;
-    const timeoutId = setTimeout(() => {
-      setIsHydratingForm(true);
-      if (typeof form.resetFields === 'function') {
-        form.resetFields();
-      }
-      if (typeof form.setValues === 'function') {
-        form.setValues(values);
-      }
-      resetTimeoutId = setTimeout(() => {
-        setIsHydratingForm(false);
-      }, 0);
+  const clearPendingWatchCommit = useCallback(() => {
+    if (pendingWatchTimeoutRef.current !== null) {
+      clearTimeout(pendingWatchTimeoutRef.current);
+      pendingWatchTimeoutRef.current = null;
+    }
+    pendingWatchValuesRef.current = null;
+  }, []);
+
+  useLayoutEffect(() => {
+    if (hydrationKeyRef.current === hydrationKey) return;
+
+    hydrationKeyRef.current = hydrationKey;
+    hydratingFormRef.current = true;
+    clearPendingWatchCommit();
+
+    const values = createHydrationValues(activeSchema);
+    if (typeof form.resetFields === 'function') {
+      form.resetFields();
+    }
+    if (typeof form.setValues === 'function') {
+      form.setValues(values);
+    }
+
+    if (hydrationClearTimeoutRef.current !== null) {
+      clearTimeout(hydrationClearTimeoutRef.current);
+    }
+    hydrationClearTimeoutRef.current = setTimeout(() => {
+      hydratingFormRef.current = false;
+      hydrationClearTimeoutRef.current = null;
     }, 0);
 
     return () => {
-      clearTimeout(timeoutId);
-      if (resetTimeoutId !== undefined) {
-        clearTimeout(resetTimeoutId);
+      if (hydrationClearTimeoutRef.current !== null) {
+        clearTimeout(hydrationClearTimeoutRef.current);
+        hydrationClearTimeoutRef.current = null;
       }
     };
-  }, [activeSchema, form]);
+  }, [activeSchema, clearPendingWatchCommit, form, hydrationKey]);
 
   const validateUniqueSchemaName = useCallback(
     (_: unknown, value: string): boolean => {
@@ -365,12 +409,13 @@ const DetailView = (props: DetailViewProps) => {
     },
   );
 
-  const handleWatch = debounce(function (...args: unknown[]) {
-    if (isHydratingForm) return;
-    const formSchema = asRecord(args[0]) || {};
-    let changes = buildChangeSet(formSchema, activeSchema);
+  const commitWatchValues = useCallback(
+    (formValues: Record<string, unknown>) => {
+      if (hydratingFormRef.current) return;
+      const currentSchema = activeSchemaRef.current;
+      let changes = buildChangeSet(formValues, currentSchema);
+      if (!changes.length) return;
 
-    if (changes.length) {
       form
         .validateFields()
         .then(() => changeSchemas(changes))
@@ -382,66 +427,119 @@ const DetailView = (props: DetailViewProps) => {
             changeSchemas(changes);
           }
         });
+    },
+    [changeSchemas, form],
+  );
+
+  const handleWatch = useCallback(
+    (...args: unknown[]) => {
+      if (hydratingFormRef.current) return;
+      pendingWatchValuesRef.current = asRecord(args[0]) || {};
+      if (pendingWatchTimeoutRef.current !== null) {
+        clearTimeout(pendingWatchTimeoutRef.current);
+      }
+      pendingWatchTimeoutRef.current = setTimeout(() => {
+        pendingWatchTimeoutRef.current = null;
+        const pendingValues = pendingWatchValuesRef.current || {};
+        pendingWatchValuesRef.current = null;
+        commitWatchValues(pendingValues);
+      }, 180);
+    },
+    [commitWatchValues],
+  );
+
+  useEffect(
+    () => () => {
+      if (hydrationClearTimeoutRef.current !== null) {
+        clearTimeout(hydrationClearTimeoutRef.current);
+      }
+      clearPendingWatchCommit();
+    },
+    [clearPendingWatchCommit],
+  );
+
+  const activePlugin = useMemo(() => {
+    const plugin = pluginsRegistry.findByType(activeSchema.type);
+    if (!plugin) {
+      throw Error(`[@sisad-pdfme/ui] Failed to find plugin used for ${activeSchema.type}`);
     }
-  }, 100);
+    return plugin;
+  }, [activeSchema.type, pluginsRegistry]);
 
-  const activePlugin = pluginsRegistry.findByType(activeSchema.type);
-  if (!activePlugin) {
-    throw Error(`[@sisad-pdfme/ui] Failed to find plugin used for ${activeSchema.type}`);
-  }
+  const defaultSchema: Record<string, unknown> = useMemo(
+    () => (isRecord(activePlugin?.propPanel?.defaultSchema) ? { ...activePlugin.propPanel.defaultSchema } : {}),
+    [activePlugin],
+  );
 
-  const defaultSchema: Record<string, unknown> = isRecord(activePlugin?.propPanel?.defaultSchema)
-    ? { ...activePlugin.propPanel.defaultSchema }
-    : {};
-
-  let pluginProps: Record<string, PropPanelSchema> = {};
-  if (typeof activePlugin.propPanel.schema === 'function') {
-    const { size, schemas, pageSize, changeSchemas, activeElements, deselectSchema, activeSchema } = props;
-    const propPanelProps = {
-      size,
-      schemas,
-      pageSize,
-      changeSchemas,
-      activeElements,
-      deselectSchema,
-      activeSchema,
-    };
-    const functionResult = activePlugin.propPanel.schema({
-      ...propPanelProps,
-      options: resolvedConfig.config as unknown as import('@sisad-pdfme/common').UIOptions,
-      theme: token,
-      i18n: typedI18n,
-    });
-    if (isRecord(functionResult)) {
-      pluginProps = functionResult as Record<string, PropPanelSchema>;
+  const pluginProps = useMemo(() => {
+    if (typeof activePlugin.propPanel.schema === 'function') {
+      const functionResult = activePlugin.propPanel.schema({
+        ...propPanelProps,
+        options: resolvedConfig.config as unknown as import('@sisad-pdfme/common').UIOptions,
+        theme: token,
+        i18n: typedI18n,
+      });
+      if (isRecord(functionResult)) {
+        return functionResult as Record<string, PropPanelSchema>;
+      }
+      return {};
     }
-  } else if (activePlugin.propPanel.schema && typeof activePlugin.propPanel.schema === 'object') {
-    pluginProps = activePlugin.propPanel.schema as Record<string, PropPanelSchema>;
-  }
-  const inspectorConfig = (activePlugin.propPanel.inspector || undefined) as PropPanelInspectorConfig | undefined;
+
+    if (activePlugin.propPanel.schema && typeof activePlugin.propPanel.schema === 'object') {
+      return activePlugin.propPanel.schema as Record<string, PropPanelSchema>;
+    }
+
+    return {};
+  }, [activePlugin, propPanelProps, resolvedConfig.config, token, typedI18n]);
+
+  const inspectorConfig = useMemo(
+    () => (activePlugin.propPanel.inspector || undefined) as PropPanelInspectorConfig | undefined,
+    [activePlugin],
+  );
 
   const maxWidth = pageSize.width - paddingLeft - paddingRight;
   const maxHeight = pageSize.height - paddingTop - paddingBottom;
   const visibility = inspectorResolver.visibility as SisadPdfmeVisibilityConfig;
-  const sections = buildInspectorSections({
-    activeSchemaType: activeSchema.type,
-    activeSchema,
-    schemaConfig,
-    typedI18n,
-    defaultSchema,
-    pluginProps,
-    inspectorConfig,
-    pageSize,
-    paddingTop,
-    paddingRight,
-    paddingBottom,
-    paddingLeft,
-    maxWidth,
-    maxHeight,
-    validateUniqueSchemaName,
-    validatePosition,
-    visibility,
-  });
+  const sections = useMemo(
+    () =>
+      buildInspectorSections({
+        activeSchemaType: activeSchema.type,
+        activeSchema,
+        schemaConfig,
+        typedI18n,
+        defaultSchema,
+        pluginProps,
+        inspectorConfig,
+        pageSize,
+        paddingTop,
+        paddingRight,
+        paddingBottom,
+        paddingLeft,
+        maxWidth,
+        maxHeight,
+        validateUniqueSchemaName,
+        validatePosition,
+        visibility,
+      }),
+    [
+      activeSchema,
+      defaultSchema,
+      inspectorConfig,
+      maxHeight,
+      maxWidth,
+      paddingBottom,
+      paddingLeft,
+      paddingRight,
+      paddingTop,
+      pageSize,
+      pluginProps,
+      schemaConfig,
+      typedI18n,
+      validatePosition,
+      validateUniqueSchemaName,
+      visibility,
+    ],
+  );
   // Resetear el estado de colapso solo al cambiar de schema activo, no en cada
   // modificación de campos. Si no, cualquier cambio de input remonta las
   // secciones y borra la interacción del inspector.

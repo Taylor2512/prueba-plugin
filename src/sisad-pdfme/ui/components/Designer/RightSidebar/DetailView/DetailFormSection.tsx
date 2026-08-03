@@ -76,6 +76,11 @@ const DetailFormSection = ({
   readOnly = false,
 }: DetailFormSectionProps) => {
   const directWidget = resolveDirectWidget(schema, widgets);
+  const watchConfig = React.useMemo(() => ({ '#': watchHandler }), [watchHandler]);
+  const formRenderKey = React.useMemo(
+    () => `${resetToken || 'detail'}:${sectionKey || title}`,
+    [resetToken, sectionKey, title],
+  );
 
   return (
     <DetailSectionCard
@@ -111,10 +116,11 @@ const DetailFormSection = ({
           )}
         >
           <FormRenderComponent
+            key={formRenderKey}
             form={form}
             schema={schema}
             widgets={widgets}
-            watch={{ '#': watchHandler }}
+            watch={watchConfig}
             readOnly={readOnly}
             // form-render types only accept 'zh-CN' | 'en-US'. Use 'en-US' to satisfy typing.
             locale="en-US"
