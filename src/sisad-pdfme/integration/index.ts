@@ -47,12 +47,26 @@ export {
   useSisadPdfmeInstance,
 } from './SisadPdfmeInstance.js';
 export {
+  createSisadPdfmeInstanceBundle,
+  parseSisadPdfmeInstanceBundle,
+  restoreSisadPdfmeInstanceBundle,
+  serializeSisadPdfmeInstanceBundle,
+  validateSisadPdfmeInstanceBundle,
+} from './SisadPdfmeInstanceBundle.js';
+export {
   validateSisadPdfmeInstanceDefinition,
 } from './validateSisadPdfmeInstanceDefinition.js';
 export type {
   SisadPdfmeInstanceDefinitionIssue,
   SisadPdfmeInstanceDefinitionIssueSeverity,
 } from './validateSisadPdfmeInstanceDefinition.js';
+export type {
+  SisadPdfmeInstanceBundle,
+  SisadPdfmeInstanceBundleInput,
+  SisadPdfmeInstanceBundleResources,
+  SisadPdfmeInstanceBundleReadResult,
+  SisadPdfmeInstanceBundleVersion,
+} from './SisadPdfmeInstanceBundle.js';
 export type {
   SisadPdfmeInstanceDefinition,
   SisadPdfmeInstanceHandlers,
