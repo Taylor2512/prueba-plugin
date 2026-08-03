@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import type { SchemaForUI } from '@sisad-pdfme/common';
 import { OptionsContext } from '@/sisad-pdfme/ui/contexts';
 import RightSidebar from '@/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar';
 
@@ -35,6 +36,15 @@ vi.mock('@/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarCollaps
 }));
 
 const basePdf = { type: 'blank', padding: [0, 0, 0, 0] } as any;
+const schemaFixture: SchemaForUI = {
+  id: 'schema-1',
+  type: 'text',
+  name: 'field-1',
+  content: '',
+  position: { x: 0, y: 0 },
+  width: 10,
+  height: 10,
+};
 
 describe('RightSidebar visibility', () => {
   it('hides the comments tab when visibility.sidebars.right.panels.comments is false', () => {
@@ -118,8 +128,8 @@ describe('RightSidebar visibility', () => {
           pageSize={{ width: 800, height: 600 }}
           basePdf={basePdf}
           activeElements={[activeElement]}
-          schemas={[[{ id: 'schema-1', type: 'text', name: 'field-1', content: '', position: { x: 0, y: 0 }, width: 10, height: 10 } as any]]}
-          schemasList={[[{ id: 'schema-1', type: 'text', name: 'field-1', content: '', position: { x: 0, y: 0 }, width: 10, height: 10 } as any]]}
+          schemas={[schemaFixture]}
+          schemasList={[[schemaFixture]]}
           onSortEnd={() => undefined}
           onEdit={() => undefined}
           onEditEnd={() => undefined}

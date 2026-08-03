@@ -9,6 +9,14 @@ vi.mock('@/sisad-pdfme/react', () => ({
   SisadPdfmeViewer: () => null,
 }));
 
+vi.mock('@/sisad-pdfme', () => ({
+  SisadPdfmeInstance: () => null,
+  defineSisadPdfmeInstance: (value: unknown) => value,
+  SisadPdfmeDesigner: () => null,
+  SisadPdfmeForm: () => null,
+  SisadPdfmeViewer: () => null,
+}));
+
 vi.mock('@/sisad-pdfme/react/hostSurface', () => ({
   SISAD_PDFME_HOST_SURFACE_CLASS: 'h-full min-h-0 w-full min-w-0 overflow-hidden',
 }));

@@ -49,9 +49,9 @@ export interface ExternalFormStorage {
 
 // ── Visibilidad de schemas ──────────────────────────────────────────────────
 
-type SchemaVisibility = 'editable' | 'readonly' | 'hidden';
+export type SchemaVisibility = 'editable' | 'readonly' | 'hidden';
 
-type ExternalFormSchemaState = {
+export type ExternalFormSchemaState = {
   documentId: string;
   pageNumber: number;
   schemaUid: string;
@@ -108,6 +108,8 @@ export type ExternalFormRuntimeStateOptions = {
   isSignatureSchema?: (schema: SchemaWithDesigner) => boolean;
 };
 
+export type ExternalFormRunnerProps = ExternalFormRuntimeStateOptions;
+
 const normalizeExternalFormText = (value: unknown): string => String(value ?? '').trim();
 
 const extractSchemaUid = (schema: SchemaWithDesigner): string => {
@@ -151,7 +153,7 @@ const extractSignatureSchema = (schema: SchemaWithDesigner): boolean => {
  * 5. scope === 'recipient' && recipientId no coincide → hidden
  * 6. scope === 'group' → requiere resolución externa (asume editable)
  */
-function getSchemaVisibility(
+export function getSchemaVisibility(
   schemaAssignment: SnapshotAssignment | undefined,
   schemaUid: string,
   isReadonly: boolean | undefined,
@@ -326,7 +328,7 @@ export function resolveExternalFormRuntimeState(
  * Un campo es requerido si su visibilidad es 'editable'.
  * Un campo está completo si storage.hasInput(schemaUid) === true.
  */
-function areAllRequiredFieldsComplete(
+export function areAllRequiredFieldsComplete(
   editableSchemaUids: string[],
   storage: ExternalFormStorage,
 ): boolean {

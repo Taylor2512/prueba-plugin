@@ -6,6 +6,14 @@ vi.mock('@/sisad-pdfme/react', () => ({
   SisadPdfmeViewer: () => null,
 }));
 
+vi.mock('@/sisad-pdfme', () => ({
+  SisadPdfmeInstance: () => null,
+  defineSisadPdfmeInstance: (value: unknown) => value,
+  SisadPdfmeDesigner: () => null,
+  SisadPdfmeForm: () => null,
+  SisadPdfmeViewer: () => null,
+}));
+
 vi.mock('@sisad-pdfme/schemas', () => {
   const builtInSchemaDefinitions = [
     { type: 'text' },

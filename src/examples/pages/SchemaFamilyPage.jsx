@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { ExampleImmersiveShell, ExampleInfoPanelStack, FamilyBadgeList, MetricGrid, RuntimeViewport } from '../components/exampleUi.jsx';
 import { buildShowcaseTemplate } from '../builders/showcaseTemplate.js';
 import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
+import { createSchemaFamilyInstance } from '../instances/exampleInstances.js';
 import { getExampleSchemaRoute } from '../routes/routeDefinitions.js';
-import { SisadPdfmeDesigner } from '@/sisad-pdfme/react';
+import { SisadPdfmeInstance } from '@/sisad-pdfme';
 
 export function SchemaFamilyPage({ family, currentPath }) {
   const [template, setTemplate] = useState(() =>
     buildShowcaseTemplate([{ title: family.title, types: family.types }]),
   );
   const config = useExampleRuntimeConfig('schema-family');
+  const schemaFamilyInstance = useMemo(
+    () =>
+      createSchemaFamilyInstance({
+        familySlug: family.slug,
+        template,
+        config,
+        onTemplateChange: setTemplate,
+      }),
+    [config, family.slug, template],
+  );
 
   return (
     <ExampleImmersiveShell
@@ -45,9 +56,9 @@ export function SchemaFamilyPage({ family, currentPath }) {
           ]}
         />
       }
-    >
+      >
       <RuntimeViewport name={`schema-family-${family.slug}`}>
-        <SisadPdfmeDesigner config={config} template={template} onTemplateChange={setTemplate} />
+        <SisadPdfmeInstance instance={schemaFamilyInstance} />
       </RuntimeViewport>
     </ExampleImmersiveShell>
   );

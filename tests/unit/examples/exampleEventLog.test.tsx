@@ -16,6 +16,14 @@ vi.mock('@/sisad-pdfme/react', () => ({
   SisadPdfmeViewer: () => null,
 }));
 
+vi.mock('@/sisad-pdfme', () => ({
+  SisadPdfmeInstance: () => null,
+  defineSisadPdfmeInstance: (value: unknown) => value,
+  SisadPdfmeDesigner: () => null,
+  SisadPdfmeForm: () => null,
+  SisadPdfmeViewer: () => null,
+}));
+
 import { ExampleEventLog } from '@/examples/index.jsx';
 
 const baseEvent = { id: '1', name: 'onActiveRecipientChange', at: '10:00:00' };

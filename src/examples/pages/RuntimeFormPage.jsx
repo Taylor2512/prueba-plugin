@@ -5,10 +5,11 @@ import { buildFamiliesForKeys } from '../helpers/familyGroups.js';
 import { ExampleEventLog, ExampleInfoPanelStack, MetricGrid } from '../components/exampleUi.jsx';
 import { useExampleEventLog } from '../hooks/useExampleEventLog.js';
 import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
+import { createRuntimeFormInstance } from '../instances/exampleInstances.js';
 import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
 import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { getInputFromTemplate } from '@sisad-pdfme/common';
-import { SisadPdfmeForm } from '@/sisad-pdfme/react';
+import { SisadPdfmeInstance } from '@/sisad-pdfme';
 
 export function RuntimeFormPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeForm }) {
   const template = useMemo(
@@ -34,6 +35,17 @@ export function RuntimeFormPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeForm 
       record('onInputChange', { campo: payload.name, índice: payload.index });
     },
     [record],
+  );
+
+  const runtimeFormInstance = useMemo(
+    () =>
+      createRuntimeFormInstance({
+        template,
+        values,
+        config,
+        onInputChange: handleInputChange,
+      }),
+    [config, handleInputChange, template, values],
   );
 
   return (
@@ -71,7 +83,7 @@ export function RuntimeFormPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeForm 
       }
       viewportName="runtime-form"
     >
-      <SisadPdfmeForm config={config} template={template} values={values} onInputChange={handleInputChange} />
+      <SisadPdfmeInstance instance={runtimeFormInstance} />
     </RuntimePageShell>
   );
 }

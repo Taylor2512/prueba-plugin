@@ -13,6 +13,14 @@ vi.mock('@/sisad-pdfme/react', () => ({
   SisadPdfmeViewer: () => null,
 }));
 
+vi.mock('@/sisad-pdfme', () => ({
+  SisadPdfmeInstance: () => null,
+  defineSisadPdfmeInstance: (value: unknown) => value,
+  SisadPdfmeDesigner: () => null,
+  SisadPdfmeForm: () => null,
+  SisadPdfmeViewer: () => null,
+}));
+
 import {
   EXAMPLE_CONFIG_PROFILES,
   createRuntimeConfig,

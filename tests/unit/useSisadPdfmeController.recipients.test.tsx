@@ -256,6 +256,25 @@ describe('useRecipientRegistry', () => {
     expect(result.current.state.activeRecipientId).toBe('late');
   });
 
+  test('no selecciona fallback cuando defaultOwnerStrategy es none', () => {
+    const { result, rerender } = renderHook(
+      ({ recipients }: { recipients?: unknown[] }) =>
+        useRecipientRegistry({
+          recipients,
+          activeRecipientId: null,
+          config: {
+            defaultOwnerStrategy: 'none',
+          },
+        }),
+      { initialProps: { recipients: undefined as unknown[] | undefined } },
+    );
+
+    expect(result.current.state.activeRecipientId).toBeNull();
+
+    rerender({ recipients: [{ id: 'other', label: 'Otro' }, { id: 'late', label: 'Tardío' }] });
+    expect(result.current.state.activeRecipientId).toBeNull();
+  });
+
   test('reutiliza un registry externo sin crear estado paralelo', () => {
     const shared = makeRegistry();
     const { result } = renderHook(() => useRecipientRegistry({ registry: shared }));

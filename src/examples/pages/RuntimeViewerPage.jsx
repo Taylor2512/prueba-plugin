@@ -4,9 +4,10 @@ import { buildShowcaseTemplate } from '../builders/showcaseTemplate.js';
 import { buildFamiliesForKeys } from '../helpers/familyGroups.js';
 import { ExampleInfoPanelStack, FamilyBadgeList, MetricGrid } from '../components/exampleUi.jsx';
 import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
+import { createRuntimeViewerInstance } from '../instances/exampleInstances.js';
 import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
 import { RuntimePageShell } from './RuntimePageShell.jsx';
-import { SisadPdfmeViewer } from '@/sisad-pdfme/react';
+import { SisadPdfmeInstance } from '@/sisad-pdfme';
 
 export function RuntimeViewerPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeViewer }) {
   const template = useMemo(
@@ -22,6 +23,10 @@ export function RuntimeViewerPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeVie
     [],
   );
   const config = useExampleRuntimeConfig('runtime-viewer');
+  const runtimeViewerInstance = useMemo(
+    () => createRuntimeViewerInstance({ template, config }),
+    [config, template],
+  );
 
   return (
     <RuntimePageShell
@@ -58,7 +63,7 @@ export function RuntimeViewerPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeVie
       }
       viewportName="runtime-viewer"
     >
-      <SisadPdfmeViewer config={config} template={template} />
+      <SisadPdfmeInstance instance={runtimeViewerInstance} />
     </RuntimePageShell>
   );
 }

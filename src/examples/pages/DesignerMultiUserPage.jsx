@@ -3,19 +3,15 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { FAMILY_EXAMPLES } from '../catalog/familyCatalog.js';
 import { DEMO_DOCUMENTS } from '../fixtures/documents.js';
 import { MULTI_USER_FAMILY_KEYS, MULTI_USER_RECIPIENTS } from '../fixtures/recipients.js';
-import {
-  ExampleControllerPanel,
-  ExampleEventLog,
-  ExampleInfoPanelStack,
-  MetricGrid,
-} from '../components/exampleUi.jsx';
 import { useExampleController } from '../hooks/useExampleController.js';
 import { useExampleEventLog } from '../hooks/useExampleEventLog.js';
 import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
+import { createDesignerMultiUserInstance } from '../instances/exampleInstances.js';
 import { buildMultiUserShowcaseTemplate } from '../builders/multiUserShowcase.js';
 import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
+import { DesignerMultiUserInfo } from './DesignerMultiUserInfo.jsx';
 import { RuntimePageShell } from './RuntimePageShell.jsx';
-import { SisadPdfmeDesigner } from '@/sisad-pdfme/react';
+import { SisadPdfmeInstance } from '@/sisad-pdfme';
 
 function RecipientSelect({ value, onChange }) {
   return (
@@ -81,6 +77,35 @@ export function DesignerMultiUserPage({ currentPath = EXAMPLE_ROUTE_PATHS.design
     [activeRecipientId],
   );
 
+  const designerMultiUserInstance = useMemo(
+    () =>
+      createDesignerMultiUserInstance({
+        template,
+        activeRecipientId,
+        config,
+        documents: DEMO_DOCUMENTS,
+        recipients: MULTI_USER_RECIPIENTS,
+        onTemplateChange: setTemplate,
+        onSave: handleSave,
+        onControllerReady: handleControllerReady,
+        onEvent: handleEvent,
+        onRecipientsChange: handleRecipientsChange,
+        onActiveRecipientChange: handleActiveRecipientChange,
+        onAssignmentChange: handleAssignmentChange,
+      }),
+    [
+      activeRecipientId,
+      config,
+      handleActiveRecipientChange,
+      handleAssignmentChange,
+      handleControllerReady,
+      handleEvent,
+      handleRecipientsChange,
+      handleSave,
+      template,
+    ],
+  );
+
   return (
     <RuntimePageShell
       title="Designer · flujo multiusuario"
@@ -89,98 +114,19 @@ export function DesignerMultiUserPage({ currentPath = EXAMPLE_ROUTE_PATHS.design
       actions={<RecipientSelect value={activeRecipientId} onChange={setActiveRecipientId} />}
       infoTitle="Participantes y contexto"
       info={
-        <ExampleInfoPanelStack
-          panels={[
-            {
-              key: 'context',
-              title: 'Contexto actual',
-              description: 'El selector del topbar solo cambia el recipient activo; no recrea la UI externa ni el runtime.',
-              render: () => (
-                <MetricGrid
-                  items={[
-                    { label: 'Participantes', value: String(MULTI_USER_RECIPIENTS.length) },
-                    { label: 'Recipient', value: activeRecipient?.name || 'none' },
-                    { label: 'Documentos', value: String(DEMO_DOCUMENTS.length) },
-                    { label: 'Asignaciones', value: String(assignments) },
-                  ]}
-                />
-              ),
-            },
-            {
-              key: 'participants',
-              title: 'Participantes',
-              description: 'El mismo template sirve para probar assignment, comentarios y cambios de recipient.',
-              render: () => (
-                <div className="space-y-3">
-                  {MULTI_USER_RECIPIENTS.map((recipient) => (
-                    <div
-                      key={recipient.id}
-                      className="box-border flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="h-3 w-3 shrink-0 rounded-full"
-                        style={{ background: recipient.color }}
-                      />
-                      <div className="min-w-0">
-                        <div className="truncate text-sm font-semibold text-white">{recipient.name}</div>
-                        <div className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-400">
-                          {recipient.id}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ),
-            },
-            {
-              key: 'documents',
-              title: 'Documentos',
-              description: '`documents.mode: multi` enruta los schemas por documento; el panel Documentos los lista.',
-              render: () => (
-                <div className="space-y-3">
-                  {DEMO_DOCUMENTS.map((document) => (
-                    <div
-                      key={document.id}
-                      className="box-border rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200"
-                    >
-                      {document.label}
-                    </div>
-                  ))}
-                </div>
-              ),
-            },
-            {
-              key: 'controller',
-              title: 'Controlador',
-              description: 'API imperativa pública, incluida la asignación al recipient activo.',
-              render: () => <ExampleControllerPanel getController={getController} />,
-            },
-            {
-              key: 'events',
-              title: 'Eventos',
-              description: 'Callbacks del wrapper, tal como los recibe el host.',
-              render: () => <ExampleEventLog events={events} onClear={clear} />,
-            },
-          ]}
+        <DesignerMultiUserInfo
+          activeRecipient={activeRecipient}
+          recipients={MULTI_USER_RECIPIENTS}
+          documents={DEMO_DOCUMENTS}
+          assignments={assignments}
+          events={events}
+          onClear={clear}
+          getController={getController}
         />
       }
       viewportName="designer-multi-user"
     >
-      <SisadPdfmeDesigner
-        config={config}
-        template={template}
-        documents={DEMO_DOCUMENTS}
-        recipients={MULTI_USER_RECIPIENTS}
-        activeRecipientId={activeRecipientId}
-        onTemplateChange={setTemplate}
-        onSave={handleSave}
-        onControllerReady={handleControllerReady}
-        onEvent={handleEvent}
-        onRecipientsChange={handleRecipientsChange}
-        onActiveRecipientChange={handleActiveRecipientChange}
-        onAssignmentChange={handleAssignmentChange}
-      />
+      <SisadPdfmeInstance instance={designerMultiUserInstance} />
     </RuntimePageShell>
   );
 }

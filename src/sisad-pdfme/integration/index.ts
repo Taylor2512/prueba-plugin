@@ -53,6 +53,13 @@ export {
   serializeSisadPdfmeInstanceBundle,
   validateSisadPdfmeInstanceBundle,
 } from './SisadPdfmeInstanceBundle.js';
+export type {
+  SisadPdfmeInstanceInput,
+  SisadPdfmeRegisteredInstance,
+} from './defineSisadPdfmeInstance.js';
+export {
+  defineSisadPdfmeInstance,
+} from './defineSisadPdfmeInstance.js';
 export {
   validateSisadPdfmeInstanceDefinition,
 } from './validateSisadPdfmeInstanceDefinition.js';
@@ -75,8 +82,11 @@ export type {
   SisadPdfmeInstanceResolution,
   SisadPdfmeInstanceRuntimeState,
   SisadPdfmeInstanceState,
+  SisadPdfmeInstanceStateChange,
   SisadPdfmeInstanceStateField,
   SisadPdfmeInstanceStateFieldSource,
+  SisadPdfmeInstanceStateChangeSource,
+  SisadPdfmeInstanceStateFieldName,
   SisadPdfmeInstanceStateInput,
   SisadPdfmeInstanceResources,
 } from './resolveSisadPdfmeInstance.js';

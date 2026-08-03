@@ -20,13 +20,21 @@ export const useSisadPdfmeRecipientRuntime = ({
 }: RecipientRuntimeOptions) => {
   const resolvedConfig = useSisadPdfmeConfig(config);
   const providerValue = useContext(SisadPdfmeContext);
+  const isGlobalView = resolvedConfig.config.collaboration.isGlobalView === true;
+  const recipientRegistryConfig = isGlobalView
+    ? {
+        ...resolvedConfig.config.recipients,
+        defaultOwnerStrategy: 'none' as const,
+      }
+    : resolvedConfig.config.recipients;
   const recipientRegistry = useRecipientRegistry({
     registry: providerValue?.recipientRegistry ?? null,
     recipients,
     adapter: resolvedConfig.adapters.recipients,
-    config: resolvedConfig.config.recipients,
-    activeRecipientId:
-      activeRecipientId !== undefined
+    config: recipientRegistryConfig,
+    activeRecipientId: isGlobalView
+      ? null
+      : activeRecipientId !== undefined
         ? activeRecipientId
         : resolvedConfig.config.recipients.activeRecipientId ?? undefined,
   });
@@ -34,8 +42,6 @@ export const useSisadPdfmeRecipientRuntime = ({
   const effectiveActiveRecipientId = recipientRegistry.state.activeRecipientId;
   const recipientFilterEnabled =
     resolvedConfig.visibility.runtime?.recipientFilter !== false;
-  const isGlobalView =
-    resolvedConfig.config.collaboration.isGlobalView === true;
   const collaborationOptions = useMemo(
     () =>
       recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId

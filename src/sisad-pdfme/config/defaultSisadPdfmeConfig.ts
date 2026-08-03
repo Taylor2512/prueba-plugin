@@ -1,4 +1,8 @@
-import type { SisadPdfmeGlobalConfig, SisadPdfmeVisibilityConfig } from './SisadPdfmeConfig.js';
+import type {
+  SisadPdfmeGlobalConfig,
+  SisadPdfmeUiClassNamesConfig,
+  SisadPdfmeVisibilityConfig,
+} from './SisadPdfmeConfig.js';
 
 export const defaultSisadPdfmeVisibilityConfig: Required<SisadPdfmeVisibilityConfig> = {
   shell: {
@@ -30,10 +34,10 @@ export const defaultSisadPdfmeVisibilityConfig: Required<SisadPdfmeVisibilityCon
       search: true,
       tabs: true,
       catalog: true,
-      customFields: false,
-      favorites: false,
-      recent: false,
-      recipients: false,
+      customFields: true,
+      favorites: true,
+      recent: true,
+      recipients: true,
     },
     right: {
       visible: true,
@@ -43,22 +47,22 @@ export const defaultSisadPdfmeVisibilityConfig: Required<SisadPdfmeVisibilityCon
       panels: {
         fields: true,
         detail: true,
-        comments: false,
-        documents: false,
+        comments: true,
+        documents: true,
       },
     },
   },
   actions: {
     reassign: true,
-    rename: false,
+    rename: true,
     duplicate: true,
     delete: true,
     copy: true,
     paste: true,
     lock: true,
     unlock: true,
-    hide: false,
-    show: false,
+    hide: true,
+    show: true,
     align: true,
     distribute: true,
     matchSize: true,
@@ -69,7 +73,7 @@ export const defaultSisadPdfmeVisibilityConfig: Required<SisadPdfmeVisibilityCon
     showAdvanced: false,
     showTechnical: false,
     showCollaboration: true,
-    showComments: false,
+    showComments: true,
     sections: {},
     fields: {},
     fieldsBySchemaType: {},
@@ -83,8 +87,8 @@ export const defaultSisadPdfmeVisibilityConfig: Required<SisadPdfmeVisibilityCon
   modals: {
     assignment: true,
     schemaDropSetup: true,
-    customField: false,
-    comments: false,
+    customField: true,
+    comments: true,
     shortcutHelp: true,
   },
   runtime: {
@@ -99,7 +103,7 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
   visibility: Required<SisadPdfmeVisibilityConfig>;
   ui: Required<NonNullable<SisadPdfmeGlobalConfig['ui']>> & {
     visibility: Required<SisadPdfmeVisibilityConfig>;
-    classNames: Record<string, never>;
+    classNames: Required<SisadPdfmeUiClassNamesConfig>;
   };
 } = {
   app: {
@@ -135,7 +139,7 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
       enabled: true,
       defaultOpen: true,
       catalogLayout: 'list',
-      allowCustomFields: false,
+      allowCustomFields: true,
     },
     right: {
       enabled: true,
@@ -164,7 +168,7 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
     missingRecipientBehavior: 'keep-id',
   },
   collaboration: {
-    enabled: false,
+    enabled: true,
     activeRecipientId: null,
     isGlobalView: false,
     canEditStructure: true,
@@ -193,7 +197,7 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
     providers: [],
   },
   persistence: {
-    mode: 'none',
+    mode: 'local',
     autosave: false,
     serializeSnapshot: true,
   },

@@ -1,10 +1,12 @@
 import { createDefaultTemplate } from '../templates/createDefaultTemplate.js';
 import { createTemplateFromRecipe, type SisadPdfmeTemplateRecipe } from '../templates/createTemplateFromRecipe.js';
+import type { Template } from '@sisad-pdfme/common';
 import {
   normalizeHostData,
   type SisadPdfmeHostDataAdapters,
   type SisadPdfmeNormalizedHostData,
 } from './normalizeHostData.js';
+import { resolveActiveDocument } from '../documents/index.js';
 import {
   validateSisadPdfmeInstanceDefinition,
   type SisadPdfmeInstanceDefinitionIssue,
@@ -31,6 +33,13 @@ export type SisadPdfmeInstanceStateInput = {
   signatureProviders?: unknown[] | null;
   activeRecipientId?: string | null;
   activeDocumentId?: string | null;
+};
+
+export type SisadPdfmeInstanceStateFieldName = keyof SisadPdfmeInstanceStateInput;
+export type SisadPdfmeInstanceStateChangeSource = 'user' | 'runtime' | 'host';
+export type SisadPdfmeInstanceStateChange = {
+  field: SisadPdfmeInstanceStateFieldName;
+  source: SisadPdfmeInstanceStateChangeSource;
 };
 
 export type SisadPdfmeInstanceRuntimeState = Partial<SisadPdfmeInstanceStateInput>;
@@ -101,6 +110,7 @@ export type SisadPdfmeInstanceHandlers = {
   onUploadedDocumentsChange?: (documents: SisadPdfmeDocument[], activeDocumentId: string | null) => void;
   onAssignmentChange?: (payload: SisadPdfmeAssignmentChangePayload) => void;
   onInputChange?: (payload: { index: number; name: string; value: unknown }) => void;
+  onStateChange?: (nextState: SisadPdfmeInstanceStateInput, change: SisadPdfmeInstanceStateChange) => void;
   onEvent?: (event: SisadPdfmeAnyEvent) => void;
 };
 
@@ -160,6 +170,19 @@ const mergePluginMaps = (
   ...(base || {}),
   ...(override || {}),
 });
+
+const resolveActiveDocumentTemplate = (
+  documents: SisadPdfmeDocument[],
+  activeDocumentId: string | null,
+  fallbackTemplate: Template,
+) => {
+  const activeDocument = resolveActiveDocument(documents, activeDocumentId);
+  const documentTemplate = activeDocument?.template;
+  if (!documentTemplate || typeof documentTemplate !== 'object') {
+    return fallbackTemplate;
+  }
+  return documentTemplate as Template;
+};
 
 const resolveInstanceState = (
   definition: SisadPdfmeInstanceDefinition,
@@ -301,21 +324,32 @@ export const resolveSisadPdfmeInstance = ({
     definition.mode === 'designer' || definition.mode === 'form' || definition.mode === 'viewer'
       ? definition.mode
       : 'designer';
+  const config = mergeConfigs(resources.config, definition.config);
   const state = resolveInstanceState(definition, resources, runtimeState);
-  const template = state.template.value ?? createDefaultTemplate();
+  const template = (state.template.value ?? createDefaultTemplate()) as Template;
+  const isGlobalView = config?.collaboration?.isGlobalView === true;
+  const normalizedActiveRecipientId =
+    state.activeRecipientId.source === 'fallback' ? null : state.activeRecipientId.value;
   const normalized = normalizeHostData({
     template,
     inputs: state.inputs.value,
     recipients: state.recipients.value,
     documents: state.documents.value,
     signatureProviders: state.signatureProviders.value,
-    activeRecipientId: state.activeRecipientId.value,
+    activeRecipientId: normalizedActiveRecipientId,
     adapters: resources.adapters,
   });
+  const activeRecipientId =
+    state.activeRecipientId.source === 'fallback'
+      ? (isGlobalView ? null : normalized.activeRecipientId)
+      : state.activeRecipientId.value;
   const activeDocumentId = state.activeDocumentId.value ?? normalized.documents[0]?.id ?? null;
+  const activeDocumentTemplate = resolveActiveDocumentTemplate(
+    normalized.documents,
+    activeDocumentId,
+    normalized.template,
+  );
   const plugins = mergePluginMaps(resources.plugins, definition.plugins);
-
-  const config = mergeConfigs(resources.config, definition.config);
   const sharedProps = {
     config,
     className,
@@ -332,10 +366,10 @@ export const resolveSisadPdfmeInstance = ({
       valid: issues.length === 0,
       props: {
         ...sharedProps,
-        template: normalized.template,
+        template: activeDocumentTemplate,
         documents: normalized.documents,
         recipients: normalized.recipients,
-        activeRecipientId: normalized.activeRecipientId,
+        activeRecipientId,
         activeDocumentId,
         signatureProviders: normalized.signatureProviders,
         plugins,
@@ -353,10 +387,10 @@ export const resolveSisadPdfmeInstance = ({
 
   const runtimeProps = {
     ...sharedProps,
-    template: normalized.template,
+    template: activeDocumentTemplate,
     inputs: normalized.inputs,
     recipients: normalized.recipients,
-    activeRecipientId: normalized.activeRecipientId,
+    activeRecipientId,
     activeDocumentId,
     signatureProviders: normalized.signatureProviders,
     plugins,

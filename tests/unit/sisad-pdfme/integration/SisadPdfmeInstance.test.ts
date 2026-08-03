@@ -10,6 +10,7 @@ import {
 import {
   validateSisadPdfmeInstanceDefinition,
 } from '@/sisad-pdfme/integration/validateSisadPdfmeInstanceDefinition';
+import { defineSisadPdfmeInstance } from '@/sisad-pdfme/integration/defineSisadPdfmeInstance';
 
 const surfacePropsSpy = vi.hoisted(() => vi.fn());
 
@@ -130,7 +131,29 @@ describe('resolveSisadPdfmeInstance', () => {
     expect(resolved.state.activeRecipientId.source).toBe('state');
     expect(resolved.state.activeRecipientId.value).toBeNull();
     expect(resolved.props.inputs).toEqual([{ name: 'controlled' }]);
-    expect(resolved.props.activeRecipientId).toBe('');
+    expect(resolved.props.activeRecipientId).toBeNull();
+  });
+
+  it('conserva activeRecipientId nulo en global view aunque existan recipients', () => {
+    const resolved = resolveSisadPdfmeInstance({
+      definition: {
+        mode: 'designer',
+      },
+      resources: {
+        recipients: [
+          { id: 'alice', label: 'Alice' },
+          { id: 'bob', label: 'Bob' },
+        ],
+        config: {
+          collaboration: {
+            isGlobalView: true,
+          },
+        } as any,
+      },
+    });
+
+    expect(resolved.props.activeRecipientId).toBeNull();
+    expect(resolved.normalized.activeRecipientId).toBe('alice');
   });
 
   it('combina state parcial de definition y resources por campo', () => {
@@ -168,6 +191,30 @@ describe('resolveSisadPdfmeInstance', () => {
 
     expect(resolved.state.activeDocumentId.value).toBe('doc-2');
     expect(resolved.props.activeDocumentId).toBe('doc-2');
+  });
+
+  it('usa el template del documento activo cuando existe', () => {
+    const activeDocumentTemplate = createDefaultTemplate({
+      pageSize: { width: 420, height: 594 },
+    });
+
+    const resolved = resolveSisadPdfmeInstance({
+      definition: {
+        mode: 'viewer',
+        state: {
+          activeDocumentId: 'doc-2',
+        },
+      },
+      resources: {
+        documents: [
+          { id: 'doc-1', label: 'Uno', template: createDefaultTemplate() },
+          { id: 'doc-2', label: 'Dos', template: activeDocumentTemplate },
+        ],
+      },
+    });
+
+    expect(resolved.props.activeDocumentId).toBe('doc-2');
+    expect(resolved.props.template).toEqual(activeDocumentTemplate);
   });
 
   it('combina config anidada de resources y definition', () => {
@@ -265,6 +312,40 @@ describe('SisadPdfmeInstance', () => {
     expect(props?.inputs).toEqual([{ name: 'edited' }]);
   });
 
+  it('emite onStateChange cuando cambia un Form no controlado', () => {
+    const onStateChange = vi.fn();
+
+    render(
+      React.createElement(SisadPdfmeInstance, {
+        definition: {
+          mode: 'form',
+          defaultState: {
+            inputs: [{ name: 'initial' }],
+          },
+        },
+        handlers: {
+          onStateChange,
+        },
+      }),
+    );
+
+    const props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+
+    act(() => {
+      props?.onInputChange?.({ index: 0, name: 'name', value: 'edited' });
+    });
+
+    expect(onStateChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        inputs: [{ name: 'edited' }],
+      }),
+      {
+        field: 'inputs',
+        source: 'user',
+      },
+    );
+  });
+
   it('conserva documentos subidos y activeDocumentId en Designer no controlado', () => {
     const { rerender } = render(
       React.createElement(SisadPdfmeInstance, {
@@ -304,6 +385,95 @@ describe('SisadPdfmeInstance', () => {
     props = surfacePropsSpy.mock.calls.at(-1)?.[0];
     expect(props?.documents?.[0]?.id).toBe('doc-2');
     expect(props?.activeDocumentId).toBe('doc-2');
+  });
+
+  it('reinicia el estado interno cuando cambia el id de la instancia registrada', () => {
+    const firstInstance = defineSisadPdfmeInstance({
+      id: 'contract-a',
+      revision: 1,
+      definition: {
+        mode: 'form',
+        defaultState: {
+          inputs: [{ name: 'initial-a' }],
+        },
+      },
+    });
+    const secondInstance = defineSisadPdfmeInstance({
+      id: 'contract-b',
+      revision: 1,
+      definition: {
+        mode: 'form',
+        defaultState: {
+          inputs: [{ name: 'initial-b' }],
+        },
+      },
+    });
+
+    const { rerender } = render(
+      React.createElement(SisadPdfmeInstance, {
+        instance: firstInstance,
+      }),
+    );
+
+    let props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+    expect(props?.inputs).toEqual([{ name: 'initial-a' }]);
+
+    act(() => {
+      props?.onInputChange?.({ index: 0, name: 'name', value: 'edited-a' });
+    });
+
+    rerender(
+      React.createElement(SisadPdfmeInstance, {
+        instance: secondInstance,
+      }),
+    );
+
+    props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+    expect(props?.inputs).toEqual([{ name: 'initial-b' }]);
+  });
+
+  it('conserva el estado interno cuando se rerenderiza la misma instancia registrada', () => {
+    const instance = defineSisadPdfmeInstance({
+      id: 'contract-stable',
+      revision: 1,
+      definition: {
+        mode: 'form',
+        defaultState: {
+          inputs: [{ name: 'initial-stable' }],
+        },
+      },
+    });
+
+    const { rerender } = render(
+      React.createElement(SisadPdfmeInstance, {
+        instance,
+      }),
+    );
+
+    let props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+    expect(props?.inputs).toEqual([{ name: 'initial-stable' }]);
+
+    act(() => {
+      props?.onInputChange?.({ index: 0, name: 'name', value: 'edited-stable' });
+    });
+
+    rerender(
+      React.createElement(SisadPdfmeInstance, {
+        instance: defineSisadPdfmeInstance({
+          id: 'contract-stable',
+          revision: 1,
+          definition: {
+            mode: 'form',
+            defaultState: {
+              inputs: [{ name: 'initial-stable-2' }],
+            },
+          },
+        }),
+      }),
+    );
+
+    props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+    expect(props?.inputs).toEqual([{ name: 'edited-stable' }]);
   });
 
   it('no pisa un Form controlado con cambios internos', () => {
