@@ -39,7 +39,7 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
   const assignableRecipientCount = Number.isFinite(input.assignableRecipientCount)
     ? Math.max(0, Math.trunc(input.assignableRecipientCount))
     : 0;
-  const hasEnoughRecipientsForReassign = assignableRecipientCount > 2;
+  const hasEnoughRecipientsForReassign = assignableRecipientCount > 1;
   const canEditStructure = input.collaborationContext?.canEditStructure !== false;
   // `reassignVisible` ya incorpora assignment.enabled + visibility.actions.reassign.
   // El trigger vive en el toolbar; la presencia del modal la resuelve su propia

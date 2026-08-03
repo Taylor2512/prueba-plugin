@@ -1,8 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
 test.describe('schema owner color', () => {
   test('canvas, header and list rows expose the same owner accent', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await page.goto(EXAMPLE_ROUTE_PATHS.designerMultiUser);
 
     const ownedSchemas = page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-owner-color]');
     await expect.poll(async () => ownedSchemas.count()).toBeGreaterThan(0);

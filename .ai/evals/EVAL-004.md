@@ -1,14 +1,10 @@
-# EVAL-004 — Memory delta
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-004 — Class namespace
 
 ## Expected
 
-Session outcome updates only correct memory layer.
+Distingue prefijos CSS internos de data hooks estables.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.

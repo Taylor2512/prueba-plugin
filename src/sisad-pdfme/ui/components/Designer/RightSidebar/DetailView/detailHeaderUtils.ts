@@ -10,6 +10,7 @@ import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 import { getSchemaStateLabel, getSchemaTypeLabel } from '../../shared/designerLabels.js';
 import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import { normalizeText } from '../../../../../shared/text.js';
 
 /**
  * Resumen normalizado usado por `DetailHeaderCard`.
@@ -83,9 +84,9 @@ export const buildDetailHeaderSummary = (
   const ownerLabel =
     typeof activeSchema.ownerRecipientName === 'string' && activeSchema.ownerRecipientName.trim()
       ? activeSchema.ownerRecipientName.trim()
-    : typeof activeSchema.ownerRecipientId === 'string' && activeSchema.ownerRecipientId.trim()
-      ? activeSchema.ownerRecipientId.trim()
-      : '';
+      : typeof activeSchema.ownerRecipientId === 'string' && activeSchema.ownerRecipientId.trim()
+        ? activeSchema.ownerRecipientId.trim()
+        : '';
   const fileId =
     typeof activeSchema.fileId === 'string' && activeSchema.fileId.trim()
       ? activeSchema.fileId.trim()
@@ -93,7 +94,14 @@ export const buildDetailHeaderSummary = (
         ? activeSchema.fileTemplateId.trim()
         : '';
   const pageNumber = typeof activeSchema.pageNumber === 'number' && Number.isFinite(activeSchema.pageNumber) ? Math.trunc(activeSchema.pageNumber) : 0;
-  const recipientColor = interactionState.ownerColor;
+  const explicitOwnerColor =
+    normalizeText((activeSchema as SchemaForUI & { ownerColor?: string }).ownerColor) ||
+    normalizeText((activeSchema as SchemaForUI & { recipientColor?: string }).recipientColor) ||
+    normalizeText((activeSchema as SchemaForUI & { userColor?: string }).userColor) ||
+    normalizeText((activeSchema as SchemaForUI & { __designer?: { ownerColor?: string; recipientColor?: string; collaboration?: { recipientColor?: string } } }).__designer?.collaboration?.recipientColor) ||
+    normalizeText((activeSchema as SchemaForUI & { __designer?: { ownerColor?: string; recipientColor?: string; collaboration?: { recipientColor?: string } } }).__designer?.ownerColor) ||
+    normalizeText((activeSchema as SchemaForUI & { __designer?: { ownerColor?: string; recipientColor?: string; collaboration?: { recipientColor?: string } } }).__designer?.recipientColor);
+  const recipientColor = interactionState.ownerColor || explicitOwnerColor || null;
 
   const tags: HeaderSummary['tags'] = [];
   if (!schemaName.trim()) tags.push({ label: 'Sin nombre', color: 'warning' });

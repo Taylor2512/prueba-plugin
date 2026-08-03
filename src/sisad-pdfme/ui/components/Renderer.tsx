@@ -20,6 +20,8 @@ import { PluginsRegistry, OptionsContext, I18nContext, CacheContext } from '../c
 import { resolveSchemaTone, resolveSchemaToneSurface } from './Designer/shared/schemaTone.js';
 import { resolveSchemaOwnerColorValue } from '../../schemas/shared/fieldChrome.js';
 import { buildPageMetadataAttrs } from './shared/pageMetadata.js';
+import type { EffectiveCollaborationContext } from '../collaborationContext.js';
+import { resolveSchemaCollaborationState } from '../collaborationContext.js';
 
 /**
  * Props externas del Renderer.
@@ -46,6 +48,10 @@ type RendererProps = Omit<
   isEditing?: boolean;
   onDoubleClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   onMouseDownCapture?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  collaborationContext?: Pick<
+    EffectiveCollaborationContext,
+    'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor'
+  >;
 };
 
 /**
@@ -150,6 +156,7 @@ const Wrapper = ({
   outline,
   onChangeHoveringSchemaId,
   schema,
+  collaborationContext,
   selectable = true,
   isActive = false,
   isHovering = false,
@@ -180,7 +187,13 @@ const Wrapper = ({
     undefined;
   // Ownership accent comes from the single shared resolver (fieldChrome) so the
   // canvas wrapper, inner field chrome and sidebars all agree on the color.
-  const schemaOwnerColor = resolveSchemaOwnerColorValue(schema) || undefined;
+  const resolvedCollaborativeOwnerColor = collaborationContext
+    ? resolveSchemaCollaborationState(schema, collaborationContext).ownerColor
+    : null;
+  const schemaOwnerColor =
+    resolvedCollaborativeOwnerColor ||
+    resolveSchemaOwnerColorValue(schema) ||
+    undefined;
   const schemaTitle = getSchemaTitle(schema);
   const schemaTone = resolveSchemaTone(schema, selectable ? '#38a0ff' : '#94a3b8');
   const schemaSurfaceTone = resolveSchemaToneSurface(schema, '#ffffff', schema.readOnly ? 0.08 : 0.12);

@@ -1887,8 +1887,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                       args.map(({ key, value }) => ({ key, value, schemaId: schema.id })),
                     );
                   }
-                  : undefined
+                : undefined
               }
+              collaborationContext={collaborationContext}
               onMouseDownCapture={
                 !editing
                   ? (event) => {

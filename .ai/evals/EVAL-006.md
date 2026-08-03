@@ -1,14 +1,10 @@
-# EVAL-006 — Provider parity
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-006 — Subagent cost
 
 ## Expected
 
-Codex/Claude/Copilot receive same core constraints.
+No delega una tarea trivial; sí destila un log extenso.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.

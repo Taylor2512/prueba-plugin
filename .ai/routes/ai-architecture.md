@@ -1,22 +1,17 @@
-# Route — AI architecture
-
-## Owner question
-
-¿Qué evidencia mínima decide el cambio en este dominio?
+# Route — Arquitectura IA
 
 ## Load
 
-- task-card activa
-- skill `sisad-ai-architecture`
-- `.ai/architecture/AI-ASSISTANT-ARCHITECTURE-V7.md` solo si responde una incógnita
-- `.ai/knowledge/SOURCE-REGISTER.md` solo si responde una incógnita
+- task activa;
+- skill principal: `context-engineering`;
+
+- consultas puntuales a catálogos.
 
 ## Output
 
-Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
-trace IDs y condición de parada.
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
 
-## Guardrail
+## Budget
 
-Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
-consulta al registro es suficiente.
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.

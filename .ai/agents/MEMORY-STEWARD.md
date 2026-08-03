@@ -1,25 +1,12 @@
 ---
-name: memory-steward
+id: memory-steward
 mode: docs-writer
+write: true
 ---
 
 # memory-steward
 
-**Purpose:** Actualiza memoria por delta y ejecuta GC.
+Memory delta and garbage collection.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.  
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.

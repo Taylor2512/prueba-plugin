@@ -1,17 +1,12 @@
 # HANDOFF
 
-- task:
-- claim:
-- state:
-- worktree/branch/base:
+- task/claim:
+- base/worktree/branch:
 - changedFiles:
 - confirmedCause:
-- changes:
 - traceIds:
-- gatesPassed:
-- gatesFailed:
-- notRun:
+- tests/gates:
+- failures/notRun:
 - risks:
 - rollback:
 - nextAction:
-- stopCondition:

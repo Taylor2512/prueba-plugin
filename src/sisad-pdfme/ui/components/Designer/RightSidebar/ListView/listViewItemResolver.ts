@@ -49,11 +49,19 @@ export const resolveListViewItemDescriptor = (
     badges.push({ label: `Asignado a ${interactionState.owner.name}`, color: interactionState.owner.color || undefined });
   }
 
+  const explicitOwnerColor =
+    normalizeText((schema as SchemaForUI & { ownerColor?: string }).ownerColor) ||
+    normalizeText((schema as SchemaForUI & { recipientColor?: string }).recipientColor) ||
+    normalizeText((schema as SchemaForUI & { userColor?: string }).userColor) ||
+    normalizeText((schema as SchemaForUI & { __designer?: { ownerColor?: string; recipientColor?: string; collaboration?: { recipientColor?: string } } }).__designer?.collaboration?.recipientColor) ||
+    normalizeText((schema as SchemaForUI & { __designer?: { ownerColor?: string; recipientColor?: string; collaboration?: { recipientColor?: string } } }).__designer?.ownerColor) ||
+    normalizeText((schema as SchemaForUI & { __designer?: { ownerColor?: string; recipientColor?: string; collaboration?: { recipientColor?: string } } }).__designer?.recipientColor);
+
   return {
     primaryLabel,
     secondaryLabel,
     typeLabel,
-    ownerColor: interactionState.ownerColor,
+    ownerColor: interactionState.ownerColor || explicitOwnerColor || null,
     badges: badges.slice(0, 3),
     documentLabel,
     pageLabel,

@@ -1,11 +1,15 @@
 import fs from 'node:fs';
 
-const file = '.ai/memory/INDEX.md';
-const text = fs.readFileSync(file,'utf8');
-const lines = text.split(/\r?\n/).length;
-const bytes = Buffer.byteLength(text);
-console.log({lines, bytes});
-if (lines > 200 || bytes > 25000) {
-  console.error('memory index exceeds startup budget');
-  process.exit(1);
+const limits = {'.ai/memory/INDEX.md':[150,20000],'.ai/memory/CURRENT.md':[80,12000],'.ai/memory/HANDOFF.md':[100,16000]};
+let failed = false;
+for (const [file,[maxLines,maxBytes]] of Object.entries(limits)) {
+  if (!fs.existsSync(file)) continue;
+  const text = fs.readFileSync(file,'utf8');
+  const lines = text.split(/\r?\n/).length;
+  const bytes = Buffer.byteLength(text);
+  if (lines > maxLines || bytes > maxBytes) {
+    console.error(`${file}: lines=${lines}/${maxLines} bytes=${bytes}/${maxBytes}`);
+    failed = true;
+  }
 }
+process.exit(failed ? 1 : 0);

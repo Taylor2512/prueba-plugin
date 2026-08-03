@@ -1,14 +1,10 @@
-# EVAL-010 — WIP/claim
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-010 — Trace promotion
 
 ## Expected
 
-Agent does not start writer work without capacity/claim.
+Mantiene candidate hasta test/review.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.

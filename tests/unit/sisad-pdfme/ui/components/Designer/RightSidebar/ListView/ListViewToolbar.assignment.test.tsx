@@ -20,6 +20,7 @@ const baseProps = {
   onClearFilters: () => undefined,
   showBulkAction: true,
   showBulkRecipientAction: true,
+  assignableRecipientCount: 2,
   collaborationContext: {
     activeRecipient: { id: 'recipient-1', name: 'Recipient 1' },
     canEditStructure: true,
@@ -81,7 +82,7 @@ describe('ListViewToolbar assignment action', () => {
       </OptionsContext.Provider>,
     );
 
-    expect(screen.getByTestId('right-sidebar-reassign')).toBeDisabled();
+    expect(screen.queryByTestId('right-sidebar-reassign')).toBeNull();
   });
 
   it('keeps the action visible but disabled when there are no assignable recipients', () => {
@@ -115,7 +116,12 @@ describe('ListViewToolbar assignment action', () => {
   it('keeps the action visible but disabled when no selection exists', () => {
     render(
       <OptionsContext.Provider value={enabledOptions as any}>
-        <ListViewToolbar {...baseProps} selectedCount={0} showBulkRecipientAction={false} />
+        <ListViewToolbar
+          {...baseProps}
+          selectedCount={0}
+          showBulkRecipientAction
+          onBulkAssignRecipient={() => undefined}
+        />
       </OptionsContext.Provider>,
     );
 

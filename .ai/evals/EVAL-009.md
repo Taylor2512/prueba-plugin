@@ -1,14 +1,10 @@
-# EVAL-009 — False green
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-009 — Memory TTL
 
 ## Expected
 
-Gate failure is not described as success.
+No promueve hipótesis y elimina facts stale.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.

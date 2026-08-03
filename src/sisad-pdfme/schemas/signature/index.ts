@@ -13,11 +13,17 @@ import { applyCenteredImageFileInputStyle, createImageFileInput } from '../share
 
 const buildSignaturePlaceholder = (schema: SignatureSchema) => {
   const modeLabel = {
-    draw: 'Draw',
-    image: 'Image',
-    p12: 'P12',
-    provider: 'Provider',
+    draw: 'Firma dibujada',
+    image: 'Firma por imagen',
+    p12: 'Firma P12',
+    provider: 'Proveedor externo',
   }[schema.signatureMode || 'draw'];
+  const ownerLabel = String(
+    (schema as { ownerRecipientName?: string; ownerName?: string; recipientName?: string }).ownerRecipientName ||
+      (schema as { ownerRecipientName?: string; ownerName?: string; recipientName?: string }).ownerName ||
+      (schema as { ownerRecipientName?: string; ownerName?: string; recipientName?: string }).recipientName ||
+      '',
+  ).trim();
   const placeholderText = String(schema.placeholderText || 'Firmar aqui').trim() || 'Firmar aqui';
   const strokeColor = String(schema.strokeColor || '#8A5A00');
   const borderColor = String(schema.borderColor || '#D6B46B');
@@ -25,10 +31,14 @@ const buildSignaturePlaceholder = (schema: SignatureSchema) => {
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 180" preserveAspectRatio="none">
       <rect x="6" y="6" width="448" height="168" rx="16" fill="${backgroundColor}" stroke="${borderColor}" stroke-width="6" stroke-dasharray="18 12" />
+      <path d="M56 70l18-18 24 24-18 18z" fill="none" stroke="${strokeColor}" stroke-width="6" stroke-linejoin="round" />
+      <path d="M60 96h36" fill="none" stroke="${strokeColor}" stroke-width="6" stroke-linecap="round" />
       <path d="M94 118c24-8 49-49 72-49 17 0 22 21 35 21 17 0 25-34 44-34 18 0 22 30 42 30 13 0 19-16 33-16 10 0 18 6 30 18" fill="none" stroke="${strokeColor}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
       <line x1="90" y1="136" x2="370" y2="136" stroke="${borderColor}" stroke-width="5" />
-      <text x="52" y="36" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="${borderColor}">${modeLabel}</text>
-      <text x="230" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="${strokeColor}">${placeholderText}</text>
+      <text x="52" y="36" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="${borderColor}">${modeLabel}</text>
+      <text x="130" y="66" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="${strokeColor}">Firma</text>
+      ${ownerLabel ? `<text x="130" y="94" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="${strokeColor}">${ownerLabel}</text>` : ''}
+      <text x="230" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="${strokeColor}">${placeholderText}</text>
     </svg>
   `;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
@@ -58,6 +68,16 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
     const providerSource = resolveSignatureProviderSource((arg.options as { designerEngine?: unknown } | undefined)?.designerEngine);
     const provider = getSignatureProvider(arg.schema.signatureProviderKey || arg.schema.signatureProvider, providerSource);
     const schema = normalizeSignatureSchema(arg.schema, provider?.capabilities);
+    const ownerLabel = String(
+      (schema as { ownerRecipientName?: string; ownerName?: string; recipientName?: string }).ownerRecipientName ||
+        (schema as { ownerRecipientName?: string; ownerName?: string; recipientName?: string }).ownerName ||
+        (schema as { ownerRecipientName?: string; ownerName?: string; recipientName?: string }).recipientName ||
+        '',
+    ).trim();
+    const placeholderText = String(schema.placeholderText || 'Firmar aqui').trim() || 'Firmar aqui';
+    const strokeColor = String(schema.strokeColor || '#8A5A00');
+    const borderColor = String(schema.borderColor || '#D6B46B');
+    const backgroundColor = String(schema.backgroundColor || '#FFF9ED');
     const nextPlaceholder = arg.value ? arg.placeholder : buildSignaturePlaceholder(schema);
 
     const container = document.createElement('div');
@@ -79,6 +99,96 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
     });
 
     arg.rootElement.appendChild(container);
+
+    if (!arg.value) {
+      const placeholder = document.createElement('div');
+      const modeBadgeLabel = {
+        draw: 'Firma dibujada',
+        image: 'Firma por imagen',
+        p12: 'Firma P12',
+        provider: 'Proveedor externo',
+      }[schema.signatureMode || 'draw'];
+
+      Object.assign(placeholder.style, {
+        position: 'absolute',
+        inset: '0',
+        display: 'grid',
+        placeItems: 'center',
+        pointerEvents: 'none',
+        padding: '8px',
+        color: strokeColor,
+        textAlign: 'center',
+      });
+
+      const content = document.createElement('div');
+      Object.assign(content.style, {
+        display: 'grid',
+        gap: '2px',
+        justifyItems: 'center',
+        width: '100%',
+      });
+
+      const iconRow = document.createElement('div');
+      Object.assign(iconRow.style, {
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '28px',
+        height: '28px',
+        borderRadius: '999px',
+        background: 'rgba(214, 180, 107, 0.16)',
+        border: `1px solid ${borderColor}`,
+        color: strokeColor,
+        fontSize: '16px',
+        lineHeight: '1',
+        fontWeight: '700',
+      });
+      iconRow.textContent = '✍';
+
+      const title = document.createElement('div');
+      Object.assign(title.style, {
+        fontSize: '12px',
+        fontWeight: '700',
+        lineHeight: '1.1',
+      });
+      title.textContent = 'Firma';
+
+      const owner = document.createElement('div');
+      Object.assign(owner.style, {
+        fontSize: '10px',
+        lineHeight: '1.1',
+        opacity: '0.9',
+      });
+      owner.textContent = ownerLabel || placeholderText;
+
+      const badge = document.createElement('div');
+      Object.assign(badge.style, {
+        fontSize: '9px',
+        lineHeight: '1.1',
+        textTransform: 'uppercase',
+        letterSpacing: '0.04em',
+        fontWeight: '700',
+        opacity: '0.85',
+      });
+      badge.textContent = modeBadgeLabel;
+
+      const backdrop = document.createElement('div');
+      Object.assign(backdrop.style, {
+        position: 'absolute',
+        inset: '0',
+        background: `linear-gradient(180deg, ${backgroundColor} 0%, rgba(255,255,255,0.85) 100%)`,
+        borderRadius: 'inherit',
+        opacity: '0.88',
+      });
+
+      placeholder.appendChild(backdrop);
+      content.appendChild(iconRow);
+      content.appendChild(title);
+      content.appendChild(owner);
+      content.appendChild(badge);
+      placeholder.appendChild(content);
+      container.appendChild(placeholder);
+    }
 
     if (arg.value) {
       renderPreviewImage(container, arg.value);

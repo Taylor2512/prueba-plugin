@@ -1,0 +1,26 @@
+{"id": "FX-001", "name": "focus.restore", "owner": "DesignerEffectCoordinator", "purpose": "Restaurar foco tras modal/panel/acción", "payload": "focusTarget", "status": "proposed"}
+{"id": "FX-002", "name": "interaction.suspend", "owner": "InteractionMachine", "purpose": "Suspender Moveable/Selecto/shortcuts", "payload": "reason", "status": "proposed"}
+{"id": "FX-003", "name": "interaction.resume", "owner": "InteractionMachine", "purpose": "Reactivar interacción sin perder selección", "payload": "reason", "status": "proposed"}
+{"id": "FX-004", "name": "viewport.preserve", "owner": "ViewportAnchorService", "purpose": "Preservar página/zoom/scroll al cambiar layout", "payload": "anchor", "status": "proposed"}
+{"id": "FX-005", "name": "canvas.navigate", "owner": "CanvasNavigationService", "purpose": "Localizar y enfocar schema", "payload": "schemaUid", "status": "proposed"}
+{"id": "FX-006", "name": "persistence.save", "owner": "PersistenceEffect", "purpose": "Guardar revisión mediante adapter", "payload": "revision", "status": "proposed"}
+{"id": "FX-007", "name": "persistence.autosave", "owner": "PersistenceEffect", "purpose": "Autosave cancelable/debounced", "payload": "revision", "status": "proposed"}
+{"id": "FX-008", "name": "accessibility.announce", "owner": "AccessibilityEffect", "purpose": "Emitir live-region", "payload": "message", "status": "proposed"}
+{"id": "FX-009", "name": "feedback.drop", "owner": "DesignerFeedbackEffect", "purpose": "Flash de drop/commit", "payload": "schemaUid", "status": "proposed"}
+{"id": "FX-010", "name": "feedback.drag-preview", "owner": "DragFeedbackEffect", "purpose": "Preview visual de drag", "payload": "schemaType", "status": "proposed"}
+{"id": "FX-011", "name": "overlay.tooltip", "owner": "TooltipPrimitive", "purpose": "Tooltip accesible/collision-aware", "payload": "actionId", "status": "proposed"}
+{"id": "FX-012", "name": "resource.object-url-revoke", "owner": "ResourceCleanupEffect", "purpose": "Revocar URL temporal", "payload": "url", "status": "proposed"}
+{"id": "FX-013", "name": "event.subscribe", "owner": "EventDispatcherLifecycle", "purpose": "Registrar listener", "payload": "listenerId", "status": "proposed"}
+{"id": "FX-014", "name": "event.unsubscribe", "owner": "EventDispatcherLifecycle", "purpose": "Limpiar listener", "payload": "listenerId", "status": "proposed"}
+{"id": "FX-015", "name": "viewport.observe", "owner": "ViewportEffect", "purpose": "ResizeObserver y densidad", "payload": "rect", "status": "proposed"}
+{"id": "FX-016", "name": "clipboard.read", "owner": "ClipboardAdapter", "purpose": "Leer clipboard browser", "payload": "format", "status": "proposed"}
+{"id": "FX-017", "name": "clipboard.write", "owner": "ClipboardAdapter", "purpose": "Escribir clipboard browser", "payload": "format", "status": "proposed"}
+{"id": "FX-018", "name": "artifact.generate", "owner": "ArtifactsEffect", "purpose": "Generar PDF con preflight", "payload": "correlationId", "status": "proposed"}
+{"id": "FX-019", "name": "artifact.convert", "owner": "ArtifactsEffect", "purpose": "PDF/images conversion", "payload": "correlationId", "status": "proposed"}
+{"id": "FX-020", "name": "diagnostic.capture", "owner": "DiagnosticsEffect", "purpose": "Guardar evidencia resumida", "payload": "evidenceId", "status": "proposed"}
+{"id": "FX-021", "name": "catalog.retheme", "owner": "CatalogToneEffect", "purpose": "Actualizar color del catálogo sin recolorear schemas", "payload": "recipientId,color", "status": "proposed"}
+{"id": "FX-022", "name": "schema.chrome.refresh", "owner": "FieldChromeEffect", "purpose": "Actualizar chrome desde ownerColor", "payload": "schemaUid,color", "status": "proposed"}
+{"id": "FX-023", "name": "class-prefix.audit", "owner": "ClassNamespaceEffect", "purpose": "Detectar concatenaciones y selectores inestables", "payload": "prefix,suffix", "status": "proposed"}
+{"id": "FX-024", "name": "context.pack.materialize", "owner": "ContextPackBuilder", "purpose": "Generar contexto limitado para una tarea", "payload": "taskId", "status": "proposed"}
+{"id": "FX-025", "name": "task.materialize", "owner": "TaskLifecycle", "purpose": "Crear task-card Markdown desde backlog JSONL", "payload": "taskId", "status": "proposed"}
+{"id": "FX-026", "name": "task.archive", "owner": "TaskLifecycle", "purpose": "Compactar tarea completada", "payload": "taskId", "status": "proposed"}

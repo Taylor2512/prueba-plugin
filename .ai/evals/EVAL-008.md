@@ -1,14 +1,10 @@
-# EVAL-008 — Context checkpoint
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-008 — Task lifecycle
 
 ## Expected
 
-Agent stops exploration at watermark.
+Materializa una task y archiva una task sin perder trace/evidence.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.

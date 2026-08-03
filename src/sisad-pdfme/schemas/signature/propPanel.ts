@@ -538,10 +538,12 @@ export const propPanel: PropPanel<SignatureSchema> = {
         widget: 'card',
         column: 2,
         properties: {
-          allowDraw: buildSwitchField('Permitir dibujar', isProviderMode || isP12Mode || isImageMode),
-          allowUploadImage: buildSwitchField('Permitir subir imagen', isProviderMode || isP12Mode || isDrawMode),
-          allowP12: buildSwitchField('Permitir P12', isProviderMode || isDrawMode || isImageMode),
-          allowExternalProvider: buildSwitchField('Permitir proveedor externo', isDrawMode || isImageMode || isP12Mode),
+          // Las capacidades principales ya quedan derivadas por el modo activo.
+          // Solo mostramos el override cuando realmente puede cambiarse aquí.
+          allowDraw: buildSwitchField('Permitir dibujar', isDrawMode),
+          allowUploadImage: buildSwitchField('Permitir subir imagen', isImageMode),
+          allowP12: buildSwitchField('Permitir P12', isP12Mode),
+          allowExternalProvider: buildSwitchField('Permitir proveedor externo', isProviderMode),
           allowClear: buildSwitchField('Permitir limpiar'),
           allowReplace: buildSwitchField('Permitir reemplazar'),
           allowPreview: buildSwitchField('Permitir preview'),

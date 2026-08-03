@@ -227,7 +227,6 @@ export const resolveSchemaCollaborationState = (
     normalizeNullableString((schema as SchemaForUI & { userColor?: string }).userColor) ||
     ownerColor ||
     (createdBy ? collaborationContext?.recipientColorMap?.get(createdBy) || null : null) ||
-    collaborationContext?.actorColor ||
     null;
   const activeRecipientId =
     collaborationContext?.isGlobalView === true ? null : normalizeNullableString(collaborationContext?.activeRecipientId);

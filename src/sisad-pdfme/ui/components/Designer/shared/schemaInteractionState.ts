@@ -103,13 +103,12 @@ const resolveLockOwnerId = (schema: SchemaForUI, context?: SchemaInteractionStat
   null;
 
 /**
- * Resuelve el color del owner usando el mismo orden de prioridad que el resto
- * del sistema colaborativo y cae a `actorColor` si hace falta.
+ * Resuelve el color del owner usando la metadata persistida y los recipients
+ * registrados. El color activo del usuario no debe recolorear schemas ya
+ * existentes.
  */
 const resolveDesignerSchemaOwnerColor = (schema: SchemaForUI, context?: OwnerColorContext | null): string => {
-  const baseColor = resolveSchemaOwnerColorBase(schema, context?.recipientOptions || []);
-  if (baseColor) return baseColor;
-  return normalizeText(context?.actorColor);
+  return resolveSchemaOwnerColorBase(schema, context?.recipientOptions || []);
 };
 
 /**

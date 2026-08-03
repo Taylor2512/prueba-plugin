@@ -6,7 +6,7 @@
  */
 import { CalendarCheck } from 'lucide-react';
 import { format } from 'date-fns';
-import * as dateFnsLocales from 'date-fns/locale';
+import * as dateFnsLocales from 'date-fns/locale/index.js';
 import type { Locale as DateFnsLocale } from 'date-fns';
 import { renderLucideIcon } from '../schemaBuilder.js';
 import { createSigningSchemaPlugin } from './signingSchemaFactory.js';

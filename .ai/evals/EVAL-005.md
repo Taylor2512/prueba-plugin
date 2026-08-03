@@ -1,14 +1,10 @@
-# EVAL-005 — Traceability
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-005 — No false green
 
 ## Expected
 
-Diff maps to methods/use cases/events/tests.
+Reporta gates no ejecutados.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.

@@ -82,6 +82,7 @@ import SchemaDragPreview from './Canvas/overlays/SchemaDragPreview.js';
 import SchemaDropCommitFlash from './Canvas/overlays/SchemaDropCommitFlash.js';
 import SchemaDropPlaceholder from './Canvas/overlays/SchemaDropPlaceholder.js';
 import { installPassiveTouchListenerGuard } from './shared/passiveTouchListeners.js';
+import { normalizeSignatureSchema, type SignatureSchema } from '../../../schemas/signature/types.js';
 
 type CatalogLayout = 'list' | 'tiles' | 'icons';
 
@@ -669,14 +670,24 @@ const TemplateEditor = ({
   const [leftSidebarLiveWidth, setLeftSidebarLiveWidth] = useState(
     leftSidebarVisible && leftSidebarPresentation === 'docked' ? responsiveLeftSidebarWidthRaw : 0,
   );
+  const leftSidebarExpandedWidthRef = useRef(
+    leftSidebarVisible && leftSidebarPresentation === 'docked' ? responsiveLeftSidebarWidthRaw : 0,
+  );
   const shouldReserveLeftSidebarSpace =
     leftSidebarVisible &&
     leftSidebarReserveSpace === true &&
     leftSidebarPresentation === 'docked';
   const leftSidebarWidth = shouldReserveLeftSidebarSpace ? leftSidebarLiveWidth : 0;
-  const leftSidebarContentOffsetX = shouldReserveLeftSidebarSpace
-    ? Math.max(0, (responsiveLeftSidebarWidthRaw - leftSidebarWidth) / 2)
-    : 0;
+  useEffect(() => {
+    if (!shouldReserveLeftSidebarSpace) return;
+    if (leftSidebarLiveWidth > 96) {
+      leftSidebarExpandedWidthRef.current = leftSidebarLiveWidth;
+    }
+  }, [leftSidebarLiveWidth, shouldReserveLeftSidebarSpace]);
+  const leftSidebarContentOffsetX =
+    shouldReserveLeftSidebarSpace && leftSidebarLiveWidth > 0 && leftSidebarLiveWidth < leftSidebarExpandedWidthRef.current
+      ? Math.max(0, (leftSidebarExpandedWidthRef.current - leftSidebarLiveWidth) * 0.6)
+      : 0;
 
   const [hoveringSchemaId, setHoveringSchemaId] = useState<string | null>(null);
   const [activeElements, setActiveElements] = useState<HTMLElement[]>([]);
@@ -1846,20 +1857,93 @@ const TemplateEditor = ({
     },
   });
 
-  const updateTemplate = useCallback(async (newTemplate: Template) => {
-    setVisibleTemplate(newTemplate);
-    visibleTemplateRef.current = newTemplate;
-    const sl = await template2SchemasList(newTemplate);
-    setSchemasList(sl);
-    schemasListRef.current = sl;
-    setPageCursor((prev) => {
-      if (sl.length <= 0) return 0;
-      return Math.max(0, Math.min(prev, sl.length - 1));
-    });
-    if (pageCursorRef.current >= sl.length && canvasRef.current?.scroll) {
-      canvasRef.current.scroll({ top: 0, behavior: 'smooth' });
-    }
-  }, []);
+  const materializeLoadedSchemasOwnership = useCallback(
+    (pages: SchemaForUI[][]): SchemaForUI[][] => {
+      const fallbackOwnerId =
+        String(collaborationContext.ownerRecipientId || collaborationContext.activeRecipientId || collaborationContext.actorId || '').trim() ||
+        null;
+      const fallbackOwnerName =
+        String(collaborationContext.ownerRecipientName || collaborationContext.activeRecipient?.name || '').trim() || null;
+
+      if (!fallbackOwnerId && !fallbackOwnerName) return pages;
+
+      return pages.map((pageSchemas) =>
+        pageSchemas.map((schema) => {
+          const normalizedSchema =
+            schema.type === 'signature' || schema.type === 'initials'
+              ? (normalizeSignatureSchema(schema as SignatureSchema) as SchemaForUI)
+              : schema;
+          const existingOwnerId =
+            String((normalizedSchema as SchemaForUI & { ownerRecipientId?: string | null }).ownerRecipientId || '').trim() ||
+            String(
+              Array.isArray((normalizedSchema as SchemaForUI & { ownerRecipientIds?: string[] | string | null }).ownerRecipientIds)
+                ? (normalizedSchema as SchemaForUI & { ownerRecipientIds?: string[] | string | null }).ownerRecipientIds?.[0] || ''
+                : (normalizedSchema as SchemaForUI & { ownerRecipientIds?: string[] | string | null }).ownerRecipientIds || '',
+            ).trim();
+          const recipientId = String((normalizedSchema as SchemaForUI & { recipientId?: string | null }).recipientId || '').trim();
+          const existingOwnerTone =
+            String((normalizedSchema as SchemaForUI & { ownerColor?: string | null }).ownerColor || '').trim() ||
+            String((normalizedSchema as SchemaForUI & { userColor?: string | null }).userColor || '').trim() ||
+            String((normalizedSchema as SchemaForUI & { recipientColor?: string | null }).recipientColor || '').trim() ||
+            String((normalizedSchema as SchemaForUI & { __designer?: { ownerColor?: string | null; recipientColor?: string | null; collaboration?: { recipientColor?: string | null } } }).__designer?.collaboration?.recipientColor || '').trim() ||
+            String((normalizedSchema as SchemaForUI & { __designer?: { ownerColor?: string | null; recipientColor?: string | null; collaboration?: { recipientColor?: string | null } } }).__designer?.ownerColor || '').trim() ||
+            String((normalizedSchema as SchemaForUI & { __designer?: { ownerColor?: string | null; recipientColor?: string | null; collaboration?: { recipientColor?: string | null } } }).__designer?.recipientColor || '').trim();
+          const nextOwnerRecipientId = recipientId || fallbackOwnerId;
+          if (!nextOwnerRecipientId) return normalizedSchema;
+          const resolvedOwnerColor =
+            existingOwnerTone ||
+            collaborationContext.recipientColorMap.get(nextOwnerRecipientId) ||
+            collaborationContext.ownerColor ||
+            collaborationContext.userColor ||
+            null;
+
+          return {
+            ...normalizedSchema,
+            ownerRecipientId: existingOwnerId || nextOwnerRecipientId,
+            ownerRecipientIds: [existingOwnerId || nextOwnerRecipientId],
+            ownerRecipientName: fallbackOwnerName || undefined,
+            recipientId: recipientId || nextOwnerRecipientId,
+            ...(resolvedOwnerColor
+              ? {
+                  ownerColor: resolvedOwnerColor,
+                  userColor: resolvedOwnerColor,
+                  recipientColor: resolvedOwnerColor,
+                }
+              : {}),
+          } as SchemaForUI;
+        }),
+      );
+    },
+    [
+      collaborationContext.actorId,
+      collaborationContext.activeRecipient?.name,
+      collaborationContext.activeRecipientId,
+      collaborationContext.ownerRecipientId,
+      collaborationContext.ownerRecipientName,
+      collaborationContext.ownerColor,
+      collaborationContext.recipientColorMap,
+      collaborationContext.userColor,
+    ],
+  );
+
+  const updateTemplate = useCallback(
+    async (newTemplate: Template) => {
+      setVisibleTemplate(newTemplate);
+      visibleTemplateRef.current = newTemplate;
+      const sl = await template2SchemasList(newTemplate);
+      const nextSchemas = materializeLoadedSchemasOwnership(sl);
+      setSchemasList(nextSchemas);
+      schemasListRef.current = nextSchemas;
+      setPageCursor((prev) => {
+        if (nextSchemas.length <= 0) return 0;
+        return Math.max(0, Math.min(prev, nextSchemas.length - 1));
+      });
+      if (pageCursorRef.current >= nextSchemas.length && canvasRef.current?.scroll) {
+        canvasRef.current.scroll({ top: 0, behavior: 'smooth' });
+      }
+    },
+    [materializeLoadedSchemasOwnership],
+  );
 
   useEffect(() => {
     const handler = (ev: Event) => {
@@ -2104,6 +2188,7 @@ const TemplateEditor = ({
           nextSchemas = cloneDeep(normalizedTemplate.schemas || [[]]);
         }
       }
+      nextSchemas = materializeLoadedSchemasOwnership(nextSchemas);
       if (requestId !== loadDocumentRequestRef.current) {
         if (pendingCanvasDocumentIdRef.current === document.id) {
           pendingCanvasDocumentIdRef.current = null;
@@ -2125,7 +2210,7 @@ const TemplateEditor = ({
       setPageCursor(safePageCursor);
       onPageCursorChange(safePageCursor, nextSchemas.length);
     },
-    [onPageCursorChange],
+    [materializeLoadedSchemasOwnership, onPageCursorChange],
   );
 
   const persistActiveDocumentSnapshot = useCallback(
@@ -3547,11 +3632,11 @@ const TemplateEditor = ({
           const docName = file.name?.trim() || `Documento ${uploadedDocuments.length + 1}`;
           const updatedAt = Date.now();
 
-          setUploadedDocuments((prev) =>
-            prev.concat({
-              id: newDocumentId,
-              name: docName,
-              template: nextTemplate,
+      setUploadedDocuments((prev) =>
+        prev.concat({
+          id: newDocumentId,
+          name: docName,
+          template: nextTemplate,
               pageCount: targetPageCount,
               updatedAt,
             }),
@@ -3560,7 +3645,7 @@ const TemplateEditor = ({
 
           if (i === 0) {
             persistActiveDocumentSnapshot('document-upload');
-            setActiveDocumentId(newDocumentId);
+          setActiveDocumentId(newDocumentId);
             emitActiveDocumentChange({
               id: newDocumentId,
               name: docName,
@@ -3569,7 +3654,7 @@ const TemplateEditor = ({
               updatedAt,
             });
             setVisibleTemplate(nextTemplate);
-            setSchemasList(normalizedSchemas);
+            setSchemasList(materializeLoadedSchemasOwnership(normalizedSchemas));
             pushTemplateUpdate(nextTemplate, {
               documentId: newDocumentId,
               fileId: newDocumentId,
@@ -3591,6 +3676,7 @@ const TemplateEditor = ({
     },
     [
       emitActiveDocumentChange,
+      materializeLoadedSchemasOwnership,
       persistActiveDocumentSnapshot,
       pushTemplateUpdate,
       onEditEnd,
@@ -3633,9 +3719,9 @@ const TemplateEditor = ({
       normalizedSchemas.push([]);
     }
 
-    setSchemasList(normalizedSchemas);
+    setSchemasList(materializeLoadedSchemasOwnership(normalizedSchemas));
     setPageCursor((prev) => Math.max(0, Math.min(prev, targetPageCount - 1)));
-  }, [activeBasePdf, pageSizes.length, schemasList]);
+  }, [activeBasePdf, materializeLoadedSchemasOwnership, pageSizes.length, schemasList]);
 
   useEffect(() => {
     if (!activeDocumentId) return;

@@ -1,9 +1,10 @@
 ---
 name: sisad-traceability
-description: Map changed symbols to use cases, events, effects and tests.
+description: Actualiza relaciones entre métodos, casos y pruebas.
 tools: Read, Grep, Glob
+skills:
+  - traceability
 ---
 
-Use `AGENTS.md`, the active task-card and its route. Work in a separate context.
-Return at most 1,200 tokens using the evidence-packet schema. Do not edit unless
-the task explicitly grants a dedicated worktree.
+Lee `AGENTS.md`, la task activa y su route. Devuelve ≤1.200 tokens. No edites
+salvo worktree/claim explícito. La memoria automática no sustituye `.ai/memory`.

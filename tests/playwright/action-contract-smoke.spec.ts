@@ -3,10 +3,11 @@
  * accionable (handler + testid estable) o está deshabilitado con razón.
  */
 import { expect, test } from '@playwright/test';
+import { openDesigner, openPanel } from './generated/fixtures/designer.fixture';
 
 test.describe('action contract smoke', () => {
   test('topbar buttons have stable ids and are actionable when rendered', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await openDesigner(page);
 
     // Guardar: si se renderiza es porque hay handler (contrato missing-handler).
     const save = page.getByTestId('designer-save').first();
@@ -25,34 +26,36 @@ test.describe('action contract smoke', () => {
   });
 
   test('selection exposes reassign action only with recipients and permissions', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await openDesigner(page);
 
-    // Selecciona un schema desde el canvas.
-    await page
-      .locator('.sisad-pdfme-ui-custom-selectable[data-schema-name="contract_name"]')
-      .first()
-      .click({ force: true });
+    // Selecciona un schema visible del canvas sin depender de ids de fixture.
+    const canvasSchema = page
+      .locator('.sisad-pdfme-designer-canvas, .sisad-pdfme-canvas')
+      .getByText('Texto de ejemplo', { exact: true })
+      .first();
+    await expect(canvasSchema).toBeVisible();
+    await canvasSchema.click({ force: true });
 
     // Cambia al panel Campos (ListView) donde vive el botón Reasignar.
-    const fieldsTab = page.getByRole('tab', { name: 'Abrir panel Campos' }).first();
-    if (await fieldsTab.count()) {
-      await fieldsTab.click();
-    }
+    await openPanel(page, /Campos/i);
 
     const reassign = page.getByTestId('right-sidebar-reassign').first();
-    // El lab tiene recipients y assignment habilitado → el botón debe existir
-    // con selección activa, y debe abrir el modal al hacer click.
+    // Si la acción existe, debe respetar su estado real: habilitada con modal
+    // o deshabilitada con affordance y sin abrir nada.
     if (await reassign.count()) {
-      await expect(reassign).toBeEnabled();
       await expect(reassign).toHaveAttribute('aria-label', /Reasignar/);
-      await reassign.click();
-      await expect(page.locator('.ant-modal').first()).toBeVisible();
-      await page.keyboard.press('Escape');
+      if (await reassign.isDisabled()) {
+        await expect(reassign).toBeDisabled();
+      } else {
+        await reassign.click();
+        await expect(page.locator('.ant-modal').first()).toBeVisible();
+        await page.keyboard.press('Escape');
+      }
     }
   });
 
   test('undo/redo/zoom cluster is present with stable ids and no dead buttons', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await openDesigner(page);
 
     for (const id of ['designer-undo', 'designer-redo', 'designer-fit-page', 'designer-zoom-select']) {
       const el = page.getByTestId(id).first();

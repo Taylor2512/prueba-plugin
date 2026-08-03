@@ -1,15 +1,12 @@
 # CURRENT
 
 - verifiedAt:
-- sprintGoal:
 - activeTask:
-- state:
 - worktree:
 - branch:
 - baseCommit:
+- currentFinding:
 - lastGate:
-- blockers:
+- blocker:
 - nextAction:
 - stopCondition:
-
-Reemplazar; no acumular historial.

@@ -1,0 +1,18 @@
+{"id": "context-engineering", "description": "Build minimal context packs and stop context rot.", "aliases": ["sisad-context-packet", "sisad-context-budget", "sisad-context-rot-check"]}
+{"id": "recipient-assignment", "description": "Recipients, owner color, locks and reassignment.", "aliases": ["sisad-recipient-assignment-policy", "sisad-collaboration-assignments"]}
+{"id": "left-sidebar", "description": "Catalog, layouts, search, favorites and drag/drop.", "aliases": ["sisad-left-sidebar-catalog"]}
+{"id": "canvas-safety", "description": "Selection, geometry, Moveable, Selecto and placement.", "aliases": ["sisad-canvas-interaction", "sisad-canvas-safety", "sisad-designer-safety"]}
+{"id": "inspector-contract", "description": "DetailView taxonomy, widgets and property writers.", "aliases": ["sisad-inspector-contract", "sisad-right-sidebar-contract"]}
+{"id": "schema-family", "description": "One schema across all surfaces and snapshot.", "aliases": ["sisad-schema-behavior-matrix", "sisad-schema-family-refactor", "sisad-schema-plugin"]}
+{"id": "event-effect", "description": "Intent, policy, command, event, effect and cleanup.", "aliases": ["sisad-event-effect-contract", "sisad-command-history"]}
+{"id": "configuration", "description": "ConfigService, selectors, actions and visibility.", "aliases": ["sisad-configuration-service", "sisad-action-state"]}
+{"id": "snapshot", "description": "Snapshot, documents, routing and migrations.", "aliases": ["sisad-snapshot-compatibility", "sisad-multi-document-routing"]}
+{"id": "runtime-parity", "description": "Designer, Form, Viewer, Generator and controller parity.", "aliases": ["sisad-form-viewer-parity", "sisad-controller-parity"]}
+{"id": "responsive-ux", "description": "Responsive surfaces, accessibility and visual regression.", "aliases": ["sisad-responsive-ux", "sisad-accessibility", "sisad-visual-regression"]}
+{"id": "tailwind-system", "description": "Tailwind-first tokens and CSS boundary.", "aliases": ["sisad-tailwind-design-system", "sisad-css-tailwind"]}
+{"id": "quality-evidence", "description": "Focal tests, log distillation, gates and no false green.", "aliases": ["sisad-quality-gates", "sisad-testing-pyramid", "sisad-test-log-distillation"]}
+{"id": "dry-refactor", "description": "Deduplication without semantic merges.", "aliases": ["sisad-dry-refactor", "sisad-dry-refactoring", "sisad-dedup-triage"]}
+{"id": "public-api", "description": "Public API, portability and backward compatibility.", "aliases": ["sisad-public-api-compatibility", "sisad-declarative-instance"]}
+{"id": "memory-gc", "description": "Memory delta, TTL, invalidation and compaction.", "aliases": ["sisad-memory-delta", "sisad-memory-scrum", "sisad-knowledge-gc"]}
+{"id": "worktree-coordination", "description": "Claims, leases, worktrees and atomic handoffs.", "aliases": ["sisad-worktree-coordination", "sisad-task-orchestration", "sisad-orchestrate-task"]}
+{"id": "traceability", "description": "UC/BHV/MTH/EVT/FX/TST/TSK graph maintenance.", "aliases": ["sisad-behavior-traceability", "sisad-method-registry"]}

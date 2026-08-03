@@ -1,11 +1,9 @@
-# Claude Code — adaptador delgado
+# Claude Code — adaptador V8
 
-Fuente canónica: `AGENTS.md` y `.ai/`.
+Fuente canónica: `AGENTS.md`, `.ai/START.md`, task-card, route y skill.
 
-- Carga una sola task-card, ruta y skill.
-- Usa subagentes para exploración/logs que contaminarían el contexto principal.
-- No uses agent teams por defecto: su coste es sustancialmente mayor.
-- La memoria automática de Claude es auxiliar; `.ai/memory/` es la memoria
-  durable compartida.
-- Usa hooks para políticas mecánicas, no prompts largos.
-- Revalida rama, worktree, commit base y diff tras compactar o reanudar.
+- Usa subagentes para exploración, documentación o logs extensos.
+- Precarga como máximo una skill en cada subagente.
+- La auto-memory de Claude es auxiliar; `.ai/memory` es la memoria compartida.
+- Usa hooks para reglas deterministas, no para duplicar prompts.
+- Revalida worktree, branch, base y diff al reanudar o compactar.

@@ -1,14 +1,10 @@
-# EVAL-003 — No broad load
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-003 — Schema family
 
 ## Expected
 
-Agent refuses to read all docs/consolidated files.
+Recupera surfaces y DetailView de checkboxGroup sin cargar todas las familias.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.

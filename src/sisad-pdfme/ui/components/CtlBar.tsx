@@ -128,6 +128,11 @@ type ZoomProps = {
   forceStepperButtons?: boolean;
 };
 
+const CONTROL_BAR_ICON_BUTTON_CLASS_NAME = mergeClassNames(
+  UI_CLASSNAME + 'control-bar-icon-btn',
+  'inline-flex items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-slate-700 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-100 disabled:text-slate-300',
+);
+
 /**
  * Control compacto de zoom.
  *
@@ -142,7 +147,7 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable', for
   const zoomButtonClassName =
     mergeClassNames(
       UI_CLASSNAME + 'zoom-button',
-      'inline-flex h-5 w-5 min-w-5 items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] motion-reduce:transition-none transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50',
+      'inline-flex h-5 w-5 min-w-5 items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-slate-700 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-100 disabled:text-slate-300',
     );
   const zoomSelectClassName = mergeClassNames(
     UI_CLASSNAME + 'zoom-select',
@@ -165,7 +170,7 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable', for
           data-testid="designer-zoom-out"
           disabled={minZoom >= nextZoomOut}
           onClick={() => setZoomLevel(nextZoomOut)}
-          icon={<Minus size={14} color={iconColor} />}
+          icon={<Minus size={14} color={iconColor || 'currentColor'} />}
         />
       ) : null}
         <Select
@@ -187,7 +192,7 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable', for
           data-testid="designer-zoom-in"
           disabled={maxZoom < nextZoomIn}
           onClick={() => setZoomLevel(nextZoomIn)}
-          icon={<Plus size={14} color={iconColor} />}
+          icon={<Plus size={14} color={iconColor || 'currentColor'} />}
         />
       ) : null}
     </div>
@@ -469,7 +474,7 @@ const CtlBar = (props: CtlBarProps) => {
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-10 items-center gap-1 rounded-[10px] border border-slate-200 bg-white p-1 shadow-[0_4px_14px_rgba(15,23,42,0.08)]')}>
           {showPageNavButtons ? (
             <Button
-              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border border-transparent bg-transparent p-0 text-slate-700 motion-reduce:transition-none transition-[background-color,color] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50')}
+              className={mergeClassNames(CONTROL_BAR_ICON_BUTTON_CLASS_NAME, 'h-8 min-h-8 w-8 min-w-8 rounded-lg')}
               type="text"
               disabled={pageCursor <= 0}
               onClick={() => setPageCursor((currentPage) => Math.max(0, currentPage - 1))}
@@ -484,7 +489,7 @@ const CtlBar = (props: CtlBarProps) => {
           </Dropdown>
           {showPageNavButtons ? (
             <Button
-              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] motion-reduce:transition-none transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
+              className={mergeClassNames(CONTROL_BAR_ICON_BUTTON_CLASS_NAME, 'h-[1.5rem] min-h-[1.5rem] w-[1.5rem] min-w-[1.5rem] rounded-md')}
               type="text"
               disabled={pageCursor + 1 >= pageNum}
               onClick={() => setPageCursor((currentPage) => Math.min(pageNum - 1, currentPage + 1))}
@@ -511,7 +516,7 @@ const CtlBar = (props: CtlBarProps) => {
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-9 items-center gap-0.5 rounded-lg border border-slate-200 bg-white p-0.5 shadow-sm')}>
           {saveAction.visible ? (
             <Button
-              className={mergeClassNames(UI_CLASSNAME + 'control-bar-text-btn', 'inline-flex h-[30px] items-center rounded-md border border-transparent bg-transparent px-2 text-[12px] font-semibold text-slate-800 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50')}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-text-btn', 'inline-flex h-[30px] items-center rounded-md border border-transparent bg-transparent px-2 text-[12px] font-semibold text-slate-800 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-100')}
               type="text"
               onClick={onSave}
               disabled={!saveAction.enabled || isSaving}
@@ -544,7 +549,7 @@ const CtlBar = (props: CtlBarProps) => {
           {moreMenuItems.length > 0 ? (
             <Dropdown menu={{ items: moreMenuItems, onClick: handleMoreMenuClick, className: "w-[216px] max-h-[min(60vh,360px)] overflow-y-auto rounded-lg border border-slate-200 p-1 shadow-[0_12px_28px_rgba(15,23,42,0.14)] [&_.ant-dropdown-menu-item]:min-h-[30px] [&_.ant-dropdown-menu-item]:rounded-md [&_.ant-dropdown-menu-item]:px-2 [&_.ant-dropdown-menu-item]:py-1 [&_.ant-dropdown-menu-item]:text-[12px] [&_.ant-dropdown-menu-item]:text-slate-700 [&_.ant-dropdown-menu-title-content]:text-[12px] [&_.ant-dropdown-menu-item-group-title]:px-2 [&_.ant-dropdown-menu-item-group-title]:pb-0.5 [&_.ant-dropdown-menu-item-group-title]:pt-1.5 [&_.ant-dropdown-menu-item-group-title]:text-[10px] [&_.ant-dropdown-menu-item-group-title]:font-semibold [&_.ant-dropdown-menu-item-group-title]:uppercase [&_.ant-dropdown-menu-item-group-title]:tracking-[0.08em] [&_.ant-dropdown-menu-item-group-title]:text-slate-400 [&_.ant-dropdown-menu-item-group-list]:m-0 [&_.ant-dropdown-menu-item-group-list]:p-0 [&_.ant-dropdown-menu-item-divider]:my-1" }} placement="bottomRight" trigger={['click']} getPopupContainer={() => document.body}>
               <Button
-                className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[30px] min-h-[30px] w-[30px] min-w-[30px] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-slate-600 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50')}
+                className={mergeClassNames(CONTROL_BAR_ICON_BUTTON_CLASS_NAME, 'h-[30px] min-h-[30px] w-[30px] min-w-[30px] rounded-md')}
                 type="text"
                 title="Más acciones"
                 aria-label="Más acciones"
@@ -556,11 +561,11 @@ const CtlBar = (props: CtlBarProps) => {
         </div>
       </div>
 
-      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--bottom-right', 'absolute bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--bottom-right', 'absolute bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-10 items-center gap-1 rounded-[10px] border border-slate-200 bg-white p-1 shadow-[0_4px_14px_rgba(15,23,42,0.08)]')}>
           {undoAction.visible ? (
             <Button
-              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] motion-reduce:transition-none transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
+              className={mergeClassNames(CONTROL_BAR_ICON_BUTTON_CLASS_NAME, 'h-[1.5rem] min-h-[1.5rem] w-[1.5rem] min-w-[1.5rem] rounded-md')}
               type="text"
               onClick={onUndo}
               disabled={!undoAction.enabled}
@@ -572,7 +577,7 @@ const CtlBar = (props: CtlBarProps) => {
           ) : null}
           {redoAction.visible ? (
             <Button
-              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] motion-reduce:transition-none transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
+              className={mergeClassNames(CONTROL_BAR_ICON_BUTTON_CLASS_NAME, 'h-[1.5rem] min-h-[1.5rem] w-[1.5rem] min-w-[1.5rem] rounded-md')}
               type="text"
               onClick={onRedo}
               disabled={!redoAction.enabled}
@@ -584,7 +589,7 @@ const CtlBar = (props: CtlBarProps) => {
           ) : null}
           {showFitAction && fitPageAction.visible ? (
             <Button
-              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] motion-reduce:transition-none transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
+              className={mergeClassNames(CONTROL_BAR_ICON_BUTTON_CLASS_NAME, 'h-[1.5rem] min-h-[1.5rem] w-[1.5rem] min-w-[1.5rem] rounded-md')}
               type="text"
               title="Ajustar página"
               aria-label="Ajustar página"

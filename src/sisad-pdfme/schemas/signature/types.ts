@@ -265,10 +265,17 @@ export const createModeAwareCapabilities = (
   mode: SignatureMode,
   current?: Partial<SignatureCapabilities>,
 ): SignatureCapabilities => ({
-  allowDraw: MODE_CAPABILITIES[mode].allowDraw,
-  allowUploadImage: MODE_CAPABILITIES[mode].allowUploadImage,
-  allowP12: MODE_CAPABILITIES[mode].allowP12,
-  allowExternalProvider: MODE_CAPABILITIES[mode].allowExternalProvider,
+  // Cada modo debe conservar su capacidad principal activada. Eso evita que
+  // el inspector muestre estados contradictorios, como "Firma dibujada" con
+  // "Permitir dibujar" apagado.
+  allowDraw: mode === 'draw' ? true : current?.allowDraw ?? MODE_CAPABILITIES[mode].allowDraw,
+  allowUploadImage:
+    mode === 'image' ? true : current?.allowUploadImage ?? MODE_CAPABILITIES[mode].allowUploadImage,
+  allowP12: mode === 'p12' ? true : current?.allowP12 ?? MODE_CAPABILITIES[mode].allowP12,
+  allowExternalProvider:
+    mode === 'provider'
+      ? true
+      : current?.allowExternalProvider ?? MODE_CAPABILITIES[mode].allowExternalProvider,
   allowClear: current?.allowClear ?? MODE_CAPABILITIES[mode].allowClear,
   allowReplace: current?.allowReplace ?? MODE_CAPABILITIES[mode].allowReplace,
   allowPreview: current?.allowPreview ?? MODE_CAPABILITIES[mode].allowPreview,

@@ -17,6 +17,7 @@ import type { InspectorTag } from './InspectorPrimitives.js';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { buildDetailHeaderSummary } from './detailHeaderUtils.js';
 import { mergeClassNames } from '../../shared/className.js';
+import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 
 /**
  * Props del header compacto del DetailView.
@@ -37,6 +38,10 @@ type DetailHeaderCardProps = {
   metaTooltip?: string;
   leading?: React.ReactNode;
   className?: string;
+  collaborationContext?: Pick<
+    EffectiveCollaborationContext,
+    'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor'
+  > | null;
   /** When provided, renders a back button as the trailing action. */
   onBack?: () => void;
   backTooltip?: string;
@@ -64,6 +69,7 @@ const DetailHeaderCard = ({
   metaTooltip,
   leading,
   className,
+  collaborationContext,
   onBack,
   backTooltip = 'Volver a campos',
 }: DetailHeaderCardProps) => {
@@ -75,7 +81,7 @@ const DetailHeaderCard = ({
     initialWidth: 320,
   });
   const tone = resolveSchemaTone(activeSchema, '#7c3aed');
-  const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig);
+  const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig, collaborationContext);
   // Recipient color takes precedence over schema tone for the leading badge
   const leadingColor = headerSummary.recipientColor || tone;
   const effectiveTags = tags || headerSummary.tags;

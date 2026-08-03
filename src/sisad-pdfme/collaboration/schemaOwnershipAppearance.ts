@@ -16,7 +16,6 @@ type OwnerColorSource =
   | 'schema.__designer.collaboration.recipientColor'
   | 'schema.__designer.ownerColor'
   | 'schema.__designer.recipientColor'
-  | 'fallback.actorColor'
   | 'recipient.color'
   | 'fallback';
 
@@ -24,7 +23,7 @@ export type SchemaOwnershipAppearanceOptions = {
   /**
    * Order in which an owner color is resolved. Default reproduces the us
    * lab behavior: explicit schema.userColor, then schema.ownerColor, then the
-   * resolved recipient/author color, then empty.
+   * resolved recipient color, then empty.
    */
   ownerColorPriority?: readonly OwnerColorSource[];
   actorColor?: string;
@@ -50,7 +49,6 @@ const DEFAULT_PRIORITY: readonly OwnerColorSource[] = [
   'schema.__designer.collaboration.recipientColor',
   'schema.__designer.ownerColor',
   'schema.__designer.recipientColor',
-  'fallback.actorColor',
   'recipient.color',
   'fallback',
 ];
@@ -147,9 +145,6 @@ export function resolveSchemaOwnerColor(
       if (c) return c;
     } else if (source === 'schema.__designer.recipientColor') {
       const c = typeof toneSchema?.__designer?.recipientColor === 'string' ? toneSchema.__designer.recipientColor.trim() : '';
-      if (c) return c;
-    } else if (source === 'fallback.actorColor') {
-      const c = typeof options.actorColor === 'string' ? options.actorColor.trim() : '';
       if (c) return c;
     } else if (source === 'recipient.color') {
       const c = resolveOwnerRecipientColor(toneSchema, users);

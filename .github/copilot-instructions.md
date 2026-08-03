@@ -1,10 +1,9 @@
-# GitHub Copilot — SISAD PDFME
+# GitHub Copilot — SISAD PDFME V8
 
-Use `AGENTS.md`, `.ai/START.md`, the active task-card, the nearest
-`AGENTS.md`, one path-specific instruction and one relevant skill.
+Use `AGENTS.md`, `.ai/START.md`, the active task-card, one path instruction and
+one skill. Preserve public API, schema identity, document/page routing,
+ownership, snapshot compatibility, Canvas geometry, accessibility and host
+independence.
 
-Preserve public API, schema identity, document/page routing, ownership,
-snapshot compatibility, accessibility, Canvas geometry and host independence.
-Do not create a second registry/service/event bus. Run focal tests and update
-the task-card with evidence. Keep repository-wide instructions short; detailed
-rules live in `.github/instructions/` and `.agents/skills/`.
+Do not create a second registry, event bus, config service, snapshot format or
+renderer. Report focal tests and non-executed gates explicitly.

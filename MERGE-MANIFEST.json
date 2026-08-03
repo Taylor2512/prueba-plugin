@@ -1,0 +1,31 @@
+{
+  "replaceAfterReview": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CODEX.md",
+    ".github/copilot-instructions.md",
+    ".ai/START.md",
+    ".ai/ROUTER.md"
+  ],
+  "mergeOnly": [
+    ".ai/scrum/SPRINT-CURRENT.md",
+    ".ai/scrum/CLAIMS.md",
+    ".ai/memory/CURRENT.md",
+    ".ai/memory/HANDOFF.md",
+    ".ai/memory/decisions.jsonl",
+    ".ai/memory/risks.jsonl"
+  ],
+  "additive": [
+    ".ai/catalogs",
+    ".ai/contracts",
+    ".ai/index",
+    ".ai/scripts",
+    ".ai/evals",
+    ".agents/skills",
+    ".claude/agents",
+    ".github/agents",
+    ".github/instructions",
+    ".github/prompts"
+  ],
+  "productCodeModified": false
+}

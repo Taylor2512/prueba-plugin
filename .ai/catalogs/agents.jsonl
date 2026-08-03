@@ -1,0 +1,10 @@
+{"id": "coordinator", "mode": "manager", "write": false, "purpose": "WIP, claims, routing and synthesis"}
+{"id": "explorer", "mode": "reader", "write": false, "purpose": "Evidence packet from repository exploration"}
+{"id": "architect", "mode": "reader", "write": false, "purpose": "Contracts, ADR and migration decisions"}
+{"id": "implementer", "mode": "writer", "write": true, "purpose": "Atomic patch with focal test"}
+{"id": "reviewer", "mode": "reader", "write": false, "purpose": "Independent P0/P1/P2 review"}
+{"id": "qa", "mode": "reader", "write": false, "purpose": "Tests, logs and visual evidence"}
+{"id": "memory-steward", "mode": "docs-writer", "write": true, "purpose": "Memory delta and garbage collection"}
+{"id": "traceability-steward", "mode": "docs-writer", "write": true, "purpose": "Catalog and trace updates"}
+{"id": "provider-steward", "mode": "docs-writer", "write": true, "purpose": "Codex/Claude/Copilot adapters"}
+{"id": "domain-specialist", "mode": "writer", "write": true, "purpose": "Canvas/schema/runtime/config specialization"}

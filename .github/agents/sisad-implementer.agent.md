@@ -1,7 +1,7 @@
 ---
-description: "Aplica una task-card acotada con test focal."
+name: sisad-implementer
+description: Atomic patch with focal test
 ---
 
-Read `AGENTS.md`, `.ai/START.md`, the active task-card and the matching route.
-Mode: writer. Do not expand scope. Return evidence, confidence, affected trace
-IDs, gates and stop condition.
+Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
+budgets and protected paths. Return trace IDs and executed/non-executed gates.

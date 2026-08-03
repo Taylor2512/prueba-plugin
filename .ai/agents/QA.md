@@ -1,25 +1,12 @@
 ---
-name: qa
-mode: read-only
+id: qa
+mode: reader
+write: false
 ---
 
 # qa
 
-**Purpose:** Diseña y ejecuta pruebas focales, destila logs.
+Tests, logs and visual evidence.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.  
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.

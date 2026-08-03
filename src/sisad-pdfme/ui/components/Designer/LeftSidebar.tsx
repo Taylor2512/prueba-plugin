@@ -709,6 +709,7 @@ const LeftSidebar = ({
   const activeRecipientTone = activeRecipientColor;
   const activeRecipientStyles = activeRecipientTone
     ? ({
+        '--active-recipient-color': activeRecipientTone,
         '--schema-owner-color': activeRecipientTone,
         '--schema-owner-surface': `color-mix(in srgb, ${activeRecipientTone} 24%, var(--color-white))`,
         '--schema-owner-surface-strong': `color-mix(in srgb, ${activeRecipientTone} 38%, var(--color-white))`,

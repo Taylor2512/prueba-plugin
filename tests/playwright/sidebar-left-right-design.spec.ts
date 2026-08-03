@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
 const openCatalog = async (page: Page) => {
   const toggle = page
@@ -12,7 +13,7 @@ const openCatalog = async (page: Page) => {
 
 test.describe('LeftSidebar · catálogo compacto', () => {
   test('search, quick filters and view-mode cycle work over the tiles', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await page.goto(EXAMPLE_ROUTE_PATHS.designerMultiUser);
     await openCatalog(page);
 
     const sidebar = page.getByTestId('left-sidebar').first();
@@ -72,7 +73,7 @@ test.describe('LeftSidebar · catálogo compacto', () => {
 
 test.describe('DetailView · secciones proporcionales por schema', () => {
   test('select shows Opciones; text does not; Técnico never renders expanded by default', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await page.goto(EXAMPLE_ROUTE_PATHS.designerMultiUser);
 
     await test.step('select (contract_stage) → detail-section-options present', async () => {
       await page

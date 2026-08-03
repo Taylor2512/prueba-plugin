@@ -1,21 +1,18 @@
-# Route — Left catalog
-
-## Owner question
-
-¿Qué evidencia mínima decide el cambio en este dominio?
+# Route — Catálogo y drag/drop
 
 ## Load
 
-- task-card activa
-- skill `sisad-left-sidebar-catalog`
-- `.ai/knowledge/domain/COREUX-USE-CASES.md` solo si responde una incógnita
+- task activa;
+- skill principal: `left-sidebar`;
+- `.ai/contracts/LEFT-SIDEBAR-CONTRACT.md`;
+- `.ai/contracts/CLASS-NAMESPACE-CONTRACT.md`;
+- consultas puntuales a catálogos.
 
 ## Output
 
-Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
-trace IDs y condición de parada.
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
 
-## Guardrail
+## Budget
 
-Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
-consulta al registro es suficiente.
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.

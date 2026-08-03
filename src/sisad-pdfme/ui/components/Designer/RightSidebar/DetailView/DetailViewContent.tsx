@@ -35,6 +35,7 @@ type DetailViewContentProps = {
   backTooltip?: string;
   readOnly?: boolean;
   accessState?: SchemaAccessState;
+  collaborationContext?: React.ComponentProps<typeof DetailHeaderCard>['collaborationContext'];
 };
 
 /**
@@ -56,6 +57,7 @@ const DetailViewContent = ({
   backTooltip = 'Volver a campos',
   readOnly = false,
   accessState,
+  collaborationContext,
 }: DetailViewContentProps) => {
   const isLockedByOther = accessState?.isLockedByOther ?? false;
 
@@ -83,6 +85,7 @@ const DetailViewContent = ({
           activeSchema={activeSchema}
           schemaConfig={schemaConfig}
           selectionCount={selectionCount}
+          collaborationContext={collaborationContext}
           onBack={deselectSchema}
           backTooltip={backTooltip}
           showPosition={false}

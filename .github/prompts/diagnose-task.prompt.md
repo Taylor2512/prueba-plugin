@@ -1,7 +1,8 @@
 ---
-mode: agent
+agent: agent
+description: "Diagnose the active task without editing; return evidence and a focal test."
 ---
 
-Diagnose the active task without editing. Return an evidence packet and a focal test.
+Diagnose the active task without editing; return evidence and a focal test.
 
-Use `AGENTS.md` and `.ai/templates/EVIDENCE-PACKET.md`.
+Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.

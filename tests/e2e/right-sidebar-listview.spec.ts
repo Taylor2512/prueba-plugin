@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
 const openCatalog = async (page: Page) => {
   const toggle = page.getByRole('button', { name: /Abrir catálogo de campos|Cerrar catálogo de campos/i }).first();
@@ -10,7 +11,7 @@ const openCatalog = async (page: Page) => {
 
 test.describe('right sidebar list view', () => {
   test('resolves labels, badges and owner color from a single item descriptor', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await page.goto(EXAMPLE_ROUTE_PATHS.designerMultiUser);
     await page.keyboard.press('Escape');
     await openCatalog(page);
 

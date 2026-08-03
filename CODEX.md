@@ -1,11 +1,9 @@
-# Codex — adaptador humano
+# Codex — adaptador V8
 
-Codex carga `AGENTS.md`; este archivo documenta decisiones operativas.
+Codex consume `AGENTS.md` jerárquico y `.agents/skills`.
 
-- Usa skills por progressive disclosure.
-- Delega solo subtareas independientes y ruidosas.
-- Mantén `model_reasoning_effort` mínimo suficiente.
-- Configura auto-compaction antes del techo operativo.
-- Guarda logs y evidencia en archivos; retorna resúmenes.
-- Cada writer usa worktree y claim.
-- No cargues todos los skills ni todos los task-cards.
+- Modelo mínimo suficiente según `.ai/MODEL-ROUTER.md`.
+- Uno o dos subagentes read-only como máximo.
+- Evidence y logs extensos se guardan en `.ai/evidence`.
+- No cargar todos los skills, routes o task-cards.
+- Verificar claim/worktree antes de editar.

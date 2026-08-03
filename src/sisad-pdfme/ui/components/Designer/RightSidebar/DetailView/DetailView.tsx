@@ -40,6 +40,7 @@ import {
   type SchemaDesignerConfig,
 } from '../../../../designerEngine.js';
 import { useSisadPdfmeConfig } from '../../../../../react/useSisadPdfmeConfig.js';
+import { normalizeSignatureSchema, type SignatureSchema } from '../../../../../schemas/signature/types.js';
 
 /**
  * Props requeridas por el inspector principal del schema activo.
@@ -77,7 +78,11 @@ type PositionBounds = {
  * Crea valores iniciales para hidratar form-render desde un schema.
  */
 const createHydrationValues = (schema: SchemaForUI): Record<string, unknown> => {
-  const values: Record<string, unknown> = { ...schema };
+  const normalizedSchema =
+    schema.type === 'signature' || schema.type === 'initials'
+      ? (normalizeSignatureSchema(schema as SignatureSchema) as SchemaForUI)
+      : schema;
+  const values: Record<string, unknown> = { ...normalizedSchema };
   values.editable = !Boolean(values.readOnly);
   return values;
 };
@@ -311,6 +316,9 @@ const DetailView = (props: DetailViewProps) => {
     let resetTimeoutId: ReturnType<typeof setTimeout> | undefined;
     const timeoutId = setTimeout(() => {
       setIsHydratingForm(true);
+      if (typeof form.resetFields === 'function') {
+        form.resetFields();
+      }
       if (typeof form.setValues === 'function') {
         form.setValues(values);
       }
@@ -437,7 +445,7 @@ const DetailView = (props: DetailViewProps) => {
   // Resetear el estado de colapso solo al cambiar de schema activo, no en cada
   // modificación de campos. Si no, cualquier cambio de input remonta las
   // secciones y borra la interacción del inspector.
-  const detailViewResetToken = activeSchema.id;
+  const detailViewResetToken = `${activeSchema.id}:${activeSchema.type}`;
 
   return (
     <DetailViewContent

@@ -1,14 +1,10 @@
-# EVAL-001 — Boot packet
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-001 — Boot ≤5 files
 
 ## Expected
 
-Agent starts with ≤4 files and identifies active task.
+La sesión identifica task, route y skill sin abrir catálogos completos.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.

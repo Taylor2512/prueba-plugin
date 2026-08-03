@@ -1,14 +1,10 @@
-# EVAL-007 — Subagent cost
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-007 — Provider parity
 
 ## Expected
 
-Trivial task stays single-agent.
+Claude/Codex/Copilot reciben las mismas invariantes.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.

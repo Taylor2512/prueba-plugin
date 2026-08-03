@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
-const ROUTE = '/lab/multi-document-routing';
+const ROUTE = EXAMPLE_ROUTE_PATHS.designerMultiUser;
 
 test.describe('left sidebar density', () => {
   test('renders the sidebar and keeps density-scoped controls visible', async ({ page }) => {

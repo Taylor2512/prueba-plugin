@@ -10,6 +10,6 @@
     ]
   },
   "env": {
-    "SISAD_AI_ARCH_VERSION": "7"
+    "SISAD_AI_ARCH_VERSION": "8"
   }
 }

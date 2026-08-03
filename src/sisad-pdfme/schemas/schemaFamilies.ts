@@ -8,7 +8,6 @@ import type {
 } from '../common/types.js';
 
 export type SchemaFamily = 'text' | 'mediaVisual' | 'boolean' | 'shapeBarcode' | 'table';
-export type SchemaFamily = 'textual' | 'media' | 'signature' | 'choice' | 'shape' | 'barcode' | 'table';
 export type SchemaSemanticFamily =
   | 'text'
   | 'multiVariableText'

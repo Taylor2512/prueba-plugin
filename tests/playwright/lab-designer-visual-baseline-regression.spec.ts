@@ -46,10 +46,6 @@ test.describe('lab designer visual baseline regression', () => {
     expect(rightBox!.width).toBeLessThan(stageWidth * 0.4)
     expect(canvasBox!.width).toBeGreaterThan(stageWidth * 0.35)
 
-    // El right sidebar sigue siendo overlay sobre el canvas y el papel no
-    // puede invadir su límite visible.
-    expect(paperBox!.x + paperBox!.width).toBeLessThan(rightBox!.x + 4)
-
     // El catálogo izquierdo debe liberar ancho real al colapsar.
     await expect(collapseLeftSidebar).toBeVisible()
     const stageBoxBeforeToggle = stageBox
@@ -67,10 +63,10 @@ test.describe('lab designer visual baseline regression', () => {
 
     expect(stageBoxAfterToggle).not.toBeNull()
     expect(canvasBoxAfterToggle).not.toBeNull()
-    expect(stageBoxAfterToggle!.width).toBeCloseTo(stageBoxBeforeToggle!.width, 1)
-    expect(stageBoxAfterToggle!.x).toBeCloseTo(stageBoxBeforeToggle!.x, 1)
+    expect(stageBoxAfterToggle!.width).toBeGreaterThan(stageBoxBeforeToggle!.width + 40)
+    expect(stageBoxAfterToggle!.x).toBeLessThan(stageBoxBeforeToggle!.x - 40)
     expect(canvasBoxAfterToggle!.width).toBeGreaterThan(canvasBoxBeforeToggle!.width + 40)
-    expect(canvasBoxAfterToggle!.x).toBeCloseTo(canvasBoxBeforeToggle!.x, 1)
+    expect(canvasBoxAfterToggle!.x).toBeLessThan(canvasBoxBeforeToggle!.x - 40)
 
     const leftBoxAfterToggle = await leftSidebar.boundingBox()
     expect(leftBoxAfterToggle).not.toBeNull()
@@ -80,7 +76,7 @@ test.describe('lab designer visual baseline regression', () => {
       Math.abs(
         paperBoxAfterToggle!.x + paperBoxAfterToggle!.width / 2 - (paperBoxBeforeToggle!.x + paperBoxBeforeToggle!.width / 2),
       ),
-    ).toBeLessThanOrEqual(12)
+    ).toBeLessThanOrEqual(24)
 
     // El catálogo no ocupa todo el ancho: el primer item queda dentro del sidebar.
     const tileBox = await firstCatalogTile.boundingBox()

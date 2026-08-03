@@ -58,6 +58,22 @@ describe('schemaInteractionState', () => {
     expect(state.lockOwnerId).toBeNull();
   });
 
+  it('does not inherit the active recipient color when the schema has no stored ownership color', () => {
+    const state = resolveSchemaInteractionState(
+      makeInteractionSchema({ id: 'field-0b' }),
+      {
+        collaborationContext: makeCollaborationContext({
+          activeRecipient: { id: 'recipient-2', name: 'Otro', color: '#DC2626' },
+          activeRecipientId: 'recipient-2',
+          actorColor: '#DC2626',
+        }),
+      },
+    );
+
+    expect(state.ownerColor).toBeNull();
+    expect(state.owner.color).toBeNull();
+  });
+
   it('resolves my collaboration lock from schema.lock.lockedBy', () => {
     const state = resolveSchemaInteractionState(
       makeInteractionSchema({ id: 'field-1', state: 'locked', lock: { lockedBy: 'actor-1' } }),

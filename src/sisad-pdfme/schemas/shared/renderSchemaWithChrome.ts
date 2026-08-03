@@ -57,7 +57,7 @@ export function renderSchemaWithChrome<TSchema extends SisadSchemaBase>(
   } = options;
 
   clearSchemaRoot(rootElement);
-  setSchemaRootAttributes(rootElement, schema);
+  setSchemaRootAttributes(rootElement, schema, { ownerColor });
 
   const chromeEl = chromeElement ?? document.createElement('div');
   applyFieldChrome(chromeEl, {

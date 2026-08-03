@@ -1,25 +1,12 @@
 ---
-name: traceability-steward
+id: traceability-steward
 mode: docs-writer
+write: true
 ---
 
 # traceability-steward
 
-**Purpose:** Mantiene UC/BHV/EVT/FX/MTH/TSK/TST.
+Catalog and trace updates.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.  
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.

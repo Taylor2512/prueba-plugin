@@ -1,7 +1,8 @@
 ---
-mode: agent
+agent: agent
+description: "Implement only the active task within its file and token budget."
 ---
 
-Implement only the active task-card, within its file and token budget.
+Implement only the active task within its file and token budget.
 
-Use `AGENTS.md` and `.ai/templates/EVIDENCE-PACKET.md`.
+Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.

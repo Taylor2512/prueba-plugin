@@ -1,14 +1,10 @@
-# EVAL-002 — Routing
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-002 — Recipient color
 
 ## Expected
 
-RightSidebar request selects one route and one skill.
+Recupera activeRecipient vs stored ownerColor y no recolorea schemas existentes.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.

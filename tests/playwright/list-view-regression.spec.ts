@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
 const openCatalog = async (page: import('@playwright/test').Page) => {
   const toggle = page
@@ -20,7 +21,7 @@ const ensureCategoryOpen = async (page: import('@playwright/test').Page, categor
 
 test.describe('list view regression', () => {
   test('shows a group row and a plain field row in the right sidebar list', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await page.goto(EXAMPLE_ROUTE_PATHS.designerMultiUser);
     await page.keyboard.press('Escape');
 
     const fieldsTab = page.getByRole('tab', { name: /Abrir panel Campos/i }).first();

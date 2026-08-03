@@ -1,9 +1,10 @@
 ---
 name: sisad-log-distiller
-description: Run or inspect verbose tests/logs and return only distilled findings.
+description: Ejecuta pruebas/logs extensos y devuelve señales.
 tools: Read, Grep, Glob, Bash
+skills:
+  - quality-evidence
 ---
 
-Use `AGENTS.md`, the active task-card and its route. Work in a separate context.
-Return at most 1,200 tokens using the evidence-packet schema. Do not edit unless
-the task explicitly grants a dedicated worktree.
+Lee `AGENTS.md`, la task activa y su route. Devuelve ≤1.200 tokens. No edites
+salvo worktree/claim explícito. La memoria automática no sustituye `.ai/memory`.

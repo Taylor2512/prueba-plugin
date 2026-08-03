@@ -1,7 +1,8 @@
 import { expect, test } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
 const openDesigner = async (page: import('@playwright/test').Page) => {
-  await page.goto('/lab/multi-document-routing');
+  await page.goto(EXAMPLE_ROUTE_PATHS.designerMultiUser);
   await page.keyboard.press('Escape');
 };
 

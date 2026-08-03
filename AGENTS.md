@@ -1,43 +1,27 @@
-# AGENTS.md — SISAD PDFME V7
+# AGENTS.md — SISAD PDFME V8 Lean
 
-Este archivo es un mapa, no un manual.
+## Inicio
 
-## Arranque obligatorio
+1. Lee `.ai/START.md`.
+2. Lee `.ai/scrum/SPRINT-CURRENT.md`.
+3. Trabaja sobre una sola task-card activa.
+4. Carga una route y una skill.
+5. Consulta catálogos por ID, dominio o símbolo; no los abras completos.
 
-Lee, en este orden:
+## Frontera
 
-1. `.ai/START.md`
-2. `.ai/scrum/SPRINT-CURRENT.md`
-3. una sola task-card
-4. el `AGENTS.md` más cercano a la ruta objetivo
-5. una ruta
-6. una skill
+`src/sisad-pdfme` es reusable y host-independent. El host entrega configuración,
+datos, adapters y callbacks. No introduzcas reglas de DigitalAgreements,
+Uanataca, examples o rutas de negocio dentro del core.
 
-No cargues carpetas completas de `.ai`, `.agents`, `docs`, `reports` ni archivos
-consolidados.
-
-## Contrato de trabajo
+## Contrato
 
 ```txt
-una task-card
-un writer
-un objetivo verificable
-un paquete de evidencia
-un diff revisable
+Intent → Policy → Command → Mutation → Event → Effect → Snapshot
 ```
 
-## Estados de conocimiento
+## Evidencia
 
-`CONFIRMADO · INFERIDO · HIPÓTESIS · DESCONOCIDO`
-
-## Frontera del producto
-
-`src/sisad-pdfme` es reusable. El host entrega configuración, datos, adapters y
-callbacks. El core no contiene negocio de DigitalAgreements, Uanataca,
-externalForms ni rutas de ejemplos.
-
-## Parada
-
-Detente ante presupuesto agotado, ownership conflictivo, tres parches fallidos,
-dos búsquedas sin evidencia nueva, cambio de dominio o frontera protegida no
-declarada.
+Usa `CONFIRMADO`, `INFERIDO`, `HIPÓTESIS` o `DESCONOCIDO`. No declares gates
+verdes sin ejecutarlos. Detente ante conflicto de claim, presupuesto agotado,
+cambio de dominio o frontera protegida.

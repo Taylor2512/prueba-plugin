@@ -1,10 +1,11 @@
 import { expect, type Locator, type Page } from '@playwright/test';
+import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 
-const LAB_ROUTE = '/lab/multi-document-routing';
+const DESIGNER_ROUTE = EXAMPLE_ROUTE_PATHS.designerMultiUser;
 
 export async function openDesigner(page: Page) {
-  await page.goto(LAB_ROUTE);
-  const root = page.locator('.sisad-pdfme-root').first();
+  await page.goto(DESIGNER_ROUTE);
+  const root = page.locator('[data-sisad-pdfme-root]').first();
   await expect(root).toBeVisible({ timeout: 20_000 });
   await expect(canvas(page)).toBeVisible({ timeout: 20_000 });
   return root;

@@ -58,7 +58,9 @@ export const setSchemaRootAttributes = <TSchema extends SisadSchemaBase>(
   root.dataset.schemaRequired = String(Boolean(schema.required));
   root.dataset.schemaReadonly = String(Boolean(schema.readOnly || schema.readonly));
   root.dataset.schemaLocked = String(Boolean(schema.locked));
+  root.dataset.schemaOwnerColor = tone;
   root.style.setProperty('--schema-tone', tone);
+  root.style.setProperty('--schema-owner-color', tone);
 };
 
 // ─── Element factory ──────────────────────────────────────────────────────────

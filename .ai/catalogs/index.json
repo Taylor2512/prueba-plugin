@@ -1,0 +1,18 @@
+{
+  "version": 8,
+  "generatedAt": "2026-08-03T03:27:32.937850+00:00",
+  "counts": {
+    "useCases": 334,
+    "behaviors": 334,
+    "schemas": 28,
+    "events": 50,
+    "effects": 26,
+    "actions": 5,
+    "methods": 2403,
+    "traceEdges": 1482,
+    "routes": 12,
+    "agents": 10,
+    "skills": 18
+  },
+  "query": "node .ai/scripts/query-catalog.mjs <catalog> --id/--domain/--tag/--text"
+}

@@ -1,21 +1,17 @@
-# Route — Config/selectors/actions
-
-## Owner question
-
-¿Qué evidencia mínima decide el cambio en este dominio?
+# Route — Config y actions
 
 ## Load
 
-- task-card activa
-- skill `sisad-configuration-service`
-- `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md` solo si responde una incógnita
+- task activa;
+- skill principal: `configuration`;
+- `.ai/contracts/CONFIGURATION-CONTRACT.md`;
+- consultas puntuales a catálogos.
 
 ## Output
 
-Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
-trace IDs y condición de parada.
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
 
-## Guardrail
+## Budget
 
-Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
-consulta al registro es suficiente.
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.

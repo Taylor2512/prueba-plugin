@@ -1,0 +1,12 @@
+{"id": "recipients-ownership", "owner": "runtime-architect", "skills": ["recipient-assignment"], "risk": "high"}
+{"id": "left-sidebar", "owner": "ux-schema", "skills": ["left-sidebar"], "risk": "medium"}
+{"id": "canvas", "owner": "canvas-specialist", "skills": ["canvas-safety"], "risk": "very-high"}
+{"id": "inspector", "owner": "schema-specialist", "skills": ["inspector-contract"], "risk": "high"}
+{"id": "schemas", "owner": "schema-specialist", "skills": ["schema-family"], "risk": "high"}
+{"id": "runtime-contracts", "owner": "runtime-architect", "skills": ["event-effect"], "risk": "high"}
+{"id": "configuration", "owner": "config-specialist", "skills": ["configuration"], "risk": "high"}
+{"id": "persistence", "owner": "runtime-architect", "skills": ["snapshot"], "risk": "very-high"}
+{"id": "runtimes", "owner": "runtime-architect", "skills": ["runtime-parity"], "risk": "high"}
+{"id": "ux", "owner": "ux-accessibility", "skills": ["responsive-ux"], "risk": "medium"}
+{"id": "ai-architecture", "owner": "ai-architect", "skills": ["context-engineering"], "risk": "medium"}
+{"id": "quality", "owner": "qa-reviewer", "skills": ["quality-evidence"], "risk": "medium"}
