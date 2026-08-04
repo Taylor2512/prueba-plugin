@@ -11,15 +11,16 @@
  * paginador, los controles de zoom ni el Canvas, ni alterar zoom, scroll,
  * página, selección o la instancia del runtime.
  *
- * ESTADO ESPERADO: **roja**. Es la assertion geométrica que precede al parche de
- * VISUX-005/VISUX-007. `Designer/index.tsx` calcula hoy
+ * Nació roja: `Designer/index.tsx` calculaba
  * `canvasWidth = size.width - leftSidebarWidth` y
- * `safeContentWidth = safeCanvasWidth - rightSidebarWidth`, y pasa el resultado
- * (`sizeExcSidebars`) al Canvas: los sidebars son entradas geométricas del
- * sistema de coordenadas, así que el centro se desplaza con ellos.
+ * `safeContentWidth = safeCanvasWidth - rightSidebarWidth`, y pasaba el
+ * resultado (`sizeExcSidebars`) al Canvas, de modo que los sidebars eran
+ * entradas geométricas del sistema de coordenadas y el centro se desplazaba con
+ * ellos. Hoy pasa: el Canvas usa `workspaceSize` (el stage completo) y los
+ * anchos de panel sobreviven sólo como `chromeInsets`.
  *
- * Las mediciones de partida están en
- * `reports/visual-behavior/07-BASELINE-MEASUREMENTS.md` §1.1.
+ * Mediciones antes y después en
+ * `reports/visual-behavior/07-BASELINE-MEASUREMENTS.md` §1.1, §1.3, §8 y §9.
  */
 import { expect, test, type Page } from '@playwright/test';
 import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';

@@ -4372,6 +4372,11 @@ const TemplateEditor = ({
             // stage y movería el centro del papel al abrir el panel. Los paneles
             // son overlays; el stage ocupa siempre el workspace completo.
             className={`${DESIGNER_CLASSNAME}stage`}
+            // Insets publicados, no aplicados: describen cuánto ocupan los
+            // paneles en los bordes para quien deba apartar chrome periférico.
+            // El stage no los descuenta de su propia caja.
+            data-chrome-inset-left={String(chromeInsets.left)}
+            data-chrome-inset-right={String(chromeInsets.right)}
             data-left-sidebar={leftSidebarVisible ? 'visible' : 'hidden'}
             data-left-sidebar-mode={shouldReserveLeftSidebarSpace ? 'docked' : 'overlay'}
             data-left-sidebar-variant={leftSidebarVariant}

@@ -25,9 +25,14 @@ import { EXAMPLE_ROUTE_PATHS } from '@/examples/routes/routeDefinitions.js';
 /** Ruta única del baseline: es la que aparece en las nueve capturas de origen. */
 const ROUTE = EXAMPLE_ROUTE_PATHS.designerMultiUser;
 
+/**
+ * Destino de la evidencia. `BASELINE_OUTPUT_DIR` permite capturar variantes
+ * (por ejemplo antes y después de un parche) sin sobrescribir el baseline
+ * vigente, que es lo único que hace comparable a un baseline.
+ */
 const OUTPUT_ROOT = path.resolve(
   process.cwd(),
-  'reports/visual-behavior/evidence/baseline',
+  process.env.BASELINE_OUTPUT_DIR || 'reports/visual-behavior/evidence/baseline',
 );
 
 const VIEWPORTS = [
