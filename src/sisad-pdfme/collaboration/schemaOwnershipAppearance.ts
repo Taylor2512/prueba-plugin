@@ -21,9 +21,10 @@ type OwnerColorSource =
 
 export type SchemaOwnershipAppearanceOptions = {
   /**
-   * Order in which an owner color is resolved. Default reproduces the us
-   * lab behavior: explicit schema.userColor, then schema.ownerColor, then the
-   * resolved recipient color, then empty.
+   * Order in which an owner color is resolved. Defaults to `DEFAULT_PRIORITY`:
+   * `schema.ownerColor` first, then `schema.userColor`, then
+   * `schema.recipientColor`, then the `__designer` mirrors, then the recipient
+   * registry, then empty.
    */
   ownerColorPriority?: readonly OwnerColorSource[];
   actorColor?: string;
@@ -78,21 +79,40 @@ const buildOwnerIds = (schema: OwnerAwareSchema): string[] =>
   ]);
 
 /**
+ * Extractor per source. Single table so the two public resolvers below cannot
+ * drift apart: previously each one re-implemented the chain by hand, and their
+ * docstrings had already diverged from the real order.
+ *
+ * `recipient.color` and `fallback` are not here because they need the
+ * collaborator registry, which only `resolveSchemaOwnerColor` receives.
+ */
+const OWNER_COLOR_EXTRACTORS: Partial<
+  Record<OwnerColorSource, (schema: OwnerColorAwareSchema | null | undefined) => string>
+> = {
+  'schema.ownerColor': (s) => normalizeColor(s?.ownerColor),
+  'schema.userColor': (s) => normalizeColor(s?.userColor),
+  'schema.recipientColor': (s) => normalizeColor(s?.recipientColor),
+  'schema.__designer.collaboration.recipientColor': (s) =>
+    normalizeColor(s?.__designer?.collaboration?.recipientColor),
+  'schema.__designer.ownerColor': (s) => normalizeColor(s?.__designer?.ownerColor),
+  'schema.__designer.recipientColor': (s) => normalizeColor(s?.__designer?.recipientColor),
+};
+
+/**
  * Resolves the raw ownership color stored on a schema without consulting the
  * collaborator registry. This is the shared fallback used by designer chrome,
  * field chrome and tone helpers.
+ *
+ * Returns `''` when the schema has no owner color, so callers can tell "no
+ * owner" from "render something anyway".
  */
 export function resolveSchemaOwnerColorValue(schema: SchemaForUI | null | undefined): string {
   const source = schema as OwnerColorAwareSchema | null | undefined;
-  return (
-    normalizeColor(source?.ownerColor) ||
-    normalizeColor(source?.userColor) ||
-    normalizeColor(source?.recipientColor) ||
-    normalizeColor(source?.__designer?.collaboration?.recipientColor) ||
-    normalizeColor(source?.__designer?.ownerColor) ||
-    normalizeColor(source?.__designer?.recipientColor) ||
-    ''
-  );
+  for (const key of DEFAULT_PRIORITY) {
+    const color = OWNER_COLOR_EXTRACTORS[key]?.(source) ?? '';
+    if (color) return color;
+  }
+  return '';
 }
 
 const resolveOwnerRecipientColor = (
@@ -116,8 +136,17 @@ const resolveOwnerRecipientColor = (
 };
 
 /**
- * Resolves the color to render for a schema's owner. Default priority:
- * explicit userColor → explicit ownerColor → resolved recipient color → ''.
+ * Resolves the color to render for a schema's owner, consulting the collaborator
+ * registry when the schema carries no materialized color.
+ *
+ * Default priority (`DEFAULT_PRIORITY`): `schema.ownerColor` →
+ * `schema.userColor` → `schema.recipientColor` → the three `__designer` mirrors
+ * → recipient registry → `''`.
+ *
+ * `schema.ownerColor` must stay ahead of `schema.userColor`:
+ * `decorateSchemaWithCollaboration` fills `userColor` from
+ * `lastModifiedBy`/`createdBy`, so the reverse order would paint a field with
+ * the color of whoever edited it last instead of its owner.
  */
 export function resolveSchemaOwnerColor(
   schema: SchemaForUI,
@@ -128,27 +157,11 @@ export function resolveSchemaOwnerColor(
   const priority = options.ownerColorPriority ?? DEFAULT_PRIORITY;
 
   for (const source of priority) {
-    if (source === 'schema.userColor') {
-      const c = typeof toneSchema?.userColor === 'string' ? toneSchema.userColor.trim() : '';
-      if (c) return c;
-    } else if (source === 'schema.ownerColor') {
-      const c = typeof toneSchema?.ownerColor === 'string' ? toneSchema.ownerColor.trim() : '';
-      if (c) return c;
-    } else if (source === 'schema.recipientColor') {
-      const c = typeof toneSchema?.recipientColor === 'string' ? toneSchema.recipientColor.trim() : '';
-      if (c) return c;
-    } else if (source === 'schema.__designer.collaboration.recipientColor') {
-      const c = typeof toneSchema?.__designer?.collaboration?.recipientColor === 'string' ? toneSchema.__designer.collaboration.recipientColor.trim() : '';
-      if (c) return c;
-    } else if (source === 'schema.__designer.ownerColor') {
-      const c = typeof toneSchema?.__designer?.ownerColor === 'string' ? toneSchema.__designer.ownerColor.trim() : '';
-      if (c) return c;
-    } else if (source === 'schema.__designer.recipientColor') {
-      const c = typeof toneSchema?.__designer?.recipientColor === 'string' ? toneSchema.__designer.recipientColor.trim() : '';
-      if (c) return c;
-    } else if (source === 'recipient.color') {
-      const c = resolveOwnerRecipientColor(toneSchema, users);
-      if (c) return c;
+    const fromSchema = OWNER_COLOR_EXTRACTORS[source]?.(toneSchema) ?? '';
+    if (fromSchema) return fromSchema;
+    if (source === 'recipient.color') {
+      const fromRegistry = resolveOwnerRecipientColor(toneSchema, users);
+      if (fromRegistry) return fromRegistry;
     }
   }
   return '';

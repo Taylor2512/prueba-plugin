@@ -17,8 +17,7 @@ import { theme as antdTheme } from 'antd';
 import { getSchemaPluginByType as getBuiltInSchemaPluginByType } from '@sisad-pdfme/schemas';
 import { SELECTABLE_CLASSNAME, UI_CLASSNAME } from '../constants.js';
 import { PluginsRegistry, OptionsContext, I18nContext, CacheContext } from '../contexts.js';
-import { resolveSchemaTone, resolveSchemaToneSurface } from './Designer/shared/schemaTone.js';
-import { resolveSchemaOwnerColorValue } from '../../schemas/shared/fieldChrome.js';
+import { resolveSchemaVisualTone, resolveSchemaOwnerColorValue } from '../../schemas/shared/fieldChrome.js';
 import { buildPageMetadataAttrs } from './shared/pageMetadata.js';
 import type { EffectiveCollaborationContext } from '../collaborationContext.js';
 import { resolveSchemaCollaborationState } from '../collaborationContext.js';
@@ -195,14 +194,18 @@ const Wrapper = ({
     resolveSchemaOwnerColorValue(schema) ||
     undefined;
   const schemaTitle = getSchemaTitle(schema);
-  const schemaTone = resolveSchemaTone(schema, selectable ? '#38a0ff' : '#94a3b8');
-  const schemaSurfaceTone = resolveSchemaToneSurface(schema, '#ffffff', schema.readOnly ? 0.08 : 0.12);
-  const schemaHidden = (schema as SchemaForUI & { hidden?: boolean }).hidden === true;
   // Choice-family schemas draw their own marker chrome, so the field wrapper must
   // stay transparent (no surface tint / border) — otherwise the indicator looks
   // like a box inside a box. Includes the standalone checkbox.
   const isCompactChoiceSchema =
     schemaType === 'radioGroup' || schemaType === 'checkboxGroup' || schemaType === 'checkbox';
+  const schemaVisualTone = resolveSchemaVisualTone(schema, {
+    fallbackColor: selectable ? '#38a0ff' : '#94a3b8',
+  });
+  const schemaTone = schemaOwnerColor || schemaVisualTone.ownerColor;
+  const schemaSurfaceTone = isCompactChoiceSchema ? 'transparent' : schemaVisualTone.ownerBackground;
+  const schemaBorderTone = isCompactChoiceSchema ? 'transparent' : schemaVisualTone.ownerBorder;
+  const schemaHidden = (schema as SchemaForUI & { hidden?: boolean }).hidden === true;
 
   const schemaCaption = isCompactChoiceSchema
     ? undefined
@@ -279,13 +282,14 @@ const Wrapper = ({
     ...schemaStyle,
     ...wrapperStateStyle,
     backgroundColor: isCompactChoiceSchema ? 'transparent' : schemaSurfaceTone,
-    border: isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaTone}`,
+    border: isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaBorderTone}`,
     '--schema-tone': schemaTone,
     // Owner color must reflect the assigned recipient; the semantic type tone is
     // only a fallback so unowned schemas keep a sensible accent.
     '--schema-owner-color': schemaOwnerColor || schemaTone,
     '--schema-surface-tone': isCompactChoiceSchema ? 'transparent' : schemaSurfaceTone,
-    '--schema-outline': isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaTone}`,
+    '--schema-border-tone': schemaBorderTone,
+    '--schema-outline': isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaBorderTone}`,
   } as React.CSSProperties;
   const wrapperClassName = [
     UI_CLASSNAME + 'custom-selectable',
@@ -321,6 +325,8 @@ const Wrapper = ({
       data-schema-selectable={selectable ? 'true' : 'false'}
       data-schema-owner-id={schemaOwnerId || undefined}
       data-schema-owner-color={schemaOwnerColor || undefined}
+      data-owner-color={schemaOwnerColor || undefined}
+      data-color-policy={schemaVisualTone.policy}
       {...buildPageMetadataAttrs({ documentId, pageIndex, pageNumber })}
       onDoubleClick={(event) => {
         if (!selectable) return;

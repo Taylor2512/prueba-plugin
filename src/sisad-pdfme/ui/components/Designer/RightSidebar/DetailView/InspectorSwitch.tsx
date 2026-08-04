@@ -1,16 +1,23 @@
+/**
+ * InspectorSwitch — fila etiquetada con switch booleano.
+ *
+ * Adaptador de `InspectorBooleanSwitch` que conserva la firma pública previa.
+ * La implementación anterior envolvía el `Switch` de Ant en un `<button>`, lo
+ * que anidaba dos controles interactivos y provocaba propagación doble, foco
+ * inconsistente y comportamiento distinto entre navegadores.
+ */
 import React from 'react';
-import { Switch } from 'antd';
-import { mergeClassNames } from '../../shared/className.js';
-import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
+import { InspectorBooleanSwitch } from './InspectorBooleanSwitch.js';
 
 export type InspectorSwitchProps = {
   checked?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
-  onChange?: (nextChecked: boolean) => void;
+  onChange?: (_nextChecked: boolean) => void;
   label?: string;
   className?: string;
   testId?: string;
+  disabledReason?: string;
 };
 
 export const InspectorSwitch = ({
@@ -21,25 +28,19 @@ export const InspectorSwitch = ({
   label,
   className,
   testId,
+  disabledReason,
 }: InspectorSwitchProps) => (
-  <button
-    type="button"
-    data-testid={testId}
-    disabled={disabled || readOnly}
-    onClick={(event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      if (disabled || readOnly) return;
-      onChange?.(!checked);
-    }}
-    onPointerDown={stopInspectorPointerEvent}
-    className={mergeClassNames(
-      'flex min-h-8 items-center justify-between gap-2 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-left text-[11px] text-slate-700 shadow-none transition hover:border-slate-300',
-      (disabled || readOnly) && 'cursor-not-allowed opacity-60',
-      className,
-    )}
-  >
-    <span className="min-w-0 flex-1 truncate">{label}</span>
-    <Switch checked={Boolean(checked)} disabled={disabled || readOnly} />
-  </button>
+  <InspectorBooleanSwitch
+    checked={checked}
+    disabled={disabled}
+    readOnly={readOnly}
+    onChange={onChange}
+    label={label ?? ''}
+    className={className}
+    testId={testId}
+    disabledReason={disabledReason}
+    aria-label={label}
+  />
 );
+
+export default InspectorSwitch;

@@ -7,6 +7,7 @@ import {
   dataLabelFields,
   helpFields,
 } from '../propPanel/commonInspectorFields.js';
+import { resolveSchemaOwnerColorValue } from '../../collaboration/schemaOwnershipAppearance.js';
 import { renderSchemaWithChrome } from '../shared/renderSchemaWithChrome.js';
 import { createActionButtonEl } from '../shared/schemaDom.js';
 import type { ActionSchemaBase } from '../shared/schemaTypes.js';
@@ -29,6 +30,46 @@ type DecisionActionPluginConfig = {
   icon: LucideIcon;
   iconSvg: string;
   tags: string[];
+};
+
+const ACTION_OWNER_STRIP_HEIGHT = 4;
+const ACTION_CHROME_GAP = 2;
+const ACTION_CHROME_PADDING = 2;
+
+const createDecisionActionChromeEl = (ownerColor: string): HTMLDivElement => {
+  const frame = document.createElement('div');
+  frame.className = 'sisad-pdfme-decision-action-frame';
+  Object.assign(frame.style, {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: `${ACTION_CHROME_GAP}px`,
+    padding: `${ACTION_CHROME_PADDING}px`,
+    boxSizing: 'border-box',
+    overflow: 'hidden',
+  });
+
+  const buttonShell = document.createElement('div');
+  buttonShell.className = 'sisad-pdfme-decision-action-button-shell';
+  Object.assign(buttonShell.style, {
+    flex: '1 1 auto',
+    minHeight: '0',
+    display: 'flex',
+  });
+
+  const ownerStrip = document.createElement('div');
+  ownerStrip.className = 'sisad-pdfme-decision-action-owner-strip';
+  Object.assign(ownerStrip.style, {
+    height: `${ACTION_OWNER_STRIP_HEIGHT}px`,
+    flex: `0 0 ${ACTION_OWNER_STRIP_HEIGHT}px`,
+    borderRadius: '999px',
+    background: ownerColor,
+    boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.25)',
+  });
+
+  frame.append(buttonShell, ownerStrip);
+  return frame;
 };
 
 export const createDecisionActionPlugin = ({
@@ -56,6 +97,10 @@ export const createDecisionActionPlugin = ({
           compact: true,
           renderMode: mode,
           render: (chromeEl) => {
+            const ownerColor =
+              rootElement.dataset.schemaOwnerColor ||
+              resolveSchemaOwnerColorValue(decisionSchema) ||
+              '#94A3B8';
             const button = createActionButtonEl({
               label: decisionSchema.label || label,
               bgColor: decisionSchema.buttonColor || defaultColor,
@@ -64,6 +109,9 @@ export const createDecisionActionPlugin = ({
               isInteractive: mode === 'form',
               iconSvg,
             });
+            button.style.height = '100%';
+            button.style.minHeight = '0';
+            button.style.flex = '1 1 auto';
 
             if (mode === 'form') {
               button.addEventListener('click', (event) => {
@@ -88,7 +136,10 @@ export const createDecisionActionPlugin = ({
               });
             }
 
-            chromeEl.appendChild(button);
+            const decisionChrome = createDecisionActionChromeEl(ownerColor);
+            const buttonShell = decisionChrome.firstElementChild as HTMLDivElement | null;
+            buttonShell?.appendChild(button);
+            chromeEl.appendChild(decisionChrome);
           },
         });
       },

@@ -6,11 +6,12 @@
  * duplicar markup ni clases del sistema SISAD PDFME.
  */
 import React from 'react';
-import { Button, Switch, Tag } from 'antd';
+import { Button, Tag } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { mergeClassNames } from '../../shared/className.js';
 import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
+import { InspectorBooleanSwitch } from './InspectorBooleanSwitch.js';
 
 /** Tag visual pequeño usado por tarjetas y headers del inspector. */
 export type InspectorTag = {
@@ -249,27 +250,22 @@ export const InspectorSummaryCard = ({
 /** Props del switch booleano compatible con form-render. */
 type BooleanSwitchWidgetProps = {
   value: unknown;
-  onChange?: (nextValue: boolean) => void;
+  onChange?: (_nextValue: boolean) => void;
   disabled?: boolean;
   readOnly?: boolean;
   checkedLabel?: string;
   uncheckedLabel?: string;
-};
-
-/** Normaliza valores variados a booleano para el switch. */
-const normalizeBoolean = (value: unknown): boolean => {
-  if (typeof value === 'boolean') return value;
-  if (typeof value === 'number') return value !== 0;
-  if (typeof value === 'string') {
-    const normalized = value.trim().toLowerCase();
-    if (!normalized) return false;
-    return ['true', '1', 'yes', 'y', 'on', 'checked'].includes(normalized);
-  }
-  return Boolean(value);
+  disabledReason?: string;
+  testId?: string;
+  'aria-label'?: string;
 };
 
 /**
- * Switch booleano controlado con estado interno sincronizado.
+ * Adaptador de `InspectorBooleanSwitch` a la firma `value/onChange`.
+ *
+ * No implementa comportamiento propio: la lógica del switch vive en la
+ * primitive única para que no reaparezcan estado local duplicado ni un segundo
+ * handler de commit.
  */
 export const BooleanSwitchWidget = ({
   value,
@@ -278,39 +274,22 @@ export const BooleanSwitchWidget = ({
   readOnly,
   checkedLabel,
   uncheckedLabel,
-}: BooleanSwitchWidgetProps) => {
-  const checked = normalizeBoolean(value);
-  const [internalChecked, setInternalChecked] = React.useState(checked);
-
-  React.useEffect(() => {
-    setInternalChecked(checked);
-  }, [checked]);
-
-  const commit = (nextChecked: boolean) => {
-    setInternalChecked(nextChecked);
-    onChange?.(nextChecked);
-  };
-
-  return (
-    <span
-      data-sisad-inspector-interactive="true"
-      data-selecto-ignore="true"
-      data-moveable-ignore="true"
-      data-canvas-drop-ignore="true"
-    >
-      <Switch
-        checked={internalChecked}
-        disabled={disabled || readOnly}
-        onChange={(next) => commit(Boolean(next))}
-        onClick={(next) => commit(Boolean(next))}
-        size="small"
-      />
-      {checkedLabel || uncheckedLabel ? (
-        <span className="sr-only">{internalChecked ? checkedLabel || 'Activado' : uncheckedLabel || 'Desactivado'}</span>
-      ) : null}
-    </span>
-  );
-};
+  disabledReason,
+  testId,
+  'aria-label': ariaLabel,
+}: BooleanSwitchWidgetProps) => (
+  <InspectorBooleanSwitch
+    checked={value}
+    onChange={onChange}
+    disabled={disabled}
+    readOnly={readOnly}
+    checkedLabel={checkedLabel}
+    uncheckedLabel={uncheckedLabel}
+    disabledReason={disabledReason}
+    testId={testId}
+    aria-label={ariaLabel}
+  />
+);
 
 /** Props del estado vacío visual del inspector. */
 type InspectorEmptyStateProps = {

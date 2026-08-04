@@ -80,8 +80,28 @@ describe('schema ownership appearance', () => {
     { id: 'editor1', color: '#00BB00' },
   ];
 
-  it('resolveSchemaOwnerColor prefers explicit userColor', () => {
+  it('resolveSchemaOwnerColor prefers an explicit schema color over the registry', () => {
     expect(resolveSchemaOwnerColor({ userColor: '#FF00FF', ownerRecipientId: 'owner1' } as OwnerColorSchema, users)).toBe('#FF00FF');
+  });
+  it('prefers ownerColor over userColor', () => {
+    // `userColor` carries the LAST EDITOR's color (decorateSchemaWithCollaboration
+    // fills it from lastModifiedBy/createdBy). If it won, a field would be painted
+    // with the color of whoever touched it last instead of its owner's.
+    expect(
+      resolveSchemaOwnerColor(
+        { ownerColor: '#0000FF', userColor: '#FF00FF', ownerRecipientId: 'owner1' } as OwnerColorSchema,
+        users,
+      ),
+    ).toBe('#0000FF');
+  });
+  it('honours a caller-supplied priority override', () => {
+    expect(
+      resolveSchemaOwnerColor(
+        { ownerColor: '#0000FF', userColor: '#FF00FF' } as OwnerColorSchema,
+        users,
+        { ownerColorPriority: ['schema.userColor', 'schema.ownerColor'] },
+      ),
+    ).toBe('#FF00FF');
   });
   it('falls back to recipient color', () => {
     expect(resolveSchemaOwnerColor({ ownerRecipientId: 'owner1' } as OwnerColorSchema, users)).toBe('#AA0000');

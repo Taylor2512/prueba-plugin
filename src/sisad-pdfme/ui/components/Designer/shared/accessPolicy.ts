@@ -21,8 +21,18 @@ export type SchemaAccessContext = {
   enforceOwnership?: boolean;
 };
 
-/** Capacidades cuyo rechazo debe poder explicarse. */
-export type SchemaAccessCapability = 'move' | 'resize' | 'edit' | 'delete';
+/**
+ * Capacidades cuyo rechazo debe poder explicarse.
+ *
+ * `structure` y `edit` no son lo mismo y confundirlas rompe el inspector:
+ * - `structure`: modificar las propiedades del schema desde el Designer.
+ * - `edit`: editar el valor/contenido del campo.
+ *
+ * `schema.readOnly` describe el comportamiento del campo en Form/Runtime, así
+ * que deniega `edit` pero NO `structure`: un diseñador autorizado tiene que
+ * poder volver a desactivar "Solo lectura".
+ */
+export type SchemaAccessCapability = 'move' | 'resize' | 'edit' | 'delete' | 'structure';
 
 /**
  * Motivo por el que se deniega una capacidad.
@@ -53,6 +63,14 @@ export type SchemaAccessState = {
   isEditable: boolean;
   isDeletable: boolean;
   isLockedByOther: boolean;
+  /** El candado existe y pertenece al actor activo. Excluyente con `isLockedByOther`. */
+  isLockedByMe: boolean;
+  /** `runtime.readonly` del entorno; no es una propiedad del schema. */
+  isRuntimeReadOnly: boolean;
+  /** `schema.readOnly`: afecta al valor en Form/Runtime, no al permiso del diseñador. */
+  isSchemaReadOnly: boolean;
+  /** Permiso para modificar propiedades del schema desde el inspector. */
+  canEditStructure: boolean;
   lockingActorId: string | null;
   /** `null` cuando la capacidad está permitida. */
   reasons: Record<SchemaAccessCapability, SchemaAccessDenyReason | null>;
@@ -101,9 +119,15 @@ export function resolveDesignerSchemaAccessState(
   const family = resolveDesignerSchemaFamily(schema);
   const collab = ctx.collaborationContext;
 
-  // 1. Detección de candado ajeno
+  // 1. Detección de candado propio vs ajeno.
+  //    El actor se resuelve desde el contexto de colaboración y, si no lo hay,
+  //    desde `activeActorId`. Sin este fallback un candado propio se leía como
+  //    ajeno (`lockedBy !== undefined`) y deshabilitaba el inspector del propio
+  //    usuario que tomó el candado.
   const lockedBy = (schema as SchemaWithLock).lockedByActorId;
-  const isLockedByOther = !!lockedBy && lockedBy !== collab?.userId;
+  const currentActorId = collab?.userId ?? ctx.activeActorId;
+  const isLockedByMe = !!lockedBy && !!currentActorId && lockedBy === currentActorId;
+  const isLockedByOther = !!lockedBy && !isLockedByMe;
 
   // 2. Capacidad base del entorno
   const canEditBase = collab ? collab.canEditStructure : (ctx.canEditStructure ?? true);
@@ -137,10 +161,13 @@ export function resolveDesignerSchemaAccessState(
     // La edición de contenido añade `readOnly`, que no impide mover ni borrar.
     edit: firstReason([...commonReasons, [schemaReadOnly, 'schema-readonly']]),
     delete: firstReason([...commonReasons, [isLayout, 'family-not-deletable']]),
+    // Modificar propiedades desde el inspector: deliberadamente sin
+    // `schema-readonly`, para que "Solo lectura" se pueda desactivar.
+    structure: firstReason(commonReasons),
   };
 
   return {
-    uid: schema.id,
+    uid: String(schema.id ?? ''),
     family,
     isSelectable: true, // Siempre seleccionable para inspección
     isMovable: reasons.move === null,
@@ -148,9 +175,33 @@ export function resolveDesignerSchemaAccessState(
     isEditable: reasons.edit === null,
     isDeletable: reasons.delete === null, // Evitar borrar layout sin confirmación específica
     isLockedByOther,
+    isLockedByMe,
+    isRuntimeReadOnly: runtimeReadonly,
+    isSchemaReadOnly: schemaReadOnly,
+    canEditStructure: reasons.structure === null,
     lockingActorId: lockedBy || null,
     reasons,
   };
+}
+
+/** Texto mostrable para un motivo de denegación. */
+const DENY_REASON_LABELS: Record<SchemaAccessDenyReason, string> = {
+  'runtime-readonly': 'El documento está en modo solo lectura.',
+  'locked-by-other': 'Este campo está bloqueado por otro usuario.',
+  'schema-locked': 'Este campo está bloqueado.',
+  'schema-readonly': 'Este campo es de solo lectura en el formulario.',
+  'object-locked': 'Este objeto está bloqueado.',
+  'not-owner': 'Este campo pertenece a otro destinatario.',
+  'structure-locked': 'No tienes permiso para modificar la estructura.',
+  'family-not-resizable': 'Este tipo de campo no se puede redimensionar.',
+  'family-not-deletable': 'Este tipo de campo no se puede eliminar.',
+};
+
+/** Describe un motivo de denegación en texto para tooltips y avisos. */
+export function describeSchemaAccessDenyReason(
+  reason: SchemaAccessDenyReason | null | undefined,
+): string | undefined {
+  return reason ? DENY_REASON_LABELS[reason] : undefined;
 }
 
 /** Motivo por el que una capacidad está denegada, o `null` si está permitida. */

@@ -7,11 +7,13 @@
  */
 import React from 'react';
 import type { PropPanelSchema, PropPanelWidgetProps } from '@sisad-pdfme/common';
-import type { useForm } from 'form-render';
+import FormRenderComponent, { useForm } from 'form-render';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
 import DetailSectionCard from './DetailSectionCard.js';
-import FormRenderComponent from 'form-render';
+
+/** Instancia de formulario de una sección. */
+export type SectionFormInstance = ReturnType<typeof useForm>;
 
 /**
  * Props de una sección renderizable del DetailView.
@@ -21,9 +23,10 @@ type DetailFormSectionProps = {
   title: string;
   description: string;
   schema: PropPanelSchema;
-  form: ReturnType<typeof useForm>;
+  /** Valores del schema activo con los que hidratar la sección. */
+  hydrationValues: Record<string, unknown>;
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
-  watchHandler: (..._args: unknown[]) => void;
+  watchHandler: (_values: Record<string, unknown>, _form: SectionFormInstance) => void;
   defaultCollapsed?: boolean;
   resetToken?: string;
   readOnly?: boolean;
@@ -63,12 +66,82 @@ const resolveDirectWidget = (
  * @param props Datos, schema y widgets requeridos para la sección.
  * @returns Sección visual del DetailView.
  */
+/**
+ * Formulario de una sección, con su propia instancia de form-render.
+ *
+ * Cada sección necesita su instancia: `useForm()` de form-render está pensado
+ * para un único `<FormRender>`, y al compartir una instancia entre varias
+ * secciones solo una recibía los valores — el resto renderizaba sus campos con
+ * `value === undefined` (los switches nacían apagados y no reflejaban el
+ * schema). La hidratación vive aquí y no en el padre para que también ocurra
+ * cuando una sección colapsada se expande y se monta más tarde.
+ */
+const SectionFormRenderer = ({
+  schema,
+  hydrationValues,
+  widgets,
+  watchHandler,
+  readOnly,
+}: Pick<DetailFormSectionProps, 'schema' | 'hydrationValues' | 'widgets' | 'watchHandler' | 'readOnly'>) => {
+  const form = useForm();
+  const hydratingRef = React.useRef(true);
+  // `useForm` devuelve un objeto nuevo en cada render (hace rest sobre la
+  // instancia de antd). Usarlo como dependencia rehidrataba el formulario en
+  // cada render y borraba lo que el usuario estaba escribiendo, así que se
+  // guarda en un ref y solo los valores disparan la hidratación.
+  const formRef = React.useRef(form);
+  const watchHandlerRef = React.useRef(watchHandler);
+
+  React.useEffect(() => {
+    formRef.current = form;
+    watchHandlerRef.current = watchHandler;
+  });
+
+  React.useLayoutEffect(() => {
+    hydratingRef.current = true;
+    if (typeof formRef.current.setValues === 'function') {
+      formRef.current.setValues(hydrationValues);
+    }
+    const timeout = setTimeout(() => {
+      hydratingRef.current = false;
+    }, 0);
+    return () => clearTimeout(timeout);
+  }, [hydrationValues]);
+
+  const watchConfig = React.useMemo(
+    () => ({
+      '#': (...args: unknown[]) => {
+        // Ignora el eco de la propia hidratación: no es una edición del usuario.
+        if (hydratingRef.current) return;
+        watchHandlerRef.current((args[0] as Record<string, unknown>) || {}, formRef.current);
+      },
+    }),
+    [],
+  );
+
+  return (
+    <FormRenderComponent
+      form={form}
+      schema={schema}
+      widgets={widgets}
+      watch={watchConfig}
+      readOnly={readOnly}
+      // form-render types only accept 'zh-CN' | 'en-US'. Use 'en-US' to satisfy typing.
+      locale="en-US"
+      // `footer={{reset:{hide:true},submit:{hide:true}}}` seguía siendo
+      // truthy para form-render: ocultaba los botones pero mantenía un
+      // Row/Col/Form.Item vacío al pie de CADA sección. `false` lo elimina.
+      footer={false}
+    />
+  );
+};
+
 const DetailFormSection = ({
   sectionKey,
   title,
   description,
   schema,
-  form,
+  hydrationValues,
   widgets,
   watchHandler,
   defaultCollapsed = false,
@@ -76,7 +149,6 @@ const DetailFormSection = ({
   readOnly = false,
 }: DetailFormSectionProps) => {
   const directWidget = resolveDirectWidget(schema, widgets);
-  const watchConfig = React.useMemo(() => ({ '#': watchHandler }), [watchHandler]);
   const formRenderKey = React.useMemo(
     () => `${resetToken || 'detail'}:${sectionKey || title}`,
     [resetToken, sectionKey, title],
@@ -115,19 +187,13 @@ const DetailFormSection = ({
             '[&_.ant-checkbox-wrapper]:inline-flex [&_.ant-checkbox-wrapper]:items-center [&_.ant-checkbox-wrapper]:gap-[0.375rem] [&_.ant-checkbox-wrapper]:text-[0.6875rem] [&_.ant-checkbox-wrapper]:text-[var(--color-text-secondary)] [&_.ant-checkbox-wrapper]:cursor-pointer [&_.ant-checkbox-wrapper]:transition-colors [&_.ant-checkbox-wrapper:hover]:text-[var(--color-text-primary)]',
           )}
         >
-          <FormRenderComponent
+          <SectionFormRenderer
             key={formRenderKey}
-            form={form}
             schema={schema}
+            hydrationValues={hydrationValues}
             widgets={widgets}
-            watch={watchConfig}
+            watchHandler={watchHandler}
             readOnly={readOnly}
-            // form-render types only accept 'zh-CN' | 'en-US'. Use 'en-US' to satisfy typing.
-            locale="en-US"
-            // `footer={{reset:{hide:true},submit:{hide:true}}}` seguía siendo
-            // truthy para form-render: ocultaba los botones pero mantenía un
-            // Row/Col/Form.Item vacío al pie de CADA sección. `false` lo elimina.
-            footer={false}
           />
         </div>
       )}

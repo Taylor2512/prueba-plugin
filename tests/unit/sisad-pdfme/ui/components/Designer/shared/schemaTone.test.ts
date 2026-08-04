@@ -3,6 +3,7 @@ import {
   resolveSchemaTone,
   resolveSchemaToneSurface,
 } from '@/sisad-pdfme/ui/components/Designer/shared/schemaTone.js';
+import { resolveSchemaVisualTone } from '@/sisad-pdfme/schemas/shared/fieldChrome.js';
 
 const schema = (overrides: Record<string, unknown> = {}) =>
   ({ type: 'text', ...overrides } as Parameters<typeof resolveSchemaTone>[0]);
@@ -31,29 +32,24 @@ describe('resolveSchemaTone', () => {
     expect(resolveSchemaTone(s, '#000')).toBe('#00FF00');
   });
 
-  it('falls through to type tone for text schema', () => {
-    const s = schema({ type: 'text' });
+  it('uses borderColor when the schema has no ownerColor', () => {
+    const s = schema({ borderColor: '#4F8EF7' });
     expect(resolveSchemaTone(s, '#111')).toBe('#4F8EF7');
   });
 
-  it('returns type tone for number', () => {
-    const s = schema({ type: 'number' });
+  it('uses strokeColor when borderColor is absent', () => {
+    const s = schema({ strokeColor: '#F59E0B' });
     expect(resolveSchemaTone(s, '#111')).toBe('#F59E0B');
   });
 
-  it('returns type tone for signature', () => {
-    const s = schema({ type: 'signature' });
-    expect(resolveSchemaTone(s, '#111')).toBe('#F59E0B');
+  it('uses color when ownerColor, borderColor and strokeColor are absent', () => {
+    const s = schema({ color: '#7B61FF' });
+    expect(resolveSchemaTone(s, '#111')).toBe('#7B61FF');
   });
 
-  it('returns fallback for unknown type with no color', () => {
+  it('returns fallback when the schema has no color at all', () => {
     const s = schema({ type: 'unknown_type_xyz' });
     expect(resolveSchemaTone(s, '#FALLBK')).toBe('#FALLBK');
-  });
-
-  it('returns borderColor when present and userColor/ownerColor absent', () => {
-    const s = schema({ borderColor: '#123456', type: 'text' });
-    expect(resolveSchemaTone(s, '#000')).toBe('#123456');
   });
 
   it('ownerColor does NOT change when a different recipient is active (identity preserved)', () => {
@@ -63,33 +59,36 @@ describe('resolveSchemaTone', () => {
 });
 
 describe('resolveSchemaToneSurface', () => {
-  it('returns rgba string from hex tone', () => {
+  it('returns the same owner surface used by the field chrome contract', () => {
     const s = schema({ userColor: '#FF0000' });
     const surface = resolveSchemaToneSurface(s, '#000');
-    expect(surface).toMatch(/^rgba\(255, 0, 0,/);
+    expect(surface).toBe(
+      resolveSchemaVisualTone(s, { fallbackColor: '#000' }).ownerBackground,
+    );
   });
 
-  it('applies default alpha 0.14', () => {
+  it('applies default alpha 0.14 through color-mix instead of opacity', () => {
     const s = schema({ userColor: '#0000FF' });
     const surface = resolveSchemaToneSurface(s, '#000');
-    expect(surface).toContain('0.14');
+    expect(surface).toMatch(/^color-mix\(in srgb,/);
+    expect(surface).toContain('14%');
   });
 
   it('accepts custom alpha', () => {
     const s = schema({ userColor: '#00FF00' });
     const surface = resolveSchemaToneSurface(s, '#000', 0.5);
-    expect(surface).toContain('0.5');
+    expect(surface).toBe('color-mix(in srgb, #00FF00 50%, white)');
   });
 
   it('clamps alpha to max 1', () => {
     const s = schema({ userColor: '#FFFFFF' });
     const surface = resolveSchemaToneSurface(s, '#000', 2.0);
-    expect(surface).toContain('1)');
+    expect(surface).toBe('color-mix(in srgb, #FFFFFF 100%, white)');
   });
 
   it('clamps alpha to min 0', () => {
     const s = schema({ userColor: '#FFFFFF' });
     const surface = resolveSchemaToneSurface(s, '#000', -0.1);
-    expect(surface).toContain('0)');
+    expect(surface).toBe('color-mix(in srgb, #FFFFFF 0%, white)');
   });
 });

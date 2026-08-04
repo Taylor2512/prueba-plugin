@@ -10,7 +10,18 @@ const setValues = vi.fn();
 const getValues = vi.fn(() => ({}));
 const validateFields = vi.fn(() => Promise.resolve());
 
-let capturedDetailProps: { watchHandler: (...args: unknown[]) => void } | null = null;
+/** Form de sección simulado: en runtime lo aporta cada `<FormRender>`. */
+const sectionForm = { validateFields, setValues, getValues } as never;
+
+let capturedDetailProps:
+  | {
+      watchHandler: (values: Record<string, unknown>, form?: unknown) => void;
+      readOnly?: boolean;
+      accessState?: { canEditStructure: boolean; isLockedByOther: boolean; isSchemaReadOnly: boolean };
+      resetToken?: string;
+      hydrationValues?: Record<string, unknown>;
+    }
+  | null = null;
 
 vi.mock('form-render', () => ({
   useForm: () => ({
@@ -30,7 +41,7 @@ vi.mock('@/sisad-pdfme/ui/helper.js', async () => {
 
 vi.mock('@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.js', () => ({
   default: (props: unknown) => {
-    capturedDetailProps = props as { watchHandler: (...args: unknown[]) => void };
+    capturedDetailProps = props as NonNullable<typeof capturedDetailProps>;
     return <div data-testid="detail-view-content" />;
   },
 }));
@@ -145,13 +156,38 @@ describe('DetailView', () => {
       },
     });
 
+    // La hidratación la aplica cada sección con su propio formulario; el
+    // DetailView solo publica el snapshot de valores.
     await waitFor(() => {
-      expect(setValues).toHaveBeenCalled();
+      expect(capturedDetailProps?.hydrationValues).toBeDefined();
     });
 
-    const values = setValues.mock.calls[0][0] as Record<string, unknown>;
+    const values = capturedDetailProps?.hydrationValues as Record<string, unknown>;
     expect(values.readOnly).toBe(true);
     expect(values.editable).toBe(false);
+  });
+
+  test('el snapshot de hidratación no cambia de identidad al editar valores', async () => {
+    vi.useFakeTimers();
+    try {
+      renderDetailView();
+      await act(async () => {
+        vi.runOnlyPendingTimers();
+        await Promise.resolve();
+      });
+      const before = capturedDetailProps?.hydrationValues;
+
+      await act(async () => {
+        capturedDetailProps?.watchHandler({ required: false }, sectionForm);
+        vi.runOnlyPendingTimers();
+        await Promise.resolve();
+      });
+
+      // Si cambiara, las secciones se rehidratarían y pisarían lo tecleado.
+      expect(capturedDetailProps?.hydrationValues).toBe(before);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   test('filters invalid changes when validateFields reports field errors', async () => {
@@ -176,7 +212,7 @@ describe('DetailView', () => {
         capturedDetailProps.watchHandler({
           name: 'duplicated_name',
           width: 90,
-        });
+        }, sectionForm);
         vi.runOnlyPendingTimers();
         await Promise.resolve();
       });
@@ -195,4 +231,157 @@ describe('DetailView', () => {
     }
   });
 
+});
+
+/**
+ * INSPECTOR-001/002/003 — política de commit y acceso del inspector.
+ */
+describe('DetailView — commit de controles discretos', () => {
+  beforeEach(() => {
+    capturedDetailProps = null;
+    setValues.mockClear();
+    getValues.mockReset();
+    getValues.mockReturnValue({});
+    validateFields.mockReset();
+    validateFields.mockResolvedValue(undefined);
+    pluginsRegistry.findByType.mockReturnValue(activePlugin);
+  });
+
+  const settle = async () => {
+    await act(async () => {
+      vi.runOnlyPendingTimers();
+      await Promise.resolve();
+      vi.runOnlyPendingTimers();
+      await Promise.resolve();
+    });
+  };
+
+  test('un cambio booleano persiste exactamente una vez y sin debounce', async () => {
+    vi.useFakeTimers();
+    try {
+      const { changeSchemas } = renderDetailView();
+      await settle();
+
+      // Un clic en el switch: form-render emite el watch con el valor final.
+      await act(async () => {
+        capturedDetailProps?.watchHandler({ required: false }, sectionForm);
+      });
+
+      // Persistido ya, sin esperar los 180 ms del debounce de escritura.
+      expect(changeSchemas).toHaveBeenCalledTimes(1);
+      expect(changeSchemas.mock.calls[0][0]).toEqual([
+        expect.objectContaining({ key: 'required', value: false, schemaId: 's-1' }),
+      ]);
+
+      // Y el debounce posterior no vuelve a escribir el mismo cambio.
+      await settle();
+      expect(changeSchemas).toHaveBeenCalledTimes(1);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  test('el switch "editable" escribe readOnly una sola vez', async () => {
+    vi.useFakeTimers();
+    try {
+      const { changeSchemas } = renderDetailView();
+      await settle();
+
+      await act(async () => {
+        capturedDetailProps?.watchHandler({ editable: false }, sectionForm);
+      });
+
+      expect(changeSchemas).toHaveBeenCalledTimes(1);
+      expect(changeSchemas.mock.calls[0][0]).toEqual([
+        expect.objectContaining({ key: 'readOnly', value: true }),
+        expect.objectContaining({ key: 'required', value: false }),
+      ]);
+
+      await settle();
+      expect(changeSchemas).toHaveBeenCalledTimes(1);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  test('los inputs de escritura continua siguen con debounce', async () => {
+    vi.useFakeTimers();
+    try {
+      const { changeSchemas } = renderDetailView();
+      await settle();
+
+      await act(async () => {
+        capturedDetailProps?.watchHandler({ name: 'nuevo_nombre' }, sectionForm);
+      });
+
+      expect(changeSchemas).not.toHaveBeenCalled();
+
+      await settle();
+      expect(changeSchemas).toHaveBeenCalledTimes(1);
+      expect(changeSchemas.mock.calls[0][0]).toEqual([
+        expect.objectContaining({ key: 'name', value: 'nuevo_nombre' }),
+      ]);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  test('schema.readOnly no pone el inspector en solo lectura', async () => {
+    renderDetailView({ activeSchema: { ...baseSchema, readOnly: true } });
+
+    await waitFor(() => expect(capturedDetailProps).not.toBeNull());
+
+    // El diseñador autorizado tiene que poder volver a desactivar "Solo lectura".
+    expect(capturedDetailProps?.readOnly).toBe(false);
+    expect(capturedDetailProps?.accessState?.canEditStructure).toBe(true);
+    expect(capturedDetailProps?.accessState?.isSchemaReadOnly).toBe(true);
+  });
+
+  test('el candado ajeno sí pone el inspector en solo lectura', async () => {
+    renderDetailView({
+      activeSchema: { ...baseSchema, lockedByActorId: 'alice' } as typeof baseSchema,
+      collaborationContext: {
+        actorId: 'bob',
+        canEditStructure: true,
+      } as never,
+    });
+
+    await waitFor(() => expect(capturedDetailProps).not.toBeNull());
+
+    expect(capturedDetailProps?.readOnly).toBe(true);
+    expect(capturedDetailProps?.accessState?.isLockedByOther).toBe(true);
+  });
+
+  test('el candado propio no bloquea el inspector', async () => {
+    renderDetailView({
+      activeSchema: { ...baseSchema, lockedByActorId: 'bob' } as typeof baseSchema,
+      collaborationContext: {
+        actorId: 'bob',
+        canEditStructure: true,
+      } as never,
+    });
+
+    await waitFor(() => expect(capturedDetailProps).not.toBeNull());
+
+    expect(capturedDetailProps?.readOnly).toBe(false);
+    expect(capturedDetailProps?.accessState?.isLockedByOther).toBe(false);
+  });
+
+  test('cambiar un valor no altera el resetToken que remonta las secciones', async () => {
+    vi.useFakeTimers();
+    try {
+      renderDetailView();
+      await settle();
+      const tokenBefore = capturedDetailProps?.resetToken;
+
+      await act(async () => {
+        capturedDetailProps?.watchHandler({ required: false }, sectionForm);
+      });
+      await settle();
+
+      expect(capturedDetailProps?.resetToken).toBe(tokenBefore);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
 });

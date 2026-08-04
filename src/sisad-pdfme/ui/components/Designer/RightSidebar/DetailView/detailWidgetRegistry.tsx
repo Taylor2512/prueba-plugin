@@ -24,6 +24,45 @@ import type { SidebarProps } from '../../../../types.js';
 import { BooleanSwitchWidget } from './InspectorPrimitives.js';
 import { ColorPickerWidget } from './detailWidgets.js';
 import { asRecord } from '../../../../../shared/objectGuards.js';
+import {
+  describeSchemaAccessDenyReason,
+  type SchemaAccessState,
+} from '../../shared/accessPolicy.js';
+
+/**
+ * Deriva un `data-testid` estable desde el path del campo de form-render.
+ *
+ * `required` → `inspector-required-switch`. Es el ancla que usan las pruebas
+ * e2e, que antes tenían que localizar los switches por posición.
+ */
+const buildSwitchTestId = (fieldId: unknown): string | undefined => {
+  const normalized = String(fieldId ?? '')
+    .trim()
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
+  return normalized ? `inspector-${normalized}-switch` : undefined;
+};
+
+/**
+ * Lee el valor de un widget booleano de form-render.
+ *
+ * form-render declara `valuePropName: 'checked'` para los widgets `switch` y
+ * `checkbox` (`render-core/FieldItem`), así que el valor no llega en `value`
+ * sino en `checked`. Leer solo `value` dejaba a todos los switches del
+ * inspector con `undefined`: nacían apagados aunque el schema dijera lo
+ * contrario y volvían a apagarse tras cada commit.
+ */
+const readBooleanWidgetValue = (widgetProps: PropPanelWidgetProps): unknown => {
+  const { value, checked } = widgetProps as { value?: unknown; checked?: unknown };
+  return value === undefined ? checked : value;
+};
+
+/** Etiqueta accesible del widget, tomada del schema del campo. */
+const resolveWidgetLabel = (widgetProps: PropPanelWidgetProps): string | undefined => {
+  const title = asRecord(widgetProps.schema)?.title;
+  return typeof title === 'string' && title.trim() ? title : undefined;
+};
 
 /**
  * Parámetros usados para construir el registro final de widgets.
@@ -40,6 +79,8 @@ type BuildWidgetsParams = {
   token: GlobalToken;
   typedI18n: (key: string) => string;
   normalizeColorHex: (value: unknown) => string;
+  /** Fuente de verdad del acceso; los widgets no recalculan permisos. */
+  accessState?: SchemaAccessState;
   props: Pick<
     SidebarProps,
     'size' | 'schemas' | 'schemasList' | 'pageSize' | 'basePdf' | 'changeSchemas' | 'activeElements' | 'deselectSchema'
@@ -53,47 +94,98 @@ type BuildWidgetsParams = {
 };
 
 /**
+ * Contexto con los parámetros vigentes del inspector.
+ *
+ * form-render resuelve cada widget por nombre en cada render y lo usa como tipo
+ * de componente: si estas funciones cambiaran de identidad, React desmontaría el
+ * control que el usuario acaba de tocar (el switch perdía el foco y "rebotaba").
+ * El registro se construye una vez por tipo de schema y los valores frescos
+ * llegan por contexto, no por closure.
+ */
+const InspectorWidgetParamsContext = React.createContext<BuildWidgetsParams | null>(null);
+
+/** Provider de los parámetros que consumen los widgets del inspector. */
+export const InspectorWidgetParamsProvider = InspectorWidgetParamsContext.Provider;
+
+/** Lee los parámetros vigentes; falla ruidosamente si falta el provider. */
+const useWidgetParams = (): BuildWidgetsParams => {
+  const params = React.useContext(InspectorWidgetParamsContext);
+  if (!params) {
+    throw Error('[@sisad-pdfme/ui] InspectorWidgetParamsProvider ausente en el DetailView');
+  }
+  return params;
+};
+
+/** Permiso estructural vigente; fuente única para todos los widgets. */
+const useWidgetAccess = () => {
+  const { accessState } = useWidgetParams();
+  return {
+    canEditStructure: accessState ? accessState.canEditStructure : true,
+    deniedReason: describeSchemaAccessDenyReason(accessState?.reasons.structure),
+  };
+};
+
+/**
  * Construye el mapa de widgets que form-render puede usar en el DetailView.
  *
- * @param params Registry de plugins, opciones, tema y props del sidebar.
- * @returns Registro de widgets internos y de plugin.
+ * @param params Registry de plugins y tipo de schema activo (estables por tipo).
+ * @returns Registro estable de widgets internos y de plugin.
  */
-const buildDetailWidgets = ({
-  pluginsRegistry,
-  options,
-  token,
-  typedI18n,
-  normalizeColorHex,
-  props,
-}: BuildWidgetsParams): Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element> => {
-  const activeSchemaType = typeof props?.activeSchema?.type === 'string' ? props.activeSchema.type : '';
+const buildDetailWidgets = (
+  params: Pick<BuildWidgetsParams, 'pluginsRegistry'> & { activeSchemaType?: string },
+): Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element> => {
+  const activeSchemaType = typeof params.activeSchemaType === 'string' ? params.activeSchemaType : '';
   const familyPreset = getSchemaTypeInspectorPreset(activeSchemaType);
+
   const widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element> = {
-    AlignWidget: (p) => <AlignWidget {...p} {...props} options={options} selectionCommands={props.selectionCommands} />,
+    AlignWidget: (p) => {
+      const { props, options } = useWidgetParams();
+      return <AlignWidget {...p} {...props} options={options} selectionCommands={props.selectionCommands} />;
+    },
     Divider: () => (
       <Divider
         className={`${DESIGNER_CLASSNAME}detail-view-divider my-1.5 border-slate-200/70`}
       />
     ),
-    ButtonGroup: (p) => <ButtonGroupWidget {...p} {...props} options={options} />,
-    nativeColor: (p) => <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />,
+    ButtonGroup: (p) => {
+      const { props, options } = useWidgetParams();
+      return <ButtonGroupWidget {...p} {...props} options={options} />;
+    },
+    nativeColor: (p) => {
+      const { normalizeColorHex } = useWidgetParams();
+      return <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />;
+    },
     // Unified React options editor (select/radioGroup/checkboxGroup) — replaces
     // the imperative rootElement editors inside the DetailView.
-    SchemaOptionsEditor: () => (
-      <SchemaOptionsEditor activeSchema={props.activeSchema} changeSchemas={props.changeSchemas} />
-    ),
-    switch: (p) => (
-      <BooleanSwitchWidget
-        value={p.value}
-        onChange={(nextValue) => p.onChange?.(nextValue)}
-        disabled={p.disabled}
-        readOnly={p.readOnly}
-      />
-    ),
+    SchemaOptionsEditor: () => {
+      const { props } = useWidgetParams();
+      return <SchemaOptionsEditor activeSchema={props.activeSchema} changeSchemas={props.changeSchemas} />;
+    },
+    switch: (p) => {
+      const { canEditStructure, deniedReason } = useWidgetAccess();
+      return (
+        <BooleanSwitchWidget
+          value={readBooleanWidgetValue(p)}
+          onChange={(nextValue) => p.onChange?.(nextValue)}
+          // `disabled` efectivo = widget + acceso. `p.readOnly` no se propaga
+          // como bloqueo aquí: representa el modo readOnly del formulario, que
+          // ya se deriva del permiso estructural en DetailView.
+          disabled={p.disabled === true || !canEditStructure}
+          disabledReason={canEditStructure ? undefined : deniedReason}
+          testId={buildSwitchTestId(p.id)}
+          aria-label={resolveWidgetLabel(p)}
+        />
+      );
+    },
     InlineEditActionsWidget: () => {
+      const { props, options } = useWidgetParams();
+      const { canEditStructure } = useWidgetAccess();
       const schemaType = typeof props.activeSchema?.type === 'string' ? props.activeSchema.type : '';
       const isTextType = INLINE_EDITABLE_TEXT_TYPES.has(schemaType);
-      const canEdit = props.selectionCommands?.canEditStructure !== false;
+      // Mismo permiso estructural que los switches: sin esto el inspector
+      // mostraba controles habilitados y acciones deshabilitadas (o al revés)
+      // para el mismo estado de acceso.
+      const canEdit = canEditStructure && props.selectionCommands?.canEditStructure !== false;
       const visibility = asRecord(asRecord(options)?.visibility);
       const actionsVisibility = asRecord(visibility?.actions);
       const showRename = actionsVisibility?.rename !== false;
@@ -134,7 +226,7 @@ const buildDetailWidgets = ({
     const SchemaFieldCommentsWidgetRenderer = function SchemaFieldCommentsWidgetRenderer(
       p: PropPanelWidgetProps,
     ) {
-      return <SchemaFieldCommentsWidget {...p} {...props} />;
+      return <SchemaFieldCommentsWidget {...p} {...useWidgetParams().props} />;
     };
     SchemaFieldCommentsWidgetRenderer.displayName = 'SchemaFieldCommentsWidget';
     widgets.SchemaFieldCommentsWidget = SchemaFieldCommentsWidgetRenderer;
@@ -144,7 +236,7 @@ const buildDetailWidgets = ({
     const SchemaConnectionsWidgetRenderer = function SchemaConnectionsWidgetRenderer(
       p: PropPanelWidgetProps,
     ) {
-      return <SchemaConnectionsWidget {...p} {...props} />;
+      return <SchemaConnectionsWidget {...p} {...useWidgetParams().props} />;
     };
     SchemaConnectionsWidgetRenderer.displayName = 'SchemaConnectionsWidget';
     widgets.SchemaConnectionsWidget = SchemaConnectionsWidgetRenderer;
@@ -154,25 +246,28 @@ const buildDetailWidgets = ({
     const SchemaCollaborationWidgetRenderer = function SchemaCollaborationWidgetRenderer(
       p: PropPanelWidgetProps,
     ) {
-      return <SchemaCollaborationWidget {...p} {...props} />;
+      return <SchemaCollaborationWidget {...p} {...useWidgetParams().props} />;
     };
     SchemaCollaborationWidgetRenderer.displayName = 'SchemaCollaborationWidget';
     widgets.SchemaCollaborationWidget = SchemaCollaborationWidgetRenderer;
   }
 
-  for (const plugin of pluginsRegistry.values()) {
+  for (const plugin of params.pluginsRegistry.values()) {
     const pluginWidgets = plugin.propPanel.widgets || {};
     Object.entries(pluginWidgets).forEach(([widgetKey, widgetValue]) => {
-      widgets[widgetKey] = (p) => (
-        <WidgetRenderer
-          {...p}
-          {...props}
-          options={options}
-          theme={token}
-          i18n={typedI18n}
-          widget={widgetValue}
-        />
-      );
+      widgets[widgetKey] = (p) => {
+        const { props, options, token, typedI18n } = useWidgetParams();
+        return (
+          <WidgetRenderer
+            {...p}
+            {...props}
+            options={options}
+            theme={token}
+            i18n={typedI18n}
+            widget={widgetValue}
+          />
+        );
+      };
     });
   }
 

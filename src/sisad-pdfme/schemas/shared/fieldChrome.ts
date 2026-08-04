@@ -12,6 +12,10 @@ import { resolveSchemaOwnerColorValue as resolveSchemaOwnerColorValueFromAppeara
 // ─── Designer option box constants ────────────────────────────────────────────
 // Used in JS indicator builders AND in CSS (same literal value).
 
+/**
+ * Respaldo de las cajas de opción del Designer cuando el schema no tiene dueño
+ * resuelto. No es la paleta por defecto: con dueño, la caja usa su tono.
+ */
 export const DESIGNER_OPTION_BOX_BORDER = '#65d8de';
 const DESIGNER_OPTION_BOX_BG = 'rgba(161, 239, 242, 0.58)';
 
@@ -100,11 +104,167 @@ type FieldChromePolicyResult = {
   printBackground: boolean;
 };
 
+/**
+ * Translucidez por mezcla, no por `opacity`.
+ *
+ * `opacity` en el contenedor atenuaría también texto, iconos y trazos hijos.
+ * `color-mix` produce un color concreto y sólo afecta a la propiedad donde se
+ * usa. Además acepta cualquier notación CSS (hex, rgb, hsl, `var()`), a
+ * diferencia de un helper hex→rgba, que falla con los tonos que llegan como
+ * variable.
+ */
 const mix = (tone: string, pct: number, base = 'white'): string =>
   `color-mix(in srgb, ${tone} ${pct}%, ${base})`;
 
 const normalizeColor = (value: unknown): string =>
   typeof value === 'string' && value.trim() ? value.trim() : '';
+
+// ─── Contrato visual único (COLOR-001) ────────────────────────────────────────
+
+/**
+ * Cómo convive el color del destinatario con el color propio del contenido.
+ *
+ * - `owner-surface`: toda la superficie es del dueño. El contenido no aporta
+ *   color de fondo (sí icono, placeholder, texto o trazos).
+ * - `owner-surface-with-semantic-content`: la superficie es del dueño y el
+ *   contenido conserva un color con significado propio —verde aprobar, rojo
+ *   rechazar, ámbar nota, estado marcado— que vive **dentro**, sin cubrir el
+ *   borde exterior.
+ * - `content-preserved`: el contenido no se recolorea nunca (imagen, SVG,
+ *   código de barras, tabla, o una forma con `fill` explícito). Sólo recibe
+ *   chrome exterior.
+ */
+export type SchemaColorPolicy =
+  | 'owner-surface'
+  | 'owner-surface-with-semantic-content'
+  | 'content-preserved';
+
+/**
+ * Salida única del tono de un schema. Toda superficie —Canvas, ListView,
+ * DetailHeader, Designer, Form, Viewer— debe derivar de aquí en vez de
+ * recalcular su propia paleta.
+ */
+export type SchemaVisualTone = {
+  ownerColor: string;
+  ownerBackground: string;
+  ownerBackgroundStrong: string;
+  ownerBorder: string;
+  ownerText: string;
+  policy: SchemaColorPolicy;
+  /** Acento con significado, sólo en `owner-surface-with-semantic-content`. */
+  semanticColor?: string;
+  semanticBackground?: string;
+  semanticText?: string;
+};
+
+/**
+ * Acentos semánticos por tipo. Viven aquí para que las familias los consuman en
+ * COLOR-004/005 en vez de repetir literales: hoy `approve.ts`, `decline.ts` y
+ * `note.ts` declaran los suyos por separado.
+ */
+const SCHEMA_SEMANTIC_ACCENTS: Record<
+  string,
+  { color: string; background: string; text: string }
+> = {
+  approve: { color: '#16a34a', background: '#16a34a', text: '#ffffff' },
+  decline: { color: '#dc2626', background: '#dc2626', text: '#ffffff' },
+  note: { color: '#fde047', background: '#fefce8', text: '#713f12' },
+};
+
+/** Tipos cuyo contenido nunca se recolorea. */
+const CONTENT_PRESERVED_TYPES = new Set([
+  'image',
+  'svg',
+  'table',
+  'line',
+  'rectangle',
+  'ellipse',
+  'qrcode',
+  'ean13',
+  'ean8',
+  'code39',
+  'code128',
+  'itf14',
+  'upca',
+  'upce',
+  'gs1datamatrix',
+  'pdf417',
+  'japanpost',
+  'nw7',
+]);
+
+/** Familias cuyo contenido nunca se recolorea. */
+const CONTENT_PRESERVED_FAMILIES = new Set<SchemaVisualFamily>([
+  'media',
+  'shape',
+  'table',
+]);
+
+/** Familias con estado interno significativo (marcado / sin marcar). */
+const SEMANTIC_CONTENT_FAMILIES = new Set<SchemaVisualFamily>([
+  'option-based',
+  'boolean',
+]);
+
+const normalizeTypeKey = (value: unknown): string =>
+  typeof value === 'string' ? value.trim().toLowerCase() : '';
+
+/**
+ * Decide la política de color de un schema.
+ *
+ * El tipo manda sobre la familia: `action-based` agrupa `attachment` —que no
+ * tiene color propio— con `approve`, `decline` y `note` —que sí—, así que
+ * resolver sólo por familia daría a los cuatro el mismo trato.
+ */
+export const resolveSchemaColorPolicy = (
+  schema: unknown,
+  family?: SchemaVisualFamily,
+): SchemaColorPolicy => {
+  const type = normalizeTypeKey((schema as { type?: unknown } | null)?.type);
+
+  if (SCHEMA_SEMANTIC_ACCENTS[type]) return 'owner-surface-with-semantic-content';
+  if (CONTENT_PRESERVED_TYPES.has(type)) return 'content-preserved';
+  if (family && CONTENT_PRESERVED_FAMILIES.has(family)) return 'content-preserved';
+  if (family && SEMANTIC_CONTENT_FAMILIES.has(family)) {
+    return 'owner-surface-with-semantic-content';
+  }
+  return 'owner-surface';
+};
+
+/**
+ * Resuelve el tono completo de un schema: color de dueño, superficies derivadas
+ * y política semántica. Punto único de verdad del contrato visual.
+ *
+ * `fallbackColor` es el respaldo del llamador (por ejemplo el destinatario
+ * activo para un schema nuevo o una previsualización); nunca pisa el color ya
+ * materializado en el schema.
+ */
+export const resolveSchemaVisualTone = (
+  schema: unknown,
+  options: { family?: SchemaVisualFamily; fallbackColor?: string | null } = {},
+): SchemaVisualTone => {
+  const ownerColor = resolveSchemaOwnerTone(schema, options.fallbackColor);
+  const policy = resolveSchemaColorPolicy(schema, options.family);
+  const accent = SCHEMA_SEMANTIC_ACCENTS[
+    normalizeTypeKey((schema as { type?: unknown } | null)?.type)
+  ];
+
+  return {
+    ownerColor,
+    ownerBackground: mix(ownerColor, 14),
+    ownerBackgroundStrong: mix(ownerColor, 28),
+    ownerBorder: mix(ownerColor, 64),
+    ownerText: mix(ownerColor, 82, 'black'),
+    policy,
+    ...(policy === 'owner-surface-with-semantic-content' && accent
+      ? {
+          semanticColor: accent.color,
+          semanticBackground: accent.background,
+          semanticText: accent.text,
+        }
+      : {}),
+  };
+};
 
 /**
  * Raw ownership color: same chain as `resolveSchemaOwnerTone` but WITHOUT any
@@ -189,9 +349,16 @@ const resolveFieldChromePolicy = (
         break;
     }
   } else if (mode === 'designer') {
+    // Compacto (action-based) también debe declarar dueño: sin tono, un botón
+    // Aprobar/Rechazar o una nota no dicen de quién son. Más tenue que el
+    // chrome normal para no competir con el color semántico del contenido.
     showDesignerChrome = true;
+    surface = mix(tone, 10);
+    borderColor = mix(tone, 48);
   } else if (mode === 'form') {
     showFormControls = true;
+    surface = mix(tone, 6);
+    borderColor = mix(tone, 32);
   } else if (mode === 'viewer') {
     showViewerChrome = true;
   }
@@ -340,8 +507,9 @@ export const applyFieldChrome = <TSchema extends SisadSchemaBase>(
   } else if (family === 'signing-based') {
     element.style.background = `color-mix(in srgb, ${tone} 12%, white)`;
   } else if (family === 'action-based') {
-    element.style.border = '0';
-    element.style.background = 'transparent';
+    // El chrome de dueño se conserva (borde + fondo tenue): el contenido de la
+    // acción mantiene su color semántico —verde aprobar, rojo rechazar— y el
+    // tono de alrededor dice a quién pertenece el campo.
     element.style.borderRadius = 'var(--sisad-schema-radius)';
     element.style.overflow = 'visible';
   }

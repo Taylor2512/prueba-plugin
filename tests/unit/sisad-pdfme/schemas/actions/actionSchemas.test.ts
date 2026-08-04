@@ -102,6 +102,33 @@ describe('approve schema', () => {
     expect(approve.propPanel.inspector.propertyMap.buttonColor).toBe('style');
     expect(approve.propPanel.inspector.propertyMap.label).toBe('data');
   });
+
+  it('renders a compact semantic button with owner strip below', async () => {
+    const rootElement = document.createElement('div');
+
+    await approve.ui?.({
+      schema: {
+        type: 'approve',
+        label: 'Aprobar',
+        ownerColor: '#2563EB',
+        buttonColor: '#16a34a',
+      },
+      rootElement,
+      mode: 'viewer',
+    } as never);
+
+    const frame = rootElement.querySelector('.sisad-pdfme-decision-action-frame') as HTMLDivElement | null;
+    const button = rootElement.querySelector('.sisad-pdfme-action-button') as HTMLButtonElement | null;
+    const ownerStrip = rootElement.querySelector('.sisad-pdfme-decision-action-owner-strip') as HTMLDivElement | null;
+
+    expect(frame).toBeTruthy();
+    expect(button).toBeTruthy();
+    expect(ownerStrip).toBeTruthy();
+    expect(button?.style.height).toBe('100%');
+    expect((button?.parentElement as HTMLDivElement | null)?.style.flex).toBe('1 1 auto');
+    expect(ownerStrip?.style.height).toBe('4px');
+    expect(ownerStrip?.style.background).toBe('rgb(37, 99, 235)');
+  });
 });
 
 describe('decline schema', () => {
@@ -122,5 +149,32 @@ describe('decline schema', () => {
     expect(propPanelSchema.confirmationMessage).toBeTruthy();
     expect(propPanelSchema.tooltip).toBeTruthy();
     expect(propPanelSchema.dataLabel).toBeTruthy();
+  });
+
+  it('renders a compact semantic button with owner strip below', async () => {
+    const rootElement = document.createElement('div');
+
+    await decline.ui?.({
+      schema: {
+        type: 'decline',
+        label: 'Rechazar',
+        ownerColor: '#2563EB',
+        buttonColor: '#dc2626',
+      },
+      rootElement,
+      mode: 'viewer',
+    } as never);
+
+    const frame = rootElement.querySelector('.sisad-pdfme-decision-action-frame') as HTMLDivElement | null;
+    const button = rootElement.querySelector('.sisad-pdfme-action-button') as HTMLButtonElement | null;
+    const ownerStrip = rootElement.querySelector('.sisad-pdfme-decision-action-owner-strip') as HTMLDivElement | null;
+
+    expect(frame).toBeTruthy();
+    expect(button).toBeTruthy();
+    expect(ownerStrip).toBeTruthy();
+    expect(button?.style.height).toBe('100%');
+    expect((button?.parentElement as HTMLDivElement | null)?.style.flex).toBe('1 1 auto');
+    expect(ownerStrip?.style.height).toBe('4px');
+    expect(ownerStrip?.style.background).toBe('rgb(37, 99, 235)');
   });
 });

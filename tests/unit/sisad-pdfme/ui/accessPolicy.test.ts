@@ -10,6 +10,7 @@ import {
   resolveDesignerSchemaAccessState,
   schemaAccessDenyReason,
   canRunSchemaCommand,
+  describeSchemaAccessDenyReason,
 } from '@/sisad-pdfme/ui/components/Designer/shared/accessPolicy';
 
 const schema = (overrides: Record<string, unknown> = {}) =>
@@ -23,7 +24,13 @@ describe('schemas nuevos', () => {
     expect(access.isResizable).toBe(true);
     expect(access.isEditable).toBe(true);
     expect(access.isDeletable).toBe(true);
-    expect(access.reasons).toEqual({ move: null, resize: null, edit: null, delete: null });
+    expect(access.reasons).toEqual({
+      move: null,
+      resize: null,
+      edit: null,
+      delete: null,
+      structure: null,
+    });
   });
 
   it('siguen siendo seleccionables aunque estén bloqueados', () => {
@@ -165,6 +172,73 @@ describe('precedencia de fuentes', () => {
     );
 
     expect(access.isEditable).toBe(true);
+  });
+});
+
+describe('INSPECTOR-002 — estructura vs valor y candado propio vs ajeno', () => {
+  it('schema.readOnly no quita el permiso estructural del diseñador', () => {
+    const access = resolveDesignerSchemaAccessState(schema({ readOnly: true }), {});
+
+    expect(access.isSchemaReadOnly).toBe(true);
+    expect(access.isEditable).toBe(false);
+    // Sin esto el inspector se congela al activar "Solo lectura" y el switch
+    // queda sin forma de revertirse.
+    expect(access.canEditStructure).toBe(true);
+    expect(access.reasons.structure).toBeNull();
+  });
+
+  it('el candado ajeno sí quita el permiso estructural', () => {
+    const access = resolveDesignerSchemaAccessState(schema({ lockedByActorId: 'alice' }), {
+      collaborationContext: { isCollaborative: true, userId: 'bob', canEditStructure: true },
+    } as never);
+
+    expect(access.isLockedByOther).toBe(true);
+    expect(access.isLockedByMe).toBe(false);
+    expect(access.canEditStructure).toBe(false);
+    expect(access.reasons.structure).toBe('locked-by-other');
+  });
+
+  it('el candado propio no bloquea al actor que lo tomó', () => {
+    const access = resolveDesignerSchemaAccessState(schema({ lockedByActorId: 'bob' }), {
+      collaborationContext: { isCollaborative: true, userId: 'bob', canEditStructure: true },
+    } as never);
+
+    expect(access.isLockedByMe).toBe(true);
+    expect(access.isLockedByOther).toBe(false);
+    expect(access.canEditStructure).toBe(true);
+  });
+
+  it('resuelve el actor desde activeActorId cuando no hay contexto colaborativo', () => {
+    const access = resolveDesignerSchemaAccessState(schema({ lockedByActorId: 'bob' }), {
+      activeActorId: 'bob',
+    } as never);
+
+    // Sin este fallback un candado propio se leía como ajeno y deshabilitaba el
+    // inspector del usuario que lo tomó.
+    expect(access.isLockedByMe).toBe(true);
+    expect(access.isLockedByOther).toBe(false);
+  });
+
+  it('runtime readonly se expone como estado propio y bloquea la estructura', () => {
+    const access = resolveDesignerSchemaAccessState(schema(), { runtimeReadonly: true } as never);
+
+    expect(access.isRuntimeReadOnly).toBe(true);
+    expect(access.canEditStructure).toBe(false);
+    expect(access.reasons.structure).toBe('runtime-readonly');
+  });
+
+  it('sin permiso de estructura, canEditStructure es falso con motivo', () => {
+    const access = resolveDesignerSchemaAccessState(schema(), { canEditStructure: false } as never);
+
+    expect(access.canEditStructure).toBe(false);
+    expect(access.reasons.structure).toBe('structure-locked');
+  });
+
+  it('cada motivo de denegación es descriptible', () => {
+    const access = resolveDesignerSchemaAccessState(schema(), { runtimeReadonly: true } as never);
+
+    expect(describeSchemaAccessDenyReason(access.reasons.structure)).toBeTruthy();
+    expect(describeSchemaAccessDenyReason(null)).toBeUndefined();
   });
 });
 

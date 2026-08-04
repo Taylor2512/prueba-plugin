@@ -6,8 +6,7 @@
  * canvas. Este componente debe coordinar contratos, pero no manipular DOM del
  * canvas, Moveable ni Selecto.
  */
-import { useForm } from 'form-render';
-import React, { useContext, useEffect, useLayoutEffect, useCallback, useMemo, useRef } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useCallback, useMemo, useRef, useState } from 'react';
 import type {
   Dict,
   ChangeSchemaItem,
@@ -28,9 +27,10 @@ import {
   type SchemaAccessState,
   type SchemaAccessContext,
 } from '../../shared/accessPolicy.js';
-import { buildInspectorSections } from './detailSchemas.js';
-import buildDetailWidgets from './detailWidgetRegistry.js';
+import { buildInspectorSections, type DetailInspectorSection } from './detailSchemas.js';
+import buildDetailWidgets, { InspectorWidgetParamsProvider } from './detailWidgetRegistry.js';
 import DetailViewContent from './DetailViewContent.js';
+import type { SectionFormInstance } from './DetailFormSection.js';
 import { createInspectorConfigurationResolver } from '../../../../../config/InspectorConfigurationResolver.js';
 import {
   getSchemaConfigStorageKey,
@@ -128,12 +128,33 @@ const createPositionValidator =
   };
 
 /**
- * Compara valores de formulario contra el schema actual y genera cambios.
+ * Cambios particionados por política de commit.
+ *
+ * Los controles discretos (switches, selects) se persisten al instante; solo
+ * los campos de escritura continua pasan por debounce.
  */
-const buildChangeSet = (nextValues: Record<string, unknown>, currentSchema: SchemaForUI): ChangeSchemaItem[] => {
+type PartitionedChanges = {
+  /** Commit inmediato, una sola escritura por interacción. */
+  immediate: ChangeSchemaItem[];
+  /** Commit con debounce y validación de formulario. */
+  deferred: ChangeSchemaItem[];
+};
+
+/**
+ * Compara valores de formulario contra el schema actual y genera cambios.
+ *
+ * @param nextValues Valores actuales del formulario.
+ * @param currentSchema Schema activo contra el que se calcula el diff.
+ * @param immediateKeys Campos del formulario con `commitMode: 'immediate'`.
+ */
+const buildChangeSet = (
+  nextValues: Record<string, unknown>,
+  currentSchema: SchemaForUI,
+  immediateKeys: ReadonlySet<string> = new Set(),
+): PartitionedChanges => {
   const ignoredKeys = new Set(['id', 'content']);
   const nullableKeys = new Set(['rotate', 'opacity']);
-  const changes: ChangeSchemaItem[] = [];
+  const partitioned: PartitionedChanges = { immediate: [], deferred: [] };
   const currentValues = asRecord(currentSchema) || {};
 
   const valuesDiffer = (formValue: unknown, schemaValue: unknown): boolean => {
@@ -153,19 +174,48 @@ const buildChangeSet = (nextValues: Record<string, unknown>, currentSchema: Sche
       value = undefined;
     }
 
+    // El bucket se decide por la clave del formulario, no por la del schema:
+    // `editable` es un switch aunque escriba `readOnly`.
+    const bucket = immediateKeys.has(key) ? partitioned.immediate : partitioned.deferred;
+
     if (key === 'editable') {
       const readOnlyValue = !value;
-      changes.push({ key: 'readOnly', value: readOnlyValue, schemaId: currentSchema.id });
+      bucket.push({ key: 'readOnly', value: readOnlyValue, schemaId: currentSchema.id });
       if (readOnlyValue) {
-        changes.push({ key: 'required', value: false, schemaId: currentSchema.id });
+        bucket.push({ key: 'required', value: false, schemaId: currentSchema.id });
       }
       continue;
     }
 
-    changes.push({ key, value, schemaId: currentSchema.id });
+    bucket.push({ key, value, schemaId: currentSchema.id });
   }
 
-  return changes;
+  return partitioned;
+};
+
+/**
+ * Recolecta las claves de formulario que deben commitearse sin debounce.
+ *
+ * Un switch o un select producen un valor final por interacción: esperar 180 ms
+ * y revalidar el formulario entero solo añade rebote y commits duplicados.
+ */
+const collectImmediateCommitKeys = (sections: DetailInspectorSection[]): Set<string> => {
+  const keys = new Set<string>();
+
+  for (const section of sections) {
+    const properties = asRecord(asRecord(section.schema)?.properties) || {};
+    for (const [fieldKey, rawField] of Object.entries(properties)) {
+      const field = asRecord(rawField);
+      if (!field) continue;
+      const widget = String(field.widget || '').trim().toLowerCase();
+      const isBoolean = field.type === 'boolean' || widget === 'switch' || widget === 'checkbox';
+      const isDiscreteChoice =
+        widget === 'select' || widget === 'radio' || widget === 'nativecolor' || widget === 'buttongroup';
+      if (isBoolean || isDiscreteChoice) keys.add(fieldKey);
+    }
+  }
+
+  return keys;
 };
 
 /**
@@ -203,7 +253,6 @@ const DetailView = (props: DetailViewProps) => {
     collaborationContext,
     selectionCommands,
   } = props;
-  const form = useForm();
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const resolvedConfig = useSisadPdfmeConfig();
@@ -212,20 +261,41 @@ const DetailView = (props: DetailViewProps) => {
   const hydratingFormRef = useRef(false);
   const hydrationKeyRef = useRef<string | null>(null);
   const hydrationClearTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Identifica la hidratación vigente para liberar la bandera sin cancelarla. */
+  const hydrationTokenRef = useRef(0);
+  /** Último estado conocido del formulario, para validaciones cruzadas. */
+  const latestFormValuesRef = useRef<Record<string, unknown>>({});
   const pendingWatchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingWatchValuesRef = useRef<Record<string, unknown> | null>(null);
+  /** Formulario de la sección que emitió el último cambio diferido. */
+  const pendingWatchFormRef = useRef<SectionFormInstance | null>(null);
+  /** Claves con `commitMode: 'immediate'`, derivadas de las secciones activas. */
+  const immediateCommitKeysRef = useRef<Set<string>>(new Set());
   const inspectorResolver = useMemo(
     () => createInspectorConfigurationResolver(resolvedConfig),
     [resolvedConfig],
   );
 
+  const runtimeReadonly = resolvedConfig.config?.runtime?.readonly === true;
+
+  // El contexto debe hablar el idioma de `SchemaAccessContext`. Antes se pasaban
+  // `actorId`/`isGlobalView`, campos que el resolver no lee, de modo que el
+  // inspector resolvía el acceso sin actor: cualquier candado —incluido el
+  // propio— se interpretaba como candado ajeno.
   const accessContext = useMemo<SchemaAccessContext>(
     () => ({
-      actorId: collaborationContext?.actorId || null,
-      isGlobalView: collaborationContext?.isGlobalView ?? false,
+      activeActorId: collaborationContext?.actorId || undefined,
+      collaborationContext: collaborationContext
+        ? {
+            isCollaborative: true,
+            userId: collaborationContext.actorId || '',
+            canEditStructure: collaborationContext.canEditStructure ?? true,
+          }
+        : undefined,
       canEditStructure: collaborationContext?.canEditStructure ?? true,
+      runtimeReadonly,
     }),
-    [collaborationContext],
+    [collaborationContext, runtimeReadonly],
   );
 
   const accessState = useMemo<SchemaAccessState>(
@@ -234,7 +304,10 @@ const DetailView = (props: DetailViewProps) => {
   );
   const selectionCount = Array.isArray(activeElements) ? activeElements.length : 0;
 
-  const isReadOnly = useMemo(() => accessState.isLockedByOther || !accessState.isEditable, [accessState]);
+  // Solo el permiso estructural congela el inspector. Usar `isEditable` incluía
+  // `schema.readOnly`, así que activar "Solo lectura" deshabilitaba el propio
+  // switch que lo activó y dejaba el campo sin forma de revertirlo.
+  const isReadOnly = useMemo(() => !accessState.canEditStructure, [accessState]);
 
   useEffect(() => {
     activeSchemaRef.current = activeSchema;
@@ -308,23 +381,25 @@ const DetailView = (props: DetailViewProps) => {
     [activeElements, activeSchema, basePdf, changeSchemas, deselectSchema, pageSize, schemas, schemasList, size],
   );
 
-  const widgets = useMemo(
-    () =>
-      buildDetailWidgets({
-        pluginsRegistry,
-        options: resolvedConfig.config as unknown as import('@sisad-pdfme/common').UIOptions,
-        token,
-        typedI18n,
-        normalizeColorHex,
-        props: {
-          ...propPanelProps,
-          selectionCommands,
-          designerEngine,
-          schemaConfig,
-          updateSchemaConfig,
-        },
-      }),
+  // Lo que los widgets leen en cada render viaja por contexto, no por closure.
+  const widgetParams = useMemo(
+    () => ({
+      pluginsRegistry,
+      options: resolvedConfig.config as unknown as import('@sisad-pdfme/common').UIOptions,
+      token,
+      typedI18n,
+      normalizeColorHex,
+      accessState,
+      props: {
+        ...propPanelProps,
+        selectionCommands,
+        designerEngine,
+        schemaConfig,
+        updateSchemaConfig,
+      },
+    }),
     [
+      accessState,
       designerEngine,
       normalizeColorHex,
       pluginsRegistry,
@@ -338,6 +413,14 @@ const DetailView = (props: DetailViewProps) => {
     ],
   );
 
+  // El registro se memoiza por tipo de schema, no por valor: form-render usa
+  // cada entrada como tipo de componente, así que recrearlas en cada commit
+  // desmontaba el control recién tocado (el switch perdía foco y "rebotaba").
+  const widgets = useMemo(
+    () => buildDetailWidgets({ pluginsRegistry, activeSchemaType: activeSchema.type }),
+    [activeSchema.type, pluginsRegistry],
+  );
+
   const hydrationKey = `${activeSchema.id}:${activeSchema.type}`;
 
   const clearPendingWatchCommit = useCallback(() => {
@@ -348,6 +431,18 @@ const DetailView = (props: DetailViewProps) => {
     pendingWatchValuesRef.current = null;
   }, []);
 
+  // Snapshot de hidratación: se recalcula solo al cambiar de schema activo, no
+  // en cada commit. Si cambiara con cada valor, las secciones se rehidratarían
+  // mientras el usuario escribe y pisarían lo que acaba de teclear.
+  const [hydrationSnapshot, setHydrationSnapshot] = useState(() => ({
+    key: hydrationKey,
+    values: createHydrationValues(activeSchema),
+  }));
+  if (hydrationSnapshot.key !== hydrationKey) {
+    setHydrationSnapshot({ key: hydrationKey, values: createHydrationValues(activeSchema) });
+  }
+  const hydrationValues = hydrationSnapshot.values;
+
   useLayoutEffect(() => {
     if (hydrationKeyRef.current === hydrationKey) return;
 
@@ -355,29 +450,25 @@ const DetailView = (props: DetailViewProps) => {
     hydratingFormRef.current = true;
     clearPendingWatchCommit();
 
-    const values = createHydrationValues(activeSchema);
-    if (typeof form.resetFields === 'function') {
-      form.resetFields();
-    }
-    if (typeof form.setValues === 'function') {
-      form.setValues(values);
-    }
-
+    // La bandera se libera por token, no por cleanup: el efecto depende de
+    // `activeSchema`, que cambia de identidad en cada render del designer. Con
+    // un cleanup que cancelaba el timeout, bastaba un re-render entre la
+    // hidratación y su liberación para dejar `hydratingFormRef` en `true` de
+    // forma permanente — y con ella el inspector entero dejaba de persistir
+    // cambios, porque `handleWatch` retornaba siempre.
+    hydrationTokenRef.current += 1;
+    const hydrationToken = hydrationTokenRef.current;
     if (hydrationClearTimeoutRef.current !== null) {
       clearTimeout(hydrationClearTimeoutRef.current);
     }
     hydrationClearTimeoutRef.current = setTimeout(() => {
-      hydratingFormRef.current = false;
       hydrationClearTimeoutRef.current = null;
-    }, 0);
-
-    return () => {
-      if (hydrationClearTimeoutRef.current !== null) {
-        clearTimeout(hydrationClearTimeoutRef.current);
-        hydrationClearTimeoutRef.current = null;
+      // Solo la hidratación más reciente libera la bandera.
+      if (hydrationTokenRef.current === hydrationToken) {
+        hydratingFormRef.current = false;
       }
-    };
-  }, [activeSchema, clearPendingWatchCommit, form, hydrationKey]);
+    }, 0);
+  }, [activeSchema, clearPendingWatchCommit, hydrationKey]);
 
   const validateUniqueSchemaName = useCallback(
     (_: unknown, value: string): boolean => {
@@ -397,30 +488,44 @@ const DetailView = (props: DetailViewProps) => {
     ? basePdf.padding
     : [0, 0, 0, 0];
 
-  const validatePosition = createPositionValidator(
-    () => asRecord(form.getValues()) || {},
-    {
-      pageWidth: pageSize.width,
-      pageHeight: pageSize.height,
-      paddingTop,
-      paddingRight,
-      paddingBottom,
-      paddingLeft,
-    },
+  // Los límites se validan contra el schema activo fusionado con lo último que
+  // el usuario escribió: cada sección tiene su propio formulario, así que
+  // ninguna instancia conoce por sí sola x/y/width/height a la vez.
+  const readValidationValues = useCallback(
+    () => ({ ...(asRecord(activeSchemaRef.current) || {}), ...latestFormValuesRef.current }),
+    [],
   );
+  const validatePosition = createPositionValidator(readValidationValues, {
+    pageWidth: pageSize.width,
+    pageHeight: pageSize.height,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
+  });
 
   const commitWatchValues = useCallback(
-    (formValues: Record<string, unknown>) => {
+    (formValues: Record<string, unknown>, sectionForm: SectionFormInstance) => {
       if (hydratingFormRef.current) return;
       const currentSchema = activeSchemaRef.current;
-      let changes = buildChangeSet(formValues, currentSchema);
+      // Las claves inmediatas nunca viajan por esta ruta: ya se persistieron en
+      // `handleWatch`. Excluirlas garantiza una sola escritura por interacción
+      // aunque el schema todavía no haya vuelto por props.
+      let { deferred: changes } = buildChangeSet(formValues, currentSchema, immediateCommitKeysRef.current);
       if (!changes.length) return;
 
-      form
+      // Se valida el formulario de la sección que emitió el cambio: es el único
+      // que conoce las reglas de sus campos.
+      if (typeof sectionForm?.validateFields !== 'function') {
+        changeSchemas(changes);
+        return;
+      }
+
+      sectionForm
         .validateFields()
         .then(() => changeSchemas(changes))
         .catch((reason: ValidateErrorEntity) => {
-          if (reason.errorFields.length) {
+          if (reason?.errorFields?.length) {
             changes = filterInvalidChanges(changes, reason);
           }
           if (changes.length) {
@@ -428,24 +533,38 @@ const DetailView = (props: DetailViewProps) => {
           }
         });
     },
-    [changeSchemas, form],
+    [changeSchemas],
   );
 
   const handleWatch = useCallback(
-    (...args: unknown[]) => {
+    (values: Record<string, unknown>, sectionForm: SectionFormInstance) => {
       if (hydratingFormRef.current) return;
-      pendingWatchValuesRef.current = asRecord(args[0]) || {};
+      const nextValues = asRecord(values) || {};
+      latestFormValuesRef.current = { ...latestFormValuesRef.current, ...nextValues };
+      const currentSchema = activeSchemaRef.current;
+      const { immediate } = buildChangeSet(nextValues, currentSchema, immediateCommitKeysRef.current);
+
+      // Controles discretos: un clic → una persistencia, sin debounce y sin
+      // revalidar el formulario entero (un switch no tiene reglas propias).
+      if (immediate.length) {
+        changeSchemas(immediate);
+      }
+
+      pendingWatchValuesRef.current = nextValues;
+      pendingWatchFormRef.current = sectionForm;
       if (pendingWatchTimeoutRef.current !== null) {
         clearTimeout(pendingWatchTimeoutRef.current);
       }
       pendingWatchTimeoutRef.current = setTimeout(() => {
         pendingWatchTimeoutRef.current = null;
         const pendingValues = pendingWatchValuesRef.current || {};
+        const pendingForm = pendingWatchFormRef.current;
         pendingWatchValuesRef.current = null;
-        commitWatchValues(pendingValues);
+        pendingWatchFormRef.current = null;
+        commitWatchValues(pendingValues, pendingForm as SectionFormInstance);
       }, 180);
     },
-    [commitWatchValues],
+    [changeSchemas, commitWatchValues],
   );
 
   useEffect(
@@ -540,25 +659,32 @@ const DetailView = (props: DetailViewProps) => {
       visibility,
     ],
   );
+  useEffect(() => {
+    immediateCommitKeysRef.current = collectImmediateCommitKeys(sections);
+  }, [sections]);
+
   // Resetear el estado de colapso solo al cambiar de schema activo, no en cada
   // modificación de campos. Si no, cualquier cambio de input remonta las
   // secciones y borra la interacción del inspector.
   const detailViewResetToken = `${activeSchema.id}:${activeSchema.type}`;
 
   return (
-    <DetailViewContent
+    <InspectorWidgetParamsProvider value={widgetParams}>
+      <DetailViewContent
       activeSchema={activeSchema}
       resetToken={detailViewResetToken}
       schemaConfig={schemaConfig}
       selectionCount={selectionCount}
       deselectSchema={deselectSchema}
-      form={form}
+      hydrationValues={hydrationValues}
       sections={sections}
       widgets={widgets}
       watchHandler={handleWatch}
       readOnly={isReadOnly}
       accessState={accessState}
-    />
+        collaborationContext={collaborationContext}
+      />
+    </InspectorWidgetParamsProvider>
   );
 };
 
