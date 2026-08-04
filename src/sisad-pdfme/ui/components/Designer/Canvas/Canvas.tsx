@@ -60,6 +60,7 @@ import Padding from './Padding.js';
 import StaticSchema from '../../StaticSchema.js';
 import SnapLines, { computeSnapResult, SnapLine } from './SnapLines.js';
 import { resolveSchemaTone } from '../shared/schemaTone.js';
+import { mixHexColor } from '../../../../schemas/shared/fieldChrome.js';
 import { deriveInteractionState } from '../shared/interactionState.js';
 import type { InteractionState } from '../shared/interactionState.js';
 import {
@@ -1962,9 +1963,14 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                 // the visual frame — avoid double-border from both inline border + CSS outline.
                 isActive
                   ? '1px solid transparent'
-                  : `1px ${hoveringSchemaId === schema.id ? 'solid' : 'dashed'} ${schema.readOnly && hoveringSchemaId !== schema.id
-                      ? 'transparent'
-                      : resolveSchemaTone(schema, token.colorPrimary)
+                  : `1px ${hoveringSchemaId === schema.id ? 'solid' : 'dashed'} ${
+                      // Un campo de solo lectura baja de intensidad, pero no
+                      // pierde el color: en transparente dejaba de decir a qué
+                      // destinatario pertenece, y las formas —que nacen
+                      // `readOnly`— nunca lo mostraban.
+                      schema.readOnly && hoveringSchemaId !== schema.id
+                        ? mixHexColor(resolveSchemaTone(schema, token.colorPrimary), 45)
+                        : resolveSchemaTone(schema, token.colorPrimary)
                     }`
               }
               scale={scale}

@@ -2,6 +2,8 @@ import type * as CSS from 'csstype';
 import { UIRenderProps } from '@sisad-pdfme/common';
 import type { BarcodeSchema } from './types.js';
 import { validateBarcodeInput, createBarCode } from './helper.js';
+import { DEFAULT_BARCODE_COLOR } from './constants.js';
+import { resolveSchemaOwnerColorValue } from '../shared/fieldChrome.js';
 import { addAlphaToHex, isEditable, createErrorElm } from '../utils.js';
 
 const fullSize = { width: '100%', height: '100%' };
@@ -15,8 +17,20 @@ const blobToDataURL = (blob: Blob): Promise<string> =>
   });
 
 const createBarcodeImage = async (schema: BarcodeSchema, value: string) => {
+  // Solo en el diseñador/formulario: las barras adoptan el color del
+  // destinatario mientras conserven el negro por defecto. El PDF generado usa
+  // su propia ruta de render y mantiene el negro, que es lo que garantiza la
+  // lectura óptica del código.
+  const barColor = String((schema as BarcodeSchema & { barColor?: string }).barColor || '');
+  const ownerTone = resolveSchemaOwnerColorValue(schema);
+  const effectiveBarColor =
+    ownerTone && (!barColor || barColor.toLowerCase() === DEFAULT_BARCODE_COLOR.toLowerCase())
+      ? ownerTone
+      : barColor;
+
   const imageBuf = await createBarCode({
     ...schema,
+    ...(effectiveBarColor ? { barColor: effectiveBarColor } : {}),
     input: value,
   });
   const barcodeData = new Blob([new Uint8Array(imageBuf)], { type: 'image/png' });

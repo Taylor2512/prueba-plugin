@@ -10,6 +10,7 @@ import {
 import { resolveSchemaOwnerColorValue } from '../../collaboration/schemaOwnershipAppearance.js';
 import { renderSchemaWithChrome } from '../shared/renderSchemaWithChrome.js';
 import { createActionButtonEl } from '../shared/schemaDom.js';
+import { readableTextColor } from '../shared/fieldChrome.js';
 import type { ActionSchemaBase } from '../shared/schemaTypes.js';
 
 type DecisionActionSchema = ActionSchemaBase<{
@@ -103,8 +104,12 @@ export const createDecisionActionPlugin = ({
               '#94A3B8';
             const button = createActionButtonEl({
               label: decisionSchema.label || label,
-              bgColor: decisionSchema.buttonColor || defaultColor,
-              textColor: decisionSchema.buttonTextColor || '#ffffff',
+              // El botón lleva el color del destinatario; `defaultColor` (verde
+              // aprobar / rojo rechazar) queda como respaldo cuando no hay dueño.
+              // El icono y la etiqueta siguen distinguiendo la acción.
+              bgColor: decisionSchema.buttonColor || ownerColor || defaultColor,
+              textColor:
+                decisionSchema.buttonTextColor || readableTextColor(ownerColor || defaultColor),
               fontSize: decisionSchema.fontSize || 11,
               isInteractive: mode === 'form',
               iconSvg,
@@ -245,8 +250,7 @@ export const createDecisionActionPlugin = ({
           requiresReason: false,
           confirmationMessage: '',
           ...(auditEventName ? { auditEventName } : {}),
-          buttonColor: defaultColor,
-          buttonTextColor: '#ffffff',
+          // Sin color materializado: se deriva del dueño en cada render.
           fontSize: 11,
         },
       },

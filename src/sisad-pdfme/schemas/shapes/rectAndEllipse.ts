@@ -4,13 +4,15 @@ import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '../ut
 import { toRadians } from 'pdf-lib';
 import { Circle, Square } from 'lucide-react';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
 import { hexColorFields } from '../propPanel/commonInspectorFields.js';
 
 interface ShapeSchema extends Schema {
   type: 'ellipse' | 'rectangle';
   borderWidth: number;
-  borderColor: string;
-  color: string;
+  /** Opcionales: sin color propio, el borde usa el tono del dueño. */
+  borderColor?: string;
+  color?: string;
   radius?: number;
 }
 
@@ -27,15 +29,17 @@ const shape: Plugin<ShapeSchema> = {
       div.style.borderRadius = `${schema.radius}mm`;
     }
     div.style.borderWidth = `${schema.borderWidth ?? 0}mm`;
-    div.style.borderStyle = schema.borderWidth && schema.borderColor ? 'solid' : 'none';
-    div.style.borderColor = schema.borderColor ?? 'transparent';
+    // El borde identifica al destinatario salvo que la forma tenga color propio.
+    const shapeTone = schema.borderColor || resolveSchemaOwnerTone(schema, '#000000');
+    div.style.borderStyle = schema.borderWidth ? 'solid' : 'none';
+    div.style.borderColor = shapeTone;
     div.style.backgroundColor = schema.color ?? 'transparent';
 
     rootElement.appendChild(div);
   },
   pdf: (arg) => {
     const { schema, page, options } = arg;
-    if (!schema.color && !schema.borderColor) return;
+    if (!schema.color && !schema.borderColor && !schema.borderWidth) return;
     const { colorType } = options;
     const pageHeight = page.getHeight();
     const cArg = { schema, pageHeight };
@@ -48,7 +52,7 @@ const shape: Plugin<ShapeSchema> = {
     const drawOptions = {
       rotate,
       borderWidth,
-      borderColor: hex2PrintingColor(schema.borderColor, colorType),
+      borderColor: hex2PrintingColor(schema.borderColor || '#000000', colorType),
       color: hex2PrintingColor(schema.color, colorType),
       opacity,
       borderOpacity: opacity,
@@ -121,7 +125,6 @@ const shape: Plugin<ShapeSchema> = {
       rotate: 0,
       opacity: 1,
       borderWidth: 1,
-      borderColor: '#000000',
       color: '',
       readOnly: true,
       radius: 0,

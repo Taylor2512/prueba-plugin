@@ -95,9 +95,7 @@ const notePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         height: 15,
         readOnly: true,
         visibleToRecipients: true,
-        noteBackground: '#fefce8',
-        noteBorderColor: '#fde047',
-        noteTextColor: '#713f12',
+        // Sin paleta ámbar materializada: el contenedor la deriva del dueño.
         fontSize: 10,
       },
     },

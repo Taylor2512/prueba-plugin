@@ -2,6 +2,7 @@ import type { UIRenderProps, Mode } from '@sisad-pdfme/common';
 import type { TableSchema, CellStyle, Styles } from './types.js';
 import { px2mm, ZOOM } from '@sisad-pdfme/common';
 import { createSingleTable } from './tableHelper.js';
+import { readableTextColor, resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
 import { getBody, getBodyWithRange } from './helper.js';
 import cell from './cell.js';
 import { Row } from './classes.js';
@@ -203,11 +204,33 @@ const resetEditingPosition = () => {
   bodyEditingPosition.colIndex = -1;
 };
 
+/** Azul por defecto de la cabecera; se sustituye por el tono del dueño. */
+const DEFAULT_TABLE_HEAD_BG = '#2980ba';
+
+/**
+ * Aplica el color del destinatario a la cabecera cuando conserva el azul por
+ * defecto. Un color elegido a mano en el inspector se respeta, y el color de
+ * texto se recalcula para que siga legible sobre el tono del dueño.
+ */
+const applyOwnerToneToHead = (schema: TableSchema): TableSchema => {
+  const headStyles = (schema as TableSchema & { headStyles?: Record<string, unknown> }).headStyles;
+  if (!headStyles) return schema;
+  const current = String(headStyles.backgroundColor || '').toLowerCase();
+  if (current && current !== DEFAULT_TABLE_HEAD_BG) return schema;
+
+  const tone = resolveSchemaOwnerTone(schema);
+  return {
+    ...schema,
+    headStyles: { ...headStyles, backgroundColor: tone, textColor: readableTextColor(tone) },
+  } as TableSchema;
+};
+
 export const renderTableUi = async (arg: UIRenderProps<TableSchema>) => {
-  const { rootElement, onChange, schema, value, mode, scale} = arg;
+  const { rootElement, onChange, value, mode, scale} = arg;
+  const schema = applyOwnerToneToHead(arg.schema);
   const body = getBody(value);
   const bodyWidthRange = getBodyWithRange(value, schema.__bodyRange);
-  const table = await createSingleTable(bodyWidthRange, arg);
+  const table = await createSingleTable(bodyWidthRange, { ...arg, schema });
   const showHead = table.settings.showHead;
 
   rootElement.innerHTML = '';

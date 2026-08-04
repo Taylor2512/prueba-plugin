@@ -66,9 +66,12 @@ export const createNoteContainerEl = (schema: NoteSchema): {
 
   applyFieldChrome(container, { schema, family: 'action-based', compact: true });
 
-  const bg = schema.noteBackground || '#fefce8';
-  const border = schema.noteBorderColor || '#fde047';
-  const text = schema.noteTextColor || '#713f12';
+  // El ámbar deja de ser fijo: la nota identifica a su destinatario como el
+  // resto de campos y solo cae al ámbar si no hay dueño resuelto.
+  const noteTone = resolveSchemaOwnerTone(schema, '#fde047');
+  const bg = schema.noteBackground || mixHexColor(noteTone, 14);
+  const border = schema.noteBorderColor || mixHexColor(noteTone, 62);
+  const text = schema.noteTextColor || mixHexColor(noteTone, 82, '#000000');
   const fontSize = schema.fontSize ?? 10;
 
   Object.assign(container.style, {

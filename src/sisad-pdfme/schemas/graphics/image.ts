@@ -14,6 +14,7 @@ import { DEFAULT_OPACITY } from '../constants.js';
 import { getImageDimension } from './imagehelper.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { applyCenteredImageFileInputStyle, createImageFileInput } from '../shared/imageFileInput.js';
+import { mixHexColor, resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
 
 const getImageCacheKey = (schema: Schema, input: string) => `${schema.type}${input}`;
 const fullSize = { width: '100%', height: '100%' };
@@ -101,6 +102,10 @@ const imageSchema: Plugin<ImageSchema> = {
     rootElement.appendChild(container);
 
     if (showCompactPlaceholder) {
+      // El marco de "imagen vacía" es chrome, no contenido: debe identificar al
+      // destinatario igual que el resto de campos. La imagen real sigue sin
+      // recolorearse (política `content-preserved`).
+      const tone = resolveSchemaOwnerTone(schema);
       const placeholderNode = document.createElement('div');
       const placeholderNodeStyle: CSS.Properties = {
         position: 'absolute',
@@ -110,11 +115,10 @@ const imageSchema: Plugin<ImageSchema> = {
         alignItems: 'center',
         justifyContent: 'center',
         gap: '6px',
-        border: '1px solid rgba(148, 163, 184, 0.22)',
+        border: `1px solid ${mixHexColor(tone, 40)}`,
         borderRadius: '10px',
-        background:
-          'linear-gradient(180deg, rgba(255,255,255,0.97), rgba(241,245,249,0.92))',
-        color: '#64748b',
+        background: `linear-gradient(180deg, rgba(255,255,255,0.97), ${mixHexColor(tone, 10)})`,
+        color: mixHexColor(tone, 72, '#000000'),
         pointerEvents: 'none',
       };
       Object.assign(placeholderNode.style, placeholderNodeStyle);

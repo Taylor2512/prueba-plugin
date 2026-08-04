@@ -8,18 +8,20 @@ import {
 import { HEX_COLOR_PATTERN } from '../constants.js';
 import { Minus } from 'lucide-react';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
 
 const DEFAULT_LINE_COLOR = '#000000';
 const HIT_POINT_HEIGHT = 16;
 
 interface LineSchema extends Schema {
-  color: string;
+  /** Opcional: sin color propio, el trazo usa el tono del dueño. */
+  color?: string;
 }
 
 const lineSchema: Plugin<LineSchema> = {
   pdf: (arg) => {
     const { page, schema, options } = arg;
-    if (schema.width === 0 || schema.height === 0 || !schema.color) return;
+    if (schema.width === 0 || schema.height === 0) return;
     const { colorType } = options;
     const pageHeight = page.getHeight();
     const {
@@ -59,7 +61,8 @@ const lineSchema: Plugin<LineSchema> = {
     const div = document.createElement('div');
     Object.assign(div.style, baseStyles, {
       height: '100%',
-      backgroundColor: schema.color ?? 'transparent',
+      // El trazo identifica a su destinatario salvo que tenga color propio.
+      backgroundColor: schema.color || resolveSchemaOwnerTone(schema, DEFAULT_LINE_COLOR),
       pointerEvents: 'none',
     });
 
@@ -92,7 +95,6 @@ const lineSchema: Plugin<LineSchema> = {
       rotate: 0,
       opacity: 1,
       readOnly: true,
-      color: DEFAULT_LINE_COLOR,
     },
   },
   icon: createSvgStr(Minus),

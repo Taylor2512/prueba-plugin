@@ -1,3 +1,4 @@
+import { getInputFromTemplate } from '@sisad-pdfme/common';
 import { defineSisadPdfmeInstance } from '@/sisad-pdfme';
 
 export const createDesignerSingleUserInstance = ({
@@ -84,12 +85,15 @@ export const createRuntimeFormInstance = ({ template, values, config, onInputCha
     },
   });
 
-export const createRuntimeViewerInstance = ({ template, config }) =>
+export const createRuntimeViewerInstance = ({ template, config, inputs }) =>
   defineSisadPdfmeInstance({
     id: 'runtime-viewer',
     definition: {
       mode: 'viewer',
       template,
+      defaultState: {
+        inputs: Array.isArray(inputs) ? inputs : getInputFromTemplate(template),
+      },
     },
     resources: {
       config,

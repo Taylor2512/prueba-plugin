@@ -138,6 +138,23 @@ const parseHexColor = (value: string): [number, number, number] | null => {
 };
 
 /**
+ * Color de texto legible sobre un fondo dado.
+ *
+ * Necesario en cuanto el fondo deja de ser una constante y pasa a ser el color
+ * del destinatario: un texto blanco fijo se vuelve ilegible sobre tonos claros
+ * (amarillo, cian) y uno oscuro desaparece sobre tonos intensos.
+ */
+export const readableTextColor = (background: string, dark = '#1f2937', light = '#ffffff'): string => {
+  const rgb = parseHexColor(background);
+  if (!rgb) return light;
+  // Luminancia relativa aproximada (ITU-R BT.601), suficiente para decidir
+  // entre dos extremos sin traer una librería de color.
+  const [r, g, b] = rgb;
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.6 ? dark : light;
+};
+
+/**
  * Equivalente de `mix()` que devuelve un hex concreto.
  *
  * `color-mix()` sirve para CSS, pero no dentro de un SVG serializado como
