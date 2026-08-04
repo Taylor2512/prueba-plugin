@@ -263,8 +263,6 @@ const DetailView = (props: DetailViewProps) => {
   const hydrationClearTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   /** Identifica la hidratación vigente para liberar la bandera sin cancelarla. */
   const hydrationTokenRef = useRef(0);
-  /** Último estado conocido del formulario, para validaciones cruzadas. */
-  const latestFormValuesRef = useRef<Record<string, unknown>>({});
   const pendingWatchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingWatchValuesRef = useRef<Record<string, unknown> | null>(null);
   /** Formulario de la sección que emitió el último cambio diferido. */
@@ -491,18 +489,26 @@ const DetailView = (props: DetailViewProps) => {
   // Los límites se validan contra el schema activo fusionado con lo último que
   // el usuario escribió: cada sección tiene su propio formulario, así que
   // ninguna instancia conoce por sí sola x/y/width/height a la vez.
-  const readValidationValues = useCallback(
-    () => ({ ...(asRecord(activeSchemaRef.current) || {}), ...latestFormValuesRef.current }),
-    [],
+  const positionBounds = useMemo<PositionBounds>(
+    () => ({
+      pageWidth: pageSize.width,
+      pageHeight: pageSize.height,
+      paddingTop,
+      paddingRight,
+      paddingBottom,
+      paddingLeft,
+    }),
+    [pageSize.width, pageSize.height, paddingTop, paddingRight, paddingBottom, paddingLeft],
   );
-  const validatePosition = createPositionValidator(readValidationValues, {
-    pageWidth: pageSize.width,
-    pageHeight: pageSize.height,
-    paddingTop,
-    paddingRight,
-    paddingBottom,
-    paddingLeft,
-  });
+
+  // Los límites se comprueban contra el schema activo. Antes se leían de
+  // `form.getValues()` del formulario compartido, que nunca recibía valores: el
+  // validador salía por el early return y no comprobaba nada.
+  const validatePosition = useCallback(
+    (rule: unknown, value: number, fieldName: PositionFieldName) =>
+      createPositionValidator(() => asRecord(activeSchema) || {}, positionBounds)(rule, value, fieldName),
+    [activeSchema, positionBounds],
+  );
 
   const commitWatchValues = useCallback(
     (formValues: Record<string, unknown>, sectionForm: SectionFormInstance) => {
@@ -540,7 +546,6 @@ const DetailView = (props: DetailViewProps) => {
     (values: Record<string, unknown>, sectionForm: SectionFormInstance) => {
       if (hydratingFormRef.current) return;
       const nextValues = asRecord(values) || {};
-      latestFormValuesRef.current = { ...latestFormValuesRef.current, ...nextValues };
       const currentSchema = activeSchemaRef.current;
       const { immediate } = buildChangeSet(nextValues, currentSchema, immediateCommitKeysRef.current);
 
@@ -671,17 +676,17 @@ const DetailView = (props: DetailViewProps) => {
   return (
     <InspectorWidgetParamsProvider value={widgetParams}>
       <DetailViewContent
-      activeSchema={activeSchema}
-      resetToken={detailViewResetToken}
-      schemaConfig={schemaConfig}
-      selectionCount={selectionCount}
-      deselectSchema={deselectSchema}
-      hydrationValues={hydrationValues}
-      sections={sections}
-      widgets={widgets}
-      watchHandler={handleWatch}
-      readOnly={isReadOnly}
-      accessState={accessState}
+        activeSchema={activeSchema}
+        resetToken={detailViewResetToken}
+        schemaConfig={schemaConfig}
+        selectionCount={selectionCount}
+        deselectSchema={deselectSchema}
+        hydrationValues={hydrationValues}
+        sections={sections}
+        widgets={widgets}
+        watchHandler={handleWatch}
+        readOnly={isReadOnly}
+        accessState={accessState}
         collaborationContext={collaborationContext}
       />
     </InspectorWidgetParamsProvider>

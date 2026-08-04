@@ -8,7 +8,9 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import buildDetailWidgets from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry';
+import buildDetailWidgets, {
+  InspectorWidgetParamsProvider,
+} from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry';
 import {
   resolveDesignerSchemaAccessState,
   type SchemaAccessState,
@@ -23,37 +25,42 @@ const activeSchema = {
   height: 7,
 } as SchemaForUI;
 
-const buildSwitchWidget = (accessState?: SchemaAccessState) => {
-  const widgets = buildDetailWidgets(() => ({
-    pluginsRegistry: { values: () => [] },
-    options: {} as never,
-    token: {} as never,
-    typedI18n: (key: string) => key,
-    normalizeColorHex: () => '#000000',
-    accessState,
-    props: {
-      size: { width: 100, height: 100 },
-      schemas: [],
-      schemasList: [],
-      pageSize: { width: 210, height: 297 },
-      basePdf: '',
-      changeSchemas: vi.fn(),
-      activeElements: [],
-      deselectSchema: vi.fn(),
-      activeSchema,
-      updateSchemaConfig: vi.fn(),
-    } as never,
-  }));
-  return widgets.switch;
-};
+const widgetParams = (accessState?: SchemaAccessState) => ({
+  pluginsRegistry: { values: () => [] },
+  options: {} as never,
+  token: {} as never,
+  typedI18n: (key: string) => key,
+  normalizeColorHex: () => '#000000',
+  accessState,
+  props: {
+    size: { width: 100, height: 100 },
+    schemas: [],
+    schemasList: [],
+    pageSize: { width: 210, height: 297 },
+    basePdf: '',
+    changeSchemas: vi.fn(),
+    activeElements: [],
+    deselectSchema: vi.fn(),
+    activeSchema,
+    updateSchemaConfig: vi.fn(),
+  } as never,
+});
 
 const renderSwitch = (
   widgetProps: Partial<PropPanelWidgetProps>,
   accessState?: SchemaAccessState,
 ) => {
-  const SwitchWidget = buildSwitchWidget(accessState);
+  const widgets = buildDetailWidgets({
+    pluginsRegistry: { values: () => [] },
+    activeSchemaType: 'text',
+  });
+  const SwitchWidget = widgets.switch;
   return render(
-    <>{SwitchWidget({ id: 'required', schema: { title: 'Obligatorio' }, ...widgetProps } as PropPanelWidgetProps)}</>,
+    <InspectorWidgetParamsProvider value={widgetParams(accessState) as never}>
+      <SwitchWidget
+        {...({ id: 'required', schema: { title: 'Obligatorio' }, ...widgetProps } as PropPanelWidgetProps)}
+      />
+    </InspectorWidgetParamsProvider>,
   );
 };
 

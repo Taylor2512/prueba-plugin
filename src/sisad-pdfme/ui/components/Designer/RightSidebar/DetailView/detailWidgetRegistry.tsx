@@ -125,6 +125,30 @@ const useWidgetAccess = () => {
   };
 };
 
+/** Selector de color nativo del inspector. */
+const NativeColorWidget = (p: PropPanelWidgetProps) => {
+  const { normalizeColorHex } = useWidgetParams();
+  return <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />;
+};
+
+/** Switch booleano del inspector, con el acceso ya resuelto. */
+const InspectorSwitchWidget = (p: PropPanelWidgetProps) => {
+  const { canEditStructure, deniedReason } = useWidgetAccess();
+  return (
+    <BooleanSwitchWidget
+      value={readBooleanWidgetValue(p)}
+      onChange={(nextValue) => p.onChange?.(nextValue)}
+      // `disabled` efectivo = widget + acceso. `p.readOnly` no se propaga como
+      // bloqueo aquí: representa el modo readOnly del formulario, que ya se
+      // deriva del permiso estructural en DetailView.
+      disabled={p.disabled === true || !canEditStructure}
+      disabledReason={canEditStructure ? undefined : deniedReason}
+      testId={buildSwitchTestId(p.id)}
+      aria-label={resolveWidgetLabel(p)}
+    />
+  );
+};
+
 /**
  * Construye el mapa de widgets que form-render puede usar en el DetailView.
  *
@@ -151,32 +175,14 @@ const buildDetailWidgets = (
       const { props, options } = useWidgetParams();
       return <ButtonGroupWidget {...p} {...props} options={options} />;
     },
-    nativeColor: (p) => {
-      const { normalizeColorHex } = useWidgetParams();
-      return <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />;
-    },
+    nativeColor: NativeColorWidget,
     // Unified React options editor (select/radioGroup/checkboxGroup) — replaces
     // the imperative rootElement editors inside the DetailView.
     SchemaOptionsEditor: () => {
       const { props } = useWidgetParams();
       return <SchemaOptionsEditor activeSchema={props.activeSchema} changeSchemas={props.changeSchemas} />;
     },
-    switch: (p) => {
-      const { canEditStructure, deniedReason } = useWidgetAccess();
-      return (
-        <BooleanSwitchWidget
-          value={readBooleanWidgetValue(p)}
-          onChange={(nextValue) => p.onChange?.(nextValue)}
-          // `disabled` efectivo = widget + acceso. `p.readOnly` no se propaga
-          // como bloqueo aquí: representa el modo readOnly del formulario, que
-          // ya se deriva del permiso estructural en DetailView.
-          disabled={p.disabled === true || !canEditStructure}
-          disabledReason={canEditStructure ? undefined : deniedReason}
-          testId={buildSwitchTestId(p.id)}
-          aria-label={resolveWidgetLabel(p)}
-        />
-      );
-    },
+    switch: InspectorSwitchWidget,
     InlineEditActionsWidget: () => {
       const { props, options } = useWidgetParams();
       const { canEditStructure } = useWidgetAccess();
@@ -255,7 +261,7 @@ const buildDetailWidgets = (
   for (const plugin of params.pluginsRegistry.values()) {
     const pluginWidgets = plugin.propPanel.widgets || {};
     Object.entries(pluginWidgets).forEach(([widgetKey, widgetValue]) => {
-      widgets[widgetKey] = (p) => {
+      const PluginWidgetRenderer = (p: PropPanelWidgetProps) => {
         const { props, options, token, typedI18n } = useWidgetParams();
         return (
           <WidgetRenderer
@@ -268,6 +274,8 @@ const buildDetailWidgets = (
           />
         );
       };
+      PluginWidgetRenderer.displayName = `PluginWidget(${widgetKey})`;
+      widgets[widgetKey] = PluginWidgetRenderer;
     });
   }
 
