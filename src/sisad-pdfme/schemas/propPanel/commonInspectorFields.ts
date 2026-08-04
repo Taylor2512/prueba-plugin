@@ -146,6 +146,9 @@ export const validationTypeField = (): PropPanelSchema => ({
   // Full-width trigger so the selected label never truncates ("Sin val…").
   span: 24,
   props: {
+    // Sin valor persistido el trigger quedaba en blanco y no se entendía si
+    // faltaba configurar la validación o si el control estaba roto.
+    placeholder: 'Selecciona una validación',
     // Let the dropdown size to its content (≥220px via CSS) instead of matching
     // the trigger width — keeps option labels fully readable.
     popupMatchSelectWidth: false,

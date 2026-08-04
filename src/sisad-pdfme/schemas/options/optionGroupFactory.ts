@@ -21,6 +21,7 @@ import {
   createDesignerOptionBoxEl,
   createDesignerGroupStack,
   DESIGNER_OPTION_BOX_BORDER,
+  resolveSchemaOwnerColorValue,
 } from '../shared/fieldChrome.js';
 import { clearSchemaRoot } from '../shared/schemaDom.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
@@ -138,7 +139,7 @@ export type OptionGroupDefaultSchema = {
   orientation: 'vertical';
   spacing: number;
   options: ReturnType<typeof buildDefaultOptionGroupOptions>;
-  color: string;
+  color?: string;
   __designer: {
     group: {
       groupId: string;
@@ -256,7 +257,12 @@ export const buildOptionGroupRuntimeSharedParams = ({
   mode,
   editable,
   invalid,
-  color: schema.color || '#1677ff',
+  // Sin esto el marcador nunca recibía el dueño y caía al cian de respaldo: un
+  // grupo asignado a un destinatario se veía cian mientras el resto de campos
+  // tomaban su color.
+  ownerColor: resolveSchemaOwnerColorValue(schema),
+  // El azul de antd solo entra si el schema no tiene color propio NI dueño.
+  color: schema.color || resolveSchemaOwnerColorValue(schema) || '#1677ff',
   orientation: schema.orientation,
   spacing: Number.isFinite(Number(schema.spacing)) ? Number(schema.spacing) : 3,
   groupName: schema.groupName,
@@ -315,7 +321,9 @@ export const buildOptionGroupDefaultSchema = ({
   selectedOptionIds = [],
   defaultSelectedOptionId,
   defaultSelectedOptionIds = [],
-  color = '#1677ff',
+  // Sin color por defecto: materializarlo hacía que todo grupo naciera azul de
+  // antd y nunca adoptara el color de su destinatario.
+  color = '',
   name = '',
 }: OptionGroupDefaultSchemaParams): OptionGroupDefaultSchema => {
   const dimensions = buildOptionGroupDesignerDimensions(getOptionGroupLayoutConfig(type), optionsCount);
@@ -344,7 +352,7 @@ export const buildOptionGroupDefaultSchema = ({
           selectedOptionIds,
           defaultSelectedOptionIds,
         }),
-    color,
+    ...(color ? { color } : {}),
     __designer: {
       group: {
         groupId,

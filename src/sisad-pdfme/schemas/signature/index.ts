@@ -3,13 +3,35 @@ import { PenLine } from 'lucide-react';
 import image from '../graphics/image.js';
 import { isEditable } from '../utils.js';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
-import { applyFieldChrome } from '../shared/fieldChrome.js';
+import { applyFieldChrome, mixHexColor, resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
 import type { SisadSchemaBase } from '../shared/schemaTypes.js';
 import { propPanel } from './propPanel.js';
 import { getSignatureProvider, resolveSignatureProviderSource } from './providerRegistry.js';
 import { normalizeSignatureSchema } from './types.js';
 import type { SignatureSchema } from './types.js';
 import { applyCenteredImageFileInputStyle, createImageFileInput } from '../shared/imageFileInput.js';
+
+/**
+ * Colores del chrome de una firma, derivados del dueño del campo.
+ *
+ * El placeholder se pintaba con una paleta fija (dorada en `signature`, azul
+ * claro en `initials`), así que una firma asignada a un destinatario no se veía
+ * de su color como el resto de campos. Un color declarado explícitamente en el
+ * schema sigue mandando; el respaldo ya no es un literal sino el tono del dueño.
+ */
+export const resolveSignaturePlaceholderColors = (schema: SignatureSchema) => {
+  const tone = resolveSchemaOwnerTone(schema);
+  const explicit = (value: unknown): string =>
+    typeof value === 'string' && value.trim() ? value.trim() : '';
+
+  return {
+    borderColor: explicit(schema.borderColor) || mixHexColor(tone, 64),
+    backgroundColor: explicit(schema.backgroundColor) || mixHexColor(tone, 12),
+    strokeColor: explicit(schema.strokeColor) || mixHexColor(tone, 82, '#000000'),
+    /** Relleno del chip de modo; antes era un dorado fijo. */
+    badgeBackground: mixHexColor(tone, 16),
+  };
+};
 
 const buildSignaturePlaceholder = (schema: SignatureSchema) => {
   const modeLabel = {
@@ -25,9 +47,7 @@ const buildSignaturePlaceholder = (schema: SignatureSchema) => {
       '',
   ).trim();
   const placeholderText = String(schema.placeholderText || 'Firmar aqui').trim() || 'Firmar aqui';
-  const strokeColor = String(schema.strokeColor || '#8A5A00');
-  const borderColor = String(schema.borderColor || '#D6B46B');
-  const backgroundColor = String(schema.backgroundColor || '#FFF9ED');
+  const { strokeColor, borderColor, backgroundColor } = resolveSignaturePlaceholderColors(schema);
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 180" preserveAspectRatio="none">
       <rect x="6" y="6" width="448" height="168" rx="16" fill="${backgroundColor}" stroke="${borderColor}" stroke-width="6" stroke-dasharray="18 12" />
@@ -75,9 +95,8 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
         '',
     ).trim();
     const placeholderText = String(schema.placeholderText || 'Firmar aqui').trim() || 'Firmar aqui';
-    const strokeColor = String(schema.strokeColor || '#8A5A00');
-    const borderColor = String(schema.borderColor || '#D6B46B');
-    const backgroundColor = String(schema.backgroundColor || '#FFF9ED');
+    const { strokeColor, borderColor, backgroundColor, badgeBackground } =
+      resolveSignaturePlaceholderColors(schema);
     const nextPlaceholder = arg.value ? arg.placeholder : buildSignaturePlaceholder(schema);
 
     const container = document.createElement('div');
@@ -136,7 +155,7 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
         width: '28px',
         height: '28px',
         borderRadius: '999px',
-        background: 'rgba(214, 180, 107, 0.16)',
+        background: badgeBackground,
         border: `1px solid ${borderColor}`,
         color: strokeColor,
         fontSize: '16px',

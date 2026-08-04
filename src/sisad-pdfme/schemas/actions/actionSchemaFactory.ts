@@ -7,7 +7,7 @@
  */
 import type { ActionSchemaKind, SemanticTone, SisadSchemaBase } from '../shared/schemaTypes.js';
 import type { PDFPage, RGB } from 'pdf-lib';
-import { applyFieldChrome } from '../shared/fieldChrome.js';
+import { applyFieldChrome, mixHexColor, resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
 import { createSchemaPart } from '../shared/schemaDom.js';
 
 type ActionChromeColor = readonly [number, number, number];
@@ -130,22 +130,26 @@ const createPaperclipIconEl = (): SVGSVGElement => {
 export const createAttachmentContainerEl = (schema: AttachmentSchema): HTMLDivElement => {
   const container = createSchemaPart('div', 'sisad-pdfme-attachment-container');
   applyFieldChrome(container, { schema, family: 'action-based', compact: true });
+  // El chrome de dueño se aplica arriba y aquí se re-declara borde y fondo para
+  // conservar el patrón punteado del adjunto. Antes eran grises fijos, que
+  // pisaban el tono y dejaban el campo sin identificar a su destinatario.
+  const tone = resolveSchemaOwnerTone(schema);
   Object.assign(container.style, {
     width: '100%',
     height: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    border: '2px dashed #d1d5db',
+    border: `2px dashed ${mixHexColor(tone, 55)}`,
     borderRadius: '6px',
-    background: '#f9fafb',
+    background: mixHexColor(tone, 8),
     cursor: 'pointer',
     boxSizing: 'border-box',
   });
 
   const label = createSchemaPart('span', 'sisad-pdfme-attachment-label');
   Object.assign(label.style, {
-    color: '#6b7280',
+    color: mixHexColor(tone, 78, '#000000'),
     fontSize: '12px',
     display: 'flex',
     alignItems: 'center',

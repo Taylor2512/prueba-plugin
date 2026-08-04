@@ -24,9 +24,8 @@ const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         height: 12,
         placeholderText: 'Iniciales aquí',
         signatureKind: 'initials',
-        strokeColor: '#1a56a0',
-        borderColor: '#93c5fd',
-        backgroundColor: '#eff6ff',
+        // Sin paleta propia: el azul claro fijo hacía que las iniciales fueran
+        // el único campo que no adoptaba el color de su destinatario.
       } as unknown as Schema,
     },
     icon: renderLucideIcon(PenLine, { stroke: '#1a56a0' }),

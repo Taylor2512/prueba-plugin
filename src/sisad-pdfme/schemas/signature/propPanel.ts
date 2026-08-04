@@ -716,8 +716,9 @@ export const propPanel: PropPanel<SignatureSchema> = {
       showCertificateInfo: false,
       showVisualStamp: true,
     },
-    strokeColor: '#8A5A00',
-    borderColor: '#D6B46B',
-    backgroundColor: '#FFF9ED',
+    // Sin colores de chrome por defecto: el placeholder los deriva del dueño del
+    // campo (`resolveSignaturePlaceholderColors`). Materializarlos aquí hacía que
+    // toda firma naciera con la paleta fija y nunca tomara el color de su
+    // destinatario. Siguen siendo editables desde el inspector.
   },
 };

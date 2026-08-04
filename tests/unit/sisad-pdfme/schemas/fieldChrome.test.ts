@@ -13,6 +13,7 @@ import {
   resolveSchemaOwnerColorValue,
   resolveSchemaColorPolicy,
   resolveSchemaVisualTone,
+  mixHexColor,
 } from '@/sisad-pdfme/schemas/shared/fieldChrome';
 
 const OWNER = '#38BDF8';
@@ -242,5 +243,27 @@ describe('resolveSchemaVisualTone', () => {
     const tone = resolveSchemaVisualTone({ type: 'text' });
     expect(tone.ownerColor).toBe(NEUTRAL_FALLBACK);
     expect(tone.ownerBackground).toContain(NEUTRAL_FALLBACK);
+  });
+});
+
+describe('mixHexColor', () => {
+  it('mezcla el tono con blanco en la proporción pedida', () => {
+    expect(mixHexColor('#000000', 50)).toBe('#808080');
+    expect(mixHexColor('#FFFFFF', 50, '#000000')).toBe('#808080');
+  });
+
+  it('devuelve el tono puro al 100% y la base al 0%', () => {
+    expect(mixHexColor('#38bdf8', 100).toLowerCase()).toBe('#38bdf8');
+    expect(mixHexColor('#38bdf8', 0)).toBe('#ffffff');
+  });
+
+  it('acepta hex corto', () => {
+    expect(mixHexColor('#fff', 100)).toBe('#ffffff');
+  });
+
+  it('devuelve el valor original cuando no es hex', () => {
+    // Necesario para no romper SVG/canvas cuando llega `var(--x)` o `rgb(...)`.
+    expect(mixHexColor('var(--schema-tone)', 50)).toBe('var(--schema-tone)');
+    expect(mixHexColor('rgb(1, 2, 3)', 50)).toBe('rgb(1, 2, 3)');
   });
 });

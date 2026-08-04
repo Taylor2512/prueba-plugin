@@ -119,6 +119,44 @@ const mix = (tone: string, pct: number, base = 'white'): string =>
 const normalizeColor = (value: unknown): string =>
   typeof value === 'string' && value.trim() ? value.trim() : '';
 
+/** Convierte `#rgb`/`#rrggbb` a componentes; `null` si no es un hex válido. */
+const parseHexColor = (value: string): [number, number, number] | null => {
+  const match = value.trim().match(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/);
+  if (!match) return null;
+  const hex =
+    match[1].length === 3
+      ? match[1]
+          .split('')
+          .map((char) => `${char}${char}`)
+          .join('')
+      : match[1];
+  return [
+    Number.parseInt(hex.slice(0, 2), 16),
+    Number.parseInt(hex.slice(2, 4), 16),
+    Number.parseInt(hex.slice(4, 6), 16),
+  ];
+};
+
+/**
+ * Equivalente de `mix()` que devuelve un hex concreto.
+ *
+ * `color-mix()` sirve para CSS, pero no dentro de un SVG serializado como
+ * `data:` URI ni en las rutas de canvas/PDF: ahí hace falta un color ya
+ * resuelto. Si el tono no es hex (por ejemplo `var(--x)`), se devuelve tal cual
+ * para no romper al llamador.
+ */
+export const mixHexColor = (tone: string, pct: number, base = '#FFFFFF'): string => {
+  const toneRgb = parseHexColor(tone);
+  const baseRgb = parseHexColor(base);
+  if (!toneRgb || !baseRgb) return tone;
+
+  const ratio = Math.max(0, Math.min(100, pct)) / 100;
+  const channels = toneRgb.map((channel, index) =>
+    Math.round(channel * ratio + baseRgb[index] * (1 - ratio)),
+  );
+  return `#${channels.map((channel) => channel.toString(16).padStart(2, '0')).join('')}`;
+};
+
 // ─── Contrato visual único (COLOR-001) ────────────────────────────────────────
 
 /**

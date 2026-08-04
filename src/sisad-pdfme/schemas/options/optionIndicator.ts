@@ -55,14 +55,37 @@ const resolveTone = (params: Pick<OptionIndicatorParams, 'color' | 'ownerColor'>
   return '#4200ca';
 };
 
+/** Respaldo cian del marcador cuando el schema no tiene dueño resuelto. */
+const OPTION_INDICATOR_FALLBACK_FILL = 'rgba(165, 237, 252, 0.72)';
+const OPTION_INDICATOR_FALLBACK_STROKE = '#009dbd';
+
+/**
+ * Colores del recuadro exterior del marcador.
+ *
+ * Es la parte que más superficie ocupa, y estaba fijada al cian de respaldo:
+ * una casilla o una opción asignadas a un destinatario se veían siempre cian
+ * mientras el resto de campos tomaban el color de su dueño. Sin dueño resuelto
+ * se conserva el cian anterior.
+ */
+const resolveOuterColors = (
+  params: Pick<OptionIndicatorParams, 'ownerColor' | 'disabled' | 'readOnly'>,
+): { fill: string; stroke: string } => {
+  const ownerTone = String(params.ownerColor || '').trim();
+  const strokeAlpha = params.disabled || params.readOnly ? 0.55 : 0.95;
+
+  return {
+    fill: ownerTone ? colorWithAlpha(ownerTone, 0.18) : OPTION_INDICATOR_FALLBACK_FILL,
+    stroke: colorWithAlpha(ownerTone || OPTION_INDICATOR_FALLBACK_STROKE, strokeAlpha),
+  };
+};
+
 const createCheckSvg = (tone: string): string =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="100%" height="100%" aria-hidden="true" focusable="false"><polyline points="2.1,6.2 4.8,8.7 9.4,3.5" fill="none" stroke="${tone}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 const createSvgMarkup = (params: OptionIndicatorParams): string => {
   const tone = resolveTone(params);
   const checked = Boolean(params.checked);
-  const outerFill = 'rgba(165, 237, 252, 0.72)';
-  const outerStroke = colorWithAlpha('#009dbd', params.disabled || params.readOnly ? 0.55 : 0.95);
+  const { fill: outerFill, stroke: outerStroke } = resolveOuterColors(params);
   const coreSize = 8;
   const coreX = (16 - coreSize) / 2;
   const coreY = coreX;
@@ -175,8 +198,8 @@ export const createOptionIndicatorElement = (params: OptionIndicatorParams): HTM
     justifyContent: 'center',
     position: 'relative',
     borderRadius: '4px',
-    background: 'rgba(165, 237, 252, 0.72)',
-    border: `1px solid ${colorWithAlpha('#009dbd', params.disabled || params.readOnly ? 0.58 : 0.95)}`,
+    background: resolveOuterColors(params).fill,
+    border: `1px solid ${resolveOuterColors(params).stroke}`,
     boxSizing: 'border-box',
     overflow: 'hidden',
   });

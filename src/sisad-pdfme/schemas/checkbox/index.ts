@@ -27,15 +27,17 @@ const lastCheckboxMouseUpAt = new Map<string, number>();
 
 interface Checkbox extends Schema {
   groupId?: string;
-  color: string;
+  /** Opcional: sin color propio, la casilla usa el tono de su dueño. */
+  color?: string;
 }
 
 const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
   ui: (arg) => {
     const { schema, value, onChange, rootElement, mode } = arg;
-    const color = (schema as Checkbox).color || '#1677ff';
     const ownerColor = (schema as Checkbox & { ownerColor?: string; __designer?: { ownerColor?: string } }).ownerColor
       || (schema as Checkbox & { __designer?: { ownerColor?: string } }).__designer?.ownerColor;
+    // El azul de antd solo entra si no hay color propio NI dueño resuelto.
+    const color = (schema as Checkbox).color || ownerColor || '#1677ff';
     const isDesigner = mode === 'designer';
     const editable = isEditable(mode, schema);
     const isReadOnly = Boolean(
@@ -185,7 +187,6 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       width: 8,
       height: 8,
       groupId: 'MyGroup',
-      color: '#1677ff',
       required: false,
       readOnly: false,
     },

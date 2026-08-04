@@ -29,6 +29,14 @@ describe('validationTypeField', () => {
     expect(values).not.toContain('zipExtended');
   });
 
+  it('muestra un placeholder cuando todavía no hay validación elegida', () => {
+    const field = validationTypeField() as { props?: { placeholder?: string } };
+
+    // Sin valor persistido el trigger quedaba vacío y no se distinguía de un
+    // control roto.
+    expect(field.props?.placeholder).toBe('Selecciona una validación');
+  });
+
   it('uses a full-width trigger and a content-sized popup so labels never clip', () => {
     const field = validationTypeField() as {
       span?: number;
