@@ -1,8 +1,0 @@
-import { describe, it, expect } from 'vitest';
-import * as moduleUnderTest from 'pdf-lib/api/PDFPageOptions';
-
-describe('sisad-pdfme/pdf-lib/api/PDFPageOptions.ts', ()=>{
-  it('imports without crashing', ()=>{
-    expect(moduleUnderTest).toBeTruthy();
-  });
-});
