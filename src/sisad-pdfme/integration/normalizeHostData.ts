@@ -7,11 +7,13 @@ import {
 import type {
   SisadPdfmeDocument,
   SisadPdfmeDocumentsAdapter,
-  SisadPdfmeRecipient,
   SisadPdfmeRecipientsAdapter,
   SisadPdfmeSignatureProvider,
   SisadPdfmeSignatureProviderAdapter,
 } from '../config/SisadPdfmeConfig.js';
+import type {
+  SisadPdfmeRecipient,
+} from '../recipients/index.js';
 
 export type SisadPdfmeHostDataAdapters = {
   recipients?: SisadPdfmeRecipientsAdapter<unknown>;

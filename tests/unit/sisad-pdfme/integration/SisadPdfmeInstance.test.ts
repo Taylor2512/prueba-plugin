@@ -191,6 +191,7 @@ describe('resolveSisadPdfmeInstance', () => {
 
     expect(resolved.state.activeDocumentId.value).toBe('doc-2');
     expect(resolved.props.activeDocumentId).toBe('doc-2');
+    expect('onActiveDocumentChange' in resolved.props).toBe(true);
   });
 
   it('usa el template del documento activo cuando existe', () => {
@@ -215,6 +216,43 @@ describe('resolveSisadPdfmeInstance', () => {
 
     expect(resolved.props.activeDocumentId).toBe('doc-2');
     expect(resolved.props.template).toEqual(activeDocumentTemplate);
+  });
+
+  it('pasa la colección de documentos al Form y al Viewer', () => {
+    const documents = [
+      { id: 'doc-1', label: 'Uno', template: createDefaultTemplate() },
+      { id: 'doc-2', label: 'Dos', template: createDefaultTemplate() },
+    ];
+
+    const formResolved = resolveSisadPdfmeInstance({
+      definition: {
+        mode: 'form',
+        documents,
+        activeDocumentId: 'doc-2',
+      },
+    });
+    const viewerResolved = resolveSisadPdfmeInstance({
+      definition: {
+        mode: 'viewer',
+        documents,
+        activeDocumentId: 'doc-1',
+      },
+    });
+
+    expect(formResolved.props.documents).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: 'doc-1' }),
+        expect.objectContaining({ id: 'doc-2' }),
+      ]),
+    );
+    expect(formResolved.props.activeDocumentId).toBe('doc-2');
+    expect(viewerResolved.props.documents).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: 'doc-1' }),
+        expect.objectContaining({ id: 'doc-2' }),
+      ]),
+    );
+    expect(viewerResolved.props.activeDocumentId).toBe('doc-1');
   });
 
   it('combina config anidada de resources y definition', () => {
@@ -339,10 +377,11 @@ describe('SisadPdfmeInstance', () => {
       expect.objectContaining({
         inputs: [{ name: 'edited' }],
       }),
-      {
+      expect.objectContaining({
         field: 'inputs',
+        fields: ['inputs'],
         source: 'user',
-      },
+      }),
     );
   });
 
@@ -474,6 +513,175 @@ describe('SisadPdfmeInstance', () => {
 
     props = surfacePropsSpy.mock.calls.at(-1)?.[0];
     expect(props?.inputs).toEqual([{ name: 'edited-stable' }]);
+  });
+
+  it('reinicia la API directa cuando cambia instanceKey', () => {
+    const { rerender } = render(
+      React.createElement(SisadPdfmeInstance, {
+        instanceKey: 'direct-a',
+        definition: {
+          mode: 'form',
+          defaultState: {
+            inputs: [{ name: 'initial-a' }],
+          },
+        },
+      }),
+    );
+
+    let props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+    expect(props?.inputs).toEqual([{ name: 'initial-a' }]);
+
+    act(() => {
+      props?.onInputChange?.({ index: 0, name: 'name', value: 'edited-a' });
+    });
+
+    rerender(
+      React.createElement(SisadPdfmeInstance, {
+        instanceKey: 'direct-a',
+        definition: {
+          mode: 'form',
+          defaultState: {
+            inputs: [{ name: 'initial-b' }],
+          },
+        },
+      }),
+    );
+
+    props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+    expect(props?.inputs).toEqual([{ name: 'edited-a' }]);
+
+    rerender(
+      React.createElement(SisadPdfmeInstance, {
+        instanceKey: 'direct-b',
+        definition: {
+          mode: 'form',
+          defaultState: {
+            inputs: [{ name: 'initial-b' }],
+          },
+        },
+      }),
+    );
+
+    props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+    expect(props?.inputs).toEqual([{ name: 'initial-b' }]);
+  });
+
+  it('emite inputs actualizados al cambiar varias veces sin perder el primer cambio', () => {
+    const onStateChange = vi.fn();
+
+    render(
+      React.createElement(SisadPdfmeInstance, {
+        instanceKey: 'direct-inputs',
+        definition: {
+          mode: 'form',
+          defaultState: {
+            inputs: [{ name: 'initial', city: 'Quito' }],
+          },
+        },
+        handlers: {
+          onStateChange,
+        },
+      }),
+    );
+
+    const props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+
+    act(() => {
+      props?.onInputChange?.({ index: 0, name: 'name', value: 'Alice' });
+      props?.onInputChange?.({ index: 0, name: 'city', value: 'Bogota' });
+    });
+
+    expect(onStateChange).toHaveBeenCalledTimes(2);
+    expect(onStateChange.mock.calls[1]?.[0]).toEqual(
+      expect.objectContaining({
+        inputs: [{ name: 'Alice', city: 'Bogota' }],
+      }),
+    );
+  });
+
+  it('emite una sola transacción para documentos y documento activo', () => {
+    const onStateChange = vi.fn();
+
+    render(
+      React.createElement(SisadPdfmeInstance, {
+        definition: {
+          mode: 'designer',
+          defaultState: {
+            documents: [{ id: 'doc-1', title: 'Uno' }],
+            activeDocumentId: 'doc-1',
+          },
+        },
+        handlers: {
+          onStateChange,
+        },
+      }),
+    );
+
+    const props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+
+    act(() => {
+      props?.onUploadedDocumentsChange?.(
+        [{ id: 'doc-2', title: 'Dos' }],
+        'doc-2',
+      );
+    });
+
+    expect(onStateChange).toHaveBeenCalledTimes(1);
+    expect(onStateChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        documents: [{ id: 'doc-2', title: 'Dos' }],
+        activeDocumentId: 'doc-2',
+      }),
+      expect.objectContaining({
+        field: 'documents',
+        fields: ['documents', 'activeDocumentId'],
+        source: 'user',
+      }),
+    );
+  });
+
+  it('emite activeDocumentId cuando cambia el documento activo en Designer', () => {
+    const onStateChange = vi.fn();
+    const onActiveDocumentChange = vi.fn();
+
+    render(
+      React.createElement(SisadPdfmeInstance, {
+        definition: {
+          mode: 'designer',
+          defaultState: {
+            documents: [{ id: 'doc-1', title: 'Uno' }],
+            activeDocumentId: 'doc-1',
+          },
+        },
+        handlers: {
+          onStateChange,
+          onActiveDocumentChange,
+        },
+      }),
+    );
+
+    const props = surfacePropsSpy.mock.calls.at(-1)?.[0];
+
+    act(() => {
+      props?.onActiveDocumentChange?.('doc-2', { id: 'doc-2', title: 'Dos' });
+    });
+
+    expect(onStateChange).toHaveBeenCalledTimes(1);
+    expect(onStateChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        documents: [{ id: 'doc-1', title: 'Uno' }],
+        activeDocumentId: 'doc-2',
+      }),
+      expect.objectContaining({
+        field: 'activeDocumentId',
+        fields: ['activeDocumentId'],
+        source: 'user',
+      }),
+    );
+    expect(onActiveDocumentChange).toHaveBeenCalledWith('doc-2', {
+      id: 'doc-2',
+      title: 'Dos',
+    });
   });
 
   it('no pisa un Form controlado con cambios internos', () => {

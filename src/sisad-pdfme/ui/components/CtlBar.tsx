@@ -319,7 +319,7 @@ const CtlBar = (props: CtlBarProps) => {
           ? 'text-[#92400E]'
           : savePresentation.tone === 'danger'
             ? 'text-red-600'
-            : 'text-[var(--text-secondary)]';
+            : 'text-[var(--color-text-secondary)]';
   const saveStatusIcon =
     saveStatus === 'saving' ? (
       <LoaderCircle size={12} className="animate-spin motion-reduce:animate-none" aria-hidden="true" />
@@ -461,10 +461,12 @@ const CtlBar = (props: CtlBarProps) => {
     <div
       className={mergeClassNames(
         UI_CLASSNAME + 'control-bar',
-        'absolute inset-y-0 left-0 z-[var(--sisad-pdfme-chrome-z,_45)] pointer-events-none bg-transparent max-[48rem]:p-[0.25rem_0.5rem]',
-        sidebarOpen
-          ? 'right-[calc(var(--sisad-pdfme-rs-width)_+_0.875rem)]'
-          : 'right-[calc(var(--sisad-pdfme-ls-rail-width)_+_0.5rem)]',
+        // `inset-0`: el containing block debe ser el stage completo. Si el borde
+        // derecho se moviera con el panel, el `left-1/2` de los clusters
+        // centrales se calcularía sobre una caja variable y el paginador y el
+        // zoom perderían el centro. El offset por el panel derecho se aplica
+        // sólo al cluster que puede quedar debajo de él.
+        'absolute inset-0 z-[var(--sisad-pdfme-chrome-z,_45)] pointer-events-none bg-transparent max-[48rem]:p-[0.25rem_0.5rem]',
         isActiveInteractionPhase &&
           '[box-shadow:0_0_0_1px_var(--color-primary-20),0_2px_0.5rem_var(--color-primary-12)]',
       )} data-density={toolbarDensity} data-layout="canvas-chrome">
@@ -501,7 +503,7 @@ const CtlBar = (props: CtlBarProps) => {
             <span
               className={mergeClassNames(
                 UI_CLASSNAME + 'control-bar-selection-summary',
-                'inline-flex items-center gap-1 whitespace-nowrap px-1 text-[11px] font-medium text-[var(--text-secondary)]',
+                'inline-flex items-center gap-1 whitespace-nowrap px-1 text-[11px] font-medium text-[var(--color-text-secondary)]',
               )}
               data-selection-count={selectionCount}
             >
@@ -512,7 +514,18 @@ const CtlBar = (props: CtlBarProps) => {
         </div>
       </div>
 
-      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-right', 'absolute right-[0.5rem] top-[0.5rem] inline-flex items-center gap-1 pointer-events-auto')}>
+      {/* Único cluster que se aparta de los paneles: es el que podría quedar
+          debajo del panel derecho. Los offsets replican los que antes llevaba el
+          root, de modo que su posición en pantalla no cambia. */}
+      <div
+        className={mergeClassNames(
+          UI_CLASSNAME + 'control-bar-cluster',
+          UI_CLASSNAME + 'control-bar-cluster--top-right',
+          'absolute top-[0.5rem] inline-flex items-center gap-1 pointer-events-auto',
+          sidebarOpen
+            ? 'right-[calc(var(--sisad-pdfme-rs-width)_+_1.375rem)]'
+            : 'right-[calc(var(--sisad-pdfme-ls-rail-width)_+_1rem)]',
+        )}>
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-9 items-center gap-0.5 rounded-lg border border-slate-200 bg-white p-0.5 shadow-sm')}>
           {saveAction.visible ? (
             <Button

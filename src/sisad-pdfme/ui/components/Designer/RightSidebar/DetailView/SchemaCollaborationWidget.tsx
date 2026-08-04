@@ -204,6 +204,8 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     value: recipient.id,
   }));
   const accessState = resolveSchemaAccessState(activeSchema, collaborationContext, collaborationContext.activeRecipient);
+  const lockedByLabel = accessState.lockOwnerLabel || lock?.lockedBy || '';
+  const isOwnLock = accessState.isLockedByMe;
 
   const commit = (patch: Partial<Record<CollaborationPatchKey, unknown>>) => {
     changeSchemas(
@@ -237,8 +239,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   const hasLock = accessState.hasCollaborationLock;
   const authorOptions = recipientSelectOptions;
   const resolvedOwnerLabel = accessState.ownerLabel || interactionState.owner.name || 'Sin asignar';
-  const resolvedLockedBy = recipientOptions.find(r => r.id === lock?.lockedBy);
-  const resolvedLockedByText = resolvedLockedBy ? (resolvedLockedBy.role ? `${resolvedLockedBy.name} (${resolvedLockedBy.role})` : resolvedLockedBy.name) : (lock?.lockedBy || '');
+  const resolvedLockedByText = isOwnLock ? 'Tú' : lockedByLabel;
   const selectionHint = selectedCount > 1 ? ` · ${selectedCount} seleccionados` : '';
 
   const stateLabel = accessState.statusLabel;
@@ -334,9 +335,9 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
           </div>
           {hasLock ? (
             <div className={FIELD}>
-              <div className={FIELD_LABEL}>Bloqueado por</div>
+              <div className={FIELD_LABEL}>{isOwnLock ? 'Reservado por ti' : 'Bloqueado por'}</div>
               <div className="inline-flex min-h-7 items-center rounded-full border border-rose-200/70 bg-rose-50/90 px-2.5 py-1 text-[0.6875rem] font-semibold text-rose-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
-                {resolvedLockedByText}
+                {resolvedLockedByText || '—'}
               </div>
             </div>
           ) : null}

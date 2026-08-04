@@ -1,6 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { execFileSync } from 'node:child_process';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 
 const surfacePropsSpy = vi.hoisted(() => vi.fn());
 
@@ -76,5 +80,31 @@ describe('public root consumer', () => {
     expect(bundle.valid).toBe(true);
     expect(parsed.valid).toBe(true);
     expect(parsed.bundle?.definition.mode).toBe('viewer');
+  });
+
+  it('compila un consumidor Vite real sin mocks internos', () => {
+    const outDir = mkdtempSync(path.join(tmpdir(), 'sisad-public-consumer-'));
+    const fixtureConfig = path.resolve(
+      process.cwd(),
+      'tests/fixtures/public-consumer/vite.config.ts',
+    );
+
+    try {
+      execFileSync(
+        'npx',
+        ['vite', 'build', '--config', fixtureConfig],
+        {
+          cwd: process.cwd(),
+          env: {
+            ...process.env,
+            PUBLIC_CONSUMER_OUT_DIR: outDir,
+          },
+          stdio: 'pipe',
+        },
+      );
+      expect(true).toBe(true);
+    } finally {
+      rmSync(outDir, { recursive: true, force: true });
+    }
   });
 });

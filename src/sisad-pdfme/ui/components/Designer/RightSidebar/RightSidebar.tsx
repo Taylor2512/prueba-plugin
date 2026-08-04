@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type {
   SidebarProps,
   DesignerComponentBridge,
@@ -145,8 +145,11 @@ const toDesignerCustomClassName = (value?: string) => {
 };
 
 type SidebarModeMeta = {
-  /** Etiqueta corta mostrada en tab. */
-  shortLabel: string;
+  /** Etiqueta completa mostrada en modo cómodo. */
+  fullLabel: string;
+
+  /** Etiqueta compacta mostrada en modo reducido. */
+  compactLabel: string;
 
   /** Ícono visible en tab. */
   icon: React.ReactNode;
@@ -177,25 +180,29 @@ const TAB_ID_BY_MODE: Record<'fields' | 'detail' | 'docs' | 'comments', string> 
 /** Metadata visual por modo del sidebar. */
 const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', SidebarModeMeta> = {
   fields: {
-    shortLabel: 'Campos',
+    fullLabel: 'Campos',
+    compactLabel: 'Campos',
     icon: <Layers size={14} />,
     title: 'Ver campos',
     ariaLabel: 'Abrir panel Campos',
   },
   detail: {
-    shortLabel: 'Detalle',
+    fullLabel: 'Detalle',
+    compactLabel: 'Detalle',
     icon: <SlidersHorizontal size={14} />,
     title: 'Ver detalle',
     ariaLabel: 'Abrir panel Detalle',
   },
   docs: {
-    shortLabel: 'Doc.',
+    fullLabel: 'Documentos',
+    compactLabel: 'Docs',
     icon: <FileText size={14} />,
     title: 'Ver documentos',
-    ariaLabel: 'Abrir panel Docs',
+    ariaLabel: 'Abrir panel Documentos',
   },
   comments: {
-    shortLabel: 'Com.',
+    fullLabel: 'Comentarios',
+    compactLabel: 'Com.',
     icon: <MessageSquareText size={14} />,
     title: 'Ver comentarios',
     ariaLabel: 'Abrir panel Comentarios',
@@ -360,6 +367,16 @@ const Sidebar = (props: RightSidebarProps) => {
     } as Record<'fields' | 'detail' | 'docs' | 'comments', SidebarModeMeta>;
   }, [props.modeMetaOverrides]);
 
+  const resolveTabLabel = useCallback(
+    (modeMeta: SidebarModeMeta) =>
+      sidebarDensityMode === 'comfortable'
+        ? modeMeta.fullLabel
+        : sidebarDensityMode === 'compact'
+          ? modeMeta.compactLabel
+          : '',
+    [sidebarDensityMode],
+  );
+
   /**
    * Firma estable de la selección activa.
    *
@@ -504,7 +521,7 @@ const Sidebar = (props: RightSidebarProps) => {
       return {
         key: mode,
         icon: modeMeta.icon,
-        label: modeMeta.shortLabel,
+        label: modeMeta.compactLabel,
         ariaLabel: modeMeta.ariaLabel,
         active: resolvedViewMode === mode,
         onClick: () => handleModeChange(mode),
@@ -711,11 +728,16 @@ const Sidebar = (props: RightSidebarProps) => {
                         aria-controls={panelIdByMode[mode]}
                         id={tabIdByMode[mode]}
                         aria-label={modeMeta.ariaLabel}
+                        title={modeMeta.fullLabel}
                         onClick={() => handleModeChange(mode)}
                       >
                         <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content inline-flex items-center gap-1`}>
                           <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-icon inline-flex items-center justify-center text-current`}>{modeMeta.icon}</span>
-                          <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label truncate leading-none`}>{modeMeta.shortLabel}</span>
+                          {sidebarDensityMode === 'minimal' ? null : (
+                            <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label truncate leading-none`}>
+                              {resolveTabLabel(modeMeta)}
+                            </span>
+                          )}
                         </span>
                       </button>
                     );

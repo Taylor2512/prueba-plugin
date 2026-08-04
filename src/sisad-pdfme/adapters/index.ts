@@ -6,8 +6,10 @@ export type {
   SisadPdfmeDocument,
   SisadPdfmeDocumentsAdapter,
   SisadPdfmePersistenceAdapter,
-  SisadPdfmeRecipient,
   SisadPdfmeRecipientsAdapter,
   SisadPdfmeSignatureProvider,
   SisadPdfmeSignatureProviderAdapter,
 } from '../config/SisadPdfmeConfig.js';
+export type {
+  SisadPdfmeRecipient,
+} from '../recipients/index.js';

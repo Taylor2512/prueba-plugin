@@ -13,7 +13,10 @@
  * affordance en densidades compactas.
  */
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
-import { resolveDesignerActionState } from '../../shared/designerActionState.js';
+import {
+  describeDisabledReason,
+  resolveDesignerActionState,
+} from '../../shared/designerActionState.js';
 
 export type ReassignActionStateInput = {
   assignmentEnabled: boolean;
@@ -30,8 +33,10 @@ export type ReassignActionStateInput = {
 export type ReassignActionState = {
   showButton: boolean;
   buttonDisabled: boolean;
+  buttonTitle: string;
   showSelectionHint: boolean;
   selectionHintLabel: string | null;
+  disabledReasonLabel: string | null;
 };
 
 export function resolveReassignActionState(input: ReassignActionStateInput): ReassignActionState {
@@ -63,6 +68,17 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
     visibleByConfig,
   });
 
+  const disabledReasonLabel = (() => {
+    if (!canEditStructure) return 'No tienes permisos para reasignar';
+    if (!visibility.visible) return describeDisabledReason(visibility.reason) || 'Reasignación no disponible';
+    if (selectedCount === 0) return 'Selecciona uno o más campos';
+    if (!hasEnoughRecipientsForReassign) return 'Se requieren al menos dos responsables';
+    if (input.bulkRecipientDisabled || !input.hasAssignableRecipients) return 'No hay responsables asignables';
+    if (!input.hasHandler) return 'Acción no disponible';
+    if (!action.enabled) return describeDisabledReason(action.reason) || 'No disponible para la selección actual';
+    return null;
+  })();
+
   return {
     showButton: canEditStructure && visibility.visible,
     buttonDisabled:
@@ -74,8 +90,10 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
       !input.hasHandler ||
       !hasEnoughRecipientsForReassign ||
       selectedCount === 0,
+    buttonTitle: disabledReasonLabel || 'Reasignar responsable',
     showSelectionHint:
       selectedCount === 0 && visibility.visible && visibility.enabled && hasEnoughRecipientsForReassign,
-    selectionHintLabel: selectedCount === 0 ? 'Selecciona campos' : null,
+    selectionHintLabel: selectedCount === 0 ? 'Selecciona uno o más campos' : null,
+    disabledReasonLabel,
   };
 }

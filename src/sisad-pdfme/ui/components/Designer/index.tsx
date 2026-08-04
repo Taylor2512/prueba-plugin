@@ -45,10 +45,11 @@ import {
   LEFT_SIDEBAR_WIDTH,
   DESIGNER_CLASSNAME,
   SELECTABLE_CLASSNAME,
-} from '../../constants.ts';
+} from '../../constants.js';
 import {
   resolveDesignerSchemaAccessState,
   canRunSchemaCommand,
+  type SchemaAccessContext,
 } from './shared/accessPolicy.js';
 import { I18nContext, OptionsContext, PluginsRegistry } from '../../contexts.js';
 import {
@@ -969,16 +970,25 @@ const TemplateEditor = ({
     const bus = commandBusRef.current;
     if (!bus) return;
 
-    const accessGuard = (command: { meta?: { schemaUids?: string[]; schemaUid?: string } }) => {
+    const accessGuard = (command: Parameters<CommandBus['check']>[0]) => {
       // 1. Identify schemas targetted by command
       const meta = command.meta;
-      const targetUids = meta?.schemaUids || (meta?.schemaUid ? [meta.schemaUid] : []);
+      const targetUids = Array.isArray(meta?.schemaUids)
+        ? meta.schemaUids.filter((schemaUid): schemaUid is string => typeof schemaUid === 'string' && schemaUid.trim().length > 0)
+        : typeof meta?.schemaUid === 'string' && meta.schemaUid.trim().length > 0
+          ? [meta.schemaUid]
+          : [];
 
       if (targetUids.length === 0) return true;
 
       // 2. Resolve access state for targets
-      const accessCtx = {
-        collaborationContext,
+      const accessCtx: SchemaAccessContext = {
+        activeActorId: collaborationContext.actorId || undefined,
+        collaborationContext: {
+          isCollaborative: true,
+          userId: collaborationContext.actorId || 'local',
+          canEditStructure: collaborationContext.canEditStructure,
+        },
         canEditStructure: collaborationContext.canEditStructure,
       };
 
@@ -1314,9 +1324,28 @@ const TemplateEditor = ({
         } satisfies CommentAnchorDraft;
       };
 
-      if (detail.coordinateSpace === 'page-mm' || ('xMm' in detail && 'yMm' in detail)) {
-        const xMm = 'xMm' in detail ? detail.xMm : ('x' in detail ? (detail.x as number) : 0);
-        const yMm = 'yMm' in detail ? detail.yMm : ('y' in detail ? (detail.y as number) : 0);
+      const isPageMmDetail =
+        ('coordinateSpace' in detail && detail.coordinateSpace === 'page-mm') ||
+        ('xMm' in detail && 'yMm' in detail);
+      if (isPageMmDetail) {
+        const pageMmDetail = detail as {
+          xMm?: number;
+          yMm?: number;
+          x?: number;
+          y?: number;
+        };
+        const xMm =
+          typeof pageMmDetail.xMm === 'number'
+            ? pageMmDetail.xMm
+            : typeof pageMmDetail.x === 'number'
+              ? pageMmDetail.x
+              : 0;
+        const yMm =
+          typeof pageMmDetail.yMm === 'number'
+            ? pageMmDetail.yMm
+            : typeof pageMmDetail.y === 'number'
+              ? pageMmDetail.y
+              : 0;
         return resolveFromPageMm(xMm, yMm);
       }
 
@@ -1367,23 +1396,39 @@ const TemplateEditor = ({
     [activeDocumentId, canvasRef, normalizeCommentPageIndex, pageCursor, paperRefs, pageSizes, scale],
   );
 
-  const canvasWidth = size.width - leftSidebarWidth;
-  const safeCanvasWidth = Number.isFinite(canvasWidth) ? Math.max(0, canvasWidth) : 0;
   const parsedMinCanvasHeight = Number((options as Record<string, unknown>).minCanvasHeight);
   const minCanvasHeight =
     Number.isFinite(parsedMinCanvasHeight) && parsedMinCanvasHeight > 0 ? parsedMinCanvasHeight : 420;
   const safeCanvasHeight = Number.isFinite(size.height)
     ? Math.max(minCanvasHeight, size.height)
     : minCanvasHeight;
-  const safeContentWidth = Number.isFinite(safeCanvasWidth - rightSidebarWidth)
-    ? Math.max(0, safeCanvasWidth - rightSidebarWidth)
-    : 0;
-  const sizeExcSidebars = {
-    width: shouldReserveRightSidebarSpace ? safeContentWidth : safeCanvasWidth,
+  /**
+   * Workspace geométrico: el stage completo, siempre.
+   *
+   * `size` mide el contenedor del host, no el hueco entre paneles, así que este
+   * ancho no depende de los sidebars. Es la única entrada válida para centrar el
+   * papel, calcular zoom y fit, y posicionar los controles centrales.
+   *
+   * Contrato: `paperCenterX === workspaceCenterX`. Restar aquí el ancho de un
+   * sidebar convierte un panel auxiliar en entrada del sistema de coordenadas y
+   * mueve el documento al abrirlo; ver
+   * `tests/e2e/designer-stage-centering.spec.ts`.
+   */
+  const workspaceSize = {
+    width: Number.isFinite(size.width) ? Math.max(0, size.width) : 0,
     height: safeCanvasHeight,
   };
-  const usableCanvasWidth = Math.max(1, sizeExcSidebars.width - 24);
-  const usableCanvasHeight = Math.max(1, sizeExcSidebars.height - RULER_HEIGHT * ZOOM - 24);
+  /**
+   * Espacio que ocupan los paneles en los bordes. Sirve **sólo** para apartar
+   * controles periféricos (Guardar, Más) y evitar que queden debajo de un panel.
+   * Nunca para dimensionar el Canvas ni para centrar nada.
+   */
+  const chromeInsets = {
+    left: leftSidebarWidth,
+    right: rightSidebarWidth,
+  };
+  const usableCanvasWidth = Math.max(1, workspaceSize.width - 24);
+  const usableCanvasHeight = Math.max(1, workspaceSize.height - RULER_HEIGHT * ZOOM - 24);
 
   const onEdit = useCallback((targets: HTMLElement[]) => {
     const nextTargets = targets.filter(Boolean);
@@ -2185,7 +2230,13 @@ const TemplateEditor = ({
             '[@sisad-pdfme/ui] Failed to preprocess the document basePdf, using template schemas as fallback.',
             error,
           );
-          nextSchemas = cloneDeep(normalizedTemplate.schemas || [[]]);
+          const fallbackSchemas = cloneDeep(normalizedTemplate.schemas || [[]]) as SchemaForUI[][];
+          nextSchemas = fallbackSchemas.map((pageSchemas) =>
+            (pageSchemas || []).map((schema) => ({
+              ...schema,
+              id: schema.id || uuid(),
+            })),
+          );
         }
       }
       nextSchemas = materializeLoadedSchemasOwnership(nextSchemas);
@@ -2664,8 +2715,8 @@ const TemplateEditor = ({
   const getCanvasMetrics = useCallback(() => {
     const page = pageSizes[pageCursor];
     return {
-      viewportWidth: sizeExcSidebars.width,
-      viewportHeight: sizeExcSidebars.height,
+      viewportWidth: workspaceSize.width,
+      viewportHeight: workspaceSize.height,
       usableWidth: usableCanvasWidth,
       usableHeight: usableCanvasHeight,
       pageWidth: page?.width ?? 0,
@@ -2676,7 +2727,7 @@ const TemplateEditor = ({
       totalPages: schemasList.length,
       sidebarOpen,
     };
-  }, [pageCursor, pageSizes, scale, schemasList.length, sidebarOpen, sizeExcSidebars.height, sizeExcSidebars.width, usableCanvasHeight, usableCanvasWidth, zoomLevel]);
+  }, [pageCursor, pageSizes, scale, schemasList.length, sidebarOpen, workspaceSize.height, workspaceSize.width, usableCanvasHeight, usableCanvasWidth, zoomLevel]);
 
   useEffect(() => {
     if (viewportMode === 'manual') return;
@@ -2685,7 +2736,7 @@ const TemplateEditor = ({
     setZoomLevel((prev) => {
       return Math.abs(prev - nextZoom) <= 0.005 ? prev : nextZoom;
     });
-  }, [computeZoomForMode, pageCursor, sizeExcSidebars.height, sizeExcSidebars.width, viewportMode]);
+  }, [computeZoomForMode, pageCursor, workspaceSize.height, workspaceSize.width, viewportMode]);
 
   const undoExternal = useCallback(() => {
     void commandBusRef.current.undo();
@@ -4317,7 +4368,10 @@ const TemplateEditor = ({
           }>
           {!leftSidebarDetached ? leftSidebarNode : null}
           <div
-            className={`${DESIGNER_CLASSNAME}stage ${shouldReserveRightSidebarSpace ? 'pr-[calc(var(--sisad-pdfme-rs-width)_+_0.875rem)]' : ''}`}
+            // Sin `pr-` por el panel derecho: reservar espacio aquí encogería el
+            // stage y movería el centro del papel al abrir el panel. Los paneles
+            // son overlays; el stage ocupa siempre el workspace completo.
+            className={`${DESIGNER_CLASSNAME}stage`}
             data-left-sidebar={leftSidebarVisible ? 'visible' : 'hidden'}
             data-left-sidebar-mode={shouldReserveLeftSidebarSpace ? 'docked' : 'overlay'}
             data-left-sidebar-variant={leftSidebarVariant}
@@ -4358,7 +4412,7 @@ const TemplateEditor = ({
               ['--sisad-pdfme-rs-width' as string]: `${effectiveRightSidebarWidthRaw}px`,
             }}>
           <CtlBar
-            size={sizeExcSidebars}
+            size={workspaceSize}
             pageCursor={pageCursor}
             pageNum={pageSizes.length}
             setPageCursor={setPageCursorWithScroll}
@@ -4411,7 +4465,7 @@ const TemplateEditor = ({
             height={size.height - RULER_HEIGHT * ZOOM}
             pageCursor={pageCursor}
             scale={scale}
-            size={sizeExcSidebars}
+            size={workspaceSize}
             pageSizes={pageSizes}
             backgrounds={backgrounds}
             activeElements={activeElements}

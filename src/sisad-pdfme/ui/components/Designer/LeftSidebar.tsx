@@ -1197,7 +1197,10 @@ const LeftSidebar = ({
   const sidebarClass = mergeClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar`,
     `${DESIGNER_CLASSNAME}left-sidebar-${variant}`,
-    detached ? 'relative' : resolvedPresentation === 'docked' ? 'relative' : 'absolute inset-y-0 left-0 z-[70]',
+    // `docked` significa «pegado al borde», no «dentro del flujo». Volver a
+    // `relative` haría que el panel encogiese el stage y moviese el centro del
+    // papel al abrirlo. Sólo `detached` (fuera del Designer) participa del flujo.
+    detached ? 'relative' : 'absolute inset-y-0 left-0 z-[70]',
     'flex h-full min-h-0 shrink-0 flex-col bg-[var(--color-bg-elevated)] border-r border-slate-200/70',
     sidebarWidthClass,
     'max-[48rem]:absolute max-[48rem]:left-0 max-[48rem]:top-0 max-[48rem]:bottom-0 max-[48rem]:z-[20] max-[48rem]:w-0 max-[48rem]:overflow-hidden max-[48rem]:[transition:width_0.22s_var(--wix-ease-out)]',

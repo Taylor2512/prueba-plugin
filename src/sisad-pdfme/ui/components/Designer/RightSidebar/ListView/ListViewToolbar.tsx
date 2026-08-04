@@ -209,7 +209,7 @@ const ListViewToolbar = ({
                 <button
                   type="button"
                   disabled={reassignActionState.buttonDisabled}
-                  title="Reasignar responsable"
+                  title={reassignActionState.buttonTitle}
                   onPointerDownCapture={stopDesignerControlEvent}
                   onMouseDownCapture={stopDesignerControlEvent}
                   onDoubleClickCapture={stopDesignerControlEvent}
@@ -262,7 +262,14 @@ const ListViewToolbar = ({
                       <div className="flex items-center gap-2 px-3 py-2 text-xs text-slate-500" role="note">
                         <Users size={14} className="text-slate-400" />
                         <span data-testid="right-sidebar-reassign-hint">
-                          {reassignActionState.selectionHintLabel || 'Selecciona campos'}
+                          {reassignActionState.selectionHintLabel || 'Selecciona uno o más campos'}
+                        </span>
+                      </div>
+                    ) : reassignActionState.buttonDisabled && reassignActionState.disabledReasonLabel ? (
+                      <div className="flex items-center gap-2 px-3 py-2 text-xs text-slate-500" role="note">
+                        <Users size={14} className="text-slate-400" />
+                        <span data-testid="right-sidebar-reassign-hint">
+                          {reassignActionState.disabledReasonLabel}
                         </span>
                       </div>
                     ) : null}

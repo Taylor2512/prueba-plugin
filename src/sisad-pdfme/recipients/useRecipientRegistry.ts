@@ -19,7 +19,7 @@ import type {
   SisadPdfmeRecipientsConfig,
 } from './recipientTypes.js';
 
-type RecipientsAdapterLike = {
+export type RecipientsAdapterLike = {
   toRecipients(input: unknown[]): SisadPdfmeRecipient[];
 };
 

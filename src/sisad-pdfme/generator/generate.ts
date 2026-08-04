@@ -161,7 +161,7 @@ const generate = async (props: GenerateProps): Promise<Uint8Array<ArrayBuffer>> 
 
   postProcessing({ pdfDoc, options });
 
-  return pdfDoc.save();
+  return pdfDoc.save() as Promise<Uint8Array<ArrayBuffer>>;
 };
 
 export default generate;

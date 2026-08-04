@@ -47,7 +47,7 @@ export const cloneDeep = structuredClone;
 const uniq = <T,>(array: Array<T>) => Array.from(new Set(array));
 
 /** Convierte bytes a base64 sin depender del `Buffer` de Node. */
-const uint8ArrayToBase64 = (bytes: Uint8Array): string => {
+const uint8ArrayToBase64 = (bytes: Uint8Array<ArrayBufferLike>): string => {
   if (typeof globalThis.btoa === 'function') {
     const chunkSize = 0x8000;
     let binary = '';
@@ -65,18 +65,18 @@ const uint8ArrayToBase64 = (bytes: Uint8Array): string => {
 };
 
 /** Convierte base64 a bytes sin depender del `Buffer` de Node. */
-const base64ToUint8Array = (base64: string): Uint8Array => {
+const base64ToUint8Array = (base64: string): Uint8Array<ArrayBuffer> => {
   if (typeof globalThis.atob === 'function') {
     const binary = globalThis.atob(base64);
     const bytes = new Uint8Array(binary.length);
     for (let i = 0; i < binary.length; i += 1) {
       bytes[i] = binary.charCodeAt(i);
     }
-    return bytes;
+    return bytes as Uint8Array<ArrayBuffer>;
   }
 
   if (typeof globalThis.Buffer !== 'undefined') {
-    return new Uint8Array(globalThis.Buffer.from(base64, 'base64'));
+    return new Uint8Array(globalThis.Buffer.from(base64, 'base64')) as Uint8Array<ArrayBuffer>;
   }
 
   throw Error('[@sisad-pdfme/common] base64 decoding is not available in this environment.');
@@ -160,8 +160,8 @@ export const migrateTemplate = (template: Template) => {
     template.schemas.length > 0 &&
     !Array.isArray(template.schemas[0])
   ) {
-    template.schemas = (template.schemas as unknown as SchemaPageArray).map(
-      (page: Record<string, Schema>) =>
+    template.schemas = (template.schemas as unknown as Array<Record<string, Schema>>).map(
+      (page) =>
         Object.entries(page).map(([key, value]) => ({
           ...value,
           name: key,
@@ -204,7 +204,7 @@ export const getB64BasePdf = async (
     return customPdf;
   }
 
-  const uint8Array = customPdf instanceof Uint8Array ? customPdf : new Uint8Array(customPdf);
+  const uint8Array = (customPdf instanceof Uint8Array ? customPdf : new Uint8Array(customPdf)) as Uint8Array<ArrayBuffer>;
   return 'data:application/pdf;base64,' + uint8ArrayToBase64(uint8Array);
 };
 
@@ -213,7 +213,7 @@ export const isBlankPdf = (basePdf: BasePdf): basePdf is BlankPdf =>
   BlankPdfSchema.safeParse(basePdf).success;
 
 /** Convierte base64/data URI a Uint8Array. */
-export const b64toUint8Array = (base64: string) => {
+export const b64toUint8Array = (base64: string): Uint8Array<ArrayBuffer> => {
   const data = base64.split(';base64,')[1] ? base64.split(';base64,')[1] : base64;
   return base64ToUint8Array(data);
 };

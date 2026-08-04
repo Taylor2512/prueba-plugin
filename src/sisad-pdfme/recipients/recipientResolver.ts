@@ -89,7 +89,7 @@ export const resolveSchemaOwnerAppearance = (
  * (`CollaborationRecipientOption`): tipado estructural para no acoplar este
  * módulo a `ui/`.
  */
-type RegistryRecipientOption = {
+export type RegistryRecipientOption = {
   id: string;
   name: string;
   color?: string | null;
@@ -97,7 +97,7 @@ type RegistryRecipientOption = {
 };
 
 /** Mapea recipients del registry a opciones de colaboración de la UI. */
-const buildRecipientOptionsFromRegistry = (
+export const buildRecipientOptionsFromRegistry = (
   registry: RegistryLike,
 ): RegistryRecipientOption[] =>
   toState(registry).recipients.map((recipient) => ({

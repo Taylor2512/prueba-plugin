@@ -32,6 +32,7 @@ import type {
 import type { SignatureProviderDefinition } from '../schemas/signature/providerRegistry.js';
 import type {
   SisadPdfmeController,
+  SisadPdfmeDocument,
   SisadPdfmeGlobalConfig,
   ResolvedSisadPdfmeConfig,
 } from '../config/SisadPdfmeConfig.js';
@@ -53,6 +54,7 @@ type DesignerProps = {
   onControllerReady?: (controller: SisadPdfmeController) => void;
   onRecipientsChange?: (recipients: SisadPdfmeRecipient[]) => void;
   onActiveRecipientChange?: (recipient: SisadPdfmeRecipient | null) => void;
+  onActiveDocumentChange?: (documentId: string | null, document: SisadPdfmeDocument | null) => void;
   onUploadedDocumentsChange?: (documents: unknown[], activeDocumentId: string | null) => void;
   onAssignmentChange?: (payload: SisadPdfmeAssignmentChangePayload) => void;
   /**
@@ -83,6 +85,7 @@ export const SisadPdfmeDesigner = ({
   onControllerReady,
   onRecipientsChange,
   onActiveRecipientChange,
+  onActiveDocumentChange,
   onUploadedDocumentsChange,
   onAssignmentChange,
   onEvent,
@@ -229,7 +232,7 @@ export const SisadPdfmeDesigner = ({
     Designer,
     Form: Designer,
     Viewer: Designer,
-  }), []);
+  }) as unknown as UsePdfmeRuntimeInstanceConfig['runtime'], []);
   const runtimeConfig = useMemo(() => ({
     containerRef,
     mode: 'designer' as const,
@@ -237,10 +240,11 @@ export const SisadPdfmeDesigner = ({
     inputs: [],
     onTemplateChange: (nextTemplate: unknown) => onTemplateChange?.(nextTemplate),
     onPageChange: () => undefined,
-    options: {
-      ...resolvedConfig.runtimeOptions,
-      onUploadedDocumentsChange,
-      designerEngine: {
+      options: {
+        ...resolvedConfig.runtimeOptions,
+        onActiveDocumentChange,
+        onUploadedDocumentsChange,
+        designerEngine: {
         ...resolvedConfig.designerEngine,
         // collaborationContext interno nace del registry: una sola fuente para
         // recipientOptions/users/activeRecipientId/colores.
@@ -274,13 +278,12 @@ export const SisadPdfmeDesigner = ({
     activeDocumentId,
     documents,
     mergedSignatureProviders,
+    onActiveDocumentChange,
     onTemplateChange,
     onUploadedDocumentsChange,
-    plugins,
     recipientState,
     resolvedConfig,
     runtime,
-    signatureProviders,
     template,
     runtimePlugins,
   ]);
@@ -297,8 +300,8 @@ export const SisadPdfmeDesigner = ({
         'assignment.changed',
         {
           schemaIds: (payload.schemaIds as string[]) ?? [],
-          previousOwnerIds: (payload.previousOwnerIds as string[]) ?? [],
-          ownerId: (payload.ownerId as string | null) ?? null,
+          previousOwnerIds: payload.previousRecipientId ? [payload.previousRecipientId] : [],
+          ownerId: payload.nextRecipientId ?? null,
         },
         { hostCallbackPayload: payload as unknown as Record<string, unknown> },
       ),

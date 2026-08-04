@@ -83,14 +83,14 @@ export const scheduleDestroyInstance = (instance: RuntimeInstanceLike | null | u
 };
 
 /** Runtime surfaces owned by this adapter. */
-type PdfmeRuntimeMode = 'designer' | 'form' | 'viewer';
+export type PdfmeRuntimeMode = 'designer' | 'form' | 'viewer';
 
 /**
  * Runtime constructors are injected to avoid hard dependency coupling.
  *
  * This also makes the hook testable with lightweight fake classes.
  */
-type PdfmeRuntimeConstructors = {
+export type PdfmeRuntimeConstructors = {
   Designer: RuntimeConstructorLike;
   Form: RuntimeConstructorLike;
   Viewer: RuntimeConstructorLike;

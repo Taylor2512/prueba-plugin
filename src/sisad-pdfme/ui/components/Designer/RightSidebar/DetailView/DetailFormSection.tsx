@@ -112,7 +112,7 @@ const DetailFormSection = ({
             '[&_.ant-card-head]:min-h-0 [&_.ant-card-head]:border-b-0 [&_.ant-card-head]:px-0 [&_.ant-card-head]:pb-1 [&_.ant-card-head]:pt-0',
             '[&_.ant-card-head-title]:px-0 [&_.ant-card-head-title]:text-[11px] [&_.ant-card-head-title]:font-semibold [&_.ant-card-head-title]:text-slate-500',
             '[&_.ant-card-body]:p-0',
-            '[&_.ant-checkbox-wrapper]:inline-flex [&_.ant-checkbox-wrapper]:items-center [&_.ant-checkbox-wrapper]:gap-[0.375rem] [&_.ant-checkbox-wrapper]:text-[0.6875rem] [&_.ant-checkbox-wrapper]:text-[var(--text-secondary)] [&_.ant-checkbox-wrapper]:cursor-pointer [&_.ant-checkbox-wrapper]:transition-colors [&_.ant-checkbox-wrapper:hover]:text-[var(--text-primary)]',
+            '[&_.ant-checkbox-wrapper]:inline-flex [&_.ant-checkbox-wrapper]:items-center [&_.ant-checkbox-wrapper]:gap-[0.375rem] [&_.ant-checkbox-wrapper]:text-[0.6875rem] [&_.ant-checkbox-wrapper]:text-[var(--color-text-secondary)] [&_.ant-checkbox-wrapper]:cursor-pointer [&_.ant-checkbox-wrapper]:transition-colors [&_.ant-checkbox-wrapper:hover]:text-[var(--color-text-primary)]',
           )}
         >
           <FormRenderComponent

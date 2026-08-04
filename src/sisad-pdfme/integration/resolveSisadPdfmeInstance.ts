@@ -6,7 +6,6 @@ import {
   type SisadPdfmeHostDataAdapters,
   type SisadPdfmeNormalizedHostData,
 } from './normalizeHostData.js';
-import { resolveActiveDocument } from '../documents/index.js';
 import {
   validateSisadPdfmeInstanceDefinition,
   type SisadPdfmeInstanceDefinitionIssue,
@@ -39,6 +38,7 @@ export type SisadPdfmeInstanceStateFieldName = keyof SisadPdfmeInstanceStateInpu
 export type SisadPdfmeInstanceStateChangeSource = 'user' | 'runtime' | 'host';
 export type SisadPdfmeInstanceStateChange = {
   field: SisadPdfmeInstanceStateFieldName;
+  fields?: SisadPdfmeInstanceStateFieldName[];
   source: SisadPdfmeInstanceStateChangeSource;
 };
 
@@ -107,6 +107,7 @@ export type SisadPdfmeInstanceHandlers = {
   onControllerReady?: (controller: SisadPdfmeController) => void;
   onRecipientsChange?: (recipients: SisadPdfmeRecipient[]) => void;
   onActiveRecipientChange?: (recipient: SisadPdfmeRecipient | null) => void;
+  onActiveDocumentChange?: (documentId: string | null, document: SisadPdfmeDocument | null) => void;
   onUploadedDocumentsChange?: (documents: SisadPdfmeDocument[], activeDocumentId: string | null) => void;
   onAssignmentChange?: (payload: SisadPdfmeAssignmentChangePayload) => void;
   onInputChange?: (payload: { index: number; name: string; value: unknown }) => void;
@@ -176,7 +177,9 @@ const resolveActiveDocumentTemplate = (
   activeDocumentId: string | null,
   fallbackTemplate: Template,
 ) => {
-  const activeDocument = resolveActiveDocument(documents, activeDocumentId);
+  const activeDocument = documents.find((document) => document.id === activeDocumentId) as {
+    template?: unknown;
+  } | null;
   const documentTemplate = activeDocument?.template;
   if (!documentTemplate || typeof documentTemplate !== 'object') {
     return fallbackTemplate;
@@ -327,7 +330,12 @@ export const resolveSisadPdfmeInstance = ({
   const config = mergeConfigs(resources.config, definition.config);
   const state = resolveInstanceState(definition, resources, runtimeState);
   const template = (state.template.value ?? createDefaultTemplate()) as Template;
-  const isGlobalView = config?.collaboration?.isGlobalView === true;
+  const collaborationConfig = config as {
+    collaboration?: {
+      isGlobalView?: boolean;
+    };
+  };
+  const isGlobalView = collaborationConfig?.collaboration?.isGlobalView === true;
   const normalizedActiveRecipientId =
     state.activeRecipientId.source === 'fallback' ? null : state.activeRecipientId.value;
   const normalized = normalizeHostData({
@@ -378,6 +386,7 @@ export const resolveSisadPdfmeInstance = ({
         onControllerReady: handlers.onControllerReady,
         onRecipientsChange: handlers.onRecipientsChange,
         onActiveRecipientChange: handlers.onActiveRecipientChange,
+        onActiveDocumentChange: handlers.onActiveDocumentChange,
         onUploadedDocumentsChange: handlers.onUploadedDocumentsChange,
         onAssignmentChange: handlers.onAssignmentChange,
         onEvent: handlers.onEvent,
@@ -389,6 +398,7 @@ export const resolveSisadPdfmeInstance = ({
     ...sharedProps,
     template: activeDocumentTemplate,
     inputs: normalized.inputs,
+    documents: normalized.documents,
     recipients: normalized.recipients,
     activeRecipientId,
     activeDocumentId,

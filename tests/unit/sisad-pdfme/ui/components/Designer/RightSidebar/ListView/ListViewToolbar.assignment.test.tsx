@@ -125,7 +125,9 @@ describe('ListViewToolbar assignment action', () => {
       </OptionsContext.Provider>,
     );
 
-    expect(screen.getByTestId('right-sidebar-reassign')).toBeDisabled();
+    const button = screen.getByTestId('right-sidebar-reassign');
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('title', 'Selecciona uno o más campos');
   });
 
   it('keeps an accessible label for the reassign intent', () => {

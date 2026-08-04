@@ -22,6 +22,7 @@ export type SisadPdfmeInstanceInput =
       style?: React.CSSProperties;
     }
   | {
+      instanceKey?: string | number;
       definition: SisadPdfmeInstanceDefinition;
       resources?: SisadPdfmeInstanceResources;
       handlers?: SisadPdfmeInstanceHandlers;

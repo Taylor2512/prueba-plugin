@@ -41,15 +41,13 @@ const collaborationContext = {
 } as unknown as EffectiveCollaborationContext;
 
 describe('resolveListViewItemDescriptor', () => {
-  it('uses explicit assignment badges for the active owner', () => {
+  it('keeps the active owner row compact without a redundant badge', () => {
     const descriptor = resolveListViewItemDescriptor(
       makeSchema({ id: 'field-1', ownerRecipientId: 'recipient-1' }),
       collaborationContext,
     );
 
-    expect(descriptor.badges).toEqual([
-      expect.objectContaining({ label: 'Asignado a ti', color: '#2563EB' }),
-    ]);
+    expect(descriptor.badges).toEqual([]);
   });
 
   it('prefers the explicit ownerColor for the row accent', () => {

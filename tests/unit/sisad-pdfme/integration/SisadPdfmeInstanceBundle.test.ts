@@ -89,4 +89,16 @@ describe('SisadPdfmeInstanceBundle', () => {
     expect(parsed.issues).toEqual([]);
     expect(parsed.bundle).toEqual(bundle);
   });
+
+  it('no invalida el bundle cuando la definición solo tiene advertencias', () => {
+    const bundle = createSisadPdfmeInstanceBundle({
+      definition: {
+        mode: 'designer',
+        version: -1,
+      },
+    });
+
+    expect(bundle.valid).toBe(true);
+    expect(bundle.issues.some((issue) => issue.severity === 'warning')).toBe(true);
+  });
 });

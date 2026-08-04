@@ -201,6 +201,14 @@ export type Command = {
   label: string;
 
   /**
+   * Metadata libre del comando.
+   *
+   * Se usa en el bus del diseñador para transportar hints como `schemaUids`,
+   * `undoable` o `source` sin duplicar contratos entre capas.
+   */
+  meta?: Record<string, unknown>;
+
+  /**
    * Ejecuta la acción principal del comando.
    *
    * Puede ser síncrona o asíncrona.

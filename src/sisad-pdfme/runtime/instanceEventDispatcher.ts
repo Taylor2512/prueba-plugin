@@ -185,7 +185,7 @@ export const createInstanceEventDispatcher = (
   return {
     emit(name, payload, context) {
       const event = createSisadPdfmeEvent(name, payload, { instanceId, ...context });
-      dispatch(event, context?.hostCallbackPayload ?? context?.Payload);
+      dispatch(event as SisadPdfmeAnyEvent, context?.hostCallbackPayload ?? context?.Payload);
       return event;
     },
     dispatch,

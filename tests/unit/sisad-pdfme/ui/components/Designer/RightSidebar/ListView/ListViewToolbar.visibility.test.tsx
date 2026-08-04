@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { OptionsContext } from '@/sisad-pdfme/ui/contexts';
 import ListViewToolbar from '@/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar';
@@ -65,7 +64,6 @@ describe('ListViewToolbar visibility', () => {
   });
 
   it('shows a disabled hint in the menu when no selection exists', async () => {
-    const user = userEvent.setup();
     render(
       <OptionsContext.Provider value={{ assignment: { enabled: true }, visibility: { actions: { reassign: true }, modals: { assignment: true } } } as any}>
         <ListViewToolbar
@@ -78,8 +76,14 @@ describe('ListViewToolbar visibility', () => {
     );
 
     expect(screen.getByTestId('right-sidebar-reassign')).toBeDisabled();
-    await user.click(screen.getByTestId('right-sidebar-more'));
-    expect(await screen.findByTestId('right-sidebar-reassign-hint')).toHaveTextContent('Selecciona campos');
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('right-sidebar-more'));
+    });
+    await waitFor(() =>
+      expect(screen.getByTestId('right-sidebar-reassign-hint')).toHaveTextContent(
+        'Selecciona uno o más campos',
+      ),
+    );
   });
 
   it('keeps the title row horizontal in minimal density (never stacks title/counter/actions)', () => {

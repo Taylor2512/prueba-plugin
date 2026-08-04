@@ -24,7 +24,7 @@ const DEFAULT_THEME_TOKEN = Object.freeze({
  * This prevents incomplete host themes from removing required token values
  * such as colorPrimary, colorBgContainer or borderRadius.
  */
-const mergeThemeToken = (themeToken = DEFAULT_THEME_TOKEN) => ({
+const mergeThemeToken = (themeToken: Record<string, unknown> = DEFAULT_THEME_TOKEN) => ({
   ...DEFAULT_THEME_TOKEN,
   ...(themeToken && typeof themeToken === "object" ? themeToken : {}),
 });
@@ -34,8 +34,12 @@ const mergeThemeToken = (themeToken = DEFAULT_THEME_TOKEN) => ({
  *
  * The function avoids mutating the original host options object.
  */
-const mergeRuntimeOptions = (runtimeOptions = {}, themeToken = DEFAULT_THEME_TOKEN) => {
-  const next = runtimeOptions && typeof runtimeOptions === "object" ? { ...(runtimeOptions as Record<string, unknown>) } : {};
+const mergeRuntimeOptions = (
+  runtimeOptions: Record<string, unknown> = {},
+  themeToken: Record<string, unknown> = DEFAULT_THEME_TOKEN,
+) => {
+  const next: Record<string, unknown> =
+    runtimeOptions && typeof runtimeOptions === "object" ? { ...runtimeOptions } : {};
   next.theme = {
     ...(next.theme && typeof next.theme === "object" ? next.theme : {}),
     token: mergeThemeToken(themeToken),
@@ -72,7 +76,7 @@ export const buildRuntimeOptions = ({
   lang = "es",
   themeToken = DEFAULT_THEME_TOKEN,
   runtimeOptions = {},
-}: RuntimeOptionsInput = {}) => {
+}: RuntimeOptionsInput = {}): Record<string, unknown> => {
   const next = mergeRuntimeOptions(runtimeOptions, themeToken);
   next.lang = lang;
   next.i18n = i18n;
@@ -92,7 +96,7 @@ export const buildDesignerRuntimeOptions = ({
   lang = "es",
   themeToken = DEFAULT_THEME_TOKEN,
   runtimeOptions = {},
-}: DesignerRuntimeOptionsInput = {}) => {
+}: DesignerRuntimeOptionsInput = {}): Record<string, unknown> => {
   const next = buildRuntimeOptions({ i18n, lang, themeToken, runtimeOptions });
   next.themePreset = themePreset;
   if (designerEngine) {
@@ -115,7 +119,7 @@ export const buildRuntimeFormOptions = ({
   signatureSigner = {},
   themeToken = DEFAULT_THEME_TOKEN,
   runtimeOptions = {},
-}: FormRuntimeOptionsInput = {}) => {
+}: FormRuntimeOptionsInput = {}): Record<string, unknown> => {
   const next = buildRuntimeOptions({ i18n, lang, themeToken, runtimeOptions });
   next.zoomLevel = zoomLevel;
   next.signatureModalFlow = true;
@@ -134,7 +138,8 @@ export const buildRuntimeViewerOptions = ({
   lang = "es",
   themeToken = DEFAULT_THEME_TOKEN,
   runtimeOptions = {},
-} = {}) => buildRuntimeOptions({ i18n, lang, themeToken, runtimeOptions });
+}: RuntimeOptionsInput = {}): Record<string, unknown> =>
+  buildRuntimeOptions({ i18n, lang, themeToken, runtimeOptions });
 
 /** Public alias used by hosts that want to reuse the SISAD default token. */
 export { DEFAULT_THEME_TOKEN as DEFAULT_RUNTIME_THEME_TOKEN };

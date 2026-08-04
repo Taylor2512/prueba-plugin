@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { SisadPdfmeDesigner, SisadPdfmeForm, SisadPdfmeViewer } from '../react/index.js';
 import {
   resolveSisadPdfmeInstance,
@@ -12,7 +12,6 @@ import {
 import {
   defineSisadPdfmeInstance,
   type SisadPdfmeInstanceInput,
-  type SisadPdfmeRegisteredInstance,
 } from './defineSisadPdfmeInstance.js';
 import type {
   SisadPdfmeAssignmentChangePayload,
@@ -20,11 +19,13 @@ import type {
 } from '../recipients/index.js';
 import type { SisadPdfmeDocument } from '../config/index.js';
 
-const SURFACES: Record<SisadPdfmeInstanceMode, React.ComponentType<any>> = {
+type SisadPdfmeSurfaceProps = Record<string, unknown>;
+
+const SURFACES = {
   designer: SisadPdfmeDesigner,
   form: SisadPdfmeForm,
   viewer: SisadPdfmeViewer,
-};
+} as unknown as Record<SisadPdfmeInstanceMode, React.ComponentType<SisadPdfmeSurfaceProps>>;
 
 const isPlainObject = (value: unknown): value is Record<string, unknown> =>
   Boolean(value && typeof value === 'object' && !Array.isArray(value));
@@ -41,33 +42,38 @@ const updateInputList = (
   return nextInputs;
 };
 
-const buildNextState = (
+const buildStateSnapshot = (
   state: SisadPdfmeInstanceResolution['state'],
-  field: keyof SisadPdfmeInstanceStateInput,
-  value: unknown,
+  runtimeState: SisadPdfmeInstanceRuntimeState,
 ): SisadPdfmeInstanceStateInput => ({
-  template: state.template.value,
-  inputs: state.inputs.value,
-  recipients: state.recipients.value,
-  documents: state.documents.value,
-  signatureProviders: state.signatureProviders.value,
-  activeRecipientId: state.activeRecipientId.value,
-  activeDocumentId: state.activeDocumentId.value,
-  [field]: value,
+  template: runtimeState.template !== undefined ? runtimeState.template : state.template.value,
+  inputs: runtimeState.inputs !== undefined ? runtimeState.inputs : state.inputs.value,
+  recipients: runtimeState.recipients !== undefined ? runtimeState.recipients : state.recipients.value,
+  documents: runtimeState.documents !== undefined ? runtimeState.documents : state.documents.value,
+  signatureProviders:
+    runtimeState.signatureProviders !== undefined
+      ? runtimeState.signatureProviders
+      : state.signatureProviders.value,
+  activeRecipientId:
+    runtimeState.activeRecipientId !== undefined
+      ? runtimeState.activeRecipientId
+      : state.activeRecipientId.value,
+  activeDocumentId:
+    runtimeState.activeDocumentId !== undefined
+      ? runtimeState.activeDocumentId
+      : state.activeDocumentId.value,
 });
 
-const resolveRegisteredInstance = (
+const buildRegisteredInstance = (
   props: SisadPdfmeInstanceInput,
 ): {
-  instanceSignature: string;
-  registeredInstance?: SisadPdfmeRegisteredInstance;
+  stateKey: string;
   resolvedProps: SisadPdfmeResolvedInstanceProps;
 } => {
   if ('instance' in props) {
     const registeredInstance = defineSisadPdfmeInstance(props.instance);
     return {
-      instanceSignature: `${registeredInstance.id}::${registeredInstance.revision ?? ''}`,
-      registeredInstance,
+      stateKey: `${registeredInstance.id}::${registeredInstance.revision ?? ''}`,
       resolvedProps: {
         definition: registeredInstance.definition,
         resources: registeredInstance.resources,
@@ -79,7 +85,7 @@ const resolveRegisteredInstance = (
   }
 
   return {
-    instanceSignature: 'legacy',
+    stateKey: `direct::${String(props.instanceKey ?? 'direct')}`,
     resolvedProps: {
       definition: props.definition,
       resources: props.resources,
@@ -89,14 +95,6 @@ const resolveRegisteredInstance = (
     },
   };
 };
-
-const isRegisteredInstanceInput = (
-  props: SisadPdfmeInstanceInput,
-): props is {
-  instance: SisadPdfmeRegisteredInstance;
-  className?: string;
-  style?: React.CSSProperties;
-} => 'instance' in props;
 
 export type SisadPdfmeInstanceProps = SisadPdfmeInstanceInput;
 
@@ -126,61 +124,76 @@ export type {
 
 export const useSisadPdfmeInstance = (
   props: SisadPdfmeInstanceInput,
-): SisadPdfmeInstanceResolution & { Component: React.ComponentType<any> } =>
+): SisadPdfmeInstanceResolution & { Component: React.ComponentType<SisadPdfmeSurfaceProps> } =>
 {
-  const registeredInstance = isRegisteredInstanceInput(props) ? props.instance : undefined;
-  const legacyProps = isRegisteredInstanceInput(props) ? undefined : props;
-  const className = props.className;
-  const style = props.style;
-
-  const registration = useMemo(
-    () => resolveRegisteredInstance(props),
-    [registeredInstance, legacyProps, className, style],
+  const registration = useMemo(() => buildRegisteredInstance(props), [props]);
+  const resolvedProps = useMemo(
+    () => ({
+      ...registration.resolvedProps,
+      className: props.className ?? registration.resolvedProps.className,
+      style: props.style ?? registration.resolvedProps.style,
+    }),
+    [props.className, props.style, registration],
   );
   const [runtimeState, setRuntimeState] = useState<SisadPdfmeInstanceRuntimeState>({});
-  const [runtimeSignature, setRuntimeSignature] = useState(registration.instanceSignature);
-  const effectiveRuntimeState =
-    runtimeSignature === registration.instanceSignature ? runtimeState : {};
+  const runtimeStateRef = useRef<SisadPdfmeInstanceRuntimeState>({});
+  const [runtimeStateKey, setRuntimeStateKey] = useState(() => registration.stateKey);
+  const effectiveRuntimeState = useMemo(
+    () => (runtimeStateKey === registration.stateKey ? runtimeState : {}),
+    [registration.stateKey, runtimeState, runtimeStateKey],
+  );
   const resolved = useMemo(
-    () => resolveSisadPdfmeInstance(registration.resolvedProps, effectiveRuntimeState),
-    [effectiveRuntimeState, registration.resolvedProps],
+    () => resolveSisadPdfmeInstance(resolvedProps, effectiveRuntimeState),
+    [effectiveRuntimeState, resolvedProps],
   );
 
   useEffect(() => {
-    if (runtimeSignature === registration.instanceSignature) return;
-    setRuntimeSignature(registration.instanceSignature);
+    if (runtimeStateKey === registration.stateKey) return;
+    setRuntimeStateKey(registration.stateKey);
     setRuntimeState({});
-  }, [registration.instanceSignature, runtimeSignature]);
+    runtimeStateRef.current = {};
+  }, [registration.stateKey, runtimeStateKey]);
 
   const emitStateChange = useCallback(
     (
-      field: keyof SisadPdfmeInstanceStateInput,
-      value: unknown,
-      source: SisadPdfmeInstanceStateChangeSource,
+      nextState: SisadPdfmeInstanceStateInput,
+      change: {
+        field: keyof SisadPdfmeInstanceStateInput;
+        fields?: (keyof SisadPdfmeInstanceStateInput)[];
+        source: SisadPdfmeInstanceStateChangeSource;
+      },
     ) => {
       registration.resolvedProps.handlers?.onStateChange?.(
-        buildNextState(resolved.state, field, value),
-        { field, source },
+        nextState,
+        change,
       );
     },
-    [registration.resolvedProps.handlers, resolved.state],
+    [registration.resolvedProps.handlers],
   );
 
   const handleTemplateChange = useCallback(
     (template: unknown) => {
+      const nextRuntimeState = { ...runtimeStateRef.current, template };
       if (!isFieldControlled(registration.resolvedProps.definition, registration.resolvedProps.resources, 'template')) {
-        setRuntimeState((previous) => ({ ...previous, template }));
+        runtimeStateRef.current = nextRuntimeState;
+        setRuntimeState(nextRuntimeState);
       }
-      emitStateChange('template', template, 'user');
+      emitStateChange(buildStateSnapshot(resolved.state, nextRuntimeState), {
+        field: 'template',
+        fields: ['template'],
+        source: 'user',
+      });
       registration.resolvedProps.handlers?.onTemplateChange?.(template);
     },
-    [emitStateChange, registration.resolvedProps],
+    [emitStateChange, registration.resolvedProps, resolved.state],
   );
 
   const handleSave = useCallback(
     (template: unknown) => {
       if (!isFieldControlled(registration.resolvedProps.definition, registration.resolvedProps.resources, 'template')) {
-        setRuntimeState((previous) => ({ ...previous, template }));
+        const nextRuntimeState = { ...runtimeStateRef.current, template };
+        runtimeStateRef.current = nextRuntimeState;
+        setRuntimeState(nextRuntimeState);
       }
       registration.resolvedProps.handlers?.onSave?.(template);
     },
@@ -189,68 +202,111 @@ export const useSisadPdfmeInstance = (
 
   const handleInputChange = useCallback(
     (payload: { index: number; name: string; value: unknown }) => {
+      const currentInputs =
+        runtimeStateRef.current.inputs !== undefined
+          ? runtimeStateRef.current.inputs
+          : resolved.state.inputs.value;
+      const nextInputs = updateInputList(
+        Array.isArray(currentInputs) ? currentInputs : [],
+        payload,
+      );
+      const nextRuntimeState = {
+        ...runtimeStateRef.current,
+        inputs: nextInputs,
+      };
       if (!isFieldControlled(registration.resolvedProps.definition, registration.resolvedProps.resources, 'inputs')) {
-        setRuntimeState((previous) => {
-          const baseInputs = Array.isArray(previous.inputs)
-            ? previous.inputs
-            : resolved.state.inputs.value;
-          return {
-            ...previous,
-            inputs: updateInputList(Array.isArray(baseInputs) ? baseInputs : [], payload),
-          };
-        });
+        runtimeStateRef.current = nextRuntimeState;
+        setRuntimeState(nextRuntimeState);
       }
-      emitStateChange('inputs', updateInputList(resolved.state.inputs.value, payload), 'user');
+      emitStateChange(buildStateSnapshot(resolved.state, nextRuntimeState), {
+        field: 'inputs',
+        fields: ['inputs'],
+        source: 'user',
+      });
       registration.resolvedProps.handlers?.onInputChange?.(payload);
     },
-    [emitStateChange, registration.resolvedProps, resolved.state.inputs.value],
+    [emitStateChange, registration.resolvedProps, resolved.state],
   );
 
   const handleRecipientsChange = useCallback(
     (recipients: SisadPdfmeRecipient[]) => {
+      const nextRuntimeState = { ...runtimeStateRef.current, recipients };
       if (!isFieldControlled(registration.resolvedProps.definition, registration.resolvedProps.resources, 'recipients')) {
-        setRuntimeState((previous) => ({ ...previous, recipients }));
+        runtimeStateRef.current = nextRuntimeState;
+        setRuntimeState(nextRuntimeState);
       }
-      emitStateChange('recipients', recipients, 'user');
+      emitStateChange(buildStateSnapshot(resolved.state, nextRuntimeState), {
+        field: 'recipients',
+        fields: ['recipients'],
+        source: 'user',
+      });
       registration.resolvedProps.handlers?.onRecipientsChange?.(recipients);
     },
-    [emitStateChange, registration.resolvedProps],
+    [emitStateChange, registration.resolvedProps, resolved.state],
   );
 
   const handleUploadedDocumentsChange = useCallback(
     (documents: SisadPdfmeDocument[], activeDocumentId: string | null) => {
-      setRuntimeState((previous) => {
-        const nextState = { ...previous };
-        let changed = false;
-        if (!isFieldControlled(registration.resolvedProps.definition, registration.resolvedProps.resources, 'documents')) {
-          nextState.documents = documents;
-          changed = true;
-        }
-        if (!isFieldControlled(registration.resolvedProps.definition, registration.resolvedProps.resources, 'activeDocumentId')) {
-          nextState.activeDocumentId = activeDocumentId;
-          changed = true;
-        }
-        return changed ? nextState : previous;
+      const nextRuntimeState = {
+        ...runtimeStateRef.current,
+        documents,
+        activeDocumentId,
+      };
+      if (
+        !isFieldControlled(registration.resolvedProps.definition, registration.resolvedProps.resources, 'documents') ||
+        !isFieldControlled(registration.resolvedProps.definition, registration.resolvedProps.resources, 'activeDocumentId')
+      ) {
+        runtimeStateRef.current = nextRuntimeState;
+        setRuntimeState(nextRuntimeState);
+      }
+      emitStateChange(buildStateSnapshot(resolved.state, nextRuntimeState), {
+        field: 'documents',
+        fields: ['documents', 'activeDocumentId'],
+        source: 'user',
       });
-      emitStateChange('documents', documents, 'user');
-      emitStateChange('activeDocumentId', activeDocumentId, 'user');
       registration.resolvedProps.handlers?.onUploadedDocumentsChange?.(documents, activeDocumentId);
     },
-    [emitStateChange, registration.resolvedProps],
+    [emitStateChange, registration.resolvedProps, resolved.state],
   );
 
   const handleActiveRecipientChange = useCallback(
     (recipient: SisadPdfmeRecipient | null) => {
+      const nextRuntimeState = {
+        ...runtimeStateRef.current,
+        activeRecipientId: recipient?.id ?? null,
+      };
       if (!isFieldControlled(registration.resolvedProps.definition, registration.resolvedProps.resources, 'activeRecipientId')) {
-        setRuntimeState((previous) => ({
-          ...previous,
-          activeRecipientId: recipient?.id ?? null,
-        }));
+        runtimeStateRef.current = nextRuntimeState;
+        setRuntimeState(nextRuntimeState);
       }
-      emitStateChange('activeRecipientId', recipient?.id ?? null, 'user');
+      emitStateChange(buildStateSnapshot(resolved.state, nextRuntimeState), {
+        field: 'activeRecipientId',
+        fields: ['activeRecipientId'],
+        source: 'user',
+      });
       registration.resolvedProps.handlers?.onActiveRecipientChange?.(recipient);
     },
-    [emitStateChange, registration.resolvedProps],
+    [emitStateChange, registration.resolvedProps, resolved.state],
+  );
+
+  const handleActiveDocumentChange = useCallback(
+    (documentId: string | null, document: SisadPdfmeDocument | null) => {
+      const nextRuntimeState = {
+        ...runtimeStateRef.current,
+        activeDocumentId: documentId ?? document?.id ?? null,
+      };
+      if (!isFieldControlled(registration.resolvedProps.definition, registration.resolvedProps.resources, 'activeDocumentId')) {
+        runtimeStateRef.current = nextRuntimeState;
+        setRuntimeState(nextRuntimeState);
+      }
+      emitStateChange(buildStateSnapshot(resolved.state, nextRuntimeState), {
+        field: 'activeDocumentId',
+        fields: ['activeDocumentId'],
+        source: 'user',
+      });
+      registration.resolvedProps.handlers?.onActiveDocumentChange?.(documentId ?? document?.id ?? null, document);
+    },
+    [emitStateChange, registration.resolvedProps, resolved.state],
   );
 
   const handleAssignmentChange = useCallback(
@@ -271,6 +327,7 @@ export const useSisadPdfmeInstance = (
             onSave: handleSave,
             onRecipientsChange: handleRecipientsChange,
             onActiveRecipientChange: handleActiveRecipientChange,
+            onActiveDocumentChange: handleActiveDocumentChange,
             onUploadedDocumentsChange: handleUploadedDocumentsChange,
             onAssignmentChange: handleAssignmentChange,
           }

@@ -23,4 +23,17 @@ describe('sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx', ()
     expect(row).toHaveAttribute('data-schema-owner-color', '#2563eb');
     expect(screen.getByTestId('right-sidebar-field-label')).toHaveTextContent('Contract stage');
   });
+
+  it('keeps the delete affordance hidden until hover or focus', () => {
+    render(
+      <Item
+        value="Contract stage"
+        schemaType="select"
+        onClick={() => {}}
+        onDelete={() => undefined}
+      />,
+    );
+
+    expect(screen.getByLabelText(/Eliminar campo Contract stage/)).toHaveClass('opacity-0');
+  });
 });

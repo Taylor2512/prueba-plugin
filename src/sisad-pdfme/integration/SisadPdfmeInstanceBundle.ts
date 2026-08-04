@@ -55,12 +55,13 @@ export const createSisadPdfmeInstanceBundle = (
   input: SisadPdfmeInstanceBundleInput,
 ): SisadPdfmeInstanceBundle => {
   const issues = validateSisadPdfmeInstanceDefinition(input.definition);
+  const valid = !issues.some((issue) => issue.severity === 'error');
   return {
     version: 1,
     definition: clonePortableValue(input.definition),
     resources: stripAdapters(input.resources),
     issues,
-    valid: issues.length === 0,
+    valid,
   };
 };
 
@@ -105,13 +106,14 @@ export const parseSisadPdfmeInstanceBundle = (
   try {
     const parsed = JSON.parse(payload) as unknown;
     const issues = validateSisadPdfmeInstanceBundle(parsed);
+    const valid = !issues.some((issue) => issue.severity === 'error');
     const bundle = issues.some((issue) => issue.severity === 'error')
       ? null
       : (parsed as SisadPdfmeInstanceBundle);
     return {
       bundle,
       issues,
-      valid: issues.length === 0,
+      valid,
     };
   } catch {
     return {

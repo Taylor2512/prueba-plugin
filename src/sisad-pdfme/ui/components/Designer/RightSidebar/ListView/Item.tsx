@@ -229,8 +229,9 @@ const ItemActions = ({
           className={mergeClassNames(
             DESIGNER_CLASSNAME + 'list-view-item-delete',
             // Semántica de peligro visible en reposo (rosa suave) y saturada en
-            // hover/focus, sin llegar al rojo pleno que dominaría la fila.
-            'pointer-events-auto relative z-20 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-rose-200 bg-rose-50 text-rose-500 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-[background-color,border-color,box-shadow,transform,color] duration-150 hover:-translate-y-[1px] hover:border-rose-400 hover:bg-rose-100 hover:text-rose-700 hover:shadow-sm focus-visible:border-rose-400 focus-visible:bg-rose-100 focus-visible:text-rose-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 focus-visible:ring-offset-1',
+            // hover/focus, sin llegar al rojo pleno que dominaría la fila. La
+            // acción aparece solo al interactuar con la fila para bajar ruido.
+            'pointer-events-auto relative z-20 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-rose-200 bg-rose-50 text-rose-500 opacity-0 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-[background-color,border-color,box-shadow,transform,color,opacity] duration-150 group-hover:opacity-100 group-focus-within:opacity-100 hover:-translate-y-[1px] hover:border-rose-400 hover:bg-rose-100 hover:text-rose-700 hover:shadow-sm focus-visible:opacity-100 focus-visible:border-rose-400 focus-visible:bg-rose-100 focus-visible:text-rose-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 focus-visible:ring-offset-1',
           )}
         >
           <Trash2 size={13} />

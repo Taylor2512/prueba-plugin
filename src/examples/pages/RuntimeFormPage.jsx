@@ -2,11 +2,11 @@ import React, { useCallback, useMemo, useState } from 'react';
 
 import { buildShowcaseTemplate } from '../builders/showcaseTemplate.js';
 import { buildFamiliesForKeys } from '../helpers/familyGroups.js';
-import { ExampleEventLog, ExampleInfoPanelStack, MetricGrid } from '../components/exampleUi.jsx';
 import { useExampleEventLog } from '../hooks/useExampleEventLog.js';
 import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
 import { createRuntimeFormInstance } from '../instances/exampleInstances.js';
 import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
+import { RuntimeFormInfo } from './RuntimeFormInfo.jsx';
 import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { getInputFromTemplate } from '@sisad-pdfme/common';
 import { SisadPdfmeInstance } from '@/sisad-pdfme';
@@ -54,33 +54,7 @@ export function RuntimeFormPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeForm 
       modeBadge="form"
       currentPath={currentPath}
       infoTitle="Captura de datos"
-      info={
-        <ExampleInfoPanelStack
-          panels={[
-            {
-              key: 'inputs',
-              title: 'Inputs iniciales',
-              description: 'Los valores se derivan del template con el helper público del paquete common.',
-              render: () => (
-                <MetricGrid
-                  items={[
-                    { label: 'Páginas', value: String(template.schemas?.length ?? 0) },
-                    { label: 'Inputs', value: String(values.length) },
-                    { label: 'Perfil', value: 'runtime-form' },
-                    { label: 'Último cambio', value: lastInput || 'ninguno' },
-                  ]}
-                />
-              ),
-            },
-            {
-              key: 'events',
-              title: 'Eventos',
-              description: 'Cada edición del formulario llega al host por `onInputChange`.',
-              render: () => <ExampleEventLog events={events} onClear={clear} />,
-            },
-          ]}
-        />
-      }
+      info={<RuntimeFormInfo template={template} values={values} lastInput={lastInput} events={events} onClear={clear} />}
       viewportName="runtime-form"
     >
       <SisadPdfmeInstance instance={runtimeFormInstance} />

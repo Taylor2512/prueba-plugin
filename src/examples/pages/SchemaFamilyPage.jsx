@@ -1,10 +1,11 @@
 import React, { useMemo, useState } from 'react';
 
-import { ExampleImmersiveShell, ExampleInfoPanelStack, FamilyBadgeList, MetricGrid, RuntimeViewport } from '../components/exampleUi.jsx';
 import { buildShowcaseTemplate } from '../builders/showcaseTemplate.js';
 import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
 import { createSchemaFamilyInstance } from '../instances/exampleInstances.js';
 import { getExampleSchemaRoute } from '../routes/routeDefinitions.js';
+import { SchemaFamilyInfo } from './SchemaFamilyInfo.jsx';
+import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { SisadPdfmeInstance } from '@/sisad-pdfme';
 
 export function SchemaFamilyPage({ family, currentPath }) {
@@ -24,42 +25,15 @@ export function SchemaFamilyPage({ family, currentPath }) {
   );
 
   return (
-    <ExampleImmersiveShell
+    <RuntimePageShell
       title={`Schemas · ${family.title}`}
       modeBadge="designer"
       currentPath={currentPath ?? getExampleSchemaRoute(family.slug)}
       infoTitle="Detalle de familia"
-      info={
-        <ExampleInfoPanelStack
-          panels={[
-            {
-              key: 'types',
-              title: 'Tipos',
-              description: family.description,
-              render: () => <FamilyBadgeList types={family.types} />,
-            },
-            {
-              key: 'detail',
-              title: 'Detalle de familia',
-              description: 'La misma plantilla base se especializa solo por el subconjunto de tipos que corresponda.',
-              render: () => (
-                <MetricGrid
-                  items={[
-                    { label: 'Tipos', value: String(family.types.length) },
-                    { label: 'Slug', value: family.slug },
-                    { label: 'Perfil', value: 'schema-family' },
-                    { label: 'Generación', value: 'data-driven' },
-                  ]}
-                />
-              ),
-            },
-          ]}
-        />
-      }
-      >
-      <RuntimeViewport name={`schema-family-${family.slug}`}>
-        <SisadPdfmeInstance instance={schemaFamilyInstance} />
-      </RuntimeViewport>
-    </ExampleImmersiveShell>
+      info={<SchemaFamilyInfo family={family} />}
+      viewportName={`schema-family-${family.slug}`}
+    >
+      <SisadPdfmeInstance instance={schemaFamilyInstance} />
+    </RuntimePageShell>
   );
 }

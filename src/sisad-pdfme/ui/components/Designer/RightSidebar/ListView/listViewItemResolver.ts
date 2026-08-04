@@ -38,14 +38,12 @@ export const resolveListViewItemDescriptor = (
   if (interactionState.visibleBadge) {
     badges.push({ label: interactionState.visibleBadge.label, color: interactionState.visibleBadge.color });
   }
-  // Keep the ownership line compact and explicit: the row should say who owns
-  // the field instead of overloading the same chip for owner, lock and edit
-  // states.
+  // Keep the ownership line compact and explicit: when the schema is already
+  // assigned to the active recipient, the accent strip is enough and the row
+  // does not need a second "assigned to you" chip.
   if (interactionState.owner.isShared) {
     badges.push({ label: 'Compartido', color: interactionState.owner.color || undefined });
-  } else if (interactionState.owner.isActive) {
-    badges.push({ label: 'Asignado a ti', color: interactionState.owner.color || undefined });
-  } else if (interactionState.owner.name) {
+  } else if (!interactionState.owner.isActive && interactionState.owner.name) {
     badges.push({ label: `Asignado a ${interactionState.owner.name}`, color: interactionState.owner.color || undefined });
   }
 
