@@ -754,6 +754,7 @@ const Sidebar = (props: RightSidebarProps) => {
                       onToggle={() => props.setSidebarOpen?.(false)}
                       presentation={actualPresentation}
                       density="minimal"
+                      size="sm"
                       labelExpanded="Ocultar panel derecho"
                       labelCollapsed="Mostrar panel derecho"
                       className="!static !m-0 !translate-x-0"

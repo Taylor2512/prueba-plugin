@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import React, { useContext, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Schema, Plugin, BasePdf, getFallbackFontName, cloneDeep } from '@sisad-pdfme/common';
 import { Button } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
@@ -33,6 +33,7 @@ import { CatalogLayoutToggle, type CatalogLayout } from './shared/CatalogLayoutT
 import { getCatalogLabel } from './shared/designerLabels.js';
 import { lockDesignerSidebarScroll, unlockDesignerSidebarScroll } from './shared/interactionGuards.js';
 import { SidebarCollapseHandle } from './shared/SidebarCollapseHandle.js';
+import { useSidebarCollapse, resolveShortcutHint } from './shared/useSidebarCollapse.js';
 import { SisadPdfmeContext } from '../../../react/SisadPdfmeProvider.js';
 import { useSisadPdfmeConfig } from '../../../react/useSisadPdfmeConfig.js';
 
@@ -577,23 +578,34 @@ const SidebarShell = ({
       style={style}
       data-density={density}
     >
+      {/* `pr-7` deja libre la mitad del handle que invade el borde del panel. */}
       <div className={mergeClassNames(
-        `${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 
-        'flex shrink-0 flex-col items-start gap-0.5 border-b border-slate-200/70 px-2 py-1.5',
-        density === 'minimal' ? 'hidden' : ''
+        `${DESIGNER_CLASSNAME}left-sidebar-dock-header`,
+        'flex shrink-0 flex-col items-start gap-px border-b border-slate-200/70 px-2 py-1.5 pr-7',
+        density === 'minimal' ? 'hidden' : '',
       )}>
-        {density !== 'compact' && (
-          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[0.48rem] font-semibold uppercase tracking-[0.12em] text-slate-350')}>
-            Campos
+        <span className={mergeClassNames(
+          `${DESIGNER_CLASSNAME}left-sidebar-dock-title`,
+          'block max-w-full truncate text-[0.78rem] font-bold leading-tight text-slate-900',
+          density === 'compact' ? 'text-[0.72rem]' : '',
+        )}>
+          Campos
+        </span>
+        {activeRecipientLabel ? (
+          <span
+            className={mergeClassNames(
+              `${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`,
+              'inline-flex max-w-full items-center gap-1 overflow-hidden rounded-full bg-slate-100 px-1.5 py-0.5 text-[0.55rem] font-semibold text-slate-600',
+            )}
+            title={activeRecipientLabel}
+          >
+            <span
+              className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--active-recipient-color,theme(colors.slate.400))]"
+              aria-hidden="true"
+            />
+            <span className="truncate">{activeRecipientLabel}</span>
           </span>
-        )}
-          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-1.5 text-[0.7rem] font-bold text-slate-900')}>
-            {activeRecipientLabel && density === 'comfortable' ? (
-            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-full bg-sky-50 px-1.5 py-0.5 text-[0.55rem] font-semibold text-sky-700')}>
-              {activeRecipientLabel}
-            </span>
-          ) : null}
-          </span>
+        ) : null}
       </div>
       <div className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-control-band`,
@@ -1135,7 +1147,16 @@ const LeftSidebar = ({
         : 1280;
   const resolvedPresentation =
     presentation === 'auto' ? (resolvedViewportWidth <= responsiveBreakpoint ? 'overlay' : 'docked') : presentation;
-  const [sidebarExpanded, setSidebarExpanded] = useState(() => resolvedPresentation === 'docked');
+  const {
+    expanded: sidebarExpanded,
+    setExpanded: setSidebarExpanded,
+    toggle: toggleSidebarExpanded,
+  } = useSidebarCollapse({
+    storageKey: 'sisad-pdfme:left-sidebar-expanded',
+    presentation: resolvedPresentation,
+    shortcutKey: 'b',
+  });
+  const collapseShortcutHint = useMemo(() => resolveShortcutHint('b'), []);
   const showSearchInput = showSearch ?? isPanel;
   const sidebarRootRef = useRef<HTMLDivElement | null>(null);
   const sidebarScrollLockRef = useRef<ReturnType<typeof lockDesignerSidebarScroll> | null>(null);
@@ -1144,12 +1165,6 @@ const LeftSidebar = ({
     compact: 200,
     minimal: 164,
   });
-
-  useEffect(() => {
-    if (resolvedPresentation === 'overlay') {
-      setSidebarExpanded(false);
-    }
-  }, [resolvedPresentation]);
 
   useEffect(() => {
     if (sidebarLiveWidth <= 0) return;
@@ -1185,8 +1200,10 @@ const LeftSidebar = ({
         'max-[48rem]:!w-[13.75rem] max-[48rem]:!max-w-[13.75rem] max-[48rem]:overflow-visible',
       )
     : 'w-[var(--sisad-pdfme-ls-width)] max-w-[var(--sisad-pdfme-ls-width)]';
+  // El recorte vive en el wrapper interno: el root debe dejar sobresalir el
+  // handle de colapso, o en móvil (ancho 0) el panel quedaría sin forma de reabrirse.
   const sidebarCollapsedWidthClass = mergeClassNames(
-    'w-[var(--sisad-pdfme-ls-collapsed-width)] min-w-[var(--sisad-pdfme-ls-collapsed-width)] max-w-[var(--sisad-pdfme-ls-collapsed-width)] overflow-hidden',
+    'w-[var(--sisad-pdfme-ls-collapsed-width)] min-w-[var(--sisad-pdfme-ls-collapsed-width)] max-w-[var(--sisad-pdfme-ls-collapsed-width)]',
     'max-[48rem]:w-0 max-[48rem]:min-w-0 max-[48rem]:max-w-0',
   );
   // El panel izquierdo sigue siendo overlay para no reservar espacio en el
@@ -1203,7 +1220,7 @@ const LeftSidebar = ({
     detached ? 'relative' : 'absolute inset-y-0 left-0 z-[70]',
     'flex h-full min-h-0 shrink-0 flex-col bg-[var(--color-bg-elevated)] border-r border-slate-200/70',
     sidebarWidthClass,
-    'max-[48rem]:absolute max-[48rem]:left-0 max-[48rem]:top-0 max-[48rem]:bottom-0 max-[48rem]:z-[20] max-[48rem]:w-0 max-[48rem]:overflow-hidden max-[48rem]:[transition:width_0.22s_var(--wix-ease-out)]',
+    'max-[48rem]:absolute max-[48rem]:left-0 max-[48rem]:top-0 max-[48rem]:bottom-0 max-[48rem]:z-[20] max-[48rem]:w-0 max-[48rem]:[transition:width_0.22s_var(--wix-ease-out)]',
     variant === 'compact' ? `${DESIGNER_CLASSNAME}left-sidebar-compact` : '',
     detached ? `${DESIGNER_CLASSNAME}left-sidebar-detached` : '',
     classNames?.container,
@@ -1717,7 +1734,7 @@ const LeftSidebar = ({
               setUserLayout(layout);
               onCatalogLayoutChange?.(layout);
             }}
-            className={`${DESIGNER_CLASSNAME}left-sidebar-view-toggle`}
+            className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-view-toggle`, 'ml-auto')}
           />
         )}
       </div>
@@ -1771,6 +1788,9 @@ const LeftSidebar = ({
   ) : null;
 
   const isDiscoveryMode = activeTab !== 'custom' && !normalizedSearch && quickFilter === 'all';
+  // Si el panel colapsa hasta un ancho menor que el propio handle, montarlo
+  // sobre el borde lo dejaría medio fuera de la pantalla: se apoya por fuera.
+  const isCollapsedOffscreen = !sidebarExpanded && sidebarLiveWidth < 24;
 
   return (
     <div
@@ -1795,22 +1815,13 @@ const LeftSidebar = ({
         '--sisad-pdfme-ls-collapsed-width': `${LEFT_SIDEBAR_WIDTH}px`,
         transition: 'width 220ms var(--wix-ease-out), max-width 220ms var(--wix-ease-out), opacity 150ms ease, transform 220ms var(--wix-ease-out)',
       } as React.CSSProperties}>
-      <SidebarCollapseHandle
-        side="left"
-        expanded={sidebarExpanded}
-        presentation={resolvedPresentation}
-        density={sidebarDensityMode}
-        labelExpanded="Cerrar catálogo de campos"
-        labelCollapsed="Abrir catálogo de campos"
-        onToggle={() => setSidebarExpanded((prev) => !prev)}
+      <div
         className={mergeClassNames(
-          'absolute z-[90] [transition:right_220ms_var(--wix-ease-out),_top_220ms_var(--wix-ease-out),_border-color_var(--transition-fast),_color_var(--transition-fast),_opacity_150ms_ease,_transform_220ms_var(--wix-ease-out)]',
-          sidebarExpanded ? 'right-[0.5rem] top-[0.875rem]' : 'right-[0.125rem] top-[0.5rem]',
-          'hover:bg-slate-50 hover:text-slate-700',
-          sidebarExpanded ? '' : 'shadow-sm',
+          `${DESIGNER_CLASSNAME}left-sidebar-viewport`,
+          'relative flex h-full min-h-0 w-full flex-col overflow-hidden',
         )}
-      />
-
+        data-collapsed={sidebarExpanded ? 'false' : 'true'}
+      >
       {!sidebarExpanded && (
         <SidebarRail
           side="left"
@@ -1826,6 +1837,7 @@ const LeftSidebar = ({
             },
           }))}
           density={sidebarDensityMode}
+          topSpacerClassName="h-12"
           className={`${DESIGNER_CLASSNAME}left-sidebar-collapsed-rail`}
         />
       )}
@@ -1897,6 +1909,23 @@ const LeftSidebar = ({
           </SidebarShell>
         </div>
       )}
+      </div>
+      <SidebarCollapseHandle
+        side="left"
+        expanded={sidebarExpanded}
+        presentation={resolvedPresentation}
+        density={sidebarDensityMode}
+        labelExpanded="Ocultar catálogo de campos"
+        labelCollapsed="Mostrar catálogo de campos"
+        shortcutHint={collapseShortcutHint}
+        onToggle={toggleSidebarExpanded}
+        className={mergeClassNames(
+          // Anclado al borde derecho del panel y a una altura constante: alternar
+          // no reubica el botón bajo el cursor.
+          'absolute top-3 left-full z-[90]',
+          isCollapsedOffscreen ? 'translate-x-1.5' : '-translate-x-1/2',
+        )}
+      />
       {customModalOpen ? (
         <LeftSidebarCustomFieldModal
           open={customModalOpen}

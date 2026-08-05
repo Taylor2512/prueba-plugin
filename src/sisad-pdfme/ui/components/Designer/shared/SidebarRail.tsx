@@ -20,6 +20,8 @@ export type SidebarRailProps = {
   className?: string;
   /** Spacer at the top to avoid overlap with toggle handles or top bars. */
   topSpacer?: boolean;
+  /** Altura del spacer superior. Debe cubrir el handle de colapso. */
+  topSpacerClassName?: string;
 };
 
 export const SidebarRail = ({
@@ -28,6 +30,7 @@ export const SidebarRail = ({
   density = 'comfortable',
   className,
   topSpacer = true,
+  topSpacerClassName,
 }: SidebarRailProps) => {
   const compactTouchTarget = typeof window !== 'undefined' && window.innerWidth <= 768;
   const railPaddingClass = density === 'minimal'
@@ -57,7 +60,10 @@ export const SidebarRail = ({
       aria-label={`Barra lateral ${side === 'left' ? 'izquierda' : 'derecha'}`}
     >
       {topSpacer && (
-         <div className={`${spacerHeight} shrink-0 pointer-events-none`} aria-hidden="true" />
+        <div
+          className={mergeClassNames(topSpacerClassName || spacerHeight, 'shrink-0 pointer-events-none')}
+          aria-hidden="true"
+        />
       )}
       <div className={mergeClassNames('flex min-h-0 flex-1 flex-col', density === 'minimal' ? 'gap-0.5' : 'gap-0.5')}>
         {items.map((item) => (

@@ -59,24 +59,44 @@ const LeftSidebarTabs = ({
           <span className="inline-flex items-center justify-center [&>svg]:h-3 [&>svg]:w-3 [&>svg]:transition-transform group-hover:[&>svg]:scale-110">
             {renderTabIcon(tab.id)}
           </span>
-          <span className={density !== 'minimal' ? 'block max-w-full px-0.5 text-center font-semibold leading-[1.02]' : 'sr-only'}>
-            <span className="block truncate">
+          {/* El contador va en línea con la etiqueta: flotándolo sobre la
+              esquina se solapaba con el texto en paneles estrechos. */}
+          <span
+            className={
+              density !== 'minimal'
+                ? 'flex max-w-full min-w-0 items-center justify-center gap-1 px-0.5 text-center font-semibold leading-[1.02]'
+                : 'sr-only'
+            }
+          >
+            <span className="truncate">
               {useRailLabel ? TAB_LABELS[tab.id].rail : TAB_LABELS[tab.id].full}
             </span>
+            {/* Un contador en cero solo roba ancho a la etiqueta. */}
+            {typeof tab.badge === 'number' && tab.badge > 0 && density !== 'minimal' ? (
+              <span
+                className={mergeUniqueClassNames(
+                  `${DESIGNER_CLASSNAME}left-sidebar-tab-badge`,
+                  'inline-flex h-[0.85rem] min-w-[0.85rem] flex-shrink-0 items-center justify-center rounded-full px-[0.2rem] text-[8px] font-bold leading-none transition-colors',
+                  activeTab === tab.id
+                    ? 'bg-sky-100 text-sky-700'
+                    : 'bg-slate-200 text-slate-500 group-hover:bg-slate-300 group-hover:text-slate-600',
+                )}
+              >
+                {tab.badge}
+              </span>
+            ) : null}
           </span>
-          {typeof tab.badge === 'number' && (
+          {typeof tab.badge === 'number' && tab.badge > 0 && density === 'minimal' ? (
             <span
               className={mergeUniqueClassNames(
                 `${DESIGNER_CLASSNAME}left-sidebar-tab-badge`,
-                'absolute right-1 top-1 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full px-1 text-[8px] font-bold transition-colors',
-                activeTab === tab.id
-                  ? 'bg-sky-100 text-sky-700'
-                  : 'bg-slate-200 text-slate-500 group-hover:bg-slate-300 group-hover:text-slate-600',
+                'absolute right-0.5 top-0.5 inline-flex h-[0.7rem] min-w-[0.7rem] items-center justify-center rounded-full px-[0.15rem] text-[7px] font-bold leading-none',
+                activeTab === tab.id ? 'bg-sky-100 text-sky-700' : 'bg-slate-200 text-slate-500',
               )}
             >
               {tab.badge}
             </span>
-          )}
+          ) : null}
         </button>
       </li>
     ))}

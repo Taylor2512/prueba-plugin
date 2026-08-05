@@ -51,12 +51,12 @@ export const LeftSidebarGroup = ({
           )}
           aria-hidden="true"
         >
-          <ChevronDown size={isMini ? 8 : 9} strokeWidth={2.5} />
+          <ChevronDown size={isMini ? 10 : 12} strokeWidth={2.5} />
         </span>
         <span
           className={mergeUniqueClassNames(
-            `${DESIGNER_CLASSNAME}left-sidebar-group-title-label font-semibold uppercase tracking-[0.05em] truncate text-slate-600`,
-            isMini ? 'text-[7px]' : isCompact ? 'text-[7.5px]' : 'text-[8px]'
+            `${DESIGNER_CLASSNAME}left-sidebar-group-title-label font-semibold uppercase tracking-[0.06em] truncate text-slate-600`,
+            isMini ? 'text-[9px]' : isCompact ? 'text-[10px]' : 'text-[11px]'
           )}
         >
           {category}
@@ -64,7 +64,7 @@ export const LeftSidebarGroup = ({
       </div>
       <span
         className={mergeUniqueClassNames(
-          `${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-[0.875rem] flex-shrink-0 items-center rounded-full bg-white px-1 text-[8px] font-semibold text-slate-500`,
+          `${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-[0.875rem] flex-shrink-0 items-center rounded-full bg-white px-1 text-[10px] font-semibold text-slate-500`,
           isMini ? 'hidden' : ''
         )}
       >
