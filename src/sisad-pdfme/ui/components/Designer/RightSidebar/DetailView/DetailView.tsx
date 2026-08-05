@@ -146,11 +146,15 @@ type PartitionedChanges = {
  * @param nextValues Valores actuales del formulario.
  * @param currentSchema Schema activo contra el que se calcula el diff.
  * @param immediateKeys Campos del formulario con `commitMode: 'immediate'`.
+ * @param touchedKeys Campos que el usuario editó en esta interacción. Sin este
+ *   filtro, una edición de `width` reescribe también la `position` que el
+ *   formulario tenga cargada, revirtiendo un arrastre hecho en el canvas.
  */
 const buildChangeSet = (
   nextValues: Record<string, unknown>,
   currentSchema: SchemaForUI,
   immediateKeys: ReadonlySet<string> = new Set(),
+  touchedKeys?: ReadonlySet<string>,
 ): PartitionedChanges => {
   const ignoredKeys = new Set(['id', 'content']);
   const nullableKeys = new Set(['rotate', 'opacity']);
@@ -166,6 +170,7 @@ const buildChangeSet = (
 
   for (const key in nextValues) {
     if (ignoredKeys.has(key)) continue;
+    if (touchedKeys && !touchedKeys.has(key)) continue;
 
     let value = nextValues[key];
     if (!valuesDiffer(value, currentValues[key])) continue;
@@ -267,6 +272,8 @@ const DetailView = (props: DetailViewProps) => {
   const pendingWatchValuesRef = useRef<Record<string, unknown> | null>(null);
   /** Formulario de la sección que emitió el último cambio diferido. */
   const pendingWatchFormRef = useRef<SectionFormInstance | null>(null);
+  /** Claves tocadas por el usuario durante el debounce en curso. */
+  const pendingWatchKeysRef = useRef<Set<string> | null>(null);
   /** Claves con `commitMode: 'immediate'`, derivadas de las secciones activas. */
   const immediateCommitKeysRef = useRef<Set<string>>(new Set());
   const inspectorResolver = useMemo(
@@ -427,17 +434,34 @@ const DetailView = (props: DetailViewProps) => {
       pendingWatchTimeoutRef.current = null;
     }
     pendingWatchValuesRef.current = null;
+    pendingWatchKeysRef.current = null;
   }, []);
 
-  // Snapshot de hidratación: se recalcula solo al cambiar de schema activo, no
-  // en cada commit. Si cambiara con cada valor, las secciones se rehidratarían
-  // mientras el usuario escribe y pisarían lo que acaba de teclear.
+  // Snapshot de hidratación: cambia de identidad cuando cambian los valores del
+  // schema activo, venga el cambio del inspector o de fuera (arrastre, resize,
+  // rotación, alineación, undo/redo, edición programática). Sin esto el
+  // formulario conserva valores obsoletos y los reescribe en la siguiente
+  // edición, revirtiendo lo hecho en el canvas.
+  //
+  // No comparte clave con `hydrationKey`: esa marca el cambio de *selección* y
+  // arrastra efectos (cancelar commits en vuelo, marcar el form como hidratando)
+  // que no deben dispararse en cada cambio de valor. Que la rehidratación no
+  // pise al usuario mientras escribe lo resuelve la sección, que conoce su foco.
+  const hydrationCandidate = useMemo(() => createHydrationValues(activeSchema), [activeSchema]);
+  const hydrationSignature = useMemo(() => {
+    // `content` queda fuera de la firma: en imágenes y firmas es un data URI de
+    // cientos de KB y esto se recalcula en cada render del designer. Ningún
+    // control del inspector lo edita (está en `ignoredKeys` del changeset), así
+    // que no perderse sus cambios no afecta a la sincronización.
+    const { content: _content, ...signatureValues } = hydrationCandidate;
+    return `${hydrationKey}:${JSON.stringify(signatureValues)}`;
+  }, [hydrationCandidate, hydrationKey]);
   const [hydrationSnapshot, setHydrationSnapshot] = useState(() => ({
-    key: hydrationKey,
-    values: createHydrationValues(activeSchema),
+    key: hydrationSignature,
+    values: hydrationCandidate,
   }));
-  if (hydrationSnapshot.key !== hydrationKey) {
-    setHydrationSnapshot({ key: hydrationKey, values: createHydrationValues(activeSchema) });
+  if (hydrationSnapshot.key !== hydrationSignature) {
+    setHydrationSnapshot({ key: hydrationSignature, values: hydrationCandidate });
   }
   const hydrationValues = hydrationSnapshot.values;
 
@@ -511,13 +535,22 @@ const DetailView = (props: DetailViewProps) => {
   );
 
   const commitWatchValues = useCallback(
-    (formValues: Record<string, unknown>, sectionForm: SectionFormInstance) => {
+    (
+      formValues: Record<string, unknown>,
+      sectionForm: SectionFormInstance,
+      touchedKeys: ReadonlySet<string>,
+    ) => {
       if (hydratingFormRef.current) return;
       const currentSchema = activeSchemaRef.current;
       // Las claves inmediatas nunca viajan por esta ruta: ya se persistieron en
       // `handleWatch`. Excluirlas garantiza una sola escritura por interacción
       // aunque el schema todavía no haya vuelto por props.
-      let { deferred: changes } = buildChangeSet(formValues, currentSchema, immediateCommitKeysRef.current);
+      let { deferred: changes } = buildChangeSet(
+        formValues,
+        currentSchema,
+        immediateCommitKeysRef.current,
+        touchedKeys,
+      );
       if (!changes.length) return;
 
       // Se valida el formulario de la sección que emitió el cambio: es el único
@@ -543,11 +576,16 @@ const DetailView = (props: DetailViewProps) => {
   );
 
   const handleWatch = useCallback(
-    (values: Record<string, unknown>, sectionForm: SectionFormInstance) => {
+    (values: Record<string, unknown>, sectionForm: SectionFormInstance, touchedKeys: ReadonlySet<string>) => {
       if (hydratingFormRef.current) return;
       const nextValues = asRecord(values) || {};
       const currentSchema = activeSchemaRef.current;
-      const { immediate } = buildChangeSet(nextValues, currentSchema, immediateCommitKeysRef.current);
+      const { immediate } = buildChangeSet(
+        nextValues,
+        currentSchema,
+        immediateCommitKeysRef.current,
+        touchedKeys,
+      );
 
       // Controles discretos: un clic → una persistencia, sin debounce y sin
       // revalidar el formulario entero (un switch no tiene reglas propias).
@@ -557,6 +595,11 @@ const DetailView = (props: DetailViewProps) => {
 
       pendingWatchValuesRef.current = nextValues;
       pendingWatchFormRef.current = sectionForm;
+      // El debounce agrupa varias pulsaciones: se acumulan las claves tocadas
+      // en todas ellas, o el commit final solo vería la última.
+      const accumulatedKeys = pendingWatchKeysRef.current || new Set<string>();
+      touchedKeys.forEach((key) => accumulatedKeys.add(key));
+      pendingWatchKeysRef.current = accumulatedKeys;
       if (pendingWatchTimeoutRef.current !== null) {
         clearTimeout(pendingWatchTimeoutRef.current);
       }
@@ -564,9 +607,11 @@ const DetailView = (props: DetailViewProps) => {
         pendingWatchTimeoutRef.current = null;
         const pendingValues = pendingWatchValuesRef.current || {};
         const pendingForm = pendingWatchFormRef.current;
+        const pendingKeys = pendingWatchKeysRef.current || new Set<string>();
         pendingWatchValuesRef.current = null;
         pendingWatchFormRef.current = null;
-        commitWatchValues(pendingValues, pendingForm as SectionFormInstance);
+        pendingWatchKeysRef.current = null;
+        commitWatchValues(pendingValues, pendingForm as SectionFormInstance, pendingKeys);
       }, 180);
     },
     [changeSchemas, commitWatchValues],

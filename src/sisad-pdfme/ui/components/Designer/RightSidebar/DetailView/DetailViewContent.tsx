@@ -34,7 +34,11 @@ type DetailViewContentProps = {
   hydrationValues: Record<string, unknown>;
   sections: DetailInspectorSection[];
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
-  watchHandler: (_values: Record<string, unknown>, _form: SectionFormInstance) => void;
+  watchHandler: (
+    _values: Record<string, unknown>,
+    _form: SectionFormInstance,
+    _touchedKeys: ReadonlySet<string>,
+  ) => void;
   backTooltip?: string;
   readOnly?: boolean;
   accessState?: SchemaAccessState;

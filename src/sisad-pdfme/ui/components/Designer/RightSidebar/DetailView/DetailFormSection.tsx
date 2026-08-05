@@ -26,7 +26,11 @@ type DetailFormSectionProps = {
   /** Valores del schema activo con los que hidratar la sección. */
   hydrationValues: Record<string, unknown>;
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
-  watchHandler: (_values: Record<string, unknown>, _form: SectionFormInstance) => void;
+  watchHandler: (
+    _values: Record<string, unknown>,
+    _form: SectionFormInstance,
+    _touchedKeys: ReadonlySet<string>,
+  ) => void;
   defaultCollapsed?: boolean;
   resetToken?: string;
   readOnly?: boolean;
@@ -76,6 +80,16 @@ const resolveDirectWidget = (
  * schema). La hidratación vive aquí y no en el padre para que también ocurra
  * cuando una sección colapsada se expande y se monta más tarde.
  */
+const valuesDiffer = (a: unknown, b: unknown): boolean => {
+  if ((typeof a === 'object' && a !== null) || (typeof b === 'object' && b !== null)) {
+    return JSON.stringify(a) !== JSON.stringify(b);
+  }
+  return a !== b;
+};
+
+/** Margen sobre el debounce de commit del inspector (180 ms). */
+const DEFERRED_HYDRATION_DELAY = 260;
+
 const SectionFormRenderer = ({
   schema,
   hydrationValues,
@@ -91,48 +105,123 @@ const SectionFormRenderer = ({
   // guarda en un ref y solo los valores disparan la hidratación.
   const formRef = React.useRef(form);
   const watchHandlerRef = React.useRef(watchHandler);
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+  /** Últimos valores conocidos, para saber qué tocó el usuario en cada watch. */
+  const lastValuesRef = React.useRef<Record<string, unknown>>(hydrationValues);
+  /** Hidratación aplazada porque el foco estaba dentro de la sección. */
+  const pendingHydrationRef = React.useRef<Record<string, unknown> | null>(null);
+  const pendingHydrationTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   React.useEffect(() => {
     formRef.current = form;
     watchHandlerRef.current = watchHandler;
   });
 
-  React.useLayoutEffect(() => {
+  const applyHydration = React.useCallback((values: Record<string, unknown>) => {
     hydratingRef.current = true;
     if (typeof formRef.current.setValues === 'function') {
-      formRef.current.setValues(hydrationValues);
+      formRef.current.setValues(values);
     }
-    const timeout = setTimeout(() => {
+    lastValuesRef.current = values;
+    setTimeout(() => {
       hydratingRef.current = false;
     }, 0);
-    return () => clearTimeout(timeout);
-  }, [hydrationValues]);
+  }, []);
+
+  /**
+   * El usuario está escribiendo aquí: rehidratar le borraría lo tecleado.
+   *
+   * Solo cuentan los campos de texto. Un botón con el foco (alineación, por
+   * ejemplo) no tiene nada que preservar, y bloquear la hidratación por él
+   * dejaba la sección desincronizada hasta el siguiente cambio de selección.
+   */
+  const hasFocusInside = () => {
+    const container = containerRef.current;
+    const active = typeof document === 'undefined' ? null : document.activeElement;
+    if (!container || !active || !container.contains(active)) return false;
+    if (!(active instanceof HTMLElement)) return false;
+    if (active.isContentEditable) return true;
+    const tagName = active.tagName.toLowerCase();
+    return tagName === 'input' || tagName === 'textarea';
+  };
+
+  React.useLayoutEffect(() => {
+    if (pendingHydrationTimeoutRef.current !== null) {
+      clearTimeout(pendingHydrationTimeoutRef.current);
+      pendingHydrationTimeoutRef.current = null;
+    }
+    // Los valores llegan del schema activo, así que también traen los cambios
+    // hechos fuera del inspector (arrastre, resize, alineación, undo/redo).
+    if (hasFocusInside()) {
+      pendingHydrationRef.current = hydrationValues;
+      return;
+    }
+    pendingHydrationRef.current = null;
+    applyHydration(hydrationValues);
+  }, [applyHydration, hydrationValues]);
+
+  React.useEffect(
+    () => () => {
+      if (pendingHydrationTimeoutRef.current !== null) {
+        clearTimeout(pendingHydrationTimeoutRef.current);
+      }
+    },
+    [],
+  );
+
+  const handleBlurCapture = React.useCallback(() => {
+    if (!pendingHydrationRef.current) return;
+    if (pendingHydrationTimeoutRef.current !== null) {
+      clearTimeout(pendingHydrationTimeoutRef.current);
+    }
+    // Se espera al commit en vuelo: si se rehidratara de inmediato, el valor
+    // recién tecleado se sustituiría por el anterior antes de persistirse.
+    pendingHydrationTimeoutRef.current = setTimeout(() => {
+      pendingHydrationTimeoutRef.current = null;
+      const pending = pendingHydrationRef.current;
+      pendingHydrationRef.current = null;
+      if (pending && !hasFocusInside()) {
+        applyHydration(pending);
+      }
+    }, DEFERRED_HYDRATION_DELAY);
+  }, [applyHydration]);
 
   const watchConfig = React.useMemo(
     () => ({
       '#': (...args: unknown[]) => {
         // Ignora el eco de la propia hidratación: no es una edición del usuario.
         if (hydratingRef.current) return;
-        watchHandlerRef.current((args[0] as Record<string, unknown>) || {}, formRef.current);
+        const nextValues = (args[0] as Record<string, unknown>) || {};
+        const previousValues = lastValuesRef.current || {};
+        const touchedKeys = new Set(
+          Object.keys(nextValues).filter((key) => valuesDiffer(nextValues[key], previousValues[key])),
+        );
+        lastValuesRef.current = nextValues;
+        if (touchedKeys.size === 0) return;
+        watchHandlerRef.current(nextValues, formRef.current, touchedKeys);
       },
     }),
     [],
   );
 
   return (
-    <FormRenderComponent
-      form={form}
-      schema={schema}
-      widgets={widgets}
-      watch={watchConfig}
-      readOnly={readOnly}
-      // form-render types only accept 'zh-CN' | 'en-US'. Use 'en-US' to satisfy typing.
-      locale="en-US"
-      // `footer={{reset:{hide:true},submit:{hide:true}}}` seguía siendo
-      // truthy para form-render: ocultaba los botones pero mantenía un
-      // Row/Col/Form.Item vacío al pie de CADA sección. `false` lo elimina.
-      footer={false}
-    />
+    // `contents` mantiene el layout del shell intacto: este nodo solo existe
+    // para acotar el foco y los blur de la sección.
+    <div ref={containerRef} className="contents" onBlurCapture={handleBlurCapture}>
+      <FormRenderComponent
+        form={form}
+        schema={schema}
+        widgets={widgets}
+        watch={watchConfig}
+        readOnly={readOnly}
+        // form-render types only accept 'zh-CN' | 'en-US'. Use 'en-US' to satisfy typing.
+        locale="en-US"
+        // `footer={{reset:{hide:true},submit:{hide:true}}}` seguía siendo
+        // truthy para form-render: ocultaba los botones pero mantenía un
+        // Row/Col/Form.Item vacío al pie de CADA sección. `false` lo elimina.
+        footer={false}
+      />
+    </div>
   );
 };
 
