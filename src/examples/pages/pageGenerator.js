@@ -1,22 +1,33 @@
 import PagesConfig from '../config/pagesConfig.json';
+import { createHandlers } from '../helpers/handlerFactory.js';
+
+const MULTI_USER_FAMILY_KEYS = ['text', 'choice', 'boolean', 'signature'];
+
+const resolveFamilyGroups = (FAMILY, options = {}) => {
+  const familyKeys = Array.isArray(options.familyKeys)
+    ? options.familyKeys
+    : options.familySource === 'multiUser'
+      ? MULTI_USER_FAMILY_KEYS
+      : options.familySource === 'all'
+        ? FAMILY.map((family) => family.key)
+        : null;
+
+  const selectedFamilies = familyKeys
+    ? FAMILY.filter((family) => familyKeys.includes(family.key))
+    : FAMILY;
+
+  return selectedFamilies.map((family) => ({
+    title: family.title,
+    types: family.types,
+  }));
+};
 
 const templateBuilders = {
-  showcaseTemplate: (buildShowcaseTemplate, FAMILY, options = {}) => {
-    if (options.familyKeys) {
-      const filtered = FAMILY.filter((f) => options.familyKeys.includes(f.key));
-      return buildShowcaseTemplate(filtered.map((f) => ({ title: f.title, types: f.types })));
-    }
-    if (options.familySource === 'all') {
-      return buildShowcaseTemplate(FAMILY.map((f) => ({ title: f.title, types: f.types })));
-    }
-    return buildShowcaseTemplate([]);
-  },
+  showcaseTemplate: (buildShowcaseTemplate, FAMILY, options = {}) =>
+    buildShowcaseTemplate(resolveFamilyGroups(FAMILY, options)),
 
-  multiUserShowcase: (buildMultiUserShowcaseTemplate, FAMILY, options = {}) => {
-    const MULTI_USER_FAMILY_KEYS = ['text', 'choice', 'boolean', 'signature'];
-    const filtered = FAMILY.filter((f) => MULTI_USER_FAMILY_KEYS.includes(f.key));
-    return buildMultiUserShowcaseTemplate(filtered.map((f) => ({ title: f.title, types: f.types })));
-  },
+  multiUserShowcase: (buildMultiUserShowcaseTemplate, FAMILY) =>
+    buildMultiUserShowcaseTemplate(resolveFamilyGroups(FAMILY, { familyKeys: MULTI_USER_FAMILY_KEYS })),
 };
 
 export const getPageConfig = (pageKey) => {
@@ -39,25 +50,7 @@ export const buildPageTemplate = (config, builders, FAMILY) => {
 };
 
 export const createPageHandlers = (config, { record, setTemplate, setState }) => {
-  const handlers = {};
-
-  if (!config.handlers) return handlers;
-
-  Object.entries(config.handlers).forEach(([key, spec]) => {
-    if (spec.type === 'setState') {
-      handlers[key] = (payload) => {
-        setTemplate(payload);
-        if (spec.record) record(key, payload);
-      };
-    } else if (spec.type === 'increment') {
-      handlers[key] = (payload) => {
-        setState((prev) => ({ ...prev, [spec.field]: (prev[spec.field] || 0) + 1 }));
-        if (spec.record) record(key, payload);
-      };
-    }
-  });
-
-  return handlers;
+  return createHandlers(config.handlers, { record, setTemplate, setState });
 };
 
 export const getPageInfo = (config, state, computed = {}) => {

@@ -1,3 +1,33 @@
+const getNestedValue = (value, path) => {
+  if (!path) return value;
+
+  return path.split('.').reduce((acc, part) => {
+    if (acc == null) return undefined;
+    if (part.includes('()')) return acc;
+    return acc?.[part];
+  }, value);
+};
+
+const resolvePayloadValue = (payload, config = {}) => {
+  if (config.format === 'nameValue') {
+    return `${payload?.name ?? 'campo'} = ${String(payload?.value ?? '')}`;
+  }
+
+  if (config.format === 'recipientId') {
+    return payload?.id ?? payload?.recipientId ?? payload ?? '';
+  }
+
+  if (config.format === 'payload') {
+    return payload;
+  }
+
+  if (config.valuePath) {
+    return getNestedValue(payload, config.valuePath);
+  }
+
+  return payload;
+};
+
 export const createHandlers = (spec, context) => {
   const { record, setState, setTemplate } = context;
   const handlers = {};
@@ -5,7 +35,15 @@ export const createHandlers = (spec, context) => {
   Object.entries(spec || {}).forEach(([name, config]) => {
     if (config.type === 'setState') {
       handlers[name] = (payload) => {
-        setState(payload);
+        if (config.field) {
+          const nextValue = resolvePayloadValue(payload, config);
+          setState((prev) => ({ ...prev, [config.field]: nextValue }));
+        } else if (config.merge === true && payload && typeof payload === 'object' && !Array.isArray(payload)) {
+          setState((prev) => ({ ...prev, ...payload }));
+        } else {
+          setState(payload);
+        }
+
         if (config.record) record(name, payload);
       };
     } else if (config.type === 'setTemplate') {
@@ -41,7 +79,11 @@ export const commonHandlers = {
     record('onRecipientsChange', { recipients });
   },
 
-  onActiveRecipientChange: (record) => (recipient) => {
+  onActiveRecipientChange: (record, setState) => (recipient) => {
+    setState((prev) => ({
+      ...prev,
+      activeRecipientId: recipient?.id ?? recipient?.recipientId ?? recipient ?? prev.activeRecipientId ?? '',
+    }));
     record('onActiveRecipientChange', { recipient });
   },
 

@@ -99,7 +99,7 @@
       ],
       "handlers": {
         "onTemplateChange": { "type": "setTemplate", "record": true },
-        "onActiveRecipientChange": { "type": "setState", "record": true },
+        "onActiveRecipientChange": { "type": "setState", "field": "activeRecipientId", "valuePath": "id", "record": true },
         "onAssignmentChange": { "type": "increment", "field": "assignments", "record": true }
       }
     },
@@ -135,7 +135,7 @@
         }
       ],
       "handlers": {
-        "onInputChange": { "type": "custom", "record": true }
+        "onInputChange": { "type": "setState", "field": "lastInput", "format": "nameValue", "record": true }
       }
     },
     "runtime-viewer": {

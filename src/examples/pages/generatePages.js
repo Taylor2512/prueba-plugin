@@ -38,25 +38,22 @@ const instanceBuilders = {
   'runtime-viewer': createRuntimeViewerInstance,
 };
 
-export const generatePages = () => {
-  const pages = {};
-
-  Object.keys(PagesConfig.pages).forEach((pageKey) => {
-    const PageComponent = createUniversalPage(pageKey, {
-      templateBuilders,
-      instanceBuilders,
-      FAMILY,
-      DEMO_DOCUMENTS,
-      MULTI_USER_RECIPIENTS,
-    });
-
-    pages[pageKey] = PageComponent;
-  });
-
-  return pages;
-};
+export const generatePages = () =>
+  Object.fromEntries(
+    Object.keys(PagesConfig.pages).map((pageKey) => [
+      pageKey,
+      createUniversalPage(pageKey, {
+        templateBuilders,
+        instanceBuilders,
+        FAMILY,
+        DEMO_DOCUMENTS,
+        MULTI_USER_RECIPIENTS,
+      }),
+    ]),
+  );
 
 const generatedPages = generatePages();
+export const GENERATED_PAGE_COMPONENTS = generatedPages;
 
 export const DesignerSingleUserPage = generatedPages['designer-single-user'];
 export const DesignerMultiUserPage = generatedPages['designer-multi-user'];

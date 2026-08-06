@@ -15,14 +15,19 @@ export const PAGE_ROUTES = PagesConfig.routes || {};
 
 export const getSchemaRoute = (slug) => `${ROUTE_PATHS.schemas}/${slug}`;
 
-export const PRIMARY_ROUTE_GROUPS = [
-  { id: 'catalog', path: ROUTE_PATHS.catalog, title: 'Catálogo', description: 'Puerta de entrada a todos los ejemplos.' },
-  { id: 'designer-single-user', path: PAGE_ROUTES['designer-single-user'], title: 'Designer: un usuario', description: 'Un solo usuario con todas las familias de schema.' },
-  { id: 'designer-multi-user', path: PAGE_ROUTES['designer-multi-user'], title: 'Designer: multiusuario', description: 'Colaboración con varios usuarios y cambio de actor activo.' },
-  { id: 'runtime-form', path: PAGE_ROUTES['runtime-form'], title: 'Runtime: Form', description: 'Modo de llenado con prefill y resumen lateral.' },
-  { id: 'runtime-viewer', path: PAGE_ROUTES['runtime-viewer'], title: 'Runtime: Viewer', description: 'Modo de solo lectura para revisión y auditoría.' },
-  { id: 'schemas', path: ROUTE_PATHS.schemas, title: 'Schemas', description: 'Catálogo por familia y por tipo de schema.' },
-];
+const PRIMARY_ROUTE_SPEC = {
+  catalog: { path: ROUTE_PATHS.catalog, title: 'Catálogo', description: 'Puerta de entrada a todos los ejemplos.' },
+  'designer-single-user': { path: PAGE_ROUTES['designer-single-user'], title: 'Designer: un usuario', description: 'Un solo usuario con todas las familias de schema.' },
+  'designer-multi-user': { path: PAGE_ROUTES['designer-multi-user'], title: 'Designer: multiusuario', description: 'Colaboración con varios usuarios y cambio de actor activo.' },
+  'runtime-form': { path: PAGE_ROUTES['runtime-form'], title: 'Runtime: Form', description: 'Modo de llenado con prefill y resumen lateral.' },
+  'runtime-viewer': { path: PAGE_ROUTES['runtime-viewer'], title: 'Runtime: Viewer', description: 'Modo de solo lectura para revisión y auditoría.' },
+  schemas: { path: ROUTE_PATHS.schemas, title: 'Schemas', description: 'Catálogo por familia y por tipo de schema.' },
+};
+
+export const PRIMARY_ROUTE_GROUPS = Object.entries(PRIMARY_ROUTE_SPEC).map(([id, route]) => ({
+  id,
+  ...route,
+}));
 
 export const FAMILY_ROUTE_GROUPS = FAMILY.map((family) => ({
   path: getSchemaRoute(family.slug),
