@@ -4,18 +4,19 @@
  * El catálogo, las páginas y los helpers viven en módulos pequeños; este
  * archivo solo registra rutas y reexporta la API pública que consumen tests y
  * host integraciones.
+ *
+ * Las páginas principales (Designer, Runtime) se generan automáticamente desde
+ * config/pagesConfig.json sin duplicidad. Páginas especiales (Catalog, Schemas)
+ * siguen siendo explícitas.
  */
-import { buildLabExamples } from './definitions/exampleDefinitions.jsx';
+import { buildLab } from './definitions/Definitions.jsx';
 import { CatalogPage } from './pages/CatalogPage.jsx';
-import { DesignerMultiUserPage } from './pages/DesignerMultiUserPage.jsx';
-import { DesignerSingleUserPage } from './pages/DesignerSingleUserPage.jsx';
-import { RuntimeFormPage } from './pages/RuntimeFormPage.jsx';
-import { RuntimeViewerPage } from './pages/RuntimeViewerPage.jsx';
+import { DesignerMultiUserPage, DesignerSingleUserPage, RuntimeFormPage, RuntimeViewerPage } from './pages/generatePages.js';
 import { SchemaFamilyPage } from './pages/SchemaFamilyPage.jsx';
 import { SchemasCatalogPage } from './pages/SchemasCatalogPage.jsx';
 
-export function getLabExamples() {
-  return buildLabExamples();
+export function getLab() {
+  return buildLab();
 }
 
 export {
@@ -29,38 +30,38 @@ export {
 };
 
 export {
-  ExampleControllerPanel,
-  ExampleDocumentationShell,
-  ExampleEventLog,
-  ExampleImmersiveShell,
-  ExampleInfoPanelStack,
-  ExampleTopbar,
+  ControllerPanel,
+  DocumentationShell,
+  EventLog,
+  ImmersiveShell,
+  InfoPanelStack,
+  Topbar,
   FamilyBadgeList,
   InfoCard,
   MetricGrid,
   PreviewFrame,
   RouteCard,
   RuntimeViewport,
-} from './components/exampleUi.jsx';
+} from './components/Ui.jsx';
 
-export { FAMILY_EXAMPLES } from './catalog/familyCatalog.js';
+export { FAMILY } from './catalog/familyCatalog.js';
 export { DEMO_DOCUMENTS } from './fixtures/documents.js';
 export { MULTI_USER_FAMILY_KEYS, MULTI_USER_RECIPIENTS } from './fixtures/recipients.js';
 export { IMMERSIVE_ROUTE_OPTIONS, PRIMARY_ROUTE_GROUPS } from './routes/routeDefinitions.js';
-export { EXAMPLE_CONFIG_PROFILES, createRuntimeConfig } from './config/runtimeConfig.js';
+export { _CONFIG_PROFILES, createRuntimeConfig } from './config/runtimeConfig.js';
 export { buildMultiUserShowcaseTemplate } from './builders/multiUserShowcase.js';
 export { buildShowcaseTemplate } from './builders/showcaseTemplate.js';
 export {
   appendTemplatePages,
   createCollaboration,
-  createExample,
+  create,
   createTemplate,
   createUploadedDocument,
-  cloneExample,
-} from './domain/exampleBuilder.js';
+  clone,
+} from './domain/Builder.js';
 export {
-  buildExampleBundle,
-  buildExampleHref,
-  getExampleBundleFilename,
-  normalizeExampleHostData,
-} from './exporters/exampleBundle.js';
+  buildBundle,
+  buildHref,
+  getBundleFilename,
+  normalizeHostData,
+} from './exporters/Bundle.js';
