@@ -1,0 +1,28 @@
+{
+  "es": {
+    "text": "Texto de ejemplo",
+    "multiVariableText": "Linea 1\nLinea 2\nLinea 3",
+    "fullName": "Ada Lovelace",
+    "emailAddress": "ada@acme.com",
+    "company": "Acme Labs",
+    "title": "Analista senior",
+    "number": "42",
+    "date": "2026-07-29",
+    "time": "14:30",
+    "dateTime": "2026-07-29 14:30",
+    "checkbox": "true"
+  },
+  "en": {
+    "text": "Sample text",
+    "multiVariableText": "Line 1\nLine 2\nLine 3",
+    "fullName": "Ada Lovelace",
+    "emailAddress": "ada@acme.com",
+    "company": "Acme Labs",
+    "title": "Senior analyst",
+    "number": "42",
+    "date": "2026-07-29",
+    "time": "14:30",
+    "dateTime": "2026-07-29 14:30",
+    "checkbox": "true"
+  }
+}

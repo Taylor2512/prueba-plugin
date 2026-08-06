@@ -1,38 +1,26 @@
 import { cloneDeep } from '@sisad-pdfme/common';
 import { createDefaultSchema } from '@sisad-pdfme/schemas';
 import { createDefaultTemplate } from '@/sisad-pdfme/devtools';
+import LayoutDefaults from '../config/layoutDefaults.json';
+import SampleData from '../config/sampleData.json';
 
-const PAGE_SIZE = { width: 210, height: 297 };
-const PAGE_PADDING = [15, 15, 15, 15];
+const PAGE_SIZE = LayoutDefaults.pageSize;
+const PAGE_PADDING = LayoutDefaults.pagePadding;
 const PAGE_CONTENT_WIDTH = PAGE_SIZE.width - PAGE_PADDING[1] - PAGE_PADDING[3];
 const PAGE_CONTENT_HEIGHT = PAGE_SIZE.height - PAGE_PADDING[0] - PAGE_PADDING[2];
 const PAGE_LEFT = PAGE_PADDING[3];
 const PAGE_TOP = PAGE_PADDING[0];
-const COLUMN_GAP = 6;
-const ROW_GAP = 6;
-const FALLBACK_SIZE = { width: 45, height: 7 };
+const COLUMN_GAP = LayoutDefaults.gaps.column;
+const ROW_GAP = LayoutDefaults.gaps.row;
+const FALLBACK_SIZE = LayoutDefaults.fallbackSize;
 
-const TEXT_SAMPLE_VALUES = {
-  text: 'Texto de ejemplo',
-  multiVariableText: 'Linea 1\nLinea 2\nLinea 3',
-  fullName: 'Ada Lovelace',
-  emailAddress: 'ada@acme.example',
-  company: 'Acme Labs',
-  title: 'Analista senior',
-  number: '42',
-  date: '2026-07-29',
-  time: '14:30',
-  dateTime: '2026-07-29 14:30',
-};
+const getTextSampleValues = (locale = 'es') => SampleData[locale] || SampleData.es;
 
-function decorateDemoSchema(schema) {
+function decorateDemoSchema(schema, sampleValues = getTextSampleValues()) {
   const next = { ...schema };
-  const sample = TEXT_SAMPLE_VALUES[schema.type];
+  const sample = sampleValues[schema.type];
   if (sample) {
     next.content = sample;
-  }
-  if (schema.type === 'checkbox') {
-    next.content = 'true';
   }
   return next;
 }
@@ -47,7 +35,7 @@ function resolveNaturalSize(schema) {
   };
 }
 
-function layoutPageForTypes(types, firstPageIndex) {
+function layoutPageForTypes(types, firstPageIndex, sampleValues) {
   const pages = [];
   const placedSchemas = [];
   let currentPage = [];
@@ -85,7 +73,7 @@ function layoutPageForTypes(types, firstPageIndex) {
       breakPage();
     }
 
-    const schema = decorateDemoSchema(created);
+    const schema = decorateDemoSchema(created, sampleValues);
     schema.pageNumber = cursor.pageIndex + 1;
     schema.position = { x: cursor.x, y: cursor.y };
     schema.width = size.width;
@@ -105,9 +93,14 @@ function layoutPageForTypes(types, firstPageIndex) {
   return pages.length > 0 ? pages : [[]];
 }
 
-export function buildShowcaseTemplate(groups) {
+export function buildShowcaseTemplate(groups, options = {}) {
+  const { locale = 'es' } = options;
+  const sampleValues = getTextSampleValues(locale);
+
   const schemas = groups.reduce(
-    (pages, group) => pages.concat(layoutPageForTypes(group.types, pages.length)),
+    (pages, group) => pages.concat(
+      layoutPageForTypes(group.types, pages.length, sampleValues),
+    ),
     [],
   );
 

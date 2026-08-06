@@ -1,16 +1,7 @@
 import { decorateCollaborationUsers, decorateTemplateWithCollaboration } from '@/sisad-pdfme/devtools';
 import { buildShowcaseTemplate } from './showcaseTemplate.js';
 import { MULTI_USER_RECIPIENTS } from '../fixtures/recipients.js';
-
-const normalizeRecipient = (recipient, index) => {
-  const id = String(recipient?.id ?? '').trim() || `recipient-${index + 1}`;
-  const name = String(recipient?.name ?? recipient?.label ?? id).trim() || id;
-  return {
-    ...recipient,
-    id,
-    name,
-  };
-};
+import { normalizeRecipient } from '../helpers/normalize.js';
 
 const applyRecipientOwnership = (template, recipients) => {
   if (!template || !Array.isArray(template.schemas) || recipients.length === 0) {

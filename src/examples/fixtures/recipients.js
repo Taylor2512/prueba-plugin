@@ -1,7 +1,4 @@
-export const MULTI_USER_RECIPIENTS = [
-  { id: 'alice', name: 'Alice', color: '#2563eb' },
-  { id: 'bob', name: 'Bob', color: '#f59e0b' },
-  { id: 'carla', name: 'Carla', color: '#10b981' },
-];
+import RecipientsConfig from '../config/recipients.json';
 
+export const MULTI_USER_RECIPIENTS = RecipientsConfig.multiUser;
 export const MULTI_USER_FAMILY_KEYS = ['text', 'choice', 'boolean', 'signature'];
