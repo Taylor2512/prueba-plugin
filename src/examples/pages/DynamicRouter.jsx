@@ -12,7 +12,9 @@ const specialPages = {
 };
 
 export function DynamicRouter({ initialPath = '/' }) {
-  const [currentPath, setCurrentPath] = useState(initialPath);
+  const [currentPath, setCurrentPath] = useState(
+    () => initialPath || (typeof window !== 'undefined' ? window.location.pathname : '/'),
+  );
   const generatedPageComponents = useMemo(() => generatePages(), []);
 
   const getPageKeyFromPath = useCallback((path) => {
@@ -55,7 +57,7 @@ export function DynamicRouter({ initialPath = '/' }) {
   // Handle browser back/forward
   React.useEffect(() => {
     const handlePopState = (event) => {
-      const path = event.state?.path || '/';
+      const path = event.state?.path || window.location.pathname || '/';
       setCurrentPath(path);
     };
 

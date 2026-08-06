@@ -1,4 +1,5 @@
 import PagesConfig from '../config/pagesConfig.json';
+import { useNavigate } from 'react-router-dom';
 import { getSchemaRoute } from '../routes/routeDefinitions.js';
 
 export const navigationHelpers = {
@@ -22,20 +23,17 @@ export const navigationHelpers = {
 };
 
 export function useNavigation() {
-  const nav = navigationHelpers;
+  const navigate = useNavigate();
+  const go = (path) => navigate(path);
   return {
-    go: (path) => {
-      window.history.pushState({ path }, '', path);
-      // Trigger popstate to update router
-      window.dispatchEvent(new PopStateEvent('popstate', { state: { path } }));
-    },
+    go,
     // Shortcuts
-    toCatalog: () => window.history.pushState({ path: '/' }, '', '/'),
-    toDesignerSingleUser: () => window.history.pushState({ path: nav.toDesignerSingleUser() }, '', nav.toDesignerSingleUser()),
-    toDesignerMultiUser: () => window.history.pushState({ path: nav.toDesignerMultiUser() }, '', nav.toDesignerMultiUser()),
-    toRuntimeForm: () => window.history.pushState({ path: nav.toRuntimeForm() }, '', nav.toRuntimeForm()),
-    toRuntimeViewer: () => window.history.pushState({ path: nav.toRuntimeViewer() }, '', nav.toRuntimeViewer()),
-    toSchemas: () => window.history.pushState({ path: '/schemas' }, '', '/schemas'),
-    toSchemaFamily: (slug) => window.history.pushState({ path: navigationHelpers.toSchemaFamily(slug) }, '', navigationHelpers.toSchemaFamily(slug)),
+    toCatalog: () => navigate(navigationHelpers.toCatalog()),
+    toDesignerSingleUser: () => navigate(navigationHelpers.toDesignerSingleUser()),
+    toDesignerMultiUser: () => navigate(navigationHelpers.toDesignerMultiUser()),
+    toRuntimeForm: () => navigate(navigationHelpers.toRuntimeForm()),
+    toRuntimeViewer: () => navigate(navigationHelpers.toRuntimeViewer()),
+    toSchemas: () => navigate(navigationHelpers.toSchemas()),
+    toSchemaFamily: (slug) => navigate(navigationHelpers.toSchemaFamily(slug)),
   };
 }

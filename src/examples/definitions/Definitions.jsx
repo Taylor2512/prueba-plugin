@@ -2,20 +2,22 @@ import React from 'react';
 
 import { FAMILY } from '../catalog/familyCatalog.js';
 import { CatalogPage } from '../pages/CatalogPage.jsx';
-import { DesignerMultiUserPage } from '../pages/DesignerMultiUserPage.jsx';
-import { DesignerSingleUserPage } from '../pages/DesignerSingleUserPage.jsx';
-import { RuntimeFormPage } from '../pages/RuntimeFormPage.jsx';
-import { RuntimeViewerPage } from '../pages/RuntimeViewerPage.jsx';
 import { SchemaFamilyPage } from '../pages/SchemaFamilyPage.jsx';
 import { SchemasCatalogPage } from '../pages/SchemasCatalogPage.jsx';
+import {
+  DesignerMultiUserPage,
+  DesignerSingleUserPage,
+  RuntimeFormPage,
+  RuntimeViewerPage,
+} from '../pages/generatePages.js';
 import { ROUTE_PATHS, PRIMARY_ROUTE_GROUPS, getSchemaRoute } from '../routes/routeDefinitions.js';
 
 const PRIMARYROUTE_RENDERERS = {
   catalog: () => <CatalogPage primaryRouteDefinitions={PRIMARY_ROUTE_GROUPS} />,
-  'single-user': () => <DesignerSingleUserPage currentPath={ROUTE_PATHS.designerSingleUser} />,
-  'multi-user': () => <DesignerMultiUserPage currentPath={ROUTE_PATHS.designerMultiUser} />,
-  form: () => <RuntimeFormPage currentPath={ROUTE_PATHS.runtimeForm} />,
-  viewer: () => <RuntimeViewerPage currentPath={ROUTE_PATHS.runtimeViewer} />,
+  'designer-single-user': () => <DesignerSingleUserPage currentPath={ROUTE_PATHS.designerSingleUser} />,
+  'designer-multi-user': () => <DesignerMultiUserPage currentPath={ROUTE_PATHS.designerMultiUser} />,
+  'runtime-form': () => <RuntimeFormPage currentPath={ROUTE_PATHS.runtimeForm} />,
+  'runtime-viewer': () => <RuntimeViewerPage currentPath={ROUTE_PATHS.runtimeViewer} />,
   schemas: () => <SchemasCatalogPage />,
 };
 

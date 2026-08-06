@@ -59,10 +59,7 @@ Antes de esta refactorización, `/src/examples` tenía 800+ líneas de código d
 
 ┌────────────────────────────────────────────────────────────────┐
 │ 3. RUNTIME LAYER (ejecuta)                                     │
-│    DesignerSingleUserPage (generada automáticamente)           │
-│    DesignerMultiUserPage (generada automáticamente)            │
-│    RuntimeFormPage (generada automáticamente)                  │
-│    RuntimeViewerPage (generada automáticamente)                │
+│    generated pages (designer / form / viewer)                 │
 └────────────────────────────────────────────────────────────────┘
 ```
 
@@ -108,7 +105,7 @@ Eso es todo. Automáticamente:
 
 **Antes: Edit archivo JSX**
 ```javascript
-// RuntimeFormPage.jsx
+// Generated runtime page
 const handleInputChange = useCallback(
   (payload) => {
     setLastInput(`${payload.name} = ${String(payload.value)}`);

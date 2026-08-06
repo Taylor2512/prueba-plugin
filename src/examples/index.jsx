@@ -6,7 +6,6 @@
  * API pública reexportada para tests y host integraciones
  */
 import { buildLab } from './definitions/Definitions.jsx';
-import { AppShell } from './pages/AppShell.jsx';
 import { DynamicRouter, useRouter } from './pages/DynamicRouter.jsx';
 import { DesignerMultiUserPage, DesignerSingleUserPage, RuntimeFormPage, RuntimeViewerPage } from './pages/generatePages.js';
 import { CatalogPage } from './pages/CatalogPage.jsx';
@@ -18,7 +17,8 @@ export function getLab() {
 }
 
 // Main entry point with dynamic routing (no page reload)
-export { AppShell, DynamicRouter, useRouter };
+export { DynamicRouter, useRouter };
+export { DynamicRouter as AppShell } from './pages/DynamicRouter.jsx';
 
 // Individual page exports (for direct access / testing)
 export {
