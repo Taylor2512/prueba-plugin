@@ -1,74 +1,35 @@
-# Manifest
+# Manifest del overlay
 
-- Generado: 2026-08-04
-- Task-cards: 42
-- Casos de uso: 158
-- Screenshots: 9
+- Archivos: 28
+- Base de análisis: 2026-08-05
+- Formato: rutas relativas a la raíz de `prueba-plugin`
 
-| Archivo | Bytes | SHA-256 |
-|---|---:|---|
-| `.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME_2026-08-04.md` | 13700 | `ebf25c48e9198fcff4e5fbaedd762d46542e823019315ec042da296b2c5163b1` |
-| `.ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md` | 1968 | `2fea42fff4ed7dc7b62876a1d10f0011035ac59aa6b8d0e6adccfcc7ec54a0aa` |
-| `.ai/scrum/VISUX-EXECUTION-ORDER.md` | 901 | `c998f0638529e9c8959e999860536c0b17f3760d5266168b3b0603f0659771b3` |
-| `.ai/scrum/VISUX-MERGE-INSTRUCTIONS.md` | 640 | `748d5f0f91ac1e0895a2981f141adcd32ebca71d06a0a0450efbf967365f9d64` |
-| `.ai/scrum/VISUX-PRODUCT-BACKLOG-ROWS.md` | 7196 | `6da6bb93e71c2e25ae45afba0368bdf52121fc6ff32e838a0c1693491c899ffe` |
-| `.ai/scrum/task-cards/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md` | 4751 | `1b58bf6fbbfdfc9098711d91f3045c7623caaa74117c8801869d549a138961fb` |
-| `.ai/scrum/task-cards/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md` | 5348 | `2366810a16276739069ac8b600f8ca6eadd777df776c6b2d621fcdf0b2dd02da` |
-| `.ai/scrum/task-cards/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md` | 4710 | `eb9a9f31ad7bed2e402fa432f5af34150b8d813cf73eec0d7b9c6527477a9334` |
-| `.ai/scrum/task-cards/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md` | 4841 | `da93c299d202ba7719922977be8795efe51e411c683da2d8f0a544ac673c06a7` |
-| `.ai/scrum/task-cards/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md` | 4648 | `021dbb9a21704d7d97c47b5c7f3b7e99152506d06378ccd37e3b2ba86be93562` |
-| `.ai/scrum/task-cards/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md` | 4608 | `dde4211743e2d6740aa6d414255ab1a843ac3a814e5b30a86e35c2faf5418e94` |
-| `.ai/scrum/task-cards/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md` | 4588 | `aa246da0e35c20b6bd3f874abd1e9cbd714efb6aef5fa3e6c1c9cc2d98ba1a5a` |
-| `.ai/scrum/task-cards/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md` | 4519 | `0cdf3ceed0bf15bc9eefd7b8a09924d0302e72678da530a20105f460117bfd8f` |
-| `.ai/scrum/task-cards/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md` | 4422 | `26ba4f2de6ae2e6299b597341ad2f907d5d259a29098a98810a5f25590e8d623` |
-| `.ai/scrum/task-cards/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md` | 4387 | `ab014e65e97bdd806518405d430188b2453880f095d3353fbb55afe2205ffa8c` |
-| `.ai/scrum/task-cards/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md` | 4551 | `7d1b7a8d8826c729a50ad5b38239bbf1b543b0628d8be8e53104963e748b5fd6` |
-| `.ai/scrum/task-cards/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md` | 4553 | `14d0251064a34ec4fda334aaed3a5f5eebdc427154d5d8cfd4424cc917738db5` |
-| `.ai/scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md` | 4498 | `dd6acb0158fcb68db290b83e7c2f512f740f653095c6c5d3ef83c7d5fbf8e639` |
-| `.ai/scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md` | 4409 | `7a7e013e5e3a4adb91d8b28f9541a3f62fe178003bc6c1bad3602f5a6dc73739` |
-| `.ai/scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md` | 4494 | `8dae9735d85fa991c63fb4089a8a1e486b251bc0f6086d9029e985f78b64b64e` |
-| `.ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md` | 4515 | `817ffa695306cd8f72decd47e3b03d573f1fc7b6d680adca4af5d01c4de525d2` |
-| `.ai/scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md` | 4496 | `3351eef8ff215b12d34f35a8293d34c93a8ca704a266fbaac69bc26368419e11` |
-| `.ai/scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md` | 4423 | `eb317271e78e53dfb01cbed23e1ebd85552a79b4184103923b495eeac681044f` |
-| `.ai/scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md` | 4607 | `cc57f711e2be6005283c0e0678f41db754387ed19d58c36c9976a3085e96fb58` |
-| `.ai/scrum/task-cards/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md` | 4638 | `fd19d31e92782f3fd54712d6066a6e3c3bcd7dc36d28cdfcbf32bbd2c0d4606c` |
-| `.ai/scrum/task-cards/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md` | 4647 | `668636e07d22402849dab106b84b45b99a58c0ba11184fdbc1bd4d21e7d25b3f` |
-| `.ai/scrum/task-cards/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md` | 4630 | `09655ae4a6161dd5f8168fdff1bfdc47fda1d214bb8f13f13acee90e57e13c0d` |
-| `.ai/scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md` | 4647 | `bccf136819df8b9deac393cc99e12339ec2b596241e70d84716ccc035a01a7ba` |
-| `.ai/scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md` | 4557 | `58e4e454541bd168eabe63eca600eeded5e9324eaf7abfdd79661a421258a83a` |
-| `.ai/scrum/task-cards/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md` | 4514 | `c175bdf533412b540d3c5e26c5b36a88deb0cc9ad314f4d6cdcd34cea59396fd` |
-| `.ai/scrum/task-cards/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md` | 4592 | `133155123cbaf4a9a246fc83b781d4125a92a83fffabdeadb8d0205158effd0a` |
-| `.ai/scrum/task-cards/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md` | 4499 | `ff892f6aaa20af92a065a0e4d2a813419386e26ee77b5159741e3653573b01d0` |
-| `.ai/scrum/task-cards/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md` | 4579 | `fda2698d34e0c858b25563618428afcc0b27ab8a479b6f9de5821e2f6df37dba` |
-| `.ai/scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md` | 4424 | `11953b9f8ec30befa7925f4685d2c913a409ea8e9061069b3407677a4cb546d0` |
-| `.ai/scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md` | 4515 | `1c2e68eb32912bc94e028d7e2d5026e8077b4b42d983133dfe427d32044a2a71` |
-| `.ai/scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md` | 4440 | `67dcbac3be292a7da667000c87e070c363d59ed9de54ca4c59e4652d784c7933` |
-| `.ai/scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md` | 4306 | `b30e4eabaafbf0eb8e57021db3e9d23754736657dc7453ef15b114febd904b30` |
-| `.ai/scrum/task-cards/VISUX-033-cerrar-media-barcode-table-y-shapes.md` | 4335 | `106dee0671aeeabf995429d96a5b160cb89d30605483fa037410b497aea53df1` |
-| `.ai/scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md` | 4492 | `51efed3b369a7c4059cba81965520c30d6f42bfbc02b1c129dfe6fd94ab79570` |
-| `.ai/scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md` | 4570 | `1ffa8b237b64f49e6fe3b4561c33926a6aea0d84713943f3f1d0c7aa35b06e9f` |
-| `.ai/scrum/task-cards/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md` | 4501 | `0ccb3d85f50558442f81b24d5fc11bafe877fc05235ef4cf8057526e2aefe87b` |
-| `.ai/scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md` | 4676 | `36956c80bdb1ec04a7d7039020b82900756a67224d8708e17d721ae6e4e11450` |
-| `.ai/scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md` | 4603 | `1ce42ff15e05936b9ce9213a24eeba04339ac9e38e86a00cd5065fe8dc8561a2` |
-| `.ai/scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md` | 4500 | `d68b909cbe0715defb53974da72d9c079b10c91a777b6d19ac255c11deca94cd` |
-| `.ai/scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md` | 4519 | `f76aadd41044907cda852e20c59bcfeb0d892dd2c410cf0ac2d2f41793a48f82` |
-| `.ai/scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md` | 4441 | `e14240a660f97472fc84fee9d94d2af88acbe8c0e8c1a984b94bebe25ebb65e2` |
-| `.ai/scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md` | 4629 | `23e8d1b56eeb30e5ed34fe0195eba8465616bfd8193f21bd77fc4c7ac9bc46f7` |
-| `CHECKLIST-ACEPTACION-VISUAL.md` | 1282 | `feb859ee08d38e20187037caac920120cb91ad5d5eab64728a5aeacf1e06497a` |
-| `INSTALL-CHECKLIST-VISUAL.md` | 484 | `3ae4373207307a7b272af68ba1e933025dbfd06d8a3b6408cc589b88a0d6cd77` |
-| `README-VISUAL-BEHAVIOR.md` | 1500 | `0d20de5c7a8d67f2bdae6dd7756074b405b17cd465a542e44fa370d432bfd8c2` |
-| `ROLLBACK-VISUAL.md` | 556 | `b2078c494b7d4eb516ec5c903292b3a1c6cd2652c69849f9734778aab2d5e816` |
-| `reports/visual-behavior/01-SCREENSHOT-AUDIT.md` | 3132 | `24947254c6848673222556f90188fbbdfc034bdce1b0b0d0afe8cb7b76da3932` |
-| `reports/visual-behavior/02-USE-CASE-MATRIX.md` | 11745 | `877db267fc032a1cc8287e074d670fd0de10d8e379596a95ac07cb99ea94b121` |
-| `reports/visual-behavior/03-COMPONENT-MATRIX.md` | 2492 | `6934a650b2497ce54726532f7a8e93e00fb141dd85894f7bb072ae39342a7c06` |
-| `reports/visual-behavior/04-RISK-REGISTER.md` | 1436 | `a65ec525b0b600b8f49f66629aa7294c008377982f74bed8e120854d8e89eac6` |
-| `reports/visual-behavior/05-TASK-MAP.md` | 4100 | `2621ddeee447364137d9b6ff58d1a52e45e1cd298294ed63d499b9989b39919c` |
-| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-01.jpg` | 222653 | `5e345f9ca4d0ec13a19cd03f6ec899e87e41f94e329dcdd50c51582354942296` |
-| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-02.jpg` | 147274 | `b64591d521a8729e3a74217a6005caa1e1a9c3eec44495ad2e7b22afcd964294` |
-| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-03.jpg` | 286973 | `29ddff7d4ca4ffc0fc6b8fdb9f1a2ce0c1ce1fd451b6bf4efa468f9f8f9681fb` |
-| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-04.jpg` | 319660 | `c8a885f174a70d6e1a72f4e851f6d90396f7b245f856c8576b859668adf7e4b9` |
-| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-05.jpg` | 306037 | `202c5530ff0ca76d0210c01bff67880f2da172d71e38901318a7872d4d477384` |
-| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-06.jpg` | 271246 | `9a9d5f4cbb418a65ddce37b05fd548150b976bc977522277b248870ed7914d05` |
-| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-07.jpg` | 84883 | `415f8a6d0faa7befbbea66cb4221457bfa449727cb93f4e2f274870a3532c92e` |
-| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-08.jpg` | 281114 | `851b3f471ebd5ddf8dc75b26cb02c51fe5c7649374b7d991dc7d8035c750d41c` |
-| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-09.jpg` | 317182 | `ccf28cdec93855f7e53a2bab69afee0087ff0cf67d93dd3cc30c6666788b6be6` |
+## Contenido
+- `.ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME_V2.md`
+- `.ai/scrum/task-cards/PORTDOC-001-auditar-api-publica.md`
+- `.ai/scrum/task-cards/PORTDOC-002-actualizar-ejemplos.md`
+- `.ai/scrum/task-cards/PORTDOC-003-consumer-test.md`
+- `.ai/scrum/task-cards/PORTDOC-004-gate-drift-documental.md`
+- `DOCS-MERGE-MAP.md`
+- `README.md`
+- `docs/07-integraciones/01-react.md`
+- `docs/07-integraciones/02-host-app.md`
+- `docs/07-integraciones/05-global-config.md`
+- `docs/07-integraciones/06-host-adapters.md`
+- `docs/07-integraciones/08-manual-portabilidad-sisad-pdfme.md`
+- `docs/07-integraciones/09-instancias-declarativas.md`
+- `docs/07-integraciones/10-implementacion-por-fases.md`
+- `docs/07-integraciones/11-checklist-consumer-project.md`
+- `docs/07-integraciones/README.md`
+- `docs/08-api-reference/07-sisad-pdfme-instance-api.md`
+- `docs/08-api-reference/08-events-actions-controller.md`
+- `docs/12-troubleshooting/05-integracion-en-otro-proyecto.md`
+- `docs/13-ejemplos/06-integracion-copy-paste.md`
+- `examples/consumer/src/bootstrapPdfme.ts`
+- `examples/consumer/src/features/contracts/adapters/sisadPdfme.adapters.ts`
+- `examples/consumer/src/features/contracts/config/sisadPdfme.config.ts`
+- `examples/consumer/src/features/contracts/instances/contractDesigner.instance.ts`
+- `examples/consumer/src/features/contracts/pages/ContractDesignerPage.tsx`
+- `reports/portability/CURRENT-IMPLEMENTATION-GAPS-V2.md`
+- `reports/portability/DOCUMENTATION-GAP-AUDIT-V2.md`
+- `MANIFEST.md`

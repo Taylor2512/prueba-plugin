@@ -1,18 +1,38 @@
-# Integración con host app
+# Frontera entre host y core
 
-El host puede controlar:
+## Host
 
-- carga de documentos;
-- recipients;
-- guardado;
-- navegación externa;
+- autenticación;
+- endpoints;
 - permisos de negocio;
-- callbacks.
+- navegación;
+- archivos;
+- persistencia;
+- firma externa;
+- telemetría.
 
-No debe controlar:
+## Core
 
-- zoom interno;
-- sidebars internas;
+- canvas;
 - selección;
-- Moveable/Selecto;
-- inspector.
+- sidebars;
+- inspector;
+- schemas;
+- recipients normalizados;
+- assignments;
+- documentos;
+- snapshots;
+- PDF.
+
+## Dependencia
+
+```text
+host → API pública de sisad-pdfme
+```
+
+No:
+
+```text
+host → ui/components/Designer/**
+sisad-pdfme → features, endpoints o stores del host
+```

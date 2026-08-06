@@ -1,12 +1,44 @@
 # Integración React
 
-Ejemplo conceptual:
+## Ruta principal
 
 ```tsx
-function Editor() {
-  const [template, setTemplate] = useState(initialTemplate);
-  return <Designer template={template} onChangeTemplate={setTemplate} />;
+import {
+  SisadPdfmeInstance,
+  defineSisadPdfmeInstance,
+} from '@/sisad-pdfme';
+
+const instance = defineSisadPdfmeInstance({
+  id: 'contracts-designer',
+  definition: {
+    mode: 'designer',
+    defaultState: {
+      template: initialTemplate,
+    },
+  },
+  resources: {
+    config,
+    recipients,
+    documents,
+  },
+  handlers: {
+    onSave: saveTemplate,
+  },
+});
+
+export function Editor() {
+  return (
+    <main className="h-dvh min-h-0 w-full min-w-0 overflow-hidden">
+      <SisadPdfmeInstance instance={instance} />
+    </main>
+  );
 }
 ```
 
-El host debe controlar negocio, no duplicar UI interna del diseñador.
+## Estabilidad
+
+- defina config e instancia fuera de la página o con memoización estable;
+- no cambie `id`, `revision` o React `key` en cada render;
+- no reconstruya internals;
+- el host define la altura;
+- el wrapper público del Designer inicia sin auto-fit automático.

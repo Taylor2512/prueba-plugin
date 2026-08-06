@@ -27,3 +27,17 @@ El vínculo inspector ↔ canvas es bidireccional y debe seguir estas reglas:
   cargada y revierte lo que se hizo en el canvas.
 - La firma de rehidratación excluye `content`: en imágenes y firmas es un data
   URI grande y el inspector nunca lo edita.
+- Los campos cuyo nombre es una ruta (`validation.type`) se persisten anidados
+  pero el formulario los identifica por el nombre literal: la sección expone
+  ambos al hidratar, o el valor se guarda y nunca vuelve.
+
+## Permisos y solo lectura
+
+- `schema.readOnly` describe si el **destinatario** puede rellenar el campo, no
+  si el **diseñador** puede configurarlo. Los comandos de estructura
+  (`changeSchemas`, update, group, order, style) se rigen por `canEditStructure`.
+- Usar `isEditable` ahí congela el inspector de cualquier campo en solo lectura
+  —incluido el switch que activa esa bandera— y bloquea los tipos que nacen con
+  `readOnly: true`, como `note`.
+- El guard del CommandBus descarta en silencio (solo `console.warn`): un cambio
+  que no se aplica no muestra nada al usuario.

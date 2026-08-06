@@ -236,7 +236,14 @@ export function canRunSchemaCommand(commandId: string, access: SchemaAccessState
     return access.isDeletable;
   }
 
-  // Comandos de modificación de estructura/contenido/metadata
+  // Comandos de modificación de estructura/metadata.
+  //
+  // Se rigen por `canEditStructure`, no por `isEditable`: `isEditable` incluye
+  // `schema.readOnly`, que describe si el destinatario puede rellenar el campo,
+  // no si el diseñador puede configurarlo. Usarlo aquí congelaba el inspector
+  // entero de cualquier campo en solo lectura —incluido el switch que activa esa
+  // bandera, que quedaba sin forma de revertirse— y dejaba tipos con
+  // `readOnly: true` por defecto (como `note`) sin posibilidad de editarlos.
   if (
     normalizedId.includes('update') ||
     normalizedId.includes('change') ||
@@ -245,7 +252,7 @@ export function canRunSchemaCommand(commandId: string, access: SchemaAccessState
     normalizedId.includes('order') ||
     normalizedId.includes('style')
   ) {
-    return access.isEditable;
+    return access.canEditStructure;
   }
 
   return true;

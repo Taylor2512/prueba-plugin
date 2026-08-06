@@ -1,56 +1,39 @@
-# Configuración global portable
-
-`src/sisad-pdfme` debe integrarse en cualquier host mediante configuración, datos y callbacks genéricos.
-
-## Uso mínimo
-
-```tsx
-<SisadPdfmeDesigner
-  template={template}
-  documents={documents}
-  onTemplateChange={setTemplate}
-/>
-```
-
-## Uso con recipients
-
-```tsx
-<SisadPdfmeDesigner
-  config={config}
-  template={template}
-  documents={documents}
-  recipients={recipients}
-  onTemplateChange={setTemplate}
-  onSave={handleSave}
-/>
-```
-
-## Config canónica
-
-- `config` es la fuente de verdad.
-- `ui.visibility` controla presentación; `visibility` canónica sigue siendo la base resuelta.
-- `documents.mode`, `documents.preserveDocumentSchemaRouting` y `documents.activeDocumentStrategy` gobiernan el comportamiento de documentos.
-- `signatures.enabled`, `signatures.defaultMode` y `signatures.providers` gobiernan el flujo de firma.
-- `comments.enabled` gobierna si el feature existe; la visibilidad del panel no debe mutar la capacidad.
-
-## API dinámica pública
-
-Cuando el host necesita leer o mutar configuración en caliente, usa el controller público:
+# Configuración global
 
 ```ts
-controller.getConfig();
-controller.updateConfig({ visibility: { ... } });
-controller.resetConfig();
-controller.getFeatureState('documents');
-controller.explainConfiguration();
+const config = createSisadPdfmeConfig({
+  configVersion: 2,
+  runtime: { mode: 'designer' },
+  documents: { mode: 'multi' },
+  persistence: {
+    mode: 'host',
+    autosave: false,
+  },
+});
 ```
 
-## Separación de conceptos
+## Defaults importantes
 
-```txt
-enabled = la capacidad existe
-visible = el usuario la ve
-allowed = el usuario puede ejecutarla
+```text
+canvas.enabled = true
+sidebars.left.enabled = true
+sidebars.right.enabled = true
+collaboration.enabled = true
+assignment.enabled = true
+signatures.enabled = true
+documents.mode = single
+persistence.mode = local
+persistence.autosave = false
+debug.enabled = false
 ```
 
-El host no debe importar internals como Canvas, RightSidebar, DetailView, ListView o SchemaAssignmentDialog.
+## Semántica
+
+```text
+enabled
+visible
+allowed
+available
+```
+
+No trate estos conceptos como equivalentes.

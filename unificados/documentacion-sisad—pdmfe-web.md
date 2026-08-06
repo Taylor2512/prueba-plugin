@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-08-03T03:04:01.175Z`
+- **Fecha generación:** `2026-08-05T18:34:19.938Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `541`
+- **Archivos candidatos incluidos:** `700`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -26,6 +26,34 @@
 prueba-plugin
 ├── .agents
 │   └── skills
+│       ├── canvas-safety
+│       │   └── SKILL.md
+│       ├── configuration
+│       │   └── SKILL.md
+│       ├── context-engineering
+│       │   └── SKILL.md
+│       ├── dry-refactor
+│       │   └── SKILL.md
+│       ├── event-effect
+│       │   └── SKILL.md
+│       ├── inspector-contract
+│       │   └── SKILL.md
+│       ├── left-sidebar
+│       │   └── SKILL.md
+│       ├── memory-gc
+│       │   └── SKILL.md
+│       ├── public-api
+│       │   └── SKILL.md
+│       ├── quality-evidence
+│       │   └── SKILL.md
+│       ├── recipient-assignment
+│       │   └── SKILL.md
+│       ├── responsive-ux
+│       │   └── SKILL.md
+│       ├── runtime-parity
+│       │   └── SKILL.md
+│       ├── schema-family
+│       │   └── SKILL.md
 │       ├── sisad-accessibility
 │       │   └── SKILL.md
 │       ├── sisad-action-state
@@ -140,34 +168,61 @@ prueba-plugin
 │       │   └── SKILL.md
 │       ├── sisad-visual-regression
 │       │   └── SKILL.md
-│       └── sisad-worktree-coordination
+│       ├── sisad-worktree-coordination
+│       │   └── SKILL.md
+│       ├── snapshot
+│       │   └── SKILL.md
+│       ├── tailwind-system
+│       │   └── SKILL.md
+│       ├── traceability
+│       │   └── SKILL.md
+│       └── worktree-coordination
 │           └── SKILL.md
 ├── .ai
 │   ├── agents
-│   │   ├── ARCHITECT.md
+│   │   ├── architect.md
 │   │   ├── CANVAS-SPECIALIST.md
-│   │   ├── COORDINATOR.md
-│   │   ├── EXPLORER.md
-│   │   ├── IMPLEMENTER.md
-│   │   ├── MEMORY-STEWARD.md
+│   │   ├── coordinator.md
+│   │   ├── domain-specialist.md
+│   │   ├── explorer.md
+│   │   ├── implementer.md
+│   │   ├── memory-steward.md
 │   │   ├── PROVIDER-ADAPTER-STEWARD.md
-│   │   ├── QA.md
+│   │   ├── provider-steward.md
+│   │   ├── qa.md
 │   │   ├── REGISTRY.md
-│   │   ├── REVIEWER.md
+│   │   ├── reviewer.md
 │   │   ├── RUNTIME-ARCHITECT.md
 │   │   ├── SCHEMA-SPECIALIST.md
 │   │   ├── TOKEN-STEWARD.md
-│   │   ├── TRACEABILITY-STEWARD.md
+│   │   ├── traceability-steward.md
 │   │   └── UX-DESIGNER.md
 │   ├── architecture
+│   │   ├── 00-SYSTEM-MAP.md
+│   │   ├── 01-KNOWLEDGE-MODEL.md
+│   │   ├── 02-HOT-WARM-COLD.md
+│   │   ├── 03-PROVIDER-ADAPTERS.md
+│   │   ├── 04-TASK-LIFECYCLE.md
 │   │   ├── AI-ASSISTANT-ARCHITECTURE-V7.md
 │   │   ├── DESIGNER-SURFACE-ARCHITECTURE.md
 │   │   ├── EVENT-COMMAND-EFFECT-ARCHITECTURE.md
 │   │   ├── KNOWLEDGE-GRAPH.md
 │   │   ├── MEMORY-ARCHITECTURE-V7.md
 │   │   └── PROVIDER-COMPATIBILITY.md
+│   ├── BUDGETS.md
 │   ├── CONTEXT-BUDGET.md
 │   ├── CONTEXT-POLICY.md
+│   ├── contracts
+│   │   ├── CLASS-NAMESPACE-CONTRACT.md
+│   │   ├── CONFIGURATION-CONTRACT.md
+│   │   ├── DESIGNER-INTERACTION-CONTRACT.md
+│   │   ├── DETAILVIEW-CONTRACT.md
+│   │   ├── EVENT-EFFECT-CONTRACT.md
+│   │   ├── LEFT-SIDEBAR-CONTRACT.md
+│   │   ├── PROJECT-CONTRACT.md
+│   │   ├── RECIPIENT-OWNERSHIP-COLOR.md
+│   │   └── SCHEMA-SURFACE-CONTRACT.md
+│   ├── DECISION-PROTOCOL.md
 │   ├── evals
 │   │   ├── EVAL-001.md
 │   │   ├── EVAL-002.md
@@ -185,6 +240,10 @@ prueba-plugin
 │   │   ├── SUBAGENT-COST-POLICY.md
 │   │   ├── TOKEN-RESOURCE-POLICY.md
 │   │   └── TRACEABILITY-POLICY.md
+│   ├── index
+│   │   ├── README.md
+│   │   ├── RECIPIENT-COLOR-MATRIX.md
+│   │   └── SCHEMA-MATRIX.md
 │   ├── knowledge
 │   │   ├── domain
 │   │   │   ├── CONFIGURATION-BEHAVIOR-MATRIX.md
@@ -195,7 +254,16 @@ prueba-plugin
 │   │   │   ├── CURRENT-PUBLIC-API.md
 │   │   │   ├── DECLARATIVE-API.md
 │   │   │   ├── DECLARATIVE-BASELINE.md
-│   │   │   └── DECLARATIVE-USE-CASES.md
+│   │   │   ├── DECLARATIVE-USE-CASES.md
+│   │   │   ├── DESIGNER-INTERACTION-MATRIX.md
+│   │   │   ├── DETAILVIEW-PROFILES.md
+│   │   │   ├── EFFECT-CATALOG.md
+│   │   │   ├── EVENT-CATALOG.md
+│   │   │   ├── FORM-VIEWER-PDF-PARITY.md
+│   │   │   ├── LEFT-SIDEBAR-BEHAVIOR.md
+│   │   │   ├── OWNER-COLOR-CONTRACT.md
+│   │   │   ├── SCHEMA-BEHAVIOR-MATRIX.md
+│   │   │   └── USER-RECIPIENT-USE-CASES.md
 │   │   ├── EFFECT-CATALOG.md
 │   │   ├── EVENT-CATALOG.md
 │   │   ├── SOURCE-REGISTER.md
@@ -206,19 +274,22 @@ prueba-plugin
 │   │   ├── INDEX.md
 │   │   ├── MEMORY-GC.md
 │   │   ├── PROJECT.md
-│   │   └── topics
-│   │       ├── ai-architecture.md
-│   │       ├── canvas.md
-│   │       ├── configuration.md
-│   │       ├── runtime.md
-│   │       └── schemas.md
+│   │   ├── topics
+│   │   │   ├── ai-architecture.md
+│   │   │   ├── canvas.md
+│   │   │   ├── configuration.md
+│   │   │   ├── runtime.md
+│   │   │   └── schemas.md
+│   │   └── TTL-POLICY.md
 │   ├── MODEL-ROUTER.md
 │   ├── OBSERVABILITY.md
 │   ├── ORCHESTRATION.md
 │   ├── plans
 │   │   ├── AIARCH-V7-EXECUTION-ORDER.md
 │   │   ├── COREUX-EXECUTION-ORDER.md
+│   │   ├── PLAN_CONTINUIDAD_INTEGRACION_SIMPLE_SISAD_PDFME.md
 │   │   ├── PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME_2026-07-31.md
+│   │   ├── PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME_2026-08-04.md
 │   │   ├── PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md
 │   │   └── PLAN-MAESTRO-AI-ARCHITECTURE-V7.md
 │   ├── playbooks
@@ -236,16 +307,25 @@ prueba-plugin
 │   │   ├── COREUX_SCHEMA_FAMILY.prompt.md
 │   │   ├── COREUX_VISUAL_QA.prompt.md
 │   │   ├── CREATE-TASK.prompt.md
+│   │   ├── DIAGNOSE.md
 │   │   ├── DIAGNOSE.prompt.md
 │   │   ├── DISTILL-LOG.prompt.md
+│   │   ├── IMPLEMENT.md
 │   │   ├── IMPLEMENT.prompt.md
+│   │   ├── MEMORY-DELTA.md
 │   │   ├── MEMORY-DELTA.prompt.md
+│   │   ├── PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME_V1.md
 │   │   ├── PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md
+│   │   ├── PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md
+│   │   ├── PROVIDER-SYNC.md
 │   │   ├── PROVIDER-SYNC.prompt.md
+│   │   ├── REVIEW.md
 │   │   ├── REVIEW.prompt.md
+│   │   ├── TRACE.md
 │   │   └── TRACEABILITY.prompt.md
 │   ├── research
-│   │   └── OFFICIAL-PROVIDER-FINDINGS-2026-07-31.md
+│   │   ├── OFFICIAL-PROVIDER-FINDINGS-2026-07-31.md
+│   │   └── OFFICIAL-SOURCES.md
 │   ├── ROUTER.md
 │   ├── routes
 │   │   ├── ai-architecture.md
@@ -259,130 +339,204 @@ prueba-plugin
 │   │   ├── designer-core-ux.md
 │   │   ├── docs-memory.md
 │   │   ├── events-effects.md
+│   │   ├── inspector.md
 │   │   ├── left-sidebar.md
+│   │   ├── persistence.md
 │   │   ├── provider-adapters.md
 │   │   ├── quality.md
+│   │   ├── recipients-ownership.md
 │   │   ├── right-sidebar.md
+│   │   ├── runtime-contracts.md
 │   │   ├── runtime-snapshot.md
 │   │   ├── runtime.md
+│   │   ├── runtimes.md
 │   │   ├── schemas.md
 │   │   ├── testing.md
 │   │   ├── token-context.md
 │   │   ├── traceability.md
-│   │   └── ux-design.md
+│   │   ├── ux-design.md
+│   │   └── ux.md
 │   ├── scrum
 │   │   ├── MERGE-INSTRUCTIONS-V7.md
+│   │   ├── MERGE-V8.md
 │   │   ├── PRODUCT-BACKLOG-ROWS-V7.md
 │   │   ├── PRODUCT-BACKLOG.md
-│   │   └── task-cards
-│   │       ├── AIARCH-001-auditar-y-congelar-baseline-v6.md
-│   │       ├── AIARCH-002-corregir-fuente-de-estado-y-arranque.md
-│   │       ├── AIARCH-003-adoptar-adapters-raiz-v7.md
-│   │       ├── AIARCH-004-implementar-router-por-context-manifest.md
-│   │       ├── AIARCH-005-aplicar-presupuesto-l0l4.md
-│   │       ├── AIARCH-007-migrar-memoria-a-indice-y-topics.md
-│   │       ├── AIARCH-008-implementar-memory-gc-e-invalidacion.md
-│   │       ├── AIARCH-009-adoptar-ids-de-trazabilidad.md
-│   │       ├── AIARCH-010-generar-method-registry-desde-codigo.md
-│   │       ├── AIARCH-011-consolidar-casos-y-behavior-catalog.md
-│   │       ├── AIARCH-012-consolidar-event-effect-catalogs.md
-│   │       ├── AIARCH-013-construir-trace-matrix-y-coverage-gate.md
-│   │       ├── AIARCH-014-depurar-skill-registry-y-aliases.md
-│   │       ├── AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md
-│   │       ├── AIARCH-016-consolidar-agent-registry.md
-│   │       ├── AIARCH-017-aplicar-politica-de-subagentes-y-coste.md
-│   │       ├── AIARCH-018-actualizar-adapter-de-claude.md
-│   │       ├── AIARCH-019-actualizar-adapter-de-codex.md
-│   │       ├── AIARCH-020-actualizar-adapter-de-copilot.md
-│   │       ├── AIARCH-021-implementar-provider-drift-gate.md
-│   │       ├── AIARCH-022-migrar-task-card-a-esquema-v7.md
-│   │       ├── AIARCH-023-consolidar-scrum-claims-y-vistas.md
-│   │       ├── AIARCH-024-crear-evidence-store-y-log-distillation.md
-│   │       ├── AIARCH-025-crear-validadores-mecanicos-v7.md
-│   │       ├── AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md
-│   │       ├── AIARCH-027-migrar-planes-coreux-decl-restore.md
-│   │       ├── AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md
-│   │       ├── AIARCH-029-integrar-scripts-en-package-ci.md
-│   │       ├── AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md
-│   │       ├── COREUX-001-congelar-baseline-visual-y-responsive.md
-│   │       ├── COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md
-│   │       ├── COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md
-│   │       ├── COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md
-│   │       ├── COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md
-│   │       ├── COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md
-│   │       ├── COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md
-│   │       ├── COREUX-008-expandir-maquina-de-estados-de-interaccion.md
-│   │       ├── COREUX-009-crear-coordinador-de-efectos-del-designer.md
-│   │       ├── COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md
-│   │       ├── COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md
-│   │       ├── COREUX-012-conectar-commandbus-eventos-e-historial.md
-│   │       ├── COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md
-│   │       ├── COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md
-│   │       ├── COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md
-│   │       ├── COREUX-016-completar-comandos-de-pagina.md
-│   │       ├── COREUX-017-unificar-zoom-fit-page-y-fit-width.md
-│   │       ├── COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md
-│   │       ├── COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md
-│   │       ├── COREUX-020-crear-estado-responsive-unico-de-superficies.md
-│   │       ├── COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md
-│   │       ├── COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md
-│   │       ├── COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md
-│   │       ├── COREUX-024-formalizar-contrato-del-rightsidebar.md
-│   │       ├── COREUX-025-completar-listview-compacto-y-menu-por-fila.md
-│   │       ├── COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md
-│   │       ├── COREUX-027-completar-documentsrail-y-documentcontroller.md
-│   │       ├── COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md
-│   │       ├── COREUX-029-cerrar-perfiles-del-inspector-por-familia.md
-│   │       ├── COREUX-030-formalizar-contrato-de-widgets-del-detailview.md
-│   │       ├── COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md
-│   │       ├── COREUX-032-consolidar-datos-y-conexiones.md
-│   │       ├── COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md
-│   │       ├── COREUX-034-unificar-editor-de-opciones.md
-│   │       ├── COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md
-│   │       ├── COREUX-036-centralizar-defaults-de-creacion-de-schemas.md
-│   │       ├── COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md
-│   │       ├── COREUX-038-cerrar-contrato-de-choice-fields.md
-│   │       ├── COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md
-│   │       ├── COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md
-│   │       ├── COREUX-041-unificar-owner-tone-y-field-chrome.md
-│   │       ├── COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md
-│   │       ├── COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md
-│   │       ├── COREUX-044-alinear-moveable-con-access-interaction-y-events.md
-│   │       ├── COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md
-│   │       ├── COREUX-046-cerrar-routing-multidocumento-y-navegacion.md
-│   │       ├── COREUX-047-completar-snapshot-e-historial-versionado.md
-│   │       ├── COREUX-048-cerrar-paridad-del-controller-y-capacidades.md
-│   │       ├── COREUX-049-cerrar-paridad-designer-form-y-viewer.md
-│   │       ├── COREUX-050-unificar-validacion-generator-converter-y-persistence.md
-│   │       ├── COREUX-051-cerrar-responsive-touch-y-accesibilidad.md
-│   │       ├── COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md
-│   │       ├── COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md
-│   │       ├── COREUX-054-crear-playwright-y-regresion-visual-integral.md
-│   │       ├── COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md
-│   │       ├── COREUX-056-documentar-configuracion-eventos-efectos-y-release.md
-│   │       ├── name-001-inventariar-y-clasificar-ocurrencias.md
-│   │       ├── name-002-crear-pol-tica-y-gate-preventivo.md
-│   │       ├── name-003-renombrar-vocabulario-del-inspector.md
-│   │       ├── name-004-sanear-migraci-n-de-config-v1-a-v2.md
-│   │       ├── name-005-renombrar-eventos-y-callbacks-del-host.md
-│   │       ├── name-006-versionar-snapshots-y-metadata.md
-│   │       ├── name-007-renombrar-provider-de-colaboraci-n.md
-│   │       ├── name-008-sanear-almacenamiento-de-comentarios.md
-│   │       ├── name-009-sanear-firma-y-familias-de-schema.md
-│   │       ├── name-010-renombrar-documentaci-n-y-arquitectura-ia.md
-│   │       ├── name-011-administrar-aliases-p-blicos-deprecados.md
-│   │       └── name-012-retirar-compatibilidad-obsoleta.md
+│   │   ├── task-cards
+│   │   │   ├── AIARCH-001-auditar-y-congelar-baseline-v6.md
+│   │   │   ├── AIARCH-002-corregir-fuente-de-estado-y-arranque.md
+│   │   │   ├── AIARCH-003-adoptar-adapters-raiz-v7.md
+│   │   │   ├── AIARCH-004-implementar-router-por-context-manifest.md
+│   │   │   ├── AIARCH-005-aplicar-presupuesto-l0l4.md
+│   │   │   ├── AIARCH-007-migrar-memoria-a-indice-y-topics.md
+│   │   │   ├── AIARCH-008-implementar-memory-gc-e-invalidacion.md
+│   │   │   ├── AIARCH-009-adoptar-ids-de-trazabilidad.md
+│   │   │   ├── AIARCH-010-generar-method-registry-desde-codigo.md
+│   │   │   ├── AIARCH-011-consolidar-casos-y-behavior-catalog.md
+│   │   │   ├── AIARCH-012-consolidar-event-effect-catalogs.md
+│   │   │   ├── AIARCH-013-construir-trace-matrix-y-coverage-gate.md
+│   │   │   ├── AIARCH-014-depurar-skill-registry-y-aliases.md
+│   │   │   ├── AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md
+│   │   │   ├── AIARCH-016-consolidar-agent-registry.md
+│   │   │   ├── AIARCH-017-aplicar-politica-de-subagentes-y-coste.md
+│   │   │   ├── AIARCH-018-actualizar-adapter-de-claude.md
+│   │   │   ├── AIARCH-019-actualizar-adapter-de-codex.md
+│   │   │   ├── AIARCH-020-actualizar-adapter-de-copilot.md
+│   │   │   ├── AIARCH-021-implementar-provider-drift-gate.md
+│   │   │   ├── AIARCH-022-migrar-task-card-a-esquema-v7.md
+│   │   │   ├── AIARCH-023-consolidar-scrum-claims-y-vistas.md
+│   │   │   ├── AIARCH-024-crear-evidence-store-y-log-distillation.md
+│   │   │   ├── AIARCH-025-crear-validadores-mecanicos-v7.md
+│   │   │   ├── AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md
+│   │   │   ├── AIARCH-027-migrar-planes-coreux-decl-restore.md
+│   │   │   ├── AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md
+│   │   │   ├── AIARCH-029-integrar-scripts-en-package-ci.md
+│   │   │   ├── AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md
+│   │   │   ├── backlog
+│   │   │   │   ├── AI8-001-congelar-baseline-y-backup.md
+│   │   │   │   ├── AI8-002-adoptar-hot-path-v8.md
+│   │   │   │   ├── AI8-003-migrar-conocimiento-a-jsonl.md
+│   │   │   │   ├── AI8-005-compactar-routes.md
+│   │   │   │   ├── AI8-006-compactar-skills-y-aliases.md
+│   │   │   │   ├── AI8-007-consolidar-agentes.md
+│   │   │   │   ├── AI8-008-generar-adapters-de-proveedor.md
+│   │   │   │   ├── AI8-009-migrar-memoria-y-ttl.md
+│   │   │   │   ├── AI8-010-migrar-lifecycle-de-tareas.md
+│   │   │   │   ├── AI8-011-consolidar-contratos-de-usuarios-y-color.md
+│   │   │   │   ├── AI8-012-consolidar-matriz-de-schemas.md
+│   │   │   │   ├── AI8-013-inventariar-namespace-css.md
+│   │   │   │   ├── AI8-014-actualizar-trazabilidad.md
+│   │   │   │   ├── AI8-015-implementar-gates.md
+│   │   │   │   ├── AI8-016-crear-evals-de-costo-y-precision.md
+│   │   │   │   ├── AI8-017-migrar-coreux-decl-restore-name.md
+│   │   │   │   └── AI8-018-rollout-y-eliminacion-controlada.md
+│   │   │   ├── COREUX-001-congelar-baseline-visual-y-responsive.md
+│   │   │   ├── COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md
+│   │   │   ├── COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md
+│   │   │   ├── COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md
+│   │   │   ├── COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md
+│   │   │   ├── COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md
+│   │   │   ├── COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md
+│   │   │   ├── COREUX-008-expandir-maquina-de-estados-de-interaccion.md
+│   │   │   ├── COREUX-009-crear-coordinador-de-efectos-del-designer.md
+│   │   │   ├── COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md
+│   │   │   ├── COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md
+│   │   │   ├── COREUX-012-conectar-commandbus-eventos-e-historial.md
+│   │   │   ├── COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md
+│   │   │   ├── COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md
+│   │   │   ├── COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md
+│   │   │   ├── COREUX-016-completar-comandos-de-pagina.md
+│   │   │   ├── COREUX-017-unificar-zoom-fit-page-y-fit-width.md
+│   │   │   ├── COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md
+│   │   │   ├── COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md
+│   │   │   ├── COREUX-020-crear-estado-responsive-unico-de-superficies.md
+│   │   │   ├── COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md
+│   │   │   ├── COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md
+│   │   │   ├── COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md
+│   │   │   ├── COREUX-024-formalizar-contrato-del-rightsidebar.md
+│   │   │   ├── COREUX-025-completar-listview-compacto-y-menu-por-fila.md
+│   │   │   ├── COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md
+│   │   │   ├── COREUX-027-completar-documentsrail-y-documentcontroller.md
+│   │   │   ├── COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md
+│   │   │   ├── COREUX-029-cerrar-perfiles-del-inspector-por-familia.md
+│   │   │   ├── COREUX-030-formalizar-contrato-de-widgets-del-detailview.md
+│   │   │   ├── COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md
+│   │   │   ├── COREUX-032-consolidar-datos-y-conexiones.md
+│   │   │   ├── COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md
+│   │   │   ├── COREUX-034-unificar-editor-de-opciones.md
+│   │   │   ├── COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md
+│   │   │   ├── COREUX-036-centralizar-defaults-de-creacion-de-schemas.md
+│   │   │   ├── COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md
+│   │   │   ├── COREUX-038-cerrar-contrato-de-choice-fields.md
+│   │   │   ├── COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md
+│   │   │   ├── COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md
+│   │   │   ├── COREUX-041-unificar-owner-tone-y-field-chrome.md
+│   │   │   ├── COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md
+│   │   │   ├── COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md
+│   │   │   ├── COREUX-044-alinear-moveable-con-access-interaction-y-events.md
+│   │   │   ├── COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md
+│   │   │   ├── COREUX-046-cerrar-routing-multidocumento-y-navegacion.md
+│   │   │   ├── COREUX-047-completar-snapshot-e-historial-versionado.md
+│   │   │   ├── COREUX-048-cerrar-paridad-del-controller-y-capacidades.md
+│   │   │   ├── COREUX-049-cerrar-paridad-designer-form-y-viewer.md
+│   │   │   ├── COREUX-050-unificar-validacion-generator-converter-y-persistence.md
+│   │   │   ├── COREUX-051-cerrar-responsive-touch-y-accesibilidad.md
+│   │   │   ├── COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md
+│   │   │   ├── COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md
+│   │   │   ├── COREUX-054-crear-playwright-y-regresion-visual-integral.md
+│   │   │   ├── COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md
+│   │   │   ├── COREUX-056-documentar-configuracion-eventos-efectos-y-release.md
+│   │   │   ├── name-001-inventariar-y-clasificar-ocurrencias.md
+│   │   │   ├── name-002-crear-pol-tica-y-gate-preventivo.md
+│   │   │   ├── name-003-renombrar-vocabulario-del-inspector.md
+│   │   │   ├── name-004-sanear-migraci-n-de-config-v1-a-v2.md
+│   │   │   ├── name-005-renombrar-eventos-y-callbacks-del-host.md
+│   │   │   ├── name-006-versionar-snapshots-y-metadata.md
+│   │   │   ├── name-007-renombrar-provider-de-colaboraci-n.md
+│   │   │   ├── name-008-sanear-almacenamiento-de-comentarios.md
+│   │   │   ├── name-009-sanear-firma-y-familias-de-schema.md
+│   │   │   ├── name-010-renombrar-documentaci-n-y-arquitectura-ia.md
+│   │   │   ├── name-011-administrar-aliases-p-blicos-deprecados.md
+│   │   │   ├── name-012-retirar-compatibilidad-obsoleta.md
+│   │   │   ├── VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md
+│   │   │   ├── VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md
+│   │   │   ├── VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md
+│   │   │   ├── VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md
+│   │   │   ├── VISUX-005-crear-un-estado-responsive-unico-del-workspace.md
+│   │   │   ├── VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md
+│   │   │   ├── VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md
+│   │   │   ├── VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md
+│   │   │   ├── VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md
+│   │   │   ├── VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md
+│   │   │   ├── VISUX-011-unificar-toolbar-contextual-y-menu-mas.md
+│   │   │   ├── VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md
+│   │   │   ├── VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md
+│   │   │   ├── VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md
+│   │   │   ├── VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md
+│   │   │   ├── VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md
+│   │   │   ├── VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md
+│   │   │   ├── VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md
+│   │   │   ├── VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md
+│   │   │   ├── VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md
+│   │   │   ├── VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md
+│   │   │   ├── VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md
+│   │   │   ├── VISUX-023-corregir-header-e-identidad-del-detailview.md
+│   │   │   ├── VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md
+│   │   │   ├── VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md
+│   │   │   ├── VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md
+│   │   │   ├── VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md
+│   │   │   ├── VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md
+│   │   │   ├── VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md
+│   │   │   ├── VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md
+│   │   │   ├── VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md
+│   │   │   ├── VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md
+│   │   │   ├── VISUX-033-cerrar-media-barcode-table-y-shapes.md
+│   │   │   ├── VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md
+│   │   │   ├── VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md
+│   │   │   ├── VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md
+│   │   │   ├── VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md
+│   │   │   ├── VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md
+│   │   │   ├── VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md
+│   │   │   ├── VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md
+│   │   │   ├── VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md
+│   │   │   └── VISUX-042-crear-suite-visual-gates-documentacion-y-release.md
+│   │   ├── VISUX-EXECUTION-ORDER.md
+│   │   ├── VISUX-MERGE-INSTRUCTIONS.md
+│   │   └── VISUX-PRODUCT-BACKLOG-ROWS.md
 │   ├── skills
 │   │   └── README.md
 │   ├── START.md
+│   ├── STATE-SOURCES.md
 │   ├── subagents
 │   │   └── DECISION-MATRIX.md
 │   ├── templates
 │   │   ├── BEHAVIOR-RECORD.md
 │   │   ├── CONTEXT-MANIFEST.md
+│   │   ├── DECISION.md
 │   │   ├── EVIDENCE-PACKET.md
+│   │   ├── HANDOFF.md
 │   │   ├── METHOD-RECORD.md
-│   │   └── TASK-CARD-V7.md
+│   │   ├── TASK-CARD-V7.md
+│   │   └── TASK-CARD.md
 │   └── traceability
 │       └── METHOD-REGISTRY.md
 ├── .claude
@@ -419,15 +573,18 @@ prueba-plugin
 │   ├── copilot-instructions.md
 │   ├── instructions
 │   │   ├── ai-docs.instructions.md
+│   │   ├── ai.instructions.md
 │   │   ├── canvas.instructions.md
 │   │   ├── quality.instructions.md
 │   │   ├── schemas.instructions.md
 │   │   └── sisad-core.instructions.md
 │   └── prompts
+│       ├── color-contract.prompt.md
 │       ├── diagnose-task.prompt.md
 │       ├── implement-task.prompt.md
 │       ├── review-diff.prompt.md
 │       ├── triage-jscpd.prompt.md
+│       ├── update-trace.prompt.md
 │       └── update-traceability.prompt.md
 ├── .serena
 │   └── memories
@@ -438,6 +595,7 @@ prueba-plugin
 │           └── tailwind-migration
 │               └── README.md
 ├── AGENTS.md
+├── CHECKLIST-ACEPTACION-VISUAL.md
 ├── CHECKLIST-ACEPTACION.md
 ├── CLAUDE.md
 ├── CODEX.md
@@ -565,25 +723,37 @@ prueba-plugin
 │   │   ├── 01-archivos.md
 │   │   ├── 02-firma.md
 │   │   └── README.md
+│   ├── AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME_V1.md
 │   └── README.md
 ├── ENTREGA
 │   └── INFORME_DEDUP.md
+├── INSTALL-CHECKLIST-VISUAL.md
 ├── INSTALL-CHECKLIST.md
 ├── INSTALLATION.md
 ├── MANIFEST.md
 ├── MIGRATION_V5_TO_V6.md
 ├── MIGRATION-FROM-V4.md
 ├── MIGRATION-V6-TO-V7.md
+├── MIGRATION-V7-TO-V8.md
 ├── PROMPT_MAESTRO_CODEX_SISAD_PDFME.md
+├── README copy.md
 ├── README_ENTREGA.md
 ├── README-AI-ARCHITECTURE-V7.md
+├── README-AI-ARCHITECTURE-V8.md
 ├── README-COREUX.md
 ├── README-DECLARATIVE-INSTANCES.md
 ├── README-EJEMPLOS-UX-UI.md
 ├── README-MANUAL-PORTABILIDAD.md
 ├── README-RESTORE-SISAD-PDFME.md
+├── README-VISUAL-BEHAVIOR.md
 ├── README.md
 ├── reports
+│   ├── ai-v8
+│   │   ├── 00-BASELINE.md
+│   │   ├── 01-FINDINGS.md
+│   │   ├── 02-TARGET-METRICS.md
+│   │   ├── 03-MIGRATION-MAP.md
+│   │   └── 04-OFFICIAL-PROVIDER-SOURCES.md
 │   ├── configuration
 │   │   ├── behavior-matrix.md
 │   │   ├── config-sources-audit.md
@@ -644,13 +814,23 @@ prueba-plugin
 │   │   ├── SCRUM-MERGE-INSTRUCTIONS.md
 │   │   ├── SPRINT-CURRENT-ROWS.md
 │   │   └── TREE.md
-│   └── right-sidebar-listview-ux-audit.md
+│   ├── right-sidebar-listview-ux-audit.md
+│   └── visual-behavior
+│       ├── 01-SCREENSHOT-AUDIT.md
+│       ├── 02-USE-CASE-MATRIX.md
+│       ├── 03-COMPONENT-MATRIX.md
+│       ├── 04-RISK-REGISTER.md
+│       ├── 05-TASK-MAP.md
+│       ├── 06-BASELINE-STATE-MATRIX.md
+│       ├── 07-BASELINE-MEASUREMENTS.md
+│       └── 08-COLOR-OWNER-TONE-MIGRATION.md
 ├── research
 │   ├── CURRENT-DUPLICATION-BASELINE.md
 │   ├── MODEL-MATRIX.md
 │   ├── OFFICIAL-FINDINGS.md
 │   ├── SOURCE-REGISTER.md
 │   └── V4-AUDIT.md
+├── ROLLBACK-VISUAL.md
 ├── ROLLBACK.md
 ├── SHA256.md
 ├── src
@@ -694,10 +874,13 @@ prueba-plugin
 │           │   └── README.md
 │           ├── documentacion-ui-runtime-sisad-pdfme.md
 │           └── README.md
+├── templates
+│   └── TASK-CARD-SCHEMA-DYN.md
 ├── tools
 │   └── ai-quality
 │       └── README.md
 ├── TREE-V7.md
+├── TREE-V8.md
 └── TREE.md
 ```
 
@@ -706,558 +889,717 @@ prueba-plugin
 | # | Ruta | Lenguaje | Líneas | KB original | Estado |
 |---:|---|---|---:|---:|---|
 | 1 | `README.md` | markdown | 2276 | 42.4 | completo |
-| 2 | `docs/README.md` | markdown | 31 | 0.7 | completo |
-| 3 | `docs/00-introduccion/01-que-es-sisad-pdfme.md` | markdown | 27 | 0.9 | completo |
-| 4 | `docs/00-introduccion/02-para-que-sirve.md` | markdown | 24 | 0.7 | completo |
-| 5 | `docs/00-introduccion/03-glosario.md` | markdown | 17 | 0.7 | completo |
-| 6 | `docs/00-introduccion/04-arquitectura-general.md` | markdown | 29 | 0.7 | completo |
-| 7 | `docs/00-introduccion/README.md` | markdown | 6 | 0.2 | completo |
-| 8 | `docs/01-instalacion/01-requisitos.md` | markdown | 11 | 0.3 | completo |
-| 9 | `docs/01-instalacion/02-instalacion.md` | markdown | 29 | 0.6 | completo |
-| 10 | `docs/01-instalacion/03-configuracion-vite.md` | markdown | 13 | 0.4 | completo |
-| 11 | `docs/01-instalacion/04-importacion-estilos.md` | markdown | 18 | 0.5 | completo |
-| 12 | `docs/01-instalacion/README.md` | markdown | 6 | 0.2 | completo |
-| 13 | `docs/02-conceptos/01-template.md` | markdown | 22 | 0.4 | completo |
-| 14 | `docs/02-conceptos/02-documents-pages.md` | markdown | 15 | 0.3 | completo |
-| 15 | `docs/02-conceptos/03-schemas.md` | markdown | 22 | 0.3 | completo |
-| 16 | `docs/02-conceptos/04-recipients.md` | markdown | 16 | 0.3 | completo |
-| 17 | `docs/02-conceptos/05-assignments.md` | markdown | 12 | 0.3 | completo |
-| 18 | `docs/02-conceptos/06-runtime-modes.md` | markdown | 12 | 0.3 | completo |
-| 19 | `docs/02-conceptos/07-snapshot.md` | markdown | 19 | 0.3 | completo |
-| 20 | `docs/02-conceptos/README.md` | markdown | 9 | 0.3 | completo |
-| 21 | `docs/03-designer/01-designer-overview.md` | markdown | 16 | 0.4 | completo |
-| 22 | `docs/03-designer/02-props.md` | markdown | 32 | 0.9 | completo |
-| 23 | `docs/03-designer/03-canvas.md` | markdown | 17 | 0.4 | completo |
-| 24 | `docs/03-designer/04-left-sidebar.md` | markdown | 17 | 0.3 | completo |
-| 25 | `docs/03-designer/05-right-sidebar.md` | markdown | 14 | 0.3 | completo |
-| 26 | `docs/03-designer/06-detail-view.md` | markdown | 25 | 0.3 | completo |
-| 27 | `docs/03-designer/07-list-view.md` | markdown | 14 | 0.3 | completo |
-| 28 | `docs/03-designer/08-toolbar-commandbus.md` | markdown | 14 | 0.2 | completo |
-| 29 | `docs/03-designer/09-comments.md` | markdown | 11 | 0.2 | completo |
-| 30 | `docs/03-designer/10-multi-documento.md` | markdown | 10 | 0.3 | completo |
-| 31 | `docs/03-designer/11-action-contract.md` | markdown | 55 | 1.4 | completo |
-| 32 | `docs/03-designer/12-inspector-taxonomy.md` | markdown | 240 | 19.3 | completo |
-| 33 | `docs/03-designer/14-core-ux-events-effects.md` | markdown | 5 | 0.2 | completo |
-| 34 | `docs/03-designer/README.md` | markdown | 12 | 0.4 | completo |
-| 35 | `docs/04-schemas/01-schema-base.md` | markdown | 23 | 0.3 | completo |
-| 36 | `docs/04-schemas/02-familias.md` | markdown | 12 | 0.4 | completo |
-| 37 | `docs/04-schemas/03-text-like.md` | markdown | 24 | 0.2 | completo |
-| 38 | `docs/04-schemas/04-option-based.md` | markdown | 18 | 0.3 | completo |
-| 39 | `docs/04-schemas/05-signing-based.md` | markdown | 13 | 0.3 | completo |
-| 40 | `docs/04-schemas/06-action-based.md` | markdown | 15 | 0.2 | completo |
-| 41 | `docs/04-schemas/07-media-barcode-table-shapes.md` | markdown | 22 | 0.3 | completo |
-| 42 | `docs/04-schemas/08-custom-schemas.md` | markdown | 15 | 0.3 | completo |
-| 43 | `docs/04-schemas/09-inspector-contract.md` | markdown | 28 | 0.8 | completo |
-| 44 | `docs/04-schemas/10-docusing-mapping.md` | markdown | 17 | 0.4 | completo |
-| 45 | `docs/04-schemas/README.md` | markdown | 12 | 0.5 | completo |
-| 46 | `docs/05-runtime/01-form.md` | markdown | 13 | 0.2 | completo |
-| 47 | `docs/05-runtime/02-viewer.md` | markdown | 10 | 0.2 | completo |
-| 48 | `docs/05-runtime/03-values.md` | markdown | 11 | 0.2 | completo |
-| 49 | `docs/05-runtime/04-validation.md` | markdown | 13 | 0.2 | completo |
-| 50 | `docs/05-runtime/05-recipient-filtering.md` | markdown | 10 | 0.2 | completo |
-| 51 | `docs/05-runtime/README.md` | markdown | 7 | 0.2 | completo |
-| 52 | `docs/06-generator/01-generator-overview.md` | markdown | 10 | 0.2 | completo |
-| 53 | `docs/06-generator/02-pdf-output.md` | markdown | 8 | 0.2 | completo |
-| 54 | `docs/06-generator/03-fonts-assets.md` | markdown | 8 | 0.2 | completo |
-| 55 | `docs/06-generator/README.md` | markdown | 5 | 0.2 | completo |
-| 56 | `docs/07-integraciones/01-react.md` | markdown | 12 | 0.3 | completo |
-| 57 | `docs/07-integraciones/02-host-app.md` | markdown | 18 | 0.3 | completo |
-| 58 | `docs/07-integraciones/03-signature-providers.md` | markdown | 14 | 0.3 | completo |
-| 59 | `docs/07-integraciones/04-external-forms.md` | markdown | 9 | 0.2 | completo |
-| 60 | `docs/07-integraciones/05-global-config.md` | markdown | 56 | 1.5 | completo |
-| 61 | `docs/07-integraciones/06-host-adapters.md` | markdown | 26 | 0.6 | completo |
-| 62 | `docs/07-integraciones/07-pdfcomponent-lab-as-host-reference.md` | markdown | 34 | 1.0 | completo |
-| 63 | `docs/07-integraciones/08-manual-portabilidad-sisad-pdfme.md` | markdown | 1274 | 21.7 | completo |
-| 64 | `docs/07-integraciones/09-instancias-declarativas.md` | markdown | 5 | 0.2 | completo |
-| 65 | `docs/07-integraciones/README.md` | markdown | 6 | 0.2 | completo |
-| 66 | `docs/08-api-reference/01-designer-api.md` | markdown | 10 | 0.3 | completo |
-| 67 | `docs/08-api-reference/02-form-api.md` | markdown | 9 | 0.2 | completo |
-| 68 | `docs/08-api-reference/03-viewer-api.md` | markdown | 7 | 0.1 | completo |
-| 69 | `docs/08-api-reference/04-configuracion-completa.md` | markdown | 750 | 16.8 | completo |
-| 70 | `docs/08-api-reference/04-generator-api.md` | markdown | 9 | 0.2 | completo |
-| 71 | `docs/08-api-reference/05-api-publica-controller-hooks-adapters.md` | markdown | 593 | 9.1 | completo |
-| 72 | `docs/08-api-reference/05-plugin-api.md` | markdown | 14 | 0.2 | completo |
-| 73 | `docs/08-api-reference/06-restauracion-y-paridad-api-publica.md` | markdown | 35 | 1.6 | completo |
-| 74 | `docs/08-api-reference/07-sisad-pdfme-instance-api.md` | markdown | 3 | 0.1 | completo |
-| 75 | `docs/08-api-reference/08-events-actions-controller.md` | markdown | 3 | 0.1 | completo |
-| 76 | `docs/08-api-reference/README.md` | markdown | 7 | 0.2 | completo |
-| 77 | `docs/09-theming/01-tokens-css.md` | markdown | 14 | 0.2 | completo |
-| 78 | `docs/09-theming/02-tailwind-bridge.md` | markdown | 10 | 0.3 | completo |
-| 79 | `docs/09-theming/03-baseline-visual.md` | markdown | 11 | 0.2 | completo |
-| 80 | `docs/09-theming/04-css-migration.md` | markdown | 11 | 0.2 | completo |
-| 81 | `docs/09-theming/05-css-reduction-tailwind-inline.md` | markdown | 35 | 0.7 | completo |
-| 82 | `docs/09-theming/06-tailwind3-selector-dedup-plan.md` | markdown | 46 | 1.0 | completo |
-| 83 | `docs/09-theming/README.md` | markdown | 6 | 0.2 | completo |
-| 84 | `docs/10-testing-qa/01-manual-checklist.md` | markdown | 26 | 0.3 | completo |
-| 85 | `docs/10-testing-qa/02-regression-matrix.md` | markdown | 75 | 6.0 | completo |
-| 86 | `docs/10-testing-qa/03-playwright.md` | markdown | 12 | 0.2 | completo |
-| 87 | `docs/10-testing-qa/04-vitest.md` | markdown | 10 | 0.2 | completo |
-| 88 | `docs/10-testing-qa/06-matriz-regresion-restauracion-funcional.md` | markdown | 43 | 5.0 | completo |
-| 89 | `docs/10-testing-qa/07-coreux-regression-matrix.md` | markdown | 3 | 0.1 | completo |
-| 90 | `docs/10-testing-qa/README.md` | markdown | 6 | 0.2 | completo |
-| 91 | `docs/11-migraciones/01-legacy-templates.md` | markdown | 10 | 0.3 | completo |
-| 92 | `docs/11-migraciones/02-snapshot-versioning.md` | markdown | 9 | 0.2 | completo |
-| 93 | `docs/11-migraciones/03-pdfme-upstream.md` | markdown | 12 | 0.2 | completo |
-| 94 | `docs/11-migraciones/README.md` | markdown | 5 | 0.2 | completo |
-| 95 | `docs/12-troubleshooting/01-canvas.md` | markdown | 14 | 0.3 | completo |
-| 96 | `docs/12-troubleshooting/02-pdf-worker.md` | markdown | 9 | 0.2 | completo |
-| 97 | `docs/12-troubleshooting/03-tailwind-regressions.md` | markdown | 10 | 0.3 | completo |
-| 98 | `docs/12-troubleshooting/04-runtime.md` | markdown | 16 | 0.2 | completo |
-| 99 | `docs/12-troubleshooting/README.md` | markdown | 6 | 0.2 | completo |
-| 100 | `docs/13-ejemplos/01-basic-designer.md` | markdown | 11 | 0.2 | completo |
-| 101 | `docs/13-ejemplos/02-multi-document-routing.md` | markdown | 10 | 0.2 | completo |
-| 102 | `docs/13-ejemplos/03-generator-runtime.md` | markdown | 9 | 0.1 | completo |
-| 103 | `docs/13-ejemplos/04-dynamic-host-integration-examples.md` | markdown | 272 | 6.8 | completo |
-| 104 | `docs/13-ejemplos/06-integracion-copy-paste.md` | markdown | 265 | 4.6 | completo |
-| 105 | `docs/13-ejemplos/07-presets-configuracion.md` | markdown | 303 | 5.3 | completo |
-| 106 | `docs/13-ejemplos/08-ejemplos-declarativos-json.md` | markdown | 3 | 0.1 | completo |
-| 107 | `docs/13-ejemplos/README.md` | markdown | 69 | 2.7 | completo |
-| 108 | `docs/14-seguridad/01-archivos.md` | markdown | 9 | 0.2 | completo |
-| 109 | `docs/14-seguridad/02-firma.md` | markdown | 5 | 0.2 | completo |
-| 110 | `docs/14-seguridad/README.md` | markdown | 4 | 0.1 | completo |
-| 111 | `AGENTS.md` | markdown | 43 | 0.9 | completo |
-| 112 | `CHECKLIST-ACEPTACION.md` | markdown | 59 | 1.7 | completo |
-| 113 | `CLAUDE.md` | markdown | 11 | 0.5 | completo |
-| 114 | `CODEX.md` | markdown | 11 | 0.4 | completo |
-| 115 | `INSTALL-CHECKLIST.md` | markdown | 12 | 0.4 | completo |
-| 116 | `INSTALLATION.md` | markdown | 13 | 0.6 | completo |
-| 117 | `MANIFEST.md` | markdown | 22 | 2.9 | completo |
-| 118 | `MIGRATION_V5_TO_V6.md` | markdown | 43 | 1.4 | completo |
-| 119 | `MIGRATION-FROM-V4.md` | markdown | 10 | 0.5 | completo |
-| 120 | `MIGRATION-V6-TO-V7.md` | markdown | 36 | 0.7 | completo |
-| 121 | `PROMPT_MAESTRO_CODEX_SISAD_PDFME.md` | markdown | 86 | 3.0 | completo |
-| 122 | `README_ENTREGA.md` | markdown | 37 | 1.6 | completo |
-| 123 | `README-AI-ARCHITECTURE-V7.md` | markdown | 35 | 0.7 | completo |
-| 124 | `README-COREUX.md` | markdown | 33 | 0.6 | completo |
-| 125 | `README-DECLARATIVE-INSTANCES.md` | markdown | 40 | 0.7 | completo |
-| 126 | `README-EJEMPLOS-UX-UI.md` | markdown | 25 | 0.5 | completo |
-| 127 | `README-MANUAL-PORTABILIDAD.md` | markdown | 30 | 1.2 | completo |
-| 128 | `README-RESTORE-SISAD-PDFME.md` | markdown | 63 | 1.3 | completo |
-| 129 | `ROLLBACK.md` | markdown | 3 | 0.3 | completo |
-| 130 | `SHA256.md` | markdown | 87 | 7.9 | completo |
-| 131 | `TREE-V7.md` | markdown | 214 | 10.0 | completo |
-| 132 | `TREE.md` | markdown | 227 | 8.0 | completo |
-| 133 | `.ai/CONTEXT-BUDGET.md` | markdown | 44 | 1.3 | completo |
-| 134 | `.ai/CONTEXT-POLICY.md` | markdown | 52 | 0.8 | completo |
-| 135 | `.ai/MODEL-ROUTER.md` | markdown | 29 | 1.1 | completo |
-| 136 | `.ai/OBSERVABILITY.md` | markdown | 24 | 0.5 | completo |
-| 137 | `.ai/ORCHESTRATION.md` | markdown | 48 | 0.8 | completo |
-| 138 | `.ai/ROUTER.md` | markdown | 29 | 2.2 | completo |
-| 139 | `.ai/START.md` | markdown | 58 | 1.1 | completo |
-| 140 | `.claude/README.md` | markdown | 8 | 0.4 | completo |
-| 141 | `.codex/README.md` | markdown | 13 | 0.4 | completo |
-| 142 | `.github/copilot-instructions.md` | markdown | 10 | 0.5 | completo |
-| 143 | `ENTREGA/INFORME_DEDUP.md` | markdown | 269 | 9.3 | completo |
-| 144 | `reports/right-sidebar-listview-ux-audit.md` | markdown | 35 | 4.4 | completo |
-| 145 | `research/CURRENT-DUPLICATION-BASELINE.md` | markdown | 24 | 0.8 | completo |
-| 146 | `research/MODEL-MATRIX.md` | markdown | 21 | 0.9 | completo |
-| 147 | `research/OFFICIAL-FINDINGS.md` | markdown | 45 | 2.4 | completo |
-| 148 | `research/SOURCE-REGISTER.md` | markdown | 12 | 0.5 | completo |
-| 149 | `research/V4-AUDIT.md` | markdown | 21 | 0.8 | completo |
-| 150 | `.ai/agents/ARCHITECT.md` | markdown | 25 | 0.4 | completo |
-| 151 | `.ai/agents/CANVAS-SPECIALIST.md` | markdown | 25 | 0.4 | completo |
-| 152 | `.ai/agents/COORDINATOR.md` | markdown | 25 | 0.4 | completo |
-| 153 | `.ai/agents/EXPLORER.md` | markdown | 25 | 0.4 | completo |
-| 154 | `.ai/agents/IMPLEMENTER.md` | markdown | 25 | 0.4 | completo |
-| 155 | `.ai/agents/MEMORY-STEWARD.md` | markdown | 25 | 0.4 | completo |
-| 156 | `.ai/agents/PROVIDER-ADAPTER-STEWARD.md` | markdown | 25 | 0.5 | completo |
-| 157 | `.ai/agents/QA.md` | markdown | 25 | 0.4 | completo |
-| 158 | `.ai/agents/REGISTRY.md` | markdown | 18 | 1.2 | completo |
-| 159 | `.ai/agents/REVIEWER.md` | markdown | 25 | 0.4 | completo |
-| 160 | `.ai/agents/RUNTIME-ARCHITECT.md` | markdown | 25 | 0.4 | completo |
-| 161 | `.ai/agents/SCHEMA-SPECIALIST.md` | markdown | 25 | 0.4 | completo |
-| 162 | `.ai/agents/TOKEN-STEWARD.md` | markdown | 25 | 0.4 | completo |
-| 163 | `.ai/agents/TRACEABILITY-STEWARD.md` | markdown | 25 | 0.4 | completo |
-| 164 | `.ai/agents/UX-DESIGNER.md` | markdown | 25 | 0.4 | completo |
-| 165 | `.ai/architecture/AI-ASSISTANT-ARCHITECTURE-V7.md` | markdown | 36 | 0.9 | completo |
-| 166 | `.ai/architecture/DESIGNER-SURFACE-ARCHITECTURE.md` | markdown | 37 | 0.5 | completo |
-| 167 | `.ai/architecture/EVENT-COMMAND-EFFECT-ARCHITECTURE.md` | markdown | 37 | 0.7 | completo |
-| 168 | `.ai/architecture/KNOWLEDGE-GRAPH.md` | markdown | 32 | 0.5 | completo |
-| 169 | `.ai/architecture/MEMORY-ARCHITECTURE-V7.md` | markdown | 26 | 0.7 | completo |
-| 170 | `.ai/architecture/PROVIDER-COMPATIBILITY.md` | markdown | 33 | 0.8 | completo |
-| 171 | `.ai/evals/EVAL-001.md` | markdown | 14 | 0.3 | completo |
-| 172 | `.ai/evals/EVAL-002.md` | markdown | 14 | 0.2 | completo |
-| 173 | `.ai/evals/EVAL-003.md` | markdown | 14 | 0.2 | completo |
-| 174 | `.ai/evals/EVAL-004.md` | markdown | 14 | 0.2 | completo |
-| 175 | `.ai/evals/EVAL-005.md` | markdown | 14 | 0.2 | completo |
-| 176 | `.ai/evals/EVAL-006.md` | markdown | 14 | 0.3 | completo |
-| 177 | `.ai/evals/EVAL-007.md` | markdown | 14 | 0.2 | completo |
-| 178 | `.ai/evals/EVAL-008.md` | markdown | 14 | 0.2 | completo |
-| 179 | `.ai/evals/EVAL-009.md` | markdown | 14 | 0.2 | completo |
-| 180 | `.ai/evals/EVAL-010.md` | markdown | 14 | 0.3 | completo |
-| 181 | `.ai/governance/NAMING-COMPATIBILITY-POLICY.md` | markdown | 153 | 2.4 | completo |
-| 182 | `.ai/governance/PROVIDER-DRIFT-POLICY.md` | markdown | 11 | 0.4 | completo |
-| 183 | `.ai/governance/SUBAGENT-COST-POLICY.md` | markdown | 15 | 0.5 | completo |
-| 184 | `.ai/governance/TOKEN-RESOURCE-POLICY.md` | markdown | 12 | 0.5 | completo |
-| 185 | `.ai/governance/TRACEABILITY-POLICY.md` | markdown | 25 | 0.5 | completo |
-| 186 | `.ai/knowledge/EFFECT-CATALOG.md` | markdown | 24 | 1.7 | completo |
-| 187 | `.ai/knowledge/EVENT-CATALOG.md` | markdown | 51 | 3.6 | completo |
-| 188 | `.ai/knowledge/SOURCE-REGISTER.md` | markdown | 17 | 0.7 | completo |
-| 189 | `.ai/knowledge/USE-CASE-INDEX.md` | markdown | 217 | 10.1 | completo |
-| 190 | `.ai/memory/CURRENT.template.md` | markdown | 15 | 0.2 | completo |
-| 191 | `.ai/memory/HANDOFF.template.md` | markdown | 17 | 0.2 | completo |
-| 192 | `.ai/memory/INDEX.md` | markdown | 17 | 0.8 | completo |
-| 193 | `.ai/memory/MEMORY-GC.md` | markdown | 13 | 0.3 | completo |
-| 194 | `.ai/memory/PROJECT.md` | markdown | 11 | 0.7 | completo |
-| 195 | `.ai/plans/AIARCH-V7-EXECUTION-ORDER.md` | markdown | 21 | 0.5 | completo |
-| 196 | `.ai/plans/COREUX-EXECUTION-ORDER.md` | markdown | 52 | 1.5 | completo |
-| 197 | `.ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME_2026-07-31.md` | markdown | 169 | 4.8 | completo |
-| 198 | `.ai/plans/PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md` | markdown | 702 | 21.6 | completo |
-| 199 | `.ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE-V7.md` | markdown | 46 | 0.9 | completo |
-| 200 | `.ai/playbooks/EXECUTE-TASK-V7.md` | markdown | 14 | 0.3 | completo |
-| 201 | `.ai/playbooks/IMPROVE-DESIGNER-CORE-UX.md` | markdown | 24 | 0.6 | completo |
-| 202 | `.ai/playbooks/MAINTAIN-TRACEABILITY.md` | markdown | 9 | 0.2 | completo |
-| 203 | `.ai/playbooks/UPDATE-MEMORY-V7.md` | markdown | 9 | 0.3 | completo |
-| 204 | `.ai/prompts/COREUX_ANALYZE.prompt.md` | markdown | 18 | 0.4 | completo |
-| 205 | `.ai/prompts/COREUX_CANVAS.prompt.md` | markdown | 11 | 0.3 | completo |
-| 206 | `.ai/prompts/COREUX_EVENT_EFFECT_AUDIT.prompt.md` | markdown | 16 | 0.3 | completo |
-| 207 | `.ai/prompts/COREUX_IMPLEMENT.prompt.md` | markdown | 25 | 0.4 | completo |
-| 208 | `.ai/prompts/COREUX_RELEASE.prompt.md` | markdown | 14 | 0.3 | completo |
-| 209 | `.ai/prompts/COREUX_REVIEW.prompt.md` | markdown | 18 | 0.3 | completo |
-| 210 | `.ai/prompts/COREUX_SCHEMA_FAMILY.prompt.md` | markdown | 21 | 0.3 | completo |
-| 211 | `.ai/prompts/COREUX_VISUAL_QA.prompt.md` | markdown | 20 | 0.4 | completo |
-| 212 | `.ai/prompts/CREATE-TASK.prompt.md` | markdown | 6 | 0.2 | completo |
-| 213 | `.ai/prompts/DIAGNOSE.prompt.md` | markdown | 6 | 0.2 | completo |
-| 214 | `.ai/prompts/DISTILL-LOG.prompt.md` | markdown | 6 | 0.2 | completo |
-| 215 | `.ai/prompts/IMPLEMENT.prompt.md` | markdown | 6 | 0.2 | completo |
-| 216 | `.ai/prompts/MEMORY-DELTA.prompt.md` | markdown | 6 | 0.2 | completo |
-| 217 | `.ai/prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md` | markdown | 490 | 11.1 | completo |
-| 218 | `.ai/prompts/PROVIDER-SYNC.prompt.md` | markdown | 6 | 0.2 | completo |
-| 219 | `.ai/prompts/REVIEW.prompt.md` | markdown | 6 | 0.2 | completo |
-| 220 | `.ai/prompts/TRACEABILITY.prompt.md` | markdown | 6 | 0.2 | completo |
-| 221 | `.ai/research/OFFICIAL-PROVIDER-FINDINGS-2026-07-31.md` | markdown | 46 | 2.2 | completo |
-| 222 | `.ai/routes/ai-architecture.md` | markdown | 22 | 0.6 | completo |
-| 223 | `.ai/routes/assignments.md` | markdown | 21 | 0.5 | completo |
-| 224 | `.ai/routes/canvas.md` | markdown | 21 | 0.5 | completo |
-| 225 | `.ai/routes/capabilities.md` | markdown | 21 | 0.5 | completo |
-| 226 | `.ai/routes/commands.md` | markdown | 21 | 0.5 | completo |
-| 227 | `.ai/routes/configuration.md` | markdown | 21 | 0.5 | completo |
-| 228 | `.ai/routes/controller.md` | markdown | 21 | 0.5 | completo |
-| 229 | `.ai/routes/css-tailwind.md` | markdown | 21 | 0.4 | completo |
-| 230 | `.ai/routes/designer-core-ux.md` | markdown | 40 | 0.7 | completo |
-| 231 | `.ai/routes/docs-memory.md` | markdown | 22 | 0.5 | completo |
-| 232 | `.ai/routes/events-effects.md` | markdown | 22 | 0.6 | completo |
-| 233 | `.ai/routes/left-sidebar.md` | markdown | 21 | 0.5 | completo |
-| 234 | `.ai/routes/provider-adapters.md` | markdown | 21 | 0.5 | completo |
-| 235 | `.ai/routes/quality.md` | markdown | 21 | 0.4 | completo |
-| 236 | `.ai/routes/right-sidebar.md` | markdown | 21 | 0.5 | completo |
-| 237 | `.ai/routes/runtime-snapshot.md` | markdown | 21 | 0.5 | completo |
-| 238 | `.ai/routes/runtime.md` | markdown | 21 | 0.5 | completo |
-| 239 | `.ai/routes/schemas.md` | markdown | 21 | 0.5 | completo |
-| 240 | `.ai/routes/testing.md` | markdown | 21 | 0.4 | completo |
-| 241 | `.ai/routes/token-context.md` | markdown | 22 | 0.5 | completo |
-| 242 | `.ai/routes/traceability.md` | markdown | 22 | 0.6 | completo |
-| 243 | `.ai/routes/ux-design.md` | markdown | 21 | 0.5 | completo |
-| 244 | `.ai/scrum/MERGE-INSTRUCTIONS-V7.md` | markdown | 19 | 0.4 | completo |
-| 245 | `.ai/scrum/PRODUCT-BACKLOG-ROWS-V7.md` | markdown | 34 | 3.8 | completo |
-| 246 | `.ai/scrum/PRODUCT-BACKLOG.md` | markdown | 13 | 0.4 | completo |
-| 247 | `.ai/skills/README.md` | markdown | 63 | 4.9 | completo |
-| 248 | `.ai/subagents/DECISION-MATRIX.md` | markdown | 14 | 0.5 | completo |
-| 249 | `.ai/templates/BEHAVIOR-RECORD.md` | markdown | 13 | 0.1 | completo |
-| 250 | `.ai/templates/CONTEXT-MANIFEST.md` | markdown | 10 | 0.1 | completo |
-| 251 | `.ai/templates/EVIDENCE-PACKET.md` | markdown | 12 | 0.2 | completo |
-| 252 | `.ai/templates/METHOD-RECORD.md` | markdown | 15 | 0.2 | completo |
-| 253 | `.ai/templates/TASK-CARD-V7.md` | markdown | 45 | 0.4 | completo |
-| 254 | `.ai/traceability/METHOD-REGISTRY.md` | markdown | 327 | 40.9 | completo |
-| 255 | `.claude/agents/sisad-explorer.md` | markdown | 9 | 0.3 | completo |
-| 256 | `.claude/agents/sisad-log-distiller.md` | markdown | 9 | 0.4 | completo |
-| 257 | `.claude/agents/sisad-provider-auditor.md` | markdown | 9 | 0.3 | completo |
-| 258 | `.claude/agents/sisad-reviewer.md` | markdown | 9 | 0.3 | completo |
-| 259 | `.claude/agents/sisad-traceability.md` | markdown | 9 | 0.3 | completo |
-| 260 | `.codex/agents/README.md` | markdown | 5 | 0.2 | completo |
-| 261 | `.github/agents/sisad-architect.agent.md` | markdown | 7 | 0.3 | completo |
-| 262 | `.github/agents/sisad-config.agent.md` | markdown | 6 | 0.3 | completo |
-| 263 | `.github/agents/sisad-coordinator.agent.md` | markdown | 7 | 0.3 | completo |
-| 264 | `.github/agents/sisad-dry-auditor.agent.md` | markdown | 7 | 0.3 | completo |
-| 265 | `.github/agents/sisad-dry-reviewer.agent.md` | markdown | 5 | 0.4 | completo |
-| 266 | `.github/agents/sisad-explorer.agent.md` | markdown | 7 | 0.3 | completo |
-| 267 | `.github/agents/sisad-implementer.agent.md` | markdown | 7 | 0.3 | completo |
-| 268 | `.github/agents/sisad-memory-steward.agent.md` | markdown | 7 | 0.3 | completo |
-| 269 | `.github/agents/sisad-provider-adapter-steward.agent.md` | markdown | 7 | 0.3 | completo |
-| 270 | `.github/agents/sisad-qa.agent.md` | markdown | 7 | 0.3 | completo |
-| 271 | `.github/agents/sisad-reviewer.agent.md` | markdown | 7 | 0.3 | completo |
-| 272 | `.github/agents/sisad-scrum-coordinator.agent.md` | markdown | 7 | 0.3 | completo |
-| 273 | `.github/agents/sisad-task-planner.agent.md` | markdown | 5 | 0.3 | completo |
-| 274 | `.github/agents/sisad-test-specialist.agent.md` | markdown | 6 | 0.3 | completo |
-| 275 | `.github/agents/sisad-token-steward.agent.md` | markdown | 7 | 0.3 | completo |
-| 276 | `.github/agents/sisad-traceability-steward.agent.md` | markdown | 7 | 0.2 | completo |
-| 277 | `.github/agents/sisad-ux.agent.md` | markdown | 6 | 0.3 | completo |
-| 278 | `.github/instructions/ai-docs.instructions.md` | markdown | 5 | 0.2 | completo |
-| 279 | `.github/instructions/canvas.instructions.md` | markdown | 5 | 0.2 | completo |
-| 280 | `.github/instructions/quality.instructions.md` | markdown | 4 | 0.2 | completo |
-| 281 | `.github/instructions/schemas.instructions.md` | markdown | 5 | 0.2 | completo |
-| 282 | `.github/instructions/sisad-core.instructions.md` | markdown | 5 | 0.2 | completo |
-| 283 | `.github/prompts/diagnose-task.prompt.md` | markdown | 7 | 0.2 | completo |
-| 284 | `.github/prompts/implement-task.prompt.md` | markdown | 7 | 0.1 | completo |
-| 285 | `.github/prompts/review-diff.prompt.md` | markdown | 7 | 0.1 | completo |
-| 286 | `.github/prompts/triage-jscpd.prompt.md` | markdown | 4 | 0.3 | completo |
-| 287 | `.github/prompts/update-traceability.prompt.md` | markdown | 7 | 0.1 | completo |
-| 288 | `.serena/memories/memory_maintenance.md` | markdown | 11 | 0.3 | completo |
-| 289 | `reports/configuration/behavior-matrix.md` | markdown | 22 | 2.1 | completo |
-| 290 | `reports/configuration/config-sources-audit.md` | markdown | 28 | 2.1 | completo |
-| 291 | `reports/configuration/config-task-pack-manifest.md` | markdown | 36 | 3.9 | completo |
-| 292 | `reports/configuration/config-task-pack-tree.md` | markdown | 32 | 1.5 | completo |
-| 293 | `reports/configuration/current-public-api.md` | markdown | 13 | 1.1 | completo |
-| 294 | `reports/configuration/duplicate-config-paths.md` | markdown | 17 | 0.9 | completo |
-| 295 | `reports/configuration/visual-functional-baseline.md` | markdown | 22 | 1.2 | completo |
-| 296 | `reports/core-ux/01-USE-CASE-MATRIX.md` | markdown | 156 | 12.7 | completo |
-| 297 | `reports/core-ux/02-SCREENSHOT-AUDIT.md` | markdown | 122 | 4.7 | completo |
-| 298 | `reports/core-ux/03-EVENT-CATALOG.md` | markdown | 59 | 4.9 | completo |
-| 299 | `reports/core-ux/04-EFFECT-ARCHITECTURE.md` | markdown | 90 | 1.8 | completo |
-| 300 | `reports/core-ux/05-PATTERN-DECISION-MATRIX.md` | markdown | 29 | 1.5 | completo |
-| 301 | `reports/core-ux/06-GAP-ANALYSIS.md` | markdown | 39 | 2.6 | completo |
-| 302 | `reports/core-ux/07-RISK-REGISTER.md` | markdown | 16 | 1.0 | completo |
-| 303 | `reports/core-ux/08-CAPABILITY-INVENTORY.md` | markdown | 138 | 7.3 | completo |
-| 304 | `reports/core-ux/09-SOURCE-OF-TRUTH-MAP.md` | markdown | 140 | 6.2 | completo |
-| 305 | `reports/core-ux/10-VISUAL-BASELINE.md` | markdown | 101 | 4.1 | completo |
-| 306 | `reports/core-ux/11-EVENT-EFFECT-COVERAGE.md` | markdown | 155 | 7.1 | completo |
-| 307 | `reports/core-ux/PRODUCT-BACKLOG-ROWS.md` | markdown | 62 | 8.1 | completo |
-| 308 | `reports/core-ux/SCRUM-MERGE-INSTRUCTIONS.md` | markdown | 29 | 0.5 | completo |
-| 309 | `reports/core-ux/SPRINT-CURRENT-ROWS.md` | markdown | 62 | 9.5 | completo |
-| 310 | `reports/core-ux/TREE.md` | markdown | 92 | 6.5 | completo |
-| 311 | `reports/declarative-instances/00-BASELINE-COMPLEJIDAD-Y-COMPORTAMIENTO.md` | markdown | 60 | 6.4 | completo |
-| 312 | `reports/declarative-instances/01-USE-CASE-MATRIX.md` | markdown | 70 | 7.1 | completo |
-| 313 | `reports/declarative-instances/02-PUBLIC-API-DRAFT.md` | markdown | 74 | 1.4 | completo |
-| 314 | `reports/declarative-instances/03-LOGIC-MIGRATION-MAP.md` | markdown | 16 | 1.1 | completo |
-| 315 | `reports/declarative-instances/04-RISK-REGISTER.md` | markdown | 16 | 0.9 | completo |
-| 316 | `reports/declarative-instances/05-TASK-USE-CASE-COVERAGE.md` | markdown | 40 | 2.5 | completo |
-| 317 | `reports/declarative-instances/PRODUCT-BACKLOG-ROWS.md` | markdown | 40 | 5.6 | completo |
-| 318 | `reports/declarative-instances/SCRUM-MERGE-INSTRUCTIONS.md` | markdown | 22 | 0.5 | completo |
-| 319 | `reports/declarative-instances/SPRINT-CURRENT-ROWS.md` | markdown | 42 | 3.2 | completo |
-| 320 | `reports/declarative-instances/TREE.md` | markdown | 65 | 4.5 | completo |
-| 321 | `reports/examples-ux/MATRIZ_QA_RESPONSIVE.md` | markdown | 64 | 1.4 | completo |
-| 322 | `reports/naming-sanitization/compatibility-language-audit.md` | markdown | 561 | 40.4 | completo |
-| 323 | `reports/naming-sanitization/occurrence-inventory.md` | markdown | 599 | 73.4 | omitido generado |
-| 324 | `reports/naming-sanitization/persisted-value-impact.md` | markdown | 8 | 0.4 | completo |
-| 325 | `reports/naming-sanitization/public-api-impact.md` | markdown | 89 | 11.3 | completo |
-| 326 | `reports/naming-sanitization/rename-map.md` | markdown | 43 | 3.8 | completo |
-| 327 | `reports/naming-sanitization/RENAMING-MATRIX.md` | markdown | 41 | 3.7 | completo |
-| 328 | `reports/naming-sanitization/third-party-exceptions.md` | markdown | 20 | 2.4 | completo |
-| 329 | `reports/portability/CURRENT-IMPLEMENTATION-GAPS.md` | markdown | 227 | 4.6 | completo |
-| 330 | `reports/portability/PORTABILITY-CHECKLIST.md` | markdown | 109 | 2.6 | completo |
-| 331 | `reports/portability/TREE.md` | markdown | 13 | 0.5 | completo |
-| 332 | `reports/restoration/01-resumen-ejecutivo.md` | markdown | 31 | 1.6 | completo |
-| 333 | `reports/restoration/02-inventario-funcional-eliminado.md` | markdown | 51 | 4.0 | completo |
-| 334 | `reports/restoration/03-brechas-core-actual.md` | markdown | 50 | 2.2 | completo |
-| 335 | `reports/restoration/04-matriz-casos-de-uso.md` | markdown | 39 | 4.9 | completo |
-| 336 | `reports/restoration/05-clasificacion-core-host-no-restaurar.md` | markdown | 48 | 4.1 | completo |
-| 337 | `reports/restoration/06-paridad-api-publica.md` | markdown | 31 | 1.4 | completo |
-| 338 | `reports/restoration/PRODUCT-BACKLOG-ROWS.md` | markdown | 30 | 3.7 | completo |
-| 339 | `reports/restoration/SCRUM-MERGE-INSTRUCTIONS.md` | markdown | 27 | 0.7 | completo |
-| 340 | `reports/restoration/SPRINT-CURRENT-ROWS.md` | markdown | 30 | 4.3 | completo |
-| 341 | `reports/restoration/TREE.md` | markdown | 50 | 3.4 | completo |
-| 342 | `src/sisad-pdfme/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 343 | `src/sisad-pdfme/COREUX-ROADMAP.md` | markdown | 3 | 0.1 | completo |
-| 344 | `src/sisad-pdfme/DECLARATIVE-INSTANCE-ROADMAP.md` | markdown | 3 | 0.1 | completo |
-| 345 | `tools/ai-quality/README.md` | markdown | 7 | 0.4 | completo |
-| 346 | `.agents/skills/sisad-accessibility/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 347 | `.agents/skills/sisad-action-state/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 348 | `.agents/skills/sisad-ai-architecture/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 349 | `.agents/skills/sisad-behavior-traceability/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 350 | `.agents/skills/sisad-canvas-interaction/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 351 | `.agents/skills/sisad-canvas-safety/SKILL.md` | markdown | 12 | 0.6 | completo |
-| 352 | `.agents/skills/sisad-capability-audit/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 353 | `.agents/skills/sisad-collaboration-assignments/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 354 | `.agents/skills/sisad-command-history/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 355 | `.agents/skills/sisad-configuration-service/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 356 | `.agents/skills/sisad-context-budget/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 357 | `.agents/skills/sisad-context-packet/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 358 | `.agents/skills/sisad-context-rot-check/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 359 | `.agents/skills/sisad-controller-parity/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 360 | `.agents/skills/sisad-css-tailwind/SKILL.md` | markdown | 12 | 0.5 | completo |
-| 361 | `.agents/skills/sisad-decision-record/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 362 | `.agents/skills/sisad-declarative-instance/SKILL.md` | markdown | 25 | 0.5 | completo |
-| 363 | `.agents/skills/sisad-dedup-triage/SKILL.md` | markdown | 10 | 0.6 | completo |
-| 364 | `.agents/skills/sisad-designer-core-ux/SKILL.md` | markdown | 22 | 0.5 | completo |
-| 365 | `.agents/skills/sisad-designer-safety/SKILL.md` | markdown | 8 | 0.6 | completo |
-| 366 | `.agents/skills/sisad-dry-refactor/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 367 | `.agents/skills/sisad-dry-refactoring/SKILL.md` | markdown | 18 | 0.7 | completo |
-| 368 | `.agents/skills/sisad-event-effect-contract/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 369 | `.agents/skills/sisad-evidence-grounding/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 370 | `.agents/skills/sisad-form-viewer-parity/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 371 | `.agents/skills/sisad-frontend-component-architecture/SKILL.md` | markdown | 25 | 0.5 | completo |
-| 372 | `.agents/skills/sisad-incident-recovery/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 373 | `.agents/skills/sisad-inspector-contract/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 374 | `.agents/skills/sisad-knowledge-gc/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 375 | `.agents/skills/sisad-left-sidebar-catalog/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 376 | `.agents/skills/sisad-memory-delta/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 377 | `.agents/skills/sisad-memory-scrum/SKILL.md` | markdown | 8 | 0.5 | completo |
-| 378 | `.agents/skills/sisad-method-registry/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 379 | `.agents/skills/sisad-multi-document-routing/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 380 | `.agents/skills/sisad-orchestrate-task/SKILL.md` | markdown | 16 | 0.8 | completo |
-| 381 | `.agents/skills/sisad-pattern-selection/SKILL.md` | markdown | 12 | 0.6 | completo |
-| 382 | `.agents/skills/sisad-prompt-evaluation/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 383 | `.agents/skills/sisad-provider-adapter-sync/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 384 | `.agents/skills/sisad-public-api-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 385 | `.agents/skills/sisad-quality-gates/SKILL.md` | markdown | 8 | 0.5 | completo |
-| 386 | `.agents/skills/sisad-react-performance/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 387 | `.agents/skills/sisad-recipient-assignment-policy/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 388 | `.agents/skills/sisad-research-verify/SKILL.md` | markdown | 8 | 0.6 | completo |
-| 389 | `.agents/skills/sisad-responsive-ux/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 390 | `.agents/skills/sisad-right-sidebar-contract/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 391 | `.agents/skills/sisad-schema-behavior-matrix/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 392 | `.agents/skills/sisad-schema-family-refactor/SKILL.md` | markdown | 16 | 0.6 | completo |
-| 393 | `.agents/skills/sisad-schema-plugin/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 394 | `.agents/skills/sisad-security-privacy/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 395 | `.agents/skills/sisad-skill-evaluation/SKILL.md` | markdown | 16 | 0.6 | completo |
-| 396 | `.agents/skills/sisad-snapshot-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 397 | `.agents/skills/sisad-tailwind-design-system/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 398 | `.agents/skills/sisad-task-execution/SKILL.md` | markdown | 20 | 0.6 | completo |
-| 399 | `.agents/skills/sisad-task-orchestration/SKILL.md` | markdown | 25 | 0.5 | completo |
-| 400 | `.agents/skills/sisad-test-log-distillation/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 401 | `.agents/skills/sisad-testing-pyramid/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 402 | `.agents/skills/sisad-visual-regression/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 403 | `.agents/skills/sisad-worktree-coordination/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 404 | `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md` | markdown | 22 | 2.1 | completo |
-| 405 | `.ai/knowledge/domain/COREUX-EFFECTS.md` | markdown | 90 | 1.8 | completo |
-| 406 | `.ai/knowledge/domain/COREUX-EVENTS.md` | markdown | 59 | 4.9 | completo |
-| 407 | `.ai/knowledge/domain/COREUX-PATTERNS.md` | markdown | 29 | 1.5 | completo |
-| 408 | `.ai/knowledge/domain/COREUX-USE-CASES.md` | markdown | 156 | 12.7 | completo |
-| 409 | `.ai/knowledge/domain/CURRENT-PUBLIC-API.md` | markdown | 13 | 1.1 | completo |
-| 410 | `.ai/knowledge/domain/DECLARATIVE-API.md` | markdown | 74 | 1.4 | completo |
-| 411 | `.ai/knowledge/domain/DECLARATIVE-BASELINE.md` | markdown | 60 | 6.4 | completo |
-| 412 | `.ai/knowledge/domain/DECLARATIVE-USE-CASES.md` | markdown | 70 | 7.1 | completo |
-| 413 | `.ai/memory/topics/ai-architecture.md` | markdown | 3 | 0.1 | completo |
-| 414 | `.ai/memory/topics/canvas.md` | markdown | 3 | 0.1 | completo |
-| 415 | `.ai/memory/topics/configuration.md` | markdown | 3 | 0.1 | completo |
-| 416 | `.ai/memory/topics/runtime.md` | markdown | 3 | 0.1 | completo |
-| 417 | `.ai/memory/topics/schemas.md` | markdown | 3 | 0.1 | completo |
-| 418 | `.ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline-v6.md` | markdown | 72 | 1.6 | completo |
-| 419 | `.ai/scrum/task-cards/AIARCH-002-corregir-fuente-de-estado-y-arranque.md` | markdown | 72 | 1.6 | completo |
-| 420 | `.ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz-v7.md` | markdown | 72 | 1.6 | completo |
-| 421 | `.ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md` | markdown | 72 | 1.6 | completo |
-| 422 | `.ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md` | markdown | 72 | 1.6 | completo |
-| 423 | `.ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md` | markdown | 72 | 1.6 | completo |
-| 424 | `.ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md` | markdown | 72 | 1.6 | completo |
-| 425 | `.ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md` | markdown | 72 | 1.6 | completo |
-| 426 | `.ai/scrum/task-cards/AIARCH-010-generar-method-registry-desde-codigo.md` | markdown | 72 | 1.6 | completo |
-| 427 | `.ai/scrum/task-cards/AIARCH-011-consolidar-casos-y-behavior-catalog.md` | markdown | 72 | 1.6 | completo |
-| 428 | `.ai/scrum/task-cards/AIARCH-012-consolidar-event-effect-catalogs.md` | markdown | 72 | 1.6 | completo |
-| 429 | `.ai/scrum/task-cards/AIARCH-013-construir-trace-matrix-y-coverage-gate.md` | markdown | 72 | 1.6 | completo |
-| 430 | `.ai/scrum/task-cards/AIARCH-014-depurar-skill-registry-y-aliases.md` | markdown | 72 | 1.6 | completo |
-| 431 | `.ai/scrum/task-cards/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md` | markdown | 72 | 1.6 | completo |
-| 432 | `.ai/scrum/task-cards/AIARCH-016-consolidar-agent-registry.md` | markdown | 72 | 1.6 | completo |
-| 433 | `.ai/scrum/task-cards/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md` | markdown | 72 | 1.6 | completo |
-| 434 | `.ai/scrum/task-cards/AIARCH-018-actualizar-adapter-de-claude.md` | markdown | 72 | 1.6 | completo |
-| 435 | `.ai/scrum/task-cards/AIARCH-019-actualizar-adapter-de-codex.md` | markdown | 72 | 1.6 | completo |
-| 436 | `.ai/scrum/task-cards/AIARCH-020-actualizar-adapter-de-copilot.md` | markdown | 72 | 1.6 | completo |
-| 437 | `.ai/scrum/task-cards/AIARCH-021-implementar-provider-drift-gate.md` | markdown | 72 | 1.6 | completo |
-| 438 | `.ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema-v7.md` | markdown | 72 | 1.6 | completo |
-| 439 | `.ai/scrum/task-cards/AIARCH-023-consolidar-scrum-claims-y-vistas.md` | markdown | 72 | 1.6 | completo |
-| 440 | `.ai/scrum/task-cards/AIARCH-024-crear-evidence-store-y-log-distillation.md` | markdown | 72 | 1.6 | completo |
-| 441 | `.ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos-v7.md` | markdown | 72 | 1.6 | completo |
-| 442 | `.ai/scrum/task-cards/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md` | markdown | 72 | 1.6 | completo |
-| 443 | `.ai/scrum/task-cards/AIARCH-027-migrar-planes-coreux-decl-restore.md` | markdown | 72 | 1.6 | completo |
-| 444 | `.ai/scrum/task-cards/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md` | markdown | 72 | 1.6 | completo |
-| 445 | `.ai/scrum/task-cards/AIARCH-029-integrar-scripts-en-package-ci.md` | markdown | 72 | 1.6 | completo |
-| 446 | `.ai/scrum/task-cards/AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md` | markdown | 72 | 1.6 | completo |
-| 447 | `.ai/scrum/task-cards/COREUX-001-congelar-baseline-visual-y-responsive.md` | markdown | 177 | 4.6 | completo |
-| 448 | `.ai/scrum/task-cards/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md` | markdown | 176 | 4.9 | completo |
-| 449 | `.ai/scrum/task-cards/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md` | markdown | 179 | 4.6 | completo |
-| 450 | `.ai/scrum/task-cards/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md` | markdown | 177 | 4.7 | completo |
-| 451 | `.ai/scrum/task-cards/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md` | markdown | 178 | 4.4 | completo |
-| 452 | `.ai/scrum/task-cards/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md` | markdown | 190 | 5.2 | completo |
-| 453 | `.ai/scrum/task-cards/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md` | markdown | 192 | 5.3 | completo |
-| 454 | `.ai/scrum/task-cards/COREUX-008-expandir-maquina-de-estados-de-interaccion.md` | markdown | 177 | 4.6 | completo |
-| 455 | `.ai/scrum/task-cards/COREUX-009-crear-coordinador-de-efectos-del-designer.md` | markdown | 185 | 5.0 | completo |
-| 456 | `.ai/scrum/task-cards/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md` | markdown | 181 | 5.0 | completo |
-| 457 | `.ai/scrum/task-cards/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md` | markdown | 180 | 4.7 | completo |
-| 458 | `.ai/scrum/task-cards/COREUX-012-conectar-commandbus-eventos-e-historial.md` | markdown | 183 | 4.9 | completo |
-| 459 | `.ai/scrum/task-cards/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md` | markdown | 188 | 5.0 | completo |
-| 460 | `.ai/scrum/task-cards/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md` | markdown | 184 | 4.9 | completo |
-| 461 | `.ai/scrum/task-cards/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md` | markdown | 189 | 5.3 | completo |
-| 462 | `.ai/scrum/task-cards/COREUX-016-completar-comandos-de-pagina.md` | markdown | 180 | 4.7 | completo |
-| 463 | `.ai/scrum/task-cards/COREUX-017-unificar-zoom-fit-page-y-fit-width.md` | markdown | 192 | 5.4 | completo |
-| 464 | `.ai/scrum/task-cards/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md` | markdown | 184 | 5.1 | completo |
-| 465 | `.ai/scrum/task-cards/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md` | markdown | 184 | 5.1 | completo |
-| 466 | `.ai/scrum/task-cards/COREUX-020-crear-estado-responsive-unico-de-superficies.md` | markdown | 173 | 4.3 | completo |
-| 467 | `.ai/scrum/task-cards/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md` | markdown | 174 | 4.3 | completo |
-| 468 | `.ai/scrum/task-cards/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md` | markdown | 173 | 4.3 | completo |
-| 469 | `.ai/scrum/task-cards/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md` | markdown | 175 | 4.3 | completo |
-| 470 | `.ai/scrum/task-cards/COREUX-024-formalizar-contrato-del-rightsidebar.md` | markdown | 174 | 4.3 | completo |
-| 471 | `.ai/scrum/task-cards/COREUX-025-completar-listview-compacto-y-menu-por-fila.md` | markdown | 174 | 4.5 | completo |
-| 472 | `.ai/scrum/task-cards/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md` | markdown | 178 | 4.7 | completo |
-| 473 | `.ai/scrum/task-cards/COREUX-027-completar-documentsrail-y-documentcontroller.md` | markdown | 175 | 4.3 | completo |
-| 474 | `.ai/scrum/task-cards/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md` | markdown | 175 | 4.5 | completo |
-| 475 | `.ai/scrum/task-cards/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md` | markdown | 174 | 4.3 | completo |
-| 476 | `.ai/scrum/task-cards/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md` | markdown | 173 | 4.5 | completo |
-| 477 | `.ai/scrum/task-cards/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md` | markdown | 173 | 4.3 | completo |
-| 478 | `.ai/scrum/task-cards/COREUX-032-consolidar-datos-y-conexiones.md` | markdown | 173 | 4.2 | completo |
-| 479 | `.ai/scrum/task-cards/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md` | markdown | 174 | 4.5 | completo |
-| 480 | `.ai/scrum/task-cards/COREUX-034-unificar-editor-de-opciones.md` | markdown | 175 | 4.2 | completo |
-| 481 | `.ai/scrum/task-cards/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md` | markdown | 175 | 4.5 | completo |
-| 482 | `.ai/scrum/task-cards/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md` | markdown | 174 | 4.3 | completo |
-| 483 | `.ai/scrum/task-cards/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md` | markdown | 174 | 4.3 | completo |
-| 484 | `.ai/scrum/task-cards/COREUX-038-cerrar-contrato-de-choice-fields.md` | markdown | 176 | 4.3 | completo |
-| 485 | `.ai/scrum/task-cards/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md` | markdown | 173 | 4.2 | completo |
-| 486 | `.ai/scrum/task-cards/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md` | markdown | 176 | 4.4 | completo |
-| 487 | `.ai/scrum/task-cards/COREUX-041-unificar-owner-tone-y-field-chrome.md` | markdown | 175 | 4.4 | completo |
-| 488 | `.ai/scrum/task-cards/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md` | markdown | 174 | 4.4 | completo |
-| 489 | `.ai/scrum/task-cards/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md` | markdown | 175 | 4.5 | completo |
-| 490 | `.ai/scrum/task-cards/COREUX-044-alinear-moveable-con-access-interaction-y-events.md` | markdown | 175 | 4.4 | completo |
-| 491 | `.ai/scrum/task-cards/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md` | markdown | 176 | 4.5 | completo |
-| 492 | `.ai/scrum/task-cards/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md` | markdown | 174 | 4.3 | completo |
-| 493 | `.ai/scrum/task-cards/COREUX-047-completar-snapshot-e-historial-versionado.md` | markdown | 176 | 4.4 | completo |
-| 494 | `.ai/scrum/task-cards/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md` | markdown | 174 | 4.4 | completo |
-| 495 | `.ai/scrum/task-cards/COREUX-049-cerrar-paridad-designer-form-y-viewer.md` | markdown | 177 | 4.3 | completo |
-| 496 | `.ai/scrum/task-cards/COREUX-050-unificar-validacion-generator-converter-y-persistence.md` | markdown | 176 | 4.4 | completo |
-| 497 | `.ai/scrum/task-cards/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md` | markdown | 175 | 4.4 | completo |
-| 498 | `.ai/scrum/task-cards/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md` | markdown | 174 | 4.2 | completo |
-| 499 | `.ai/scrum/task-cards/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md` | markdown | 174 | 4.2 | completo |
-| 500 | `.ai/scrum/task-cards/COREUX-054-crear-playwright-y-regresion-visual-integral.md` | markdown | 174 | 4.5 | completo |
-| 501 | `.ai/scrum/task-cards/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md` | markdown | 175 | 4.0 | completo |
-| 502 | `.ai/scrum/task-cards/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md` | markdown | 176 | 4.3 | completo |
-| 503 | `.ai/scrum/task-cards/name-001-inventariar-y-clasificar-ocurrencias.md` | markdown | 39 | 0.9 | completo |
-| 504 | `.ai/scrum/task-cards/name-002-crear-pol-tica-y-gate-preventivo.md` | markdown | 39 | 0.9 | completo |
-| 505 | `.ai/scrum/task-cards/name-003-renombrar-vocabulario-del-inspector.md` | markdown | 39 | 0.9 | completo |
-| 506 | `.ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-v1-a-v2.md` | markdown | 39 | 0.9 | completo |
-| 507 | `.ai/scrum/task-cards/name-005-renombrar-eventos-y-callbacks-del-host.md` | markdown | 39 | 0.9 | completo |
-| 508 | `.ai/scrum/task-cards/name-006-versionar-snapshots-y-metadata.md` | markdown | 39 | 0.9 | completo |
-| 509 | `.ai/scrum/task-cards/name-007-renombrar-provider-de-colaboraci-n.md` | markdown | 39 | 0.9 | completo |
-| 510 | `.ai/scrum/task-cards/name-008-sanear-almacenamiento-de-comentarios.md` | markdown | 39 | 0.9 | completo |
-| 511 | `.ai/scrum/task-cards/name-009-sanear-firma-y-familias-de-schema.md` | markdown | 38 | 0.9 | completo |
-| 512 | `.ai/scrum/task-cards/name-010-renombrar-documentaci-n-y-arquitectura-ia.md` | markdown | 39 | 0.9 | completo |
-| 513 | `.ai/scrum/task-cards/name-011-administrar-aliases-p-blicos-deprecados.md` | markdown | 39 | 0.9 | completo |
-| 514 | `.ai/scrum/task-cards/name-012-retirar-compatibilidad-obsoleta.md` | markdown | 39 | 0.9 | completo |
-| 515 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 39 | 1.6 | completo |
-| 516 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
-| 517 | `src/sisad-pdfme/config/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 518 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
-| 519 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
-| 520 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
-| 521 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
-| 522 | `src/sisad-pdfme/schemas/AGENTS.md` | markdown | 6 | 0.1 | completo |
-| 523 | `src/sisad-pdfme/shared/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 524 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
-| 525 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
-| 526 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
-| 527 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
-| 528 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
-| 529 | `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 530 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
-| 531 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
-| 532 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 533 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
-| 534 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
-| 535 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
-| 536 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
-| 537 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
-| 538 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
-| 539 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
-| 540 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
-| 541 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
+| 2 | `docs/AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME_V1.md` | markdown | 502 | 38.1 | completo |
+| 3 | `docs/README.md` | markdown | 31 | 0.7 | completo |
+| 4 | `docs/00-introduccion/01-que-es-sisad-pdfme.md` | markdown | 27 | 0.9 | completo |
+| 5 | `docs/00-introduccion/02-para-que-sirve.md` | markdown | 24 | 0.7 | completo |
+| 6 | `docs/00-introduccion/03-glosario.md` | markdown | 17 | 0.7 | completo |
+| 7 | `docs/00-introduccion/04-arquitectura-general.md` | markdown | 29 | 0.7 | completo |
+| 8 | `docs/00-introduccion/README.md` | markdown | 6 | 0.2 | completo |
+| 9 | `docs/01-instalacion/01-requisitos.md` | markdown | 11 | 0.3 | completo |
+| 10 | `docs/01-instalacion/02-instalacion.md` | markdown | 29 | 0.6 | completo |
+| 11 | `docs/01-instalacion/03-configuracion-vite.md` | markdown | 13 | 0.4 | completo |
+| 12 | `docs/01-instalacion/04-importacion-estilos.md` | markdown | 18 | 0.5 | completo |
+| 13 | `docs/01-instalacion/README.md` | markdown | 6 | 0.2 | completo |
+| 14 | `docs/02-conceptos/01-template.md` | markdown | 22 | 0.4 | completo |
+| 15 | `docs/02-conceptos/02-documents-pages.md` | markdown | 15 | 0.3 | completo |
+| 16 | `docs/02-conceptos/03-schemas.md` | markdown | 22 | 0.3 | completo |
+| 17 | `docs/02-conceptos/04-recipients.md` | markdown | 16 | 0.3 | completo |
+| 18 | `docs/02-conceptos/05-assignments.md` | markdown | 12 | 0.3 | completo |
+| 19 | `docs/02-conceptos/06-runtime-modes.md` | markdown | 12 | 0.3 | completo |
+| 20 | `docs/02-conceptos/07-snapshot.md` | markdown | 19 | 0.3 | completo |
+| 21 | `docs/02-conceptos/README.md` | markdown | 9 | 0.3 | completo |
+| 22 | `docs/03-designer/01-designer-overview.md` | markdown | 16 | 0.4 | completo |
+| 23 | `docs/03-designer/02-props.md` | markdown | 32 | 0.9 | completo |
+| 24 | `docs/03-designer/03-canvas.md` | markdown | 17 | 0.4 | completo |
+| 25 | `docs/03-designer/04-left-sidebar.md` | markdown | 29 | 0.9 | completo |
+| 26 | `docs/03-designer/05-right-sidebar.md` | markdown | 43 | 1.8 | completo |
+| 27 | `docs/03-designer/06-detail-view.md` | markdown | 25 | 0.3 | completo |
+| 28 | `docs/03-designer/07-list-view.md` | markdown | 14 | 0.3 | completo |
+| 29 | `docs/03-designer/08-toolbar-commandbus.md` | markdown | 14 | 0.2 | completo |
+| 30 | `docs/03-designer/09-comments.md` | markdown | 11 | 0.2 | completo |
+| 31 | `docs/03-designer/10-multi-documento.md` | markdown | 10 | 0.3 | completo |
+| 32 | `docs/03-designer/11-action-contract.md` | markdown | 55 | 1.4 | completo |
+| 33 | `docs/03-designer/12-inspector-taxonomy.md` | markdown | 240 | 19.3 | completo |
+| 34 | `docs/03-designer/14-core-ux-events-effects.md` | markdown | 5 | 0.2 | completo |
+| 35 | `docs/03-designer/README.md` | markdown | 12 | 0.4 | completo |
+| 36 | `docs/04-schemas/01-schema-base.md` | markdown | 23 | 0.3 | completo |
+| 37 | `docs/04-schemas/02-familias.md` | markdown | 12 | 0.4 | completo |
+| 38 | `docs/04-schemas/03-text-like.md` | markdown | 24 | 0.2 | completo |
+| 39 | `docs/04-schemas/04-option-based.md` | markdown | 18 | 0.3 | completo |
+| 40 | `docs/04-schemas/05-signing-based.md` | markdown | 13 | 0.3 | completo |
+| 41 | `docs/04-schemas/06-action-based.md` | markdown | 15 | 0.2 | completo |
+| 42 | `docs/04-schemas/07-media-barcode-table-shapes.md` | markdown | 22 | 0.3 | completo |
+| 43 | `docs/04-schemas/08-custom-schemas.md` | markdown | 15 | 0.3 | completo |
+| 44 | `docs/04-schemas/09-inspector-contract.md` | markdown | 28 | 0.8 | completo |
+| 45 | `docs/04-schemas/10-docusing-mapping.md` | markdown | 17 | 0.4 | completo |
+| 46 | `docs/04-schemas/README.md` | markdown | 12 | 0.5 | completo |
+| 47 | `docs/05-runtime/01-form.md` | markdown | 13 | 0.2 | completo |
+| 48 | `docs/05-runtime/02-viewer.md` | markdown | 10 | 0.2 | completo |
+| 49 | `docs/05-runtime/03-values.md` | markdown | 11 | 0.2 | completo |
+| 50 | `docs/05-runtime/04-validation.md` | markdown | 13 | 0.2 | completo |
+| 51 | `docs/05-runtime/05-recipient-filtering.md` | markdown | 10 | 0.2 | completo |
+| 52 | `docs/05-runtime/README.md` | markdown | 7 | 0.2 | completo |
+| 53 | `docs/06-generator/01-generator-overview.md` | markdown | 10 | 0.2 | completo |
+| 54 | `docs/06-generator/02-pdf-output.md` | markdown | 8 | 0.2 | completo |
+| 55 | `docs/06-generator/03-fonts-assets.md` | markdown | 8 | 0.2 | completo |
+| 56 | `docs/06-generator/README.md` | markdown | 5 | 0.2 | completo |
+| 57 | `docs/07-integraciones/01-react.md` | markdown | 12 | 0.3 | completo |
+| 58 | `docs/07-integraciones/02-host-app.md` | markdown | 18 | 0.3 | completo |
+| 59 | `docs/07-integraciones/03-signature-providers.md` | markdown | 14 | 0.3 | completo |
+| 60 | `docs/07-integraciones/04-external-forms.md` | markdown | 9 | 0.2 | completo |
+| 61 | `docs/07-integraciones/05-global-config.md` | markdown | 56 | 1.5 | completo |
+| 62 | `docs/07-integraciones/06-host-adapters.md` | markdown | 26 | 0.6 | completo |
+| 63 | `docs/07-integraciones/07-pdfcomponent-lab-as-host-reference.md` | markdown | 34 | 1.0 | completo |
+| 64 | `docs/07-integraciones/08-manual-portabilidad-sisad-pdfme.md` | markdown | 1274 | 21.7 | completo |
+| 65 | `docs/07-integraciones/09-instancias-declarativas.md` | markdown | 5 | 0.2 | completo |
+| 66 | `docs/07-integraciones/README.md` | markdown | 6 | 0.2 | completo |
+| 67 | `docs/08-api-reference/01-designer-api.md` | markdown | 10 | 0.3 | completo |
+| 68 | `docs/08-api-reference/02-form-api.md` | markdown | 9 | 0.2 | completo |
+| 69 | `docs/08-api-reference/03-viewer-api.md` | markdown | 7 | 0.1 | completo |
+| 70 | `docs/08-api-reference/04-configuracion-completa.md` | markdown | 750 | 16.8 | completo |
+| 71 | `docs/08-api-reference/04-generator-api.md` | markdown | 9 | 0.2 | completo |
+| 72 | `docs/08-api-reference/05-api-publica-controller-hooks-adapters.md` | markdown | 593 | 9.1 | completo |
+| 73 | `docs/08-api-reference/05-plugin-api.md` | markdown | 14 | 0.2 | completo |
+| 74 | `docs/08-api-reference/06-restauracion-y-paridad-api-publica.md` | markdown | 35 | 1.6 | completo |
+| 75 | `docs/08-api-reference/07-sisad-pdfme-instance-api.md` | markdown | 3 | 0.1 | completo |
+| 76 | `docs/08-api-reference/08-events-actions-controller.md` | markdown | 3 | 0.1 | completo |
+| 77 | `docs/08-api-reference/README.md` | markdown | 7 | 0.2 | completo |
+| 78 | `docs/09-theming/01-tokens-css.md` | markdown | 14 | 0.2 | completo |
+| 79 | `docs/09-theming/02-tailwind-bridge.md` | markdown | 10 | 0.3 | completo |
+| 80 | `docs/09-theming/03-baseline-visual.md` | markdown | 11 | 0.2 | completo |
+| 81 | `docs/09-theming/04-css-migration.md` | markdown | 11 | 0.2 | completo |
+| 82 | `docs/09-theming/05-css-reduction-tailwind-inline.md` | markdown | 35 | 0.7 | completo |
+| 83 | `docs/09-theming/06-tailwind3-selector-dedup-plan.md` | markdown | 46 | 1.0 | completo |
+| 84 | `docs/09-theming/README.md` | markdown | 6 | 0.2 | completo |
+| 85 | `docs/10-testing-qa/01-manual-checklist.md` | markdown | 26 | 0.3 | completo |
+| 86 | `docs/10-testing-qa/02-regression-matrix.md` | markdown | 75 | 6.0 | completo |
+| 87 | `docs/10-testing-qa/03-playwright.md` | markdown | 12 | 0.2 | completo |
+| 88 | `docs/10-testing-qa/04-vitest.md` | markdown | 10 | 0.2 | completo |
+| 89 | `docs/10-testing-qa/06-matriz-regresion-restauracion-funcional.md` | markdown | 43 | 5.0 | completo |
+| 90 | `docs/10-testing-qa/07-coreux-regression-matrix.md` | markdown | 3 | 0.1 | completo |
+| 91 | `docs/10-testing-qa/README.md` | markdown | 6 | 0.2 | completo |
+| 92 | `docs/11-migraciones/01-legacy-templates.md` | markdown | 10 | 0.3 | completo |
+| 93 | `docs/11-migraciones/02-snapshot-versioning.md` | markdown | 9 | 0.2 | completo |
+| 94 | `docs/11-migraciones/03-pdfme-upstream.md` | markdown | 12 | 0.2 | completo |
+| 95 | `docs/11-migraciones/README.md` | markdown | 5 | 0.2 | completo |
+| 96 | `docs/12-troubleshooting/01-canvas.md` | markdown | 14 | 0.3 | completo |
+| 97 | `docs/12-troubleshooting/02-pdf-worker.md` | markdown | 9 | 0.2 | completo |
+| 98 | `docs/12-troubleshooting/03-tailwind-regressions.md` | markdown | 10 | 0.3 | completo |
+| 99 | `docs/12-troubleshooting/04-runtime.md` | markdown | 16 | 0.2 | completo |
+| 100 | `docs/12-troubleshooting/README.md` | markdown | 6 | 0.2 | completo |
+| 101 | `docs/13-ejemplos/01-basic-designer.md` | markdown | 11 | 0.2 | completo |
+| 102 | `docs/13-ejemplos/02-multi-document-routing.md` | markdown | 10 | 0.2 | completo |
+| 103 | `docs/13-ejemplos/03-generator-runtime.md` | markdown | 9 | 0.1 | completo |
+| 104 | `docs/13-ejemplos/04-dynamic-host-integration-examples.md` | markdown | 272 | 6.8 | completo |
+| 105 | `docs/13-ejemplos/06-integracion-copy-paste.md` | markdown | 265 | 4.6 | completo |
+| 106 | `docs/13-ejemplos/07-presets-configuracion.md` | markdown | 303 | 5.3 | completo |
+| 107 | `docs/13-ejemplos/08-ejemplos-declarativos-json.md` | markdown | 3 | 0.1 | completo |
+| 108 | `docs/13-ejemplos/README.md` | markdown | 69 | 2.7 | completo |
+| 109 | `docs/14-seguridad/01-archivos.md` | markdown | 9 | 0.2 | completo |
+| 110 | `docs/14-seguridad/02-firma.md` | markdown | 5 | 0.2 | completo |
+| 111 | `docs/14-seguridad/README.md` | markdown | 4 | 0.1 | completo |
+| 112 | `AGENTS.md` | markdown | 27 | 0.8 | completo |
+| 113 | `CHECKLIST-ACEPTACION-VISUAL.md` | markdown | 40 | 1.3 | completo |
+| 114 | `CHECKLIST-ACEPTACION.md` | markdown | 59 | 1.7 | completo |
+| 115 | `CLAUDE.md` | markdown | 9 | 0.4 | completo |
+| 116 | `CODEX.md` | markdown | 9 | 0.3 | completo |
+| 117 | `INSTALL-CHECKLIST-VISUAL.md` | markdown | 17 | 0.5 | completo |
+| 118 | `INSTALL-CHECKLIST.md` | markdown | 12 | 0.4 | completo |
+| 119 | `INSTALLATION.md` | markdown | 13 | 0.6 | completo |
+| 120 | `MANIFEST.md` | markdown | 74 | 10.1 | completo |
+| 121 | `MIGRATION_V5_TO_V6.md` | markdown | 43 | 1.4 | completo |
+| 122 | `MIGRATION-FROM-V4.md` | markdown | 10 | 0.5 | completo |
+| 123 | `MIGRATION-V6-TO-V7.md` | markdown | 36 | 0.7 | completo |
+| 124 | `MIGRATION-V7-TO-V8.md` | markdown | 34 | 0.6 | completo |
+| 125 | `PROMPT_MAESTRO_CODEX_SISAD_PDFME.md` | markdown | 86 | 3.0 | completo |
+| 126 | `README copy.md` | markdown | 12 | 0.4 | completo |
+| 127 | `README_ENTREGA.md` | markdown | 37 | 1.6 | completo |
+| 128 | `README-AI-ARCHITECTURE-V7.md` | markdown | 35 | 0.7 | completo |
+| 129 | `README-AI-ARCHITECTURE-V8.md` | markdown | 34 | 0.7 | completo |
+| 130 | `README-COREUX.md` | markdown | 33 | 0.6 | completo |
+| 131 | `README-DECLARATIVE-INSTANCES.md` | markdown | 40 | 0.7 | completo |
+| 132 | `README-EJEMPLOS-UX-UI.md` | markdown | 25 | 0.5 | completo |
+| 133 | `README-MANUAL-PORTABILIDAD.md` | markdown | 30 | 1.2 | completo |
+| 134 | `README-RESTORE-SISAD-PDFME.md` | markdown | 63 | 1.3 | completo |
+| 135 | `README-VISUAL-BEHAVIOR.md` | markdown | 46 | 1.5 | completo |
+| 136 | `ROLLBACK-VISUAL.md` | markdown | 11 | 0.5 | completo |
+| 137 | `ROLLBACK.md` | markdown | 3 | 0.3 | completo |
+| 138 | `SHA256.md` | markdown | 87 | 7.9 | completo |
+| 139 | `TREE-V7.md` | markdown | 214 | 10.0 | completo |
+| 140 | `TREE-V8.md` | markdown | 176 | 7.4 | completo |
+| 141 | `TREE.md` | markdown | 227 | 8.0 | completo |
+| 142 | `.ai/BUDGETS.md` | markdown | 19 | 0.4 | completo |
+| 143 | `.ai/CONTEXT-BUDGET.md` | markdown | 44 | 1.3 | completo |
+| 144 | `.ai/CONTEXT-POLICY.md` | markdown | 52 | 0.8 | completo |
+| 145 | `.ai/DECISION-PROTOCOL.md` | markdown | 15 | 0.5 | completo |
+| 146 | `.ai/MODEL-ROUTER.md` | markdown | 29 | 1.1 | completo |
+| 147 | `.ai/OBSERVABILITY.md` | markdown | 24 | 0.5 | completo |
+| 148 | `.ai/ORCHESTRATION.md` | markdown | 48 | 0.8 | completo |
+| 149 | `.ai/ROUTER.md` | markdown | 21 | 0.9 | completo |
+| 150 | `.ai/START.md` | markdown | 33 | 0.5 | completo |
+| 151 | `.ai/STATE-SOURCES.md` | markdown | 15 | 0.6 | completo |
+| 152 | `.claude/README.md` | markdown | 8 | 0.4 | completo |
+| 153 | `.codex/README.md` | markdown | 13 | 0.4 | completo |
+| 154 | `.github/copilot-instructions.md` | markdown | 9 | 0.4 | completo |
+| 155 | `ENTREGA/INFORME_DEDUP.md` | markdown | 269 | 9.3 | completo |
+| 156 | `reports/right-sidebar-listview-ux-audit.md` | markdown | 35 | 4.4 | completo |
+| 157 | `research/CURRENT-DUPLICATION-BASELINE.md` | markdown | 24 | 0.8 | completo |
+| 158 | `research/MODEL-MATRIX.md` | markdown | 21 | 0.9 | completo |
+| 159 | `research/OFFICIAL-FINDINGS.md` | markdown | 45 | 2.4 | completo |
+| 160 | `research/SOURCE-REGISTER.md` | markdown | 12 | 0.5 | completo |
+| 161 | `research/V4-AUDIT.md` | markdown | 21 | 0.8 | completo |
+| 162 | `templates/TASK-CARD-SCHEMA-DYN.md` | markdown | 40 | 0.5 | completo |
+| 163 | `.ai/agents/architect.md` | markdown | 12 | 0.2 | completo |
+| 164 | `.ai/agents/CANVAS-SPECIALIST.md` | markdown | 25 | 0.4 | completo |
+| 165 | `.ai/agents/coordinator.md` | markdown | 12 | 0.2 | completo |
+| 166 | `.ai/agents/domain-specialist.md` | markdown | 12 | 0.3 | completo |
+| 167 | `.ai/agents/explorer.md` | markdown | 12 | 0.2 | completo |
+| 168 | `.ai/agents/implementer.md` | markdown | 12 | 0.2 | completo |
+| 169 | `.ai/agents/memory-steward.md` | markdown | 12 | 0.3 | completo |
+| 170 | `.ai/agents/PROVIDER-ADAPTER-STEWARD.md` | markdown | 25 | 0.5 | completo |
+| 171 | `.ai/agents/provider-steward.md` | markdown | 12 | 0.3 | completo |
+| 172 | `.ai/agents/qa.md` | markdown | 12 | 0.2 | completo |
+| 173 | `.ai/agents/REGISTRY.md` | markdown | 18 | 1.2 | completo |
+| 174 | `.ai/agents/reviewer.md` | markdown | 12 | 0.2 | completo |
+| 175 | `.ai/agents/RUNTIME-ARCHITECT.md` | markdown | 25 | 0.4 | completo |
+| 176 | `.ai/agents/SCHEMA-SPECIALIST.md` | markdown | 25 | 0.4 | completo |
+| 177 | `.ai/agents/TOKEN-STEWARD.md` | markdown | 25 | 0.4 | completo |
+| 178 | `.ai/agents/traceability-steward.md` | markdown | 12 | 0.3 | completo |
+| 179 | `.ai/agents/UX-DESIGNER.md` | markdown | 25 | 0.4 | completo |
+| 180 | `.ai/architecture/00-SYSTEM-MAP.md` | markdown | 21 | 0.5 | completo |
+| 181 | `.ai/architecture/01-KNOWLEDGE-MODEL.md` | markdown | 33 | 0.4 | completo |
+| 182 | `.ai/architecture/02-HOT-WARM-COLD.md` | markdown | 18 | 0.4 | completo |
+| 183 | `.ai/architecture/03-PROVIDER-ADAPTERS.md` | markdown | 9 | 0.4 | completo |
+| 184 | `.ai/architecture/04-TASK-LIFECYCLE.md` | markdown | 15 | 0.3 | completo |
+| 185 | `.ai/architecture/AI-ASSISTANT-ARCHITECTURE-V7.md` | markdown | 36 | 0.9 | completo |
+| 186 | `.ai/architecture/DESIGNER-SURFACE-ARCHITECTURE.md` | markdown | 37 | 0.5 | completo |
+| 187 | `.ai/architecture/EVENT-COMMAND-EFFECT-ARCHITECTURE.md` | markdown | 37 | 0.7 | completo |
+| 188 | `.ai/architecture/KNOWLEDGE-GRAPH.md` | markdown | 32 | 0.5 | completo |
+| 189 | `.ai/architecture/MEMORY-ARCHITECTURE-V7.md` | markdown | 26 | 0.7 | completo |
+| 190 | `.ai/architecture/PROVIDER-COMPATIBILITY.md` | markdown | 33 | 0.8 | completo |
+| 191 | `.ai/contracts/CLASS-NAMESPACE-CONTRACT.md` | markdown | 20 | 0.6 | completo |
+| 192 | `.ai/contracts/CONFIGURATION-CONTRACT.md` | markdown | 12 | 0.3 | completo |
+| 193 | `.ai/contracts/DESIGNER-INTERACTION-CONTRACT.md` | markdown | 9 | 0.4 | completo |
+| 194 | `.ai/contracts/DETAILVIEW-CONTRACT.md` | markdown | 14 | 0.5 | completo |
+| 195 | `.ai/contracts/EVENT-EFFECT-CONTRACT.md` | markdown | 9 | 0.3 | completo |
+| 196 | `.ai/contracts/LEFT-SIDEBAR-CONTRACT.md` | markdown | 10 | 0.4 | completo |
+| 197 | `.ai/contracts/PROJECT-CONTRACT.md` | markdown | 11 | 0.5 | completo |
+| 198 | `.ai/contracts/RECIPIENT-OWNERSHIP-COLOR.md` | markdown | 29 | 0.8 | completo |
+| 199 | `.ai/contracts/SCHEMA-SURFACE-CONTRACT.md` | markdown | 19 | 0.4 | completo |
+| 200 | `.ai/evals/EVAL-001.md` | markdown | 10 | 0.2 | completo |
+| 201 | `.ai/evals/EVAL-002.md` | markdown | 10 | 0.2 | completo |
+| 202 | `.ai/evals/EVAL-003.md` | markdown | 10 | 0.2 | completo |
+| 203 | `.ai/evals/EVAL-004.md` | markdown | 10 | 0.2 | completo |
+| 204 | `.ai/evals/EVAL-005.md` | markdown | 10 | 0.2 | completo |
+| 205 | `.ai/evals/EVAL-006.md` | markdown | 10 | 0.2 | completo |
+| 206 | `.ai/evals/EVAL-007.md` | markdown | 10 | 0.2 | completo |
+| 207 | `.ai/evals/EVAL-008.md` | markdown | 10 | 0.2 | completo |
+| 208 | `.ai/evals/EVAL-009.md` | markdown | 10 | 0.2 | completo |
+| 209 | `.ai/evals/EVAL-010.md` | markdown | 10 | 0.2 | completo |
+| 210 | `.ai/governance/NAMING-COMPATIBILITY-POLICY.md` | markdown | 153 | 2.4 | completo |
+| 211 | `.ai/governance/PROVIDER-DRIFT-POLICY.md` | markdown | 11 | 0.4 | completo |
+| 212 | `.ai/governance/SUBAGENT-COST-POLICY.md` | markdown | 15 | 0.5 | completo |
+| 213 | `.ai/governance/TOKEN-RESOURCE-POLICY.md` | markdown | 12 | 0.5 | completo |
+| 214 | `.ai/governance/TRACEABILITY-POLICY.md` | markdown | 25 | 0.5 | completo |
+| 215 | `.ai/index/README.md` | markdown | 22 | 0.5 | completo |
+| 216 | `.ai/index/RECIPIENT-COLOR-MATRIX.md` | markdown | 13 | 0.5 | completo |
+| 217 | `.ai/index/SCHEMA-MATRIX.md` | markdown | 32 | 5.9 | completo |
+| 218 | `.ai/knowledge/EFFECT-CATALOG.md` | markdown | 24 | 1.7 | completo |
+| 219 | `.ai/knowledge/EVENT-CATALOG.md` | markdown | 51 | 3.6 | completo |
+| 220 | `.ai/knowledge/SOURCE-REGISTER.md` | markdown | 17 | 0.7 | completo |
+| 221 | `.ai/knowledge/USE-CASE-INDEX.md` | markdown | 217 | 10.1 | completo |
+| 222 | `.ai/memory/CURRENT.template.md` | markdown | 12 | 0.1 | completo |
+| 223 | `.ai/memory/HANDOFF.template.md` | markdown | 12 | 0.2 | completo |
+| 224 | `.ai/memory/INDEX.md` | markdown | 13 | 0.4 | completo |
+| 225 | `.ai/memory/MEMORY-GC.md` | markdown | 13 | 0.3 | completo |
+| 226 | `.ai/memory/PROJECT.md` | markdown | 6 | 0.3 | completo |
+| 227 | `.ai/memory/TTL-POLICY.md` | markdown | 8 | 0.3 | completo |
+| 228 | `.ai/plans/AIARCH-V7-EXECUTION-ORDER.md` | markdown | 21 | 0.5 | completo |
+| 229 | `.ai/plans/COREUX-EXECUTION-ORDER.md` | markdown | 52 | 1.5 | completo |
+| 230 | `.ai/plans/PLAN_CONTINUIDAD_INTEGRACION_SIMPLE_SISAD_PDFME.md` | markdown | 1112 | 23.1 | completo |
+| 231 | `.ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME_2026-07-31.md` | markdown | 169 | 4.8 | completo |
+| 232 | `.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME_2026-08-04.md` | markdown | 198 | 13.4 | completo |
+| 233 | `.ai/plans/PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md` | markdown | 702 | 21.6 | completo |
+| 234 | `.ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE-V7.md` | markdown | 46 | 0.9 | completo |
+| 235 | `.ai/playbooks/EXECUTE-TASK-V7.md` | markdown | 14 | 0.3 | completo |
+| 236 | `.ai/playbooks/IMPROVE-DESIGNER-CORE-UX.md` | markdown | 24 | 0.6 | completo |
+| 237 | `.ai/playbooks/MAINTAIN-TRACEABILITY.md` | markdown | 9 | 0.2 | completo |
+| 238 | `.ai/playbooks/UPDATE-MEMORY-V7.md` | markdown | 9 | 0.3 | completo |
+| 239 | `.ai/prompts/COREUX_ANALYZE.prompt.md` | markdown | 18 | 0.4 | completo |
+| 240 | `.ai/prompts/COREUX_CANVAS.prompt.md` | markdown | 11 | 0.3 | completo |
+| 241 | `.ai/prompts/COREUX_EVENT_EFFECT_AUDIT.prompt.md` | markdown | 16 | 0.3 | completo |
+| 242 | `.ai/prompts/COREUX_IMPLEMENT.prompt.md` | markdown | 25 | 0.4 | completo |
+| 243 | `.ai/prompts/COREUX_RELEASE.prompt.md` | markdown | 14 | 0.3 | completo |
+| 244 | `.ai/prompts/COREUX_REVIEW.prompt.md` | markdown | 18 | 0.3 | completo |
+| 245 | `.ai/prompts/COREUX_SCHEMA_FAMILY.prompt.md` | markdown | 21 | 0.3 | completo |
+| 246 | `.ai/prompts/COREUX_VISUAL_QA.prompt.md` | markdown | 20 | 0.4 | completo |
+| 247 | `.ai/prompts/CREATE-TASK.prompt.md` | markdown | 6 | 0.2 | completo |
+| 248 | `.ai/prompts/DIAGNOSE.md` | markdown | 5 | 0.2 | completo |
+| 249 | `.ai/prompts/DIAGNOSE.prompt.md` | markdown | 6 | 0.2 | completo |
+| 250 | `.ai/prompts/DISTILL-LOG.prompt.md` | markdown | 6 | 0.2 | completo |
+| 251 | `.ai/prompts/IMPLEMENT.md` | markdown | 5 | 0.2 | completo |
+| 252 | `.ai/prompts/IMPLEMENT.prompt.md` | markdown | 6 | 0.2 | completo |
+| 253 | `.ai/prompts/MEMORY-DELTA.md` | markdown | 5 | 0.2 | completo |
+| 254 | `.ai/prompts/MEMORY-DELTA.prompt.md` | markdown | 6 | 0.2 | completo |
+| 255 | `.ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME_V1.md` | markdown | 237 | 5.5 | completo |
+| 256 | `.ai/prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md` | markdown | 490 | 11.1 | completo |
+| 257 | `.ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md` | markdown | 72 | 1.9 | completo |
+| 258 | `.ai/prompts/PROVIDER-SYNC.md` | markdown | 5 | 0.2 | completo |
+| 259 | `.ai/prompts/PROVIDER-SYNC.prompt.md` | markdown | 6 | 0.2 | completo |
+| 260 | `.ai/prompts/REVIEW.md` | markdown | 5 | 0.2 | completo |
+| 261 | `.ai/prompts/REVIEW.prompt.md` | markdown | 6 | 0.2 | completo |
+| 262 | `.ai/prompts/TRACE.md` | markdown | 5 | 0.2 | completo |
+| 263 | `.ai/prompts/TRACEABILITY.prompt.md` | markdown | 6 | 0.2 | completo |
+| 264 | `.ai/research/OFFICIAL-PROVIDER-FINDINGS-2026-07-31.md` | markdown | 46 | 2.2 | completo |
+| 265 | `.ai/research/OFFICIAL-SOURCES.md` | markdown | 21 | 1.1 | completo |
+| 266 | `.ai/routes/ai-architecture.md` | markdown | 17 | 0.3 | completo |
+| 267 | `.ai/routes/assignments.md` | markdown | 21 | 0.5 | completo |
+| 268 | `.ai/routes/canvas.md` | markdown | 17 | 0.4 | completo |
+| 269 | `.ai/routes/capabilities.md` | markdown | 21 | 0.5 | completo |
+| 270 | `.ai/routes/commands.md` | markdown | 21 | 0.5 | completo |
+| 271 | `.ai/routes/configuration.md` | markdown | 17 | 0.4 | completo |
+| 272 | `.ai/routes/controller.md` | markdown | 21 | 0.5 | completo |
+| 273 | `.ai/routes/css-tailwind.md` | markdown | 21 | 0.4 | completo |
+| 274 | `.ai/routes/designer-core-ux.md` | markdown | 40 | 0.7 | completo |
+| 275 | `.ai/routes/docs-memory.md` | markdown | 22 | 0.5 | completo |
+| 276 | `.ai/routes/events-effects.md` | markdown | 22 | 0.6 | completo |
+| 277 | `.ai/routes/inspector.md` | markdown | 17 | 0.4 | completo |
+| 278 | `.ai/routes/left-sidebar.md` | markdown | 18 | 0.4 | completo |
+| 279 | `.ai/routes/persistence.md` | markdown | 17 | 0.4 | completo |
+| 280 | `.ai/routes/provider-adapters.md` | markdown | 21 | 0.5 | completo |
+| 281 | `.ai/routes/quality.md` | markdown | 17 | 0.3 | completo |
+| 282 | `.ai/routes/recipients-ownership.md` | markdown | 17 | 0.4 | completo |
+| 283 | `.ai/routes/right-sidebar.md` | markdown | 21 | 0.5 | completo |
+| 284 | `.ai/routes/runtime-contracts.md` | markdown | 17 | 0.4 | completo |
+| 285 | `.ai/routes/runtime-snapshot.md` | markdown | 21 | 0.5 | completo |
+| 286 | `.ai/routes/runtime.md` | markdown | 21 | 0.5 | completo |
+| 287 | `.ai/routes/runtimes.md` | markdown | 17 | 0.4 | completo |
+| 288 | `.ai/routes/schemas.md` | markdown | 17 | 0.4 | completo |
+| 289 | `.ai/routes/testing.md` | markdown | 21 | 0.4 | completo |
+| 290 | `.ai/routes/token-context.md` | markdown | 22 | 0.5 | completo |
+| 291 | `.ai/routes/traceability.md` | markdown | 22 | 0.6 | completo |
+| 292 | `.ai/routes/ux-design.md` | markdown | 21 | 0.5 | completo |
+| 293 | `.ai/routes/ux.md` | markdown | 17 | 0.4 | completo |
+| 294 | `.ai/scrum/MERGE-INSTRUCTIONS-V7.md` | markdown | 19 | 0.4 | completo |
+| 295 | `.ai/scrum/MERGE-V8.md` | markdown | 13 | 0.2 | completo |
+| 296 | `.ai/scrum/PRODUCT-BACKLOG-ROWS-V7.md` | markdown | 34 | 3.8 | completo |
+| 297 | `.ai/scrum/PRODUCT-BACKLOG.md` | markdown | 13 | 0.4 | completo |
+| 298 | `.ai/scrum/VISUX-EXECUTION-ORDER.md` | markdown | 39 | 0.9 | completo |
+| 299 | `.ai/scrum/VISUX-MERGE-INSTRUCTIONS.md` | markdown | 16 | 0.6 | completo |
+| 300 | `.ai/scrum/VISUX-PRODUCT-BACKLOG-ROWS.md` | markdown | 48 | 7.0 | completo |
+| 301 | `.ai/skills/README.md` | markdown | 63 | 4.9 | completo |
+| 302 | `.ai/subagents/DECISION-MATRIX.md` | markdown | 14 | 0.5 | completo |
+| 303 | `.ai/templates/BEHAVIOR-RECORD.md` | markdown | 13 | 0.1 | completo |
+| 304 | `.ai/templates/CONTEXT-MANIFEST.md` | markdown | 10 | 0.1 | completo |
+| 305 | `.ai/templates/DECISION.md` | markdown | 12 | 0.2 | completo |
+| 306 | `.ai/templates/EVIDENCE-PACKET.md` | markdown | 12 | 0.2 | completo |
+| 307 | `.ai/templates/HANDOFF.md` | markdown | 11 | 0.1 | completo |
+| 308 | `.ai/templates/METHOD-RECORD.md` | markdown | 15 | 0.2 | completo |
+| 309 | `.ai/templates/TASK-CARD-V7.md` | markdown | 45 | 0.4 | completo |
+| 310 | `.ai/templates/TASK-CARD.md` | markdown | 26 | 0.3 | completo |
+| 311 | `.ai/traceability/METHOD-REGISTRY.md` | markdown | 327 | 40.9 | completo |
+| 312 | `.claude/agents/sisad-explorer.md` | markdown | 10 | 0.3 | completo |
+| 313 | `.claude/agents/sisad-log-distiller.md` | markdown | 10 | 0.3 | completo |
+| 314 | `.claude/agents/sisad-provider-auditor.md` | markdown | 9 | 0.3 | completo |
+| 315 | `.claude/agents/sisad-reviewer.md` | markdown | 10 | 0.3 | completo |
+| 316 | `.claude/agents/sisad-traceability.md` | markdown | 10 | 0.3 | completo |
+| 317 | `.codex/agents/README.md` | markdown | 5 | 0.2 | completo |
+| 318 | `.github/agents/sisad-architect.agent.md` | markdown | 7 | 0.3 | completo |
+| 319 | `.github/agents/sisad-config.agent.md` | markdown | 6 | 0.3 | completo |
+| 320 | `.github/agents/sisad-coordinator.agent.md` | markdown | 7 | 0.2 | completo |
+| 321 | `.github/agents/sisad-dry-auditor.agent.md` | markdown | 7 | 0.3 | completo |
+| 322 | `.github/agents/sisad-dry-reviewer.agent.md` | markdown | 5 | 0.4 | completo |
+| 323 | `.github/agents/sisad-explorer.agent.md` | markdown | 7 | 0.2 | completo |
+| 324 | `.github/agents/sisad-implementer.agent.md` | markdown | 7 | 0.2 | completo |
+| 325 | `.github/agents/sisad-memory-steward.agent.md` | markdown | 7 | 0.3 | completo |
+| 326 | `.github/agents/sisad-provider-adapter-steward.agent.md` | markdown | 7 | 0.3 | completo |
+| 327 | `.github/agents/sisad-qa.agent.md` | markdown | 7 | 0.2 | completo |
+| 328 | `.github/agents/sisad-reviewer.agent.md` | markdown | 7 | 0.2 | completo |
+| 329 | `.github/agents/sisad-scrum-coordinator.agent.md` | markdown | 7 | 0.3 | completo |
+| 330 | `.github/agents/sisad-task-planner.agent.md` | markdown | 5 | 0.3 | completo |
+| 331 | `.github/agents/sisad-test-specialist.agent.md` | markdown | 6 | 0.3 | completo |
+| 332 | `.github/agents/sisad-token-steward.agent.md` | markdown | 7 | 0.3 | completo |
+| 333 | `.github/agents/sisad-traceability-steward.agent.md` | markdown | 7 | 0.2 | completo |
+| 334 | `.github/agents/sisad-ux.agent.md` | markdown | 6 | 0.3 | completo |
+| 335 | `.github/instructions/ai-docs.instructions.md` | markdown | 5 | 0.2 | completo |
+| 336 | `.github/instructions/ai.instructions.md` | markdown | 5 | 0.2 | completo |
+| 337 | `.github/instructions/canvas.instructions.md` | markdown | 5 | 0.2 | completo |
+| 338 | `.github/instructions/quality.instructions.md` | markdown | 4 | 0.2 | completo |
+| 339 | `.github/instructions/schemas.instructions.md` | markdown | 5 | 0.2 | completo |
+| 340 | `.github/instructions/sisad-core.instructions.md` | markdown | 5 | 0.2 | completo |
+| 341 | `.github/prompts/color-contract.prompt.md` | markdown | 8 | 0.3 | completo |
+| 342 | `.github/prompts/diagnose-task.prompt.md` | markdown | 8 | 0.3 | completo |
+| 343 | `.github/prompts/implement-task.prompt.md` | markdown | 8 | 0.2 | completo |
+| 344 | `.github/prompts/review-diff.prompt.md` | markdown | 8 | 0.2 | completo |
+| 345 | `.github/prompts/triage-jscpd.prompt.md` | markdown | 4 | 0.3 | completo |
+| 346 | `.github/prompts/update-trace.prompt.md` | markdown | 8 | 0.2 | completo |
+| 347 | `.github/prompts/update-traceability.prompt.md` | markdown | 7 | 0.1 | completo |
+| 348 | `.serena/memories/memory_maintenance.md` | markdown | 11 | 0.3 | completo |
+| 349 | `reports/ai-v8/00-BASELINE.md` | markdown | 52 | 1.4 | completo |
+| 350 | `reports/ai-v8/01-FINDINGS.md` | markdown | 16 | 0.8 | completo |
+| 351 | `reports/ai-v8/02-TARGET-METRICS.md` | markdown | 14 | 0.5 | completo |
+| 352 | `reports/ai-v8/03-MIGRATION-MAP.md` | markdown | 14 | 0.6 | completo |
+| 353 | `reports/ai-v8/04-OFFICIAL-PROVIDER-SOURCES.md` | markdown | 25 | 0.7 | completo |
+| 354 | `reports/configuration/behavior-matrix.md` | markdown | 22 | 2.1 | completo |
+| 355 | `reports/configuration/config-sources-audit.md` | markdown | 28 | 2.1 | completo |
+| 356 | `reports/configuration/config-task-pack-manifest.md` | markdown | 36 | 3.9 | completo |
+| 357 | `reports/configuration/config-task-pack-tree.md` | markdown | 32 | 1.5 | completo |
+| 358 | `reports/configuration/current-public-api.md` | markdown | 13 | 1.1 | completo |
+| 359 | `reports/configuration/duplicate-config-paths.md` | markdown | 17 | 0.9 | completo |
+| 360 | `reports/configuration/visual-functional-baseline.md` | markdown | 22 | 1.2 | completo |
+| 361 | `reports/core-ux/01-USE-CASE-MATRIX.md` | markdown | 156 | 12.7 | completo |
+| 362 | `reports/core-ux/02-SCREENSHOT-AUDIT.md` | markdown | 122 | 4.7 | completo |
+| 363 | `reports/core-ux/03-EVENT-CATALOG.md` | markdown | 59 | 4.9 | completo |
+| 364 | `reports/core-ux/04-EFFECT-ARCHITECTURE.md` | markdown | 90 | 1.8 | completo |
+| 365 | `reports/core-ux/05-PATTERN-DECISION-MATRIX.md` | markdown | 29 | 1.5 | completo |
+| 366 | `reports/core-ux/06-GAP-ANALYSIS.md` | markdown | 39 | 2.6 | completo |
+| 367 | `reports/core-ux/07-RISK-REGISTER.md` | markdown | 16 | 1.0 | completo |
+| 368 | `reports/core-ux/08-CAPABILITY-INVENTORY.md` | markdown | 138 | 7.3 | completo |
+| 369 | `reports/core-ux/09-SOURCE-OF-TRUTH-MAP.md` | markdown | 140 | 6.2 | completo |
+| 370 | `reports/core-ux/10-VISUAL-BASELINE.md` | markdown | 101 | 4.1 | completo |
+| 371 | `reports/core-ux/11-EVENT-EFFECT-COVERAGE.md` | markdown | 155 | 7.1 | completo |
+| 372 | `reports/core-ux/PRODUCT-BACKLOG-ROWS.md` | markdown | 62 | 8.1 | completo |
+| 373 | `reports/core-ux/SCRUM-MERGE-INSTRUCTIONS.md` | markdown | 29 | 0.5 | completo |
+| 374 | `reports/core-ux/SPRINT-CURRENT-ROWS.md` | markdown | 62 | 9.5 | completo |
+| 375 | `reports/core-ux/TREE.md` | markdown | 92 | 6.5 | completo |
+| 376 | `reports/declarative-instances/00-BASELINE-COMPLEJIDAD-Y-COMPORTAMIENTO.md` | markdown | 60 | 6.4 | completo |
+| 377 | `reports/declarative-instances/01-USE-CASE-MATRIX.md` | markdown | 70 | 7.1 | completo |
+| 378 | `reports/declarative-instances/02-PUBLIC-API-DRAFT.md` | markdown | 74 | 1.4 | completo |
+| 379 | `reports/declarative-instances/03-LOGIC-MIGRATION-MAP.md` | markdown | 16 | 1.1 | completo |
+| 380 | `reports/declarative-instances/04-RISK-REGISTER.md` | markdown | 16 | 0.9 | completo |
+| 381 | `reports/declarative-instances/05-TASK-USE-CASE-COVERAGE.md` | markdown | 40 | 2.5 | completo |
+| 382 | `reports/declarative-instances/PRODUCT-BACKLOG-ROWS.md` | markdown | 40 | 5.6 | completo |
+| 383 | `reports/declarative-instances/SCRUM-MERGE-INSTRUCTIONS.md` | markdown | 22 | 0.5 | completo |
+| 384 | `reports/declarative-instances/SPRINT-CURRENT-ROWS.md` | markdown | 42 | 3.2 | completo |
+| 385 | `reports/declarative-instances/TREE.md` | markdown | 65 | 4.5 | completo |
+| 386 | `reports/examples-ux/MATRIZ_QA_RESPONSIVE.md` | markdown | 64 | 1.4 | completo |
+| 387 | `reports/naming-sanitization/compatibility-language-audit.md` | markdown | 561 | 40.4 | completo |
+| 388 | `reports/naming-sanitization/occurrence-inventory.md` | markdown | 599 | 73.4 | omitido generado |
+| 389 | `reports/naming-sanitization/persisted-value-impact.md` | markdown | 8 | 0.4 | completo |
+| 390 | `reports/naming-sanitization/public-api-impact.md` | markdown | 89 | 11.3 | completo |
+| 391 | `reports/naming-sanitization/rename-map.md` | markdown | 43 | 3.8 | completo |
+| 392 | `reports/naming-sanitization/RENAMING-MATRIX.md` | markdown | 41 | 3.7 | completo |
+| 393 | `reports/naming-sanitization/third-party-exceptions.md` | markdown | 20 | 2.4 | completo |
+| 394 | `reports/portability/CURRENT-IMPLEMENTATION-GAPS.md` | markdown | 227 | 4.6 | completo |
+| 395 | `reports/portability/PORTABILITY-CHECKLIST.md` | markdown | 109 | 2.6 | completo |
+| 396 | `reports/portability/TREE.md` | markdown | 13 | 0.5 | completo |
+| 397 | `reports/restoration/01-resumen-ejecutivo.md` | markdown | 31 | 1.6 | completo |
+| 398 | `reports/restoration/02-inventario-funcional-eliminado.md` | markdown | 51 | 4.0 | completo |
+| 399 | `reports/restoration/03-brechas-core-actual.md` | markdown | 50 | 2.2 | completo |
+| 400 | `reports/restoration/04-matriz-casos-de-uso.md` | markdown | 39 | 4.9 | completo |
+| 401 | `reports/restoration/05-clasificacion-core-host-no-restaurar.md` | markdown | 48 | 4.1 | completo |
+| 402 | `reports/restoration/06-paridad-api-publica.md` | markdown | 31 | 1.4 | completo |
+| 403 | `reports/restoration/PRODUCT-BACKLOG-ROWS.md` | markdown | 30 | 3.7 | completo |
+| 404 | `reports/restoration/SCRUM-MERGE-INSTRUCTIONS.md` | markdown | 27 | 0.7 | completo |
+| 405 | `reports/restoration/SPRINT-CURRENT-ROWS.md` | markdown | 30 | 4.3 | completo |
+| 406 | `reports/restoration/TREE.md` | markdown | 50 | 3.4 | completo |
+| 407 | `reports/visual-behavior/01-SCREENSHOT-AUDIT.md` | markdown | 68 | 3.1 | completo |
+| 408 | `reports/visual-behavior/02-USE-CASE-MATRIX.md` | markdown | 164 | 11.5 | completo |
+| 409 | `reports/visual-behavior/03-COMPONENT-MATRIX.md` | markdown | 26 | 2.4 | completo |
+| 410 | `reports/visual-behavior/04-RISK-REGISTER.md` | markdown | 17 | 1.4 | completo |
+| 411 | `reports/visual-behavior/05-TASK-MAP.md` | markdown | 46 | 4.0 | completo |
+| 412 | `reports/visual-behavior/06-BASELINE-STATE-MATRIX.md` | markdown | 196 | 9.6 | completo |
+| 413 | `reports/visual-behavior/07-BASELINE-MEASUREMENTS.md` | markdown | 418 | 19.1 | completo |
+| 414 | `reports/visual-behavior/08-COLOR-OWNER-TONE-MIGRATION.md` | markdown | 197 | 8.8 | completo |
+| 415 | `src/sisad-pdfme/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 416 | `src/sisad-pdfme/COREUX-ROADMAP.md` | markdown | 3 | 0.1 | completo |
+| 417 | `src/sisad-pdfme/DECLARATIVE-INSTANCE-ROADMAP.md` | markdown | 3 | 0.1 | completo |
+| 418 | `tools/ai-quality/README.md` | markdown | 7 | 0.4 | completo |
+| 419 | `.agents/skills/canvas-safety/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 420 | `.agents/skills/configuration/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 421 | `.agents/skills/context-engineering/SKILL.md` | markdown | 24 | 0.5 | completo |
+| 422 | `.agents/skills/dry-refactor/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 423 | `.agents/skills/event-effect/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 424 | `.agents/skills/inspector-contract/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 425 | `.agents/skills/left-sidebar/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 426 | `.agents/skills/memory-gc/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 427 | `.agents/skills/public-api/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 428 | `.agents/skills/quality-evidence/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 429 | `.agents/skills/recipient-assignment/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 430 | `.agents/skills/responsive-ux/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 431 | `.agents/skills/runtime-parity/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 432 | `.agents/skills/schema-family/SKILL.md` | markdown | 24 | 0.5 | completo |
+| 433 | `.agents/skills/sisad-accessibility/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 434 | `.agents/skills/sisad-action-state/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 435 | `.agents/skills/sisad-ai-architecture/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 436 | `.agents/skills/sisad-behavior-traceability/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 437 | `.agents/skills/sisad-canvas-interaction/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 438 | `.agents/skills/sisad-canvas-safety/SKILL.md` | markdown | 12 | 0.6 | completo |
+| 439 | `.agents/skills/sisad-capability-audit/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 440 | `.agents/skills/sisad-collaboration-assignments/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 441 | `.agents/skills/sisad-command-history/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 442 | `.agents/skills/sisad-configuration-service/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 443 | `.agents/skills/sisad-context-budget/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 444 | `.agents/skills/sisad-context-packet/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 445 | `.agents/skills/sisad-context-rot-check/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 446 | `.agents/skills/sisad-controller-parity/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 447 | `.agents/skills/sisad-css-tailwind/SKILL.md` | markdown | 12 | 0.5 | completo |
+| 448 | `.agents/skills/sisad-decision-record/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 449 | `.agents/skills/sisad-declarative-instance/SKILL.md` | markdown | 25 | 0.5 | completo |
+| 450 | `.agents/skills/sisad-dedup-triage/SKILL.md` | markdown | 10 | 0.6 | completo |
+| 451 | `.agents/skills/sisad-designer-core-ux/SKILL.md` | markdown | 22 | 0.5 | completo |
+| 452 | `.agents/skills/sisad-designer-safety/SKILL.md` | markdown | 8 | 0.6 | completo |
+| 453 | `.agents/skills/sisad-dry-refactor/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 454 | `.agents/skills/sisad-dry-refactoring/SKILL.md` | markdown | 18 | 0.7 | completo |
+| 455 | `.agents/skills/sisad-event-effect-contract/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 456 | `.agents/skills/sisad-evidence-grounding/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 457 | `.agents/skills/sisad-form-viewer-parity/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 458 | `.agents/skills/sisad-frontend-component-architecture/SKILL.md` | markdown | 25 | 0.5 | completo |
+| 459 | `.agents/skills/sisad-incident-recovery/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 460 | `.agents/skills/sisad-inspector-contract/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 461 | `.agents/skills/sisad-knowledge-gc/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 462 | `.agents/skills/sisad-left-sidebar-catalog/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 463 | `.agents/skills/sisad-memory-delta/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 464 | `.agents/skills/sisad-memory-scrum/SKILL.md` | markdown | 8 | 0.5 | completo |
+| 465 | `.agents/skills/sisad-method-registry/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 466 | `.agents/skills/sisad-multi-document-routing/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 467 | `.agents/skills/sisad-orchestrate-task/SKILL.md` | markdown | 16 | 0.8 | completo |
+| 468 | `.agents/skills/sisad-pattern-selection/SKILL.md` | markdown | 12 | 0.6 | completo |
+| 469 | `.agents/skills/sisad-prompt-evaluation/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 470 | `.agents/skills/sisad-provider-adapter-sync/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 471 | `.agents/skills/sisad-public-api-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 472 | `.agents/skills/sisad-quality-gates/SKILL.md` | markdown | 8 | 0.5 | completo |
+| 473 | `.agents/skills/sisad-react-performance/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 474 | `.agents/skills/sisad-recipient-assignment-policy/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 475 | `.agents/skills/sisad-research-verify/SKILL.md` | markdown | 8 | 0.6 | completo |
+| 476 | `.agents/skills/sisad-responsive-ux/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 477 | `.agents/skills/sisad-right-sidebar-contract/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 478 | `.agents/skills/sisad-schema-behavior-matrix/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 479 | `.agents/skills/sisad-schema-family-refactor/SKILL.md` | markdown | 16 | 0.6 | completo |
+| 480 | `.agents/skills/sisad-schema-plugin/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 481 | `.agents/skills/sisad-security-privacy/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 482 | `.agents/skills/sisad-skill-evaluation/SKILL.md` | markdown | 16 | 0.6 | completo |
+| 483 | `.agents/skills/sisad-snapshot-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 484 | `.agents/skills/sisad-tailwind-design-system/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 485 | `.agents/skills/sisad-task-execution/SKILL.md` | markdown | 20 | 0.6 | completo |
+| 486 | `.agents/skills/sisad-task-orchestration/SKILL.md` | markdown | 25 | 0.5 | completo |
+| 487 | `.agents/skills/sisad-test-log-distillation/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 488 | `.agents/skills/sisad-testing-pyramid/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 489 | `.agents/skills/sisad-visual-regression/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 490 | `.agents/skills/sisad-worktree-coordination/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 491 | `.agents/skills/snapshot/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 492 | `.agents/skills/tailwind-system/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 493 | `.agents/skills/traceability/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 494 | `.agents/skills/worktree-coordination/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 495 | `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md` | markdown | 22 | 2.1 | completo |
+| 496 | `.ai/knowledge/domain/COREUX-EFFECTS.md` | markdown | 90 | 1.8 | completo |
+| 497 | `.ai/knowledge/domain/COREUX-EVENTS.md` | markdown | 59 | 4.9 | completo |
+| 498 | `.ai/knowledge/domain/COREUX-PATTERNS.md` | markdown | 29 | 1.5 | completo |
+| 499 | `.ai/knowledge/domain/COREUX-USE-CASES.md` | markdown | 156 | 12.7 | completo |
+| 500 | `.ai/knowledge/domain/CURRENT-PUBLIC-API.md` | markdown | 13 | 1.1 | completo |
+| 501 | `.ai/knowledge/domain/DECLARATIVE-API.md` | markdown | 74 | 1.4 | completo |
+| 502 | `.ai/knowledge/domain/DECLARATIVE-BASELINE.md` | markdown | 60 | 6.4 | completo |
+| 503 | `.ai/knowledge/domain/DECLARATIVE-USE-CASES.md` | markdown | 70 | 7.1 | completo |
+| 504 | `.ai/knowledge/domain/DESIGNER-INTERACTION-MATRIX.md` | markdown | 50 | 1.4 | completo |
+| 505 | `.ai/knowledge/domain/DETAILVIEW-PROFILES.md` | markdown | 57 | 1.5 | completo |
+| 506 | `.ai/knowledge/domain/EFFECT-CATALOG.md` | markdown | 38 | 1.1 | completo |
+| 507 | `.ai/knowledge/domain/EVENT-CATALOG.md` | markdown | 72 | 1.3 | completo |
+| 508 | `.ai/knowledge/domain/FORM-VIEWER-PDF-PARITY.md` | markdown | 38 | 1.1 | completo |
+| 509 | `.ai/knowledge/domain/LEFT-SIDEBAR-BEHAVIOR.md` | markdown | 64 | 1.8 | completo |
+| 510 | `.ai/knowledge/domain/OWNER-COLOR-CONTRACT.md` | markdown | 61 | 1.8 | completo |
+| 511 | `.ai/knowledge/domain/SCHEMA-BEHAVIOR-MATRIX.md` | markdown | 41 | 1.9 | completo |
+| 512 | `.ai/knowledge/domain/USER-RECIPIENT-USE-CASES.md` | markdown | 49 | 2.5 | completo |
+| 513 | `.ai/memory/topics/ai-architecture.md` | markdown | 3 | 0.1 | completo |
+| 514 | `.ai/memory/topics/canvas.md` | markdown | 3 | 0.1 | completo |
+| 515 | `.ai/memory/topics/configuration.md` | markdown | 3 | 0.1 | completo |
+| 516 | `.ai/memory/topics/runtime.md` | markdown | 3 | 0.1 | completo |
+| 517 | `.ai/memory/topics/schemas.md` | markdown | 3 | 0.1 | completo |
+| 518 | `.ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline-v6.md` | markdown | 72 | 1.6 | completo |
+| 519 | `.ai/scrum/task-cards/AIARCH-002-corregir-fuente-de-estado-y-arranque.md` | markdown | 72 | 1.6 | completo |
+| 520 | `.ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz-v7.md` | markdown | 72 | 1.6 | completo |
+| 521 | `.ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md` | markdown | 72 | 1.6 | completo |
+| 522 | `.ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md` | markdown | 72 | 1.6 | completo |
+| 523 | `.ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md` | markdown | 72 | 1.6 | completo |
+| 524 | `.ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md` | markdown | 72 | 1.6 | completo |
+| 525 | `.ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md` | markdown | 72 | 1.6 | completo |
+| 526 | `.ai/scrum/task-cards/AIARCH-010-generar-method-registry-desde-codigo.md` | markdown | 72 | 1.6 | completo |
+| 527 | `.ai/scrum/task-cards/AIARCH-011-consolidar-casos-y-behavior-catalog.md` | markdown | 72 | 1.6 | completo |
+| 528 | `.ai/scrum/task-cards/AIARCH-012-consolidar-event-effect-catalogs.md` | markdown | 72 | 1.6 | completo |
+| 529 | `.ai/scrum/task-cards/AIARCH-013-construir-trace-matrix-y-coverage-gate.md` | markdown | 72 | 1.6 | completo |
+| 530 | `.ai/scrum/task-cards/AIARCH-014-depurar-skill-registry-y-aliases.md` | markdown | 72 | 1.6 | completo |
+| 531 | `.ai/scrum/task-cards/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md` | markdown | 72 | 1.6 | completo |
+| 532 | `.ai/scrum/task-cards/AIARCH-016-consolidar-agent-registry.md` | markdown | 72 | 1.6 | completo |
+| 533 | `.ai/scrum/task-cards/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md` | markdown | 72 | 1.6 | completo |
+| 534 | `.ai/scrum/task-cards/AIARCH-018-actualizar-adapter-de-claude.md` | markdown | 72 | 1.6 | completo |
+| 535 | `.ai/scrum/task-cards/AIARCH-019-actualizar-adapter-de-codex.md` | markdown | 72 | 1.6 | completo |
+| 536 | `.ai/scrum/task-cards/AIARCH-020-actualizar-adapter-de-copilot.md` | markdown | 72 | 1.6 | completo |
+| 537 | `.ai/scrum/task-cards/AIARCH-021-implementar-provider-drift-gate.md` | markdown | 72 | 1.6 | completo |
+| 538 | `.ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema-v7.md` | markdown | 72 | 1.6 | completo |
+| 539 | `.ai/scrum/task-cards/AIARCH-023-consolidar-scrum-claims-y-vistas.md` | markdown | 72 | 1.6 | completo |
+| 540 | `.ai/scrum/task-cards/AIARCH-024-crear-evidence-store-y-log-distillation.md` | markdown | 72 | 1.6 | completo |
+| 541 | `.ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos-v7.md` | markdown | 72 | 1.6 | completo |
+| 542 | `.ai/scrum/task-cards/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md` | markdown | 72 | 1.6 | completo |
+| 543 | `.ai/scrum/task-cards/AIARCH-027-migrar-planes-coreux-decl-restore.md` | markdown | 72 | 1.6 | completo |
+| 544 | `.ai/scrum/task-cards/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md` | markdown | 72 | 1.6 | completo |
+| 545 | `.ai/scrum/task-cards/AIARCH-029-integrar-scripts-en-package-ci.md` | markdown | 72 | 1.6 | completo |
+| 546 | `.ai/scrum/task-cards/AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md` | markdown | 72 | 1.6 | completo |
+| 547 | `.ai/scrum/task-cards/COREUX-001-congelar-baseline-visual-y-responsive.md` | markdown | 177 | 4.6 | completo |
+| 548 | `.ai/scrum/task-cards/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md` | markdown | 176 | 4.9 | completo |
+| 549 | `.ai/scrum/task-cards/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md` | markdown | 179 | 4.6 | completo |
+| 550 | `.ai/scrum/task-cards/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md` | markdown | 177 | 4.7 | completo |
+| 551 | `.ai/scrum/task-cards/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md` | markdown | 178 | 4.4 | completo |
+| 552 | `.ai/scrum/task-cards/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md` | markdown | 190 | 5.2 | completo |
+| 553 | `.ai/scrum/task-cards/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md` | markdown | 192 | 5.3 | completo |
+| 554 | `.ai/scrum/task-cards/COREUX-008-expandir-maquina-de-estados-de-interaccion.md` | markdown | 177 | 4.6 | completo |
+| 555 | `.ai/scrum/task-cards/COREUX-009-crear-coordinador-de-efectos-del-designer.md` | markdown | 185 | 5.0 | completo |
+| 556 | `.ai/scrum/task-cards/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md` | markdown | 181 | 5.0 | completo |
+| 557 | `.ai/scrum/task-cards/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md` | markdown | 180 | 4.7 | completo |
+| 558 | `.ai/scrum/task-cards/COREUX-012-conectar-commandbus-eventos-e-historial.md` | markdown | 183 | 4.9 | completo |
+| 559 | `.ai/scrum/task-cards/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md` | markdown | 188 | 5.0 | completo |
+| 560 | `.ai/scrum/task-cards/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md` | markdown | 184 | 4.9 | completo |
+| 561 | `.ai/scrum/task-cards/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md` | markdown | 189 | 5.3 | completo |
+| 562 | `.ai/scrum/task-cards/COREUX-016-completar-comandos-de-pagina.md` | markdown | 180 | 4.7 | completo |
+| 563 | `.ai/scrum/task-cards/COREUX-017-unificar-zoom-fit-page-y-fit-width.md` | markdown | 192 | 5.4 | completo |
+| 564 | `.ai/scrum/task-cards/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md` | markdown | 184 | 5.1 | completo |
+| 565 | `.ai/scrum/task-cards/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md` | markdown | 184 | 5.1 | completo |
+| 566 | `.ai/scrum/task-cards/COREUX-020-crear-estado-responsive-unico-de-superficies.md` | markdown | 173 | 4.3 | completo |
+| 567 | `.ai/scrum/task-cards/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md` | markdown | 174 | 4.3 | completo |
+| 568 | `.ai/scrum/task-cards/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md` | markdown | 173 | 4.3 | completo |
+| 569 | `.ai/scrum/task-cards/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md` | markdown | 175 | 4.3 | completo |
+| 570 | `.ai/scrum/task-cards/COREUX-024-formalizar-contrato-del-rightsidebar.md` | markdown | 174 | 4.3 | completo |
+| 571 | `.ai/scrum/task-cards/COREUX-025-completar-listview-compacto-y-menu-por-fila.md` | markdown | 174 | 4.5 | completo |
+| 572 | `.ai/scrum/task-cards/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md` | markdown | 178 | 4.7 | completo |
+| 573 | `.ai/scrum/task-cards/COREUX-027-completar-documentsrail-y-documentcontroller.md` | markdown | 175 | 4.3 | completo |
+| 574 | `.ai/scrum/task-cards/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md` | markdown | 175 | 4.5 | completo |
+| 575 | `.ai/scrum/task-cards/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md` | markdown | 174 | 4.3 | completo |
+| 576 | `.ai/scrum/task-cards/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md` | markdown | 173 | 4.5 | completo |
+| 577 | `.ai/scrum/task-cards/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md` | markdown | 173 | 4.3 | completo |
+| 578 | `.ai/scrum/task-cards/COREUX-032-consolidar-datos-y-conexiones.md` | markdown | 173 | 4.2 | completo |
+| 579 | `.ai/scrum/task-cards/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md` | markdown | 174 | 4.5 | completo |
+| 580 | `.ai/scrum/task-cards/COREUX-034-unificar-editor-de-opciones.md` | markdown | 175 | 4.2 | completo |
+| 581 | `.ai/scrum/task-cards/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md` | markdown | 175 | 4.5 | completo |
+| 582 | `.ai/scrum/task-cards/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md` | markdown | 174 | 4.3 | completo |
+| 583 | `.ai/scrum/task-cards/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md` | markdown | 174 | 4.3 | completo |
+| 584 | `.ai/scrum/task-cards/COREUX-038-cerrar-contrato-de-choice-fields.md` | markdown | 176 | 4.3 | completo |
+| 585 | `.ai/scrum/task-cards/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md` | markdown | 173 | 4.2 | completo |
+| 586 | `.ai/scrum/task-cards/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md` | markdown | 176 | 4.4 | completo |
+| 587 | `.ai/scrum/task-cards/COREUX-041-unificar-owner-tone-y-field-chrome.md` | markdown | 175 | 4.4 | completo |
+| 588 | `.ai/scrum/task-cards/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md` | markdown | 174 | 4.4 | completo |
+| 589 | `.ai/scrum/task-cards/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md` | markdown | 175 | 4.5 | completo |
+| 590 | `.ai/scrum/task-cards/COREUX-044-alinear-moveable-con-access-interaction-y-events.md` | markdown | 175 | 4.4 | completo |
+| 591 | `.ai/scrum/task-cards/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md` | markdown | 176 | 4.5 | completo |
+| 592 | `.ai/scrum/task-cards/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md` | markdown | 174 | 4.3 | completo |
+| 593 | `.ai/scrum/task-cards/COREUX-047-completar-snapshot-e-historial-versionado.md` | markdown | 176 | 4.4 | completo |
+| 594 | `.ai/scrum/task-cards/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md` | markdown | 174 | 4.4 | completo |
+| 595 | `.ai/scrum/task-cards/COREUX-049-cerrar-paridad-designer-form-y-viewer.md` | markdown | 177 | 4.3 | completo |
+| 596 | `.ai/scrum/task-cards/COREUX-050-unificar-validacion-generator-converter-y-persistence.md` | markdown | 176 | 4.4 | completo |
+| 597 | `.ai/scrum/task-cards/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md` | markdown | 175 | 4.4 | completo |
+| 598 | `.ai/scrum/task-cards/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md` | markdown | 174 | 4.2 | completo |
+| 599 | `.ai/scrum/task-cards/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md` | markdown | 174 | 4.2 | completo |
+| 600 | `.ai/scrum/task-cards/COREUX-054-crear-playwright-y-regresion-visual-integral.md` | markdown | 174 | 4.5 | completo |
+| 601 | `.ai/scrum/task-cards/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md` | markdown | 175 | 4.0 | completo |
+| 602 | `.ai/scrum/task-cards/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md` | markdown | 176 | 4.3 | completo |
+| 603 | `.ai/scrum/task-cards/name-001-inventariar-y-clasificar-ocurrencias.md` | markdown | 39 | 0.9 | completo |
+| 604 | `.ai/scrum/task-cards/name-002-crear-pol-tica-y-gate-preventivo.md` | markdown | 39 | 0.9 | completo |
+| 605 | `.ai/scrum/task-cards/name-003-renombrar-vocabulario-del-inspector.md` | markdown | 39 | 0.9 | completo |
+| 606 | `.ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-v1-a-v2.md` | markdown | 39 | 0.9 | completo |
+| 607 | `.ai/scrum/task-cards/name-005-renombrar-eventos-y-callbacks-del-host.md` | markdown | 39 | 0.9 | completo |
+| 608 | `.ai/scrum/task-cards/name-006-versionar-snapshots-y-metadata.md` | markdown | 39 | 0.9 | completo |
+| 609 | `.ai/scrum/task-cards/name-007-renombrar-provider-de-colaboraci-n.md` | markdown | 39 | 0.9 | completo |
+| 610 | `.ai/scrum/task-cards/name-008-sanear-almacenamiento-de-comentarios.md` | markdown | 39 | 0.9 | completo |
+| 611 | `.ai/scrum/task-cards/name-009-sanear-firma-y-familias-de-schema.md` | markdown | 38 | 0.9 | completo |
+| 612 | `.ai/scrum/task-cards/name-010-renombrar-documentaci-n-y-arquitectura-ia.md` | markdown | 39 | 0.9 | completo |
+| 613 | `.ai/scrum/task-cards/name-011-administrar-aliases-p-blicos-deprecados.md` | markdown | 39 | 0.9 | completo |
+| 614 | `.ai/scrum/task-cards/name-012-retirar-compatibilidad-obsoleta.md` | markdown | 39 | 0.9 | completo |
+| 615 | `.ai/scrum/task-cards/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md` | markdown | 172 | 4.6 | completo |
+| 616 | `.ai/scrum/task-cards/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md` | markdown | 168 | 5.2 | completo |
+| 617 | `.ai/scrum/task-cards/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md` | markdown | 166 | 4.6 | completo |
+| 618 | `.ai/scrum/task-cards/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md` | markdown | 166 | 4.7 | completo |
+| 619 | `.ai/scrum/task-cards/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md` | markdown | 166 | 4.5 | completo |
+| 620 | `.ai/scrum/task-cards/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md` | markdown | 166 | 4.5 | completo |
+| 621 | `.ai/scrum/task-cards/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md` | markdown | 166 | 4.5 | completo |
+| 622 | `.ai/scrum/task-cards/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md` | markdown | 165 | 4.4 | completo |
+| 623 | `.ai/scrum/task-cards/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md` | markdown | 165 | 4.3 | completo |
+| 624 | `.ai/scrum/task-cards/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md` | markdown | 165 | 4.3 | completo |
+| 625 | `.ai/scrum/task-cards/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md` | markdown | 165 | 4.4 | completo |
+| 626 | `.ai/scrum/task-cards/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md` | markdown | 165 | 4.4 | completo |
+| 627 | `.ai/scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md` | markdown | 164 | 4.4 | completo |
+| 628 | `.ai/scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md` | markdown | 164 | 4.3 | completo |
+| 629 | `.ai/scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md` | markdown | 164 | 4.4 | completo |
+| 630 | `.ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md` | markdown | 164 | 4.4 | completo |
+| 631 | `.ai/scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md` | markdown | 164 | 4.4 | completo |
+| 632 | `.ai/scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md` | markdown | 165 | 4.3 | completo |
+| 633 | `.ai/scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md` | markdown | 166 | 4.5 | completo |
+| 634 | `.ai/scrum/task-cards/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md` | markdown | 165 | 4.5 | completo |
+| 635 | `.ai/scrum/task-cards/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md` | markdown | 164 | 4.5 | completo |
+| 636 | `.ai/scrum/task-cards/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md` | markdown | 164 | 4.5 | completo |
+| 637 | `.ai/scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md` | markdown | 165 | 4.5 | completo |
+| 638 | `.ai/scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md` | markdown | 164 | 4.5 | completo |
+| 639 | `.ai/scrum/task-cards/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md` | markdown | 164 | 4.4 | completo |
+| 640 | `.ai/scrum/task-cards/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md` | markdown | 165 | 4.5 | completo |
+| 641 | `.ai/scrum/task-cards/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md` | markdown | 164 | 4.4 | completo |
+| 642 | `.ai/scrum/task-cards/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md` | markdown | 166 | 4.5 | completo |
+| 643 | `.ai/scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md` | markdown | 166 | 4.3 | completo |
+| 644 | `.ai/scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md` | markdown | 167 | 4.4 | completo |
+| 645 | `.ai/scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md` | markdown | 163 | 4.3 | completo |
+| 646 | `.ai/scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md` | markdown | 163 | 4.2 | completo |
+| 647 | `.ai/scrum/task-cards/VISUX-033-cerrar-media-barcode-table-y-shapes.md` | markdown | 165 | 4.2 | completo |
+| 648 | `.ai/scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md` | markdown | 166 | 4.4 | completo |
+| 649 | `.ai/scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md` | markdown | 165 | 4.5 | completo |
+| 650 | `.ai/scrum/task-cards/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md` | markdown | 165 | 4.4 | completo |
+| 651 | `.ai/scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md` | markdown | 165 | 4.6 | completo |
+| 652 | `.ai/scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md` | markdown | 166 | 4.5 | completo |
+| 653 | `.ai/scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md` | markdown | 166 | 4.4 | completo |
+| 654 | `.ai/scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md` | markdown | 172 | 4.4 | completo |
+| 655 | `.ai/scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md` | markdown | 165 | 4.3 | completo |
+| 656 | `.ai/scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md` | markdown | 173 | 4.5 | completo |
+| 657 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 39 | 1.6 | completo |
+| 658 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
+| 659 | `src/sisad-pdfme/config/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 660 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
+| 661 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
+| 662 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
+| 663 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
+| 664 | `src/sisad-pdfme/schemas/AGENTS.md` | markdown | 6 | 0.1 | completo |
+| 665 | `src/sisad-pdfme/shared/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 666 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
+| 667 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
+| 668 | `.ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y-backup.md` | markdown | 25 | 0.6 | completo |
+| 669 | `.ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path-v8.md` | markdown | 25 | 0.6 | completo |
+| 670 | `.ai/scrum/task-cards/backlog/AI8-003-migrar-conocimiento-a-jsonl.md` | markdown | 25 | 0.6 | completo |
+| 671 | `.ai/scrum/task-cards/backlog/AI8-005-compactar-routes.md` | markdown | 25 | 0.5 | completo |
+| 672 | `.ai/scrum/task-cards/backlog/AI8-006-compactar-skills-y-aliases.md` | markdown | 25 | 0.6 | completo |
+| 673 | `.ai/scrum/task-cards/backlog/AI8-007-consolidar-agentes.md` | markdown | 25 | 0.5 | completo |
+| 674 | `.ai/scrum/task-cards/backlog/AI8-008-generar-adapters-de-proveedor.md` | markdown | 25 | 0.5 | completo |
+| 675 | `.ai/scrum/task-cards/backlog/AI8-009-migrar-memoria-y-ttl.md` | markdown | 25 | 0.5 | completo |
+| 676 | `.ai/scrum/task-cards/backlog/AI8-010-migrar-lifecycle-de-tareas.md` | markdown | 25 | 0.5 | completo |
+| 677 | `.ai/scrum/task-cards/backlog/AI8-011-consolidar-contratos-de-usuarios-y-color.md` | markdown | 25 | 0.6 | completo |
+| 678 | `.ai/scrum/task-cards/backlog/AI8-012-consolidar-matriz-de-schemas.md` | markdown | 25 | 0.5 | completo |
+| 679 | `.ai/scrum/task-cards/backlog/AI8-013-inventariar-namespace-css.md` | markdown | 25 | 0.6 | completo |
+| 680 | `.ai/scrum/task-cards/backlog/AI8-014-actualizar-trazabilidad.md` | markdown | 25 | 0.5 | completo |
+| 681 | `.ai/scrum/task-cards/backlog/AI8-015-implementar-gates.md` | markdown | 25 | 0.5 | completo |
+| 682 | `.ai/scrum/task-cards/backlog/AI8-016-crear-evals-de-costo-y-precision.md` | markdown | 25 | 0.6 | completo |
+| 683 | `.ai/scrum/task-cards/backlog/AI8-017-migrar-coreux-decl-restore-name.md` | markdown | 25 | 0.6 | completo |
+| 684 | `.ai/scrum/task-cards/backlog/AI8-018-rollout-y-eliminacion-controlada.md` | markdown | 25 | 0.6 | completo |
+| 685 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 686 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
+| 687 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
+| 688 | `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 689 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
+| 690 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
+| 691 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 692 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
+| 693 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
+| 694 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
+| 695 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
+| 696 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
+| 697 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
+| 698 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
+| 699 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
+| 700 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1715
-- **directorio ignorado: dependencia/build/salida generada:** 7
-- **archivo binario/minificado/lock ignorado:** 1
+- **extensión no incluida:** 908
+- **directorio ignorado: dependencia/build/salida generada:** 9
+- **archivo binario/minificado/lock ignorado:** 3
 - **generado detectado por contenido:** 1
 
 ## Totales
 
-- **KB originales candidatos:** `1129.9`
-- **KB incluidos en contenido:** `1055.1`
+- **KB originales candidatos:** `1541.8`
+- **KB incluidos en contenido:** `1466.8`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -3557,7 +3899,522 @@ Cada nueva entrega debe integrarse a esta estructura, no reiniciarla.
 
 <a id="file-0002"></a>
 
-### 0002 — `docs/README.md`
+### 0002 — `docs/AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME_V1.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `502`
+- **Tamaño original:** `38.1 KB`
+- **SHA1 corto:** `86ef66f9fe`
+- **Estado:** `completo`
+
+```markdown
+# Auditoría de refactorización dinámica de `src/sisad-pdfme/schemas`
+
+**Versión:** 1.0
+**Fecha:** 2026-08-04
+**Ruta real:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/schemas`
+**Archivos inventariados:** 90
+**Líneas inventariadas:** 15,226
+**Contenido completo en el pack:** 88
+**Archivos omitidos por el generador:** 2
+
+> La carpeta correcta del proyecto es `schemas` en plural. El inventario contiene
+> 90 archivos. Los archivos `signature/dateSigned.ts` y
+> `signature/signingSchemaFactory.ts` aparecen como “omitido generado”; su
+> recomendación se basa en su rol, imports, documentación y uso, pero deben abrirse
+> directamente en el repositorio antes de modificarlos.
+
+## Veredicto
+
+La arquitectura no parte de cero. Ya existen patrones útiles:
+
+- Factory: `actionSchemaFactory`, `optionGroupFactory`,
+  `signingSchemaFactory`, `textLikeSchemaFactory`.
+- Template Method: `renderSchemaWithChrome`.
+- Strategy: `optionSelectionBehavior`, validation y renderers.
+- Adapter: `optionValueAdapter`, `schemaValueAdapter`.
+- Decorator/Policy: `fieldChrome`.
+- Registry: plugins, providers y familias.
+
+El problema principal es que esos patrones están **fragmentados**. La fuente de
+verdad de un schema se reparte entre `index.ts`, `schemaFamilies.ts`,
+`schemaBuilder.ts`, su plugin, su propPanel, sus renderers, sus value adapters y
+sus reglas visuales. Agregar un tipo nuevo todavía obliga a editar varias listas
+y puede producir drift entre Designer, Form, Viewer, PDF, inspector y snapshot.
+
+## Objetivo observable
+
+Agregar un schema nuevo debería requerir:
+
+1. un `SchemaManifest` o preset;
+2. sus estrategias realmente particulares;
+3. pruebas de contrato.
+
+No debería requerir editar manualmente varias listas de tipos, familias,
+inspectores, colores, value readers y registries.
+
+## Arquitectura objetivo
+
+``​`text
+SchemaManifest<TSchema, TValue>
+├── identity
+│   ├── type
+│   ├── aliases
+│   ├── family
+│   ├── category
+│   └── tags
+├── capabilities
+├── defaults: SchemaDefaultFactory
+├── value: SchemaValueCodec
+├── validation: SchemaValidationStrategy
+├── renderers
+│   ├── designer
+│   ├── form
+│   ├── viewer
+│   └── pdf
+├── inspector: InspectorDefinition
+├── appearance: SchemaAppearancePolicy
+├── interaction: SchemaInteractionPolicy
+├── migration[]
+└── lifecycle?
+        └── dispose()
+``​`
+
+``​`text
+SchemaManifest
+      │
+      ▼
+createPdfmePlugin(manifest)       ← Adapter
+      │
+      ▼
+SchemaRegistry                    ← única fuente de registro
+      │
+      ├── Designer
+      ├── Form
+      ├── Viewer
+      ├── PDF
+      ├── Inspector
+      ├── Snapshot
+      └── Controller
+``​`
+
+### Contrato propuesto
+
+``​`ts
+export type SchemaMode = 'designer' | 'form' | 'viewer' | 'pdf';
+
+export interface SchemaValueCodec<TSchema, TValue> {
+  read(schema: TSchema, runtimeValue?: unknown): TValue;
+  write(schema: TSchema, value: TValue): Partial<TSchema>;
+  normalize(value: unknown, schema: TSchema): TValue;
+  equals(left: TValue, right: TValue): boolean;
+  migrateLegacy?(schema: unknown): Partial<TSchema>;
+}
+
+export interface SchemaValidationStrategy<TSchema, TValue> {
+  validate(args: {
+    schema: TSchema;
+    value: TValue;
+    mode: SchemaMode;
+    context: SchemaRuntimeContext;
+  }): SchemaValidationResult;
+}
+
+export interface SchemaManifest<TSchema, TValue> {
+  type: string;
+  aliases?: readonly string[];
+  family: string;
+  category: string;
+  tags: readonly string[];
+  capabilities: readonly string[];
+  defaults: SchemaDefaultFactory<TSchema>;
+  value: SchemaValueCodec<TSchema, TValue>;
+  validation?: SchemaValidationStrategy<TSchema, TValue>;
+  renderers: Partial<Record<SchemaMode, SchemaRenderer<TSchema, TValue>>>;
+  inspector: InspectorDefinition<TSchema>;
+  appearance?: SchemaAppearancePolicy<TSchema>;
+  interaction?: SchemaInteractionPolicy<TSchema, TValue>;
+  migrations?: readonly SchemaMigration[];
+}
+``​`
+
+## Decisiones de diseño
+
+### 1. Un solo registry
+
+No crear un segundo registry paralelo. Evolucionar `schemas/index.ts` y
+`schemaBuilder.ts`:
+
+- built-ins inmutables;
+- registry scoped por instancia;
+- aliases dentro del manifest;
+- cache invalidable;
+- API legacy como fachada.
+
+### 2. Compatibilidad incremental
+
+Aplicar Strangler Pattern:
+
+``​`text
+plugin legacy
+→ adapter legacyToManifest
+→ registry nuevo
+``​`
+
+y:
+
+``​`text
+manifest nuevo
+→ createPdfmePlugin
+→ Plugin<Schema> compatible
+``​`
+
+No migrar los 90 archivos en un solo commit.
+
+### 3. Cero estado global mutable en renderers
+
+Eliminar o encapsular:
+
+- caches por schema id a nivel de módulo;
+- mapas de doble clic compartidos;
+- registries de providers compartidos entre instancias;
+- listeners sin `dispose`.
+
+### 4. Separar cuatro conceptos de color
+
+``​`text
+owner color      → quién es responsable
+semantic color   → aprobar/rechazar/estado
+content color    → imagen/SVG/barcode/shape/table
+selection color  → estado de selección del Designer
+``​`
+
+`fieldChrome` no debe inferir tipos mediante listas propias. Debe recibir la
+policy resuelta por el manifest.
+
+### 5. Un codec de valor por tipo
+
+Dejar de inferir valores globalmente desde `content`, `checked`,
+`selectedOptionId` o listas separadas. Cada manifest define su codec y
+migración legacy.
+
+### 6. Inspector declarativo
+
+`commonInspectorFields` debe convertirse en:
+
+``​`text
+FieldDefinition catalog
++ capability composers
++ typed conditions
++ family profile
++ schema overrides
+``​`
+
+No usar expresiones string dispersas como única lógica.
+
+### 7. Render model compartido
+
+Para familias complejas:
+
+``​`text
+schema + value + context
+→ normalize/validate/layout
+→ RenderModel
+→ UI Renderer | PDF Renderer
+``​`
+
+Esto evita que UI y PDF recalculen distinto.
+
+## Hallazgos críticos
+
+1. `schemaBuilder.ts` usa caches globales y `JSON.stringify` para deduplicar
+   emisiones; puede colisionar entre dos instancias con el mismo schema id.
+2. `options/optionGroupRenderer.ts` usa `Map` global para doble clic y commits.
+3. `schemas/index.ts` reconstruye mapas de plugins y aliases en múltiples
+   consultas y mantiene plugins externos en estado global.
+4. `schemaFamilies.ts` mantiene tres taxonomías y listas manuales.
+5. `fieldChrome.ts` concentra color, tipos, policy, DOM y estilos en 617 líneas.
+6. `commonInspectorFields.ts` contiene factories privadas sin consumo y
+   condiciones string difíciles de tipar.
+7. `schemaGuards.ts` repite tipos con casing distinto a los tipos registrados.
+8. `schemaDom.ts` usa `innerHTML` para iconos y labels.
+9. `attachment.ts` persiste nombres, pero el archivo real requiere un adapter
+   del host y un valor serializable.
+10. Signature, table, text y date contienen módulos de más de 500–700 líneas.
+11. `optionGroupEditorFactory.ts` importa una ruta profunda del RightSidebar,
+    invirtiendo la dependencia schemas → UI concreta.
+12. Dos archivos críticos de firma fueron omitidos por el context pack y deben
+    auditarse directamente.
+
+## Orden de implementación
+
+### Fase 0 — Baseline
+
+- congelar snapshots y templates reales;
+- inventariar plugins, aliases, tipos y defaults;
+- generar matriz Designer/Form/Viewer/PDF/Snapshot;
+- ejecutar build, lint, Vitest, Playwright y jscpd.
+
+### Fase 1 — Contratos sin cambiar comportamiento
+
+- ampliar `SchemaDefinition` hacia `SchemaManifest`;
+- crear adapter manifest ↔ Plugin;
+- crear registry scoped;
+- mantener exports legacy;
+- introducir `SchemaRuntimeContext` y lifecycle/dispose.
+
+### Fase 2 — Núcleo transversal
+
+- value codecs;
+- validation strategies;
+- inspector composer;
+- appearance policy;
+- renderer template;
+- canonical type normalization.
+
+### Fase 3 — Text-like, number y date
+
+Primero por menor impacto estructural y alto reuso.
+
+### Fase 4 — Choice/boolean
+
+Unificar checkbox, select, radioGroup y checkboxGroup sobre OptionModel.
+
+### Fase 5 — Signature
+
+Migrar por mode/provider; preservar eventos, metadata y snapshot.
+
+### Fase 6 — Actions y visuales
+
+Attachment/note/approve/decline, image/SVG, shapes y barcode.
+
+### Fase 7 — Tables
+
+Separar modelo, layout y renderers. Es la familia algorítmica de mayor riesgo.
+
+### Fase 8 — Extensibilidad pública
+
+- custom manifests;
+- registration API;
+- optional lazy loaders;
+- docs y consumer test externo.
+
+## Métricas de aceptación
+
+- nuevo schema built-in: máximo 2 archivos productivos;
+- cero listas manuales de tipos fuera del manifest/registry;
+- cero estado mutable global en renderers;
+- cero imports desde schemas hacia componentes concretos del RightSidebar;
+- cero `innerHTML` con contenido dinámico;
+- paridad de los cuatro modos y snapshot por schema;
+- archivos coordinadores preferentemente <300 líneas;
+- algoritmos mayores permitidos solo con responsabilidad única y tests;
+- cero duplicidad funcional reportada por jscpd en código propio;
+- no regresión visual del owner tone;
+- no pérdida de `schemaUid`, document routing, recipient, locks o valores.
+
+## Gates
+
+``​`bash
+npm run lint
+npm run build
+npm run quality
+npm run quality:direct-config-readers
+npm run quality:source-language-boundary
+npm run quality:duplicates:owned
+npm test -- --run
+npm run test:e2e
+``​`
+
+Añadir suites contractuales:
+
+``​`text
+schema-manifest.contract.test.ts
+schema-value-codec.contract.test.ts
+schema-renderer-parity.contract.test.ts
+schema-inspector.contract.test.ts
+schema-snapshot-roundtrip.contract.test.ts
+schema-registry-scope.contract.test.ts
+``​`
+
+# Auditoría archivo por archivo
+
+| # | Archivo | LOC | Estado | Patrón objetivo | Problema principal | Acción propuesta | Prioridad | Riesgo |
+|---:|---|---:|---|---|---|---|:---:|---|
+| 1 | `src/sisad-pdfme/schemas/constants.ts` | 2 | completo | Value Object / Constants | Puede convertirse en un contenedor de constantes heterogéneas y duplicar tokens o políticas. | Conservar únicamente constantes verdaderamente transversales y sin comportamiento. Mover colores a appearance/tokens y reglas a policies; mantener aquí solo valores estables. | P2 | Bajo |
+| 2 | `src/sisad-pdfme/schemas/groupSchemaRender.ts` | 252 | completo | Primitive Renderer | Mezcla estilos, variantes y primitivas; además conserva builders de indicadores que compiten con optionIndicator. | Ser una librería de primitivas DOM sin estado ni decisión de negocio. Eliminar indicadores duplicados; recibir un render model y delegar el indicador a optionIndicator. | P0 | Alto |
+| 3 | `src/sisad-pdfme/schemas/index.ts` | 415 | completo | Registry + Facade | Es un composition root de 415 líneas; reconstruye mapas, mantiene estado global y concentra demasiadas responsabilidades. | Convertirse en fachada compatible sobre un único SchemaRegistry. BuiltInRegistry inmutable + registry por instancia; cache invalidable; extraer naming, defaults y patching a servicios. | P0 | Muy alto |
+| 4 | `src/sisad-pdfme/schemas/modules.d.ts` | 32 | completo | Boundary Declaration | Puede ocultar tipos incompletos y propagar unknown/any. | Mantener declaraciones mínimas y alineadas con versiones instaladas. Separar una declaración por dependencia y añadir contract tests de tipos. | P3 | Bajo |
+| 5 | `src/sisad-pdfme/schemas/schemaBuilder.ts` | 170 | completo | Abstract Factory + Adapter | El cache global por schema id cruza instancias y JSON.stringify se ejecuta en una ruta caliente. | Ser el adapter entre SchemaManifest y Plugin de pdfme. Mover dedupe a una EmissionPolicy por runtime; ampliar SchemaDefinition a manifest tipado y mantener overload legacy. | P0 | Muy alto |
+| 6 | `src/sisad-pdfme/schemas/schemaFamilies.ts` | 363 | completo | Capability Registry / Policy | Tres taxonomías y varios Set/Record manuales pueden divergir; tipos desconocidos caen silenciosamente en text. | Derivar familia, inspector, acciones y capabilities desde el manifest registrado. Eliminar listas dispersas; usar fallback unknown/custom explícito y validación de registry. | P0 | Muy alto |
+| 7 | `src/sisad-pdfme/schemas/utils.ts` | 294 | completo | Utility Decomposition | Es un grab bag de alta centralidad y alto acoplamiento. | Separar utilidades por responsabilidad estable. pdfGeometry, colorCodec, fileReader, svgIcon, errorView y tableSizing; conservar reexports temporales. | P1 | Alto |
+| 8 | `src/sisad-pdfme/schemas/actions/actionSchemaFactory.ts` | 166 | completo | Factory + Decorator | Combina construcción DOM, color, contenido y PDF. | Exponer render models y builders pequeños por action kind. ActionAppearancePolicy + ActionDomRenderer + ActionPdfRenderer; semantic color separado de owner chrome. | P1 | Alto |
+| 9 | `src/sisad-pdfme/schemas/actions/approve.ts` | 19 | completo | Preset / Manifest | Aún conoce detalles de iconSvg y color que deberían provenir del descriptor/factory. | Ser un manifest declarativo mínimo. Declarar semanticTone=success, command, label, icon y tags; la factory resuelve UI/PDF/eventos. | P1 | Medio |
+| 10 | `src/sisad-pdfme/schemas/actions/attachment.ts` | 206 | completo | Strategy + Adapter | Mezcla UI, validación, serialización de nombres y emisión; el File no puede persistirse en schema. | Separar FilePolicy, AttachmentValueCodec y HostUploadAdapter. El plugin emite AttachmentSelectedEvent con metadata; el host sube y devuelve un valor serializable. | P0 | Muy alto |
+| 11 | `src/sisad-pdfme/schemas/actions/createDecisionActionPlugin.ts` | 267 | completo | Abstract Factory + Command | Mezcla render, estado, command y event transport; usa DOM directo e iconSvg manual. | Crear un DecisionActionDefinition consumido por una factory. Inyectar command dispatcher/event bridge existente; usar icon renderer seguro; resolver owner/semantic tone por policy. | P0 | Muy alto |
+| 12 | `src/sisad-pdfme/schemas/actions/decline.ts` | 18 | completo | Preset / Manifest | Duplica la forma estructural de approve. | Ser un manifest declarativo mínimo. Declarar semanticTone=danger, command, label, icon y tags; compartir toda la implementación. | P1 | Medio |
+| 13 | `src/sisad-pdfme/schemas/actions/note.ts` | 114 | completo | Preset + Strategy | Su propPanel y PDF conocen detalles visuales y colores propios. | Ser un preset action/content declarativo. Usar ActionFactory con kind=note, semanticTone=warning y inspector profile específico. | P1 | Alto |
+| 14 | `src/sisad-pdfme/schemas/barcodes/constants.ts` | 23 | completo | Descriptor Constants | Los tipos pueden repetirse en familias, inspector y factories. | Ser la fuente de BarcodeDescriptor por tipo. Cada descriptor define encoder id, capabilities, defaults y restricciones. | P1 | Medio |
+| 15 | `src/sisad-pdfme/schemas/barcodes/helper.ts` | 186 | completo | Strategy | Condicionales por tipo y normalización quedan acoplados a una sola función. | BarcodeEncoderStrategy por descriptor. Resolver encoder/validation desde descriptor; cachear resultados por input+config cuando sea seguro. | P1 | Alto |
+| 16 | `src/sisad-pdfme/schemas/barcodes/index.ts` | 23 | completo | Composite Registry Entry | Es una capa de registro manual adicional. | Construir plugins desde BarcodeDescriptor[]. Registrar todos los barcodes con map(createBarcodePlugin). | P1 | Medio |
+| 17 | `src/sisad-pdfme/schemas/barcodes/pdfRender.ts` | 37 | completo | Renderer Strategy | Puede repetir resolución/validación de UI. | Consumir un BarcodeRenderModel común. prepareBarcodeRenderModel una vez; PDF solo dibuja. | P1 | Alto |
+| 18 | `src/sisad-pdfme/schemas/barcodes/propPanel.ts` | 238 | completo | Inspector Composer | El branching por tipo puede divergir de constants/helper. | Generar el panel desde el descriptor. Inspector sections y restricciones salen de BarcodeDescriptor. | P1 | Alto |
+| 19 | `src/sisad-pdfme/schemas/barcodes/types.ts` | 12 | completo | Discriminated Union | No expresa capacidades y opciones particulares por variante. | Crear unión discriminada por barcode type. Tipos derivados del catálogo const y configuración común/particular. | P2 | Medio |
+| 20 | `src/sisad-pdfme/schemas/barcodes/uiRender.ts` | 111 | completo | Renderer Strategy + Decorator | Puede mezclar contenido semántico y chrome de ownership. | Consumir BarcodeRenderModel y renderSchemaWithChrome. El contenido barcode se preserva; owner tone solo vive en chrome. | P0 | Alto |
+| 21 | `src/sisad-pdfme/schemas/checkbox/index.ts` | 204 | completo | Boolean Schema Factory | Es un plugin monolítico y comparte conceptos con optionIndicator/value adapters. | Ser una configuración de createBooleanSchemaPlugin. Reusar indicator renderer, value codec, validation y inspector composer. | P0 | Alto |
+| 22 | `src/sisad-pdfme/schemas/checkboxGroup/index.ts` | 342 | completo | Composite + Strategy | Aún contiene normalización, límites, editor y plugin; exporta __test__ desde producción. | Ser una definición fina sobre OptionGroupFactory. Mover límites y codec a strategies; tests importan módulos puros, no __test__. | P0 | Muy alto |
+| 23 | `src/sisad-pdfme/schemas/date/date.ts` | 16 | completo | Preset / Manifest | El archivo es fino, pero depende de un helper/factory demasiado grande. | Conservarlo como descriptor declarativo. Declarar mode=date, formatter, parser, defaults e inspector profile. | P1 | Medio |
+| 24 | `src/sisad-pdfme/schemas/date/dateTime.ts` | 16 | completo | Preset / Manifest | El archivo es fino, pero depende de un helper/factory demasiado grande. | Conservarlo como descriptor declarativo. Declarar mode=dateTime, formatter, parser, defaults e inspector profile. | P1 | Medio |
+| 25 | `src/sisad-pdfme/schemas/date/helper.ts` | 508 | completo | Abstract Factory + Strategy | 508 líneas concentran factory, DOM, formato y validación. | Separar DateSchemaFactory, DateValueCodec, DateFormatterStrategy y renderers. Compartir un DateRenderModel; preset decide solo mode y defaults. | P0 | Muy alto |
+| 26 | `src/sisad-pdfme/schemas/date/time.ts` | 16 | completo | Preset / Manifest | El archivo es fino, pero depende de un helper/factory demasiado grande. | Conservarlo como descriptor declarativo. Declarar mode=time, formatter, parser, defaults e inspector profile. | P1 | Medio |
+| 27 | `src/sisad-pdfme/schemas/date/types.ts` | 21 | completo | Discriminated Union | No separa claramente date/time/dateTime ni formato/valor. | Unión discriminada por mode. DateSchema | TimeSchema | DateTimeSchema con value codec tipado. | P1 | Medio |
+| 28 | `src/sisad-pdfme/schemas/graphics/image.ts` | 233 | completo | Strategy + Lifecycle | Mezcla fuente, upload, Object URL, UI, PDF y defaults. | Crear ImageSourceStrategy y ImageLifecycle. Separar fixed/url/data/file; revocar Object URLs; inspector por capability upload. | P0 | Muy alto |
+| 29 | `src/sisad-pdfme/schemas/graphics/imagehelper.ts` | 156 | completo | Pure Utility | Debe permanecer libre de DOM y estado global. | Conservar como servicio puro con cache opcional. Normalizar errores, límites y formatos; tests con fixtures. | P2 | Medio |
+| 30 | `src/sisad-pdfme/schemas/graphics/svg.ts` | 123 | completo | Sanitizer Strategy + Renderer | La validación básica puede ser insuficiente para contenido no confiable. | Separar SvgSanitizer, SvgValueCodec y renderers. Inyectar sanitizer; prohibir scripts/foreignObject/URLs según policy. | P0 | Muy alto |
+| 31 | `src/sisad-pdfme/schemas/multiVariableText/helper.ts` | 94 | completo | Interpreter / Pure Functions | Puede divergir del motor de expresiones general. | Ser un adapter fino sobre una única ExpressionEngine. Mantener parser puro y contrato de errores; evitar regex duplicadas. | P1 | Alto |
+| 32 | `src/sisad-pdfme/schemas/multiVariableText/index.ts` | 23 | completo | Manifest | Registro manual. | Ser un manifest fino. Declarar renderer strategies, codec, inspector y dynamic capability. | P1 | Medio |
+| 33 | `src/sisad-pdfme/schemas/multiVariableText/pdfRender.ts` | 21 | completo | Renderer Strategy | Puede repetir evaluación y validación de UI. | Consumir VariableTextEvaluationResult. Evaluar una vez con ExpressionEngine; renderer solo pinta. | P1 | Alto |
+| 34 | `src/sisad-pdfme/schemas/multiVariableText/propPanel.ts` | 167 | completo | Inspector Composer | Contiene detalles de layout/DOM específicos. | Componer campos comunes y fields declarativos de variables. Usar InspectorFieldFactory y custom widget aislado. | P1 | Alto |
+| 35 | `src/sisad-pdfme/schemas/multiVariableText/types.ts` | 6 | completo | Domain Type | Tipo demasiado pequeño para expresar bindings y errores. | Tipar variables, bindings, fallback y validation. Separar template text de resolved value. | P2 | Medio |
+| 36 | `src/sisad-pdfme/schemas/multiVariableText/uiRender.ts` | 168 | completo | Renderer + Interpreter Adapter | Une DOM contentEditable, optimización y evaluación. | Separar editor renderer de evaluation service. Controlar lifecycle/listeners y reutilizar TextRenderModel. | P0 | Alto |
+| 37 | `src/sisad-pdfme/schemas/number/index.ts` | 86 | completo | Text-like Preset + Value Strategy | Puede duplicar formato/validation y tratar números como strings. | Ser preset de TextLikeFactory con NumberValueCodec. Formato, parse, validation y PDF mediante NumberFormatStrategy. | P0 | Alto |
+| 38 | `src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts` | 205 | completo | Editor Factory + Reducer | Importa guards desde una ruta profunda del RightSidebar y mezcla estado mutable con DOM. | Ser un editor desacoplado con OptionEditorController. Inyectar interactionGuard; usar reducer/commands puros y lifecycle de listeners. | P0 | Muy alto |
+| 39 | `src/sisad-pdfme/schemas/options/optionGroupFactory.ts` | 563 | completo | Abstract Factory | 563 líneas; sigue teniendo demasiados subdominios y mutación de estilos. | Dividir la factory en módulos puros coordinados por una fachada. OptionDefaultsFactory, GeometryPolicy, RuntimeAdapter, InspectorComposer y PluginFactory. | P0 | Muy alto |
+| 40 | `src/sisad-pdfme/schemas/options/optionGroupLayout.ts` | 76 | completo | Geometry Policy | Buen módulo puro; riesgo de constantes duplicadas con canvas. | Conservar como policy pura e inyectable. Añadir constraints y tests de roundtrip/tolerancia. | P1 | Medio |
+| 41 | `src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts` | 74 | completo | Renderer Strategy | Puede divergir de indicator/UI y owner color. | Consumir OptionGroupRenderModel. Compartir layout, selection y color policy; PDF solo traduce a primitivas. | P0 | Alto |
+| 42 | `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts` | 305 | completo | State Machine + Renderer | Map global por grupo/opción cruza instancias y conserva memoria; la interacción vive dentro del renderer. | Usar InteractionController por runtime. Estado de click inyectado; reducer por mode; renderer sin estado global. | P0 | Muy alto |
+| 43 | `src/sisad-pdfme/schemas/options/optionIndicator.ts` | 263 | completo | Renderer Strategy | Duplica parsing/color policy de fieldChrome. | Ser un renderer puro que recibe un VisualTone resuelto. Eliminar resolución propia de owner/semantic color; devolver DOM/SVG desde un model. | P0 | Alto |
+| 44 | `src/sisad-pdfme/schemas/options/OptionListWidget.tsx` | 12 | completo | React Adapter | Puede ser innecesario si solo reexporta otro componente. | Conservar como adapter mínimo o eliminar wrapper redundante. Una sola implementación pública del widget. | P2 | Bajo |
+| 45 | `src/sisad-pdfme/schemas/options/optionModel.ts` | 78 | completo | Domain Model | Debe convertirse en SSOT; hoy algunos tipos aún usan strings. | Conservar y ampliar como modelo canónico. OptionItem siempre {optionId,label,value,order,disabled}; migrations para legacy. | P0 | Alto |
+| 46 | `src/sisad-pdfme/schemas/options/optionPropPanel.tsx` | 31 | completo | React Adapter | Puede ocultar contratos poco tipados. | Tipar props y delegar al editor único. Sin lógica de dominio ni estado duplicado. | P2 | Bajo |
+| 47 | `src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts` | 125 | completo | Strategy | Buen núcleo puro; algunos fallbacks seleccionan option_1 implícitamente. | Conservar como estrategias explícitas y sin fallback silencioso. SelectionPolicy define empty/default/required por schema. | P0 | Alto |
+| 48 | `src/sisad-pdfme/schemas/options/optionTypes.ts` | 19 | completo | Domain Type | El tipo debe ser la única representación interna. | Ampliar y volver canónico. Readonly, generic TValue y migration desde string. | P1 | Medio |
+| 49 | `src/sisad-pdfme/schemas/options/optionValueAdapter.ts` | 46 | completo | Adapter / Codec | Tiene alcance limitado y puede duplicar schemaValueAdapter. | Integrarlo en SchemaValueCodec<OptionValue>. Un codec por manifest con read/write/migrate/equality. | P0 | Alto |
+| 50 | `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts` | 470 | completo | Builder + Flyweight | 470 líneas, condiciones string, labels mezclados y varias factories privadas sin uso. | Crear un catálogo tipado de FieldDefinition y compositores por capability. Eliminar dead code; Condition DSL tipada; i18n; objetos readonly/cacheados. | P0 | Muy alto |
+| 51 | `src/sisad-pdfme/schemas/radioGroup/index.ts` | 279 | completo | Composite + Strategy | Duplica estructura conceptual de checkboxGroup. | Ser una definición fina sobre OptionGroupFactory. Configurar selectionMode=single, indicator=circle y strategy; cero lógica de editor local. | P0 | Muy alto |
+| 52 | `src/sisad-pdfme/schemas/select/index.ts` | 338 | completo | Single Choice Factory | Mantiene un editor paralelo a optionGroupEditorFactory y representa opciones como string. | Usar OptionModel y createSingleChoiceSchemaPlugin. Unificar OptionItem, codec, editor, aliases select/dropdown y render model. | P0 | Muy alto |
+| 53 | `src/sisad-pdfme/schemas/shapes/line.ts` | 102 | completo | Preset + Renderer Strategy | Duplica estructura con rect/ellipse y color. | Ser un descriptor sobre ShapeFactory. kind=line, geometry, stroke policy e inspector declarativos. | P1 | Alto |
+| 54 | `src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts` | 153 | completo | Abstract Factory | Comparte lógica, pero aún mezcla render/defaults/inspector. | Convertir a createShapeSchemaPlugin(config). ShapeRendererStrategy por kind y shared appearance policy. | P1 | Alto |
+| 55 | `src/sisad-pdfme/schemas/shared/fieldChrome.ts` | 617 | completo | Decorator + Policy | 617 líneas; mezcla color math, taxonomía por tipos, policy, DOM y estilos inline; duplica familias. | Separar SchemaAppearancePolicy, ColorCodec y FieldChromeDecorator. La familia/semantic accent sale del manifest; decorator aplica un VisualTone ya resuelto. | P0 | Muy alto |
+| 56 | `src/sisad-pdfme/schemas/shared/imageFileInput.ts` | 40 | completo | Factory + Lifecycle | Debe controlar listeners, validación y cleanup. | Crear FileInputAdapter configurable. Retornar dispose(); inyectar FilePolicy y accept. | P1 | Alto |
+| 57 | `src/sisad-pdfme/schemas/shared/renderSchemaWithChrome.ts` | 80 | completo | Template Method | Es una buena abstracción; solo debe evitar crecer hacia lógica de familia. | Conservar como template method estable. Recibir RenderContext y AppearanceResult; soportar dispose del renderer. | P0 | Medio |
+| 58 | `src/sisad-pdfme/schemas/shared/schemaDom.ts` | 133 | completo | DOM Adapter | Usa innerHTML para iconSvg+label y contiene estilos de acción. | Ser un adapter DOM seguro y neutral. Construir icon node sin innerHTML; estilos por classes/vars; sin comportamiento. | P0 | Alto |
+| 59 | `src/sisad-pdfme/schemas/shared/schemaGuards.ts` | 165 | completo | Specification | Repite listas de tipos, usa casing inconsistente y tiene import al final del archivo. | Derivar guards de manifests/canonical type normalization. Specifications reutilizables; canonical lowercase aliases; import ordering. | P0 | Alto |
+| 60 | `src/sisad-pdfme/schemas/shared/schemaTypes.ts` | 171 | completo | Domain Model | Varios tipos no exportados/no usados y duplican contratos de common/contracts. | Ser el modelo canónico o trasladarse a contracts/schema. Exportar ids/value types utilizados; unión discriminada; eliminar aliases duplicados. | P0 | Muy alto |
+| 61 | `src/sisad-pdfme/schemas/signature/dateSigned.ts` | 136 | omitido generado | Derived Preset + Strategy | Contenido omitido en el pack; debe verificarse contra el factory y snapshot. | Ser preset derivado de signing factory. DateSignedValueStrategy calcula desde evento de firma; no depende de content manual. | P0 | Muy alto |
+| 62 | `src/sisad-pdfme/schemas/signature/index.ts` | 433 | completo | Signing Manifest + Renderer | 433 líneas y DOM directo; contiene demasiada lógica para un entrypoint. | Ser una definición fina sobre SigningSchemaFactory. Renderers separados por mode; provider/event/validation mediante strategies. | P0 | Muy alto |
+| 63 | `src/sisad-pdfme/schemas/signature/initials.ts` | 43 | completo | Preset | Buen preset, pero debe depender solo de la factory pública. | Conservar como manifest mínimo. kind=initials, size, placeholder, capabilities. | P1 | Medio |
+| 64 | `src/sisad-pdfme/schemas/signature/propPanel.ts` | 724 | completo | Inspector Composer + State Machine | 724 líneas, 36 accesos document y lógica condicional compleja. | Dividir en secciones declarativas y widgets aislados. SignatureInspectorProfile por mode; ProviderWidget, DrawConfig, UploadConfig, P12Config; typed conditions. | P0 | Muy alto |
+| 65 | `src/sisad-pdfme/schemas/signature/providerRegistry.ts` | 207 | completo | Registry + Adapter | Registry global puede mezclar aplicaciones/instancias y resources. | Registry scoped por runtime con built-ins inmutables. ProviderAdapter normaliza host; registry solo descriptors y capability lookup. | P0 | Muy alto |
+| 66 | `src/sisad-pdfme/schemas/signature/signingSchemaFactory.ts` | 125 | omitido generado | Abstract Factory | Contenido omitido en el pack; es una pieza crítica y debe revisarse en repo. | Ser la única factory de signature/initials/dateSigned. Config declarativa + manifest + mode strategies; compatibilidad con exports actuales. | P0 | Muy alto |
+| 67 | `src/sisad-pdfme/schemas/signature/types.ts` | 344 | completo | Discriminated Union | La normalización y defaults dentro del módulo de tipos mezclan domain y behavior. | Separar tipos puros de normalizers/policies. SignatureSchema discriminada por mode; capabilities derivadas del provider descriptor. | P0 | Alto |
+| 68 | `src/sisad-pdfme/schemas/signature/validation.ts` | 72 | completo | Validation Strategy | Debe distinguir validez por modo/provider y no usar empty content como regla universal. | Crear strategy por signature mode. validateDraw, validateImage, validateP12, validateProvider y aggregate result. | P0 | Muy alto |
+| 69 | `src/sisad-pdfme/schemas/tables/cell.ts` | 152 | completo | Value Object / Nested Schema | Puede acoplar el inspector de celdas al plugin principal. | Conservar como componente de dominio de tabla. CellDescriptor + style/value codec; no registrarlo como schema canvas independiente. | P2 | Medio |
+| 70 | `src/sisad-pdfme/schemas/tables/classes.ts` | 402 | completo | Domain Model | Clases mutables y cálculo/layout pueden quedar acoplados a render. | Separar modelo inmutable de TableLayoutEngine. Factories para construir; layout como servicio puro; preservar API con adapters. | P1 | Alto |
+| 71 | `src/sisad-pdfme/schemas/tables/dynamicTemplate.ts` | 88 | completo | Sizing Strategy | Debe compartir layout con UI/PDF para evitar divergencia. | Conservar como estrategia pura coordinada por TableLayoutEngine. Mismo input normalizado y métricas en preflight/UI/PDF. | P0 | Alto |
+| 72 | `src/sisad-pdfme/schemas/tables/helper.ts` | 172 | completo | Inspector/Data Builder | Mezcla transformación de datos e inspector. | Separar TableDataAdapter y TableInspectorComposer. Helpers puros por responsabilidad; tipos estrictos. | P1 | Alto |
+| 73 | `src/sisad-pdfme/schemas/tables/index.ts` | 22 | completo | Manifest | Registro manual. | Ser manifest fino sobre TableSchemaFactory. Declarar renderers, layout engine, codec, inspector y capabilities. | P1 | Medio |
+| 74 | `src/sisad-pdfme/schemas/tables/pdfRender.ts` | 144 | completo | Renderer Strategy | Declara contratos locales porque tableHelper no exporta tipos; riesgo de drift. | Consumir TableRenderModel tipado. Exportar contrato canónico desde types; PDF no recalcula modelo. | P0 | Alto |
+| 75 | `src/sisad-pdfme/schemas/tables/propPanel.ts` | 119 | completo | Inspector Composer | Usa ts-expect-error/casts genéricos y mezcla widgets. | Componer secciones tipadas desde TableDescriptor. Eliminar cast mediante PropPanelWidgetProps<TableSchema> o adapter tipado. | P0 | Alto |
+| 76 | `src/sisad-pdfme/schemas/tables/tableHelper.ts` | 278 | completo | Layout Engine | Puede mezclar algoritmo, pdf-lib y configuración. | Ser TableLayoutEngine puro con adapters de salida. Entrada normalizada; salida rows/cells/bounds; renderers UI/PDF consumen lo mismo. | P0 | Muy alto |
+| 77 | `src/sisad-pdfme/schemas/tables/types.ts` | 87 | completo | Domain Types | Necesita distinguir input, normalized model y render model. | Crear tipos por etapa. TableInput -> NormalizedTable -> TableLayout -> TableRenderModel. | P0 | Alto |
+| 78 | `src/sisad-pdfme/schemas/tables/uiRender.ts` | 477 | completo | Renderer Strategy + Interaction Controller | 477 líneas con DOM, estado e interacción; riesgo de rerender costoso. | Separar TableUiRenderer y TableInteractionController. Diff de celdas, dispose listeners, render model compartido y memoización. | P0 | Muy alto |
+| 79 | `src/sisad-pdfme/schemas/text/constants.ts` | 104 | completo | Constants / Value Objects | Puede mezclar tokens, defaults y reglas lingüísticas. | Separar TextDefaults de LineBreakRules. Mantener arrays readonly y configuración inyectable por locale. | P2 | Medio |
+| 80 | `src/sisad-pdfme/schemas/text/extraFormatter.ts` | 83 | completo | Strategy Registry | Puede crecer mediante condicionales. | FormatterRegistry basado en descriptor. registerFormatter(id, format, parse?, validate?). | P1 | Medio |
+| 81 | `src/sisad-pdfme/schemas/text/helper.ts` | 544 | completo | Layout Engine | 544 líneas de algoritmo; responsabilidades de font cache, browser quirks y wrapping. | Dividir TextMetricsService, LineBreaker y DynamicFontSizer. Mantener funciones puras, caches acotadas e inyección de font metrics. | P0 | Muy alto |
+| 82 | `src/sisad-pdfme/schemas/text/index.ts` | 23 | completo | Manifest | Debe evitar ser un export manual más. | Ser manifest fino sobre TextSchemaFactory. Declarar renderer strategies, codec, validation, inspector y defaults. | P1 | Medio |
+| 83 | `src/sisad-pdfme/schemas/text/pdfRender.ts` | 236 | completo | Renderer Strategy | Puede repetir layout/formatting de UI. | Consumir TextRenderModel. Un TextLayoutEngine produce líneas, font size, alignment y colors. | P0 | Muy alto |
+| 84 | `src/sisad-pdfme/schemas/text/propPanel.ts` | 173 | completo | Inspector Composer | Puede repetir fields y mapping; dependencias de i18n/defaults. | Componer desde common field catalog + TextCapabilities. Secciones declarativas y typed conditions. | P0 | Alto |
+| 85 | `src/sisad-pdfme/schemas/text/types.ts` | 30 | completo | Domain Types | Debe separar schema persistido, normalized y render model. | Crear tipos por etapa y enums const. TextSchema, NormalizedTextSchema, TextRenderModel. | P1 | Alto |
+| 86 | `src/sisad-pdfme/schemas/text/uiRender.ts` | 314 | completo | Renderer + Editor Strategy | 314 líneas; browser workaround, DOM, edición y layout en un módulo. | Separar TextUiRenderer, ContentEditableAdapter y TextLayoutEngine. Lifecycle con dispose; no listeners duplicados; model compartido con PDF. | P0 | Muy alto |
+| 87 | `src/sisad-pdfme/schemas/textLike/textLikePresets.ts` | 44 | completo | Preset | Es una buena dirección; debe ser 100% declarativo. | Conservar como lista de manifests/presets. Añadir aliases, source binding, validation profile y default label. | P1 | Medio |
+| 88 | `src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts` | 85 | completo | Abstract Factory | Todavía clona defaultSchema y construye inspector local. | Integrarla con SchemaManifest y DefaultFactory. TextLikePresetConfig declara codec/validation/binding; no cloneDeep en hot path. | P0 | Alto |
+| 89 | `src/sisad-pdfme/schemas/values/schemaValueAdapter.ts` | 42 | completo | Adapter / Codec | La inferencia por campos content/checked es ambigua y no tiene write/equality/migration. | Reemplazar por SchemaValueCodec registrado en cada manifest. read, write, normalize, validate, equals y migrateLegacy por tipo. | P0 | Muy alto |
+| 90 | `src/sisad-pdfme/schemas/text/icons/index.ts` | 30 | completo | Asset Adapter | Bajo riesgo; puede duplicar iconos de Lucide. | Conservar o migrar a un IconRegistry único. Preferir currentColor y evitar SVG strings duplicados. | P3 | Bajo |
+
+
+# Dependencias que no deben invertirse
+
+Permitido:
+
+``​`text
+schemas → common/contracts/shared abstractions
+schemas → collaboration appearance contract
+UI → schemas registry/manifests
+generator → schemas renderers
+``​`
+
+Prohibido como estado final:
+
+``​`text
+schemas → RightSidebar/DetailView component
+schemas → examples/features/modules
+schema renderer → host endpoint
+schema renderer → segundo event bus
+schema renderer → registry global mutable
+``​`
+
+# Estrategia de commits
+
+1. Un dominio por commit.
+2. Primero characterization tests.
+3. Después adapter/contract.
+4. Migrar una familia.
+5. Ejecutar gates focales.
+6. Actualizar snapshot/migration solo con evidencia.
+7. Retirar código legacy en otro commit.
+
+# Qué no hacer
+
+- no reescribir todo `schemas` de una vez;
+- no introducir una jerarquía de clases por cada tipo;
+- no crear un segundo plugin registry;
+- no mover lógica a hooks React sin necesidad;
+- no usar Context para datos que pertenecen al render context;
+- no convertir algoritmos puros en services con estado;
+- no ocultar incompatibilidades con `as any`;
+- no marcar tareas terminadas sin build/tests;
+- no modificar generator o snapshot para “hacer pasar” una familia sin
+  caracterización previa.
+
+# Resultado esperado
+
+Después de la migración, una definición debería verse así:
+
+``​`ts
+export const approveManifest = defineSchema({
+  type: 'approve',
+  aliases: [],
+  family: 'action',
+  category: 'Acción',
+  tags: ['approve', 'decision'],
+  capabilities: ['designer', 'form', 'viewer', 'pdf', 'assignment'],
+  defaults: actionDefaults({
+    label: 'Aprobar',
+    semanticTone: 'success',
+  }),
+  value: decisionActionCodec,
+  validation: optionalActionValidation,
+  appearance: actionAppearancePolicy,
+  interaction: decisionCommandPolicy('approve'),
+  inspector: actionInspectorProfile,
+  renderers: decisionActionRenderers,
+});
+``​`
+
+y su registro:
+
+``​`ts
+registry.register(approveManifest);
+``​`
+
+Sin editar manualmente `schemaFamilies`, sets de color, lectores de valor,
+inspectores paralelos o listas adicionales.
+```
+
+<a id="file-0003"></a>
+
+### 0003 — `docs/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -3599,9 +4456,9 @@ ruteo de modelos
 Todo eso vive en .ai/`.
 ```
 
-<a id="file-0003"></a>
+<a id="file-0004"></a>
 
-### 0003 — `docs/00-introduccion/01-que-es-sisad-pdfme.md`
+### 0004 — `docs/00-introduccion/01-que-es-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -3639,9 +4496,9 @@ Generator -> produce PDF final
 El componente debe ser genérico. No debe contener reglas específicas de SISAD Web, Uanataca, flujos externos o negocio de formularios.
 ```
 
-<a id="file-0004"></a>
+<a id="file-0005"></a>
 
-### 0004 — `docs/00-introduccion/02-para-que-sirve.md`
+### 0005 — `docs/00-introduccion/02-para-que-sirve.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -3676,9 +4533,9 @@ El componente debe ser genérico. No debe contener reglas específicas de SISAD 
 No debe reemplazar backend de firma, almacenamiento documental, reglas de negocio o autenticación. Se integra con esos sistemas mediante adaptadores.
 ```
 
-<a id="file-0005"></a>
+<a id="file-0006"></a>
 
-### 0005 — `docs/00-introduccion/03-glosario.md`
+### 0006 — `docs/00-introduccion/03-glosario.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -3706,9 +4563,9 @@ No debe reemplazar backend de firma, almacenamiento documental, reglas de negoci
 | Owner color | Color que identifica al recipient dueño del campo. |
 ```
 
-<a id="file-0006"></a>
+<a id="file-0007"></a>
 
-### 0006 — `docs/00-introduccion/04-arquitectura-general.md`
+### 0007 — `docs/00-introduccion/04-arquitectura-general.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -3748,9 +4605,9 @@ sisad-pdfme/
 - Host apps solo pasan datos, callbacks y adaptadores.
 ```
 
-<a id="file-0007"></a>
+<a id="file-0008"></a>
 
-### 0007 — `docs/00-introduccion/README.md`
+### 0008 — `docs/00-introduccion/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -3767,9 +4624,9 @@ sisad-pdfme/
 - [04-arquitectura-general.md](./04-arquitectura-general.md)
 ```
 
-<a id="file-0008"></a>
+<a id="file-0009"></a>
 
-### 0008 — `docs/01-instalacion/01-requisitos.md`
+### 0009 — `docs/01-instalacion/01-requisitos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -3791,9 +4648,9 @@ sisad-pdfme/
 Importar estilos del componente en un punto central de la aplicación para evitar duplicidad de cascada.
 ```
 
-<a id="file-0009"></a>
+<a id="file-0010"></a>
 
-### 0009 — `docs/01-instalacion/02-instalacion.md`
+### 0010 — `docs/01-instalacion/02-instalacion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -3833,9 +4690,9 @@ import '@/styles/sisad-tailwind-bridge.css';
 ``​`
 ```
 
-<a id="file-0010"></a>
+<a id="file-0011"></a>
 
-### 0010 — `docs/01-instalacion/03-configuracion-vite.md`
+### 0011 — `docs/01-instalacion/03-configuracion-vite.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -3859,9 +4716,9 @@ Los PDFs, imágenes de ejemplo y fuentes deben servirse desde rutas accesibles p
 Si el proyecto usa Tailwind, mantener `preflight: false` para no alterar canvas, Ant Design, inputs o medidas de PDF.
 ```
 
-<a id="file-0011"></a>
+<a id="file-0012"></a>
 
-### 0011 — `docs/01-instalacion/04-importacion-estilos.md`
+### 0012 — `docs/01-instalacion/04-importacion-estilos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -3890,9 +4747,9 @@ import './styles/sisad-tailwind-bridge.css';
 El orden puede variar según el proyecto, pero debe documentarse y no duplicarse.
 ```
 
-<a id="file-0012"></a>
+<a id="file-0013"></a>
 
-### 0012 — `docs/01-instalacion/README.md`
+### 0013 — `docs/01-instalacion/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -3909,9 +4766,9 @@ El orden puede variar según el proyecto, pero debe documentarse y no duplicarse
 - [04-importacion-estilos.md](./04-importacion-estilos.md)
 ```
 
-<a id="file-0013"></a>
+<a id="file-0014"></a>
 
-### 0013 — `docs/02-conceptos/01-template.md`
+### 0014 — `docs/02-conceptos/01-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -3944,9 +4801,9 @@ type Template = {
 - Debe preservar identidad de schemas.
 ```
 
-<a id="file-0014"></a>
+<a id="file-0015"></a>
 
-### 0014 — `docs/02-conceptos/02-documents-pages.md`
+### 0015 — `docs/02-conceptos/02-documents-pages.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -3972,9 +4829,9 @@ pageIndex
 Nunca asumir página 1. Todo drop, selección, move, resize, overlay y snapshot debe conservar la página real.
 ```
 
-<a id="file-0015"></a>
+<a id="file-0016"></a>
 
-### 0015 — `docs/02-conceptos/03-schemas.md`
+### 0016 — `docs/02-conceptos/03-schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -4007,9 +4864,9 @@ type BaseSchema = {
 Los schemas pueden extender esta base según familia.
 ```
 
-<a id="file-0016"></a>
+<a id="file-0017"></a>
 
-### 0016 — `docs/02-conceptos/04-recipients.md`
+### 0017 — `docs/02-conceptos/04-recipients.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -4036,9 +4893,9 @@ type Recipient = {
 El color activo se usa para nuevos schemas. Los schemas existentes conservan su `ownerColor` original.
 ```
 
-<a id="file-0017"></a>
+<a id="file-0018"></a>
 
-### 0017 — `docs/02-conceptos/05-assignments.md`
+### 0018 — `docs/02-conceptos/05-assignments.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -4061,9 +4918,9 @@ Se usa para:
 Debe ser serializable y no reemplaza `ownerRecipientId`, lo complementa.
 ```
 
-<a id="file-0018"></a>
+<a id="file-0019"></a>
 
-### 0018 — `docs/02-conceptos/06-runtime-modes.md`
+### 0019 — `docs/02-conceptos/06-runtime-modes.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -4086,9 +4943,9 @@ Debe ser serializable y no reemplaza `ownerRecipientId`, lo complementa.
 Cada schema debe declarar cómo se ve y comporta por modo.
 ```
 
-<a id="file-0019"></a>
+<a id="file-0020"></a>
 
-### 0019 — `docs/02-conceptos/07-snapshot.md`
+### 0020 — `docs/02-conceptos/07-snapshot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -4118,9 +4975,9 @@ __designer
 No debe incluir referencias DOM ni funciones.
 ```
 
-<a id="file-0020"></a>
+<a id="file-0021"></a>
 
-### 0020 — `docs/02-conceptos/README.md`
+### 0021 — `docs/02-conceptos/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -4140,9 +4997,9 @@ No debe incluir referencias DOM ni funciones.
 - [07-snapshot.md](./07-snapshot.md)
 ```
 
-<a id="file-0021"></a>
+<a id="file-0022"></a>
 
-### 0021 — `docs/03-designer/01-designer-overview.md`
+### 0022 — `docs/03-designer/01-designer-overview.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -4169,9 +5026,9 @@ Incluye:
 El Designer controla UI interna. El host no debe duplicar sidebars, inspector, zoom o selección.
 ```
 
-<a id="file-0022"></a>
+<a id="file-0023"></a>
 
-### 0022 — `docs/03-designer/02-props.md`
+### 0023 — `docs/03-designer/02-props.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `32`
@@ -4214,9 +5071,9 @@ Ejemplo conceptual:
 - `onControllerReady` es el punto de extensión para lectura, reset y update dinámico.
 ```
 
-<a id="file-0023"></a>
+<a id="file-0024"></a>
 
-### 0023 — `docs/03-designer/03-canvas.md`
+### 0024 — `docs/03-designer/03-canvas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -4244,14 +5101,14 @@ El canvas contiene las páginas PDF y overlays de schemas.
 - Move/resize/rotate en página 2.
 ```
 
-<a id="file-0024"></a>
+<a id="file-0025"></a>
 
-### 0024 — `docs/03-designer/04-left-sidebar.md`
+### 0025 — `docs/03-designer/04-left-sidebar.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `17`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `3c27c73d8a`
+- **Líneas:** `29`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `a7553be2d5`
 - **Estado:** `completo`
 
 ```markdown
@@ -4267,6 +5124,18 @@ El LeftSidebar muestra el catálogo de schemas disponibles.
 - mostrar favoritos/recientes;
 - respetar modo compacto.
 
+## Colapso
+
+- El handle (`data-testid="sidebar-collapse-left"`) va montado sobre el borde
+  derecho del panel, a altura y tamaño constantes en ambos estados.
+- Vive fuera del wrapper con `overflow-hidden`: el recorte del contenido nunca
+  debe poder ocultarlo.
+- `Ctrl/Cmd+B` alterna el panel salvo si el foco está en un campo o en contenido
+  editable.
+- La preferencia se recuerda en `sisad-pdfme:left-sidebar-expanded`, y solo se
+  escribe en modo `docked` para que el colapso automático de `overlay` no la pise.
+- Colapsado, los iconos del rail reabren el panel en su pestaña.
+
 ## No debe contener
 
 - lógica de negocio del host;
@@ -4274,14 +5143,14 @@ El LeftSidebar muestra el catálogo de schemas disponibles.
 - configuración avanzada que pertenece al inspector.
 ```
 
-<a id="file-0025"></a>
+<a id="file-0026"></a>
 
-### 0025 — `docs/03-designer/05-right-sidebar.md`
+### 0026 — `docs/03-designer/05-right-sidebar.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `14`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `f6f5cabeb3`
+- **Líneas:** `43`
+- **Tamaño original:** `1.8 KB`
+- **SHA1 corto:** `d913477153`
 - **Estado:** `completo`
 
 ```markdown
@@ -4299,11 +5168,40 @@ El RightSidebar agrupa:
 - No duplicar paneles desde el host.
 - La selección actual debe sincronizarse con DetailView.
 - ListView debe usar `schemaUid` como identidad.
+
+## Sincronización del inspector
+
+El vínculo inspector ↔ canvas es bidireccional y debe seguir estas reglas:
+
+- El formulario se rehidrata cuando cambian los **valores** del schema activo, no
+  solo al cambiar de selección: arrastre, resize, rotación, alineación y undo
+  deben reflejarse en los campos.
+- La rehidratación se aplaza mientras el foco está en un campo de texto de la
+  sección, nunca por un botón con foco (la alineación vive dentro de `box`).
+- Un commit escribe **solo** las claves que el usuario tocó en esa interacción.
+  Si escribe todo el formulario, una edición de `width` reescribe la `position`
+  cargada y revierte lo que se hizo en el canvas.
+- La firma de rehidratación excluye `content`: en imágenes y firmas es un data
+  URI grande y el inspector nunca lo edita.
+- Los campos cuyo nombre es una ruta (`validation.type`) se persisten anidados
+  pero el formulario los identifica por el nombre literal: la sección expone
+  ambos al hidratar, o el valor se guarda y nunca vuelve.
+
+## Permisos y solo lectura
+
+- `schema.readOnly` describe si el **destinatario** puede rellenar el campo, no
+  si el **diseñador** puede configurarlo. Los comandos de estructura
+  (`changeSchemas`, update, group, order, style) se rigen por `canEditStructure`.
+- Usar `isEditable` ahí congela el inspector de cualquier campo en solo lectura
+  —incluido el switch que activa esa bandera— y bloquea los tipos que nacen con
+  `readOnly: true`, como `note`.
+- El guard del CommandBus descarta en silencio (solo `console.warn`): un cambio
+  que no se aplica no muestra nada al usuario.
 ```
 
-<a id="file-0026"></a>
+<a id="file-0027"></a>
 
-### 0026 — `docs/03-designer/06-detail-view.md`
+### 0027 — `docs/03-designer/06-detail-view.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -4339,9 +5237,9 @@ advanced
 Cada familia de schema declara qué secciones usa.
 ```
 
-<a id="file-0027"></a>
+<a id="file-0028"></a>
 
-### 0027 — `docs/03-designer/07-list-view.md`
+### 0028 — `docs/03-designer/07-list-view.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -4366,9 +5264,9 @@ Debe permitir:
 No debe mutar schemas directamente sin CommandBus o update centralizado.
 ```
 
-<a id="file-0028"></a>
+<a id="file-0029"></a>
 
-### 0028 — `docs/03-designer/08-toolbar-commandbus.md`
+### 0029 — `docs/03-designer/08-toolbar-commandbus.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -4393,9 +5291,9 @@ El CommandBus centraliza acciones:
 Las toolbars deben disparar comandos, no mutar estado de forma paralela.
 ```
 
-<a id="file-0029"></a>
+<a id="file-0030"></a>
 
-### 0029 — `docs/03-designer/09-comments.md`
+### 0030 — `docs/03-designer/09-comments.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -4417,9 +5315,9 @@ Los comentarios pueden asociarse a:
 Deben preservarse en snapshot y no interferir con selección/Moveable/Selecto.
 ```
 
-<a id="file-0030"></a>
+<a id="file-0031"></a>
 
-### 0030 — `docs/03-designer/10-multi-documento.md`
+### 0031 — `docs/03-designer/10-multi-documento.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -4440,9 +5338,9 @@ Reglas:
 - no-overlap se evalúa por document/page/owner.
 ```
 
-<a id="file-0031"></a>
+<a id="file-0032"></a>
 
-### 0031 — `docs/03-designer/11-action-contract.md`
+### 0032 — `docs/03-designer/11-action-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -4508,9 +5406,9 @@ type DesignerActionState = {
 - zoom-in/out/set
 ```
 
-<a id="file-0032"></a>
+<a id="file-0033"></a>
 
-### 0032 — `docs/03-designer/12-inspector-taxonomy.md`
+### 0033 — `docs/03-designer/12-inspector-taxonomy.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `240`
@@ -4761,9 +5659,9 @@ Pendiente en F1: el preset por `SchemaFamily` sigue decidiendo `supportsConnecti
 Los componentes que importan `form-render`/antd no montan en jsdom (`Cannot find module 'antd/es/theme/internal'`), lo que deja `DetailView.test.ts` y `DetailFormSection.test.ts` sin ejecutar. La F4 necesita resolver ese import o cubrirse con Playwright.
 ```
 
-<a id="file-0033"></a>
+<a id="file-0034"></a>
 
-### 0033 — `docs/03-designer/14-core-ux-events-effects.md`
+### 0034 — `docs/03-designer/14-core-ux-events-effects.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -4779,9 +5677,9 @@ Plan canónico: `.ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PD
 Contrato central: `Intent → Policy → Command → Mutation → Event → Effect`.
 ```
 
-<a id="file-0034"></a>
+<a id="file-0035"></a>
 
-### 0034 — `docs/03-designer/README.md`
+### 0035 — `docs/03-designer/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -4804,9 +5702,9 @@ Contrato central: `Intent → Policy → Command → Mutation → Event → Effe
 - [10-multi-documento.md](./10-multi-documento.md)
 ```
 
-<a id="file-0035"></a>
+<a id="file-0036"></a>
 
-### 0035 — `docs/04-schemas/01-schema-base.md`
+### 0036 — `docs/04-schemas/01-schema-base.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -4840,9 +5738,9 @@ __designer
 `schemaUid` es la identidad técnica. `name`/`label` son visuales.
 ```
 
-<a id="file-0036"></a>
+<a id="file-0037"></a>
 
-### 0036 — `docs/04-schemas/02-familias.md`
+### 0037 — `docs/04-schemas/02-familias.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -4865,9 +5763,9 @@ __designer
 | shape | line, rect, ellipse |
 ```
 
-<a id="file-0037"></a>
+<a id="file-0038"></a>
 
-### 0037 — `docs/04-schemas/03-text-like.md`
+### 0038 — `docs/04-schemas/03-text-like.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -4902,9 +5800,9 @@ Comparten:
 - tooltip.
 ```
 
-<a id="file-0038"></a>
+<a id="file-0039"></a>
 
-### 0038 — `docs/04-schemas/04-option-based.md`
+### 0039 — `docs/04-schemas/04-option-based.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -4933,9 +5831,9 @@ Botón +        -> data-role="group-add-option"
 ``​`
 ```
 
-<a id="file-0039"></a>
+<a id="file-0040"></a>
 
-### 0039 — `docs/04-schemas/05-signing-based.md`
+### 0040 — `docs/04-schemas/05-signing-based.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -4959,9 +5857,9 @@ Incluye:
 - Providers externos se integran por adaptador, no dentro del schema visual.
 ```
 
-<a id="file-0040"></a>
+<a id="file-0041"></a>
 
-### 0040 — `docs/04-schemas/06-action-based.md`
+### 0041 — `docs/04-schemas/06-action-based.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -4987,9 +5885,9 @@ Incluye:
 - PDF: representación final limpia.
 ```
 
-<a id="file-0041"></a>
+<a id="file-0042"></a>
 
-### 0041 — `docs/04-schemas/07-media-barcode-table-shapes.md`
+### 0042 — `docs/04-schemas/07-media-barcode-table-shapes.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -5022,9 +5920,9 @@ Tabla debe separar controles de edición en Designer y render limpio en Viewer/P
 line, rect, ellipse deben renderizar sin chrome invasivo.
 ```
 
-<a id="file-0042"></a>
+<a id="file-0043"></a>
 
-### 0042 — `docs/04-schemas/08-custom-schemas.md`
+### 0043 — `docs/04-schemas/08-custom-schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -5050,9 +5948,9 @@ Un schema custom debe declarar:
 No debe guardar datos sensibles en el schema.
 ```
 
-<a id="file-0043"></a>
+<a id="file-0044"></a>
 
-### 0043 — `docs/04-schemas/09-inspector-contract.md`
+### 0044 — `docs/04-schemas/09-inspector-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -5091,9 +5989,9 @@ Esto evita que cada schema invente su propio sidebar.
 - La visibilidad del inspector debe salir del contrato canónico y de los selectores del wrapper.
 ```
 
-<a id="file-0044"></a>
+<a id="file-0045"></a>
 
-### 0044 — `docs/04-schemas/10-docusing-mapping.md`
+### 0045 — `docs/04-schemas/10-docusing-mapping.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -5121,9 +6019,9 @@ No se copia UI ni marca; se usa como referencia de procesos.
 | Approve/Decline | approve/decline |
 ```
 
-<a id="file-0045"></a>
+<a id="file-0046"></a>
 
-### 0045 — `docs/04-schemas/README.md`
+### 0046 — `docs/04-schemas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -5146,9 +6044,9 @@ No se copia UI ni marca; se usa como referencia de procesos.
 - [10-docusing-mapping.md](./10-docusing-mapping.md)
 ```
 
-<a id="file-0046"></a>
+<a id="file-0047"></a>
 
-### 0046 — `docs/05-runtime/01-form.md`
+### 0047 — `docs/05-runtime/01-form.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -5172,9 +6070,9 @@ Debe respetar:
 - validación por schema.
 ```
 
-<a id="file-0047"></a>
+<a id="file-0048"></a>
 
-### 0047 — `docs/05-runtime/02-viewer.md`
+### 0048 — `docs/05-runtime/02-viewer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -5195,9 +6093,9 @@ Reglas:
 - mostrar valores finales limpios.
 ```
 
-<a id="file-0048"></a>
+<a id="file-0049"></a>
 
-### 0048 — `docs/05-runtime/03-values.md`
+### 0049 — `docs/05-runtime/03-values.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -5219,9 +6117,9 @@ type Values = Record<string, unknown>;
 Nunca depender solo de `name` o `label`, porque pueden repetirse o cambiar visualmente.
 ```
 
-<a id="file-0049"></a>
+<a id="file-0050"></a>
 
-### 0049 — `docs/05-runtime/04-validation.md`
+### 0050 — `docs/05-runtime/04-validation.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -5245,9 +6143,9 @@ Validar según familia:
 La validación debe producir mensajes de usuario, no errores técnicos.
 ```
 
-<a id="file-0050"></a>
+<a id="file-0051"></a>
 
-### 0050 — `docs/05-runtime/05-recipient-filtering.md`
+### 0051 — `docs/05-runtime/05-recipient-filtering.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -5268,9 +6166,9 @@ Un schema es visible si:
 En vista global se ven todos los schemas no hidden.
 ```
 
-<a id="file-0051"></a>
+<a id="file-0052"></a>
 
-### 0051 — `docs/05-runtime/README.md`
+### 0052 — `docs/05-runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -5288,9 +6186,9 @@ En vista global se ven todos los schemas no hidden.
 - [05-recipient-filtering.md](./05-recipient-filtering.md)
 ```
 
-<a id="file-0052"></a>
+<a id="file-0053"></a>
 
-### 0052 — `docs/06-generator/01-generator-overview.md`
+### 0053 — `docs/06-generator/01-generator-overview.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -5311,9 +6209,9 @@ Generator produce PDF final usando template + valores.
 - Debe conservar salida limpia.
 ```
 
-<a id="file-0053"></a>
+<a id="file-0054"></a>
 
-### 0053 — `docs/06-generator/02-pdf-output.md`
+### 0054 — `docs/06-generator/02-pdf-output.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -5332,9 +6230,9 @@ La salida debe:
 - no incluir toolbars, labels técnicos ni bordes de edición.
 ```
 
-<a id="file-0054"></a>
+<a id="file-0055"></a>
 
-### 0054 — `docs/06-generator/03-fonts-assets.md`
+### 0055 — `docs/06-generator/03-fonts-assets.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -5353,9 +6251,9 @@ Para generación PDF:
 - controlar fallback de fuentes.
 ```
 
-<a id="file-0055"></a>
+<a id="file-0056"></a>
 
-### 0055 — `docs/06-generator/README.md`
+### 0056 — `docs/06-generator/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -5371,9 +6269,9 @@ Para generación PDF:
 - [03-fonts-assets.md](./03-fonts-assets.md)
 ```
 
-<a id="file-0056"></a>
+<a id="file-0057"></a>
 
-### 0056 — `docs/07-integraciones/01-react.md`
+### 0057 — `docs/07-integraciones/01-react.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -5396,9 +6294,9 @@ function Editor() {
 El host debe controlar negocio, no duplicar UI interna del diseñador.
 ```
 
-<a id="file-0057"></a>
+<a id="file-0058"></a>
 
-### 0057 — `docs/07-integraciones/02-host-app.md`
+### 0058 — `docs/07-integraciones/02-host-app.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -5427,9 +6325,9 @@ No debe controlar:
 - inspector.
 ```
 
-<a id="file-0058"></a>
+<a id="file-0059"></a>
 
-### 0058 — `docs/07-integraciones/03-signature-providers.md`
+### 0059 — `docs/07-integraciones/03-signature-providers.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -5454,9 +6352,9 @@ signature: {
 ``​`
 ```
 
-<a id="file-0059"></a>
+<a id="file-0060"></a>
 
-### 0059 — `docs/07-integraciones/04-external-forms.md`
+### 0060 — `docs/07-integraciones/04-external-forms.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -5476,9 +6374,9 @@ snapshot -> resolve document -> resolve recipient -> Form -> values -> Viewer ->
 ``​`
 ```
 
-<a id="file-0060"></a>
+<a id="file-0061"></a>
 
-### 0060 — `docs/07-integraciones/05-global-config.md`
+### 0061 — `docs/07-integraciones/05-global-config.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -5545,9 +6443,9 @@ allowed = el usuario puede ejecutarla
 El host no debe importar internals como Canvas, RightSidebar, DetailView, ListView o SchemaAssignmentDialog.
 ```
 
-<a id="file-0061"></a>
+<a id="file-0062"></a>
 
-### 0061 — `docs/07-integraciones/06-host-adapters.md`
+### 0062 — `docs/07-integraciones/06-host-adapters.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -5584,9 +6482,9 @@ El host entrega recipients una vez. El componente los registra en `RecipientRegi
 - No duplicar owner color resolvers.
 ```
 
-<a id="file-0062"></a>
+<a id="file-0063"></a>
 
-### 0062 — `docs/07-integraciones/07-pdfcomponent-lab-as-host-reference.md`
+### 0063 — `docs/07-integraciones/07-pdfcomponent-lab-as-host-reference.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -5631,9 +6529,9 @@ return (
 El host puede traer usuarios/documentos desde API, BD o fixtures. Debe mapearlos una sola vez con adapters.
 ```
 
-<a id="file-0063"></a>
+<a id="file-0064"></a>
 
-### 0063 — `docs/07-integraciones/08-manual-portabilidad-sisad-pdfme.md`
+### 0064 — `docs/07-integraciones/08-manual-portabilidad-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `1274`
@@ -6918,9 +7816,9 @@ La integración está lista cuando:
 ``​`
 ```
 
-<a id="file-0064"></a>
+<a id="file-0065"></a>
 
-### 0064 — `docs/07-integraciones/09-instancias-declarativas.md`
+### 0065 — `docs/07-integraciones/09-instancias-declarativas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -6936,9 +7834,9 @@ Fuente de implementación y migración: `.ai/plans/PLAN_MAESTRO_INSTANCIAS_DECLA
 La API separa `definition`, `resources` y `handlers`.
 ```
 
-<a id="file-0065"></a>
+<a id="file-0066"></a>
 
-### 0065 — `docs/07-integraciones/README.md`
+### 0066 — `docs/07-integraciones/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -6955,9 +7853,9 @@ La API separa `definition`, `resources` y `handlers`.
 - [04-external-forms.md](./04-external-forms.md)
 ```
 
-<a id="file-0066"></a>
+<a id="file-0067"></a>
 
-### 0066 — `docs/08-api-reference/01-designer-api.md`
+### 0067 — `docs/08-api-reference/01-designer-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -6978,9 +7876,9 @@ La API separa `definition`, `resources` y `handlers`.
 | onSave | function | Guardado. |
 ```
 
-<a id="file-0067"></a>
+<a id="file-0068"></a>
 
-### 0067 — `docs/08-api-reference/02-form-api.md`
+### 0068 — `docs/08-api-reference/02-form-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -7000,9 +7898,9 @@ La API separa `definition`, `resources` y `handlers`.
 | readonly | Bloqueo global opcional. |
 ```
 
-<a id="file-0068"></a>
+<a id="file-0069"></a>
 
-### 0068 — `docs/08-api-reference/03-viewer-api.md`
+### 0069 — `docs/08-api-reference/03-viewer-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -7020,9 +7918,9 @@ Viewer recibe template y valores para mostrar salida readonly.
 ``​`
 ```
 
-<a id="file-0069"></a>
+<a id="file-0070"></a>
 
-### 0069 — `docs/08-api-reference/04-configuracion-completa.md`
+### 0070 — `docs/08-api-reference/04-configuracion-completa.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `750`
@@ -7783,9 +8681,9 @@ documents.mode=single y preserveDocumentSchemaRouting=false
 No construyas una segunda precedencia en el host.
 ```
 
-<a id="file-0070"></a>
+<a id="file-0071"></a>
 
-### 0070 — `docs/08-api-reference/04-generator-api.md`
+### 0071 — `docs/08-api-reference/04-generator-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -7805,9 +8703,9 @@ const pdfBytes = await generate({ template, values });
 Debe usarse con snapshots válidos y assets disponibles.
 ```
 
-<a id="file-0071"></a>
+<a id="file-0072"></a>
 
-### 0071 — `docs/08-api-reference/05-api-publica-controller-hooks-adapters.md`
+### 0072 — `docs/08-api-reference/05-api-publica-controller-hooks-adapters.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `593`
@@ -8411,9 +9309,9 @@ imagesToPdf
 Usar estos helpers en el host en lugar de reconstruir routing a mano.
 ```
 
-<a id="file-0072"></a>
+<a id="file-0073"></a>
 
-### 0072 — `docs/08-api-reference/05-plugin-api.md`
+### 0073 — `docs/08-api-reference/05-plugin-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -8438,9 +9336,9 @@ Un plugin de schema declara:
 - value adapter.
 ```
 
-<a id="file-0073"></a>
+<a id="file-0074"></a>
 
-### 0073 — `docs/08-api-reference/06-restauracion-y-paridad-api-publica.md`
+### 0074 — `docs/08-api-reference/06-restauracion-y-paridad-api-publica.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -8486,9 +9384,9 @@ Una API pública solo puede estar en uno de estos estados:
 Nunca debe responder como éxito cuando no hizo nada.
 ```
 
-<a id="file-0074"></a>
+<a id="file-0075"></a>
 
-### 0074 — `docs/08-api-reference/07-sisad-pdfme-instance-api.md`
+### 0075 — `docs/08-api-reference/07-sisad-pdfme-instance-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8502,9 +9400,9 @@ Nunca debe responder como éxito cuando no hizo nada.
 Documento de contrato propuesto. Consultar `reports/declarative-instances/02-PUBLIC-API-DRAFT.md`.
 ```
 
-<a id="file-0075"></a>
+<a id="file-0076"></a>
 
-### 0075 — `docs/08-api-reference/08-events-actions-controller.md`
+### 0076 — `docs/08-api-reference/08-events-actions-controller.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8518,9 +9416,9 @@ Documento de contrato propuesto. Consultar `reports/declarative-instances/02-PUB
 Catálogo propuesto: `reports/core-ux/03-EVENT-CATALOG.md`.
 ```
 
-<a id="file-0076"></a>
+<a id="file-0077"></a>
 
-### 0076 — `docs/08-api-reference/README.md`
+### 0077 — `docs/08-api-reference/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -8538,9 +9436,9 @@ Catálogo propuesto: `reports/core-ux/03-EVENT-CATALOG.md`.
 - [05-plugin-api.md](./05-plugin-api.md)
 ```
 
-<a id="file-0077"></a>
+<a id="file-0078"></a>
 
-### 0077 — `docs/09-theming/01-tokens-css.md`
+### 0078 — `docs/09-theming/01-tokens-css.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -8565,9 +9463,9 @@ No eliminar variables críticas:
 Los tokens pueden mapearse a Tailwind, pero no deben duplicarse.
 ```
 
-<a id="file-0078"></a>
+<a id="file-0079"></a>
 
-### 0078 — `docs/09-theming/02-tailwind-bridge.md`
+### 0079 — `docs/09-theming/02-tailwind-bridge.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -8588,9 +9486,9 @@ Reglas:
 - no duplicar reglas entre CSS legacy y Tailwind.
 ```
 
-<a id="file-0079"></a>
+<a id="file-0080"></a>
 
-### 0079 — `docs/09-theming/03-baseline-visual.md`
+### 0080 — `docs/09-theming/03-baseline-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -8612,9 +9510,9 @@ public/img-version
 El objetivo de Tailwind es preservar la intención visual, no rediseñar sin control.
 ```
 
-<a id="file-0080"></a>
+<a id="file-0081"></a>
 
-### 0080 — `docs/09-theming/04-css-migration.md`
+### 0081 — `docs/09-theming/04-css-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -8636,9 +9534,9 @@ Clasificar cada regla:
 Nunca migrar ciegamente reglas de canvas, transform, scale, paper o overlays.
 ```
 
-<a id="file-0081"></a>
+<a id="file-0082"></a>
 
-### 0081 — `docs/09-theming/05-css-reduction-tailwind-inline.md`
+### 0082 — `docs/09-theming/05-css-reduction-tailwind-inline.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -8684,9 +9582,9 @@ Cada migración debe registrar:
 - baseline visual revisada
 ```
 
-<a id="file-0082"></a>
+<a id="file-0083"></a>
 
-### 0082 — `docs/09-theming/06-tailwind3-selector-dedup-plan.md`
+### 0083 — `docs/09-theming/06-tailwind3-selector-dedup-plan.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `46`
@@ -8743,9 +9641,9 @@ Se elimina CSS solo cuando:
 4. No cambia bounding boxes del canvas.
 ```
 
-<a id="file-0083"></a>
+<a id="file-0084"></a>
 
-### 0083 — `docs/09-theming/README.md`
+### 0084 — `docs/09-theming/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -8762,9 +9660,9 @@ Se elimina CSS solo cuando:
 - [04-css-migration.md](./04-css-migration.md)
 ```
 
-<a id="file-0084"></a>
+<a id="file-0085"></a>
 
-### 0084 — `docs/10-testing-qa/01-manual-checklist.md`
+### 0085 — `docs/10-testing-qa/01-manual-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -8801,9 +9699,9 @@ Se elimina CSS solo cuando:
 - Roundtrip.
 ```
 
-<a id="file-0085"></a>
+<a id="file-0086"></a>
 
-### 0085 — `docs/10-testing-qa/02-regression-matrix.md`
+### 0086 — `docs/10-testing-qa/02-regression-matrix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `75`
@@ -8889,9 +9787,9 @@ La task-card pide 16 escenarios de regresión para esta suite. El orden recomend
 - `Config QA` solo cierra cuando el suite Playwright completo y las capas previas quedan verdes contra la misma configuración canónica.
 ```
 
-<a id="file-0086"></a>
+<a id="file-0087"></a>
 
-### 0086 — `docs/10-testing-qa/03-playwright.md`
+### 0087 — `docs/10-testing-qa/03-playwright.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -8914,9 +9812,9 @@ Usar Playwright para:
 No reemplaza tests unitarios de contratos.
 ```
 
-<a id="file-0087"></a>
+<a id="file-0088"></a>
 
-### 0087 — `docs/10-testing-qa/04-vitest.md`
+### 0088 — `docs/10-testing-qa/04-vitest.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -8937,9 +9835,9 @@ Usar Vitest para:
 - validation rules.
 ```
 
-<a id="file-0088"></a>
+<a id="file-0089"></a>
 
-### 0088 — `docs/10-testing-qa/06-matriz-regresion-restauracion-funcional.md`
+### 0089 — `docs/10-testing-qa/06-matriz-regresion-restauracion-funcional.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -8993,9 +9891,9 @@ La restauración se valida contra los casos históricos y portables del componen
 | UC-35 | No regresión de Canvas | Canvas | Moveable, Selecto, coordenadas, zoom y page 2+ con pruebas focales. | P0 | 002, 004, 022 |
 ```
 
-<a id="file-0089"></a>
+<a id="file-0090"></a>
 
-### 0089 — `docs/10-testing-qa/07-coreux-regression-matrix.md`
+### 0090 — `docs/10-testing-qa/07-coreux-regression-matrix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -9009,9 +9907,9 @@ La restauración se valida contra los casos históricos y portables del componen
 Casos canónicos: `reports/core-ux/01-USE-CASE-MATRIX.md`.
 ```
 
-<a id="file-0090"></a>
+<a id="file-0091"></a>
 
-### 0090 — `docs/10-testing-qa/README.md`
+### 0091 — `docs/10-testing-qa/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -9028,9 +9926,9 @@ Casos canónicos: `reports/core-ux/01-USE-CASE-MATRIX.md`.
 - [04-vitest.md](./04-vitest.md)
 ```
 
-<a id="file-0091"></a>
+<a id="file-0092"></a>
 
-### 0091 — `docs/11-migraciones/01-legacy-templates.md`
+### 0092 — `docs/11-migraciones/01-legacy-templates.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -9051,9 +9949,9 @@ Reglas:
 - no mutar destructivamente sin versión.
 ```
 
-<a id="file-0092"></a>
+<a id="file-0093"></a>
 
-### 0092 — `docs/11-migraciones/02-snapshot-versioning.md`
+### 0093 — `docs/11-migraciones/02-snapshot-versioning.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -9073,9 +9971,9 @@ snapshotVersion: 'v1' | 'v2' | 'v3'
 Las migraciones deben ser puras, testeables e idempotentes.
 ```
 
-<a id="file-0093"></a>
+<a id="file-0094"></a>
 
-### 0093 — `docs/11-migraciones/03-pdfme-upstream.md`
+### 0094 — `docs/11-migraciones/03-pdfme-upstream.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -9098,9 +9996,9 @@ Las migraciones deben ser puras, testeables e idempotentes.
 - snapshot extendido.
 ```
 
-<a id="file-0094"></a>
+<a id="file-0095"></a>
 
-### 0094 — `docs/11-migraciones/README.md`
+### 0095 — `docs/11-migraciones/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -9116,9 +10014,9 @@ Las migraciones deben ser puras, testeables e idempotentes.
 - [03-pdfme-upstream.md](./03-pdfme-upstream.md)
 ```
 
-<a id="file-0095"></a>
+<a id="file-0096"></a>
 
-### 0095 — `docs/12-troubleshooting/01-canvas.md`
+### 0096 — `docs/12-troubleshooting/01-canvas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -9143,9 +10041,9 @@ Revisar:
 Revisar `overflow` en contenedores host y canvas.
 ```
 
-<a id="file-0096"></a>
+<a id="file-0097"></a>
 
-### 0096 — `docs/12-troubleshooting/02-pdf-worker.md`
+### 0097 — `docs/12-troubleshooting/02-pdf-worker.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -9165,9 +10063,9 @@ Síntomas:
 Revisar configuración del worker y assets públicos.
 ```
 
-<a id="file-0097"></a>
+<a id="file-0098"></a>
 
-### 0097 — `docs/12-troubleshooting/03-tailwind-regressions.md`
+### 0098 — `docs/12-troubleshooting/03-tailwind-regressions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -9188,9 +10086,9 @@ Problemas comunes:
 - duplicidad entre bridge y CSS legacy.
 ```
 
-<a id="file-0098"></a>
+<a id="file-0099"></a>
 
-### 0098 — `docs/12-troubleshooting/04-runtime.md`
+### 0099 — `docs/12-troubleshooting/04-runtime.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -9217,9 +10115,9 @@ Revisar:
 Viewer nunca debe permitir edición.
 ```
 
-<a id="file-0099"></a>
+<a id="file-0100"></a>
 
-### 0099 — `docs/12-troubleshooting/README.md`
+### 0100 — `docs/12-troubleshooting/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -9236,9 +10134,9 @@ Viewer nunca debe permitir edición.
 - [04-runtime.md](./04-runtime.md)
 ```
 
-<a id="file-0100"></a>
+<a id="file-0101"></a>
 
-### 0100 — `docs/13-ejemplos/01-basic-designer.md`
+### 0101 — `docs/13-ejemplos/01-basic-designer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -9260,9 +10158,9 @@ Validar:
 - Save snapshot.
 ```
 
-<a id="file-0101"></a>
+<a id="file-0102"></a>
 
-### 0101 — `docs/13-ejemplos/02-multi-document-routing.md`
+### 0102 — `docs/13-ejemplos/02-multi-document-routing.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -9283,9 +10181,9 @@ Valida:
 - todos los schemas estándar.
 ```
 
-<a id="file-0102"></a>
+<a id="file-0103"></a>
 
-### 0102 — `docs/13-ejemplos/03-generator-runtime.md`
+### 0103 — `docs/13-ejemplos/03-generator-runtime.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -9305,9 +10203,9 @@ Valida:
 - parity de schemas.
 ```
 
-<a id="file-0103"></a>
+<a id="file-0104"></a>
 
-### 0103 — `docs/13-ejemplos/04-dynamic-host-integration-examples.md`
+### 0104 — `docs/13-ejemplos/04-dynamic-host-integration-examples.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `272`
@@ -9590,9 +10488,9 @@ controller.resetConfig();
 Uso: cambios en caliente. Lo que solo toca presentación no debe reconstruir recursos; los cambios de runtime sí deben hacerlo de forma controlada.
 ```
 
-<a id="file-0104"></a>
+<a id="file-0105"></a>
 
-### 0104 — `docs/13-ejemplos/06-integracion-copy-paste.md`
+### 0105 — `docs/13-ejemplos/06-integracion-copy-paste.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `265`
@@ -9868,9 +10766,9 @@ plugin custom
 ``​`
 ```
 
-<a id="file-0105"></a>
+<a id="file-0106"></a>
 
-### 0105 — `docs/13-ejemplos/07-presets-configuracion.md`
+### 0106 — `docs/13-ejemplos/07-presets-configuracion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `303`
@@ -10184,9 +11082,9 @@ export const readonlyReviewConfig = createSisadPdfmeConfig({
 ``​`
 ```
 
-<a id="file-0106"></a>
+<a id="file-0107"></a>
 
-### 0106 — `docs/13-ejemplos/08-ejemplos-declarativos-json.md`
+### 0107 — `docs/13-ejemplos/08-ejemplos-declarativos-json.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10200,9 +11098,9 @@ export const readonlyReviewConfig = createSisadPdfmeConfig({
 Las páginas básicas deben limitarse a importar una definición y montar `SisadPdfmeInstance`.
 ```
 
-<a id="file-0107"></a>
+<a id="file-0108"></a>
 
-### 0107 — `docs/13-ejemplos/README.md`
+### 0108 — `docs/13-ejemplos/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `69`
@@ -10282,9 +11180,9 @@ Ant Design, Moveable ni Selecto; por eso los shells declaran `font-sans`,
 `m-0` y `box-border` de forma explícita.
 ```
 
-<a id="file-0108"></a>
+<a id="file-0109"></a>
 
-### 0108 — `docs/14-seguridad/01-archivos.md`
+### 0109 — `docs/14-seguridad/01-archivos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -10304,9 +11202,9 @@ Validar:
 - no guardar binarios sensibles en snapshot.
 ```
 
-<a id="file-0109"></a>
+<a id="file-0110"></a>
 
-### 0109 — `docs/14-seguridad/02-firma.md`
+### 0110 — `docs/14-seguridad/02-firma.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -10322,9 +11220,9 @@ La firma se integra por providers externos.
 No guardar claves privadas, archivos P12 o secretos dentro del snapshot del diseñador.
 ```
 
-<a id="file-0110"></a>
+<a id="file-0111"></a>
 
-### 0110 — `docs/14-seguridad/README.md`
+### 0111 — `docs/14-seguridad/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -10339,65 +11237,102 @@ No guardar claves privadas, archivos P12 o secretos dentro del snapshot del dise
 - [02-firma.md](./02-firma.md)
 ```
 
-<a id="file-0111"></a>
+<a id="file-0112"></a>
 
-### 0111 — `AGENTS.md`
+### 0112 — `AGENTS.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `43`
-- **Tamaño original:** `0.9 KB`
-- **SHA1 corto:** `2c9e04e213`
+- **Líneas:** `27`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `97c6ea93ed`
 - **Estado:** `completo`
 
 ```markdown
-# AGENTS.md — SISAD PDFME V7
+# AGENTS.md — SISAD PDFME V8 Lean
 
-Este archivo es un mapa, no un manual.
+## Inicio
 
-## Arranque obligatorio
+1. Lee `.ai/START.md`.
+2. Lee `.ai/scrum/SPRINT-CURRENT.md`.
+3. Trabaja sobre una sola task-card activa.
+4. Carga una route y una skill.
+5. Consulta catálogos por ID, dominio o símbolo; no los abras completos.
 
-Lee, en este orden:
+## Frontera
 
-1. `.ai/START.md`
-2. `.ai/scrum/SPRINT-CURRENT.md`
-3. una sola task-card
-4. el `AGENTS.md` más cercano a la ruta objetivo
-5. una ruta
-6. una skill
+`src/sisad-pdfme` es reusable y host-independent. El host entrega configuración,
+datos, adapters y callbacks. No introduzcas reglas de DigitalAgreements,
+Uanataca, examples o rutas de negocio dentro del core.
 
-No cargues carpetas completas de `.ai`, `.agents`, `docs`, `reports` ni archivos
-consolidados.
-
-## Contrato de trabajo
+## Contrato
 
 ``​`txt
-una task-card
-un writer
-un objetivo verificable
-un paquete de evidencia
-un diff revisable
+Intent → Policy → Command → Mutation → Event → Effect → Snapshot
 ``​`
 
-## Estados de conocimiento
+## Evidencia
 
-`CONFIRMADO · INFERIDO · HIPÓTESIS · DESCONOCIDO`
-
-## Frontera del producto
-
-`src/sisad-pdfme` es reusable. El host entrega configuración, datos, adapters y
-callbacks. El core no contiene negocio de DigitalAgreements, Uanataca,
-externalForms ni rutas de ejemplos.
-
-## Parada
-
-Detente ante presupuesto agotado, ownership conflictivo, tres parches fallidos,
-dos búsquedas sin evidencia nueva, cambio de dominio o frontera protegida no
-declarada.
+Usa `CONFIRMADO`, `INFERIDO`, `HIPÓTESIS` o `DESCONOCIDO`. No declares gates
+verdes sin ejecutarlos. Detente ante conflicto de claim, presupuesto agotado,
+cambio de dominio o frontera protegida.
 ```
 
-<a id="file-0112"></a>
+<a id="file-0113"></a>
 
-### 0112 — `CHECKLIST-ACEPTACION.md`
+### 0113 — `CHECKLIST-ACEPTACION-VISUAL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `40`
+- **Tamaño original:** `1.3 KB`
+- **SHA1 corto:** `0a9ac71ec4`
+- **Estado:** `completo`
+
+```markdown
+# Checklist de aceptación visual y comportamiento
+
+## Layout
+- [ ] Sidebars no desplazan el paper fuera del contrato.
+- [ ] Rails son coherentes.
+- [ ] No existe overflow horizontal.
+- [ ] Responsive usa ancho del root.
+
+## Toolbar
+- [ ] Save lifecycle no se contradice.
+- [ ] Pager y selección están separados.
+- [ ] Zoom/fit/undo/redo son accesibles.
+
+## LeftSidebar
+- [ ] Tabs, búsqueda, filtros y layouts no se cortan.
+- [ ] Cards son compactas y arrastrables.
+- [ ] Custom/favorites/recent funcionan.
+
+## RightSidebar
+- [ ] Cuatro tabs funcionan en cada density.
+- [ ] Un scroll owner por panel.
+- [ ] ListView compacta y sincronizada.
+- [ ] Reasignar funciona con dos recipients asignables.
+- [ ] Comments usa scope correcto.
+- [ ] Documents distingue documentos y páginas.
+- [ ] DetailView tiene identidad y taxonomía uniforme.
+
+## Schemas
+- [ ] Owner/semantic/selected/readonly/lock son distinguibles.
+- [ ] Cada familia tiene inspector y runtime parity.
+- [ ] Groups son seleccionables como root.
+- [ ] Firma depende del modo.
+- [ ] Round-trip snapshot completo.
+
+## Calidad
+- [ ] Teclado, touch y screen reader.
+- [ ] No remount por cambios visuales.
+- [ ] Unit/contract/Playwright/visual regression.
+- [ ] Typecheck/lint/build.
+- [ ] Documentación y trazabilidad.
+```
+
+<a id="file-0114"></a>
+
+### 0114 — `CHECKLIST-ACEPTACION.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `59`
@@ -10467,57 +11402,83 @@ declarada.
 - [ ] Próxima major claramente definida.
 ```
 
-<a id="file-0113"></a>
-
-### 0113 — `CLAUDE.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `11`
-- **Tamaño original:** `0.5 KB`
-- **SHA1 corto:** `e075073b1d`
-- **Estado:** `completo`
-
-```markdown
-# Claude Code — adaptador delgado
-
-Fuente canónica: `AGENTS.md` y `.ai/`.
-
-- Carga una sola task-card, ruta y skill.
-- Usa subagentes para exploración/logs que contaminarían el contexto principal.
-- No uses agent teams por defecto: su coste es sustancialmente mayor.
-- La memoria automática de Claude es auxiliar; `.ai/memory/` es la memoria
-  durable compartida.
-- Usa hooks para políticas mecánicas, no prompts largos.
-- Revalida rama, worktree, commit base y diff tras compactar o reanudar.
-```
-
-<a id="file-0114"></a>
-
-### 0114 — `CODEX.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `11`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `941d80e0a5`
-- **Estado:** `completo`
-
-```markdown
-# Codex — adaptador humano
-
-Codex carga `AGENTS.md`; este archivo documenta decisiones operativas.
-
-- Usa skills por progressive disclosure.
-- Delega solo subtareas independientes y ruidosas.
-- Mantén `model_reasoning_effort` mínimo suficiente.
-- Configura auto-compaction antes del techo operativo.
-- Guarda logs y evidencia en archivos; retorna resúmenes.
-- Cada writer usa worktree y claim.
-- No cargues todos los skills ni todos los task-cards.
-```
-
 <a id="file-0115"></a>
 
-### 0115 — `INSTALL-CHECKLIST.md`
+### 0115 — `CLAUDE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `9`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `ae804a860d`
+- **Estado:** `completo`
+
+```markdown
+# Claude Code — adaptador V8
+
+Fuente canónica: `AGENTS.md`, `.ai/START.md`, task-card, route y skill.
+
+- Usa subagentes para exploración, documentación o logs extensos.
+- Precarga como máximo una skill en cada subagente.
+- La auto-memory de Claude es auxiliar; `.ai/memory` es la memoria compartida.
+- Usa hooks para reglas deterministas, no para duplicar prompts.
+- Revalida worktree, branch, base y diff al reanudar o compactar.
+```
+
+<a id="file-0116"></a>
+
+### 0116 — `CODEX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `9`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `c77f20a13d`
+- **Estado:** `completo`
+
+```markdown
+# Codex — adaptador V8
+
+Codex consume `AGENTS.md` jerárquico y `.agents/skills`.
+
+- Modelo mínimo suficiente según `.ai/MODEL-ROUTER.md`.
+- Uno o dos subagentes read-only como máximo.
+- Evidence y logs extensos se guardan en `.ai/evidence`.
+- No cargar todos los skills, routes o task-cards.
+- Verificar claim/worktree antes de editar.
+```
+
+<a id="file-0117"></a>
+
+### 0117 — `INSTALL-CHECKLIST-VISUAL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `17`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `1a3c8315ce`
+- **Estado:** `completo`
+
+```markdown
+# Instalación del paquete
+
+Este ZIP es un overlay aditivo.
+
+1. Crear una rama o worktree.
+2. Extraer el ZIP en la raíz de `prueba-plugin`.
+3. Verificar que no se reemplazaron:
+   - `README.md`
+   - `.ai/scrum/PRODUCT-BACKLOG.md`
+   - `.ai/scrum/SPRINT-CURRENT.md`
+   - `.ai/memory/**`
+4. Fusionar manualmente las filas del backlog.
+5. Ejecutar `git status --short`.
+6. Revisar `MANIFEST.md`.
+7. Activar únicamente `VISUX-001`.
+
+No ejecutar herramientas de mirror/sync con borrado.
+```
+
+<a id="file-0118"></a>
+
+### 0118 — `INSTALL-CHECKLIST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -10540,9 +11501,9 @@ Codex carga `AGENTS.md`; este archivo documenta decisiones operativas.
 - [ ] Primera task-card ejecutada en worktree.
 ```
 
-<a id="file-0116"></a>
+<a id="file-0119"></a>
 
-### 0116 — `INSTALLATION.md`
+### 0119 — `INSTALLATION.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10566,44 +11527,96 @@ Codex carga `AGENTS.md`; este archivo documenta decisiones operativas.
 No actives hooks destructivos o automáticos hasta validar el flujo manual.
 ```
 
-<a id="file-0117"></a>
+<a id="file-0120"></a>
 
-### 0117 — `MANIFEST.md`
+### 0120 — `MANIFEST.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `22`
-- **Tamaño original:** `2.9 KB`
-- **SHA1 corto:** `cbebaef6d9`
+- **Líneas:** `74`
+- **Tamaño original:** `10.1 KB`
+- **SHA1 corto:** `5ea64347cf`
 - **Estado:** `completo`
 
 ```markdown
 # Manifest
 
-- `.ai/governance/NAMING-COMPATIBILITY-POLICY.md` — 2458 bytes — `28a9a5a44a559f3fa9e7fdcb7d89cba9420475c41b5ee16cf14552703bb685dd`
-- `.ai/plans/PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md` — 22146 bytes — `cdd42902a00577e5695deff151f235faf88f822f667f4ec73e4ab1051c050808`
-- `.ai/prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md` — 11402 bytes — `f76ce6e49765b0c87e864d5bb339d64a3a89804087ab3103d36615faf2ae4729`
-- `.ai/scrum/task-cards/name-001-inventariar-y-clasificar-ocurrencias.md` — 920 bytes — `4953c731312de8bbd224de9d8546b94d0a36238e0b7ec59ce3a6c9296ae446b0`
-- `.ai/scrum/task-cards/name-002-crear-pol-tica-y-gate-preventivo.md` — 929 bytes — `0dad606005834670e7f58d16ee5dccb11af1a7eb8de6f7792f053a758a9e8d75`
-- `.ai/scrum/task-cards/name-003-renombrar-vocabulario-del-inspector.md` — 939 bytes — `527058430a6c5fbeba04b41ecfe1da3c935f62b61c14255e414b23f6230d7e69`
-- `.ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-v1-a-v2.md` — 925 bytes — `b38fce56d60b94a520de3c813286e0bab78430a8147649dcf5c626d969d06082`
-- `.ai/scrum/task-cards/name-005-renombrar-eventos-y-callbacks-del-host.md` — 912 bytes — `8ccd576157b0ecd40fc9583155ff4f56995efeb8f2f42bb135ba0bc708b6d5f4`
-- `.ai/scrum/task-cards/name-006-versionar-snapshots-y-metadata.md` — 896 bytes — `9be4c05e4e9fa6f9346a38729603976433ebfb3e1ec8b74bcb4982fee79686ac`
-- `.ai/scrum/task-cards/name-007-renombrar-provider-de-colaboraci-n.md` — 918 bytes — `8e35e21ee72f0be66228af49651d83037ad1cd4966610ad407335e70c89fb691`
-- `.ai/scrum/task-cards/name-008-sanear-almacenamiento-de-comentarios.md` — 908 bytes — `33924f45063a41e8e1264988bdeeb367c002e4dea105e741465fde18ea64f079`
-- `.ai/scrum/task-cards/name-009-sanear-firma-y-familias-de-schema.md` — 874 bytes — `4742ad274cadeac95e67a6a2325cab3c11e8be23556301bd4609f7831546557d`
-- `.ai/scrum/task-cards/name-010-renombrar-documentaci-n-y-arquitectura-ia.md` — 962 bytes — `737a48332a8834d8167a06c84f16b6388330e2f4d9a939e6b74abbc37cf704e1`
-- `.ai/scrum/task-cards/name-011-administrar-aliases-p-blicos-deprecados.md` — 956 bytes — `a3c19012333765d8aef0b1c47b9ad9a460750631bea8234e3b873a44f23a3855`
-- `.ai/scrum/task-cards/name-012-retirar-compatibilidad-obsoleta.md` — 887 bytes — `801e483e2adf09378bf46b905ec849bdcac8d6036825f1c3e8b1728b290fc61a`
-- `CHECKLIST-ACEPTACION.md` — 1694 bytes — `e8d4bec2393e9d14b5bfd21453204b131c97507646bc973df4dc79ed0961f4e0`
-- `README.md` — 913 bytes — `7a7b6f78c87e2af93bc10a05bc38ac7ccea933cc1b35f369a25b1efab8e8a4f5`
-- `configs/compatibility-language-allowlist.json` — 696 bytes — `c007a06f749e259edc04be5ab27c9ad04fd583674ca7e36f3bdf5e91823422e5`
-- `reports/naming-sanitization/RENAMING-MATRIX.md` — 3835 bytes — `7c90103e88f96e29f140c54689553597d86b9e8fe7fbaedb477f25378eeca3a3`
-- `scripts/quality/audit-compatibility-language.mjs` — 3782 bytes — `10125924bdc6aaadf7c740e6aab6aab3dba63eda5c6d6d4dfe8f1f1f592a43af`
+- Generado: 2026-08-04
+- Task-cards: 42
+- Casos de uso: 158
+- Screenshots: 9
+
+| Archivo | Bytes | SHA-256 |
+|---|---:|---|
+| `.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME_2026-08-04.md` | 13700 | `ebf25c48e9198fcff4e5fbaedd762d46542e823019315ec042da296b2c5163b1` |
+| `.ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md` | 1968 | `2fea42fff4ed7dc7b62876a1d10f0011035ac59aa6b8d0e6adccfcc7ec54a0aa` |
+| `.ai/scrum/VISUX-EXECUTION-ORDER.md` | 901 | `c998f0638529e9c8959e999860536c0b17f3760d5266168b3b0603f0659771b3` |
+| `.ai/scrum/VISUX-MERGE-INSTRUCTIONS.md` | 640 | `748d5f0f91ac1e0895a2981f141adcd32ebca71d06a0a0450efbf967365f9d64` |
+| `.ai/scrum/VISUX-PRODUCT-BACKLOG-ROWS.md` | 7196 | `6da6bb93e71c2e25ae45afba0368bdf52121fc6ff32e838a0c1693491c899ffe` |
+| `.ai/scrum/task-cards/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md` | 4751 | `1b58bf6fbbfdfc9098711d91f3045c7623caaa74117c8801869d549a138961fb` |
+| `.ai/scrum/task-cards/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md` | 5348 | `2366810a16276739069ac8b600f8ca6eadd777df776c6b2d621fcdf0b2dd02da` |
+| `.ai/scrum/task-cards/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md` | 4710 | `eb9a9f31ad7bed2e402fa432f5af34150b8d813cf73eec0d7b9c6527477a9334` |
+| `.ai/scrum/task-cards/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md` | 4841 | `da93c299d202ba7719922977be8795efe51e411c683da2d8f0a544ac673c06a7` |
+| `.ai/scrum/task-cards/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md` | 4648 | `021dbb9a21704d7d97c47b5c7f3b7e99152506d06378ccd37e3b2ba86be93562` |
+| `.ai/scrum/task-cards/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md` | 4608 | `dde4211743e2d6740aa6d414255ab1a843ac3a814e5b30a86e35c2faf5418e94` |
+| `.ai/scrum/task-cards/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md` | 4588 | `aa246da0e35c20b6bd3f874abd1e9cbd714efb6aef5fa3e6c1c9cc2d98ba1a5a` |
+| `.ai/scrum/task-cards/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md` | 4519 | `0cdf3ceed0bf15bc9eefd7b8a09924d0302e72678da530a20105f460117bfd8f` |
+| `.ai/scrum/task-cards/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md` | 4422 | `26ba4f2de6ae2e6299b597341ad2f907d5d259a29098a98810a5f25590e8d623` |
+| `.ai/scrum/task-cards/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md` | 4387 | `ab014e65e97bdd806518405d430188b2453880f095d3353fbb55afe2205ffa8c` |
+| `.ai/scrum/task-cards/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md` | 4551 | `7d1b7a8d8826c729a50ad5b38239bbf1b543b0628d8be8e53104963e748b5fd6` |
+| `.ai/scrum/task-cards/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md` | 4553 | `14d0251064a34ec4fda334aaed3a5f5eebdc427154d5d8cfd4424cc917738db5` |
+| `.ai/scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md` | 4498 | `dd6acb0158fcb68db290b83e7c2f512f740f653095c6c5d3ef83c7d5fbf8e639` |
+| `.ai/scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md` | 4409 | `7a7e013e5e3a4adb91d8b28f9541a3f62fe178003bc6c1bad3602f5a6dc73739` |
+| `.ai/scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md` | 4494 | `8dae9735d85fa991c63fb4089a8a1e486b251bc0f6086d9029e985f78b64b64e` |
+| `.ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md` | 4515 | `817ffa695306cd8f72decd47e3b03d573f1fc7b6d680adca4af5d01c4de525d2` |
+| `.ai/scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md` | 4496 | `3351eef8ff215b12d34f35a8293d34c93a8ca704a266fbaac69bc26368419e11` |
+| `.ai/scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md` | 4423 | `eb317271e78e53dfb01cbed23e1ebd85552a79b4184103923b495eeac681044f` |
+| `.ai/scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md` | 4607 | `cc57f711e2be6005283c0e0678f41db754387ed19d58c36c9976a3085e96fb58` |
+| `.ai/scrum/task-cards/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md` | 4638 | `fd19d31e92782f3fd54712d6066a6e3c3bcd7dc36d28cdfcbf32bbd2c0d4606c` |
+| `.ai/scrum/task-cards/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md` | 4647 | `668636e07d22402849dab106b84b45b99a58c0ba11184fdbc1bd4d21e7d25b3f` |
+| `.ai/scrum/task-cards/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md` | 4630 | `09655ae4a6161dd5f8168fdff1bfdc47fda1d214bb8f13f13acee90e57e13c0d` |
+| `.ai/scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md` | 4647 | `bccf136819df8b9deac393cc99e12339ec2b596241e70d84716ccc035a01a7ba` |
+| `.ai/scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md` | 4557 | `58e4e454541bd168eabe63eca600eeded5e9324eaf7abfdd79661a421258a83a` |
+| `.ai/scrum/task-cards/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md` | 4514 | `c175bdf533412b540d3c5e26c5b36a88deb0cc9ad314f4d6cdcd34cea59396fd` |
+| `.ai/scrum/task-cards/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md` | 4592 | `133155123cbaf4a9a246fc83b781d4125a92a83fffabdeadb8d0205158effd0a` |
+| `.ai/scrum/task-cards/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md` | 4499 | `ff892f6aaa20af92a065a0e4d2a813419386e26ee77b5159741e3653573b01d0` |
+| `.ai/scrum/task-cards/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md` | 4579 | `fda2698d34e0c858b25563618428afcc0b27ab8a479b6f9de5821e2f6df37dba` |
+| `.ai/scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md` | 4424 | `11953b9f8ec30befa7925f4685d2c913a409ea8e9061069b3407677a4cb546d0` |
+| `.ai/scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md` | 4515 | `1c2e68eb32912bc94e028d7e2d5026e8077b4b42d983133dfe427d32044a2a71` |
+| `.ai/scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md` | 4440 | `67dcbac3be292a7da667000c87e070c363d59ed9de54ca4c59e4652d784c7933` |
+| `.ai/scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md` | 4306 | `b30e4eabaafbf0eb8e57021db3e9d23754736657dc7453ef15b114febd904b30` |
+| `.ai/scrum/task-cards/VISUX-033-cerrar-media-barcode-table-y-shapes.md` | 4335 | `106dee0671aeeabf995429d96a5b160cb89d30605483fa037410b497aea53df1` |
+| `.ai/scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md` | 4492 | `51efed3b369a7c4059cba81965520c30d6f42bfbc02b1c129dfe6fd94ab79570` |
+| `.ai/scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md` | 4570 | `1ffa8b237b64f49e6fe3b4561c33926a6aea0d84713943f3f1d0c7aa35b06e9f` |
+| `.ai/scrum/task-cards/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md` | 4501 | `0ccb3d85f50558442f81b24d5fc11bafe877fc05235ef4cf8057526e2aefe87b` |
+| `.ai/scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md` | 4676 | `36956c80bdb1ec04a7d7039020b82900756a67224d8708e17d721ae6e4e11450` |
+| `.ai/scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md` | 4603 | `1ce42ff15e05936b9ce9213a24eeba04339ac9e38e86a00cd5065fe8dc8561a2` |
+| `.ai/scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md` | 4500 | `d68b909cbe0715defb53974da72d9c079b10c91a777b6d19ac255c11deca94cd` |
+| `.ai/scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md` | 4519 | `f76aadd41044907cda852e20c59bcfeb0d892dd2c410cf0ac2d2f41793a48f82` |
+| `.ai/scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md` | 4441 | `e14240a660f97472fc84fee9d94d2af88acbe8c0e8c1a984b94bebe25ebb65e2` |
+| `.ai/scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md` | 4629 | `23e8d1b56eeb30e5ed34fe0195eba8465616bfd8193f21bd77fc4c7ac9bc46f7` |
+| `CHECKLIST-ACEPTACION-VISUAL.md` | 1282 | `feb859ee08d38e20187037caac920120cb91ad5d5eab64728a5aeacf1e06497a` |
+| `INSTALL-CHECKLIST-VISUAL.md` | 484 | `3ae4373207307a7b272af68ba1e933025dbfd06d8a3b6408cc589b88a0d6cd77` |
+| `README-VISUAL-BEHAVIOR.md` | 1500 | `0d20de5c7a8d67f2bdae6dd7756074b405b17cd465a542e44fa370d432bfd8c2` |
+| `ROLLBACK-VISUAL.md` | 556 | `b2078c494b7d4eb516ec5c903292b3a1c6cd2652c69849f9734778aab2d5e816` |
+| `reports/visual-behavior/01-SCREENSHOT-AUDIT.md` | 3132 | `24947254c6848673222556f90188fbbdfc034bdce1b0b0d0afe8cb7b76da3932` |
+| `reports/visual-behavior/02-USE-CASE-MATRIX.md` | 11745 | `877db267fc032a1cc8287e074d670fd0de10d8e379596a95ac07cb99ea94b121` |
+| `reports/visual-behavior/03-COMPONENT-MATRIX.md` | 2492 | `6934a650b2497ce54726532f7a8e93e00fb141dd85894f7bb072ae39342a7c06` |
+| `reports/visual-behavior/04-RISK-REGISTER.md` | 1436 | `a65ec525b0b600b8f49f66629aa7294c008377982f74bed8e120854d8e89eac6` |
+| `reports/visual-behavior/05-TASK-MAP.md` | 4100 | `2621ddeee447364137d9b6ff58d1a52e45e1cd298294ed63d499b9989b39919c` |
+| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-01.jpg` | 222653 | `5e345f9ca4d0ec13a19cd03f6ec899e87e41f94e329dcdd50c51582354942296` |
+| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-02.jpg` | 147274 | `b64591d521a8729e3a74217a6005caa1e1a9c3eec44495ad2e7b22afcd964294` |
+| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-03.jpg` | 286973 | `29ddff7d4ca4ffc0fc6b8fdb9f1a2ce0c1ce1fd451b6bf4efa468f9f8f9681fb` |
+| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-04.jpg` | 319660 | `c8a885f174a70d6e1a72f4e851f6d90396f7b245f856c8576b859668adf7e4b9` |
+| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-05.jpg` | 306037 | `202c5530ff0ca76d0210c01bff67880f2da172d71e38901318a7872d4d477384` |
+| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-06.jpg` | 271246 | `9a9d5f4cbb418a65ddce37b05fd548150b976bc977522277b248870ed7914d05` |
+| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-07.jpg` | 84883 | `415f8a6d0faa7befbbea66cb4221457bfa449727cb93f4e2f274870a3532c92e` |
+| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-08.jpg` | 281114 | `851b3f471ebd5ddf8dc75b26cb02c51fe5c7649374b7d991dc7d8035c750d41c` |
+| `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-09.jpg` | 317182 | `ccf28cdec93855f7e53a2bab69afee0087ff0cf67d93dd3cc30c6666788b6be6` |
 ```
 
-<a id="file-0118"></a>
+<a id="file-0121"></a>
 
-### 0118 — `MIGRATION_V5_TO_V6.md`
+### 0121 — `MIGRATION_V5_TO_V6.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -10657,9 +11670,9 @@ No actives hooks destructivos o automáticos hasta validar el flujo manual.
 8. Activar bloqueos solo después de observar falsos positivos.
 ```
 
-<a id="file-0119"></a>
+<a id="file-0122"></a>
 
-### 0119 — `MIGRATION-FROM-V4.md`
+### 0122 — `MIGRATION-FROM-V4.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -10680,9 +11693,9 @@ No actives hooks destructivos o automáticos hasta validar el flujo manual.
 8. Activa hooks primero en modo advertencia.
 ```
 
-<a id="file-0120"></a>
+<a id="file-0123"></a>
 
-### 0120 — `MIGRATION-V6-TO-V7.md`
+### 0123 — `MIGRATION-V6-TO-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `36`
@@ -10729,9 +11742,56 @@ CLAUDE.md
 Conservar aliases durante una versión y registrar consumidores antes de borrar.
 ```
 
-<a id="file-0121"></a>
+<a id="file-0124"></a>
 
-### 0121 — `PROMPT_MAESTRO_CODEX_SISAD_PDFME.md`
+### 0124 — `MIGRATION-V7-TO-V8.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `34`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `f9534284ff`
+- **Estado:** `completo`
+
+```markdown
+# Migración V7 → V8 Lean
+
+## Replace after review
+
+``​`txt
+AGENTS.md
+CLAUDE.md
+CODEX.md
+.github/copilot-instructions.md
+.ai/START.md
+.ai/ROUTER.md
+``​`
+
+## Add
+
+Contracts, catalogs, indexes, scripts, canonical skills/agents and provider
+adapters.
+
+## Merge, never overwrite
+
+``​`txt
+SPRINT-CURRENT.md
+CLAIMS.md
+CURRENT.md
+HANDOFF.md
+decisions/risks existentes
+``​`
+
+## Deprecate for one version
+
+Old routes, duplicate skill bodies, provider role copies, Backlog/Done
+task-cards and selectors used as public hooks.
+
+Run baseline, backup, V8 validators and provider drift before deleting anything.
+```
+
+<a id="file-0125"></a>
+
+### 0125 — `PROMPT_MAESTRO_CODEX_SISAD_PDFME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `86`
@@ -10828,9 +11888,34 @@ Entrega:
 Detente al cumplir la Definition of Done. No abras una auditoría global nueva dentro de la misma tarea.
 ```
 
-<a id="file-0122"></a>
+<a id="file-0126"></a>
 
-### 0122 — `README_ENTREGA.md`
+### 0126 — `README copy.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `97553a32e2`
+- **Estado:** `completo`
+
+```markdown
+# SISAD PDFME — Refactorización dinámica de schemas
+
+Este paquete contiene:
+
+- auditoría de los 90 archivos de `src/sisad-pdfme/schemas`;
+- arquitectura objetivo;
+- plan incremental;
+- prompt maestro para Codex;
+- plantilla de task card.
+
+No contiene modificaciones directas al código fuente. Debe aplicarse dentro del
+repositorio real con characterization tests y commits atómicos.
+```
+
+<a id="file-0127"></a>
+
+### 0127 — `README_ENTREGA.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -10878,9 +11963,9 @@ V5 tenía una base correcta, pero seguía fragmentada y carecía de controles ex
 V6 incorpora esos controles como políticas, plantillas, skills y gates.
 ```
 
-<a id="file-0123"></a>
+<a id="file-0128"></a>
 
-### 0123 — `README-AI-ARCHITECTURE-V7.md`
+### 0128 — `README-AI-ARCHITECTURE-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -10926,9 +12011,56 @@ adapter corto
 No modifica código productivo. No sobrescribe automáticamente Scrum ni memoria.
 ```
 
-<a id="file-0124"></a>
+<a id="file-0129"></a>
 
-### 0124 — `README-COREUX.md`
+### 0129 — `README-AI-ARCHITECTURE-V8.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `34`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `d04a1c48f5`
+- **Estado:** `completo`
+
+```markdown
+# SISAD PDFME — Arquitectura IA V8 Lean
+
+Destino:
+
+``​`txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+``​`
+
+## Contenido
+
+- baseline actual: 320 archivos IA detectados;
+- 334 casos de uso consolidados;
+- 334 comportamientos;
+- 28 contratos de familias/tipos;
+- 50 eventos;
+- 26 efectos;
+- 2403 métodos/símbolos del código más reciente;
+- 1482 relaciones candidate;
+- 12 routes, 18 skills canónicas y 10 roles;
+- 18 tareas de migración;
+- scripts para query, context packs, memory, provider drift y task lifecycle.
+
+## Principio
+
+``​`txt
+hot path pequeño
+→ context pack por tarea
+→ knowledge JSONL consultable
+→ patch/test
+→ trace delta
+→ memory delta
+``​`
+
+No modifica código productivo y no sobrescribe estado Scrum/memory.
+```
+
+<a id="file-0130"></a>
+
+### 0130 — `README-COREUX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -10972,9 +12104,9 @@ src/sisad-pdfme/**
 No se modifica código funcional en este paquete.
 ```
 
-<a id="file-0125"></a>
+<a id="file-0131"></a>
 
-### 0125 — `README-DECLARATIVE-INSTANCES.md`
+### 0131 — `README-DECLARATIVE-INSTANCES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -11025,9 +12157,9 @@ handlers = callbacks
 No se modifica código funcional en este paquete.
 ```
 
-<a id="file-0126"></a>
+<a id="file-0132"></a>
 
-### 0126 — `README-EJEMPLOS-UX-UI.md`
+### 0132 — `README-EJEMPLOS-UX-UI.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -11063,9 +12195,9 @@ EXAMPLES-UX-001
 ``​`
 ```
 
-<a id="file-0127"></a>
+<a id="file-0133"></a>
 
-### 0127 — `README-MANUAL-PORTABILIDAD.md`
+### 0133 — `README-MANUAL-PORTABILIDAD.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -11106,9 +12238,9 @@ No se ejecutaron `build`, `lint`, Vitest ni Playwright durante la generación de
 7. `reports/portability/PORTABILITY-CHECKLIST.md`
 ```
 
-<a id="file-0128"></a>
+<a id="file-0134"></a>
 
-### 0128 — `README-RESTORE-SISAD-PDFME.md`
+### 0134 — `README-RESTORE-SISAD-PDFME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `63`
@@ -11182,9 +12314,92 @@ Abrir:
 Registrar claim y ejecutar únicamente el baseline forense.
 ```
 
-<a id="file-0129"></a>
+<a id="file-0135"></a>
 
-### 0129 — `ROLLBACK.md`
+### 0135 — `README-VISUAL-BEHAVIOR.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `46`
+- **Tamaño original:** `1.5 KB`
+- **SHA1 corto:** `ec4248cd65`
+- **Estado:** `completo`
+
+```markdown
+# Paquete de corrección visual y comportamiento — SISAD PDFME
+
+Este paquete agrega un plan ejecutable y **42 task-cards** para corregir
+el diseño, la interacción y la paridad funcional de las superficies visuales de
+`src/sisad-pdfme`.
+
+No contiene cambios de aplicación. Está preparado como overlay aditivo para la
+raíz de `prueba-plugin`.
+
+## Contenido principal
+
+``​`text
+.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME_2026-08-04.md
+.ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md
+.ai/scrum/task-cards/VISUX-001..VISUX-042
+.ai/scrum/VISUX-EXECUTION-ORDER.md
+.ai/scrum/VISUX-PRODUCT-BACKLOG-ROWS.md
+.ai/scrum/VISUX-MERGE-INSTRUCTIONS.md
+reports/visual-behavior/
+README-VISUAL-BEHAVIOR.md
+CHECKLIST-ACEPTACION-VISUAL.md
+INSTALL-CHECKLIST-VISUAL.md
+ROLLBACK-VISUAL.md
+MANIFEST.md
+``​`
+
+## Relación con COREUX
+
+Las tarjetas `VISUX-*` **refinan** el trabajo existente `COREUX-*`. No deben
+convertirse en una segunda autoridad del producto.
+
+Antes de activar una tarjeta:
+
+1. revisar la tarjeta `COREUX-*` relacionada;
+2. fusionar sus criterios nuevos en la task activa;
+3. conservar un solo claim y un solo writer;
+4. no ejecutar dos tarjetas que toquen los mismos archivos;
+5. archivar la tarjeta VISUX cuando sus criterios estén absorbidos.
+
+## Inicio
+
+1. Copiar el contenido del ZIP en la raíz del repositorio.
+2. Leer el plan maestro.
+3. Ejecutar `VISUX-001`.
+4. Mantener todas las tarjetas en Backlog hasta liberar WIP.
+5. Ejecutar una task-card por sesión/claim.
+```
+
+<a id="file-0136"></a>
+
+### 0136 — `ROLLBACK-VISUAL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `11`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `1d395a11ad`
+- **Estado:** `completo`
+
+```markdown
+# Rollback del paquete VISUX
+
+El paquete solo agrega documentación y evidencia.
+
+Para retirar el paquete antes de iniciar implementación:
+
+``​`bash
+git rm -r   .ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME_2026-08-04.md   .ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md   .ai/scrum/task-cards/VISUX-*   .ai/scrum/VISUX-*   reports/visual-behavior   README-VISUAL-BEHAVIOR.md   CHECKLIST-ACEPTACION-VISUAL.md   INSTALL-CHECKLIST-VISUAL.md   ROLLBACK-VISUAL.md
+``​`
+
+No revertir cambios productivos de otras tasks con este rollback.
+```
+
+<a id="file-0137"></a>
+
+### 0137 — `ROLLBACK.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11198,9 +12413,9 @@ Registrar claim y ejecutar únicamente el baseline forense.
 La arquitectura no modifica código de aplicación al instalarse. Para revertir, elimina las rutas añadidas y restaura AGENTS/CLAUDE/Copilot anteriores desde Git. Los hooks permanecen desactivados mientras tengan extensión `.example`; no los habilites sin una prueba local.
 ```
 
-<a id="file-0130"></a>
+<a id="file-0138"></a>
 
-### 0130 — `SHA256.md`
+### 0138 — `SHA256.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `87`
@@ -11298,9 +12513,9 @@ da0be0e6b2c4aa17288b3765659a8ab8be3ae7e3eb07712ea2ff51b998475051  .github/agents
 ``​`
 ```
 
-<a id="file-0131"></a>
+<a id="file-0139"></a>
 
-### 0131 — `TREE-V7.md`
+### 0139 — `TREE-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `214`
@@ -11525,9 +12740,198 @@ prueba-plugin/
 ``​`
 ```
 
-<a id="file-0132"></a>
+<a id="file-0140"></a>
 
-### 0132 — `TREE.md`
+### 0140 — `TREE-V8.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `176`
+- **Tamaño original:** `7.4 KB`
+- **SHA1 corto:** `76bff815ff`
+- **Estado:** `completo`
+
+```markdown
+# Tree V8
+
+``​`text
+prueba-plugin/
+├── .agents/skills/canvas-safety/SKILL.md
+├── .agents/skills/configuration/SKILL.md
+├── .agents/skills/context-engineering/SKILL.md
+├── .agents/skills/dry-refactor/SKILL.md
+├── .agents/skills/event-effect/SKILL.md
+├── .agents/skills/inspector-contract/SKILL.md
+├── .agents/skills/left-sidebar/SKILL.md
+├── .agents/skills/memory-gc/SKILL.md
+├── .agents/skills/public-api/SKILL.md
+├── .agents/skills/quality-evidence/SKILL.md
+├── .agents/skills/recipient-assignment/SKILL.md
+├── .agents/skills/responsive-ux/SKILL.md
+├── .agents/skills/runtime-parity/SKILL.md
+├── .agents/skills/schema-family/SKILL.md
+├── .agents/skills/snapshot/SKILL.md
+├── .agents/skills/tailwind-system/SKILL.md
+├── .agents/skills/traceability/SKILL.md
+├── .agents/skills/worktree-coordination/SKILL.md
+├── .ai/BUDGETS.md
+├── .ai/DECISION-PROTOCOL.md
+├── .ai/ROUTER.md
+├── .ai/START.md
+├── .ai/STATE-SOURCES.md
+├── .ai/agents/architect.md
+├── .ai/agents/coordinator.md
+├── .ai/agents/domain-specialist.md
+├── .ai/agents/explorer.md
+├── .ai/agents/implementer.md
+├── .ai/agents/memory-steward.md
+├── .ai/agents/provider-steward.md
+├── .ai/agents/qa.md
+├── .ai/agents/reviewer.md
+├── .ai/agents/traceability-steward.md
+├── .ai/architecture/00-SYSTEM-MAP.md
+├── .ai/architecture/01-KNOWLEDGE-MODEL.md
+├── .ai/architecture/02-HOT-WARM-COLD.md
+├── .ai/architecture/03-PROVIDER-ADAPTERS.md
+├── .ai/architecture/04-TASK-LIFECYCLE.md
+├── .ai/catalogs/actions.jsonl
+├── .ai/catalogs/agents.jsonl
+├── .ai/catalogs/behaviors.jsonl
+├── .ai/catalogs/effects.jsonl
+├── .ai/catalogs/events.jsonl
+├── .ai/catalogs/index.json
+├── .ai/catalogs/methods.jsonl
+├── .ai/catalogs/routes.jsonl
+├── .ai/catalogs/schemas.jsonl
+├── .ai/catalogs/skills.jsonl
+├── .ai/catalogs/trace-edges.jsonl
+├── .ai/catalogs/use-cases.jsonl
+├── .ai/contracts/CLASS-NAMESPACE-CONTRACT.md
+├── .ai/contracts/CONFIGURATION-CONTRACT.md
+├── .ai/contracts/DESIGNER-INTERACTION-CONTRACT.md
+├── .ai/contracts/DETAILVIEW-CONTRACT.md
+├── .ai/contracts/EVENT-EFFECT-CONTRACT.md
+├── .ai/contracts/LEFT-SIDEBAR-CONTRACT.md
+├── .ai/contracts/PROJECT-CONTRACT.md
+├── .ai/contracts/RECIPIENT-OWNERSHIP-COLOR.md
+├── .ai/contracts/SCHEMA-SURFACE-CONTRACT.md
+├── .ai/evals/EVAL-001.md
+├── .ai/evals/EVAL-002.md
+├── .ai/evals/EVAL-003.md
+├── .ai/evals/EVAL-004.md
+├── .ai/evals/EVAL-005.md
+├── .ai/evals/EVAL-006.md
+├── .ai/evals/EVAL-007.md
+├── .ai/evals/EVAL-008.md
+├── .ai/evals/EVAL-009.md
+├── .ai/evals/EVAL-010.md
+├── .ai/index/README.md
+├── .ai/index/RECIPIENT-COLOR-MATRIX.md
+├── .ai/index/SCHEMA-MATRIX.md
+├── .ai/memory/.gitignore
+├── .ai/memory/CURRENT.template.md
+├── .ai/memory/HANDOFF.template.md
+├── .ai/memory/INDEX.md
+├── .ai/memory/PROJECT.md
+├── .ai/memory/TTL-POLICY.md
+├── .ai/memory/decisions.jsonl
+├── .ai/memory/risks.jsonl
+├── .ai/prompts/DIAGNOSE.md
+├── .ai/prompts/IMPLEMENT.md
+├── .ai/prompts/MEMORY-DELTA.md
+├── .ai/prompts/PROVIDER-SYNC.md
+├── .ai/prompts/REVIEW.md
+├── .ai/prompts/TRACE.md
+├── .ai/research/OFFICIAL-SOURCES.md
+├── .ai/routes/ai-architecture.md
+├── .ai/routes/canvas.md
+├── .ai/routes/configuration.md
+├── .ai/routes/inspector.md
+├── .ai/routes/left-sidebar.md
+├── .ai/routes/persistence.md
+├── .ai/routes/quality.md
+├── .ai/routes/recipients-ownership.md
+├── .ai/routes/runtime-contracts.md
+├── .ai/routes/runtimes.md
+├── .ai/routes/schemas.md
+├── .ai/routes/ux.md
+├── .ai/scripts/archive-task.mjs
+├── .ai/scripts/build-context-pack.mjs
+├── .ai/scripts/distill-log.mjs
+├── .ai/scripts/materialize-task.mjs
+├── .ai/scripts/memory-gc.mjs
+├── .ai/scripts/query-catalog.mjs
+├── .ai/scripts/validate-jsonl.mjs
+├── .ai/scripts/validate-provider-drift.mjs
+├── .ai/scripts/validate-skill-aliases.mjs
+├── .ai/scripts/validate-trace.mjs
+├── .ai/scripts/validate-v8.mjs
+├── .ai/scrum/MERGE-V8.md
+├── .ai/scrum/archive/.gitkeep
+├── .ai/scrum/backlog-v8.jsonl
+├── .ai/scrum/task-cards/active/.gitkeep
+├── .ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y-backup.md
+├── .ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path-v8.md
+├── .ai/scrum/task-cards/backlog/AI8-003-migrar-conocimiento-a-jsonl.md
+├── .ai/scrum/task-cards/backlog/AI8-004-implantar-query-y-context-pack.md
+├── .ai/scrum/task-cards/backlog/AI8-005-compactar-routes.md
+├── .ai/scrum/task-cards/backlog/AI8-006-compactar-skills-y-aliases.md
+├── .ai/scrum/task-cards/backlog/AI8-007-consolidar-agentes.md
+├── .ai/scrum/task-cards/backlog/AI8-008-generar-adapters-de-proveedor.md
+├── .ai/scrum/task-cards/backlog/AI8-009-migrar-memoria-y-ttl.md
+├── .ai/scrum/task-cards/backlog/AI8-010-migrar-lifecycle-de-tareas.md
+├── .ai/scrum/task-cards/backlog/AI8-011-consolidar-contratos-de-usuarios-y-color.md
+├── .ai/scrum/task-cards/backlog/AI8-012-consolidar-matriz-de-schemas.md
+├── .ai/scrum/task-cards/backlog/AI8-013-inventariar-namespace-css.md
+├── .ai/scrum/task-cards/backlog/AI8-014-actualizar-trazabilidad.md
+├── .ai/scrum/task-cards/backlog/AI8-015-implementar-gates.md
+├── .ai/scrum/task-cards/backlog/AI8-016-crear-evals-de-costo-y-precision.md
+├── .ai/scrum/task-cards/backlog/AI8-017-migrar-coreux-decl-restore-name.md
+├── .ai/scrum/task-cards/backlog/AI8-018-rollout-y-eliminacion-controlada.md
+├── .ai/scrum/task-cards/ready/.gitkeep
+├── .ai/templates/CONTEXT-PACK.md
+├── .ai/templates/DECISION.md
+├── .ai/templates/EVIDENCE-PACKET.md
+├── .ai/templates/HANDOFF.md
+├── .ai/templates/TASK-CARD.md
+├── .claude/agents/sisad-explorer.md
+├── .claude/agents/sisad-log-distiller.md
+├── .claude/agents/sisad-reviewer.md
+├── .claude/agents/sisad-traceability.md
+├── .claude/settings.example.json
+├── .codex/config.example.toml
+├── .github/agents/sisad-coordinator.agent.md
+├── .github/agents/sisad-explorer.agent.md
+├── .github/agents/sisad-implementer.agent.md
+├── .github/agents/sisad-qa.agent.md
+├── .github/agents/sisad-reviewer.agent.md
+├── .github/copilot-instructions.md
+├── .github/instructions/ai.instructions.md
+├── .github/instructions/canvas.instructions.md
+├── .github/instructions/schemas.instructions.md
+├── .github/instructions/sisad-core.instructions.md
+├── .github/prompts/color-contract.prompt.md
+├── .github/prompts/diagnose-task.prompt.md
+├── .github/prompts/implement-task.prompt.md
+├── .github/prompts/review-diff.prompt.md
+├── .github/prompts/update-trace.prompt.md
+├── AGENTS.md
+├── CLAUDE.md
+├── CODEX.md
+├── MERGE-MANIFEST.json
+├── MIGRATION-V7-TO-V8.md
+├── README-AI-ARCHITECTURE-V8.md
+├── reports/ai-v8/00-BASELINE.json
+├── reports/ai-v8/00-BASELINE.md
+├── reports/ai-v8/01-FINDINGS.md
+├── reports/ai-v8/02-TARGET-METRICS.md
+├── reports/ai-v8/03-MIGRATION-MAP.md
+├── reports/ai-v8/04-OFFICIAL-PROVIDER-SOURCES.md
+``​`
+```
+
+<a id="file-0141"></a>
+
+### 0141 — `TREE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `227`
@@ -11765,9 +13169,41 @@ sisad-pdfme-ai-architecture-v6
 ``​`
 ```
 
-<a id="file-0133"></a>
+<a id="file-0142"></a>
 
-### 0133 — `.ai/CONTEXT-BUDGET.md`
+### 0142 — `.ai/BUDGETS.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `19`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `542babf6d3`
+- **Estado:** `completo`
+
+```markdown
+# Budgets V8
+
+| Fase | Tokens | Archivos |
+|---|---:|---:|
+| boot | 2.5k | 5 |
+| diagnóstico | 12k | 8 |
+| diseño | 10k | 5 |
+| implementación | 28k | 5 productivos |
+| validación | 12k | logs destilados |
+| handoff | 4k | 3 |
+
+## Watermarks
+
+- 50%: fijar hipótesis;
+- 65%: checkpoint;
+- 75%: detener exploración;
+- 85%: handoff/nueva sesión.
+
+Una skill principal, una secundaria opcional, máximo dos readers y un writer.
+```
+
+<a id="file-0143"></a>
+
+### 0143 — `.ai/CONTEXT-BUDGET.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `44`
@@ -11822,9 +13258,9 @@ task-cards, logs >100 líneas, coverage/vendor/backups y memoria histórica
 completa.
 ```
 
-<a id="file-0134"></a>
+<a id="file-0144"></a>
 
-### 0134 — `.ai/CONTEXT-POLICY.md`
+### 0144 — `.ai/CONTEXT-POLICY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `52`
@@ -11887,9 +13323,37 @@ Un packet queda stale cuando cambia commit base, contrato público, test
 caracterizador, route owner o decisión relacionada.
 ```
 
-<a id="file-0135"></a>
+<a id="file-0145"></a>
 
-### 0135 — `.ai/MODEL-ROUTER.md`
+### 0145 — `.ai/DECISION-PROTOCOL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `15`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `1d371ee528`
+- **Estado:** `completo`
+
+```markdown
+# Protocolo de decisión
+
+1. Clasifica intención y route.
+2. Confirma fuente de verdad actual.
+3. Consulta IDs/símbolos, no archivos completos.
+4. Distingue estado, policy, command, event y effect.
+5. Evalúa riesgo y archivos protegidos.
+6. Define test caracterizador.
+7. Elige patrón solo si reduce fuentes de verdad.
+8. Aplica cambio mínimo.
+9. Valida comportamiento, contrato y no regresión.
+10. Actualiza trazabilidad y memoria por delta.
+
+Escala a Architect si hay API pública, snapshot, Canvas, migración o tres
+hipótesis incompatibles.
+```
+
+<a id="file-0146"></a>
+
+### 0146 — `.ai/MODEL-ROUTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -11929,9 +13393,9 @@ Desescala inmediatamente al aislar la causa. No mantengas un modelo caro para
 renames, tablas, documentación o ejecución mecánica.
 ```
 
-<a id="file-0136"></a>
+<a id="file-0147"></a>
 
-### 0136 — `.ai/OBSERVABILITY.md`
+### 0147 — `.ai/OBSERVABILITY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11966,9 +13430,9 @@ Los datos crudos viven en `.ai/evidence/<task>/`; `.ai/memory/METRICS.md`
 conserva tendencias agregadas.
 ```
 
-<a id="file-0137"></a>
+<a id="file-0148"></a>
 
-### 0137 — `.ai/ORCHESTRATION.md`
+### 0148 — `.ai/ORCHESTRATION.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -12027,122 +13491,117 @@ independencia permite revisión real
 ``​`
 ```
 
-<a id="file-0138"></a>
+<a id="file-0149"></a>
 
-### 0138 — `.ai/ROUTER.md`
+### 0149 — `.ai/ROUTER.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `29`
-- **Tamaño original:** `2.2 KB`
-- **SHA1 corto:** `84687d0720`
+- **Líneas:** `21`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `b744a6fdd1`
 - **Estado:** `completo`
 
 ```markdown
-# Router V7 por intención
+# Router V8
 
-El router devuelve un **Context Manifest**, no una lista abierta de documentos.
+El router devuelve `routeId`, `owner`, `skillIds`, `risk`, `contextBudget`,
+`catalogQueries`, `protectedPaths` y `gates`.
 
-| Intención | Route | Owner | Skill principal |
-|---|---|---|---|
-| orientación/arquitectura IA | `routes/ai-architecture.md` | AI Architect | `sisad-ai-architecture` |
-| tokens/contexto | `routes/token-context.md` | Token Steward | `sisad-context-packet` |
-| memoria/handoff | `routes/docs-memory.md` | Memory Steward | `sisad-knowledge-gc` |
-| trazabilidad | `routes/traceability.md` | Traceability Steward | `sisad-behavior-traceability` |
-| métodos/capacidades | `routes/capabilities.md` | Runtime Architect | `sisad-capability-audit` |
-| eventos/efectos | `routes/events-effects.md` | Runtime Architect | `sisad-event-effect-contract` |
-| comandos/undo | `routes/commands.md` | Runtime Architect | `sisad-command-history` |
-| controller/API | `routes/controller.md` | Runtime Architect | `sisad-controller-parity` |
-| selección/drag/geometría | `routes/canvas.md` | Canvas Specialist | `sisad-canvas-interaction` |
-| RightSidebar/inspector | `routes/right-sidebar.md` | Inspector | `sisad-right-sidebar-contract` |
-| LeftSidebar/catálogo | `routes/left-sidebar.md` | UX/Schema | `sisad-left-sidebar-catalog` |
-| schemas/familias | `routes/schemas.md` | Schema Specialist | `sisad-schema-behavior-matrix` |
-| recipients/asignación | `routes/assignments.md` | Runtime Architect | `sisad-recipient-assignment-policy` |
-| configuración | `routes/configuration.md` | Config Specialist | `sisad-configuration-service` |
-| documentos/snapshot | `routes/runtime-snapshot.md` | Runtime Architect | `sisad-snapshot-compatibility` |
-| Form/Viewer/Generator | `routes/runtime.md` | Runtime Architect | `sisad-form-viewer-parity` |
-| responsive/accesibilidad | `routes/ux-design.md` | UX/A11y | `sisad-responsive-ux` |
-| Tailwind/tokens | `routes/css-tailwind.md` | UX | `sisad-tailwind-design-system` |
-| pruebas/logs | `routes/testing.md` | QA | `sisad-test-log-distillation` |
-| dedup/dead code | `routes/quality.md` | DRY Analyst | `sisad-dry-refactor` |
-| provider adapters | `routes/provider-adapters.md` | Adapter Steward | `sisad-provider-adapter-sync` |
+| Intención | Route | Skill |
+|---|---|---|
+| usuarios, colores, asignación | recipients-ownership | recipient-assignment |
+| catálogo y drag | left-sidebar | left-sidebar |
+| Canvas y selección | canvas | canvas-safety |
+| DetailView | inspector | inspector-contract |
+| familia de schema | schemas | schema-family |
+| eventos/efectos/comandos | runtime-contracts | event-effect |
+| configuración/actions | configuration | configuration |
+| documentos/snapshot | persistence | snapshot |
+| Form/Viewer/Generator | runtimes | runtime-parity |
+| responsive/a11y/Tailwind | ux | responsive-ux |
+| IA, memoria, tokens | ai-architecture | context-engineering |
+| tests/calidad | quality | quality-evidence |
 
-Una tarea puede consultar rutas secundarias, pero una sola ruta posee el parche.
+Una sola route posee el parche.
 ```
 
-<a id="file-0139"></a>
+<a id="file-0150"></a>
 
-### 0139 — `.ai/START.md`
+### 0150 — `.ai/START.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `58`
-- **Tamaño original:** `1.1 KB`
-- **SHA1 corto:** `53bc6cbb7a`
+- **Líneas:** `33`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `9ae18192fd`
 - **Estado:** `completo`
 
 ```markdown
-# START — entrada única V7
+# START V8
 
-## Boot packet: ≤2.500 tokens
+## Hot path
 
 ``​`txt
 AGENTS.md
-.ai/scrum/SPRINT-CURRENT.md
-una task-card
-un AGENTS.md local
-una ruta
+SPRINT-CURRENT.md
+task activa
+route
+skill
 ``​`
 
-Carga la skill solo después de confirmar que su descripción coincide con la
-tarea. No abras memoria histórica, planes completos o catálogos grandes en el
-arranque.
+Objetivo: ≤2.500 tokens y ≤5 archivos.
 
-## Ciclo
+## Secuencia
 
 ``​`txt
 orientar
-→ verificar estado real
-→ formular pregunta
-→ obtener evidence packet
-→ decidir
-→ caracterizar con test
-→ cambiar
-→ validar
+→ validar estado/claim
+→ construir context pack
+→ reproducir
+→ test caracterizador
+→ cambio mínimo
+→ gates
 → review
+→ trace delta
 → memory delta
 ``​`
 
-## Checkpoint previo al parche
+## No cargar al inicio
 
-Registra:
-
-``​`txt
-task/claim/worktree/base
-causa probable
-evidencia y confianza
-invariantes
-archivos permitidos
-test focal
-presupuesto
-condición de parada
-trace IDs afectados
-``​`
-
-## Fuente de estado
-
-- Estado durable: `.ai/scrum/SPRINT-CURRENT.md`
-- Claim/lease: `.ai/scrum/CLAIMS.md`
-- Continuidad inmediata: `.ai/memory/HANDOFF.md`
-- `.ai/scrum/ACTIVE.md` es una vista generada, no autoridad.
-
-## Reanudación
-
-Verifica `pwd`, rama, worktree, `git status`, commit base, task-card, último
-gate y archivos modificados. No confíes únicamente en el resumen de sesión.
+Catálogos JSONL, archivos consolidados, todos los task-cards, todos los skills,
+logs completos, backups, coverage, reports históricos o provider adapters.
 ```
 
-<a id="file-0140"></a>
+<a id="file-0151"></a>
 
-### 0140 — `.claude/README.md`
+### 0151 — `.ai/STATE-SOURCES.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `15`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `d191ba7c99`
+- **Estado:** `completo`
+
+```markdown
+# Fuentes de estado
+
+| Concepto | Fuente canónica |
+|---|---|
+| sprint/WIP | `.ai/scrum/SPRINT-CURRENT.md` |
+| claim/lease | `.ai/scrum/CLAIMS.md` |
+| tarea detallada activa | `.ai/scrum/task-cards/active/*.md` |
+| backlog | `.ai/scrum/backlog.jsonl` |
+| tareas cerradas | `.ai/scrum/archive/index.jsonl` |
+| continuidad | `.ai/memory/HANDOFF.md` |
+| estado técnico actual | `.ai/memory/CURRENT.md` |
+| decisiones | `.ai/memory/decisions.jsonl` |
+| evidencia extensa | `.ai/evidence/<task>/` |
+| conocimiento funcional | `.ai/catalogs/*.jsonl` |
+| vistas Markdown | generadas; no editar |
+```
+
+<a id="file-0152"></a>
+
+### 0152 — `.claude/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -12161,9 +13620,9 @@ gate y archivos modificados. No confíes únicamente en el resumen de sesión.
 - Hooks may enforce deterministic policy; see `settings.example.json`.
 ```
 
-<a id="file-0141"></a>
+<a id="file-0153"></a>
 
-### 0141 — `.codex/README.md`
+### 0153 — `.codex/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -12187,32 +13646,31 @@ Recommended:
 - store evidence in files.
 ```
 
-<a id="file-0142"></a>
+<a id="file-0154"></a>
 
-### 0142 — `.github/copilot-instructions.md`
+### 0154 — `.github/copilot-instructions.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `10`
-- **Tamaño original:** `0.5 KB`
-- **SHA1 corto:** `d63fc9c179`
+- **Líneas:** `9`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `34bd18feab`
 - **Estado:** `completo`
 
 ```markdown
-# GitHub Copilot — SISAD PDFME
+# GitHub Copilot — SISAD PDFME V8
 
-Use `AGENTS.md`, `.ai/START.md`, the active task-card, the nearest
-`AGENTS.md`, one path-specific instruction and one relevant skill.
+Use `AGENTS.md`, `.ai/START.md`, the active task-card, one path instruction and
+one skill. Preserve public API, schema identity, document/page routing,
+ownership, snapshot compatibility, Canvas geometry, accessibility and host
+independence.
 
-Preserve public API, schema identity, document/page routing, ownership,
-snapshot compatibility, accessibility, Canvas geometry and host independence.
-Do not create a second registry/service/event bus. Run focal tests and update
-the task-card with evidence. Keep repository-wide instructions short; detailed
-rules live in `.github/instructions/` and `.agents/skills/`.
+Do not create a second registry, event bus, config service, snapshot format or
+renderer. Report focal tests and non-executed gates explicitly.
 ```
 
-<a id="file-0143"></a>
+<a id="file-0155"></a>
 
-### 0143 — `ENTREGA/INFORME_DEDUP.md`
+### 0155 — `ENTREGA/INFORME_DEDUP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `269`
@@ -12492,9 +13950,9 @@ Para que el quality gate mida código propio y no confunda deuda de terceros/doc
 No conviene excluir módulos propios solo para hacer bajar el porcentaje.
 ```
 
-<a id="file-0144"></a>
+<a id="file-0156"></a>
 
-### 0144 — `reports/right-sidebar-listview-ux-audit.md`
+### 0156 — `reports/right-sidebar-listview-ux-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -12540,9 +13998,9 @@ Ya existía trabajo en curso sin commitear sobre los mismos archivos objetivo (d
 - **UX-004**: Virtualización de la lista (solo con evidencia de >100–200 filas).
 ```
 
-<a id="file-0145"></a>
+<a id="file-0157"></a>
 
-### 0145 — `research/CURRENT-DUPLICATION-BASELINE.md`
+### 0157 — `research/CURRENT-DUPLICATION-BASELINE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -12577,9 +14035,9 @@ Ya existía trabajo en curso sin commitear sobre los mismos archivos objetivo (d
 La métrica global no debe presentarse como deuda homogénea. El objetivo de sprint es reducir `owned`, no reescribir upstream ni editar documentos generados.
 ```
 
-<a id="file-0146"></a>
+<a id="file-0158"></a>
 
-### 0146 — `research/MODEL-MATRIX.md`
+### 0158 — `research/MODEL-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -12611,9 +14069,9 @@ Todos los nombres están sujetos a disponibilidad del cliente/cuenta. La configu
 Terra medium como base; Luna low en subagentes de inventario; Sol high para reviewer y cambios de alto riesgo.
 ```
 
-<a id="file-0147"></a>
+<a id="file-0159"></a>
 
-### 0147 — `research/OFFICIAL-FINDINGS.md`
+### 0159 — `research/OFFICIAL-FINDINGS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -12669,9 +14127,9 @@ Conclusión: mínimo privilegio, validación, controles de acceso, confirmación
 El reporte local recomienda la skill `dry-refactoring` del proyecto jscpd. V5 no instala código externo automáticamente; replica el flujo de clasificación y permite evaluar una skill externa antes de adoptarla.
 ```
 
-<a id="file-0148"></a>
+<a id="file-0160"></a>
 
-### 0148 — `research/SOURCE-REGISTER.md`
+### 0160 — `research/SOURCE-REGISTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -12694,9 +14152,9 @@ El reporte local recomienda la skill `dry-refactoring` del proyecto jscpd. V5 no
 | duplicidad | reporte local jscpd | task-cards y perfiles |
 ```
 
-<a id="file-0149"></a>
+<a id="file-0161"></a>
 
-### 0149 — `research/V4-AUDIT.md`
+### 0161 — `research/V4-AUDIT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -12728,47 +14186,87 @@ El reporte local recomienda la skill `dry-refactoring` del proyecto jscpd. V5 no
 Consolidación de políticas, progressive disclosure, agents/skills válidos, scripts Node, hooks ejemplo, configs por perfil, task-cards actuales, worktree ownership y memoria por delta.
 ```
 
-<a id="file-0150"></a>
+<a id="file-0162"></a>
 
-### 0150 — `.ai/agents/ARCHITECT.md`
+### 0162 — `templates/TASK-CARD-SCHEMA-DYN.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `25`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `0421ad5df5`
+- **Líneas:** `40`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `6eee575a3c`
+- **Estado:** `completo`
+
+```markdown
+# SCHEMA-DYN-XXX — Título
+
+**Estado:** backlog
+**Familia:**
+**Prioridad:**
+**Riesgo:**
+**Commit base:**
+**Worktree:**
+
+## Problema confirmado
+
+## Hipótesis
+
+## Archivos productivos permitidos
+
+Máximo cinco.
+
+## Tests de caracterización
+
+## Patrón elegido
+
+## Invariantes
+
+- schemaUid
+- documentId/pageNumber
+- recipient/owner color
+- required/readOnly/lock
+- value
+- Designer/Form/Viewer/PDF
+- snapshot
+
+## Criterios de aceptación
+
+## Gates ejecutados
+
+## Gates no ejecutados
+
+## Riesgos y rollback
+
+## Handoff
+```
+
+<a id="file-0163"></a>
+
+### 0163 — `.ai/agents/architect.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `d6f3675849`
 - **Estado:** `completo`
 
 ```markdown
 ---
-name: architect
-mode: read-only
+id: architect
+mode: reader
+write: false
 ---
 
 # architect
 
-**Purpose:** Decide contratos públicos, patterns, migrations y ADRs.
+Contracts, ADR and migration decisions.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.
 ```
 
-<a id="file-0151"></a>
+<a id="file-0164"></a>
 
-### 0151 — `.ai/agents/CANVAS-SPECIALIST.md`
+### 0164 — `.ai/agents/CANVAS-SPECIALIST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -12804,161 +14302,134 @@ Task-card, route, allowed paths, budget and output schema.
 status, evidence, confidence, decision, risks, next action and stop condition.
 ```
 
-<a id="file-0152"></a>
+<a id="file-0165"></a>
 
-### 0152 — `.ai/agents/COORDINATOR.md`
+### 0165 — `.ai/agents/coordinator.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `25`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `f431fbbc93`
+- **Líneas:** `12`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `35eb04a64d`
 - **Estado:** `completo`
 
 ```markdown
 ---
-name: coordinator
-mode: read-only
+id: coordinator
+mode: manager
+write: false
 ---
 
 # coordinator
 
-**Purpose:** Coordina WIP, claims, context manifests y evidence packets.
+WIP, claims, routing and synthesis.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.
 ```
 
-<a id="file-0153"></a>
+<a id="file-0166"></a>
 
-### 0153 — `.ai/agents/EXPLORER.md`
+### 0166 — `.ai/agents/domain-specialist.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `25`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `0260a8fdde`
+- **Líneas:** `12`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `97e31fb32d`
 - **Estado:** `completo`
 
 ```markdown
 ---
-name: explorer
-mode: read-only
+id: domain-specialist
+mode: writer
+write: true
+---
+
+# domain-specialist
+
+Canvas/schema/runtime/config specialization.
+
+Input: task, route, budget, allowed paths and output schema.
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.
+```
+
+<a id="file-0167"></a>
+
+### 0167 — `.ai/agents/explorer.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `bd46114250`
+- **Estado:** `completo`
+
+```markdown
+---
+id: explorer
+mode: reader
+write: false
 ---
 
 # explorer
 
-**Purpose:** Investiga una pregunta y devuelve evidence packet sin editar.
+Evidence packet from repository exploration.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.
 ```
 
-<a id="file-0154"></a>
+<a id="file-0168"></a>
 
-### 0154 — `.ai/agents/IMPLEMENTER.md`
+### 0168 — `.ai/agents/implementer.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `25`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `b02f197020`
+- **Líneas:** `12`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `36ea68d158`
 - **Estado:** `completo`
 
 ```markdown
 ---
-name: implementer
+id: implementer
 mode: writer
+write: true
 ---
 
 # implementer
 
-**Purpose:** Aplica una task-card acotada con test focal.
+Atomic patch with focal test.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.
 ```
 
-<a id="file-0155"></a>
+<a id="file-0169"></a>
 
-### 0155 — `.ai/agents/MEMORY-STEWARD.md`
+### 0169 — `.ai/agents/memory-steward.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `25`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `bc2eba5c9e`
+- **Líneas:** `12`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `cb166937d6`
 - **Estado:** `completo`
 
 ```markdown
 ---
-name: memory-steward
+id: memory-steward
 mode: docs-writer
+write: true
 ---
 
 # memory-steward
 
-**Purpose:** Actualiza memoria por delta y ejecuta GC.
+Memory delta and garbage collection.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.
 ```
 
-<a id="file-0156"></a>
+<a id="file-0170"></a>
 
-### 0156 — `.ai/agents/PROVIDER-ADAPTER-STEWARD.md`
+### 0170 — `.ai/agents/PROVIDER-ADAPTER-STEWARD.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -12994,47 +14465,59 @@ Task-card, route, allowed paths, budget and output schema.
 status, evidence, confidence, decision, risks, next action and stop condition.
 ```
 
-<a id="file-0157"></a>
+<a id="file-0171"></a>
 
-### 0157 — `.ai/agents/QA.md`
+### 0171 — `.ai/agents/provider-steward.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `25`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `1cb054dc40`
+- **Líneas:** `12`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `daf860d1a5`
 - **Estado:** `completo`
 
 ```markdown
 ---
-name: qa
-mode: read-only
+id: provider-steward
+mode: docs-writer
+write: true
+---
+
+# provider-steward
+
+Codex/Claude/Copilot adapters.
+
+Input: task, route, budget, allowed paths and output schema.
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.
+```
+
+<a id="file-0172"></a>
+
+### 0172 — `.ai/agents/qa.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `5d46a9709b`
+- **Estado:** `completo`
+
+```markdown
+---
+id: qa
+mode: reader
+write: false
 ---
 
 # qa
 
-**Purpose:** Diseña y ejecuta pruebas focales, destila logs.
+Tests, logs and visual evidence.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.
 ```
 
-<a id="file-0158"></a>
+<a id="file-0173"></a>
 
-### 0158 — `.ai/agents/REGISTRY.md`
+### 0173 — `.ai/agents/REGISTRY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -13063,47 +14546,34 @@ status, evidence, confidence, decision, risks, next action and stop condition.
 | `ux-designer` | writer | Responsive, sidebars, density, accessibility y visual QA. |
 ```
 
-<a id="file-0159"></a>
+<a id="file-0174"></a>
 
-### 0159 — `.ai/agents/REVIEWER.md`
+### 0174 — `.ai/agents/reviewer.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `25`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `8b21412784`
+- **Líneas:** `12`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `4a84da4ef4`
 - **Estado:** `completo`
 
 ```markdown
 ---
-name: reviewer
-mode: read-only
+id: reviewer
+mode: reader
+write: false
 ---
 
 # reviewer
 
-**Purpose:** Revisa diff, invariantes, riesgo y rollback.
+Independent P0/P1/P2 review.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.
 ```
 
-<a id="file-0160"></a>
+<a id="file-0175"></a>
 
-### 0160 — `.ai/agents/RUNTIME-ARCHITECT.md`
+### 0175 — `.ai/agents/RUNTIME-ARCHITECT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13139,9 +14609,9 @@ Task-card, route, allowed paths, budget and output schema.
 status, evidence, confidence, decision, risks, next action and stop condition.
 ```
 
-<a id="file-0161"></a>
+<a id="file-0176"></a>
 
-### 0161 — `.ai/agents/SCHEMA-SPECIALIST.md`
+### 0176 — `.ai/agents/SCHEMA-SPECIALIST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13177,9 +14647,9 @@ Task-card, route, allowed paths, budget and output schema.
 status, evidence, confidence, decision, risks, next action and stop condition.
 ```
 
-<a id="file-0162"></a>
+<a id="file-0177"></a>
 
-### 0162 — `.ai/agents/TOKEN-STEWARD.md`
+### 0177 — `.ai/agents/TOKEN-STEWARD.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13215,47 +14685,34 @@ Task-card, route, allowed paths, budget and output schema.
 status, evidence, confidence, decision, risks, next action and stop condition.
 ```
 
-<a id="file-0163"></a>
+<a id="file-0178"></a>
 
-### 0163 — `.ai/agents/TRACEABILITY-STEWARD.md`
+### 0178 — `.ai/agents/traceability-steward.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `25`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `b3dd103e01`
+- **Líneas:** `12`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `3e85737223`
 - **Estado:** `completo`
 
 ```markdown
 ---
-name: traceability-steward
+id: traceability-steward
 mode: docs-writer
+write: true
 ---
 
 # traceability-steward
 
-**Purpose:** Mantiene UC/BHV/EVT/FX/MTH/TSK/TST.
+Catalog and trace updates.
 
-## Input
-
-Task-card, route, allowed paths, budget and output schema.
-
-## Rules
-
-- one question/goal;
-- evidence before conclusions;
-- no scope expansion;
-- no hidden writer;
-- trace IDs and stop condition;
-- concise handoff.
-
-## Output
-
-status, evidence, confidence, decision, risks, next action and stop condition.
+Input: task, route, budget, allowed paths and output schema.
+Output: evidence, confidence, decision, trace IDs, gates, risks and stop condition.
 ```
 
-<a id="file-0164"></a>
+<a id="file-0179"></a>
 
-### 0164 — `.ai/agents/UX-DESIGNER.md`
+### 0179 — `.ai/agents/UX-DESIGNER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -13291,9 +14748,170 @@ Task-card, route, allowed paths, budget and output schema.
 status, evidence, confidence, decision, risks, next action and stop condition.
 ```
 
-<a id="file-0165"></a>
+<a id="file-0180"></a>
 
-### 0165 — `.ai/architecture/AI-ASSISTANT-ARCHITECTURE-V7.md`
+### 0180 — `.ai/architecture/00-SYSTEM-MAP.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `21`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `ddd100632e`
+- **Estado:** `completo`
+
+```markdown
+# Mapa V8
+
+``​`txt
+always loaded
+  AGENTS · START · sprint · task
+
+authored warm
+  routes · skills · agents · contracts · decisions
+
+machine-readable cold
+  catalogs JSONL · trace edges · method registry · backlog/archive
+
+generated
+  Markdown indexes · provider adapters · Scrum views · context packs
+
+ephemeral
+  evidence · logs · screenshots · local caches
+``​`
+
+La optimización no consiste en borrar conocimiento, sino en impedir que todo el
+conocimiento compita por el contexto de cada sesión.
+```
+
+<a id="file-0181"></a>
+
+### 0181 — `.ai/architecture/01-KNOWLEDGE-MODEL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `33`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `2f3a04a01e`
+- **Estado:** `completo`
+
+```markdown
+# Modelo de conocimiento
+
+IDs:
+
+``​`txt
+UC caso de uso
+BHV comportamiento
+SCH contrato de schema
+ACT acción
+EVT evento
+FX efecto
+MTH método/símbolo
+TST prueba
+TSK tarea
+ADR decisión
+RISK riesgo
+``​`
+
+Aristas:
+
+``​`txt
+UC requires BHV
+BHV implemented-by MTH
+BHV emits EVT
+EVT triggers FX
+MTH covered-by TST
+TSK changes MTH
+TSK validates UC
+ADR constrains TSK/MTH
+``​`
+
+Las relaciones automáticas son `candidate`; review o test las promueve a
+`verified`.
+```
+
+<a id="file-0182"></a>
+
+### 0182 — `.ai/architecture/02-HOT-WARM-COLD.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `18`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `52c2c8c632`
+- **Estado:** `completo`
+
+```markdown
+# Hot, warm y cold storage
+
+## Hot
+
+AGENTS, START, sprint, task activa, CURRENT/HANDOFF. Debe ser pequeño y estable.
+
+## Warm
+
+Route, skill, contrato de dominio y uno o dos topic memories.
+
+## Cold
+
+Catálogos, methods, trace graph, backlog, archive, research y evidencia.
+
+## Regla
+
+Un archivo frío nunca se abre completo. Se consulta con
+`.ai/scripts/query-catalog.mjs` o se resume en un context pack.
+```
+
+<a id="file-0183"></a>
+
+### 0183 — `.ai/architecture/03-PROVIDER-ADAPTERS.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `9`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `2392865272`
+- **Estado:** `completo`
+
+```markdown
+# Proveedores
+
+La fuente canónica es vendor-neutral. Claude, Codex y Copilot reciben adapters
+generados desde registries de agentes, skills y routes.
+
+Los adapters pueden añadir sintaxis propia, pero no reglas funcionales nuevas.
+
+`sync-provider-adapters.mjs` controla nombres, descriptions, tools, skill preload
+y enlaces. El drift gate falla ante copias manuales divergentes.
+```
+
+<a id="file-0184"></a>
+
+### 0184 — `.ai/architecture/04-TASK-LIFECYCLE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `15`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `97ee7e1d7e`
+- **Estado:** `completo`
+
+```markdown
+# Ciclo de tareas
+
+``​`txt
+backlog.jsonl
+→ materialize-task
+→ task-cards/ready
+→ claim/worktree
+→ task-cards/active
+→ evidence + trace delta
+→ archive-task
+→ archive/index.jsonl
+``​`
+
+Solo Ready/In progress permanecen como Markdown completo. Backlog y Done se
+consultan por ID. Esto evita cargar decenas de task-cards irrelevantes.
+```
+
+<a id="file-0185"></a>
+
+### 0185 — `.ai/architecture/AI-ASSISTANT-ARCHITECTURE-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `36`
@@ -13340,9 +14958,9 @@ L5 enforcement
 - subagentes aíslan ruido, no distribuyen ownership ambiguo.
 ```
 
-<a id="file-0166"></a>
+<a id="file-0186"></a>
 
-### 0166 — `.ai/architecture/DESIGNER-SURFACE-ARCHITECTURE.md`
+### 0186 — `.ai/architecture/DESIGNER-SURFACE-ARCHITECTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -13390,9 +15008,9 @@ previousSurface
 - rails comparten primitive y tokens.
 ```
 
-<a id="file-0167"></a>
+<a id="file-0187"></a>
 
-### 0167 — `.ai/architecture/EVENT-COMMAND-EFFECT-ARCHITECTURE.md`
+### 0187 — `.ai/architecture/EVENT-COMMAND-EFFECT-ARCHITECTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -13440,9 +15058,9 @@ Interactúa con DOM, browser, persistence o callbacks del host.
 - tragar errores de listeners sin diagnostics.
 ```
 
-<a id="file-0168"></a>
+<a id="file-0188"></a>
 
-### 0168 — `.ai/architecture/KNOWLEDGE-GRAPH.md`
+### 0188 — `.ai/architecture/KNOWLEDGE-GRAPH.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `32`
@@ -13485,9 +15103,9 @@ Toda arista automática se marca `candidate`; solo una prueba, review o decisió
 puede promoverla a `verified`.
 ```
 
-<a id="file-0169"></a>
+<a id="file-0189"></a>
 
-### 0169 — `.ai/architecture/MEMORY-ARCHITECTURE-V7.md`
+### 0189 — `.ai/architecture/MEMORY-ARCHITECTURE-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -13524,9 +15142,9 @@ declara cuándo leerlos.
 - GC mensual o al superar límites.
 ```
 
-<a id="file-0170"></a>
+<a id="file-0190"></a>
 
-### 0170 — `.ai/architecture/PROVIDER-COMPATIBILITY.md`
+### 0190 — `.ai/architecture/PROVIDER-COMPATIBILITY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -13570,279 +15188,489 @@ Los adapters no copian governance. El gate compara enlaces, IDs, comandos y
 versiones contra la fuente común.
 ```
 
-<a id="file-0171"></a>
+<a id="file-0191"></a>
 
-### 0171 — `.ai/evals/EVAL-001.md`
+### 0191 — `.ai/contracts/CLASS-NAMESPACE-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `14`
+- **Líneas:** `20`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `da1da75572`
+- **Estado:** `completo`
+
+```markdown
+# Contrato de clases y selectores
+
+Constantes:
+
+``​`ts
+DESIGNER_CLASSNAME = 'sisad-pdfme-designer-'
+UI_CLASSNAME = 'sisad-pdfme-ui-'
+``​`
+
+Son prefijos técnicos, no configuración de negocio.
+
+## Reglas
+
+- Construir clases mediante helpers `designerClass(suffix)` y `uiClass(suffix)`.
+- No concatenar los prefijos en múltiples componentes sin inventario.
+- CSS del host no apunta a internals del componente.
+- Tests y adapters usan `data-testid`, `data-role`, `data-schema-id`,
+  `data-option-id` y `data-owner-id`.
+- Clases internas pueden cambiar detrás de una migración visual.
+- Un cambio de prefijo exige visual tests y selector inventory.
+```
+
+<a id="file-0192"></a>
+
+### 0192 — `.ai/contracts/CONFIGURATION-CONTRACT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
 - **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `d0311fa2d6`
+- **SHA1 corto:** `c00e93beb3`
 - **Estado:** `completo`
 
 ```markdown
-# EVAL-001 — Boot packet
+# Configuración
 
-## Input
+Distinguir:
 
-Synthetic task matching this scenario.
+``​`txt
+registered · supported · enabled · visible · permitted · available
+active · executable · reason · sources
+``​`
 
-## Expected
-
-Agent starts with ≤4 files and identifies active task.
-
-## Measure
-
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+ConfigService/selectors/registries son la fuente única. UI no lee config cruda
+ni replica condiciones. Cambios presentacionales son hot updates; cambios
+estructurales usan rebuild explícito.
 ```
 
-<a id="file-0172"></a>
+<a id="file-0193"></a>
 
-### 0172 — `.ai/evals/EVAL-002.md`
+### 0193 — `.ai/contracts/DESIGNER-INTERACTION-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `14`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `4e3ea29ac4`
+- **Líneas:** `9`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `1590e59c8d`
 - **Estado:** `completo`
 
 ```markdown
-# EVAL-002 — Routing
+# Designer interaction
 
-## Input
+Selección, transformaciones, inline edit, clipboard, grouping, page/document
+routing y sidebars deben usar Policy→Command→Event→Effect.
 
-Synthetic task matching this scenario.
+Un schema bloqueado puede seleccionarse e inspeccionarse, pero no transformarse.
 
-## Expected
-
-RightSidebar request selects one route and one skill.
-
-## Measure
-
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Abrir/cerrar sidebars conserva zoom, scroll, page, document y selection.
+Undo/redo registra una operación por gesto, no por frame.
 ```
 
-<a id="file-0173"></a>
+<a id="file-0194"></a>
 
-### 0173 — `.ai/evals/EVAL-003.md`
+### 0194 — `.ai/contracts/DETAILVIEW-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `5b91d6a9b6`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `167c74b107`
 - **Estado:** `completo`
 
 ```markdown
-# EVAL-003 — No broad load
+# DetailView
 
-## Input
+Taxonomía:
 
-Synthetic task matching this scenario.
+``​`txt
+identity · content · options · validation · fileRules · signature · action
+behavior · box · appearance · dataBindings · comments · collaboration · advanced
+``​`
 
-## Expected
+Todo widget declara `propertyPath`, `read`, `write`, `visibleWhen`,
+`disabledWhen`, `validate` y `layout`.
 
-Agent refuses to read all docs/consolidated files.
-
-## Measure
-
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Required vive en validation; readOnly en behavior; ownership/lock en
+collaboration. No se renderiza una sección o control sin capability y writer.
 ```
 
-<a id="file-0174"></a>
+<a id="file-0195"></a>
 
-### 0174 — `.ai/evals/EVAL-004.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `14`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `54a9cee97d`
-- **Estado:** `completo`
-
-```markdown
-# EVAL-004 — Memory delta
-
-## Input
-
-Synthetic task matching this scenario.
-
-## Expected
-
-Session outcome updates only correct memory layer.
-
-## Measure
-
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
-```
-
-<a id="file-0175"></a>
-
-### 0175 — `.ai/evals/EVAL-005.md`
+### 0195 — `.ai/contracts/EVENT-EFFECT-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `14`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `2b6064eb63`
-- **Estado:** `completo`
-
-```markdown
-# EVAL-005 — Traceability
-
-## Input
-
-Synthetic task matching this scenario.
-
-## Expected
-
-Diff maps to methods/use cases/events/tests.
-
-## Measure
-
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
-```
-
-<a id="file-0176"></a>
-
-### 0176 — `.ai/evals/EVAL-006.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `14`
+- **Líneas:** `9`
 - **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `81dcbaea3f`
+- **SHA1 corto:** `f17a9246af`
 - **Estado:** `completo`
 
 ```markdown
-# EVAL-006 — Provider parity
+# Events and effects
 
-## Input
+``​`txt
+UI intent → Access/Action Policy → Command → Mutation → Domain Event → Effect
+``​`
 
-Synthetic task matching this scenario.
-
-## Expected
-
-Codex/Claude/Copilot receive same core constraints.
-
-## Measure
-
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Los widgets no llaman callbacks del host directamente. Un dispatcher adapta
+eventos canónicos a handlers legacy. Los efectos DOM/browser/host tienen owner,
+cleanup y rollback. No usar `setTimeout` para coordinación.
 ```
 
-<a id="file-0177"></a>
+<a id="file-0196"></a>
 
-### 0177 — `.ai/evals/EVAL-007.md`
+### 0196 — `.ai/contracts/LEFT-SIDEBAR-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `14`
+- **Líneas:** `10`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `1ef094f229`
+- **Estado:** `completo`
+
+```markdown
+# LeftSidebar
+
+- Registry único para Base/Custom/Prefill.
+- Layout y density son dimensiones distintas.
+- Search/favorites/recent no duplican plugins.
+- Click, double click, teclado y drag terminan en `insert-schema`.
+- Drag preview usa active recipient y tamaño natural.
+- Drop inválido no crea schema ni deja efectos.
+- Disabled schema se oculta o muestra con reason.
+- Class hooks estables mediante data attributes.
+```
+
+<a id="file-0197"></a>
+
+### 0197 — `.ai/contracts/PROJECT-CONTRACT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `11`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `6a30a0d498`
+- **Estado:** `completo`
+
+```markdown
+# Contrato del proyecto
+
+- `src/sisad-pdfme`: componente reusable y portable.
+- Core nuevo: TypeScript/TSX.
+- Examples: JavaScript/JSX/JSON y API pública.
+- Modos: Designer, Form, Viewer y Generator.
+- Estado crítico: schemaUid, documentId, pageNumber, geometry, ownership,
+  options, locks, comments, signature metadata y snapshot version.
+- Host: configuración, adapters, data, callbacks y negocio.
+- Core: Canvas, sidebars, inspector, commands, documents, comments, runtime,
+  events, effects, snapshot y artifacts.
+```
+
+<a id="file-0198"></a>
+
+### 0198 — `.ai/contracts/RECIPIENT-OWNERSHIP-COLOR.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `29`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `42b8008f1d`
+- **Estado:** `completo`
+
+```markdown
+# Usuarios, ownership y color
+
+## Regla central
+
+``​`txt
+LeftSidebar/futuros schemas → activeRecipientColor
+schema existente            → stored ownerColor
+schema recién creado         → activeRecipientColor persistido como ownerColor
+``​`
+
+Cambiar Alice→Bob→Carla no recolorea schemas existentes.
+
+## Prioridad de color
+
+1. schema.ownerColor
+2. schema.userColor/recipientColor legacy
+3. metadata `__designer`
+4. recipient registry
+5. fallback explícito
+
+## Semantic color
+
+Approve verde, Decline rojo, Note informativo, image/SVG/barcode/shape conservan
+su contenido. El owner color se limita al chrome externo.
+
+## Reasignar
+
+Visible con `assignableRecipientCount > 1` y selección. Disabled con reason si
+no hay permiso. Preserva geometry, routing, readOnly y locks.
+```
+
+<a id="file-0199"></a>
+
+### 0199 — `.ai/contracts/SCHEMA-SURFACE-CONTRACT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `19`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `5cbb5b31ae`
+- **Estado:** `completo`
+
+```markdown
+# Contrato transversal de schemas
+
+Cada tipo declara:
+
+``​`txt
+catalog metadata
+factory/defaults
+Designer renderer/interaction
+DetailView profile/widgets
+Form renderer/validation
+Viewer renderer
+Generator/PDF renderer
+Snapshot/migration
+owner/semantic color policy
+events/effects
+tests
+``​`
+
+Un custom schema sin capability no obtiene un control inferido mediante switch.
+```
+
+<a id="file-0200"></a>
+
+### 0200 — `.ai/evals/EVAL-001.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
 - **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `db24e750ee`
+- **SHA1 corto:** `949af9625e`
 - **Estado:** `completo`
 
 ```markdown
-# EVAL-007 — Subagent cost
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-001 — Boot ≤5 files
 
 ## Expected
 
-Trivial task stays single-agent.
+La sesión identifica task, route y skill sin abrir catálogos completos.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.
 ```
 
-<a id="file-0178"></a>
+<a id="file-0201"></a>
 
-### 0178 — `.ai/evals/EVAL-008.md`
+### 0201 — `.ai/evals/EVAL-002.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `14`
+- **Líneas:** `10`
 - **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `1eb5edcd27`
+- **SHA1 corto:** `dc21b072e2`
 - **Estado:** `completo`
 
 ```markdown
-# EVAL-008 — Context checkpoint
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-002 — Recipient color
 
 ## Expected
 
-Agent stops exploration at watermark.
+Recupera activeRecipient vs stored ownerColor y no recolorea schemas existentes.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.
 ```
 
-<a id="file-0179"></a>
+<a id="file-0202"></a>
 
-### 0179 — `.ai/evals/EVAL-009.md`
+### 0202 — `.ai/evals/EVAL-003.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `14`
+- **Líneas:** `10`
 - **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `9b6de1bea5`
+- **SHA1 corto:** `69c75428ce`
 - **Estado:** `completo`
 
 ```markdown
-# EVAL-009 — False green
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-003 — Schema family
 
 ## Expected
 
-Gate failure is not described as success.
+Recupera surfaces y DetailView de checkboxGroup sin cargar todas las familias.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.
 ```
 
-<a id="file-0180"></a>
+<a id="file-0203"></a>
 
-### 0180 — `.ai/evals/EVAL-010.md`
+### 0203 — `.ai/evals/EVAL-004.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `14`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `a54aaa2256`
+- **Líneas:** `10`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `8dd4bc7311`
 - **Estado:** `completo`
 
 ```markdown
-# EVAL-010 — WIP/claim
-
-## Input
-
-Synthetic task matching this scenario.
+# EVAL-004 — Class namespace
 
 ## Expected
 
-Agent does not start writer work without capacity/claim.
+Distingue prefijos CSS internos de data hooks estables.
 
 ## Measure
 
-files loaded, estimated tokens, route, skill, model class, subagents, edits,
-gates and adherence.
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.
 ```
 
-<a id="file-0181"></a>
+<a id="file-0204"></a>
 
-### 0181 — `.ai/governance/NAMING-COMPATIBILITY-POLICY.md`
+### 0204 — `.ai/evals/EVAL-005.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `56485392cf`
+- **Estado:** `completo`
+
+```markdown
+# EVAL-005 — No false green
+
+## Expected
+
+Reporta gates no ejecutados.
+
+## Measure
+
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.
+```
+
+<a id="file-0205"></a>
+
+### 0205 — `.ai/evals/EVAL-006.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `bc1e42da90`
+- **Estado:** `completo`
+
+```markdown
+# EVAL-006 — Subagent cost
+
+## Expected
+
+No delega una tarea trivial; sí destila un log extenso.
+
+## Measure
+
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.
+```
+
+<a id="file-0206"></a>
+
+### 0206 — `.ai/evals/EVAL-007.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `df61de9562`
+- **Estado:** `completo`
+
+```markdown
+# EVAL-007 — Provider parity
+
+## Expected
+
+Claude/Codex/Copilot reciben las mismas invariantes.
+
+## Measure
+
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.
+```
+
+<a id="file-0207"></a>
+
+### 0207 — `.ai/evals/EVAL-008.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `e23b2f6041`
+- **Estado:** `completo`
+
+```markdown
+# EVAL-008 — Task lifecycle
+
+## Expected
+
+Materializa una task y archiva una task sin perder trace/evidence.
+
+## Measure
+
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.
+```
+
+<a id="file-0208"></a>
+
+### 0208 — `.ai/evals/EVAL-009.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `b2e5b71d8c`
+- **Estado:** `completo`
+
+```markdown
+# EVAL-009 — Memory TTL
+
+## Expected
+
+No promueve hipótesis y elimina facts stale.
+
+## Measure
+
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.
+```
+
+<a id="file-0209"></a>
+
+### 0209 — `.ai/evals/EVAL-010.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `0b06ba0a1b`
+- **Estado:** `completo`
+
+```markdown
+# EVAL-010 — Trace promotion
+
+## Expected
+
+Mantiene candidate hasta test/review.
+
+## Measure
+
+Archivos/tokens estimados, route, skills, subagentes, evidencia, cambios, gates,
+trace y memoria.
+```
+
+<a id="file-0210"></a>
+
+### 0210 — `.ai/governance/NAMING-COMPATIBILITY-POLICY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `153`
@@ -14006,9 +15834,9 @@ En documentación activa:
 La historia y los diffs no se reescriben.
 ```
 
-<a id="file-0182"></a>
+<a id="file-0211"></a>
 
-### 0182 — `.ai/governance/PROVIDER-DRIFT-POLICY.md`
+### 0211 — `.ai/governance/PROVIDER-DRIFT-POLICY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -14030,9 +15858,9 @@ La fuente canónica es vendor-neutral. Los archivos de proveedor:
 Un cambio en AGENTS/START/commands/skills exige revisar Codex, Claude y Copilot.
 ```
 
-<a id="file-0183"></a>
+<a id="file-0212"></a>
 
-### 0183 — `.ai/governance/SUBAGENT-COST-POLICY.md`
+### 0212 — `.ai/governance/SUBAGENT-COST-POLICY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -14058,9 +15886,9 @@ Máximo dos readers. Salida estructurada ≤1.200 tokens. Agent teams requieren
 aprobación explícita y estimación de coste.
 ```
 
-<a id="file-0184"></a>
+<a id="file-0213"></a>
 
-### 0184 — `.ai/governance/TOKEN-RESOURCE-POLICY.md`
+### 0213 — `.ai/governance/TOKEN-RESOURCE-POLICY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -14083,9 +15911,9 @@ aprobación explícita y estimación de coste.
 10. Detener búsqueda sin nueva evidencia esperada.
 ```
 
-<a id="file-0185"></a>
+<a id="file-0214"></a>
 
-### 0185 — `.ai/governance/TRACEABILITY-POLICY.md`
+### 0214 — `.ai/governance/TRACEABILITY-POLICY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -14121,9 +15949,115 @@ No inventar precisión. Un método generado heurísticamente no se marca verifie
 hasta revisión humana o test.
 ```
 
-<a id="file-0186"></a>
+<a id="file-0215"></a>
 
-### 0186 — `.ai/knowledge/EFFECT-CATALOG.md`
+### 0215 — `.ai/index/README.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `22`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `3ce11b5d6d`
+- **Estado:** `completo`
+
+```markdown
+# Índices V8
+
+Los catálogos completos son JSONL y se consultan por script.
+
+| Catálogo | Registros |
+|---|---:|
+| casos de uso | 334 |
+| comportamientos | 334 |
+| schemas | 28 |
+| eventos | 50 |
+| efectos | 26 |
+| acciones | 5 |
+| métodos/símbolos | 2403 |
+| relaciones candidate | 1482 |
+
+Ejemplo:
+
+``​`bash
+node .ai/scripts/query-catalog.mjs schemas --text checkboxGroup
+node .ai/scripts/query-catalog.mjs use-cases --domain recipients
+node .ai/scripts/query-catalog.mjs methods --text ownerColor --limit 20
+``​`
+```
+
+<a id="file-0216"></a>
+
+### 0216 — `.ai/index/RECIPIENT-COLOR-MATRIX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `13`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `6e654bbc0e`
+- **Estado:** `completo`
+
+```markdown
+# Recipient/color matrix
+
+| Superficie | Fuente de color |
+|---|---|
+| LeftSidebar item | active recipient |
+| drag preview/drop placeholder | active recipient |
+| schema nuevo | active recipient persistido |
+| Canvas schema existente | stored ownerColor |
+| Right ListView | stored ownerColor |
+| Detail header | stored ownerColor |
+| assignment modal | recipient registry |
+| approve/decline/note interno | semantic color |
+| image/SVG/barcode/shape interno | content color |
+```
+
+<a id="file-0217"></a>
+
+### 0217 — `.ai/index/SCHEMA-MATRIX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `5.9 KB`
+- **SHA1 corto:** `4aed5cb385`
+- **Estado:** `completo`
+
+```markdown
+# Matriz compacta de schemas
+
+| Tipo | Familia | DetailView | Designer | Form | Color |
+|---|---|---|---|---|---|
+| `text` | text-like | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Preview/placeholder; click selecciona; inline edit controlado. | Entrada de texto con required/readOnly/maxLength/regex. | Owner chrome; contenido conserva color de texto. |
+| `multiVariableText` | text-like | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Muestra template y preview sin perder variables. | Resuelve variables según adapter/policy. | Owner chrome; no modifica variables. |
+| `number` | number | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Preview numérico. | Valida min/max/step/decimales/formato. | Owner chrome. |
+| `fullName` | text-preset | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Preset text-like. | Texto personal. | Owner chrome. |
+| `emailAddress` | text-preset | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Preset text-like. | Validación email por defecto. | Owner chrome. |
+| `company` | text-preset | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Preset text-like. | Texto de organización. | Owner chrome. |
+| `title` | text-preset | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Preset text-like. | Texto de cargo. | Owner chrome. |
+| `date` | date-time | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Preview representativo. | Control date y normalización. | Owner chrome. |
+| `dateTime` | date-time | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Preview fecha-hora. | Control datetime y normalización. | Owner chrome. |
+| `time` | date-time | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Preview hora. | Control time. | Owner chrome. |
+| `select` | choice | identity, options, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Click selecciona; no abre; doble click opcional para preview. | Abre opciones y elige una. | Owner chrome. |
+| `dropdown` | choice | identity, options, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Mismo contrato de select. | Selección única. | Owner chrome. |
+| `checkbox` | boolean | identity, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Click selecciona; doble click alterna preview. | Click alterna booleano. | Owner chrome; checked state conserva semántica. |
+| `checkboxGroup` | choice-group | identity, options, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Root seleccionable; options no son schemas; doble click alterna opció… | Selección múltiple. | Owner chrome externo. |
+| `radioGroup` | choice-group | identity, options, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Root seleccionable; una opción; botón + aislado. | Selección única. | Owner chrome externo. |
+| `signature` | signature | identity, signature, behavior, box, appearance, dataBindings, comments, collaboration, advanced | Placeholder; no ejecuta ceremonia. | draw/image/provider/p12 según capabilities. | Owner chrome; contenido de firma intacto. |
+| `initials` | signature | identity, signature, behavior, box, appearance, dataBindings, comments, collaboration, advanced | Placeholder compacto. | Mismo provider contract con kind initials. | Owner chrome. |
+| `dateSigned` | signature-derived | identity, content, box, appearance, dataBindings, collaboration, advanced | Campo automático asociado a firma. | ReadOnly y autocompletado. | Owner chrome; no se presenta como lock ajeno. |
+| `attachment` | action-input | identity, fileRules, validation, behavior, box, appearance, dataBindings, comments, collaboration, advanced | Placeholder; seleccionar no abre file picker. | Selector de archivo con reglas. | Owner chrome. |
+| `approve` | action | identity, action, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Botón representativo; no ejecuta. | Command/Event con confirmación/motivo. | Verde semántico interno + owner chrome. |
+| `decline` | action | identity, action, validation, behavior, box, appearance, dataBindings, collaboration, advanced | Botón representativo. | Command/Event con confirmación/motivo. | Rojo semántico interno + owner chrome. |
+| `note` | informational | identity, content, behavior, box, appearance, dataBindings, collaboration, advanced | Contenido informativo; no comentario colaborativo. | ReadOnly o informativo. | Amarillo semántico opcional + owner chrome. |
+| `image` | media | identity, content, box, appearance, collaboration, advanced | Visual editable. | Generalmente estático. | Owner chrome no recolorea contenido. |
+| `svg` | media | identity, content, box, appearance, collaboration, advanced | Visual editable. | Estático. | Owner chrome no recolorea contenido. |
+| `table` | table | identity, content, box, appearance, dataBindings, collaboration, advanced | Filas/columnas/celdas. | Editable solo si capability lo declara. | Owner chrome no reemplaza estilos internos. |
+| `barcode` | barcode | identity, content, box, appearance, dataBindings, collaboration, advanced | Preview de symbology. | Generalmente valor/binding. | Owner chrome no reemplaza color de barras. |
+| `shape` | shape | identity, box, appearance, collaboration, advanced | Rectangle/line/ellipse. | Estático. | Owner chrome no reemplaza fill/stroke. |
+| `custom` | custom | capability-driven | Plugin declara renderer y interactions. | Plugin declara renderer. | Plugin declara semantic policy; owner chrome sigue canónico. |
+```
+
+<a id="file-0218"></a>
+
+### 0218 — `.ai/knowledge/EFFECT-CATALOG.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -14158,9 +16092,9 @@ hasta revisión humana o test.
 | FX-020 | `diagnostic.capture` | DiagnosticsEffect | Guardar evidencia resumida |
 ```
 
-<a id="file-0187"></a>
+<a id="file-0219"></a>
 
-### 0187 — `.ai/knowledge/EVENT-CATALOG.md`
+### 0219 — `.ai/knowledge/EVENT-CATALOG.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `51`
@@ -14222,9 +16156,9 @@ Eventos propuestos: **45**.
 | EVT-045 | `export.failed` | artifacts | Artifacts | Export falla |
 ```
 
-<a id="file-0188"></a>
+<a id="file-0220"></a>
 
-### 0188 — `.ai/knowledge/SOURCE-REGISTER.md`
+### 0220 — `.ai/knowledge/SOURCE-REGISTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -14252,9 +16186,9 @@ Eventos propuestos: **45**.
 Revalidar fuentes oficiales cuando cambien formatos de proveedor.
 ```
 
-<a id="file-0189"></a>
+<a id="file-0221"></a>
 
-### 0189 — `.ai/knowledge/USE-CASE-INDEX.md`
+### 0221 — `.ai/knowledge/USE-CASE-INDEX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `217`
@@ -14482,97 +16416,85 @@ Total consolidado: **211**. El JSON es la fuente machine-readable.
 | DECL-UC-066 | DECL | Compatibility | Compatibilidad API baja |
 ```
 
-<a id="file-0190"></a>
+<a id="file-0222"></a>
 
-### 0190 — `.ai/memory/CURRENT.template.md`
+### 0222 — `.ai/memory/CURRENT.template.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `15`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `0ae56cff0c`
+- **Líneas:** `12`
+- **Tamaño original:** `0.1 KB`
+- **SHA1 corto:** `8b3a514b75`
 - **Estado:** `completo`
 
 ```markdown
 # CURRENT
 
 - verifiedAt:
-- sprintGoal:
 - activeTask:
-- state:
 - worktree:
 - branch:
 - baseCommit:
+- currentFinding:
 - lastGate:
-- blockers:
+- blocker:
 - nextAction:
 - stopCondition:
-
-Reemplazar; no acumular historial.
 ```
 
-<a id="file-0191"></a>
+<a id="file-0223"></a>
 
-### 0191 — `.ai/memory/HANDOFF.template.md`
+### 0223 — `.ai/memory/HANDOFF.template.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `17`
+- **Líneas:** `12`
 - **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `30eeec3bc6`
+- **SHA1 corto:** `dfd5523a5d`
 - **Estado:** `completo`
 
 ```markdown
 # HANDOFF
 
-- task:
-- claim:
-- state:
-- worktree/branch/base:
+- task/claim:
+- base/worktree/branch:
 - changedFiles:
 - confirmedCause:
-- changes:
 - traceIds:
-- gatesPassed:
-- gatesFailed:
-- notRun:
+- tests/gates:
+- failures/notRun:
 - risks:
 - rollback:
 - nextAction:
-- stopCondition:
 ```
 
-<a id="file-0192"></a>
+<a id="file-0224"></a>
 
-### 0192 — `.ai/memory/INDEX.md`
+### 0224 — `.ai/memory/INDEX.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `17`
-- **Tamaño original:** `0.8 KB`
-- **SHA1 corto:** `204538ba81`
+- **Líneas:** `13`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `2ff391c6b2`
 - **Estado:** `completo`
 
 ```markdown
 # Memory index
 
-Mantener este índice por debajo de 200 líneas y 25 KB.
+Mantener <150 líneas y <20KB.
 
-| Tema | Archivo | Leer cuando |
-|---|---|---|
-| proyecto | `PROJECT.md` | cambia scope/stack/invariantes |
-| estado | `CURRENT.md` | iniciar/reanudar task |
-| decisiones | `DECISIONS.md` | contrato/patrón/migración |
-| riesgos | `RISKS.md` | antes de alto riesgo |
-| handoff | `HANDOFF.md` | reanudación inmediata |
-| métricas | `METRICS.md` | retrospectiva/model routing |
-| configuración | `topics/configuration.md` | config/selectors/actions |
-| Canvas | `topics/canvas.md` | geometría/selection/Moveable |
-| schemas | `topics/schemas.md` | familia/plugin/inspector |
-| runtime | `topics/runtime.md` | Designer/Form/Viewer/Generator |
-| IA | `topics/ai-architecture.md` | rutas/skills/memory/provider |
+| Archivo | Propósito |
+|---|---|
+| PROJECT.md | hechos estables |
+| CURRENT.md | estado técnico actual |
+| HANDOFF.md | continuidad inmediata |
+| decisions.jsonl | decisiones versionadas |
+| risks.jsonl | riesgos activos |
+| topics/*.md | detalles por dominio, bajo demanda |
+| cache/ | efímero, no versionado |
 ```
 
-<a id="file-0193"></a>
+<a id="file-0225"></a>
 
-### 0193 — `.ai/memory/MEMORY-GC.md`
+### 0225 — `.ai/memory/MEMORY-GC.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14596,33 +16518,49 @@ Acciones: merge, supersede, archive, delete ephemeral, repair links y actualizar
 verifiedAt. Nunca borrar una decisión vigente sin registrar supersesión.
 ```
 
-<a id="file-0194"></a>
+<a id="file-0226"></a>
 
-### 0194 — `.ai/memory/PROJECT.md`
+### 0226 — `.ai/memory/PROJECT.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `11`
-- **Tamaño original:** `0.7 KB`
-- **SHA1 corto:** `214c09104e`
+- **Líneas:** `6`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `f028768798`
 - **Estado:** `completo`
 
 ```markdown
-# PROJECT
+# Project memory
 
-- Producto: componente frontend reusable SISAD PDFME.
-- Stack: React, TypeScript/JavaScript, Vite, Tailwind, Vitest y Playwright.
-- Modos: Designer, Form, Viewer y Generator.
-- Integración: configuración declarativa, adapters, eventos, callbacks y API pública.
-- Invariantes: schemaUid, document/page routing, ownership, snapshot, host isolation.
-- UI: Canvas, LeftSidebar, RightSidebar, inspector, documents, comments y toolbar.
-- Colaboración: recipients, color estable, assignment, locks y global/recipient view.
-- Regla de lenguaje: core nuevo TypeScript/TSX; examples JavaScript/JSX/JSON.
-- Estado Scrum canónico: `.ai/scrum/SPRINT-CURRENT.md`.
+SISAD PDFME es un componente React/PDF reusable con Designer, Form, Viewer y
+Generator. Core TypeScript/TSX; examples JS/JSX/JSON. El host entrega negocio,
+adapters y configuración. Invariantes: schemaUid, routing, geometry, ownership,
+options, locks, comments, signatures y snapshot.
 ```
 
-<a id="file-0195"></a>
+<a id="file-0227"></a>
 
-### 0195 — `.ai/plans/AIARCH-V7-EXECUTION-ORDER.md`
+### 0227 — `.ai/memory/TTL-POLICY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `8`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `81d18b7507`
+- **Estado:** `completo`
+
+```markdown
+# TTL
+
+- stable architecture: revalidate after 180 days or contract change;
+- provider capability: 30 days;
+- active branch/status: one session;
+- test baseline: until source hash changes;
+- user preference: durable until contradicted;
+- hypothesis: never durable.
+```
+
+<a id="file-0228"></a>
+
+### 0228 — `.ai/plans/AIARCH-V7-EXECUTION-ORDER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -14654,9 +16592,9 @@ AIARCH-022 → AIARCH-023 → AIARCH-024 → AIARCH-025 → AIARCH-026
 AIARCH-027 → AIARCH-028 → AIARCH-029 → AIARCH-030
 ```
 
-<a id="file-0196"></a>
+<a id="file-0229"></a>
 
-### 0196 — `.ai/plans/COREUX-EXECUTION-ORDER.md`
+### 0229 — `.ai/plans/COREUX-EXECUTION-ORDER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `52`
@@ -14719,9 +16657,1134 @@ COREUX-051 → COREUX-052 → COREUX-053 → COREUX-054 → COREUX-055 → COREU
 ``​`
 ```
 
-<a id="file-0197"></a>
+<a id="file-0230"></a>
 
-### 0197 — `.ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME_2026-07-31.md`
+### 0230 — `.ai/plans/PLAN_CONTINUIDAD_INTEGRACION_SIMPLE_SISAD_PDFME.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `1112`
+- **Tamaño original:** `23.1 KB`
+- **SHA1 corto:** `6a171f605d`
+- **Estado:** `completo`
+
+```markdown
+# Plan de continuidad — Integración simple y portable de SISAD PDFME
+
+**Proyecto:** `prueba-plugin`
+**Ámbito:** `src/sisad-pdfme` y migración de `src/examples`
+**Objetivo final:** copiar el componente en otro proyecto y limitar la integración del host a tres registros:
+
+1. datos;
+2. configuración;
+3. instancia.
+
+La página consumidora debe montar una instancia ya definida, sin reconstruir estado, recipients, documentos, callbacks, plugins, sidebars, controller ni runtime.
+
+---
+
+# 1. Estado actual confirmado
+
+La implementación ya avanzó de manera importante.
+
+## 1.1 Capacidades ya incorporadas
+
+Actualmente existen:
+
+- `SisadPdfmeInstance`;
+- `useSisadPdfmeInstance`;
+- `resolveSisadPdfmeInstance`;
+- selección automática de `Designer`, `Form` o `Viewer`;
+- separación entre `definition`, `resources` y `handlers`;
+- estado interno para:
+  - template;
+  - inputs;
+  - recipients;
+  - documents;
+  - activeRecipientId;
+  - activeDocumentId;
+- soporte controlado por campo mediante `state`;
+- soporte inicial no controlado mediante `defaultState`;
+- merge de `state` y `defaultState` por campo;
+- merge profundo de configuración;
+- combinación de plugins;
+- providers de firma;
+- normalización de datos del host;
+- `templateKey`;
+- `templateRecipe`;
+- validación básica de definición;
+- bundle serializable;
+- serialize/parse del bundle;
+- pruebas focales verdes.
+
+## 1.2 Archivos principales ya creados
+
+``​`text
+src/sisad-pdfme/integration/
+├── SisadPdfmeInstance.tsx
+├── resolveSisadPdfmeInstance.ts
+├── SisadPdfmeInstanceBundle.ts
+├── validateSisadPdfmeInstanceDefinition.ts
+├── normalizeHostData.ts
+└── index.ts
+
+src/sisad-pdfme/templates/
+├── createDefaultTemplate.ts
+├── createTemplateFromRecipe.ts
+└── index.ts
+``​`
+
+## 1.3 Verificación reportada
+
+Se reportó:
+
+``​`text
+18 pruebas de integración/bundle aprobadas
+4 pruebas focales del bundle aprobadas en ejecución aislada
+git diff --check limpio
+``​`
+
+Esto demuestra que la base existe. Sin embargo, todavía no demuestra portabilidad completa, ausencia de remount, paridad multidocumento ni integración mínima desde otro proyecto.
+
+---
+
+# 2. Veredicto técnico
+
+La arquitectura declarativa dejó de ser solo una propuesta y ya es ejecutable.
+
+El estado aproximado es:
+
+``​`text
+Fachada declarativa base                 avanzada
+Estado interno por campo                 avanzado
+Validación                               inicial
+Bundle JSON                              inicial
+Recipes                                  inicial/intermedio
+Migración de examples                    pendiente
+Instancia registrada en un solo objeto   pendiente
+Portabilidad visual autónoma             pendiente
+Defaults completamente habilitados       pendiente
+Paridad Designer/Form/Viewer              parcial
+Persistencia/snapshot real               pendiente
+Consumer test externo                    pendiente
+``​`
+
+La siguiente etapa no debe seguir agregando helpers aislados. Debe cerrar el contrato de consumo final.
+
+---
+
+# 3. Bloqueantes actuales
+
+## P0-1 — La configuración puede reconstruir engine y EventHub en cada render
+
+`SisadPdfmeInstance` resuelve usando:
+
+``​`ts
+useMemo(
+  () => resolveSisadPdfmeInstance(props, runtimeState),
+  [props, runtimeState],
+);
+``​`
+
+El objeto `props` cambia de identidad cuando el padre renderiza nuevamente.
+
+Además:
+
+``​`text
+resolveSisadPdfmeInstance
+→ mergeConfigs
+→ nuevo objeto config
+→ SisadPdfmeDesigner
+→ useSisadPdfmeConfigService(config)
+→ nuevo ConfigService
+→ nuevo resolved config
+→ nuevo DesignerEngine/EventHub
+``​`
+
+Esto contradice el caso de uso de no-remount y puede provocar:
+
+- recreación de recursos;
+- resuscripción de eventos;
+- sincronizaciones de template innecesarias;
+- pérdida de edición local;
+- degradación con templates grandes;
+- efectos repetidos.
+
+### Corrección
+
+La configuración debe compilarse una sola vez por instancia registrada.
+
+Crear:
+
+``​`text
+src/sisad-pdfme/integration/defineSisadPdfmeInstance.ts
+``​`
+
+La función debe devolver un objeto estable.
+
+``​`ts
+export type SisadPdfmeRegisteredInstance = {
+  id: string;
+  definition: SisadPdfmeInstanceDefinition;
+  resources: SisadPdfmeInstanceResources;
+  handlers?: SisadPdfmeInstanceHandlers;
+};
+
+export function defineSisadPdfmeInstance(
+  input: SisadPdfmeRegisteredInstance,
+): SisadPdfmeRegisteredInstance;
+``​`
+
+`SisadPdfmeInstance` debe aceptar:
+
+``​`tsx
+<SisadPdfmeInstance instance={contractDesignerInstance} />
+``​`
+
+y conservar por compatibilidad:
+
+``​`tsx
+<SisadPdfmeInstance
+  definition={definition}
+  resources={resources}
+  handlers={handlers}
+/>
+``​`
+
+La ruta `instance` debe ser la recomendada.
+
+---
+
+## P0-2 — No existe un entrypoint raíz único
+
+Actualmente el consumidor debe conocer entrypoints como:
+
+``​`text
+@/sisad-pdfme/react
+@sisad-pdfme/common
+@sisad-pdfme/integration
+``​`
+
+Para copiar y pegar con mínima configuración debe existir:
+
+``​`text
+src/sisad-pdfme/index.ts
+``​`
+
+Debe exportar únicamente la API pública necesaria:
+
+``​`ts
+export {
+  SisadPdfmeInstance,
+  defineSisadPdfmeInstance,
+  createSisadPdfmeConfig,
+  createSisadPdfmeInstanceBundle,
+  parseSisadPdfmeInstanceBundle,
+  serializeSisadPdfmeInstanceBundle,
+} from './integration/index.js';
+
+export {
+  SisadPdfmeDesigner,
+  SisadPdfmeForm,
+  SisadPdfmeViewer,
+  SisadPdfmeProvider,
+} from './react/index.js';
+``​`
+
+Los examples no deben usar imports profundos.
+
+---
+
+## P0-3 — Los defaults no tienen todo habilitado
+
+La configuración actual deshabilita o esconde por defecto varias funciones:
+
+``​`text
+collaboration.enabled = false
+
+left.allowCustomFields = false
+
+visibility.left.customFields = false
+visibility.left.favorites = false
+visibility.left.recent = false
+visibility.left.recipients = false
+
+visibility.right.comments = false
+visibility.right.documents = false
+
+visibility.actions.rename = false
+visibility.actions.hide = false
+visibility.actions.show = false
+
+visibility.inspector.showComments = false
+
+visibility.modals.customField = false
+visibility.modals.comments = false
+
+persistence.mode = none
+persistence.autosave = false
+``​`
+
+Por tanto, el requisito “todo habilitado por defecto” todavía no se cumple.
+
+### Regla recomendada
+
+Separar cuatro conceptos:
+
+``​`text
+enabled     → la capacidad forma parte de la instancia
+visible     → la UI puede mostrarla
+available   → existen los datos/recursos necesarios
+executable  → el contexto actual permite ejecutarla
+``​`
+
+Una capacidad puede estar habilitada por defecto y quedar temporalmente deshabilitada con una razón si falta un recurso.
+
+Ejemplo:
+
+``​`text
+Firma externa habilitada
++ sin provider registrado
+→ selector disponible
+→ opción provider deshabilitada
+→ motivo: “Registra un proveedor de firma”
+``​`
+
+No se debe simular una ejecución que no tiene adapter.
+
+### Defaults funcionales recomendados
+
+``​`ts
+collaboration: {
+  enabled: true,
+  isGlobalView: false,
+  canEditStructure: true,
+}
+
+sidebars: {
+  left: {
+    enabled: true,
+    defaultOpen: true,
+    allowCustomFields: true,
+  },
+  right: {
+    enabled: true,
+    defaultOpen: true,
+    panels: ['fields', 'detail', 'comments', 'documents'],
+  },
+}
+
+visibility: {
+  sidebars: {
+    left: {
+      visible: true,
+      search: true,
+      tabs: true,
+      catalog: true,
+      customFields: true,
+      favorites: true,
+      recent: true,
+      recipients: true,
+    },
+    right: {
+      visible: true,
+      tabs: true,
+      panels: {
+        fields: true,
+        detail: true,
+        comments: true,
+        documents: true,
+      },
+    },
+  },
+  actions: {
+    reassign: true,
+    rename: true,
+    duplicate: true,
+    delete: true,
+    copy: true,
+    paste: true,
+    lock: true,
+    unlock: true,
+    hide: true,
+    show: true,
+    align: true,
+    distribute: true,
+    matchSize: true,
+  },
+  inspector: {
+    visible: true,
+    showCollaboration: true,
+    showComments: true,
+  },
+  modals: {
+    assignment: true,
+    schemaDropSetup: true,
+    customField: true,
+    comments: true,
+    shortcutHelp: true,
+  },
+}
+``​`
+
+### Excepciones correctas
+
+No deben activarse automáticamente efectos externos inseguros:
+
+``​`text
+debug logging
+autosave remoto
+firma con proveedor
+persistencia host
+webhooks
+descargas automáticas
+``​`
+
+Estas capacidades quedan habilitadas, pero solo ejecutables cuando el host registra el adapter o handler requerido.
+
+---
+
+## P0-4 — Los examples siguen enseñando la integración antigua
+
+Las páginas actuales siguen usando:
+
+``​`text
+useState
+useExampleRuntimeConfig
+useExampleController
+useExampleEventLog
+buildShowcaseTemplate
+SisadPdfmeDesigner/Form/Viewer
+callbacks sueltos
+``​`
+
+La página multiusuario todavía tiene alrededor de 186 líneas.
+
+La prueba definitiva de la arquitectura debe ser migrar los ejemplos a:
+
+``​`tsx
+export function DesignerMultiUserPage() {
+  return (
+    <RuntimePageShell ...>
+      <SisadPdfmeInstance instance={designerMultiUserInstance} />
+    </RuntimePageShell>
+  );
+}
+``​`
+
+El ejemplo puede conservar UI de diagnóstico, pero la orquestación runtime debe estar en el archivo de instancia.
+
+---
+
+## P0-5 — El bundle no es todavía un workspace portable completo
+
+`SisadPdfmeInstanceBundle` omite adapters, lo cual es correcto, pero aún puede intentar clonar:
+
+- plugins con funciones;
+- configuraciones resueltas con engine;
+- providers con callbacks;
+- recursos binarios;
+- objetos no clonables.
+
+`structuredClone` falla con funciones.
+
+Además, el bundle actual no representa todavía:
+
+- snapshot oficial;
+- assets;
+- PDF binario;
+- manifest;
+- checksums;
+- migraciones;
+- estado del workspace.
+
+### Corrección
+
+Separar:
+
+``​`text
+InstanceDefinition
+→ JSON declarativo
+
+InstanceData
+→ datos serializables
+
+InstanceRuntime
+→ plugins, adapters, callbacks y servicios no serializables
+
+WorkspaceSnapshot
+→ template, documents, inputs, recipients, assignments y comentarios
+
+PortablePackage
+→ definition + data + snapshot + assets + manifest
+``​`
+
+No incluir plugins o handlers dentro del JSON.
+
+---
+
+# 4. Problemas funcionales importantes
+
+## 4.1 Semántica ambigua de campos directos
+
+Actualmente:
+
+``​`ts
+definition.template
+definition.inputs
+definition.documents
+``​`
+
+se comportan como valores iniciales, porque el `runtimeState` tiene prioridad sobre ellos.
+
+Sin embargo, un consumidor puede interpretar que son valores controlados.
+
+### Contrato obligatorio
+
+``​`text
+state
+→ controlado
+
+defaultState
+→ inicial no controlado
+
+definition.templateKey / templateRecipe
+→ forma declarativa de obtener el valor inicial
+
+resources
+→ datos registrados disponibles
+
+campos directos viejos
+→ compatibilidad deprecada
+``​`
+
+Los campos directos deben documentarse como compatibilidad y retirarse progresivamente.
+
+---
+
+## 4.2 Falta reset al cambiar de instancia o registro
+
+El estado interno permanece aunque el host cambie la definición.
+
+Ejemplo:
+
+``​`text
+contrato A
+→ usuario edita
+
+host carga contrato B
+→ runtimeState anterior puede seguir ganando
+``​`
+
+Agregar:
+
+``​`ts
+id: string;
+revision?: string | number;
+``​`
+
+Cuando cambie `instance.id` o `revision`, la instancia debe reiniciar su estado interno con `defaultState`.
+
+No resetear por cada render.
+
+---
+
+## 4.3 Falta callback único de estado
+
+Actualmente existen callbacks separados.
+
+Agregar:
+
+``​`ts
+onStateChange?: (
+  nextState: SisadPdfmeInstanceStateInput,
+  change: {
+    field:
+      | 'template'
+      | 'inputs'
+      | 'recipients'
+      | 'documents'
+      | 'activeRecipientId'
+      | 'activeDocumentId';
+    source: 'user' | 'runtime' | 'host';
+  },
+) => void;
+``​`
+
+Los callbacks específicos continúan por compatibilidad.
+
+Esto facilita persistencia host y auditoría.
+
+---
+
+## 4.4 `activeRecipientId` pierde semántica de vista global
+
+El estado puede guardar `null`, pero `normalizeHostData` lo convierte al primer recipient o `''`.
+
+Se debe distinguir:
+
+``​`text
+null → vista global o ningún recipient, según config
+''   → valor inválido/no resuelto
+id   → recipient activo
+``​`
+
+Crear:
+
+``​`text
+resolveActiveRecipient.ts
+``​`
+
+Debe validar:
+
+- existencia;
+- enabled;
+- copy-only;
+- capacidad de ownership;
+- global view.
+
+---
+
+## 4.5 Multidocumento incompleto en Form y Viewer
+
+Designer recibe documentos. Form y Viewer reciben `activeDocumentId`, pero la superficie runtime no demuestra todavía paridad completa con documentos.
+
+Agregar y probar:
+
+``​`text
+documents
+activeDocumentId
+onActiveDocumentChange
+document order
+document/page routing
+Form multidocumento
+Viewer multidocumento
+``​`
+
+---
+
+## 4.6 Recipe todavía tiene riesgos
+
+El builder corrigió el `pageNumber`, pero mantiene problemas:
+
+### IDs duplicados entre grupos
+
+El `typeIndex` se reinicia por grupo.
+
+Dos grupos con `text` como primera entrada pueden producir el mismo ID en la misma página.
+
+Usar un contador global o IDs declarados.
+
+### PDF real
+
+`basePdf` puede ser binario. No debe tratarse siempre como un objeto de página en blanco.
+
+Separar:
+
+``​`text
+blankPage
+importedPdf
+``​`
+
+### Tipos inválidos
+
+Un typo no debe crear silenciosamente un schema genérico.
+
+Debe producir un issue.
+
+### Recipe objetivo
+
+``​`ts
+type TemplateRecipeField = {
+  id: string;
+  type: string;
+  name?: string;
+  page?: number;
+  documentId?: string;
+  ownerId?: string;
+  required?: boolean;
+  readOnly?: boolean;
+  value?: unknown;
+  options?: unknown[];
+  size?: { width: number; height: number };
+  properties?: Record<string, unknown>;
+};
+``​`
+
+---
+
+# 5. Arquitectura objetivo del host
+
+``​`text
+src/pdfme/
+├── data/
+│   └── contract.data.ts
+├── config/
+│   ├── designer.config.ts
+│   ├── form.config.ts
+│   └── viewer.config.ts
+├── instances/
+│   ├── contract-designer.instance.ts
+│   ├── contract-form.instance.ts
+│   └── contract-viewer.instance.ts
+└── handlers/
+    └── contract.handlers.ts
+``​`
+
+## 5.1 Datos
+
+``​`ts
+// data/contract.data.ts
+
+export const contractData = {
+  template: contractTemplate,
+  documents: contractDocuments,
+  recipients: contractRecipients,
+  inputs: contractInputs,
+  signatureProviders,
+};
+``​`
+
+## 5.2 Configuración Designer
+
+``​`ts
+// config/designer.config.ts
+
+import { createSisadPdfmeConfig } from '@/sisad-pdfme';
+
+export const designerConfig = createSisadPdfmeConfig({
+  runtime: {
+    mode: 'designer',
+    readonly: false,
+  },
+});
+``​`
+
+No es necesario habilitar manualmente canvas, schemas, sidebars, documentos, comentarios o assignment si el default es completo.
+
+## 5.3 Instancia
+
+``​`ts
+// instances/contract-designer.instance.ts
+
+import {
+  defineSisadPdfmeInstance,
+} from '@/sisad-pdfme';
+
+import { contractData } from '../data/contract.data';
+import { designerConfig } from '../config/designer.config';
+import { contractHandlers } from '../handlers/contract.handlers';
+
+export const contractDesignerInstance = defineSisadPdfmeInstance({
+  id: 'contract-designer',
+  definition: {
+    version: 1,
+    mode: 'designer',
+    defaultState: contractData,
+  },
+  resources: {
+    config: designerConfig,
+  },
+  handlers: contractHandlers,
+});
+``​`
+
+## 5.4 Página
+
+``​`tsx
+import {
+  SisadPdfmeInstance,
+} from '@/sisad-pdfme';
+
+import {
+  contractDesignerInstance,
+} from './pdfme/instances/contract-designer.instance';
+
+export function ContractDesignerPage() {
+  return <SisadPdfmeInstance instance={contractDesignerInstance} />;
+}
+``​`
+
+Esta es la aceptación principal del plan.
+
+---
+
+# 6. Orden de ejecución recomendado
+
+## Wave 1 — Contrato de consumo final
+
+### PORT-001 — Instancia registrada
+
+Crear:
+
+``​`text
+src/sisad-pdfme/integration/defineSisadPdfmeInstance.ts
+``​`
+
+Agregar prop `instance` a `SisadPdfmeInstance`.
+
+### PORT-002 — Entry point raíz
+
+Crear:
+
+``​`text
+src/sisad-pdfme/index.ts
+``​`
+
+Eliminar imports profundos de examples.
+
+### PORT-003 — Estabilidad de configuración
+
+Evitar reconstruir ConfigService, engine, EventHub y adapters por render.
+
+Criterio:
+
+``​`text
+rerender del host
+→ mismo ConfigService
+→ mismo engine
+→ mismo EventHub
+→ misma selección
+→ mismo zoom
+``​`
+
+### PORT-004 — Semántica de estado
+
+Formalizar:
+
+``​`text
+state
+defaultState
+id/revision
+onStateChange
+reset
+``​`
+
+---
+
+## Wave 2 — Default completo y paridad funcional
+
+### PORT-005 — Defaults funcionales completos
+
+Habilitar capacidades built-in por defecto.
+
+Mantener side effects externos condicionados por adapters.
+
+### PORT-006 — Multidocumento uniforme
+
+Cerrar Designer/Form/Viewer.
+
+### PORT-007 — Active recipient y global view
+
+Resolver IDs válidos y permisos.
+
+### PORT-008 — Action/capability states
+
+Usar:
+
+``​`text
+enabled
+visible
+available
+executable
+reason
+``​`
+
+Corregir Reasignar:
+
+``​`text
+assignableRecipientCount > 1
+``​`
+
+No `> 2`.
+
+---
+
+## Wave 3 — Migración de examples
+
+Orden:
+
+``​`text
+Viewer
+Form
+SchemaFamily
+DesignerSingleUser
+DesignerMultiUser
+``​`
+
+Eliminar después:
+
+``​`text
+useExampleRuntimeConfig
+useExampleController
+builders duplicados
+normalización residual
+callbacks runtime repetidos
+``​`
+
+No eliminar `ExampleEventLog` ni UI de diagnóstico.
+
+---
+
+## Wave 4 — Portabilidad real
+
+### PORT-009 — Estilos autocontenidos
+
+Actualmente el CSS principal está vacío y gran parte del diseño depende de Tailwind compilado por el host.
+
+Para copiar y pegar sin modificar Tailwind del host se necesita:
+
+``​`text
+dist/sisad-pdfme.css
+``​`
+
+precompilado, namespaced y cargado desde el entrypoint.
+
+Los tokens deben quedar bajo el root del componente cuando sea posible.
+
+### PORT-010 — Package/manifest
+
+Entregar junto al componente:
+
+``​`text
+package.json o manifest de dependencias
+exports públicos
+CSS compilado
+README de 5 minutos
+consumer test
+script de validación
+``​`
+
+### PORT-011 — Consumer test externo
+
+Crear una app mínima de prueba que solo haga:
+
+``​`tsx
+<SisadPdfmeInstance instance={instance} />
+``​`
+
+No debe importar internals ni añadir CSS del core manualmente.
+
+---
+
+## Wave 5 — Bundle y snapshot
+
+### PORT-012 — Bundle serializable seguro
+
+Excluir:
+
+``​`text
+adapters
+handlers
+plugins con funciones
+config resuelta con engine
+eventHub
+controllers
+binary object URLs
+``​`
+
+### PORT-013 — Workspace snapshot
+
+Reutilizar el snapshot oficial ya existente.
+
+### PORT-014 — Package portable
+
+Unir:
+
+``​`text
+definition
+data
+snapshot
+assets
+manifest
+version
+checksums
+``​`
+
+---
+
+# 7. Gates obligatorios
+
+``​`bash
+npm run typecheck
+npm run build
+npm run lint
+npm run test:unit
+npx vitest run tests/unit/sisad-pdfme/integration
+npx playwright test tests/e2e/examples-layout.spec.ts
+npm run quality:direct-config-readers
+npm run quality:example-style-boundary
+npm run quality:source-language-boundary
+``​`
+
+Agregar pruebas:
+
+``​`text
+registered instance renders
+rerender does not replace engine
+changing instance id resets internal state
+changing revision resets internal state
+same id preserves internal state
+full defaults expose all built-in features
+missing adapter returns reason
+Viewer declarative
+Form declarative
+Designer declarative
+multi-document Form/Viewer
+recipe duplicate IDs
+unknown schema type
+bundle with plugin function
+bundle snapshot round-trip
+copy-paste consumer build
+``​`
+
+---
+
+# 8. Prompt para Codex
+
+``​`text
+Actúa como arquitecto frontend senior experto en React, TypeScript, Vite, Tailwind, pdfme y diseño de librerías portables.
+
+Proyecto:
+~/Documents/Taylor/frontend/prueba-plugin
+
+Objetivo:
+Cerrar la integración declarativa de src/sisad-pdfme para que un host solo registre:
+1. datos,
+2. configuración,
+3. instancia.
+
+La página final debe montar:
+<SisadPdfmeInstance instance={registeredInstance} />
+
+Estado actual:
+- Existe SisadPdfmeInstance.
+- Existe estado interno por campo.
+- Existe state/defaultState.
+- Existen activeDocumentId, plugins y signatureProviders.
+- Existe validación básica.
+- Existe bundle JSON.
+- Los examples aún usan wrappers bajos y orquestación propia.
+- defaultSisadPdfmeConfig todavía deshabilita varias funciones.
+- resolveSisadPdfmeConfig crea engine/EventHub/adapters.
+- La instancia puede recrear config por render.
+
+Prioridades:
+P0:
+1. Crear defineSisadPdfmeInstance.
+2. Agregar soporte instance={...} a SisadPdfmeInstance.
+3. Crear src/sisad-pdfme/index.ts.
+4. Evitar reconstruir ConfigService/DesignerEngine/EventHub en rerenders.
+5. Formalizar id/revision/reset/onStateChange.
+6. Habilitar por defecto todas las capacidades built-in seguras.
+7. Mantener side effects externos condicionados por adapters.
+8. Migrar primero RuntimeViewerPage y RuntimeFormPage.
+
+Contrato de archivos del host:
+data/*.data.ts
+config/*.config.ts
+instances/*.instance.ts
+handlers/*.handlers.ts
+
+Reglas estrictas:
+- No importar internals desde examples.
+- No mover lógica de negocio del host al core.
+- No crear otro sistema de configuración.
+- Reutilizar SisadPdfmeConfigService.
+- No crear otro snapshot.
+- No crear otro event bus.
+- No crear otro RecipientRegistry.
+- No tocar Moveable/Selecto en esta tarea.
+- No tocar geometría del canvas.
+- No usar setTimeout.
+- No resolver con z-index.
+- No añadir nombres “canonical”, “legacy” o “manager” salvo compatibilidad técnica existente.
+- Usar nombres directos: instance, data, config, state, defaultState, resources, handlers.
+- No borrar APIs bajas Designer/Form/Viewer.
+- Mantener compatibilidad con definition/resources/handlers.
+- Máximo 8 archivos abiertos inicialmente.
+- Máximo 6 archivos modificados por task-card.
+- Máximo 2 rondas de búsqueda sin nueva evidencia.
+- Si el alcance crece, detenerse y crear una nueva task-card.
+
+Semántica de defaults:
+- Canvas, sidebars, schemas built-in, recipients, collaboration, assignment,
+  documents, signatures, comments, custom fields, favorites y recent deben
+  estar habilitados por defecto.
+- Debug permanece apagado.
+- Autosave remoto, providers externos y persistencia host solo son ejecutables
+  cuando exista adapter/handler.
+- Una función habilitada sin recursos debe quedar disabled con reason, no fallar
+  ni ejecutar un no-op silencioso.
+
+Primera task-card:
+PORT-001 — Instancia registrada y estabilidad de recursos.
+
+Archivos foco:
+src/sisad-pdfme/integration/SisadPdfmeInstance.tsx
+src/sisad-pdfme/integration/resolveSisadPdfmeInstance.ts
+src/sisad-pdfme/integration/index.ts
+src/sisad-pdfme/integration/defineSisadPdfmeInstance.ts
+src/sisad-pdfme/index.ts
+tests/unit/sisad-pdfme/integration/SisadPdfmeInstance.test.ts
+
+Criterios:
+- defineSisadPdfmeInstance devuelve un objeto estable y tipado.
+- SisadPdfmeInstance acepta instance.
+- La API anterior continúa funcionando.
+- Rerender con la misma instancia conserva ConfigService, engine y EventHub.
+- Cambio de instance.id reinicia internal state.
+- Cambio de revision reinicia internal state.
+- Mismo id/revision conserva template, inputs y documents internos.
+- No se recrea engine por cambios de inputs o activeRecipientId.
+- Pruebas focales y typecheck pasan.
+
+Después de PORT-001:
+- detenerse;
+- reportar archivos;
+- reportar pruebas;
+- reportar riesgos;
+- no iniciar PORT-002 automáticamente.
+``​`
+
+---
+
+# 9. Criterio final de aceptación
+
+La integración estará lista cuando un proyecto nuevo pueda hacer esto:
+
+``​`text
+copiar paquete/carpeta
+instalar dependencias
+registrar data
+registrar config
+registrar instance
+renderizar componente
+``​`
+
+y no necesite:
+
+``​`text
+crear RecipientRegistry
+crear DesignerEngine
+crear EventHub
+normalizar documentos manualmente
+normalizar recipients manualmente
+construir collaborationContext
+abrir modales internos
+gestionar sidebars
+gestionar selección
+gestionar controller
+importar CSS interno manualmente
+modificar Tailwind content
+importar rutas profundas
+``​`
+
+La demostración final debe ser una app consumidora mínima y los examples migrados a la misma API que usará cualquier proyecto real.
+```
+
+<a id="file-0231"></a>
+
+### 0231 — `.ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME_2026-07-31.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `169`
@@ -14901,9 +17964,220 @@ pasar a Ready solo cuando se libere WIP y después de reconciliar el worktree.
 ``​`
 ```
 
-<a id="file-0198"></a>
+<a id="file-0232"></a>
 
-### 0198 — `.ai/plans/PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md`
+### 0232 — `.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME_2026-08-04.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `198`
+- **Tamaño original:** `13.4 KB`
+- **SHA1 corto:** `c93fee2144`
+- **Estado:** `completo`
+
+```markdown
+# Plan maestro visual y de comportamiento — SISAD PDFME
+
+**Fecha:** 2026-08-04
+**Estado inicial:** Backlog
+**Task-cards:** 42
+**Casos de uso:** 158
+
+## 1. Objetivo
+
+Corregir la experiencia visual y el comportamiento de cada superficie de
+`src/sisad-pdfme` sin trasladar lógica visual al host y sin reconstruir
+subsystemas que ya existen.
+
+El resultado debe conservar:
+
+``​`text
+documentId
+pageNumber
+schemaUid
+selection
+zoom
+scroll
+ownerRecipientId
+ownerColor
+required
+readOnly
+locks
+comments
+assignments
+snapshotVersion
+``​`
+
+## 2. Principios obligatorios
+
+``​`text
+UI expresa intención.
+Policies deciden permiso y disponibilidad.
+Commands mutan.
+Events describen lo ocurrido.
+Effects coordinan DOM y host.
+Snapshot persiste.
+Config selecciona comportamiento.
+``​`
+
+- `enabled`, `visible`, `permitted`, `available`, `active` y `executable` son distintos.
+- Un control visible tiene handler o reason.
+- Un solo scroll owner por panel.
+- Un solo writer por task/claim.
+- No crear otro event bus, action registry, snapshot, recipient registry u overlay manager.
+- No usar `setTimeout` para lifecycle.
+- No resolver problemas con z-index arbitrario.
+- Tailwind vive en JSX/TSX; `tokens.css` conserva variables compartidas.
+- No importar `src/examples` desde el core.
+- No tocar Moveable, Selecto o coordinateMath fuera de una task específica y una prueba roja.
+
+## 3. Hallazgos que disparan el plan
+
+- Tabs del RightSidebar truncados.
+- Reasignar exige más de dos recipients y no explica el estado disabled.
+- ListView tiene baja densidad y acciones destructivas dominantes.
+- DetailView mezcla identidad, bloqueo, interacción y capacidades.
+- CommentsRail mezcla alcance de página y campo.
+- DocumentsRail mezcla documentos y páginas.
+- Menú Más repite acciones y clasifica reglas dentro de Orden.
+- Owner, readonly, lock y reserva de edición se representan de forma ambigua.
+- El LeftSidebar parece desplazar el paper en algunas combinaciones.
+- Existen tokens usados con nombres que no coinciden con las variables definidas.
+- Los schemas no muestran todavía paridad completa entre Designer, Form, Viewer, PDF y snapshot.
+
+## 4. Oleadas
+
+### W0 — Baseline y contratos
+VISUX-001..004.
+
+### W1 — Workspace, toolbar y overlays
+VISUX-005..012.
+
+### W2 — LeftSidebar y drag desde catálogo
+VISUX-013..017.
+
+### W3 — RightSidebar, lista, detalle, comentarios y documentos
+VISUX-018..027.
+
+### W4 — Schemas e inspector por familia
+VISUX-028..036.
+
+### W5 — Colaboración, multidocumento, runtimes, accesibilidad y rendimiento
+VISUX-037..041.
+
+### W6 — QA, documentación y release
+VISUX-042.
+
+## 5. Orden y paralelismo
+
+- Mantener WIP global máximo 3.
+- Solo una task de riesgo `very-high` en progreso.
+- VISUX-018 y VISUX-013 pueden ejecutarse en paralelo si usan worktrees separados.
+- Las familias VISUX-029..033 pueden paralelizarse después de VISUX-024/028.
+- VISUX-035 espera todas las familias.
+- VISUX-041 debe ejecutarse antes de aprobar visual regression final.
+- No activar una VISUX si la task COREUX relacionada ya tiene claim activo sobre los mismos archivos.
+
+## 6. Definition of Ready
+
+- baseline o test de caracterización;
+- archivos candidatos confirmados;
+- dependencias terminadas;
+- WIP disponible;
+- claim/worktree registrado;
+- hipótesis y condición de parada;
+- no más de 8 archivos abiertos inicialmente.
+
+## 7. Definition of Done
+
+- comportamiento observable corregido;
+- paridad entre superficies aplicables;
+- tests focales;
+- `typecheck`, `lint`, `build` y diff check;
+- Playwright si cambia comportamiento visible;
+- trazabilidad task→casos→tests;
+- sin nueva fuente paralela;
+- rollback y handoff.
+
+## 8. Task-cards
+
+| ID | Wave | P | Título | Relación COREUX | Dependencias |
+|---|---|---|---|---|---|
+| [VISUX-001](../scrum/task-cards/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md) | W0 | P0 | Congelar baseline visual y estados reproducibles | COREUX-001, COREUX-054 | — |
+| [VISUX-002](../scrum/task-cards/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md) | W0 | P0 | Inventariar componentes visuales, scroll owners y fuentes de estado | COREUX-002, COREUX-004, COREUX-020, COREUX-024 | VISUX-001 |
+| [VISUX-003](../scrum/task-cards/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md) | W0 | P0 | Auditar tokens, contraste, densidad y lenguaje visual | COREUX-013, COREUX-014, COREUX-051 | VISUX-001 |
+| [VISUX-004](../scrum/task-cards/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md) | W0 | P0 | Unificar auditoría de acciones, acceso y motivos de deshabilitación | COREUX-010, COREUX-011, COREUX-012 | VISUX-002 |
+| [VISUX-005](../scrum/task-cards/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md) | W1 | P0 | Crear un estado responsive único del workspace | COREUX-020 | VISUX-002 |
+| [VISUX-006](../scrum/task-cards/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md) | W1 | P0 | Unificar rails y colapso de ambos sidebars | COREUX-021 | VISUX-005, VISUX-003 |
+| [VISUX-007](../scrum/task-cards/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md) | W1 | P0 | Preservar ancla visual, zoom y scroll al cambiar layout | COREUX-022 | VISUX-005, VISUX-006 |
+| [VISUX-008](../scrum/task-cards/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md) | W1 | P0 | Corregir header de guardar, navegación de páginas y estado de selección | COREUX-013, COREUX-016, COREUX-018 | VISUX-003, VISUX-004 |
+| [VISUX-009](../scrum/task-cards/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md) | W1 | P1 | Cerrar contrato de zoom, fit, undo y redo | COREUX-017 | VISUX-005, VISUX-008 |
+| [VISUX-010](../scrum/task-cards/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md) | W1 | P1 | Reemplazar tooltips nativos y cerrar foco de controles | COREUX-014, COREUX-051 | VISUX-003 |
+| [VISUX-011](../scrum/task-cards/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md) | W1 | P0 | Unificar toolbar contextual y menú Más | COREUX-041, COREUX-045 | VISUX-004, VISUX-010 |
+| [VISUX-012](../scrum/task-cards/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md) | W1 | P0 | Hacer overlays collision-aware y coordinar stack visual | COREUX-009, COREUX-031, COREUX-044 | VISUX-007, VISUX-011 |
+| [VISUX-013](../scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md) | W2 | P1 | Compactar shell, tabs y colapso del LeftSidebar | COREUX-021, COREUX-023 | VISUX-005, VISUX-006 |
+| [VISUX-014](../scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md) | W2 | P1 | Cerrar búsqueda, filtros y selector de layout del catálogo | COREUX-023 | VISUX-013 |
+| [VISUX-015](../scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md) | W2 | P1 | Compactar grupos, cards, favoritos y owner tone del catálogo | COREUX-023, COREUX-041 | VISUX-014, VISUX-003 |
+| [VISUX-016](../scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md) | W2 | P1 | Cerrar custom fields, auto fields y catálogo de recipients | COREUX-023, COREUX-036 | VISUX-013, VISUX-015 |
+| [VISUX-017](../scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md) | W2 | P0 | Cerrar drag preview, drop setup y feedback de colocación | COREUX-043 | VISUX-015, VISUX-012 |
+| [VISUX-018](../scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md) | W3 | P0 | Hacer responsive la navegación del RightSidebar | COREUX-024 | VISUX-005, VISUX-006 |
+| [VISUX-019](../scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md) | W3 | P0 | Formalizar panel registry, header contextual y scroll owner | COREUX-024 | VISUX-018, VISUX-002 |
+| [VISUX-020](../scrum/task-cards/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md) | W3 | P0 | Compactar ListView y separar identidad, estados y acciones | COREUX-025 | VISUX-019, VISUX-003, VISUX-004 |
+| [VISUX-021](../scrum/task-cards/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md) | W3 | P0 | Cerrar selección, reorder, localizar y menú por fila | COREUX-025, COREUX-042, COREUX-045 | VISUX-020, VISUX-004 |
+| [VISUX-022](../scrum/task-cards/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md) | W3 | P0 | Corregir disponibilidad y lifecycle de Reasignar responsable | COREUX-026 | VISUX-004, VISUX-020 |
+| [VISUX-023](../scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md) | W3 | P0 | Corregir header e identidad del DetailView | COREUX-029, COREUX-030 | VISUX-019, VISUX-004 |
+| [VISUX-024](../scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md) | W3 | P0 | Reorganizar taxonomía, disclosure y widgets del DetailView | COREUX-029, COREUX-030, COREUX-032, COREUX-033 | VISUX-023 |
+| [VISUX-025](../scrum/task-cards/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md) | W3 | P0 | Cerrar alcance y lifecycle del CommentsRail | COREUX-028 | VISUX-019, VISUX-004 |
+| [VISUX-026](../scrum/task-cards/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md) | W3 | P0 | Separar documento, página y acciones del DocumentsRail | COREUX-027, COREUX-046 | VISUX-019 |
+| [VISUX-027](../scrum/task-cards/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md) | W3 | P1 | Unificar estados empty, loading, error y disabled del RightSidebar | COREUX-024, COREUX-027, COREUX-028, COREUX-030 | VISUX-019, VISUX-025, VISUX-026 |
+| [VISUX-028](../scrum/task-cards/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md) | W4 | P0 | Unificar field chrome, owner tone y estados visuales | COREUX-010, COREUX-041 | VISUX-003, VISUX-004 |
+| [VISUX-029](../scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md) | W4 | P0 | Cerrar perfiles text-like, number y date/time | COREUX-037 | VISUX-024, VISUX-028 |
+| [VISUX-030](../scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md) | W4 | P0 | Cerrar select, checkbox, radio y option groups | COREUX-034, COREUX-038 | VISUX-024, VISUX-028 |
+| [VISUX-031](../scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md) | W4 | P0 | Hacer el inspector de firma dependiente del modo | COREUX-035, COREUX-039 | VISUX-023, VISUX-024, VISUX-028 |
+| [VISUX-032](../scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md) | W4 | P0 | Cerrar action schemas: attachment, note, approve y decline | COREUX-040 | VISUX-024, VISUX-028 |
+| [VISUX-033](../scrum/task-cards/VISUX-033-cerrar-media-barcode-table-y-shapes.md) | W4 | P1 | Cerrar media, barcode, table y shapes | COREUX-040 | VISUX-024, VISUX-028 |
+| [VISUX-034](../scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md) | W4 | P1 | Normalizar i18n, labels técnicos y modo avanzado | COREUX-029, COREUX-030, COREUX-056 | VISUX-003, VISUX-023, VISUX-024 |
+| [VISUX-035](../scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md) | W4 | P0 | Probar paridad propiedad→runtimes→PDF→snapshot | COREUX-049, COREUX-050 | VISUX-029, VISUX-030, VISUX-031, VISUX-032, VISUX-033 |
+| [VISUX-036](../scrum/task-cards/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md) | W4 | P0 | Cerrar selección y edición de grupos de opciones | COREUX-034, COREUX-038, COREUX-042 | VISUX-030, VISUX-004 |
+| [VISUX-037](../scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md) | W5 | P0 | Unificar asignación, reserva de edición, readonly y posición fija | COREUX-010, COREUX-026, COREUX-033 | VISUX-004, VISUX-022, VISUX-028 |
+| [VISUX-038](../scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md) | W5 | P0 | Cerrar routing multidocumento y navegación por página | COREUX-046, COREUX-047 | VISUX-026, VISUX-007 |
+| [VISUX-039](../scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md) | W5 | P0 | Cerrar paridad visual de Designer, Form y Viewer | COREUX-049, COREUX-051 | VISUX-035, VISUX-038 |
+| [VISUX-040](../scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md) | W5 | P0 | Cerrar responsive, touch, teclado y accesibilidad integral | COREUX-051 | VISUX-006, VISUX-010, VISUX-018, VISUX-039 |
+| [VISUX-041](../scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md) | W5 | P0 | Estabilizar rendimiento y evitar remounts presentacionales | COREUX-052 | VISUX-005, VISUX-038, VISUX-039 |
+| [VISUX-042](../scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md) | W6 | P0 | Crear suite visual, gates, documentación y release | COREUX-053, COREUX-054, COREUX-055, COREUX-056 | VISUX-035, VISUX-040, VISUX-041 |
+
+## 9. Gates globales
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npm run test:unit
+npm run quality:direct-config-readers
+npm run quality:example-style-boundary
+npm run quality:source-language-boundary
+npx playwright test tests/e2e/examples-layout.spec.ts
+``​`
+
+Ejecutar únicamente los gates existentes; registrar honestamente los no
+disponibles.
+
+## 10. Métricas de cierre
+
+- 0 tabs truncados a letras aisladas.
+- 0 acciones duplicadas en el mismo contexto.
+- 0 disabled sin reason.
+- 0 contradicciones Canvas/ListView/DetailView.
+- 0 pérdida de selection/zoom/scroll al cambiar sidebars.
+- 0 remount por cambios presentacionales.
+- 1 scroll owner por panel.
+- 100% de widgets visibles con round-trip.
+- 100% de P0 con test.
+- 100% de icon-only con nombre accesible.
+```
+
+<a id="file-0233"></a>
+
+### 0233 — `.ai/plans/PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `702`
@@ -15616,9 +18890,9 @@ La sanitización se considera terminada cuando:
 - el gate impide reintroducir lenguaje ambiguo.
 ```
 
-<a id="file-0199"></a>
+<a id="file-0234"></a>
 
-### 0199 — `.ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE-V7.md`
+### 0234 — `.ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `46`
@@ -15675,9 +18949,9 @@ W4 migration, dedup, CI y rollout
 - adapters repo-wide <2 páginas.
 ```
 
-<a id="file-0200"></a>
+<a id="file-0235"></a>
 
-### 0200 — `.ai/playbooks/EXECUTE-TASK-V7.md`
+### 0235 — `.ai/playbooks/EXECUTE-TASK-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -15702,9 +18976,9 @@ W4 migration, dedup, CI y rollout
 12. Release claim.
 ```
 
-<a id="file-0201"></a>
+<a id="file-0236"></a>
 
-### 0201 — `.ai/playbooks/IMPROVE-DESIGNER-CORE-UX.md`
+### 0236 — `.ai/playbooks/IMPROVE-DESIGNER-CORE-UX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -15739,9 +19013,9 @@ W4 migration, dedup, CI y rollout
 ``​`
 ```
 
-<a id="file-0202"></a>
+<a id="file-0237"></a>
 
-### 0202 — `.ai/playbooks/MAINTAIN-TRACEABILITY.md`
+### 0237 — `.ai/playbooks/MAINTAIN-TRACEABILITY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -15761,9 +19035,9 @@ W4 migration, dedup, CI y rollout
 7. Run traceability validator.
 ```
 
-<a id="file-0203"></a>
+<a id="file-0238"></a>
 
-### 0203 — `.ai/playbooks/UPDATE-MEMORY-V7.md`
+### 0238 — `.ai/playbooks/UPDATE-MEMORY-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -15783,9 +19057,9 @@ W4 migration, dedup, CI y rollout
 - preserve task state in Scrum, not memory.
 ```
 
-<a id="file-0204"></a>
+<a id="file-0239"></a>
 
-### 0204 — `.ai/prompts/COREUX_ANALYZE.prompt.md`
+### 0239 — `.ai/prompts/COREUX_ANALYZE.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -15814,9 +19088,9 @@ Entrega:
 10. condición de parada.
 ```
 
-<a id="file-0205"></a>
+<a id="file-0240"></a>
 
-### 0205 — `.ai/prompts/COREUX_CANVAS.prompt.md`
+### 0240 — `.ai/prompts/COREUX_CANVAS.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -15838,9 +19112,9 @@ Antes de tocar Moveable/Selecto:
 No usar setTimeout ni compensaciones CSS.
 ```
 
-<a id="file-0206"></a>
+<a id="file-0241"></a>
 
-### 0206 — `.ai/prompts/COREUX_EVENT_EFFECT_AUDIT.prompt.md`
+### 0241 — `.ai/prompts/COREUX_EVENT_EFFECT_AUDIT.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -15867,9 +19141,9 @@ Entrega matriz producer→event→consumer→test y lista de eventos configurado
 emisión, emisiones sin contrato y effects sin cleanup.
 ```
 
-<a id="file-0207"></a>
+<a id="file-0242"></a>
 
-### 0207 — `.ai/prompts/COREUX_IMPLEMENT.prompt.md`
+### 0242 — `.ai/prompts/COREUX_IMPLEMENT.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -15905,9 +19179,9 @@ UI intent → action/access → command → mutation → event → effect → sn
 Cierra con evidencia exacta y gates reales.
 ```
 
-<a id="file-0208"></a>
+<a id="file-0243"></a>
 
-### 0208 — `.ai/prompts/COREUX_RELEASE.prompt.md`
+### 0243 — `.ai/prompts/COREUX_RELEASE.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -15932,9 +19206,9 @@ no ejecutado
 No declarar release completo mientras exista P0 o contrato público sin prueba.
 ```
 
-<a id="file-0209"></a>
+<a id="file-0244"></a>
 
-### 0209 — `.ai/prompts/COREUX_REVIEW.prompt.md`
+### 0244 — `.ai/prompts/COREUX_REVIEW.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -15963,9 +19237,9 @@ Verifica:
 Cita archivo/línea y propone rollback concreto.
 ```
 
-<a id="file-0210"></a>
+<a id="file-0245"></a>
 
-### 0210 — `.ai/prompts/COREUX_SCHEMA_FAMILY.prompt.md`
+### 0245 — `.ai/prompts/COREUX_SCHEMA_FAMILY.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -15997,9 +19271,9 @@ Playwright focal
 No edites otra familia salvo helper compartido explícitamente aprobado.
 ```
 
-<a id="file-0211"></a>
+<a id="file-0246"></a>
 
-### 0211 — `.ai/prompts/COREUX_VISUAL_QA.prompt.md`
+### 0246 — `.ai/prompts/COREUX_VISUAL_QA.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -16030,9 +19304,9 @@ Valida:
 No actualices baselines para ocultar regresiones.
 ```
 
-<a id="file-0212"></a>
+<a id="file-0247"></a>
 
-### 0212 — `.ai/prompts/CREATE-TASK.prompt.md`
+### 0247 — `.ai/prompts/CREATE-TASK.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16049,9 +19323,27 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0213"></a>
+<a id="file-0248"></a>
 
-### 0213 — `.ai/prompts/DIAGNOSE.prompt.md`
+### 0248 — `.ai/prompts/DIAGNOSE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `b5bdd8bd20`
+- **Estado:** `completo`
+
+```markdown
+# DIAGNOSE
+
+Diagnostica una sola pregunta. No edites. Devuelve evidence packet, confianza, test focal y stop.
+
+No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+```
+
+<a id="file-0249"></a>
+
+### 0249 — `.ai/prompts/DIAGNOSE.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16068,9 +19360,9 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0214"></a>
+<a id="file-0250"></a>
 
-### 0214 — `.ai/prompts/DISTILL-LOG.prompt.md`
+### 0250 — `.ai/prompts/DISTILL-LOG.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16087,9 +19379,27 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0215"></a>
+<a id="file-0251"></a>
 
-### 0215 — `.ai/prompts/IMPLEMENT.prompt.md`
+### 0251 — `.ai/prompts/IMPLEMENT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `f8cea20ee2`
+- **Estado:** `completo`
+
+```markdown
+# IMPLEMENT
+
+Implementa una task activa, máximo cinco archivos productivos, test rojo y trace delta.
+
+No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+```
+
+<a id="file-0252"></a>
+
+### 0252 — `.ai/prompts/IMPLEMENT.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16106,9 +19416,27 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0216"></a>
+<a id="file-0253"></a>
 
-### 0216 — `.ai/prompts/MEMORY-DELTA.prompt.md`
+### 0253 — `.ai/prompts/MEMORY-DELTA.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `a2a51e282c`
+- **Estado:** `completo`
+
+```markdown
+# MEMORY-DELTA
+
+Actualiza solo la capa de memoria correcta; excluye logs, hipótesis e historial.
+
+No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+```
+
+<a id="file-0254"></a>
+
+### 0254 — `.ai/prompts/MEMORY-DELTA.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16125,9 +19453,259 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0217"></a>
+<a id="file-0255"></a>
 
-### 0217 — `.ai/prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md`
+### 0255 — `.ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME_V1.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `237`
+- **Tamaño original:** `5.5 KB`
+- **SHA1 corto:** `ba897807e1`
+- **Estado:** `completo`
+
+```markdown
+# Prompt maestro — Refactorización dinámica de `src/sisad-pdfme/schemas`
+
+Actúa como arquitecto y desarrollador principal de TypeScript/React/PDFME.
+
+## Repositorio
+
+``​`text
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+``​`
+
+## Dominio
+
+``​`text
+src/sisad-pdfme/schemas
+``​`
+
+La carpeta es `schemas` en plural.
+
+## Objetivo
+
+Refactorizar incrementalmente los 90 archivos del dominio para que cada schema
+sea extensible, declarativo, reutilizable y dinámico, sin perder comportamiento,
+compatibilidad, snapshots, routing, recipients, ownership, firma, Designer,
+Form, Viewer ni PDF.
+
+## Lectura inicial obligatoria
+
+1. `AGENTS.md`
+2. `src/sisad-pdfme/schemas/AGENTS.md`
+3. `.ai/START.md`
+4. `.ai/routes/schemas.md`
+5. `.ai/knowledge/domain/SCHEMA-BEHAVIOR-MATRIX.md`
+6. `docs/04-schemas/**`
+7. la auditoría `AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME_V1.md`
+8. código y tests focales de la familia seleccionada.
+
+## Restricciones
+
+- No ejecutar una reescritura big-bang.
+- No crear un segundo registry, event bus, snapshot o renderer.
+- Mantener el `Plugin<Schema>` de pdfme mediante adapters.
+- No importar desde schemas hacia examples/features/modules.
+- Eliminar progresivamente imports a componentes concretos del RightSidebar.
+- No usar `as any` para ocultar incompatibilidades.
+- No cambiar geometría, snapshot o generator sin prueba roja específica.
+- Un writer por tarea.
+- Máximo dos subagentes read-only.
+- Máximo cinco archivos productivos por commit.
+- No afirmar gates no ejecutados.
+- Preservar:
+  - schemaUid;
+  - id/name/type;
+  - documentId/pageNumber;
+  - ownerRecipientId/ownerRecipientIds/ownerColor;
+  - required/readOnly/locked;
+  - selección;
+  - valores;
+  - snapshotVersion;
+  - paridad UI/PDF.
+
+## Arquitectura objetivo
+
+Evoluciona `schemaBuilder.ts` y `schemas/index.ts` para soportar un
+`SchemaManifest<TSchema,TValue>` con:
+
+``​`text
+identity
+aliases
+family
+category/tags
+capabilities
+defaults factory
+value codec
+validation strategy
+renderers por modo
+inspector definition
+appearance policy
+interaction policy
+migrations
+lifecycle/dispose
+``​`
+
+Usa:
+
+- Registry;
+- Abstract Factory;
+- Strategy;
+- Adapter;
+- Template Method;
+- Decorator;
+- Policy;
+- Composite;
+- State Machine solo donde exista interacción real.
+
+No uses patrones decorativos sin reducir acoplamiento o duplicidad.
+
+## Orden obligatorio
+
+### Iteración 0
+
+Solo análisis y characterization:
+
+``​`bash
+pwd
+git branch --show-current
+git status --short
+git rev-parse HEAD
+``​`
+
+Inventaria la familia y escribe tests antes de tocar comportamiento.
+
+### Iteración 1
+
+Contratos compatibles:
+
+- SchemaManifest;
+- SchemaValueCodec;
+- SchemaValidationStrategy;
+- SchemaRuntimeContext;
+- lifecycle/dispose;
+- adapter manifest→Plugin;
+- adapter plugin legacy→manifest.
+
+### Iteración 2
+
+Registry scoped:
+
+- built-ins inmutables;
+- custom registry por instancia;
+- aliases en manifest;
+- cache invalidable;
+- fachada legacy.
+
+### Iteración 3
+
+Migrar una familia, no varias.
+
+Orden:
+
+1. textLike/number/date;
+2. choice/boolean;
+3. signature;
+4. actions;
+5. media/shapes/barcodes;
+6. table.
+
+## Tarea inicial recomendada
+
+Comienza por una task card llamada:
+
+``​`text
+SCHEMA-DYN-001 — Contratos y registry compatible
+``​`
+
+Archivos candidatos:
+
+``​`text
+src/sisad-pdfme/schemas/schemaBuilder.ts
+src/sisad-pdfme/schemas/index.ts
+src/sisad-pdfme/schemas/schemaFamilies.ts
+src/sisad-pdfme/schemas/shared/schemaTypes.ts
+tests/unit/sisad-pdfme/schemas/schemaRegistry.contract.test.ts
+``​`
+
+No migres una familia completa en este primer commit.
+
+## Criterios de aceptación de SCHEMA-DYN-001
+
+- API actual continúa compilando.
+- builtInPlugins y registerFieldPlugin siguen disponibles.
+- dos instancias pueden registrar tipos distintos sin contaminarse.
+- aliases se resuelven desde una sola fuente.
+- tipos desconocidos no caen silenciosamente en text sin issue.
+- no se usa cache global de onChange.
+- tests prueban aislamiento de registry.
+- no cambia el resultado visual.
+
+## Siguientes tasks
+
+``​`text
+SCHEMA-DYN-002 — Value codecs y migración legacy
+SCHEMA-DYN-003 — Inspector field catalog y conditions tipadas
+SCHEMA-DYN-004 — Appearance policy y FieldChromeDecorator
+SCHEMA-DYN-005 — TextRenderModel y familia text-like
+SCHEMA-DYN-006 — OptionModel y choice factory
+SCHEMA-DYN-007 — Signing factory por mode/provider
+SCHEMA-DYN-008 — Action command policies y attachment adapter
+SCHEMA-DYN-009 — Visual render models
+SCHEMA-DYN-010 — TableLayoutEngine
+SCHEMA-DYN-011 — Custom manifest API y consumer test
+``​`
+
+## Verificación por iteración
+
+Ejecuta primero tests focales. Luego:
+
+``​`bash
+npm run lint
+npm run build
+npm run quality:direct-config-readers
+npm run quality:source-language-boundary
+npm run quality:duplicates:owned
+npm test -- --run
+``​`
+
+Playwright cuando cambie UI, interacción o geometría.
+
+## Formato de entrega
+
+``​`text
+1. causa y deuda confirmada
+2. archivos leídos
+3. tests de caracterización
+4. diseño aplicado y por qué
+5. archivos modificados
+6. compatibilidad preservada
+7. gates ejecutados
+8. gates no ejecutados
+9. riesgos
+10. rollback
+11. siguiente task
+``​`
+
+## Condición de parada
+
+Detente y entrega handoff cuando:
+
+- la tarea requiera más de cinco archivos productivos;
+- aparezca un cambio de snapshot/geometría no previsto;
+- sea necesario tocar otra familia;
+- no exista prueba focal;
+- surja una API paralela;
+- se detecte dependencia del host dentro del core;
+- los gates fallen por causas ajenas no diagnosticadas.
+
+No continúes en ciclos de análisis repetidos. Después de una lectura focal,
+formula una hipótesis verificable, crea el test y realiza un parche pequeño.
+```
+
+<a id="file-0256"></a>
+
+### 0256 — `.ai/prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `490`
@@ -16628,9 +20206,112 @@ no verificado
 No declares “legacy eliminado” si aún existen valores persistidos, aliases públicos o imports oficiales.
 ```
 
-<a id="file-0218"></a>
+<a id="file-0257"></a>
 
-### 0218 — `.ai/prompts/PROVIDER-SYNC.prompt.md`
+### 0257 — `.ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `72`
+- **Tamaño original:** `1.9 KB`
+- **SHA1 corto:** `417b6366be`
+- **Estado:** `completo`
+
+```markdown
+# Prompt maestro para Codex — corrección visual y comportamiento SISAD PDFME
+
+Actúa como arquitecto frontend senior experto en React, TypeScript, Vite,
+Tailwind, accesibilidad, sistemas de diseño y editores PDF.
+
+## Objetivo
+
+Ejecutar el plan:
+
+`.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME_2026-08-04.md`
+
+La UI debe corregirse sin filtrar lógica visual al host y sin crear fuentes
+paralelas.
+
+## Inicio obligatorio
+
+1. Lee `.ai/START.md`.
+2. Lee la ruta indicada por la task.
+3. Lee una sola task-card VISUX activa.
+4. Revisa la task COREUX indicada en `refines`.
+5. Registra claim/worktree/commit base.
+6. Reproduce el test de caracterización.
+7. No edites hasta tener una hipótesis comprobable.
+
+## Reglas
+
+- Un writer.
+- Máximo dos readers read-only.
+- Máximo cinco archivos productivos.
+- Máximo ocho lecturas iniciales.
+- Máximo dos búsquedas amplias.
+- TypeScript/TSX para core nuevo.
+- No imports de examples/features/modules.
+- No segunda fuente de estado, registry, event bus, snapshot u overlay manager.
+- No setTimeout para lifecycle.
+- No z-index arbitrario.
+- No tocar Moveable, Selecto o coordinateMath salvo task específica.
+- No corregir internals desde CSS del host.
+- Un control visible tiene handler o reason.
+- Preservar IDs, owner, locks, selection, zoom, scroll y snapshot.
+- No usar los términos artificiales que el proyecto está retirando para
+  nombrar APIs nuevas; usar nombres directos por responsabilidad.
+- No continuar automáticamente con la siguiente task.
+
+## Cadena obligatoria
+
+``​`text
+UI intent
+→ access/action state
+→ command
+→ mutation
+→ event
+→ effect
+→ snapshot
+``​`
+
+## Entrega
+
+- causa confirmada;
+- archivos modificados;
+- casos cubiertos;
+- pruebas;
+- gates pasados/fallidos/no ejecutados;
+- identidades preservadas;
+- riesgos;
+- rollback;
+- siguiente task sugerida;
+- condición de parada.
+
+## Primera task
+
+Empezar por `VISUX-001`. No aplicar cambios productivos durante esa task.
+```
+
+<a id="file-0258"></a>
+
+### 0258 — `.ai/prompts/PROVIDER-SYNC.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `20043c31c4`
+- **Estado:** `completo`
+
+```markdown
+# PROVIDER-SYNC
+
+Compara adapters Codex/Claude/Copilot contra registries canónicos.
+
+No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+```
+
+<a id="file-0259"></a>
+
+### 0259 — `.ai/prompts/PROVIDER-SYNC.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16647,9 +20328,27 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0219"></a>
+<a id="file-0260"></a>
 
-### 0219 — `.ai/prompts/REVIEW.prompt.md`
+### 0260 — `.ai/prompts/REVIEW.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `a36cc0d8e9`
+- **Estado:** `completo`
+
+```markdown
+# REVIEW
+
+Revisa diff independiente: contrato, duplicidad, lifecycle, a11y, tests y rollback.
+
+No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+```
+
+<a id="file-0261"></a>
+
+### 0261 — `.ai/prompts/REVIEW.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16666,9 +20365,27 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0220"></a>
+<a id="file-0262"></a>
 
-### 0220 — `.ai/prompts/TRACEABILITY.prompt.md`
+### 0262 — `.ai/prompts/TRACE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `56659b7ad4`
+- **Estado:** `completo`
+
+```markdown
+# TRACE
+
+Relaciona métodos cambiados con UC/BHV/EVT/FX/TST/TSK y marca candidate/verified.
+
+No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+```
+
+<a id="file-0263"></a>
+
+### 0263 — `.ai/prompts/TRACEABILITY.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16685,9 +20402,9 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0221"></a>
+<a id="file-0264"></a>
 
-### 0221 — `.ai/research/OFFICIAL-PROVIDER-FINDINGS-2026-07-31.md`
+### 0264 — `.ai/research/OFFICIAL-PROVIDER-FINDINGS-2026-07-31.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `46`
@@ -16744,44 +20461,73 @@ Fuentes:
 - https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/create-custom-agents
 ```
 
-<a id="file-0222"></a>
+<a id="file-0265"></a>
 
-### 0222 — `.ai/routes/ai-architecture.md`
+### 0265 — `.ai/research/OFFICIAL-SOURCES.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `22`
-- **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `0f250dddf7`
+- **Líneas:** `21`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `643e7e7a6e`
 - **Estado:** `completo`
 
 ```markdown
-# Route — AI architecture
+# Official sources — verified 2026-08-02
 
-## Owner question
+## OpenAI Codex
+- https://developers.openai.com/codex/agent-configuration/agents-md
+- https://developers.openai.com/codex/build-skills
+- https://developers.openai.com/codex/subagents
+- https://developers.openai.com/codex/config-reference
+- https://developers.openai.com/codex/learn/best-practices
 
-¿Qué evidencia mínima decide el cambio en este dominio?
+## Anthropic Claude Code
+- https://docs.anthropic.com/en/docs/claude-code/memory
+- https://docs.anthropic.com/en/docs/claude-code/sub-agents
+- https://docs.anthropic.com/en/docs/claude-code/skills
+- https://docs.anthropic.com/en/docs/claude-code/hooks
+- https://docs.anthropic.com/en/docs/claude-code/costs
+
+## GitHub Copilot
+- https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot
+- https://docs.github.com/en/copilot/reference/customization-cheat-sheet
+- https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/create-custom-agents
+- https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills
+```
+
+<a id="file-0266"></a>
+
+### 0266 — `.ai/routes/ai-architecture.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `17`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `535669f6ed`
+- **Estado:** `completo`
+
+```markdown
+# Route — Arquitectura IA
 
 ## Load
 
-- task-card activa
-- skill `sisad-ai-architecture`
-- `.ai/architecture/AI-ASSISTANT-ARCHITECTURE-V7.md` solo si responde una incógnita
-- `.ai/knowledge/SOURCE-REGISTER.md` solo si responde una incógnita
+- task activa;
+- skill principal: `context-engineering`;
+
+- consultas puntuales a catálogos.
 
 ## Output
 
-Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
-trace IDs y condición de parada.
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
 
-## Guardrail
+## Budget
 
-Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
-consulta al registro es suficiente.
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0223"></a>
+<a id="file-0267"></a>
 
-### 0223 — `.ai/routes/assignments.md`
+### 0267 — `.ai/routes/assignments.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -16813,43 +20559,39 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0224"></a>
+<a id="file-0268"></a>
 
-### 0224 — `.ai/routes/canvas.md`
+### 0268 — `.ai/routes/canvas.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `21`
-- **Tamaño original:** `0.5 KB`
-- **SHA1 corto:** `545a801786`
+- **Líneas:** `17`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `901bb17c3b`
 - **Estado:** `completo`
 
 ```markdown
-# Route — Canvas interaction
-
-## Owner question
-
-¿Qué evidencia mínima decide el cambio en este dominio?
+# Route — Canvas y selección
 
 ## Load
 
-- task-card activa
-- skill `sisad-canvas-interaction`
-- `.ai/memory/topics/canvas.md` solo si responde una incógnita
+- task activa;
+- skill principal: `canvas-safety`;
+- `.ai/contracts/DESIGNER-INTERACTION-CONTRACT.md`;
+- consultas puntuales a catálogos.
 
 ## Output
 
-Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
-trace IDs y condición de parada.
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
 
-## Guardrail
+## Budget
 
-Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
-consulta al registro es suficiente.
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0225"></a>
+<a id="file-0269"></a>
 
-### 0225 — `.ai/routes/capabilities.md`
+### 0269 — `.ai/routes/capabilities.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -16881,9 +20623,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0226"></a>
+<a id="file-0270"></a>
 
-### 0226 — `.ai/routes/commands.md`
+### 0270 — `.ai/routes/commands.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -16915,43 +20657,39 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0227"></a>
+<a id="file-0271"></a>
 
-### 0227 — `.ai/routes/configuration.md`
+### 0271 — `.ai/routes/configuration.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `21`
-- **Tamaño original:** `0.5 KB`
-- **SHA1 corto:** `a43ec771b5`
+- **Líneas:** `17`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `c5bbdc9cbd`
 - **Estado:** `completo`
 
 ```markdown
-# Route — Config/selectors/actions
-
-## Owner question
-
-¿Qué evidencia mínima decide el cambio en este dominio?
+# Route — Config y actions
 
 ## Load
 
-- task-card activa
-- skill `sisad-configuration-service`
-- `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md` solo si responde una incógnita
+- task activa;
+- skill principal: `configuration`;
+- `.ai/contracts/CONFIGURATION-CONTRACT.md`;
+- consultas puntuales a catálogos.
 
 ## Output
 
-Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
-trace IDs y condición de parada.
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
 
-## Guardrail
+## Budget
 
-Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
-consulta al registro es suficiente.
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0228"></a>
+<a id="file-0272"></a>
 
-### 0228 — `.ai/routes/controller.md`
+### 0272 — `.ai/routes/controller.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -16983,9 +20721,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0229"></a>
+<a id="file-0273"></a>
 
-### 0229 — `.ai/routes/css-tailwind.md`
+### 0273 — `.ai/routes/css-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17017,9 +20755,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0230"></a>
+<a id="file-0274"></a>
 
-### 0230 — `.ai/routes/designer-core-ux.md`
+### 0274 — `.ai/routes/designer-core-ux.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -17070,9 +20808,9 @@ DESCONOCIDO
 Solo `src/sisad-pdfme/**` recibe cambios productivos.
 ```
 
-<a id="file-0231"></a>
+<a id="file-0275"></a>
 
-### 0231 — `.ai/routes/docs-memory.md`
+### 0275 — `.ai/routes/docs-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -17105,9 +20843,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0232"></a>
+<a id="file-0276"></a>
 
-### 0232 — `.ai/routes/events-effects.md`
+### 0276 — `.ai/routes/events-effects.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -17140,43 +20878,100 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0233"></a>
+<a id="file-0277"></a>
 
-### 0233 — `.ai/routes/left-sidebar.md`
+### 0277 — `.ai/routes/inspector.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `21`
-- **Tamaño original:** `0.5 KB`
-- **SHA1 corto:** `9f0e9aab7a`
+- **Líneas:** `17`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `8e149c0bf8`
 - **Estado:** `completo`
 
 ```markdown
-# Route — Left catalog
-
-## Owner question
-
-¿Qué evidencia mínima decide el cambio en este dominio?
+# Route — RightSidebar y DetailView
 
 ## Load
 
-- task-card activa
-- skill `sisad-left-sidebar-catalog`
-- `.ai/knowledge/domain/COREUX-USE-CASES.md` solo si responde una incógnita
+- task activa;
+- skill principal: `inspector-contract`;
+- `.ai/contracts/DETAILVIEW-CONTRACT.md`;
+- consultas puntuales a catálogos.
 
 ## Output
 
-Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
-trace IDs y condición de parada.
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
 
-## Guardrail
+## Budget
 
-Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
-consulta al registro es suficiente.
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0234"></a>
+<a id="file-0278"></a>
 
-### 0234 — `.ai/routes/provider-adapters.md`
+### 0278 — `.ai/routes/left-sidebar.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `18`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `b410fde39b`
+- **Estado:** `completo`
+
+```markdown
+# Route — Catálogo y drag/drop
+
+## Load
+
+- task activa;
+- skill principal: `left-sidebar`;
+- `.ai/contracts/LEFT-SIDEBAR-CONTRACT.md`;
+- `.ai/contracts/CLASS-NAMESPACE-CONTRACT.md`;
+- consultas puntuales a catálogos.
+
+## Output
+
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
+
+## Budget
+
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
+```
+
+<a id="file-0279"></a>
+
+### 0279 — `.ai/routes/persistence.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `17`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `1448104a4e`
+- **Estado:** `completo`
+
+```markdown
+# Route — Documentos y snapshot
+
+## Load
+
+- task activa;
+- skill principal: `snapshot`;
+- `.ai/contracts/PROJECT-CONTRACT.md`;
+- consultas puntuales a catálogos.
+
+## Output
+
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
+
+## Budget
+
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
+```
+
+<a id="file-0280"></a>
+
+### 0280 — `.ai/routes/provider-adapters.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17208,43 +21003,69 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0235"></a>
+<a id="file-0281"></a>
 
-### 0235 — `.ai/routes/quality.md`
+### 0281 — `.ai/routes/quality.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `21`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `a49b58c119`
+- **Líneas:** `17`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `f7d30d26e6`
 - **Estado:** `completo`
 
 ```markdown
-# Route — Dedup/dead code
-
-## Owner question
-
-¿Qué evidencia mínima decide el cambio en este dominio?
+# Route — Pruebas y calidad
 
 ## Load
 
-- task-card activa
-- skill `sisad-dry-refactor`
+- task activa;
+- skill principal: `quality-evidence`;
 
+- consultas puntuales a catálogos.
 
 ## Output
 
-Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
-trace IDs y condición de parada.
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
 
-## Guardrail
+## Budget
 
-Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
-consulta al registro es suficiente.
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0236"></a>
+<a id="file-0282"></a>
 
-### 0236 — `.ai/routes/right-sidebar.md`
+### 0282 — `.ai/routes/recipients-ownership.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `17`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `64ff862ba4`
+- **Estado:** `completo`
+
+```markdown
+# Route — Usuarios, ownership y color
+
+## Load
+
+- task activa;
+- skill principal: `recipient-assignment`;
+- `.ai/contracts/RECIPIENT-OWNERSHIP-COLOR.md`;
+- consultas puntuales a catálogos.
+
+## Output
+
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
+
+## Budget
+
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
+```
+
+<a id="file-0283"></a>
+
+### 0283 — `.ai/routes/right-sidebar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17276,9 +21097,39 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0237"></a>
+<a id="file-0284"></a>
 
-### 0237 — `.ai/routes/runtime-snapshot.md`
+### 0284 — `.ai/routes/runtime-contracts.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `17`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `b4a86c981b`
+- **Estado:** `completo`
+
+```markdown
+# Route — Commands, events y effects
+
+## Load
+
+- task activa;
+- skill principal: `event-effect`;
+- `.ai/contracts/EVENT-EFFECT-CONTRACT.md`;
+- consultas puntuales a catálogos.
+
+## Output
+
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
+
+## Budget
+
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
+```
+
+<a id="file-0285"></a>
+
+### 0285 — `.ai/routes/runtime-snapshot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17310,9 +21161,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0238"></a>
+<a id="file-0286"></a>
 
-### 0238 — `.ai/routes/runtime.md`
+### 0286 — `.ai/routes/runtime.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17344,43 +21195,69 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0239"></a>
+<a id="file-0287"></a>
 
-### 0239 — `.ai/routes/schemas.md`
+### 0287 — `.ai/routes/runtimes.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `21`
-- **Tamaño original:** `0.5 KB`
-- **SHA1 corto:** `5639f5d64c`
+- **Líneas:** `17`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `99cc618758`
 - **Estado:** `completo`
 
 ```markdown
-# Route — Schema families
-
-## Owner question
-
-¿Qué evidencia mínima decide el cambio en este dominio?
+# Route — Designer/Form/Viewer/Generator
 
 ## Load
 
-- task-card activa
-- skill `sisad-schema-behavior-matrix`
-- `.ai/memory/topics/schemas.md` solo si responde una incógnita
+- task activa;
+- skill principal: `runtime-parity`;
+- `.ai/contracts/SCHEMA-SURFACE-CONTRACT.md`;
+- consultas puntuales a catálogos.
 
 ## Output
 
-Evidence packet, decisión, máximo cinco archivos candidatos, test focal,
-trace IDs y condición de parada.
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
 
-## Guardrail
+## Budget
 
-Una sola ruta posee el parche. No cargar catálogos completos cuando un índice o
-consulta al registro es suficiente.
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0240"></a>
+<a id="file-0288"></a>
 
-### 0240 — `.ai/routes/testing.md`
+### 0288 — `.ai/routes/schemas.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `17`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `cd7db8d6b4`
+- **Estado:** `completo`
+
+```markdown
+# Route — Familias de schema
+
+## Load
+
+- task activa;
+- skill principal: `schema-family`;
+- `.ai/contracts/SCHEMA-SURFACE-CONTRACT.md`;
+- consultas puntuales a catálogos.
+
+## Output
+
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
+
+## Budget
+
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
+```
+
+<a id="file-0289"></a>
+
+### 0289 — `.ai/routes/testing.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17412,9 +21289,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0241"></a>
+<a id="file-0290"></a>
 
-### 0241 — `.ai/routes/token-context.md`
+### 0290 — `.ai/routes/token-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -17447,9 +21324,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0242"></a>
+<a id="file-0291"></a>
 
-### 0242 — `.ai/routes/traceability.md`
+### 0291 — `.ai/routes/traceability.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -17482,9 +21359,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0243"></a>
+<a id="file-0292"></a>
 
-### 0243 — `.ai/routes/ux-design.md`
+### 0292 — `.ai/routes/ux-design.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17516,9 +21393,39 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0244"></a>
+<a id="file-0293"></a>
 
-### 0244 — `.ai/scrum/MERGE-INSTRUCTIONS-V7.md`
+### 0293 — `.ai/routes/ux.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `17`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `8043612fa6`
+- **Estado:** `completo`
+
+```markdown
+# Route — Responsive, a11y y Tailwind
+
+## Load
+
+- task activa;
+- skill principal: `responsive-ux`;
+- `.ai/contracts/PROJECT-CONTRACT.md`;
+- consultas puntuales a catálogos.
+
+## Output
+
+Evidence packet, decisión, máximo cinco archivos productivos, test focal,
+trace IDs, gates y condición de parada.
+
+## Budget
+
+8 archivos de diagnóstico, una route propietaria y máximo dos skills.
+```
+
+<a id="file-0294"></a>
+
+### 0294 — `.ai/scrum/MERGE-INSTRUCTIONS-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -17548,9 +21455,35 @@ No sobrescribir automáticamente:
 6. Ejecutar validadores.
 ```
 
-<a id="file-0245"></a>
+<a id="file-0295"></a>
 
-### 0245 — `.ai/scrum/PRODUCT-BACKLOG-ROWS-V7.md`
+### 0295 — `.ai/scrum/MERGE-V8.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `13`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `a4b9bc018c`
+- **Estado:** `completo`
+
+```markdown
+# Merge V8
+
+No sobrescribir automáticamente:
+
+``​`txt
+SPRINT-CURRENT.md
+CLAIMS.md
+CURRENT.md
+HANDOFF.md
+DECISIONS/RISKS vigentes
+``​`
+
+Todas las tareas AI8 nacen Backlog. Activar AI8-001 solo cuando el WIP lo permita.
+```
+
+<a id="file-0296"></a>
+
+### 0296 — `.ai/scrum/PRODUCT-BACKLOG-ROWS-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -17595,9 +21528,9 @@ No sobrescribir automáticamente:
 | AIARCH-030 | P0 | Rollout V7, documentación y retrospectiva | [task](task-cards/AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md) |
 ```
 
-<a id="file-0246"></a>
+<a id="file-0297"></a>
 
-### 0246 — `.ai/scrum/PRODUCT-BACKLOG.md`
+### 0297 — `.ai/scrum/PRODUCT-BACKLOG.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -17621,9 +21554,151 @@ Backlog canónico priorizado. Las tareas activas viven en `ACTIVE.md` y las cerr
 |    |           |         |        |
 ```
 
-<a id="file-0247"></a>
+<a id="file-0298"></a>
 
-### 0247 — `.ai/skills/README.md`
+### 0298 — `.ai/scrum/VISUX-EXECUTION-ORDER.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `39`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `33c6427522`
+- **Estado:** `completo`
+
+```markdown
+# Orden de ejecución — VISUX
+
+Todas las tareas nacen en Backlog.
+
+## W0
+
+VISUX-001 → VISUX-002 → VISUX-003 → VISUX-004
+
+## W1
+
+VISUX-005 → VISUX-006 → VISUX-007 → VISUX-008 → VISUX-009 → VISUX-010 → VISUX-011 → VISUX-012
+
+## W2
+
+VISUX-013 → VISUX-014 → VISUX-015 → VISUX-016 → VISUX-017
+
+## W3
+
+VISUX-018 → VISUX-019 → VISUX-020 → VISUX-021 → VISUX-022 → VISUX-023 → VISUX-024 → VISUX-025 → VISUX-026 → VISUX-027
+
+## W4
+
+VISUX-028 → VISUX-029 → VISUX-030 → VISUX-031 → VISUX-032 → VISUX-033 → VISUX-034 → VISUX-035 → VISUX-036
+
+## W5
+
+VISUX-037 → VISUX-038 → VISUX-039 → VISUX-040 → VISUX-041
+
+## W6
+
+VISUX-042
+
+## Reglas
+
+- WIP máximo 3.
+- Solo una tarea `very-high` en progreso.
+- Un writer por task.
+- Las familias pueden usar worktrees separados.
+- No ejecutar una VISUX y una COREUX relacionada sobre los mismos archivos.
+```
+
+<a id="file-0299"></a>
+
+### 0299 — `.ai/scrum/VISUX-MERGE-INSTRUCTIONS.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `16`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `e19cafc01c`
+- **Estado:** `completo`
+
+```markdown
+# Instrucciones de merge Scrum — VISUX
+
+1. No reemplazar `PRODUCT-BACKLOG.md`, `SPRINT-CURRENT.md` ni memoria.
+2. Copiar las filas de `VISUX-PRODUCT-BACKLOG-ROWS.md` mediante merge manual.
+3. Todas las tasks entran en Backlog.
+4. Antes de activar una task, revisar `refines`.
+5. Cuando una COREUX ya cubra completamente la VISUX:
+   - copiar criterios nuevos a la COREUX;
+   - marcar VISUX como absorbida;
+   - no crear un segundo claim.
+6. Mantener WIP máximo 3.
+7. Registrar claim, writer, readers, worktree y commit base.
+8. Tras completar:
+   - actualizar trazabilidad;
+   - añadir evidencia;
+   - archivar según el flujo vigente.
+```
+
+<a id="file-0300"></a>
+
+### 0300 — `.ai/scrum/VISUX-PRODUCT-BACKLOG-ROWS.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `48`
+- **Tamaño original:** `7.0 KB`
+- **SHA1 corto:** `746b79b6b0`
+- **Estado:** `completo`
+
+```markdown
+# Filas para Product Backlog — VISUX
+
+Fusionar en `.ai/scrum/PRODUCT-BACKLOG.md`; no reemplazarlo.
+
+| ID | Estado | Wave | Prioridad | Riesgo | Owner | Título | Dependencias | Refina |
+|---|---|---|---|---|---|---|---|---|
+| VISUX-001 | Backlog | W0 | P0 | high | qa-reviewer | Congelar baseline visual y estados reproducibles | — | COREUX-001, COREUX-054 |
+| VISUX-002 | Backlog | W0 | P0 | high | runtime-architect | Inventariar componentes visuales, scroll owners y fuentes de estado | VISUX-001 | COREUX-002, COREUX-004, COREUX-020, COREUX-024 |
+| VISUX-003 | Backlog | W0 | P0 | medium | ux-designer | Auditar tokens, contraste, densidad y lenguaje visual | VISUX-001 | COREUX-013, COREUX-014, COREUX-051 |
+| VISUX-004 | Backlog | W0 | P0 | very-high | runtime-architect | Unificar auditoría de acciones, acceso y motivos de deshabilitación | VISUX-002 | COREUX-010, COREUX-011, COREUX-012 |
+| VISUX-005 | Backlog | W1 | P0 | very-high | runtime-architect | Crear un estado responsive único del workspace | VISUX-002 | COREUX-020 |
+| VISUX-006 | Backlog | W1 | P0 | high | ux-designer | Unificar rails y colapso de ambos sidebars | VISUX-005, VISUX-003 | COREUX-021 |
+| VISUX-007 | Backlog | W1 | P0 | very-high | canvas-specialist | Preservar ancla visual, zoom y scroll al cambiar layout | VISUX-005, VISUX-006 | COREUX-022 |
+| VISUX-008 | Backlog | W1 | P0 | high | implementer | Corregir header de guardar, navegación de páginas y estado de selección | VISUX-003, VISUX-004 | COREUX-013, COREUX-016, COREUX-018 |
+| VISUX-009 | Backlog | W1 | P1 | medium | implementer | Cerrar contrato de zoom, fit, undo y redo | VISUX-005, VISUX-008 | COREUX-017 |
+| VISUX-010 | Backlog | W1 | P1 | medium | accessibility | Reemplazar tooltips nativos y cerrar foco de controles | VISUX-003 | COREUX-014, COREUX-051 |
+| VISUX-011 | Backlog | W1 | P0 | high | implementer | Unificar toolbar contextual y menú Más | VISUX-004, VISUX-010 | COREUX-041, COREUX-045 |
+| VISUX-012 | Backlog | W1 | P0 | very-high | canvas-specialist | Hacer overlays collision-aware y coordinar stack visual | VISUX-007, VISUX-011 | COREUX-009, COREUX-031, COREUX-044 |
+| VISUX-013 | Backlog | W2 | P1 | medium | ux-designer | Compactar shell, tabs y colapso del LeftSidebar | VISUX-005, VISUX-006 | COREUX-021, COREUX-023 |
+| VISUX-014 | Backlog | W2 | P1 | medium | implementer | Cerrar búsqueda, filtros y selector de layout del catálogo | VISUX-013 | COREUX-023 |
+| VISUX-015 | Backlog | W2 | P1 | medium | ux-designer | Compactar grupos, cards, favoritos y owner tone del catálogo | VISUX-014, VISUX-003 | COREUX-023, COREUX-041 |
+| VISUX-016 | Backlog | W2 | P1 | high | schema-specialist | Cerrar custom fields, auto fields y catálogo de recipients | VISUX-013, VISUX-015 | COREUX-023, COREUX-036 |
+| VISUX-017 | Backlog | W2 | P0 | very-high | canvas-specialist | Cerrar drag preview, drop setup y feedback de colocación | VISUX-015, VISUX-012 | COREUX-043 |
+| VISUX-018 | Backlog | W3 | P0 | high | ux-designer | Hacer responsive la navegación del RightSidebar | VISUX-005, VISUX-006 | COREUX-024 |
+| VISUX-019 | Backlog | W3 | P0 | very-high | runtime-architect | Formalizar panel registry, header contextual y scroll owner | VISUX-018, VISUX-002 | COREUX-024 |
+| VISUX-020 | Backlog | W3 | P0 | high | implementer | Compactar ListView y separar identidad, estados y acciones | VISUX-019, VISUX-003, VISUX-004 | COREUX-025 |
+| VISUX-021 | Backlog | W3 | P0 | high | implementer | Cerrar selección, reorder, localizar y menú por fila | VISUX-020, VISUX-004 | COREUX-025, COREUX-042, COREUX-045 |
+| VISUX-022 | Backlog | W3 | P0 | very-high | runtime-architect | Corregir disponibilidad y lifecycle de Reasignar responsable | VISUX-004, VISUX-020 | COREUX-026 |
+| VISUX-023 | Backlog | W3 | P0 | high | schema-specialist | Corregir header e identidad del DetailView | VISUX-019, VISUX-004 | COREUX-029, COREUX-030 |
+| VISUX-024 | Backlog | W3 | P0 | very-high | schema-specialist | Reorganizar taxonomía, disclosure y widgets del DetailView | VISUX-023 | COREUX-029, COREUX-030, COREUX-032, COREUX-033 |
+| VISUX-025 | Backlog | W3 | P0 | high | runtime-architect | Cerrar alcance y lifecycle del CommentsRail | VISUX-019, VISUX-004 | COREUX-028 |
+| VISUX-026 | Backlog | W3 | P0 | very-high | runtime-architect | Separar documento, página y acciones del DocumentsRail | VISUX-019 | COREUX-027, COREUX-046 |
+| VISUX-027 | Backlog | W3 | P1 | medium | ux-designer | Unificar estados empty, loading, error y disabled del RightSidebar | VISUX-019, VISUX-025, VISUX-026 | COREUX-024, COREUX-027, COREUX-028, COREUX-030 |
+| VISUX-028 | Backlog | W4 | P0 | very-high | schema-specialist | Unificar field chrome, owner tone y estados visuales | VISUX-003, VISUX-004 | COREUX-010, COREUX-041 |
+| VISUX-029 | Backlog | W4 | P0 | high | schema-specialist | Cerrar perfiles text-like, number y date/time | VISUX-024, VISUX-028 | COREUX-037 |
+| VISUX-030 | Backlog | W4 | P0 | very-high | schema-specialist | Cerrar select, checkbox, radio y option groups | VISUX-024, VISUX-028 | COREUX-034, COREUX-038 |
+| VISUX-031 | Backlog | W4 | P0 | very-high | schema-specialist | Hacer el inspector de firma dependiente del modo | VISUX-023, VISUX-024, VISUX-028 | COREUX-035, COREUX-039 |
+| VISUX-032 | Backlog | W4 | P0 | high | schema-specialist | Cerrar action schemas: attachment, note, approve y decline | VISUX-024, VISUX-028 | COREUX-040 |
+| VISUX-033 | Backlog | W4 | P1 | high | schema-specialist | Cerrar media, barcode, table y shapes | VISUX-024, VISUX-028 | COREUX-040 |
+| VISUX-034 | Backlog | W4 | P1 | medium | ux-designer | Normalizar i18n, labels técnicos y modo avanzado | VISUX-003, VISUX-023, VISUX-024 | COREUX-029, COREUX-030, COREUX-056 |
+| VISUX-035 | Backlog | W4 | P0 | very-high | qa-reviewer | Probar paridad propiedad→runtimes→PDF→snapshot | VISUX-029, VISUX-030, VISUX-031, VISUX-032, VISUX-033 | COREUX-049, COREUX-050 |
+| VISUX-036 | Backlog | W4 | P0 | high | canvas-specialist | Cerrar selección y edición de grupos de opciones | VISUX-030, VISUX-004 | COREUX-034, COREUX-038, COREUX-042 |
+| VISUX-037 | Backlog | W5 | P0 | very-high | runtime-architect | Unificar asignación, reserva de edición, readonly y posición fija | VISUX-004, VISUX-022, VISUX-028 | COREUX-010, COREUX-026, COREUX-033 |
+| VISUX-038 | Backlog | W5 | P0 | very-high | runtime-architect | Cerrar routing multidocumento y navegación por página | VISUX-026, VISUX-007 | COREUX-046, COREUX-047 |
+| VISUX-039 | Backlog | W5 | P0 | very-high | runtime-architect | Cerrar paridad visual de Designer, Form y Viewer | VISUX-035, VISUX-038 | COREUX-049, COREUX-051 |
+| VISUX-040 | Backlog | W5 | P0 | high | accessibility | Cerrar responsive, touch, teclado y accesibilidad integral | VISUX-006, VISUX-010, VISUX-018, VISUX-039 | COREUX-051 |
+| VISUX-041 | Backlog | W5 | P0 | very-high | performance | Estabilizar rendimiento y evitar remounts presentacionales | VISUX-005, VISUX-038, VISUX-039 | COREUX-052 |
+| VISUX-042 | Backlog | W6 | P0 | high | qa-reviewer | Crear suite visual, gates, documentación y release | VISUX-035, VISUX-040, VISUX-041 | COREUX-053, COREUX-054, COREUX-055, COREUX-056 |
+```
+
+<a id="file-0301"></a>
+
+### 0301 — `.ai/skills/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `63`
@@ -17697,9 +21772,9 @@ La lista inicial debe permanecer corta. Skills existentes se conservan; los alia
 | `sisad-visual-regression` | existing | existing project skill |
 ```
 
-<a id="file-0248"></a>
+<a id="file-0302"></a>
 
-### 0248 — `.ai/subagents/DECISION-MATRIX.md`
+### 0302 — `.ai/subagents/DECISION-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -17724,9 +21799,9 @@ La lista inicial debe permanecer corta. Skills existentes se conservan; los alia
 Estimate context saved before delegation.
 ```
 
-<a id="file-0249"></a>
+<a id="file-0303"></a>
 
-### 0249 — `.ai/templates/BEHAVIOR-RECORD.md`
+### 0303 — `.ai/templates/BEHAVIOR-RECORD.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -17750,9 +21825,9 @@ Estimate context saved before delegation.
 - status:
 ```
 
-<a id="file-0250"></a>
+<a id="file-0304"></a>
 
-### 0250 — `.ai/templates/CONTEXT-MANIFEST.md`
+### 0304 — `.ai/templates/CONTEXT-MANIFEST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -17773,9 +21848,34 @@ subagents: []
 ---
 ```
 
-<a id="file-0251"></a>
+<a id="file-0305"></a>
 
-### 0251 — `.ai/templates/EVIDENCE-PACKET.md`
+### 0305 — `.ai/templates/DECISION.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `c19d92b79c`
+- **Estado:** `completo`
+
+```markdown
+# ADR-ID — Decision
+
+- status:
+- context:
+- evidence:
+- alternatives:
+- decision:
+- consequences:
+- constraints:
+- supersedes:
+- traceIds:
+- verifiedAt:
+```
+
+<a id="file-0306"></a>
+
+### 0306 — `.ai/templates/EVIDENCE-PACKET.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -17798,9 +21898,33 @@ subagents: []
 - artifactPath:
 ```
 
-<a id="file-0252"></a>
+<a id="file-0307"></a>
 
-### 0252 — `.ai/templates/METHOD-RECORD.md`
+### 0307 — `.ai/templates/HANDOFF.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `11`
+- **Tamaño original:** `0.1 KB`
+- **SHA1 corto:** `3962ca3461`
+- **Estado:** `completo`
+
+```markdown
+# Handoff
+
+- task/claim/base/worktree:
+- cause:
+- changes:
+- trace:
+- gates passed/failed/not run:
+- risks:
+- rollback:
+- next action:
+- stop:
+```
+
+<a id="file-0308"></a>
+
+### 0308 — `.ai/templates/METHOD-RECORD.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -17826,9 +21950,9 @@ subagents: []
 - verifiedAt:
 ```
 
-<a id="file-0253"></a>
+<a id="file-0309"></a>
 
-### 0253 — `.ai/templates/TASK-CARD-V7.md`
+### 0309 — `.ai/templates/TASK-CARD-V7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -17884,9 +22008,48 @@ context:
 # Handoff
 ```
 
-<a id="file-0254"></a>
+<a id="file-0310"></a>
 
-### 0254 — `.ai/traceability/METHOD-REGISTRY.md`
+### 0310 — `.ai/templates/TASK-CARD.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `26`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `b7e53aa708`
+- **Estado:** `completo`
+
+```markdown
+# TSK-ID — Title
+
+## Metadata
+- state:
+- owner:
+- writer:
+- readers:
+- route:
+- skills:
+- risk:
+- maxFiles:
+- maxTokens:
+- dependencies:
+- traceIds:
+
+## Objective
+## Evidence
+## Allowed/forbidden paths
+## Invariants
+## Characterization test
+## Steps
+## Acceptance
+## Gates
+## Stop
+## Rollback
+## Handoff
+```
+
+<a id="file-0311"></a>
+
+### 0311 — `.ai/traceability/METHOD-REGISTRY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `327`
@@ -18224,53 +22387,55 @@ No equivale a cobertura verificada. Promover relaciones mediante tests/review.
 | MTH-0319 | right-sidebar | `buildDetailWidgets` | const | no | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx:61` |
 ```
 
-<a id="file-0255"></a>
+<a id="file-0312"></a>
 
-### 0255 — `.claude/agents/sisad-explorer.md`
+### 0312 — `.claude/agents/sisad-explorer.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `9`
+- **Líneas:** `10`
 - **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `9b5799103f`
+- **SHA1 corto:** `d5ec3cd685`
 - **Estado:** `completo`
 
 ```markdown
 ---
 name: sisad-explorer
-description: Read-only repository exploration; return an evidence packet.
+description: Explora en contexto aislado y devuelve evidence packet.
 tools: Read, Grep, Glob, Bash
+skills:
+  - context-engineering
 ---
 
-Use `AGENTS.md`, the active task-card and its route. Work in a separate context.
-Return at most 1,200 tokens using the evidence-packet schema. Do not edit unless
-the task explicitly grants a dedicated worktree.
+Lee `AGENTS.md`, la task activa y su route. Devuelve ≤1.200 tokens. No edites
+salvo worktree/claim explícito. La memoria automática no sustituye `.ai/memory`.
 ```
 
-<a id="file-0256"></a>
+<a id="file-0313"></a>
 
-### 0256 — `.claude/agents/sisad-log-distiller.md`
+### 0313 — `.claude/agents/sisad-log-distiller.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `9`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `13ee2c6c4d`
+- **Líneas:** `10`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `cb7e01ac46`
 - **Estado:** `completo`
 
 ```markdown
 ---
 name: sisad-log-distiller
-description: Run or inspect verbose tests/logs and return only distilled findings.
+description: Ejecuta pruebas/logs extensos y devuelve señales.
 tools: Read, Grep, Glob, Bash
+skills:
+  - quality-evidence
 ---
 
-Use `AGENTS.md`, the active task-card and its route. Work in a separate context.
-Return at most 1,200 tokens using the evidence-packet schema. Do not edit unless
-the task explicitly grants a dedicated worktree.
+Lee `AGENTS.md`, la task activa y su route. Devuelve ≤1.200 tokens. No edites
+salvo worktree/claim explícito. La memoria automática no sustituye `.ai/memory`.
 ```
 
-<a id="file-0257"></a>
+<a id="file-0314"></a>
 
-### 0257 — `.claude/agents/sisad-provider-auditor.md`
+### 0314 — `.claude/agents/sisad-provider-auditor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -18290,53 +22455,55 @@ Return at most 1,200 tokens using the evidence-packet schema. Do not edit unless
 the task explicitly grants a dedicated worktree.
 ```
 
-<a id="file-0258"></a>
+<a id="file-0315"></a>
 
-### 0258 — `.claude/agents/sisad-reviewer.md`
+### 0315 — `.claude/agents/sisad-reviewer.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `9`
+- **Líneas:** `10`
 - **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `d900e16cc0`
+- **SHA1 corto:** `7f42fcb7ac`
 - **Estado:** `completo`
 
 ```markdown
 ---
 name: sisad-reviewer
-description: Independent diff and risk review; never edit.
+description: Revisa diff sin editar y clasifica P0/P1/P2.
 tools: Read, Grep, Glob, Bash
+skills:
+  - quality-evidence
 ---
 
-Use `AGENTS.md`, the active task-card and its route. Work in a separate context.
-Return at most 1,200 tokens using the evidence-packet schema. Do not edit unless
-the task explicitly grants a dedicated worktree.
+Lee `AGENTS.md`, la task activa y su route. Devuelve ≤1.200 tokens. No edites
+salvo worktree/claim explícito. La memoria automática no sustituye `.ai/memory`.
 ```
 
-<a id="file-0259"></a>
+<a id="file-0316"></a>
 
-### 0259 — `.claude/agents/sisad-traceability.md`
+### 0316 — `.claude/agents/sisad-traceability.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `9`
+- **Líneas:** `10`
 - **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `509c5a9680`
+- **SHA1 corto:** `5d77f89140`
 - **Estado:** `completo`
 
 ```markdown
 ---
 name: sisad-traceability
-description: Map changed symbols to use cases, events, effects and tests.
+description: Actualiza relaciones entre métodos, casos y pruebas.
 tools: Read, Grep, Glob
+skills:
+  - traceability
 ---
 
-Use `AGENTS.md`, the active task-card and its route. Work in a separate context.
-Return at most 1,200 tokens using the evidence-packet schema. Do not edit unless
-the task explicitly grants a dedicated worktree.
+Lee `AGENTS.md`, la task activa y su route. Devuelve ≤1.200 tokens. No edites
+salvo worktree/claim explícito. La memoria automática no sustituye `.ai/memory`.
 ```
 
-<a id="file-0260"></a>
+<a id="file-0317"></a>
 
-### 0260 — `.codex/agents/README.md`
+### 0317 — `.codex/agents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -18352,9 +22519,9 @@ required. Canonical role instructions remain in `.ai/agents/`; generated
 provider profiles must reference those roles rather than copy governance.
 ```
 
-<a id="file-0261"></a>
+<a id="file-0318"></a>
 
-### 0261 — `.github/agents/sisad-architect.agent.md`
+### 0318 — `.github/agents/sisad-architect.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -18372,9 +22539,9 @@ Mode: read-only. Do not expand scope. Return evidence, confidence, affected trac
 IDs, gates and stop condition.
 ```
 
-<a id="file-0262"></a>
+<a id="file-0319"></a>
 
-### 0262 — `.github/agents/sisad-config.agent.md`
+### 0319 — `.github/agents/sisad-config.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -18391,29 +22558,29 @@ description: Configuración unificada, selectors y API pública.
 Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
 ```
 
-<a id="file-0263"></a>
+<a id="file-0320"></a>
 
-### 0263 — `.github/agents/sisad-coordinator.agent.md`
+### 0320 — `.github/agents/sisad-coordinator.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `8d77845038`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `87c2a911d3`
 - **Estado:** `completo`
 
 ```markdown
 ---
-description: "Coordina WIP, claims, context manifests y evidence packets."
+name: sisad-coordinator
+description: WIP, claims, routing and synthesis
 ---
 
-Read `AGENTS.md`, `.ai/START.md`, the active task-card and the matching route.
-Mode: read-only. Do not expand scope. Return evidence, confidence, affected trace
-IDs, gates and stop condition.
+Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
+budgets and protected paths. Return trace IDs and executed/non-executed gates.
 ```
 
-<a id="file-0264"></a>
+<a id="file-0321"></a>
 
-### 0264 — `.github/agents/sisad-dry-auditor.agent.md`
+### 0321 — `.github/agents/sisad-dry-auditor.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -18431,9 +22598,9 @@ tools: ["read", "search"]
 Lee `AGENTS.md`, `.ai/START.md` y [EXPLORER-DRY](../../.ai/agents/EXPLORER-DRY.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
 ```
 
-<a id="file-0265"></a>
+<a id="file-0322"></a>
 
-### 0265 — `.github/agents/sisad-dry-reviewer.agent.md`
+### 0322 — `.github/agents/sisad-dry-reviewer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -18449,49 +22616,49 @@ description: Reviews proposed or completed SISAD PDFME refactors for safe dedupl
 Operate read-only. Classify each clone, verify the canonical owner, look for boolean-heavy abstractions, confirm characterization tests and ensure vendor/generated paths are not treated as owned debt.
 ```
 
-<a id="file-0266"></a>
+<a id="file-0323"></a>
 
-### 0266 — `.github/agents/sisad-explorer.agent.md`
+### 0323 — `.github/agents/sisad-explorer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `a5c49ef988`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `72783b9756`
 - **Estado:** `completo`
 
 ```markdown
 ---
-description: "Investiga una pregunta y devuelve evidence packet sin editar."
+name: sisad-explorer
+description: Evidence packet from repository exploration
 ---
 
-Read `AGENTS.md`, `.ai/START.md`, the active task-card and the matching route.
-Mode: read-only. Do not expand scope. Return evidence, confidence, affected trace
-IDs, gates and stop condition.
+Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
+budgets and protected paths. Return trace IDs and executed/non-executed gates.
 ```
 
-<a id="file-0267"></a>
+<a id="file-0324"></a>
 
-### 0267 — `.github/agents/sisad-implementer.agent.md`
+### 0324 — `.github/agents/sisad-implementer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `0973526433`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `9d9e8820bb`
 - **Estado:** `completo`
 
 ```markdown
 ---
-description: "Aplica una task-card acotada con test focal."
+name: sisad-implementer
+description: Atomic patch with focal test
 ---
 
-Read `AGENTS.md`, `.ai/START.md`, the active task-card and the matching route.
-Mode: writer. Do not expand scope. Return evidence, confidence, affected trace
-IDs, gates and stop condition.
+Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
+budgets and protected paths. Return trace IDs and executed/non-executed gates.
 ```
 
-<a id="file-0268"></a>
+<a id="file-0325"></a>
 
-### 0268 — `.github/agents/sisad-memory-steward.agent.md`
+### 0325 — `.github/agents/sisad-memory-steward.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -18509,9 +22676,9 @@ Mode: docs-writer. Do not expand scope. Return evidence, confidence, affected tr
 IDs, gates and stop condition.
 ```
 
-<a id="file-0269"></a>
+<a id="file-0326"></a>
 
-### 0269 — `.github/agents/sisad-provider-adapter-steward.agent.md`
+### 0326 — `.github/agents/sisad-provider-adapter-steward.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -18529,49 +22696,49 @@ Mode: docs-writer. Do not expand scope. Return evidence, confidence, affected tr
 IDs, gates and stop condition.
 ```
 
-<a id="file-0270"></a>
+<a id="file-0327"></a>
 
-### 0270 — `.github/agents/sisad-qa.agent.md`
+### 0327 — `.github/agents/sisad-qa.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `92d62ebc55`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `e6a6f09a8c`
 - **Estado:** `completo`
 
 ```markdown
 ---
-description: "Diseña y ejecuta pruebas focales, destila logs."
+name: sisad-qa
+description: Tests, logs and visual evidence
 ---
 
-Read `AGENTS.md`, `.ai/START.md`, the active task-card and the matching route.
-Mode: read-only. Do not expand scope. Return evidence, confidence, affected trace
-IDs, gates and stop condition.
+Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
+budgets and protected paths. Return trace IDs and executed/non-executed gates.
 ```
 
-<a id="file-0271"></a>
+<a id="file-0328"></a>
 
-### 0271 — `.github/agents/sisad-reviewer.agent.md`
+### 0328 — `.github/agents/sisad-reviewer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `8f40e8992c`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `596c4b1400`
 - **Estado:** `completo`
 
 ```markdown
 ---
-description: "Revisa diff, invariantes, riesgo y rollback."
+name: sisad-reviewer
+description: Independent P0/P1/P2 review
 ---
 
-Read `AGENTS.md`, `.ai/START.md`, the active task-card and the matching route.
-Mode: read-only. Do not expand scope. Return evidence, confidence, affected trace
-IDs, gates and stop condition.
+Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
+budgets and protected paths. Return trace IDs and executed/non-executed gates.
 ```
 
-<a id="file-0272"></a>
+<a id="file-0329"></a>
 
-### 0272 — `.github/agents/sisad-scrum-coordinator.agent.md`
+### 0329 — `.github/agents/sisad-scrum-coordinator.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -18589,9 +22756,9 @@ tools: ["read", "search"]
 Lee `AGENTS.md`, `.ai/START.md` y [COORDINATOR](../../.ai/agents/COORDINATOR.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
 ```
 
-<a id="file-0273"></a>
+<a id="file-0330"></a>
 
-### 0273 — `.github/agents/sisad-task-planner.agent.md`
+### 0330 — `.github/agents/sisad-task-planner.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -18607,9 +22774,9 @@ description: Converts a bounded SISAD PDFME problem into a Ready task-card with 
 Do not edit application code. Produce one task-card, not a project-wide roadmap. Respect WIP and link to canonical policies rather than copying them.
 ```
 
-<a id="file-0274"></a>
+<a id="file-0331"></a>
 
-### 0274 — `.github/agents/sisad-test-specialist.agent.md`
+### 0331 — `.github/agents/sisad-test-specialist.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -18626,9 +22793,9 @@ description: Diseña y revisa pruebas unitarias y Playwright focales para SISAD 
 Lee `AGENTS.md`, `.ai/START.md` y [QA-REVIEWER](../../.ai/agents/QA-REVIEWER.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
 ```
 
-<a id="file-0275"></a>
+<a id="file-0332"></a>
 
-### 0275 — `.github/agents/sisad-token-steward.agent.md`
+### 0332 — `.github/agents/sisad-token-steward.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -18646,9 +22813,9 @@ Mode: read-only. Do not expand scope. Return evidence, confidence, affected trac
 IDs, gates and stop condition.
 ```
 
-<a id="file-0276"></a>
+<a id="file-0333"></a>
 
-### 0276 — `.github/agents/sisad-traceability-steward.agent.md`
+### 0333 — `.github/agents/sisad-traceability-steward.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -18666,9 +22833,9 @@ Mode: docs-writer. Do not expand scope. Return evidence, confidence, affected tr
 IDs, gates and stop condition.
 ```
 
-<a id="file-0277"></a>
+<a id="file-0334"></a>
 
-### 0277 — `.github/agents/sisad-ux.agent.md`
+### 0334 — `.github/agents/sisad-ux.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -18685,9 +22852,9 @@ description: UX responsive, accesibilidad y visual regression.
 Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
 ```
 
-<a id="file-0278"></a>
+<a id="file-0335"></a>
 
-### 0278 — `.github/instructions/ai-docs.instructions.md`
+### 0335 — `.github/instructions/ai-docs.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -18703,14 +22870,32 @@ applyTo: ".ai/**/*.md,.agents/**/*.md,AGENTS.md,CLAUDE.md,CODEX.md,.github/**/*.
 Mantén adapters cortos, una fuente por regla, progressive disclosure, IDs trazables y memoria por delta. No sobrescribas Sprint/Current/Handoff sin merge.
 ```
 
-<a id="file-0279"></a>
+<a id="file-0336"></a>
 
-### 0279 — `.github/instructions/canvas.instructions.md`
+### 0336 — `.github/instructions/ai.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
 - **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `ec5f8e859e`
+- **SHA1 corto:** `3313559fb4`
+- **Estado:** `completo`
+
+```markdown
+---
+applyTo: ".ai/**/*.md,.agents/**/*.md,AGENTS.md,CLAUDE.md,CODEX.md,.github/**/*.md"
+---
+
+Mantén hot path corto, una fuente por regla, catálogos JSONL, adapters generados y memoria por delta.
+```
+
+<a id="file-0337"></a>
+
+### 0337 — `.github/instructions/canvas.instructions.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `289a9646d3`
 - **Estado:** `completo`
 
 ```markdown
@@ -18718,12 +22903,12 @@ Mantén adapters cortos, una fuente por regla, progressive disclosure, IDs traza
 applyTo: "src/sisad-pdfme/ui/components/Designer/Canvas/**/*.{ts,tsx}"
 ---
 
-Canvas es frontera protegida. Requiere reproducción, test focal y revisión de accessPolicy/selectionPolicy/interactionState antes de Moveable/Selecto/coordinateMath.
+Canvas es frontera protegida. Requiere reproducción, test focal y revisión de access/selection/interaction antes de tocar Moveable, Selecto o coordinate math.
 ```
 
-<a id="file-0280"></a>
+<a id="file-0338"></a>
 
-### 0280 — `.github/instructions/quality.instructions.md`
+### 0338 — `.github/instructions/quality.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -18738,14 +22923,14 @@ applyTo: "{scripts,tools,configs,.ai}/**/*"
 Separate owned, vendor and generated metrics. Keep documentation canonical and link rather than copy. Validate skills, relative links, TOML/JSON and Markdown duplication.
 ```
 
-<a id="file-0281"></a>
+<a id="file-0339"></a>
 
-### 0281 — `.github/instructions/schemas.instructions.md`
+### 0339 — `.github/instructions/schemas.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
 - **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `18d0c30215`
+- **SHA1 corto:** `49c8137c0d`
 - **Estado:** `completo`
 
 ```markdown
@@ -18753,17 +22938,17 @@ Separate owned, vendor and generated metrics. Keep documentation canonical and l
 applyTo: "src/sisad-pdfme/schemas/**/*.{ts,tsx}"
 ---
 
-Toda familia cubre Factory, Designer, Inspector, Form, Viewer, Generator y Snapshot. No dupliques plugins completos para presets text-like.
+Cada familia cubre Factory, Designer, DetailView, Form, Viewer, Generator, Snapshot y owner/semantic color.
 ```
 
-<a id="file-0282"></a>
+<a id="file-0340"></a>
 
-### 0282 — `.github/instructions/sisad-core.instructions.md`
+### 0340 — `.github/instructions/sisad-core.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
 - **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `13f7d3c780`
+- **SHA1 corto:** `dca82b5872`
 - **Estado:** `completo`
 
 ```markdown
@@ -18771,72 +22956,96 @@ Toda familia cubre Factory, Designer, Inspector, Form, Viewer, Generator y Snaps
 applyTo: "src/sisad-pdfme/**/*.{ts,tsx}"
 ---
 
-Core nuevo en TypeScript/TSX. No imports hacia examples/features/modules. Preserva API pública, schemaUid, routing, ownership y snapshot. Usa task-card, route, skill y tests focales.
+Core nuevo TypeScript/TSX. No imports hacia examples/features/modules. Preserva API, identity, routing, ownership y snapshot.
 ```
 
-<a id="file-0283"></a>
+<a id="file-0341"></a>
 
-### 0283 — `.github/prompts/diagnose-task.prompt.md`
+### 0341 — `.github/prompts/color-contract.prompt.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `7`
+- **Líneas:** `8`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `40e0d5b59f`
+- **Estado:** `completo`
+
+```markdown
+---
+agent: agent
+description: "Audit active-recipient color versus stored ownerColor across all surfaces."
+---
+
+Audit active-recipient color versus stored ownerColor across all surfaces.
+
+Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.
+```
+
+<a id="file-0342"></a>
+
+### 0342 — `.github/prompts/diagnose-task.prompt.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `8`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `0e1e5d925b`
+- **Estado:** `completo`
+
+```markdown
+---
+agent: agent
+description: "Diagnose the active task without editing; return evidence and a focal test."
+---
+
+Diagnose the active task without editing; return evidence and a focal test.
+
+Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.
+```
+
+<a id="file-0343"></a>
+
+### 0343 — `.github/prompts/implement-task.prompt.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `8`
 - **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `8eda58097a`
+- **SHA1 corto:** `5a9c1d9410`
 - **Estado:** `completo`
 
 ```markdown
 ---
-mode: agent
+agent: agent
+description: "Implement only the active task within its file and token budget."
 ---
 
-Diagnose the active task without editing. Return an evidence packet and a focal test.
+Implement only the active task within its file and token budget.
 
-Use `AGENTS.md` and `.ai/templates/EVIDENCE-PACKET.md`.
+Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.
 ```
 
-<a id="file-0284"></a>
+<a id="file-0344"></a>
 
-### 0284 — `.github/prompts/implement-task.prompt.md`
+### 0344 — `.github/prompts/review-diff.prompt.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `7`
-- **Tamaño original:** `0.1 KB`
-- **SHA1 corto:** `32a21e2b66`
+- **Líneas:** `8`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `2b55025f6c`
 - **Estado:** `completo`
 
 ```markdown
 ---
-mode: agent
+agent: agent
+description: "Review the current diff independently and classify P0/P1/P2."
 ---
 
-Implement only the active task-card, within its file and token budget.
+Review the current diff independently and classify P0/P1/P2.
 
-Use `AGENTS.md` and `.ai/templates/EVIDENCE-PACKET.md`.
+Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.
 ```
 
-<a id="file-0285"></a>
+<a id="file-0345"></a>
 
-### 0285 — `.github/prompts/review-diff.prompt.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `7`
-- **Tamaño original:** `0.1 KB`
-- **SHA1 corto:** `00c5ab5411`
-- **Estado:** `completo`
-
-```markdown
----
-mode: agent
----
-
-Review the current diff independently and classify P0/P1/P2 findings.
-
-Use `AGENTS.md` and `.ai/templates/EVIDENCE-PACKET.md`.
-```
-
-<a id="file-0286"></a>
-
-### 0286 — `.github/prompts/triage-jscpd.prompt.md`
+### 0345 — `.github/prompts/triage-jscpd.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -18851,9 +23060,30 @@ description: Classify the current jscpd JSON and prepare an ordered owned-code b
 Run the project parser, separate owned/vendor/generated, apply `.ai/DUPLICATION-POLICY.md`, and create/update task-cards. Do not refactor vendor or modify thresholds to make the report green.
 ```
 
-<a id="file-0287"></a>
+<a id="file-0346"></a>
 
-### 0287 — `.github/prompts/update-traceability.prompt.md`
+### 0346 — `.github/prompts/update-trace.prompt.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `8`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `20e54c8f92`
+- **Estado:** `completo`
+
+```markdown
+---
+agent: agent
+description: "Update UC/BHV/MTH/EVT/FX/TST links for the current diff."
+---
+
+Update UC/BHV/MTH/EVT/FX/TST links for the current diff.
+
+Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.
+```
+
+<a id="file-0347"></a>
+
+### 0347 — `.github/prompts/update-traceability.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -18871,9 +23101,9 @@ Update UC/BHV/EVT/FX/MTH/TST links for the current diff.
 Use `AGENTS.md` and `.ai/templates/EVIDENCE-PACKET.md`.
 ```
 
-<a id="file-0288"></a>
+<a id="file-0348"></a>
 
-### 0288 — `.serena/memories/memory_maintenance.md`
+### 0348 — `.serena/memories/memory_maintenance.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -18895,9 +23125,195 @@ Serena memory is auxiliary.
 - never store secrets.
 ```
 
-<a id="file-0289"></a>
+<a id="file-0349"></a>
 
-### 0289 — `reports/configuration/behavior-matrix.md`
+### 0349 — `reports/ai-v8/00-BASELINE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `52`
+- **Tamaño original:** `1.4 KB`
+- **SHA1 corto:** `38ad68dee4`
+- **Estado:** `completo`
+
+```markdown
+# Baseline de arquitectura actual
+
+Fuente: `documentacion-sisad—pdmfe-web(64).md`.
+
+- archivos IA/Markdown detectados: **320**
+- tamaño consolidado: **564,883 bytes**
+- task-cards: **97**
+- skills: **58**
+- routes: **22**
+- prompts: **17**
+- agentes canónicos: **15**
+- agentes Copilot: **17**
+
+## Concentración
+
+| Área | Archivos | Bytes |
+|---|---:|---:|
+| `.ai/scrum/task-cards` | 97 | 319,206 |
+| `.agents/skills` | 58 | 32,902 |
+| `.ai/routes` | 22 | 11,401 |
+| `.ai/prompts` | 17 | 16,244 |
+| `.github/agents` | 17 | 4,859 |
+| `.ai/agents` | 15 | 7,391 |
+| `.ai/knowledge` | 13 | 56,752 |
+| `.ai/evals` | 10 | 2,501 |
+| `.ai/memory` | 10 | 2,707 |
+| `.ai/architecture` | 6 | 4,318 |
+| `.ai/governance` | 5 | 4,308 |
+| `.ai/plans` | 5 | 30,161 |
+| `.ai/templates` | 5 | 1,008 |
+| `.claude/agents` | 5 | 1,712 |
+| `.github/instructions` | 5 | 1,147 |
+| `.github/prompts` | 5 | 879 |
+| `.ai/playbooks` | 4 | 1,493 |
+| `.ai/scrum` | 3 | 4,665 |
+| `.codex` | 2 | 646 |
+| `.ai/CONTEXT-BUDGET.md` | 1 | 1,314 |
+| `.ai/CONTEXT-POLICY.md` | 1 | 802 |
+| `.ai/MODEL-ROUTER.md` | 1 | 1,165 |
+| `.ai/OBSERVABILITY.md` | 1 | 513 |
+| `.ai/ORCHESTRATION.md` | 1 | 848 |
+| `.ai/ROUTER.md` | 1 | 2,253 |
+| `.ai/START.md` | 1 | 1,143 |
+| `.ai/research` | 1 | 2,260 |
+| `.ai/skills` | 1 | 5,000 |
+| `.ai/subagents` | 1 | 512 |
+| `.ai/traceability` | 1 | 41,903 |
+| `.claude` | 1 | 408 |
+| `.github` | 1 | 536 |
+| `AGENTS.md` | 1 | 972 |
+| `CLAUDE.md` | 1 | 501 |
+| `CODEX.md` | 1 | 453 |
+```
+
+<a id="file-0350"></a>
+
+### 0350 — `reports/ai-v8/01-FINDINGS.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `16`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `d7f4186e1f`
+- **Estado:** `completo`
+
+```markdown
+# Hallazgos
+
+1. La arquitectura actual contiene conocimiento valioso, pero demasiados
+   archivos compiten como instrucciones, routes, skills, agentes y task-cards.
+2. Task-cards y catálogos dominan el volumen; no deben cargarse por navegación
+   manual.
+3. Existen aliases y skills con responsabilidad solapada.
+4. Los adapters de proveedor repiten roles que pueden generarse.
+5. El conocimiento funcional de recipients, color y schemas necesita una fuente
+   canónica transversal, no respuestas dispersas.
+6. El method registry debe actualizarse desde el código más reciente y conservar
+   estado candidate/verified.
+7. Las clases prefijadas deben tratarse como namespace interno; data attributes
+   son el contrato estable para tests/adapters.
+8. La optimización correcta es separar authored/generated/cold/ephemeral y
+   construir context packs por tarea.
+```
+
+<a id="file-0351"></a>
+
+### 0351 — `reports/ai-v8/02-TARGET-METRICS.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `14`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `f73bcd2aa6`
+- **Estado:** `completo`
+
+```markdown
+# Métricas objetivo
+
+| Métrica | Actual | V8 objetivo |
+|---|---:|---:|
+| archivos hot-path | múltiples | ≤5 |
+| tokens de arranque | no acotado | ≤2.5k |
+| routes canónicas | 22 | 12 |
+| skills canónicas | 58 físicas | 18 + aliases |
+| agentes canónicos | 15 | 10 |
+| task-cards Markdown permanentes | 97 | solo Ready/In progress |
+| backlog/archive | Markdown | JSONL |
+| provider adapters | manuales | generados |
+| method symbols | baseline anterior | latest pack, candidate |
+| conocimiento de schema/color | disperso | contratos + JSONL |
+```
+
+<a id="file-0352"></a>
+
+### 0352 — `reports/ai-v8/03-MIGRATION-MAP.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `14`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `2461a363a6`
+- **Estado:** `completo`
+
+```markdown
+# Mapa V7 → V8
+
+| V7 | V8 |
+|---|---|
+| múltiples instructions largas | adapters raíz delgados |
+| 22 routes | 12 routes canónicas + aliases |
+| 58 skills físicas | 18 skills + alias registry |
+| 15+ roles duplicados por provider | 10 roles + generación |
+| 97 task-cards permanentes | active/ready MD + backlog/archive JSONL |
+| use cases en varios reportes | `catalogs/use-cases.jsonl` |
+| methods en índice antiguo | registry latest code pack |
+| memory sin TTL completo | stable/current/handoff/TTL/cache |
+| logs en contexto | evidence + distill |
+| clases internas como hooks | helpers + data attributes |
+```
+
+<a id="file-0353"></a>
+
+### 0353 — `reports/ai-v8/04-OFFICIAL-PROVIDER-SOURCES.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `e9e66fe139`
+- **Estado:** `completo`
+
+```markdown
+# Fuentes oficiales revisadas
+
+## Codex/OpenAI
+
+- AGENTS.md jerárquico.
+- Skills con progressive disclosure.
+- Subagentes para trabajo independiente/ruidoso.
+- Configuración de proyecto y compaction.
+
+## Claude Code
+
+- Memoria de proyecto e índice limitado.
+- Skills cargadas cuando se usan.
+- Subagentes con contexto aislado, skill preload y memoria opcional.
+- Hooks para enforcement determinista.
+- Delegación de logs/tests para ahorrar contexto.
+
+## GitHub Copilot
+
+- Instructions repo-wide y path-specific.
+- Custom agents con frontmatter.
+- Prompt files reutilizables.
+- Agent skills portables.
+
+URLs canónicas se registran en `.ai/research/OFFICIAL-SOURCES.md`.
+```
+
+<a id="file-0354"></a>
+
+### 0354 — `reports/configuration/behavior-matrix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -18930,9 +23346,9 @@ Modelo único por feature: `registered · supported · enabled · visible · per
 Regla transversal: **visible ≠ enabled ≠ permitted**; ocultar del catálogo no elimina schema del canvas/snapshot; cambiar visibilidad de panel nunca cambia routing.
 ```
 
-<a id="file-0290"></a>
+<a id="file-0355"></a>
 
-### 0290 — `reports/configuration/config-sources-audit.md`
+### 0355 — `reports/configuration/config-sources-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -18971,9 +23387,9 @@ SisadPdfmeGlobalConfig (host)
 3. Separar **enabled/visible/permitted/available/executable** en un modelo único (`SisadPdfmeFeatureState`) elimina los booleans aislados en `actionRegistry`/`designerActionState`.
 ```
 
-<a id="file-0291"></a>
+<a id="file-0356"></a>
 
-### 0291 — `reports/configuration/config-task-pack-manifest.md`
+### 0356 — `reports/configuration/config-task-pack-manifest.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `36`
@@ -19020,9 +23436,9 @@ SisadPdfmeGlobalConfig (host)
 | `reports/configuration/config-task-pack-tree.md` | `9c5cf84724c7f657ced39f54709ee60ce6e1213beb80db560e15f7e4c116ff60` | 1489 |
 ```
 
-<a id="file-0292"></a>
+<a id="file-0357"></a>
 
-### 0292 — `reports/configuration/config-task-pack-tree.md`
+### 0357 — `reports/configuration/config-task-pack-tree.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `32`
@@ -19065,9 +23481,9 @@ prueba-plugin
 ``​`
 ```
 
-<a id="file-0293"></a>
+<a id="file-0358"></a>
 
-### 0293 — `reports/configuration/current-public-api.md`
+### 0358 — `reports/configuration/current-public-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -19091,9 +23507,9 @@ Barrel `@/sisad-pdfme/config` y `@/sisad-pdfme/integration` (main). Tras CONFIG-
 Pendiente: no re-exportar internals de UI/Canvas (objetivo plan §20).
 ```
 
-<a id="file-0294"></a>
+<a id="file-0359"></a>
 
-### 0294 — `reports/configuration/duplicate-config-paths.md`
+### 0359 — `reports/configuration/duplicate-config-paths.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -19121,9 +23537,9 @@ Rutas equivalentes que obligan al resolver a decidir precedencia. **Canónica ga
 Migración implementada en **CONFIG-003** (`configMigration.ts`): normaliza aliases → canónico con warning solo en debug; idempotente.
 ```
 
-<a id="file-0295"></a>
+<a id="file-0360"></a>
 
-### 0295 — `reports/configuration/visual-functional-baseline.md`
+### 0360 — `reports/configuration/visual-functional-baseline.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -19156,9 +23572,9 @@ Selección/zoom/scroll/página/documento activo; routing multi-documento; snapsh
 Playwright de configuración (`tests/playwright/configuration/*`) con los 16 escenarios del plan §16.4 — requiere webServer configurado (ver memoria UXQA). Se difiere a CONFIG-020.
 ```
 
-<a id="file-0296"></a>
+<a id="file-0361"></a>
 
-### 0296 — `reports/core-ux/01-USE-CASE-MATRIX.md`
+### 0361 — `reports/core-ux/01-USE-CASE-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `156`
@@ -19325,9 +23741,9 @@ Alcance de implementación: `src/sisad-pdfme/**`.
 | QLT-015 | QLT | Docs/release | Manual, migración y changelog verificables. |
 ```
 
-<a id="file-0297"></a>
+<a id="file-0362"></a>
 
-### 0297 — `reports/core-ux/02-SCREENSHOT-AUDIT.md`
+### 0362 — `reports/core-ux/02-SCREENSHOT-AUDIT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `122`
@@ -19460,9 +23876,9 @@ Observaciones:
 Tareas: `COREUX-029` a `035`, `038`.
 ```
 
-<a id="file-0298"></a>
+<a id="file-0363"></a>
 
-### 0298 — `reports/core-ux/03-EVENT-CATALOG.md`
+### 0363 — `reports/core-ux/03-EVENT-CATALOG.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `59`
@@ -19532,9 +23948,9 @@ El código actual expone un event hub genérico con `type: string`; este catálo
 - Eventos de alta frecuencia pueden coalescerse, pero nunca perder el estado final.
 ```
 
-<a id="file-0299"></a>
+<a id="file-0364"></a>
 
-### 0299 — `reports/core-ux/04-EFFECT-ARCHITECTURE.md`
+### 0364 — `reports/core-ux/04-EFFECT-ARCHITECTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `90`
@@ -19635,9 +24051,9 @@ rollback
 ``​`
 ```
 
-<a id="file-0300"></a>
+<a id="file-0365"></a>
 
-### 0300 — `reports/core-ux/05-PATTERN-DECISION-MATRIX.md`
+### 0365 — `reports/core-ux/05-PATTERN-DECISION-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -19677,9 +24093,9 @@ Crear una abstracción solo cuando:
 5. no crea otra API paralela.
 ```
 
-<a id="file-0301"></a>
+<a id="file-0366"></a>
 
-### 0301 — `reports/core-ux/06-GAP-ANALYSIS.md`
+### 0366 — `reports/core-ux/06-GAP-ANALYSIS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -19729,9 +24145,9 @@ Crear una abstracción solo cuando:
 - qué regresiones son exclusivas del ejemplo y cuáles pertenecen al core.
 ```
 
-<a id="file-0302"></a>
+<a id="file-0367"></a>
 
-### 0302 — `reports/core-ux/07-RISK-REGISTER.md`
+### 0367 — `reports/core-ux/07-RISK-REGISTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -19758,9 +24174,9 @@ Crear una abstracción solo cuando:
 | CSS host vuelve a intervenir | Alta | boundary checker |
 ```
 
-<a id="file-0303"></a>
+<a id="file-0368"></a>
 
-### 0303 — `reports/core-ux/08-CAPABILITY-INVENTORY.md`
+### 0368 — `reports/core-ux/08-CAPABILITY-INVENTORY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `138`
@@ -19909,9 +24325,9 @@ de render y cubierto por `tests/unit/examples/exampleEventLog.test.tsx`.
       corrección del crash en el host de ejemplos, con test de regresión).
 ```
 
-<a id="file-0304"></a>
+<a id="file-0369"></a>
 
-### 0304 — `reports/core-ux/09-SOURCE-OF-TRUTH-MAP.md`
+### 0369 — `reports/core-ux/09-SOURCE-OF-TRUTH-MAP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `140`
@@ -20062,9 +24478,9 @@ la canónica— o debe compararse contra la ruta legacy real.
 - [x] Se documentan dependencias con CONFIG/DECL.
 ```
 
-<a id="file-0305"></a>
+<a id="file-0370"></a>
 
-### 0305 — `reports/core-ux/10-VISUAL-BASELINE.md`
+### 0370 — `reports/core-ux/10-VISUAL-BASELINE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `101`
@@ -20176,9 +24592,9 @@ verificación de esta tarjeta porque no se tocó `src/**`; se ejecutan igualment
 en el cierre de la ola.
 ```
 
-<a id="file-0306"></a>
+<a id="file-0371"></a>
 
-### 0306 — `reports/core-ux/11-EVENT-EFFECT-COVERAGE.md`
+### 0371 — `reports/core-ux/11-EVENT-EFFECT-COVERAGE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `155`
@@ -20344,9 +24760,9 @@ existente en `resolveSisadPdfmeConfig`**, y añadir un puente hub → props del
 wrapper. No hace falta un segundo bus: el bus ya existe, solo está desconectado.
 ```
 
-<a id="file-0307"></a>
+<a id="file-0372"></a>
 
-### 0307 — `reports/core-ux/PRODUCT-BACKLOG-ROWS.md`
+### 0372 — `reports/core-ux/PRODUCT-BACKLOG-ROWS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `62`
@@ -20419,9 +24835,9 @@ Fusionar sin reemplazar el backlog existente.
 | COREUX-056 | P0 | Documentar configuración, eventos, efectos y release | [task](task-cards/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md) |
 ```
 
-<a id="file-0308"></a>
+<a id="file-0373"></a>
 
-### 0308 — `reports/core-ux/SCRUM-MERGE-INSTRUCTIONS.md`
+### 0373 — `reports/core-ux/SCRUM-MERGE-INSTRUCTIONS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -20461,9 +24877,9 @@ WIP = 3
 6. Registrar claim antes de editar.
 ```
 
-<a id="file-0309"></a>
+<a id="file-0374"></a>
 
-### 0309 — `reports/core-ux/SPRINT-CURRENT-ROWS.md`
+### 0374 — `reports/core-ux/SPRINT-CURRENT-ROWS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `62`
@@ -20536,9 +24952,9 @@ No agregar mientras WIP=3. Cuando se libere capacidad, agregar solo `COREUX-001`
 | [COREUX-056](task-cards/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md) | Backlog | memory-steward | Terra medium | pendiente | COREUX-053, COREUX-054, COREUX-055 |
 ```
 
-<a id="file-0310"></a>
+<a id="file-0375"></a>
 
-### 0310 — `reports/core-ux/TREE.md`
+### 0375 — `reports/core-ux/TREE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `92`
@@ -20641,9 +25057,9 @@ prueba-plugin/
 ``​`
 ```
 
-<a id="file-0311"></a>
+<a id="file-0376"></a>
 
-### 0311 — `reports/declarative-instances/00-BASELINE-COMPLEJIDAD-Y-COMPORTAMIENTO.md`
+### 0376 — `reports/declarative-instances/00-BASELINE-COMPLEJIDAD-Y-COMPORTAMIENTO.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `60`
@@ -20714,9 +25130,9 @@ Fecha de corte: 2026-07-31
 - Declarar un gate de frontera de lenguaje e imports publicos antes de migrar mas helpers fuera de `src/examples`.
 ```
 
-<a id="file-0312"></a>
+<a id="file-0377"></a>
 
-### 0312 — `reports/declarative-instances/01-USE-CASE-MATRIX.md`
+### 0377 — `reports/declarative-instances/01-USE-CASE-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `70`
@@ -20797,9 +25213,9 @@ Fecha de corte: 2026-07-31
 | UC-066 | Compatibilidad API baja | Designer/Form/Viewer actuales siguen disponibles. | Compatibility |
 ```
 
-<a id="file-0313"></a>
+<a id="file-0378"></a>
 
-### 0313 — `reports/declarative-instances/02-PUBLIC-API-DRAFT.md`
+### 0378 — `reports/declarative-instances/02-PUBLIC-API-DRAFT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `74`
@@ -20884,9 +25300,9 @@ sin permiso → visible deshabilitado con reason
 ``​`
 ```
 
-<a id="file-0314"></a>
+<a id="file-0379"></a>
 
-### 0314 — `reports/declarative-instances/03-LOGIC-MIGRATION-MAP.md`
+### 0379 — `reports/declarative-instances/03-LOGIC-MIGRATION-MAP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -20913,9 +25329,9 @@ sin permiso → visible deshabilitado con reason
 | `ExampleEventLog.jsx` | observabilidad | ejemplo advanced |
 ```
 
-<a id="file-0315"></a>
+<a id="file-0380"></a>
 
-### 0315 — `reports/declarative-instances/04-RISK-REGISTER.md`
+### 0380 — `reports/declarative-instances/04-RISK-REGISTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -20942,9 +25358,9 @@ sin permiso → visible deshabilitado con reason
 | Eliminación prematura de helpers | Media | migrar consumidores antes de borrar |
 ```
 
-<a id="file-0316"></a>
+<a id="file-0381"></a>
 
-### 0316 — `reports/declarative-instances/05-TASK-USE-CASE-COVERAGE.md`
+### 0381 — `reports/declarative-instances/05-TASK-USE-CASE-COVERAGE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -20995,9 +25411,9 @@ sin permiso → visible deshabilitado con reason
 | DECL-036 | UC-056, UC-057, UC-061, UC-066 |
 ```
 
-<a id="file-0317"></a>
+<a id="file-0382"></a>
 
-### 0317 — `reports/declarative-instances/PRODUCT-BACKLOG-ROWS.md`
+### 0382 — `reports/declarative-instances/PRODUCT-BACKLOG-ROWS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -21048,9 +25464,9 @@ sin permiso → visible deshabilitado con reason
 | DECL-036 | P0 | Documentar, migrar y liberar la API declarativa | [task](../../.ai/scrum/task-cards/DECL-036-documentar-migrar-y-liberar-la-api-declarativa.md) |
 ```
 
-<a id="file-0318"></a>
+<a id="file-0383"></a>
 
-### 0318 — `reports/declarative-instances/SCRUM-MERGE-INSTRUCTIONS.md`
+### 0383 — `reports/declarative-instances/SCRUM-MERGE-INSTRUCTIONS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -21083,9 +25499,9 @@ Pasos:
 6. Ejecutar `npm run maintenance:sync-scrum-views` si existe.
 ```
 
-<a id="file-0319"></a>
+<a id="file-0384"></a>
 
-### 0319 — `reports/declarative-instances/SPRINT-CURRENT-ROWS.md`
+### 0384 — `reports/declarative-instances/SPRINT-CURRENT-ROWS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -21138,9 +25554,9 @@ Agregar inicialmente solo `DECL-001` si el WIP lo permite.
 | DECL-036 | Backlog | memory-steward | Terra medium | pendiente | DECL-033, DECL-034, DECL-035 |
 ```
 
-<a id="file-0320"></a>
+<a id="file-0385"></a>
 
-### 0320 — `reports/declarative-instances/TREE.md`
+### 0385 — `reports/declarative-instances/TREE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `65`
@@ -21216,9 +25632,9 @@ prueba-plugin/
 ``​`
 ```
 
-<a id="file-0321"></a>
+<a id="file-0386"></a>
 
-### 0321 — `reports/examples-ux/MATRIZ_QA_RESPONSIVE.md`
+### 0386 — `reports/examples-ux/MATRIZ_QA_RESPONSIVE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `64`
@@ -21293,9 +25709,9 @@ prefers-reduced-motion respetado
 ``​`
 ```
 
-<a id="file-0322"></a>
+<a id="file-0387"></a>
 
-### 0322 — `reports/naming-sanitization/compatibility-language-audit.md`
+### 0387 — `reports/naming-sanitization/compatibility-language-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `561`
@@ -21867,9 +26283,9 @@ prefers-reduced-motion respetado
 - L11: identifiers=[] terms=[legacy, canonical] — const identifierPattern = /\b[A-Za-z_$][A-Za-z0-9_$]*(?:Legacy|Canonical|legacy|canonical)[A-Za-z0-9_$]*\b/g;
 ```
 
-<a id="file-0324"></a>
+<a id="file-0389"></a>
 
-### 0324 — `reports/naming-sanitization/persisted-value-impact.md`
+### 0389 — `reports/naming-sanitization/persisted-value-impact.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -21888,9 +26304,9 @@ prefers-reduced-motion respetado
 | tests/unit/snapshotAdapter.test.ts | 345 | legacy | review schema/version boundary | todo |
 ```
 
-<a id="file-0325"></a>
+<a id="file-0390"></a>
 
-### 0325 — `reports/naming-sanitization/public-api-impact.md`
+### 0390 — `reports/naming-sanitization/public-api-impact.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `89`
@@ -21990,9 +26406,9 @@ prefers-reduced-motion respetado
 | scripts/quality/audit-compatibility-language.mjs | 11 | legacy, canonical | export candidate |  | yes | todo |
 ```
 
-<a id="file-0326"></a>
+<a id="file-0391"></a>
 
-### 0326 — `reports/naming-sanitization/rename-map.md`
+### 0391 — `reports/naming-sanitization/rename-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -22046,9 +26462,9 @@ prefers-reduced-motion respetado
 | Task | `COREUX-006-...legacy-onx.md` | `COREUX-006-...host-callback-adapter.md` | archivo | bajo | update indexes |
 ```
 
-<a id="file-0327"></a>
+<a id="file-0392"></a>
 
-### 0327 — `reports/naming-sanitization/RENAMING-MATRIX.md`
+### 0392 — `reports/naming-sanitization/RENAMING-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -22100,9 +26516,9 @@ prefers-reduced-motion respetado
 | Task | `COREUX-006-...legacy-onx.md` | `COREUX-006-...host-callback-adapter.md` | archivo | bajo | update indexes |
 ```
 
-<a id="file-0328"></a>
+<a id="file-0393"></a>
 
-### 0328 — `reports/naming-sanitization/third-party-exceptions.md`
+### 0393 — `reports/naming-sanitization/third-party-exceptions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -22133,9 +26549,9 @@ prefers-reduced-motion respetado
 - Do not rename the dependency-controlled import strings themselves.
 ```
 
-<a id="file-0329"></a>
+<a id="file-0394"></a>
 
-### 0329 — `reports/portability/CURRENT-IMPLEMENTATION-GAPS.md`
+### 0394 — `reports/portability/CURRENT-IMPLEMENTATION-GAPS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `227`
@@ -22373,9 +26789,9 @@ Antes de publicar como librería:
 ``​`
 ```
 
-<a id="file-0330"></a>
+<a id="file-0395"></a>
 
-### 0330 — `reports/portability/PORTABILITY-CHECKLIST.md`
+### 0395 — `reports/portability/PORTABILITY-CHECKLIST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `109`
@@ -22495,9 +26911,9 @@ Antes de publicar como librería:
 - [ ] No hay console errors.
 ```
 
-<a id="file-0331"></a>
+<a id="file-0396"></a>
 
-### 0331 — `reports/portability/TREE.md`
+### 0396 — `reports/portability/TREE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -22521,9 +26937,9 @@ prueba-plugin/
 ``​`
 ```
 
-<a id="file-0332"></a>
+<a id="file-0397"></a>
 
-### 0332 — `reports/restoration/01-resumen-ejecutivo.md`
+### 0397 — `reports/restoration/01-resumen-ejecutivo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -22565,9 +26981,9 @@ No se debe restaurar `src/features/pdfcomponent` como estaba. Se debe recuperar 
 - **Host:** endpoints, Stepper, reglas SISAD, Uanataca/OneShot y navegación.
 ```
 
-<a id="file-0333"></a>
+<a id="file-0398"></a>
 
-### 0333 — `reports/restoration/02-inventario-funcional-eliminado.md`
+### 0398 — `reports/restoration/02-inventario-funcional-eliminado.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `51`
@@ -22629,9 +27045,9 @@ Se recuperaron 30 archivos y 5,179 líneas eliminadas bajo `src/features/pdfcomp
 12. Casos integrales multiusuario/multidocumento.
 ```
 
-<a id="file-0334"></a>
+<a id="file-0399"></a>
 
-### 0334 — `reports/restoration/03-brechas-core-actual.md`
+### 0399 — `reports/restoration/03-brechas-core-actual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `50`
@@ -22692,9 +27108,9 @@ La configuración declara `onReady`, `onChange`, `onSave`, `onError`, `onSelecti
 `src/examples/data/runtimeConfig.js` referencia un JSON de configuración. El paquete consolidado debe verificarse contra el árbol real para confirmar que ese archivo está presente y versionado.
 ```
 
-<a id="file-0335"></a>
+<a id="file-0400"></a>
 
-### 0335 — `reports/restoration/04-matriz-casos-de-uso.md`
+### 0400 — `reports/restoration/04-matriz-casos-de-uso.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -22744,9 +27160,9 @@ La configuración declara `onReady`, `onChange`, `onSave`, `onError`, `onSelecti
 | UC-35 | No regresión de Canvas | Canvas | Moveable, Selecto, coordenadas, zoom y page 2+ con pruebas focales. | P0 | 002, 004, 022 |
 ```
 
-<a id="file-0336"></a>
+<a id="file-0401"></a>
 
-### 0336 — `reports/restoration/05-clasificacion-core-host-no-restaurar.md`
+### 0401 — `reports/restoration/05-clasificacion-core-host-no-restaurar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -22805,9 +27221,9 @@ La configuración declara `onReady`, `onChange`, `onSave`, `onError`, `onSelecti
 - no-op silenciosos para satisfacer tipos.
 ```
 
-<a id="file-0337"></a>
+<a id="file-0402"></a>
 
-### 0337 — `reports/restoration/06-paridad-api-publica.md`
+### 0402 — `reports/restoration/06-paridad-api-publica.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -22849,9 +27265,9 @@ Una API pública solo puede estar en uno de estos estados:
 Nunca debe responder como éxito cuando no hizo nada.
 ```
 
-<a id="file-0338"></a>
+<a id="file-0403"></a>
 
-### 0338 — `reports/restoration/PRODUCT-BACKLOG-ROWS.md`
+### 0403 — `reports/restoration/PRODUCT-BACKLOG-ROWS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -22892,9 +27308,9 @@ No reemplazar el backlog existente. Agregar estas filas al final de la tabla:
 | RESTORE-021 | P1 | Contrato portable para DigitalAgreements y ExternalForms | [task](task-cards/RESTORE-021-contrato-portable-para-digitalagreements-y-externalforms.md) |
 ```
 
-<a id="file-0339"></a>
+<a id="file-0404"></a>
 
-### 0339 — `reports/restoration/SCRUM-MERGE-INSTRUCTIONS.md`
+### 0404 — `reports/restoration/SCRUM-MERGE-INSTRUCTIONS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -22932,9 +27348,9 @@ No reemplazar el backlog existente. Agregar estas filas al final de la tabla:
 - Ninguna tarea queda In Progress automáticamente.
 ```
 
-<a id="file-0340"></a>
+<a id="file-0405"></a>
 
-### 0340 — `reports/restoration/SPRINT-CURRENT-ROWS.md`
+### 0405 — `reports/restoration/SPRINT-CURRENT-ROWS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -22975,9 +27391,9 @@ Agregar inicialmente solo `RESTORE-001` si el WIP actual permite una tarea nueva
 | [RESTORE-021](task-cards/RESTORE-021-contrato-portable-para-digitalagreements-y-externalforms.md) | Backlog | runtime-architect | Sol high | pendiente | depende del plan RESTORE |
 ```
 
-<a id="file-0341"></a>
+<a id="file-0406"></a>
 
-### 0341 — `reports/restoration/TREE.md`
+### 0406 — `reports/restoration/TREE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `50`
@@ -23038,9 +27454,1245 @@ prueba-plugin/
 ``​`
 ```
 
-<a id="file-0342"></a>
+<a id="file-0407"></a>
 
-### 0342 — `src/sisad-pdfme/AGENTS.md`
+### 0407 — `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `68`
+- **Tamaño original:** `3.1 KB`
+- **SHA1 corto:** `5687768478`
+- **Estado:** `completo`
+
+```markdown
+# Auditoría visual de las capturas 2026-08-03
+
+## Evidencia
+
+- **IMG-01:** `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-01.jpg`
+- **IMG-02:** `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-02.jpg`
+- **IMG-03:** `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-03.jpg`
+- **IMG-04:** `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-04.jpg`
+- **IMG-05:** `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-05.jpg`
+- **IMG-06:** `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-06.jpg`
+- **IMG-07:** `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-07.jpg`
+- **IMG-08:** `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-08.jpg`
+- **IMG-09:** `reports/visual-behavior/evidence/screenshots/VISUAL-BASELINE-09.jpg`
+
+## Hallazgos por captura
+
+### IMG-01 — ambos sidebars colapsados
+- Rails asimétricos y con descubribilidad limitada.
+- Buen enfoque canvas-first, pero se debe medir el espacio realmente recuperado.
+- Zoom y navegación permanecen accesibles.
+
+### IMG-02 — ListView en primer plano
+- Tabs del RightSidebar truncados; Documentos queda reducido a una letra.
+- Reasignar no explica por qué está deshabilitado.
+- Filas demasiado altas y chip `Asignado a ti` repetido.
+- Delete domina cada fila.
+- Key técnica aparece como identidad principal.
+- `dateSigned` combina readonly, assignment, lock y delete sin layout estable.
+
+### IMG-03 — LeftSidebar colapsado y RightSidebar abierto
+- El panel derecho sigue estrecho para cuatro tabs.
+- El paper mantiene una escala legible.
+- Se debe probar que el rail no reserva ancho expandido invisible.
+
+### IMG-04 — ambos sidebars expandidos
+- Señal visual de desplazamiento del paper al abrir LeftSidebar.
+- Header del catálogo demasiado fragmentado.
+- Demasiados contenedores, filtros y controles antes de los schemas.
+
+### IMG-05 — DetailView de signature
+- Nombre del campo vacío para una familia que sí tiene identidad.
+- `Bloqueado por alice` es ambiguo si Alice es la sesión activa.
+- Resumen de selección con contraste casi nulo.
+- Renombrar aparece como input y botón.
+- Capacidades de firma usan términos técnicos y posibles estados contradictorios.
+
+### IMG-06 — CommentsRail
+- El alcance mezcla página y campo.
+- No se comunica el target del nuevo comentario.
+- Empty state desaprovecha el contexto.
+
+### IMG-07 — DocumentsRail ampliado
+- Documento y página se mezclan.
+- `Subir PDF`, `+` y `Nueva página` compiten.
+- El contador `2` aparece aislado.
+- El documento activo sí se identifica correctamente.
+
+### IMG-08 — DocumentsRail dentro del workspace
+- La toolbar del schema sigue visible mientras se gestiona documentos.
+- Falta jerarquía documento→páginas.
+- El panel tiene espacio libre sin metadata ni páginas.
+
+### IMG-09 — DetailView + menú Más
+- Delete duplicado.
+- `Activar requerido` está dentro de Orden.
+- `Abrir propiedades` aparece aunque Detalle ya está abierto.
+- Fijar posición y liberar edición usan lenguaje de bloqueo similar.
+- `Variables Sample Data` mezcla idiomas y está en sección incorrecta.
+```
+
+<a id="file-0408"></a>
+
+### 0408 — `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `11.5 KB`
+- **SHA1 corto:** `2f08bd4a90`
+- **Estado:** `completo`
+
+```markdown
+# Matriz de casos de uso visuales y de comportamiento
+
+Total: **158 casos**.
+
+| ID | Dominio | Caso de uso |
+|---|---|---|
+| LAY-001 | LAY | El diseñador ocupa el contenedor del host sin fijar el viewport. |
+| LAY-002 | LAY | El stage conserva tamaño útil al abrir o cerrar superficies. |
+| LAY-003 | LAY | El papel conserva centro, zoom y scroll al cambiar sidebars. |
+| LAY-004 | LAY | Los rails izquierdo y derecho usan dimensiones y patrones coherentes. |
+| LAY-005 | LAY | El layout cambia por ancho real del root, no por window.innerWidth. |
+| LAY-006 | LAY | Wide permite dos paneles abiertos sin cubrir el papel. |
+| LAY-007 | LAY | Desktop prioriza el papel y compacta headers. |
+| LAY-008 | LAY | Tablet usa una sola superficie lateral activa. |
+| LAY-009 | LAY | Mobile usa drawer o pantalla completa sin reconstruir el runtime. |
+| LAY-010 | LAY | Los cambios de densidad no cambian el significado de las acciones. |
+| LAY-011 | LAY | La safe area del PDF no domina visualmente el contenido. |
+| LAY-012 | LAY | No existe overflow horizontal involuntario en el workspace. |
+| CTL-001 | CTL | Guardar expone idle, dirty, saving, saved y error. |
+| CTL-002 | CTL | El estado de guardado no se contradice entre botón, chip y punto. |
+| CTL-003 | CTL | La navegación de páginas muestra página actual y total. |
+| CTL-004 | CTL | El contador de selección no invade la navegación de páginas. |
+| CTL-005 | CTL | Undo y redo reflejan disponibilidad real. |
+| CTL-006 | CTL | Zoom muestra valor, disminuir y aumentar en densidad permitida. |
+| CTL-007 | CTL | Fit page y fit width son comandos diferenciados. |
+| CTL-008 | CTL | Los controles no cubren contenido del documento. |
+| CTL-009 | CTL | Los tooltips funcionan con mouse, teclado y touch. |
+| CTL-010 | CTL | Los controles esenciales mantienen contraste y hit area. |
+| CTL-011 | CTL | El toolbar se adapta sin ocultar acciones esenciales. |
+| CTL-012 | CTL | Cambiar toolbar no remonta el engine. |
+| LSB-001 | LSB | El LeftSidebar abre, cierra y cambia a rail sin mover el papel. |
+| LSB-002 | LSB | Base, personalizados y automáticos tienen labels consistentes. |
+| LSB-003 | LSB | Buscar filtra por nombre visible, tipo y alias. |
+| LSB-004 | LSB | Todos, favoritos y recientes muestran resultados coherentes. |
+| LSB-005 | LSB | El layout list/tiles/icons es independiente de la densidad. |
+| LSB-006 | LSB | Las categorías muestran contador y estado expandido. |
+| LSB-007 | LSB | Las cards de schema tienen una sola superficie de drag. |
+| LSB-008 | LSB | Favorito aparece en hover/focus y conserva accesibilidad. |
+| LSB-009 | LSB | El catálogo usa color del recipient sin confundirlo con estado semántico. |
+| LSB-010 | LSB | Los custom fields se crean mediante modal y registry existentes. |
+| LSB-011 | LSB | El drag preview corresponde al schema y owner activo. |
+| LSB-012 | LSB | Un drop inválido explica la causa sin insertar el schema. |
+| RSB-001 | RSB | Campos, Detalle, Comentarios y Documentos son paneles registrables. |
+| RSB-002 | RSB | Las pestañas cambian label según densidad sin cortarse. |
+| RSB-003 | RSB | El botón de colapso no consume el ancho destinado a tabs. |
+| RSB-004 | RSB | Un panel oculto no queda enfocable ni seleccionable. |
+| RSB-005 | RSB | El rail abre el panel correcto y conserva su último scroll. |
+| RSB-006 | RSB | Cada panel tiene un solo propietario del scroll. |
+| RSB-007 | RSB | El header contextual explica documento, página, selección o alcance. |
+| RSB-008 | RSB | Los estados loading, empty, error y disabled son consistentes. |
+| RSB-009 | RSB | Cambiar panel conserva la selección del canvas. |
+| RSB-010 | RSB | El panel puede ocultar overlays contextuales sin borrar la selección. |
+| RSB-011 | RSB | El RightSidebar no lee ni muta el DOM del canvas. |
+| RSB-012 | RSB | La navegación es accesible con flechas, Home y End. |
+| LST-001 | LST | ListView representa todos los schemas de la página activa. |
+| LST-002 | LST | La fila prioriza nombre visible sobre key técnica. |
+| LST-003 | LST | El estado owner usa accent compacto y no un chip repetido. |
+| LST-004 | LST | Required, readonly y lock tienen indicadores separados. |
+| LST-005 | LST | Eliminar no domina todas las filas. |
+| LST-006 | LST | Las acciones de fila aparecen en hover, focus o menú. |
+| LST-007 | LST | Seleccionar una fila sincroniza Canvas y DetailView. |
+| LST-008 | LST | Selección múltiple conserva Cmd/Ctrl según plataforma. |
+| LST-009 | LST | Drag reorder no se confunde con click. |
+| LST-010 | LST | Localizar hace scroll al schema sin mover el contenedor equivocado. |
+| LST-011 | LST | Delete ofrece confirmación o undo según configuración. |
+| LST-012 | LST | La lista mantiene rendimiento con cientos de schemas. |
+| DTL-001 | DTL | El header muestra nombre visible, tipo, página y owner. |
+| DTL-002 | DTL | Nombre del campo se carga para todas las familias. |
+| DTL-003 | DTL | Renombrar usa una sola interacción sin duplicidad. |
+| DTL-004 | DTL | El header diferencia asignación, readonly, lock y reserva de edición. |
+| DTL-005 | DTL | Las secciones siguen una taxonomía común. |
+| DTL-006 | DTL | Las secciones avanzadas usan progressive disclosure. |
+| DTL-007 | DTL | Cada widget declara propertyPath, read, write y visibilidad. |
+| DTL-008 | DTL | Un widget deshabilitado explica la razón. |
+| DTL-009 | DTL | Las propiedades del inspector llegan al renderer del Designer. |
+| DTL-010 | DTL | Las propiedades llegan a Form, Viewer, Generator y snapshot. |
+| DTL-011 | DTL | El DetailView conserva scroll por schema o sección según contrato. |
+| DTL-012 | DTL | No se muestran acciones incompatibles con permisos. |
+| CMT-001 | CMT | El comentario declara alcance document, page o schema. |
+| CMT-002 | CMT | El título y empty state usan el mismo alcance. |
+| CMT-003 | CMT | Agregar comentario crea un hilo en el alcance activo. |
+| CMT-004 | CMT | Responder, resolver y reabrir emiten eventos. |
+| CMT-005 | CMT | Cambiar página o schema actualiza el contexto sin perder borradores. |
+| CMT-006 | CMT | Los comentarios respetan permisos y recipient visibility. |
+| CMT-007 | CMT | El rail conserva scroll y foco al volver. |
+| CMT-008 | CMT | Snapshot y persistencia conservan hilos y respuestas. |
+| DOC-001 | DOC | Documentos y páginas son entidades diferenciadas. |
+| DOC-002 | DOC | Subir PDF agrega documento y reporta progreso/error. |
+| DOC-003 | DOC | Nueva página agrega página al documento activo. |
+| DOC-004 | DOC | El contador se integra en el título. |
+| DOC-005 | DOC | El documento activo está claramente indicado. |
+| DOC-006 | DOC | Cambiar documento conserva selection/zoom/scroll por política. |
+| DOC-007 | DOC | Eliminar documento valida último documento y schemas asociados. |
+| DOC-008 | DOC | Eliminar página actualiza routing y referencias. |
+| DOC-009 | DOC | Reordenar documentos actualiza orden sin perder IDs. |
+| DOC-010 | DOC | Object URLs se liberan al retirar archivos. |
+| DOC-011 | DOC | Form y Viewer soportan documento activo. |
+| DOC-012 | DOC | Las acciones múltiples no duplican affordances. |
+| SCH-001 | SCH | Todos los schemas comparten field chrome. |
+| SCH-002 | SCH | Owner tone es estable en Canvas, lista e inspector. |
+| SCH-003 | SCH | Color semántico no reemplaza el owner tone. |
+| SCH-004 | SCH | Selected, hover, required, readonly, error y lock son distinguibles. |
+| SCH-005 | SCH | Text-like conserva placeholder, formato y variables. |
+| SCH-006 | SCH | Number conserva validación, formato y límites. |
+| SCH-007 | SCH | Date/time usa locale, timezone y formato coherentes. |
+| SCH-008 | SCH | Select conserva opciones y placeholder. |
+| SCH-009 | SCH | Checkbox/radio individual tiene hit area accesible. |
+| SCH-010 | SCH | CheckboxGroup/RadioGroup selecciona el root completo. |
+| SCH-011 | SCH | Agregar opción usa el botón de grupo y no crea schemas sueltos. |
+| SCH-012 | SCH | Firma deriva capacidades del modo seleccionado. |
+| SCH-013 | SCH | Initials y dateSigned conservan readonly y provider behavior. |
+| SCH-014 | SCH | Attachment muestra límites, formatos y estado. |
+| SCH-015 | SCH | Approve/Decline conservan color semántico y owner. |
+| SCH-016 | SCH | Note conserva contraste y contenido. |
+| SCH-017 | SCH | Imagen/SVG/barcode/table/shapes mantienen tamaño y rendering. |
+| SCH-018 | SCH | Todas las propiedades hacen round-trip en snapshot. |
+| SCH-019 | SCH | Designer, Form, Viewer y PDF mantienen paridad. |
+| SCH-020 | SCH | Schemas desconocidos o deshabilitados producen issue. |
+| COL-001 | COL | Recipient activo y vista global son estados diferentes. |
+| COL-002 | COL | Owner, asignación y usuario de sesión no se confunden. |
+| COL-003 | COL | Reasignar está disponible con más de un recipient asignable. |
+| COL-004 | COL | Reasignar requiere selección y permiso estructural. |
+| COL-005 | COL | El motivo disabled es visible. |
+| COL-006 | COL | Reserva de edición y bloqueo de posición son estados diferentes. |
+| COL-007 | COL | Locked by me y locked by other usan labels distintos. |
+| COL-008 | COL | Todas las superficies consumen el mismo access/action state. |
+| COL-009 | COL | Cambiar owner actualiza color sin perder selección. |
+| COL-010 | COL | Los cambios emiten Command, Event y snapshot coherentes. |
+| COL-011 | COL | Copy-only y disabled recipients no cuentan como destino. |
+| COL-012 | COL | La colaboración no impide el modo single-user. |
+| RUN-001 | RUN | Designer permite edición estructural según permisos. |
+| RUN-002 | RUN | Form permite ingreso de valores sin chrome de diseño. |
+| RUN-003 | RUN | Viewer es readonly y no expone inputs técnicos. |
+| RUN-004 | RUN | Cambiar modo conserva datos serializables. |
+| RUN-005 | RUN | Multidocumento funciona en Designer, Form y Viewer. |
+| RUN-006 | RUN | El controller reporta capacidades reales. |
+| RUN-007 | RUN | Guardar, exportar y generar usan lifecycle común. |
+| RUN-008 | RUN | Errores de runtime tienen pantalla y recuperación. |
+| RUN-009 | RUN | La instancia declarativa no exige lógica visual al host. |
+| RUN-010 | RUN | Cambios presentacionales no reconstruyen engine ni EventHub. |
+| A11Y-001 | A11Y | Todos los icon-only tienen nombre accesible. |
+| A11Y-002 | A11Y | Focus visible cumple contraste. |
+| A11Y-003 | A11Y | Tabs siguen patrón ARIA. |
+| A11Y-004 | A11Y | Menús contextuales gestionan foco y Escape. |
+| A11Y-005 | A11Y | Modales atrapan y restauran foco. |
+| A11Y-006 | A11Y | Hit areas son de al menos 36 px en desktop y 44 px en touch. |
+| A11Y-007 | A11Y | Los estados no dependen únicamente del color. |
+| A11Y-008 | A11Y | Reduced motion evita animaciones no esenciales. |
+| A11Y-009 | A11Y | Screen reader anuncia selección, lock y errores. |
+| A11Y-010 | A11Y | Teclado permite operar sidebars, lista, inspector y canvas. |
+| A11Y-011 | A11Y | Texto deshabilitado conserva contraste suficiente. |
+| A11Y-012 | A11Y | Los tooltips no dependen de title nativo. |
+| QLT-001 | QLT | Existe baseline visual por viewport y estado. |
+| QLT-002 | QLT | Cada cambio visual tiene test focal. |
+| QLT-003 | QLT | Playwright cubre sidebars abiertos/cerrados. |
+| QLT-004 | QLT | Playwright cubre tabs, empty states y scroll. |
+| QLT-005 | QLT | Vitest cubre resolvers de action/access/layout. |
+| QLT-006 | QLT | No se introducen imports desde examples al core. |
+| QLT-007 | QLT | No se crea una segunda fuente de estado. |
+| QLT-008 | QLT | No se usan setTimeout para coordinar UI. |
+| QLT-009 | QLT | No se introducen z-index arbitrarios. |
+| QLT-010 | QLT | No se agregan selectores CSS sobre internals desde el host. |
+| QLT-011 | QLT | Build, typecheck y lint pasan. |
+| QLT-012 | QLT | La documentación y trazabilidad se actualizan. |
+```
+
+<a id="file-0409"></a>
+
+### 0409 — `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `26`
+- **Tamaño original:** `2.4 KB`
+- **SHA1 corto:** `9f5c1aabb3`
+- **Estado:** `completo`
+
+```markdown
+# Matriz de componentes, responsabilidades y tareas
+
+| Superficie | Responsabilidades | Archivos iniciales | Tareas |
+|---|---|---|---|
+| Root / Stage | layout, tamaño, responsive, panel policy | `Designer/index.tsx`, `useResponsiveDensity.ts` | VISUX-005..007 |
+| CtlBar | save, pager, zoom, fit, undo/redo | `CtlBar.tsx`, `saveLifecycle.ts`, `viewCommands.ts` | VISUX-008..010 |
+| Rails | collapse, active panel, tooltip, focus | `SidebarRail.tsx`, `SidebarCollapseHandle.tsx` | VISUX-006 |
+| LeftSidebar | tabs, search, filters, catalog, drag | `LeftSidebar*.tsx`, `useLeftSidebarCatalogState.ts` | VISUX-013..017 |
+| RightSidebar shell | tabs, registry, header, scroll | `RightSidebar.tsx`, `layout.tsx`, `contextHeader.ts` | VISUX-018..019 |
+| ListView | identity, states, selection, reorder, actions | `ListView/**` | VISUX-020..022 |
+| DetailView | header, profiles, widgets, permissions | `DetailView/**` | VISUX-023..024 |
+| Comments | scopes, threads, replies, snapshot | `CommentsRail.tsx`, `comments/**` | VISUX-025 |
+| Documents | document/page hierarchy, upload, delete, reorder | `DocumentsRail.tsx`, `documents/**` | VISUX-026 |
+| Shared panel states | empty/loading/error/disabled | `SidebarEmptyState.tsx` | VISUX-027 |
+| Field chrome | owner, semantic tone, selected, lock, readonly | `schemas/shared/**`, collaboration appearance | VISUX-028 |
+| Text/number/date | properties, locale, validation, parity | `schemas/text*`, `number`, `date` | VISUX-029 |
+| Choice/groups | options, root selection, add option | `schemas/options`, `select`, `checkbox*`, `radioGroup` | VISUX-030,036 |
+| Signing | signature, initials, dateSigned, providers | `schemas/signature/**` | VISUX-031 |
+| Actions | attachment, note, approve, decline | `schemas/actions/**` | VISUX-032 |
+| Visual schemas | media, barcode, table, shapes | `schemas/graphics`, `barcodes`, `tables`, `shapes` | VISUX-033 |
+| i18n | labels, technical mode, terminology | `ui/i18n.ts`, propPanels | VISUX-034 |
+| Runtime parity | Designer, Form, Viewer, PDF, snapshot | runtimes, generator, snapshot | VISUX-035,038,039 |
+| Collaboration | assignment, reservation, lock, permissions | collaboration/access/action state | VISUX-037 |
+| Accessibility | keyboard, touch, focus, ARIA, contrast | todas las superficies | VISUX-040 |
+| Performance | stable engine, EventHub, viewport | react/runtime/designer shell | VISUX-041 |
+| QA/release | unit, contract, Playwright, visual regression | tests/docs/reports | VISUX-042 |
+```
+
+<a id="file-0410"></a>
+
+### 0410 — `reports/visual-behavior/04-RISK-REGISTER.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `17`
+- **Tamaño original:** `1.4 KB`
+- **SHA1 corto:** `9a183e420e`
+- **Estado:** `completo`
+
+```markdown
+# Registro de riesgos
+
+| Riesgo | Probabilidad | Impacto | Mitigación |
+|---|---|---|---|
+| Corregir layout mueve schemas o cambia coordenadas | media | muy alto | No tocar geometría; medir stage/canvas/paper; task VISUX-007 |
+| Tests protegen un comportamiento visual incorrecto | alta | alto | Baseline y assertions geométricas en VISUX-001/007 |
+| RightSidebar mantiene doble scroll | alta | alto | Un scroll owner por panel en VISUX-019 |
+| Acciones difieren entre menú, lista e inspector | alta | muy alto | Descriptor y selector compartidos en VISUX-004/011 |
+| Reasignación sigue usando conteo total | alta | alto | Resolver recipients asignables en VISUX-022 |
+| Cambios de inspector no llegan a runtimes/PDF | media | muy alto | Paridad y round-trip en VISUX-035 |
+| Firma combina modos/capacidades incompatibles | alta | alto | Perfil dependiente del modo en VISUX-031 |
+| Documento y página permanecen mezclados | alta | muy alto | Modelo jerárquico en VISUX-026/038 |
+| Owner tone oculta color semántico | media | alto | Capas visuales en VISUX-028 |
+| Responsive reconstruye engine | media | muy alto | Identidad y performance en VISUX-041 |
+| Tailwind del host altera el componente | media | alto | Gates de frontera y consumer tests en VISUX-042 |
+| Refactor visual rompe touch/teclado | media | alto | Matriz A11Y en VISUX-040 |
+| Duplicación con COREUX | alta | medio | Merge instructions; VISUX solo refina |
+```
+
+<a id="file-0411"></a>
+
+### 0411 — `reports/visual-behavior/05-TASK-MAP.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `46`
+- **Tamaño original:** `4.0 KB`
+- **SHA1 corto:** `e64b72ebdb`
+- **Estado:** `completo`
+
+```markdown
+# Mapa de tareas VISUX ↔ COREUX
+
+| VISUX | Refina | Objetivo resumido |
+|---|---|---|
+| VISUX-001 | COREUX-001, COREUX-054 | Congelar baseline visual y estados reproducibles |
+| VISUX-002 | COREUX-002, COREUX-004, COREUX-020, COREUX-024 | Inventariar componentes visuales, scroll owners y fuentes de estado |
+| VISUX-003 | COREUX-013, COREUX-014, COREUX-051 | Auditar tokens, contraste, densidad y lenguaje visual |
+| VISUX-004 | COREUX-010, COREUX-011, COREUX-012 | Unificar auditoría de acciones, acceso y motivos de deshabilitación |
+| VISUX-005 | COREUX-020 | Crear un estado responsive único del workspace |
+| VISUX-006 | COREUX-021 | Unificar rails y colapso de ambos sidebars |
+| VISUX-007 | COREUX-022 | Preservar ancla visual, zoom y scroll al cambiar layout |
+| VISUX-008 | COREUX-013, COREUX-016, COREUX-018 | Corregir header de guardar, navegación de páginas y estado de selección |
+| VISUX-009 | COREUX-017 | Cerrar contrato de zoom, fit, undo y redo |
+| VISUX-010 | COREUX-014, COREUX-051 | Reemplazar tooltips nativos y cerrar foco de controles |
+| VISUX-011 | COREUX-041, COREUX-045 | Unificar toolbar contextual y menú Más |
+| VISUX-012 | COREUX-009, COREUX-031, COREUX-044 | Hacer overlays collision-aware y coordinar stack visual |
+| VISUX-013 | COREUX-021, COREUX-023 | Compactar shell, tabs y colapso del LeftSidebar |
+| VISUX-014 | COREUX-023 | Cerrar búsqueda, filtros y selector de layout del catálogo |
+| VISUX-015 | COREUX-023, COREUX-041 | Compactar grupos, cards, favoritos y owner tone del catálogo |
+| VISUX-016 | COREUX-023, COREUX-036 | Cerrar custom fields, auto fields y catálogo de recipients |
+| VISUX-017 | COREUX-043 | Cerrar drag preview, drop setup y feedback de colocación |
+| VISUX-018 | COREUX-024 | Hacer responsive la navegación del RightSidebar |
+| VISUX-019 | COREUX-024 | Formalizar panel registry, header contextual y scroll owner |
+| VISUX-020 | COREUX-025 | Compactar ListView y separar identidad, estados y acciones |
+| VISUX-021 | COREUX-025, COREUX-042, COREUX-045 | Cerrar selección, reorder, localizar y menú por fila |
+| VISUX-022 | COREUX-026 | Corregir disponibilidad y lifecycle de Reasignar responsable |
+| VISUX-023 | COREUX-029, COREUX-030 | Corregir header e identidad del DetailView |
+| VISUX-024 | COREUX-029, COREUX-030, COREUX-032, COREUX-033 | Reorganizar taxonomía, disclosure y widgets del DetailView |
+| VISUX-025 | COREUX-028 | Cerrar alcance y lifecycle del CommentsRail |
+| VISUX-026 | COREUX-027, COREUX-046 | Separar documento, página y acciones del DocumentsRail |
+| VISUX-027 | COREUX-024, COREUX-027, COREUX-028, COREUX-030 | Unificar estados empty, loading, error y disabled del RightSidebar |
+| VISUX-028 | COREUX-010, COREUX-041 | Unificar field chrome, owner tone y estados visuales |
+| VISUX-029 | COREUX-037 | Cerrar perfiles text-like, number y date/time |
+| VISUX-030 | COREUX-034, COREUX-038 | Cerrar select, checkbox, radio y option groups |
+| VISUX-031 | COREUX-035, COREUX-039 | Hacer el inspector de firma dependiente del modo |
+| VISUX-032 | COREUX-040 | Cerrar action schemas: attachment, note, approve y decline |
+| VISUX-033 | COREUX-040 | Cerrar media, barcode, table y shapes |
+| VISUX-034 | COREUX-029, COREUX-030, COREUX-056 | Normalizar i18n, labels técnicos y modo avanzado |
+| VISUX-035 | COREUX-049, COREUX-050 | Probar paridad propiedad→runtimes→PDF→snapshot |
+| VISUX-036 | COREUX-034, COREUX-038, COREUX-042 | Cerrar selección y edición de grupos de opciones |
+| VISUX-037 | COREUX-010, COREUX-026, COREUX-033 | Unificar asignación, reserva de edición, readonly y posición fija |
+| VISUX-038 | COREUX-046, COREUX-047 | Cerrar routing multidocumento y navegación por página |
+| VISUX-039 | COREUX-049, COREUX-051 | Cerrar paridad visual de Designer, Form y Viewer |
+| VISUX-040 | COREUX-051 | Cerrar responsive, touch, teclado y accesibilidad integral |
+| VISUX-041 | COREUX-052 | Estabilizar rendimiento y evitar remounts presentacionales |
+| VISUX-042 | COREUX-053, COREUX-054, COREUX-055, COREUX-056 | Crear suite visual, gates, documentación y release |
+```
+
+<a id="file-0412"></a>
+
+### 0412 — `reports/visual-behavior/06-BASELINE-STATE-MATRIX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `196`
+- **Tamaño original:** `9.6 KB`
+- **SHA1 corto:** `8bb916b1c1`
+- **Estado:** `completo`
+
+```markdown
+# Matriz de estados reproducibles del baseline visual
+
+**Task:** VISUX-001 · **Fecha:** 2026-08-04 · **Ruta única:** `/examples/designer/multi-user`
+
+Este documento convierte las nueve capturas de
+`01-SCREENSHOT-AUDIT.md` en estados que una máquina puede volver a producir.
+Las mediciones están en `07-BASELINE-MEASUREMENTS.md`; la evidencia generada, en
+`evidence/baseline/<ancho>/`.
+
+## 1. Contexto de caracterización
+
+| Dato | Valor |
+|---|---|
+| Worktree | `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin` |
+| Rama | `main` |
+| Commit base al capturar | `00f4c6984e4d81d82f372a50390200ef9e3a9c49` (`00f4c69`) |
+| `git status --short` | 100 entradas al capturar (24 bajo `src/sisad-pdfme`) |
+| Suites | `tests/e2e/visual-baseline-states.spec.ts` (baseline, 36/36) · `tests/e2e/designer-stage-centering.spec.ts` (contrato de centrado, 5/5) |
+| Navegador | Chromium (Playwright, `devices['Desktop Chrome']`) |
+| Servidor | `npm run dev` + `PLAYWRIGHT_BASE_URL` |
+| Captura | 2026-08-04T14:14Z |
+
+**CONFIRMADO:** el baseline se capturó sobre un árbol de trabajo **sucio**. No
+representa a `00f4c69` limpio, sino a `00f4c69` + los cambios sin commitear de
+esas 100 entradas. Cualquier comparación futura debe repetirse sobre el mismo
+árbol o declarar la diferencia.
+
+**CONFIRMADO — el worktree está compartido con otra sesión.** Durante la captura,
+otra sesión creó el commit `f67e991` con un `git add` amplio que arrastró parte de
+este trabajo en curso (las suites en un estado intermedio y el parche de
+`CtlBar.tsx`, `LeftSidebar.tsx` y casi todo `Designer/index.tsx`) bajo el mensaje
+«add visual baseline tests». Consecuencias para quien compare:
+
+- el commit base del baseline vigente **no** es `00f4c69` sino `f67e991` más los
+  cambios sin commitear que quedan en el árbol;
+- `f67e991` no contiene los informes ni la evidencia de
+  `evidence/baseline*/`, así que ese commit por sí solo no reproduce este
+  baseline.
+
+## 2. Procedencia de las nueve capturas de origen
+
+Todas las capturas `VISUAL-BASELINE-0*.jpg` comparten contexto **CONFIRMADO**
+por lectura directa de las imágenes:
+
+| Dato | Valor |
+|---|---|
+| URL | `localhost:5174/examples/designer/multi-user` |
+| Recipient activo | `Alice` |
+| Zoom | `100%` |
+| Página | `Pág 1/1` |
+| Navegador | Microsoft Edge en macOS, ventana completa |
+| Fecha del reloj | 3 ago 2026, 22:49–22:51 |
+
+**INFERIDO:** las siete capturas de ventana completa miden 2048×1330 px con
+relación 1.539, idéntica a la de una pantalla de 3024×1964 px (MacBook 14",
+1512×982 lógicos). El viewport de página resultante sería de ~1512×870 px.
+**DESCONOCIDO:** el ancho exacto del viewport no está registrado en las imágenes
+y no es recuperable; por eso el baseline reproducible usa cuatro anchos
+declarados en vez de intentar recrear ese uno.
+
+**CONFIRMADO:** `IMG-02` (682×1638) e `IMG-07` (722×1052) no son ventanas, son
+recortes del panel derecho. La suite los reproduce con un PNG extra
+`*-panel.png` recortado al panel.
+
+## 3. Selectores estables
+
+Anclajes usados por la suite. Todos existen en el core; ninguno depende de texto
+visible frágil salvo los `aria-label` de los toggles, que son contrato de
+accesibilidad.
+
+| Propósito | Selector |
+|---|---|
+| LeftSidebar | `[data-testid="left-sidebar"]` |
+| RightSidebar | `.sisad-pdfme-designer-right-sidebar` |
+| Canvas | `.sisad-pdfme-designer-canvas` |
+| Paper | `[data-paper-page], [data-canvas-page], .sisad-pdfme-ui-paper` |
+| Tab Campos | `#sisad-pdfme-right-sidebar-tab-fields` |
+| Tab Detalle | `#sisad-pdfme-right-sidebar-tab-detail` |
+| Tab Comentarios | `#sisad-pdfme-right-sidebar-tab-comments` |
+| Tab Documentos | `#sisad-pdfme-right-sidebar-tab-docs` |
+| Tablist del panel | `[role="tablist"][aria-label="Panel derecho"]` |
+| Rail del panel colapsado | `.sisad-pdfme-designer-sidebar-rail-btn` |
+| Toggle LeftSidebar | `role=button` · `Abrir/Cerrar catálogo de campos` |
+| Toggle RightSidebar | `role=button` · `Mostrar/Ocultar panel derecho` |
+| Schema en Canvas | `.sisad-pdfme-ui-custom-selectable[data-schema-type="<tipo>"]` |
+| Toolbar de selección | `.sisad-pdfme-ui-selection-context-toolbar` |
+| Menú Más contextual | `role=menu` · `Menú contextual del esquema` |
+| Fila de ListView | `[data-testid="right-sidebar-field-item"]` |
+| Contador de campos | `[data-testid="right-sidebar-fields-counter"]` |
+| Reasignar | `[data-testid="right-sidebar-reassign"]` |
+| Header del DetailView | `[data-testid="detail-header-card"]` |
+| Zoom | `[data-testid="designer-zoom-select"] .ant-select-selection-item` |
+| Página | `[title="Página"]` |
+
+### Atributos de estado que confirman cada escenario
+
+`data-left-sidebar-expanded`, `data-right-sidebar-expanded`,
+`data-sidebar-collapsed`, `data-panel-mode`, `data-sidebar-presentation`,
+`data-right-sidebar-density`, `data-selection-count`, `data-schema-type`.
+
+**CONFIRMADO — el vocabulario de panel no es único:** el tab `fields` publica
+`data-panel-mode="list"`. Los otros tres coinciden (`detail`, `comments`,
+`docs`). La suite mapea la diferencia en `PUBLISHED_PANEL_MODE`; corregir el
+vocabulario es alcance de VISUX-002/VISUX-019, no de esta task.
+
+## 4. Estado inicial de la ruta
+
+Medido antes de tocar nada, en los cuatro anchos (**CONFIRMADO**):
+
+| Propiedad | Valor |
+|---|---|
+| `leftExpanded` | `true` |
+| `rightExpanded` | `true` |
+| `rightPanelMode` | `comments` |
+| `rightDensity` | `compact` @1280 · `comfortable` @1440/1600/1920 |
+
+Consecuencia: ninguna de las nueve capturas de origen retrata el estado inicial
+de la ruta. `IMG-03` e `IMG-04` muestran **Campos** activo, de modo que quien
+tomó las capturas ya había navegado. Toda receta debe fijar el panel de forma
+explícita en vez de confiar en el arranque.
+
+## 5. Los nueve estados
+
+Cada estado se reproduce desde una carga limpia de la ruta. La suite verifica el
+estado con atributos del DOM antes de capturar, de modo que ninguna imagen queda
+etiquetada con un estado que el DOM no confirme.
+
+| Estado | Origen | Escenario | Receta | Confirmación |
+|---|---|---|---|---|
+| S01 | IMG-01 | ambos sidebars colapsados | colapsar izquierdo, colapsar derecho | `data-left-sidebar-expanded=false` + `data-right-sidebar-expanded=false` |
+| S02 | IMG-02 | ListView, izquierdo colapsado (+ recorte de panel) | colapsar izquierdo, abrir derecho, tab Campos | `data-panel-mode=list` + ≥1 `right-sidebar-field-item` |
+| S03 | IMG-03 | izquierdo colapsado, derecho en Campos | colapsar izquierdo, abrir derecho, tab Campos | `data-panel-mode=list` |
+| S04 | IMG-04 | ambos expandidos, derecho en Campos | expandir ambos, tab Campos | ambos `expanded=true` + `data-panel-mode=list` |
+| S05 | IMG-05 | DetailView de `signature` | expandir ambos, clic en schema `signature`, tab Detalle | `data-panel-mode=detail` + `detail-view` visible |
+| S06 | IMG-06 | CommentsRail con `signature` seleccionado | ídem S05, tab Comentarios | `data-panel-mode=comments` |
+| S07 | IMG-07 | DocumentsRail (+ recorte de panel) | ídem S05, tab Documentos | `data-panel-mode=docs` |
+| S08 | IMG-08 | DocumentsRail en el workspace | ídem S07, captura de viewport | `data-panel-mode=docs` |
+| S09 | IMG-09 | DetailView de `multiVariableText` + menú Más | expandir ambos, clic en `multiVariableText`, tab Detalle, botón `Más acciones` | `role=menu` `Menú contextual del esquema` visible |
+
+### Notas de reproducción
+
+- **S05/S09 usan `data-schema-type`, no nombres:** `signature` y
+  `multiVariableText`. Un cambio de nombres de la plantilla de ejemplo no rompe
+  la receta; un cambio de familias, sí.
+- **S07 y S08 son el mismo estado con dos encuadres.** Se conservan separados
+  porque el audit los trata como hallazgos distintos.
+- **El tab Detalle está deshabilitado sin selección** (`activeSchemaCount !== 1`).
+  Por eso S05, S06, S07, S08 y S09 seleccionan antes de cambiar de panel.
+- **Reabrir el panel derecho colapsado sólo es posible desde el rail**
+  (`.sisad-pdfme-designer-sidebar-rail-btn`): el toggle de cabecera desaparece
+  con el panel.
+
+## 6. Anchos del baseline
+
+`1280×800`, `1440×900`, `1600×1000`, `1920×1080`. Cuatro anchos × nueve estados =
+36 combinaciones, todas verdes en la corrida del 2026-08-04.
+
+## 7. Salidas por combinación
+
+``​`text
+reports/visual-behavior/evidence/baseline/<ancho>/S0X-viewport.png
+reports/visual-behavior/evidence/baseline/<ancho>/S0X-panel.png   # sólo S02 y S07
+reports/visual-behavior/evidence/baseline/<ancho>/S0X.json        # mediciones
+``​`
+
+## 8. Cómo repetirlo
+
+``​`bash
+npm run dev                       # anota el puerto real
+PLAYWRIGHT_BASE_URL=http://localhost:<puerto> \
+  npx playwright test tests/e2e/visual-baseline-states.spec.ts
+``​`
+
+`playwright.config.ts` no declara `webServer`: el dev server se levanta a mano y
+`PLAYWRIGHT_BASE_URL` debe apuntar al puerto real. Vite ocupa 5174 por
+configuración, pero cae al siguiente libre si está tomado, y el `baseURL` por
+defecto de la config seguiría apuntando a 5174 — es decir, posiblemente al
+servidor de otra sesión. Pasar el puerto de forma explícita es obligatorio.
+
+## 9. Contrato de centrado (suite adicional)
+
+`tests/e2e/designer-stage-centering.spec.ts` congela el contrato
+`paperCenterX === workspaceCenterX` en las cuatro combinaciones de sidebars y en
+cinco viewports (`1600×1200`, `1536×1024`, `1440×900`, `1280×800`, `1024×768`).
+
+Nació **roja** por diseño, como assertion geométrica previa al parche, y hoy pasa
+**5/5**. Mediciones antes y después en `07-BASELINE-MEASUREMENTS.md` §8 y §9.
+
+``​`bash
+PLAYWRIGHT_BASE_URL=http://localhost:<puerto> \
+  npx playwright test tests/e2e/designer-stage-centering.spec.ts
+``​`
+
+Referencia geométrica: `.sisad-pdfme-designer-workspace`, no
+`.sisad-pdfme-designer-stage`. El stage es hermano del LeftSidebar y se encoge
+con él, de modo que usarlo como referencia oculta el defecto.
+```
+
+<a id="file-0413"></a>
+
+### 0413 — `reports/visual-behavior/07-BASELINE-MEASUREMENTS.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `418`
+- **Tamaño original:** `19.1 KB`
+- **SHA1 corto:** `3a21d8c0a8`
+- **Estado:** `completo`
+
+```markdown
+# Mediciones del baseline visual
+
+**Task:** VISUX-001 · **Fecha:** 2026-08-04
+
+| Suite | Resultado |
+|---|---|
+| `tests/e2e/visual-baseline-states.spec.ts` | 36/36 verdes, capturado dos veces (antes y después del parche de centrado) |
+| `tests/e2e/designer-stage-centering.spec.ts` | 5/5 rojas antes del parche → **5/5 verdes después** (§8) |
+
+Dos juegos de evidencia, mismos estados y mismos anchos:
+
+| Directorio | Estado del código |
+|---|---|
+| `evidence/baseline-pre-centering/` | antes del parche de centrado (§9) |
+| `evidence/baseline/` | después del parche — **baseline vigente** |
+
+Secciones 1–7 **miden**, no proponen correcciones. Sección 8: contrato de centrado
+del workspace. Sección 9: el parche aplicado. Las recetas de cada estado están en
+`06-BASELINE-STATE-MATRIX.md`.
+
+## 1. Geometría del workspace
+
+Anchos en píxeles CSS. `S02/S03` = izquierdo colapsado; `S04+` = ambos
+expandidos.
+
+> **Tabla del estado PRE-parche** (`evidence/baseline-pre-centering/`). Los
+> valores vigentes están en §1.3.
+
+| Ancho | Estado | LeftSidebar | RightSidebar | Paper x | Paper ancho | Paper solapado por el panel |
+|---|---|---|---|---|---|---|
+| 1280 | S01 (ambos colapsados) | 45 | 36 | 409 | 515 | 0 |
+| 1280 | S02/S03 | 45 | 307 | 409 | 515 | 0 |
+| 1280 | S04–S09 | 168 | 307 | 470 | 516 | **25** |
+| 1440 | S01 | 45 | 36 | 457 | 579 | 0 |
+| 1440 | S02/S03 | 45 | 320 | 457 | 579 | 0 |
+| 1440 | S04–S09 | 187 | 320 | 528 | 579 | 0 |
+| 1600 | S01 | 45 | 36 | 501 | 651 | 0 |
+| 1600 | S02/S03 | 45 | 320 | 501 | 651 | 0 |
+| 1600 | S04–S09 | 208 | 320 | 583 | 650 | 0 |
+| 1920 | S01 | 45 | 36 | 633 | 707 | 0 |
+| 1920 | S02/S03 | 45 | 320 | 633 | 707 | 0 |
+| 1920 | S04–S09 | 224 | 320 | 723 | 706 | 0 |
+
+**CONFIRMADO:** el ancho del panel derecho se satura en 320 px a partir de 1440.
+Ensanchar el viewport no le da más espacio.
+
+**CONFIRMADO:** `data-sidebar-presentation="docked"` en los 36 casos. Nunca entró
+en modo overlay a estos anchos.
+
+**CONFIRMADO:** `documentScrollsHorizontally = false` en los 36 casos.
+
+### 1.1 Desplazamiento del paper al expandir el LeftSidebar (PRE-parche)
+
+| Ancho | Δ LeftSidebar | Δ Paper x | Δ Paper ancho |
+|---|---|---|---|
+| 1280 | +123 | +61 | +1 |
+| 1440 | +142 | +71 | 0 |
+| 1600 | +163 | +82 | −1 |
+| 1920 | +179 | +90 | −1 |
+
+**CONFIRMADO:** el paper se desplaza exactamente la mitad del ancho que gana el
+LeftSidebar (61≈123/2, 71=142/2, 82≈163/2, 90≈179/2) y conserva su ancho. Es
+decir: **el paper se recentra en el espacio restante entre sidebars**.
+
+Ese recentrado **es el defecto**, no una atenuación de `IMG-04`. El contrato del
+producto es:
+
+``​`text
+centro del papel = centro del workspace completo
+``​`
+
+y nunca:
+
+``​`text
+centro del papel = centro del espacio restante entre los sidebars
+``​`
+
+El PDF es el protagonista y debe tener un centro geométrico estable; los paneles
+son superficies auxiliares que pueden cubrir los bordes, pero no mover el
+documento. La medición de §1.1 cuantifica cuánto se incumplía. Ver §8 para el
+contrato completo y §9 para el parche que lo cumple.
+
+**Resuelto:** tras el parche, `Δ Paper x = 0` en los cuatro anchos (§1.3).
+
+### 1.2 Solape del paper con el panel derecho (PRE-parche)
+
+**CONFIRMADO:** a 1280 px con el LeftSidebar expandido, 25 px del borde derecho
+del paper quedaban debajo del panel derecho (paper terminaba en 986, el panel
+empieza en 961). A 1440, 1600 y 1920 el solape era 0.
+
+El panel está `docked` pero posicionado en absoluto sobre el Canvas, que no
+reserva su ancho. El solape aparecía sólo cuando el paper crecía lo suficiente
+respecto al espacio libre.
+
+**Resuelto por el parche de §9:** 0 px de solape en los 36 casos. Al dejar de
+encoger el stage, el paper conserva su ancho y su centro, y ya no invade el
+borde derecho.
+
+### 1.3 Geometría vigente (POST-parche)
+
+`evidence/baseline/`. **CONFIRMADO:** `paper.x` y `paper.width` son ahora
+**idénticos en los nueve estados** de cada ancho.
+
+| Ancho | Paper x (los 9 estados) | Paper ancho | Solape | LeftSidebar colapsado / expandido | RightSidebar colapsado / expandido |
+|---|---|---|---|---|---|
+| 1280 | 382 | 516 | 0 | 45 / 168 | 36 / 307 |
+| 1440 | 430 | 579 | 0 | 45 / 187 | 36 / 320 |
+| 1600 | 475 | 651 | 0 | 45 / 208 | 36 / 320 |
+| 1920 | 607 | 706 | 0 | 45 / 224 | 36 / 320 |
+
+Dispersión de `paper.x` entre los nueve estados:
+
+| Ancho | Antes | Después |
+|---|---|---|
+| 1280 | 409 → 470 (61 px) | 382 → 382 (**0 px**) |
+| 1440 | 457 → 528 (71 px) | 430 → 430 (**0 px**) |
+| 1600 | 501 → 583 (82 px) | 475 → 475 (**0 px**) |
+| 1920 | 633 → 723 (90 px) | 607 → 607 (**0 px**) |
+
+`documentScrollsHorizontally = false` sigue cumpliéndose en los 36 casos: el
+parche no introdujo desbordamiento horizontal.
+
+## 2. Tabs del panel derecho
+
+Medido con el tablist en su posición de reposo (sin desplazarlo).
+
+| Ancho | tablist visible / contenido | Campos | Detalle | Comentarios | Documentos |
+|---|---|---|---|---|---|
+| 1280 | 227 / 259 | 71 (100%) | 65 (100%) | 57 (100%) | 56 → **41 visibles (72%)** |
+| 1440 | 235 / 358 | 77 (100%) | 70 (100%) | 100 → 97 (96%) | 100 → **0 visibles (0%)** |
+| 1600 | 235 / 358 | 77 (100%) | 70 (100%) | 100 → 97 (96%) | 100 → **0 visibles (0%)** |
+| 1920 | 235 / 358 | 77 (100%) | 70 (100%) | 100 → 97 (96%) | 100 → **0 visibles (0%)** |
+
+**CONFIRMADO:** el tab **Documentos** queda con **0 px visibles** a 1440, 1600 y
+1920, y al 72 % a 1280. Sólo es alcanzable desplazando el tablist.
+
+**CONFIRMADO — el mecanismo no es el que suponía el audit:** `labelClipped =
+false` en los 16 tabs medidos. Ninguna etiqueta está recortada por la clase
+`truncate`. Lo que desborda es el contenedor `[role="tablist"]`: 358 px de
+contenido en 235 px visibles (123 px fuera). El hallazgo de `IMG-02`
+(«Documentos queda reducido a una letra») describía el síntoma visual; la causa
+medida es overflow del tablist, no truncado de etiqueta. Acortar los textos no
+resolvería el caso de 1440+, donde el tab entero está fuera.
+
+**CONFIRMADO:** el tab **Detalle** está `disabled` sin selección (S02, S03, S04)
+y habilitado con un schema seleccionado (S05–S09). La regla del core es
+`activeSchemaCount !== 1`.
+
+**CONFIRMADO:** los textos de los tabs cambian con la densidad: a 1280
+(`compact`) son `Campos / Detalle / Com. / Docs`; a 1440+ (`comfortable`) son
+`Campos / Detalle / Comentarios / Documentos`.
+
+## 3. Vocabulario del LeftSidebar
+
+**CONFIRMADO:** los tres tabs de origen de campos cambian de nombre según el
+ancho:
+
+| Ancho | Tabs visibles |
+|---|---|
+| 1280 | `Base 38` · `Custom 0` · `Auto 0` |
+| 1440 | `Base 38` · `Custom 0` · `Auto 0` |
+| 1600 | `Estándar 38` · `Custom 0` · `Prefill 0` |
+| 1920 | `Estándar 38` · `Custom 0` · `Prefill 0` |
+
+Dos observaciones medibles: el mismo control cambia de vocabulario
+(`Base`→`Estándar`, `Auto`→`Prefill`) según el espacio, y las variantes largas
+mezclan español con inglés (`Custom`, `Prefill`). Alcance de VISUX-003/034.
+
+## 4. Estado de acciones y contenido
+
+| Medición | Valor |
+|---|---|
+| Contador de campos | `22 campos` en los cuatro anchos |
+| `Reasignar` sin selección (S02–S04) | `disabled = true` |
+| `Reasignar` con 1 seleccionado (S05–S09) | `disabled = false` |
+| Zoom | `100%` en los 36 casos |
+| Página | `Pág 1/1` en los 36 casos |
+| `data-selection-count` en S05–S09 | `1` |
+| Menú Más abierto en S09 | `true` |
+
+**CONFIRMADO:** `Reasignar` depende de la selección, no sólo del número de
+recipients. El audit de `IMG-02` decía que «exige más de dos recipients y no
+explica el estado disabled»: lo medido es que en `IMG-02`/S02 no había selección,
+y que basta seleccionar un schema para habilitarlo. Por qué el control no
+explica su motivo sigue siendo un hallazgo válido (VISUX-004/VISUX-022); la
+condición que lo deshabilita, en cambio, queda corregida aquí.
+
+## 5. Header del DetailView
+
+| Estado | Texto de `detail-header-card` |
+|---|---|
+| S05 (`signature`, panel Detalle) | `signature Firma · Alice · Pág. 1 1 seleccionado Guardado` |
+| S06 (`signature`, panel Comentarios) | `signature Firma · Alice · Pág. 1 1 seleccionado Guardado ID: signature-7 Alice` |
+| S07/S08 (`signature`, panel Documentos) | igual que S06 |
+| S09 (`multiVariableText`, panel Detalle) | `multiVariableText Texto dinámico · Alice · Pág. 1 1 seleccionado Guardado` |
+
+**CONFIRMADO:** `detail-header-card` sigue montado con el panel en `comments` y
+en `docs`, y allí muestra **más** información (`ID: signature-7`, `Alice`) que en
+su propio panel. Relevante para VISUX-019 (scroll owner y panel registry) y
+VISUX-023 (identidad del header).
+
+## 6. Hallazgos del audit que este baseline NO reproduce
+
+Registrados para que ninguna task los dé por ciertos sin volver a medirlos.
+
+| Hallazgo | Origen | Estado |
+|---|---|---|
+| «Nombre del campo vacío para una familia que sí tiene identidad» | IMG-05 | **NO REPRODUCIDO.** El control `Nombre del campo` vale `signature` en S05 y `multiVariableText` en S09, en los cuatro anchos. |
+| «`Bloqueado por alice`» en el header | IMG-05 | **NO REPRODUCIDO.** El header muestra `Guardado`. El bloqueo de `IMG-05` requiere un paso previo que el audit no documenta. |
+| «Documentos queda reducido a una letra» | IMG-02 | **REPRODUCIDO CON OTRA CAUSA.** Ver §2: el tab queda fuera del área visible, no truncado. |
+| «Reasignar exige más de dos recipients» | IMG-02 | **NO CONFIRMADO.** Ver §4: depende de la selección. |
+| Viewport exacto de las capturas de origen | todas | **DESCONOCIDO.** Ver `06-BASELINE-STATE-MATRIX.md` §2. |
+
+Los demás hallazgos del audit (densidad de filas, taxonomía del DetailView,
+alcance del CommentsRail, mezcla documento/página, duplicación en el menú Más,
+contraste) **no fueron medidos por esta suite**: son juicios de composición y
+contenido, y quedan para VISUX-002, VISUX-003 y VISUX-004. Este baseline no los
+afirma ni los niega.
+
+## 7. Diferencias permitidas y prohibidas
+
+Criterios para comparar una corrida futura contra este baseline.
+
+### Permitidas
+
+- ±1 px en cualquier rect por redondeo de subpíxel.
+- Antialiasing y render de fuentes entre versiones de Chromium.
+- Cambios de contenido de la plantilla de ejemplo que no alteren las familias de
+  schema usadas (`signature`, `multiVariableText`).
+- Cambios de densidad del panel derecho, siempre que
+  `data-right-sidebar-density` siga derivándose del ancho.
+- Reducciones de `paperOverlappedByRightSidebar`, subidas de `visibleRatio` y
+  cualquier mejora de los números de §1.2 y §2: son el objetivo del plan.
+
+### Prohibidas sin una task que lo justifique
+
+- Que `visibleRatio` del tab Documentos baje respecto a este baseline (0 % a
+  1440+ ya es el suelo; 72 % a 1280 puede empeorar).
+- Que `paperOverlappedByRightSidebar` aumente en cualquier ancho, o aparezca
+  donde hoy es 0.
+- Que `documentScrollsHorizontally` pase a `true` en cualquier estado.
+- Que la desviación `|paperCenterX − workspaceCenterX|` de §8 aumente en
+  cualquier estado o viewport.
+- Que `detail-header-card` desaparezca donde hoy está, o pierda `schemaUid`,
+  owner o número de página.
+- Que un tab o acción pase a `disabled` sin motivo expuesto al usuario.
+- Nuevos valores de `data-panel-mode` que amplíen la divergencia
+  `fields`→`list`.
+- Que `Reasignar` cambie de condición de habilitación sin actualizar §4.
+
+## 8. Contrato de centrado del workspace
+
+Suite: `tests/e2e/designer-stage-centering.spec.ts`. Nació **roja** como
+assertion geométrica previa al parche y hoy pasa **5/5** (§9).
+
+### 8.1 Contrato
+
+``​`text
+paperCenterX === workspaceCenterX          (±2 px)
+pagerCenterX === workspaceCenterX          (±2 px)
+zoomCenterX  === workspaceCenterX          (±2 px)
+``​`
+
+para las cuatro combinaciones de sidebars, y sin que cambien `canvas.x`,
+`canvas.width`, `stage.width`, `zoom`, `scrollLeft`, `scrollTop`, la página
+activa ni la instancia del runtime.
+
+Referencia geométrica: `.sisad-pdfme-designer-workspace` (contenedor `w-full` del
+Designer). **CONFIRMADO:** su ancho no cambia con los sidebars, a diferencia de
+`.sisad-pdfme-designer-stage`, que es hermano del LeftSidebar y sí se encoge.
+
+### 8.2 Desviación del centro del papel respecto al workspace (PRE-parche)
+
+| Viewport | ambos cerrados | left abierto | right abierto | ambos abiertos |
+|---|---|---|---|---|
+| 1600×1200 | 26.5 | 108.0 | 26.5 | 108.0 |
+| 1536×1024 | 26.5 | 103.8 | 26.5 | 103.8 |
+| 1440×900 | 26.5 | 97.6 | 26.5 | 97.6 |
+| 1280×800 | 26.5 | 88.0 | 26.5 | 88.0 |
+| 1024×768 | 26.5 | — | — | — |
+
+**CONFIRMADO — hay dos defectos distintos, no uno:**
+
+1. **Offset base de 26.5 px** en los cinco viewports **incluso con ambos
+   sidebars cerrados**. Es constante y no depende del ancho: proviene de la
+   asimetría entre el rail izquierdo y el derecho, no de la apertura de paneles.
+   Ninguna captura del audit lo señalaba.
+2. **Desplazamiento adicional al abrir el LeftSidebar**, proporcional a su ancho
+   (61.5–81.5 px sobre el estado de referencia).
+
+**CONFIRMADO:** abrir el **RightSidebar no mueve el papel** (26.5 px en ambas
+columnas): sólo el LeftSidebar lo desplaza, porque sólo él participa en el flujo.
+
+### 8.3 Encogimiento del stage y del Canvas al abrir el LeftSidebar
+
+| Viewport | stage width | canvas x | canvas width |
+|---|---|---|---|
+| 1600×1200 | 1547 → 1384 (−163) | 61 → 224 | 1531 → 1368 (−163) |
+| 1536×1024 | 1483 → 1328.3 (−154.7) | 61 → 215.7 | 1467 → 1312.3 (−154.7) |
+| 1440×900 | 1387 → 1244.8 (−142.2) | 61 → 203.2 | 1371 → 1228.8 (−142.2) |
+| 1280×800 | 1227 → 1104 (−123) | 61 → 184 | 1211 → 1088 (−123) |
+
+**CONFIRMADO:** el Canvas pierde exactamente el ancho del LeftSidebar y su origen
+se desplaza en la misma cantidad. Corresponde a
+`Designer/index.tsx:1399` — `const canvasWidth = size.width - leftSidebarWidth;`
+— y a `1407-1411`, donde `safeContentWidth = safeCanvasWidth - rightSidebarWidth`
+produce `sizeExcSidebars`, que se pasa al Canvas en `4396` y `4449`. El stage
+añade además `pr-[calc(var(--sisad-pdfme-rs-width) + 0.875rem)]` en `4355`
+cuando reserva espacio del panel derecho.
+
+Los sidebars son hoy **entradas geométricas del sistema de coordenadas**, no
+sólo superficies visuales.
+
+### 8.4 Controles centrales de la CtlBar
+
+Desviación respecto al centro del workspace, @1440×900:
+
+| Control | ambos cerrados | left abierto | right abierto | ambos abiertos |
+|---|---|---|---|---|
+| Paginador | 0 (centrado) | +71.6 | **−140.5** | −69.4 |
+| Zoom | **+54.5** | +125.6 | −86.5 | −15.4 |
+
+**CONFIRMADO:** el paginador está centrado sólo con ambos sidebars cerrados y se
+desplaza 140.5 px al abrir el panel derecho. Los controles de zoom **nunca**
+están centrados: arrancan con +54.5 px de desviación.
+
+Ambos clusters usan `left-1/2 -translate-x-1/2`, pero ese 50 % se calcula sobre
+un containing block cuyo borde derecho cambia (`right-[calc(var(--sisad-pdfme-ls-rail-width) + 0.5rem)]`
+en el root de la CtlBar). El porcentaje es correcto; la caja de referencia, no.
+
+### 8.5 Lo que la prueba NO detectó
+
+- **Sin remount:** el nodo del Canvas conserva la marca `data-centering-probe`
+  en las cuatro combinaciones y los cinco viewports. Cambiar de layout no
+  reconstruye el Canvas.
+- **Zoom, página y scroll se preservan:** ninguna combinación alteró `100%`,
+  `Pág 1/1`, `scrollLeft` ni `scrollTop`.
+
+Es decir: el problema es de **geometría**, no de ciclo de vida. Corregir el
+centrado no exige tocar el runtime ni la instancia.
+
+## 9. Parche de centrado aplicado
+
+Corrige los defectos de §1.1, §1.2, §8.2, §8.3 y §8.4. **No** toca los hallazgos
+de tabs (§2), vocabulario (§3), acciones (§4) ni header (§5): siguen abiertos
+para sus tasks.
+
+### 9.1 Principio
+
+``​`text
+workspaceSize → Canvas, zoom, fit, centro del papel, controles centrales
+chromeInsets  → sólo apartar controles periféricos de los paneles
+``​`
+
+Los sidebars son superficies auxiliares. Dejan de ser entradas del sistema de
+coordenadas.
+
+### 9.2 Cambios
+
+| Archivo | Cambio |
+|---|---|
+| `Designer/index.tsx` | `canvasWidth = size.width - leftSidebarWidth` y `safeContentWidth = safeCanvasWidth - rightSidebarWidth` eliminados. `sizeExcSidebars` → `workspaceSize`, que usa `size.width` completo. `chromeInsets` publicado en `data-chrome-inset-left/right` del stage, sin descontarse de su caja. |
+| `Designer/index.tsx` | El stage pierde `pr-[calc(var(--sisad-pdfme-rs-width) + 0.875rem)]`. |
+| `Designer/LeftSidebar.tsx` | `docked` ya no implica `relative`: el panel es `absolute inset-y-0 left-0 z-[70]` salvo `detached`. `docked` sigue significando «pegado al borde», no «dentro del flujo». |
+| `CtlBar.tsx` | Root de `absolute inset-y-0 left-0 right-[calc(…)]` a `absolute inset-0`. El offset por el panel derecho se traslada al cluster `--top-right`, con los mismos valores efectivos, para que su posición en pantalla no cambie. |
+
+`size` procede de `ui/class.ts:68-91`, que mide el `domContainer` del host: ya es
+el workspace completo. Restarle un sidebar era el origen del defecto.
+
+### 9.3 Resultado medido
+
+| Métrica | Antes | Después |
+|---|---|---|
+| Desviación del centro del papel | 26.5 px (ambos cerrados) · hasta 108 px (izq. abierto) | ≤2 px en los 20 casos |
+| Dispersión de `paper.x` entre los 9 estados | 61–90 px | **0 px** |
+| `canvas.x` / `canvas.width` al abrir el izquierdo | −123 a −163 px | inmutable |
+| `stage.width` al abrir el izquierdo | −123 a −163 px | inmutable |
+| Paginador centrado | sólo con ambos cerrados | los 4 estados |
+| Cluster de zoom centrado | nunca | los 4 estados |
+| Solape paper/panel derecho @1280 | 25 px | 0 px |
+| Zoom, scroll, página, remount | ya se preservaban | siguen preservándose |
+
+### 9.4 Corrección de una medición propia
+
+La versión inicial de la prueba comparaba el centro del **select** de zoom con el
+centro del workspace y reportaba +54 px de desviación en los cuatro estados. Era
+un falso positivo: dentro de su pill el select vive a la derecha de undo, redo y
+fit, así que no coincide con el centro del cluster. La prueba mide ahora
+`.sisad-pdfme-ui-control-bar-cluster--top-center` y
+`.sisad-pdfme-ui-control-bar-cluster--bottom-right`, que es lo que el contrato
+exige centrado. Los +54 px nunca fueron un defecto del producto.
+
+### 9.5 Gates
+
+| Gate | Resultado |
+|---|---|
+| `npm run lint` (archivos tocados) | limpio, 0 warnings |
+| `npx tsc --noEmit` | 406 errores, **el mismo total que antes** del parche; ninguno en los archivos tocados |
+| `npm run build` | correcto |
+| `npx vitest run` (controlBarDensity, pageStackLayout, designerCoordinateService, designerEngine) | 16/16 |
+| `designer-stage-centering.spec.ts` | 5/5 |
+| `visual-baseline-states.spec.ts` | 36/36 |
+| `sidebar-collapse-parity`, `left-sidebar-density`, `left-sidebar-view-modes`, `examples-layout` (resto) | verdes |
+| `git diff --check` | limpio |
+
+**No disponible:** no existe script `npm run typecheck`; se usó `npx tsc --noEmit`.
+
+### 9.6 Fallos preexistentes, ajenos al parche
+
+Verificado revirtiendo el parche y volviendo a ejecutarlos: fallan igual sin él.
+
+| Test | Causa |
+|---|---|
+| `left-sidebar-a11y-responsive.spec.ts` | ruta `/lab/multi-document-routing` no implementada en este árbol |
+| `results-panel-placement.spec.ts` | ídem |
+| `sidebar-drag-scroll-guard.spec.ts` | ídem |
+| `left-sidebar-view-modes.spec.ts` › «search, favorites, recent…» | ídem |
+| `examples-layout.spec.ts` › «Viewer usa el shell inmersivo» | `[data-sisad-pdfme-root]` no monta en `/examples/runtime/viewer` |
+```
+
+<a id="file-0414"></a>
+
+### 0414 — `reports/visual-behavior/08-COLOR-OWNER-TONE-MIGRATION.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `197`
+- **Tamaño original:** `8.8 KB`
+- **SHA1 corto:** `6f059d8f66`
+- **Estado:** `completo`
+
+```markdown
+# COLOR-001 — contrato de tono de dueño y plan de migración
+
+**Fecha:** 2026-08-04 · **Alcance:** contrato central + pruebas. **No** migra familias.
+
+## 1. Problema
+
+Con Alice como dueña (celeste azulado), los campos de datos muestran el tono
+correcto, pero varias familias vuelven a pintar su propia superficie encima:
+
+``​`text
+Renderer exterior        → aplica color del destinatario
+renderer de la familia   → repinta su fondo
+                         → oculta el color del destinatario
+``​`
+
+No es un fallo de asignación: el color **sí** llega al schema. Es una
+inconsistencia de política visual.
+
+## 2. Qué entrega COLOR-001
+
+| Elemento | Ubicación |
+|---|---|
+| `SchemaColorPolicy` (3 políticas tipadas) | `schemas/shared/fieldChrome.ts` |
+| `SchemaVisualTone` (color, background, backgroundStrong, border, text + acentos) | ídem |
+| `resolveSchemaColorPolicy(schema, family?)` | ídem |
+| `resolveSchemaVisualTone(schema, { family, fallbackColor })` | ídem |
+| `SCHEMA_SEMANTIC_ACCENTS` (approve/decline/note en un solo sitio) | ídem |
+| Tabla única de extractores de color de dueño | `collaboration/schemaOwnershipAppearance.ts` |
+| 30 pruebas del contrato | `tests/unit/sisad-pdfme/schemas/fieldChrome.test.ts` |
+| 2 pruebas de prioridad que faltaban | `tests/unit/sisad-pdfme/collaboration/appearance.test.ts` |
+
+### Políticas
+
+- `owner-surface` — toda la superficie es del dueño; el contenido no aporta fondo.
+- `owner-surface-with-semantic-content` — superficie del dueño + acento con
+  significado **dentro**, sin cubrir el borde.
+- `content-preserved` — el contenido nunca se recolorea; sólo chrome exterior.
+
+### Translucidez
+
+Se usa `color-mix(in srgb, tono N%, white)`, no `opacity` ni `withAlpha`:
+
+- `opacity` en el contenedor atenuaría también texto, iconos y trazos hijos;
+- `withAlpha` (`collaboration/appearance.ts:21`) sólo acepta `#rrggbb` y
+  devuelve el valor intacto en cualquier otro caso — inútil para los tonos que
+  llegan como `var()` o hex de 3 dígitos.
+
+## 3. Auditoría de la prioridad de color
+
+**La prioridad ya era la correcta**, e idéntica a la pedida:
+
+``​`text
+schema.ownerColor
+schema.userColor
+schema.recipientColor
+schema.__designer.collaboration.recipientColor
+schema.__designer.ownerColor
+schema.__designer.recipientColor
+recipient registry
+fallback
+``​`
+
+Los defectos reales eran otros tres:
+
+1. **Duplicación.** `resolveSchemaOwnerColorValue` y `resolveSchemaOwnerColor`
+   reimplementaban la cadena a mano por separado. Ahora ambas recorren
+   `DEFAULT_PRIORITY` sobre una única tabla `OWNER_COLOR_EXTRACTORS`, así que no
+   pueden divergir.
+2. **Documentación invertida.** Dos docstrings afirmaban «explicit userColor,
+   then schema.ownerColor», el orden contrario al del código. Corregidos, con la
+   razón explícita: `decorateSchemaWithCollaboration` rellena `userColor` desde
+   `lastModifiedBy`/`createdBy`, de modo que si `userColor` ganara, un campo se
+   pintaría del color de **quien lo editó por último** y no de su dueño.
+3. **Prueba que no probaba nada.** `appearance.test.ts` tenía un caso llamado
+   «prefers explicit userColor» cuyo schema no incluía `ownerColor`: el conflicto
+   entre ambas fuentes nunca se verificaba. Añadidos el caso de conflicto y el de
+   prioridad configurable.
+
+## 4. Segunda autoridad de color (hallazgo no previsto)
+
+`ui/components/Designer/shared/schemaTone.ts:4-34` define `SCHEMA_TYPE_TONES`: un
+color **por tipo de schema** que `resolveSchemaTone` aplica cuando el schema no
+tiene dueño resuelto.
+
+| Tipo | Tono fijo |
+|---|---|
+| `signature` | `#F59E0B` ámbar |
+| `checkbox`, `radiogroup` | `#06D6A0` verde menta |
+| `number` | `#F59E0B` ámbar |
+| `rectangle` | `#FFD166` amarillo |
+| `ellipse` | `#EF476F` rosa |
+| `date`, `datetime`, `time` | `#9B5DE5` violeta |
+
+Lo consumen `Renderer.tsx:198-199`, `Canvas.tsx:1967` y
+`DetailHeaderCard.tsx:83` — es decir, las tres superficies que deberían coincidir.
+
+Además `resolveSchemaTone` y `resolveSchemaOwnerTone` tienen **respaldos
+distintos**: el primero cae en el color por tipo; el segundo, en gris neutro
+`#94A3B8`. Dos schemas sin dueño se ven de colores distintos según quién los
+pinte.
+
+No se toca en COLOR-001: eliminar los tonos por tipo cambia el aspecto de formas,
+códigos y medios, y eso necesita las pruebas de COLOR-002. Queda como primer
+punto de esa task.
+
+## 5. Por qué la pantalla todavía no cambia
+
+Verificado con captura tras el cambio: el canvas se ve **igual**. Es el resultado
+esperado — el contrato existe, pero cada familia sigue sobrescribiendo después.
+`applyFieldChrome` ya no anula el chrome de `action-based` y la política compacta
+ya devuelve tono de dueño, pero:
+
+- `note` y `attachment` ejecutan `Object.assign(container.style, …)` **después**
+  de `applyFieldChrome`, con su fondo fijo;
+- en `approve`/`decline` el botón interior ocupa el 100 % de la superficie y no
+  deja ver el borde;
+- los indicadores de opción reciben el color turquesa por parámetro;
+- `signature` pinta su crema como `fill` de un `<rect>` dentro de un SVG.
+
+Sin regresión: la captura post-cambio es idéntica a la previa.
+
+## 6. Plan de migración
+
+### COLOR-002 — wrapper y campos neutrales
+
+| Objetivo | Ubicación |
+|---|---|
+| Retirar `SCHEMA_TYPE_TONES` y unificar el respaldo con `resolveSchemaOwnerTone` | `schemaTone.ts:4-34,67-80` |
+| Consumir `resolveSchemaVisualTone`; publicar `data-owner-color` y `data-color-policy` | `Renderer.tsx:198-199` |
+| Alinear el tono del canvas | `Canvas.tsx:1967` |
+| Alinear el tono del header de detalle | `DetailHeaderCard.tsx:83` |
+
+Los campos text-like, number, date/time y select **no necesitan cambios**: ya
+muestran el tono correcto.
+
+### COLOR-003 — firma y adjuntos
+
+| Schema | Ubicación | Qué tapa el tono |
+|---|---|---|
+| `signature` | `signature/index.ts:28-30` y `78-80` | `#FFF9ED` como `fill` del `<rect>` del SVG placeholder, `#D6B46B` borde, `#8A5A00` trazo |
+| `initials` | `signature/initials.ts:27-29` | `#eff6ff` fondo, `#93c5fd` borde, `#1a56a0` texto |
+| `attachment` | `actionSchemaFactory.ts:139-141` | `#f9fafb` fondo + `#d1d5db` borde, aplicados tras `applyFieldChrome` |
+
+**Corrección a la matriz de partida:** `dateSigned` **no** necesita migración.
+No define fondo ni borde propios (`dateSigned.ts` sólo fija `#374151` de texto) y
+en la captura ya se muestra con el celeste del dueño.
+
+### COLOR-004 — schemas semánticos
+
+| Schema | Ubicación | Acción |
+|---|---|---|
+| `note` | `note.ts:98-100` (defaultSchema) + `actionSchemaFactory.ts:69-78` (fallback del render) | Superficie del dueño; el ámbar pasa a barra lateral o badge. Consumir `SCHEMA_SEMANTIC_ACCENTS.note` |
+| `approve` | `approve.ts:8` + `createDecisionActionPlugin.ts:61` | Mantener el botón verde, dejando 2–4 px de margen para que se vea el borde del dueño |
+| `decline` | `decline.ts:8` | Ídem en rojo |
+
+Los tres literales de color deben pasar a consumir `SCHEMA_SEMANTIC_ACCENTS` en
+vez de declarar los suyos.
+
+Nota sobre plantillas ya guardadas: quitar los colores del `defaultSchema` de
+`note` sólo afecta a los schemas nuevos. Un template persistido con
+`noteBackground: '#fefce8'` seguirá siendo ámbar, porque es un override
+explícito. Si se quiere uniformar lo existente hace falta una decisión aparte
+sobre migración de datos.
+
+### COLOR-005 — opciones
+
+| Ubicación | Qué cambiar |
+|---|---|
+| `fieldChrome.ts:15-16` | `DESIGNER_OPTION_BOX_BORDER = '#65d8de'` y `DESIGNER_OPTION_BOX_BG` pasan a respaldo sin dueño, no a paleta por defecto |
+| `optionGroupFactory.ts:449` | Pasar el tono del dueño al indicador en vez de la constante |
+| `optionGroupFactory.ts:463-481` y `checkboxGroup/index.ts:120`, `radioGroup/index.ts:190` | Propagar el tono desde el schema (hoy la firma no lo recibe) |
+| `options/optionIndicator.ts`, `options/optionGroupRenderer.ts` | Que el estado marcado/sin marcar sea el único color propio |
+
+### COLOR-006 — paridad y regresión
+
+Canvas, ListView, DetailHeader, Designer, Form, Viewer, PDF y snapshot; cambio de
+destinatario, reasignación, selección, hover, readonly y locked.
+
+## 7. Gates de COLOR-001
+
+| Gate | Resultado |
+|---|---|
+| `vitest` contrato nuevo | 30/30 |
+| `vitest` prioridad de color | 16/16 (`appearance.test.ts`) |
+| `vitest` `schemaTone` | 14/14 |
+| `vitest tests/unit/sisad-pdfme/schemas/` | 209/211 |
+| `npx tsc --noEmit` | 406 errores, **el mismo total que antes**; ninguno en los archivos tocados |
+| `eslint` | limpio (`fieldChrome.ts` está en un patrón de ignore del proyecto) |
+| Captura del canvas | sin cambio visual, sin regresión |
+
+**Fallos preexistentes, ajenos a esta task** (ninguno importa `fieldChrome` ni
+`schemaOwnershipAppearance`):
+
+- `schemas/signature/types.test.ts` › capacidades de firma (`allowP12`,
+  `allowExternalProvider`, `allowUploadImage`), afectado por el commit `00f4c69`;
+- `schemas/inspectorFamilyMatrix.test.ts` › «action no ofrece reglas de llenado
+  ni opciones», sobre `schemaFamilies` y `detailSectionTaxonomy`.
+```
+
+<a id="file-0415"></a>
+
+### 0415 — `src/sisad-pdfme/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -23057,9 +28709,9 @@ prueba-plugin/
 - Usar adapters/config/events.
 ```
 
-<a id="file-0343"></a>
+<a id="file-0416"></a>
 
-### 0343 — `src/sisad-pdfme/COREUX-ROADMAP.md`
+### 0416 — `src/sisad-pdfme/COREUX-ROADMAP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -23073,9 +28725,9 @@ prueba-plugin/
 Este archivo no contiene implementación. Apunta al plan y task-cards canónicos bajo `.ai/`.
 ```
 
-<a id="file-0344"></a>
+<a id="file-0417"></a>
 
-### 0344 — `src/sisad-pdfme/DECLARATIVE-INSTANCE-ROADMAP.md`
+### 0417 — `src/sisad-pdfme/DECLARATIVE-INSTANCE-ROADMAP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -23089,9 +28741,9 @@ Este archivo no contiene implementación. Apunta al plan y task-cards canónicos
 Plan canónico: `.ai/plans/PLAN_MAESTRO_INSTANCIAS_DECLARATIVAS_SISAD_PDFME_2026-07-31.md`.
 ```
 
-<a id="file-0345"></a>
+<a id="file-0418"></a>
 
-### 0345 — `tools/ai-quality/README.md`
+### 0418 — `tools/ai-quality/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -23109,9 +28761,515 @@ Plan canónico: `.ai/plans/PLAN_MAESTRO_INSTANCIAS_DECLARATIVAS_SISAD_PDFME_2026
 Los scripts usan Node estándar y no escriben código de aplicación.
 ```
 
-<a id="file-0346"></a>
+<a id="file-0419"></a>
 
-### 0346 — `.agents/skills/sisad-accessibility/SKILL.md`
+### 0419 — `.agents/skills/canvas-safety/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `64c260319e`
+- **Estado:** `completo`
+
+```markdown
+---
+name: canvas-safety
+description: Selection, geometry, Moveable, Selecto and placement.
+---
+
+# canvas-safety
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0420"></a>
+
+### 0420 — `.agents/skills/configuration/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `8e22b2127e`
+- **Estado:** `completo`
+
+```markdown
+---
+name: configuration
+description: ConfigService, selectors, actions and visibility.
+---
+
+# configuration
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0421"></a>
+
+### 0421 — `.agents/skills/context-engineering/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `24`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `2daeb78199`
+- **Estado:** `completo`
+
+```markdown
+---
+name: context-engineering
+description: Build minimal context packs and stop context rot.
+---
+
+# context-engineering
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- `../../.ai/BUDGETS.md`
+- `../../.ai/architecture/02-HOT-WARM-COLD.md`
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0422"></a>
+
+### 0422 — `.agents/skills/dry-refactor/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `e2cd60b675`
+- **Estado:** `completo`
+
+```markdown
+---
+name: dry-refactor
+description: Deduplication without semantic merges.
+---
+
+# dry-refactor
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0423"></a>
+
+### 0423 — `.agents/skills/event-effect/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `c013a4c817`
+- **Estado:** `completo`
+
+```markdown
+---
+name: event-effect
+description: Intent, policy, command, event, effect and cleanup.
+---
+
+# event-effect
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0424"></a>
+
+### 0424 — `.agents/skills/inspector-contract/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `1747fb82c1`
+- **Estado:** `completo`
+
+```markdown
+---
+name: inspector-contract
+description: DetailView taxonomy, widgets and property writers.
+---
+
+# inspector-contract
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0425"></a>
+
+### 0425 — `.agents/skills/left-sidebar/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `3f91830148`
+- **Estado:** `completo`
+
+```markdown
+---
+name: left-sidebar
+description: Catalog, layouts, search, favorites and drag/drop.
+---
+
+# left-sidebar
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0426"></a>
+
+### 0426 — `.agents/skills/memory-gc/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `0127dcb386`
+- **Estado:** `completo`
+
+```markdown
+---
+name: memory-gc
+description: Memory delta, TTL, invalidation and compaction.
+---
+
+# memory-gc
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0427"></a>
+
+### 0427 — `.agents/skills/public-api/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `8c14d0ab70`
+- **Estado:** `completo`
+
+```markdown
+---
+name: public-api
+description: Public API, portability and backward compatibility.
+---
+
+# public-api
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0428"></a>
+
+### 0428 — `.agents/skills/quality-evidence/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `9913f7b593`
+- **Estado:** `completo`
+
+```markdown
+---
+name: quality-evidence
+description: Focal tests, log distillation, gates and no false green.
+---
+
+# quality-evidence
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0429"></a>
+
+### 0429 — `.agents/skills/recipient-assignment/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `fd20dbbe20`
+- **Estado:** `completo`
+
+```markdown
+---
+name: recipient-assignment
+description: Recipients, owner color, locks and reassignment.
+---
+
+# recipient-assignment
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- `../../.ai/contracts/RECIPIENT-OWNERSHIP-COLOR.md`
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0430"></a>
+
+### 0430 — `.agents/skills/responsive-ux/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `3e0f50e20d`
+- **Estado:** `completo`
+
+```markdown
+---
+name: responsive-ux
+description: Responsive surfaces, accessibility and visual regression.
+---
+
+# responsive-ux
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0431"></a>
+
+### 0431 — `.agents/skills/runtime-parity/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `cdbfb4abc7`
+- **Estado:** `completo`
+
+```markdown
+---
+name: runtime-parity
+description: Designer, Form, Viewer, Generator and controller parity.
+---
+
+# runtime-parity
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0432"></a>
+
+### 0432 — `.agents/skills/schema-family/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `24`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `63a060c6dc`
+- **Estado:** `completo`
+
+```markdown
+---
+name: schema-family
+description: One schema across all surfaces and snapshot.
+---
+
+# schema-family
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- `../../.ai/contracts/SCHEMA-SURFACE-CONTRACT.md`
+- `../../.ai/index/SCHEMA-MATRIX.md`
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0433"></a>
+
+### 0433 — `.agents/skills/sisad-accessibility/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23147,9 +29305,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0347"></a>
+<a id="file-0434"></a>
 
-### 0347 — `.agents/skills/sisad-action-state/SKILL.md`
+### 0434 — `.agents/skills/sisad-action-state/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23191,9 +29349,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0348"></a>
+<a id="file-0435"></a>
 
-### 0348 — `.agents/skills/sisad-ai-architecture/SKILL.md`
+### 0435 — `.agents/skills/sisad-ai-architecture/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23235,9 +29393,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0349"></a>
+<a id="file-0436"></a>
 
-### 0349 — `.agents/skills/sisad-behavior-traceability/SKILL.md`
+### 0436 — `.agents/skills/sisad-behavior-traceability/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23279,9 +29437,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0350"></a>
+<a id="file-0437"></a>
 
-### 0350 — `.agents/skills/sisad-canvas-interaction/SKILL.md`
+### 0437 — `.agents/skills/sisad-canvas-interaction/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23317,9 +29475,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0351"></a>
+<a id="file-0438"></a>
 
-### 0351 — `.agents/skills/sisad-canvas-safety/SKILL.md`
+### 0438 — `.agents/skills/sisad-canvas-safety/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -23342,9 +29500,9 @@ metadata:
 Antes de editar, identifica sistema de coordenadas, paper root, scroll y zoom. Selección e inspección son independientes de edición. No uses z-index o timeouts para ocultar colisiones. Ejecuta Playwright focal en página 1 y página >1, paneles abiertos/cerrados y selección múltiple.
 ```
 
-<a id="file-0352"></a>
+<a id="file-0439"></a>
 
-### 0352 — `.agents/skills/sisad-capability-audit/SKILL.md`
+### 0439 — `.agents/skills/sisad-capability-audit/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23386,9 +29544,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0353"></a>
+<a id="file-0440"></a>
 
-### 0353 — `.agents/skills/sisad-collaboration-assignments/SKILL.md`
+### 0440 — `.agents/skills/sisad-collaboration-assignments/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23424,9 +29582,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0354"></a>
+<a id="file-0441"></a>
 
-### 0354 — `.agents/skills/sisad-command-history/SKILL.md`
+### 0441 — `.agents/skills/sisad-command-history/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23468,9 +29626,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0355"></a>
+<a id="file-0442"></a>
 
-### 0355 — `.agents/skills/sisad-configuration-service/SKILL.md`
+### 0442 — `.agents/skills/sisad-configuration-service/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23506,9 +29664,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0356"></a>
+<a id="file-0443"></a>
 
-### 0356 — `.agents/skills/sisad-context-budget/SKILL.md`
+### 0443 — `.agents/skills/sisad-context-budget/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23544,9 +29702,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0357"></a>
+<a id="file-0444"></a>
 
-### 0357 — `.agents/skills/sisad-context-packet/SKILL.md`
+### 0444 — `.agents/skills/sisad-context-packet/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23588,9 +29746,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0358"></a>
+<a id="file-0445"></a>
 
-### 0358 — `.agents/skills/sisad-context-rot-check/SKILL.md`
+### 0445 — `.agents/skills/sisad-context-rot-check/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23632,9 +29790,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0359"></a>
+<a id="file-0446"></a>
 
-### 0359 — `.agents/skills/sisad-controller-parity/SKILL.md`
+### 0446 — `.agents/skills/sisad-controller-parity/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23676,9 +29834,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0360"></a>
+<a id="file-0447"></a>
 
-### 0360 — `.agents/skills/sisad-css-tailwind/SKILL.md`
+### 0447 — `.agents/skills/sisad-css-tailwind/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -23701,9 +29859,9 @@ metadata:
 Usa Tailwind para presentación y tokens CSS para variables. Mantén CSS técnico solo cuando Moveable/Selecto, pseudo-elementos o geometría lo exijan. Centraliza variantes y className builders. No uses `!important` o z-index como parche. Ejecuta gates visuales.
 ```
 
-<a id="file-0361"></a>
+<a id="file-0448"></a>
 
-### 0361 — `.agents/skills/sisad-decision-record/SKILL.md`
+### 0448 — `.agents/skills/sisad-decision-record/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23745,9 +29903,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0362"></a>
+<a id="file-0449"></a>
 
-### 0362 — `.agents/skills/sisad-declarative-instance/SKILL.md`
+### 0449 — `.agents/skills/sisad-declarative-instance/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23783,9 +29941,9 @@ Preferir:
 - No tocar geometría para simplificar montaje.
 ```
 
-<a id="file-0363"></a>
+<a id="file-0450"></a>
 
-### 0363 — `.agents/skills/sisad-dedup-triage/SKILL.md`
+### 0450 — `.agents/skills/sisad-dedup-triage/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -23806,9 +29964,9 @@ Run the report parser. Group clones by shared responsibility, not file proximity
 Use `.ai/DUPLICATION-POLICY.md` and `.ai/patterns/DUPLICATION-TAXONOMY.md`.
 ```
 
-<a id="file-0364"></a>
+<a id="file-0451"></a>
 
-### 0364 — `.agents/skills/sisad-designer-core-ux/SKILL.md`
+### 0451 — `.agents/skills/sisad-designer-core-ux/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -23841,9 +29999,9 @@ Intent → Policy → Command → Mutation → Event → Effect
 - preservar metadata crítica.
 ```
 
-<a id="file-0365"></a>
+<a id="file-0452"></a>
 
-### 0365 — `.agents/skills/sisad-designer-safety/SKILL.md`
+### 0452 — `.agents/skills/sisad-designer-safety/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -23862,9 +30020,9 @@ description: Protect canvas geometry, Moveable, Selecto, multipage routing, over
 Trace documentId, pageNumber, scale, scroll, paper rect and schema coordinates. Preserve selection versus transform semantics, modal suspension, locked/readOnly behavior and owner color. Do not use setTimeout or z-index to hide ordering bugs. Require Playwright when layout or pointer behavior changes.
 ```
 
-<a id="file-0366"></a>
+<a id="file-0453"></a>
 
-### 0366 — `.agents/skills/sisad-dry-refactor/SKILL.md`
+### 0453 — `.agents/skills/sisad-dry-refactor/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23900,9 +30058,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0367"></a>
+<a id="file-0454"></a>
 
-### 0367 — `.agents/skills/sisad-dry-refactoring/SKILL.md`
+### 0454 — `.agents/skills/sisad-dry-refactoring/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -23931,9 +30089,9 @@ metadata:
 - Nunca excluyas código propio para ocultar clones.
 ```
 
-<a id="file-0368"></a>
+<a id="file-0455"></a>
 
-### 0368 — `.agents/skills/sisad-event-effect-contract/SKILL.md`
+### 0455 — `.agents/skills/sisad-event-effect-contract/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23975,9 +30133,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0369"></a>
+<a id="file-0456"></a>
 
-### 0369 — `.agents/skills/sisad-evidence-grounding/SKILL.md`
+### 0456 — `.agents/skills/sisad-evidence-grounding/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24013,9 +30171,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0370"></a>
+<a id="file-0457"></a>
 
-### 0370 — `.agents/skills/sisad-form-viewer-parity/SKILL.md`
+### 0457 — `.agents/skills/sisad-form-viewer-parity/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24057,9 +30215,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0371"></a>
+<a id="file-0458"></a>
 
-### 0371 — `.agents/skills/sisad-frontend-component-architecture/SKILL.md`
+### 0458 — `.agents/skills/sisad-frontend-component-architecture/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24095,9 +30253,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0372"></a>
+<a id="file-0459"></a>
 
-### 0372 — `.agents/skills/sisad-incident-recovery/SKILL.md`
+### 0459 — `.agents/skills/sisad-incident-recovery/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24133,9 +30291,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0373"></a>
+<a id="file-0460"></a>
 
-### 0373 — `.agents/skills/sisad-inspector-contract/SKILL.md`
+### 0460 — `.agents/skills/sisad-inspector-contract/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24171,9 +30329,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0374"></a>
+<a id="file-0461"></a>
 
-### 0374 — `.agents/skills/sisad-knowledge-gc/SKILL.md`
+### 0461 — `.agents/skills/sisad-knowledge-gc/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24215,9 +30373,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0375"></a>
+<a id="file-0462"></a>
 
-### 0375 — `.agents/skills/sisad-left-sidebar-catalog/SKILL.md`
+### 0462 — `.agents/skills/sisad-left-sidebar-catalog/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24259,9 +30417,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0376"></a>
+<a id="file-0463"></a>
 
-### 0376 — `.agents/skills/sisad-memory-delta/SKILL.md`
+### 0463 — `.agents/skills/sisad-memory-delta/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24297,9 +30455,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0377"></a>
+<a id="file-0464"></a>
 
-### 0377 — `.agents/skills/sisad-memory-scrum/SKILL.md`
+### 0464 — `.agents/skills/sisad-memory-scrum/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -24318,9 +30476,9 @@ description: Update SISAD PDFME Scrum artifacts and durable memory by delta afte
 Update task-card first, then board and sprint. Produce MEMORY-DELTA and integrate only durable changes into PROJECT/CURRENT/DECISIONS/RISKS/METRICS. Keep raw logs and temporary hypotheses out of memory. Enforce WIP and Definition of Done.
 ```
 
-<a id="file-0378"></a>
+<a id="file-0465"></a>
 
-### 0378 — `.agents/skills/sisad-method-registry/SKILL.md`
+### 0465 — `.agents/skills/sisad-method-registry/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24362,9 +30520,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0379"></a>
+<a id="file-0466"></a>
 
-### 0379 — `.agents/skills/sisad-multi-document-routing/SKILL.md`
+### 0466 — `.agents/skills/sisad-multi-document-routing/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24400,9 +30558,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0380"></a>
+<a id="file-0467"></a>
 
-### 0380 — `.agents/skills/sisad-orchestrate-task/SKILL.md`
+### 0467 — `.agents/skills/sisad-orchestrate-task/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -24429,9 +30587,9 @@ description: Orchestrate one SISAD PDFME task-card with bounded context, model r
 Read `.ai/ORCHESTRATION.md` for constraints. Do not create a multi-agent workflow for a small single-file task.
 ```
 
-<a id="file-0381"></a>
+<a id="file-0468"></a>
 
-### 0381 — `.agents/skills/sisad-pattern-selection/SKILL.md`
+### 0468 — `.agents/skills/sisad-pattern-selection/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -24454,9 +30612,9 @@ metadata:
 Describe primero la variación y el owner. Consulta la matriz canónica. Prefiere composición y funciones puras. Introduce infraestructura solo cuando reduzca puntos de cambio reales. Rechaza hooks triviales, wrappers vacíos, registries redundantes y factories sin semántica.
 ```
 
-<a id="file-0382"></a>
+<a id="file-0469"></a>
 
-### 0382 — `.agents/skills/sisad-prompt-evaluation/SKILL.md`
+### 0469 — `.agents/skills/sisad-prompt-evaluation/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24492,9 +30650,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0383"></a>
+<a id="file-0470"></a>
 
-### 0383 — `.agents/skills/sisad-provider-adapter-sync/SKILL.md`
+### 0470 — `.agents/skills/sisad-provider-adapter-sync/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24536,9 +30694,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0384"></a>
+<a id="file-0471"></a>
 
-### 0384 — `.agents/skills/sisad-public-api-compatibility/SKILL.md`
+### 0471 — `.agents/skills/sisad-public-api-compatibility/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24574,9 +30732,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0385"></a>
+<a id="file-0472"></a>
 
-### 0385 — `.agents/skills/sisad-quality-gates/SKILL.md`
+### 0472 — `.agents/skills/sisad-quality-gates/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -24595,9 +30753,9 @@ description: Select and execute the correct lint, build, unit, Playwright, dupli
 Read the task-card and `.ai/QUALITY-GATES.md`. Run the smallest focal set during iteration, then the declared close set. Capture command, exit code and relevant summary. Do not claim green for commands not executed. Distinguish pre-existing failures from introduced failures with evidence.
 ```
 
-<a id="file-0386"></a>
+<a id="file-0473"></a>
 
-### 0386 — `.agents/skills/sisad-react-performance/SKILL.md`
+### 0473 — `.agents/skills/sisad-react-performance/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24633,9 +30791,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0387"></a>
+<a id="file-0474"></a>
 
-### 0387 — `.agents/skills/sisad-recipient-assignment-policy/SKILL.md`
+### 0474 — `.agents/skills/sisad-recipient-assignment-policy/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24677,9 +30835,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0388"></a>
+<a id="file-0475"></a>
 
-### 0388 — `.agents/skills/sisad-research-verify/SKILL.md`
+### 0475 — `.agents/skills/sisad-research-verify/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -24698,9 +30856,9 @@ description: Verify current technical behavior against primary official document
 State the exact uncertainty. Prefer official docs, specifications and upstream repositories. Record access date and version scope. Separate source fact, inference and project recommendation. Do not browse when the answer is fully determined by local code. Do not implement code in this skill.
 ```
 
-<a id="file-0389"></a>
+<a id="file-0476"></a>
 
-### 0389 — `.agents/skills/sisad-responsive-ux/SKILL.md`
+### 0476 — `.agents/skills/sisad-responsive-ux/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24736,9 +30894,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0390"></a>
+<a id="file-0477"></a>
 
-### 0390 — `.agents/skills/sisad-right-sidebar-contract/SKILL.md`
+### 0477 — `.agents/skills/sisad-right-sidebar-contract/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24780,9 +30938,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0391"></a>
+<a id="file-0478"></a>
 
-### 0391 — `.agents/skills/sisad-schema-behavior-matrix/SKILL.md`
+### 0478 — `.agents/skills/sisad-schema-behavior-matrix/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24824,9 +30982,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0392"></a>
+<a id="file-0479"></a>
 
-### 0392 — `.agents/skills/sisad-schema-family-refactor/SKILL.md`
+### 0479 — `.agents/skills/sisad-schema-family-refactor/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -24853,9 +31011,9 @@ metadata:
 - Preserva identidad, routing, ownership, grupos y opciones.
 ```
 
-<a id="file-0393"></a>
+<a id="file-0480"></a>
 
-### 0393 — `.agents/skills/sisad-schema-plugin/SKILL.md`
+### 0480 — `.agents/skills/sisad-schema-plugin/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24891,9 +31049,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0394"></a>
+<a id="file-0481"></a>
 
-### 0394 — `.agents/skills/sisad-security-privacy/SKILL.md`
+### 0481 — `.agents/skills/sisad-security-privacy/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24929,9 +31087,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0395"></a>
+<a id="file-0482"></a>
 
-### 0395 — `.agents/skills/sisad-skill-evaluation/SKILL.md`
+### 0482 — `.agents/skills/sisad-skill-evaluation/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -24958,9 +31116,9 @@ metadata:
 - Fusiona skills solapadas y elimina las que no mejoran resultados.
 ```
 
-<a id="file-0396"></a>
+<a id="file-0483"></a>
 
-### 0396 — `.agents/skills/sisad-snapshot-compatibility/SKILL.md`
+### 0483 — `.agents/skills/sisad-snapshot-compatibility/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24996,9 +31154,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0397"></a>
+<a id="file-0484"></a>
 
-### 0397 — `.agents/skills/sisad-tailwind-design-system/SKILL.md`
+### 0484 — `.agents/skills/sisad-tailwind-design-system/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -25034,9 +31192,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0398"></a>
+<a id="file-0485"></a>
 
-### 0398 — `.agents/skills/sisad-task-execution/SKILL.md`
+### 0485 — `.agents/skills/sisad-task-execution/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -25067,9 +31225,9 @@ metadata:
 No termines en análisis si puedes completar un cambio seguro. No inventes validaciones que no ejecutaste.
 ```
 
-<a id="file-0399"></a>
+<a id="file-0486"></a>
 
-### 0399 — `.agents/skills/sisad-task-orchestration/SKILL.md`
+### 0486 — `.agents/skills/sisad-task-orchestration/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -25105,9 +31263,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0400"></a>
+<a id="file-0487"></a>
 
-### 0400 — `.agents/skills/sisad-test-log-distillation/SKILL.md`
+### 0487 — `.agents/skills/sisad-test-log-distillation/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -25149,9 +31307,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0401"></a>
+<a id="file-0488"></a>
 
-### 0401 — `.agents/skills/sisad-testing-pyramid/SKILL.md`
+### 0488 — `.agents/skills/sisad-testing-pyramid/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -25187,9 +31345,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0402"></a>
+<a id="file-0489"></a>
 
-### 0402 — `.agents/skills/sisad-visual-regression/SKILL.md`
+### 0489 — `.agents/skills/sisad-visual-regression/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -25225,9 +31383,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0403"></a>
+<a id="file-0490"></a>
 
-### 0403 — `.agents/skills/sisad-worktree-coordination/SKILL.md`
+### 0490 — `.agents/skills/sisad-worktree-coordination/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -25269,9 +31427,153 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0404"></a>
+<a id="file-0491"></a>
 
-### 0404 — `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md`
+### 0491 — `.agents/skills/snapshot/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `06007f3ece`
+- **Estado:** `completo`
+
+```markdown
+---
+name: snapshot
+description: Snapshot, documents, routing and migrations.
+---
+
+# snapshot
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0492"></a>
+
+### 0492 — `.agents/skills/tailwind-system/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `72b89334ff`
+- **Estado:** `completo`
+
+```markdown
+---
+name: tailwind-system
+description: Tailwind-first tokens and CSS boundary.
+---
+
+# tailwind-system
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0493"></a>
+
+### 0493 — `.agents/skills/traceability/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `10072ccfd0`
+- **Estado:** `completo`
+
+```markdown
+---
+name: traceability
+description: UC/BHV/MTH/EVT/FX/TST/TSK graph maintenance.
+---
+
+# traceability
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0494"></a>
+
+### 0494 — `.agents/skills/worktree-coordination/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `95c037b782`
+- **Estado:** `completo`
+
+```markdown
+---
+name: worktree-coordination
+description: Claims, leases, worktrees and atomic handoffs.
+---
+
+# worktree-coordination
+
+## Workflow
+
+1. Leer task y route.
+2. Formular una sola pregunta.
+3. Consultar índices/catálogos por ID o texto.
+4. Producir evidence packet.
+5. Aplicar o recomendar cambio mínimo.
+6. Registrar trace y memory delta.
+
+## References
+
+- Solo bajo demanda.
+
+## Stop
+
+Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
+```
+
+<a id="file-0495"></a>
+
+### 0495 — `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -25304,9 +31606,9 @@ Modelo único por feature: `registered · supported · enabled · visible · per
 Regla transversal: **visible ≠ enabled ≠ permitted**; ocultar del catálogo no elimina schema del canvas/snapshot; cambiar visibilidad de panel nunca cambia routing.
 ```
 
-<a id="file-0405"></a>
+<a id="file-0496"></a>
 
-### 0405 — `.ai/knowledge/domain/COREUX-EFFECTS.md`
+### 0496 — `.ai/knowledge/domain/COREUX-EFFECTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `90`
@@ -25407,9 +31709,9 @@ rollback
 ``​`
 ```
 
-<a id="file-0406"></a>
+<a id="file-0497"></a>
 
-### 0406 — `.ai/knowledge/domain/COREUX-EVENTS.md`
+### 0497 — `.ai/knowledge/domain/COREUX-EVENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `59`
@@ -25479,9 +31781,9 @@ El código actual expone un event hub genérico con `type: string`; este catálo
 - Eventos de alta frecuencia pueden coalescerse, pero nunca perder el estado final.
 ```
 
-<a id="file-0407"></a>
+<a id="file-0498"></a>
 
-### 0407 — `.ai/knowledge/domain/COREUX-PATTERNS.md`
+### 0498 — `.ai/knowledge/domain/COREUX-PATTERNS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -25521,9 +31823,9 @@ Crear una abstracción solo cuando:
 5. no crea otra API paralela.
 ```
 
-<a id="file-0408"></a>
+<a id="file-0499"></a>
 
-### 0408 — `.ai/knowledge/domain/COREUX-USE-CASES.md`
+### 0499 — `.ai/knowledge/domain/COREUX-USE-CASES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `156`
@@ -25690,9 +31992,9 @@ Alcance de implementación: `src/sisad-pdfme/**`.
 | QLT-015 | QLT | Docs/release | Manual, migración y changelog verificables. |
 ```
 
-<a id="file-0409"></a>
+<a id="file-0500"></a>
 
-### 0409 — `.ai/knowledge/domain/CURRENT-PUBLIC-API.md`
+### 0500 — `.ai/knowledge/domain/CURRENT-PUBLIC-API.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -25716,9 +32018,9 @@ Barrel `@/sisad-pdfme/config` y `@/sisad-pdfme/integration` (main). Tras CONFIG-
 Pendiente: no re-exportar internals de UI/Canvas (objetivo plan §20).
 ```
 
-<a id="file-0410"></a>
+<a id="file-0501"></a>
 
-### 0410 — `.ai/knowledge/domain/DECLARATIVE-API.md`
+### 0501 — `.ai/knowledge/domain/DECLARATIVE-API.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `74`
@@ -25803,9 +32105,9 @@ sin permiso → visible deshabilitado con reason
 ``​`
 ```
 
-<a id="file-0411"></a>
+<a id="file-0502"></a>
 
-### 0411 — `.ai/knowledge/domain/DECLARATIVE-BASELINE.md`
+### 0502 — `.ai/knowledge/domain/DECLARATIVE-BASELINE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `60`
@@ -25876,9 +32178,9 @@ Fecha de corte: 2026-07-31
 - Declarar un gate de frontera de lenguaje e imports publicos antes de migrar mas helpers fuera de `src/examples`.
 ```
 
-<a id="file-0412"></a>
+<a id="file-0503"></a>
 
-### 0412 — `.ai/knowledge/domain/DECLARATIVE-USE-CASES.md`
+### 0503 — `.ai/knowledge/domain/DECLARATIVE-USE-CASES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `70`
@@ -25959,9 +32261,596 @@ Fecha de corte: 2026-07-31
 | UC-066 | Compatibilidad API baja | Designer/Form/Viewer actuales siguen disponibles. | Compatibility |
 ```
 
-<a id="file-0413"></a>
+<a id="file-0504"></a>
 
-### 0413 — `.ai/memory/topics/ai-architecture.md`
+### 0504 — `.ai/knowledge/domain/DESIGNER-INTERACTION-MATRIX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `50`
+- **Tamaño original:** `1.4 KB`
+- **SHA1 corto:** `e9ca013b34`
+- **Estado:** `completo`
+
+```markdown
+# Designer Interaction Matrix
+
+This matrix describes the designer-side runtime contract.
+
+## Selection
+
+- click replaces selection
+- modifier click toggles selection
+- click on empty space clears selection
+- region selection respects the current access policy
+- locked schemas remain selectable and inspectable
+
+## Transformations
+
+Mutations must go through policy + command bus:
+
+- move
+- resize
+- rotate
+- duplicate
+- delete
+- copy / paste
+- align / distribute
+
+## Overlay / chrome rules
+
+- contextual overlays must avoid colliding with nearby schemas
+- safe-area guides must not dominate the document
+- zoom controls must remain visible and reachable
+- sidebar toggles must preserve paper anchor, selection, page and zoom
+
+## Multi-document and multi-page
+
+- schema identity must preserve `schemaUid`
+- document routing must preserve `documentId`
+- page routing must preserve `pageNumber`
+- assignment and locking must remain stable across page switches
+
+## Sidebars
+
+- opening/closing sidebars should not reset selection or scroll
+- the left sidebar must release width when collapsed
+- the right sidebar can change presentation without remounting the designer
+
+## Code anchors
+
+- `src/sisad-pdfme/ui/components/Designer/index.tsx`
+- `src/sisad-pdfme/ui/components/Paper.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/*`
+```
+
+<a id="file-0505"></a>
+
+### 0505 — `.ai/knowledge/domain/DETAILVIEW-PROFILES.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `57`
+- **Tamaño original:** `1.5 KB`
+- **SHA1 corto:** `77b2f0cefd`
+- **Estado:** `completo`
+
+```markdown
+# DetailView Profiles
+
+The detail inspector should expose only the sections relevant to the current
+schema family.
+
+## Canonical taxonomy
+
+- identity
+- content
+- options
+- validation
+- fileRules
+- signature
+- action
+- behavior
+- box
+- appearance
+- dataBindings
+- comments
+- collaboration
+- advanced
+
+## Section rules
+
+- `required` belongs in validation
+- `readOnly` belongs in behavior / interaction
+- owner / lock belongs in collaboration
+- geometry belongs in box
+- file restrictions belong in fileRules
+- technical identifiers belong in advanced
+
+## Family examples
+
+| Family | Typical sections |
+|---|---|
+| Text-like | identity, content, validation, behavior, box, appearance, dataBindings, collaboration |
+| Choice | identity, options, validation, behavior, box, appearance, collaboration |
+| Signature | identity, signature, behavior, box, appearance, dataBindings, collaboration, advanced |
+| Attachment | identity, fileRules, validation, behavior, box, appearance, collaboration |
+| Action schemas | identity, action, behavior, box, appearance, collaboration |
+| Visual schemas | identity, box, appearance, collaboration, advanced |
+
+## Contract
+
+Every visible control must have:
+
+- `propertyPath`
+- read/write semantics
+- visibility predicate
+- disabled predicate
+- persistence path
+
+## Code anchors
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx`
+```
+
+<a id="file-0506"></a>
+
+### 0506 — `.ai/knowledge/domain/EFFECT-CATALOG.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `38`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `1cda4bfc86`
+- **Estado:** `completo`
+
+```markdown
+# Effect Catalog
+
+Effects are the DOM / host-facing side of the architecture. They should not
+decide business policy.
+
+## Core effects
+
+- focus a schema
+- scroll to a schema
+- open a detail panel
+- restore focus after a modal closes
+- show success or error feedback
+- persist to host or storage
+- export a document artifact
+- notify the host of a change
+
+## Safety rules
+
+- avoid `setTimeout` as lifecycle coordination
+- avoid arbitrary `z-index` fixes when collision detection is possible
+- avoid mutating schema state from effects that only need DOM feedback
+- keep modal, drag and sidebar effects isolated from command logic
+
+## Common sources
+
+- selection changes
+- sidebar collapse/expand
+- drag start / drop / cancel
+- save and export lifecycle
+- recipient change
+- document change
+
+## Code anchors
+
+- `src/sisad-pdfme/ui/components/Designer/index.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/designerExtensions.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SchemaAssignmentDialog.tsx`
+```
+
+<a id="file-0507"></a>
+
+### 0507 — `.ai/knowledge/domain/EVENT-CATALOG.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `72`
+- **Tamaño original:** `1.3 KB`
+- **SHA1 corto:** `a5330b069c`
+- **Estado:** `completo`
+
+```markdown
+# Event Catalog
+
+This catalog documents the canonical events expected by the core UX.
+
+## Lifecycle
+
+- `designer.ready`
+- `designer.disposed`
+- `designer.error`
+- `config.changed`
+- `template.changed`
+
+## Schema
+
+- `schema.added`
+- `schema.updated`
+- `schema.removed`
+- `schema.duplicated`
+- `schema.reordered`
+
+## Selection and interaction
+
+- `selection.changed`
+- `interaction.phase.changed`
+- `inline-edit.started`
+- `inline-edit.committed`
+- `inline-edit.cancelled`
+
+## Navigation and surfaces
+
+- `page.changed`
+- `zoom.changed`
+- `viewport.fit`
+- `sidebar.changed`
+- `right-panel.changed`
+- `view-feature.changed`
+
+## Collaboration
+
+- `recipient.registry.changed`
+- `recipient.active.changed`
+- `assignment.changed`
+
+## Documents and comments
+
+- `document.added`
+- `document.changed`
+- `document.reordered`
+- `document.removed`
+- `comment.created`
+- `comment.replied`
+- `comment.resolved`
+- `comment.reopened`
+- `comment.moved`
+- `comment.deleted`
+
+## Validation, save and export
+
+- `validation.completed`
+- `save.requested`
+- `save.started`
+- `save.succeeded`
+- `save.failed`
+- `export.started`
+- `export.succeeded`
+- `export.failed`
+
+## Rules
+
+- Every event should carry versioned metadata.
+- High-frequency events may coalesce, but the final state must remain correct.
+- One dispatcher adapts canonical events to legacy host callbacks.
+```
+
+<a id="file-0508"></a>
+
+### 0508 — `.ai/knowledge/domain/FORM-VIEWER-PDF-PARITY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `38`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `b6a430d4ef`
+- **Estado:** `completo`
+
+```markdown
+# Form / Viewer / PDF Parity
+
+The same schema must render consistently across runtime surfaces.
+
+## Parity rules
+
+- Form is interactive.
+- Viewer is read-only.
+- PDF is static output.
+- Snapshot is the persisted source for runtime consistency.
+
+## Ownership and access
+
+- owner color must stay stable across runtime surfaces
+- locked schemas can remain visible and inspectable
+- readOnly values are not editable in Form
+- runtime viewer cannot mutate schema state
+
+## Family-specific notes
+
+- `dateSigned` is automatic and read-only
+- signature fields depend on the selected mode
+- attachment fields upload only in Form
+- action schemas execute through events/commands, not inline rendering logic
+- notes are informational, not comments
+- approve/decline preserve semantic color and owner accent separately
+
+## Normalization
+
+Date and time values must be normalized before leaving Form and before
+generating Snapshot/PDF output.
+
+## Code anchors
+
+- `src/sisad-pdfme/ui/components/Renderer.tsx`
+- `src/sisad-pdfme/ui/components/Preview.tsx`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/common/schema.ts`
+```
+
+<a id="file-0509"></a>
+
+### 0509 — `.ai/knowledge/domain/LEFT-SIDEBAR-BEHAVIOR.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `64`
+- **Tamaño original:** `1.8 KB`
+- **SHA1 corto:** `6fed908be8`
+- **Estado:** `completo`
+
+```markdown
+# Left Sidebar Behavior
+
+The left sidebar is the schema catalog. It is not an inspector and should not
+carry detail-view logic.
+
+## Responsibilities
+
+- search
+- category grouping
+- layout switching
+- density adaptation
+- favorites and recents
+- custom field creation
+- drag preview
+- insert on click / drag / keyboard when configured
+
+## Visual contract
+
+| State | Behavior |
+|---|---|
+| Expanded docked | Participates in layout and frees canvas space correctly. |
+| Collapsed docked | Becomes a rail and no longer reserves the expanded width. |
+| Overlay / narrow | Uses the overlay presentation when the viewport requires it. |
+
+## Catalog layout
+
+``​`ts
+CatalogLayout = 'list' | 'tiles' | 'icons'
+SidebarDensity = 'comfortable' | 'compact' | 'narrow'
+``​`
+
+Layout and density are independent.
+
+## Active recipient behavior
+
+- The catalog accent follows the active recipient.
+- The accent is a creation default, not a recoloring rule for persisted schemas.
+- Drag preview and drop placeholder use the same tone as the catalog item.
+
+## Insertion contract
+
+All insertion paths should converge into one command shape:
+
+``​`txt
+insertSchema(type, targetDocument, targetPage, position, activeRecipient)
+``​`
+
+The implementation must:
+
+- generate a schema UID
+- resolve document and page
+- apply the active recipient as default owner
+- persist the owner color
+- emit a creation event
+- mark the template dirty
+- select the new schema
+
+## Code anchors
+
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
+```
+
+<a id="file-0510"></a>
+
+### 0510 — `.ai/knowledge/domain/OWNER-COLOR-CONTRACT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `61`
+- **Tamaño original:** `1.8 KB`
+- **SHA1 corto:** `0c7d62261a`
+- **Estado:** `completo`
+
+```markdown
+# Owner Color Contract
+
+The owner color is the persistent collaboration tone of a schema. The semantic
+color is the content or action tone. They are separate.
+
+## Priority
+
+The persistent owner tone should be resolved from stored schema metadata first.
+
+1. `schema.ownerColor`
+2. `schema.userColor`
+3. `schema.recipientColor`
+4. `schema.__designer.collaboration.recipientColor`
+5. `schema.__designer.ownerColor`
+6. `schema.__designer.recipientColor`
+7. recipient registry color
+8. explicit neutral fallback
+
+## Active recipient color
+
+The active recipient color is a creation-time and catalog-time affordance.
+It can be used for:
+
+- LeftSidebar catalog items
+- drag preview
+- drop placeholder
+- new schema default owner color
+- reassignment modal defaults
+
+It must not recolor an already persisted schema just because the active
+recipient changed.
+
+## Semantic colors
+
+| Semantic tone | Meaning |
+|---|---|
+| Green | approve / success |
+| Red | decline / danger |
+| Yellow | note / informative |
+| Blue | neutral text-like family tone |
+| Purple / teal / other family tones | family-specific preview, not ownership |
+
+## Surface contract
+
+| Surface | Uses owner tone | Uses semantic tone |
+|---|---|---|
+| LeftSidebar catalog | no, uses active recipient tone | yes for family previews if needed |
+| Canvas | yes | yes |
+| ListView | yes | yes for status badges |
+| DetailHeader | yes | yes for status |
+| DetailView | yes for collaboration widgets | yes where family applies |
+| Form | yes | yes |
+| Viewer / PDF | yes | yes |
+| Snapshot | yes | yes |
+
+## Code anchors
+
+- `src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts`
+- `src/sisad-pdfme/schemas/shared/fieldChrome.ts`
+```
+
+<a id="file-0511"></a>
+
+### 0511 — `.ai/knowledge/domain/SCHEMA-BEHAVIOR-MATRIX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `41`
+- **Tamaño original:** `1.9 KB`
+- **SHA1 corto:** `b2ac504295`
+- **Estado:** `completo`
+
+```markdown
+# Schema Behavior Matrix
+
+Each schema family has a minimum contract across Designer, ListView, DetailView,
+Form, Viewer, PDF and Snapshot.
+
+## Shared invariants
+
+- stable UID
+- stable document/page routing
+- stable owner identity and owner color
+- stable required/readOnly/lock semantics
+- snapshot round-trip compatibility
+
+## Families
+
+| Family | Designer | DetailView | Form / Viewer / PDF |
+|---|---|---|---|
+| Text-like | Inline preview, selection, rename | content, validation, interaction, geometry | editable in Form, read-only in Viewer/PDF |
+| Number | Numeric formatting and validation | range, step, decimals | numeric input in Form, formatted output elsewhere |
+| Date / time | Representative preview | format, required, readOnly | locale-aware normalization |
+| Select / dropdown | Select chrome only | options, default, validation | interactive in Form, static in Viewer/PDF |
+| Checkbox / radio groups | root selectable, options internal | options + behavior | toggle behavior in Form, static in Viewer/PDF |
+| Signature / initials / dateSigned | mode-sensitive preview | signature-specific profile | provider-aware behavior in Form, static in Viewer/PDF |
+| Attachment | placeholder in Designer | file rules and validation | upload in Form, static in Viewer/PDF |
+| Approve / decline / note | action chrome only | action profile | action execution in Form, static in Viewer/PDF |
+| Media / shapes / barcode / table | geometry or content preview | family-specific technical settings | read-only rendering contract |
+
+## Option groups
+
+- root schema is selectable
+- option nodes are not independent schemas
+- `+` inserts a new option, not a new schema
+- checkbox groups support multiple checked options
+- radio groups support exactly one checked option
+
+## Code anchors
+
+- `src/sisad-pdfme/schemas/schemaFamilies.ts`
+- `src/sisad-pdfme/schemas/options/optionGroupFactory.ts`
+- `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts`
+- `src/sisad-pdfme/schemas/signature/*`
+```
+
+<a id="file-0512"></a>
+
+### 0512 — `.ai/knowledge/domain/USER-RECIPIENT-USE-CASES.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `49`
+- **Tamaño original:** `2.5 KB`
+- **SHA1 corto:** `ba88724ec4`
+- **Estado:** `completo`
+
+```markdown
+# User / Recipient Use Cases
+
+This document is the canonical collaboration matrix for `sisad-pdfme`.
+It extends the existing knowledge graph. It does not create a parallel
+architecture.
+
+## Core rule
+
+The active recipient controls the catalog, the default owner for new schemas
+and drag/drop affordances. It does not recolor schemas that already have
+persisted ownership metadata.
+
+## Cases
+
+| Case | Expected behavior |
+|---|---|
+| No recipients configured | Designer works as single-user mode. The catalog stays available. No recipient selector, no reassignment dialog, and ownership chrome can fall back to neutral. |
+| One assignable recipient | New schemas are assigned to that recipient automatically. Reassign stays hidden. The catalog reflects that recipient. |
+| Two or more assignable recipients | The active recipient drives the catalog color and default owner for new schemas. Existing schemas keep their stored owner color. |
+| Change active recipient | Update the catalog accent, drag preview, drop placeholder and default recipient for new insertions. Do not mutate existing schema ownership, selection, page, scroll or zoom. |
+| Global view | Show all schemas. Preserve each schema owner color. |
+| Recipient-scoped view | Highlight or filter by the active recipient according to configuration. Do not auto-reassign on view change. |
+
+## Ownership states
+
+| State | Meaning | Editable in Designer |
+|---|---|---|
+| `ownerRecipientId` | Persistent owner identity | yes, via assignment flow |
+| `readOnly` | Runtime editing restriction | no for value edits, schema may still be inspectable |
+| `locked` | Structural restriction | no for move/resize/delete/duplicate |
+| `hidden` | Visibility policy | no, if hidden by policy |
+| runtime viewer | Global read-only runtime | no |
+
+## Reassignment contract
+
+- `0` assignable recipients: hidden.
+- `1` assignable recipient: hidden.
+- `2+` assignable recipients and a non-empty selection: visible.
+- `2+` assignable recipients and no selection: visible but disabled or hidden depending on toolbar policy.
+- No structural permission: visible only if the design needs affordance, otherwise disabled with a reason.
+- No modal handler: disabled with a technical reason.
+
+## Code anchors
+
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/reassignActionState.ts`
+- `src/sisad-pdfme/ui/collaborationContext.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts`
+```
+
+<a id="file-0513"></a>
+
+### 0513 — `.ai/memory/topics/ai-architecture.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25975,9 +32864,9 @@ Fecha de corte: 2026-07-31
 AGENTS corto, task-card única, progressive disclosure, memory delta y provider adapters delgados.
 ```
 
-<a id="file-0414"></a>
+<a id="file-0514"></a>
 
-### 0414 — `.ai/memory/topics/canvas.md`
+### 0514 — `.ai/memory/topics/canvas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25991,9 +32880,9 @@ AGENTS corto, task-card única, progressive disclosure, memory delta y provider 
 Proteger coordinateMath, Moveable y Selecto. Characterization test antes de cambios.
 ```
 
-<a id="file-0415"></a>
+<a id="file-0515"></a>
 
-### 0415 — `.ai/memory/topics/configuration.md`
+### 0515 — `.ai/memory/topics/configuration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26007,9 +32896,9 @@ Proteger coordinateMath, Moveable y Selecto. Characterization test antes de camb
 Fuente única: ConfigService/selectors/registries. visible ≠ enabled ≠ permitted ≠ available.
 ```
 
-<a id="file-0416"></a>
+<a id="file-0516"></a>
 
-### 0416 — `.ai/memory/topics/runtime.md`
+### 0516 — `.ai/memory/topics/runtime.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26023,9 +32912,9 @@ Fuente única: ConfigService/selectors/registries. visible ≠ enabled ≠ permi
 Designer/Form/Viewer comparten normalization, events, values y snapshot.
 ```
 
-<a id="file-0417"></a>
+<a id="file-0517"></a>
 
-### 0417 — `.ai/memory/topics/schemas.md`
+### 0517 — `.ai/memory/topics/schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26039,9 +32928,9 @@ Designer/Form/Viewer comparten normalization, events, values y snapshot.
 Factory + Registry + Strategy. Cubrir Designer/Inspector/Form/Viewer/Generator/Snapshot.
 ```
 
-<a id="file-0418"></a>
+<a id="file-0518"></a>
 
-### 0418 — `.ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline-v6.md`
+### 0518 — `.ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline-v6.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26124,9 +33013,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0419"></a>
+<a id="file-0519"></a>
 
-### 0419 — `.ai/scrum/task-cards/AIARCH-002-corregir-fuente-de-estado-y-arranque.md`
+### 0519 — `.ai/scrum/task-cards/AIARCH-002-corregir-fuente-de-estado-y-arranque.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26209,9 +33098,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0420"></a>
+<a id="file-0520"></a>
 
-### 0420 — `.ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz-v7.md`
+### 0520 — `.ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz-v7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26294,9 +33183,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0421"></a>
+<a id="file-0521"></a>
 
-### 0421 — `.ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md`
+### 0521 — `.ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26379,9 +33268,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0422"></a>
+<a id="file-0522"></a>
 
-### 0422 — `.ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md`
+### 0522 — `.ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26464,9 +33353,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0423"></a>
+<a id="file-0523"></a>
 
-### 0423 — `.ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md`
+### 0523 — `.ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26549,9 +33438,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0424"></a>
+<a id="file-0524"></a>
 
-### 0424 — `.ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md`
+### 0524 — `.ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26634,9 +33523,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0425"></a>
+<a id="file-0525"></a>
 
-### 0425 — `.ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md`
+### 0525 — `.ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26719,9 +33608,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0426"></a>
+<a id="file-0526"></a>
 
-### 0426 — `.ai/scrum/task-cards/AIARCH-010-generar-method-registry-desde-codigo.md`
+### 0526 — `.ai/scrum/task-cards/AIARCH-010-generar-method-registry-desde-codigo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26804,9 +33693,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0427"></a>
+<a id="file-0527"></a>
 
-### 0427 — `.ai/scrum/task-cards/AIARCH-011-consolidar-casos-y-behavior-catalog.md`
+### 0527 — `.ai/scrum/task-cards/AIARCH-011-consolidar-casos-y-behavior-catalog.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26889,9 +33778,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0428"></a>
+<a id="file-0528"></a>
 
-### 0428 — `.ai/scrum/task-cards/AIARCH-012-consolidar-event-effect-catalogs.md`
+### 0528 — `.ai/scrum/task-cards/AIARCH-012-consolidar-event-effect-catalogs.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -26974,9 +33863,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0429"></a>
+<a id="file-0529"></a>
 
-### 0429 — `.ai/scrum/task-cards/AIARCH-013-construir-trace-matrix-y-coverage-gate.md`
+### 0529 — `.ai/scrum/task-cards/AIARCH-013-construir-trace-matrix-y-coverage-gate.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27059,9 +33948,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0430"></a>
+<a id="file-0530"></a>
 
-### 0430 — `.ai/scrum/task-cards/AIARCH-014-depurar-skill-registry-y-aliases.md`
+### 0530 — `.ai/scrum/task-cards/AIARCH-014-depurar-skill-registry-y-aliases.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27144,9 +34033,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0431"></a>
+<a id="file-0531"></a>
 
-### 0431 — `.ai/scrum/task-cards/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md`
+### 0531 — `.ai/scrum/task-cards/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27229,9 +34118,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0432"></a>
+<a id="file-0532"></a>
 
-### 0432 — `.ai/scrum/task-cards/AIARCH-016-consolidar-agent-registry.md`
+### 0532 — `.ai/scrum/task-cards/AIARCH-016-consolidar-agent-registry.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27314,9 +34203,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0433"></a>
+<a id="file-0533"></a>
 
-### 0433 — `.ai/scrum/task-cards/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md`
+### 0533 — `.ai/scrum/task-cards/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27399,9 +34288,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0434"></a>
+<a id="file-0534"></a>
 
-### 0434 — `.ai/scrum/task-cards/AIARCH-018-actualizar-adapter-de-claude.md`
+### 0534 — `.ai/scrum/task-cards/AIARCH-018-actualizar-adapter-de-claude.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27484,9 +34373,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0435"></a>
+<a id="file-0535"></a>
 
-### 0435 — `.ai/scrum/task-cards/AIARCH-019-actualizar-adapter-de-codex.md`
+### 0535 — `.ai/scrum/task-cards/AIARCH-019-actualizar-adapter-de-codex.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27569,9 +34458,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0436"></a>
+<a id="file-0536"></a>
 
-### 0436 — `.ai/scrum/task-cards/AIARCH-020-actualizar-adapter-de-copilot.md`
+### 0536 — `.ai/scrum/task-cards/AIARCH-020-actualizar-adapter-de-copilot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27654,9 +34543,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0437"></a>
+<a id="file-0537"></a>
 
-### 0437 — `.ai/scrum/task-cards/AIARCH-021-implementar-provider-drift-gate.md`
+### 0537 — `.ai/scrum/task-cards/AIARCH-021-implementar-provider-drift-gate.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27739,9 +34628,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0438"></a>
+<a id="file-0538"></a>
 
-### 0438 — `.ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema-v7.md`
+### 0538 — `.ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema-v7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27824,9 +34713,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0439"></a>
+<a id="file-0539"></a>
 
-### 0439 — `.ai/scrum/task-cards/AIARCH-023-consolidar-scrum-claims-y-vistas.md`
+### 0539 — `.ai/scrum/task-cards/AIARCH-023-consolidar-scrum-claims-y-vistas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27909,9 +34798,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0440"></a>
+<a id="file-0540"></a>
 
-### 0440 — `.ai/scrum/task-cards/AIARCH-024-crear-evidence-store-y-log-distillation.md`
+### 0540 — `.ai/scrum/task-cards/AIARCH-024-crear-evidence-store-y-log-distillation.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27994,9 +34883,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0441"></a>
+<a id="file-0541"></a>
 
-### 0441 — `.ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos-v7.md`
+### 0541 — `.ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos-v7.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28079,9 +34968,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0442"></a>
+<a id="file-0542"></a>
 
-### 0442 — `.ai/scrum/task-cards/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md`
+### 0542 — `.ai/scrum/task-cards/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28164,9 +35053,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0443"></a>
+<a id="file-0543"></a>
 
-### 0443 — `.ai/scrum/task-cards/AIARCH-027-migrar-planes-coreux-decl-restore.md`
+### 0543 — `.ai/scrum/task-cards/AIARCH-027-migrar-planes-coreux-decl-restore.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28249,9 +35138,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0444"></a>
+<a id="file-0544"></a>
 
-### 0444 — `.ai/scrum/task-cards/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md`
+### 0544 — `.ai/scrum/task-cards/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28334,9 +35223,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0445"></a>
+<a id="file-0545"></a>
 
-### 0445 — `.ai/scrum/task-cards/AIARCH-029-integrar-scripts-en-package-ci.md`
+### 0545 — `.ai/scrum/task-cards/AIARCH-029-integrar-scripts-en-package-ci.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28419,9 +35308,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0446"></a>
+<a id="file-0546"></a>
 
-### 0446 — `.ai/scrum/task-cards/AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md`
+### 0546 — `.ai/scrum/task-cards/AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28504,9 +35393,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0447"></a>
+<a id="file-0547"></a>
 
-### 0447 — `.ai/scrum/task-cards/COREUX-001-congelar-baseline-visual-y-responsive.md`
+### 0547 — `.ai/scrum/task-cards/COREUX-001-congelar-baseline-visual-y-responsive.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `177`
@@ -28694,9 +35583,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0448"></a>
+<a id="file-0548"></a>
 
-### 0448 — `.ai/scrum/task-cards/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md`
+### 0548 — `.ai/scrum/task-cards/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -28883,9 +35772,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0449"></a>
+<a id="file-0549"></a>
 
-### 0449 — `.ai/scrum/task-cards/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md`
+### 0549 — `.ai/scrum/task-cards/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `179`
@@ -29075,9 +35964,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0450"></a>
+<a id="file-0550"></a>
 
-### 0450 — `.ai/scrum/task-cards/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md`
+### 0550 — `.ai/scrum/task-cards/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `177`
@@ -29265,9 +36154,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0451"></a>
+<a id="file-0551"></a>
 
-### 0451 — `.ai/scrum/task-cards/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md`
+### 0551 — `.ai/scrum/task-cards/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `178`
@@ -29456,9 +36345,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0452"></a>
+<a id="file-0552"></a>
 
-### 0452 — `.ai/scrum/task-cards/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md`
+### 0552 — `.ai/scrum/task-cards/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `190`
@@ -29659,9 +36548,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0453"></a>
+<a id="file-0553"></a>
 
-### 0453 — `.ai/scrum/task-cards/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md`
+### 0553 — `.ai/scrum/task-cards/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `192`
@@ -29864,9 +36753,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0454"></a>
+<a id="file-0554"></a>
 
-### 0454 — `.ai/scrum/task-cards/COREUX-008-expandir-maquina-de-estados-de-interaccion.md`
+### 0554 — `.ai/scrum/task-cards/COREUX-008-expandir-maquina-de-estados-de-interaccion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `177`
@@ -30054,9 +36943,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0455"></a>
+<a id="file-0555"></a>
 
-### 0455 — `.ai/scrum/task-cards/COREUX-009-crear-coordinador-de-efectos-del-designer.md`
+### 0555 — `.ai/scrum/task-cards/COREUX-009-crear-coordinador-de-efectos-del-designer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `185`
@@ -30252,9 +37141,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0456"></a>
+<a id="file-0556"></a>
 
-### 0456 — `.ai/scrum/task-cards/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md`
+### 0556 — `.ai/scrum/task-cards/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `181`
@@ -30446,9 +37335,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0457"></a>
+<a id="file-0557"></a>
 
-### 0457 — `.ai/scrum/task-cards/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md`
+### 0557 — `.ai/scrum/task-cards/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `180`
@@ -30639,9 +37528,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0458"></a>
+<a id="file-0558"></a>
 
-### 0458 — `.ai/scrum/task-cards/COREUX-012-conectar-commandbus-eventos-e-historial.md`
+### 0558 — `.ai/scrum/task-cards/COREUX-012-conectar-commandbus-eventos-e-historial.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `183`
@@ -30835,9 +37724,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0459"></a>
+<a id="file-0559"></a>
 
-### 0459 — `.ai/scrum/task-cards/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md`
+### 0559 — `.ai/scrum/task-cards/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `188`
@@ -31036,9 +37925,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0460"></a>
+<a id="file-0560"></a>
 
-### 0460 — `.ai/scrum/task-cards/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md`
+### 0560 — `.ai/scrum/task-cards/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `184`
@@ -31233,9 +38122,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0461"></a>
+<a id="file-0561"></a>
 
-### 0461 — `.ai/scrum/task-cards/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md`
+### 0561 — `.ai/scrum/task-cards/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `189`
@@ -31435,9 +38324,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0462"></a>
+<a id="file-0562"></a>
 
-### 0462 — `.ai/scrum/task-cards/COREUX-016-completar-comandos-de-pagina.md`
+### 0562 — `.ai/scrum/task-cards/COREUX-016-completar-comandos-de-pagina.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `180`
@@ -31628,9 +38517,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0463"></a>
+<a id="file-0563"></a>
 
-### 0463 — `.ai/scrum/task-cards/COREUX-017-unificar-zoom-fit-page-y-fit-width.md`
+### 0563 — `.ai/scrum/task-cards/COREUX-017-unificar-zoom-fit-page-y-fit-width.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `192`
@@ -31833,9 +38722,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0464"></a>
+<a id="file-0564"></a>
 
-### 0464 — `.ai/scrum/task-cards/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md`
+### 0564 — `.ai/scrum/task-cards/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `184`
@@ -32030,9 +38919,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0465"></a>
+<a id="file-0565"></a>
 
-### 0465 — `.ai/scrum/task-cards/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md`
+### 0565 — `.ai/scrum/task-cards/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `184`
@@ -32227,9 +39116,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0466"></a>
+<a id="file-0566"></a>
 
-### 0466 — `.ai/scrum/task-cards/COREUX-020-crear-estado-responsive-unico-de-superficies.md`
+### 0566 — `.ai/scrum/task-cards/COREUX-020-crear-estado-responsive-unico-de-superficies.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -32413,9 +39302,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0467"></a>
+<a id="file-0567"></a>
 
-### 0467 — `.ai/scrum/task-cards/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md`
+### 0567 — `.ai/scrum/task-cards/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -32600,9 +39489,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0468"></a>
+<a id="file-0568"></a>
 
-### 0468 — `.ai/scrum/task-cards/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md`
+### 0568 — `.ai/scrum/task-cards/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -32786,9 +39675,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0469"></a>
+<a id="file-0569"></a>
 
-### 0469 — `.ai/scrum/task-cards/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md`
+### 0569 — `.ai/scrum/task-cards/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -32974,9 +39863,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0470"></a>
+<a id="file-0570"></a>
 
-### 0470 — `.ai/scrum/task-cards/COREUX-024-formalizar-contrato-del-rightsidebar.md`
+### 0570 — `.ai/scrum/task-cards/COREUX-024-formalizar-contrato-del-rightsidebar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -33161,9 +40050,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0471"></a>
+<a id="file-0571"></a>
 
-### 0471 — `.ai/scrum/task-cards/COREUX-025-completar-listview-compacto-y-menu-por-fila.md`
+### 0571 — `.ai/scrum/task-cards/COREUX-025-completar-listview-compacto-y-menu-por-fila.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -33348,9 +40237,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0472"></a>
+<a id="file-0572"></a>
 
-### 0472 — `.ai/scrum/task-cards/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md`
+### 0572 — `.ai/scrum/task-cards/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `178`
@@ -33539,9 +40428,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0473"></a>
+<a id="file-0573"></a>
 
-### 0473 — `.ai/scrum/task-cards/COREUX-027-completar-documentsrail-y-documentcontroller.md`
+### 0573 — `.ai/scrum/task-cards/COREUX-027-completar-documentsrail-y-documentcontroller.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -33727,9 +40616,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0474"></a>
+<a id="file-0574"></a>
 
-### 0474 — `.ai/scrum/task-cards/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md`
+### 0574 — `.ai/scrum/task-cards/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -33915,9 +40804,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0475"></a>
+<a id="file-0575"></a>
 
-### 0475 — `.ai/scrum/task-cards/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md`
+### 0575 — `.ai/scrum/task-cards/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -34102,9 +40991,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0476"></a>
+<a id="file-0576"></a>
 
-### 0476 — `.ai/scrum/task-cards/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md`
+### 0576 — `.ai/scrum/task-cards/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -34288,9 +41177,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0477"></a>
+<a id="file-0577"></a>
 
-### 0477 — `.ai/scrum/task-cards/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md`
+### 0577 — `.ai/scrum/task-cards/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -34474,9 +41363,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0478"></a>
+<a id="file-0578"></a>
 
-### 0478 — `.ai/scrum/task-cards/COREUX-032-consolidar-datos-y-conexiones.md`
+### 0578 — `.ai/scrum/task-cards/COREUX-032-consolidar-datos-y-conexiones.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -34660,9 +41549,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0479"></a>
+<a id="file-0579"></a>
 
-### 0479 — `.ai/scrum/task-cards/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md`
+### 0579 — `.ai/scrum/task-cards/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -34847,9 +41736,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0480"></a>
+<a id="file-0580"></a>
 
-### 0480 — `.ai/scrum/task-cards/COREUX-034-unificar-editor-de-opciones.md`
+### 0580 — `.ai/scrum/task-cards/COREUX-034-unificar-editor-de-opciones.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -35035,9 +41924,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0481"></a>
+<a id="file-0581"></a>
 
-### 0481 — `.ai/scrum/task-cards/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md`
+### 0581 — `.ai/scrum/task-cards/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -35223,9 +42112,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0482"></a>
+<a id="file-0582"></a>
 
-### 0482 — `.ai/scrum/task-cards/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md`
+### 0582 — `.ai/scrum/task-cards/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -35410,9 +42299,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0483"></a>
+<a id="file-0583"></a>
 
-### 0483 — `.ai/scrum/task-cards/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md`
+### 0583 — `.ai/scrum/task-cards/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -35597,9 +42486,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0484"></a>
+<a id="file-0584"></a>
 
-### 0484 — `.ai/scrum/task-cards/COREUX-038-cerrar-contrato-de-choice-fields.md`
+### 0584 — `.ai/scrum/task-cards/COREUX-038-cerrar-contrato-de-choice-fields.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -35786,9 +42675,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0485"></a>
+<a id="file-0585"></a>
 
-### 0485 — `.ai/scrum/task-cards/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md`
+### 0585 — `.ai/scrum/task-cards/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -35972,9 +42861,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0486"></a>
+<a id="file-0586"></a>
 
-### 0486 — `.ai/scrum/task-cards/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md`
+### 0586 — `.ai/scrum/task-cards/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -36161,9 +43050,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0487"></a>
+<a id="file-0587"></a>
 
-### 0487 — `.ai/scrum/task-cards/COREUX-041-unificar-owner-tone-y-field-chrome.md`
+### 0587 — `.ai/scrum/task-cards/COREUX-041-unificar-owner-tone-y-field-chrome.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -36349,9 +43238,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0488"></a>
+<a id="file-0588"></a>
 
-### 0488 — `.ai/scrum/task-cards/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md`
+### 0588 — `.ai/scrum/task-cards/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -36536,9 +43425,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0489"></a>
+<a id="file-0589"></a>
 
-### 0489 — `.ai/scrum/task-cards/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md`
+### 0589 — `.ai/scrum/task-cards/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -36724,9 +43613,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0490"></a>
+<a id="file-0590"></a>
 
-### 0490 — `.ai/scrum/task-cards/COREUX-044-alinear-moveable-con-access-interaction-y-events.md`
+### 0590 — `.ai/scrum/task-cards/COREUX-044-alinear-moveable-con-access-interaction-y-events.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -36912,9 +43801,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0491"></a>
+<a id="file-0591"></a>
 
-### 0491 — `.ai/scrum/task-cards/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md`
+### 0591 — `.ai/scrum/task-cards/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -37101,9 +43990,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0492"></a>
+<a id="file-0592"></a>
 
-### 0492 — `.ai/scrum/task-cards/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md`
+### 0592 — `.ai/scrum/task-cards/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -37288,9 +44177,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0493"></a>
+<a id="file-0593"></a>
 
-### 0493 — `.ai/scrum/task-cards/COREUX-047-completar-snapshot-e-historial-versionado.md`
+### 0593 — `.ai/scrum/task-cards/COREUX-047-completar-snapshot-e-historial-versionado.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -37477,9 +44366,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0494"></a>
+<a id="file-0594"></a>
 
-### 0494 — `.ai/scrum/task-cards/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md`
+### 0594 — `.ai/scrum/task-cards/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -37664,9 +44553,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0495"></a>
+<a id="file-0595"></a>
 
-### 0495 — `.ai/scrum/task-cards/COREUX-049-cerrar-paridad-designer-form-y-viewer.md`
+### 0595 — `.ai/scrum/task-cards/COREUX-049-cerrar-paridad-designer-form-y-viewer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `177`
@@ -37854,9 +44743,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0496"></a>
+<a id="file-0596"></a>
 
-### 0496 — `.ai/scrum/task-cards/COREUX-050-unificar-validacion-generator-converter-y-persistence.md`
+### 0596 — `.ai/scrum/task-cards/COREUX-050-unificar-validacion-generator-converter-y-persistence.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -38043,9 +44932,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0497"></a>
+<a id="file-0597"></a>
 
-### 0497 — `.ai/scrum/task-cards/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md`
+### 0597 — `.ai/scrum/task-cards/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -38231,9 +45120,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0498"></a>
+<a id="file-0598"></a>
 
-### 0498 — `.ai/scrum/task-cards/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md`
+### 0598 — `.ai/scrum/task-cards/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -38418,9 +45307,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0499"></a>
+<a id="file-0599"></a>
 
-### 0499 — `.ai/scrum/task-cards/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md`
+### 0599 — `.ai/scrum/task-cards/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -38605,9 +45494,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0500"></a>
+<a id="file-0600"></a>
 
-### 0500 — `.ai/scrum/task-cards/COREUX-054-crear-playwright-y-regresion-visual-integral.md`
+### 0600 — `.ai/scrum/task-cards/COREUX-054-crear-playwright-y-regresion-visual-integral.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -38792,9 +45681,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0501"></a>
+<a id="file-0601"></a>
 
-### 0501 — `.ai/scrum/task-cards/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md`
+### 0601 — `.ai/scrum/task-cards/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -38980,9 +45869,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0502"></a>
+<a id="file-0602"></a>
 
-### 0502 — `.ai/scrum/task-cards/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md`
+### 0602 — `.ai/scrum/task-cards/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -39169,9 +46058,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0503"></a>
+<a id="file-0603"></a>
 
-### 0503 — `.ai/scrum/task-cards/name-001-inventariar-y-clasificar-ocurrencias.md`
+### 0603 — `.ai/scrum/task-cards/name-001-inventariar-y-clasificar-ocurrencias.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39221,9 +46110,9 @@ Crear el inventario exhaustivo y clasificar cada coincidencia antes de editar c�
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0504"></a>
+<a id="file-0604"></a>
 
-### 0504 — `.ai/scrum/task-cards/name-002-crear-pol-tica-y-gate-preventivo.md`
+### 0604 — `.ai/scrum/task-cards/name-002-crear-pol-tica-y-gate-preventivo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39273,9 +46162,9 @@ Governance, script, allowlist y package script propuesto.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0505"></a>
+<a id="file-0605"></a>
 
-### 0505 — `.ai/scrum/task-cards/name-003-renombrar-vocabulario-del-inspector.md`
+### 0605 — `.ai/scrum/task-cards/name-003-renombrar-vocabulario-del-inspector.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39325,9 +46214,9 @@ DetailView taxonomy, builders, imports y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0506"></a>
+<a id="file-0606"></a>
 
-### 0506 — `.ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-v1-a-v2.md`
+### 0606 — `.ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-v1-a-v2.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39377,9 +46266,9 @@ Config migration, validation, resolver y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0507"></a>
+<a id="file-0607"></a>
 
-### 0507 — `.ai/scrum/task-cards/name-005-renombrar-eventos-y-callbacks-del-host.md`
+### 0607 — `.ai/scrum/task-cards/name-005-renombrar-eventos-y-callbacks-del-host.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39429,9 +46318,9 @@ Dispatcher, bridge, contracts, wrapper y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0508"></a>
+<a id="file-0608"></a>
 
-### 0508 — `.ai/scrum/task-cards/name-006-versionar-snapshots-y-metadata.md`
+### 0608 — `.ai/scrum/task-cards/name-006-versionar-snapshots-y-metadata.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39481,9 +46370,9 @@ Snapshot, adapter, schema migration, meta, fixtures y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0509"></a>
+<a id="file-0609"></a>
 
-### 0509 — `.ai/scrum/task-cards/name-007-renombrar-provider-de-colaboraci-n.md`
+### 0609 — `.ai/scrum/task-cards/name-007-renombrar-provider-de-colaboraci-n.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39533,9 +46422,9 @@ Collaboration adapter, config migration, types, docs y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0510"></a>
+<a id="file-0610"></a>
 
-### 0510 — `.ai/scrum/task-cards/name-008-sanear-almacenamiento-de-comentarios.md`
+### 0610 — `.ai/scrum/task-cards/name-008-sanear-almacenamiento-de-comentarios.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39585,9 +46474,9 @@ Common comments, contracts, snapshot tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0511"></a>
+<a id="file-0611"></a>
 
-### 0511 — `.ai/scrum/task-cards/name-009-sanear-firma-y-familias-de-schema.md`
+### 0611 — `.ai/scrum/task-cards/name-009-sanear-firma-y-familias-de-schema.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -39636,9 +46525,9 @@ Signature helpers, schema families y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0512"></a>
+<a id="file-0612"></a>
 
-### 0512 — `.ai/scrum/task-cards/name-010-renombrar-documentaci-n-y-arquitectura-ia.md`
+### 0612 — `.ai/scrum/task-cards/name-010-renombrar-documentaci-n-y-arquitectura-ia.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39688,9 +46577,9 @@ Docs, `.ai`, `.agents`, `.github` y manifests activos.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0513"></a>
+<a id="file-0613"></a>
 
-### 0513 — `.ai/scrum/task-cards/name-011-administrar-aliases-p-blicos-deprecados.md`
+### 0613 — `.ai/scrum/task-cards/name-011-administrar-aliases-p-blicos-deprecados.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39740,9 +46629,9 @@ Entrypoints, exports, changelog, migration guide y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0514"></a>
+<a id="file-0614"></a>
 
-### 0514 — `.ai/scrum/task-cards/name-012-retirar-compatibilidad-obsoleta.md`
+### 0614 — `.ai/scrum/task-cards/name-012-retirar-compatibilidad-obsoleta.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39792,9 +46681,7509 @@ Solo elementos aprobados tras auditoría de consumidores.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0515"></a>
+<a id="file-0615"></a>
 
-### 0515 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
+### 0615 — `.ai/scrum/task-cards/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `172`
+- **Tamaño original:** `4.6 KB`
+- **SHA1 corto:** `09c78d450a`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-001
+state: backlog
+wave: W0
+priority: P0
+risk: high
+owner: qa-reviewer
+model: Terra high
+writer:
+readers: []
+dependsOn: []
+refines: [COREUX-001, COREUX-054]
+trace:
+  useCases: [QLT-001, QLT-002, QLT-003, QLT-004, QLT-005, QLT-006, QLT-007, QLT-008, QLT-009, QLT-010, QLT-011, QLT-012, LAY-001, LAY-002, RSB-001, LSB-001]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: testing
+  skills: [sisad-visual-regression, sisad-quality-gates]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-001 — Congelar baseline visual y estados reproducibles
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Crear evidencia repetible de las nueve capturas y de los estados clave antes de modificar el producto.
+
+## Evidence
+
+- IMG-01
+- IMG-02
+- IMG-03
+- IMG-04
+- IMG-05
+- IMG-06
+- IMG-07
+- IMG-08
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-001, COREUX-054
+- Depende de: ninguna
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `reports/visual-behavior/**`
+- `tests/e2e/**`
+- `tests/playwright/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Registrar viewport, ruta, modo, recipient, selección, documento, paneles y zoom de cada captura.
+2. Crear matriz de estados reproducibles: sidebars abiertos/cerrados, cada panel derecho, schema seleccionado y menú abierto.
+3. Definir selectores estables basados en data-testid/data-*; evitar selectores por texto frágil.
+4. Capturar baseline en 1280, 1440, 1600 y 1920 px.
+5. Registrar diferencias permitidas y prohibidas.
+
+## Acceptance
+
+- [ ] Las nueve imágenes quedan indexadas.
+- [ ] Cada estado tiene pasos de reproducción.
+- [ ] El baseline no afirma comportamiento que no fue medido.
+- [ ] No se modifica código productivo.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0616"></a>
+
+### 0616 — `.ai/scrum/task-cards/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `168`
+- **Tamaño original:** `5.2 KB`
+- **SHA1 corto:** `5655000076`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-002
+state: backlog
+wave: W0
+priority: P0
+risk: high
+owner: runtime-architect
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-001]
+refines: [COREUX-002, COREUX-004, COREUX-020, COREUX-024]
+trace:
+  useCases: [LAY-001, LAY-002, LAY-003, LAY-004, LAY-005, LAY-006, LAY-007, LAY-008, LAY-009, LAY-010, LAY-011, LAY-012, RSB-001, RSB-002, RSB-003, RSB-004, RSB-005, RSB-006, RSB-007, RSB-008, RSB-009, RSB-010, RSB-011, RSB-012, LSB-001, LSB-002, LSB-003, LSB-004, LSB-005, LSB-006, LSB-007, LSB-008, LSB-009, LSB-010, LSB-011, LSB-012, LST-001, LST-002, LST-003, LST-004, LST-005, LST-006, LST-007, LST-008, LST-009, LST-010, LST-011, LST-012, DTL-001, DTL-002, DTL-003, DTL-004, DTL-005, DTL-006, DTL-007, DTL-008, DTL-009, DTL-010, DTL-011, DTL-012, CMT-001, CMT-002, CMT-003, CMT-004, CMT-005, CMT-006, CMT-007, CMT-008, DOC-001, DOC-002, DOC-003, DOC-004, DOC-005, DOC-006, DOC-007, DOC-008, DOC-009, DOC-010, DOC-011, DOC-012]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: designer-core-ux
+  skills: [sisad-capability-audit, sisad-behavior-traceability]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-002 — Inventariar componentes visuales, scroll owners y fuentes de estado
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Mapear cada superficie visual a su estado, policy, command, event, effect, scroll owner y archivo responsable.
+
+## Evidence
+
+- IMG-01
+- IMG-02
+- IMG-04
+- IMG-06
+- IMG-07
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-002, COREUX-004, COREUX-020, COREUX-024
+- Depende de: VISUX-001
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/**`
+- `src/sisad-pdfme/config/**`
+- `reports/visual-behavior/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Inventariar Root, stage, Canvas, CtlBar, LeftSidebar, RightSidebar y modales.
+2. Marcar un solo scroll owner por panel.
+3. Identificar decisiones duplicadas de visible/enabled/reason/handler.
+4. Crear mapa UI intent → policy → command → mutation → event → effect → snapshot.
+5. Señalar responsabilidades del host que se filtraron al core o viceversa.
+
+## Acceptance
+
+- [ ] Cada componente tiene owner funcional.
+- [ ] No quedan scroll owners ambiguos.
+- [ ] Las duplicidades se registran antes de refactorizar.
+- [ ] El mapa enlaza archivos reales.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0617"></a>
+
+### 0617 — `.ai/scrum/task-cards/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.6 KB`
+- **SHA1 corto:** `afe288308c`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-003
+state: backlog
+wave: W0
+priority: P0
+risk: medium
+owner: ux-designer
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-001]
+refines: [COREUX-013, COREUX-014, COREUX-051]
+trace:
+  useCases: [A11Y-001, A11Y-002, A11Y-003, A11Y-004, A11Y-005, A11Y-006, A11Y-007, A11Y-008, A11Y-009, A11Y-010, A11Y-011, A11Y-012, CTL-009, LST-002, SCH-017]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: ux-design
+  skills: [sisad-tailwind-design-system, sisad-accessibility]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-003 — Auditar tokens, contraste, densidad y lenguaje visual
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Detectar tokens inexistentes, contrastes débiles, tamaños inconsistentes y labels técnicos visibles.
+
+## Evidence
+
+- IMG-02
+- IMG-05
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-013, COREUX-014, COREUX-051
+- Depende de: VISUX-001
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/styles/tokens.css`
+- `src/sisad-pdfme/ui/components/**`
+- `reports/visual-behavior/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Buscar variables CSS usadas pero no definidas, incluido --text-secondary frente a --color-text-secondary.
+2. Inventariar tamaños de rail, botones, tabs, chips y filas.
+3. Clasificar labels: usuario, técnico, avanzado e interno.
+4. Definir escalas comfortable/compact/minimal.
+5. Proponer alias temporal solo cuando exista consumo externo comprobado.
+
+## Acceptance
+
+- [ ] Cero tokens usados sin definición.
+- [ ] Se documentan mínimos de contraste y hit area.
+- [ ] La interfaz normal prioriza lenguaje de usuario.
+- [ ] No se crea una hoja CSS de parche.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0618"></a>
+
+### 0618 — `.ai/scrum/task-cards/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.7 KB`
+- **SHA1 corto:** `908ec11334`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-004
+state: backlog
+wave: W0
+priority: P0
+risk: very-high
+owner: runtime-architect
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-002]
+refines: [COREUX-010, COREUX-011, COREUX-012]
+trace:
+  useCases: [COL-001, COL-002, COL-003, COL-004, COL-005, COL-006, COL-007, COL-008, COL-009, COL-010, COL-011, COL-012, DTL-012, LST-005, LST-006]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: commands
+  skills: [sisad-action-state, sisad-behavior-traceability]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-004 — Unificar auditoría de acciones, acceso y motivos de deshabilitación
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Asegurar que toolbar, menús, lista e inspector calculen visible, enabled, executable y reason desde la misma fuente.
+
+## Evidence
+
+- IMG-05
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-010, COREUX-011, COREUX-012
+- Depende de: VISUX-002
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/config/actionConfigRegistry.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/designerActionState.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/accessPolicy.ts`
+- `src/sisad-pdfme/ui/commands/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Inventariar acciones repetidas por superficie.
+2. Comparar políticas para duplicate, delete, hide/show, lock, required, reassign y open-properties.
+3. Definir un descriptor por acción y un selector contextual.
+4. Prohibir handlers silenciosos y acciones visibles sin reason.
+5. Añadir pruebas de paridad entre superficies.
+
+## Acceptance
+
+- [ ] Una acción produce el mismo estado en todas las superficies.
+- [ ] Eliminar no aparece duplicado sin justificación.
+- [ ] Abrir propiedades se oculta si Detalle ya está activo.
+- [ ] Cada disabled tiene reason.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0619"></a>
+
+### 0619 — `.ai/scrum/task-cards/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `a46add40d3`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-005
+state: backlog
+wave: W1
+priority: P0
+risk: very-high
+owner: runtime-architect
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-002]
+refines: [COREUX-020]
+trace:
+  useCases: [LAY-001, LAY-002, LAY-003, LAY-004, LAY-005, LAY-006, LAY-007, LAY-008, LAY-009, LAY-010, LAY-011, LAY-012, RUN-010]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: responsive-ux
+  skills: [sisad-responsive-ux, sisad-react-performance]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-005 — Crear un estado responsive único del workspace
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Resolver layout por tamaño real del root y devolver política única para stage, sidebars, toolbar, tabs y canvas.
+
+## Evidence
+
+- IMG-01
+- IMG-03
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-020
+- Depende de: VISUX-002
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/index.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Medir root con un único ResizeObserver.
+2. Definir tiers wide/desktop/tablet/compact/mobile.
+3. Resolver panelPolicy, presentations, widths y density.
+4. Eliminar decisiones responsive duplicadas de LeftSidebar y RightSidebar.
+5. Probar que resize no reconstruye engine.
+
+## Acceptance
+
+- [ ] Una sola salida responsive gobierna todas las superficies.
+- [ ] No se usa window.innerWidth como autoridad.
+- [ ] No hay loop de ResizeObserver.
+- [ ] El engine conserva identidad.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0620"></a>
+
+### 0620 — `.ai/scrum/task-cards/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `96bf887edc`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-006
+state: backlog
+wave: W1
+priority: P0
+risk: high
+owner: ux-designer
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-005, VISUX-003]
+refines: [COREUX-021]
+trace:
+  useCases: [LAY-004, LSB-001, RSB-005, A11Y-001, A11Y-010]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: responsive-ux
+  skills: [sisad-right-sidebar-contract, sisad-left-sidebar-catalog]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-006 — Unificar rails y colapso de ambos sidebars
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Aplicar un contrato simétrico para rail, handle, estado activo, tooltip, foco y tamaño.
+
+## Evidence
+
+- IMG-01
+- IMG-03
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-021
+- Depende de: VISUX-005, VISUX-003
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir ancho compartido y excepciones por presentación.
+2. Unificar estado visual active/hover/focus/disabled.
+3. Asegurar iconos y tooltips completos.
+4. Conservar panel activo al colapsar y reabrir.
+5. Añadir teclado y aria-current/aria-selected según patrón.
+
+## Acceptance
+
+- [ ] Rails coherentes visualmente.
+- [ ] Abrir desde rail activa el panel correcto.
+- [ ] No hay iconos sin nombre accesible.
+- [ ] El colapso no borra estado.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0621"></a>
+
+### 0621 — `.ai/scrum/task-cards/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `175b83a4bd`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-007
+state: backlog
+wave: W1
+priority: P0
+risk: very-high
+owner: canvas-specialist
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-005, VISUX-006]
+refines: [COREUX-022]
+trace:
+  useCases: [LAY-002, LAY-003, LAY-012, RUN-010]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: canvas
+  skills: [sisad-canvas-safety, sisad-responsive-ux]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-007 — Preservar ancla visual, zoom y scroll al cambiar layout
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Evitar que abrir/cerrar sidebars desplace el papel o reinicie zoom, selección y scroll.
+
+## Evidence
+
+- IMG-03
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-022
+- Depende de: VISUX-005, VISUX-006
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/index.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
+- `src/sisad-pdfme/ui/components/CtlBar.tsx`
+- `tests/e2e/examples-layout.spec.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Medir stage, canvas, paper center y scroll antes/después.
+2. Diferenciar espacio recuperado de cambio de ancla.
+3. Compensar viewport sin escribir directamente posiciones de schemas.
+4. Probar sidebars izquierda/derecha y ambos.
+5. Corregir tests que protejan un comportamiento visual incorrecto.
+
+## Acceptance
+
+- [ ] Variación de centro dentro de tolerancia definida.
+- [ ] El canvas recupera espacio cuando corresponda.
+- [ ] Zoom/scroll/selection permanecen.
+- [ ] No se toca coordinateMath sin prueba roja.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0622"></a>
+
+### 0622 — `.ai/scrum/task-cards/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `8cc2d05522`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-008
+state: backlog
+wave: W1
+priority: P0
+risk: high
+owner: implementer
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-003, VISUX-004]
+refines: [COREUX-013, COREUX-016, COREUX-018]
+trace:
+  useCases: [CTL-001, CTL-002, CTL-003, CTL-004, CTL-011]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: commands
+  skills: [sisad-action-state, sisad-event-effect-contract]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-008 — Corregir header de guardar, navegación de páginas y estado de selección
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Separar navegación, selección y lifecycle de guardado con labels y contraste correctos.
+
+## Evidence
+
+- IMG-04
+- IMG-05
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-013, COREUX-016, COREUX-018
+- Depende de: VISUX-003, VISUX-004
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/CtlBar.tsx`
+- `src/sisad-pdfme/runtime/saveLifecycle.ts`
+- `src/sisad-pdfme/ui/commands/viewCommands.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Corregir token de texto secundario.
+2. Separar PageNavigator de SelectionSummary.
+3. Unificar save state en un solo selector.
+4. Resolver densidad sin ocultar acciones esenciales.
+5. Emitir eventos de page change y save state.
+
+## Acceptance
+
+- [ ] No existe contradicción Guardado/dirty.
+- [ ] La selección no aparece dentro del pager.
+- [ ] Todos los textos tienen contraste.
+- [ ] Los eventos reflejan estados consumados.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0623"></a>
+
+### 0623 — `.ai/scrum/task-cards/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.3 KB`
+- **SHA1 corto:** `62807dd19c`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-009
+state: backlog
+wave: W1
+priority: P1
+risk: medium
+owner: implementer
+model: Terra medium
+writer:
+readers: []
+dependsOn: [VISUX-005, VISUX-008]
+refines: [COREUX-017]
+trace:
+  useCases: [CTL-005, CTL-006, CTL-007, CTL-008, CTL-010]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: commands
+  skills: [sisad-command-history, sisad-responsive-ux]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-009 — Cerrar contrato de zoom, fit, undo y redo
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Convertir zoom y ajuste de vista en comandos coherentes y accesibles.
+
+## Evidence
+
+- IMG-01
+- IMG-03
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-017
+- Depende de: VISUX-005, VISUX-008
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/CtlBar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/zoomContract.ts`
+- `src/sisad-pdfme/ui/commands/viewCommands.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir min/max/step y estados disabled.
+2. Distinguir 100%, fit-page y fit-width.
+3. Mantener stepper en densidades donde quepa o usar menú equivalente.
+4. Asegurar hit area y tooltip.
+5. Probar persistencia de zoom por documento.
+
+## Acceptance
+
+- [ ] No hay controles casi invisibles.
+- [ ] Fit no se confunde con zoom numérico.
+- [ ] Undo/redo reflejan historial real.
+- [ ] El toolbar no cubre el papel.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0624"></a>
+
+### 0624 — `.ai/scrum/task-cards/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.3 KB`
+- **SHA1 corto:** `3fa22d2788`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-010
+state: backlog
+wave: W1
+priority: P1
+risk: medium
+owner: accessibility
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-003]
+refines: [COREUX-014, COREUX-051]
+trace:
+  useCases: [A11Y-001, A11Y-002, A11Y-009, A11Y-012]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: testing
+  skills: [sisad-accessibility]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-010 — Reemplazar tooltips nativos y cerrar foco de controles
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Aplicar una primitive de tooltip/focus a iconos, rails, acciones y estados deshabilitados.
+
+## Evidence
+
+- IMG-01
+- IMG-02
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-014, COREUX-051
+- Depende de: VISUX-003
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/shared/DesignerTooltip.tsx`
+- `src/sisad-pdfme/ui/components/CtlBar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Inventariar title nativo y controles icon-only.
+2. Usar tooltip controlado con delay y portal seguro.
+3. Exponer reason de disabled.
+4. Restaurar foco tras menú/modal.
+5. Probar teclado y reduced motion.
+
+## Acceptance
+
+- [ ] Cero tooltips esenciales con title nativo.
+- [ ] Cada icon-only tiene aria-label.
+- [ ] Disabled reason es accesible.
+- [ ] Focus vuelve al trigger.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0625"></a>
+
+### 0625 — `.ai/scrum/task-cards/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `27d106736e`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-011
+state: backlog
+wave: W1
+priority: P0
+risk: high
+owner: implementer
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-004, VISUX-010]
+refines: [COREUX-041, COREUX-045]
+trace:
+  useCases: [LST-005, DTL-012, COL-006, COL-007]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: commands
+  skills: [sisad-action-state, sisad-command-history]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-011 — Unificar toolbar contextual y menú Más
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Eliminar acciones duplicadas y ordenar el menú por edición, visibilidad, protección, reglas, orden e inspector.
+
+## Evidence
+
+- IMG-05
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-041, COREUX-045
+- Depende de: VISUX-004, VISUX-010
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/**`
+- `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts`
+- `src/sisad-pdfme/ui/commands/designerCommands.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Inventariar acciones de toolbar, menú, ListView y DetailView.
+2. Derivar menú desde descriptors.
+3. Ocultar Abrir propiedades cuando Detail ya está activo.
+4. Mover Activar requerido fuera de Orden.
+5. Diferenciar fijar posición de reserva de edición.
+
+## Acceptance
+
+- [ ] Eliminar no aparece dos veces en el mismo contexto.
+- [ ] Categorías semánticas correctas.
+- [ ] Acciones incompatibles están ocultas o explicadas.
+- [ ] Todos ejecutan CommandBus.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0626"></a>
+
+### 0626 — `.ai/scrum/task-cards/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `8b10223ac7`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-012
+state: backlog
+wave: W1
+priority: P0
+risk: very-high
+owner: canvas-specialist
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-007, VISUX-011]
+refines: [COREUX-009, COREUX-031, COREUX-044]
+trace:
+  useCases: [LAY-011, CTL-008, SCH-004]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: canvas
+  skills: [sisad-canvas-safety, sisad-canvas-interaction]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-012 — Hacer overlays collision-aware y coordinar stack visual
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Posicionar toolbar, size label, inline editor y menús sin cubrir schemas ni salir del viewport.
+
+## Evidence
+
+- IMG-05
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-009, COREUX-031, COREUX-044
+- Depende de: VISUX-007, VISUX-011
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/canvas/overlayManager.ts`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/**`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir candidatos top/bottom/left/right/fixed.
+2. Medir paper, viewport, sidebars y otros overlays.
+3. Registrar overlays en overlayManager existente.
+4. Evitar soluciones basadas solo en z-index.
+5. Probar zoom, scroll y bordes del papel.
+
+## Acceptance
+
+- [ ] Toolbar no tapa contenido vecino cuando hay alternativa.
+- [ ] Size label no cubre otro schema.
+- [ ] Escape y outside-click cierran correctamente.
+- [ ] No se crea un segundo overlay manager.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0627"></a>
+
+### 0627 — `.ai/scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `8fef2e0870`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-013
+state: backlog
+wave: W2
+priority: P1
+risk: medium
+owner: ux-designer
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-005, VISUX-006]
+refines: [COREUX-021, COREUX-023]
+trace:
+  useCases: [LSB-001, LSB-002, LSB-003, LAY-010]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: left-sidebar
+  skills: [sisad-left-sidebar-catalog, sisad-tailwind-design-system]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-013 — Compactar shell, tabs y colapso del LeftSidebar
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Reducir fragmentación superior y asegurar labels legibles en todos los tiers.
+
+## Evidence
+
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-021, COREUX-023
+- Depende de: VISUX-005, VISUX-006
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Reordenar header, tabs, búsqueda y quick filters.
+2. Aplicar labels completos/abreviados/icon-only por density.
+3. Unificar handle con rail.
+4. Reducir contenedores decorativos redundantes.
+5. Mantener data-testid y API.
+
+## Acceptance
+
+- [ ] No se cortan Base/Custom/Auto.
+- [ ] La búsqueda permanece visible cuando corresponde.
+- [ ] El colapso no desplaza el papel.
+- [ ] No se reduce legibilidad para ganar espacio.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0628"></a>
+
+### 0628 — `.ai/scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `4.3 KB`
+- **SHA1 corto:** `773892f386`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-014
+state: backlog
+wave: W2
+priority: P1
+risk: medium
+owner: implementer
+model: Terra medium
+writer:
+readers: []
+dependsOn: [VISUX-013]
+refines: [COREUX-023]
+trace:
+  useCases: [LSB-003, LSB-004, LSB-005]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: left-sidebar
+  skills: [sisad-left-sidebar-catalog]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-014 — Cerrar búsqueda, filtros y selector de layout del catálogo
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Separar búsqueda, quick filters y layout sin que density altere el modelo.
+
+## Evidence
+
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-023
+- Depende de: VISUX-013
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir búsqueda normalizada.
+2. Persistir layout list/tiles/icons.
+3. Ocultar selector en rail y exponerlo al reabrir.
+4. Anunciar cantidad de resultados.
+5. Probar cero resultados y filtros combinados.
+
+## Acceptance
+
+- [ ] Layout y density son estados independientes.
+- [ ] Filtros producen conteo coherente.
+- [ ] No existe scroll horizontal.
+- [ ] Empty state es accionable.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0629"></a>
+
+### 0629 — `.ai/scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `45898b8522`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-015
+state: backlog
+wave: W2
+priority: P1
+risk: medium
+owner: ux-designer
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-014, VISUX-003]
+refines: [COREUX-023, COREUX-041]
+trace:
+  useCases: [LSB-006, LSB-007, LSB-008, LSB-009]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: left-sidebar
+  skills: [sisad-left-sidebar-catalog, sisad-tailwind-design-system]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-015 — Compactar grupos, cards, favoritos y owner tone del catálogo
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Aumentar densidad útil y reducir elementos repetidos sin perder descubribilidad.
+
+## Evidence
+
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-023, COREUX-041
+- Depende de: VISUX-014, VISUX-003
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir alturas por density.
+2. Mostrar favorito en hover/focus o cuando está activo.
+3. Separar owner accent de colores semánticos.
+4. Alinear icono, nombre y metadata.
+5. Probar labels largos e idiomas distintos.
+
+## Acceptance
+
+- [ ] Se ven más schemas sin sacrificar hit area.
+- [ ] Favorito no domina cada card.
+- [ ] Owner tone coincide con otras superficies.
+- [ ] Labels largos no rompen layout.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0630"></a>
+
+### 0630 — `.ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `a8ebf7124b`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-016
+state: backlog
+wave: W2
+priority: P1
+risk: high
+owner: schema-specialist
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-013, VISUX-015]
+refines: [COREUX-023, COREUX-036]
+trace:
+  useCases: [LSB-010, LSB-011, COL-012]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: schemas
+  skills: [sisad-schema-plugin, sisad-left-sidebar-catalog]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-016 — Cerrar custom fields, auto fields y catálogo de recipients
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Hacer que capacidades opcionales se descubran y funcionen mediante registries existentes.
+
+## Evidence
+
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-023, COREUX-036
+- Depende de: VISUX-013, VISUX-015
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx`
+- `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Verificar modal custom field y defaults.
+2. Definir empty/loading/error para custom y auto.
+3. Mostrar recipients solo cuando el modo lo necesita.
+4. No duplicar plugin registry.
+5. Probar single-user y multi-user.
+
+## Acceptance
+
+- [ ] Custom field creado aparece sin recargar.
+- [ ] Auto fields explican su origen.
+- [ ] Single-user no muestra colaboración innecesaria.
+- [ ] No hay lógica específica del host.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0631"></a>
+
+### 0631 — `.ai/scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `f8cde85588`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-017
+state: backlog
+wave: W2
+priority: P0
+risk: very-high
+owner: canvas-specialist
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-015, VISUX-012]
+refines: [COREUX-043]
+trace:
+  useCases: [LSB-007, LSB-011, LSB-012, SCH-020]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: canvas
+  skills: [sisad-canvas-interaction, sisad-schema-plugin]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-017 — Cerrar drag preview, drop setup y feedback de colocación
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Alinear drag desde catálogo, preview, setup modal, auto placement y error feedback.
+
+## Evidence
+
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-043
+- Depende de: VISUX-015, VISUX-012
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts`
+- `src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Caracterizar drag start/move/drop/cancel.
+2. Mostrar preview con type, owner y tamaño.
+3. Resolver setup previo solo para schemas que lo requieren.
+4. Explicar drop inválido, collision o falta de permiso.
+5. Probar touch/pointer y zoom.
+
+## Acceptance
+
+- [ ] No se inserta schema en drop inválido.
+- [ ] Preview coincide con resultado.
+- [ ] No se pierde selección previa sin razón.
+- [ ] No se toca Moveable/Selecto.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0632"></a>
+
+### 0632 — `.ai/scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.3 KB`
+- **SHA1 corto:** `4050188210`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-018
+state: backlog
+wave: W3
+priority: P0
+risk: high
+owner: ux-designer
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-005, VISUX-006]
+refines: [COREUX-024]
+trace:
+  useCases: [RSB-001, RSB-002, RSB-003, RSB-012]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: right-sidebar
+  skills: [sisad-right-sidebar-contract, sisad-responsive-ux]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-018 — Hacer responsive la navegación del RightSidebar
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Mostrar cuatro paneles sin truncar labels y sin competir con el botón de colapso.
+
+## Evidence
+
+- IMG-02
+- IMG-03
+- IMG-07
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-024
+- Depende de: VISUX-005, VISUX-006
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir metadata label/fullLabel/shortLabel/icon.
+2. Separar collapse handle del tablist.
+3. Aplicar full/short/icon-only por density.
+4. Implementar overflow accesible solo como último recurso.
+5. Probar idiomas con labels largos.
+
+## Acceptance
+
+- [ ] No aparece una pestaña reducida a una letra.
+- [ ] El tab activo es inequívoco.
+- [ ] Teclado opera tablist.
+- [ ] Collapse no roba ancho a tabs.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0633"></a>
+
+### 0633 — `.ai/scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `066925d435`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-019
+state: backlog
+wave: W3
+priority: P0
+risk: very-high
+owner: runtime-architect
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-018, VISUX-002]
+refines: [COREUX-024]
+trace:
+  useCases: [RSB-004, RSB-005, RSB-006, RSB-007, RSB-008, RSB-009, RSB-010, RSB-011]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: right-sidebar
+  skills: [sisad-right-sidebar-contract, sisad-behavior-traceability]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-019 — Formalizar panel registry, header contextual y scroll owner
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Separar registro de paneles, header, body y un único scroll owner por panel.
+
+## Evidence
+
+- IMG-02
+- IMG-06
+- IMG-08
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-024
+- Depende de: VISUX-018, VISUX-002
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Crear descriptor por panel con availability, icon, labels y renderer.
+2. Resolver context header por mode y scope.
+3. Dejar SidebarBody sin scroll cuando el panel posee viewport.
+4. Persistir scroll por panel.
+5. Ocultar overlays contextuales al cambiar de panel sin limpiar selection.
+
+## Acceptance
+
+- [ ] Un panel oculto no se enfoca.
+- [ ] No hay doble scrollbar.
+- [ ] El header no se trunca a texto inútil.
+- [ ] Volver a un panel restaura scroll.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0634"></a>
+
+### 0634 — `.ai/scrum/task-cards/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `a01a14551d`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-020
+state: backlog
+wave: W3
+priority: P0
+risk: high
+owner: implementer
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-019, VISUX-003, VISUX-004]
+refines: [COREUX-025]
+trace:
+  useCases: [LST-001, LST-002, LST-003, LST-004, LST-005, LST-006, LST-012]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: right-sidebar
+  skills: [sisad-right-sidebar-contract, sisad-action-state]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-020 — Compactar ListView y separar identidad, estados y acciones
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Reducir altura de filas y evitar chips/acciones repetidos sin perder información.
+
+## Evidence
+
+- IMG-02
+- IMG-03
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-025
+- Depende de: VISUX-019, VISUX-003, VISUX-004
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir anatomy de fila: drag, icon, identity, states, actions.
+2. Priorizar label visible y secundar key técnica.
+3. Reemplazar Asignado a ti repetido por owner accent/tooltip.
+4. Mover delete a hover/focus/menu.
+5. Crear densidades medibles.
+
+## Acceptance
+
+- [ ] La fila compacta no colisiona con readonly/lock.
+- [ ] Eliminar no domina visualmente.
+- [ ] La identidad es comprensible para usuario no técnico.
+- [ ] Se mantienen data attributes de selección y drag.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0635"></a>
+
+### 0635 — `.ai/scrum/task-cards/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `9438dc3677`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-021
+state: backlog
+wave: W3
+priority: P0
+risk: high
+owner: implementer
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-020, VISUX-004]
+refines: [COREUX-025, COREUX-042, COREUX-045]
+trace:
+  useCases: [LST-007, LST-008, LST-009, LST-010, LST-011]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: right-sidebar
+  skills: [sisad-canvas-interaction, sisad-command-history]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-021 — Cerrar selección, reorder, localizar y menú por fila
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Alinear selección Canvas↔ListView, drag reorder y acciones de fila.
+
+## Evidence
+
+- IMG-02
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-025, COREUX-042, COREUX-045
+- Depende de: VISUX-020, VISUX-004
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Caracterizar click, Cmd/Ctrl click, Shift y drag handle.
+2. Impedir que drag dispare click.
+3. Implementar localizar mediante scroll owner correcto.
+4. Derivar menú por fila del action registry.
+5. Probar undo de reorder/delete si está configurado.
+
+## Acceptance
+
+- [ ] Selección sincronizada en todas las superficies.
+- [ ] Reorder no cambia selección accidentalmente.
+- [ ] Localizar centra schema sin mover sidebar incorrecto.
+- [ ] Acciones respetan access state.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0636"></a>
+
+### 0636 — `.ai/scrum/task-cards/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `a09afa1abf`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-022
+state: backlog
+wave: W3
+priority: P0
+risk: very-high
+owner: runtime-architect
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-004, VISUX-020]
+refines: [COREUX-026]
+trace:
+  useCases: [COL-003, COL-004, COL-005, COL-011]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: assignments
+  skills: [sisad-recipient-assignment-policy, sisad-action-state]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-022 — Corregir disponibilidad y lifecycle de Reasignar responsable
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Permitir reasignación con más de un recipient realmente asignable y explicar cada estado disabled.
+
+## Evidence
+
+- IMG-02
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-026
+- Depende de: VISUX-004, VISUX-020
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/reassignActionState.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Cambiar umbral a assignableRecipientCount > 1.
+2. Resolver recipients asignables excluyendo disabled/copy-only/no permitido.
+3. Separar visible, enabled, executable y reason.
+4. Asegurar handler y superficie modal.
+5. Emitir command/event y actualizar snapshot.
+
+## Acceptance
+
+- [ ] Con dos recipients asignables la acción funciona.
+- [ ] Sin selección muestra motivo.
+- [ ] Sin permiso muestra motivo distinto.
+- [ ] Color/owner se actualizan en Canvas, lista e inspector.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0637"></a>
+
+### 0637 — `.ai/scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `c8bea70300`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-023
+state: backlog
+wave: W3
+priority: P0
+risk: high
+owner: schema-specialist
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-019, VISUX-004]
+refines: [COREUX-029, COREUX-030]
+trace:
+  useCases: [DTL-001, DTL-002, DTL-003, DTL-004, DTL-012]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: inspector
+  skills: [sisad-inspector-contract, sisad-schema-behavior-matrix]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-023 — Corregir header e identidad del DetailView
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Mostrar nombre, tipo, página, owner y estado de acceso de forma uniforme para todas las familias.
+
+## Evidence
+
+- IMG-05
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-029, COREUX-030
+- Depende de: VISUX-019, VISUX-004
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeader.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Probar identity widget por familia.
+2. Eliminar duplicidad input + botón Renombrar.
+3. Diferenciar En edición por ti, reservado por otra persona, readonly y posición fija.
+4. Derivar header desde schema access state.
+5. Asegurar labels localizados.
+
+## Acceptance
+
+- [ ] Signature no muestra nombre vacío si existe.
+- [ ] El header no dice Bloqueado por el usuario actual.
+- [ ] Renombrar tiene una sola interacción.
+- [ ] Acciones incompatibles no aparecen habilitadas.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0638"></a>
+
+### 0638 — `.ai/scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `4d9ee32b98`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-024
+state: backlog
+wave: W3
+priority: P0
+risk: very-high
+owner: schema-specialist
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-023]
+refines: [COREUX-029, COREUX-030, COREUX-032, COREUX-033]
+trace:
+  useCases: [DTL-005, DTL-006, DTL-007, DTL-008, DTL-009, DTL-010, DTL-011]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: inspector
+  skills: [sisad-inspector-contract, sisad-schema-family-refactor]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-024 — Reorganizar taxonomía, disclosure y widgets del DetailView
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Agrupar propiedades por identidad, contenido, reglas, interacción, visualización, datos, asignación y avanzado.
+
+## Evidence
+
+- IMG-05
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-029, COREUX-030, COREUX-032, COREUX-033
+- Depende de: VISUX-023
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/**`
+- `src/sisad-pdfme/config/InspectorConfigurationResolver.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir profile por familia y orden de secciones.
+2. Formalizar WidgetContract.
+3. Aplicar disclosure según frecuencia.
+4. Mover Variables Sample Data a contenido/datos y localizarlo.
+5. Mostrar reasons en widgets disabled.
+
+## Acceptance
+
+- [ ] Mismos conceptos aparecen en la misma sección.
+- [ ] Cada widget declara read/write/propertyPath.
+- [ ] Secciones avanzadas no saturan el panel.
+- [ ] Scroll estable al editar.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0639"></a>
+
+### 0639 — `.ai/scrum/task-cards/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `ea3c35f139`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-025
+state: backlog
+wave: W3
+priority: P0
+risk: high
+owner: runtime-architect
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-019, VISUX-004]
+refines: [COREUX-028]
+trace:
+  useCases: [CMT-001, CMT-002, CMT-003, CMT-004, CMT-005, CMT-006, CMT-007, CMT-008]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: right-sidebar
+  skills: [sisad-event-effect-contract, sisad-right-sidebar-contract]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-025 — Cerrar alcance y lifecycle del CommentsRail
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Diferenciar comentarios de documento, página y schema y conservar hilos en eventos/snapshot.
+
+## Evidence
+
+- IMG-06
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-028
+- Depende de: VISUX-019, VISUX-004
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx`
+- `src/sisad-pdfme/comments/index.ts`
+- `src/sisad-pdfme/contracts/comments.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Agregar scope explícito y target IDs.
+2. Derivar title, empty title y description del scope.
+3. Alinear add/reply/resolve/reopen con commands/events.
+4. Conservar draft al cambiar contexto según policy.
+5. Probar permisos y recipient visibility.
+
+## Acceptance
+
+- [ ] No se mezcla página con campo en el copy.
+- [ ] Agregar crea hilo en target correcto.
+- [ ] Eventos y snapshot conservan scope.
+- [ ] Empty state explica qué se comentará.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0640"></a>
+
+### 0640 — `.ai/scrum/task-cards/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `3ca140a8f6`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-026
+state: backlog
+wave: W3
+priority: P0
+risk: very-high
+owner: runtime-architect
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-019]
+refines: [COREUX-027, COREUX-046]
+trace:
+  useCases: [DOC-001, DOC-002, DOC-003, DOC-004, DOC-005, DOC-006, DOC-007, DOC-008, DOC-009, DOC-010, DOC-011, DOC-012]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: runtime-contracts
+  skills: [sisad-multi-document-routing, sisad-right-sidebar-contract]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-026 — Separar documento, página y acciones del DocumentsRail
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Representar jerarquía documento→páginas y eliminar affordances duplicados.
+
+## Evidence
+
+- IMG-07
+- IMG-08
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-027, COREUX-046
+- Depende de: VISUX-019
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx`
+- `src/sisad-pdfme/documents/index.ts`
+- `src/sisad-pdfme/react/SisadPdfmeDesigner.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir document items y page items.
+2. Subir PDF agrega documento; Nueva página agrega página al activo.
+3. Eliminar botón + ambiguo o convertirlo en menú explícito.
+4. Integrar contador en header.
+5. Cerrar delete/reorder/object URL lifecycle.
+
+## Acceptance
+
+- [ ] Documento y página no se confunden.
+- [ ] Cada acción tiene un resultado único.
+- [ ] Eliminar mantiene routing válido.
+- [ ] Form/Viewer reciben documento activo cuando corresponda.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0641"></a>
+
+### 0641 — `.ai/scrum/task-cards/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `164`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `7e030e91aa`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-027
+state: backlog
+wave: W3
+priority: P1
+risk: medium
+owner: ux-designer
+model: Terra medium
+writer:
+readers: []
+dependsOn: [VISUX-019, VISUX-025, VISUX-026]
+refines: [COREUX-024, COREUX-027, COREUX-028, COREUX-030]
+trace:
+  useCases: [RSB-008, CMT-008, DOC-012, A11Y-011]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: right-sidebar
+  skills: [sisad-right-sidebar-contract, sisad-accessibility]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-027 — Unificar estados empty, loading, error y disabled del RightSidebar
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Aplicar un patrón común para paneles sin datos, cargando, con error o sin permisos.
+
+## Evidence
+
+- IMG-06
+- IMG-08
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-024, COREUX-027, COREUX-028, COREUX-030
+- Depende de: VISUX-019, VISUX-025, VISUX-026
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir state model con title, description, action y reason.
+2. Evitar grandes áreas vacías sin contexto.
+3. Conservar foco y scroll.
+4. Usar copy específico del alcance.
+5. Probar con permisos y recursos faltantes.
+
+## Acceptance
+
+- [ ] Todos los paneles usan la misma primitive.
+- [ ] Empty no parece error.
+- [ ] Disabled explica causa.
+- [ ] Retry ejecuta handler real.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0642"></a>
+
+### 0642 — `.ai/scrum/task-cards/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `c5d3281cff`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-028
+state: backlog
+wave: W4
+priority: P0
+risk: very-high
+owner: schema-specialist
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-003, VISUX-004]
+refines: [COREUX-010, COREUX-041]
+trace:
+  useCases: [SCH-001, SCH-002, SCH-003, SCH-004, COL-008]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: schemas
+  skills: [sisad-schema-behavior-matrix, sisad-collaboration-assignments]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-028 — Unificar field chrome, owner tone y estados visuales
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Aplicar una salida visual única para owner, selection, hover, required, readonly, error y lock.
+
+## Evidence
+
+- IMG-03
+- IMG-05
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-010, COREUX-041
+- Depende de: VISUX-003, VISUX-004
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/schemas/shared/fieldChrome.ts`
+- `src/sisad-pdfme/schemas/shared/renderSchemaWithChrome.ts`
+- `src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir capas de color y prioridad.
+2. No usar owner color como error/semantic color.
+3. Consumir access state único.
+4. Alinear Canvas, ListView y DetailHeader.
+5. Probar contraste y impresión.
+
+## Acceptance
+
+- [ ] Estados son distinguibles sin depender solo de color.
+- [ ] Owner tone permanece estable.
+- [ ] Approve/Decline conservan semántica.
+- [ ] No hay lógica visual duplicada por familia.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0643"></a>
+
+### 0643 — `.ai/scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.3 KB`
+- **SHA1 corto:** `bec1bafbcb`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-029
+state: backlog
+wave: W4
+priority: P0
+risk: high
+owner: schema-specialist
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-024, VISUX-028]
+refines: [COREUX-037]
+trace:
+  useCases: [SCH-005, SCH-006, SCH-007, SCH-018, SCH-019]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: schemas
+  skills: [sisad-schema-family-refactor, sisad-inspector-contract]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-029 — Cerrar perfiles text-like, number y date/time
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Alinear defaults, inspector, Designer, Form, Viewer, PDF y validación de campos de texto/número/fecha.
+
+## Evidence
+
+- IMG-03
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-037
+- Depende de: VISUX-024, VISUX-028
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/schemas/textLike/**`
+- `src/sisad-pdfme/schemas/text/**`
+- `src/sisad-pdfme/schemas/number/**`
+- `src/sisad-pdfme/schemas/date/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Crear matriz de propiedades por tipo.
+2. Unificar labels y locale.
+3. Validar placeholder, formatos, min/max y timezone.
+4. Probar readonly/required/error.
+5. Añadir round-trip snapshot.
+
+## Acceptance
+
+- [ ] Mismo valor se ve igual en runtimes.
+- [ ] Fechas no mezclan 12/24h sin configuración.
+- [ ] Variables se localizan.
+- [ ] No se pierden propiedades al guardar.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0644"></a>
+
+### 0644 — `.ai/scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `167`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `27f699f37f`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-030
+state: backlog
+wave: W4
+priority: P0
+risk: very-high
+owner: schema-specialist
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-024, VISUX-028]
+refines: [COREUX-034, COREUX-038]
+trace:
+  useCases: [SCH-008, SCH-009, SCH-010, SCH-011, SCH-020]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: schemas
+  skills: [sisad-schema-family-refactor, sisad-canvas-interaction]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-030 — Cerrar select, checkbox, radio y option groups
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Hacer visibles y operables los grupos, opciones, root selection y botón agregar.
+
+## Evidence
+
+- IMG-03
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-034, COREUX-038
+- Depende de: VISUX-024, VISUX-028
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/schemas/select/**`
+- `src/sisad-pdfme/schemas/checkbox/**`
+- `src/sisad-pdfme/schemas/checkboxGroup/**`
+- `src/sisad-pdfme/schemas/radioGroup/**`
+- `src/sisad-pdfme/schemas/options/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir root/option/add DOM contract.
+2. Aumentar hit area sin agrandar indicador.
+3. Diferenciar Designer double-click de Form click.
+4. Unificar editor de opciones.
+5. Probar vertical, horizontal, add/remove/reorder.
+
+## Acceptance
+
+- [ ] El grupo se percibe como grupo.
+- [ ] Click selecciona root en Designer.
+- [ ] Form cambia valor sin seleccionar chrome.
+- [ ] PDF representa el valor correcto.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0645"></a>
+
+### 0645 — `.ai/scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `163`
+- **Tamaño original:** `4.3 KB`
+- **SHA1 corto:** `b1f5fd87cd`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-031
+state: backlog
+wave: W4
+priority: P0
+risk: very-high
+owner: schema-specialist
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-023, VISUX-024, VISUX-028]
+refines: [COREUX-035, COREUX-039]
+trace:
+  useCases: [SCH-012, SCH-013, DTL-002, DTL-008]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: schemas
+  skills: [sisad-inspector-contract, sisad-runtime-parity]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-031 — Hacer el inspector de firma dependiente del modo
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Derivar capacidades y widgets de draw, image, provider y certificado sin estados contradictorios.
+
+## Evidence
+
+- IMG-05
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-035, COREUX-039
+- Depende de: VISUX-023, VISUX-024, VISUX-028
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/schemas/signature/**`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Modelar modos de firma.
+2. Derivar capacidades por modo y provider.
+3. Ocultar o agrupar overrides avanzados.
+4. Corregir nombre/guideText en Designer.
+5. Diferenciar dateSigned readonly y lock.
+
+## Acceptance
+
+- [ ] Firma dibujada no muestra permitir dibujar apagado sin explicación.
+- [ ] P12 se presenta como certificado digital.
+- [ ] GuideText se ve en Canvas.
+- [ ] Provider ausente produce reason.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0646"></a>
+
+### 0646 — `.ai/scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `163`
+- **Tamaño original:** `4.2 KB`
+- **SHA1 corto:** `ccf81c67ff`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-032
+state: backlog
+wave: W4
+priority: P0
+risk: high
+owner: schema-specialist
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-024, VISUX-028]
+refines: [COREUX-040]
+trace:
+  useCases: [SCH-014, SCH-015, SCH-016, SCH-018, SCH-019]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: schemas
+  skills: [sisad-schema-family-refactor, sisad-runtime-parity]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-032 — Cerrar action schemas: attachment, note, approve y decline
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Alinear chrome, estados, inspector, runtime, eventos y PDF de schemas de acción.
+
+## Evidence
+
+- IMG-03
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-040
+- Depende de: VISUX-024, VISUX-028
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/schemas/actions/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir properties por acción.
+2. Attachment muestra límites y estado.
+3. Note mejora contraste.
+4. Approve/Decline conservan semantic tone + owner accent.
+5. Probar eventos y PDF.
+
+## Acceptance
+
+- [ ] Acciones no son editables en Viewer.
+- [ ] Attachment no parece botón operativo en Designer si no corresponde.
+- [ ] Note es legible.
+- [ ] Snapshot conserva propiedades.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0647"></a>
+
+### 0647 — `.ai/scrum/task-cards/VISUX-033-cerrar-media-barcode-table-y-shapes.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.2 KB`
+- **SHA1 corto:** `229fb60bc7`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-033
+state: backlog
+wave: W4
+priority: P1
+risk: high
+owner: schema-specialist
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-024, VISUX-028]
+refines: [COREUX-040]
+trace:
+  useCases: [SCH-017, SCH-018, SCH-019]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: schemas
+  skills: [sisad-schema-family-refactor, sisad-runtime-parity]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-033 — Cerrar media, barcode, table y shapes
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Asegurar sizing, placeholder, inspector y paridad de schemas visuales complejos.
+
+## Evidence
+
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-040
+- Depende de: VISUX-024, VISUX-028
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/schemas/graphics/**`
+- `src/sisad-pdfme/schemas/barcodes/**`
+- `src/sisad-pdfme/schemas/tables/**`
+- `src/sisad-pdfme/schemas/shapes/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Caracterizar natural size y resize.
+2. Validar assets y errores.
+3. Alinear preview Designer/Form/Viewer.
+4. Probar tables grandes.
+5. Probar PDF y snapshot.
+
+## Acceptance
+
+- [ ] No hay salto visual entre runtimes.
+- [ ] Assets inválidos muestran estado.
+- [ ] Resize conserva proporción cuando aplica.
+- [ ] PDF coincide con preview.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0648"></a>
+
+### 0648 — `.ai/scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `b8bb7ab15f`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-034
+state: backlog
+wave: W4
+priority: P1
+risk: medium
+owner: ux-designer
+model: Terra medium
+writer:
+readers: []
+dependsOn: [VISUX-003, VISUX-023, VISUX-024]
+refines: [COREUX-029, COREUX-030, COREUX-056]
+trace:
+  useCases: [LST-002, DTL-005, SCH-017]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: ux-design
+  skills: [sisad-accessibility, sisad-inspector-contract]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-034 — Normalizar i18n, labels técnicos y modo avanzado
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Eliminar mezclas inglés/español y reservar keys técnicas para modo avanzado.
+
+## Evidence
+
+- IMG-02
+- IMG-05
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-029, COREUX-030, COREUX-056
+- Depende de: VISUX-003, VISUX-023, VISUX-024
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/i18n.ts`
+- `src/sisad-pdfme/schemas/**/propPanel.*`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Inventariar strings sin i18n.
+2. Priorizar label visible.
+3. Definir technical mode para key, provider IDs y detalles.
+4. Renombrar Variables Sample Data y P12 en UI.
+5. Probar fallback de idioma.
+
+## Acceptance
+
+- [ ] Interfaz española no mezcla labels ingleses salvo contenido de fixture.
+- [ ] Key técnica no domina la fila.
+- [ ] No se cambian valores persistidos sin migración.
+- [ ] Strings tienen claves estables.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0649"></a>
+
+### 0649 — `.ai/scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `ad13220a99`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-035
+state: backlog
+wave: W4
+priority: P0
+risk: very-high
+owner: qa-reviewer
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-029, VISUX-030, VISUX-031, VISUX-032, VISUX-033]
+refines: [COREUX-049, COREUX-050]
+trace:
+  useCases: [DTL-009, DTL-010, SCH-018, SCH-019, RUN-001, RUN-002, RUN-003, RUN-004, RUN-005, RUN-006, RUN-007, RUN-008, RUN-009, RUN-010]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: runtime-contracts
+  skills: [sisad-form-viewer-parity, sisad-snapshot-compatibility]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-035 — Probar paridad propiedad→runtimes→PDF→snapshot
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Verificar que cada propiedad visible del inspector se conserva y produce el mismo resultado en todas las superficies.
+
+## Evidence
+
+- IMG-05
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-049, COREUX-050
+- Depende de: VISUX-029, VISUX-030, VISUX-031, VISUX-032, VISUX-033
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `tests/unit/sisad-pdfme/schemas/**`
+- `tests/integration/**`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Crear matriz por familia.
+2. Probar read/write del widget.
+3. Renderizar Designer, Form y Viewer.
+4. Generar PDF focal.
+5. Serializar/restaurar snapshot.
+
+## Acceptance
+
+- [ ] 100% de widgets visibles tienen prueba de round-trip.
+- [ ] No hay propiedad solo decorativa.
+- [ ] Readonly/required/owner coinciden.
+- [ ] Issues se reportan en tipos desconocidos.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0650"></a>
+
+### 0650 — `.ai/scrum/task-cards/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `ef41c01aad`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-036
+state: backlog
+wave: W4
+priority: P0
+risk: high
+owner: canvas-specialist
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-030, VISUX-004]
+refines: [COREUX-034, COREUX-038, COREUX-042]
+trace:
+  useCases: [SCH-010, SCH-011, LST-007]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: canvas
+  skills: [sisad-canvas-interaction, sisad-schema-behavior-matrix]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-036 — Cerrar selección y edición de grupos de opciones
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Asegurar que root, opciones y botón agregar no compitan con selección del canvas.
+
+## Evidence
+
+- IMG-03
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-034, COREUX-038, COREUX-042
+- Depende de: VISUX-030, VISUX-004
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts`
+- `src/sisad-pdfme/schemas/groupSchemaRender.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir targets seleccionables.
+2. Click option en Designer selecciona root.
+3. Doble click cambia valor solo cuando corresponde.
+4. Botón add no inicia drag/selection.
+5. Probar multi-select y delete de grupo.
+
+## Acceptance
+
+- [ ] Opciones internas no se transforman como schemas independientes.
+- [ ] Root recibe handles.
+- [ ] Add option mantiene IDs.
+- [ ] Form mantiene comportamiento interactivo.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0651"></a>
+
+### 0651 — `.ai/scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.6 KB`
+- **SHA1 corto:** `2576df6fc4`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-037
+state: backlog
+wave: W5
+priority: P0
+risk: very-high
+owner: runtime-architect
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-004, VISUX-022, VISUX-028]
+refines: [COREUX-010, COREUX-026, COREUX-033]
+trace:
+  useCases: [COL-001, COL-002, COL-003, COL-004, COL-005, COL-006, COL-007, COL-008, COL-009, COL-010, COL-011, COL-012, DTL-004, LST-004]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: assignments
+  skills: [sisad-collaboration-assignments, sisad-action-state]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-037 — Unificar asignación, reserva de edición, readonly y posición fija
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Producir un SchemaAccessState único y labels distintos para cada concepto.
+
+## Evidence
+
+- IMG-05
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-010, COREUX-026, COREUX-033
+- Depende de: VISUX-004, VISUX-022, VISUX-028
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/collaboration/**`
+- `src/sisad-pdfme/ui/collaboration/schemaRuntimeAccess.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/accessPolicy.ts`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir owner/assignment/session user.
+2. Definir readOnly/objectLocked/editReservation/positionFixed.
+3. Resolver locked-by-me/other.
+4. Consumir estado en Canvas, ListView, DetailView y actions.
+5. Probar cambio de recipient y permisos.
+
+## Acceptance
+
+- [ ] Bloqueado por alice no aparece si Alice es la sesión actual y posee reserva propia.
+- [ ] Fijar posición no se confunde con edición.
+- [ ] Actions tienen paridad.
+- [ ] Snapshot conserva estados.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0652"></a>
+
+### 0652 — `.ai/scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `4a0d5b5aee`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-038
+state: backlog
+wave: W5
+priority: P0
+risk: very-high
+owner: runtime-architect
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-026, VISUX-007]
+refines: [COREUX-046, COREUX-047]
+trace:
+  useCases: [DOC-001, DOC-002, DOC-003, DOC-004, DOC-005, DOC-006, DOC-007, DOC-008, DOC-009, DOC-010, DOC-011, DOC-012, LAY-003, CTL-003, RUN-005]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: runtime-contracts
+  skills: [sisad-multi-document-routing, sisad-snapshot-compatibility]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-038 — Cerrar routing multidocumento y navegación por página
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Mantener documentId, pageNumber, activeDocumentId, selection, zoom y scroll coherentes.
+
+## Evidence
+
+- IMG-07
+- IMG-08
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-046, COREUX-047
+- Depende de: VISUX-026, VISUX-007
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/documents/index.ts`
+- `src/sisad-pdfme/ui/components/UnitPager.tsx`
+- `src/sisad-pdfme/react/SisadPdfmeDesigner.tsx`
+- `src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Definir fuente de template por workspace.
+2. Agregar navegación document/page.
+3. Persistir viewport por documento según policy.
+4. Actualizar routing al reorder/delete.
+5. Probar reload snapshot.
+
+## Acceptance
+
+- [ ] No hay schemas huérfanos.
+- [ ] Cambiar documento muestra su template correcto.
+- [ ] Pager muestra total correcto.
+- [ ] Form/Viewer mantienen documento activo.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0653"></a>
+
+### 0653 — `.ai/scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `166`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `63dea93c73`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-039
+state: backlog
+wave: W5
+priority: P0
+risk: very-high
+owner: runtime-architect
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-035, VISUX-038]
+refines: [COREUX-049, COREUX-051]
+trace:
+  useCases: [RUN-001, RUN-002, RUN-003, RUN-004, RUN-005, RUN-006, RUN-007, RUN-008, RUN-009, RUN-010, SCH-019, DOC-011]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: runtimes
+  skills: [sisad-form-viewer-parity, sisad-responsive-ux]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-039 — Cerrar paridad visual de Designer, Form y Viewer
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Mantener valores, ownership, readonly, documentos y responsive sin chrome incorrecto.
+
+## Evidence
+
+- IMG-03
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-049, COREUX-051
+- Depende de: VISUX-035, VISUX-038
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/Designer.tsx`
+- `src/sisad-pdfme/ui/Form.tsx`
+- `src/sisad-pdfme/ui/Viewer.tsx`
+- `src/sisad-pdfme/react/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Crear fixtures compartidos.
+2. Validar interacción permitida por modo.
+3. Eliminar inputs técnicos visibles en Viewer.
+4. Probar documento activo y recipients.
+5. Comparar screenshot y DOM state.
+
+## Acceptance
+
+- [ ] Designer edita estructura; Form valores; Viewer solo lectura.
+- [ ] No hay chrome de diseño en runtimes finales.
+- [ ] Values coinciden.
+- [ ] No hay remount al cambiar paneles.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0654"></a>
+
+### 0654 — `.ai/scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `172`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `a1e3b5b6e5`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-040
+state: backlog
+wave: W5
+priority: P0
+risk: high
+owner: accessibility
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-006, VISUX-010, VISUX-018, VISUX-039]
+refines: [COREUX-051]
+trace:
+  useCases: [A11Y-001, A11Y-002, A11Y-003, A11Y-004, A11Y-005, A11Y-006, A11Y-007, A11Y-008, A11Y-009, A11Y-010, A11Y-011, A11Y-012, LAY-007, LAY-008, LAY-009]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: testing
+  skills: [sisad-accessibility, sisad-responsive-ux]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-040 — Cerrar responsive, touch, teclado y accesibilidad integral
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Hacer operables todas las superficies con teclado, touch y lector de pantalla.
+
+## Evidence
+
+- IMG-01
+- IMG-02
+- IMG-03
+- IMG-04
+- IMG-05
+- IMG-06
+- IMG-07
+- IMG-08
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-051
+- Depende de: VISUX-006, VISUX-010, VISUX-018, VISUX-039
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/ui/components/**`
+- `tests/e2e/**`
+- `tests/unit/sisad-pdfme/ui/**`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Crear matriz keyboard/touch.
+2. Validar tabs, menús, modales, drag alternatives y focus restore.
+3. Aplicar hit areas.
+4. Probar reduced motion y contraste.
+5. Validar mobile/tablet layouts.
+
+## Acceptance
+
+- [ ] No hay trampas de foco.
+- [ ] Todos los iconos tienen nombre.
+- [ ] Touch puede seleccionar y abrir paneles.
+- [ ] Estados se anuncian.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0655"></a>
+
+### 0655 — `.ai/scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `165`
+- **Tamaño original:** `4.3 KB`
+- **SHA1 corto:** `349a067be6`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-041
+state: backlog
+wave: W5
+priority: P0
+risk: very-high
+owner: performance
+model: Sol high
+writer:
+readers: []
+dependsOn: [VISUX-005, VISUX-038, VISUX-039]
+refines: [COREUX-052]
+trace:
+  useCases: [RUN-010, LAY-002, QLT-001]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: runtime
+  skills: [sisad-react-performance, sisad-controller-parity]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-041 — Estabilizar rendimiento y evitar remounts presentacionales
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Conservar engine, EventHub, selection y viewport durante cambios visuales.
+
+## Evidence
+
+- IMG-01
+- IMG-04
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-052
+- Depende de: VISUX-005, VISUX-038, VISUX-039
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `src/sisad-pdfme/react/useSisadPdfmeConfigService.ts`
+- `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts`
+- `src/sisad-pdfme/ui/components/Designer/index.tsx`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Instrumentar identidades.
+2. Probar rerenders por sidebars, tabs, inputs y recipient.
+3. Memoizar config/resolvers por campos.
+4. Evitar clones profundos innecesarios.
+5. Medir templates grandes.
+
+## Acceptance
+
+- [ ] Engine/EventHub conservan identidad en cambios presentacionales.
+- [ ] No se pierden selection/zoom/scroll.
+- [ ] No hay efectos repetidos.
+- [ ] Rendimiento queda documentado.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0656"></a>
+
+### 0656 — `.ai/scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `173`
+- **Tamaño original:** `4.5 KB`
+- **SHA1 corto:** `87e52cd395`
+- **Estado:** `completo`
+
+```markdown
+---
+id: VISUX-042
+state: backlog
+wave: W6
+priority: P0
+risk: high
+owner: qa-reviewer
+model: Terra high
+writer:
+readers: []
+dependsOn: [VISUX-035, VISUX-040, VISUX-041]
+refines: [COREUX-053, COREUX-054, COREUX-055, COREUX-056]
+trace:
+  useCases: [QLT-001, QLT-002, QLT-003, QLT-004, QLT-005, QLT-006, QLT-007, QLT-008, QLT-009, QLT-010, QLT-011, QLT-012]
+  behaviors: []
+  methods: []
+  events: []
+  effects: []
+context:
+  route: testing
+  skills: [sisad-visual-regression, sisad-testing-pyramid, sisad-quality-gates]
+  requiredSymbols: []
+  forbiddenPaths:
+    - src/examples/** salvo tests de integración explícitos
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
+    - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
+    - .tailwind-migration-backups/**
+  maxFiles: 8
+  maxTokens: 14000
+---
+
+# VISUX-042 — Crear suite visual, gates, documentación y release
+
+## Activation
+
+Mantener en Backlog hasta liberar WIP y comprobar que ninguna task `COREUX-*`
+relacionada tiene claim activo sobre los mismos archivos.
+
+Antes de activar, fusionar estos criterios en la fuente Scrum vigente y
+registrar un solo writer/worktree.
+
+## Objective
+
+Cerrar el programa con pruebas unitarias, contractuales, Playwright, regresión visual y documentación.
+
+## Evidence
+
+- IMG-01
+- IMG-02
+- IMG-03
+- IMG-04
+- IMG-05
+- IMG-06
+- IMG-07
+- IMG-08
+- IMG-09
+
+Fuentes de apoyo:
+
+- `reports/visual-behavior/01-SCREENSHOT-AUDIT.md`
+- `reports/visual-behavior/02-USE-CASE-MATRIX.md`
+- `reports/visual-behavior/03-COMPONENT-MATRIX.md`
+
+## Related work
+
+- Refina: COREUX-053, COREUX-054, COREUX-055, COREUX-056
+- Depende de: VISUX-035, VISUX-040, VISUX-041
+
+No crear una implementación paralela si la responsabilidad ya existe.
+
+## Allowed files
+
+- `tests/**`
+- `docs/**`
+- `reports/visual-behavior/**`
+- `package.json`
+
+Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
+commit; dividir la task si el cambio supera un dominio.
+
+## Forbidden paths
+
+- `src/examples/** salvo tests de integración explícitos`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
+- `.tailwind-migration-backups/**`
+
+## Invariants
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- Core nuevo en TypeScript/TSX.
+- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
+- No `setTimeout` para lifecycle.
+- No z-index arbitrario.
+- Un control visible tiene handler o reason.
+- Preservar `schemaUid`, `documentId`, `pageNumber`, owner, locks y snapshot.
+- No afirmar gates no ejecutados.
+
+## Characterization test
+
+1. Registrar `pwd`, rama, worktree, commit base y `git status --short`.
+2. Abrir máximo ocho archivos.
+3. Reproducir evidencia asociada.
+4. Crear test rojo o assertion geométrica antes del parche.
+5. Medir estado anterior y posterior.
+6. Registrar claim.
+
+## Steps
+
+1. Crear matriz de cobertura task→use case→test.
+2. Añadir screenshots por viewport y estado.
+3. Ejecutar gates completos.
+4. Actualizar docs de sidebars, inspector, schemas y runtimes.
+5. Preparar rollback y release notes.
+
+## Acceptance
+
+- [ ] Cero P0 abiertos.
+- [ ] Todos los casos críticos tienen test.
+- [ ] No hay drift entre docs y código.
+- [ ] Build/typecheck/lint/tests pasan o se reportan honestamente.
+
+## Gates
+
+``​`bash
+npm run typecheck
+npm run lint
+npm run build
+npx vitest run <tests-focales>
+git diff --check -- <archivos-tocados>
+``​`
+
+Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
+
+## Stop condition
+
+Detenerse y entregar handoff si:
+
+- aparece necesidad de tocar otro dominio;
+- se exceden cinco archivos productivos;
+- existe conflicto con otra claim;
+- la solución exige una API paralela;
+- no se puede escribir un test focal;
+- el cambio altera geometría/snapshot fuera del alcance;
+- se intenta corregir con CSS del host o z-index arbitrario.
+
+## Rollback
+
+Commit atómico. Revertir únicamente la task y conservar evidencia de
+caracterización. No borrar datos persistidos ni IDs para recuperar visuales.
+
+## Handoff
+
+``​`text
+task:
+claim/worktree:
+commit base:
+causa confirmada:
+archivos:
+cambios:
+use cases:
+commands/events/effects:
+gates passed:
+gates failed:
+gates not run:
+risks:
+rollback:
+next action:
+stop:
+``​`
+```
+
+<a id="file-0657"></a>
+
+### 0657 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -39844,9 +54233,9 @@ de cada módulo. Actualiza el módulo propietario y, si cambia una regla transve
 redistribuye una responsabilidad de `common`.
 ```
 
-<a id="file-0516"></a>
+<a id="file-0658"></a>
 
-### 0516 — `src/sisad-pdfme/common/README.md`
+### 0658 — `src/sisad-pdfme/common/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -39890,9 +54279,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Revisar alineación de `ownerRecipientIds` entre Zod (`string[]`) y utilidades que aceptan `string | string[]`.
 ```
 
-<a id="file-0517"></a>
+<a id="file-0659"></a>
 
-### 0517 — `src/sisad-pdfme/config/AGENTS.md`
+### 0659 — `src/sisad-pdfme/config/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -39909,9 +54298,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Tests de merge, migración y selectors.
 ```
 
-<a id="file-0518"></a>
+<a id="file-0660"></a>
 
-### 0518 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
+### 0660 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -40090,9 +54479,9 @@ Debe exponer utilidades puras consumibles por UI, generator, importadores o adap
 ``​`
 ```
 
-<a id="file-0519"></a>
+<a id="file-0661"></a>
 
-### 0519 — `src/sisad-pdfme/converter/README.md`
+### 0661 — `src/sisad-pdfme/converter/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -40145,9 +54534,9 @@ Este módulo no debe conocer:
 Debe mantenerse como utilidad técnica reutilizable por el runtime.
 ```
 
-<a id="file-0520"></a>
+<a id="file-0662"></a>
 
-### 0520 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
+### 0662 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `151`
@@ -40309,9 +54698,9 @@ Riesgos técnicos:
 ``​`
 ```
 
-<a id="file-0521"></a>
+<a id="file-0663"></a>
 
-### 0521 — `src/sisad-pdfme/runtime/README.md`
+### 0663 — `src/sisad-pdfme/runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -40337,9 +54726,9 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
 ```
 
-<a id="file-0522"></a>
+<a id="file-0664"></a>
 
-### 0522 — `src/sisad-pdfme/schemas/AGENTS.md`
+### 0664 — `src/sisad-pdfme/schemas/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -40356,9 +54745,9 @@ Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reg
 - No switches dispersos.
 ```
 
-<a id="file-0523"></a>
+<a id="file-0665"></a>
 
-### 0523 — `src/sisad-pdfme/shared/AGENTS.md`
+### 0665 — `src/sisad-pdfme/shared/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -40375,9 +54764,9 @@ Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reg
 - Roundtrip obligatorio.
 ```
 
-<a id="file-0524"></a>
+<a id="file-0666"></a>
 
-### 0524 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
+### 0666 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -40556,9 +54945,9 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 | types.ts | 147 | 161 |
 ```
 
-<a id="file-0525"></a>
+<a id="file-0667"></a>
 
-### 0525 — `src/sisad-pdfme/ui/README.md`
+### 0667 — `src/sisad-pdfme/ui/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -40607,9 +54996,655 @@ git diff -- src/sisad-pdfme/ui
 ``​`
 ```
 
-<a id="file-0526"></a>
+<a id="file-0668"></a>
 
-### 0526 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0668 — `.ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y-backup.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `cc9d4e6f36`
+- **Estado:** `completo`
+
+```markdown
+# AI8-001 — Congelar baseline y backup
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: context-engineering
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Auditar los 320 archivos IA actuales, tamaños, enlaces y estado antes de migrar.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0669"></a>
+
+### 0669 — `.ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path-v8.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `9fefa024ec`
+- **Estado:** `completo`
+
+```markdown
+# AI8-002 — Adoptar hot path V8
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: context-engineering
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Reemplazar AGENTS/START/ROUTER/BUDGETS tras review y corregir fuentes de estado.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0670"></a>
+
+### 0670 — `.ai/scrum/task-cards/backlog/AI8-003-migrar-conocimiento-a-jsonl.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `184c3d90ff`
+- **Estado:** `completo`
+
+```markdown
+# AI8-003 — Migrar conocimiento a JSONL
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: traceability
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Consolidar casos, behaviors, schemas, events, effects y methods en catálogos consultables.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0671"></a>
+
+### 0671 — `.ai/scrum/task-cards/backlog/AI8-005-compactar-routes.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `6610e6aa67`
+- **Estado:** `completo`
+
+```markdown
+# AI8-005 — Compactar routes
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: context-engineering
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Reducir routes solapadas a doce dominios canónicos con aliases.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0672"></a>
+
+### 0672 — `.ai/scrum/task-cards/backlog/AI8-006-compactar-skills-y-aliases.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `f61b8f015e`
+- **Estado:** `completo`
+
+```markdown
+# AI8-006 — Compactar skills y aliases
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: context-engineering
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Mantener dieciocho skills canónicas y mapear las existentes sin duplicar cuerpos.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0673"></a>
+
+### 0673 — `.ai/scrum/task-cards/backlog/AI8-007-consolidar-agentes.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `fca649a31b`
+- **Estado:** `completo`
+
+```markdown
+# AI8-007 — Consolidar agentes
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: worktree-coordination
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Reducir roles canónicos y separar manager/readers/writers.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0674"></a>
+
+### 0674 — `.ai/scrum/task-cards/backlog/AI8-008-generar-adapters-de-proveedor.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `798b1bad5e`
+- **Estado:** `completo`
+
+```markdown
+# AI8-008 — Generar adapters de proveedor
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: context-engineering
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Sincronizar Claude, Codex y Copilot desde registries.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0675"></a>
+
+### 0675 — `.ai/scrum/task-cards/backlog/AI8-009-migrar-memoria-y-ttl.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `eaf771e91c`
+- **Estado:** `completo`
+
+```markdown
+# AI8-009 — Migrar memoria y TTL
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: memory-gc
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Adoptar stable/current/handoff/decisions/risks/topics/cache.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0676"></a>
+
+### 0676 — `.ai/scrum/task-cards/backlog/AI8-010-migrar-lifecycle-de-tareas.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `ffcaf9b9a9`
+- **Estado:** `completo`
+
+```markdown
+# AI8-010 — Migrar lifecycle de tareas
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: worktree-coordination
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Backlog/archive JSONL; materializar solo Ready/In progress.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0677"></a>
+
+### 0677 — `.ai/scrum/task-cards/backlog/AI8-011-consolidar-contratos-de-usuarios-y-color.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `e2364bc0cb`
+- **Estado:** `completo`
+
+```markdown
+# AI8-011 — Consolidar contratos de usuarios y color
+
+## Metadata
+
+- state: backlog
+- route: recipients-ownership
+- skills: recipient-assignment
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Promover activeRecipient versus stored ownerColor a contrato canónico.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0678"></a>
+
+### 0678 — `.ai/scrum/task-cards/backlog/AI8-012-consolidar-matriz-de-schemas.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `6e0a6df8c7`
+- **Estado:** `completo`
+
+```markdown
+# AI8-012 — Consolidar matriz de schemas
+
+## Metadata
+
+- state: backlog
+- route: schemas
+- skills: schema-family
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Validar todas las familias y surfaces contra el catálogo V8.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0679"></a>
+
+### 0679 — `.ai/scrum/task-cards/backlog/AI8-013-inventariar-namespace-css.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `85a9baa99c`
+- **Estado:** `completo`
+
+```markdown
+# AI8-013 — Inventariar namespace CSS
+
+## Metadata
+
+- state: backlog
+- route: left-sidebar
+- skills: left-sidebar
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Mapear concatenaciones DESIGNER_CLASSNAME/UI_CLASSNAME y stable data hooks.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0680"></a>
+
+### 0680 — `.ai/scrum/task-cards/backlog/AI8-014-actualizar-trazabilidad.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `7af33f1443`
+- **Estado:** `completo`
+
+```markdown
+# AI8-014 — Actualizar trazabilidad
+
+## Metadata
+
+- state: backlog
+- route: quality
+- skills: traceability
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Promover relaciones candidate mediante tests/review y limpiar stale edges.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0681"></a>
+
+### 0681 — `.ai/scrum/task-cards/backlog/AI8-015-implementar-gates.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `f5b228b1ca`
+- **Estado:** `completo`
+
+```markdown
+# AI8-015 — Implementar gates
+
+## Metadata
+
+- state: backlog
+- route: quality
+- skills: quality-evidence
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Validar budgets, links, aliases, provider drift, memory y task manifests.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0682"></a>
+
+### 0682 — `.ai/scrum/task-cards/backlog/AI8-016-crear-evals-de-costo-y-precision.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `a2c978f714`
+- **Estado:** `completo`
+
+```markdown
+# AI8-016 — Crear evals de costo y precisión
+
+## Metadata
+
+- state: backlog
+- route: quality
+- skills: quality-evidence
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Medir files/tokens, route, skill, false green, color y schema retrieval.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0683"></a>
+
+### 0683 — `.ai/scrum/task-cards/backlog/AI8-017-migrar-coreux-decl-restore-name.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `4de5271ea5`
+- **Estado:** `completo`
+
+```markdown
+# AI8-017 — Migrar COREUX/DECL/RESTORE/NAME
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: worktree-coordination
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Convertir task cards frías en backlog/archive y conservar trace IDs.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0684"></a>
+
+### 0684 — `.ai/scrum/task-cards/backlog/AI8-018-rollout-y-eliminacion-controlada.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `2d4e506312`
+- **Estado:** `completo`
+
+```markdown
+# AI8-018 — Rollout y eliminación controlada
+
+## Metadata
+
+- state: backlog
+- route: ai-architecture
+- skills: memory-gc
+- maxFiles: 8
+- maxTokens: 12000
+- productCode: forbidden
+
+## Objective
+
+Retirar archivos obsoletos tras una versión de aliases y métricas estables.
+
+## Acceptance
+
+- [ ] No se sobrescribe Sprint, Claims, Current o Handoff sin merge.
+- [ ] Una fuente canónica por concepto.
+- [ ] Scripts/gates focales ejecutados.
+- [ ] Trace y rollback registrados.
+
+## Stop
+
+WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
+```
+
+<a id="file-0685"></a>
+
+### 0685 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -40696,9 +55731,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0527"></a>
+<a id="file-0686"></a>
 
-### 0527 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
+### 0686 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -40739,9 +55774,9 @@ Este bloque contiene la base visual y funcional usada por Preview/Form/Viewer en
 6. Validar persistencia/prefill/API del hook sin sobrescribir valores ya digitados por usuario.
 ```
 
-<a id="file-0528"></a>
+<a id="file-0687"></a>
 
-### 0528 — `src/sisad-pdfme/ui/components/README.md`
+### 0687 — `src/sisad-pdfme/ui/components/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -40780,9 +55815,9 @@ Este paquete contiene una copia completa de los archivos runtime/base UI enviado
 Este bloque es sensible porque conecta el runtime visual con plugins imperativos (`Renderer`), preprocesamiento de PDF (`Paper`/`Preview`) y sincronización de datos (`usePreviewRuntime`). La documentación refuerza que la geometría del canvas debe seguir controlada por schemas y servicios internos, no por estilos arbitrarios de plugins o hosts.
 ```
 
-<a id="file-0529"></a>
+<a id="file-0688"></a>
 
-### 0529 — `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md`
+### 0688 — `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -40799,9 +55834,9 @@ Este bloque es sensible porque conecta el runtime visual con plugins imperativos
 - Playwright focal.
 ```
 
-<a id="file-0530"></a>
+<a id="file-0689"></a>
 
-### 0530 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
+### 0689 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -40830,9 +55865,9 @@ Este bloque es sensible porque conecta el runtime visual con plugins imperativos
 - `Guides.tsx`, `Mask.tsx` y `Padding.tsx` quedan como slots visuales puros.
 ```
 
-<a id="file-0531"></a>
+<a id="file-0690"></a>
 
-### 0531 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
+### 0690 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -40867,9 +55902,9 @@ Este paquete contiene copias completas de los archivos del core visual/interacti
 Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ContentCustomForm`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
 ```
 
-<a id="file-0532"></a>
+<a id="file-0691"></a>
 
-### 0532 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md`
+### 0691 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -40886,9 +55921,9 @@ Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar 
 - No duplicar lógica de selección.
 ```
 
-<a id="file-0533"></a>
+<a id="file-0692"></a>
 
-### 0533 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
+### 0692 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -40914,9 +55949,9 @@ Se documentó el bloque de composición del sidebar derecho del diseñador SISAD
 Estos archivos deben mantenerse como capa de composición visual y navegación del sidebar. No deberían incorporar reglas internas del canvas, manipulación directa de Moveable/Selecto, ni persistencia de negocio. Las mutaciones deben seguir delegándose a callbacks, bridges o comandos ya recibidos por props.
 ```
 
-<a id="file-0534"></a>
+<a id="file-0693"></a>
 
-### 0534 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
+### 0693 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -40945,9 +55980,9 @@ Este paquete contiene versiones documentadas de los archivos del sidebar derecho
 - Se conservó la separación esperada: el sidebar orquesta vistas, pero no manipula canvas, Moveable, Selecto ni schemas directamente.
 ```
 
-<a id="file-0535"></a>
+<a id="file-0694"></a>
 
-### 0535 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
+### 0694 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -40979,9 +56014,9 @@ Se generó documentación para los 18 archivos de overlays del canvas:
 5. Documentar restricciones arquitectónicas importantes cuando aplicaba.
 ```
 
-<a id="file-0536"></a>
+<a id="file-0695"></a>
 
-### 0536 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
+### 0695 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -41027,9 +56062,9 @@ Este paquete contiene copias completas de los archivos enviados, con documentaci
 Estos módulos pertenecen a la capa visual/interactiva del canvas. Deben seguir sin contener reglas de negocio del host, lógica Uanataca, persistencia HTTP, manipulación directa de Moveable/Selecto ni hacks de z-index para ocultar problemas.
 ```
 
-<a id="file-0537"></a>
+<a id="file-0696"></a>
 
-### 0537 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
+### 0696 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -41082,9 +56117,9 @@ La documentación se agregó con JSDoc en puntos de extensión y mantenimiento:
 5. En colaboración, validar casos de owner único, multi-owner, shared, locked by me y locked by other.
 ```
 
-<a id="file-0538"></a>
+<a id="file-0697"></a>
 
-### 0538 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
+### 0697 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -41133,9 +56168,9 @@ Wrapper de compatibilidad para widgets imperativos de plugins. Se documentaron:
 - Confirmar que clicks dentro del inspector no disparen Selecto, Moveable ni drag/drop del canvas.
 ```
 
-<a id="file-0539"></a>
+<a id="file-0698"></a>
 
-### 0539 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
+### 0698 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -41166,9 +56201,9 @@ Este paquete contiene copias documentadas de tres archivos del inspector del dis
 - `WidgetRenderer` conserva el render imperativo en cada render para no cambiar el contrato heredado.
 ```
 
-<a id="file-0540"></a>
+<a id="file-0699"></a>
 
-### 0540 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
+### 0699 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -41210,9 +56245,9 @@ El bloque `ListView` representa la lista lateral derecha de campos/schemas del d
 - Si se cambia el DOM del row, preservar `data-testid="right-sidebar-field-item"` y el drag handle.
 ```
 
-<a id="file-0541"></a>
+<a id="file-0700"></a>
 
-### 0541 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
+### 0700 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`

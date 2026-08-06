@@ -1,258 +1,271 @@
-# Manual de portabilidad e integración de SISAD PDFME
+# SISAD PDFME — Manual maestro de implementación en otros proyectos
 
-**Componente portable:** `src/sisad-pdfme`  
-**Proyecto de origen:** `prueba-plugin`  
-**Destino:** otro proyecto React + Vite + TypeScript o JavaScript  
-**Objetivo:** copiar el componente completo y configurarlo sin importar internals del Designer.
+**Modelo de distribución documentado:** copia controlada de
+`src/sisad-pdfme`  
+**Destino recomendado:** React 18 + Vite + TypeScript + Tailwind CSS 3  
+**Fecha de referencia del código:** 2026-08-05
 
 ---
 
-# 1. Qué es SISAD PDFME
+# 1. Resultado que debe lograr la integración
 
-`src/sisad-pdfme` es una capa portable para diseñar, llenar, visualizar y generar documentos PDF con schemas configurables.
+Una aplicación consumidora debe limitarse a proporcionar:
 
-La fachada pública reúne:
-
-```txt
-Designer
-Form
-Viewer
-Provider React
-Controller
-Configuración
-Recipient Registry
-Adapters
-Schemas/plugins
-Documentos
-Comentarios
-Assignments
-Colaboración
-Snapshot
-Generator
-Converter
-CommandBus
-Eventos
+```text
+datos
++ configuración
++ adapters
++ handlers
++ instancia declarativa
++ montaje React
 ```
 
-El host externo debe aportar únicamente:
+La pantalla consumidora no debe reconstruir el canvas, la selección, Moveable,
+Selecto, los sidebars, DetailView, el controller ni el registro de recipients.
 
-```txt
-configuración
-template
-documentos
-destinatarios
-valores
-adapters
-callbacks
+La ruta principal es:
+
+```text
+defineSisadPdfmeInstance
+→ SisadPdfmeInstance
+→ resolveSisadPdfmeInstance
+→ Designer | Form | Viewer
 ```
 
-El host no debe importar directamente:
+---
 
-```txt
+# 2. API pública y fronteras
+
+## 2.1 API raíz recomendada
+
+```ts
+import {
+  SisadPdfmeInstance,
+  defineSisadPdfmeInstance,
+  createSisadPdfmeConfig,
+  createSisadPdfmeInstanceBundle,
+  serializeSisadPdfmeInstanceBundle,
+  parseSisadPdfmeInstanceBundle,
+  validateSisadPdfmeInstanceBundle,
+  restoreSisadPdfmeInstanceBundle,
+  type SisadPdfmeController,
+  type SisadPdfmeRecipient,
+  type SisadPdfmeDocument,
+} from '@/sisad-pdfme';
+```
+
+## 2.2 API avanzada documentada
+
+```ts
+import {
+  configurePdfjsWorker,
+  normalizeHostData,
+  createRecipientsAdapter,
+  createDocumentsAdapter,
+  createSignatureProviderAdapter,
+  createPersistenceAdapter,
+} from '@/sisad-pdfme/integration';
+```
+
+Use el entrypoint avanzado solo cuando la función todavía no esté promovida al
+entrypoint raíz.
+
+## 2.3 Internals prohibidos para el host
+
+```text
+src/sisad-pdfme/ui/components/**
+src/sisad-pdfme/ui/designerEngine.ts
+src/sisad-pdfme/ui/collaborationContext.ts
 Canvas
 Moveable
 Selecto
-LeftSidebar
 RightSidebar
 DetailView
-ListView
 SchemaAssignmentDialog
-servicios internos de selección
-servicios internos de geometría
 ```
 
 ---
 
-# 2. Qué carpeta copiar
+# 3. Copiar el componente
 
-Copiar completa:
+```bash
+mkdir -p /ruta/destino/src
 
-```txt
-src/sisad-pdfme/
+rsync -a \
+  /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ \
+  /ruta/destino/src/sisad-pdfme/
 ```
 
-No copiar solo `react`, `ui` o `schemas`, porque existen imports cruzados entre:
+No use `--delete` en la primera copia.
 
-```txt
-adapters
-assignments
-browser
-canvas
-collaboration
-commands
-comments
-common
-config
-context
-contracts
-converter
-documents
-editor
-externalForms
-generator
-integration
-react
-recipients
-runtime
-schemas
-shared
-snapshot
-ui
-pdf-lib
-```
+Copie la carpeta completa. No copie únicamente `react`, `integration`, `ui` o
+`schemas`, porque existen imports entre config, runtime, generator, converter,
+recipients, collaboration, documents y shared.
 
-También deben copiarse, cuando existan en el repositorio de origen:
+Revise también:
 
-```txt
+```text
+vite.config.js
+tsconfig.json
+tailwind.config.js
+postcss.config.js
 src/styles/tailwind.css
-tailwind.config.*
-postcss.config.*
-aliases de Vite
-paths de TypeScript
 ```
-
-El entrypoint React público importa:
-
-```ts
-import '../ui/styles/tokens.css';
-import '../ui/styles/sisad-pdfme.css';
-```
-
-Por tanto, el host que importa desde `src/sisad-pdfme/react` recibe el entrypoint visual del componente. Sin embargo, la mayor parte de la UI usa clases Tailwind dentro del código fuente, por lo que Tailwind debe escanear la carpeta copiada.
 
 ---
 
-# 3. Dependencias
+# 4. Dependencias
 
-Instalar como mínimo las dependencias importadas por el componente:
-
-```bash
-npm install \
-  react react-dom \
-  lucide-react antd air-datepicker \
-  pdf-lib @pdf-lib/fontkit pdfjs-dist@2.16.105 \
-  zod form-render date-fns \
-  @dnd-kit/core \
-  react-moveable react-selecto @scena/react-guides \
-  acorn yjs y-protocols hotkeys-js \
-  bwip-js dompurify
-```
-
-Dependencias que conviene declarar de forma directa para no depender de instalaciones transitivas:
-
-```bash
-npm install csstype estree gesto
-```
-
-Según la variante del repositorio también pueden ser necesarias:
+La entrega analizada utiliza, entre otras:
 
 ```bash
 npm install \
-  @pdf-lib/standard-fonts \
-  @pdf-lib/upng \
-  color pako node-html-better-parser
+  react@18.2.0 \
+  react-dom@18.2.0 \
+  antd@5.27.4 \
+  pdf-lib@1.17.1 \
+  pdfjs-dist@2.16.105 \
+  react-moveable@0.56.0 \
+  react-selecto@1.12.0 \
+  @scena/react-guides@0.28.2 \
+  @dnd-kit/core@6.0.8 \
+  @dnd-kit/sortable@10.0.0 \
+  bwip-js@4.8.0 \
+  date-fns@2.30.0 \
+  dompurify@3.3.1 \
+  fontkit@2.0.2 \
+  hotkeys-js@3.13.15 \
+  lucide-react@0.563.0 \
+  pako@2.1.0 \
+  yjs@13.6.30 \
+  y-protocols@1.0.7 \
+  zod@4.3.6
 ```
 
-## 3.1 PDF.js
+Para desarrollo:
 
-La implementación utiliza `pdfjs-dist@2.16.105`.
-
-El entrypoint público expone:
-
-```ts
-configurePdfjsLegacyWorker();
+```bash
+npm install -D \
+  vite@3.2.5 \
+  @vitejs/plugin-react@2.2.0 \
+  typescript@6.0.3 \
+  tailwindcss@3.4.19 \
+  postcss@8.5.16 \
+  autoprefixer@10.5.2 \
+  vitest@0.34.0 \
+  @playwright/test@1.58.2
 ```
 
-Llamarlo una vez al iniciar la aplicación cuando el entorno necesite registrar el worker legacy:
+Reglas:
 
-```ts
-import { configurePdfjsLegacyWorker } from '@/sisad-pdfme';
-
-configurePdfjsLegacyWorker();
-```
-
-No llamar esta función en cada render.
+- no instale una segunda copia de React;
+- conserve inicialmente `pdfjs-dist@2.16.105`;
+- compare siempre contra el `package.json` de la versión copiada;
+- resuelva conflictos de Ant Design, Tailwind o React antes de montar el
+  componente.
 
 ---
 
-# 4. Aliases requeridos
+# 5. Vite
 
-La implementación de origen utiliza aliases:
-
-```ts
-'@'                       -> src
-'@sisad-pdfme/common'     -> src/sisad-pdfme/common
-'@sisad-pdfme/ui'         -> src/sisad-pdfme/ui
-'@sisad-pdfme/generator'  -> src/sisad-pdfme/generator
-'@sisad-pdfme/schemas'    -> src/sisad-pdfme/schemas
-'@sisad-pdfme/converter'  -> src/sisad-pdfme/converter/index.browser.ts
-```
-
-Ejemplo de Vite:
-
-```ts
-import { fileURLToPath, URL } from 'node:url';
+```js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@sisad-pdfme/common': fileURLToPath(
-        new URL('./src/sisad-pdfme/common', import.meta.url),
+      '@': path.resolve(__dirname, 'src'),
+      '@sisad-pdfme/common': path.resolve(
+        __dirname,
+        'src/sisad-pdfme/common',
       ),
-      '@sisad-pdfme/ui': fileURLToPath(
-        new URL('./src/sisad-pdfme/ui', import.meta.url),
+      '@sisad-pdfme/ui': path.resolve(
+        __dirname,
+        'src/sisad-pdfme/ui',
       ),
-      '@sisad-pdfme/generator': fileURLToPath(
-        new URL('./src/sisad-pdfme/generator', import.meta.url),
+      '@sisad-pdfme/generator': path.resolve(
+        __dirname,
+        'src/sisad-pdfme/generator',
       ),
-      '@sisad-pdfme/schemas': fileURLToPath(
-        new URL('./src/sisad-pdfme/schemas', import.meta.url),
+      '@sisad-pdfme/schemas': path.resolve(
+        __dirname,
+        'src/sisad-pdfme/schemas',
       ),
-      '@sisad-pdfme/converter': fileURLToPath(
-        new URL('./src/sisad-pdfme/converter/index.browser.ts', import.meta.url),
-      ),
-      'pdf-lib': fileURLToPath(
-        new URL('./src/sisad-pdfme/pdf-lib/index.ts', import.meta.url),
+      '@sisad-pdfme/converter': path.resolve(
+        __dirname,
+        'src/sisad-pdfme/converter/index.browser.ts',
       ),
     },
   },
 });
 ```
 
-Ejemplo de `tsconfig.json`:
+## Fork local de `pdf-lib`
+
+El repositorio de origen puede resolver:
+
+```json
+"pdf-lib": ["./src/sisad-pdfme/pdf-lib/index.ts"]
+```
+
+Si esa carpeta forma parte de la entrega, cópiela y añada el alias equivalente
+en Vite. Si no existe, retire el alias local y valide el componente contra el
+paquete npm.
+
+---
+
+# 6. TypeScript
 
 ```json
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@sisad-pdfme/common": ["src/sisad-pdfme/common/index.ts"],
-      "@sisad-pdfme/ui": ["src/sisad-pdfme/ui/index.ts"],
-      "@sisad-pdfme/generator": ["src/sisad-pdfme/generator/index.ts"],
-      "@sisad-pdfme/schemas": ["src/sisad-pdfme/schemas/index.ts"],
-      "@sisad-pdfme/converter": [
-        "src/sisad-pdfme/converter/index.browser.ts"
+      "@/*": ["./src/*"],
+      "@sisad-pdfme/*": ["./src/sisad-pdfme/*"],
+      "@sisad-pdfme/common": [
+        "./src/sisad-pdfme/common/index.ts"
       ],
-      "pdf-lib": ["src/sisad-pdfme/pdf-lib/index.ts"]
+      "@sisad-pdfme/converter": [
+        "./src/sisad-pdfme/converter/index.browser.ts"
+      ],
+      "@sisad-pdfme/generator": [
+        "./src/sisad-pdfme/generator/index.ts"
+      ],
+      "@sisad-pdfme/schemas": [
+        "./src/sisad-pdfme/schemas/index.ts"
+      ],
+      "@sisad-pdfme/ui": [
+        "./src/sisad-pdfme/ui/index.ts"
+      ]
     }
   }
 }
 ```
 
+El repositorio original tiene `strict: false`. Un consumidor puede usar
+`strict: true`, pero deberá tipar sus adapters y handlers sin ocultar errores con
+`any`.
+
 ---
 
-# 5. Tailwind
-
-El proyecto de origen usa Tailwind-first y desactiva `preflight`.
-
-Ejemplo:
+# 7. Tailwind y estilos
 
 ```js
+/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     './index.html',
@@ -261,10 +274,14 @@ export default {
   corePlugins: {
     preflight: false,
   },
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 };
 ```
 
-El CSS raíz del host debe emitir Tailwind:
+Use una sola entrada:
 
 ```css
 @tailwind base;
@@ -272,518 +289,76 @@ El CSS raíz del host debe emitir Tailwind:
 @tailwind utilities;
 ```
 
-No excluyas `src/sisad-pdfme/**/*.{ts,tsx,js,jsx}` del escaneo.
+`preflight: false` evita alterar:
+
+- inputs;
+- Ant Design;
+- canvas;
+- PDF;
+- Moveable;
+- Selecto;
+- reglas de medidas del diseñador.
+
+El entrypoint React carga `tokens.css` y `sisad-pdfme.css`. En el estado
+analizado, `sisad-pdfme.css` está vacío y la mayoría del diseño vive en clases
+Tailwind dentro de TSX. Por eso la carpeta copiada debe estar incluida en
+`content`.
 
 ---
 
-# 6. API pública recomendada
+# 8. PDF.js
 
-Importar desde la fachada pública:
+Inicialice el worker durante el bootstrap:
 
 ```ts
-import {
-  SisadPdfmeProvider,
-  SisadPdfmeDesigner,
-  SisadPdfmeForm,
-  SisadPdfmeViewer,
-  createSisadPdfmeConfig,
-  configurePdfjsLegacyWorker,
-} from '@/sisad-pdfme';
+import { configurePdfjsWorker } from '@/sisad-pdfme/integration';
+
+await configurePdfjsWorker();
 ```
 
-También se exportan aliases de bajo nivel:
+El nombre actual es `configurePdfjsWorker`. No use
+`configurePdfjsLegacyWorker`.
 
-```txt
-Designer
-Form
-Viewer
-PdfEditor
-PdfFormView
-PdfViewer
-DesignerEngineBuilder
+En Vite el worker se resuelve mediante:
+
+```text
+pdfjs-dist/build/pdf.worker.min.js?url
 ```
-
-Para una integración nueva se recomiendan los wrappers:
-
-```txt
-SisadPdfmeDesigner
-SisadPdfmeForm
-SisadPdfmeViewer
-```
-
-No construir manualmente el engine desde el host salvo un caso avanzado y documentado.
 
 ---
 
-# 7. Integración mínima del Designer
+# 9. Estructura del proyecto consumidor
 
-```tsx
-import { useMemo, useState } from 'react';
-import {
-  SisadPdfmeDesigner,
-  createSisadPdfmeConfig,
-  type SisadPdfmeRecipient,
-  type SisadPdfmeDocument,
-} from '@/sisad-pdfme';
-
-export function DocumentDesigner() {
-  const [template, setTemplate] = useState(initialTemplate);
-
-  const recipients = useMemo<SisadPdfmeRecipient[]>(
-    () => [
-      {
-        id: 'recipient-1',
-        label: 'Cliente principal',
-        name: 'Cliente principal',
-        email: 'cliente@example.com',
-        color: '#2563EB',
-        role: 'signer',
-      },
-    ],
-    [],
-  );
-
-  const documents = useMemo<SisadPdfmeDocument[]>(
-    () => [
-      {
-        id: 'document-1',
-        label: 'Contrato principal',
-        name: 'Contrato principal',
-        pageCount: 3,
-        basePdf,
-        template,
-      },
-    ],
-    [template],
-  );
-
-  const config = useMemo(
-    () =>
-      createSisadPdfmeConfig({
-        runtime: {
-          mode: 'designer',
-        },
-        documents: {
-          mode: 'single',
-        },
-        collaboration: {
-          enabled: true,
-          canEditStructure: true,
-        },
-        assignment: {
-          enabled: true,
-        },
-      }),
-    [],
-  );
-
-  return (
-    <div className="h-[100dvh] min-h-0 overflow-hidden">
-      <SisadPdfmeDesigner
-        config={config}
-        template={template}
-        documents={documents}
-        recipients={recipients}
-        activeRecipientId="recipient-1"
-        onTemplateChange={setTemplate}
-        onSave={(nextTemplate) => {
-          console.log('Guardar en el host', nextTemplate);
-        }}
-      />
-    </div>
-  );
-}
+```text
+src/features/contracts/
+├── data/
+│   ├── recipients.data.ts
+│   ├── documents.data.ts
+│   └── templates.data.ts
+├── adapters/
+│   └── sisadPdfme.adapters.ts
+├── config/
+│   └── sisadPdfme.config.ts
+├── handlers/
+│   └── sisadPdfme.handlers.ts
+├── instances/
+│   ├── contractDesigner.instance.ts
+│   ├── contractForm.instance.ts
+│   └── contractViewer.instance.ts
+└── pages/
+    └── ContractDesignerPage.tsx
 ```
 
-## 7.1 Props públicas del Designer
-
-```ts
-type SisadPdfmeDesignerProps = {
-  config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
-  template: unknown;
-  documents?: unknown[];
-  recipients?: unknown[];
-  activeRecipientId?: string | null;
-
-  onTemplateChange?(template: unknown): void;
-  onSave?(template: unknown): void;
-  onControllerReady?(controller: SisadPdfmeController): void;
-
-  onRecipientsChange?(recipients: SisadPdfmeRecipient[]): void;
-  onActiveRecipientChange?(recipientId: string | null): void;
-  onAssignmentChange?(payload: SisadPdfmeAssignmentChangePayload): void;
-};
-```
-
-`template` es obligatorio.
+La página solo debe montar una instancia.
 
 ---
 
-# 8. Form y Viewer
+# 10. Contratos de datos
 
-## 8.1 Form
-
-`SisadPdfmeForm` renderiza campos interactivos para captura.
-
-```tsx
-<SisadPdfmeForm
-  config={config}
-  template={template}
-  values={values}
-  recipients={recipients}
-  activeRecipientId="recipient-1"
-  onInputChange={({ index, name, value }) => {
-    updateValue(index, name, value);
-  }}
-/>
-```
-
-Props relevantes:
+## Recipient
 
 ```ts
-config?
-template
-values?: unknown[]
-recipients?: unknown[]
-activeRecipientId?
-onInputChange?({ index, name, value })
-```
-
-## 8.2 Viewer
-
-`SisadPdfmeViewer` muestra el documento sin edición de datos:
-
-```tsx
-<SisadPdfmeViewer
-  config={config}
-  template={template}
-  inputs={values}
-  recipients={recipients}
-  activeRecipientId="recipient-1"
-/>
-```
-
-## 8.3 Selección correcta del wrapper
-
-No cambiar un Designer montado a Viewer modificando solamente:
-
-```ts
-runtime.mode
-```
-
-Usar el wrapper correcto:
-
-```txt
-diseño     → SisadPdfmeDesigner
-captura    → SisadPdfmeForm
-solo vista → SisadPdfmeViewer
-```
-
-`runtime.mode` sigue participando en opciones y clasificación de cambios, pero no sustituye la selección del wrapper.
-
----
-
-# 9. Modelo mental de configuración
-
-Cada capacidad se evalúa con estados diferentes:
-
-```txt
-registered → existe en el core o plugin
-supported  → el runtime actual la soporta
-enabled    → su lógica está activada
-visible    → su representación visual se muestra
-permitted  → los permisos permiten usarla
-available  → el contexto permite usarla
-active     → está activa en este momento
-executable → puede ejecutarse
-reason     → motivo estable de bloqueo
-sources    → rutas de config que participaron
-```
-
-## 9.1 Activar no es lo mismo que mostrar
-
-Ejemplo:
-
-```ts
-assignment: {
-  enabled: true,
-},
-visibility: {
-  actions: {
-    reassign: false,
-  },
-},
-```
-
-Resultado conceptual:
-
-```txt
-la capacidad de asignación está activada
-el botón Reasignar está oculto
-la API o CommandBus todavía puede tener la capacidad disponible
-```
-
-## 9.2 Mostrar deshabilitado
-
-Una acción puede ser visible pero no ejecutable:
-
-```txt
-visible=true
-executable=false
-reason='selection-required'
-```
-
-La UI puede mostrar el botón deshabilitado con un tooltip explicativo.
-
----
-
-# 10. Funcionalidades principales
-
-## 10.1 Canvas
-
-Incluye:
-
-```txt
-selección simple
-selección múltiple
-Selecto
-Moveable
-drag
-resize
-rotate
-snap lines
-guides
-limpiar selección al hacer clic vacío
-suspensión durante modales
-```
-
-Configuración principal:
-
-```ts
-canvas: {
-  enabled: true,
-  selecto: true,
-  moveable: true,
-  snapLines: true,
-  guides: true,
-  emptyClickClearsSelection: true,
-  multiSelect: true,
-  platformSelection: 'auto',
-  suspendWhenModalOpen: true,
-  resetInteractionOnModalClose: true,
-}
-```
-
-No desactives `canvas.enabled` esperando conservar Designer funcional.
-
-## 10.2 Sidebars
-
-Sidebar izquierdo:
-
-```txt
-catálogo
-búsqueda
-layouts list/tiles/icons
-schemas estándar
-```
-
-Sidebar derecho:
-
-```txt
-fields
-detail
-comments
-documents
-```
-
-La visibilidad de un panel y su habilitación se controlan en rutas diferentes.
-
-## 10.3 Recipients
-
-El Recipient Registry centraliza:
-
-```txt
-destinatarios
-destinatario activo
-colores
-permisos
-snapshot de recipients
-resolución del owner
-```
-
-Registrar recipients una sola vez mediante props o adapter.
-
-No duplicarlos manualmente en:
-
-```txt
-collaboration.users
-runtimeOptions
-engine internals
-schemas decorados por el host
-```
-
-## 10.4 Assignment
-
-Permite cambiar owner/responsable de uno o varios schemas.
-
-Para mostrar y ejecutar Reasignar normalmente se requiere:
-
-```txt
-assignment.enabled = true
-visibility.actions.reassign = true
-collaboration.canEditStructure = true
-selección no vacía
-recipients disponibles
-```
-
-## 10.5 Colaboración
-
-Controla:
-
-```txt
-vista global
-edición estructural
-owner activo
-apariencia por destinatario
-locks
-```
-
-La colaboración no registra por sí sola servicios remotos. El host debe implementar sincronización o persistencia externa cuando sea necesaria.
-
-## 10.6 Documentos
-
-Soporta:
-
-```txt
-single
-multi
-routing de schema por documento y página
-documento activo interno o controlado por host
-```
-
-En multi-documento, cada documento debe conservar su `template`.
-
-## 10.7 Firma
-
-Modos:
-
-```txt
-draw
-image
-p12
-provider
-```
-
-`provider` requiere al menos un provider configurado.
-
-El core no debe llamar directamente a una API específica del proveedor. El host aporta providers, adapter y callback/evento.
-
-## 10.8 Comentarios
-
-Existen:
-
-```txt
-comentarios de documento
-comentarios de página
-comentarios de schema
-anchors
-replies
-resolve/reopen
-```
-
-La configuración tipada actual no declara `comments.enabled`. La forma pública segura de mostrar las superficies es mediante `visibility`.
-
-## 10.9 Persistencia
-
-Modos declarados:
-
-```txt
-none
-local
-host
-```
-
-La implementación actual incluye serialización/deserialización JSON, snapshot y callbacks. No existe todavía un motor automático completo que implemente por sí solo localStorage o una API remota.
-
-## 10.10 Snapshot
-
-El snapshot debe preservar:
-
-```txt
-template
-documentos
-schemas
-schemaUid
-documentId
-pageNumber
-geometría
-owners
-colores
-groups/options
-recipients
-assignments
-comentarios
-firma
-metadata
-```
-
-El controller añade snapshot de recipients cuando existe Registry.
-
-## 10.11 Generator
-
-La fachada exporta:
-
-```ts
-generateTemplatePdf
-generatePdf
-generatePdfBuffer
-generatePdfWithPreflight
-buildDynamicTemplate
-```
-
-Ejemplo:
-
-```ts
-const pdfBytes = await generatePdf({
-  template,
-  inputs,
-  plugins,
-});
-```
-
-Usar `generatePdfWithPreflight` cuando se necesite validar antes de generar.
-
-## 10.12 Converter
-
-Se exportan:
-
-```ts
-convertImagesToPdf
-getPdfPageImages
-getPdfPageSizes
-```
-
-## 10.13 External Forms
-
-Se exportan utilidades como:
-
-```txt
-getSchemaVisibility
-resolveExternalFormRuntimeState
-areAllRequiredFieldsComplete
-InMemoryExternalFormStorage
-```
-
-Estas utilidades ayudan a construir un runner externo, pero no reemplazan la persistencia ni el workflow del host.
-
----
-
-# 11. Contratos de datos
-
-## 11.1 Recipient
-
-```ts
-export type SisadPdfmeRecipient = {
+type SisadPdfmeRecipient = {
   id: string;
   label: string;
   name?: string;
@@ -796,18 +371,10 @@ export type SisadPdfmeRecipient = {
 };
 ```
 
-El adapter también puede reconocer aliases como:
-
-```txt
-recipientId
-userId
-fullName
-```
-
-## 11.2 Document
+## Documento
 
 ```ts
-export type SisadPdfmeDocument = {
+type SisadPdfmeDocument = {
   id: string;
   label: string;
   name?: string;
@@ -818,457 +385,655 @@ export type SisadPdfmeDocument = {
 };
 ```
 
-En multi-documento, no eliminar `template` durante la normalización.
+En multidocumento preserve siempre `template`.
 
-## 11.3 Signature provider
+## Provider de firma
 
 ```ts
-export type SisadPdfmeSignatureProvider = {
+type SisadPdfmeSignatureProvider = {
   key: string;
   label: string;
   description?: string;
-  capabilities?: string[];
+  capabilities?: Record<string, boolean>;
   metadata?: Record<string, unknown>;
 };
 ```
 
 ---
 
-# 12. Schemas incorporados
+# 11. Adapters
 
-Tipos incorporados observados:
-
-```txt
-text
-multiVariableText
-number
-image
-svg
-signature
-initials
-dateSigned
-fullName
-emailAddress
-company
-title
-table
-line
-rectangle
-ellipse
-dateTime
-date
-time
-select
-dropdown
-radioGroup
-checkbox
-checkboxGroup
-attachment
-note
-approve
-decline
-qrcode
-japanpost
-ean13
-ean8
-code39
-code128
-nw7
-itf14
-upca
-upce
-gs1datamatrix
-pdf417
-```
-
-Fachada de schemas:
+## 11.1 Factories automáticas
 
 ```ts
-registerFieldPlugin
-registerPlugins
-getSchemaPluginByType
-getBuiltInFields
-getSchemaDefinition
-getSchemaFamily
-createDefaultSchema
-generateUniqueSchemaName
-validateSchemaNameUniqueness
-changeSchemas
+import {
+  createRecipientsAdapter,
+  createDocumentsAdapter,
+  createSignatureProviderAdapter,
+} from '@/sisad-pdfme/integration';
+
+const adapters = {
+  recipients: createRecipientsAdapter(),
+  documents: createDocumentsAdapter(),
+  signatures: createSignatureProviderAdapter(),
+};
 ```
 
-## 12.1 Plugin custom
+Las factories actuales no reciben opciones.
 
-En la implementación actual, `schemas.plugins` está tipado y validado, pero el wrapper del Designer sigue usando el catálogo plano incorporado.
-
-Para registrar un plugin custom con el estado actual:
+## 11.2 Mapping personalizado
 
 ```ts
-import { registerPlugins } from '@/sisad-pdfme';
+type HostUser = {
+  userId: string;
+  fullName: string;
+  mail: string;
+  hexColor: string;
+};
 
-registerPlugins([myCustomPlugin]);
+const mapRecipient = (user: HostUser) => ({
+  id: user.userId,
+  label: user.fullName,
+  name: user.fullName,
+  email: user.mail,
+  color: user.hexColor,
+  role: 'signer',
+  metadata: { source: 'host' },
+});
+
+export const recipientsAdapter = {
+  toRecipient: mapRecipient,
+  toRecipients: (items: HostUser[]) => items.map(mapRecipient),
+};
 ```
 
-Ejecutarlo antes de montar el Designer.
-
-No asumir que solo agregar:
+Documento personalizado:
 
 ```ts
-schemas: {
-  plugins: [myCustomPlugin],
+type HostFile = {
+  fileId: string;
+  title: string;
+  bytes: Uint8Array;
+  template: unknown;
+};
+
+const mapDocument = (file: HostFile) => ({
+  id: file.fileId,
+  label: file.title,
+  name: file.title,
+  basePdf: file.bytes,
+  template: file.template,
+  metadata: { source: 'host' },
+});
+
+export const documentsAdapter = {
+  toDocument: mapDocument,
+  toDocuments: (items: HostFile[]) => items.map(mapDocument),
+};
+```
+
+Entréguelos en:
+
+```ts
+resources: {
+  recipients: hostUsers,
+  documents: hostFiles,
+  adapters: {
+    recipients: recipientsAdapter,
+    documents: documentsAdapter,
+  },
 }
 ```
 
-registrará automáticamente el plugin mientras no se cierre esa integración.
-
 ---
 
-# 13. Configuración dinámica
-
-Con controller:
+# 12. Configuración
 
 ```ts
-controller.updateConfig({
-  visibility: {
-    sidebars: {
-      right: {
-        panels: {
-          comments: true,
-        },
-      },
-    },
+import { createSisadPdfmeConfig } from '@/sisad-pdfme';
+
+export const contractDesignerConfig = createSisadPdfmeConfig({
+  configVersion: 2,
+  app: {
+    id: 'contracts',
+    name: 'Contratos',
+    locale: 'es',
+    environment: 'production',
   },
-});
-```
-
-Los cambios de presentación deben conservar recursos estables.
-
-Cambios estructurales pueden reconstruir recursos.
-
-## 13.1 Recursos estables por Provider
-
-```txt
-SisadPdfmeConfigService
-RecipientRegistry
-EventHub
-adapters base
-controller
-```
-
-## 13.2 Recursos reconstruibles
-
-```txt
-DesignerEngine
-runtimeOptions
-plugins resueltos
-signature providers
-```
-
-## 13.3 Cambios estructurales
-
-La implementación clasifica como estructurales:
-
-```txt
-schemas
-recipients
-collaboration
-assignment
-documents
-signatures
-persistence
-events
-runtime.mode
-```
-
-## 13.4 Cambios de presentación
-
-Incluyen:
-
-```txt
-app
-runtime no estructural
-theme
-canvas
-sidebars
-visibility
-ui
-debug
-```
-
----
-
-# 14. Presets recomendados
-
-## 14.1 Designer completo
-
-```ts
-const designerConfig = createSisadPdfmeConfig({
   runtime: {
     mode: 'designer',
     readonly: false,
-  },
-  collaboration: {
-    enabled: true,
-    canEditStructure: true,
-  },
-  assignment: {
-    enabled: true,
+    isolateDomEvents: true,
+    preserveSelectionOnModalClose: true,
   },
   documents: {
     mode: 'multi',
     preserveDocumentSchemaRouting: true,
+    activeDocumentStrategy: 'internal',
   },
-  visibility: {
-    sidebars: {
-      right: {
-        panels: {
-          fields: true,
-          detail: true,
-          comments: true,
-          documents: true,
-        },
-      },
-    },
+  persistence: {
+    mode: 'host',
+    autosave: false,
+    serializeSnapshot: true,
   },
 });
 ```
 
-## 14.2 Designer readonly
+Defaults relevantes:
+
+```text
+canvas.enabled = true
+sidebars.left.enabled = true
+sidebars.right.enabled = true
+collaboration.enabled = true
+assignment.enabled = true
+signatures.enabled = true
+documents.mode = single
+persistence.mode = local
+persistence.autosave = false
+debug.enabled = false
+```
+
+Diferencie:
+
+```text
+enabled
+visible
+allowed
+available
+```
+
+---
+
+# 13. Instancia declarativa
 
 ```ts
-const reviewConfig = createSisadPdfmeConfig({
-  runtime: {
+import {
+  defineSisadPdfmeInstance,
+  type SisadPdfmeController,
+} from '@/sisad-pdfme';
+
+let controller: SisadPdfmeController | null = null;
+
+export const contractDesignerInstance = defineSisadPdfmeInstance({
+  id: 'contract-designer',
+  revision: 1,
+  definition: {
+    version: 1,
     mode: 'designer',
-    readonly: true,
+    defaultState: {
+      activeRecipientId: null,
+      activeDocumentId: null,
+    },
   },
-  assignment: {
-    enabled: false,
+  resources: {
+    config: contractDesignerConfig,
+    template: contractTemplate,
+    recipients: hostUsers,
+    documents: hostFiles,
+    adapters,
   },
-  visibility: {
-    actions: {
-      duplicate: false,
-      delete: false,
-      paste: false,
-      reassign: false,
-      lock: false,
-      unlock: false,
-      align: false,
-      distribute: false,
-      matchSize: false,
+  handlers: {
+    onControllerReady(nextController) {
+      controller = nextController;
+    },
+    async onSave(template) {
+      await contractsApi.saveTemplate(template);
+    },
+    onStateChange(nextState, change) {
+      auditStore.record({
+        field: change.field,
+        source: change.source,
+        nextState,
+      });
+    },
+    onEvent(event) {
+      telemetry.track(event.type, event);
     },
   },
 });
 ```
 
-## 14.3 Form por destinatario
+## Identidad
+
+- `id`: identidad estable;
+- `revision`: reinicio deliberado de una revisión;
+- `instanceKey`: identidad de la firma directa sin objeto registrado.
+
+No cambie estas propiedades en cada render.
+
+---
+
+# 14. Estado controlado y no controlado
+
+## Controlado
 
 ```ts
-const formConfig = createSisadPdfmeConfig({
-  runtime: {
-    mode: 'form',
-    readonly: false,
+definition: {
+  state: {
+    template,
+    recipients,
+    documents,
+    activeRecipientId,
   },
-  recipients: {
-    enabled: true,
-    activeRecipientId: 'recipient-1',
-  },
-  visibility: {
-    runtime: {
-      recipientFilter: true,
-      ownerColor: true,
-    },
-  },
-});
+}
 ```
 
-## 14.4 Viewer mínimo
+El host devuelve el valor nuevo después de `onStateChange`.
+
+## No controlado
 
 ```ts
-const viewerConfig = createSisadPdfmeConfig({
-  runtime: {
-    mode: 'viewer',
-    readonly: true,
+definition: {
+  defaultState: {
+    template: initialTemplate,
+    inputs: initialInputs,
   },
-  sidebars: {
-    left: {
-      enabled: false,
-    },
-    right: {
-      enabled: false,
-    },
-  },
-  visibility: {
-    shell: {
-      header: false,
-      footer: false,
-      statusBar: false,
-      resultsPanel: false,
-      debugPanel: false,
-    },
-    canvas: {
-      toolbar: false,
-      floatingToolbar: false,
-      contextMenu: false,
-      pageNavigator: true,
-      zoomControls: true,
-    },
-  },
-});
+}
+```
+
+## Precedencia
+
+```text
+definition.state
+→ resources.state
+→ runtime interno
+→ definition.defaultState
+→ resources.defaultState
+→ campos directos de definition
+→ resources
+→ fallback
+```
+
+No mezcle `state` y `defaultState` para el mismo campo sin una decisión
+documentada.
+
+---
+
+# 15. Montaje
+
+```tsx
+import { SisadPdfmeInstance } from '@/sisad-pdfme';
+import { contractDesignerInstance } from '../instances/contractDesigner.instance';
+
+export function ContractDesignerPage() {
+  return (
+    <main className="h-dvh min-h-0 w-full min-w-0 overflow-hidden">
+      <SisadPdfmeInstance instance={contractDesignerInstance} />
+    </main>
+  );
+}
+```
+
+El host es dueño del viewport. La cadena completa debe tener altura:
+
+```text
+html → body → #root → shell → página → SisadPdfmeInstance
 ```
 
 ---
 
-# 15. Reglas de integración
+# 16. Designer, Form y Viewer
 
-## Hacer
-
-```txt
-copiar toda la carpeta
-registrar aliases
-instalar dependencias
-configurar Tailwind
-usar wrappers públicos
-memoizar config, documents y recipients
-conservar template en documentos
-usar callbacks del host
-registrar plugins antes de montar
-usar controller solo para API realmente implementada
+```ts
+definition: { mode: 'designer' }
+definition: { mode: 'form' }
+definition: { mode: 'viewer' }
 ```
 
-## No hacer
+- Designer: edita estructura.
+- Form: captura valores.
+- Viewer: muestra sin edición.
 
-```txt
-importar Canvas desde el host
-abrir manualmente AssignmentDialog
-inyectar usuarios en varios contextos
-usar window.innerWidth como fuente del core
-sobrescribir clases internas con CSS del host
-alterar .moveable-* o .selecto-*
-recrear config inline en cada render
-perder document.template al normalizar
-suponer que persistence.mode guarda automáticamente
-suponer que todos los métodos del controller están implementados
+No reconstruya renderers por modo en el host.
+
+---
+
+# 17. Controller
+
+Recíbalo con `onControllerReady`.
+
+Operaciones principales:
+
+```text
+getTemplate / setTemplate
+getSnapshot / restoreSnapshot
+getConfig / updateConfig / resetConfig
+getFeatureState / getCapabilityState
+getSelectedSchemaIds / selectSchemas / clearSelection
+addSchema / updateSchema / removeSchemas / duplicateSchemas
+getRecipients / setRecipients / setActiveRecipient
+assignSchemasToRecipient
+setActiveDocument
+setZoom
+validate
+save
+```
+
+Antes de una capacidad opcional:
+
+```ts
+const state = controller.getCapabilityState('documents');
+
+if (state.available) {
+  controller.setActiveDocument('contract');
+}
 ```
 
 ---
 
-# 16. Diagnóstico rápido
+# 18. Persistencia, snapshot y bundle
 
-## El layout aparece sin estilo
+## Guardado
 
-Verificar:
-
-```txt
-se importa desde @/sisad-pdfme/react o fachada pública
-Tailwind escanea src/sisad-pdfme
-tokens.css existe
-sisad-pdfme.css existe
-el CSS raíz emite Tailwind
+```ts
+handlers: {
+  async onSave(template) {
+    await api.put('/templates/123', template);
+  },
+}
 ```
 
-## PDF vacío en multi-documento
+`persistence.mode = 'host'` no crea un endpoint.
 
-Verificar:
+## Snapshot
 
-```txt
-document.id
-document.basePdf
-document.template
-activeDocumentStrategy
-preserveDocumentSchemaRouting
+```ts
+const snapshot = controller.getSnapshot();
+await api.saveSnapshot(snapshot);
+
+const restored = await api.loadSnapshot();
+controller.restoreSnapshot(restored);
 ```
 
-## Reasignar no aparece
+## Bundle
 
-Verificar:
+```ts
+const bundle = createSisadPdfmeInstanceBundle({
+  definition: instance.definition,
+  resources: instance.resources,
+});
 
-```txt
+const json = serializeSisadPdfmeInstanceBundle(bundle);
+const parsed = parseSisadPdfmeInstanceBundle(json);
+```
+
+El bundle excluye `resources.adapters`.
+
+No incluya:
+
+- callbacks;
+- funciones;
+- `File`;
+- DOM;
+- React elements;
+- engines;
+- credenciales;
+- providers vivos.
+
+---
+
+# 19. Multidocumento
+
+```ts
+const config = createSisadPdfmeConfig({
+  documents: {
+    mode: 'multi',
+    preserveDocumentSchemaRouting: true,
+    activeDocumentStrategy: 'internal',
+  },
+});
+```
+
+```ts
+const documents = [
+  {
+    id: 'contract',
+    label: 'Contrato',
+    basePdf: contractPdf,
+    template: contractTemplate,
+  },
+  {
+    id: 'annex',
+    label: 'Anexo',
+    basePdf: annexPdf,
+    template: annexTemplate,
+  },
+];
+```
+
+Pruebe:
+
+- cambio de documento;
+- cambio de página;
+- schemas por documento;
+- guardado;
+- snapshot;
+- restore;
+- generación PDF.
+
+---
+
+# 20. Recipients y assignments
+
+No cree registros paralelos de recipients.
+
+```ts
+controller.assignSchemasToRecipient(
+  controller.getSelectedSchemaIds(),
+  'alice',
+);
+```
+
+El owner color representa responsabilidad. El contenido semántico de aprobar,
+rechazar, note, image o barcode puede conservar su color.
+
+La acción Reasignar depende de:
+
+```text
 assignment.enabled
 visibility.actions.reassign
-collaboration.canEditStructure
-selectionCount > 0
-recipients.length > 0
-```
-
-## Comments no aparece
-
-Verificar:
-
-```txt
-visibility.sidebars.right.panels.comments
-visibility.modals.comments
-sidebars.right.panels incluye comments
-```
-
-## Plugin custom no aparece
-
-Verificar:
-
-```txt
-registerPlugins ejecutado antes del mount
-plugin id/type único
-plugin exportado
-Tailwind incluye sus clases
-```
-
-## Cambio de config remonta el runtime
-
-Verificar si el patch toca:
-
-```txt
-schemas
-recipients
-collaboration
-assignment
-documents
-signatures
-persistence
-events
-runtime.mode
+handler
+canEditStructure
+recipients asignables
+selección
 ```
 
 ---
 
-# 17. Límites actuales importantes
+# 21. Firma
 
-La implementación actual tiene APIs declaradas que todavía son parciales.
+## Local
 
-No presentar como completamente funcional sin verificación:
-
-```txt
-controller.addSchema
-controller.updateSchema
-controller.removeSchemas
-controller.duplicateSchemas
-controller.setActiveDocument
-controller.validate
-persistence automática local/host
-comments.enabled tipado
-schemas.plugins automático desde config
-schemas.enabledTypes aplicado a todas las superficies
-todos los config.events conectados por los wrappers
+```ts
+createSisadPdfmeConfig({
+  signatures: {
+    enabled: true,
+    defaultMode: 'draw',
+  },
+});
 ```
 
-Consultar el reporte de gaps incluido en este paquete.
+## Externa
+
+El core registra descriptors. El host controla:
+
+- autenticación;
+- transacción;
+- OTP;
+- liveness;
+- certificado;
+- webhook;
+- auditoría;
+- almacenamiento seguro.
+
+No guarde secretos en template, snapshot o bundle.
 
 ---
 
-# 18. Criterio de integración terminada
+# 22. Custom schemas
 
-La integración está lista cuando:
-
-```txt
-[ ] el proyecto compila;
-[ ] Designer carga con estilos;
-[ ] Form captura valores;
-[ ] Viewer renderiza readonly;
-[ ] PDF.js carga páginas;
-[ ] documentos conservan template;
-[ ] recipients mantienen owner/color;
-[ ] Reasignar funciona cuando corresponde;
-[ ] snapshot restaura recipients y template;
-[ ] generator produce PDF;
-[ ] plugins custom aparecen;
-[ ] no hay imports del host dentro de src/sisad-pdfme;
-[ ] no hay CSS del host apuntando a internals;
-[ ] los gates focales están verdes.
+```ts
+resources: {
+  plugins: {
+    myCustomType: myCustomPlugin,
+  },
+}
 ```
+
+Pruebe cada plugin en:
+
+- Designer;
+- Form;
+- Viewer;
+- PDF;
+- inspector;
+- snapshot;
+- recipient color;
+- readonly;
+- validation;
+- cleanup de listeners y Object URLs.
+
+---
+
+# 23. Comportamiento visual actual
+
+- El Designer público inicia sin `autoFit` automático.
+- El zoom visible inicial es 100 %.
+- El host puede pedir fit después.
+- Los controles de zoom pueden mostrarse en densidad compacta.
+- Colapsar el sidebar izquierdo docked no debe mover el papel.
+- El host define la altura; el componente ocupa el espacio disponible.
+
+---
+
+# 24. Seguridad
+
+- Valide archivos también en backend.
+- Sanitice SVG.
+- Limite MIME, tamaño y cantidad.
+- Revoque Object URLs.
+- No serialice secretos.
+- Redacte telemetría.
+- Valide el bundle antes de restaurar.
+- El backend vuelve a validar recipient, lock y autorización.
+
+---
+
+# 25. Consumer test
+
+En un proyecto limpio:
+
+```text
+1. instalar dependencias
+2. copiar src/sisad-pdfme
+3. configurar Vite
+4. configurar TypeScript
+5. configurar Tailwind
+6. configurar PDF.js
+7. montar Designer
+8. montar Form
+9. montar Viewer
+10. probar save
+11. probar snapshot/restore
+12. generar PDF
+13. probar dos documentos
+14. probar varios recipients
+15. ejecutar build y Playwright
+```
+
+Gates:
+
+```bash
+npm run lint
+npm run build
+npm test -- --run
+npm run test:e2e
+```
+
+---
+
+# 26. Troubleshooting
+
+## Pantalla vacía
+
+Revise altura de ancestros, template y consola.
+
+## Tailwind no aplica
+
+Incluya `src/sisad-pdfme/**/*.{ts,tsx,js,jsx}` en `content`.
+
+## Inputs deformados
+
+Confirme `preflight: false`.
+
+## Worker PDF.js falla
+
+Use `configurePdfjsWorker` y conserve inicialmente
+`pdfjs-dist@2.16.105`.
+
+## Documento sin schemas
+
+El adapter probablemente eliminó `document.template`.
+
+## Estado vuelve atrás
+
+El campo es controlado y el host no devolvió el valor nuevo.
+
+## Bundle no serializa
+
+Hay funciones, `File`, DOM, React o recursos vivos.
+
+## Canvas se mueve al colapsar sidebars
+
+No envuelva ni reimplemente internamente los sidebars. Ejecute la regresión
+visual en el proyecto consumidor.
+
+---
+
+# 27. Checklist final
+
+## Infraestructura
+
+- [ ] carpeta completa;
+- [ ] dependencias;
+- [ ] una copia de React;
+- [ ] aliases Vite;
+- [ ] paths TypeScript;
+- [ ] Tailwind;
+- [ ] `preflight: false`;
+- [ ] PDF.js;
+- [ ] fork de pdf-lib resuelto.
+
+## Integración
+
+- [ ] config estable;
+- [ ] instancia estable;
+- [ ] adapters tipados;
+- [ ] handlers;
+- [ ] viewport;
+- [ ] cero imports internos.
+
+## Funcional
+
+- [ ] Designer;
+- [ ] Form;
+- [ ] Viewer;
+- [ ] save;
+- [ ] snapshot/restore;
+- [ ] PDF;
+- [ ] recipients;
+- [ ] multidocumento;
+- [ ] firma;
+- [ ] responsive.
+
+## Calidad
+
+- [ ] lint;
+- [ ] build;
+- [ ] unit;
+- [ ] e2e;
+- [ ] visual;
+- [ ] consumer test;
+- [ ] seguridad;
+- [ ] rollback.

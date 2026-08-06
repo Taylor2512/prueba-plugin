@@ -1,3 +1,49 @@
-# API `SisadPdfmeInstance`
+# API de `SisadPdfmeInstance`
 
-Documento de contrato propuesto. Consultar `reports/declarative-instances/02-PUBLIC-API-DRAFT.md`.
+## Componentes
+
+```text
+SisadPdfmeInstance
+SisadPdfmeDesigner
+SisadPdfmeForm
+SisadPdfmeViewer
+SisadPdfmeProvider
+```
+
+## Factories
+
+```text
+defineSisadPdfmeInstance
+createSisadPdfmeConfig
+resolveSisadPdfmeConfig
+```
+
+## Bundle
+
+```text
+create
+serialize
+parse
+validate
+restore
+```
+
+## Modos
+
+```text
+designer
+form
+viewer
+```
+
+## Estado
+
+```text
+template
+inputs
+recipients
+documents
+signatureProviders
+activeRecipientId
+activeDocumentId
+```

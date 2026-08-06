@@ -1,26 +1,38 @@
-# Adaptadores del host
+# Adapters del host
 
-El host debe convertir sus datos reales a contratos genéricos.
-
-## Recipient
+## Automáticos
 
 ```ts
-type SisadPdfmeRecipient = {
-  id: string;
-  label: string;
-  role?: string;
-  email?: string;
-  color?: string;
-  metadata?: Record<string, unknown>;
+const adapters = {
+  recipients: createRecipientsAdapter(),
+  documents: createDocumentsAdapter(),
+  signatures: createSignatureProviderAdapter(),
 };
 ```
 
-## Regla
+Las factories actuales no reciben opciones.
 
-El host entrega recipients una vez. El componente los registra en `RecipientRegistry` y los reutiliza en Canvas, schema creation, RightSidebar, DetailView, AssignmentDialog, Form, Viewer, Snapshot y eventos.
+## Personalizados
 
-## No hacer
+Implemente:
 
-- No crear mapas locales de recipients en cada pantalla.
-- No crear un modal de reasignación propio.
-- No duplicar owner color resolvers.
+```ts
+const recipientsAdapter = {
+  toRecipient: (user) => ({
+    id: user.userId,
+    label: user.fullName,
+    email: user.mail,
+    color: user.hexColor,
+  }),
+  toRecipients: (users) => users.map((user) => ({
+    id: user.userId,
+    label: user.fullName,
+    email: user.mail,
+    color: user.hexColor,
+  })),
+};
+```
+
+Entréguelo en `resources.adapters`.
+
+En multidocumento, el adapter de documentos debe preservar `template`.

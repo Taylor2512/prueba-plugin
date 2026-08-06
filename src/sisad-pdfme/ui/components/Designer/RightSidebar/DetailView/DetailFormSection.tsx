@@ -90,6 +90,38 @@ const valuesDiffer = (a: unknown, b: unknown): boolean => {
 /** Margen sobre el debounce de commit del inspector (180 ms). */
 const DEFERRED_HYDRATION_DELAY = 260;
 
+/** Lee un valor anidado siguiendo una ruta `a.b.c`. */
+const readByPath = (source: Record<string, unknown>, path: string): unknown =>
+  path.split('.').reduce<unknown>(
+    (accumulator, part) =>
+      accumulator && typeof accumulator === 'object'
+        ? (accumulator as Record<string, unknown>)[part]
+        : undefined,
+    source,
+  );
+
+/**
+ * Expone como clave literal los campos cuyo nombre es una ruta (`validation.type`).
+ *
+ * El formulario los identifica por ese nombre exacto —así los emite en el watch—
+ * pero `changeSchemas` los persiste por ruta, dejándolos anidados en el schema.
+ * Sin este puente el valor se guarda y nunca vuelve: el control aparece vacío al
+ * reseleccionar el campo.
+ */
+const withDottedKeys = (
+  values: Record<string, unknown>,
+  dottedKeys: readonly string[],
+): Record<string, unknown> => {
+  if (!dottedKeys.length) return values;
+  const next = { ...values };
+  dottedKeys.forEach((key) => {
+    if (next[key] !== undefined) return;
+    const value = readByPath(values, key);
+    if (value !== undefined) next[key] = value;
+  });
+  return next;
+};
+
 const SectionFormRenderer = ({
   schema,
   hydrationValues,
@@ -98,6 +130,17 @@ const SectionFormRenderer = ({
   readOnly,
 }: Pick<DetailFormSectionProps, 'schema' | 'hydrationValues' | 'widgets' | 'watchHandler' | 'readOnly'>) => {
   const form = useForm();
+  // Firma estable: `schema` cambia de identidad en cada render, y usarlo como
+  // dependencia rehidrataría el formulario continuamente.
+  const dottedKeysSignature = Object.keys(
+    (schema as { properties?: Record<string, unknown> }).properties || {},
+  )
+    .filter((key) => key.includes('.'))
+    .join(',');
+  const resolvedHydrationValues = React.useMemo(
+    () => withDottedKeys(hydrationValues, dottedKeysSignature ? dottedKeysSignature.split(',') : []),
+    [dottedKeysSignature, hydrationValues],
+  );
   const hydratingRef = React.useRef(true);
   // `useForm` devuelve un objeto nuevo en cada render (hace rest sobre la
   // instancia de antd). Usarlo como dependencia rehidrataba el formulario en
@@ -107,7 +150,7 @@ const SectionFormRenderer = ({
   const watchHandlerRef = React.useRef(watchHandler);
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   /** Últimos valores conocidos, para saber qué tocó el usuario en cada watch. */
-  const lastValuesRef = React.useRef<Record<string, unknown>>(hydrationValues);
+  const lastValuesRef = React.useRef<Record<string, unknown>>(resolvedHydrationValues);
   /** Hidratación aplazada porque el foco estaba dentro de la sección. */
   const pendingHydrationRef = React.useRef<Record<string, unknown> | null>(null);
   const pendingHydrationTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -153,12 +196,12 @@ const SectionFormRenderer = ({
     // Los valores llegan del schema activo, así que también traen los cambios
     // hechos fuera del inspector (arrastre, resize, alineación, undo/redo).
     if (hasFocusInside()) {
-      pendingHydrationRef.current = hydrationValues;
+      pendingHydrationRef.current = resolvedHydrationValues;
       return;
     }
     pendingHydrationRef.current = null;
-    applyHydration(hydrationValues);
-  }, [applyHydration, hydrationValues]);
+    applyHydration(resolvedHydrationValues);
+  }, [applyHydration, resolvedHydrationValues]);
 
   React.useEffect(
     () => () => {
