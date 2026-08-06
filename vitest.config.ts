@@ -4,6 +4,7 @@ import { resolve } from 'path';
 export default defineConfig({
   resolve: {
     alias: {
+      '@sisad-pdfme': resolve(__dirname, 'src/sisad-pdfme'),
       '@sisad-pdfme/common': resolve(__dirname, 'src/sisad-pdfme/common'),
       '@': resolve(__dirname, 'src'),
       '@sisad-pdfme/converter': resolve(__dirname, 'src/sisad-pdfme/converter/index.browser.ts'),

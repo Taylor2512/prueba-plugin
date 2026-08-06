@@ -14,6 +14,10 @@ export {
   SisadPdfmeDesigner,
   SisadPdfmeForm,
   SisadPdfmeViewer,
+  createObjectUrl,
+  revokeObjectUrls,
+  downloadUrl,
+  downloadJson,
 } from './integration/index.js';
 
 export type {

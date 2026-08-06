@@ -215,6 +215,14 @@ export {
   setInlineEditRequestHandler,
 } from '../commands/index.js';
 export {
+  createObjectUrl,
+  revokeObjectUrls,
+} from '../browser/objectUrls.js';
+export {
+  downloadUrl,
+  downloadJson,
+} from '../browser/downloads.js';
+export {
   parsePdfmeSnapshot,
   extractDocumentsFromSnapshot,
   resolveDocumentSnapshot,
