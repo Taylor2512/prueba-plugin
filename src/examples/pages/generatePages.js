@@ -15,7 +15,6 @@ import {
 import { FAMILY } from '../catalog/familyCatalog.js';
 import { DEMO_DOCUMENTS } from '../fixtures/documents.js';
 import { MULTI_USER_RECIPIENTS } from '../fixtures/recipients.js';
-import { _ROUTE_PATHS } from '../routes/routeDefinitions.js';
 
 const templateBuilders = {
   showcaseTemplate: (FAMILY, options) => {
@@ -49,7 +48,6 @@ export const generatePages = () => {
       FAMILY,
       DEMO_DOCUMENTS,
       MULTI_USER_RECIPIENTS,
-      _ROUTE_PATHS,
     });
 
     pages[pageKey] = PageComponent;
@@ -65,4 +63,4 @@ export const DesignerMultiUserPage = generatedPages['designer-multi-user'];
 export const RuntimeFormPage = generatedPages['runtime-form'];
 export const RuntimeViewerPage = generatedPages['runtime-viewer'];
 
-export { generatePages };
+export const GENERATED_ROUTES = PagesConfig.routes;

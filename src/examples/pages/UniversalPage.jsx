@@ -10,10 +10,11 @@ import {
   buildPageTemplate,
   createPageHandlers,
   getPageInfo,
+  getPageRoute,
 } from './pageGenerator.js';
 
 export function createUniversalPage(pageKey, dependencies) {
-  const { instanceBuilders, templateBuilders, FAMILY, DEMO_DOCUMENTS, MULTI_USER_RECIPIENTS, _ROUTE_PATHS } =
+  const { instanceBuilders, templateBuilders, FAMILY, DEMO_DOCUMENTS, MULTI_USER_RECIPIENTS } =
     dependencies;
 
   return function UniversalPageComponent({ currentPath }) {
@@ -100,7 +101,7 @@ export function createUniversalPage(pageKey, dependencies) {
       <RuntimePageShell
         title={config.title}
         modeBadge={config.modeBadge}
-        currentPath={currentPath || _ROUTE_PATHS[pageKey] || config.path}
+        currentPath={currentPath || getPageRoute(pageKey)}
         actions={renderActions()}
         infoTitle="Información"
         info={

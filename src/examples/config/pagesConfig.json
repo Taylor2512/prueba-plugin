@@ -1,11 +1,16 @@
 {
+  "routes": {
+    "designer-single-user": "/designer/single-user",
+    "designer-multi-user": "/designer/multi-user",
+    "runtime-form": "/runtime/form",
+    "runtime-viewer": "/runtime/viewer"
+  },
   "pages": {
     "designer-single-user": {
       "title": "Designer · una persona, todas las familias",
       "modeBadge": "designer",
       "viewportName": "designer-single-user",
       "instanceId": "designer-single-user",
-      "path": "/designer/single-user",
       "template": {
         "builder": "showcaseTemplate",
         "options": {
@@ -53,7 +58,6 @@
       "modeBadge": "colaboración",
       "viewportName": "designer-multi-user",
       "instanceId": "designer-multi-user",
-      "path": "/designer/multi-user",
       "template": {
         "builder": "multiUserShowcase",
         "options": {
@@ -104,7 +108,6 @@
       "modeBadge": "form",
       "viewportName": "runtime-form",
       "instanceId": "runtime-form",
-      "path": "/runtime/form",
       "template": {
         "builder": "showcaseTemplate",
         "options": {
@@ -140,7 +143,6 @@
       "modeBadge": "viewer",
       "viewportName": "runtime-viewer",
       "instanceId": "runtime-viewer",
-      "path": "/runtime/viewer",
       "template": {
         "builder": "showcaseTemplate",
         "options": {

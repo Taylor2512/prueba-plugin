@@ -47,8 +47,8 @@ export {
 export { FAMILY } from './catalog/familyCatalog.js';
 export { DEMO_DOCUMENTS } from './fixtures/documents.js';
 export { MULTI_USER_FAMILY_KEYS, MULTI_USER_RECIPIENTS } from './fixtures/recipients.js';
-export { IMMERSIVE_ROUTE_OPTIONS, PRIMARY_ROUTE_GROUPS } from './routes/routeDefinitions.js';
-export { _CONFIG_PROFILES, createRuntimeConfig } from './config/runtimeConfig.js';
+export { IMMERSIVE_ROUTE_OPTIONS, PRIMARY_ROUTE_GROUPS, PAGE_ROUTES, ROUTE_PATHS } from './routes/routeDefinitions.js';
+export { CONFIG_PROFILES, createRuntimeConfig } from './config/runtimeConfig.js';
 export { buildMultiUserShowcaseTemplate } from './builders/multiUserShowcase.js';
 export { buildShowcaseTemplate } from './builders/showcaseTemplate.js';
 export {

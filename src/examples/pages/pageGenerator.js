@@ -25,6 +25,12 @@ export const getPageConfig = (pageKey) => {
   return config;
 };
 
+export const getPageRoute = (pageKey) => {
+  const route = PagesConfig.routes?.[pageKey];
+  if (!route) throw new Error(`Route not found for page: ${pageKey}`);
+  return route;
+};
+
 export const buildPageTemplate = (config, builders, FAMILY) => {
   const { builder, options } = config.template;
   const builderFn = builders[builder];
