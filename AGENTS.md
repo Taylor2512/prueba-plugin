@@ -12,7 +12,7 @@
 
 `src/sisad-pdfme` es reusable y host-independent. El host entrega configuración,
 datos, adapters y callbacks. No introduzcas reglas de DigitalAgreements,
-Uanataca, examples o rutas de negocio dentro del core.
+Uanataca,  o rutas de negocio dentro del core.
 
 ## Contrato
 

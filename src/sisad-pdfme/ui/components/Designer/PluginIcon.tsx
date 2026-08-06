@@ -22,7 +22,7 @@ interface PluginIconProps {
   testId?: string;
   density?: 'comfortable' | 'compact' | 'minimal';
   'data-schema-type'?: string;
-  'data-active-recipient-color'?: string;
+  'data-activerecipient-color'?: string;
 }
 
 const SVGIcon = ({ svgString, size, styles, label, colorMode = 'owner' }: {
@@ -150,7 +150,7 @@ const PluginIcon = (props: PluginIconProps) => {
       style={baseStyles}
       data-testid={testId}
       data-schema-type={props['data-schema-type']}
-      data-active-recipient-color={props['data-active-recipient-color']}
+      data-activerecipient-color={props['data-activerecipient-color']}
     >
       {iconContent}
     </div>

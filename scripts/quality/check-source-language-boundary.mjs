@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 /**
- * Gate de frontera de lenguaje/imports para `src/examples`.
+ * Gate de frontera de lenguaje/imports para `src/`.
  *
  * Reglas:
- * - `src/examples` solo puede contener JS/JSX/JSON.
- * - `src/examples` no puede importar archivos internos de `src/sisad-pdfme`.
- * - `src/examples` solo puede consumir entrypoints públicos documentados.
+ * - `src/` solo puede contener JS/JSX/JSON.
+ * - `src/` no puede importar archivos internos de `src/sisad-pdfme`.
+ * - `src/` solo puede consumir entrypoints públicos documentados.
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 
 const ROOT = resolve(process.cwd(), getArgValue('--root') || '.');
-const EXAMPLES_DIR = join(ROOT, 'src/examples');
+const _DIR = join(ROOT, 'src/');
 
 const ALLOWED_EXTENSIONS = new Set(['.js', '.jsx', '.json']);
 const ALLOWED_PUBLIC_IMPORTS = [
@@ -53,12 +53,12 @@ function isForbiddenSisadImport(specifier) {
 
 const violations = [];
 
-if (!statSync(EXAMPLES_DIR, { throwIfNoEntry: false })) {
-  console.error(`✗ No existe el directorio objetivo: ${relative(ROOT, EXAMPLES_DIR)}`);
+if (!statSync(_DIR, { throwIfNoEntry: false })) {
+  console.error(`✗ No existe el directorio objetivo: ${relative(ROOT, _DIR)}`);
   process.exit(1);
 }
 
-for (const file of collectFiles(EXAMPLES_DIR)) {
+for (const file of collectFiles(_DIR)) {
   const extension = file.slice(file.lastIndexOf('.'));
   if (!ALLOWED_EXTENSIONS.has(extension)) {
     violations.push({
@@ -100,4 +100,4 @@ if (violations.length > 0) {
   process.exit(1);
 }
 
-console.log('✓ src/examples usa solo JS/JSX/JSON y entrypoints públicos');
+console.log('✓ src/ usa solo JS/JSX/JSON y entrypoints públicos');

@@ -3,7 +3,7 @@
  *
  * Delegación (TASK-ACTIONS-002): el gating genérico (handler, visibility
  * config, selección, permiso estructural) sale de `resolveDesignerActionState`
- * ('reassign-recipient'), la MISMA fuente que usan las demás superficies. Aquí
+ * ('reassignrecipient'), la MISMA fuente que usan las demás superficies. Aquí
  * solo se agregan las señales propias del toolbar (recipient activo, lista de
  * asignables y el hint de selección vacía).
  *
@@ -52,7 +52,7 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
   // para abrir la reasignación aunque la acción esté habilitada.
   const visibleByConfig = input.assignmentEnabled && input.reassignVisible;
 
-  const action = resolveDesignerActionState('reassign-recipient', {
+  const action = resolveDesignerActionState('reassignrecipient', {
     hasHandler: input.hasHandler !== false,
     selectionCount: selectedCount,
     canEditStructure,
@@ -61,7 +61,7 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
 
   // Usamos una selección hipotética para conservar el gating de visibilidad
   // del registry sin esconder el affordance cuando la selección real es 0.
-  const visibility = resolveDesignerActionState('reassign-recipient', {
+  const visibility = resolveDesignerActionState('reassignrecipient', {
     hasHandler: input.hasHandler !== false,
     selectionCount: 1,
     canEditStructure,

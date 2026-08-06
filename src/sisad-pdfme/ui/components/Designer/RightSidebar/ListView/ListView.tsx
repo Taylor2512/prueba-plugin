@@ -264,7 +264,7 @@ const ListView = (
       };
 
       emitRuntimeEvent({
-        type: 'sidebar.list.bulk.assign-recipient',
+        type: 'sidebar.list.bulk.assignrecipient',
         source: 'toolbar',
         component: 'ListView',
         schemaIds: selectedSchemas.map((schema) => schema.id),

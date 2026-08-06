@@ -1,17 +1,17 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { getLabExamples } from './examples/index.jsx'
+import { getLab } from './examples/index.jsx'
 
-const labExamples = getLabExamples()
+const lab = getLab()
 
 export default function App() {
   return (
     <Routes>
-      {labExamples.map((example) => (
+      {lab.map((route) => (
         <Route
-          key={example.id}
-          path={example.path}
-          element={example.element}
+          key={route.id}
+          path={route.path}
+          element={route.element}
         />
       ))}
       <Route path="*" element={<Navigate to="/" replace />} />

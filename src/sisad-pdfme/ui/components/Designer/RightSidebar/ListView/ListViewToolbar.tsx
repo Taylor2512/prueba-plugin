@@ -222,7 +222,7 @@ const ListViewToolbar = ({
                   data-interaction-exclusion="true"
                   aria-label={resolveAriaLabel(bulkRecipientLabel, 'Reasignar responsable')}
                   className={mergeClassNames(
-                    DESIGNER_CLASSNAME + 'bulk-assign-recipient',
+                    DESIGNER_CLASSNAME + 'bulk-assignrecipient',
                     'inline-flex appearance-none items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 px-2 text-xs font-semibold text-sky-700 shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-colors hover:border-sky-300 hover:bg-sky-100/80 disabled:cursor-not-allowed disabled:opacity-45',
                     isMinimalDensity ? 'h-7' : 'h-8',
                   )}

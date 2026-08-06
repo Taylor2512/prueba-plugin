@@ -2,16 +2,16 @@ import React, { useCallback, useMemo, useState } from 'react';
 
 import { buildShowcaseTemplate } from '../builders/showcaseTemplate.js';
 import { buildFamiliesForKeys } from '../helpers/familyGroups.js';
-import { useExampleEventLog } from '../hooks/useExampleEventLog.js';
-import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
-import { createRuntimeFormInstance } from '../instances/exampleInstances.js';
-import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
+import { useEventLog } from '../hooks/useEventLog.js';
+import { useRuntimeConfig } from '../hooks/useRuntimeConfig.js';
+import { createRuntimeFormInstance } from '../instances/Instances.js';
+import { ROUTE_PATHS } from '../routes/routeDefinitions.js';
 import { RuntimeFormInfo } from './RuntimeFormInfo.jsx';
 import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { getInputFromTemplate } from '@sisad-pdfme/common';
 import { SisadPdfmeInstance } from '@/sisad-pdfme';
 
-export function RuntimeFormPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeForm }) {
+export function RuntimeFormPage({ currentPath = ROUTE_PATHS.runtimeForm }) {
   const template = useMemo(
     () =>
       buildShowcaseTemplate([
@@ -26,8 +26,8 @@ export function RuntimeFormPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeForm 
   );
   const values = useMemo(() => getInputFromTemplate(template), [template]);
   const [lastInput, setLastInput] = useState('');
-  const config = useExampleRuntimeConfig('runtime-form');
-  const { events, record, clear } = useExampleEventLog();
+  const config = useRuntimeConfig('runtime-form');
+  const { events, record, clear } = useEventLog();
 
   const handleInputChange = useCallback(
     (payload) => {

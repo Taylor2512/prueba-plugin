@@ -5,7 +5,7 @@
 ## Patrón esperado
 
 ```tsx
-const integration = usePdfmeLabIntegration(example)
+const integration = usePdfmeLabIntegration()
 
 return (
   <SisadPdfmeDesigner

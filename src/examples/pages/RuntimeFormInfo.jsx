@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { ExampleEventLog, ExampleInfoPanelStack, MetricGrid } from '../components/exampleUi.jsx';
+import { EventLog, InfoPanelStack, MetricGrid } from '../components/Ui.jsx';
 
 export function RuntimeFormInfo({ template, values, lastInput, events, onClear }) {
   return (
-    <ExampleInfoPanelStack
+    <InfoPanelStack
       panels={[
         {
           key: 'inputs',
@@ -25,7 +25,7 @@ export function RuntimeFormInfo({ template, values, lastInput, events, onClear }
           key: 'events',
           title: 'Eventos',
           description: 'Cada edición del formulario llega al host por `onInputChange`.',
-          render: () => <ExampleEventLog events={events} onClear={onClear} />,
+          render: () => <EventLog events={events} onClear={onClear} />,
         },
       ]}
     />

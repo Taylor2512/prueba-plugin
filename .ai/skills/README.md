@@ -14,7 +14,7 @@ La lista inicial debe permanecer corta. Skills existentes se conservan; los alia
 | `sisad-command-history` | canonical | Diseña comandos, undo/redo, mementos, rechazo y correlación. |
 | `sisad-controller-parity` | canonical | Alinea tipos, wrapper, ejecución y capability states del controller. |
 | `sisad-action-state` | canonical | Centraliza visible/enabled/reason/handler/executable por actionId. |
-| `sisad-recipient-assignment-policy` | canonical | Valida recipients asignables, ownership, locks y reasignación segura. |
+| `sisadrecipient-assignment-policy` | canonical | Valida recipients asignables, ownership, locks y reasignación segura. |
 | `sisad-right-sidebar-contract` | canonical | Revisa Fields/Detail/Documents/Comments, scroll, actions y inspector. |
 | `sisad-left-sidebar-catalog` | canonical | Revisa catálogo, favoritos, layouts, búsqueda, DnD y accesibilidad. |
 | `sisad-schema-behavior-matrix` | canonical | Cubre una familia en Designer/Inspector/Form/Viewer/Generator/Snapshot. |

@@ -7,7 +7,7 @@
 ## Load
 
 - task-card activa
-- skill `sisad-recipient-assignment-policy`
+- skill `sisadrecipient-assignment-policy`
 - `.ai/knowledge/domain/COREUX-USE-CASES.md` solo si responde una incógnita
 
 ## Output

@@ -83,7 +83,7 @@ type RuntimeSchemaAccessReason =
   /**
    * El schema pertenece a otro destinatario.
    */
-  | 'other-recipient'
+  | 'otherrecipient'
 
   /**
    * El schema no tiene propietario asignado.
@@ -640,7 +640,7 @@ export const resolveRuntimeSchemaAccess = (
       visible: false,
       editable: false,
       readonly: true,
-      reason: 'other-recipient',
+      reason: 'otherrecipient',
     };
   }
 
@@ -715,7 +715,7 @@ export const resolveRuntimeSchemaAccess = (
       visible: true,
       editable: false,
       readonly: true,
-      reason: isGlobalView ? 'global-view' : 'other-recipient',
+      reason: isGlobalView ? 'global-view' : 'otherrecipient',
     };
   }
 

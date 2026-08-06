@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ExampleImmersiveShell, RuntimeViewport } from '../components/exampleUi.jsx';
+import { ImmersiveShell, RuntimeViewport } from '../components/Ui.jsx';
 
 export function RuntimePageShell({
   title,
@@ -13,7 +13,7 @@ export function RuntimePageShell({
   children,
 }) {
   return (
-    <ExampleImmersiveShell
+    <ImmersiveShell
       title={title}
       modeBadge={modeBadge}
       currentPath={currentPath}
@@ -22,6 +22,6 @@ export function RuntimePageShell({
       info={info}
     >
       <RuntimeViewport name={viewportName}>{children}</RuntimeViewport>
-    </ExampleImmersiveShell>
+    </ImmersiveShell>
   );
 }

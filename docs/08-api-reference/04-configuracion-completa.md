@@ -200,7 +200,7 @@ visibility.sidebars.right.panels.<panel> !== false
 | `enabledTypes` | string[] | `[]` | Parcial | resolver existe; consumo completo no confirmado |
 | `autoAttachIdentity` | boolean | true | Implementado/parcial | añade identidad técnica |
 | `validateUniqueNames` | boolean | true | Declarativo/parcial | helper existe; config no totalmente conectada |
-| `defaultOwnerStrategy` | none/active-recipient/first-recipient | active-recipient | Implementado |
+| `defaultOwnerStrategy` | none/activerecipient/firstrecipient | activerecipient | Implementado |
 | `plugins` | unknown[] | `[]` | Parcial | se valida, pero no se registra automáticamente |
 
 Ocultar tipos del catálogo mediante visibilidad:
@@ -233,7 +233,7 @@ registerPlugins([plugin]);
 | `allowUnassigned` | boolean | true | Implementado/parcial |
 | `allowShared` | boolean | true | Implementado/parcial |
 | `allowMultipleOwners` | boolean | false | Declarativo/parcial |
-| `defaultOwnerStrategy` | none/active-recipient/first-recipient | active-recipient | Implementado |
+| `defaultOwnerStrategy` | none/activerecipient/firstrecipient | activerecipient | Implementado |
 | `colorStrategy` | recipient/schema/theme/auto | recipient | Implementado/parcial |
 | `missingRecipientBehavior` | keep-id/fallback-active/mark-unassigned | keep-id | Declarativo/parcial |
 

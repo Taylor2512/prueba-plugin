@@ -140,7 +140,7 @@ Alcance de implementación: `src/sisad-pdfme/**`.
 | RUN-014 | RUN | Snapshot runtime | Form/Viewer consumen artefacto canónico. |
 | RUN-015 | RUN | Error recovery | Errores se exponen sin congelar la instancia. |
 | QLT-001 | QLT | Core TypeScript | Código nuevo de sisad-pdfme usa TS/TSX. |
-| QLT-002 | QLT | Sin host imports | No importa src/examples/features/modules. |
+| QLT-002 | QLT | Sin host imports | No importa src//features/modules. |
 | QLT-003 | QLT | Sin deep readers | Config se consume por selectors/service. |
 | QLT-004 | QLT | Sin acción duplicada | Una definición por actionId. |
 | QLT-005 | QLT | Sin evento string libre | Catálogo tipado y versionado. |

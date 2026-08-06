@@ -24,7 +24,7 @@
 - todos los 150 UC;
 - todos los task-cards;
 - reportes históricos completos;
-- paquetes de examples declarativos salvo dependencia explícita.
+- paquetes de  declarativos salvo dependencia explícita.
 
 ## Clasificación obligatoria
 

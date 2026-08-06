@@ -338,7 +338,7 @@ export type SisadPdfmeGlobalConfig = {
     enabledTypes?: string[];
     autoAttachIdentity?: boolean;
     validateUniqueNames?: boolean;
-    defaultOwnerStrategy?: 'none' | 'active-recipient' | 'first-recipient';
+    defaultOwnerStrategy?: 'none' | 'activerecipient' | 'firstrecipient';
     plugins?: unknown[];
   };
   recipients?: SisadPdfmeRecipientsConfig;

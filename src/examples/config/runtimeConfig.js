@@ -1,8 +1,8 @@
 import { createProfiledConfig } from '@/sisad-pdfme/config';
-import examplesConfig from './sisad-pdfme.examples.json';
+import Config from './sisad-pdfme.s.json';
 
-export const EXAMPLE_CONFIG_PROFILES = Object.keys(examplesConfig.profiles);
+export const CONFIG_PROFILES = Object.keys(Config.profiles);
 
 export function createRuntimeConfig(profile, overrides = {}) {
-  return createProfiledConfig(examplesConfig.base, examplesConfig.profiles, profile, overrides);
+  return createProfiledConfig(Config.base, Config.profiles, profile, overrides);
 }

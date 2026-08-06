@@ -18,10 +18,10 @@ trace:
   effects: []
 context:
   route: assignments
-  skills: [sisad-recipient-assignment-policy, sisad-action-state]
+  skills: [sisadrecipient-assignment-policy, sisad-action-state]
   requiredSymbols: []
   forbiddenPaths:
-    - src/examples/** salvo tests de integración explícitos
+    - src//** salvo tests de integración explícitos
     - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
     - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
     - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
@@ -72,7 +72,7 @@ commit; dividir la task si el cambio supera un dominio.
 
 ## Forbidden paths
 
-- `src/examples/** salvo tests de integración explícitos`
+- `src//** salvo tests de integración explícitos`
 - `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
 - `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
 - `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
@@ -82,7 +82,7 @@ commit; dividir la task si el cambio supera un dominio.
 
 - Solo código productivo bajo `src/sisad-pdfme/**`.
 - Core nuevo en TypeScript/TSX.
-- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- Cero imports hacia `src/`, `src/features` o `src/modules`.
 - No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
 - No `setTimeout` para lifecycle.
 - No z-index arbitrario.

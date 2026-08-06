@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  ExampleControllerPanel,
-  ExampleEventLog,
-  ExampleInfoPanelStack,
+  ControllerPanel,
+  EventLog,
+  InfoPanelStack,
   MetricGrid,
-} from '../components/exampleUi.jsx';
+} from '../components/Ui.jsx';
 
 export function DesignerMultiUserInfo({
   activeRecipient,
@@ -17,7 +17,7 @@ export function DesignerMultiUserInfo({
   getController,
 }) {
   return (
-    <ExampleInfoPanelStack
+    <InfoPanelStack
       panels={[
         {
           key: 'context',
@@ -82,13 +82,13 @@ export function DesignerMultiUserInfo({
           key: 'controller',
           title: 'Controlador',
           description: 'API imperativa pública, incluida la asignación al recipient activo.',
-          render: () => <ExampleControllerPanel getController={getController} />,
+          render: () => <ControllerPanel getController={getController} />,
         },
         {
           key: 'events',
           title: 'Eventos',
           description: 'Callbacks del wrapper, tal como los recibe el host.',
-          render: () => <ExampleEventLog events={events} onClear={onClear} />,
+          render: () => <EventLog events={events} onClear={onClear} />,
         },
       ]}
     />

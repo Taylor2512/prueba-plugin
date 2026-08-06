@@ -25,11 +25,11 @@
 - `docs/08-api-reference/08-events-actions-controller.md`
 - `docs/12-troubleshooting/05-integracion-en-otro-proyecto.md`
 - `docs/13-ejemplos/06-integracion-copy-paste.md`
-- `examples/consumer/src/bootstrapPdfme.ts`
-- `examples/consumer/src/features/contracts/adapters/sisadPdfme.adapters.ts`
-- `examples/consumer/src/features/contracts/config/sisadPdfme.config.ts`
-- `examples/consumer/src/features/contracts/instances/contractDesigner.instance.ts`
-- `examples/consumer/src/features/contracts/pages/ContractDesignerPage.tsx`
+- `/consumer/src/bootstrapPdfme.ts`
+- `/consumer/src/features/contracts/adapters/sisadPdfme.adapters.ts`
+- `/consumer/src/features/contracts/config/sisadPdfme.config.ts`
+- `/consumer/src/features/contracts/instances/contractDesigner.instance.ts`
+- `/consumer/src/features/contracts/pages/ContractDesignerPage.tsx`
 - `reports/portability/CURRENT-IMPLEMENTATION-GAPS-V2.md`
 - `reports/portability/DOCUMENTATION-GAP-AUDIT-V2.md`
 - `MANIFEST.md`

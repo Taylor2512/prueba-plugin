@@ -3,19 +3,19 @@
 - [01-basic-designer.md](./01-basic-designer.md)
 - [02-multi-document-routing.md](./02-multi-document-routing.md)
 - [03-generator-runtime.md](./03-generator-runtime.md)
-- [04-dynamic-host-integration-examples.md](./04-dynamic-host-integration-examples.md)
+- [04-dynamic-host-integration-.md](./04-dynamic-host-integration-.md)
 - [06-integracion-copy-paste.md](./06-integracion-copy-paste.md)
 - [07-presets-configuracion.md](./07-presets-configuracion.md)
 
 ## Contrato de montaje del host
 
-Las rutas de `src/examples` son la referencia ejecutable de cómo montar
+Las rutas de `src/` son la referencia ejecutable de cómo montar
 SISAD PDFME en un host real. Hay dos presentaciones y elegir mal es la causa
 habitual de que el editor "se vea pequeño".
 
 ### `documentation` — catálogos
 
-Para rutas que **no** montan runtime (`/`, `/examples/schemas`). Conservan
+Para rutas que **no** montan runtime (`/`, `//schemas`). Conservan
 ancho editorial, hero, aside y scroll de página.
 
 ### `immersive` — Designer, Form, Viewer y familias
@@ -24,7 +24,7 @@ Para toda ruta que monta runtime. El host es dueño del viewport:
 
 ```tsx
 <div className="grid h-dvh min-h-0 w-full grid-rows-[auto_minmax(0,1fr)] overflow-hidden">
-  <ExampleTopbar />
+  <Topbar />
   <main className="min-h-0 min-w-0 overflow-hidden">
     <RuntimeViewport name="designer-single-user">
       <SisadPdfmeDesigner config={config} template={template} />
@@ -53,15 +53,15 @@ Reglas que sostienen ese contrato:
 
 ### Aislamiento de estilos
 
-`src/examples` puede usar la API pública (imports, props `className`/`style`)
+`src/` puede usar la API pública (imports, props `className`/`style`)
 pero no puede alcanzar los internals del runtime con CSS. El gate
 
 ```bash
-npm run quality:example-style-boundary
+npm run quality:-style-boundary
 ```
 
 falla ante `.sisad-pdfme-*`, `.moveable-*`, `.selecto-*`, `[data-schema-*]`,
-`transform: scale`, `zoom` y `!important` dentro de `src/examples`.
+`transform: scale`, `zoom` y `!important` dentro de `src/`.
 
 El baseline global (`src/style.css`) se limita a `html`, `body` y `#root`.
 Tailwind preflight permanece desactivado para no alterar canvas, PDF, inputs,

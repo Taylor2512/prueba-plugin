@@ -154,7 +154,7 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
     enabledTypes: [],
     autoAttachIdentity: true,
     validateUniqueNames: true,
-    defaultOwnerStrategy: 'active-recipient',
+    defaultOwnerStrategy: 'activerecipient',
     plugins: [],
   },
   recipients: {
@@ -163,7 +163,7 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
     allowUnassigned: true,
     allowShared: true,
     allowMultipleOwners: false,
-    defaultOwnerStrategy: 'active-recipient',
+    defaultOwnerStrategy: 'activerecipient',
     colorStrategy: 'recipient',
     missingRecipientBehavior: 'keep-id',
   },

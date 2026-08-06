@@ -29,7 +29,7 @@ export type SisadPdfmeRecipientsConfig = {
   allowUnassigned?: boolean;
   allowShared?: boolean;
   allowMultipleOwners?: boolean;
-  defaultOwnerStrategy?: 'none' | 'active-recipient' | 'first-recipient';
+  defaultOwnerStrategy?: 'none' | 'activerecipient' | 'firstrecipient';
   colorStrategy?: 'recipient' | 'schema' | 'theme' | 'auto';
   missingRecipientBehavior?: 'keep-id' | 'fallback-active' | 'mark-unassigned';
 };

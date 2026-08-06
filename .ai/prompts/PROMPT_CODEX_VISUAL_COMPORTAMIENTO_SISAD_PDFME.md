@@ -30,7 +30,7 @@ paralelas.
 - Máximo ocho lecturas iniciales.
 - Máximo dos búsquedas amplias.
 - TypeScript/TSX para core nuevo.
-- No imports de examples/features/modules.
+- No imports de /features/modules.
 - No segunda fuente de estado, registry, event bus, snapshot u overlay manager.
 - No setTimeout para lifecycle.
 - No z-index arbitrario.

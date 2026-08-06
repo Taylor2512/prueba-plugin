@@ -43,7 +43,7 @@ type DesignerActionState = {
 ## Acciones críticas
 
 - save
-- reassign-recipient
+- reassignrecipient
 - duplicate-schema
 - delete-schema
 - add-comment

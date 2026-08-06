@@ -8,7 +8,7 @@ No eliminar variables críticas:
 --sisad-pdfme-*
 --paper-*
 --schema-owner-color
---active-recipient-color
+--activerecipient-color
 ```
 
 Los tokens pueden mapearse a Tailwind, pero no deben duplicarse.

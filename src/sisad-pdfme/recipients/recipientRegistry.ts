@@ -118,7 +118,7 @@ export const createRecipientRegistry = (
       return normalized;
     }
     if (config.defaultOwnerStrategy === 'none') return null;
-    // 'active-recipient' sin id válido y 'first-recipient' caen al primero.
+    // 'activerecipient' sin id válido y 'firstrecipient' caen al primero.
     return recipients[0]?.id ?? null;
   };
 

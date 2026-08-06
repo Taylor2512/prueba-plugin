@@ -72,7 +72,7 @@ export const FAMILY_TYPE_ORDER = {
   action: ['attachment', 'note', 'approve', 'decline'],
 };
 
-const buildFamilyExamples = () => {
+const buildFamily = () => {
   const schemaTypesByFamily = new Map(Object.keys(FAMILY_META).map((key) => [key, []]));
 
   getBuiltInFields().forEach((definition) => {
@@ -96,7 +96,7 @@ const buildFamilyExamples = () => {
   });
 };
 
-export const FAMILY_EXAMPLES = buildFamilyExamples();
+export const FAMILY = buildFamily();
 
 export const typesOf = (keys) =>
-  FAMILY_EXAMPLES.filter((family) => keys.includes(family.key)).flatMap((family) => family.types);
+  FAMILY.filter((family) => keys.includes(family.key)).flatMap((family) => family.types);

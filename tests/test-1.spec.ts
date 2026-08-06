@@ -8,8 +8,8 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: 'Designer: multiusuario Colaboración con varios usuarios y cambio de actor' }).click();
   await page.locator('.sisad-pdfme-designer-canvas').click();
   await expect(page.locator('.sisad-pdfme-designer-canvas')).toBeVisible();
-  await expect(page.getByTestId('example-runtime-viewport')).toMatchAriaSnapshot(`
-    - text: "/Texto de ejemplo \\\\d+ Ada Lovelace ada@acme\\\\.example Acme Labs Analista senior Add text here using \\\\{\\\\} for variables ✍ Firma Alice Firma dibujada ✍ Firma Alice Firma dibujada \\\\d+\\\\/\\\\d+\\\\/\\\\d+ \\\\d+\\\\/\\\\d+\\\\/\\\\d+ \\\\d+:\\\\d+ PM \\\\d+\\\\/\\\\d+\\\\/\\\\d+ \\\\d+:\\\\d+ Seleccionar/"
+  await expect(page.getByTestId('-runtime-viewport')).toMatchAriaSnapshot(`
+    - text: "/Texto de ejemplo \\\\d+ Ada Lovelace ada@acme\\\\. Acme Labs Analista senior Add text here using \\\\{\\\\} for variables ✍ Firma Alice Firma dibujada ✍ Firma Alice Firma dibujada \\\\d+\\\\/\\\\d+\\\\/\\\\d+ \\\\d+\\\\/\\\\d+\\\\/\\\\d+ \\\\d+:\\\\d+ PM \\\\d+\\\\/\\\\d+\\\\/\\\\d+ \\\\d+:\\\\d+ Seleccionar/"
     - button
     - img
     - text: Adjuntar archivo Nota informativa
@@ -42,11 +42,11 @@ test('test', async ({ page }) => {
   await page.locator('.sisad-pdfme-designer-detail-view-sections').click();
   await page.getByRole('button', { name: 'Expandir sección Reglas de' }).click();
   await page.locator('div').filter({ hasText: /^Solo lectura$/ }).nth(5).click();
-  await page.getByTestId('example-recipient-select').selectOption('bob');
-  await page.getByTestId('example-recipient-select').selectOption('carla');
-  await page.getByTestId('example-recipient-select').selectOption('bob');
+  await page.getByTestId('recipient-select').selectOption('bob');
+  await page.getByTestId('recipient-select').selectOption('carla');
+  await page.getByTestId('recipient-select').selectOption('bob');
   await page.getByLabel('Lista de campos del documento').click();
-  await page.getByTestId('example-recipient-select').selectOption('alice');
+  await page.getByTestId('recipient-select').selectOption('alice');
   await page.getByText('Texto de ejemplo42Ada').click();
   await page.getByRole('button', { name: 'Fecha de firma Fecha de firma' }).click();
   await page.getByRole('button', { name: 'Número' }).click();

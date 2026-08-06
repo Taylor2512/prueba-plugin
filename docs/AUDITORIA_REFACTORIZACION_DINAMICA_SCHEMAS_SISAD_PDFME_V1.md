@@ -438,7 +438,7 @@ Prohibido como estado final:
 
 ```text
 schemas → RightSidebar/DetailView component
-schemas → examples/features/modules
+schemas → /features/modules
 schema renderer → host endpoint
 schema renderer → segundo event bus
 schema renderer → registry global mutable

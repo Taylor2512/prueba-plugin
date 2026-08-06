@@ -209,8 +209,8 @@ Total consolidado: **211**. El JSON es la fuente machine-readable.
 | DECL-UC-057 | DECL | Integration | ExternalForms |
 | DECL-UC-058 | DECL | UX | Responsive |
 | DECL-UC-059 | DECL | UX | Touch y accesibilidad |
-| DECL-UC-061 | DECL | Examples | Ejemplo básico ≤30 líneas |
-| DECL-UC-062 | DECL | Quality | Examples solo JS/JSX/JSON |
+| DECL-UC-061 | DECL |  | Ejemplo básico ≤30 líneas |
+| DECL-UC-062 | DECL | Quality |  solo JS/JSX/JSON |
 | DECL-UC-063 | DECL | Quality | Core solo TS/TSX |
 | DECL-UC-064 | DECL | Quality | No deep imports |
 | DECL-UC-065 | DECL | Performance | No remount |

@@ -131,7 +131,7 @@ release.
 
 - Solo `src/sisad-pdfme/**` recibe cambios productivos.
 - Core nuevo en TypeScript/TSX.
-- No importar `src/examples`, `src/features` ni `src/modules`.
+- No importar `src/`, `src/features` ni `src/modules`.
 - No tocar Moveable/Selecto/coordinateMath sin task específica.
 - No usar setTimeout para lifecycle.
 - No usar z-index arbitrario.

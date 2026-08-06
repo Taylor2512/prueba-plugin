@@ -54,11 +54,11 @@ export const RegisteredUsersSelector = ({
     return (
       <div
         className={mergeClassNames(
-          UI_CLASSNAME + 'active-recipient-empty',
+          UI_CLASSNAME + 'activerecipient-empty',
           // `border-solid` explícito: preflight está desactivado.
           'inline-flex h-8 items-center gap-2 rounded-lg border border-solid border-slate-200 bg-slate-50 px-2.5 text-xs text-slate-500',
         )}
-        data-testid="designer-active-recipient-empty"
+        data-testid="designer-activerecipient-empty"
       >
         <Users size={14} aria-hidden="true" />
         Sin usuarios
@@ -75,7 +75,7 @@ export const RegisteredUsersSelector = ({
   return (
     <label
       className={mergeClassNames(
-        UI_CLASSNAME + 'active-recipient-selector',
+        UI_CLASSNAME + 'activerecipient-selector',
         'relative inline-flex h-8 min-w-[10rem] max-w-[14rem] items-center gap-2 rounded-lg',
         // `border-solid` explícito por preflight desactivado.
         'border border-solid border-slate-200 bg-white px-2.5 text-xs shadow-none transition-colors',
@@ -94,7 +94,7 @@ export const RegisteredUsersSelector = ({
         value={isGlobalView ? '' : activeRecipient?.id || ''}
         onChange={(event) => onChange(event.target.value)}
         aria-label="Seleccionar usuario activo"
-        data-testid="designer-active-recipient-select"
+        data-testid="designer-activerecipient-select"
         disabled={isDisabled}
         className="min-w-0 flex-1 appearance-none truncate border-0 bg-transparent p-0 text-xs font-semibold text-slate-700 outline-none disabled:cursor-not-allowed"
       >

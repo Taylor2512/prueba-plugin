@@ -2,14 +2,14 @@ import React, { useMemo } from 'react';
 
 import { buildShowcaseTemplate } from '../builders/showcaseTemplate.js';
 import { buildFamiliesForKeys } from '../helpers/familyGroups.js';
-import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
-import { createRuntimeViewerInstance } from '../instances/exampleInstances.js';
-import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
+import { useRuntimeConfig } from '../hooks/useRuntimeConfig.js';
+import { createRuntimeViewerInstance } from '../instances/Instances.js';
+import { ROUTE_PATHS } from '../routes/routeDefinitions.js';
 import { RuntimeViewerInfo } from './RuntimeViewerInfo.jsx';
 import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { SisadPdfmeInstance } from '@/sisad-pdfme';
 
-export function RuntimeViewerPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeViewer }) {
+export function RuntimeViewerPage({ currentPath = ROUTE_PATHS.runtimeViewer }) {
   const template = useMemo(
     () =>
       buildShowcaseTemplate([
@@ -22,7 +22,7 @@ export function RuntimeViewerPage({ currentPath = EXAMPLE_ROUTE_PATHS.runtimeVie
       ]),
     [],
   );
-  const config = useExampleRuntimeConfig('runtime-viewer');
+  const config = useRuntimeConfig('runtime-viewer');
   const runtimeViewerInstance = useMemo(
     () => createRuntimeViewerInstance({ template, config }),
     [config, template],

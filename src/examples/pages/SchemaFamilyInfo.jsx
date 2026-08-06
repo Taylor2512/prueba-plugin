@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { ExampleInfoPanelStack, FamilyBadgeList, MetricGrid } from '../components/exampleUi.jsx';
+import { InfoPanelStack, FamilyBadgeList, MetricGrid } from '../components/Ui.jsx';
 
 export function SchemaFamilyInfo({ family }) {
   return (
-    <ExampleInfoPanelStack
+    <InfoPanelStack
       panels={[
         {
           key: 'types',

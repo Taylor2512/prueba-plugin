@@ -3,7 +3,7 @@ import { featureRegistry } from './featureRegistry.js';
 import type { SisadPdfmeFeatureState } from './featureRegistry.js';
 
 export type ActionId =
-  | 'reassign-recipient'
+  | 'reassignrecipient'
   | 'duplicate-schema'
   | 'delete-schema'
   | 'copy'
@@ -88,13 +88,13 @@ const resolveSelectionAction = (
 };
 
 export const actionConfigRegistry: Record<ActionId, ActionDefinition> = {
-  'reassign-recipient': {
-    id: 'reassign-recipient',
+  'reassignrecipient': {
+    id: 'reassignrecipient',
     commandId: 'reassignSchemaOwner',
     sources: ['assignment.enabled', 'visibility.actions.reassign'],
     resolve: (config, context) => {
       const assignmentState = featureRegistry.assignment.resolve(config, context);
-      return createActionState('reassign-recipient', 'reassignSchemaOwner', ['assignment.enabled', 'visibility.actions.reassign'], {
+      return createActionState('reassignrecipient', 'reassignSchemaOwner', ['assignment.enabled', 'visibility.actions.reassign'], {
         supported: assignmentState.supported,
         enabled: assignmentState.enabled && assignmentState.available && assignmentState.permitted,
         visible: assignmentState.visible,

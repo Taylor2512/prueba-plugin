@@ -1228,7 +1228,7 @@
     "useCaseId": "QLT-002",
     "domain": "QLT",
     "name": "Sin host imports",
-    "contract": "No importa src/examples/features/modules.",
+    "contract": "No importa src//features/modules.",
     "state": "expected",
     "source": "COREUX"
   },
@@ -1696,7 +1696,7 @@
     "useCaseId": "DECL-UC-043",
     "domain": "Templates",
     "name": "Recipe de template",
-    "contract": "Crear template de demostración desde grupos/tipos sin lógica en examples.",
+    "contract": "Crear template de demostración desde grupos/tipos sin lógica en .",
     "state": "expected",
     "source": "DECL"
   },
@@ -1777,7 +1777,7 @@
     "useCaseId": "DECL-UC-052",
     "domain": "Persistence",
     "name": "Autosave host/local",
-    "contract": "Delegar storage y autosave mediante adapter sin lógica en examples.",
+    "contract": "Delegar storage y autosave mediante adapter sin lógica en .",
     "state": "expected",
     "source": "DECL"
   },
@@ -1847,7 +1847,7 @@
   {
     "id": "BHV-206",
     "useCaseId": "DECL-UC-061",
-    "domain": "Examples",
+    "domain": "",
     "name": "Ejemplo básico ≤30 líneas",
     "contract": "La página solo importa definición y monta la instancia.",
     "state": "expected",
@@ -1857,8 +1857,8 @@
     "id": "BHV-207",
     "useCaseId": "DECL-UC-062",
     "domain": "Quality",
-    "name": "Examples solo JS/JSX/JSON",
-    "contract": "No existen TS/TSX ni imports .ts profundos en examples.",
+    "name": " solo JS/JSX/JSON",
+    "contract": "No existen TS/TSX ni imports .ts profundos en .",
     "state": "expected",
     "source": "DECL"
   },
@@ -1876,7 +1876,7 @@
     "useCaseId": "DECL-UC-064",
     "domain": "Quality",
     "name": "No deep imports",
-    "contract": "Examples consumen únicamente entrypoints públicos.",
+    "contract": " consumen únicamente entrypoints públicos.",
     "state": "expected",
     "source": "DECL"
   },

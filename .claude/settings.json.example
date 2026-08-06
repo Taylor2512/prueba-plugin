@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "deny": [
-      "Bash(rm -rf /:*)",
-      "Bash(git reset --hard:*)",
-      "Bash(git clean -fdx:*)"
-    ]
-  }
-}

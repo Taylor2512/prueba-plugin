@@ -21,7 +21,7 @@ context:
   skills: [sisad-canvas-safety, sisad-responsive-ux]
   requiredSymbols: []
   forbiddenPaths:
-    - src/examples/** salvo tests de integración explícitos
+    - src//** salvo tests de integración explícitos
     - src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica
     - src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica
     - src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica
@@ -67,14 +67,14 @@ No crear una implementación paralela si la responsabilidad ya existe.
 - `src/sisad-pdfme/ui/components/Designer/index.tsx`
 - `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
 - `src/sisad-pdfme/ui/components/CtlBar.tsx`
-- `tests/e2e/examples-layout.spec.ts`
+- `tests/e2e/-layout.spec.ts`
 
 Confirmar rutas reales antes de editar. Máximo cinco archivos productivos por
 commit; dividir la task si el cambio supera un dominio.
 
 ## Forbidden paths
 
-- `src/examples/** salvo tests de integración explícitos`
+- `src//** salvo tests de integración explícitos`
 - `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx salvo task específica`
 - `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx salvo task específica`
 - `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts salvo task específica`
@@ -84,7 +84,7 @@ commit; dividir la task si el cambio supera un dominio.
 
 - Solo código productivo bajo `src/sisad-pdfme/**`.
 - Core nuevo en TypeScript/TSX.
-- Cero imports hacia `src/examples`, `src/features` o `src/modules`.
+- Cero imports hacia `src/`, `src/features` o `src/modules`.
 - No segundo registry, event bus, snapshot, renderer, access policy u overlay manager.
 - No `setTimeout` para lifecycle.
 - No z-index arbitrario.

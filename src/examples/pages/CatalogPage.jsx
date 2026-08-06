@@ -1,25 +1,23 @@
 import React from 'react';
 
-import { FAMILY_EXAMPLES } from '../catalog/familyCatalog.js';
+import { FAMILY } from '../catalog/familyCatalog.js';
 import {
-  ExampleDocumentationShell,
-  ExampleInfoPanelStack,
-  FamilyBadgeList,
+  DocumentationShell,
+  InfoPanelStack,
   InfoCard,
   MetricGrid,
-  PreviewFrame,
   RouteCard,
-} from '../components/exampleUi.jsx';
-import { getExampleSchemaRoute } from '../routes/routeDefinitions.js';
+} from '../components/Ui.jsx';
+import { getSchemaRoute } from '../routes/routeDefinitions.js';
 
 export function CatalogPage({ primaryRouteDefinitions = [] }) {
   return (
-    <ExampleDocumentationShell
-      topLabel="SISAD PDFME examples"
+    <DocumentationShell
+      topLabel="SISAD PDFME "
       title="Catálogo de ejemplos del runtime reusable"
       description="Cada ruta es data-driven, Tailwind-only en la capa externa y compone la API pública de Designer, Form y Viewer sin tocar negocio host."
       aside={
-        <ExampleInfoPanelStack
+        <InfoPanelStack
           panels={[
             {
               key: 'coverage',
@@ -29,7 +27,7 @@ export function CatalogPage({ primaryRouteDefinitions = [] }) {
                 <MetricGrid
                   items={[
                     { label: 'Rutas base', value: String(primaryRouteDefinitions.length) },
-                    { label: 'Familias', value: String(FAMILY_EXAMPLES.length) },
+                    { label: 'Familias', value: String(FAMILY.length) },
                     { label: 'Modes', value: 'designer / form / viewer' },
                     { label: 'Estilo externo', value: 'Tailwind only' },
                   ]}
@@ -51,10 +49,10 @@ export function CatalogPage({ primaryRouteDefinitions = [] }) {
           description="Las rutas de abajo se generan desde el registry de schemas del paquete y no desde listas manuales dispersas."
         >
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-            {FAMILY_EXAMPLES.map((family) => (
+            {FAMILY.map((family) => (
               <RouteCard
                 key={family.key}
-                to={getExampleSchemaRoute(family.slug)}
+                to={getSchemaRoute(family.slug)}
                 title={family.title}
                 description={family.description}
                 extra={`${family.types.length} tipos`}
@@ -63,6 +61,6 @@ export function CatalogPage({ primaryRouteDefinitions = [] }) {
           </div>
         </InfoCard>
       </div>
-    </ExampleDocumentationShell>
+    </DocumentationShell>
   );
 }

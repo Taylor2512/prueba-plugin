@@ -594,13 +594,13 @@ const SidebarShell = ({
         {activeRecipientLabel ? (
           <span
             className={mergeClassNames(
-              `${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`,
+              `${DESIGNER_CLASSNAME}left-sidebar-dockrecipient`,
               'inline-flex max-w-full items-center gap-1 overflow-hidden rounded-full bg-slate-100 px-1.5 py-0.5 text-[0.55rem] font-semibold text-slate-600',
             )}
             title={activeRecipientLabel}
           >
             <span
-              className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--active-recipient-color,theme(colors.slate.400))]"
+              className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--activerecipient-color,theme(colors.slate.400))]"
               aria-hidden="true"
             />
             <span className="truncate">{activeRecipientLabel}</span>
@@ -721,7 +721,7 @@ const LeftSidebar = ({
   const activeRecipientTone = activeRecipientColor;
   const activeRecipientStyles = activeRecipientTone
     ? ({
-        '--active-recipient-color': activeRecipientTone,
+        '--activerecipient-color': activeRecipientTone,
         '--schema-owner-color': activeRecipientTone,
         '--schema-owner-surface': `color-mix(in srgb, ${activeRecipientTone} 24%, var(--color-white))`,
         '--schema-owner-surface-strong': `color-mix(in srgb, ${activeRecipientTone} 38%, var(--color-white))`,

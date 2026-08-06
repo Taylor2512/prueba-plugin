@@ -18,7 +18,7 @@ ab014e65e97bdd806518405d430188b2453880f095d3353fbb55afe2205ffa8c  .ai/scrum/task
 dd6acb0158fcb68db290b83e7c2f512f740f653095c6c5d3ef83c7d5fbf8e639  .ai/scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md
 7a7e013e5e3a4adb91d8b28f9541a3f62fe178003bc6c1bad3602f5a6dc73739  .ai/scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md
 8dae9735d85fa991c63fb4089a8a1e486b251bc0f6086d9029e985f78b64b64e  .ai/scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md
-817ffa695306cd8f72decd47e3b03d573f1fc7b6d680adca4af5d01c4de525d2  .ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md
+817ffa695306cd8f72decd47e3b03d573f1fc7b6d680adca4af5d01c4de525d2  .ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-derecipients.md
 3351eef8ff215b12d34f35a8293d34c93a8ca704a266fbaac69bc26368419e11  .ai/scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md
 eb317271e78e53dfb01cbed23e1ebd85552a79b4184103923b495eeac681044f  .ai/scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md
 cc57f711e2be6005283c0e0678f41db754387ed19d58c36c9976a3085e96fb58  .ai/scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md

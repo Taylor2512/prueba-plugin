@@ -10,7 +10,7 @@
  *   (`hasHandler === false` → `visible: false`, razón `missing-handler`).
  * - Un botón deshabilitado siempre lleva `reason` para tooltip/menu.
  *
- * Los ids kebab-case de chrome (save, undo, reassign-recipient, …) son
+ * Los ids kebab-case de chrome (save, undo, reassignrecipient, …) son
  * canónicos para superficies; los  camelCase del registry se resuelven
  * vía alias para no duplicar definiciones.
  */
@@ -81,7 +81,7 @@ const CHROME_ACTIONS: SchemaActionDefinition[] = [
   { id: 'switch-right-panel-documents', label: 'Abrir panel Docs', section: 'view', priority: 'secondary', presentationMode: 'inline' },
   { id: 'select-schema', label: 'Seleccionar campo', section: 'selection', priority: 'secondary', presentationMode: 'hidden' },
   {
-    id: 'reassign-recipient',
+    id: 'reassignrecipient',
     label: 'Reasignar responsable',
     section: 'collaboration',
     priority: 'secondary',

@@ -68,7 +68,7 @@ Archivos candidatos y existe prueba focal roja.
 
 - Solo código productivo bajo `src/sisad-pdfme/**`.
 - TypeScript/TSX.
-- Cero imports hacia examples/features/modules.
+- Cero imports hacia /features/modules.
 - No segundo registry, event bus, snapshot o renderer.
 - No `setTimeout` de coordinación.
 - No z-index arbitrario.

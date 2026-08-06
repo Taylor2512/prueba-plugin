@@ -1,14 +1,14 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { FAMILY_EXAMPLES } from '../catalog/familyCatalog.js';
+import { FAMILY } from '../catalog/familyCatalog.js';
 import { DEMO_DOCUMENTS } from '../fixtures/documents.js';
 import { MULTI_USER_FAMILY_KEYS, MULTI_USER_RECIPIENTS } from '../fixtures/recipients.js';
-import { useExampleController } from '../hooks/useExampleController.js';
-import { useExampleEventLog } from '../hooks/useExampleEventLog.js';
-import { useExampleRuntimeConfig } from '../hooks/useExampleRuntimeConfig.js';
-import { createDesignerMultiUserInstance } from '../instances/exampleInstances.js';
+import { useController } from '../hooks/useController.js';
+import { useEventLog } from '../hooks/useEventLog.js';
+import { useRuntimeConfig } from '../hooks/useRuntimeConfig.js';
+import { createDesignerMultiUserInstance } from '../instances/Instances.js';
 import { buildMultiUserShowcaseTemplate } from '../builders/multiUserShowcase.js';
-import { EXAMPLE_ROUTE_PATHS } from '../routes/routeDefinitions.js';
+import { ROUTE_PATHS } from '../routes/routeDefinitions.js';
 import { DesignerMultiUserInfo } from './DesignerMultiUserInfo.jsx';
 import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { SisadPdfmeInstance } from '@/sisad-pdfme';
@@ -18,7 +18,7 @@ function RecipientSelect({ value, onChange }) {
     <label className="flex min-w-0 items-center">
       <span className="sr-only">Recipient activo</span>
       <select
-        data-testid="example-recipient-select"
+        data-testid="recipient-select"
         value={value ?? ''}
         onChange={(event) => onChange(event.target.value)}
         className="box-border h-11 w-full min-w-0 max-w-[8rem] appearance-none truncate rounded-full border border-amber-300/40 bg-amber-300/10 px-3 text-xs font-medium text-amber-100 outline-none transition hover:border-amber-300/70 focus-visible:ring-2 focus-visible:ring-amber-300/60 md:h-9 md:max-w-[11rem]"
@@ -33,20 +33,20 @@ function RecipientSelect({ value, onChange }) {
   );
 }
 
-export function DesignerMultiUserPage({ currentPath = EXAMPLE_ROUTE_PATHS.designerMultiUser }) {
+export function DesignerMultiUserPage({ currentPath = ROUTE_PATHS.designerMultiUser }) {
   const [activeRecipientId, setActiveRecipientId] = useState(MULTI_USER_RECIPIENTS[0]?.id ?? '');
   const [template, setTemplate] = useState(() =>
     buildMultiUserShowcaseTemplate(
-      FAMILY_EXAMPLES.filter((family) => MULTI_USER_FAMILY_KEYS.includes(family.key)).map((family) => ({
+      FAMILY.filter((family) => MULTI_USER_FAMILY_KEYS.includes(family.key)).map((family) => ({
         title: family.title,
         types: family.types,
       })),
     ),
   );
   const [assignments, setAssignments] = useState(0);
-  const config = useExampleRuntimeConfig('designer-multi-user');
-  const { events, record, clear } = useExampleEventLog();
-  const { handleControllerReady, getController } = useExampleController();
+  const config = useRuntimeConfig('designer-multi-user');
+  const { events, record, clear } = useEventLog();
+  const { handleControllerReady, getController } = useController();
   const handleEvent = useCallback((event) => record(event.name, event.payload), [record]);
 
   const handleAssignmentChange = useCallback(

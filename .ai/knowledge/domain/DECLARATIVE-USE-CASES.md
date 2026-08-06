@@ -44,7 +44,7 @@
 | UC-040 | Firma | Firma, iniciales y fecha firmada soportan required y providers. | Schemas |
 | UC-041 | Acciones | Attachment, note, approve y decline conservan capacidades y validación. | Schemas |
 | UC-042 | Visuales | Imagen, SVG, tabla, formas y barcodes se crean desde recipe sin reglas de captura impropias. | Schemas |
-| UC-043 | Recipe de template | Crear template de demostración desde grupos/tipos sin lógica en examples. | Templates |
+| UC-043 | Recipe de template | Crear template de demostración desde grupos/tipos sin lógica en . | Templates |
 | UC-044 | Layout multipágina | Distribuir schemas con límites, salto de fila y salto de página. | Templates |
 | UC-045 | Inputs iniciales | Derivar values desde template o aceptar values declarados. | Runtime |
 | UC-046 | Validación por perfil | Separar validación de diseño, llenado, generación y envío. | Validation |
@@ -53,7 +53,7 @@
 | UC-049 | Config dinámica | Actualizar presentación sin remount y clasificar cambios estructurales. | Configuration |
 | UC-050 | Snapshot completo | Round-trip de template, recipients, documents, assignments, comments y firma. | Persistence |
 | UC-051 | Bundle portable | Exportar/importar definición, snapshot y assets sin identidad de laboratorio. | Persistence |
-| UC-052 | Autosave host/local | Delegar storage y autosave mediante adapter sin lógica en examples. | Persistence |
+| UC-052 | Autosave host/local | Delegar storage y autosave mediante adapter sin lógica en . | Persistence |
 | UC-053 | Datos asíncronos | Hidratar recipients/documents/config sin perder edición local. | Integration |
 | UC-054 | Generator | Generar PDF con preflight desde la instancia. | Artifacts |
 | UC-055 | Converter | PDF→size, PDF→images e images→PDF mediante API pública. | Artifacts |
@@ -61,10 +61,10 @@
 | UC-057 | ExternalForms | Consumir el mismo template/snapshot en Form y Viewer. | Integration |
 | UC-058 | Responsive | Designer ocupa viewport y sidebars se adaptan sin cambiar geometría. | UX |
 | UC-059 | Touch y accesibilidad | Targets, foco, Escape, reduced motion y teclado móvil. | UX |
-| UC-060 | Aislamiento visual | Examples no modifican internals por CSS. | UX |
-| UC-061 | Ejemplo básico ≤30 líneas | La página solo importa definición y monta la instancia. | Examples |
-| UC-062 | Examples solo JS/JSX/JSON | No existen TS/TSX ni imports .ts profundos en examples. | Quality |
+| UC-060 | Aislamiento visual |  no modifican internals por CSS. | UX |
+| UC-061 | Ejemplo básico ≤30 líneas | La página solo importa definición y monta la instancia. |  |
+| UC-062 |  solo JS/JSX/JSON | No existen TS/TSX ni imports .ts profundos en . | Quality |
 | UC-063 | Core solo TS/TSX | Nuevas utilidades del componente no se implementan en JS/JSX. | Quality |
-| UC-064 | No deep imports | Examples consumen únicamente entrypoints públicos. | Quality |
+| UC-064 | No deep imports |  consumen únicamente entrypoints públicos. | Quality |
 | UC-065 | No remount | Cambiar recipient, abrir info o actualizar UI no reconstruye engine. | Performance |
 | UC-066 | Compatibilidad API baja | Designer/Form/Viewer actuales siguen disponibles. | Compatibility |

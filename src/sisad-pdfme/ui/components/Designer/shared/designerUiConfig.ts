@@ -2,7 +2,7 @@
  * designerUiConfig — mapa consolidado visibilidad + acción + permisos.
  *
  * Rol arquitectónico (TASK-RUNTIME-015):
- * - Un componente pregunta al mapa (`map.resolveAction('reassign-recipient')`),
+ * - Un componente pregunta al mapa (`map.resolveAction('reassignrecipient')`),
  *   no recalcula reglas leyendo `options.visibility`/`options.assignment` por
  *   su cuenta.
  * - El mapa compone `visibilityConfig` (config declarativa) con
@@ -44,7 +44,7 @@ type ResolvedDesignerUiSource = Pick<ResolvedSisadPdfmeConfig, 'config' | 'visib
 
 /** Mapea ids de acción → flags de `visibility.actions`/paneles. */
 const actionVisibilityKey: Record<string, (visibility?: SisadPdfmeVisibilityConfig) => boolean> = {
-  'reassign-recipient': (v) => v?.actions?.reassign !== false,
+  'reassignrecipient': (v) => v?.actions?.reassign !== false,
   'duplicate-schema': (v) => v?.actions?.duplicate !== false,
   duplicate: (v) => v?.actions?.duplicate !== false,
   'delete-schema': (v) => v?.actions?.delete !== false,
@@ -72,7 +72,7 @@ export const buildDesignerUiMapFromResolvedConfig = (source: ResolvedDesignerUiS
   Object.entries(actionVisibilityKey).forEach(([actionId, isVisible]) => {
     actions[actionId] = {
       visibleByConfig:
-        actionId === 'reassign-recipient'
+        actionId === 'reassignrecipient'
           ? reassignVisible && assignmentModalVisible
           : isVisible(visibility),
       enabledByConfig: true,
@@ -121,7 +121,7 @@ export const buildDesignerUiMap = (options: unknown): ResolvedDesignerUiMap => {
       // Reassign replica el comportamiento del toolbar: assignment.enabled=false
       // OCULTA la acción (no la deja visible-deshabilitada).
       visibleByConfig:
-        actionId === 'reassign-recipient'
+        actionId === 'reassignrecipient'
           ? reassign.reassignVisible && reassign.assignmentModalVisible
           : isVisible(visibility),
       enabledByConfig: true,

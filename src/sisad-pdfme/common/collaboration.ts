@@ -8,7 +8,7 @@
  * - resolver autor/owner de schemas;
  * - filtrar schemas por vista colaborativa;
  * - crear comentarios y anchors;
- * - construir assignments por recipient, usuario y usuario-recipient;
+ * - construir assignments por recipient, usuario y usuariorecipient;
  * - validar metadata colaborativa mínima.
  *
  * Regla arquitectónica:

@@ -1,7 +1,7 @@
 # Plan de continuidad — Integración simple y portable de SISAD PDFME
 
 **Proyecto:** `prueba-plugin`  
-**Ámbito:** `src/sisad-pdfme` y migración de `src/examples`  
+**Ámbito:** `src/sisad-pdfme` y migración de `src/`  
 **Objetivo final:** copiar el componente en otro proyecto y limitar la integración del host a tres registros:
 
 1. datos;
@@ -89,7 +89,7 @@ Estado interno por campo                 avanzado
 Validación                               inicial
 Bundle JSON                              inicial
 Recipes                                  inicial/intermedio
-Migración de examples                    pendiente
+Migración de                     pendiente
 Instancia registrada en un solo objeto   pendiente
 Portabilidad visual autónoma             pendiente
 Defaults completamente habilitados       pendiente
@@ -220,7 +220,7 @@ export {
 } from './react/index.js';
 ```
 
-Los examples no deben usar imports profundos.
+Los  no deben usar imports profundos.
 
 ---
 
@@ -373,15 +373,15 @@ Estas capacidades quedan habilitadas, pero solo ejecutables cuando el host regis
 
 ---
 
-## P0-4 — Los examples siguen enseñando la integración antigua
+## P0-4 — Los  siguen enseñando la integración antigua
 
 Las páginas actuales siguen usando:
 
 ```text
 useState
-useExampleRuntimeConfig
-useExampleController
-useExampleEventLog
+useRuntimeConfig
+useController
+useEventLog
 buildShowcaseTemplate
 SisadPdfmeDesigner/Form/Viewer
 callbacks sueltos
@@ -760,7 +760,7 @@ Crear:
 src/sisad-pdfme/index.ts
 ```
 
-Eliminar imports profundos de examples.
+Eliminar imports profundos de .
 
 ### PORT-003 — Estabilidad de configuración
 
@@ -829,7 +829,7 @@ No `> 2`.
 
 ---
 
-## Wave 3 — Migración de examples
+## Wave 3 — Migración de 
 
 Orden:
 
@@ -844,14 +844,14 @@ DesignerMultiUser
 Eliminar después:
 
 ```text
-useExampleRuntimeConfig
-useExampleController
+useRuntimeConfig
+useController
 builders duplicados
 normalización residual
 callbacks runtime repetidos
 ```
 
-No eliminar `ExampleEventLog` ni UI de diagnóstico.
+No eliminar `EventLog` ni UI de diagnóstico.
 
 ---
 
@@ -940,9 +940,9 @@ npm run build
 npm run lint
 npm run test:unit
 npx vitest run tests/unit/sisad-pdfme/integration
-npx playwright test tests/e2e/examples-layout.spec.ts
+npx playwright test tests/e2e/-layout.spec.ts
 npm run quality:direct-config-readers
-npm run quality:example-style-boundary
+npm run quality:-style-boundary
 npm run quality:source-language-boundary
 ```
 
@@ -993,7 +993,7 @@ Estado actual:
 - Existen activeDocumentId, plugins y signatureProviders.
 - Existe validación básica.
 - Existe bundle JSON.
-- Los examples aún usan wrappers bajos y orquestación propia.
+- Los  aún usan wrappers bajos y orquestación propia.
 - defaultSisadPdfmeConfig todavía deshabilita varias funciones.
 - resolveSisadPdfmeConfig crea engine/EventHub/adapters.
 - La instancia puede recrear config por render.
@@ -1016,7 +1016,7 @@ instances/*.instance.ts
 handlers/*.handlers.ts
 
 Reglas estrictas:
-- No importar internals desde examples.
+- No importar internals desde .
 - No mover lógica de negocio del host al core.
 - No crear otro sistema de configuración.
 - Reutilizar SisadPdfmeConfigService.
@@ -1109,4 +1109,4 @@ modificar Tailwind content
 importar rutas profundas
 ```
 
-La demostración final debe ser una app consumidora mínima y los examples migrados a la misma API que usará cualquier proyecto real.
+La demostración final debe ser una app consumidora mínima y los  migrados a la misma API que usará cualquier proyecto real.

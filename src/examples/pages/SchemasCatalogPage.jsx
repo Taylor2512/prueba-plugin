@@ -1,24 +1,24 @@
 import React from 'react';
 
-import { FAMILY_EXAMPLES } from '../catalog/familyCatalog.js';
+import { FAMILY } from '../catalog/familyCatalog.js';
 import {
-  ExampleDocumentationShell,
-  ExampleInfoPanelStack,
+  DocumentationShell,
+  InfoPanelStack,
   FamilyBadgeList,
   PreviewFrame,
   RouteCard,
   MetricGrid,
-} from '../components/exampleUi.jsx';
-import { getExampleSchemaRoute } from '../routes/routeDefinitions.js';
+} from '../components/Ui.jsx';
+import { getSchemaRoute } from '../routes/routeDefinitions.js';
 
 export function SchemasCatalogPage() {
   return (
-    <ExampleDocumentationShell
+    <DocumentationShell
       topLabel="Schemas"
       title="Catálogo de familias y rutas especializadas"
       description="Cada familia se genera desde el registry del paquete. El catálogo permite navegar a una vista enfocada por tipo de schema sin duplicar componentes."
       aside={
-        <ExampleInfoPanelStack
+        <InfoPanelStack
           panels={[
             {
               key: 'routes',
@@ -28,8 +28,8 @@ export function SchemasCatalogPage() {
               render: () => (
                 <MetricGrid
                   items={[
-                    { label: 'Familias', value: String(FAMILY_EXAMPLES.length) },
-                    { label: 'Rutas de familias', value: String(FAMILY_EXAMPLES.length) },
+                    { label: 'Familias', value: String(FAMILY.length) },
+                    { label: 'Rutas de familias', value: String(FAMILY.length) },
                     { label: 'Registry', value: 'public schema registry' },
                     { label: 'Estilo', value: 'Tailwind only' },
                   ]}
@@ -42,10 +42,10 @@ export function SchemasCatalogPage() {
     >
       <div className="space-y-6">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {FAMILY_EXAMPLES.map((family) => (
+          {FAMILY.map((family) => (
             <RouteCard
               key={family.key}
-              to={getExampleSchemaRoute(family.slug)}
+              to={getSchemaRoute(family.slug)}
               title={family.title}
               description={family.description}
               extra={`${family.types.length} tipos`}
@@ -54,7 +54,7 @@ export function SchemasCatalogPage() {
         </div>
         <PreviewFrame>
           <div className="grid gap-0 md:grid-cols-2">
-            {FAMILY_EXAMPLES.map((family) => (
+            {FAMILY.map((family) => (
               <div
                 key={family.key}
                 className="box-border border-b border-slate-200 p-5 md:border-b-0 md:border-r md:last:border-r-0"
@@ -69,6 +69,6 @@ export function SchemasCatalogPage() {
           </div>
         </PreviewFrame>
       </div>
-    </ExampleDocumentationShell>
+    </DocumentationShell>
   );
 }

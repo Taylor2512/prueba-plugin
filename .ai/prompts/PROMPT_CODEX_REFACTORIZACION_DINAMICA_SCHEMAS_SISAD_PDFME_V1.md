@@ -39,7 +39,7 @@ Form, Viewer ni PDF.
 - No ejecutar una reescritura big-bang.
 - No crear un segundo registry, event bus, snapshot o renderer.
 - Mantener el `Plugin<Schema>` de pdfme mediante adapters.
-- No importar desde schemas hacia examples/features/modules.
+- No importar desde schemas hacia /features/modules.
 - Eliminar progresivamente imports a componentes concretos del RightSidebar.
 - No usar `as any` para ocultar incompatibilidades.
 - No cambiar geometría, snapshot o generator sin prueba roja específica.

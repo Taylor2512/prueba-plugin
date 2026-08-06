@@ -67,7 +67,7 @@ Resultado:
 Consulta el estado de una acción.
 
 ```ts
-const reassignState = useSisadPdfmeAction('reassign-recipient', {
+const reassignState = useSisadPdfmeAction('reassignrecipient', {
   selectionCount: selectedIds.length,
   recipientCount: recipients.length,
   canEditStructure: true,
@@ -286,7 +286,7 @@ collaboration→ runtime
 # 5. Action IDs
 
 ```txt
-reassign-recipient
+reassignrecipient
 duplicate-schema
 delete-schema
 copy

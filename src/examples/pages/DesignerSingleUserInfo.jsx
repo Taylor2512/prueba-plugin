@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {
-  ExampleControllerPanel,
-  ExampleEventLog,
-  ExampleInfoPanelStack,
+  ControllerPanel,
+  EventLog,
+  InfoPanelStack,
   FamilyBadgeList,
   MetricGrid,
-} from '../components/exampleUi.jsx';
+} from '../components/Ui.jsx';
 
 export function DesignerSingleUserInfo({
   pageCount,
@@ -18,7 +18,7 @@ export function DesignerSingleUserInfo({
   families,
 }) {
   return (
-    <ExampleInfoPanelStack
+    <InfoPanelStack
       panels={[
         {
           key: 'summary',
@@ -39,13 +39,13 @@ export function DesignerSingleUserInfo({
           key: 'controller',
           title: 'Controlador',
           description: 'API imperativa pública: selección, alta, duplicado, borrado, asignación, snapshot y validación.',
-          render: () => <ExampleControllerPanel getController={getController} />,
+          render: () => <ControllerPanel getController={getController} />,
         },
         {
           key: 'events',
           title: 'Eventos',
           description: 'Callbacks del wrapper, tal como los recibe el host.',
-          render: () => <ExampleEventLog events={events} onClear={onClear} />,
+          render: () => <EventLog events={events} onClear={onClear} />,
         },
         {
           key: 'families',

@@ -29,7 +29,7 @@ schema family.
 - file restrictions belong in fileRules
 - technical identifiers belong in advanced
 
-## Family examples
+## Family 
 
 | Family | Typical sections |
 |---|---|

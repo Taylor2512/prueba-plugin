@@ -1,5 +1,5 @@
 {"id": "context-engineering", "description": "Build minimal context packs and stop context rot.", "aliases": ["sisad-context-packet", "sisad-context-budget", "sisad-context-rot-check"]}
-{"id": "recipient-assignment", "description": "Recipients, owner color, locks and reassignment.", "aliases": ["sisad-recipient-assignment-policy", "sisad-collaboration-assignments"]}
+{"id": "recipient-assignment", "description": "Recipients, owner color, locks and reassignment.", "aliases": ["sisadrecipient-assignment-policy", "sisad-collaboration-assignments"]}
 {"id": "left-sidebar", "description": "Catalog, layouts, search, favorites and drag/drop.", "aliases": ["sisad-left-sidebar-catalog"]}
 {"id": "canvas-safety", "description": "Selection, geometry, Moveable, Selecto and placement.", "aliases": ["sisad-canvas-interaction", "sisad-canvas-safety", "sisad-designer-safety"]}
 {"id": "inspector-contract", "description": "DetailView taxonomy, widgets and property writers.", "aliases": ["sisad-inspector-contract", "sisad-right-sidebar-contract"]}

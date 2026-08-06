@@ -66,7 +66,7 @@ Archivos candidatos y existe prueba focal roja.
 
 - Solo código productivo bajo `src/sisad-pdfme/**`.
 - TypeScript/TSX.
-- Cero imports hacia examples/features/modules.
+- Cero imports hacia /features/modules.
 - No segundo registry, event bus, snapshot o renderer.
 - No `setTimeout` de coordinación.
 - No z-index arbitrario.
@@ -101,7 +101,7 @@ Archivos candidatos y existe prueba focal roja.
 Entrega: `reports/core-ux/08-CAPABILITY-INVENTORY.md`. Corrige la auditoría del
 30/07: `ead5b6e` implementó los cinco métodos de selección/schema que eran
 no-op. Hallazgo colateral CAP-01 (crash del log de eventos) corregido en
-`src/examples/index.jsx` con test `tests/unit/examples/exampleEventLog.test.tsx`.
+`src//index.jsx` con test `tests/unit//EventLog.test.tsx`.
 
 ## Gates focales
 

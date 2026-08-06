@@ -1,6 +1,0 @@
-{
-  "$comment": "Fusionar estas claves en el knip.json existente; no reemplazar el archivo completo.",
-  "ignoreDependencies": [
-    "tailwindcss"
-  ]
-}

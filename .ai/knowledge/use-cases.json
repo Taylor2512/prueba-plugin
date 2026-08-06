@@ -1092,7 +1092,7 @@
     "source": "COREUX",
     "domain": "QLT",
     "name": "Sin host imports",
-    "expected": "No importa src/examples/features/modules.",
+    "expected": "No importa src//features/modules.",
     "status": "canonical"
   },
   {
@@ -1508,7 +1508,7 @@
     "source": "DECL",
     "domain": "Templates",
     "name": "Recipe de template",
-    "expected": "Crear template de demostración desde grupos/tipos sin lógica en examples.",
+    "expected": "Crear template de demostración desde grupos/tipos sin lógica en .",
     "status": "canonical"
   },
   {
@@ -1580,7 +1580,7 @@
     "source": "DECL",
     "domain": "Persistence",
     "name": "Autosave host/local",
-    "expected": "Delegar storage y autosave mediante adapter sin lógica en examples.",
+    "expected": "Delegar storage y autosave mediante adapter sin lógica en .",
     "status": "canonical"
   },
   {
@@ -1642,7 +1642,7 @@
   {
     "id": "DECL-UC-061",
     "source": "DECL",
-    "domain": "Examples",
+    "domain": "",
     "name": "Ejemplo básico ≤30 líneas",
     "expected": "La página solo importa definición y monta la instancia.",
     "status": "canonical"
@@ -1651,8 +1651,8 @@
     "id": "DECL-UC-062",
     "source": "DECL",
     "domain": "Quality",
-    "name": "Examples solo JS/JSX/JSON",
-    "expected": "No existen TS/TSX ni imports .ts profundos en examples.",
+    "name": " solo JS/JSX/JSON",
+    "expected": "No existen TS/TSX ni imports .ts profundos en .",
     "status": "canonical"
   },
   {
@@ -1668,7 +1668,7 @@
     "source": "DECL",
     "domain": "Quality",
     "name": "No deep imports",
-    "expected": "Examples consumen únicamente entrypoints públicos.",
+    "expected": " consumen únicamente entrypoints públicos.",
     "status": "canonical"
   },
   {

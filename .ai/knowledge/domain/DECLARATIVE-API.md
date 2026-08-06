@@ -42,7 +42,7 @@ export function DesignerSingleUserPage() {
     },
     "recipients": {
       "enabled": true,
-      "defaultOwnerStrategy": "active-recipient",
+      "defaultOwnerStrategy": "activerecipient",
       "colorStrategy": "recipient"
     },
     "assignment": {

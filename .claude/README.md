@@ -5,4 +5,4 @@
 - `.agents/skills/` is the canonical skill location.
 - Claude auto-memory is auxiliary; do not let it replace `.ai/memory/`.
 - Keep MEMORY index below provider limits and details in topic files.
-- Hooks may enforce deterministic policy; see `settings.example.json`.
+- Hooks may enforce deterministic policy; see `settings..json`.

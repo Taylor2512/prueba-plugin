@@ -50,7 +50,7 @@ Config selecciona comportamiento.
 - No usar `setTimeout` para lifecycle.
 - No resolver problemas con z-index arbitrario.
 - Tailwind vive en JSX/TSX; `tokens.css` conserva variables compartidas.
-- No importar `src/examples` desde el core.
+- No importar `src/` desde el core.
 - No tocar Moveable, Selecto o coordinateMath fuera de una task específica y una prueba roja.
 
 ## 3. Hallazgos que disparan el plan
@@ -140,7 +140,7 @@ VISUX-042.
 | [VISUX-013](../scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md) | W2 | P1 | Compactar shell, tabs y colapso del LeftSidebar | COREUX-021, COREUX-023 | VISUX-005, VISUX-006 |
 | [VISUX-014](../scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md) | W2 | P1 | Cerrar búsqueda, filtros y selector de layout del catálogo | COREUX-023 | VISUX-013 |
 | [VISUX-015](../scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md) | W2 | P1 | Compactar grupos, cards, favoritos y owner tone del catálogo | COREUX-023, COREUX-041 | VISUX-014, VISUX-003 |
-| [VISUX-016](../scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md) | W2 | P1 | Cerrar custom fields, auto fields y catálogo de recipients | COREUX-023, COREUX-036 | VISUX-013, VISUX-015 |
+| [VISUX-016](../scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-derecipients.md) | W2 | P1 | Cerrar custom fields, auto fields y catálogo de recipients | COREUX-023, COREUX-036 | VISUX-013, VISUX-015 |
 | [VISUX-017](../scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md) | W2 | P0 | Cerrar drag preview, drop setup y feedback de colocación | COREUX-043 | VISUX-015, VISUX-012 |
 | [VISUX-018](../scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md) | W3 | P0 | Hacer responsive la navegación del RightSidebar | COREUX-024 | VISUX-005, VISUX-006 |
 | [VISUX-019](../scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md) | W3 | P0 | Formalizar panel registry, header contextual y scroll owner | COREUX-024 | VISUX-018, VISUX-002 |
@@ -176,9 +176,9 @@ npm run lint
 npm run build
 npm run test:unit
 npm run quality:direct-config-readers
-npm run quality:example-style-boundary
+npm run quality:-style-boundary
 npm run quality:source-language-boundary
-npx playwright test tests/e2e/examples-layout.spec.ts
+npx playwright test tests/e2e/-layout.spec.ts
 ```
 
 Ejecutar únicamente los gates existentes; registrar honestamente los no

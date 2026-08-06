@@ -134,7 +134,7 @@
 {"id": "RUN-014", "source": "COREUX", "domain": "RUN", "name": "Snapshot runtime", "expected": "Form/Viewer consumen artefacto canónico.", "status": "canonical", "tags": ["RUN"]}
 {"id": "RUN-015", "source": "COREUX", "domain": "RUN", "name": "Error recovery", "expected": "Errores se exponen sin congelar la instancia.", "status": "canonical", "tags": ["RUN"]}
 {"id": "QLT-001", "source": "COREUX", "domain": "QLT", "name": "Core TypeScript", "expected": "Código nuevo de sisad-pdfme usa TS/TSX.", "status": "canonical", "tags": ["QLT"]}
-{"id": "QLT-002", "source": "COREUX", "domain": "QLT", "name": "Sin host imports", "expected": "No importa src/examples/features/modules.", "status": "canonical", "tags": ["QLT"]}
+{"id": "QLT-002", "source": "COREUX", "domain": "QLT", "name": "Sin host imports", "expected": "No importa src//features/modules.", "status": "canonical", "tags": ["QLT"]}
 {"id": "QLT-003", "source": "COREUX", "domain": "QLT", "name": "Sin deep readers", "expected": "Config se consume por selectors/service.", "status": "canonical", "tags": ["QLT"]}
 {"id": "QLT-004", "source": "COREUX", "domain": "QLT", "name": "Sin acción duplicada", "expected": "Una definición por actionId.", "status": "canonical", "tags": ["QLT"]}
 {"id": "QLT-005", "source": "COREUX", "domain": "QLT", "name": "Sin evento string libre", "expected": "Catálogo tipado y versionado.", "status": "canonical", "tags": ["QLT"]}
@@ -186,7 +186,7 @@
 {"id": "DECL-UC-040", "source": "DECL", "domain": "Schemas", "name": "Firma", "expected": "Firma, iniciales y fecha firmada soportan required y providers.", "status": "canonical", "tags": ["Schemas"]}
 {"id": "DECL-UC-041", "source": "DECL", "domain": "Schemas", "name": "Acciones", "expected": "Attachment, note, approve y decline conservan capacidades y validación.", "status": "canonical", "tags": ["Schemas"]}
 {"id": "DECL-UC-042", "source": "DECL", "domain": "Schemas", "name": "Visuales", "expected": "Imagen, SVG, tabla, formas y barcodes se crean desde recipe sin reglas de captura impropias.", "status": "canonical", "tags": ["Schemas"]}
-{"id": "DECL-UC-043", "source": "DECL", "domain": "Templates", "name": "Recipe de template", "expected": "Crear template de demostración desde grupos/tipos sin lógica en examples.", "status": "canonical", "tags": ["Templates"]}
+{"id": "DECL-UC-043", "source": "DECL", "domain": "Templates", "name": "Recipe de template", "expected": "Crear template de demostración desde grupos/tipos sin lógica en .", "status": "canonical", "tags": ["Templates"]}
 {"id": "DECL-UC-044", "source": "DECL", "domain": "Templates", "name": "Layout multipágina", "expected": "Distribuir schemas con límites, salto de fila y salto de página.", "status": "canonical", "tags": ["Templates"]}
 {"id": "DECL-UC-045", "source": "DECL", "domain": "Runtime", "name": "Inputs iniciales", "expected": "Derivar values desde template o aceptar values declarados.", "status": "canonical", "tags": ["Runtime"]}
 {"id": "DECL-UC-046", "source": "DECL", "domain": "Validation", "name": "Validación por perfil", "expected": "Separar validación de diseño, llenado, generación y envío.", "status": "canonical", "tags": ["Validation"]}
@@ -195,7 +195,7 @@
 {"id": "DECL-UC-049", "source": "DECL", "domain": "Configuration", "name": "Config dinámica", "expected": "Actualizar presentación sin remount y clasificar cambios estructurales.", "status": "canonical", "tags": ["Configuration"]}
 {"id": "DECL-UC-050", "source": "DECL", "domain": "Persistence", "name": "Snapshot completo", "expected": "Round-trip de template, recipients, documents, assignments, comments y firma.", "status": "canonical", "tags": ["Persistence"]}
 {"id": "DECL-UC-051", "source": "DECL", "domain": "Persistence", "name": "Bundle portable", "expected": "Exportar/importar definición, snapshot y assets sin identidad de laboratorio.", "status": "canonical", "tags": ["Persistence"]}
-{"id": "DECL-UC-052", "source": "DECL", "domain": "Persistence", "name": "Autosave host/local", "expected": "Delegar storage y autosave mediante adapter sin lógica en examples.", "status": "canonical", "tags": ["Persistence"]}
+{"id": "DECL-UC-052", "source": "DECL", "domain": "Persistence", "name": "Autosave host/local", "expected": "Delegar storage y autosave mediante adapter sin lógica en .", "status": "canonical", "tags": ["Persistence"]}
 {"id": "DECL-UC-053", "source": "DECL", "domain": "Integration", "name": "Datos asíncronos", "expected": "Hidratar recipients/documents/config sin perder edición local.", "status": "canonical", "tags": ["Integration"]}
 {"id": "DECL-UC-054", "source": "DECL", "domain": "Artifacts", "name": "Generator", "expected": "Generar PDF con preflight desde la instancia.", "status": "canonical", "tags": ["Artifacts"]}
 {"id": "DECL-UC-055", "source": "DECL", "domain": "Artifacts", "name": "Converter", "expected": "PDF→size, PDF→images e images→PDF mediante API pública.", "status": "canonical", "tags": ["Artifacts"]}
@@ -203,10 +203,10 @@
 {"id": "DECL-UC-057", "source": "DECL", "domain": "Integration", "name": "ExternalForms", "expected": "Consumir el mismo template/snapshot en Form y Viewer.", "status": "canonical", "tags": ["Integration"]}
 {"id": "DECL-UC-058", "source": "DECL", "domain": "UX", "name": "Responsive", "expected": "Designer ocupa viewport y sidebars se adaptan sin cambiar geometría.", "status": "canonical", "tags": ["UX"]}
 {"id": "DECL-UC-059", "source": "DECL", "domain": "UX", "name": "Touch y accesibilidad", "expected": "Targets, foco, Escape, reduced motion y teclado móvil.", "status": "canonical", "tags": ["UX"]}
-{"id": "DECL-UC-061", "source": "DECL", "domain": "Examples", "name": "Ejemplo básico ≤30 líneas", "expected": "La página solo importa definición y monta la instancia.", "status": "canonical", "tags": ["Examples"]}
-{"id": "DECL-UC-062", "source": "DECL", "domain": "Quality", "name": "Examples solo JS/JSX/JSON", "expected": "No existen TS/TSX ni imports .ts profundos en examples.", "status": "canonical", "tags": ["Quality"]}
+{"id": "DECL-UC-061", "source": "DECL", "domain": "", "name": "Ejemplo básico ≤30 líneas", "expected": "La página solo importa definición y monta la instancia.", "status": "canonical", "tags": [""]}
+{"id": "DECL-UC-062", "source": "DECL", "domain": "Quality", "name": " solo JS/JSX/JSON", "expected": "No existen TS/TSX ni imports .ts profundos en .", "status": "canonical", "tags": ["Quality"]}
 {"id": "DECL-UC-063", "source": "DECL", "domain": "Quality", "name": "Core solo TS/TSX", "expected": "Nuevas utilidades del componente no se implementan en JS/JSX.", "status": "canonical", "tags": ["Quality"]}
-{"id": "DECL-UC-064", "source": "DECL", "domain": "Quality", "name": "No deep imports", "expected": "Examples consumen únicamente entrypoints públicos.", "status": "canonical", "tags": ["Quality"]}
+{"id": "DECL-UC-064", "source": "DECL", "domain": "Quality", "name": "No deep imports", "expected": " consumen únicamente entrypoints públicos.", "status": "canonical", "tags": ["Quality"]}
 {"id": "DECL-UC-065", "source": "DECL", "domain": "Performance", "name": "No remount", "expected": "Cambiar recipient, abrir info o actualizar UI no reconstruye engine.", "status": "canonical", "tags": ["Performance"]}
 {"id": "DECL-UC-066", "source": "DECL", "domain": "Compatibility", "name": "Compatibilidad API baja", "expected": "Designer/Form/Viewer actuales siguen disponibles.", "status": "canonical", "tags": ["Compatibility"]}
 {"id": "REC-001", "source": "conversation-consolidation-2026-08-02", "domain": "recipients", "name": "Designer sin recipients", "expected": "Usa color neutral configurable, no muestra selector ni Reasignar y permite owner unassigned.", "tags": ["recipient", "ownership", "assignment"], "status": "canonical-proposed"}

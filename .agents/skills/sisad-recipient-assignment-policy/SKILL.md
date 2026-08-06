@@ -1,9 +1,9 @@
 ---
-name: sisad-recipient-assignment-policy
+name: sisadrecipient-assignment-policy
 description: Valida recipients asignables, ownership, locks y reasignación segura.
 ---
 
-# sisad-recipient-assignment-policy
+# sisadrecipient-assignment-policy
 
 ## Trigger
 

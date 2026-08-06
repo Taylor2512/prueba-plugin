@@ -1,7 +1,3 @@
-import type {
-  ResolvedSisadPdfmeConfig,
-  SisadPdfmeGlobalConfig,
-} from '../config/index.js';
 import {
   validateSisadPdfmeInstanceDefinition,
   type SisadPdfmeInstanceDefinitionIssue,

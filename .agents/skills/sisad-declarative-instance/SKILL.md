@@ -20,6 +20,6 @@ Preferir:
 - Resources no serializables.
 - Handlers separados.
 - Core TS/TSX.
-- Examples JS/JSX/JSON.
+-  JS/JSX/JSON.
 - Reassign depende de recipients asignables.
 - No tocar geometría para simplificar montaje.
