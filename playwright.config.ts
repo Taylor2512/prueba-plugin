@@ -4,7 +4,8 @@ const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:5174';
 
 export default defineConfig({
   testDir: '.',
-  testMatch: ['tests/playwright/**/*.spec.ts', 'tests/e2e/**/*.spec.ts'],
+  // Include all tests under `tests/` so single-file runs work reliably.
+  testMatch: ['tests/**/*.spec.ts', 'tests/playwright/**/*.spec.ts', 'tests/e2e/**/*.spec.ts'],
   timeout: 30_000,
   forbidOnly: Boolean(process.env.CI),
   fullyParallel: false,
@@ -21,6 +22,12 @@ export default defineConfig({
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+  },
+  webServer: {
+    command: 'VITE_PORT=5174 npm run dev',
+    url: 'http://localhost:5174',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
