@@ -42,6 +42,7 @@
 {"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","to":".ai/scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md","fragment":null}
 {"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","to":".ai/scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md","fragment":null}
 {"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","to":".ai/scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md","fragment":null}
+{"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","to":".ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md","fragment":null}
 {"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","to":".ai/scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md","fragment":null}
 {"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","to":".ai/scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md","fragment":null}
 {"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","to":".ai/scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md","fragment":null}
@@ -136,6 +137,8 @@
 {"from":".ai/scrum/task-cards/runtime-platform/README.md","to":".ai/scrum/task-cards/runtime-platform/RTP-340.md","fragment":null}
 {"from":".codex/README.md","to":".codex/agents/README.md","fragment":null}
 {"from":".codex/agents/README.md","to":".codex/agents/runtime-platform.md","fragment":null}
+{"from":".github/agents/sisad-dry-auditor.agent.md","to":".ai/agents/explorer.md","fragment":null}
+{"from":".github/agents/sisad-test-specialist.agent.md","to":".ai/agents/qa.md","fragment":null}
 {"from":"README.md","to":".claude/README.md","fragment":null}
 {"from":"README.md","to":".codex/README.md","fragment":null}
 {"from":"README.md","to":"docs/README.md","fragment":null}
@@ -161,6 +164,7 @@
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/01-template.md","fragment":null}
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/02-documents-pages.md","fragment":null}
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/03-schemas.md","fragment":null}
+{"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/04-recipients.md","fragment":null}
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/05-assignments.md","fragment":null}
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/06-runtime-modes.md","fragment":null}
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/07-snapshot.md","fragment":null}
@@ -218,6 +222,7 @@
 {"from":"docs/05-runtime/README.md","to":"docs/05-runtime/02-viewer.md","fragment":null}
 {"from":"docs/05-runtime/README.md","to":"docs/05-runtime/03-values.md","fragment":null}
 {"from":"docs/05-runtime/README.md","to":"docs/05-runtime/04-validation.md","fragment":null}
+{"from":"docs/05-runtime/README.md","to":"docs/05-runtime/05-recipient-filtering.md","fragment":null}
 {"from":"docs/05-runtime/README.md","to":"docs/05-runtime/01-form.md","fragment":null}
 {"from":"docs/05-runtime/README.md","to":"docs/05-runtime/02-viewer.md","fragment":null}
 {"from":"docs/05-runtime/README.md","to":"docs/05-runtime/03-values.md","fragment":null}
@@ -301,6 +306,7 @@
 {"from":"docs/13-ejemplos/README.md","to":"docs/13-ejemplos/01-basic-designer.md","fragment":null}
 {"from":"docs/13-ejemplos/README.md","to":"docs/13-ejemplos/02-multi-document-routing.md","fragment":null}
 {"from":"docs/13-ejemplos/README.md","to":"docs/13-ejemplos/03-generator-runtime.md","fragment":null}
+{"from":"docs/13-ejemplos/README.md","to":"docs/13-ejemplos/04-dynamic-host-integration-s.md","fragment":null}
 {"from":"docs/13-ejemplos/README.md","to":"docs/13-ejemplos/06-integracion-copy-paste.md","fragment":null}
 {"from":"docs/13-ejemplos/README.md","to":"docs/13-ejemplos/07-presets-configuracion.md","fragment":null}
 {"from":"docs/13-ejemplos/README.md","to":"docs/13-ejemplos/01-basic-designer.md","fragment":null}

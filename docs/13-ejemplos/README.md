@@ -3,7 +3,7 @@
 - [01-basic-designer.md](./01-basic-designer.md)
 - [02-multi-document-routing.md](./02-multi-document-routing.md)
 - [03-generator-runtime.md](./03-generator-runtime.md)
-- [04-dynamic-host-integration-.md](./04-dynamic-host-integration-.md)
+- [04-dynamic-host-integration-s.md](./04-dynamic-host-integration-s.md)
 - [06-integracion-copy-paste.md](./06-integracion-copy-paste.md)
 - [07-presets-configuracion.md](./07-presets-configuracion.md)
 

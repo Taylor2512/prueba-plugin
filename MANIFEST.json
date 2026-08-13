@@ -1,5 +1,5 @@
 {
-  "package": "SISAD-PDFME-TOOLING-ARCHITECTURE-CLEANUP",
+  "package": "SISAD-PDFME-TOOLING-ARCHITECTURE-CLEANUP-CORREGIDO",
   "targetRepository": "/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin",
   "purpose": "Centralize scripts/tools configuration, remove Markdown/tooling duplication, sanitize versioned architecture paths, index/link Markdown, and safely import architecture overlays.",
   "canonicalConfig": "config/tooling/project-tools.config.mjs",
@@ -16,10 +16,13 @@
   },
   "validation": {
     "nodeSyntax": "PASS",
-    "projectToolsSynthetic": "PASS",
-    "architectureImporterFolderSynthetic": "PASS",
-    "architectureImporterZipSynthetic": "PASS",
-    "selfArchitectureValidation": "PASS",
+    "syntheticTests": [
+      "project-tools synthetic tests PASS",
+      "architecture importer synthetic tests PASS",
+      "missing --source returns friendly usage PASS",
+      "self architecture validate PASS",
+      "0 versioned physical paths PASS"
+    ],
     "versionedPathsInPackage": 0
   },
   "files": [
@@ -253,5 +256,13 @@
       "bytes": 530,
       "sha256": "0dd952b74869e406b14228ccf43ac78dab1dba630647814fa31560bd6bd63ea7"
     }
+  ],
+  "corrections": [
+    "Complete package.json command set",
+    "docs:links is now dry-run; docs:links:apply performs writes",
+    "Friendly import error when --source is missing",
+    "sanitize --apply is fully blocked on divergent conflicts and creates no empty backup",
+    "conflict report includes hashes/line counts/resolution",
+    "orphans command added"
   ]
 }

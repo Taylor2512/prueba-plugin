@@ -57,10 +57,14 @@
     "docs:sanitize:apply": "node scripts/project-tools.mjs sanitize . --apply",
     "docs:index": "node scripts/project-tools.mjs index .",
     "docs:links": "node scripts/project-tools.mjs links . --apply",
+    "docs:links:apply": "npm run docs:links",
+    "docs:names": "node scripts/project-tools.mjs validate . --check=names",
+    "docs:broken-links": "node scripts/project-tools.mjs validate . --check=links",
     "docs:duplicates": "node scripts/project-tools.mjs duplicates .",
     "docs:validate": "node scripts/project-tools.mjs validate .",
     "architecture:import": "node scripts/project-tools.mjs import .",
-    "architecture:all": "node scripts/project-tools.mjs all . --apply"
+    "architecture:all": "node scripts/project-tools.mjs all .",
+    "architecture:all:apply": "node scripts/project-tools.mjs all . --apply"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",

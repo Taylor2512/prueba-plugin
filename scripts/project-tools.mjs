@@ -40,10 +40,15 @@ Usage:
   node scripts/project-tools.mjs index [repo]
   node scripts/project-tools.mjs links [repo] [--apply]
   node scripts/project-tools.mjs duplicates [repo]
-  node scripts/project-tools.mjs validate [repo]
+  node scripts/project-tools.mjs orphans [repo]
+  node scripts/project-tools.mjs validate [repo] [--check=all|links|names]
   node scripts/project-tools.mjs import [repo] --source=<folder|zip> [--apply] [--conflict=keep-target|prefer-source]
   node scripts/project-tools.mjs doctor [repo]
   node scripts/project-tools.mjs all [repo] [--apply]
+
+Notes:
+  index/duplicates/orphans do not use --apply.
+  import always requires --source.
 
 Global:
   --config=<path>
@@ -120,6 +125,15 @@ export async function runCli(argv = process.argv.slice(2)) {
       return result.duplicates.exact.length ? 1 : 0;
     }
 
+    case "orphans": {
+      const result = buildMarkdownIndex(root, config);
+      printJson({
+        count: result.orphans.length,
+        paths: result.orphans.map((item) => item.path),
+      });
+      return 0;
+    }
+
     case "validate": {
       const result = validateArchitecture(root, config);
       const check = args.get("check", "all");
@@ -150,8 +164,25 @@ export async function runCli(argv = process.argv.slice(2)) {
     }
 
     case "import": {
+      const source = args.get("source");
+      if (!source) {
+        console.error(
+          [
+            "ERROR: import requires --source=<folder-or-zip>.",
+            "",
+            "Examples:",
+            '  node scripts/project-tools.mjs import . --source="/path/architecture.zip"',
+            '  node scripts/project-tools.mjs import . --source="/path/folder" --apply',
+            "",
+            "With npm:",
+            '  npm run architecture:import -- --source="/path/architecture.zip" --apply',
+          ].join("\n"),
+        );
+        return 2;
+      }
+
       const result = importArchitecture(root, config, {
-        source: args.get("source"),
+        source,
         apply: args.has("apply"),
         conflictPolicy: args.get("conflict", config.import.defaultConflictPolicy),
       });

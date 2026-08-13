@@ -1,6 +1,0 @@
-{"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","target":"../scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-derecipients.md"}
-{"from":".github/agents/sisad-dry-auditor.agent.md","target":"../../.ai/agents/EXPLORER-DRY.md"}
-{"from":".github/agents/sisad-test-specialist.agent.md","target":"../../.ai/agents/QA-REVIEWER.md"}
-{"from":"docs/02-conceptos/README.md","target":"./04recipients.md"}
-{"from":"docs/05-runtime/README.md","target":"./05recipient-filtering.md"}
-{"from":"docs/13-ejemplos/README.md","target":"./04-dynamic-host-integration-.md"}

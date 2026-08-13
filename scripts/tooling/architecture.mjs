@@ -133,6 +133,16 @@ export function sanitizePlan(root, config) {
           to: item.to,
           sources: group.map((x) => x.from),
           reason: "multiple-versioned-files-differ",
+          details: group.map((x) => {
+            const abs = path.join(root, x.from);
+            const text = readTextSafe(abs);
+            return {
+              path: x.from,
+              sha256: sha256File(abs),
+              lines: text ? text.split(/\r?\n/).length : 0,
+            };
+          }),
+          resolution: "Merge the divergent content into the stable target, then remove versioned sources.",
         });
       }
       continue;
@@ -147,6 +157,16 @@ export function sanitizePlan(root, config) {
           to: item.to,
           sources: [item.from, item.to],
           reason: "canonical-target-differs",
+          details: [item.from, item.to].map((rel) => {
+            const abs = path.join(root, rel);
+            const text = readTextSafe(abs);
+            return {
+              path: rel,
+              sha256: sha256File(abs),
+              lines: text ? text.split(/\r?\n/).length : 0,
+            };
+          }),
+          resolution: "Review/merge both files into the stable target. Do not auto-delete divergent Markdown.",
         });
       }
       continue;
@@ -173,14 +193,33 @@ export function applySanitize(root, config, {
     config.import.externalBackupSuffix,
   );
 
-  if (!apply) return { ...plan, backup, applied: [] };
+  if (!apply) return { ...plan, plannedBackup: backup, applied: [] };
 
-  ensureDir(backup);
+  if (plan.conflicts.length) {
+    return {
+      ...plan,
+      backup: null,
+      applied: [],
+      rewrittenMarkdown: [],
+      blocked: true,
+      message: "No changes applied because divergent canonicalization conflicts must be resolved first.",
+    };
+  }
+
+  let backupCreated = false;
+  const ensureBackup = () => {
+    if (!backupCreated) {
+      ensureDir(backup);
+      backupCreated = true;
+    }
+  };
+
   const applied = [];
 
   for (const item of plan.residue) {
     const abs = path.join(root, item.path);
     if (!fs.existsSync(abs)) continue;
+    ensureBackup();
     backupPath(root, backup, item.path);
     removeRecursive(abs);
     applied.push({ action: "remove-package-residue", path: item.path });
@@ -197,6 +236,7 @@ export function applySanitize(root, config, {
 
     if (!existingCanonical) {
       const fromAbs = path.join(root, sourceToKeep);
+      ensureBackup();
       backupPath(root, backup, sourceToKeep);
       ensureDir(path.dirname(canonicalAbs));
       fs.renameSync(fromAbs, canonicalAbs);
@@ -207,6 +247,7 @@ export function applySanitize(root, config, {
       if (source === cluster.to || source === sourceToKeep) continue;
       const sourceAbs = path.join(root, source);
       if (!fs.existsSync(sourceAbs)) continue;
+      ensureBackup();
       backupPath(root, backup, source);
       removeRecursive(sourceAbs);
       applied.push({ action: "remove-identical-duplicate", path: source });
@@ -218,6 +259,7 @@ export function applySanitize(root, config, {
     const toAbs = path.join(root, item.to);
     if (!fs.existsSync(fromAbs)) continue;
 
+    ensureBackup();
     backupPath(root, backup, item.from);
     ensureDir(path.dirname(toAbs));
     fs.renameSync(fromAbs, toAbs);
@@ -239,11 +281,18 @@ export function applySanitize(root, config, {
     config,
     renameMap,
     backup,
+    ensureBackup,
   );
 
   pruneEmptyDirectories(root, config);
 
-  return { ...plan, backup, applied, rewrittenMarkdown };
+  return {
+    ...plan,
+    backup: backupCreated ? backup : null,
+    applied,
+    rewrittenMarkdown,
+    blocked: false,
+  };
 }
 
 
@@ -261,7 +310,7 @@ function candidateOldTargets(oldFromRel, rawTarget) {
   ];
 }
 
-function rewriteReferencesAfterRenames(root, config, renameMap, backup) {
+function rewriteReferencesAfterRenames(root, config, renameMap, backup, ensureBackup) {
   if (!renameMap.size) return [];
 
   const reverseMap = new Map([...renameMap].map(([from, to]) => [to, from]));
@@ -311,6 +360,7 @@ function rewriteReferencesAfterRenames(root, config, renameMap, backup) {
     }
 
     if (next !== current) {
+      ensureBackup();
       backupPath(root, backup, currentRel);
       atomicWrite(abs, next);
       changed.push(currentRel);

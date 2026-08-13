@@ -147,16 +147,22 @@ export default {
   },
 
   packageScripts: {
-    "tools:doctor": "node scripts/project-tools.mjs doctor .",
-    "docs:scan": "node scripts/project-tools.mjs scan .",
-    "docs:sanitize": "node scripts/project-tools.mjs sanitize .",
-    "docs:sanitize:apply": "node scripts/project-tools.mjs sanitize . --apply",
-    "docs:index": "node scripts/project-tools.mjs index .",
-    "docs:links": "node scripts/project-tools.mjs links . --apply",
-    "docs:duplicates": "node scripts/project-tools.mjs duplicates .",
-    "docs:validate": "node scripts/project-tools.mjs validate .",
-    "architecture:import": "node scripts/project-tools.mjs import .",
-    "architecture:all": "node scripts/project-tools.mjs all . --apply",
+  "tools:doctor": "node scripts/project-tools.mjs doctor .",
+  "docs:scan": "node scripts/project-tools.mjs scan .",
+  "docs:sanitize": "node scripts/project-tools.mjs sanitize .",
+  "docs:sanitize:apply": "node scripts/project-tools.mjs sanitize . --apply",
+  "docs:index": "node scripts/project-tools.mjs index .",
+  "docs:links": "node scripts/project-tools.mjs links .",
+  "docs:links:apply": "node scripts/project-tools.mjs links . --apply",
+  "docs:duplicates": "node scripts/project-tools.mjs duplicates .",
+  "docs:orphans": "node scripts/project-tools.mjs orphans .",
+  "docs:broken-links": "node scripts/project-tools.mjs validate . --check=links",
+  "docs:names": "node scripts/project-tools.mjs validate . --check=names",
+  "docs:validate": "node scripts/project-tools.mjs validate .",
+  "architecture:import": "node scripts/project-tools.mjs import .",
+  "architecture:all": "node scripts/project-tools.mjs all .",
+  "architecture:all:apply": "node scripts/project-tools.mjs all . --apply"
+
   },
 
   resolve(root, relativePath) {

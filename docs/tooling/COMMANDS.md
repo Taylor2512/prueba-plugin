@@ -54,8 +54,16 @@ reports/architecture/summary.json
 
 ## Navegación
 
+Dry-run:
+
 ```bash
 npm run docs:links
+```
+
+Aplicar:
+
+```bash
+npm run docs:links:apply
 ```
 
 Solo modifica `README.md`/`HOME.md` existentes mediante un bloque administrado.
@@ -124,3 +132,59 @@ npm run architecture:all
 ```
 
 Sanitiza → indexa → actualiza navegación → reindexa → valida.
+
+
+## Interpretación de flags
+
+Estos comandos no necesitan `--apply` porque solo calculan/generan índices:
+
+```bash
+npm run docs:index
+npm run docs:duplicates
+npm run docs:orphans
+```
+
+Para importar un ZIP/carpeta, `--source` es obligatorio:
+
+```bash
+npm run architecture:import -- \
+  --source="/ruta/arquitectura.zip"
+```
+
+Aplicar:
+
+```bash
+npm run architecture:import -- \
+  --source="/ruta/arquitectura.zip" \
+  --apply
+```
+
+## Resolver un conflicto de nombre estable
+
+Si aparece:
+
+```text
+TASK-CARD-V7.md -> TASK-CARD.md
+canonical-target-differs
+```
+
+el sanitizador NO debe elegir automáticamente.
+
+Revisar:
+
+```bash
+git diff --no-index -- \
+  .ai/templates/TASK-CARD.md \
+  .ai/templates/TASK-CARD-V7.md
+```
+
+Integrar manualmente en `.ai/templates/TASK-CARD.md`, verificar el resultado y luego:
+
+```bash
+rm .ai/templates/TASK-CARD-V7.md
+npm run docs:sanitize
+npm run docs:links:apply
+npm run docs:validate
+```
+
+La historia queda en Git, no en dos plantillas físicas.
