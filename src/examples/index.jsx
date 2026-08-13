@@ -5,9 +5,8 @@
  * generatePages: Factory que crea páginas automáticamente desde pagesConfig.json
  * API pública reexportada para tests y host integraciones
  */
-import { buildLab } from './definitions/Definitions.jsx';
 import { DynamicRouter, useRouter } from './pages/DynamicRouter.jsx';
-import { DesignerMultiUserPage, DesignerSingleUserPage, RuntimeFormPage, RuntimeViewerPage } from './pages/generatePages.js';
+import { buildLab, DesignerMultiUserPage, DesignerSingleUserPage, RuntimeFormPage, RuntimeViewerPage } from './pages/generatePages.js';
 import { CatalogPage } from './pages/CatalogPage.jsx';
 import { SchemaFamilyPage } from './pages/SchemaFamilyPage.jsx';
 import { SchemasCatalogPage } from './pages/SchemasCatalogPage.jsx';

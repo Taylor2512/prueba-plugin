@@ -6,25 +6,27 @@ import { useController } from '../hooks/useController.js';
 import { RuntimePageShell } from './RuntimePageShell.jsx';
 import { DynamicInfoPanel } from '../components/DynamicInfoPanel.jsx';
 import {
-  getPageConfig,
   buildPageTemplate,
   createPageHandlers,
-  getPageInfo,
-  getPageRoute,
-} from './pageGenerator.js';
+} from './generatePages.js';
+import { getExamplePageConfig, EXAMPLE_ROUTE_MAP } from '../config/examplesManifest.js';
 
 export function createUniversalPage(pageKey, dependencies) {
-  const { instanceBuilders, templateBuilders, FAMILY, DEMO_DOCUMENTS, MULTI_USER_RECIPIENTS } =
+  const { instanceBuilders, templateBuilders, FAMILY, DEMO_DOCUMENTS, MULTI_USER_RECIPIENTS, valuesBuilders } =
     dependencies;
 
   return function UniversalPageComponent({ currentPath }) {
-    const config = getPageConfig(pageKey);
-    const runtimeConfig = useRuntimeConfig(config.instanceId);
+    const config = getExamplePageConfig(pageKey);
+    const runtimeConfig = useRuntimeConfig(config.runtimeProfile || config.instanceId);
     const { events, record, clear } = useEventLog();
     const { handleControllerReady, getController } = useController();
 
     const [template, setTemplate] = useState(() =>
       buildPageTemplate(config, templateBuilders, FAMILY),
+    );
+    const values = useMemo(
+      () => (valuesBuilders?.[pageKey] ? valuesBuilders[pageKey]() : undefined),
+      [pageKey, valuesBuilders],
     );
 
     const [state, setState] = useState(() => {
@@ -57,6 +59,7 @@ export function createUniversalPage(pageKey, dependencies) {
       () =>
         instanceBuilders[config.instanceId]({
           template,
+          values,
           config: runtimeConfig,
           documents: DEMO_DOCUMENTS,
           recipients: MULTI_USER_RECIPIENTS,
@@ -65,15 +68,7 @@ export function createUniversalPage(pageKey, dependencies) {
           onControllerReady: handleControllerReady,
           ...pageHandlers,
         }),
-      [template, runtimeConfig, state, pageHandlers, handleEvent, handleControllerReady],
-    );
-
-    useMemo(
-      () =>
-        getPageInfo(config, { ...state, template, events }, {
-          activeRecipient: MULTI_USER_RECIPIENTS.find((r) => r.id === state.activeRecipientId),
-        }),
-      [config, state, template, events, MULTI_USER_RECIPIENTS],
+      [template, values, runtimeConfig, state, pageHandlers, handleEvent, handleControllerReady],
     );
 
     const renderActions = () => {
@@ -101,7 +96,7 @@ export function createUniversalPage(pageKey, dependencies) {
       <RuntimePageShell
         title={config.title}
         modeBadge={config.modeBadge}
-        currentPath={currentPath || getPageRoute(pageKey)}
+        currentPath={currentPath || EXAMPLE_ROUTE_MAP[pageKey]}
         actions={renderActions()}
         infoTitle="Información"
         info={

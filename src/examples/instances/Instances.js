@@ -3,7 +3,6 @@ import { defineSisadPdfmeInstance } from '@/sisad-pdfme';
 
 const createInstance = (id, { mode, template, state = {}, resources = {}, handlers = {}, defaultState }) => {
   const definition = { mode };
-
   if (template) definition.template = template;
   if (defaultState) definition.defaultState = defaultState;
   if (Object.keys(state).length > 0) definition.state = state;
@@ -12,66 +11,105 @@ const createInstance = (id, { mode, template, state = {}, resources = {}, handle
     id,
     definition,
     resources,
-    handlers: Object.fromEntries(Object.entries(handlers).filter(([, v]) => v)),
+    handlers: Object.fromEntries(Object.entries(handlers).filter(([, value]) => Boolean(value))),
   });
 };
 
-const instanceFactories = {
-  'designer-single-user': ({ template, config, ...handlers }) =>
-    createInstance('designer-single-user', {
-      mode: 'designer',
-      template,
-      state: { template },
-      resources: { config },
-      handlers,
-    }),
+const buildRuntimeDefaults = (mode, descriptor, props) => {
+  const defaultInputs = Array.isArray(props.inputs) ? props.inputs : getInputFromTemplate(props.template);
 
-  'designer-multi-user': ({ template, config, documents, recipients, activeRecipientId, ...handlers }) =>
-    createInstance('designer-multi-user', {
-      mode: 'designer',
-      template,
-      state: { template, activeRecipientId },
-      resources: { config, documents, recipients },
-      handlers,
-    }),
+  if (mode === 'designer') {
+    return {
+      state: { template: props.template, ...(descriptor.state || {}), ...(props.state || {}) },
+      resources: { ...(descriptor.resources || {}), ...(props.resources || {}) },
+      defaultState: descriptor.defaultState,
+    };
+  }
 
-  'runtime-form': ({ template, values, config, ...handlers }) =>
-    createInstance('runtime-form', {
+  if (mode === 'form') {
+    return {
+      state: { ...(descriptor.state || {}), ...(props.state || {}) },
+      resources: { ...(descriptor.resources || {}), ...(props.resources || {}) },
+      defaultState: { inputs: props.values ?? defaultInputs },
+    };
+  }
+
+  return {
+    state: { ...(descriptor.state || {}), ...(props.state || {}) },
+    resources: { ...(descriptor.resources || {}), ...(props.resources || {}) },
+    defaultState: { inputs: defaultInputs },
+  };
+};
+
+export const createSisadInstance = (descriptor, props = {}) => {
+  const { handlers: explicitHandlers, ...runtimeProps } = props;
+  const runtimeHandlers = explicitHandlers || Object.fromEntries(
+    Object.entries(runtimeProps).filter(([key]) => /^on[A-Z]/.test(key)),
+  );
+  const runtime = buildRuntimeDefaults(descriptor.mode, descriptor, props);
+  return createInstance(descriptor.id, {
+    mode: descriptor.mode,
+    template: props.template,
+    state: runtime.state,
+    resources: {
+      ...runtime.resources,
+      config: props.config ?? runtime.resources.config,
+      documents: props.documents ?? runtime.resources.documents,
+      recipients: props.recipients ?? runtime.resources.recipients,
+    },
+    handlers: runtimeHandlers,
+    defaultState: runtime.defaultState,
+  });
+};
+
+export const createDesignerSingleUserInstance = (props) =>
+  createSisadInstance(
+    {
+      id: 'designer-single-user',
+      mode: 'designer',
+      state: { template: null },
+      handlers: { onTemplateChange: true },
+    },
+    props,
+  );
+
+export const createDesignerMultiUserInstance = (props) =>
+  createSisadInstance(
+    {
+      id: 'designer-multi-user',
+      mode: 'designer',
+      state: { template: null, activeRecipientId: null },
+      handlers: { onTemplateChange: true, onActiveRecipientChange: true, onAssignmentChange: true },
+    },
+    props,
+  );
+
+export const createRuntimeFormInstance = (props) =>
+  createSisadInstance(
+    {
+      id: 'runtime-form',
       mode: 'form',
-      template,
-      resources: { config },
-      defaultState: { inputs: values },
-      handlers,
-    }),
+      handlers: { onInputChange: true },
+    },
+    props,
+  );
 
-  'runtime-viewer': ({ template, config, inputs, ...handlers }) =>
-    createInstance('runtime-viewer', {
+export const createRuntimeViewerInstance = (props) =>
+  createSisadInstance(
+    {
+      id: 'runtime-viewer',
       mode: 'viewer',
-      template,
-      resources: { config },
-      defaultState: { inputs: Array.isArray(inputs) ? inputs : getInputFromTemplate(template) },
-      handlers,
-    }),
+    },
+    props,
+  );
 
-  'schema-family': (familySlug, { template, config, ...handlers }) =>
-    createInstance(`schema-family-${familySlug}`, {
-      mode: 'designer',
-      template,
-      state: { template },
-      resources: { config },
-      handlers,
-    }),
-};
-
-export const createDesignerSingleUserInstance = (props) => instanceFactories['designer-single-user'](props);
-export const createDesignerMultiUserInstance = (props) => instanceFactories['designer-multi-user'](props);
-export const createRuntimeFormInstance = (props) => instanceFactories['runtime-form'](props);
-export const createRuntimeViewerInstance = (props) => instanceFactories['runtime-viewer'](props);
 export const createSchemaFamilyInstance = ({ familySlug, ...props }) =>
-  instanceFactories['schema-family'](familySlug, props);
-
-export const createSisadInstance = (type, props) => {
-  const factory = instanceFactories[type];
-  if (!factory) throw new Error(`Unknown instance type: ${type}`);
-  return factory(props);
-};
+  createSisadInstance(
+    {
+      id: `schema-family-${familySlug}`,
+      mode: 'designer',
+      state: { template: null },
+      handlers: { onTemplateChange: true },
+    },
+    props,
+  );

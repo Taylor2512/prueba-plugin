@@ -1,5 +1,5 @@
 import { FAMILY } from '../catalog/familyCatalog.js';
-import PagesConfig from '../config/pagesConfig.json';
+import { EXAMPLE_PRIMARY_ROUTES, EXAMPLE_ROUTE_MAP } from '../config/examplesManifest.js';
 
 export const ROUTE_PATHS = Object.freeze({
   catalog: '/',
@@ -10,23 +10,15 @@ export const ROUTE_PATHS = Object.freeze({
   schemas: '/schemas',
 });
 
-// Mapper moderno que usa kebab-case desde pagesConfig
-export const PAGE_ROUTES = PagesConfig.routes || {};
+export const PAGE_ROUTES = EXAMPLE_ROUTE_MAP || {};
 
 export const getSchemaRoute = (slug) => `${ROUTE_PATHS.schemas}/${slug}`;
 
-const PRIMARY_ROUTE_SPEC = {
-  catalog: { path: ROUTE_PATHS.catalog, title: 'Catálogo', description: 'Puerta de entrada a todos los ejemplos.' },
-  'designer-single-user': { path: PAGE_ROUTES['designer-single-user'], title: 'Designer: un usuario', description: 'Un solo usuario con todas las familias de schema.' },
-  'designer-multi-user': { path: PAGE_ROUTES['designer-multi-user'], title: 'Designer: multiusuario', description: 'Colaboración con varios usuarios y cambio de actor activo.' },
-  'runtime-form': { path: PAGE_ROUTES['runtime-form'], title: 'Runtime: Form', description: 'Modo de llenado con prefill y resumen lateral.' },
-  'runtime-viewer': { path: PAGE_ROUTES['runtime-viewer'], title: 'Runtime: Viewer', description: 'Modo de solo lectura para revisión y auditoría.' },
-  schemas: { path: ROUTE_PATHS.schemas, title: 'Schemas', description: 'Catálogo por familia y por tipo de schema.' },
-};
-
-export const PRIMARY_ROUTE_GROUPS = Object.entries(PRIMARY_ROUTE_SPEC).map(([id, route]) => ({
-  id,
-  ...route,
+export const PRIMARY_ROUTE_GROUPS = EXAMPLE_PRIMARY_ROUTES.map((route) => ({
+  id: route.id,
+  path: route.path || EXAMPLE_ROUTE_MAP[route.id] || ROUTE_PATHS[route.id] || route.id,
+  title: route.title,
+  description: route.description,
 }));
 
 export const FAMILY_ROUTE_GROUPS = FAMILY.map((family) => ({

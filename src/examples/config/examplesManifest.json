@@ -1,0 +1,251 @@
+{
+  "routes": {
+    "catalog": "/",
+    "designer-single-user": "/designer/single-user",
+    "designer-multi-user": "/designer/multi-user",
+    "runtime-form": "/runtime/form",
+    "runtime-viewer": "/runtime/viewer",
+    "runtime-form-digital-agreements": "/runtime/form/digital-agreements",
+    "schemas": "/schemas"
+  },
+  "primaryRoutes": [
+    {
+      "id": "catalog",
+      "path": "/",
+      "title": "Catálogo",
+      "description": "Puerta de entrada a todos los ejemplos.",
+      "shell": "documentation"
+    },
+    {
+      "id": "designer-single-user",
+      "title": "Designer: un usuario",
+      "description": "Un solo usuario con todas las familias de schema.",
+      "shell": "immersive",
+      "instanceId": "designer-single-user",
+      "viewportName": "designer-single-user",
+      "modeBadge": "designer",
+      "template": {
+        "builder": "showcaseTemplate",
+        "options": {
+          "familySource": "all"
+        }
+      },
+      "infoPanels": [
+        {
+          "key": "summary",
+          "title": "Resumen",
+          "description": "Métricas del template actual",
+          "type": "metrics",
+          "metrics": [
+            { "label": "Páginas", "path": "template.schemas.length" },
+            { "label": "Schemas", "path": "template.schemas.flat().length" },
+            { "label": "Perfil", "value": "designer-single-user" },
+            { "label": "Guardado", "path": "savedAt", "fallback": "nunca" }
+          ]
+        },
+        { "key": "controller", "title": "Controlador", "description": "API imperativa pública", "type": "controller" },
+        { "key": "events", "title": "Eventos", "description": "Callbacks del wrapper", "type": "events" },
+        { "key": "families", "title": "Familias incluidas", "description": "Registry de tipos del runtime", "type": "families" }
+      ],
+      "handlers": {
+        "onTemplateChange": { "type": "setTemplate", "record": true }
+      }
+    },
+    {
+      "id": "designer-multi-user",
+      "title": "Designer · flujo multiusuario",
+      "description": "Colaboración con varios usuarios y cambio de actor activo.",
+      "shell": "immersive",
+      "instanceId": "designer-multi-user",
+      "viewportName": "designer-multi-user",
+      "modeBadge": "colaboración",
+      "template": {
+        "builder": "multiUserShowcase",
+        "options": {
+          "familySource": "multiUser"
+        }
+      },
+      "state": {
+        "activeRecipientId": "initializer",
+        "assignments": 0
+      },
+      "actions": {
+        "recipientSelect": { "type": "select", "label": "Recipient activo" }
+      },
+      "infoPanels": [
+        {
+          "key": "summary",
+          "title": "Participantes",
+          "description": "Estado de la colaboración",
+          "type": "metrics",
+          "metrics": [
+            { "label": "Participante activo", "path": "state.activeRecipient.name" },
+            { "label": "Total participantes", "value": 3 },
+            { "label": "Asignaciones", "path": "state.assignments" },
+            { "label": "Documentos", "value": 2 }
+          ]
+        },
+        { "key": "controller", "title": "Controlador", "description": "API imperativa pública", "type": "controller" },
+        { "key": "events", "title": "Eventos", "description": "Callbacks de la colaboración", "type": "events" }
+      ],
+      "handlers": {
+        "onTemplateChange": { "type": "setTemplate", "record": true },
+        "onActiveRecipientChange": { "type": "setState", "field": "activeRecipientId", "valuePath": "id", "record": true },
+        "onAssignmentChange": { "type": "increment", "field": "assignments", "record": true }
+      }
+    },
+    {
+      "id": "runtime-form",
+      "title": "Runtime · Form para captura de datos",
+      "description": "Modo de llenado con prefill y resumen lateral.",
+      "shell": "immersive",
+      "instanceId": "runtime-form",
+      "viewportName": "runtime-form",
+      "modeBadge": "form",
+      "template": {
+        "builder": "showcaseTemplate",
+        "options": {
+          "familyKeys": ["text", "choice", "boolean", "dateTime", "signature"]
+        }
+      },
+      "state": {
+        "lastInput": ""
+      },
+      "infoPanels": [
+        {
+          "key": "capture",
+          "title": "Captura de datos",
+          "description": "Último campo modificado",
+          "type": "metrics",
+          "metrics": [
+            { "label": "Última entrada", "path": "state.lastInput", "fallback": "sin cambios" }
+          ]
+        },
+        { "key": "events", "title": "Eventos", "description": "Cambios de input", "type": "events" }
+      ],
+      "handlers": {
+        "onInputChange": { "type": "setState", "field": "lastInput", "format": "nameValue", "record": true }
+      }
+    },
+    {
+      "id": "runtime-viewer",
+      "title": "Runtime · Viewer de solo lectura",
+      "description": "Modo de solo lectura para revisión y auditoría.",
+      "shell": "immersive",
+      "instanceId": "runtime-viewer",
+      "viewportName": "runtime-viewer",
+      "modeBadge": "viewer",
+      "template": {
+        "builder": "showcaseTemplate",
+        "options": {
+          "familyKeys": ["text", "table", "media", "barcode", "shape"]
+        }
+      },
+      "infoPanels": [
+        {
+          "key": "preview",
+          "title": "Cobertura de lectura",
+          "description": "Tipos de campos soportados",
+          "type": "metrics",
+          "metrics": [
+            { "label": "Modo", "value": "Viewer" },
+            { "label": "Editable", "value": "No" }
+          ]
+        },
+        { "key": "events", "title": "Eventos", "description": "Acciones del viewer", "type": "events" }
+      ]
+    },
+    {
+      "id": "runtime-form-digital-agreements",
+      "path": "/runtime/form/digital-agreements",
+      "title": "Runtime · Form DigitalAgreements",
+      "description": "Form configurado desde un snapshot declarativo para probar captura, navegación y schema coverage.",
+      "shell": "immersive",
+      "instanceId": "runtime-form-digital-agreements",
+      "runtimeProfile": "runtime-form",
+      "viewportName": "runtime-form-digital-agreements",
+      "modeBadge": "form",
+      "template": {
+        "builder": "digitalAgreementsForm",
+        "options": {
+          "source": "DigitalAgreements"
+        }
+      },
+      "formSnapshot": {
+        "snapshotVersion": 3,
+        "templateSchemaVersion": 2,
+        "source": "DigitalAgreements",
+        "templateFields": [
+          { "indexName": "id", "indexNameShow": "id", "type": "text", "isRequired": true, "isDesabled": true, "isHidden": true, "value": "df179cea-0210-4b52-81e8-82c2f7b32277" },
+          { "indexName": "name", "indexNameShow": "Nombre plantilla", "type": "text", "isRequired": true, "isDesabled": false, "isHidden": false, "value": "ENVÃO DE SOLICITUD CON SECUENCIA" },
+          { "indexName": "description", "indexNameShow": "Descripción plantilla", "type": "multiline", "isRequired": false, "isDesabled": false, "isHidden": false, "value": "mkjsksf" },
+          { "indexName": "subjectEmail", "indexNameShow": "Asunto del mensaje", "type": "text", "isRequired": true, "isDesabled": false, "isHidden": false, "value": "sdsd" },
+          { "indexName": "bodyEmail", "indexNameShow": "Cuerpo del mensaje", "type": "multiline", "isRequired": false, "isDesabled": false, "isHidden": false, "value": "<p></p><p><strong><a href=\"FormUrl\" rel=\"noopener noreferrer\" target=\"_blank\">CLICK AQUÍ PARA ACCEDER AL FORMULARIO</a></strong></p>" },
+          { "indexName": "reminder", "indexNameShow": "Enviar un recordatorio (días)", "type": "number", "isRequired": false, "isDesabled": false, "isHidden": false, "value": "" },
+          { "indexName": "reminderFrequency", "indexNameShow": "Frecuencia del recordatorio (horas)", "type": "number", "isRequired": false, "isDesabled": false, "isHidden": false, "value": "" },
+          { "indexName": "reminderLimit", "indexNameShow": "Límite de recordatorios", "type": "number", "isRequired": false, "isDesabled": false, "isHidden": false, "value": "" },
+          { "indexName": "firstReminderAt", "indexNameShow": "Primer recordatorio", "type": "datetime-local", "isRequired": false, "isDesabled": false, "isHidden": false, "value": "" },
+          { "indexName": "sendAt", "indexNameShow": "Fecha de envío programado", "type": "datetime-local", "isRequired": false, "isDesabled": false, "isHidden": false, "value": "" },
+          { "indexName": "recipientsInSequence", "indexNameShow": "", "type": "boolean", "isRequired": false, "isDesabled": false, "isHidden": true, "value": false },
+          { "indexName": "reminderEnabled", "indexNameShow": "Recordatorios activos", "type": "boolean", "isRequired": false, "isDesabled": false, "isHidden": true, "value": false },
+          { "indexName": "scheduleEnabled", "indexNameShow": "Envío programado activo", "type": "boolean", "isRequired": false, "isDesabled": false, "isHidden": true, "value": false }
+        ],
+        "persons": [
+          {
+            "id": "2ddf4360-d839-4a93-8fe9-3113314d1fc0",
+            "color": "#2563EB",
+            "responsibility": "Solo firma",
+            "name": "Data usuario",
+            "tag": "",
+            "isMassive": false,
+            "singType": "sisad",
+            "signaturePolicyId": "sisad",
+            "signatureType": "sisad",
+            "position": 1
+          }
+        ],
+        "recipients": [
+          {
+            "id": "2ddf4360-d839-4a93-8fe9-3113314d1fc0",
+            "color": "#2563EB",
+            "name": "Data usuario",
+            "responsibility": "Solo firma",
+            "singType": "sisad",
+            "signaturePolicyId": "sisad",
+            "signatureType": "sisad",
+            "position": 1
+          }
+        ]
+      },
+      "values": {
+        "builder": "digitalAgreementsForm"
+      },
+      "state": {
+        "lastInput": ""
+      },
+      "infoPanels": [
+        {
+          "key": "capture",
+          "title": "Captura de datos",
+          "description": "Snapshot declarativo usado por el form",
+          "type": "metrics",
+          "metrics": [
+            { "label": "Origen", "value": "DigitalAgreements" },
+            { "label": "Última entrada", "path": "state.lastInput", "fallback": "sin cambios" }
+          ]
+        },
+        { "key": "events", "title": "Eventos", "description": "Cambios de input", "type": "events" }
+      ],
+      "handlers": {
+        "onInputChange": { "type": "setState", "field": "lastInput", "format": "nameValue", "record": true }
+      }
+    },
+    {
+      "id": "schemas",
+      "path": "/schemas",
+      "title": "Schemas",
+      "description": "Catálogo por familia y por tipo de schema.",
+      "shell": "documentation"
+    }
+  ]
+}

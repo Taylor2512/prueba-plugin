@@ -1,8 +1,8 @@
-import PagesConfig from '../config/pagesConfig.json';
 import { useNavigate } from 'react-router-dom';
+import { EXAMPLE_ROUTE_MAP } from '../config/examplesManifest.js';
 import { getSchemaRoute } from '../routes/routeDefinitions.js';
 
-const routeEntries = Object.entries(PagesConfig.routes || {});
+const routeEntries = Object.entries(EXAMPLE_ROUTE_MAP || {});
 
 const toHelperName = (pageKey) =>
   `to${pageKey
@@ -15,7 +15,7 @@ export const navigationHelpers = {
   toSchemas: () => '/schemas',
   toSchemaFamily: (familySlug) => getSchemaRoute(familySlug),
   toGeneratedPage: (pageKey) => {
-    const route = PagesConfig.routes?.[pageKey];
+    const route = EXAMPLE_ROUTE_MAP?.[pageKey];
     if (!route) throw new Error(`Route not found for page: ${pageKey}`);
     return route;
   },
