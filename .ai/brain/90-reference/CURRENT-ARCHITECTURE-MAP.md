@@ -20,7 +20,7 @@ Familias principales ya usan paths semánticos estables:
 .agents/skills/sisad-runtime-platform/
 ```
 
-El snapshot todavía conserva `reports/runtime-platform-v2/`; el target estable
+El snapshot todavía conserva `reports/runtime-platform/`; el target estable
 es `reports/runtime-platform/` y debe migrarse con `npm run docs:paths:apply`.
 
 Los conteos de `.ai/index/runtime-platform/*.jsonl` pueden quedar obsoletos

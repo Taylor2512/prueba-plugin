@@ -26,7 +26,6 @@
 {"from":".ai/brain/10-domains/shared/README.md","to":".ai/brain/10-domains/shared/FILES.md","fragment":null}
 {"from":".ai/brain/10-domains/templates/README.md","to":".ai/brain/10-domains/templates/FILES.md","fragment":null}
 {"from":".ai/brain/10-domains/ui/README.md","to":".ai/brain/10-domains/ui/FILES.md","fragment":null}
-{"from":".ai/brain/HOME.md","to":".ai/brain/README.md","fragment":null}
 {"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","to":".ai/scrum/task-cards/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md","fragment":null}
 {"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","to":".ai/scrum/task-cards/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md","fragment":null}
 {"from":".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md","to":".ai/scrum/task-cards/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md","fragment":null}
@@ -74,7 +73,6 @@
 {"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz.md","fragment":null}
 {"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md","fragment":null}
 {"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md","fragment":null}
-{"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md","fragment":null}
 {"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md","fragment":null}
 {"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md","fragment":null}
 {"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md","fragment":null}
@@ -138,6 +136,7 @@
 {"from":".codex/README.md","to":".codex/agents/README.md","fragment":null}
 {"from":".codex/agents/README.md","to":".codex/agents/runtime-platform.md","fragment":null}
 {"from":".github/agents/sisad-dry-auditor.agent.md","to":".ai/agents/explorer.md","fragment":null}
+{"from":".github/agents/sisad-scrum-coordinator.agent.md","to":".ai/agents/coordinator.md","fragment":null}
 {"from":".github/agents/sisad-test-specialist.agent.md","to":".ai/agents/qa.md","fragment":null}
 {"from":"README.md","to":".claude/README.md","fragment":null}
 {"from":"README.md","to":".codex/README.md","fragment":null}
@@ -337,8 +336,11 @@
 {"from":"docs/README.md","to":"docs/13-ejemplos/README.md","fragment":null}
 {"from":"docs/README.md","to":"docs/14-seguridad/README.md","fragment":null}
 {"from":"docs/README.md","to":"docs/AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md","fragment":null}
+{"from":"docs/tooling/README.md","to":"docs/tooling/ARCHITECTURE-PATH-RECONCILIATION.md","fragment":null}
 {"from":"docs/tooling/README.md","to":"docs/tooling/ARCHITECTURE-IMPORT.md","fragment":null}
 {"from":"docs/tooling/README.md","to":"docs/tooling/COMMANDS.md","fragment":null}
 {"from":"docs/tooling/README.md","to":"docs/tooling/MARKDOWN-SANITIZATION.md","fragment":null}
+{"from":"src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md","to":"src/sisad-pdfme/common/README.md","fragment":null}
+{"from":"src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md","to":"src/sisad-pdfme/common/README.md","fragment":null}
 {"from":"tools/ai-quality/README.md","to":"tools/ai-quality/README-KNOWLEDGE-INDEX.md","fragment":null}
 {"from":"tools/pdfme-form-runtime/README.md","to":"tools/pdfme-form-runtime/COMMAND-CHECKLIST.md","fragment":null}

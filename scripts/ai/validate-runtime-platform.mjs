@@ -5,12 +5,12 @@ const root=path.resolve(process.argv[2]||process.cwd());
 const req=[
  '.ai/brain/HOME.md',
  '.ai/brain/00-product/PRODUCT-IDENTITY.md',
- '.ai/plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM_V2.md',
+ '.ai/plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md',
  '.ai/scrum/RUNTIME-PLATFORM-LEDGER.md',
  '.ai/scrum/task-cards/runtime-platform/RTP-000.md',
  '.ai/prompts/RTP-START.md',
  '.ai/index/runtime-platform/code-files.jsonl',
- '.ai/research/RUNTIME-PDF-OFFICIAL-SOURCES-2026-08-13.md'
+ '.ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md'
 ];
 const missing=req.filter(p=>!fs.existsSync(path.join(root,p)));
 if(missing.length){console.error('Missing:\n'+missing.join('\n'));process.exit(1)}

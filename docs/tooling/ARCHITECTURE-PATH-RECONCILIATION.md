@@ -22,7 +22,7 @@ Un rename no debe borrar contenido divergente.
 
 ```json
 {
-  "from": ".ai/index/runtime-platform-v2",
+  "from": ".ai/index/runtime-platform",
   "to": ".ai/index/runtime-platform"
 }
 ```

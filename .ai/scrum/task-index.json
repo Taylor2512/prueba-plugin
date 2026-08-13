@@ -8,7 +8,7 @@
     "owner": "memory-steward",
     "dependencies": [],
     "state": "backlog",
-    "file": ".ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline-v6.md"
+    "file": ".ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline.md"
   },
   {
     "id": "AIARCH-002",
@@ -34,7 +34,7 @@
       "AIARCH-001"
     ],
     "state": "backlog",
-    "file": ".ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz-v7.md"
+    "file": ".ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz.md"
   },
   {
     "id": "AIARCH-004",
@@ -293,7 +293,7 @@
       "AIARCH-009"
     ],
     "state": "backlog",
-    "file": ".ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema-v7.md"
+    "file": ".ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema.md"
   },
   {
     "id": "AIARCH-023",
@@ -336,7 +336,7 @@
       "AIARCH-022"
     ],
     "state": "backlog",
-    "file": ".ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos-v7.md"
+    "file": ".ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos.md"
   },
   {
     "id": "AIARCH-026",
@@ -406,6 +406,6 @@
       "AIARCH-029"
     ],
     "state": "backlog",
-    "file": ".ai/scrum/task-cards/AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md"
+    "file": ".ai/scrum/task-cards/AIARCH-030-rollout-documentacion-y-retrospectiva.md"
   }
 ]
