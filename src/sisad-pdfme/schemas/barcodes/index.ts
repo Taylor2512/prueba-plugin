@@ -14,7 +14,7 @@ const barcodes = BARCODE_TYPES.reduce(
         pdf: renderBarcodePdf,
         ui: renderBarcodeUi,
         propPanel: getPropPanelByBarcodeType(type),
-        icon: createSvgStr(type == 'qrcode' ? QrCode : Barcode),
+        icon: createSvgStr(type === 'qrcode' ? QrCode : Barcode),
       },
     }),
   {} as Record<BarcodeTypes, Plugin<BarcodeSchema>>,

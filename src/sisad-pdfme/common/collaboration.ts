@@ -153,7 +153,7 @@ const normalizeCollaborationCommonText = (value: unknown) =>
  * Permite recibir valores parciales y metadata extra antes de convertir
  * el objeto en un SchemaComment completo.
  */
-type SchemaCommentDraft = {
+export type SchemaCommentDraft = {
   id?: string;
   scope?: CommentScope;
   fileId?: string;
@@ -182,7 +182,7 @@ type SchemaCommentDraft = {
  * - schema asociado;
  * - autor.
  */
-type CommentAnchorDraft = {
+export type CommentAnchorDraft = {
   id?: string;
   scope?: CommentScope;
   schemaUid?: string;
@@ -349,7 +349,7 @@ export const createSchemaComment = (
   text: string,
   identity: CommentAuthorIdentity = {},
   overrides: SchemaCommentDraft = {},
-): SchemaComment => ({
+): SchemaComment & { id: string } => ({
   /**
    * Primero se copian overrides para conservar metadata extra.
    * Luego las propiedades normalizadas sobrescriben las críticas.
@@ -438,7 +438,7 @@ export const createSchemaComment = (
 export const createSchemaCommentAnchor = (
   anchor: CommentAnchorDraft = {},
   identity: CommentAuthorIdentity = {},
-): CommentAnchor => ({
+): CommentAnchor & { id: string } => ({
   ...(anchor as Record<string, unknown>),
 
   id: normalizeCollaborationCommonText(anchor.id) || createEntityId('anchor'),
@@ -481,9 +481,9 @@ export const createSchemaCommentAnchor = (
  *
  * Es útil para comentarios, replies, anchors o entidades simples.
  */
-export const upsertById = <T extends { id: string }>(
+export const upsertById = <T extends { id?: string }>(
   items: T[] = [],
-  nextItem: T,
+  nextItem: T & { id: string },
 ) => {
   const index = items.findIndex((item) => item.id === nextItem.id);
 
@@ -498,7 +498,7 @@ export const upsertById = <T extends { id: string }>(
 /**
  * Elimina un item por id sin mutar el array original.
  */
-export const removeById = <T extends { id: string }>(
+export const removeById = <T extends { id?: string }>(
   items: T[] = [],
   id: string,
 ) => items.filter((item) => item.id !== id);

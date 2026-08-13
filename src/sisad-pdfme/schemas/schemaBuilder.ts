@@ -1,5 +1,4 @@
 import type { Plugin, Schema } from '@sisad-pdfme/common';
-import type { IconNode } from 'lucide-react';
 import { isRecord } from '../shared/objectGuards.js';
 import { createSvgStr } from './utils.js';
 

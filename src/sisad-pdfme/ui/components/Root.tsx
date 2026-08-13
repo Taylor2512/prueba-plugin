@@ -4,10 +4,10 @@
  * Aplica tamaño, fondo base, carga fuentes declaradas en FontContext y muestra
  * Spinner mientras el cálculo de escala no está listo.
  */
-import React, { useContext, forwardRef, ReactNode, Ref, useEffect } from 'react';
+import { useContext, forwardRef, ReactNode, Ref, useEffect } from 'react';
 import { Size } from '@sisad-pdfme/common';
 import { FontContext } from '../contexts.js';
-import { BACKGROUND_COLOR, DESIGNER_CLASSNAME } from '../constants.js';
+import { DESIGNER_CLASSNAME } from '../constants.js';
 import Spinner from './Spinner.js';
 import '../runtimeStyles.js';
 
@@ -46,11 +46,11 @@ const Root = ({ size, scale, children }: Props, ref: Ref<HTMLDivElement>) => {
 
   return (
     <div
-      className={`${DESIGNER_CLASSNAME}root relative overflow-hidden rounded-[1.5rem] border border-slate-200/60 shadow-sm`}
+      className={`${DESIGNER_CLASSNAME}root box-border relative flex min-h-0 flex-col overflow-hidden rounded-[1.5rem] border border-slate-200/60 bg-[var(--color-bg-base)] shadow-sm`}
       ref={ref}
-      style={{ background: BACKGROUND_COLOR, ...size }}>
+      style={{ ...size }}>
       <div
-        className={`${DESIGNER_CLASSNAME}background mx-auto flex flex-col`}
+        className={`${DESIGNER_CLASSNAME}background relative box-border flex h-full w-full min-h-0 flex-col`}
         style={{ ...size }}>
         {scale === 0 ? <Spinner /> : children}
       </div>

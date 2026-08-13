@@ -15,7 +15,13 @@ export type SisadPdfmeRecipient = {
   label: string;
   name?: string;
   role?: string;
+  /**
+   * Datos de contacto. Los consume el autorrelleno de schemas del diseñador
+   * (`ui/recipientPrefill.ts`) a través de `buildRecipientOptionsFromRegistry`.
+   */
   email?: string;
+  company?: string;
+  title?: string;
   color?: string;
   order?: number;
   disabled?: boolean;

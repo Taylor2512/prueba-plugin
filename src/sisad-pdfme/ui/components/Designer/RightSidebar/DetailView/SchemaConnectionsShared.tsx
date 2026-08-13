@@ -92,7 +92,7 @@ export type Pair = { id: string; key: string; value: string };
 /**
  * Convierte un record plano a filas editables con id estable.
  */
-export const toPairs = (values?: Record<string, string> | null): Pair[] => {
+const toPairs = (values?: Record<string, string> | null): Pair[] => {
   if (!values) return [];
   return Object.entries(values).map(([key, value], index) => ({
     id: typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
@@ -106,7 +106,7 @@ export const toPairs = (values?: Record<string, string> | null): Pair[] => {
 /**
  * Convierte filas editables a record, ignorando claves vacías.
  */
-export const toRecord = (pairs: Pair[]): Record<string, string> =>
+const toRecord = (pairs: Pair[]): Record<string, string> =>
   pairs.reduce<Record<string, string>>((acc, pair) => {
     const key = pair.key.trim();
     if (!key) return acc;

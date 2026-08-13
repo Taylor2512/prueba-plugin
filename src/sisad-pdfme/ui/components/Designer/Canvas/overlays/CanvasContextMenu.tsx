@@ -480,7 +480,15 @@ const CanvasContextMenu = ({
 
   return createPortal(
     <div
-      className="sisad-pdfme-ui-canvas-context-menu-layer fixed inset-0"
+      /*
+       * z-index explícito: esta capa se portaliza a `document.body`, así que
+       * queda como hermana del contenedor de la aplicación. Sin apilamiento
+       * propio hereda `z-index: auto` y cualquier contenedor con z-index
+       * positivo —el diseñador se monta dentro de uno— la tapa por completo:
+       * el menú se monta y no se ve. Mismo escalón que `CommentDialog`, que ya
+       * resuelve así el mismo problema.
+       */
+      className="sisad-pdfme-ui-canvas-context-menu-layer fixed inset-0 z-[9999]"
       onContextMenu={(event) => event.preventDefault()}
     >
       <div

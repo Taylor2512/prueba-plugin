@@ -44,7 +44,7 @@ const mergeDeepObjects = <T extends Record<string, unknown>, U extends Record<st
   target: T,
   source: U,
 ): T & U => {
-  let output = { ...target } as T & U;
+  const output = { ...target } as T & U;
 
   if (isPlainObject(target) && isPlainObject(source)) {
     Object.keys(source).forEach((key) => {

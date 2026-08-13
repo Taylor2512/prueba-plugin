@@ -19,6 +19,7 @@ import {
   upsertById,
   type SchemaCommentReply,
 } from '@sisad-pdfme/common';
+import { message } from 'antd';
 import { DndContext } from '@dnd-kit/core';
 import { pdf2size } from '@sisad-pdfme/converter';
 import PluginIcon from './PluginIcon.js';
@@ -108,6 +109,7 @@ import { resolvePointerDropTarget } from './shared/canvasDropPipeline.js';
 installPassiveTouchListenerGuard();
 
 import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
+import { applyRecipientPrefill, resolveSchemaPrefillRecipient } from '../../recipientPrefill.js';
 import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
 import { asRecord } from '../../../shared/objectGuards.js';
 import {
@@ -603,8 +605,22 @@ const TemplateEditor = ({
     typeof options.rightSidebarContainerSelector === 'string' ? options.rightSidebarContainerSelector : '';
   const rightSidebarDetachedClassName =
     typeof options.rightSidebarDetachedClassName === 'string' ? options.rightSidebarDetachedClassName : '';
-  const density = (options as any).density || 'comfortable';
-  const layoutPreset = (options as any).layoutPreset || 'three-panel';
+  /**
+   * `options` es un objeto zod `passthrough`, así que las claves no declaradas
+   * llegan tipadas como `unknown`. Estas medidas admiten número (px) o cadena
+   * CSS; cualquier otra cosa se descarta.
+   */
+  const toCssLength = (value: unknown): string | undefined => {
+    if (typeof value === 'number') return `${value}px`;
+    if (typeof value === 'string') return value;
+    return undefined;
+  };
+  const workspaceGap = toCssLength(options.gap);
+  const canvasPadding = toCssLength(options.padding);
+
+  const density = typeof options.density === 'string' ? options.density : 'comfortable';
+  const layoutPreset =
+    typeof options.layoutPreset === 'string' ? options.layoutPreset : 'three-panel';
   const parsedRightSidebarWidth = Number(options.rightSidebarWidth);
   const rightSidebarWidthRaw =
     Number.isFinite(parsedRightSidebarWidth) && parsedRightSidebarWidth > 0
@@ -1441,7 +1457,10 @@ const TemplateEditor = ({
     setHoveringSchemaId(null);
   }, []);
 
+  // Excepción a preserve-manual-memoization: igual que arriba, el compilador
+  // infiere `paperRefs.current`; la ref es estable y no debe ser dependencia.
   const scrollPageIntoView = useCallback(
+    // eslint-disable-next-line react-hooks/preserve-manual-memoization
     (pageIndex: number) => {
       const paper = paperRefs.current[pageIndex];
       if (paper && typeof paper.scrollIntoView === 'function') {
@@ -1542,6 +1561,58 @@ const TemplateEditor = ({
     },
     [activeDocumentId, canvasDocumentIdRef, pageCursor, pushTemplateUpdate, resolveStableDocumentBasePdf],
   );
+
+  /**
+   * Mantiene los campos autorrellenables alineados con su destinatario.
+   *
+   * Cubre lo que el autorrelleno en creación no puede: que el usuario vuelva al
+   * paso 1 y corrija un nombre o un correo, o que reasigne el campo a otro
+   * destinatario. No pasa por `commitSchemas` a propósito — esto no es una
+   * acción del usuario y no debe ocupar una entrada de deshacer.
+   *
+   * `applyRecipientPrefill` devuelve el mismo objeto cuando no hay cambio, así
+   * que el efecto se estabiliza en la primera pasada y no realimenta.
+   */
+  useEffect(() => {
+    const currentSchemasList = schemasListRef.current;
+    if (!currentSchemasList.length) return;
+
+    let changed = false;
+    const nextSchemasList = currentSchemasList.map((pageSchemas) => {
+      let pageChanged = false;
+      const nextPageSchemas = pageSchemas.map((schema) => {
+        const nextSchema = applyRecipientPrefill(
+          schema,
+          resolveSchemaPrefillRecipient(
+            schema,
+            collaborationContext.recipientOptions,
+            collaborationContext.activeRecipient,
+          ),
+        );
+        if (nextSchema !== schema) pageChanged = true;
+        return nextSchema;
+      });
+      if (!pageChanged) return pageSchemas;
+      changed = true;
+      return nextPageSchemas;
+    });
+
+    if (!changed) return;
+
+    schemasListRef.current = nextSchemasList;
+    setSchemasList(nextSchemasList);
+    const stableBasePdf = resolveStableDocumentBasePdf(
+      activeDocumentId || canvasDocumentIdRef.current || null,
+    );
+    pushTemplateUpdate(schemasList2template(nextSchemasList, stableBasePdf));
+  }, [
+    activeDocumentId,
+    collaborationContext.activeRecipient,
+    collaborationContext.recipientOptions,
+    pushTemplateUpdate,
+    resolveStableDocumentBasePdf,
+    schemasList,
+  ]);
 
   const removeSchemas = useCallback(
     (ids: string[]) => {
@@ -1824,6 +1895,9 @@ const TemplateEditor = ({
   );
   const selectionCommands = useMemo(
     () =>
+      // Excepción a react-hooks/refs: los comandos guardan la ref y solo leen
+      // `.current` al ejecutarse desde un handler, nunca durante el render.
+      // eslint-disable-next-line react-hooks/refs
       createSelectionCommands({
         activeElements,
         schemasList,
@@ -1863,6 +1937,9 @@ const TemplateEditor = ({
     ],
   );
 
+  // Excepción a react-hooks/refs: `commandBusRef` se crea en el primer render y
+  // nunca se reasigna; el hook solo despacha comandos desde efectos y handlers.
+  // eslint-disable-next-line react-hooks/refs
   useInitEvents({
     pageCursor,
     pageSizes,
@@ -1871,6 +1948,7 @@ const TemplateEditor = ({
     schemasList,
     visibleSchemasList,
     changeSchemas,
+    // eslint-disable-next-line react-hooks/refs
     commandBus: commandBusRef.current,
     onEdit,
     onEditEnd,
@@ -2029,7 +2107,12 @@ const TemplateEditor = ({
     };
   }, [activeDocumentId, openCommentsPanel, setPageCursorWithScroll, visibleTemplate]);
 
+  // Excepción a preserve-manual-memoization: el compilador infiere
+  // `designerEngine.collaboration` entero, mientras que las dependencias
+  // declaradas apuntan a los campos concretos que sí se usan. Ampliarlas
+  // recrearía el callback en cada cambio de sesión de colaboración.
   const handleSaveComment = useCallback(
+    // eslint-disable-next-line react-hooks/preserve-manual-memoization
     (text: string) => {
       const pendingAnchor = pendingAnchorRef.current;
       if (!pendingAnchor) return;
@@ -2439,6 +2522,17 @@ const TemplateEditor = ({
       s = applySchemaCreationHook(s, creationContext, designerEngine);
       s = attachSchemaIdentity(s, creationContext, designerEngine);
       s = applySchemaCollaborativeDefaults(s, creationContext, designerEngine);
+      // Autorrelleno: después de los defaults colaborativos, que son los que
+      // fijan `ownerRecipientId`. Antes de esa línea el campo aún no sabe de
+      // quién es y resolvería siempre contra el destinatario activo.
+      s = applyRecipientPrefill(
+        s,
+        resolveSchemaPrefillRecipient(
+          s,
+          collaborationContext.recipientOptions,
+          collaborationContext.activeRecipient,
+        ),
+      );
 
       const fallbackOwnerIds = Array.isArray((s as SchemaForUI & { ownerRecipientIds?: string[] }).ownerRecipientIds)
         ? ((s as SchemaForUI & { ownerRecipientIds?: string[] }).ownerRecipientIds as string[])
@@ -3613,6 +3707,10 @@ const TemplateEditor = ({
 
   function handleRemovePage() {
     if (pageCursor === 0) return;
+    // Excepción a no-alert: la confirmación es síncrona y su resultado corta el
+    // flujo antes de mutar `schemasList`. `Modal.confirm` de antd es asíncrono y
+    // obligaría a reestructurar el borrado de página en callbacks.
+    // eslint-disable-next-line no-alert
     if (!window.confirm(i18n('removePageConfirm'))) return;
 
     const nextSchemasList = removePageSchemas(schemasList, pageCursor);
@@ -3653,7 +3751,7 @@ const TemplateEditor = ({
 
         const isPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
         if (!isPdf) {
-          window.alert(`Selecciona un archivo PDF valido: ${file.name}`);
+          message.error(`Selecciona un archivo PDF valido: ${file.name}`);
           continue;
         }
 
@@ -3719,7 +3817,7 @@ const TemplateEditor = ({
           }
         } catch (uploadError) {
           console.error('Failed to load uploaded PDF', uploadError);
-          window.alert('No se pudo cargar el PDF.');
+          message.error('No se pudo cargar el PDF.');
         }
       }
 
@@ -4036,6 +4134,12 @@ const TemplateEditor = ({
       rootId={rightSidebarDomId}
       hoveringSchemaId={hoveringSchemaId}
       onChangeHoveringSchemaId={onChangeHoveringSchemaId}
+      /*
+       * Excepción a react-hooks/refs: la barra lateral necesita la altura real
+       * del canvas. En el primer render vale 0 y se recalcula tras el commit,
+       * que es el comportamiento que ya asume el layout.
+       */
+      /* eslint-disable-next-line react-hooks/refs */
       height={canvasRef.current ? canvasRef.current.clientHeight : 0}
       size={size}
       pageSize={pageSizes[pageCursor] ?? { width: 0, height: 0 }}
@@ -4360,18 +4464,17 @@ const TemplateEditor = ({
         }}
       >
         <div
-          className={`${DESIGNER_CLASSNAME}workspace relative flex flex-auto flex-row items-stretch min-w-0 min-h-0 w-full`}
-          style={
-            (options as any).gap !== undefined
-              ? { gap: typeof (options as any).gap === 'number' ? `${(options as any).gap}px` : (options as any).gap }
-              : undefined
-          }>
+          className={`${DESIGNER_CLASSNAME}workspace box-border relative flex flex-auto flex-row items-stretch min-w-0 min-h-0 w-full`}
+          style={workspaceGap !== undefined ? { gap: workspaceGap } : undefined}>
           {!leftSidebarDetached ? leftSidebarNode : null}
           <div
             // Sin `pr-` por el panel derecho: reservar espacio aquí encogería el
             // stage y movería el centro del papel al abrir el panel. Los paneles
             // son overlays; el stage ocupa siempre el workspace completo.
-            className={`${DESIGNER_CLASSNAME}stage`}
+            // `flex-col` + `overflow-hidden` son obligatorios: el stage apila
+            // CtlBar y canvas en columna y confina el scroll al canvas. Sin
+            // ellos el chrome se coloca en fila y el papel deja de centrarse.
+            className={`${DESIGNER_CLASSNAME}stage relative box-border flex flex-auto flex-col h-full w-full min-w-0 min-h-0 overflow-hidden`}
             // Insets publicados, no aplicados: describen cuánto ocupan los
             // paneles en los bordes para quien deba apartar chrome periférico.
             // El stage no los descuenta de su propia caja.
@@ -4407,9 +4510,7 @@ const TemplateEditor = ({
                     : interactionState.phase
             }
             style={{
-              ...((options as any).padding !== undefined
-                ? { padding: typeof (options as any).padding === 'number' ? `${(options as any).padding}px` : (options as any).padding }
-                : {}),
+              ...(canvasPadding !== undefined ? { padding: canvasPadding } : {}),
               // El ancho REAL del sidebar derecho se resuelve en JS (densidad/
               // viewport). Publicarlo en la var mantiene consistentes el padding
               // del canvas y el offset del CtlBar (evita que los botones queden

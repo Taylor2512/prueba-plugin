@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
 import { markInspectorInteractive } from './inspectorInteractionGuards.js';
 

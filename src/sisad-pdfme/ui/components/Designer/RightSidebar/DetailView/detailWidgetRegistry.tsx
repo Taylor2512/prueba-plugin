@@ -5,6 +5,14 @@
  * colaboración/conexiones/comentarios y widgets declarados por plugins. Mantiene
  * el DetailView desacoplado de implementaciones específicas.
  */
+
+/*
+ * Excepción a react-refresh/only-export-components: este módulo es un registro,
+ * no una superficie de UI. Define los widgets del inspector y los ensambla en un
+ * mapa que devuelve `buildDetailWidgets`, así que siempre exportará una factoría
+ * junto a componentes locales y Fast Refresh no puede aplicarse aquí.
+ */
+/* eslint-disable react-refresh/only-export-components */
 import React from 'react';
 import type { GlobalToken, PropPanelWidgetProps, SchemaForUI, UIOptions } from '@sisad-pdfme/common';
 import { Button, Divider, Tooltip } from 'antd';

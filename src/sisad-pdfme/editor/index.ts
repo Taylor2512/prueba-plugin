@@ -39,7 +39,7 @@ import { DesignerEngineBuilder } from '../ui/designerEngine.js';
  * interacción visual, overlays y estados del canvas.
  *
  * Regla:
- * No agregar aquí CSS específico del host, StepTwo, ContentCustomForm,
+ * No agregar aquí CSS específico del host, StepTwo, DigitalAgreements,
  * Uanataca, workflows o pantallas externas.
  */
 import '../ui/styles/tokens.css';

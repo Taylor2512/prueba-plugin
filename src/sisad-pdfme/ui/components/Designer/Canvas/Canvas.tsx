@@ -58,7 +58,8 @@ import Guides from './Guides.js';
 import Mask from './Mask.js';
 import Padding from './Padding.js';
 import StaticSchema from '../../StaticSchema.js';
-import SnapLines, { computeSnapResult, SnapLine } from './SnapLines.js';
+import SnapLines from './SnapLines.js';
+import { computeSnapResult, type SnapLine } from './snapEngine.js';
 import { resolveSchemaTone } from '../shared/schemaTone.js';
 import { mixHexColor } from '../../../../schemas/shared/fieldChrome.js';
 import { deriveInteractionState } from '../shared/interactionState.js';
@@ -557,6 +558,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
    */
   const coordinateService = useMemo(
     () =>
+      // Excepción a react-hooks/refs: las refs se pasan como getters que el
+      // servicio invoca al resolver coordenadas, ya montado, no en el render.
+      // eslint-disable-next-line react-hooks/refs
       new DesignerCoordinateService({
         getZoom: () => scale,
         getCanvasRoot: () => rootRef.current,
@@ -980,7 +984,12 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   /**
    * Ubica el nodo DOM de un schema, con búsqueda scoped por página antes de global.
    */
+  // Excepción a preserve-manual-memoization: el compilador infiere
+  // `paperRefs.current` como dependencia y no coincide con las declaradas. La
+  // memoización manual es la correcta —la ref es estable— pero reescribirla
+  // para satisfacer al compilador cambiaría cuándo se recalcula el selector.
   const resolveSchemaElementById = useCallback(
+    // eslint-disable-next-line react-hooks/preserve-manual-memoization
     (schemaId: string, pageIndex?: number | null) => {
       const selector = buildSchemaSelector(schemaId);
 
@@ -1586,7 +1595,13 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   return (
     <div
       className={[DESIGNER_CLASSNAME + 'canvas', classNames?.canvasContainer]
-        .concat(['relative flex min-h-0 flex-1 overflow-auto bg-slate-50'])
+        .concat([
+          // `items-start` + `justify-center` posicionan el papel; el centrado
+          // real lo aporta el `mx-auto` de `[data-paper-root]`, que además evita
+          // que el borde izquierdo quede fuera de alcance al desbordar por zoom.
+          'box-border relative flex h-full min-h-0 min-w-0 flex-1 w-full max-w-full items-start justify-center overflow-auto overscroll-contain [scrollbar-gutter:stable_both-edges] pt-14 px-4 pb-4',
+          'bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.08),transparent_22%),linear-gradient(180deg,rgba(248,250,252,0.96),rgba(241,245,249,0.98))]',
+        ])
         .filter(Boolean)
         .join(' ')}
       onContextMenu={handleCanvasContextMenu}
@@ -1613,6 +1628,12 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       data-canvas-block-reason={canvasBlockReason || 'none'}
       ref={rootRef}>
       {!editing && feature.selecto && !externalSchemaDragActive && canvasInteractive ? (
+        /*
+         * Excepción a react-hooks/refs: Selecto necesita los nodos DOM reales
+         * como contenedores. En el primer render valen `null` y la librería los
+         * revalúa tras el commit, que es el contrato que ya asume el runtime.
+         */
+        /* eslint-disable react-hooks/refs */
         <SelectoSlot
           container={rootRef.current}
           rootContainer={rootRef.current}
@@ -1739,6 +1760,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
             }
           }}
         />
+        /* eslint-enable react-hooks/refs */
       ) : null}
       <Paper
         scale={scale}
@@ -1993,6 +2015,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
           featureSnapLines={feature.snapLines}
           externalSchemaDragActive={externalSchemaDragActive}
           contextMenuOpen={Boolean(contextMenu)}
+          // Mismas acciones y mismo estado de portapapeles que el menú de clic
+          // derecho: ambos son el mismo componente sobre la misma selección.
+          contextMenuExternalActions={canvasContextMenuExternalActions}
+          hasClipboardData={hasClipboardData}
           collaborationContext={collaborationContext}
         />
       {!externalSchemaDragActive ? (

@@ -26,6 +26,15 @@ export type CollaborationRecipientOption = {
   role?: string | null;
   team?: string | null;
   tag?: string | null;
+  /**
+   * Datos de contacto del destinatario, usados por el autorrelleno de schemas
+   * (`ui/recipientPrefill.ts`). `company` y `title` viajan aquí aunque hoy el
+   * paso 1 no los rellene: el contrato queda listo y el resolver los trata como
+   * ausentes mientras no haya dato.
+   */
+  email?: string | null;
+  company?: string | null;
+  title?: string | null;
 };
 
 export type CollaborationCanEditStructureContext = {
@@ -108,6 +117,11 @@ export const normalizeCollaborationRecipients = (options: unknown): Collaboratio
       role: normalizeNullableString(candidate.role),
       team: normalizeNullableString(candidate.team),
       tag: normalizeNullableString(candidate.tag),
+      // El host puede nombrar el correo `email` o `emailAddress` según venga del
+      // selector o del formulario de personas; se aceptan ambos.
+      email: normalizeNullableString(candidate.email ?? candidate.emailAddress),
+      company: normalizeNullableString(candidate.company),
+      title: normalizeNullableString(candidate.title),
     });
   });
 

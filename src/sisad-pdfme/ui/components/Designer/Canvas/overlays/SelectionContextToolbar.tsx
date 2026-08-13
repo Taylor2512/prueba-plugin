@@ -12,6 +12,7 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { InteractionState } from '../../shared/interactionState.js';
 import { mergeClassNames } from '../../shared/className.js';
 import CanvasContextMenu from './CanvasContextMenu.js';
+import type { CanvasContextMenuExternalActions } from './canvasContextMenuActions.js';
 import { resolveSelectionToolbarPosition } from './floatingSurfaceGeometry.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 import { OptionsContext } from '../../../../contexts.js';
@@ -27,6 +28,13 @@ type SelectionContextToolbarProps = {
   activeSchemas: SchemaForUI[];
   interactionState: InteractionState;
   contextMenuOpen?: boolean;
+  /**
+   * Acciones externas del menú completo. El menú de «Más» es el mismo
+   * componente que el de clic derecho, así que sin esto ofrece menos opciones
+   * que él sobre la misma selección.
+   */
+  externalActions?: CanvasContextMenuExternalActions;
+  hasClipboardData?: boolean;
   restoreFocusTarget?: HTMLElement | null;
   collaborationContext?: Pick<
     EffectiveCollaborationContext,
@@ -74,6 +82,8 @@ const SelectionContextToolbar = ({
   activeSchemas,
   interactionState,
   contextMenuOpen = false,
+  externalActions,
+  hasClipboardData = false,
   restoreFocusTarget,
   collaborationContext,
 }: SelectionContextToolbarProps) => {
@@ -115,14 +125,17 @@ const SelectionContextToolbar = ({
               onSelect: commands.deleteSelection,
               disabled: !canEditStructure,
             },
+        // Misma polaridad que `delete`: la condición marca cuándo NO hay acción.
+        // Estaba invertida, así que «Duplicar» solo intentaba pintarse cuando
+        // el comando no existía —y por eso no aparecía nunca.
         actionsVisibility?.duplicate === false || !commands?.duplicateSelection
-          ? {
+          ? null
+          : {
               id: 'duplicate',
               label: 'Duplicar',
               onSelect: commands.duplicateSelection,
               disabled: !canEditStructure,
-            }
-          : null,
+            },
       ] as Array<QuickAction | null>).filter((item): item is QuickAction => item !== null),
     [actionsVisibility?.delete, actionsVisibility?.duplicate, canEditStructure, commands],
   );
@@ -329,7 +342,8 @@ const SelectionContextToolbar = ({
         mode={isMulti ? 'multi' : 'single'}
         position={moreMenuOpen ? menuPosition ?? { x: toolbarPosition.left, y: toolbarPosition.top + toolbarSize.height + 8 } : null}
         commands={commands}
-        hasClipboardData={false}
+        externalActions={externalActions}
+        hasClipboardData={hasClipboardData}
         selectionCount={selectionCount}
         selectionSchemas={activeSchemas}
         collaborationContext={collaborationContext}

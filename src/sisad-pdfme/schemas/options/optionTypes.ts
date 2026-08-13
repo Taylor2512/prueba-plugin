@@ -7,7 +7,7 @@ export type OptionItem = {
 
 type OptionSelectionMode = 'single' | 'multiple';
 
-interface OptionGroupConfig {
+export interface OptionGroupConfig {
   type: string;
   mode: OptionSelectionMode;
   defaultOptions?: OptionItem[];

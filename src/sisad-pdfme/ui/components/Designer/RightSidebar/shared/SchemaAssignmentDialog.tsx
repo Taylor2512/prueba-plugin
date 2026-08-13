@@ -97,6 +97,9 @@ const SchemaAssignmentDialog = ({
     (phase: 'open' | 'close' | 'after-close', reason?: SchemaAssignmentCloseReason) => {
       if (!debugEnabled) return;
       // Log temporal de diagnóstico (TASK-INTERACTION-016), solo con debug.enabled.
+      // Excepción a no-console: el `debugEnabled` de arriba ya corta la traza
+      // salvo que el host active explícitamente `options.debug.enabled`.
+      // eslint-disable-next-line no-console
       console.info('[assignment-modal-lifecycle]', {
         phase,
         reason: reason ?? null,

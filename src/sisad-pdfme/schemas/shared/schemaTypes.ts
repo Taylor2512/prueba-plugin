@@ -13,11 +13,11 @@ type UnknownRecord = Record<string, unknown>;
 
 type Brand<T, TBrand extends string> = T & { readonly __brand: TBrand };
 
-type SchemaUid   = Brand<string, 'SchemaUid'>;
-type DocumentId  = Brand<string, 'DocumentId'>;
-type RecipientId = Brand<string, 'RecipientId'>;
-type OptionId    = Brand<string, 'OptionId'>;
-type GroupId     = Brand<string, 'GroupId'>;
+export type SchemaUid   = Brand<string, 'SchemaUid'>;
+export type DocumentId  = Brand<string, 'DocumentId'>;
+export type RecipientId = Brand<string, 'RecipientId'>;
+export type OptionId    = Brand<string, 'OptionId'>;
+export type GroupId     = Brand<string, 'GroupId'>;
 
 // ─── Visual taxonomy ──────────────────────────────────────────────────────────
 
@@ -89,7 +89,7 @@ type SchemaBehaviorFields = {
  * new schema types or factory functions. Does NOT carry the index signature
  * required by `Plugin<T>` — pair with `& Schema` at plugin definition sites.
  */
-type BaseSchema<TType extends string = string> = {
+export type BaseSchema<TType extends string = string> = {
   type: TType;
   id?: string;
   schemaUid?: string;
@@ -130,7 +130,7 @@ type OptionItem<TValue extends string = string> = {
 
 type OptionSelectionMode = 'single' | 'multiple';
 
-type OptionBasedSchema<
+export type OptionBasedSchema<
   TValue extends string = string,
   TOption extends OptionItem<TValue> = OptionItem<TValue>,
   TExtra extends UnknownRecord = UnknownRecord,
@@ -161,7 +161,7 @@ export type SemanticTone = 'success' | 'danger' | 'info' | 'warning' | 'neutral'
 
 // ─── Signing schema base ──────────────────────────────────────────────────────
 
-type SigningSchemaBase<TExtra extends UnknownRecord = UnknownRecord> =
+export type SigningSchemaBase<TExtra extends UnknownRecord = UnknownRecord> =
   SisadSchemaBase<TExtra> & {
     signatureKind?: 'signature' | 'initials' | 'date';
     placeholderText?: string;

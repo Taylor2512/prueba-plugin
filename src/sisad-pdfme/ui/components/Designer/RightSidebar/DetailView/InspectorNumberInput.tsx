@@ -1,4 +1,3 @@
-import React from 'react';
 import { InputNumber } from 'antd';
 import { mergeClassNames } from '../../shared/className.js';
 

@@ -5,7 +5,7 @@
  * calcula bloques de página, fondos, tamaños y metadatos DOM para cada paper,
  * manteniendo una última versión estable para evitar parpadeos durante cargas.
  */
-import React, { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { ZOOM, SchemaForUI, Size, getFallbackFontName } from '@sisad-pdfme/common';
 import { FontContext } from '../contexts.js';
 import { RULER_HEIGHT, PAGE_GAP } from '../constants.js';
@@ -74,27 +74,33 @@ const PaperPage = ({
   <div
     key={String(paperIndex) + JSON.stringify(block.paperSize)}
     data-paper-page="true"
-    className="sisad-pdfme-paper-page bg-no-repeat bg-left-top"
+    className="sisad-pdfme-paper-page absolute left-0 box-border rounded-[0.35rem] border border-[rgba(148,163,184,0.28)] bg-white bg-no-repeat bg-left-top shadow-[0_14px_32px_rgba(15,23,42,0.08),0_2px_8px_rgba(15,23,42,0.06)]"
     {...buildPageMetadataAttrs({ documentId, pageIndex: paperIndex, pageNumber: paperIndex + 1 })}
     tabIndex={-1}
     ref={(e) => registerPaperRef(paperIndex, e)}
     role="presentation"
+    /*
+     * Geometría por página: alto/ancho/desplazamiento y fondo dependen del
+     * tamaño real del PDF, así que viven en `style` y no en utilidades. Tailwind
+     * solo posee la presentación estática (borde, radio, sombra, color base).
+     */
     style={{
+      fontFamily: `'${fontName}'`,
+      top: block.pageTop,
+      width: block.paperSize.width,
+      height: block.paperSize.height,
       backgroundImage: `url(${block.background})`,
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'top left',
       backgroundSize: `${block.paperSize.width}px ${block.paperSize.height}px`,
-      '--paper-page-font': `'${fontName}'`,
-      '--paper-page-top': `${block.pageTop}px`,
-      '--paper-page-background': `url(${block.background})`,
-      '--paper-page-width': `${block.paperSize.width}px`,
-      '--paper-page-height': `${block.paperSize.height}px`,
-      '--paper-page-background-size': `${block.paperSize.width}px ${block.paperSize.height}px`,
-    } as React.CSSProperties}
+    }}
   >
     {renderPaper({ paperSize: block.pageSize, index: paperIndex })}
+    {/*
+      La posición desempata la key: los `defaultSchema` de los grupos de
+      opciones traían un `id` literal, así que dos grupos del mismo tipo
+      llegaban con identidad repetida y React descartaba uno de los dos.
+    */}
     {(normalizedSchemasList[paperIndex] || []).map((schema, schemaIndex) => (
-      <div key={schema.id}>
+      <div key={`${schema.id ?? schema.name ?? 'schema'}-${paperIndex}-${schemaIndex}`}>
         {renderSchema({
           schema,
           pageIndex: paperIndex,
@@ -220,23 +226,29 @@ const Paper = (props: {
   return (
     <div
       data-paper-root="true"
-      className="sisad-pdfme-paper-root relative"
+      /*
+       * `mx-auto` (y no `justify-center` en el contenedor) es lo que centra el
+       * documento: con márgenes automáticos el papel queda centrado mientras
+       * sobra espacio y se alinea al inicio cuando desborda por zoom, de modo
+       * que el borde izquierdo sigue siendo alcanzable con scroll.
+       */
+      className="sisad-pdfme-paper-root relative box-border mx-auto flex-none min-w-0 min-h-0"
       {...buildPageMetadataAttrs({ documentId })}
       style={{
-        '--paper-root-width': `${scaledRootWidth}px`,
-        '--paper-root-height': `${scaledRootHeight}px`,
+        width: scaledRootWidth,
+        height: scaledRootHeight,
         transform: contentOffsetX ? `translateX(${contentOffsetX}px)` : undefined,
         willChange: contentOffsetX ? 'transform' : undefined,
-      } as React.CSSProperties}
+      }}
     >
       <div
         data-paper-scale-layer="true"
-        className="sisad-pdfme-paper-scale-layer relative"
+        className="sisad-pdfme-paper-scale-layer absolute left-0 top-0 box-border origin-top-left"
         style={{
-          '--paper-layer-width': `${rootWidth}px`,
-          '--paper-layer-height': `${rootHeight}px`,
-          '--paper-scale': String(scale),
-        } as React.CSSProperties}
+          width: rootWidth,
+          height: rootHeight,
+          transform: `scale(${scale})`,
+        }}
       >
         {pageBlocks.map((block, paperIndex) => (
           <PaperPage

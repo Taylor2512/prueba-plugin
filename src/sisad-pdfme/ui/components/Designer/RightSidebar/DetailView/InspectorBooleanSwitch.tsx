@@ -44,7 +44,7 @@ export type InspectorBooleanSwitchProps = {
  * `'true'/'false'` o `'on'`, así que el switch no puede confiar en `Boolean()`
  * a secas: `Boolean('false')` es `true`.
  */
-export const normalizeInspectorBoolean = (value: unknown): boolean => {
+const normalizeInspectorBoolean = (value: unknown): boolean => {
   if (typeof value === 'boolean') return value;
   if (typeof value === 'number') return value !== 0;
   if (typeof value === 'string') {

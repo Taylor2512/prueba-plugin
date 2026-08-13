@@ -240,9 +240,14 @@ const evaluateAST = (node: AcornNode, context: Record<string, unknown>): unknown
           return left % right;
         case '**':
           return left ** right;
+        // `==`/`!=` son operadores del lenguaje de expresiones evaluado, no del
+        // código: deben conservar la igualdad laxa para diferenciarse de
+        // `===`/`!==`, que se implementan justo debajo.
         case '==':
+          // eslint-disable-next-line eqeqeq
           return left == right;
         case '!=':
+          // eslint-disable-next-line eqeqeq
           return left != right;
         case '===':
           return left === right;

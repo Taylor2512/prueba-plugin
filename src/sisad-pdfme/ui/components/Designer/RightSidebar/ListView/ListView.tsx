@@ -18,7 +18,7 @@ import React, { useContext, useState, useMemo, useCallback, useRef, useEffect } 
 import type { SidebarProps } from '../../../../types.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { I18nContext } from '../../../../contexts.js';
-import { Input } from 'antd';
+import { Input, message } from 'antd';
 import SelectableSortableContainer from './SelectableSortableContainer.js';
 import { SidebarBody, SidebarFooter, SidebarFrame, SidebarHeader } from '../layout.js';
 import { mergeClassNames } from '../../shared/className.js';
@@ -316,7 +316,7 @@ const ListView = (
       return;
     }
 
-    alert(i18n('errorBulkUpdateFieldName'));
+    message.error(i18n('errorBulkUpdateFieldName'));
   };
 
   const hasActiveSearch = searchQuery !== '' || typeFilter !== 'all';

@@ -77,7 +77,7 @@ export const renderTextUi = async (arg: UIRenderProps<TextSchema>) => {
   }
   const usePlaceholder = isEditable(mode, schema) && placeholder && !value;
   const getText = (element: HTMLDivElement) => {
-    let text = element.innerText;
+    let text = element.innerText ?? element.textContent ?? '';
     if (text.endsWith('\n')) {
       // contenteditable adds additional newline char retrieved with innerText
       text = text.slice(0, -1);
@@ -122,11 +122,21 @@ export const renderTextUi = async (arg: UIRenderProps<TextSchema>) => {
   makeElementPlainTextContentEditable(textBlock);
   textBlock.tabIndex = tabIndex || 0;
   textBlock.innerText = mode === 'designer' ? value : processedText;
+  let lastCommittedText = String(textBlock.innerText || '');
+  const commitText = (target: HTMLDivElement) => {
+    if (!onChange) return;
+    const newValue = getText(target);
+    if (String(newValue) === String(lastCommittedText)) return;
+    lastCommittedText = String(newValue);
+    onChange([{ key: 'content', value: newValue }]);
+  };
+
+  textBlock.addEventListener('input', (e: Event) => {
+    commitText(e.target as HTMLDivElement);
+  });
+
   textBlock.addEventListener('blur', (e: Event) => {
-    if (onChange) {
-      const newValue = getText(e.target as HTMLDivElement);
-      if (String(newValue) !== String(value)) onChange([{ key: 'content', value: newValue }]);
-    }
+    commitText(e.target as HTMLDivElement);
     if (stopEditing) stopEditing();
   });
 

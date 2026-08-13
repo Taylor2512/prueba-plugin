@@ -12,7 +12,10 @@ export const createRecipientsAdapter = <THostUser = unknown>(): SisadPdfmeRecipi
         id: id || label || 'recipient',
         label: label || id || 'Recipient',
         role: String(record.role ?? '').trim() || undefined,
-        email: String(record.email ?? '').trim() || undefined,
+        // El host puede nombrar el correo `email` o `emailAddress`.
+        email: String(record.email ?? record.emailAddress ?? '').trim() || undefined,
+        company: String(record.company ?? '').trim() || undefined,
+        title: String(record.title ?? '').trim() || undefined,
         color: String(record.color ?? '').trim() || undefined,
         metadata: record,
       };

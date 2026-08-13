@@ -86,7 +86,7 @@ const formUiRender = async (arg: UIRenderProps<MultiVariableTextSchema>) => {
   for (let i = 0; i < rawText.length; i++) {
     if (variableIndices[i]) {
       inVarString = true;
-      let span = document.createElement('span');
+      const span = document.createElement('span');
       span.style.outline = `${theme.colorPrimary} dashed 1px`;
       makeElementPlainTextContentEditable(span);
       span.textContent = variables[variableIndices[i]];
@@ -104,7 +104,7 @@ const formUiRender = async (arg: UIRenderProps<MultiVariableTextSchema>) => {
         inVarString = false;
       }
     } else {
-      let span = document.createElement('span');
+      const span = document.createElement('span');
       span.style.letterSpacing = rawText.length === i + 1 ? '0' : 'inherit';
       span.textContent = rawText[i];
       textBlock.appendChild(span);

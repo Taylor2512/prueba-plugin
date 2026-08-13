@@ -52,7 +52,9 @@ const SchemaDropPlaceholder = ({
 
   return (
     <div
-      className="sisad-pdfme-schema-drop-placeholder fixed z-[18] overflow-hidden rounded-[8px] border border-dashed border-slate-200 pointer-events-none"
+      // Mismo motivo que en SchemaDragPreview: el portal va a `document.body` y
+      // el host puede tener una capa fixed por encima.
+      className="sisad-pdfme-schema-drop-placeholder fixed z-[var(--sisad-pdfme-drag-placeholder-z,18)] overflow-hidden rounded-[8px] border border-dashed border-slate-200 pointer-events-none"
       style={
         {
           left: `${left}px`,

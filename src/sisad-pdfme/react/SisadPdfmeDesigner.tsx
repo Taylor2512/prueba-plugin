@@ -104,6 +104,10 @@ export const SisadPdfmeDesigner = ({
    * dispatcher nunca invoca un callback de un render anterior.
    */
   const hostCallbacksRef = useRef<SisadPdfmeHostCallbacks>({});
+  // Excepción a react-hooks/refs: patrón "latest ref". El valor solo se lee
+  // desde callbacks asíncronos, nunca durante el render; escribirlo en un
+  // efecto lo dejaría obsoleto para los eventos emitidos en el commit.
+  // eslint-disable-next-line react-hooks/refs
   hostCallbacksRef.current = {
     onRecipientsChange: (payload) =>
       onRecipientsChange?.(payload.recipients as SisadPdfmeRecipient[]),
@@ -114,6 +118,10 @@ export const SisadPdfmeDesigner = ({
   };
 
   const configEventsRef = useRef(resolvedConfig.config.events);
+  // Excepción a react-hooks/refs: patrón "latest ref". El valor solo se lee
+  // desde callbacks asíncronos, nunca durante el render; escribirlo en un
+  // efecto lo dejaría obsoleto para los eventos emitidos en el commit.
+  // eslint-disable-next-line react-hooks/refs
   configEventsRef.current = resolvedConfig.config.events;
 
   const runtimePlugins = useMemo(
@@ -171,6 +179,9 @@ export const SisadPdfmeDesigner = ({
   const instanceId = useMemo(() => `designer-${instanceSequence++}`, []);
   const dispatcher = useMemo(
     () =>
+      // Excepción a react-hooks/refs: las refs entran envueltas en getters que
+      // el dispatcher solo invoca al emitir un evento, nunca durante el render.
+      // eslint-disable-next-line react-hooks/refs
       createInstanceEventDispatcher({
         instanceId,
         getConfigEvents: () => configEventsRef.current,
@@ -191,6 +202,10 @@ export const SisadPdfmeDesigner = ({
 
   // El listener se lee por ref para no resuscribir en cada render del host.
   const onEventRef = useRef(onEvent);
+  // Excepción a react-hooks/refs: patrón "latest ref". El valor solo se lee
+  // desde callbacks asíncronos, nunca durante el render; escribirlo en un
+  // efecto lo dejaría obsoleto para los eventos emitidos en el commit.
+  // eslint-disable-next-line react-hooks/refs
   onEventRef.current = onEvent;
   useEffect(
     () => dispatcher.subscribe((event) => onEventRef.current?.(event)),

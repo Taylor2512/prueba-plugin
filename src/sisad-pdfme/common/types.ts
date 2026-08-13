@@ -216,8 +216,14 @@ export type Plugin<T = Schema> = {
   uninterruptedEditMode?: boolean;
 };
 
+/**
+ * Mapa de plugins registrados por label/key.
+ *
+ * `Plugin<any>` es deliberado: cada plugin declara su propio tipo de schema y
+ * el mapa es heterogéneo, así que un parámetro concreto o `Plugin<Schema>`
+ * rechazaría plugins válidos por varianza.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-/** Mapa de plugins registrados por label/key. */
 export type Plugins = { [key: string]: Plugin<any> };
 
 export interface PluginRegistry {

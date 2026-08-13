@@ -5,7 +5,7 @@
  * y delega cada schema a Renderer. También aplica reglas runtime de visibilidad,
  * acceso por destinatario y autocompletado de dateSigned enlazado a firma.
  */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { SchemaForUI, PreviewProps, Size, replacePlaceholders } from '@sisad-pdfme/common';
 import { theme } from 'antd';
 import UnitPager from './UnitPager.js';
@@ -138,7 +138,10 @@ const Preview = ({
         unitNum={inputs.length}
         setUnitCursor={setUnitCursor}
       />
-      <div ref={containerRef} className={UI_CLASSNAME + 'preview-scroll'}>
+      <div
+        ref={containerRef}
+        className={UI_CLASSNAME + 'preview-scroll relative flex h-full w-full min-w-0 min-h-0 flex-1 items-start justify-center overflow-auto [scrollbar-gutter:stable_both-edges] pt-3 px-3.5 pb-5 bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.08),transparent_22%),linear-gradient(180deg,rgba(248,250,252,0.96),rgba(241,245,249,0.98))]'}
+      >
         <Paper
           scale={scale}
           size={size}

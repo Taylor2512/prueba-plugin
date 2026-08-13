@@ -145,7 +145,7 @@ Selecto
 SnapshotAdapter
 schemas
 DetailView
-ContentCustomForm
+DigitalAgreements
 Uanataca
 reglas de negocio SISAD
 ```

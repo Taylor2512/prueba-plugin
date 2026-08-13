@@ -33,7 +33,7 @@ const mapDynamicVariables = (props: PropPanelWidgetProps) => {
   (rootElement.parentElement as HTMLElement).style.display = 'block';
 
   if (varNames.length > 0) {
-    for (let variableName of varNames) {
+    for (const variableName of varNames) {
       const varRow = placeholderRowEl.cloneNode(true) as HTMLElement;
 
       const textarea = varRow.querySelector('textarea') as HTMLTextAreaElement;

@@ -140,7 +140,7 @@ export const buildOptionRow = (opts: {
   optionId: string;
   dataAttr: string;
 }): HTMLButtonElement => {
-  const { color, isHorizontal, editable } = opts;
+  const { color, editable } = opts;
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.setAttribute('role', opts.role);
@@ -169,7 +169,7 @@ export const buildOptionRow = (opts: {
 };
 
 /** Checkbox indicator (square with optional checkmark). */
-const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElement => {
+export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElement => {
   return createOptionIndicatorElement({
     shape: 'square',
     checked: isChecked,
@@ -181,7 +181,7 @@ const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElem
 };
 
 /** Radio indicator (circle with optional center dot). */
-const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpanElement => {
+export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpanElement => {
   return createOptionIndicatorElement({
     shape: 'circle',
     checked: isSelected,

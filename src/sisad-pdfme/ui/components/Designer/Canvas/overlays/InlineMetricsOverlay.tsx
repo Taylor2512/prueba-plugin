@@ -5,7 +5,6 @@
  * puramente visual: no participa en selección, drag, resize ni persistencia.
  */
 
-import React from 'react';
 
 /**
  * Props del overlay de métricas inline.

@@ -4,7 +4,7 @@ import type {
   ResolvedSisadPdfmeConfig,
   SisadPdfmeGlobalConfig,
 } from '../config/SisadPdfmeConfig.js';
-import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
+import { SisadPdfmeContext } from './SisadPdfmeContext.js';
 import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
 
 type RecipientRuntimeOptions = {

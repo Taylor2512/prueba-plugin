@@ -121,7 +121,7 @@ const generate = async (props: GenerateProps): Promise<Uint8Array<ArrayBuffer>> 
       for (let l = 0; l < schemaNames.length; l += 1) {
         const name = schemaNames[l];
         const schemaPage = schemas[j] || [];
-        const schema = schemaPage.find((s: Schema) => s.name == name);
+        const schema = schemaPage.find((s: Schema) => s.name === name);
         if (!schema) {
           continue;
         }

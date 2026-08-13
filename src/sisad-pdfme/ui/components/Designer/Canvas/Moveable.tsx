@@ -5,7 +5,7 @@
  * de controles, evitando que Canvas dependa directamente de detalles visuales
  * o quirks del paquete externo.
  */
-import React, { useEffect, forwardRef, Ref, useId } from 'react';
+import { useEffect, forwardRef, Ref, useId } from 'react';
 import MoveableComponent, {
   type OnClick,
   type OnDrag,

@@ -5,7 +5,6 @@
  * Es feedback visual, no calcula geometría ni modifica schemas.
  */
 
-import React from 'react';
 import type { SnapLine } from '../SnapLines.js';
 import { mergeClassNames } from '../../shared/className.js';
 

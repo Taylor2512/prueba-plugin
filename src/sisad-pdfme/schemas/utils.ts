@@ -151,7 +151,7 @@ const hex2CmykColor = (hexString: string | undefined) => {
 export const hex2PrintingColor = (color?: string | Color, colorType?: ColorType) => {
   // if color is already CMYK, RGB or Grayscale, does not required to convert
   if (typeof color === 'object') return color;
-  return colorType?.toLowerCase() == 'cmyk' ? hex2CmykColor(color) : hex2RgbColor(color);
+  return colorType?.toLowerCase() === 'cmyk' ? hex2CmykColor(color) : hex2RgbColor(color);
 };
 
 export const readFile = (input: File | FileList | null): Promise<string | ArrayBuffer> =>

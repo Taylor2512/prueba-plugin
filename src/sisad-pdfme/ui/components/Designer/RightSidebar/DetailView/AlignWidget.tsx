@@ -6,7 +6,6 @@
  * No calcula geometría ni modifica schemas directamente; delega las operaciones
  * a comandos ya normalizados para mantener un único contrato de selección.
  */
-import React from 'react';
 import { Button, Form, Tooltip } from 'antd';
 import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { mergeClassNames } from '../../shared/className.js';
 
 export type InspectorColorInputProps = {

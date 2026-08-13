@@ -358,7 +358,7 @@ export const renderTableUi = async (arg: UIRenderProps<TableSchema>) => {
 
           const newColumnStyles = { ...schema.columnStyles };
           if (newColumnStyles.alignment) {
-            const newAlignment: { [colIndex: number]: any } = {};
+            const newAlignment: NonNullable<typeof newColumnStyles.alignment> = {};
             Object.keys(newColumnStyles.alignment).forEach((key) => {
               const index = Number(key);
               if (index < i) {

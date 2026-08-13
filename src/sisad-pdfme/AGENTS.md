@@ -1,6 +1,3 @@
-# Reglas locales
+# Scoped Agent Guidance
 
-- Este árbol es una librería reusable.
-- No importar negocio host.
-- Proteger API pública y múltiples instancias.
-- Usar adapters/config/events.
+Domain: `pdfme-platform`, R3. This is reusable downstream code. Preserve public API, runtime parity, canvas geometry, snapshots and upstream/downstream sync. No host business logic.

@@ -22,7 +22,7 @@ const readOnlyField = (): PropPanelSchema => ({
   span: 12,
 });
 
-const lockedField = (): PropPanelSchema => ({
+export const lockedField = (): PropPanelSchema => ({
   title: 'Bloqueado',
   type: 'boolean',
   widget: 'switch',
@@ -44,21 +44,21 @@ export const basicsFields = (): Record<string, PropPanelSchema> => ({
 
 // ── Content ────────────────────────────────────────────────────────────────
 
-const placeholderTextField = (label = 'Placeholder'): PropPanelSchema => ({
+export const placeholderTextField = (label = 'Placeholder'): PropPanelSchema => ({
   title: label,
   type: 'string',
   widget: 'input',
   span: 24,
 });
 
-const defaultValueField = (label = 'Valor por defecto'): PropPanelSchema => ({
+export const defaultValueField = (label = 'Valor por defecto'): PropPanelSchema => ({
   title: label,
   type: 'string',
   widget: 'input',
   span: 24,
 });
 
-const maxLengthField = (): PropPanelSchema => ({
+export const maxLengthField = (): PropPanelSchema => ({
   title: 'Máximo caracteres',
   type: 'number',
   widget: 'inputNumber',
@@ -66,14 +66,14 @@ const maxLengthField = (): PropPanelSchema => ({
   props: { min: 0, precision: 0 },
 });
 
-const maskedField = (): PropPanelSchema => ({
+export const maskedField = (): PropPanelSchema => ({
   title: 'Ocultar con asteriscos',
   type: 'boolean',
   widget: 'switch',
   span: 12,
 });
 
-const fixedWidthField = (): PropPanelSchema => ({
+export const fixedWidthField = (): PropPanelSchema => ({
   title: 'Anchura fija',
   type: 'boolean',
   widget: 'switch',
@@ -305,7 +305,7 @@ const editableByRecipientField = (): PropPanelSchema => ({
 });
 
 /** Convenience: sender permissions block */
-const permissionsFields = (): Record<string, PropPanelSchema> => ({
+export const permissionsFields = (): Record<string, PropPanelSchema> => ({
   mandatory: mandatoryField(),
   editableBySender: editableBySenderField(),
   editableByRecipient: editableByRecipientField(),

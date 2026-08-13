@@ -114,7 +114,7 @@ export function createSigningSchemaPlugin(config: SigningSchemaFactoryConfig): P
 /**
  * Backward-compatible alias kept for the existing dateSigned import path.
  */
-function createTextSigningSchemaPlugin(config: Omit<SigningSchemaFactoryConfig, 'placeholder'> & {
+export function createTextSigningSchemaPlugin(config: Omit<SigningSchemaFactoryConfig, 'placeholder'> & {
   placeholder?: string;
 }): Plugin<Schema> {
   return createSigningSchemaPlugin({

@@ -29,7 +29,7 @@ export type CustomFieldDef = {
   options: string;
 };
 
-export const CUSTOM_FIELD_TYPE_OPTIONS = [
+const CUSTOM_FIELD_TYPE_OPTIONS = [
   { value: 'text', label: 'Texto' },
   { value: 'number', label: 'Número' },
   { value: 'checkbox', label: 'Casilla de verificación' },
@@ -50,7 +50,7 @@ type Props = {
 };
 
 /** Valida el contrato mínimo antes de persistir un draft de campo custom. */
-export const isCustomFieldDraftValid = (draft: Pick<CustomFieldDef, 'name'>): boolean =>
+const isCustomFieldDraftValid = (draft: Pick<CustomFieldDef, 'name'>): boolean =>
   draft.name.trim().length > 0;
 
 const FieldControl = ({

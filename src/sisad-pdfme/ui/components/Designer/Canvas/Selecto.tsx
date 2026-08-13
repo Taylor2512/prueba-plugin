@@ -5,7 +5,7 @@
  * del rectángulo de selección. Canvas decide cuándo se puede iniciar selección;
  * este wrapper solo configura y propaga eventos.
  */
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import SelectoComponent, {
   OnSelect as SelectoOnSelect,
   OnDragStart as SelectoOnDragStart,

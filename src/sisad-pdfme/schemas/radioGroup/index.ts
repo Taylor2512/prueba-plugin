@@ -244,9 +244,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         widgets: { editRadioGroupOptions: RadioOptionsEditor },
         defaultSchema: {
           ...buildOptionGroupDefaultSchema({
-            id: 'radio-group-default',
             type: 'radioGroup',
-            groupId: 'Grupo_Opcion',
             groupName: 'Grupo de opción',
             groupType: 'radio',
             optionPrefix: 'Opción',

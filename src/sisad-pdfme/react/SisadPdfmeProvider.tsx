@@ -1,10 +1,10 @@
-import React, { createContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { createSisadPdfmeConfigService } from '../config/SisadPdfmeConfigService.js';
 import { createSisadPdfmeConfig } from '../config/createSisadPdfmeConfig.js';
 import { createRecipientRegistry } from '../recipients/recipientRegistry.js';
 import type { ResolvedSisadPdfmeConfig, SisadPdfmeProviderProps, SisadPdfmeProviderValue } from '../config/SisadPdfmeConfig.js';
+import { SisadPdfmeContext } from './SisadPdfmeContext.js';
 
-export const SisadPdfmeContext = createContext<SisadPdfmeProviderValue | null>(null);
 
 const isResolvedSisadPdfmeProviderConfig = (value: unknown): value is ResolvedSisadPdfmeConfig =>
   Boolean(value && typeof value === 'object' && 'config' in value && 'runtimeOptions' in value && 'designerEngine' in value);

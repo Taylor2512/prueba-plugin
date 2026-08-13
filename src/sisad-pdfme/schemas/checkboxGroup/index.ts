@@ -286,9 +286,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
         widgets: { editCheckboxGroupOptions: CheckboxOptionsEditor },
         defaultSchema: {
           ...buildOptionGroupDefaultSchema({
-            id: 'checkbox-group-default',
             type: 'checkboxGroup',
-            groupId: 'Grupo_Casillas',
             groupName: 'Grupo de casillas',
             groupType: 'checkbox',
             optionPrefix: 'Casilla',

@@ -64,7 +64,7 @@ const FALLBACK_PAGE_SIZE: Size = { width: 595, height: 842 };
 export const uuid = () =>
   'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     const r = (Math.random() * 16) | 0;
-    const v = c == 'x' ? r : (r & 0x3) | 0x8;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
 
@@ -72,7 +72,7 @@ const set = <T extends object>(obj: T, path: string | string[], value: unknown) 
   path = Array.isArray(path) ? path : path.replace(/\[/g, '.').replace(/\]/g, '').split('.');
   let src: Record<string, unknown> = obj as Record<string, unknown>;
   path.forEach((key, index, array) => {
-    if (index == path.length - 1) {
+    if (index === path.length - 1) {
       src[key] = value;
     } else {
       if (!Object.prototype.hasOwnProperty.call(src, key)) {

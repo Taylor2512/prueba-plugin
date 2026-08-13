@@ -5,7 +5,7 @@
  * Approve/decline use createActionButtonEl from schemaDom.
  * Note/attachment use their own container helpers below.
  */
-import type { ActionSchemaKind, SemanticTone, SisadSchemaBase } from '../shared/schemaTypes.js';
+import type { SisadSchemaBase } from '../shared/schemaTypes.js';
 import type { PDFPage, RGB } from 'pdf-lib';
 import { applyFieldChrome, mixHexColor, resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
 import { createSchemaPart } from '../shared/schemaDom.js';

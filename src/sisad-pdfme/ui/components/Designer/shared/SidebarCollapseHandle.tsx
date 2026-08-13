@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tooltip } from 'antd';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../constants.js';

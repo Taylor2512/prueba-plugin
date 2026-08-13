@@ -452,9 +452,21 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
                 )}
                 onMouseDown={stopInspectorPointerEvent}
                 onPointerDown={stopInspectorPointerEvent}
-                onChange={(event) => {
-                  if (event.target.value.trim() !== row.label) renameOption(index, event.target.value);
-                }}
+                /*
+                 * El renombrado se confirma al salir del campo o con Enter,
+                 * nunca en cada tecla.
+                 *
+                 * Este input es no controlado (`defaultValue`) y su fila se
+                 * identifica por la etiqueta: en `select`, `row.key` ES el
+                 * valor. Escribir una letra y persistirla cambiaba la key, así
+                 * que React desmontaba el nodo y montaba otro nuevo — con el
+                 * foco perdido y solo un carácter escrito.
+                 *
+                 * La key sigue derivando de la etiqueta a propósito: es lo que
+                 * hace que reordenar o renombrar refresque lo que se muestra en
+                 * un input no controlado. Lo que sobraba era commitear mientras
+                 * se teclea.
+                 */
                 onBlur={(event) => {
                   if (event.target.value.trim() !== row.label) renameOption(index, event.target.value);
                 }}

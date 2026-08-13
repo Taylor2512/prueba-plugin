@@ -13,6 +13,7 @@ import {
 import { DEFAULT_OPACITY } from '../constants.js';
 import { getImageDimension } from './imagehelper.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { basicsFields } from '../propPanel/commonInspectorFields.js';
 import { applyCenteredImageFileInputStyle, createImageFileInput } from '../shared/imageFileInput.js';
 import { mixHexColor, resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
 
@@ -76,10 +77,16 @@ const imageSchema: Plugin<ImageSchema> = {
       theme,
       schema,
     } = arg;
-    // Fixed image by default: only designer (or an explicit upload field) shows
-    // the file input / remove button. Form/viewer otherwise just render the image.
-    const uploadable = (schema as { uploadable?: boolean }).uploadable === true;
-    const editable = (mode === 'designer' || uploadable) && isEditable(mode, schema);
+    /*
+     * Misma regla que el resto de schemas: en formulario se puede editar salvo
+     * que el campo sea de solo lectura (`isEditable`).
+     *
+     * Antes se exigía además un flag `uploadable` que ningún sitio podía
+     * activar —no estaba en el inspector ni en el `defaultSchema`—, así que
+     * ninguna imagen llegaba a ser rellenable en modo formulario. Una imagen
+     * decorativa se marca `readOnly`, igual que cualquier otro campo fijo.
+     */
+    const editable = isEditable(mode, schema);
     const isDefault = value === defaultValue;
     const showCompactPlaceholder = !value || isDefault;
 
@@ -212,7 +219,15 @@ const imageSchema: Plugin<ImageSchema> = {
     }
   },
   propPanel: {
-    schema: {},
+    /*
+     * Una imagen puede ser campo de carga o decoración fija. La distinción usa
+     * el mismo interruptor que el resto de campos —"Solo lectura"— en vez de un
+     * flag propio: el runtime ya lo entiende vía `isEditable` y el motor de
+     * completion no necesita una regla especial para imágenes.
+     */
+    schema: {
+      readOnly: basicsFields().readOnly,
+    },
     inspector: createSchemaInspectorConfig('media'),
     defaultSchema: {
       name: '',

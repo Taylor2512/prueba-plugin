@@ -1,4 +1,3 @@
-import React from 'react';
 import { Input } from 'antd';
 import { Search } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../constants.ts';

@@ -16,7 +16,7 @@ import {
   resolveSchemaUid,
   resolveSelectionOwner,
 } from '../ui/components/Designer/shared/schemaAssignmentService.js';
-import { SisadPdfmeContext } from './SisadPdfmeProvider.js';
+import { SisadPdfmeContext } from './SisadPdfmeContext.js';
 import { useSisadPdfmeConfigService } from './useSisadPdfmeConfigService.js';
 import { recipientsToSnapshot, recipientsFromSnapshot } from '../recipients/recipientSnapshot.js';
 import type {

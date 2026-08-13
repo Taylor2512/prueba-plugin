@@ -5,7 +5,7 @@
  * vista y menú de acciones secundarias. La visibilidad puede controlarse desde
  * props o desde OptionsContext para soportar experiencias runtime sin chrome.
  */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Size } from '@sisad-pdfme/common';
 // Import icons from lucide-react
 // Note: In tests, these will be mocked by the mock file in __mocks__/lucide-react.js
@@ -46,22 +46,15 @@ type ToolbarDensity = 'comfortable' | 'compact' | 'minimal';
 /**
  * Contrato de zoom (TASK-UI-016): la UI siempre muestra porcentaje; el estado
  * interno usa decimal. `formatZoomPercent(0.9) === '90%'`;
- * `parseZoomPercent('125%') === 1.25`.
  */
-export const formatZoomPercent = (zoom: number): string =>
+const formatZoomPercent = (zoom: number): string =>
   `${Math.round((Number(zoom) || 0) * 100)}%`;
-
-export const parseZoomPercent = (value: string | number): number => {
-  const numeric = Number(String(value).replace('%', '').trim());
-  if (!Number.isFinite(numeric) || numeric <= 0) return 1;
-  return numeric / 100;
-};
 
 /**
  * Opciones del select de zoom: presets dentro de límites + el valor actual si
  * no coincide con ningún preset, para que el trigger nunca muestre decimales.
  */
-export const buildZoomSelectOptions = (
+const buildZoomSelectOptions = (
   zoomLevel: number,
   presets: number[],
   minZoom: number,
@@ -73,6 +66,15 @@ export const buildZoomSelectOptions = (
   return values
     .sort((a, b) => a - b)
     .map((preset) => ({ value: Number(preset.toFixed(2)), label: formatZoomPercent(preset) }));
+};
+
+const ZOOM_POPUP_STYLES = {
+  popup: {
+    root: {
+      minWidth: 80,
+      zIndex: 1400,
+    },
+  },
 };
 
 /**
@@ -100,7 +102,7 @@ export type SaveStatusPresentation = {
  * Traduce un `SaveStatus` a etiqueta accesible, tono visual y cortesía de la
  * live-region. Función pura (sin React) para poder testearla en unitarios.
  */
-export const resolveSaveStatusPresentation = (
+const resolveSaveStatusPresentation = (
   status: SaveStatus | undefined,
 ): SaveStatusPresentation => {
   switch (status) {
@@ -178,7 +180,7 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable', for
           value={Number(zoomLevel.toFixed(2))}
           options={buildZoomSelectOptions(zoomLevel, presets, minZoom, maxZoom)}
           onChange={(value) => setZoomLevel(Number(value))}
-          styles={{ popup: { root: { minWidth: 80 } } }}
+          styles={ZOOM_POPUP_STYLES}
           className={zoomSelectClassName}
           data-testid="designer-zoom-select"
           aria-label="Nivel de zoom"
@@ -625,6 +627,7 @@ const CtlBar = (props: CtlBarProps) => {
               value={Number(zoomLevel.toFixed(2))}
               options={buildZoomSelectOptions(zoomLevel, [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3], 0.25, 3)}
               onChange={(value) => setZoomLevel(Number(value))}
+              styles={ZOOM_POPUP_STYLES}
               className={mergeClassNames(
                 UI_CLASSNAME + 'zoom-select',
                 'min-w-[3.625rem] text-[0.6875rem] [&_.ant-select-selector]:min-w-[3.625rem] [&_.ant-select-selector]:rounded-[0.375rem] [&_.ant-select-selector]:border-[var(--border-soft)] [&_.ant-select-selector]:bg-[var(--color-gray-100)]',

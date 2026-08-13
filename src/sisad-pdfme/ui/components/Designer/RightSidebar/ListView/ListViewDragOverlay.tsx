@@ -6,7 +6,7 @@
  * rendered into `document.body` so it is not clipped by sidebar overflow.
  */
 import { DESIGNER_CLASSNAME } from "../../../../constants.js";
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { DragOverlay } from '@dnd-kit/core';
 import { SchemaForUI } from '@sisad-pdfme/common';

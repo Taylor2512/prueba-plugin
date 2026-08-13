@@ -34,7 +34,7 @@ import { getCatalogLabel } from './shared/designerLabels.js';
 import { lockDesignerSidebarScroll, unlockDesignerSidebarScroll } from './shared/interactionGuards.js';
 import { SidebarCollapseHandle } from './shared/SidebarCollapseHandle.js';
 import { useSidebarCollapse, resolveShortcutHint } from './shared/useSidebarCollapse.js';
-import { SisadPdfmeContext } from '../../../react/SisadPdfmeProvider.js';
+import { SisadPdfmeContext } from '../../../react/SisadPdfmeContext.js';
 import { useSisadPdfmeConfig } from '../../../react/useSisadPdfmeConfig.js';
 
 const schemaTypeCategoryMap: Record<string, string> = {

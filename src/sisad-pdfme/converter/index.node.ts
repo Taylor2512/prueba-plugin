@@ -11,7 +11,7 @@ import { createEnvironmentConverters } from './createEnvironmentConverters.js';
  * - convierte el canvas de Node a Buffer/ArrayBuffer;
  * - mantiene la misma API pública que el entry browser.
  */
-let createCanvas: (width: number, height: number) => any;
+let createCanvas: (width: number, height: number) => unknown;
 
 try {
   /**
@@ -19,6 +19,10 @@ try {
    * Si no existe, `pdf2img` fallará al intentar crear canvas,
    * pero `pdf2size` todavía puede funcionar porque solo lee páginas.
    */
+  // Excepción a no-require-imports: la carga tiene que ser síncrona y poder
+  // fallar sin abortar el módulo. `import` estático rompería el entry cuando
+  // `canvas` no está instalado, e `import()` dinámico es asíncrono.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   ({ createCanvas } = require('canvas'));
 } catch {
   // canvas module not available

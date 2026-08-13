@@ -5,7 +5,6 @@
  * paleta rápida, input nativo y campo HEX. Sus eventos se aíslan para evitar
  * interferencia con Selecto, Moveable o drop del canvas.
  */
-import React from 'react';
 import { Input, Popover, Tooltip } from 'antd';
 import { Palette, Pipette } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';

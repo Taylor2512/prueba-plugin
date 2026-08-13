@@ -107,9 +107,26 @@ export type OptionGroupUiRenderParams = {
 };
 
 export type OptionGroupDefaultSchemaParams = {
-  id: string;
+  /**
+   * Opcional a propósito: una plantilla no debe fijar la identidad.
+   *
+   * Cuando los grupos declaraban un `id` literal, cada instancia creada desde
+   * la plantilla nacía con la misma identidad, así que dos grupos del mismo
+   * tipo colisionaban como key de React y como unidad de completion. El resto
+   * de schemas tampoco lo declaran: lo genera el designer al insertar.
+   */
+  id?: string;
   type: OptionGroupType;
-  groupId: string;
+  /**
+   * Opcional por el mismo motivo que `id`.
+   *
+   * Un `groupId` literal en la plantilla hacía que todos los grupos del mismo
+   * tipo compartieran grupo, así que seleccionar en uno alteraba al otro.
+   * Ausente, `resolveOptionGroupKey` cae al `name` del schema —único por
+   * documento— y cada grupo queda aislado. Agrupar varios pasa a ser una
+   * decisión explícita del diseño.
+   */
+  groupId?: string;
   groupName: string;
   groupType: 'checkbox' | 'radio';
   optionPrefix: string;
@@ -508,7 +525,7 @@ type SyncParams = {
  * Synchronizes  or oversized schemas to compact designer geometry.
  * Each schema type uses a distinct datasetKey to avoid double-sync triggers.
  */
-const syncOptionGroupDesignerGeometry = ({
+export const syncOptionGroupDesignerGeometry = ({
   schema, options, rootElement, onChange, layout, datasetKey,
 }: SyncParams): void => {
   if (!onChange) return;
@@ -555,7 +572,7 @@ export { createOptionGroupRuntime };
  * (selection keys, limits, color defaults, PDF drawing logic) into a single
  * over-parameterized factory.
  */
-function createOptionGroupSchemaPlugin(config: OptionGroupPluginConfig): {
+export function createOptionGroupSchemaPlugin(config: OptionGroupPluginConfig): {
   config: OptionGroupPluginConfig;
   layout: OptionGroupLayoutConfig;
 } {

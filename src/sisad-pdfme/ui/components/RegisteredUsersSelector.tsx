@@ -9,7 +9,6 @@
  * (fuente única = RecipientRegistry) y notifica el cambio vía `onChange`, que debe
  * enrutarse a `registry.setActiveRecipient`.
  */
-import React from 'react';
 import { ChevronDown, Users } from 'lucide-react';
 import { UI_CLASSNAME } from '../constants.js';
 import { mergeClassNames } from './Designer/shared/className.js';

@@ -6,7 +6,7 @@
  */
 import { useContext, useMemo } from 'react';
 import { OptionsContext } from '../../../contexts.js';
-import { SisadPdfmeContext } from '../../../../react/SisadPdfmeProvider.js';
+import { SisadPdfmeContext } from '../../../../react/SisadPdfmeContext.js';
 import { buildDesignerUiMap, buildDesignerUiMapFromResolvedConfig, type ResolvedDesignerUiMap } from './designerUiConfig.js';
 
 export const useDesignerUiConfig = (): ResolvedDesignerUiMap => {

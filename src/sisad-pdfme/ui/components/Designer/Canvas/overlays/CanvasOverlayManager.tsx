@@ -9,7 +9,10 @@ import GroupOptionFloatingAction from './GroupOptionFloatingAction.js';
 import { useFloatingToolbarPosition } from './useFloatingToolbarPosition.js';
 
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import type { SelectionToolbarMode } from './canvasContextMenuActions.js';
+import type {
+  CanvasContextMenuExternalActions,
+  SelectionToolbarMode,
+} from './canvasContextMenuActions.js';
 import type { InteractionState } from '../../shared/interactionState.js';
 
 import {
@@ -163,6 +166,18 @@ type CanvasOverlayManagerProps = {
   contextMenuOpen?: boolean;
 
   /**
+   * Acciones inyectadas por capas superiores (comentarios, páginas, pegado).
+   *
+   * El menú de «Más» del toolbar y el de clic derecho son el mismo componente:
+   * si estas no llegan, el primero se queda sin las acciones que el segundo sí
+   * ofrece.
+   */
+  contextMenuExternalActions?: CanvasContextMenuExternalActions;
+
+  /** Habilita «Pegar» en el menú de «Más», igual que en el de clic derecho. */
+  hasClipboardData?: boolean;
+
+  /**
    * Subconjunto de contexto colaborativo necesario para permisos,
    * labels y estado de toolbar.
    */
@@ -241,6 +256,8 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
     featureSnapLines,
     externalSchemaDragActive = false,
     contextMenuOpen = false,
+    contextMenuExternalActions,
+    hasClipboardData = false,
     collaborationContext,
     className,
   } = props;
@@ -360,6 +377,8 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
             activeSchemas={activeSchemas}
             interactionState={interactionState}
             contextMenuOpen={contextMenuOpen}
+            externalActions={contextMenuExternalActions}
+            hasClipboardData={hasClipboardData}
             collaborationContext={collaborationContext}
           />
 

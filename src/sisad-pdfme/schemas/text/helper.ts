@@ -378,7 +378,7 @@ const getSplittedLinesBySegmenter = (line: string, calcValues: FontWidthCalcValu
   const segmenter = new Intl.Segmenter(undefined, { granularity: 'word' });
   const iterator = segmenter.segment(line.trimEnd())[Symbol.iterator]();
 
-  let lines: string[] = [];
+  const lines: string[] = [];
   let lineCounter: number = 0;
   let currentTextSize: number = 0;
 

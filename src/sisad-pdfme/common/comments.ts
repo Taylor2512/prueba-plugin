@@ -12,7 +12,7 @@
  */
 
 import { cloneDeep } from './helper.js';
-import type { Template, SchemaForUI, CommentAnchor } from './types.js';
+import type { Template, SchemaForUI, CommentAnchor, SchemaComment } from './types.js';
 import type { PdfComment, TopLevelPdfCommentEntry } from '../contracts/index.js';
 import {
   createSchemaComment,
@@ -67,11 +67,11 @@ const cloneAnchor = (
     authorColor?: string | null;
   },
 ) =>
-  createSchemaCommentAnchor(anchor as any, {
+  createSchemaCommentAnchor(anchor, {
     authorId: anchor.authorId || undefined,
     authorColor: anchor.authorColor || undefined,
     authorName: anchor.authorName || undefined,
-  } as any);
+  });
 
 /** Busca un schema por schemaUid/id/name y devuelve su ubicación dentro de template.schemas. */
 export const findSchemaByUid = (template: Template, schemaUid: string) => {
@@ -94,13 +94,13 @@ export const addAnchorToSchema = (
   identity: Identity = {},
 ): SchemaForUI => {
   const next = cloneDeep(schema) as SchemaForUI;
-  const created = createSchemaCommentAnchor(anchor as any, {
+  const created = createSchemaCommentAnchor(anchor, {
     authorId: identity.authorId || undefined,
     authorColor: identity.authorColor || undefined,
     authorName: identity.authorName || undefined,
-  } as any);
+  });
   created.scope = 'schema';
-  next.commentAnchors = upsertById(next.commentAnchors || [], created as any);
+  next.commentAnchors = upsertById(next.commentAnchors || [], created);
   return next;
 };
 
@@ -125,7 +125,7 @@ export const addCommentToSchema = (
     authorName: identity.authorName || undefined,
     authorColor: identity.authorColor || undefined,
     timestamp: Date.now(),
-  } as any, {
+  }, {
     id: commentId,
     scope: 'schema',
     schemaUid: next.schemaUid || next.id,
@@ -136,9 +136,9 @@ export const addCommentToSchema = (
   if (createdAnchor) {
     createdAnchor.scope = 'schema';
   }
-  next.comments = upsertById(next.comments || [], comment as any);
+  next.comments = upsertById(next.comments || [], comment);
   if (createdAnchor) {
-    next.commentAnchors = upsertById(next.commentAnchors || [], createdAnchor as any);
+    next.commentAnchors = upsertById(next.commentAnchors || [], createdAnchor);
   }
   next.commentsCount = (Number(next.commentsCount) || 0) + 1;
   return next;
@@ -156,7 +156,7 @@ export const addCommentWithAnchorToTemplate = (
 
   if (target && target.schema) {
     const withComment = addCommentToSchema(target.schema as SchemaForUI, text, identity, anchor);
-    next.schemas[target.pageIndex][target.index] = withComment as any;
+    next.schemas[target.pageIndex][target.index] = withComment;
     return next;
   }
 
@@ -173,7 +173,7 @@ export const addCommentWithAnchorToTemplate = (
       authorName: identity.authorName || undefined,
       authorColor: identity.authorColor || undefined,
       timestamp: Date.now(),
-    } as any,
+    },
     { id: createdAnchor.id, anchor: cloneDeep(createdAnchor) },
   );
 
@@ -182,7 +182,14 @@ export const addCommentWithAnchorToTemplate = (
     next,
     upsertById<TopLevelPdfCommentEntry>(currentEntries, {
       id: createdComment.id,
-      anchor: createdAnchor as any,
+      /*
+       * Puente entre los dos modelos de anchor: el de `common/schema.ts` deja
+       * `x`/`y` opcionales (un comentario de documento no tiene coordenada),
+       * mientras que el contrato top-level los declara obligatorios. Se
+       * conserva el valor tal cual en vez de inventar un `0` que pintaría un
+       * pin en la esquina de la página.
+       */
+      anchor: createdAnchor as TopLevelPdfCommentEntry['anchor'],
       comment: createdComment as unknown as PdfComment,
     }),
   );
@@ -216,22 +223,22 @@ export const updateCommentInSchema = (
 ): SchemaForUI => {
   const next = cloneDeep(schema) as SchemaForUI;
   const comments = next.comments || [];
-  const idx = comments.findIndex((c: any) => c.id === commentId);
+  const idx = comments.findIndex((c) => c.id === commentId);
   if (idx < 0) return next;
-  const item = { ...(comments[idx] as any), ...(updates as any) };
+  const item = { ...comments[idx], ...updates };
   const anchorId = String((item.anchor as CommentAnchor | undefined)?.id || commentId);
   if (typeof updates.resolved === 'boolean' && item.anchor) {
     item.anchor = { ...(item.anchor as CommentAnchor), resolved: updates.resolved };
   }
   const updated = comments.slice();
   updated[idx] = item;
-  next.comments = updated as any;
+  next.comments = updated;
   if (Array.isArray(next.commentAnchors)) {
     next.commentAnchors = next.commentAnchors.map((anchor) =>
       anchor.id === anchorId && typeof updates.resolved === 'boolean'
         ? { ...anchor, resolved: updates.resolved }
         : anchor,
-    ) as any;
+    );
   }
   return next;
 };
@@ -239,10 +246,10 @@ export const updateCommentInSchema = (
 /** Elimina un comentario y su anchor asociado dentro de un schema. */
 export const deleteCommentFromSchema = (schema: SchemaForUI, commentId: string): SchemaForUI => {
   const next = cloneDeep(schema) as unknown as SchemaForUI;
-  const comment = (next.comments || []).find((entry: any) => entry.id === commentId) as any | undefined;
+  const comment = (next.comments || []).find((entry) => entry.id === commentId);
   const anchorId = String((comment?.anchor as CommentAnchor | undefined)?.id || commentId);
-  next.comments = removeById(next.comments || [], commentId) as any;
-  next.commentAnchors = removeById(next.commentAnchors || [], anchorId) as any;
+  next.comments = removeById(next.comments || [], commentId);
+  next.commentAnchors = removeById(next.commentAnchors || [], anchorId);
   next.commentsCount = Math.max(0, (Number(next.commentsCount) || 0) - 1);
   return next;
 };
@@ -253,7 +260,13 @@ export const resolveCommentInSchema = (schema: SchemaForUI, commentId: string, r
 
 /** Devuelve comentarios del template filtrados por fileId y opcionalmente por pageNumber. */
 export const filterCommentsByFileAndPage = (template: Template, fileId?: string | null, pageNumber?: number) => {
-  const results: Array<{ schemaUid?: string; fileId?: string | null; pageNumber?: number; comment: any; anchor?: any }> = [];
+  const results: Array<{
+    schemaUid?: string;
+    fileId?: string | null;
+    pageNumber?: number;
+    comment: SchemaComment;
+    anchor?: CommentAnchor;
+  }> = [];
   const seenCommentIds = new Set<string>();
   const pages = template.schemas || [];
   for (let p = 0; p < pages.length; p++) {
@@ -261,11 +274,13 @@ export const filterCommentsByFileAndPage = (template: Template, fileId?: string 
     for (let i = 0; i < page.length; i++) {
       const s = page[i] as SchemaForUI;
       const anchors = s.commentAnchors || [];
-      const anchorById = new Map((anchors as any[]).map((anchor) => [anchor.id, anchor] as const));
-      (s.comments || []).forEach((comment: any) => {
+      const anchorById = new Map(anchors.map((anchor) => [anchor.id, anchor] as const));
+      (s.comments || []).forEach((comment) => {
         const commentId = String(comment?.id || '').trim();
         if (!commentId || seenCommentIds.has(commentId)) return;
-        const anchor = comment.anchor || anchorById.get(comment.id) || anchors.find((candidate: any) => candidate.id === comment.id);
+        const anchor = (comment.anchor as CommentAnchor | undefined)
+          || anchorById.get(comment.id)
+          || anchors.find((candidate) => candidate.id === comment.id);
         if (fileId != null && String(anchor?.fileId || '') !== String(fileId)) return;
         if (pageNumber != null && Number(anchor?.pageNumber) !== Number(pageNumber)) return;
         seenCommentIds.add(commentId);
@@ -280,9 +295,9 @@ export const filterCommentsByFileAndPage = (template: Template, fileId?: string 
     }
   }
   const top = getTopLevelEntries(template as TemplateWithComments);
-  top.forEach((entry: any) => {
-    const c = entry.comment || entry;
-    const a = entry.anchor || c?.anchor || {};
+  top.forEach((entry) => {
+    const c = (entry.comment || entry) as unknown as SchemaComment;
+    const a = (entry.anchor || c?.anchor || {}) as CommentAnchor;
     const commentId = String(c?.id || entry?.id || '').trim();
     if (!commentId || seenCommentIds.has(commentId)) return;
     if ((fileId == null || String(a.fileId || '') === String(fileId)) && (pageNumber == null || Number(a.pageNumber) === Number(pageNumber))) {

@@ -19,7 +19,6 @@
  * - Toda llamada pública debe validar que la instancia no esté destruida con `DESTROYED_ERR_MSG`.
  */
 
-import React from 'react';
 import {
   cloneDeep,
   Template,

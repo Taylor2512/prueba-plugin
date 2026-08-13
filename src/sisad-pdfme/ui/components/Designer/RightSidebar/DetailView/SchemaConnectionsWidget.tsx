@@ -17,7 +17,7 @@
  * - shared pair editors and section headers live in `SchemaConnectionsShared`;
  * - validation rules live in `schemaConnectionsValidation`.
  */
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
 import { Button, Collapse, Divider, Input, InputNumber, Select, Space, Tag } from 'antd';
 import { DatabaseZap, Globe2, FileJson2 } from 'lucide-react';

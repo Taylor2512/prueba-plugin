@@ -93,14 +93,14 @@ export const validateBarcodeInput = (type: BarcodeTypes, input: string) => {
     let ret = false;
     // Find the GTIN application identifier: regex for "(01)" and the digits following it until another "(".
     const regexp = /\((01)\)(\d*)(\(|$)/;
-    let res = input.match(regexp);
+    const res = input.match(regexp);
     if (
       res != null &&
       input.length <= 52 && // 52 is the max length of a GS1 DataMatrix barcode before bwip-js throws an error
       res[1] === '01' &&
       (res[2].length === 14 || res[2].length === 8 || res[2].length === 12 || res[2].length === 13)
     ) {
-      let gtin = res[2];
+      const gtin = res[2];
       ret = validateCheckDigit(gtin, gtin.length);
     }
     return ret;

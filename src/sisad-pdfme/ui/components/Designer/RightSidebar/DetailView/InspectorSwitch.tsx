@@ -6,7 +6,6 @@
  * que anidaba dos controles interactivos y provocaba propagación doble, foco
  * inconsistente y comportamiento distinto entre navegadores.
  */
-import React from 'react';
 import { InspectorBooleanSwitch } from './InspectorBooleanSwitch.js';
 
 export type InspectorSwitchProps = {

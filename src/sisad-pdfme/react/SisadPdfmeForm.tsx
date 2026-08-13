@@ -1,5 +1,4 @@
 /** Public Form wrapper with recipient-aware filtering. */
-import React from 'react';
 import {
   SisadPdfmePreviewRuntime,
   type SisadPdfmePreviewRuntimeProps,

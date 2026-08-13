@@ -283,7 +283,9 @@ export function usePdfmeRuntimeInstance(
       try {
         // Lightweight diagnostic to help detect unexpected signature churns
         // during development without interfering in production.
-         
+        // Excepción a no-console: la traza ya está tras `import.meta.env.DEV`,
+        // así que no llega al bundle de producción.
+        // eslint-disable-next-line no-console
         console.debug('[usePdfmeRuntimeInstance] template sync', {
           mode,
           previousSignature: lastAppliedTemplateSignatureRef.current,

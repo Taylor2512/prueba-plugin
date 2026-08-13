@@ -2,7 +2,7 @@
 
 type SchemaRecord = Record<string, unknown>;
 
-const getSchemaTextValue = (schema: SchemaRecord): string => {
+export const getSchemaTextValue = (schema: SchemaRecord): string => {
   if (schema == null) return '';
   if (typeof schema.content === 'string') return schema.content;
   if (schema.checked != null) return schema.checked ? 'true' : 'false';

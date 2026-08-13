@@ -4,7 +4,6 @@
  * In bulk mode it renders commit/cancel actions. Outside bulk mode it exposes
  * the entry point for mass-renaming field names when schemas exist.
  */
-import React from 'react';
 import { Button, Tooltip } from 'antd';
 import { Check, PencilLine, X } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';

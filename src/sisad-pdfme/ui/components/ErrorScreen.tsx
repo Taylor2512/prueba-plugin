@@ -5,7 +5,7 @@
  * preprocesamiento del PDF/template falla. No intenta recuperar ni mutar estado;
  * solo muestra el mensaje de error recibido.
  */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Size } from '@sisad-pdfme/common';
 import { I18nContext } from '../contexts.js';
 import { UI_CLASSNAME } from '../constants.js';

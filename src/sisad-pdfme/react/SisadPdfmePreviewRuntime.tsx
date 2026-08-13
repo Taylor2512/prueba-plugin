@@ -22,6 +22,15 @@ export type SisadPdfmePreviewRuntimeProps = {
   recipients?: unknown[];
   activeRecipientId?: string | null;
   activeDocumentId?: string | null;
+  /**
+   * Identidad del firmante autenticado para el flujo de adopción de firma.
+   *
+   * Viaja como prop y no dentro de `config`: la configuración describe cómo se
+   * comporta la superficie, mientras que quién firma es estado de la sesión.
+   */
+  signatureSigner?: { fullName?: string; initials?: string } | null;
+  /** Aísla el perfil de firma adoptado por solicitud + destinatario. */
+  signatureSessionKey?: string | null;
   signatureProviders?: unknown[];
   plugins?: Record<string, unknown> | null;
   onInputChange?: (payload: {
@@ -47,6 +56,8 @@ export const SisadPdfmePreviewRuntime = ({
   inputs,
   recipients,
   activeRecipientId,
+  signatureSigner,
+  signatureSessionKey,
   plugins,
   onInputChange,
   className,
@@ -81,6 +92,14 @@ export const SisadPdfmePreviewRuntime = ({
         ...resolvedConfig.runtimeOptions,
         designerEngine: resolvedConfig.designerEngine,
         collaboration: collaborationOptions,
+        // Sólo el modo formulario adopta firmas; el viewer no captura nada.
+        ...(mode === 'form'
+          ? {
+              signatureModalFlow: true,
+              signatureSigner: signatureSigner || {},
+              signatureSessionKey: signatureSessionKey || '',
+            }
+          : {}),
       },
       plugins: {
         ...flatSchemaPlugins,
@@ -97,6 +116,8 @@ export const SisadPdfmePreviewRuntime = ({
       resolvedConfig.designerEngine,
       resolvedConfig.runtimeOptions,
       runtimeInputs,
+      signatureSessionKey,
+      signatureSigner,
       template,
     ],
   );

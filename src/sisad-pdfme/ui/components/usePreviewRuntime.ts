@@ -261,6 +261,21 @@ const runRuntimeRequest = (
   });
 };
 
+const mergeStringRecord = (base: Record<string, string> | undefined, patch: Record<string, string>) => ({
+  ...(base || {}),
+  ...(patch || {}),
+});
+
+const areStringRecordsEqual = (left: Record<string, string>, right: Record<string, string>) => {
+  const leftKeys = Object.keys(left || {});
+  const rightKeys = Object.keys(right || {});
+  if (leftKeys.length !== rightKeys.length) return false;
+  for (const key of leftKeys) {
+    if ((left || {})[key] !== (right || {})[key]) return false;
+  }
+  return true;
+};
+
 /**
  * Props de entrada del hook de Preview runtime.
  *
@@ -348,7 +363,10 @@ const usePreviewRuntime = ({
   /** Detecta si el runtime está en modo Form interactivo. */
   const isForm = Boolean(onChangeInput);
   const input = inputs[unitCursor];
+  const [runtimeInput, setRuntimeInput] = useState<Record<string, string>>(input || {});
   const currentInputRef = useRef<Record<string, string>>(input || {});
+  const lastExternalInputRef = useRef<Record<string, string>>(input || {});
+  const lastRuntimeUnitCursorRef = useRef(unitCursor);
   const hydrationSignatureRef = useRef('');
   const syncSignatureRef = useRef('');
   const remotePrefillSignatureRef = useRef(new Set<string>());
@@ -358,19 +376,50 @@ const usePreviewRuntime = ({
   const runtimeSignatureRef = useRef('');
 
   useEffect(() => {
-    currentInputRef.current = input || {};
-  }, [input]);
+    const nextExternalInput = input || {};
+
+    if (lastRuntimeUnitCursorRef.current !== unitCursor) {
+      lastRuntimeUnitCursorRef.current = unitCursor;
+      lastExternalInputRef.current = nextExternalInput;
+      currentInputRef.current = nextExternalInput;
+      setRuntimeInput(nextExternalInput);
+      return;
+    }
+
+    const previousExternalInput = lastExternalInputRef.current || {};
+    lastExternalInputRef.current = nextExternalInput;
+
+    const externalPatch: Record<string, string> = {};
+    const allKeys = new Set([...Object.keys(previousExternalInput), ...Object.keys(nextExternalInput)]);
+    allKeys.forEach((key) => {
+      if (previousExternalInput[key] !== nextExternalInput[key]) {
+        externalPatch[key] = nextExternalInput[key];
+      }
+    });
+
+    if (Object.keys(externalPatch).length === 0) return;
+
+    currentInputRef.current = mergeStringRecord(currentInputRef.current, externalPatch);
+    setRuntimeInput((prev) => {
+      const next = mergeStringRecord(prev, externalPatch);
+      return areStringRecordsEqual(prev, next) ? prev : next;
+    });
+  }, [input, unitCursor]);
+
+  useEffect(() => {
+    currentInputRef.current = runtimeInput;
+  }, [runtimeInput]);
 
   /** Firma que dispara reconstrucción cuando cambia template o input dinámico. */
   const triggerSignature = useMemo(() => {
     try {
       const tSig = createPreviewRuntimeSignature(template);
-      const iSig = createInputRuntimeSignature(template, input || {});
+      const iSig = createInputRuntimeSignature(template, runtimeInput);
       return buildPreviewStableJsonSignature({ tSig, iSig });
     } catch {
       return '';
     }
-  }, [template, input]);
+  }, [template, runtimeInput]);
 
   /** Snapshot plano de campos + configuración de designer engine. */
   const fieldSnapshots = useMemo<SchemaDataFieldSnapshot[]>(
@@ -388,10 +437,10 @@ const usePreviewRuntime = ({
       pageIndex: pageCursor,
       totalPages: schemasList.length,
       unitIndex: unitCursor,
-      currentInput: input || {},
+      currentInput: runtimeInput,
       fields: fieldSnapshots,
     }),
-    [fieldSnapshots, input, pageCursor, schemasList.length, unitCursor],
+    [fieldSnapshots, pageCursor, runtimeInput, schemasList.length, unitCursor],
   );
 
   /**
@@ -406,6 +455,9 @@ const usePreviewRuntime = ({
       if (entries.length === 0) return;
 
       if (onChangeInputs) {
+        const nextRuntimeInput = mergeStringRecord(currentInputRef.current, Object.fromEntries(entries));
+        currentInputRef.current = nextRuntimeInput;
+        setRuntimeInput(nextRuntimeInput);
         onChangeInputs({ index: unitCursor, values: Object.fromEntries(entries) });
         emitRuntimeEvent({
           type: 'runtime.input.batch.changed',
@@ -419,6 +471,9 @@ const usePreviewRuntime = ({
       }
 
       entries.forEach(([name, value]) => {
+        const nextRuntimeInput = mergeStringRecord(currentInputRef.current, { [name]: value });
+        currentInputRef.current = nextRuntimeInput;
+        setRuntimeInput(nextRuntimeInput);
         onChangeInput?.({ index: unitCursor, name, value });
         emitRuntimeEvent({
           type: 'runtime.input.changed',
@@ -589,7 +644,7 @@ const usePreviewRuntime = ({
 
     const signature = [
       unitCursor,
-      JSON.stringify(input || {}),
+      JSON.stringify(runtimeInput || {}),
       fieldSnapshots
         .filter(({ config }) => Boolean(config?.persistence?.enabled || config?.api?.enabled))
         .map((field) => buildFieldPersistenceSignature(field, true))
@@ -619,7 +674,7 @@ const usePreviewRuntime = ({
     }, 250);
 
     return () => globalThis.clearTimeout(timer);
-  }, [fieldSnapshots, isForm, runtimeAdapter, snapshot, unitCursor, input]);
+  }, [fieldSnapshots, isForm, runtimeAdapter, snapshot, unitCursor, runtimeInput]);
 
   /** Sincroniza zoomLevel externo desde options. */
   useEffect(() => {
@@ -681,22 +736,6 @@ const usePreviewRuntime = ({
     },
   });
 
-  /** Emite un cambio de input individual. */
-  const handleChangeInput = useCallback(
-    ({ name, value }: { name: string; value: string }) => {
-      emitRuntimeEvent({
-        type: 'runtime.input.changed',
-        source: isForm ? 'form' : 'viewer',
-        component: 'Preview',
-        unitIndex: unitCursor,
-        value,
-        details: { name },
-      });
-      onChangeInput?.({ index: unitCursor, name, value });
-    },
-    [emitRuntimeEvent, isForm, onChangeInput, unitCursor],
-  );
-
   /**
    * Handler usado por renderers de schemas.
    *
@@ -714,7 +753,11 @@ const usePreviewRuntime = ({
         const newValue = String(contentArg.value ?? '');
         const oldValue = currentInputRef.current?.[schema.name] || '';
         if (newValue !== oldValue) {
-          handleChangeInput({ name: schema.name, value: newValue });
+          currentInputRef.current = {
+            ...(currentInputRef.current || {}),
+            [schema.name]: newValue,
+          };
+          commitInputPatch({ [schema.name]: newValue });
           if (schema.type === 'table') {
             isNeedInit = true;
             newInputValue = newValue;
@@ -749,7 +792,7 @@ const usePreviewRuntime = ({
         init(template, updatedInput);
       }
     },
-    [handleChangeInput, init, pageCursor, template],
+    [commitInputPatch, init, pageCursor, template],
   );
 
   /** API de estado/acciones consumida por el componente Preview. */
@@ -770,7 +813,7 @@ const usePreviewRuntime = ({
     pageSizes,
     scale,
     error,
-    input,
+    input: runtimeInput,
     isForm,
     formJsonEnvelope,
     handleOnChangeRenderer,

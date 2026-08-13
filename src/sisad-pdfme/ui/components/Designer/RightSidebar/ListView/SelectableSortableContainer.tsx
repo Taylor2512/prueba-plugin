@@ -8,7 +8,7 @@
  * - renders sortable rows and a body-level drag overlay;
  * - resolves plugin icons and collaboration colors for row previews.
  */
-import React, {
+import {
   useCallback,
   useContext,
   useMemo,

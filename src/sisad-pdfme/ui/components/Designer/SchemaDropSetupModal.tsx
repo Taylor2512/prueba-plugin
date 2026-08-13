@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Input, Modal, Select } from 'antd';
 import type { Schema } from '@sisad-pdfme/common';
 

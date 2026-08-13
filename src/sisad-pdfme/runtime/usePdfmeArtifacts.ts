@@ -99,6 +99,9 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
    * injected dependencies and status handlers.
    */
   const latest = useRef(config);
+  // Excepción a react-hooks/refs: patrón "latest ref". `latest.current` solo se
+  // lee desde callbacks estables, nunca durante el render.
+  // eslint-disable-next-line react-hooks/refs
   latest.current = config;
 
   useEffect(() => {

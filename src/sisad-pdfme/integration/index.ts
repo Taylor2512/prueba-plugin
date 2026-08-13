@@ -41,11 +41,11 @@ export type {
   SisadPdfmeTemplateRecipe,
   SisadPdfmeTemplateRecipeGroup,
 } from '../templates/index.js';
+export { SisadPdfmeInstance } from './SisadPdfmeInstance.js';
 export {
-  SisadPdfmeInstance,
   resolveSisadPdfmeInstance,
   useSisadPdfmeInstance,
-} from './SisadPdfmeInstance.js';
+} from './useSisadPdfmeInstance.js';
 export {
   createSisadPdfmeInstanceBundle,
   parseSisadPdfmeInstanceBundle,

@@ -40,7 +40,12 @@ const SchemaDragPreview = ({
 
   return (
     <div
-      className={`sisad-pdfme-schema-drag-preview fixed left-0 top-0 z-[60] pointer-events-none h-8 w-8 origin-top-left rounded-xl border border-white/70 bg-white/90 shadow-[0_8px_18px_rgba(15,23,42,0.16)] backdrop-blur-md transition-[opacity,transform] duration-150 ease-[cubic-bezier(0.16,1,0.3,1)] [will-change:transform,opacity] ${
+      // El preview se porta a `document.body`, así que su apilamiento compite
+      // con el del host. Un host que monte el diseñador dentro de una capa
+      // `fixed` propia (un modal, una vista a pantalla completa) lo dejaría
+      // debajo y el arrastre se vería sin previsualización. El token permite
+      // elevarlo desde fuera sin que este componente conozca esa capa.
+      className={`sisad-pdfme-schema-drag-preview fixed left-0 top-0 z-[var(--sisad-pdfme-drag-overlay-z,60)] pointer-events-none h-8 w-8 origin-top-left rounded-xl border border-white/70 bg-white/90 shadow-[0_8px_18px_rgba(15,23,42,0.16)] backdrop-blur-md transition-[opacity,transform] duration-150 ease-[cubic-bezier(0.16,1,0.3,1)] [will-change:transform,opacity] ${
         mounted ? 'opacity-90 data-[over-canvas=false]:opacity-60 data-[over-page=true]:opacity-75' : 'opacity-0'
       }`}
       data-over-canvas={isOverCanvas ? 'true' : 'false'}

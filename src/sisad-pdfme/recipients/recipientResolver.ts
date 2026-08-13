@@ -94,6 +94,15 @@ export type RegistryRecipientOption = {
   name: string;
   color?: string | null;
   role?: string | null;
+  /**
+   * Contacto del destinatario. Este mapeo es el último paso antes de
+   * `collaborationContext`, así que lo que no se copie aquí no llega al
+   * diseñador: omitir el correo dejaba el campo «Correo electrónico» vacío
+   * aunque el dato existiera en el registry.
+   */
+  email?: string | null;
+  company?: string | null;
+  title?: string | null;
 };
 
 /** Mapea recipients del registry a opciones de colaboración de la UI. */
@@ -105,6 +114,9 @@ export const buildRecipientOptionsFromRegistry = (
     name: recipient.label,
     color: recipient.color ?? null,
     role: recipient.role ?? null,
+    email: recipient.email ?? null,
+    company: recipient.company ?? null,
+    title: recipient.title ?? null,
   }));
 
 export type CollaborationSyncFromRegistryOptions = {
@@ -163,6 +175,9 @@ export const buildAssignmentContextFromRegistry = (
       name: recipient.label,
       color: recipient.color ?? null,
       role: recipient.role ?? null,
+      email: recipient.email ?? null,
+      company: recipient.company ?? null,
+      title: recipient.title ?? null,
     })),
     activeRecipientId: state.activeRecipientId,
     canReassign: options.canReassign ?? assignable.length > 0,
