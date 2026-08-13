@@ -9,16 +9,12 @@
  * Regla por defecto (alineada con `collaborationContext.resolveCanEditStructure`):
  * los roles viewer/reviewer/commenter no editan estructura ni reasignan.
  */
+import { isReadonlyRecipientRole } from '@sisad-pdfme/common';
 import type {
   OwnerAwareSchemaLike,
   SisadPdfmeRecipient,
   SisadPdfmeRecipientsConfig,
 } from './recipientTypes.js';
-
-const READONLY_ROLES = new Set(['viewer', 'reviewer', 'commenter']);
-
-const normalizeRole = (recipient: SisadPdfmeRecipient | null | undefined) =>
-  String(recipient?.role ?? '').trim().toLowerCase();
 
 export type RecipientPermissionResolver = {
   canEditStructure(recipient: SisadPdfmeRecipient | null): boolean;
@@ -41,7 +37,7 @@ export const createRecipientPermissionResolver = (
   const canEditStructure = (recipient: SisadPdfmeRecipient | null): boolean => {
     if (typeof options.canEditStructure === 'boolean') return options.canEditStructure;
     if (recipient?.disabled === true) return false;
-    return !READONLY_ROLES.has(normalizeRole(recipient));
+    return !isReadonlyRecipientRole(recipient?.role);
   };
 
   return {

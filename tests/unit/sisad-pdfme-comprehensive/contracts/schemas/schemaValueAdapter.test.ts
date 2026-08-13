@@ -21,6 +21,14 @@ describe('boolean adapter',()=>{
   it('0 string',()=>expect(getSchemaBooleanValue({content:'0'})).toBe(false));
   it('numeric 1',()=>expect(getSchemaBooleanValue({content:1})).toBe(true));
   it('numeric 0',()=>expect(getSchemaBooleanValue({content:0})).toBe(false));
+  it('boolean content true',()=>expect(getSchemaBooleanValue({content:true})).toBe(true));
+  it('boolean content false',()=>expect(getSchemaBooleanValue({content:false})).toBe(false));
+  it('NaN no marca',()=>expect(getSchemaBooleanValue({content:NaN})).toBe(false));
+  it('array vacío no marca',()=>expect(getSchemaBooleanValue({content:[]})).toBe(false));
+  it('array con opciones marca',()=>expect(getSchemaBooleanValue({content:['a']})).toBe(true));
+  it('objeto no marca',()=>expect(getSchemaBooleanValue({content:{}})).toBe(false));
+  it('string arbitrario no marca',()=>expect(getSchemaBooleanValue({content:'quizá'})).toBe(false));
+  it('content ausente no marca',()=>expect(getSchemaBooleanValue({})).toBe(false));
 });
 describe('option adapter',()=>{
   it('selectedOptionId',()=>expect(getSchemaOptionSelection({selectedOptionId:'a'})).toEqual({single:'a'}));

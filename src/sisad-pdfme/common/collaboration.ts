@@ -108,6 +108,24 @@ export type UserRecipientSchemaAssignments = Record<
 export const SHARED_ASSIGNMENTS_BUCKET = '__shared__';
 
 /**
+ * Roles de destinatario que nunca editan estructura.
+ *
+ * Vive aquí porque la regla se evaluaba por separado en `collaborationContext`,
+ * en `recipientPermissionResolver` y en el inspector de firma, y las copias ya
+ * habían divergido: el inspector bloqueaba `viewer` y `reviewer` pero dejaba
+ * pasar a `commenter`.
+ */
+export const READONLY_RECIPIENT_ROLES: ReadonlySet<string> = new Set([
+  'viewer',
+  'reviewer',
+  'commenter',
+]);
+
+/** `true` si el rol es de solo lectura. Tolera null/undefined y espacios. */
+export const isReadonlyRecipientRole = (role: unknown): boolean =>
+  READONLY_RECIPIENT_ROLES.has(String(role ?? '').trim().toLowerCase());
+
+/**
  * Filtro de vista colaborativa.
  *
  * activeUserId:

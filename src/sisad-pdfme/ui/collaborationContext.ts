@@ -13,7 +13,7 @@
  * - `ownerMode` se deriva de ownerRecipientIds si no viene explícito.
  */
 
-import { normalizeRecipientIds, type SchemaForUI } from '@sisad-pdfme/common';
+import { isReadonlyRecipientRole, normalizeRecipientIds, type SchemaForUI } from '@sisad-pdfme/common';
 import type { CollaborationSyncConfig, SchemaCreationContext } from './designerEngine.js';
 import { normalizeText } from '../shared/text.js';
 import { buildRecipientColorMap } from '../recipients/recipientColorResolver.js';
@@ -85,11 +85,7 @@ const resolveCanEditStructure = (
   const policy = collaboration?.permissions?.canEditStructure ?? collaboration?.canEditStructure;
   if (typeof policy === 'function') return policy(context);
   if (typeof policy === 'boolean') return policy;
-  const normalizedRole = normalizeText(context.activeRecipientRole).toLowerCase();
-  if (normalizedRole === 'reviewer' || normalizedRole === 'viewer' || normalizedRole === 'commenter') {
-    return false;
-  }
-  return true;
+  return !isReadonlyRecipientRole(normalizeText(context.activeRecipientRole));
 };
 
 const normalizeNullableString = (value: unknown) => {

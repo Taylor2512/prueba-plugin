@@ -1,5 +1,6 @@
 import type { DesignerEngine } from '../../ui/designerEngine.js';
 import { resolveActiveRecipient } from '../../ui/collaborationContext.js';
+import { isReadonlyRecipientRole } from '@sisad-pdfme/common';
 import type { PropPanel, PropPanelSchema, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import type { SignatureSchema, SignatureMode } from './types.js';
 import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
@@ -93,8 +94,9 @@ const prepareInteractiveSignatureWidget = (rootElement: HTMLElement) => {
 
 const SignatureModeWidget = ({ rootElement, activeSchema, changeSchemas, options }: PropPanelWidgetProps) => {
   const resolvedSchema = normalizeSignatureSchema(activeSchema as SignatureSchema);
-  const ownerRole = String(getBlockedOwnerRole(activeSchema as SignatureSchema, options) || '').toLowerCase();
-  const isBlocked = ownerRole === 'viewer' || ownerRole === 'reviewer';
+  const isBlocked = isReadonlyRecipientRole(
+    getBlockedOwnerRole(activeSchema as SignatureSchema, options),
+  );
 
   prepareInteractiveSignatureWidget(rootElement);
 
