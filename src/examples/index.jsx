@@ -1,68 +1,87 @@
 /**
- * Punto de entrada de los ejemplos del runtime reusable.
+ * API pública del laboratorio de ejemplos del runtime reusable.
  *
- * AppShell: Punto de entrada único con routing dinámico (sin recarga de página)
- * generatePages: Factory que crea páginas automáticamente desde pagesConfig.json
- * API pública reexportada para tests y host integraciones
+ * `getLab()` devuelve las rutas ya resueltas para el router del host; el resto
+ * de exports son la superficie que consumen tests e integraciones.
  */
-import { DynamicRouter, useRouter } from './pages/DynamicRouter.jsx';
-import { buildLab, DesignerMultiUserPage, DesignerSingleUserPage, RuntimeFormPage, RuntimeViewerPage } from './pages/generatePages.js';
-import { CatalogPage } from './pages/CatalogPage.jsx';
-import { SchemaFamilyPage } from './pages/SchemaFamilyPage.jsx';
-import { SchemasCatalogPage } from './pages/SchemasCatalogPage.jsx';
+import { buildRouteDefinitions } from './pages.jsx';
 
 export function getLab() {
-  return buildLab();
+  return buildRouteDefinitions().map((route) => ({
+    id: route.id,
+    path: route.path,
+    title: route.title,
+    description: route.description,
+    shell: route.shell,
+    element: route.render(),
+  }));
 }
 
-// Main entry point with dynamic routing (no page reload)
-export { DynamicRouter, useRouter };
-export { DynamicRouter as AppShell } from './pages/DynamicRouter.jsx';
+export { buildRouteDefinitions };
 
-// Individual page exports (for direct access / testing)
-export {
-  CatalogPage,
-  DesignerMultiUserPage,
-  DesignerSingleUserPage,
-  RuntimeFormPage,
-  RuntimeViewerPage,
-  SchemaFamilyPage,
-  SchemasCatalogPage,
-};
+export { CatalogPage, RuntimePage, RuntimePageShell, SchemaFamilyPage, SchemasCatalogPage } from './pages.jsx';
 
 export {
   ControllerPanel,
   DocumentationShell,
+  DynamicInfoPanel,
   EventLog,
-  ImmersiveShell,
-  InfoPanelStack,
-  Topbar,
   FamilyBadgeList,
+  FamilyOverview,
+  ImmersiveShell,
   InfoCard,
+  InfoPanelStack,
   MetricGrid,
   PreviewFrame,
   RouteCard,
   RuntimeViewport,
-} from './components/Ui.jsx';
+  Topbar,
+  resolvePath,
+} from './ui.jsx';
 
-export { FAMILY } from './catalog/familyCatalog.js';
-export { DEMO_DOCUMENTS } from './fixtures/documents.js';
-export { MULTI_USER_FAMILY_KEYS, MULTI_USER_RECIPIENTS } from './fixtures/recipients.js';
-export { IMMERSIVE_ROUTE_OPTIONS, PRIMARY_ROUTE_GROUPS, PAGE_ROUTES, ROUTE_PATHS } from './routes/routeDefinitions.js';
-export { CONFIG_PROFILES, createRuntimeConfig } from './config/runtimeConfig.js';
-export { buildMultiUserShowcaseTemplate } from './builders/multiUserShowcase.js';
-export { buildShowcaseTemplate } from './builders/showcaseTemplate.js';
+export {
+  CONFIG_PROFILES,
+  DEMO_DOCUMENTS,
+  EXAMPLES_MANIFEST,
+  EXAMPLE_PRIMARY_ROUTES,
+  EXAMPLE_ROUTE_MAP,
+  FAMILY,
+  FAMILY_META,
+  FAMILY_ROUTE_CONFIG,
+  FAMILY_ROUTE_GROUPS,
+  IMMERSIVE_ROUTE_OPTIONS,
+  MULTI_USER_FAMILY_KEYS,
+  MULTI_USER_RECIPIENTS,
+  PAGE_ROUTES,
+  PRIMARY_ROUTE_GROUPS,
+  ROUTE_PATHS,
+  createRuntimeConfig,
+  getExamplePageConfig,
+  getSchemaRoute,
+  resolveFamilyGroups,
+  typesOf,
+} from './catalog.js';
+
+export {
+  buildMultiUserShowcaseTemplate,
+  buildShowcaseTemplate,
+  buildSnapshotFormTemplate,
+  buildSnapshotFormValues,
+} from './builders.js';
+
+export { createExampleInstance } from './instances.js';
+
+export { useController, useEventLog, useRuntimeConfig } from './hooks.js';
+
 export {
   appendTemplatePages,
-  createCollaboration,
-  create,
-  createTemplate,
-  createUploadedDocument,
-  clone,
-} from './domain/Builder.js';
-export {
   buildBundle,
   buildHref,
+  clone,
+  create,
+  createCollaboration,
+  createTemplate,
+  createUploadedDocument,
   getBundleFilename,
   normalizeHostData,
-} from './exporters/Bundle.js';
+} from './hostBundle.js';

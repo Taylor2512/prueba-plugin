@@ -13,6 +13,11 @@
  *
  * Notas de mantenimiento:
  * - `setInputs` calcula diferencias para notificar cambios por campo.
+ * - Cada notificación declara su `origin`: `user` si nació de una interacción
+ *   dentro del runtime, `host` si es consecuencia de un `setInputs` externo.
+ *   Sin ese dato el consumidor no puede distinguir una edición real del eco de
+ *   su propia escritura, y termina marcando como `touched` campos que el propio
+ *   host acaba de rellenar.
  * - Evitar reglas de negocio del host; la clase debe seguir siendo runtime genérico.
  */
 
@@ -20,9 +25,20 @@ import type { PreviewProps } from '@sisad-pdfme/common';
 import { PagedPreviewUI } from './PagedPreviewUI';
 import type { FormJsonEnvelope } from './designerEngine';
 
+/** Procedencia de un cambio de input notificado por el runtime. */
+export type FormInputChangeOrigin = 'user' | 'host';
+
+/** Payload emitido por `onChangeInput`. */
+export type FormInputChange = {
+  index: number;
+  value: string;
+  name: string;
+  origin: FormInputChangeOrigin;
+};
+
 /** Runtime interactivo para llenar campos del template. */
 class Form extends PagedPreviewUI {
-  private onChangeInputCallback?: (arg: { index: number; value: string; name: string }) => void;
+  private onChangeInputCallback?: (arg: FormInputChange) => void;
   private onChangeInputsCallback?: (arg: { index: number; values: Record<string, string> }) => void;
   private onChangeFormJsonCallback?: (json: FormJsonEnvelope | null) => void;
   private lastFormJson: FormJsonEnvelope | null = null;
@@ -31,7 +47,7 @@ class Form extends PagedPreviewUI {
     super(props);
   }
 
-  public onChangeInput(cb: (arg: { index: number; value: string; name: string }) => void) {
+  public onChangeInput(cb: (arg: FormInputChange) => void) {
     this.onChangeInputCallback = cb;
   }
 
@@ -72,7 +88,7 @@ class Form extends PagedPreviewUI {
 
     changedInputs.forEach((input) => {
       if (this.onChangeInputCallback) {
-        this.onChangeInputCallback(input);
+        this.onChangeInputCallback({ ...input, origin: 'host' });
       }
     });
   }
@@ -90,7 +106,7 @@ class Form extends PagedPreviewUI {
         if (currentInput && currentInput[name] !== value) {
           currentInput[name] = value;
         }
-        this.onChangeInputCallback?.({ index, value, name });
+        this.onChangeInputCallback?.({ index, value, name, origin: 'user' });
       },
     });
   }

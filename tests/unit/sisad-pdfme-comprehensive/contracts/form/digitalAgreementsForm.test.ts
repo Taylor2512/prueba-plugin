@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { EXAMPLE_ROUTE_MAP } from '@/examples/config/examplesManifest.js';
-import { EXAMPLE_PRIMARY_ROUTES } from '@/examples/config/examplesManifest.js';
+import { EXAMPLE_PRIMARY_ROUTES, EXAMPLE_ROUTE_MAP } from '@/examples/catalog.js';
 
 describe('DigitalAgreements form example', () => {
   it('registers a dedicated route', () => {

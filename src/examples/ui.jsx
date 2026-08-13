@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 import { SISAD_PDFME_HOST_SURFACE_CLASS } from '@/sisad-pdfme/react/hostSurface';
-import { IMMERSIVE_ROUTE_OPTIONS, PRIMARY_ROUTE_GROUPS } from '../routes/routeDefinitions.js';
+import { FAMILY, IMMERSIVE_ROUTE_OPTIONS, PRIMARY_ROUTE_GROUPS } from './catalog.js';
 
 export function DocumentationShell({ title, description, topLabel, aside, children }) {
   return (
@@ -559,4 +559,79 @@ export function ControllerPanel({ getController }) {
       </p>
     </div>
   );
+}
+
+export function FamilyOverview() {
+  return (
+    <div className="space-y-3">
+      {FAMILY.map((family) => (
+        <div key={family.key} className="box-border rounded-2xl border border-white/10 bg-white/5 p-4">
+          <div className="text-sm font-semibold text-white">{family.title}</div>
+          <p className="m-0 mt-1 text-sm leading-6 text-slate-300">{family.description}</p>
+          <div className="mt-3">
+            <FamilyBadgeList types={family.types} />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const PATH_OPERATORS = {
+  'flat()': (value) => (Array.isArray(value) ? value.flat() : value),
+};
+
+/**
+ * Resuelve los `path` declarados en el manifest sobre el contexto de la página.
+ * Soporta acceso anidado y los operadores de `PATH_OPERATORS`; cualquier otra
+ * llamada se ignora en lugar de romper el panel.
+ */
+export const resolvePath = (source, path) => {
+  if (!path) return undefined;
+
+  return path.split('.').reduce((value, part) => {
+    if (value == null) return undefined;
+    const operator = PATH_OPERATORS[part];
+    if (operator) return operator(value);
+    if (part.endsWith('()')) return value;
+    return value[part];
+  }, source);
+};
+
+/** Una cadena vacía cuenta como "sin dato" y cede el turno al fallback. */
+const firstPresent = (...candidates) =>
+  candidates.find((candidate) => candidate !== undefined && candidate !== null && candidate !== '');
+
+const PANEL_RENDERERS = {
+  metrics: ({ panel, context }) => (
+    <MetricGrid
+      items={panel.metrics.map(({ label, path, value, fallback }) => ({
+        label,
+        value: String(firstPresent(value, resolvePath(context, path), fallback) ?? '—'),
+      }))}
+    />
+  ),
+  controller: ({ context }) => <ControllerPanel getController={context.getController} />,
+  events: ({ context }) => <EventLog events={context.events} onClear={context.clear} />,
+  families: () => <FamilyOverview />,
+};
+
+/**
+ * Construye el panel lateral de una página a partir de `config.infoPanels`.
+ */
+export function DynamicInfoPanel({ config, context }) {
+  if (!config?.infoPanels) return null;
+
+  const panels = config.infoPanels.map((panel) => ({
+    key: panel.key,
+    title: panel.title,
+    description: panel.description,
+    render: () => {
+      const renderer = PANEL_RENDERERS[panel.type];
+      if (!renderer) return <p className="m-0 text-sm text-slate-400">Panel sin renderer: {panel.type}</p>;
+      return renderer({ panel, context });
+    },
+  }));
+
+  return <InfoPanelStack panels={panels} />;
 }

@@ -11,6 +11,7 @@ import Form from '../ui/Form.js';
 import Viewer from '../ui/Viewer.js';
 import { useSisadPdfmeRecipientRuntime } from './useSisadPdfmeRecipientRuntime.js';
 import { mergeHostSurfaceClassName } from './hostSurface.js';
+import { mergeSignatureProviders } from './signatureProviderMerge.js';
 
 type PreviewMode = 'form' | 'viewer';
 
@@ -21,6 +22,13 @@ export type SisadPdfmePreviewRuntimeProps = {
   inputs?: unknown[];
   recipients?: unknown[];
   activeRecipientId?: string | null;
+  /**
+   * Documento activo dentro de la ejecución.
+   *
+   * Junto a `activeRecipientId` define la identidad del contexto: al cambiar
+   * cualquiera de los dos el runtime se remonta, de modo que el estado del
+   * contexto anterior no sobrevive al cambio.
+   */
   activeDocumentId?: string | null;
   /**
    * Identidad del firmante autenticado para el flujo de adopción de firma.
@@ -56,8 +64,10 @@ export const SisadPdfmePreviewRuntime = ({
   inputs,
   recipients,
   activeRecipientId,
+  activeDocumentId,
   signatureSigner,
   signatureSessionKey,
+  signatureProviders,
   plugins,
   onInputChange,
   className,
@@ -80,17 +90,48 @@ export const SisadPdfmePreviewRuntime = ({
     [inputs, template],
   );
 
+  /**
+   * Identidad del contexto de ejecución recipient × documento.
+   *
+   * Si el host no entrega ninguno de los dos el valor es constante y el ciclo
+   * de vida del runtime queda igual que antes.
+   */
+  const isolationKey = `${activeRecipientId ?? ''}::${activeDocumentId ?? ''}`;
+
+  /**
+   * El motor efectivo incorpora los providers de firma del host.
+   *
+   * `resolveSignatureProviderSource` los descubre por
+   * `options.designerEngine.signature.providers`, así que es ahí donde deben
+   * quedar para que el modo formulario ofrezca las mismas opciones de firma
+   * que el Designer.
+   */
+  const effectiveDesignerEngine = useMemo(
+    () => ({
+      ...resolvedConfig.designerEngine,
+      signature: {
+        ...(resolvedConfig.designerEngine.signature || {}),
+        providers: mergeSignatureProviders(
+          resolvedConfig.designerEngine.signature?.providers,
+          signatureProviders,
+        ),
+      },
+    }),
+    [resolvedConfig.designerEngine, signatureProviders],
+  );
+
   const runtimeConfig = useMemo<UsePdfmeRuntimeInstanceConfig>(
     () => ({
       containerRef,
       mode,
+      isolationKey,
       template: template as UsePdfmeRuntimeInstanceConfig['template'],
       inputs: runtimeInputs,
       onTemplateChange: () => undefined,
       onPageChange: () => undefined,
       options: {
         ...resolvedConfig.runtimeOptions,
-        designerEngine: resolvedConfig.designerEngine,
+        designerEngine: effectiveDesignerEngine,
         collaboration: collaborationOptions,
         // Sólo el modo formulario adopta firmas; el viewer no captura nada.
         ...(mode === 'form'
@@ -110,10 +151,11 @@ export const SisadPdfmePreviewRuntime = ({
     }),
     [
       collaborationOptions,
+      effectiveDesignerEngine,
+      isolationKey,
       plugins,
       mode,
       onInputChange,
-      resolvedConfig.designerEngine,
       resolvedConfig.runtimeOptions,
       runtimeInputs,
       signatureSessionKey,

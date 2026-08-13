@@ -29,6 +29,80 @@ type RuntimeOptionsLike = Record<string, unknown>;
 type RuntimeInputsLike = unknown;
 type RuntimePluginsLike = Record<string, unknown>;
 
+/** Procedencia de un cambio de input emitido por el runtime Form. */
+export type RuntimeInputOrigin = 'user' | 'host';
+
+export type RuntimeInputChange = {
+  index: number;
+  name: string;
+  value: unknown;
+  origin?: RuntimeInputOrigin;
+};
+
+/** Espejo local de los inputs que el runtime tiene ahora mismo. */
+type RuntimeInputsMirror = Record<string, unknown>[] | null;
+
+/**
+ * Compara por contenido los inputs del host contra el espejo del runtime.
+ *
+ * Se usa en lugar de una bandera de un solo uso porque una bandera no distingue
+ * el eco de una edición del usuario de una escritura legítima del host que
+ * llega inmediatamente después: consumirla en el momento equivocado descarta
+ * el update del host en silencio.
+ *
+ * Ante cualquier forma que no sepa comparar devuelve `false`, de modo que el
+ * fallo empuje de más y nunca de menos.
+ */
+export const inputsMatchRuntimeMirror = (
+  inputs: RuntimeInputsLike,
+  mirror: RuntimeInputsMirror,
+): boolean => {
+  if (inputs === mirror) return true;
+  if (!Array.isArray(inputs) || !Array.isArray(mirror)) return false;
+  if (inputs.length !== mirror.length) return false;
+
+  return inputs.every((row, index) => {
+    const mirrorRow = mirror[index];
+    if (row === mirrorRow) return true;
+    if (!row || !mirrorRow || typeof row !== 'object' || typeof mirrorRow !== 'object') return false;
+
+    const rowKeys = Object.keys(row as Record<string, unknown>);
+    const mirrorKeys = Object.keys(mirrorRow as Record<string, unknown>);
+    if (rowKeys.length !== mirrorKeys.length) return false;
+
+    return rowKeys.every(
+      (key) => (row as Record<string, unknown>)[key] === (mirrorRow as Record<string, unknown>)[key],
+    );
+  });
+};
+
+/** Copia superficial por fila de los inputs, o `null` si la forma es desconocida. */
+const cloneMirror = (inputs: RuntimeInputsLike): RuntimeInputsMirror => {
+  if (!Array.isArray(inputs)) return null;
+  return inputs.map((row) =>
+    row && typeof row === 'object' ? { ...(row as Record<string, unknown>) } : ({} as Record<string, unknown>),
+  );
+};
+
+/**
+ * Refleja en el espejo un cambio que nació dentro del runtime.
+ *
+ * Si la fila no existe se invalida el espejo: es preferible empujar de más en
+ * el siguiente update del host que dar por aplicado algo que no lo está.
+ */
+const applyChangeToMirror = (
+  mirrorRef: { current: RuntimeInputsMirror },
+  change: RuntimeInputChange,
+): void => {
+  const mirror = mirrorRef.current;
+  const row = mirror?.[change.index];
+  if (!row) {
+    mirrorRef.current = null;
+    return;
+  }
+  row[change.name] = change.value;
+};
+
 export type RuntimeInstanceLike = {
   destroy: () => void;
   updateOptions: (options: RuntimeOptionsLike) => void;
@@ -37,7 +111,7 @@ export type RuntimeInstanceLike = {
   fitToWidth?: () => void;
   fitToPage?: () => void;
   onChangeTemplate?: (handler: (template: RuntimeTemplateLike) => void) => void;
-  onChangeInput?: (handler: (payload: { index: number; name: string; value: unknown }) => void) => void;
+  onChangeInput?: (handler: (payload: RuntimeInputChange) => void) => void;
   onPageChange?: (handler: (pageInfo: unknown) => void) => void;
 };
 
@@ -106,6 +180,17 @@ export type UsePdfmeRuntimeInstanceConfig = {
   containerRef: React.MutableRefObject<HTMLElement | null>;
   mode: PdfmeRuntimeMode;
   uxMode?: string;
+  /**
+   * Identidad del contexto de ejecución (p. ej. `recipient::document`).
+   *
+   * Cuando cambia, la instancia se destruye y se vuelve a montar. Sin esto, un
+   * cambio de destinatario o de documento reutiliza la instancia viva y arrastra
+   * estado del contexto anterior, que es justo lo que el aislamiento por
+   * recipient × documento debe impedir.
+   *
+   * Si el host no lo entrega el valor es estable y el ciclo de vida no cambia.
+   */
+  isolationKey?: string | null;
   template: RuntimeTemplateLike;
   inputs: RuntimeInputsLike;
   options: RuntimeOptionsLike;
@@ -116,8 +201,14 @@ export type UsePdfmeRuntimeInstanceConfig = {
   decorateTemplate?: (template: RuntimeTemplateLike) => RuntimeTemplateLike;
   /** Called with the (decorated) template when the designer edits it. */
   onTemplateChange: (template: RuntimeTemplateLike) => void;
-  /** Called with `{ index, name, value }` when a form input changes. */
-  onInputChange?: (payload: { index: number; name: string; value: unknown }) => void;
+  /**
+   * Called with `{ index, name, value }` when the *user* changes a form input.
+   *
+   * Los ecos de un `setInputs` originado en el host no llegan aquí: el host ya
+   * conoce ese valor y volver a notificárselo lo haría indistinguible de una
+   * edición real.
+   */
+  onInputChange?: (payload: RuntimeInputChange) => void;
   /** Called with page info on designer page change. */
   onPageChange?: (pageInfo: unknown) => void;
   /** Auto-fit the designer on mount. Default 'page'. */
@@ -148,10 +239,16 @@ export function usePdfmeRuntimeInstance(
    */
   const lastAppliedTemplateRef = useRef<RuntimeTemplateLike | null>(null);
   const lastAppliedOptionsRef = useRef<RuntimeOptionsLike | null>(null);
-  const lastAppliedInputsRef = useRef<RuntimeInputsLike | null>(null);
-  /** Flags used to skip the immediate echo after runtime-originated changes. */
+  /**
+   * Contenido que el runtime tiene actualmente.
+   *
+   * Se actualiza tanto cuando empujamos inputs como cuando el usuario edita
+   * dentro del runtime. Comparar contra este espejo permite decidir si un
+   * cambio de identidad del host es un eco (ya aplicado) o un update real.
+   */
+  const runtimeInputsMirrorRef = useRef<RuntimeInputsMirror>(null);
+  /** Flag used to skip the immediate echo after designer-originated changes. */
   const templateSyncFromDesignerRef = useRef(false);
-  const inputsSyncFromRuntimeRef = useRef(false);
   const lastAppliedTemplateSignatureRef = useRef<string>(getTemplateSignature(config.template));
 
   /**
@@ -166,9 +263,9 @@ export function usePdfmeRuntimeInstance(
     latest.current = config;
   }, [config]);
 
-  const { mode, template, options, inputs } = config;
+  const { mode, template, options, inputs, isolationKey } = config;
 
-  /** Mounts or remounts the runtime only when mode changes. */
+  /** Mounts or remounts the runtime when the mode or the execution context changes. */
   useEffect(() => {
     const cfg = latest.current;
     const container = cfg.containerRef.current;
@@ -224,9 +321,12 @@ export function usePdfmeRuntimeInstance(
       const form = new Form({ ...commonProps, inputs: cloneDeep(cfg.inputs) });
       lastAppliedTemplateRef.current = cfg.template;
       lastAppliedOptionsRef.current = cfg.options;
-      lastAppliedInputsRef.current = cfg.inputs;
-      form.onChangeInput((payload: { index: number; name: string; value: unknown }) => {
-        inputsSyncFromRuntimeRef.current = true;
+      runtimeInputsMirrorRef.current = cloneMirror(cfg.inputs);
+      form.onChangeInput((payload: RuntimeInputChange) => {
+        // Eco de nuestro propio `setInputs`: el espejo ya lo refleja y el host
+        // ya conoce el valor. Reenviarlo lo marcaría como edición del usuario.
+        if (payload.origin === 'host') return;
+        applyChangeToMirror(runtimeInputsMirrorRef, payload);
         latest.current.onInputChange?.(payload);
       });
       instance = form;
@@ -235,7 +335,7 @@ export function usePdfmeRuntimeInstance(
       const viewer = new Viewer({ ...commonProps, inputs: cloneDeep(cfg.inputs) });
       lastAppliedTemplateRef.current = cfg.template;
       lastAppliedOptionsRef.current = cfg.options;
-      lastAppliedInputsRef.current = cfg.inputs;
+      runtimeInputsMirrorRef.current = cloneMirror(cfg.inputs);
       instance = viewer;
     }
 
@@ -247,7 +347,7 @@ export function usePdfmeRuntimeInstance(
       if (host.parentNode === container) host.remove();
     };
      
-  }, [mode]);
+  }, [mode, isolationKey]);
 
   /** Destroys the active runtime instance when the hook unmounts. */
   useEffect(() => {
@@ -300,17 +400,19 @@ export function usePdfmeRuntimeInstance(
     instance.updateTemplate(cloneDeep(template));
   }, [mode, template]);
 
-  /** Syncs inputs into Form/Viewer, skipping the echo from runtime input changes. */
+  /**
+   * Syncs inputs into Form/Viewer.
+   *
+   * Se compara contra el espejo del runtime en lugar de contra la identidad del
+   * último valor empujado: así el eco de una edición del usuario no provoca un
+   * `setInputs` redundante (que reventaría caret/IME) y, a la vez, ningún update
+   * real del host se pierde por haber llegado detrás de una pulsación.
+   */
   useEffect(() => {
     const instance = instanceRef.current;
     if (!instance || mode === 'designer') return;
-    if (inputsSyncFromRuntimeRef.current) {
-      inputsSyncFromRuntimeRef.current = false;
-      lastAppliedInputsRef.current = inputs;
-      return;
-    }
-    if (lastAppliedInputsRef.current === inputs) return;
-    lastAppliedInputsRef.current = inputs;
+    if (inputsMatchRuntimeMirror(inputs, runtimeInputsMirrorRef.current)) return;
+    runtimeInputsMirrorRef.current = cloneMirror(inputs);
     instance.setInputs(cloneDeep(inputs));
   }, [inputs, mode]);
 

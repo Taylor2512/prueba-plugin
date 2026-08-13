@@ -29,7 +29,7 @@ import type {
   SisadPdfmeAssignmentChangePayload,
   SisadPdfmeRecipient,
 } from '../recipients/recipientTypes.js';
-import type { SignatureProviderDefinition } from '../schemas/signature/providerRegistry.js';
+import { mergeSignatureProviders } from './signatureProviderMerge.js';
 import type {
   SisadPdfmeController,
   SisadPdfmeDocument,
@@ -132,45 +132,14 @@ export const SisadPdfmeDesigner = ({
     [plugins],
   );
 
-  const normalizeSignatureProvider = (provider: unknown): SignatureProviderDefinition | null => {
-    if (!provider || typeof provider !== 'object') return null;
-    const record = provider as Record<string, unknown>;
-    const capabilities = record.capabilities && typeof record.capabilities === 'object'
-      ? (record.capabilities as Record<string, boolean>)
-      : {};
-    return {
-      key: String(record.key ?? '').trim() || 'provider',
-      label: String(record.label ?? '').trim() || 'Provider',
-      description: String(record.description ?? '').trim() || undefined,
-      internal: false,
-      capabilities: {
-        supportsVisibleSignature: capabilities.supportsVisibleSignature !== false,
-        supportsWebhook: capabilities.supportsWebhook === true,
-        supportsPolling: capabilities.supportsPolling === true,
-        supportsCertificateMetadata: capabilities.supportsCertificateMetadata === true,
-        supportsReason: capabilities.supportsReason === true,
-        supportsLocation: capabilities.supportsLocation === true,
-        supportsOtp: capabilities.supportsOtp === true,
-        supportsBiometric: capabilities.supportsBiometric === true,
-      },
-      defaultConfig: record.metadata && typeof record.metadata === 'object'
-        ? (record.metadata as Record<string, unknown>)
-        : undefined,
-    };
-  };
-
-  const mergedSignatureProviders = useMemo(() => {
-    const baseProviders = resolvedConfig.designerEngine.signature?.providers || [];
-    const extraProviders = Array.isArray(signatureProviders)
-      ? signatureProviders.map(normalizeSignatureProvider).filter(Boolean) as SignatureProviderDefinition[]
-      : [];
-    const byKey = new Map<string, SignatureProviderDefinition>();
-    [...baseProviders, ...extraProviders].forEach((provider) => {
-      if (!provider?.key) return;
-      byKey.set(provider.key, provider);
-    });
-    return Array.from(byKey.values());
-  }, [resolvedConfig.designerEngine.signature?.providers, signatureProviders]);
+  const mergedSignatureProviders = useMemo(
+    () =>
+      mergeSignatureProviders(
+        resolvedConfig.designerEngine.signature?.providers,
+        signatureProviders,
+      ),
+    [resolvedConfig.designerEngine.signature?.providers, signatureProviders],
+  );
 
   /**
    * Dispatcher único de la instancia: reparte a listeners internos y al
