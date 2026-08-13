@@ -1,9 +1,10 @@
-# Codex — adaptador V8
+# Codex — adaptador
 
-Codex consume `AGENTS.md` jerárquico y `.agents/skills`.
+La autoridad neutral es `AGENTS.md`. Después usa `.ai/START.md`,
+`.ai/STATE-SOURCES.md`, la task-card vigente, una route y una skill.
 
-- Modelo mínimo suficiente según `.ai/MODEL-ROUTER.md`.
-- Uno o dos subagentes read-only como máximo.
-- Evidence y logs extensos se guardan en `.ai/evidence`.
-- No cargar todos los skills, routes o task-cards.
-- Verificar claim/worktree antes de editar.
+- Usa el modelo/esfuerzo mínimo que pueda pasar los gates de la tarea.
+- Evita writers concurrentes sobre los mismos paths.
+- Guarda evidencia extensa en la ubicación declarada por la task-card.
+- No cargues todos los skills, routes, task-cards, reportes o índices.
+- Revalida worktree, branch, HEAD y diff antes de editar.

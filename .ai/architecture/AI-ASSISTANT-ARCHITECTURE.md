@@ -2,35 +2,37 @@
 
 ## Capas
 
-```txt
-L0 adapters
-  AGENTS.md · CLAUDE.md · Copilot instructions · Codex adapter
+```text
+L0 entrypoints
+  AGENTS.md · CLAUDE.md · CODEX.md · Copilot instructions
 
-L1 routing
-  START · ROUTER · route manifests · task-card
+L1 execution routing
+  START · STATE-SOURCES · ROUTER · active task
 
 L2 reusable capability
-  skills · agents · subagents · playbooks · prompts
+  routes · skills · agents · playbooks · prompts
 
-L3 project knowledge
-  catalogs · registries · traceability · ADRs · source register
+L3 durable knowledge
+  brain · contracts · decisions · memory topics · knowledge
 
 L4 operational state
-  scrum · claims · current · handoff · evidence
+  campaign ledger · task-cards · active pointer · handoff · evidence
 
-L5 enforcement
+L5 generated lookup
+  indexes · context packs · reports
+
+L6 enforcement
   scripts · hooks · quality gates · evals
 ```
 
 ## Reglas
 
-- instrucciones siempre cargadas: cortas;
-- conocimiento grande: indexado y bajo demanda;
-- una fuente por concepto;
-- provider adapters son espejos delgados;
-- estado operativo no se duplica en memoria;
-- reportes generados no son memoria;
+- una fuente vigente por concepto;
+- una ruta que no existe no es autoridad;
+- adapters de proveedor son espejos delgados;
+- estado operativo no se duplica en memoria durable;
+- reportes e índices generados no son memoria;
+- Git conserva el versionamiento: los paths usan nombres semánticos estables;
 - scripts validan reglas mecánicas;
 - prompts no reemplazan task-cards;
-- skills encapsulan procesos repetibles;
-- subagentes aíslan ruido, no distribuyen ownership ambiguo.
+- subagentes aíslan ruido y no crean ownership ambiguo.

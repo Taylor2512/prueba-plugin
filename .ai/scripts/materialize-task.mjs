@@ -1,13 +1,35 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
 const id = process.argv[2];
-if (!id) throw new Error('usage: node materialize-task.mjs <task-id>');
-const rows = fs.readFileSync('.ai/scrum/backlog-v8.jsonl','utf8').split(/\r?\n/).filter(Boolean).map(JSON.parse);
-const task = rows.find(x => x.id === id);
-if (!task) throw new Error(`task not found: ${id}`);
-const target = `.ai/scrum/task-cards/ready/${id}-${task.title.toLowerCase().replace(/[^a-z0-9]+/g,'-')}.md`;
-if (fs.existsSync(target)) throw new Error(`already exists: ${target}`);
-const body = `# ${task.id} — ${task.title}\n\n- state: Ready\n- route: ${task.route}\n- skills: ${(task.skills ?? []).join(', ')}\n- maxFiles: ${task.maxFiles}\n- maxTokens: ${task.maxTokens}\n\n## Objective\n\nMaterialized from backlog. Complete evidence, allowed paths, invariants, tests, acceptance, gates, stop and rollback before claim.\n`;
-fs.writeFileSync(target,body);
-console.log(target);
+if (!id) throw new Error("usage: node .ai/scripts/materialize-task.mjs <task-id>");
+
+const root = process.cwd();
+const taskRoot = path.join(root, ".ai", "scrum", "task-cards");
+
+function walk(dir, out = []) {
+  if (!fs.existsSync(dir)) return out;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const abs = path.join(dir, entry.name);
+    if (entry.isDirectory()) walk(abs, out);
+    else if (entry.isFile() && entry.name.endsWith(".md")) out.push(abs);
+  }
+  return out;
+}
+
+const existing = walk(taskRoot).find((file) => {
+  const text = fs.readFileSync(file, "utf8");
+  return new RegExp(`^id:\\s*${id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "mi").test(text)
+    || path.basename(file).startsWith(`${id}-`)
+    || path.basename(file, ".md") === id;
+});
+
+if (existing) {
+  console.log(path.relative(root, existing).split(path.sep).join("/"));
+  process.exit(0);
+}
+
+throw new Error(
+  `task ${id} is not materialized. The current repository has no canonical backlog JSONL generator. ` +
+  "Create the task-card through the active campaign/backlog workflow instead of recreating legacy backlog-v8.jsonl."
+);

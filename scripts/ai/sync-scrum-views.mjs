@@ -1,187 +1,86 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const currentFile = fileURLToPath(import.meta.url);
-const scriptDir = path.dirname(currentFile);
-const repoRoot = path.resolve(scriptDir, '../..');
-const scrumDir = path.join(repoRoot, '.ai', 'scrum');
-const sprintFile = path.join(scrumDir, 'SPRINT-CURRENT.md');
-const activeFile = path.join(scrumDir, 'ACTIVE.md');
-const completedFile = path.join(scrumDir, 'COMPLETED.md');
+const repoRoot = path.resolve(path.dirname(currentFile), "../..");
+const taskRoot = path.join(repoRoot, ".ai", "scrum", "task-cards");
+const activeFile = path.join(repoRoot, ".ai", "scrum", "ACTIVE.md");
+const completedFile = path.join(repoRoot, ".ai", "scrum", "COMPLETED.md");
 
-const ACTIVE_STATE_ORDER = [
-  { label: 'Claimed', states: ['claimed'] },
-  { label: 'In progress', states: ['in progress'] },
-  { label: 'Review', states: ['review', 'in review'] },
-  { label: 'Blocked', states: ['blocked'] },
-];
-
-const COMPLETED_GROUP_ORDER = ['AI / estructura', 'DEDUP', 'Docs / quality', 'Configuración', 'Otros'];
-
-const COMPLETED_GROUP_LABEL_BY_PREFIX = {
-  AI: 'AI / estructura',
-  DEDUP: 'DEDUP',
-  DOCS: 'Docs / quality',
-  QUALITY: 'Docs / quality',
-  CONFIG: 'Configuración',
-};
-
-const parseTableRows = (source) => {
-  const rows = [];
-  const lines = source.split(/\r?\n/);
-  const rowPattern = /^\|\s*\[(?<id>[^\]]+)\]\((?<path>[^)]+)\)\s*\|\s*(?<state>[^|]+?)\s*\|\s*(?<owner>[^|]+?)\s*\|\s*(?<model>[^|]+?)\s*\|\s*(?<worktree>[^|]+?)\s*\|\s*(?<evidence>[^|]+?)\s*\|$/;
-
-  for (const line of lines) {
-    const match = line.match(rowPattern);
-    if (!match?.groups) continue;
-    rows.push({
-      id: match.groups.id.trim(),
-      path: match.groups.path.trim(),
-      state: match.groups.state.trim(),
-      owner: match.groups.owner.trim(),
-      model: match.groups.model.trim(),
-      worktree: match.groups.worktree.trim(),
-      evidence: match.groups.evidence.trim(),
-    });
+function walk(dir, out = []) {
+  if (!fs.existsSync(dir)) return out;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const abs = path.join(dir, entry.name);
+    if (entry.isDirectory()) walk(abs, out);
+    else if (entry.isFile() && entry.name.endsWith(".md") && entry.name.toLowerCase() !== "readme.md") out.push(abs);
   }
-
-  return rows;
-};
-
-const parseTaskNumber = (id) => {
-  const match = id.match(/^(.*?)-(\d+)$/);
-  if (!match) return Number.POSITIVE_INFINITY;
-  return Number(match[2]);
-};
-
-const compareTaskIds = (left, right) => {
-  const leftPrefix = left.id.split('-')[0];
-  const rightPrefix = right.id.split('-')[0];
-  if (leftPrefix !== rightPrefix) return leftPrefix.localeCompare(rightPrefix);
-  const leftNumber = parseTaskNumber(left.id);
-  const rightNumber = parseTaskNumber(right.id);
-  if (leftNumber !== rightNumber) return leftNumber - rightNumber;
-  return left.id.localeCompare(right.id);
-};
-
-const getCompletedGroupLabel = (id) => {
-  const prefix = id.split('-')[0].toUpperCase();
-  return COMPLETED_GROUP_LABEL_BY_PREFIX[prefix] || 'Otros';
-};
-
-const renderSection = (title, items, emptyText = '- Ninguna en este momento.') => {
-  const lines = [`## ${title}`, ''];
-  if (!items.length) {
-    lines.push(emptyText);
-    return lines.join('\n');
-  }
-
-  for (const item of items) {
-    lines.push(`- [${item.id}](${item.path})`);
-  }
-
-  return lines.join('\n');
-};
-
-const buildActiveMarkdown = (rows) => {
-  const normalized = rows.filter((row) =>
-    ACTIVE_STATE_ORDER.some((entry) => entry.states.includes(row.state.toLowerCase())),
-  );
-
-  const sections = ACTIVE_STATE_ORDER.map((entry) => {
-    const items = normalized
-      .filter((row) => entry.states.includes(row.state.toLowerCase()))
-      .sort(compareTaskIds);
-    return renderSection(entry.label, items);
-  });
-
-  return [
-    '# Active',
-    '',
-    'Vista corta de tareas en curso o en revisión. La fuente de verdad sigue siendo `SPRINT-CURRENT.md` y las leases activas viven en `CLAIMS.md`.',
-    '',
-    'Generada desde `SPRINT-CURRENT.md` con `npm run maintenance:sync-scrum-views`.',
-    '',
-    sections.join('\n\n'),
-    '',
-    'Las tareas `Ready` se consultan en `PRODUCT-BACKLOG.md`; esta vista solo muestra lo que ya está siendo trabajado o revisado.',
-    '',
-  ].join('\n');
-};
-
-const buildCompletedMarkdown = (rows) => {
-  const completedRows = rows
-    .filter((row) => row.state.toLowerCase() === 'done')
-    .sort(compareTaskIds);
-
-  const groupedRows = new Map();
-  for (const row of completedRows) {
-    const label = getCompletedGroupLabel(row.id);
-    if (!groupedRows.has(label)) groupedRows.set(label, []);
-    groupedRows.get(label).push(row);
-  }
-
-  const sections = [];
-  for (const label of COMPLETED_GROUP_ORDER) {
-    const items = groupedRows.get(label);
-    if (!items || items.length === 0) continue;
-    sections.push(renderSection(label, items));
-  }
-
-  return [
-    '# Completed',
-    '',
-    'Vista navegable de tareas cerradas. La fuente de verdad sigue siendo `SPRINT-CURRENT.md`.',
-    '',
-    'Generada desde `SPRINT-CURRENT.md` con `npm run maintenance:sync-scrum-views`.',
-    '',
-    sections.join('\n\n'),
-    '',
-    'Las tareas `Ready` viven en `PRODUCT-BACKLOG.md`; las tareas activas o en revisión viven en `ACTIVE.md`.',
-    '',
-  ].join('\n');
-};
-
-export const syncScrumViews = async ({
-  sprintPath = sprintFile,
-  activePath = activeFile,
-  completedPath = completedFile,
-} = {}) => {
-  const sprintSource = await readFile(sprintPath, 'utf8');
-  const rows = parseTableRows(sprintSource);
-  const activeMarkdown = buildActiveMarkdown(rows);
-  const completedMarkdown = buildCompletedMarkdown(rows);
-
-  await mkdir(path.dirname(activePath), { recursive: true });
-  await mkdir(path.dirname(completedPath), { recursive: true });
-  await Promise.all([
-    writeFile(activePath, activeMarkdown, 'utf8'),
-    writeFile(completedPath, completedMarkdown, 'utf8'),
-  ]);
-
-  return {
-    sprintFile: sprintPath,
-    activeFile: activePath,
-    completedFile: completedPath,
-    activeCount: rows.filter((row) => ACTIVE_STATE_ORDER.some((entry) => entry.states.includes(row.state.toLowerCase()))).length,
-    completedCount: rows.filter((row) => row.state.toLowerCase() === 'done').length,
-  };
-};
-
-const isExecutedDirectly = process.argv[1] ? path.resolve(process.argv[1]) === currentFile : false;
-
-if (isExecutedDirectly) {
-  syncScrumViews()
-    .then((result) => {
-      process.stdout.write(
-        `synced scrum views: active=${result.activeCount}, completed=${result.completedCount}\n`,
-      );
-    })
-    .catch((error) => {
-      console.error(error);
-      process.exitCode = 1;
-    });
+  return out;
 }
 
-export { buildActiveMarkdown, buildCompletedMarkdown, parseTableRows };
+function parseFrontmatter(text) {
+  if (!text.startsWith("---")) return {};
+  const end = text.indexOf("\n---", 3);
+  if (end < 0) return {};
+  const block = text.slice(3, end).trim();
+  const result = {};
+  for (const line of block.split(/\r?\n/)) {
+    const m = line.match(/^([A-Za-z0-9_-]+):\s*(.*?)\s*$/);
+    if (m) result[m[1]] = m[2].replace(/^["']|["']$/g, "");
+  }
+  return result;
+}
+
+function titleOf(text, fallback) {
+  return text.match(/^#\s+(.+)$/m)?.[1]?.trim() || fallback;
+}
+
+function normalizeState(meta) {
+  return String(meta.status || meta.state || "").trim().toLowerCase().replace(/[_-]+/g, " ");
+}
+
+function taskRows() {
+  return walk(taskRoot).map((abs) => {
+    const text = fs.readFileSync(abs, "utf8");
+    const meta = parseFrontmatter(text);
+    const rel = path.relative(path.dirname(activeFile), abs).split(path.sep).join("/");
+    return {
+      id: meta.id || path.basename(abs, ".md"),
+      state: normalizeState(meta),
+      title: titleOf(text, path.basename(abs, ".md")),
+      rel,
+    };
+  });
+}
+
+function render(title, rows, description) {
+  const lines = [`# ${title}`, "", description, ""];
+  if (!rows.length) lines.push("- Ninguna.");
+  else {
+    for (const row of rows.sort((a, b) => a.id.localeCompare(b.id))) {
+      lines.push(`- [${row.id}](${row.rel}) — ${row.title}`);
+    }
+  }
+  lines.push("", "> Vista generada. La autoridad permanece en la task-card y, cuando aplique, en su ledger.", "");
+  return lines.join("\n");
+}
+
+export function syncScrumViews() {
+  const rows = taskRows();
+  const activeStates = new Set(["claimed", "in progress", "review", "in review", "blocked", "active"]);
+  const doneStates = new Set(["done", "completed", "closed"]);
+
+  const active = rows.filter((row) => activeStates.has(row.state));
+  const completed = rows.filter((row) => doneStates.has(row.state));
+
+  fs.mkdirSync(path.dirname(activeFile), { recursive: true });
+  fs.writeFileSync(activeFile, render("Active", active, "Tareas actualmente en ejecución/review detectadas por frontmatter."), "utf8");
+  fs.writeFileSync(completedFile, render("Completed", completed, "Tareas cerradas detectadas por frontmatter."), "utf8");
+
+  return { scanned: rows.length, active: active.length, completed: completed.length };
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === currentFile) {
+  const result = syncScrumViews();
+  process.stdout.write(`${JSON.stringify(result)}\n`);
+}

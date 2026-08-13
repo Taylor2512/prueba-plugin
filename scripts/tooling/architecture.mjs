@@ -52,6 +52,7 @@ function architectureFiles(root, config) {
   return [...new Set([
     ...walkFiles(root, {
       roots: config.paths.architectureRoots,
+      includeGenerated: true,
       config,
     }),
     ...topLevelArchitectureFiles(root, config),
@@ -465,9 +466,30 @@ export function buildMarkdownIndex(root, config) {
   }
 
   for (const node of nodes) node.incoming = incoming.get(node.path) || 0;
-  const orphans = nodes
-    .filter((node) => node.incoming === 0)
-    .filter((node) => !/^(?:README|HOME)\.md$/i.test(path.basename(node.path)));
+  const orphanPolicy = config.markdown.orphanPolicy || {};
+  const trackedPrefixes = orphanPolicy.trackedPrefixes || [];
+  const exemptPaths = orphanPolicy.exemptPaths || new Set();
+
+  const indexedDirs = new Set(
+    nodes
+      .filter((node) => /^(?:README|HOME)\.md$/i.test(path.basename(node.path)))
+      .map((node) => path.posix.dirname(node.path)),
+  );
+
+  const shouldTrackOrphan = (node) => {
+    if (node.incoming !== 0) return false;
+    if (/^(?:README|HOME)\.md$/i.test(path.basename(node.path))) return false;
+    if (exemptPaths.has(node.path)) return false;
+    if (trackedPrefixes.length && !trackedPrefixes.some((prefix) => node.path.startsWith(prefix))) {
+      return false;
+    }
+    if (orphanPolicy.requireParentIndex && !indexedDirs.has(path.posix.dirname(node.path))) {
+      return false;
+    }
+    return true;
+  };
+
+  const orphans = nodes.filter(shouldTrackOrphan);
 
   const duplicateReport = buildDuplicateReport(root, config, markdown);
 

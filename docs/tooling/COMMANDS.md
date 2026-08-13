@@ -1,73 +1,58 @@
-# Manual de comandos
+# Manual de comandos de arquitectura/documentación
 
 ## Diagnóstico
 
 ```bash
 npm run tools:doctor
+npm run docs:scan
+npm run docs:validate
 ```
 
-Escanea nombres, genera índices y valida enlaces/IDs.
+`docs:validate` falla por nombre/ruta versionada, link roto o `id` duplicado.
+Los orphan se reportan solo para superficies que deben ser navegables; task-cards,
+provider profiles, prompts, reports y source-adjacent docs pueden ser hojas válidas.
 
-## Sanitización
+## Reconciliar nombres modificados
+
+Dry-run:
+
+```bash
+npm run docs:paths
+```
+
+Aplicar con backup externo:
+
+```bash
+npm run docs:paths:apply
+```
+
+Usa `config/tooling/architecture-path-aliases.json`. Un alias puede representar
+un rename ya aplicado: aun así sirve para actualizar referencias antiguas.
+
+No convierte IDs internos como `RTP-010` o `AIARCH-028`.
+
+## Sanitización de nombres
 
 ```bash
 npm run docs:sanitize
 npm run docs:sanitize:apply
 ```
 
-Dry-run primero. El modo apply:
+Detecta revisión física en paths (`-v2`, `-V7`, `copy`, `backup`, fechas de
+revisión, etc.). Git conserva el historial; el filesystem usa nombres
+semánticos estables.
 
-- renombra rutas versionadas cuando no existe conflicto;
-- elimina copias **idénticas** después de backup externo;
-- no destruye contenido divergente;
-- deja conflictos para reconciliación explícita;
-- poda directorios vacíos.
-
-Ejemplos de nombres no permitidos:
-
-```text
-brain-v2/
-PLAN-V8.md
-architecture.version-3.md
-README-copy-2.md
-CONTRACT-20260813.md   # cuando la fecha es un sufijo de revisión
-```
-
-Los identificadores históricos pueden permanecer dentro del Markdown.
-
-## Índice
+## Índice y navegación
 
 ```bash
 npm run docs:index
-```
-
-Genera:
-
-```text
-.ai/index/architecture/markdown.jsonl
-.ai/index/architecture/links.jsonl
-.ai/index/architecture/broken-links.jsonl
-.ai/index/architecture/orphans.jsonl
-.ai/index/architecture/duplicates.json
-reports/architecture/summary.json
-```
-
-## Navegación
-
-Dry-run:
-
-```bash
 npm run docs:links
-```
-
-Aplicar:
-
-```bash
 npm run docs:links:apply
+npm run docs:orphans
 ```
 
-Solo modifica `README.md`/`HOME.md` existentes mediante un bloque administrado.
-No crea un README en cada carpeta.
+`docs:links` es dry-run. `docs:links:apply` modifica únicamente bloques de
+navegación administrados en README/HOME existentes.
 
 ## Duplicidad
 
@@ -75,116 +60,28 @@ No crea un README en cada carpeta.
 npm run docs:duplicates
 ```
 
-Detecta:
-
-- duplicados normalizados exactos;
-- documentos de la misma familia de nombre con similitud alta;
-- familias provenientes de nombres versionados.
-
-## Validación
-
-```bash
-npm run docs:validate
-```
-
-Falla por:
-
-- nombre/ruta versionada;
-- link Markdown roto;
-- `id` duplicado.
-
-Orphans y near-duplicates son warnings.
-
 ## Importar arquitectura desde ZIP o carpeta
 
-Dry-run:
-
 ```bash
-node scripts/project-tools.mjs import . \
-  --source="/ruta/arquitectura.zip"
+npm run architecture:import -- --source="/ruta/arquitectura.zip"
+npm run architecture:import -- --source="/ruta/arquitectura.zip" --apply
 ```
 
-Aplicar:
-
-```bash
-node scripts/project-tools.mjs import . \
-  --source="/ruta/arquitectura.zip" \
-  --apply
-```
-
-Por defecto **mantiene el target** ante conflictos.
-
-Para reemplazar archivos no protegidos:
-
-```bash
-node scripts/project-tools.mjs import . \
-  --source="/ruta/arquitectura" \
-  --conflict=prefer-source \
-  --apply
-```
-
-Los hot-state files protegidos nunca se reemplazan automáticamente.
+El import es conservador y respeta paths protegidos.
 
 ## Pipeline completo
+
+Dry-run:
 
 ```bash
 npm run architecture:all
 ```
 
-Sanitiza → indexa → actualiza navegación → reindexa → valida.
-
-
-## Interpretación de flags
-
-Estos comandos no necesitan `--apply` porque solo calculan/generan índices:
-
-```bash
-npm run docs:index
-npm run docs:duplicates
-npm run docs:orphans
-```
-
-Para importar un ZIP/carpeta, `--source` es obligatorio:
-
-```bash
-npm run architecture:import -- \
-  --source="/ruta/arquitectura.zip"
-```
-
 Aplicar:
 
 ```bash
-npm run architecture:import -- \
-  --source="/ruta/arquitectura.zip" \
-  --apply
+npm run architecture:all:apply
 ```
 
-## Resolver un conflicto de nombre estable
-
-Si aparece:
-
-```text
-TASK-CARD-V7.md -> TASK-CARD.md
-canonical-target-differs
-```
-
-el sanitizador NO debe elegir automáticamente.
-
-Revisar:
-
-```bash
-git diff --no-index -- \
-  .ai/templates/TASK-CARD.md \
-  .ai/templates/TASK-CARD-V7.md
-```
-
-Integrar manualmente en `.ai/templates/TASK-CARD.md`, verificar el resultado y luego:
-
-```bash
-rm .ai/templates/TASK-CARD-V7.md
-npm run docs:sanitize
-npm run docs:links:apply
-npm run docs:validate
-```
-
-La historia queda en Git, no en dos plantillas físicas.
+En modo apply, el pipeline primero reconcilia aliases de paths, después
+sanitiza nombres, regenera índice/navegación y valida.

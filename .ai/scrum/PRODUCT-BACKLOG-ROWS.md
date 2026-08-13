@@ -7,7 +7,7 @@
 | AIARCH-003 | P0 | Adoptar adapters raíz | [task](./task-cards/AIARCH-003-adoptar-adapters-raiz.md) |
 | AIARCH-004 | P0 | Implementar router por Context Manifest | [task](task-cards/AIARCH-004-implementar-router-por-context-manifest.md) |
 | AIARCH-005 | P0 | Aplicar presupuesto L0–L4 | [task](task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md) |
-| AIARCH-006 | P0 | Crear generador de context packets | [task](task-cards/AIARCH-006-crear-generador-de-context-packets.md) |
+| AIARCH-006 | P0 | Crear generador de context packets | NO MATERIALIZADA EN EL WORKTREE ACTUAL |
 | AIARCH-007 | P0 | Migrar memoria a índice y topics | [task](task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md) |
 | AIARCH-008 | P1 | Implementar memory GC e invalidación | [task](task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md) |
 | AIARCH-009 | P0 | Adoptar IDs de trazabilidad | [task](task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md) |

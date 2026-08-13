@@ -9,6 +9,8 @@ const architectureRoots = [
   ".codex",
   ".agents",
   ".github",
+  "reports",
+  "templates",
 ];
 
 const markdownRoots = [
@@ -19,6 +21,9 @@ const markdownRoots = [
   ".codex",
   ".agents",
   ".github",
+  "reports",
+  "templates",
+  "src",
   "README.md",
   "AGENTS.md",
   "CLAUDE.md",
@@ -41,13 +46,11 @@ const ignoredDirectoryNames = new Set([
 ]);
 
 const protectedPaths = new Set([
-  ".ai/NOW.md",
   ".ai/brain/70-memory/CURRENT.md",
   ".ai/brain/70-memory/HANDOFF.md",
-  ".ai/ops/tasks/CURRENT.md",
-  ".ai/ops/tasks/TASK-LEDGER.md",
-  ".ai/scrum/CURRENT.md",
-  ".ai/scrum/TASK-LEDGER.md",
+  ".ai/brain/80-work/ACTIVE.md",
+  ".ai/scrum/PRODUCT-BACKLOG.md",
+  ".ai/scrum/RUNTIME-PLATFORM-LEDGER.md",
 ]);
 
 const generatedPrefixes = [
@@ -57,7 +60,7 @@ const generatedPrefixes = [
 ];
 
 export default {
-  schemaVersion: 1,
+  schemaVersion: 2,
 
   paths: {
     architectureRoots,
@@ -67,6 +70,7 @@ export default {
     generatedPrefixes,
     indexRoot: ".ai/index/architecture",
     reportRoot: "reports/architecture",
+    aliasMap: "config/tooling/architecture-path-aliases.json",
     topLevelArchitectureExtensions: [".md", ".mdx"],
   },
 
@@ -93,10 +97,6 @@ export default {
   },
 
   naming: {
-    /**
-     * Revision tokens in FILE/DIRECTORY names are prohibited in architecture roots.
-     * Historical IDs may stay inside Markdown frontmatter/body.
-     */
     versionTokenPatterns: [
       /(^|[-_.\s])v\d+(?:[._-]\d+)*(?=$|[-_.\s])/gi,
       /(^|[-_.\s])version[-_.\s]?\d+(?:[._-]\d+)*(?=$|[-_.\s])/gi,
@@ -129,6 +129,25 @@ export default {
     ]),
     nearDuplicateThreshold: 0.92,
     nearDuplicateMinWords: 80,
+
+    // Orphan warnings are meaningful only on curated navigable knowledge.
+    // Task cards, provider profiles, prompts, reports and source-adjacent docs
+    // may be intentional leaf nodes and must not be "fixed" with fake links.
+    orphanPolicy: {
+      trackedPrefixes: [
+        "docs/",
+        ".ai/brain/",
+        ".ai/architecture/",
+        ".ai/memory/",
+        ".ai/knowledge/",
+      ],
+      requireParentIndex: true,
+      exemptPaths: new Set([
+        ".ai/brain/HOME.md",
+        ".ai/brain/README.md",
+        ".ai/memory/INDEX.md",
+      ]),
+    },
   },
 
   import: {
@@ -147,22 +166,23 @@ export default {
   },
 
   packageScripts: {
-  "tools:doctor": "node scripts/project-tools.mjs doctor .",
-  "docs:scan": "node scripts/project-tools.mjs scan .",
-  "docs:sanitize": "node scripts/project-tools.mjs sanitize .",
-  "docs:sanitize:apply": "node scripts/project-tools.mjs sanitize . --apply",
-  "docs:index": "node scripts/project-tools.mjs index .",
-  "docs:links": "node scripts/project-tools.mjs links .",
-  "docs:links:apply": "node scripts/project-tools.mjs links . --apply",
-  "docs:duplicates": "node scripts/project-tools.mjs duplicates .",
-  "docs:orphans": "node scripts/project-tools.mjs orphans .",
-  "docs:broken-links": "node scripts/project-tools.mjs validate . --check=links",
-  "docs:names": "node scripts/project-tools.mjs validate . --check=names",
-  "docs:validate": "node scripts/project-tools.mjs validate .",
-  "architecture:import": "node scripts/project-tools.mjs import .",
-  "architecture:all": "node scripts/project-tools.mjs all .",
-  "architecture:all:apply": "node scripts/project-tools.mjs all . --apply"
-
+    "tools:doctor": "node scripts/project-tools.mjs doctor .",
+    "docs:scan": "node scripts/project-tools.mjs scan .",
+    "docs:paths": "node scripts/project-tools.mjs paths .",
+    "docs:paths:apply": "node scripts/project-tools.mjs paths . --apply",
+    "docs:sanitize": "node scripts/project-tools.mjs sanitize .",
+    "docs:sanitize:apply": "node scripts/project-tools.mjs sanitize . --apply",
+    "docs:index": "node scripts/project-tools.mjs index .",
+    "docs:links": "node scripts/project-tools.mjs links .",
+    "docs:links:apply": "node scripts/project-tools.mjs links . --apply",
+    "docs:duplicates": "node scripts/project-tools.mjs duplicates .",
+    "docs:orphans": "node scripts/project-tools.mjs orphans .",
+    "docs:broken-links": "node scripts/project-tools.mjs validate . --check=links",
+    "docs:names": "node scripts/project-tools.mjs validate . --check=names",
+    "docs:validate": "node scripts/project-tools.mjs validate .",
+    "architecture:import": "node scripts/project-tools.mjs import .",
+    "architecture:all": "node scripts/project-tools.mjs all .",
+    "architecture:all:apply": "node scripts/project-tools.mjs all . --apply",
   },
 
   resolve(root, relativePath) {

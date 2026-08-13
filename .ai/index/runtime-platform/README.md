@@ -1,13 +1,19 @@
 # Runtime Platform indexes
 
-Lookup mecánico; no cargar completo en contexto.
+Lookup mecánico de la campaña. No cargar archivos JSONL completos en contexto.
 
-- `code-files.jsonl`: 491 archivos inventariados.
-- `docs-files.jsonl`: 613 Markdown inventariados.
-- `styles-files.jsonl`: 5 hojas de estilo.
-- `symbols.jsonl`: símbolos detectados por el context pack.
-- `schemas.jsonl`: matriz inicial de tipos/familias.
-- `existing-taskcards.jsonl`: 160 task-cards históricas detectadas.
+Los índices fueron generados desde snapshots anteriores y pueden contener
+conteos o paths desactualizados después de la normalización de nombres. El
+worktree vivo y los context packs más recientes tienen prioridad.
 
-El índice señala también archivos truncados/omitidos. Un agente debe abrir el source vivo
-cuando una task dependa de uno de esos archivos.
+Archivos esperados cuando estén generados:
+
+- `code-files.jsonl`;
+- `docs-files.jsonl`;
+- `styles-files.jsonl`;
+- `symbols.jsonl`;
+- `schemas.jsonl`;
+- `existing-taskcards.jsonl`.
+
+Antes de usar métricas de cobertura, confirmar que el índice fue regenerado
+contra el HEAD actual.

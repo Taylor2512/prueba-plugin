@@ -4,25 +4,26 @@ Prioridad:
 
 ```text
 worktree vivo + Git HEAD
-> tests ejecutados
+> tests/gates realmente ejecutados
 > evidencia de task
 > Brain canónico
 > context packs/unificados
 > documentación histórica
 ```
 
-Los archivos adjuntos tienen nombres del 13/08 pero metadatos internos de generación:
+Snapshot de referencia recibido el 2026-08-13:
 
-- code: `2026-08-11T19:09:05.424Z`;
-- docs: `2026-08-11T19:09:04.930Z`;
-- styles: `2026-08-11T19:09:05.811Z`.
+- code: `2026-08-13T17:28:45.926Z`;
+- docs: `2026-08-13T17:28:45.409Z`;
+- styles: `2026-08-13T17:28:46.337Z`.
 
-SHA-256 de inputs de este paquete:
+SHA-256 de esos inputs:
 
 ```text
-codigo-frontend-sisad—pdmfe(20260813-153607).md: be9298e8edddefa26a65bfc67a4002fc638a8d7409cdf400818bbdda1f5a29da
-documentacion-sisad—pdmfe-web(20260813-153607).md: e42744aaaeaa7140fd4c7e559b6547d87316071d22632a82d6d45a76de1df170
-styles-sisad—pdmfe(20260813-153607).md: e98f8254eb567e66bc4f46301e0e9d97c86fee26f27d44e466594d7a9c0e88e6
+codigo-frontend-sisad—pdmfe(20260813-172901).md: 03a39f743f59eafe401b1877fa7be539e26606f952e7b329a1cc9688bb3b6334
+documentacion-sisad—pdmfe-web(20260813-172900).md: 5773771426466ab2c94080c852fdedd3eb7906552c5eefc913cd40d386486437
+styles-sisad—pdmfe(20260813-172900).md: a6b29484c3830f7d35abbbe325c2d3074d41340bcd69c72965fc9fb165ff7943
 ```
 
-No usar esos hashes para inferir el HEAD del repositorio.
+Estos hashes describen los context packs adjuntos, no el HEAD del repositorio.
+Antes de modificar producto, confirmar `git status`, branch, HEAD y source vivo.

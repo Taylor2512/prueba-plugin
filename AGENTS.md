@@ -1,27 +1,31 @@
-# AGENTS.md — SISAD PDFME V8 Lean
+# AGENTS.md — SISAD-PDFME
 
 ## Inicio
 
 1. Lee `.ai/START.md`.
-2. Lee `.ai/scrum/SPRINT-CURRENT.md`.
-3. Trabaja sobre una sola task-card activa.
-4. Carga una route y una skill.
-5. Consulta catálogos por ID, dominio o símbolo; no los abras completos.
+2. Lee `.ai/STATE-SOURCES.md`.
+3. Resuelve la tarea activa desde la fuente de estado que realmente exista.
+4. Carga una sola route y una skill principal.
+5. Abre únicamente el Brain, índices, source y tests necesarios para esa tarea.
 
 ## Frontera
 
 `src/sisad-pdfme` es reusable y host-independent. El host entrega configuración,
 datos, adapters y callbacks. No introduzcas reglas de DigitalAgreements,
-Uanataca,  o rutas de negocio dentro del core.
+Uanataca ni rutas de negocio dentro del core.
 
 ## Contrato
 
-```txt
+```text
 Intent → Policy → Command → Mutation → Event → Effect → Snapshot
 ```
 
-## Evidencia
+## Estado y evidencia
+
+No asumas `SPRINT-CURRENT.md`, `CLAIMS.md`, `.ai/catalogs` ni `.ai/evidence`
+si no existen en el worktree. `.ai/STATE-SOURCES.md` define las autoridades
+vigentes.
 
 Usa `CONFIRMADO`, `INFERIDO`, `HIPÓTESIS` o `DESCONOCIDO`. No declares gates
-verdes sin ejecutarlos. Detente ante conflicto de claim, presupuesto agotado,
-cambio de dominio o frontera protegida.
+verdes sin ejecutarlos. Revalida `pwd`, branch, HEAD y `git status` antes de
+editar y al reanudar una sesión.

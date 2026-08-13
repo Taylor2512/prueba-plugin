@@ -1,13 +1,20 @@
 # Memory index
 
-Mantener <150 líneas y <20KB.
+Mantener corto y orientado a lookup.
 
-| Archivo | Propósito |
+| Ruta | Propósito |
 |---|---|
-| PROJECT.md | hechos estables |
-| CURRENT.md | estado técnico actual |
-| HANDOFF.md | continuidad inmediata |
-| decisions.jsonl | decisiones versionadas |
-| risks.jsonl | riesgos activos |
-| topics/*.md | detalles por dominio, bajo demanda |
-| cache/ | efímero, no versionado |
+| `PROJECT.md` | hechos estables |
+| `topics/*.md` | memoria temática bajo demanda |
+| `RTP-MEMORY-DELTA.md` | delta durable de Runtime Platform |
+| `MEMORY-GC.md` | política de limpieza |
+| `TTL-POLICY.md` | caducidad/revalidación |
+
+La continuidad operativa actual no vive aquí:
+
+- `../brain/70-memory/CURRENT.md`
+- `../brain/70-memory/HANDOFF.md`
+- `../brain/80-work/ACTIVE.md`
+
+No crear duplicados `CURRENT.md`/`HANDOFF.md` en esta carpeta sin una migración
+explícita de autoridad.

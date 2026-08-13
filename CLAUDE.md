@@ -1,9 +1,10 @@
-# Claude Code — adaptador V8
+# Claude Code — adaptador
 
-Fuente canónica: `AGENTS.md`, `.ai/START.md`, task-card, route y skill.
+La autoridad neutral es `AGENTS.md`. Después usa `.ai/START.md`,
+`.ai/STATE-SOURCES.md`, la task-card vigente, una route y una skill.
 
-- Usa subagentes para exploración, documentación o logs extensos.
-- Precarga como máximo una skill en cada subagente.
-- La auto-memory de Claude es auxiliar; `.ai/memory` es la memoria compartida.
-- Usa hooks para reglas deterministas, no para duplicar prompts.
-- Revalida worktree, branch, base y diff al reanudar o compactar.
+- Los subagentes sirven para trabajo independiente o contexto ruidoso.
+- Precarga como máximo una skill principal por subagente.
+- La auto-memory del proveedor es auxiliar; no sustituye las fuentes del repositorio.
+- Hooks pueden imponer reglas deterministas, no duplicar governance.
+- Revalida worktree, branch, HEAD y diff al reanudar o compactar.

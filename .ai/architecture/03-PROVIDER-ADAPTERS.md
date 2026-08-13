@@ -1,9 +1,19 @@
-# Proveedores
+# Adaptadores de proveedores
 
-La fuente canónica es vendor-neutral. Claude, Codex y Copilot reciben adapters
-generados desde registries de agentes, skills y routes.
+La autoridad funcional es vendor-neutral y comienza en `AGENTS.md`.
 
-Los adapters pueden añadir sintaxis propia, pero no reglas funcionales nuevas.
+Claude, Codex y Copilot pueden añadir sintaxis o capacidades propias, pero no
+reglas de producto distintas.
 
-`sync-provider-adapters.mjs` controla nombres, descriptions, tools, skill preload
-y enlaces. El drift gate falla ante copias manuales divergentes.
+## Validación disponible
+
+```bash
+node .ai/scripts/validate-provider-adapters.mjs
+node .ai/scripts/validate-provider-drift.mjs
+```
+
+No documentar un generador `sync-provider-adapters.mjs` como autoridad mientras
+ese script no exista en el worktree.
+
+Los adapters raíz deben permanecer pequeños y enlazar a `AGENTS.md`,
+`.ai/START.md` y las fuentes de estado vigentes.

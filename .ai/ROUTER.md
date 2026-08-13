@@ -1,9 +1,10 @@
-# Router V8
+# Router
 
-El router devuelve `routeId`, `owner`, `skillIds`, `risk`, `contextBudget`,
-`catalogQueries`, `protectedPaths` y `gates`.
+El router selecciona una sola superficie propietaria. Devuelve `routeId`,
+`owner`, `skillIds`, `risk`, `contextBudget`, `protectedPaths`, `gates` y
+`stopConditions`.
 
-| Intención | Route | Skill |
+| Intención | Route | Skill principal |
 |---|---|---|
 | usuarios, colores, asignación | recipients-ownership | recipient-assignment |
 | catálogo y drag | left-sidebar | left-sidebar |
@@ -18,4 +19,5 @@ El router devuelve `routeId`, `owner`, `skillIds`, `risk`, `contextBudget`,
 | IA, memoria, tokens | ai-architecture | context-engineering |
 | tests/calidad | quality | quality-evidence |
 
-Una sola route posee el parche.
+Las routes viven en `.ai/routes/`. Una sola route posee el parche; las demás
+aportan contratos de lectura cuando exista una dependencia demostrada.

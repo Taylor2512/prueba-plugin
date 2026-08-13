@@ -1,33 +1,37 @@
-# START V8
+# START
 
 ## Hot path
 
-```txt
+```text
 AGENTS.md
-SPRINT-CURRENT.md
-task activa
-route
-skill
+→ .ai/STATE-SOURCES.md
+→ active work / campaign ledger
+→ task-card
+→ .ai/ROUTER.md
+→ one route + one skill
+→ source/tests
 ```
 
-Objetivo: ≤2.500 tokens y ≤5 archivos.
+Objetivo de arranque: ≤2.500 tokens y ≤5 archivos de documentación antes de
+entrar al source, salvo que la task-card justifique más contexto.
 
 ## Secuencia
 
-```txt
+```text
 orientar
-→ validar estado/claim
-→ construir context pack
-→ reproducir
-→ test caracterizador
+→ verificar worktree/HEAD/status
+→ resolver tarea y autoridad
+→ construir contexto focal
+→ reproducir/caracterizar
 → cambio mínimo
 → gates
 → review
-→ trace delta
-→ memory delta
+→ evidence/trace delta
+→ memory delta solo si cambió conocimiento durable
 ```
 
 ## No cargar al inicio
 
-Catálogos JSONL, archivos consolidados, todos los task-cards, todos los skills,
-logs completos, backups, coverage, reports históricos o provider adapters.
+Consolidados completos, todos los task-cards, todos los skills, logs completos,
+backups, coverage, reportes históricos, índices JSONL completos o adapters de
+todos los proveedores.

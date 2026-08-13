@@ -1,13 +1,14 @@
-# Merge V8
+# Merge seguro de arquitectura
 
-No sobrescribir automáticamente:
+Antes de aplicar un overlay:
 
-```txt
-SPRINT-CURRENT.md
-CLAIMS.md
-CURRENT.md
-HANDOFF.md
-DECISIONS/RISKS vigentes
-```
+1. capturar `git status`, branch y HEAD;
+2. ejecutar el instalador en dry-run;
+3. respaldar cualquier archivo reemplazado;
+4. preservar task-cards, ledger, backlog, CURRENT/HANDOFF y evidence;
+5. aplicar aliases de paths antes de regenerar navegación;
+6. validar nombres, links e IDs;
+7. revisar diff antes de commit.
 
-Todas las tareas AI8 nacen Backlog. Activar AI8-001 solo cuando el WIP lo permita.
+No asumir archivos históricos como `SPRINT-CURRENT.md` o `CLAIMS.md` si no
+existen en el worktree actual.

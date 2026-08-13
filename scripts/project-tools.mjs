@@ -13,6 +13,7 @@ import {
   validateArchitecture,
 } from "./tooling/architecture.mjs";
 import { importArchitecture } from "./tooling/importer.mjs";
+import { reconcileArchitecturePaths } from "./tooling/path-reconciliation.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const defaultConfigPath = path.resolve(
@@ -36,6 +37,7 @@ Project tools
 
 Usage:
   node scripts/project-tools.mjs scan [repo]
+  node scripts/project-tools.mjs paths [repo] [--apply]
   node scripts/project-tools.mjs sanitize [repo] [--apply]
   node scripts/project-tools.mjs index [repo]
   node scripts/project-tools.mjs links [repo] [--apply]
@@ -77,6 +79,17 @@ export async function runCli(argv = process.argv.slice(2)) {
       const scan = scanArchitecture(root, config);
       printJson(scan);
       return scan.versionedPaths.length ? 1 : 0;
+    }
+
+    case "paths": {
+      const result = reconcileArchitecturePaths(root, config, {
+        apply: args.has("apply"),
+        backupRoot: args.get("backup")
+          ? path.resolve(args.get("backup"))
+          : null,
+      });
+      printJson(result);
+      return result.conflicts.length ? 3 : 0;
     }
 
     case "sanitize": {
@@ -199,11 +212,22 @@ export async function runCli(argv = process.argv.slice(2)) {
 
     case "all": {
       const apply = args.has("apply");
+      const paths = reconcileArchitecturePaths(root, config, { apply });
+      if (paths.conflicts.length && apply) {
+        // Safe aliases may still have been applied, but divergent sources remain visible.
+        printJson({
+          stage: "paths",
+          status: "partial-conflicts",
+          paths,
+        });
+      }
+
       const sanitation = applySanitize(root, config, { apply });
       if (sanitation.conflicts.length) {
         printJson({
           stage: "sanitize",
           status: "blocked-by-conflicts",
+          paths,
           sanitation,
         });
         return 3;
@@ -215,6 +239,7 @@ export async function runCli(argv = process.argv.slice(2)) {
       const validation = validateArchitecture(root, config);
 
       printJson({
+        paths,
         sanitation,
         index: index.summary,
         links,

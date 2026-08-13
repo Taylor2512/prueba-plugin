@@ -1,12 +1,8 @@
 # Claude adapter
 
-- `CLAUDE.md` is short and points to vendor-neutral sources.
-- `.claude/agents/` isolates verbose exploration and review.
-- `.agents/skills/` is the canonical skill location.
-- Claude auto-memory is auxiliary; do not let it replace `.ai/memory/`.
-- Keep MEMORY index below provider limits and details in topic files.
-- Hooks may enforce deterministic policy; see `settings..json`.
-
-<!-- project-tools:navigation:start -->
-## Navegación generada
-<!-- project-tools:navigation:end -->
+- `CLAUDE.md` es corto y apunta a autoridad vendor-neutral.
+- `.claude/agents/` aísla exploración/review especializada.
+- `.agents/skills/` es la ubicación canónica de skills portables.
+- Claude auto-memory es auxiliar y no reemplaza las fuentes del repositorio.
+- Hooks/config local son opcionales; no se asume un archivo de settings presente.
+- Valida adapters y drift con los scripts de `.ai/scripts/`.

@@ -2,17 +2,25 @@
 
 ## Hot
 
-AGENTS, START, sprint, task activa, CURRENT/HANDOFF. Debe ser pequeño y estable.
+`AGENTS.md`, `.ai/START.md`, `.ai/STATE-SOURCES.md`, el puntero de trabajo
+activo y la task-card que realmente se está ejecutando.
 
 ## Warm
 
-Route, skill, contrato de dominio y uno o dos topic memories.
+Una route, una skill principal, el README del dominio, uno o dos contratos y
+solo la memoria temática necesaria.
 
 ## Cold
 
-Catálogos, methods, trace graph, backlog, archive, research y evidencia.
+Planes no activos, análisis, research, reportes, evidencia histórica, task-cards
+no activas e índices grandes.
+
+## Lookup
+
+`.ai/index/**` se consulta de manera focal. Un índice generado no es autoridad
+superior al source vivo.
 
 ## Regla
 
-Un archivo frío nunca se abre completo. Se consulta con
-`.ai/scripts/query-catalog.mjs` o se resume en un context pack.
+No abrir un archivo frío completo por defecto. Buscar primero, abrir solo el
+fragmento o archivo que cambie la decisión.

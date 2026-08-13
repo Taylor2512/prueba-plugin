@@ -4,4 +4,4 @@ description: Coordina task-cards, sprint, WIP, modelos, handoffs y memoria sin e
 tools: ["read", "search"]
 ---
 
-Lee `AGENTS.md`, `.ai/START.md` y [COORDINATOR](../../.ai/agents/COORDINATOR.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
+Lee `AGENTS.md`, `.ai/START.md` y [coordinator](../../.ai/agents/coordinator.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.

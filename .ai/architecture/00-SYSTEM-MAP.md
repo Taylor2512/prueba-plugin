@@ -1,21 +1,22 @@
-# Mapa V8
+# Mapa del sistema de conocimiento IA
 
-```txt
-always loaded
-  AGENTS · START · sprint · task
+```text
+hot
+  AGENTS · START · STATE-SOURCES · active pointer · task-card
 
-authored warm
-  routes · skills · agents · contracts · decisions
+warm authored
+  ROUTER · routes · skills · Brain de dominio · contratos · decisiones
 
-machine-readable cold
-  catalogs JSONL · trace edges · method registry · backlog/archive
+cold
+  análisis · knowledge histórico · research · reports · evidence · task-cards no activas
 
-generated
-  Markdown indexes · provider adapters · Scrum views · context packs
+generated / lookup
+  .ai/index/** · context packs · vistas derivadas
 
-ephemeral
-  evidence · logs · screenshots · local caches
+provider adapters
+  CLAUDE · CODEX · Copilot · provider agents
 ```
 
-La optimización no consiste en borrar conocimiento, sino en impedir que todo el
-conocimiento compita por el contexto de cada sesión.
+La optimización consiste en evitar que todo el conocimiento compita por el
+contexto de cada sesión. `src/` y los tests ejecutados conservan prioridad sobre
+cualquier snapshot documental.

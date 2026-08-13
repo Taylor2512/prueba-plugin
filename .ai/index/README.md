@@ -1,22 +1,16 @@
-# Índices V8
+# Índices
 
-Los catálogos completos son JSONL y se consultan por script.
+`.ai/index/**` contiene lookup generado o snapshots mecánicos. No es autoridad
+superior al source vivo.
 
-| Catálogo | Registros |
-|---|---:|
-| casos de uso | 334 |
-| comportamientos | 334 |
-| schemas | 28 |
-| eventos | 50 |
-| efectos | 26 |
-| acciones | 5 |
-| métodos/símbolos | 2403 |
-| relaciones candidate | 1482 |
+## Índices actuales
 
-Ejemplo:
+- `runtime-platform/`: inventario de la campaña Runtime Platform;
+- `RECIPIENT-COLOR-MATRIX.md`;
+- `SCHEMA-MATRIX.md`;
+- `architecture/`: generado por `npm run docs:index`.
 
-```bash
-node .ai/scripts/query-catalog.mjs schemas --text checkboxGroup
-node .ai/scripts/query-catalog.mjs use-cases --domain recipients
-node .ai/scripts/query-catalog.mjs methods --text ownerColor --limit 20
-```
+Los conteos embebidos en un índice pueden quedar obsoletos después de renombres
+o cambios de source. Regenerar antes de usarlos como métrica de cobertura.
+
+No abrir JSONL completos por defecto; consultar por path/ID/símbolo.

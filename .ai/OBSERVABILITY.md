@@ -1,24 +1,23 @@
 # Observabilidad
 
-Cada task-card registra métricas mínimas:
+Cada tarea registra solo métricas útiles para reproducir y revisar el trabajo:
 
-```txt
+```text
 provider/model class/effort
-input context files/tokens estimados
-skills activadas
-subagents y sus outputs
-búsquedas y archivos abiertos
-tool calls relevantes
+input context y archivos abiertos
+skills/subagents usados
+búsquedas y tool calls relevantes
 patch attempts
-gates
-cycle time
-rework
+gates ejecutados
+cycle time/rework
 context checkpoints
-memory delta
-trace coverage
+memory/trace delta
 ```
 
-No registrar chain-of-thought, prompts privados, secretos ni transcripciones.
+No registrar chain-of-thought, prompts privados, secretos ni transcripciones
+completas.
 
-Los datos crudos viven en `.ai/evidence/<task>/`; `.ai/memory/METRICS.md`
-conserva tendencias agregadas.
+La evidencia vive en la ruta declarada por cada task-card. Para la campaña
+Runtime Platform la convención actual es `reports/runtime-platform/evidence/`.
+Los reportes agregados son cold storage y no reemplazan `STATE-SOURCES.md`,
+la task-card ni el ledger.

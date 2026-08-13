@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "current/previous context packs reconciled 2026-08-13",
+  "policy": "Aliases are compatibility metadata. Git owns history; current paths are semantic and stable.",
+  "aliases": [
+    {
+      "from": ".agents/skills/sisad-runtime-platform-v2",
+      "to": ".agents/skills/sisad-runtime-platform"
+    },
+    {
+      "from": ".ai/analysis/runtime-platform-v2",
+      "to": ".ai/analysis/runtime-platform"
+    },
+    {
+      "from": ".ai/index/runtime-platform-v2",
+      "to": ".ai/index/runtime-platform"
+    },
+    {
+      "from": ".ai/scrum/task-cards/runtime-platform-v2",
+      "to": ".ai/scrum/task-cards/runtime-platform"
+    },
+    {
+      "from": "reports/runtime-platform-v2",
+      "to": "reports/runtime-platform"
+    },
+    {
+      "from": ".claude/agents/sisad-runtime-platform-v2.md",
+      "to": ".claude/agents/sisad-runtime-platform.md"
+    },
+    {
+      "from": ".codex/agents/runtime-platform-v2.md",
+      "to": ".codex/agents/runtime-platform.md"
+    },
+    {
+      "from": ".github/agents/sisad-runtime-platform-v2.agent.md",
+      "to": ".github/agents/sisad-runtime-platform-agent.md"
+    },
+    {
+      "from": ".ai/brain/70-memory/topics/runtime-platform-v2.md",
+      "to": ".ai/brain/70-memory/topics/runtime-platform.md"
+    },
+    {
+      "from": ".ai/knowledge/RUNTIME-PLATFORM-V2-INDEX.md",
+      "to": ".ai/knowledge/RUNTIME-PLATFORM-INDEX.md"
+    },
+    {
+      "from": ".ai/memory/RTP-V2-MEMORY-DELTA.md",
+      "to": ".ai/memory/RTP-MEMORY-DELTA.md"
+    },
+    {
+      "from": ".ai/plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM_V2.md",
+      "to": ".ai/plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md"
+    },
+    {
+      "from": ".ai/plans/RUNTIME-PLATFORM-V2-CROSSWALK.md",
+      "to": ".ai/plans/RUNTIME-PLATFORM-CROSSWALK.md"
+    },
+    {
+      "from": ".ai/prompts/RTP-V2-CLAUDE-START.md",
+      "to": ".ai/prompts/RTP-CLAUDE-START.md"
+    },
+    {
+      "from": ".ai/prompts/RTP-V2-CODEX-START.md",
+      "to": ".ai/prompts/RTP-CODEX-START.md"
+    },
+    {
+      "from": ".ai/prompts/RTP-V2-COPILOT-START.md",
+      "to": ".ai/prompts/RTP-COPILOT-START.md"
+    },
+    {
+      "from": ".ai/prompts/RTP-V2-GENERIC-START.md",
+      "to": ".ai/prompts/RTP-GENERIC-START.md"
+    },
+    {
+      "from": ".ai/prompts/RTP-V2-START.md",
+      "to": ".ai/prompts/RTP-START.md"
+    },
+    {
+      "from": ".ai/quality/RUNTIME-PLATFORM-V2-GATES.md",
+      "to": ".ai/quality/RUNTIME-PLATFORM-GATES.md"
+    },
+    {
+      "from": ".ai/scrum/RUNTIME-PLATFORM-V2-LEDGER.md",
+      "to": ".ai/scrum/RUNTIME-PLATFORM-LEDGER.md"
+    },
+    {
+      "from": ".ai/architecture/AI-ASSISTANT-ARCHITECTURE-V7.md",
+      "to": ".ai/architecture/AI-ASSISTANT-ARCHITECTURE.md"
+    },
+    {
+      "from": ".ai/architecture/MEMORY-ARCHITECTURE-V7.md",
+      "to": ".ai/architecture/MEMORY-ARCHITECTURE.md"
+    },
+    {
+      "from": ".ai/plans/AIARCH-V7-EXECUTION-ORDER.md",
+      "to": ".ai/plans/AIARCH-EXECUTION-ORDER.md"
+    },
+    {
+      "from": ".ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE-V7.md",
+      "to": ".ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md"
+    },
+    {
+      "from": ".ai/playbooks/EXECUTE-TASK-V7.md",
+      "to": ".ai/playbooks/EXECUTE-TASK.md"
+    },
+    {
+      "from": ".ai/playbooks/UPDATE-MEMORY-V7.md",
+      "to": ".ai/playbooks/UPDATE-MEMORY.md"
+    },
+    {
+      "from": ".ai/scrum/MERGE-INSTRUCTIONS-V7.md",
+      "to": ".ai/scrum/MERGE-INSTRUCTIONS.md"
+    },
+    {
+      "from": ".ai/scrum/MERGE-V8.md",
+      "to": ".ai/scrum/MERGE.md"
+    },
+    {
+      "from": ".ai/scrum/PRODUCT-BACKLOG-ROWS-V7.md",
+      "to": ".ai/scrum/PRODUCT-BACKLOG-ROWS.md"
+    },
+    {
+      "from": ".ai/templates/TASK-CARD-V7.md",
+      "to": ".ai/templates/TASK-CARD.md"
+    },
+    {
+      "from": ".ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME_2026-07-31.md",
+      "to": ".ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME.md"
+    },
+    {
+      "from": ".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME_2026-08-04.md",
+      "to": ".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md"
+    },
+    {
+      "from": ".ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME_V2.md",
+      "to": ".ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md"
+    },
+    {
+      "from": ".ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME_V1.md",
+      "to": ".ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md"
+    },
+    {
+      "from": ".ai/research/OFFICIAL-PROVIDER-FINDINGS-2026-07-31.md",
+      "to": ".ai/research/OFFICIAL-PROVIDER-FINDINGS.md"
+    },
+    {
+      "from": ".ai/research/RUNTIME-PDF-OFFICIAL-SOURCES-2026-08-13.md",
+      "to": ".ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md"
+    },
+    {
+      "from": "docs/AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME_V1.md",
+      "to": "docs/AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline-v6.md",
+      "to": ".ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz-v7.md",
+      "to": ".ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema-v7.md",
+      "to": ".ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos-v7.md",
+      "to": ".ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md",
+      "to": ".ai/scrum/task-cards/AIARCH-030-rollout-documentacion-y-retrospectiva.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y-backup.md",
+      "to": ".ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path-v8.md",
+      "to": ".ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-v1-a-v2.md",
+      "to": ".ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-a.md"
+    },
+    {
+      "from": ".ai/agents/EXPLORER-DRY.md",
+      "to": ".ai/agents/explorer.md"
+    },
+    {
+      "from": ".ai/agents/QA-REVIEWER.md",
+      "to": ".ai/agents/qa.md"
+    },
+    {
+      "from": "docs/02-conceptos/04recipients.md",
+      "to": "docs/02-conceptos/04-recipients.md"
+    },
+    {
+      "from": "docs/05-runtime/05recipient-filtering.md",
+      "to": "docs/05-runtime/05-recipient-filtering.md"
+    },
+    {
+      "from": "docs/13-ejemplos/04-dynamic-host-integration-.md",
+      "to": "docs/13-ejemplos/04-dynamic-host-integration-s.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-derecipients.md",
+      "to": ".ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md"
+    }
+  ]
+}

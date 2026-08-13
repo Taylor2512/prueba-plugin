@@ -36,6 +36,7 @@ ciclo normal del repositorio.
 
 ### Notas
 
+- [Reconciliación de paths de arquitectura](./ARCHITECTURE-PATH-RECONCILIATION.md)
 - [Importación segura de una arquitectura](./ARCHITECTURE-IMPORT.md)
 - [Manual de comandos](./COMMANDS.md)
 - [Sanitización Markdown](./MARKDOWN-SANITIZATION.md)

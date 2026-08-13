@@ -1,26 +1,28 @@
-# Memoria
+# Arquitectura de memoria
 
-## Canonical durable
+## Memoria durable existente
 
-- `PROJECT.md`: hechos estables.
-- `CURRENT.md`: estado vigente, reemplazable.
-- `DECISIONS.md`: ADR resumidas y supersesiones.
-- `RISKS.md`: riesgos activos.
-- `HANDOFF.md`: continuidad inmediata.
-- `METRICS.md`: tendencias.
-- `INDEX.md`: índice corto de temas.
+- `.ai/memory/PROJECT.md`: hechos estables del proyecto.
+- `.ai/memory/INDEX.md`: router corto hacia memoria temática.
+- `.ai/memory/topics/*.md`: detalles por dominio bajo demanda.
+- `.ai/memory/RTP-MEMORY-DELTA.md`: delta de la campaña Runtime Platform.
+- `.ai/brain/30-decisions/*.md`: decisiones/ADR durables.
 
-## Topic memory
+## Continuidad operativa existente
 
-Detalles por dominio bajo `memory/topics/`. No se cargan al inicio; el índice
-declara cuándo leerlos.
+- `.ai/brain/70-memory/CURRENT.md`: estado técnico resumido de la campaña.
+- `.ai/brain/70-memory/HANDOFF.md`: continuidad inmediata.
+- `.ai/brain/80-work/ACTIVE.md`: puntero de trabajo activo.
+
+No crear una segunda copia en `.ai/memory/CURRENT.md` o
+`.ai/memory/HANDOFF.md` mientras esas rutas no hayan sido migradas
+explícitamente.
 
 ## Reglas
 
 - delta, no append infinito;
-- fuente, confianza, verifiedAt, TTL y owner;
-- una afirmación sin fuente no pasa a durable;
-- task-card posee estado operativo;
-- evidence posee logs;
-- provider auto-memory es auxiliar y no canónica;
-- GC mensual o al superar límites.
+- source vivo y tests ejecutados prevalecen;
+- task-card/ledger poseen estado de ejecución;
+- evidence posee logs y resultados;
+- provider auto-memory es auxiliar;
+- una migración de memoria debe actualizar referencias y validadores en el mismo cambio.

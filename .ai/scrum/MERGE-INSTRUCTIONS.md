@@ -1,19 +1,28 @@
 # Merge seguro
 
-No sobrescribir automáticamente:
+No sobrescribir automáticamente estado operativo vivo:
 
-```txt
-.ai/scrum/SPRINT-CURRENT.md
-.ai/scrum/CLAIMS.md
-.ai/memory/CURRENT.md
-.ai/memory/HANDOFF.md
-.ai/memory/DECISIONS.md
-.ai/memory/RISKS.md
+```text
+.ai/brain/70-memory/CURRENT.md
+.ai/brain/70-memory/HANDOFF.md
+.ai/brain/80-work/ACTIVE.md
+.ai/scrum/PRODUCT-BACKLOG.md
+.ai/scrum/RUNTIME-PLATFORM-LEDGER.md
+.ai/scrum/task-cards/**
+reports/**/evidence/**
 ```
 
-1. Copiar nuevos archivos.
-2. Revisar reemplazos AGENTS/START/ROUTER/budgets.
-3. Fusionar backlog rows.
-4. Mantener AIARCH en Backlog mientras WIP=3.
-5. Crear backup y commit de migración.
-6. Ejecutar validadores.
+Los archivos de arquitectura/entrypoints sí pueden reemplazarse tras backup y
+diff explícito.
+
+Flujo:
+
+```text
+dry-run installer
+→ backup
+→ overlay de arquitectura/tooling
+→ docs:paths:apply
+→ docs:index
+→ docs:validate
+→ review git diff
+```
