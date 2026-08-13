@@ -1,0 +1,33 @@
+import { describe, expect, it } from 'vitest';
+import { getSchemaNumberValue, getSchemaBooleanValue, getSchemaOptionSelection } from '@sisad-pdfme/schemas/values/schemaValueAdapter';
+describe('number adapter',()=>{
+  it('missing→undefined',()=>expect(getSchemaNumberValue({})).toBeUndefined());
+  it('null→undefined',()=>expect(getSchemaNumberValue({content:null})).toBeUndefined());
+  it('empty→undefined',()=>expect(getSchemaNumberValue({content:''})).toBeUndefined());
+  it('zero string',()=>expect(getSchemaNumberValue({content:'0'})).toBe(0));
+  it('integer string',()=>expect(getSchemaNumberValue({content:'42'})).toBe(42));
+  it('decimal string',()=>expect(getSchemaNumberValue({content:'3.14'})).toBe(3.14));
+  it('number',()=>expect(getSchemaNumberValue({content:7})).toBe(7));
+  it('NaN text',()=>expect(getSchemaNumberValue({content:'x'})).toBeUndefined());
+  it('Infinity',()=>expect(getSchemaNumberValue({content:Infinity})).toBeUndefined());
+});
+describe('boolean adapter',()=>{
+  it('null schema',()=>expect(getSchemaBooleanValue(null as any)).toBe(false));
+  it('checked true wins',()=>expect(getSchemaBooleanValue({checked:true,content:'false'})).toBe(true));
+  it('checked false wins',()=>expect(getSchemaBooleanValue({checked:false,content:'true'})).toBe(false));
+  it('true string',()=>expect(getSchemaBooleanValue({content:'true'})).toBe(true));
+  it('1 string',()=>expect(getSchemaBooleanValue({content:'1'})).toBe(true));
+  it('false string',()=>expect(getSchemaBooleanValue({content:'false'})).toBe(false));
+  it('0 string',()=>expect(getSchemaBooleanValue({content:'0'})).toBe(false));
+  it('numeric 1',()=>expect(getSchemaBooleanValue({content:1})).toBe(true));
+  it('numeric 0',()=>expect(getSchemaBooleanValue({content:0})).toBe(false));
+});
+describe('option adapter',()=>{
+  it('selectedOptionId',()=>expect(getSchemaOptionSelection({selectedOptionId:'a'})).toEqual({single:'a'}));
+  it('content fallback',()=>expect(getSchemaOptionSelection({content:'a'})).toEqual({single:'a'}));
+  it('non-string single→null',()=>expect(getSchemaOptionSelection({selectedOptionId:2})).toEqual({single:null}));
+  it('multiple explicit',()=>expect(getSchemaOptionSelection({selectedOptionId:'a',selectedOptionIds:['a','b']})).toEqual({single:'a',multiple:['a','b']}));
+  it('comma content',()=>expect(getSchemaOptionSelection({content:'a, b,c'})).toEqual({single:'a, b,c',multiple:['a','b','c']}));
+  it('blank comma members filtered',()=>expect(getSchemaOptionSelection({content:'a, ,b'})).toEqual({single:'a, ,b',multiple:['a','b']}));
+  it('missing→null single',()=>expect(getSchemaOptionSelection({})).toEqual({single:null}));
+});

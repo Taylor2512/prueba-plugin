@@ -1,0 +1,24 @@
+import { describe, expect, it } from 'vitest';
+import { RUNTIME_MODES, DEFAULT_UX_MODES, isValidRuntimeMode, getErrorMessage, formatPageStatus, resolveInitialUxMode } from '@sisad-pdfme/runtime/runtimeModes';
+describe('runtimeModes',()=>{
+  it('runtime modes',()=>expect([...RUNTIME_MODES]).toEqual(['designer','form','viewer']));
+  it('default ux modes',()=>expect([...DEFAULT_UX_MODES]).toEqual(['default','canvas-first']));
+  it('designer valid',()=>expect(isValidRuntimeMode('designer')).toBe(true));
+  it('form valid',()=>expect(isValidRuntimeMode('form')).toBe(true));
+  it('viewer valid',()=>expect(isValidRuntimeMode('viewer')).toBe(true));
+  it('preview invalid',()=>expect(isValidRuntimeMode('preview')).toBe(false));
+  it('empty invalid',()=>expect(isValidRuntimeMode('')).toBe(false));
+  it('null invalid',()=>expect(isValidRuntimeMode(null)).toBe(false));
+  it('Error message',()=>expect(getErrorMessage(new Error('boom'))).toBe('boom'));
+  it('unknown error fallback',()=>expect(getErrorMessage('boom')).toBe('Error inesperado'));
+  it('default page status',()=>expect(formatPageStatus()).toBe('Página 1 / 1'));
+  it('explicit page status',()=>expect(formatPageStatus({currentPage:2,totalPages:5})).toBe('Página 2 / 5'));
+  it('zero clamp',()=>expect(formatPageStatus({currentPage:0,totalPages:0})).toBe('Página 1 / 1'));
+  it('negative clamp',()=>expect(formatPageStatus({currentPage:-2,totalPages:-3})).toBe('Página 1 / 1'));
+  it('query wins',()=>expect(resolveInitialUxMode({search:'?ux=default',storedMode:'canvas-first'})).toBe('default'));
+  it('storage fallback',()=>expect(resolveInitialUxMode({storedMode:'default'})).toBe('default'));
+  it('invalid query skips to storage',()=>expect(resolveInitialUxMode({search:'?ux=x',storedMode:'default'})).toBe('default'));
+  it('invalid query/storage uses fallback',()=>expect(resolveInitialUxMode({search:'?ux=x',storedMode:'y',fallback:'safe'})).toBe('safe'));
+  it('custom whitelist accepts custom value',()=>expect(resolveInitialUxMode({search:'?ux=mobile',allowedModes:['mobile','desktop'],fallback:'desktop'})).toBe('mobile'));
+  it('custom whitelist rejects default value',()=>expect(resolveInitialUxMode({search:'?ux=default',allowedModes:['mobile'],fallback:'mobile'})).toBe('mobile'));
+});

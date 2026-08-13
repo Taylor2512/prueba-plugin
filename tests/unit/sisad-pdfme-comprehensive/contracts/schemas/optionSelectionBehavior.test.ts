@@ -1,0 +1,27 @@
+import { describe, expect, it } from 'vitest';
+import { matchOptionId, resolveSingleOptionSelection, resolveMultiOptionSelection, toggleMultiOptionSelection, clampMultiOptionSelection, normalizeStringOptions, resolveCompactSelection } from '@sisad-pdfme/schemas/options/optionSelectionBehavior';
+const options=[{optionId:'a',label:'A',value:'value-a'},{optionId:'b',label:'B',value:'value-b'},{optionId:'c',label:'C',value:'value-c'}] as any[];
+describe('option behavior',()=>{
+  it('match id',()=>expect(matchOptionId('b',options)).toBe('b'));
+  it('match value',()=>expect(matchOptionId('value-b',options)).toBe('b'));
+  it('unknown match',()=>expect(matchOptionId('x',options)).toBeUndefined());
+  it('single direct',()=>expect(resolveSingleOptionSelection('c',options)).toBe('c'));
+  it('single fallback',()=>expect(resolveSingleOptionSelection('x',options,'b')).toBe('b'));
+  it('single first option fallback',()=>expect(resolveSingleOptionSelection('x',options,'z')).toBe('a'));
+  it('single empty options fallback',()=>expect(resolveSingleOptionSelection('x',[])).toBe('option_1'));
+  it('multi filters unknown',()=>expect(resolveMultiOptionSelection(['a','x','c'],options)).toEqual(['a','c']));
+  it('multi fallback filters unknown',()=>expect(resolveMultiOptionSelection([],options,['b','x'])).toEqual(['b']));
+  it('toggle add',()=>expect(toggleMultiOptionSelection(['a'],'b',options)).toEqual(['a','b']));
+  it('toggle remove',()=>expect(toggleMultiOptionSelection(['a','b'],'a',options)).toEqual(['b']));
+  it('min selection',()=>expect(toggleMultiOptionSelection(['a'],'a',options,{minSelected:1})).toEqual(['a']));
+  it('max selection',()=>expect(toggleMultiOptionSelection(['a','b'],'c',options,{maxSelected:2})).toEqual(['a','b']));
+  it('unknown current filtered',()=>expect(toggleMultiOptionSelection(['x'],'b',options)).toEqual(['b']));
+  it('clamp max',()=>expect(clampMultiOptionSelection(['a','b','c'],options,{maxSelected:2})).toEqual(['a','b']));
+  it('clamp min',()=>expect(clampMultiOptionSelection([],options,{minSelected:2})).toEqual(['a','b']));
+  it('clamp unknown',()=>expect(clampMultiOptionSelection(['x','c'],options)).toEqual(['c']));
+  it('normalize trims/dedupes',()=>expect(normalizeStringOptions([' a ','a','b'])).toEqual(['a','b']));
+  it('normalize removes blanks',()=>expect(normalizeStringOptions(['',' ','b'])).toEqual(['b']));
+  it('compact valid',()=>expect(resolveCompactSelection('b',['a','b'])).toBe('b'));
+  it('compact first fallback',()=>expect(resolveCompactSelection('x',['a','b'])).toBe('a'));
+  it('compact empty',()=>expect(resolveCompactSelection('x',[])).toBe(''));
+});
