@@ -1,3 +1,5 @@
+/
+
 ---
 id: AIARCH-002
 state: backlog
@@ -23,7 +25,6 @@ context:
   maxFiles: 8
   maxTokens: 12000
 ---
-
 # AIARCH-002 — Corregir fuente de estado y arranque
 
 ## Activation

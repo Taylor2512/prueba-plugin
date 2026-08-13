@@ -1,0 +1,648 @@
+[
+  {
+    "id": "TC001",
+    "title": "Fill the form runtime and confirm the summary updates",
+    "description": "This verifies that a form filler can enter answers in the form runtime and see the preview summary reflect the entered data.",
+    "category": "Form runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /runtime/form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a text field with a valid value"
+      },
+      {
+        "type": "action",
+        "description": "Select a radio option"
+      },
+      {
+        "type": "action",
+        "description": "Select a checkbox option"
+      },
+      {
+        "type": "action",
+        "description": "Select a value from a dropdown"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the preview summary reflects the entered data"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the form remains in sync with the preview"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Browse the catalog and open the single-user designer",
+    "description": "Verifies that a user can open the home catalog and launch the single-user designer example from it.",
+    "category": "Example catalog navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the route card for the single-user designer example"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the designer runtime is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the single-user mode is active"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Open the viewer runtime from the example catalog",
+    "description": "This verifies that a demo user can browse the example catalog and launch the viewer runtime from the homepage.",
+    "category": "Viewer runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the route card for the viewer runtime"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the viewer runtime is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the document is rendered in read-only mode"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Browse the catalog and open the form runtime",
+    "description": "Verifies that a user can open the home catalog and launch the form runtime from it.",
+    "category": "Example catalog navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the route card for the form runtime example"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the form runtime is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the template form is available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Switch from single-user designer to multi-user designer",
+    "description": "This verifies that a designer user can open the single-user runtime and switch to the multi-user runtime while continuing to interact with the designer.",
+    "category": "Designer runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /designer/single-user"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the multi-user designer mode"
+      },
+      {
+        "type": "action",
+        "description": "Interact with the designer canvas"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the multi-user designer is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the preview updates after designer interaction"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Browse the catalog and open the viewer runtime",
+    "description": "Verifies that a user can open the home catalog and launch the read-only viewer runtime from it.",
+    "category": "Example catalog navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the route card for the viewer runtime example"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the viewer runtime is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the document is shown in read-only mode"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Review the viewer runtime in read-only mode",
+    "description": "Verifies that a user can open the viewer runtime, browse document pages, and confirm that editing controls are not available.",
+    "category": "Viewer runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /runtime/viewer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the viewer runtime is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Navigate through the document pages"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify document pages are rendered in read-only mode"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify editing affordances are not displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Browse pages in the viewer runtime",
+    "description": "This verifies that a viewer can move through the document pages while the content remains visible in read-only mode.",
+    "category": "Viewer runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /runtime/viewer"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the next page in the viewer"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to another page in the viewer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify multiple document pages can be viewed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the document remains read-only"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Browse the catalog and open the schemas catalog",
+    "description": "Verifies that a user can open the home catalog and launch the schemas example area from it.",
+    "category": "Example catalog navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the route card for the schemas example"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the schema catalog is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify schema families are listed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Open the schemas catalog from the example catalog",
+    "description": "This verifies that a user can browse the example catalog and open the schemas catalog entry.",
+    "category": "Schema catalog",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the route card for the schemas catalog"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the schemas catalog is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify schema families are listed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Edit a schema in the single-user designer and see the preview update",
+    "description": "This verifies that a designer can modify a schema in single-user mode and observe the preview reflect the change.",
+    "category": "Designer runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /designer/single-user"
+      },
+      {
+        "type": "action",
+        "description": "Select a schema element in the designer"
+      },
+      {
+        "type": "action",
+        "description": "Edit the selected schema element"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the preview updates to reflect the schema change"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the designer remains in single-user mode"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Fill the form and see the preview summary update across the flow",
+    "description": "Verifies that a user can enter values in the form runtime, navigate through the form, and see the preview summary reflect the entered data.",
+    "category": "Form runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /runtime/form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a text field with a valid value"
+      },
+      {
+        "type": "action",
+        "description": "Change a radio selection"
+      },
+      {
+        "type": "action",
+        "description": "Toggle a checkbox"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid option from a dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the next form page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the preview summary reflects the entered form data"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the next page content is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Open a family-specific schema example",
+    "description": "This verifies that a user can open a schema family example page from the catalog and reach the family-specific example view.",
+    "category": "Schema catalog",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /schemas"
+      },
+      {
+        "type": "action",
+        "description": "Click a schema family example link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the family-specific example page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected schema family content is shown"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Browse schema families and open a family example",
+    "description": "Verifies that a user can open the schema catalog, browse families, and launch a family-specific example page.",
+    "category": "Schemas catalog navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /schemas"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify schema families are listed"
+      },
+      {
+        "type": "action",
+        "description": "Open a schema family"
+      },
+      {
+        "type": "action",
+        "description": "Open a family example page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the family example page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected family context is reflected in the page"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC015",
+    "title": "Use repeatable fields in the form runtime",
+    "description": "This verifies that a form filler can add repeated entries and see them included in the preview summary.",
+    "category": "Form runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /runtime/form"
+      },
+      {
+        "type": "action",
+        "description": "Add a repeated field entry"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the repeated field entry with a valid value"
+      },
+      {
+        "type": "action",
+        "description": "Add another repeated field entry"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the second repeated field entry with a valid value"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify both repeated entries are shown in the preview summary"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the repeated field section remains editable"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC016",
+    "title": "Move a schema element in the designer and confirm the preview stays in sync",
+    "description": "This verifies that a designer can rearrange schema elements and the rendered preview continues to match the current structure.",
+    "category": "Designer runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /designer/single-user"
+      },
+      {
+        "type": "action",
+        "description": "Select a schema element in the designer"
+      },
+      {
+        "type": "action",
+        "description": "Move the selected schema element"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the schema order changes in the designer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the preview updates to match the new order"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC017",
+    "title": "Move a schema in multi-user designer mode and see the preview update",
+    "description": "Verifies that a user can open the multi-user designer, rearrange a schema item, and observe the preview updating accordingly.",
+    "category": "Designer runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /designer/multi-user"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the multi-user designer runtime is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Move a schema item to a new position"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the preview updates after the move"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the schema layout reflects the new order"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC018",
+    "title": "Browse schema families in the schemas catalog",
+    "description": "This verifies that a user can review available schema families and see the catalog content for exploration.",
+    "category": "Schema catalog",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /schemas"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the schema families list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify schema families are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify family example entries are available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC019",
+    "title": "Move through multiple form pages and preserve the preview summary",
+    "description": "This verifies that a form filler can navigate between pages in the form runtime and keep previously entered data reflected in the summary.",
+    "category": "Form runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /runtime/form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid answer on the current page"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the next form page"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid answer on the next page"
+      },
+      {
+        "type": "action",
+        "description": "Navigate back to the previous form page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify previously entered data is still present in the preview summary"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the multi-page form flow is still accessible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC020",
+    "title": "Add and remove repeatable form fields while keeping the preview in sync",
+    "description": "Verifies that a user can manage repeatable form fields in the form runtime and see the preview summary stay aligned with the current entries.",
+    "category": "Form runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /runtime/form"
+      },
+      {
+        "type": "action",
+        "description": "Add a repeatable field entry"
+      },
+      {
+        "type": "action",
+        "description": "Fill the new repeatable field with a valid value"
+      },
+      {
+        "type": "action",
+        "description": "Remove the repeatable field entry"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the preview summary reflects the current repeatable field entries"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the repeatable field entry is no longer displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC021",
+    "title": "Browse the schema catalog after opening the home catalog",
+    "description": "Verifies that a user can open the home catalog and then reach the schema catalog through the example routes.",
+    "category": "Example catalog navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the route card for the schemas example"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the schema catalog is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the catalog provides navigation into schema families"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC022",
+    "title": "Handle an empty value in the form runtime",
+    "description": "This verifies that a form filler sees validation feedback when leaving a required field empty in the form runtime.",
+    "category": "Form runtime",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /runtime/form"
+      },
+      {
+        "type": "action",
+        "description": "Leave a required field empty"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to continue the form flow"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the form does not advance"
+      }
+    ],
+    "priority": "Low"
+  }
+]

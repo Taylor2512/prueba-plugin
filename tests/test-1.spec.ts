@@ -29,6 +29,8 @@ test('test', async ({ page }) => {
   await page.locator('.sisad-pdfme-designer-detail-view-sections').click();
   await page.getByRole('button', { name: 'Expandir sección Reglas de' }).click();
   await page.locator('div').filter({ hasText: /^Solo lectura$/ }).nth(5).click();
+  // Wait for the active-recipient select to appear and be interactive.
+  await expect(page.getByTestId('designer-activerecipient-select')).toBeVisible({ timeout: 20000 });
   await page.getByTestId('designer-activerecipient-select').selectOption('bob');
   await page.getByTestId('designer-activerecipient-select').selectOption('carla');
   await page.getByTestId('designer-activerecipient-select').selectOption('bob');

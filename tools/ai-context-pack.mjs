@@ -110,7 +110,7 @@ const GENERATED_PATTERNS = [
 const PROFILE_CONFIG = {
   react: {
     label: 'Frontend React / Vite',
-    exts: ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs', '.json'],
+    exts: ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs', '.json', 'py','yaml', '.yml', '.toml', ],
     defaultOutput: 'codigo-frontend.md',
     defaultMaxFileKb: 90,
     defaultMaxTotalKb: 2500,

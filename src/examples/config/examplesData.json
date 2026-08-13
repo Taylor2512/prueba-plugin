@@ -1,0 +1,148 @@
+{
+  "layout": {
+    "pageSize": {
+      "width": 210,
+      "height": 297
+    },
+    "pagePadding": [15, 15, 15, 15],
+    "gaps": {
+      "column": 6,
+      "row": 6
+    },
+    "fallbackSize": {
+      "width": 45,
+      "height": 7
+    }
+  },
+  "sampleValues": {
+    "es": {
+      "text": "Texto de ejemplo",
+      "multiVariableText": "Linea 1\nLinea 2\nLinea 3",
+      "fullName": "Ada Lovelace",
+      "emailAddress": "ada@acme.com",
+      "company": "Acme Labs",
+      "title": "Analista senior",
+      "number": "42",
+      "date": "2026-07-29",
+      "time": "14:30",
+      "dateTime": "2026-07-29 14:30",
+      "checkbox": "true"
+    },
+    "en": {
+      "text": "Sample text",
+      "multiVariableText": "Line 1\nLine 2\nLine 3",
+      "fullName": "Ada Lovelace",
+      "emailAddress": "ada@acme.com",
+      "company": "Acme Labs",
+      "title": "Senior analyst",
+      "number": "42",
+      "date": "2026-07-29",
+      "time": "14:30",
+      "dateTime": "2026-07-29 14:30",
+      "checkbox": "true"
+    }
+  },
+  "recipients": {
+    "multiUser": [
+      { "id": "alice", "name": "Alice", "color": "#2563eb" },
+      { "id": "bob", "name": "Bob", "color": "#f59e0b" },
+      { "id": "carla", "name": "Carla", "color": "#10b981" }
+    ]
+  },
+  "familySources": {
+    "multiUser": ["text", "choice", "boolean", "signature"]
+  },
+  "families": {
+    "text": {
+      "slug": "text",
+      "title": "Texto y campos simples",
+      "description": "Ejemplos de texto, texto ampliado, prefills y campos de datos simples.",
+      "types": ["text", "number", "fullName", "emailAddress", "company", "title"]
+    },
+    "multiVariableText": {
+      "slug": "multi-variable-text",
+      "title": "Texto multivariable",
+      "description": "Un ejemplo dedicado al campo de texto multilineal y sus variantes de contenido.",
+      "types": ["multiVariableText"]
+    },
+    "choice": {
+      "slug": "choice",
+      "title": "Selección",
+      "description": "Select, radioGroup, checkbox y checkboxGroup con la misma base runtime.",
+      "types": ["select", "dropdown", "radioGroup", "checkboxGroup"]
+    },
+    "boolean": {
+      "slug": "boolean",
+      "title": "Booleanos",
+      "description": "Checkbox como caso aislado para validar el flujo booleano con una ruta propia.",
+      "types": ["checkbox"]
+    },
+    "dateTime": {
+      "slug": "date-time",
+      "title": "Fecha y hora",
+      "description": "Casos de fecha, hora y fecha-hora renderizados como runtime editable.",
+      "types": ["date", "time", "dateTime"]
+    },
+    "signature": {
+      "slug": "signature",
+      "title": "Firma",
+      "description": "Firma dibujada, iniciales y fecha de firma en un mismo flujo de ejemplo.",
+      "types": ["signature", "initials", "dateSigned"]
+    },
+    "table": {
+      "slug": "table",
+      "title": "Tablas",
+      "description": "La familia tabular con un layout compacto y repetible.",
+      "types": ["table"]
+    },
+    "barcode": {
+      "slug": "barcode",
+      "title": "Códigos de barras",
+      "description": "Códigos 1D/2D agrupados de forma genérica y totalmente data-driven.",
+      "types": [
+        "qrcode",
+        "japanpost",
+        "ean13",
+        "ean8",
+        "code39",
+        "code128",
+        "nw7",
+        "itf14",
+        "upca",
+        "upce",
+        "gs1datamatrix",
+        "pdf417"
+      ]
+    },
+    "media": {
+      "slug": "media",
+      "title": "Media",
+      "description": "Imagen y SVG como campos visuales reutilizables.",
+      "types": ["image", "svg"]
+    },
+    "shape": {
+      "slug": "shape",
+      "title": "Formas",
+      "description": "Línea, rectángulo y elipse como soporte de composición visual.",
+      "types": ["line", "rectangle", "ellipse"]
+    },
+    "action": {
+      "slug": "action",
+      "title": "Acciones",
+      "description": "Attachment, note, approve y decline como acciones de flujo.",
+      "types": ["attachment", "note", "approve", "decline"]
+    }
+  },
+  "demoDocuments": [
+    {
+      "id": "contrato-marco",
+      "label": "Contrato marco",
+      "groups": [{ "title": "Datos del contrato", "familyKeys": ["text", "choice"] }]
+    },
+    {
+      "id": "anexo-firmas",
+      "label": "Anexo de firmas",
+      "groups": [{ "title": "Firmas y aprobaciones", "familyKeys": ["signature", "boolean"] }]
+    }
+  ]
+}

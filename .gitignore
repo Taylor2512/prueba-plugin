@@ -90,3 +90,5 @@ coverage-final.json
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+testsprite_tests/tmp/
+testsprite_tests/tmp/config.json
