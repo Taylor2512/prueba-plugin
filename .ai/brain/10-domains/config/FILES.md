@@ -1,0 +1,21 @@
+# Files — config
+
+- `src/sisad-pdfme/config/SisadPdfmeConfig.ts` — 418 líneas — completo
+- `src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts` — 302 líneas — completo
+- `src/sisad-pdfme/config/actionConfigRegistry.ts` — 256 líneas — completo
+- `src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts` — 235 líneas — completo
+- `src/sisad-pdfme/config/SisadPdfmeConfigService.ts` — 232 líneas — completo
+- `src/sisad-pdfme/config/featureRegistry.ts` — 232 líneas — completo
+- `src/sisad-pdfme/config/schemaConfigurationProfile.ts` — 192 líneas — completo
+- `src/sisad-pdfme/config/componentRegistry.ts` — 185 líneas — completo
+- `src/sisad-pdfme/config/schemaCapabilityResolver.ts` — 151 líneas — completo
+- `src/sisad-pdfme/config/configSelectors.ts` — 120 líneas — completo
+- `src/sisad-pdfme/config/configMigration.ts` — 115 líneas — completo
+- `src/sisad-pdfme/config/configValidation.ts` — 103 líneas — completo
+- `src/sisad-pdfme/config/configFromRuntimeOptions.ts` — 79 líneas — completo
+- `src/sisad-pdfme/config/index.ts` — 62 líneas — completo
+- `src/sisad-pdfme/config/configChangeImpact.ts` — 49 líneas — completo
+- `src/sisad-pdfme/config/profiledConfig.ts` — 41 líneas — completo
+- `src/sisad-pdfme/config/InspectorConfigurationResolver.ts` — 31 líneas — completo
+- `src/sisad-pdfme/config/featureDependencies.ts` — 14 líneas — completo
+- `src/sisad-pdfme/config/createSisadPdfmeConfig.ts` — 5 líneas — completo

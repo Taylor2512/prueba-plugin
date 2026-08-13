@@ -8,7 +8,7 @@
 
 - task-card activa
 - skill `sisad-knowledge-gc`
-- `.ai/architecture/MEMORY-ARCHITECTURE-V7.md` solo si responde una incógnita
+- `.ai/architecture/MEMORY-ARCHITECTURE.md` solo si responde una incógnita
 - `.ai/memory/INDEX.md` solo si responde una incógnita
 
 ## Output

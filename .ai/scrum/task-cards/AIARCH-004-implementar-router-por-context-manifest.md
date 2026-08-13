@@ -38,8 +38,8 @@ Resolver intención a route/owner/skill/symbol budget sin cargar carpetas.
 ## Evidence
 
 - latest documentation pack: `documentacion-sisad—pdmfe-web(60).md`
-- V7 source map: `.ai/architecture/AI-ASSISTANT-ARCHITECTURE-V7.md`
-- official provider findings: `.ai/research/OFFICIAL-PROVIDER-FINDINGS-2026-07-31.md`
+- source map: `.ai/architecture/AI-ASSISTANT-ARCHITECTURE.md`
+- official provider findings: `.ai/research/OFFICIAL-PROVIDER-FINDINGS.md`
 
 ## Allowed files
 

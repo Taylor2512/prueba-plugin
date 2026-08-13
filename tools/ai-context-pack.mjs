@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-/* global console, process */
-
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -59,7 +57,8 @@ const HARD_IGNORE_DIR_PATTERNS = [
   'tools/ReverseEngineering/**', '**/tools/ReverseEngineering/**',
   'image/**', '**/image/**',
   'images/**', '**/images/**',
-  'screenshots/**', '**/screenshots/**'
+  'screenshots/**', '**/screenshots/**',
+  "**/vendor/**", "**/vendor/**", "**/packages/**", "**/packages-lock.json", "**/yarn.lock", "**/pnpm-lock.yaml", "**/bun.lockb"
 ];
 
 const COMMON_IGNORE_FILE_PATTERNS = [
@@ -328,7 +327,7 @@ function stripCommentsForAi(content, ext) {
 function safeReadDir(dir) {
   try {
     return fs.readdirSync(dir, { withFileTypes: true });
-  } catch (error) {
+  } catch {
     return [];
   }
 }
@@ -441,12 +440,12 @@ function extractSymbols(content, ext) {
     addMatches(/^\s*const\s+([A-Z][A-Za-z0-9_$]*)\s*=\s*(?:\(|memo\(|forwardRef\(|function|async)/gm, 'component/const', 8);
   } else if (ext === '.cs') {
     addMatches(/^\s*(?:public|private|internal|protected)?\s*(?:sealed\s+|static\s+|partial\s+|abstract\s+)*(?:class|record|interface|enum)\s+([A-Za-z0-9_]+)/gm, 'type');
-    addMatches(/^\s*(?:public|private|internal|protected)\s+(?:async\s+)?[A-Za-z0-9_<>,?\[\]\s]+\s+([A-Za-z0-9_]+)\s*\(/gm, 'method', 12);
+    addMatches(/^\s*(?:public|private|internal|protected)\s+(?:async\s+)?[A-Za-z0-9_<>,?[\]\s]+\s+([A-Za-z0-9_]+)\s*\(/gm, 'method', 12);
   } else if (ext === '.sql') {
-    addMatches(/\bCREATE\s+(?:OR\s+ALTER\s+)?TABLE\s+\[?([A-Za-z0-9_.\]\[]+)/gim, 'table', 20);
-    addMatches(/\bCREATE\s+(?:OR\s+ALTER\s+)?(?:PROCEDURE|PROC)\s+\[?([A-Za-z0-9_.\]\[]+)/gim, 'procedure', 20);
-    addMatches(/\bCREATE\s+(?:OR\s+ALTER\s+)?VIEW\s+\[?([A-Za-z0-9_.\]\[]+)/gim, 'view', 20);
-    addMatches(/\bCREATE\s+(?:OR\s+ALTER\s+)?FUNCTION\s+\[?([A-Za-z0-9_.\]\[]+)/gim, 'function', 20);
+    addMatches(/\bCREATE\s+(?:OR\s+ALTER\s+)?TABLE\s+\[?([A-Za-z0-9_.\][]+)/gim, 'table', 20);
+    addMatches(/\bCREATE\s+(?:OR\s+ALTER\s+)?(?:PROCEDURE|PROC)\s+\[?([A-Za-z0-9_.\][]+)/gim, 'procedure', 20);
+    addMatches(/\bCREATE\s+(?:OR\s+ALTER\s+)?VIEW\s+\[?([A-Za-z0-9_.\][]+)/gim, 'view', 20);
+    addMatches(/\bCREATE\s+(?:OR\s+ALTER\s+)?FUNCTION\s+\[?([A-Za-z0-9_.\][]+)/gim, 'function', 20);
   } else if (ext === '.css' || ext === '.scss' || ext === '.less') {
     addMatches(/^\s*(:root|\.[A-Za-z0-9_-]+|#[A-Za-z0-9_-]+)\s*[,{]/gm, 'selector', 16);
   }
@@ -691,8 +690,6 @@ function buildMarkdown({ rootDir, profileName, profile, files, skipped, options 
     const symbols = options.symbols ? extractSymbols(content, ext) : [];
     const lineCount = countLines(content);
     const originalHash = hashContent(raw);
-
-    const currentBudgetKb = Buffer.byteLength(content, 'utf8') / 1024;
 
     if (options.mode === 'summary') {
       fileRows.push(`| ${index + 1} | \`${relPath}\` | ${language} | ${lineCount} | ${originalKb.toFixed(1)} | resumen/símbolos |`);

@@ -64,7 +64,7 @@ como sustitutos de significado.
 Usa el concepto real:
 
 ```text
-V1 / V2 / V3 / preV2
+V1 / / / preV2
 sourcePath / targetPath
 resolvedConfig
 domainEvent
@@ -320,7 +320,7 @@ Trabaja por task-cards independientes:
 NAME-001 inventory
 NAME-002 policy-and-gate
 NAME-003 inspector-internal-renames
-NAME-004 config-v1-v2
+NAME-004 config
 NAME-005 events-host-callbacks
 NAME-006 snapshot-and-designer-meta
 NAME-007 websocket-provider

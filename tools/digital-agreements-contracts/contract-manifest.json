@@ -1,0 +1,29 @@
+{
+  "campaign": "DA-FE-CONTRACT",
+  "repoRootExample": "/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin",
+  "baselinePaths": [
+    "src/features/DigitalAgreements/features/designer/hooks/useTemplateSave.js",
+    "src/redux/states/FormsPDF.js",
+    "src/modules/externalForms/pages/Editor.jsx",
+    "src/modules/externalForms/components/ContentEditor/Forms/ContentFormEditor/ContentFormEditor.jsx",
+    "src/features/DigitalAgreements/core/domain/recipients/recipientRouting.js",
+    "unificados/codigo-frontend-web.md",
+    "unificados/documentacion-sisad-web.md",
+    "unificados/styles-web.md"
+  ],
+  "invariants": {
+    "backendWriteForbidden": true,
+    "generatedUnificadosHandEditForbidden": true,
+    "runtimeEditableComponent": "SisadPdfmeForm",
+    "aggregateMultipartFields": [
+      "jsonTxt",
+      "filesTemplate"
+    ],
+    "templateUpdateVersionFlag": "changed",
+    "runtimeIsolationKeyParts": [
+      "requestId",
+      "recipientId",
+      "documentIdentity"
+    ]
+  }
+}

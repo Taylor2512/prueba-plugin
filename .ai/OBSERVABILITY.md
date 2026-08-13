@@ -1,4 +1,4 @@
-# Observabilidad V7
+# Observabilidad
 
 Cada task-card registra métricas mínimas:
 

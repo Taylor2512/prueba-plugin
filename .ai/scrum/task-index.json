@@ -1,0 +1,411 @@
+[
+  {
+    "id": "AIARCH-001",
+    "title": "Auditar y congelar baseline",
+    "wave": "W0",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "memory-steward",
+    "dependencies": [],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline-v6.md"
+  },
+  {
+    "id": "AIARCH-002",
+    "title": "Corregir fuente de estado y arranque",
+    "wave": "W0",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "coordinator",
+    "dependencies": [
+      "AIARCH-001"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-002-corregir-fuente-de-estado-y-arranque.md"
+  },
+  {
+    "id": "AIARCH-003",
+    "title": "Adoptar adapters raíz",
+    "wave": "W0",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "provider-adapter-steward",
+    "dependencies": [
+      "AIARCH-001"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz-v7.md"
+  },
+  {
+    "id": "AIARCH-004",
+    "title": "Implementar router por Context Manifest",
+    "wave": "W0",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "architect",
+    "dependencies": [
+      "AIARCH-002"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md"
+  },
+  {
+    "id": "AIARCH-005",
+    "title": "Aplicar presupuesto L0–L4",
+    "wave": "W0",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "token-steward",
+    "dependencies": [
+      "AIARCH-004"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md"
+  },
+  {
+    "id": "AIARCH-006",
+    "title": "Crear generador de context packets",
+    "wave": "W1",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "implementer",
+    "dependencies": [
+      "AIARCH-004",
+      "AIARCH-005"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md"
+  },
+  {
+    "id": "AIARCH-007",
+    "title": "Migrar memoria a índice y topics",
+    "wave": "W1",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "memory-steward",
+    "dependencies": [
+      "AIARCH-001"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md"
+  },
+  {
+    "id": "AIARCH-008",
+    "title": "Implementar memory GC e invalidación",
+    "wave": "W1",
+    "priority": "P1",
+    "risk": "medium",
+    "owner": "memory-steward",
+    "dependencies": [
+      "AIARCH-007"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md"
+  },
+  {
+    "id": "AIARCH-009",
+    "title": "Adoptar IDs de trazabilidad",
+    "wave": "W1",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "traceability-steward",
+    "dependencies": [
+      "AIARCH-001"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md"
+  },
+  {
+    "id": "AIARCH-010",
+    "title": "Generar method registry desde código",
+    "wave": "W1",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "traceability-steward",
+    "dependencies": [
+      "AIARCH-009"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-010-generar-method-registry-desde-codigo.md"
+  },
+  {
+    "id": "AIARCH-011",
+    "title": "Consolidar casos y behavior catalog",
+    "wave": "W1",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "traceability-steward",
+    "dependencies": [
+      "AIARCH-009"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-011-consolidar-casos-y-behavior-catalog.md"
+  },
+  {
+    "id": "AIARCH-012",
+    "title": "Consolidar event/effect catalogs",
+    "wave": "W1",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "runtime-architect",
+    "dependencies": [
+      "AIARCH-009"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-012-consolidar-event-effect-catalogs.md"
+  },
+  {
+    "id": "AIARCH-013",
+    "title": "Construir trace matrix y coverage gate",
+    "wave": "W1",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "traceability-steward",
+    "dependencies": [
+      "AIARCH-010",
+      "AIARCH-011",
+      "AIARCH-012"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-013-construir-trace-matrix-y-coverage-gate.md"
+  },
+  {
+    "id": "AIARCH-014",
+    "title": "Depurar skill registry y aliases",
+    "wave": "W2",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "architect",
+    "dependencies": [
+      "AIARCH-001"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-014-depurar-skill-registry-y-aliases.md"
+  },
+  {
+    "id": "AIARCH-015",
+    "title": "Añadir skills de contexto y trazabilidad",
+    "wave": "W2",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "implementer",
+    "dependencies": [
+      "AIARCH-014"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md"
+  },
+  {
+    "id": "AIARCH-016",
+    "title": "Consolidar agent registry",
+    "wave": "W2",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "coordinator",
+    "dependencies": [
+      "AIARCH-001"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-016-consolidar-agent-registry.md"
+  },
+  {
+    "id": "AIARCH-017",
+    "title": "Aplicar política de subagentes y coste",
+    "wave": "W2",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "token-steward",
+    "dependencies": [
+      "AIARCH-016"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md"
+  },
+  {
+    "id": "AIARCH-018",
+    "title": "Actualizar adapter de Claude",
+    "wave": "W2",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "provider-adapter-steward",
+    "dependencies": [
+      "AIARCH-003",
+      "AIARCH-015",
+      "AIARCH-017"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-018-actualizar-adapter-de-claude.md"
+  },
+  {
+    "id": "AIARCH-019",
+    "title": "Actualizar adapter de Codex",
+    "wave": "W2",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "provider-adapter-steward",
+    "dependencies": [
+      "AIARCH-003",
+      "AIARCH-015",
+      "AIARCH-017"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-019-actualizar-adapter-de-codex.md"
+  },
+  {
+    "id": "AIARCH-020",
+    "title": "Actualizar adapter de Copilot",
+    "wave": "W2",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "provider-adapter-steward",
+    "dependencies": [
+      "AIARCH-003",
+      "AIARCH-015",
+      "AIARCH-016"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-020-actualizar-adapter-de-copilot.md"
+  },
+  {
+    "id": "AIARCH-021",
+    "title": "Implementar provider drift gate",
+    "wave": "W2",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "qa",
+    "dependencies": [
+      "AIARCH-018",
+      "AIARCH-019",
+      "AIARCH-020"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-021-implementar-provider-drift-gate.md"
+  },
+  {
+    "id": "AIARCH-022",
+    "title": "Migrar task-card a esquema",
+    "wave": "W3",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "coordinator",
+    "dependencies": [
+      "AIARCH-004",
+      "AIARCH-009"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema-v7.md"
+  },
+  {
+    "id": "AIARCH-023",
+    "title": "Consolidar Scrum, claims y vistas",
+    "wave": "W3",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "coordinator",
+    "dependencies": [
+      "AIARCH-002",
+      "AIARCH-022"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-023-consolidar-scrum-claims-y-vistas.md"
+  },
+  {
+    "id": "AIARCH-024",
+    "title": "Crear evidence store y log distillation",
+    "wave": "W3",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "qa",
+    "dependencies": [
+      "AIARCH-005"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-024-crear-evidence-store-y-log-distillation.md"
+  },
+  {
+    "id": "AIARCH-025",
+    "title": "Crear validadores mecánicos",
+    "wave": "W3",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "implementer",
+    "dependencies": [
+      "AIARCH-005",
+      "AIARCH-013",
+      "AIARCH-021",
+      "AIARCH-022"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos-v7.md"
+  },
+  {
+    "id": "AIARCH-026",
+    "title": "Crear evals por proveedor y caso de uso",
+    "wave": "W3",
+    "priority": "P1",
+    "risk": "high",
+    "owner": "qa",
+    "dependencies": [
+      "AIARCH-015",
+      "AIARCH-021"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md"
+  },
+  {
+    "id": "AIARCH-027",
+    "title": "Migrar planes COREUX/DECL/RESTORE",
+    "wave": "W4",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "coordinator",
+    "dependencies": [
+      "AIARCH-011",
+      "AIARCH-022"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-027-migrar-planes-coreux-decl-restore.md"
+  },
+  {
+    "id": "AIARCH-028",
+    "title": "Eliminar duplicación Markdown y archivos obsoletos",
+    "wave": "W4",
+    "priority": "P0",
+    "risk": "high",
+    "owner": "memory-steward",
+    "dependencies": [
+      "AIARCH-025",
+      "AIARCH-027"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md"
+  },
+  {
+    "id": "AIARCH-029",
+    "title": "Integrar scripts en package/CI",
+    "wave": "W4",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "qa",
+    "dependencies": [
+      "AIARCH-025"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-029-integrar-scripts-en-package-ci.md"
+  },
+  {
+    "id": "AIARCH-030",
+    "title": "Rollout, documentación y retrospectiva",
+    "wave": "W4",
+    "priority": "P0",
+    "risk": "medium",
+    "owner": "coordinator",
+    "dependencies": [
+      "AIARCH-026",
+      "AIARCH-028",
+      "AIARCH-029"
+    ],
+    "state": "backlog",
+    "file": ".ai/scrum/task-cards/AIARCH-030-rollout-v7-documentacion-y-retrospectiva.md"
+  }
+]

@@ -1,7 +1,19 @@
 # AI quality tools
 
-- `parse-jscpd-report.mjs`: categoriza clones sin pegar el reporte completo en el chat.
-- `check-markdown-duplicates.mjs`: detecta párrafos largos repetidos en documentación activa.
-- `validate-ai-architecture.mjs`: valida archivos requeridos, skills y enlaces relativos.
+- architecture validation;
+- Markdown deduplication;
+- task-card lint;
+- risk classifier;
+- write lease overlap detection;
+- context manifest;
+- session preflight;
+- Claude hook policy;
+- reproducible manifest/checksums.
 
-Los scripts usan Node estándar y no escriben código de aplicación.
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Notas
+
+- [Knowledge index tools](./README-KNOWLEDGE-INDEX.md)
+<!-- project-tools:navigation:end -->

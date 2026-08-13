@@ -7,7 +7,7 @@ Tailwind, accesibilidad, sistemas de diseño y editores PDF.
 
 Ejecutar el plan:
 
-`.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME_2026-08-04.md`
+`.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md`
 
 La UI debe corregirse sin filtrar lógica visual al host y sin crear fuentes
 paralelas.

@@ -1,4 +1,4 @@
-# Agent registry V7
+# Agent registry
 
 | Agent | Mode | Purpose |
 |---|---|---|

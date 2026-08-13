@@ -1,0 +1,7 @@
+import fs from "node:fs"; import path from "node:path"; import {fileURLToPath} from "node:url";
+const root=path.resolve(process.argv[2]||"."); const dry=process.argv.includes("--dry-run"); const here=path.dirname(fileURLToPath(import.meta.url)); const templates=path.resolve(here,"../templates"); const stamp=new Date().toISOString().replace(/[:.]/g,"-"); const archive=path.join(root,".ai/archive/documentation-recovery",stamp); const actions=[];
+function repair(rel,template, predicate){const p=path.join(root,rel); if(!fs.existsSync(p))return; const old=fs.readFileSync(p,"utf8"); if(!predicate(old))return; actions.push(rel); if(dry)return; fs.mkdirSync(archive,{recursive:true}); const safe=rel.replaceAll("/","__"); fs.writeFileSync(path.join(archive,safe+".pre-repair.md"),old); fs.writeFileSync(p,fs.readFileSync(path.join(templates,template),"utf8"));}
+repair("README.md","README.project.md",t=>/SISAD-WEB Brain v2 — overlay documental|SISAD — Workflow Persistence Overlay/i.test(t));
+repair("docs/README.md","docs.README.md",t=>t.includes("02-sisad-pdfme")||(/# docs\/ — Documentación funcional/.test(t)&&!t.includes("05-data-and-integration")));
+repair(".ai/brain/90-reference/DOCUMENTATION-MAP.md","DOCUMENTATION-MAP.redirect.md",t=>t.startsWith("# Documentation Map")&&(t.includes("docs/02-sisad-pdfme/")||t.split(/\n/).length>300));
+console.log(`${dry?"Would repair":"Repaired"} ${actions.length} entrypoint(s): ${actions.join(", ")||"none"}`); if(!dry&&actions.length)console.log(`Backups: ${path.relative(root,archive)}`);

@@ -1,0 +1,257 @@
+{
+  "package": "SISAD-PDFME-TOOLING-ARCHITECTURE-CLEANUP",
+  "targetRepository": "/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin",
+  "purpose": "Centralize scripts/tools configuration, remove Markdown/tooling duplication, sanitize versioned architecture paths, index/link Markdown, and safely import architecture overlays.",
+  "canonicalConfig": "config/tooling/project-tools.config.mjs",
+  "canonicalCli": "scripts/project-tools.mjs",
+  "initialTask": "TOOL-BASELINE",
+  "design": {
+    "stableSemanticPaths": true,
+    "versionedFilesOrDirectoriesAllowed": false,
+    "externalBackups": true,
+    "importConflictDefault": "keep-target",
+    "protectedHotState": true,
+    "copyGeneratedIndexesFromOverlay": false,
+    "singleMarkdownIndexEngine": true
+  },
+  "validation": {
+    "nodeSyntax": "PASS",
+    "projectToolsSynthetic": "PASS",
+    "architectureImporterFolderSynthetic": "PASS",
+    "architectureImporterZipSynthetic": "PASS",
+    "selfArchitectureValidation": "PASS",
+    "versionedPathsInPackage": 0
+  },
+  "files": [
+    {
+      "path": ".ai/brain/20-contracts/DOCUMENTATION-NAMING.md",
+      "bytes": 417,
+      "sha256": "0bf4a6d66f0d192c7cf7ec8e02c405bcf13a4dbf19d7d4a55e8967fdde721200"
+    },
+    {
+      "path": ".ai/brain/30-decisions/ADR-TOOLING-CENTRALIZATION.md",
+      "bytes": 576,
+      "sha256": "4475d5225ead444c96cba73a1f6447573663b7d322acb4a94331110448914c41"
+    },
+    {
+      "path": ".ai/brain/50-guides/PROJECT-TOOLS.md",
+      "bytes": 335,
+      "sha256": "53f98aaaea0431482a73ece68f9661bc2b190bdd0f43172f59abf6122946989d"
+    },
+    {
+      "path": ".ai/brain/70-memory/topics/tooling-architecture.md",
+      "bytes": 457,
+      "sha256": "2d8613f0e94fba5036f4059c2f311bfd8759b320afd432810384dca2f248648e"
+    },
+    {
+      "path": ".ai/index/architecture/broken-links.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".ai/index/architecture/duplicates.json",
+      "bytes": 32,
+      "sha256": "aeb6280ef3ab8467aa889410e7733d53cfb30c281d634361a02c16b18fa7dafe"
+    },
+    {
+      "path": ".ai/index/architecture/links.jsonl",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": ".ai/index/architecture/markdown.jsonl",
+      "bytes": 6252,
+      "sha256": "824752032664010eef9697b97392bc0219131b8c872d73264cd9b178b67db886"
+    },
+    {
+      "path": ".ai/index/architecture/orphans.jsonl",
+      "bytes": 5740,
+      "sha256": "e8ce5f9e52906387238351dc02078ea4f6afb4fa3009961dedfacc7ecf0eba86"
+    },
+    {
+      "path": ".ai/plans/PLAN_TOOLING_ARCHITECTURE_CLEANUP.md",
+      "bytes": 1533,
+      "sha256": "ca0f0a4c87687225cd5ac23f1c8712685856cd0209777485c4bd200e9e9df27c"
+    },
+    {
+      "path": ".ai/prompts/TOOLING-ARCHITECTURE-START.md",
+      "bytes": 1118,
+      "sha256": "784cde901f319e4298cd9882339c293cb65784d82fb997b80fc69ad7d2383c01"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md",
+      "bytes": 581,
+      "sha256": "5a4d042344595fbcab4c238588b60ed4b07d42571742ee6e6f4b0c9f2d4e174b"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md",
+      "bytes": 556,
+      "sha256": "77e3589c5a88d056e952017157ee846cc4f05f2aa1ab7162088b275af1d4abad"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md",
+      "bytes": 564,
+      "sha256": "0e3a8b0b1600852e9efec478d4fda756f354feabe9eca7288f302b12cebf8067"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md",
+      "bytes": 545,
+      "sha256": "d31830ef1b10d1d7aea9b37a69ff043f2f19acb9977b8c7943d1ce1f60a7ca28"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md",
+      "bytes": 573,
+      "sha256": "102b4b5f7815ff7938ffe86576a41ec8d4958caf7427b833e042b2f3c4298546"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md",
+      "bytes": 561,
+      "sha256": "d7342234cb31f7a8e29736e900db557494714429415516e4c9a7c35981cafabf"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md",
+      "bytes": 561,
+      "sha256": "bd962aae7d1b9e5c919b3a794c47982c394d0f8e9cd53618e00f5a3297151834"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md",
+      "bytes": 573,
+      "sha256": "98c70b3359695995db1e73754d55735db62fdb0a303565b4c872ebb232de95c6"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md",
+      "bytes": 567,
+      "sha256": "efeb6e219b0ae4538d7aef7956fc6ce0ab751b4f580e6e0455bd48649e6cfe3a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 746,
+      "sha256": "7c7a911b660ea9078ee702de3fcdec9378cb12c3be883e773447b529b83ea75d"
+    },
+    {
+      "path": "config/tooling/project-tools.config.mjs",
+      "bytes": 3951,
+      "sha256": "c993d652afdba0940df34cab76e82f4c2b0f2fe3df95cbbc3fda7dbebc1f995f"
+    },
+    {
+      "path": "docs/tooling/ARCHITECTURE-IMPORT.md",
+      "bytes": 886,
+      "sha256": "87a007c92ba53778b77f2cab88c289cc7e430d0a021761aeb568d0ca2be21c5e"
+    },
+    {
+      "path": "docs/tooling/COMMANDS.md",
+      "bytes": 2246,
+      "sha256": "f4fae1ef36c3db1ed1ecfd094197f07575621c4cbc63383795d16c782b2e7bbb"
+    },
+    {
+      "path": "docs/tooling/MARKDOWN-SANITIZATION.md",
+      "bytes": 822,
+      "sha256": "0ace559b05d72665341b6154fdd3d0fb3d7f3d501cc8f7ae5fc99dace00b02c6"
+    },
+    {
+      "path": "docs/tooling/README.md",
+      "bytes": 825,
+      "sha256": "24db937d24298d8160f52c72246002004d434d377391f018cfefc20ad82e5815"
+    },
+    {
+      "path": "reports/architecture/summary.json",
+      "bytes": 149,
+      "sha256": "971b4b1ede4061176302f6bc328ad7fac6fc8b60642abab8c1c7fd32ea0955f8"
+    },
+    {
+      "path": "reports/tooling-architecture/ANALYSIS.md",
+      "bytes": 1920,
+      "sha256": "27cdd4b892d80eaad252d297e0fa84efa8db3aed26ffac6b852ffae7102511cb"
+    },
+    {
+      "path": "reports/tooling-architecture/MIGRATION-MAP.json",
+      "bytes": 1272,
+      "sha256": "a20398ef96bebb17d4703fd06dd8c3f2c29cee72ce04ba90a3f809b8c85df7b0"
+    },
+    {
+      "path": "scripts/apply-markdown-topology.mjs",
+      "bytes": 513,
+      "sha256": "c7a9d0e1e41222c8f294ad05f16aaa37edb010b69ce53290075ac104d34fdf55"
+    },
+    {
+      "path": "scripts/build-markdown-topology.mjs",
+      "bytes": 513,
+      "sha256": "abd8c81acafeb635d000a2e07b10a5697557b420201994de598d415990094d67"
+    },
+    {
+      "path": "scripts/cleanup-packaging-residue.mjs",
+      "bytes": 532,
+      "sha256": "61ddaeea883932c211ddf56f261b8c2c4a96ae9ab319d50f645881b85ca98cfc"
+    },
+    {
+      "path": "scripts/install-project-tools.mjs",
+      "bytes": 3658,
+      "sha256": "ae6aeb68e37a35b6fafa5a743a5854de1994c7048b51a46e7cd9f2157c4cc93f"
+    },
+    {
+      "path": "scripts/normalize-documentation.mjs",
+      "bytes": 516,
+      "sha256": "e618c555c6d9f02d45ff9e7a3a2bea3256efd710a3de5ab0684d141090a13fec"
+    },
+    {
+      "path": "scripts/project-tools.mjs",
+      "bytes": 5688,
+      "sha256": "17210a69cac8861a612c0dda68c03cdd9632a0cc37d57a4167e897f99eab2d3b"
+    },
+    {
+      "path": "scripts/tooling/architecture.mjs",
+      "bytes": 16599,
+      "sha256": "342f067571824b87d6e60bae66d4c07c1b059749795a56291ad62f2070374f3d"
+    },
+    {
+      "path": "scripts/tooling/core.mjs",
+      "bytes": 4760,
+      "sha256": "a1a4fc150973ff304dfe20d5a6605f1a5f49a2a7b493d8bba84ff974d2c17537"
+    },
+    {
+      "path": "scripts/tooling/importer.mjs",
+      "bytes": 8677,
+      "sha256": "383a288e0f06e7598b30e479c555bd857f4f43fb888af6158766ba74b6c8dea7"
+    },
+    {
+      "path": "scripts/tooling/markdown.mjs",
+      "bytes": 7055,
+      "sha256": "b698695faa4c7218810b382f8c0b6d458440bd11998f863142f138a0ee59366c"
+    },
+    {
+      "path": "scripts/validate-documentation-names.mjs",
+      "bytes": 531,
+      "sha256": "cfd4bc7fef9f38588ad12833761daa20c72a8a04c3c26b754e0ae31ed4d724d8"
+    },
+    {
+      "path": "scripts/validate-markdown-topology.mjs",
+      "bytes": 531,
+      "sha256": "30b3f8031af2ba60900dfce3aacad0c0fc77ae24b2a555a997ef5d0d5e8d4b99"
+    },
+    {
+      "path": "tests/tooling/importer.test.mjs",
+      "bytes": 1864,
+      "sha256": "339d0661a6de8a8115ab66ed008a2acfbd7700af2c0bbbc469616f4e53788e6c"
+    },
+    {
+      "path": "tests/tooling/project-tools.test.mjs",
+      "bytes": 1873,
+      "sha256": "796c9b806d05952dad73c72a22a461accc20c4de04a8bb8ed67f30818bae063f"
+    },
+    {
+      "path": "tools/ai-quality/build-knowledge-index.mjs",
+      "bytes": 527,
+      "sha256": "16365e8b087cff5aa5f7f8d261f733d0de0dfcb8e9a58bdb9486f3173f0145c0"
+    },
+    {
+      "path": "tools/ai-quality/check-markdown-duplicates.mjs",
+      "bytes": 532,
+      "sha256": "81082a373d10f857423da43cb76300670caee1db0f75ed259874a9019f2bc114"
+    },
+    {
+      "path": "tools/ai-quality/validate-knowledge-index.mjs",
+      "bytes": 530,
+      "sha256": "0dd952b74869e406b14228ccf43ac78dab1dba630647814fa31560bd6bd63ea7"
+    }
+  ]
+}

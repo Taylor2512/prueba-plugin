@@ -1,0 +1,179 @@
+# Files — ui
+
+- `src/sisad-pdfme/ui/components/Designer/index.tsx` — 4536 líneas — truncado 83.0 KB
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx` — 2133 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx` — 2029 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` — 1942 líneas — completo
+- `src/sisad-pdfme/ui/collaboration.ts` — 1524 líneas — completo
+- `src/sisad-pdfme/ui/designerEngine.ts` — 1417 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx` — 1074 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts` — 957 líneas — completo
+- `src/sisad-pdfme/ui/i18n.ts` — 915 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx` — 792 líneas — completo
+- `src/sisad-pdfme/ui/components/usePreviewRuntime.ts` — 781 líneas — completo
+- `src/sisad-pdfme/ui/collaboration/schemaRuntimeAccess.ts` — 765 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx` — 758 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts` — 657 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/CtlBar.tsx` — 643 líneas — completo
+- `src/sisad-pdfme/ui/helper.ts` — 629 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts` — 620 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx` — 609 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx` — 585 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` — 580 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts` — 568 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` — 547 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts` — 521 líneas — completo
+- `src/sisad-pdfme/ui/hooks.ts` — 508 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx` — 473 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx` — 447 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx` — 446 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx` — 443 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Renderer.tsx` — 440 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx` — 430 líneas — truncado 10.1 KB
+- `src/sisad-pdfme/ui/Designer.tsx` — 412 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` — 401 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts` — 389 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/runtimeStyles.ts` — 377 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx` — 370 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx` — 363 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SchemaAssignmentDialog.tsx` — 354 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` — 347 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx` — 345 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx` — 343 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx` — 336 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx` — 332 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/class.ts` — 324 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx` — 316 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx` — 310 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts` — 309 líneas — completo
+- `src/sisad-pdfme/ui/commands/designerCommands.ts` — 306 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/TypeFilterSelect.tsx` — 299 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts` — 290 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx` — 285 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/collaborationContext.ts` — 277 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx` — 270 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/accessPolicy.ts` — 266 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts` — 265 líneas — completo
+- `src/sisad-pdfme/ui/components/Paper.tsx` — 259 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts` — 258 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx` — 250 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/commands/commandBus.ts` — 237 líneas — completo
+- `src/sisad-pdfme/ui/components/Preview.tsx` — 233 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` — 230 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` — 227 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts` — 212 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts` — 210 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts` — 203 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx` — 199 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/designerActionState.ts` — 189 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/interactionReducer.ts` — 185 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts` — 180 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx` — 171 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx` — 170 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts` — 168 líneas — completo
+- `src/sisad-pdfme/ui/types.ts` — 168 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx` — 167 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx` — 167 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx` — 166 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx` — 162 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx` — 160 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts` — 158 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts` — 156 líneas — completo
+- `src/sisad-pdfme/ui/components/shared/DesignerTooltip.tsx` — 153 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/designerEffectCoordinator.ts` — 152 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts` — 151 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx` — 149 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx` — 144 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts` — 143 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` — 143 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorBooleanSwitch.tsx` — 141 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` — 139 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx` — 139 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx` — 138 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver.ts` — 136 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/zoomContract.ts` — 135 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/useSidebarCollapse.ts` — 133 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx` — 127 líneas — completo
+- `src/sisad-pdfme/ui/components/UnitPager.tsx` — 124 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts` — 120 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx` — 118 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` — 117 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts` — 117 líneas — completo
+- `src/sisad-pdfme/ui/components/AppContextProvider.tsx` — 116 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts` — 115 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/designerLabels.ts` — 113 líneas — completo
+- `src/sisad-pdfme/ui/components/RegisteredUsersSelector.tsx` — 113 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` — 110 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle.tsx` — 108 líneas — completo
+- `src/sisad-pdfme/ui/Form.tsx` — 107 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx` — 107 líneas — completo
+- `src/sisad-pdfme/ui/commands/viewCommands.ts` — 106 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts` — 102 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx` — 102 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx` — 102 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` — 101 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx` — 100 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/reassignActionState.ts` — 99 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/designerExtensions.ts` — 98 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx` — 97 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/DesignerContextSummary.tsx` — 97 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` — 94 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.tsx` — 94 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx` — 92 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts` — 87 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx` — 86 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/designerInteractionReset.ts` — 85 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState.tsx` — 81 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts` — 81 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` — 80 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx` — 79 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/theme.ts` — 75 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts` — 74 líneas — completo
+- `src/sisad-pdfme/ui/components/StaticSchema.tsx` — 73 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` — 69 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts` — 69 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/listViewItemResolver.ts` — 69 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx` — 66 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts` — 62 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts` — 62 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` — 62 líneas — completo
+- `src/sisad-pdfme/ui/components/Root.tsx` — 61 líneas — completo
+- `src/sisad-pdfme/ui/PagedPreviewUI.tsx` — 58 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` — 56 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx` — 52 líneas — completo
+- `src/sisad-pdfme/ui/components/shared/pageMetadata.ts` — 52 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/interactionExclusions.ts` — 50 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts` — 49 líneas — completo
+- `src/sisad-pdfme/ui/index.ts` — 47 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSwitch.tsx` — 46 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.ts` — 46 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy.ts` — 46 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/visibilityConfig.ts` — 45 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorNumberInput.tsx` — 44 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts` — 44 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx` — 43 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSelect.tsx` — 43 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx` — 43 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaFamilies.ts` — 43 líneas — completo
+- `src/sisad-pdfme/ui/components/ErrorScreen.tsx` — 40 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorField.tsx` — 38 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts` — 38 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorDefinitionList.tsx` — 36 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorColorInput.tsx` — 34 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts` — 34 líneas — completo
+- `src/sisad-pdfme/ui/constants.ts` — 33 líneas — completo
+- `src/sisad-pdfme/ui/types/customSchemaRegistry.ts` — 32 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts` — 31 líneas — completo
+- `src/sisad-pdfme/ui/components/Spinner.tsx` — 31 líneas — completo
+- `src/sisad-pdfme/ui/Viewer.tsx` — 30 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts` — 29 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts` — 27 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/contexts.ts` — 26 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDisplayInfo.ts` — 23 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/components/Designer/shared/useDesignerUiConfig.ts` — 22 líneas — completo
+- `src/sisad-pdfme/ui/components/shared/usePaperRefRegistry.ts` — 20 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/shared/className.ts` — 17 líneas — completo
+- `src/sisad-pdfme/ui/components/RuntimeFormPanel.tsx` — 17 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDetailProfiles.ts` — 9 líneas — omitido por presupuesto total
+- `src/sisad-pdfme/ui/utils/cn.ts` — 8 líneas — completo
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaInteractionState.ts` — 7 líneas — omitido por presupuesto total

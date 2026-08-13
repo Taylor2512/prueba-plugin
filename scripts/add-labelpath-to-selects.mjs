@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from "node:fs";
+import process from "node:process";
 import path from "node:path";
 import { parseArgs, readStringArg } from "./lib/cli.js";
 import { readJsonFileSync, writeJsonFileSync } from "./lib/json.js";

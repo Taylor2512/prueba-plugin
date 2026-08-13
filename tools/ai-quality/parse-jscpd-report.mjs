@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
+import process from "node:process";
 import path from 'node:path';
 
 const input = process.argv[2] ?? 'reports/jscpd/jscpd-report.json';

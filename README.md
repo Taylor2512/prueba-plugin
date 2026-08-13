@@ -1,23 +1,49 @@
-# SISAD PDFME — Documentación de implementación V2
+# SISAD-PDFME tooling architecture cleanup
 
-Overlay preparado para la raíz del repositorio `prueba-plugin`.
+Overlay para consolidar `scripts`, `tools` y la arquitectura Markdown del repositorio
+`prueba-plugin`.
 
-## Propósito
+No ejecuta automáticamente la limpieza del repositorio del usuario.
 
-Actualizar la documentación para que un equipo externo pueda copiar,
-configurar, integrar, probar y mantener SISAD PDFME sin depender de conocimiento
-tácito.
-
-## Uso
+## Primero
 
 ```bash
-unzip SISAD-PDFME-DOCUMENTACION-IMPLEMENTACION-V2.zip
-
-rsync -a \
-  SISAD-PDFME-DOCUMENTACION-IMPLEMENTACION-V2/ \
-  /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/
+node scripts/install-project-tools.mjs \
+  "/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin"
 ```
 
-No use `--delete`.
+Eso es dry-run.
 
-Después revise el diff y ejecute los gates indicados en `DOCS-MERGE-MAP.md`.
+Después de revisar:
+
+```bash
+node scripts/install-project-tools.mjs \
+  "/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin" \
+  --apply
+```
+
+Luego:
+
+```bash
+cd "/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin"
+npm run tools:doctor
+npm run docs:sanitize
+```
+
+No ejecutar `docs:sanitize:apply` hasta revisar las colisiones.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Secciones
+
+- [Claude adapter](.claude/README.md)
+- [Codex adapter](.codex/README.md)
+- [Documentación de `sisad-pdfme`](./docs/README.md)
+
+### Notas
+
+- [AGENTS.md — SISAD PDFME V8 Lean](./AGENTS.md)
+- [Claude Code — adaptador V8](./CLAUDE.md)
+- [Codex — adaptador V8](./CODEX.md)
+<!-- project-tools:navigation:end -->

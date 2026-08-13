@@ -50,7 +50,17 @@
     "quality:no-inline-domain-copy": "vitest run src/core/engines/validationEngine/__tests__/validationMessages.static.test.js src/domain/documents/__tests__/documentCopyConstants.static.test.js src/modules/forms/runtime/__tests__/formsWorkflowConstants.static.test.js src/modules/forms/hooks/signing-review/__tests__/signingReviewMessages.static.test.js src/modules/forms/hooks/liveness/__tests__/livenessMessages.static.test.js src/modules/forms/hooks/__tests__/signingDocumentPreparationMessages.static.test.js src/store/slices/__tests__/storeMessages.static.test.js src/domain/forms/__tests__/formsDomainMessages.static.test.js src/shared/components/attachments/__tests__/attachmentsCopy.static.test.js src/modules/external-flow/pages/__tests__/externalFlowCopy.static.test.js src/domain/forms/adapters/__tests__/AdapterMessages.static.test.js",
     "maintenance:add-select-label-paths": "node scripts/add-labelpath-to-selects.mjs",
     "quality:validation-samples": "node scripts/validate-samples.mjs",
-    "maintenance:sync-scrum-views": "node scripts/ai/sync-scrum-views.mjs"
+    "maintenance:sync-scrum-views": "node scripts/ai/sync-scrum-views.mjs",
+    "tools:doctor": "node scripts/project-tools.mjs doctor .",
+    "docs:scan": "node scripts/project-tools.mjs scan .",
+    "docs:sanitize": "node scripts/project-tools.mjs sanitize .",
+    "docs:sanitize:apply": "node scripts/project-tools.mjs sanitize . --apply",
+    "docs:index": "node scripts/project-tools.mjs index .",
+    "docs:links": "node scripts/project-tools.mjs links . --apply",
+    "docs:duplicates": "node scripts/project-tools.mjs duplicates .",
+    "docs:validate": "node scripts/project-tools.mjs validate .",
+    "architecture:import": "node scripts/project-tools.mjs import .",
+    "architecture:all": "node scripts/project-tools.mjs all . --apply"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",

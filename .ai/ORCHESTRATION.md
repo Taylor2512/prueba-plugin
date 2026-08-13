@@ -1,4 +1,4 @@
-# Orquestación V7
+# Orquestación
 
 ## Default
 

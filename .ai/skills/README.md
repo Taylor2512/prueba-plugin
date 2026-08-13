@@ -1,4 +1,4 @@
-# Skill registry V7
+# Skill registry
 
 La lista inicial debe permanecer corta. Skills existentes se conservan; los aliases duplicados se deprecian sin borrar consumidores.
 
@@ -61,3 +61,7 @@ La lista inicial debe permanecer corta. Skills existentes se conservan; los alia
 | `sisad-task-orchestration` | existing | existing project skill |
 | `sisad-testing-pyramid` | existing | existing project skill |
 | `sisad-visual-regression` | existing | existing project skill |
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+<!-- project-tools:navigation:end -->

@@ -1,4 +1,4 @@
-# Política de contexto V7
+# Política de contexto
 
 ## Progressive disclosure
 

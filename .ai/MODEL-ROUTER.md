@@ -1,4 +1,4 @@
-# Router de modelos V7
+# Router de modelos
 
 La arquitectura usa clases de capacidad. Los adapters traducen a modelos
 disponibles en cada proveedor.

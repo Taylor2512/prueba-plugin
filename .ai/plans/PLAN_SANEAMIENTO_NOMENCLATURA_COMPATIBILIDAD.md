@@ -18,7 +18,7 @@ La concentración principal está en:
 | Archivo | Apariciones | Naturaleza |
 |---|---:|---|
 | `src/sisad-pdfme/shared/snapshotAdapter.ts` | 57 | migración de snapshots antiguos |
-| `src/sisad-pdfme/shared/schemaMigration.ts` | 34 | migración `__designer` V2 → V3 |
+| `src/sisad-pdfme/shared/schemaMigration.ts` | 34 | migración `__designer` → |
 | `src/sisad-pdfme/runtime/instanceEventDispatcher.ts` | 7 | puente evento de dominio → callback del host |
 | `src/sisad-pdfme/common/comments.ts` | 5 | alias persistido `__commentAnchors` |
 | `src/sisad-pdfme/shared/snapshot.ts` | 5 | detección y tipado de versiones antiguas |
@@ -68,8 +68,8 @@ El término no explica el dominio y obliga a leer el contexto para entenderlo. D
 
 `legacy` también mezcla responsabilidades diferentes:
 
-- snapshots sin versión o anteriores a V2;
-- metadata `__designer` V2;
+- snapshots sin versión o anteriores a;
+- metadata `__designer`;
 - callbacks públicos `onX`;
 - proveedor WebSocket;
 - aliases de configuración;
@@ -82,8 +82,8 @@ Debe sustituirse por el dato concreto:
 
 | Significado real | Nombre recomendado |
 |---|---|
-| snapshot anterior a V2 | `preV2Snapshot` |
-| contrato de metadata V2 | `designerMetaV2` |
+| snapshot anterior a | `preV2Snapshot` |
+| contrato de metadata | `designerMetaV2` |
 | callback del host | `hostCallback` |
 | provider basado en WebSocket | `websocketProvider` |
 | ruta de configuración obsoleta | `deprecatedPath` o `sourcePath` |
@@ -135,7 +135,7 @@ Acción:
 Ejemplos:
 
 - snapshot sin `version` o `< 2`;
-- `__designer` V2 plano;
+- `__designer` plano;
 - `LegacySchemaPageArray`;
 - assignments antiguos;
 - `connectivityMapping`.
@@ -409,7 +409,7 @@ Cierre:
 - tests unitarios verdes;
 - sin cambio de comportamiento.
 
-## Wave 3 — Configuración V1/V2
+## Wave 3 — Configuración/V2
 
 Alcance:
 
@@ -478,7 +478,7 @@ tests/unit/sisad-pdfme/shared/**
 Tareas:
 
 - renombrar por versión real;
-- añadir fixtures V1/V2/V3/current;
+- añadir fixtures/V2/V3/current;
 - garantizar import antiguo → runtime actual;
 - garantizar snapshot actual → import actual;
 - evitar reexportar formatos anteriores salvo necesidad pública;
@@ -545,13 +545,13 @@ Renombrar, como mínimo:
 
 ```text
 docs/11-migraciones/01-legacy-templates.md
-→ docs/11-migraciones/01-template-v1-to-current.md
+→ docs/11-migraciones/01-template-to-current.md
 
-.ai/scrum/task-cards/CONFIG-003-canonicalize-config-v2.md
-→ .ai/scrum/task-cards/CONFIG-003-define-config-v2-contract.md
+.ai/scrum/task-cards/CONFIG-003-canonicalize-config.md
+→ .ai/scrum/task-cards/CONFIG-003-define-config-contract.md
 
 .ai/scrum/task-cards/CONFIG-004-create-legacy-config-migration.md
-→ .ai/scrum/task-cards/CONFIG-004-migrate-config-v1-to-v2.md
+→ .ai/scrum/task-cards/CONFIG-004-migrate-config-to.md
 
 .ai/scrum/task-cards/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md
 → .ai/scrum/task-cards/COREUX-006-implementar-dispatcher-y-host-callback-adapter.md
@@ -595,11 +595,11 @@ No eliminar en la misma task-card que introduce la migración, salvo que sea est
 | NAME-001 | Inventario y clasificación | bajo |
 | NAME-002 | Política y gate preventivo | bajo |
 | NAME-003 | Saneamiento del inspector | bajo |
-| NAME-004 | Config V1 → V2 | medio |
+| NAME-004 | Config → | medio |
 | NAME-005 | Eventos → callbacks del host | medio |
 | NAME-006 | Snapshot y metadata por versión | alto |
 | NAME-007 | Provider WebSocket/Yjs | alto |
-| NAME-008 | Comentarios V1 → runtime | medio |
+| NAME-008 | Comentarios → runtime | medio |
 | NAME-009 | Firma y familias de schema | medio |
 | NAME-010 | Documentación y arquitectura IA | bajo |
 | NAME-011 | Aliases públicos deprecados | alto |
