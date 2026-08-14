@@ -1,0 +1,604 @@
+{
+  "package": "SISAD-PDFME-HOST-AGNOSTIC-RUNTIME-V2-20260813",
+  "campaign": "SISAD-PDFME-RUNTIME-HARDENING-V2",
+  "generatedAt": "2026-08-13T22:33:18.781944+00:00",
+  "productBoundary": "SISAD-PDFME standalone only",
+  "fileCount": 120,
+  "files": [
+    {
+      "path": ".agents/skills/sisad-form-transaction/SKILL.md",
+      "bytes": 253,
+      "sha256": "bd2afe63126515073ef861e5764dfacd7a495f8b4052465fcc11dee5391e87cf"
+    },
+    {
+      "path": ".agents/skills/sisad-schema-runtime-contract/SKILL.md",
+      "bytes": 251,
+      "sha256": "e98d5bbc51bdbcbac366bca1614d7900fcba827f5141a74d3efb52ec7f44e1c4"
+    },
+    {
+      "path": ".agents/skills/sisad-tooling-safety/SKILL.md",
+      "bytes": 247,
+      "sha256": "2b9ec40065ed2febbcbf8cce4a5dc2d10675fda86d8b40e67df9e2ae3d72c30e"
+    },
+    {
+      "path": ".agents/skills/sisad-user-model-migration/SKILL.md",
+      "bytes": 431,
+      "sha256": "5abf0690c63f8338ca64a2acc1435c92d25a8f37dcbfb309cda1bff87422bb67"
+    },
+    {
+      "path": ".agents/skills/sisad-user-runtime/SKILL.md",
+      "bytes": 266,
+      "sha256": "189b83ccc5e139cd6d8156587746c4c076ee44e4cc7162623c702ab64c017533"
+    },
+    {
+      "path": ".ai/analysis/sisad-pdfme-runtime-hardening/00-EXECUTIVE.md",
+      "bytes": 1257,
+      "sha256": "92c213f16593de8287ee490422f4f4171d2106605efb6e39c89368da29601740"
+    },
+    {
+      "path": ".ai/analysis/sisad-pdfme-runtime-hardening/01-USER-MODEL.md",
+      "bytes": 670,
+      "sha256": "f01ebd541a574c8f67e6fa59bd286bf6f5eb35d06d81b4a54cba00bcb657bd23"
+    },
+    {
+      "path": ".ai/analysis/sisad-pdfme-runtime-hardening/02-DESIGNER-STABILITY.md",
+      "bytes": 471,
+      "sha256": "f8da6182bb9173f45f3f180130d3cd040efea733e8c7f57b3dfa72b8b6ec8cd8"
+    },
+    {
+      "path": ".ai/analysis/sisad-pdfme-runtime-hardening/03-FORM-HARDENING.md",
+      "bytes": 851,
+      "sha256": "2ef6d14880d5d75d37104815a5eab2e4fb6050ce62ada6b6407a3b2cb9f845d8"
+    },
+    {
+      "path": ".ai/analysis/sisad-pdfme-runtime-hardening/04-SCHEMA-BEHAVIOR.md",
+      "bytes": 443,
+      "sha256": "fa29aa20a11f6d804c5efc160ca8808ba0b9731d48f2d324347be279ede3c925"
+    },
+    {
+      "path": ".ai/analysis/sisad-pdfme-runtime-hardening/05-TOOLING-SAFETY.md",
+      "bytes": 691,
+      "sha256": "822c0e359b328533b772fb57f63b24454c069e2fe21e827a0334c74b94509b37"
+    },
+    {
+      "path": ".ai/brain/20-contracts/FORM-COMPLETION-CONTRACT.md",
+      "bytes": 455,
+      "sha256": "a3447182247bd0e14dc2af26cfbf6411b54f2722ae0dd84bfca460551cf99303"
+    },
+    {
+      "path": ".ai/brain/20-contracts/FORM-RUNTIME-ISOLATION.md",
+      "bytes": 609,
+      "sha256": "91f1ce5c61458bcaf8a49ae781a11e19581514479e60a58e3f2680d617440c20"
+    },
+    {
+      "path": ".ai/brain/20-contracts/HOST-PARTICIPANT-USER-BOUNDARY.md",
+      "bytes": 1665,
+      "sha256": "51dad3c333c959ee46c9d845393daec0e163852f65d2ab89f154382c3f266803"
+    },
+    {
+      "path": ".ai/brain/20-contracts/RUNTIME-SESSION-IDENTITY.md",
+      "bytes": 394,
+      "sha256": "fe6f7ab1755e98277218b8f15531bf2c009a0972ed70ae6f6b7b6e7ba8d8cfbd"
+    },
+    {
+      "path": ".ai/brain/20-contracts/SCHEMA-INTERACTION-INVARIANTS.md",
+      "bytes": 713,
+      "sha256": "aa94ba0b55efd773733443f97f235a2935159bbfee6c734ff14c9e0c0148077a"
+    },
+    {
+      "path": ".ai/brain/20-contracts/SCHEMA-INTERACTION-ISOLATION.md",
+      "bytes": 525,
+      "sha256": "c5d67106ec6c0b06412661e8c8a89ddceb10ff747beb2c52637589434a0ba23a"
+    },
+    {
+      "path": ".ai/brain/20-contracts/TOOLING-SAFE-APPLY-CONTRACT.md",
+      "bytes": 599,
+      "sha256": "e9f9c0cb2a68ef660fc085aa65e1bafb62e7d0ce2e7e0c62b05bb210d0456510"
+    },
+    {
+      "path": ".ai/brain/20-contracts/USER-ASSIGNMENT-CONTRACT.md",
+      "bytes": 784,
+      "sha256": "057a416470321496dc2fd75c734d5a73dbfad5a4d642febfeb8fe86e5132abfd"
+    },
+    {
+      "path": ".ai/brain/30-decisions/ADR-RTP-005-USER-RECIPIENT-BOUNDARY.md",
+      "bytes": 366,
+      "sha256": "49387b834335f08b05f11bc904419b9f8e645762eb931cf47cb9da91498e5a2c"
+    },
+    {
+      "path": ".ai/brain/30-decisions/ADR-RTP-006-USER-ASSIGNMENT-INDEX.md",
+      "bytes": 296,
+      "sha256": "1f6e26ea551d40288639784764693371ddc695d9b9592ce28c264ddeb49615e2"
+    },
+    {
+      "path": ".ai/brain/30-decisions/ADR-RTP-007-FORM-CODEC-PARITY.md",
+      "bytes": 266,
+      "sha256": "13b6fe4688e383c682d9928379ef379c56cd2425c9e4f54a16dbe0e6593f9eee"
+    },
+    {
+      "path": ".ai/brain/40-integrations/DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md",
+      "bytes": 455,
+      "sha256": "b97184009b8a3ef097447cd40497026f020540396e6780c37eb80a82e2bb4b20"
+    },
+    {
+      "path": ".ai/brain/40-integrations/EXTERNAL-FORMS-USER-EXECUTION.md",
+      "bytes": 330,
+      "sha256": "728102c8c3970b06344169c15d581aca46cf875a7fd2558d4a4552b9d2deef33"
+    },
+    {
+      "path": ".ai/brain/40-integrations/SISAD-PDFME-DESIGNER-CONSUMER.md",
+      "bytes": 301,
+      "sha256": "67a0d767113dc51ce920211b4b7f0f93461c949c477cf8ceeae212fbaf1da67a"
+    },
+    {
+      "path": ".ai/brain/50-guides/FORM-HARDENING.md",
+      "bytes": 355,
+      "sha256": "01c150c88834219d79ae90f8517f99e07dedd8799a60898f48b05c5cc893ac6e"
+    },
+    {
+      "path": ".ai/brain/50-guides/SCHEMA-FAMILY-RELEASE.md",
+      "bytes": 267,
+      "sha256": "7404736631bbf55fc32f06b13582bccf59f1f26211ceff0eed51d52148899e3d"
+    },
+    {
+      "path": ".ai/brain/50-guides/TOOLING-SAFE-APPLY.md",
+      "bytes": 245,
+      "sha256": "a371ed365517ee5c899cd5ceb9c825b6572947bc699eee03a0ee6bbe210fe4d1"
+    },
+    {
+      "path": ".ai/brain/50-guides/USER-MODEL-MIGRATION.md",
+      "bytes": 288,
+      "sha256": "10ab04833c84bc095edef9dc2dda69bb8a3c36270c1ff66acb10163eb1bb0fd5"
+    },
+    {
+      "path": ".ai/brain/60-quality/SCHEMA-RUNTIME-COVERAGE-MATRIX.md",
+      "bytes": 368,
+      "sha256": "276b4b965b8752a560db221c1b4a0c5b21d005faafcc424528609e9468f5efa0"
+    },
+    {
+      "path": ".ai/brain/60-quality/SISAD-PDFME-RELEASE-GATE.md",
+      "bytes": 491,
+      "sha256": "7b48f8e145ed963802fc1e558c622368f1286607e34598a2d73e4c997f4205b0"
+    },
+    {
+      "path": ".ai/brain/70-memory/topics/sisad-pdfme-digital-agreements-runtime.md",
+      "bytes": 555,
+      "sha256": "68be001603186064ccc772b8e777cbc37f7c36f33dbfc81bda5a6227c8d56514"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/FILE-MANIFEST.json",
+      "bytes": 17730,
+      "sha256": "ef6297752e1920b9a6a932d8dfdf2da84b9b7fd4c6d52682052141d637ee59c9"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/MANIFEST.json",
+      "bytes": 864,
+      "sha256": "2df32af026489427a14d40e463cd8b3417e50f31105f259ab49ffa7a96cd38b3"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/README.md",
+      "bytes": 484,
+      "sha256": "3ac55950638f01318f532d96b37352dbd07935b30dc0a911b28fe0afb9a0d8fb"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-target-manifest.json",
+      "bytes": 2040,
+      "sha256": "d310a3a15b67f4eefa5bae7274aa9f12dd79e0d710785ccdecb4b9c7ca7a1c81"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/ARCHITECTURE.md",
+      "bytes": 869,
+      "sha256": "754437f5ee1d488ce9771de2ecadd52ea444e10c79f79ebe29573a47c4c5ac88"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/GLOSSARY.md",
+      "bytes": 1080,
+      "sha256": "fb6a76403888f72d09da55432242e03f02625e5e8023da5df7a05fa2133ed211"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md",
+      "bytes": 772,
+      "sha256": "ec2d65a16cd74f1592a356ddaafd95ca8c611e5c061bf7f7aacc3f3f8f743346"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md",
+      "bytes": 445,
+      "sha256": "021141693ea6082d38cba0d35439b3a4d3a73ede02a74118859582340449d04d"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md",
+      "bytes": 437,
+      "sha256": "96c04fa5a2477e568dd1303525f164c158e2620ebf8d93b584de2b39aae9dc13"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md",
+      "bytes": 703,
+      "sha256": "92861a398d29e937a7b0321806a1a61f1ed9aee35381a39d2d982129a0f2bd7e"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md",
+      "bytes": 366,
+      "sha256": "f5ef95e96a5a2ef91c3dd2a41be3da2cfe42d7238c8e16667f05f79cf7b20daf"
+    },
+    {
+      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md",
+      "bytes": 418,
+      "sha256": "091b63d0807bcc92218d68ccefc77c6685a9f79a70c8934fa00040f076a38cf2"
+    },
+    {
+      "path": ".ai/ops/campaigns/SISAD-PDFME-RUNTIME-HARDENING-V2/README.md",
+      "bytes": 226,
+      "sha256": "d439b45dd086bf8eb5b21375a402108fe417538b567b450f72adf61a962b5411"
+    },
+    {
+      "path": ".ai/ops/campaigns/SISAD-PDFME-RUNTIME-HARDENING-V2/START.md",
+      "bytes": 181,
+      "sha256": "90f88c79824ae861e84ce91283cc9556aeac0e60a7ef20a0d90eef954f64220f"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-000.md",
+      "bytes": 789,
+      "sha256": "45b8741df4ce55a5bd664af373145cb03047e8fd1c22e0082abc8b20a3bd29b2"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-010.md",
+      "bytes": 787,
+      "sha256": "19a9914ea7f1510538dd486c08cf35269b417f501b31be1e85e225762ab28975"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-020.md",
+      "bytes": 779,
+      "sha256": "103594af3ef0157b7813dbb8a56db95cb6cab72127a053b494f9ed092752c6d7"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-030.md",
+      "bytes": 796,
+      "sha256": "e4cc66aee5f43bb65ceef868cea1ca7451a1b22be7ccd99af6a35313b3bd273d"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-040.md",
+      "bytes": 764,
+      "sha256": "80d7a9c79154c3dc07c3c86f59d91c55f86e644630704100f92bff80b7d48590"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-050.md",
+      "bytes": 779,
+      "sha256": "2d70abfe6b39a6b9b902d094ca56b98158ebe87635c1a12cb02f62d32076168e"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-060.md",
+      "bytes": 771,
+      "sha256": "2ba88621c8e419d01e58219ea12b26c5cda812ecf2c63365541b0e99ed0bc816"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-070.md",
+      "bytes": 765,
+      "sha256": "f6a7f016776f0d0644d62cea1ba3aa398ea70eaa96cdc0439cece16359a4dc19"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-080.md",
+      "bytes": 758,
+      "sha256": "d3749fa4fb01ea953f882f8fc73fb115b6e63aa1a84fe6061b9db2a0354ddca6"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-090.md",
+      "bytes": 757,
+      "sha256": "af5214f44ec8e9b20be96e886d71ba09b8c34b029877a8462481b1ec4da3bdf5"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-100.md",
+      "bytes": 755,
+      "sha256": "eae8cc6c1b2f49b8bafb73540b70ebad6a7e15814b27221de3febb3b2cafad77"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-110.md",
+      "bytes": 753,
+      "sha256": "ea20cfc65917ebc463ce99c445afd05633d1029dd2ddc1cc16adaf1a47f6d3fd"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-120.md",
+      "bytes": 778,
+      "sha256": "ed533fee6281655795907a3734148c02c1117c508b01ff7ae20601cf0dbb6472"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-130.md",
+      "bytes": 764,
+      "sha256": "f1fbd09303435c2f6b86169328a7fac90200c78ee4796e4367f337b52ad523c3"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-140.md",
+      "bytes": 778,
+      "sha256": "978c87da25b8de7423079216036b2e6869299fdb99b149335289e0e5afdbbd82"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-150.md",
+      "bytes": 770,
+      "sha256": "c1a22d645828ecb5b5808d81d8d7d13b98d15170ae1134a5d1c2d019c322cbcd"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-160.md",
+      "bytes": 761,
+      "sha256": "8a3316ebd75a9f5e24d9c3c8eac5942bf0a251f551f22168ab2374c02bfd6e19"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-170.md",
+      "bytes": 771,
+      "sha256": "683a6ea2445d9e2b46bffc7d7ab5a84ee5a22bc787c549aaa2c0ab19a2787953"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-180.md",
+      "bytes": 760,
+      "sha256": "73f02645aa12f8fedd41063aee3b3d356e05d02c54dc47b08e4fb808feaa459e"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-190.md",
+      "bytes": 756,
+      "sha256": "da265aea2ec49dc913479c910014f7fed1f5100c430ae75b7f3b6baccc126f43"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-200.md",
+      "bytes": 772,
+      "sha256": "5215552f4eafb9a34db1519c5566a2e91433a209be5e6bdb6bf959c90de822bb"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-210.md",
+      "bytes": 785,
+      "sha256": "d7fe71dc6d845fa3403a939bd52bb1bb9beee583dff9e6a0308182efd45e64c9"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-220.md",
+      "bytes": 761,
+      "sha256": "6488c9eb3dba4f170adefa2f31fde440efd0df18d57416d813d7012307edc529"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-230.md",
+      "bytes": 783,
+      "sha256": "b852ae6f8914cb476513a4d99e6b84ac89d876bf94e7dd4155aedf065c9aa1df"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-240.md",
+      "bytes": 757,
+      "sha256": "c5353792374a1707e7eaad968845c8f0f9bf8ba528d47f17605e65cc44b9d7da"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-250.md",
+      "bytes": 768,
+      "sha256": "5b48ded610bf6c2af88f4c26e443d06b8091c5b70d162c3548961b1a9e4dfd2d"
+    },
+    {
+      "path": ".ai/ops/tasks/SPRT-260.md",
+      "bytes": 757,
+      "sha256": "72b6d4a678044677521f596cb272e8cd76a3ea3a2225b8c4c981676a8791df64"
+    },
+    {
+      "path": ".ai/ops/tasks/TASK-LEDGER-SPRT-V2.md",
+      "bytes": 1613,
+      "sha256": "a6c2e6ba56f5de0a446cf0db318d0029895f910f5ded12090dc8b8ce7485a892"
+    },
+    {
+      "path": ".ai/plans/PLAN_SISAD_PDFME_FORM_HARDENING.md",
+      "bytes": 377,
+      "sha256": "91fc5b0197af8c79371745a545b042b6519bcc4edc88fc3fa28cd6c6706188c2"
+    },
+    {
+      "path": ".ai/plans/PLAN_SISAD_PDFME_RUNTIME_HARDENING_V2.md",
+      "bytes": 1579,
+      "sha256": "621564bdf5cd5ccc7d2dc1980f6c21fddacb0b689c70b01195d05f92ac0dcaed"
+    },
+    {
+      "path": ".ai/plans/PLAN_SISAD_PDFME_SCHEMA_RUNTIME.md",
+      "bytes": 433,
+      "sha256": "cfe0960b8ce9d1e8d0351781694025928969161c6ab854e4f89a94fd311fb831"
+    },
+    {
+      "path": ".ai/plans/PLAN_SISAD_PDFME_TOOLING_SAFETY.md",
+      "bytes": 432,
+      "sha256": "51ec7643c5a59846cfbf790521259bb8661379fae99b3240ea3e17f297e6679b"
+    },
+    {
+      "path": ".ai/prompts/PROMPT_SISAD_PDFME_FORM.md",
+      "bytes": 357,
+      "sha256": "04c972ee13d658dc69bd47c154b84d227d4679f2af0ba65f64f7b13e27b9110f"
+    },
+    {
+      "path": ".ai/prompts/PROMPT_SISAD_PDFME_REVIEW.md",
+      "bytes": 409,
+      "sha256": "a222c4b6333284187a45243e7236897309209e0d15a6da68252de90ef4853c45"
+    },
+    {
+      "path": ".ai/prompts/PROMPT_SISAD_PDFME_RUNTIME_BOOT_V2.md",
+      "bytes": 404,
+      "sha256": "67741497cbd2ac6539b3ec1021a94dc0a74e8003b974033b306bdaf5c346d62f"
+    },
+    {
+      "path": ".ai/prompts/PROMPT_SISAD_PDFME_RUNTIME_MASTER_V2.md",
+      "bytes": 866,
+      "sha256": "e0f49989e8f0e8e89791ff92bfbe2795c4c531dc0c2c65dd247eb41f3dc4e90b"
+    },
+    {
+      "path": ".ai/prompts/PROMPT_SISAD_PDFME_SCHEMA_FAMILY.md",
+      "bytes": 331,
+      "sha256": "aaa6651b5285d6d168c6c9c4118f9144bdea2b6e09a537afd3bffaead47ad1c6"
+    },
+    {
+      "path": ".ai/prompts/PROMPT_SISAD_PDFME_TOOLING.md",
+      "bytes": 344,
+      "sha256": "e464e40b735c9a0203d17551bc09dfc3c38d262b248b9d2fef84f3dbb1525eb3"
+    },
+    {
+      "path": ".ai/prompts/PROMPT_SISAD_PDFME_USER_MODEL.md",
+      "bytes": 392,
+      "sha256": "f712c08921f6c01904cfe33e2ab655d64eea76ce8b6cef44319043e131d09b10"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-008.md",
+      "bytes": 1190,
+      "sha256": "6e239ab418a61dc647c09b7e7cf1e6c90b7b9c19511ed314cafe1bf04f3695bc"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-015.md",
+      "bytes": 1224,
+      "sha256": "f617053398ec45fab2d4d66d2053b5f22f63fb2cb589229e32dc55b231462cc9"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-022.md",
+      "bytes": 1235,
+      "sha256": "1eefce2bde74e8edb65da2b72e61803db8dd0270ed2562c489484fc8c77ed01a"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-055.md",
+      "bytes": 1150,
+      "sha256": "01830abfdc9392c1a5b97dac6c8996db98b86491a8a6fad08297df404acdd056"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-095.md",
+      "bytes": 1097,
+      "sha256": "08e84adc055e1bbcd495f442d20bba09426181cadecb41c4a8410141e4351c02"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-215.md",
+      "bytes": 1220,
+      "sha256": "2c97daea0d3889a2b378fbf02b4003d9caf28673d0ed197ed470126c5bbbb155"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-222.md",
+      "bytes": 1268,
+      "sha256": "a9f561964bb8d1b8f71a5d4f9b5ab27a80256a3f662a6eaa89c5c5502d08fb12"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-226.md",
+      "bytes": 1115,
+      "sha256": "d94bc5798b353cb82a201c97f633942226e177f51647d91a7ecbc09ad018044d"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-227.md",
+      "bytes": 1161,
+      "sha256": "dbff7a9b42ab94a1dab64122706d70d5c458a92d2d0292799d5261aa606248f4"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-305.md",
+      "bytes": 1218,
+      "sha256": "09800bd03fc1373650fe5dba4191e03ca6ea4d04c6313abafc2735fe1e3aae7e"
+    },
+    {
+      "path": ".ai/scrum/task-cards/runtime-platform/RTP-325.md",
+      "bytes": 1059,
+      "sha256": "49c150d24a4bbe04ccd39bc8d485d7b9aed4f9f98a223ef0c05731493853c155"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md",
+      "bytes": 362,
+      "sha256": "12219c2445abaac9e2795987011ca788efa092051ccac6a403bbc46c6188a3e4"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md",
+      "bytes": 403,
+      "sha256": "5325e7504ee081e10a0063eea52fec795e5dc5475d04c18551b08d8044c9f8f3"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md",
+      "bytes": 464,
+      "sha256": "bbdb411d9ea3ed6cdba75e33f06d1504933242b07b2f3476bcb60a3da06fec00"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md",
+      "bytes": 325,
+      "sha256": "debb06cf8c62729613b14ec34d6ed9f103684bd6e22b384671c68bd835e5b127"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md",
+      "bytes": 406,
+      "sha256": "f17a38ce09eeb0f61c3ec5c40ac3ded2f87c7283ec8a5f9658d0b83534c510bb"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md",
+      "bytes": 326,
+      "sha256": "3309f52173ab4e41b3d84bd574a5aada09688f6ac0a4c110bf9470e4f7decbe0"
+    },
+    {
+      "path": ".ai/scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md",
+      "bytes": 320,
+      "sha256": "f2ad5e059839188877bae3a529d041e6bc7e09b6c2aae874bb1cdbc67497d90d"
+    },
+    {
+      "path": ".claude/skills/sisad-form-transaction/SKILL.md",
+      "bytes": 253,
+      "sha256": "bd2afe63126515073ef861e5764dfacd7a495f8b4052465fcc11dee5391e87cf"
+    },
+    {
+      "path": ".claude/skills/sisad-schema-runtime-contract/SKILL.md",
+      "bytes": 251,
+      "sha256": "e98d5bbc51bdbcbac366bca1614d7900fcba827f5141a74d3efb52ec7f44e1c4"
+    },
+    {
+      "path": ".claude/skills/sisad-tooling-safety/SKILL.md",
+      "bytes": 247,
+      "sha256": "2b9ec40065ed2febbcbf8cce4a5dc2d10675fda86d8b40e67df9e2ae3d72c30e"
+    },
+    {
+      "path": ".claude/skills/sisad-user-model-migration/SKILL.md",
+      "bytes": 89,
+      "sha256": "2c359cef3b245d543b8f9a0a933140883c45c2f875af1e4eb30f80fbfbcdc3e6"
+    },
+    {
+      "path": ".claude/skills/sisad-user-runtime/SKILL.md",
+      "bytes": 266,
+      "sha256": "189b83ccc5e139cd6d8156587746c4c076ee44e4cc7162623c702ab64c017533"
+    },
+    {
+      "path": "tools/sisad-pdfme-runtime/README.md",
+      "bytes": 535,
+      "sha256": "60832f3384fc7aff5754d619f38c259c9b671130dac331d14c5ea4394d1c9ace"
+    },
+    {
+      "path": "tools/sisad-pdfme-runtime/apply-brain-targets.mjs",
+      "bytes": 1757,
+      "sha256": "b329ba0f207858c7fd4fb49a3f53e06cf20e18aa26edc2924a387181e3ceab4e"
+    },
+    {
+      "path": "tools/sisad-pdfme-runtime/audit-assignment-contract.mjs",
+      "bytes": 782,
+      "sha256": "817b3432864ad42ed6ee9c3a2d72d1b73440f3070257fdc27f7b8552b3449644"
+    },
+    {
+      "path": "tools/sisad-pdfme-runtime/audit-tooling-safety.mjs",
+      "bytes": 1313,
+      "sha256": "d55cac8ffe37e40d8a4de53990c6f63e53048d7727d3718de0eeabd338904c7b"
+    },
+    {
+      "path": "tools/sisad-pdfme-runtime/audit-user-recipient-boundary.mjs",
+      "bytes": 856,
+      "sha256": "57b7a6b81212aac610c057e0098d763e3b4d19e10721795d9de9630a76d7542b"
+    },
+    {
+      "path": "tools/sisad-pdfme-runtime/runtime-contract-manifest.json",
+      "bytes": 846,
+      "sha256": "e46d7dbe08b7a1e767898d75ed1e8e75b39adeb0f6a308a09e979d01ef0e935a"
+    },
+    {
+      "path": "tools/sisad-pdfme-runtime/validate-campaign.mjs",
+      "bytes": 759,
+      "sha256": "482ff3355e332703c2d537195d62f87adb4f9a9ab4ec46bc17fd0fb2976a685a"
+    },
+    {
+      "path": "unificados/SISAD-PDFME-DIGITAL-AGREEMENTS-RUNTIME.md",
+      "bytes": 538,
+      "sha256": "a298541e2559aa42c1fcb22b81ec12fa9d2d1a8fcaac2de57594a3ef49af45c2"
+    },
+    {
+      "path": "unificados/SISAD-PDFME-RUNTIME-HARDENING-V2-REGENERATION.md",
+      "bytes": 390,
+      "sha256": "26559c2f51fe80d2eb6bb32dd6891edf906be82f8fcc1927957e06c2c9696238"
+    },
+    {
+      "path": "unificados/SISAD-PDFME-SCHEMA-RUNTIME-MATRIX.json",
+      "bytes": 25299,
+      "sha256": "d98dc68f807328f1aa4a3449b4323da492cf5de4d3549b99a028513a3fde6751"
+    },
+    {
+      "path": "unificados/SISAD-PDFME-SOURCE-BASELINE.json",
+      "bytes": 911,
+      "sha256": "9ab0ff4b2a6e900b2311c0a6586b780b4be71c43a74a5efd07d7f9c4dd3c8ac2"
+    }
+  ]
+}
