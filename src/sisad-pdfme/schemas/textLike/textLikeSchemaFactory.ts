@@ -91,7 +91,7 @@ export function createTextLikeSchemaPlugin(config: TextLikePresetConfig): Plugin
               widget: 'input',
               span: 24,
               props: { placeholder: sourceField, disabled: true },
-              description: `Se llena automáticamente desde ${sourceField} del destinatario.`,
+              description: `Se llena automáticamente desde ${sourceField} del usuario asignado.`,
             },
             ...helpFields(),
             ...dataLabelFields(),

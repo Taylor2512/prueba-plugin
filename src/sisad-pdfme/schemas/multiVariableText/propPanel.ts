@@ -87,7 +87,9 @@ export const propPanel: PropPanel<MultiVariableTextSchema> = {
       ...parentSchema,
       '-------': { type: 'void', widget: 'Divider' },
       dynamicVarContainer: {
-        title: 'Variables Sample Data',
+        // El propPanel YA recibe `i18n`; estos dos títulos eran los únicos
+        // literales en inglés que sobrevivían en una interfaz española.
+        title: propPanelProps.i18n('schemas.mvt.variablesSampleData'),
         type: 'string',
         widget: 'Card',
         span: 24,
@@ -99,7 +101,7 @@ export const propPanel: PropPanel<MultiVariableTextSchema> = {
             span: 24,
           },
           placeholderDynamicVar: {
-            title: 'Placeholder Dynamic Variable',
+            title: propPanelProps.i18n('schemas.mvt.placeholderDynamicVar'),
             type: 'string',
             format: 'textarea',
             props: {

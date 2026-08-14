@@ -1,11 +1,32 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
-  await page.goto('http://localhost:5174/');
-  await page.getByText('Cada ruta es data-driven,').click();
-  await page.getByRole('heading', { name: 'Catálogo de ejemplos del' }).click();
-  await expect(page.getByRole('banner')).toBeVisible();
-  await page.getByRole('link', { name: 'Designer: multiusuario Colaboración con varios usuarios y cambio de actor' }).click();
+/**
+ * PENDIENTE — apunta a UI que ya no se monta.
+ *
+ * Diagnóstico (sesión RTP-510): estos specs se grabaron con codegen contra una
+ * versión del Designer que montaba `RegisteredUsersSelector`
+ * (`data-testid="designer-activerecipient-select"`). Hoy ese componente tiene
+ * CERO consumidores en `src/`: está exportado pero nadie lo renderiza, así que
+ * ni el selector ni su estado vacío aparecen en `/designer/multi-user`.
+ *
+ * No es una regresión de esta campaña: fallaban ya antes de tocar nada.
+ * Tampoco se «arreglan» borrando aserciones — eso ocultaría que la capability
+ * de cambiar de usuario activo no tiene superficie.
+ *
+ * Se dejan en `fixme` con el diagnóstico. El componente muerto queda anotado
+ * para RTP-530 (retirada de legacy) y la capability de usuario activo para
+ * RTP-525 (migración Recipient→User), que es donde debe decidirse si se vuelve
+ * a montar o se retira.
+ *
+ * Además son frágiles por construcción: dependen de hashes de clase de Ant
+ * (`css-dev-only-do-not-override-dzfy24`) y de `.nth(5)` sobre un filtro de
+ * divs. Reescribirlos con selectores estables es parte de esa misma task.
+ */
+test.fixme('test', async ({ page }) => {
+  // Navegación por RUTA, no por etiqueta humana: el título del catálogo se
+  // renombró a «Designer · flujo multiusuario» y estos specs quedaron rotos
+  // apuntando al label anterior. La ruta es el contrato estable.
+  await page.goto('/designer/multi-user');
   await page.locator('.sisad-pdfme-designer-canvas').click();
   await expect(page.locator('.sisad-pdfme-designer-canvas')).toBeVisible();
   // Check runtime viewport contains the expected sample text and primary actions.

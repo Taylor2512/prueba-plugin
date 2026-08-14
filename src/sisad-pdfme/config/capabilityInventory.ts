@@ -30,7 +30,8 @@ export type CapabilityKind =
   | 'component'
   | 'view'
   | 'schema-surface'
-  | 'controller-domain';
+  | 'controller-domain'
+  | 'integration';
 
 export type CapabilityId = string;
 
@@ -160,6 +161,47 @@ const controllerSources: Record<SisadPdfmeControllerCapabilityDomain, string[]> 
   save: ['persistence.mode', 'persistence.autosave'],
 };
 
+/**
+ * Capabilities de integración.
+ *
+ * La disponibilidad de un recurso de integración NO es configuración: depende
+ * de si el host inyectó el recurso vivo. Se resuelven por el mismo grafo para
+ * que Form, Viewer, Generator y Snapshot no inventen cada uno su comprobación
+ * ad hoc (RTP-470).
+ */
+export const INTEGRATION_CAPABILITIES = [
+  'httpClient',
+  'dataSources',
+  'signatureExecution',
+  'fonts',
+] as const;
+export type IntegrationCapability = (typeof INTEGRATION_CAPABILITIES)[number];
+
+/**
+ * Un recurso de integración NO depende de que el runtime acepte mutación.
+ *
+ * Ligarlos a `feature:runtime` confundía «disponibilidad del recurso» con
+ * «el documento es editable»: un Viewer en solo lectura necesita las fuentes
+ * tipográficas para renderizar y puede leer datos remotos legítimamente.
+ *
+ * La única integración que muta es la ejecución de firma, y su restricción de
+ * readonly ya viene incorporada en `feature:signatures`.
+ */
+const integrationDependencies: Record<IntegrationCapability, CapabilityId[]> = {
+  httpClient: [],
+  // Una fuente de datos remota no puede resolver sin transporte.
+  dataSources: ['integration:httpClient'],
+  signatureExecution: ['feature:signatures'],
+  fonts: [],
+};
+
+const integrationSources: Record<IntegrationCapability, string[]> = {
+  httpClient: ['resources.integrations.httpClient'],
+  dataSources: ['resources.integrations.dataSources'],
+  signatureExecution: ['resources.integrations.signatureExecution', 'signatures.enabled'],
+  fonts: ['resources.integrations.fonts'],
+};
+
 const buildInventory = (): CapabilityDescriptor[] => {
   const descriptors: CapabilityDescriptor[] = [];
 
@@ -220,6 +262,16 @@ const buildInventory = (): CapabilityDescriptor[] => {
       id,
       sources: [...controllerSources[id]],
       dependsOn: [...controllerDependencies[id]],
+    });
+  });
+
+  INTEGRATION_CAPABILITIES.forEach((id) => {
+    descriptors.push({
+      capabilityId: capabilityId('integration', id),
+      kind: 'integration',
+      id,
+      sources: [...integrationSources[id]],
+      dependsOn: [...integrationDependencies[id]],
     });
   });
 

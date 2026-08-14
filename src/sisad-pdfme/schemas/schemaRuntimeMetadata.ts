@@ -45,11 +45,24 @@ export type SchemaCompletionPolicy =
 /** Codec semántico del valor. Decide igualdad y vacío, no truthiness. */
 export type SchemaCodecId = 'string' | 'number' | 'date' | 'boolean' | 'array' | 'opaque';
 
+/**
+ * Qué tipo de dato externo puede enlazar este schema.
+ *
+ * - `none`       — no admite origen externo;
+ * - `scalar`     — un único valor viene de fuera;
+ * - `collection` — sus OPCIONES vienen de fuera (select, tabla…);
+ * - `artifact`   — enlaza un contenido binario (imagen, adjunto, firma).
+ *
+ * Se deriva de la familia del registry. No existe una lista paralela por tipo.
+ */
+export type SchemaDataBinding = 'none' | 'scalar' | 'collection' | 'artifact';
+
 export type SchemaRuntimeMetadata = {
   family: SchemaSemanticFamily;
   interactionKind: SchemaInteractionKind;
   completion: SchemaCompletionPolicy;
   codec: SchemaCodecId;
+  dataBinding: SchemaDataBinding;
 };
 
 /**
@@ -59,17 +72,18 @@ export type SchemaRuntimeMetadata = {
  * «completa». `barcode` es computado: su contenido se deriva, no se rellena.
  */
 const METADATA_BY_FAMILY: Record<SchemaSemanticFamily, Omit<SchemaRuntimeMetadata, 'family'>> = {
-  text: { interactionKind: 'input', completion: 'required-value', codec: 'string' },
-  multiVariableText: { interactionKind: 'input', completion: 'required-value', codec: 'string' },
-  signature: { interactionKind: 'signing', completion: 'signing', codec: 'opaque' },
-  action: { interactionKind: 'action', completion: 'action', codec: 'string' },
-  table: { interactionKind: 'complex', completion: 'required-value', codec: 'array' },
-  barcode: { interactionKind: 'computed', completion: 'none', codec: 'string' },
-  boolean: { interactionKind: 'choice', completion: 'selection', codec: 'boolean' },
-  choice: { interactionKind: 'choice', completion: 'selection', codec: 'array' },
-  dateTime: { interactionKind: 'input', completion: 'required-value', codec: 'date' },
-  media: { interactionKind: 'visual', completion: 'none', codec: 'opaque' },
-  shape: { interactionKind: 'visual', completion: 'none', codec: 'string' },
+  text: { interactionKind: 'input', completion: 'required-value', codec: 'string', dataBinding: 'scalar' },
+  multiVariableText: { interactionKind: 'input', completion: 'required-value', codec: 'string', dataBinding: 'scalar' },
+  signature: { interactionKind: 'signing', completion: 'signing', codec: 'opaque', dataBinding: 'artifact' },
+  action: { interactionKind: 'action', completion: 'action', codec: 'string', dataBinding: 'none' },
+  table: { interactionKind: 'complex', completion: 'required-value', codec: 'array', dataBinding: 'collection' },
+  barcode: { interactionKind: 'computed', completion: 'none', codec: 'string', dataBinding: 'scalar' },
+  boolean: { interactionKind: 'choice', completion: 'selection', codec: 'boolean', dataBinding: 'scalar' },
+  // Una elección enlaza su LISTA DE OPCIONES, no un valor suelto.
+  choice: { interactionKind: 'choice', completion: 'selection', codec: 'array', dataBinding: 'collection' },
+  dateTime: { interactionKind: 'input', completion: 'required-value', codec: 'date', dataBinding: 'scalar' },
+  media: { interactionKind: 'visual', completion: 'none', codec: 'opaque', dataBinding: 'artifact' },
+  shape: { interactionKind: 'visual', completion: 'none', codec: 'string', dataBinding: 'none' },
 };
 
 /**
@@ -82,7 +96,7 @@ const METADATA_BY_TYPE: Record<string, Partial<Omit<SchemaRuntimeMetadata, 'fami
   // Firma con fecha: es firma en cuanto a completitud, pero su valor es una fecha.
   datesigned: { codec: 'date' },
   // El adjunto produce un artefacto, no un valor de texto.
-  attachment: { interactionKind: 'artifact', completion: 'artifact', codec: 'opaque' },
+  attachment: { interactionKind: 'artifact', completion: 'artifact', codec: 'opaque', dataBinding: 'artifact' },
   // Un radio es elección ÚNICA: su valor es un escalar, no una lista.
   radiogroup: { codec: 'string' },
   number: { codec: 'number' },

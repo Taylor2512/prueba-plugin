@@ -200,7 +200,7 @@ const describeApi = (
   return [
     api.method || 'GET',
     api.endpoint || 'sin endpoint',
-    resolvedHttpClient?.inheritSystem === false ? 'Axios local' : 'Axios sistema',
+    resolvedHttpClient?.inheritSystem === false ? 'Cliente local' : 'Cliente del host',
     describeHttpAuth(resolvedHttpClient?.auth),
   ].join(' · ');
 };
@@ -408,7 +408,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
         api.enabled
           ? { label: api.endpoint ? 'API activa' : 'API sin endpoint', color: api.endpoint ? 'processing' : 'warning' as const }
           : null,
-        resolvedHttpClient ? { label: resolvedHttpClient.inheritSystem ? 'Axios sistema' : 'Axios local', color: 'blue' as const } : null,
+        resolvedHttpClient ? { label: resolvedHttpClient.inheritSystem ? 'Cliente del host' : 'Cliente local', color: 'blue' as const } : null,
         authTag,
       ].filter(Boolean) as Array<{ label: string; color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' }>,
     [api.enabled, api.endpoint, authTag, formJson.enabled, formJson.format, persistence.enabled, persistence.mode, resolvedHttpClient],
@@ -798,7 +798,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             <BooleanSwitchWidget value={api.enabled} onChange={(checked) => updateApi({ enabled: checked })} />
           </div>
           <div className={SWITCH_ROW}>
-            <span className="font-semibold text-slate-700">Heredar Axios del sistema</span>
+            <span className="font-semibold text-slate-700">Heredar el cliente HTTP del host</span>
             <BooleanSwitchWidget value={api.http?.inheritSystem ?? true} onChange={(checked) => updateApiHttp({ inheritSystem: checked })} />
           </div>
           <div className={GRID_2}>
@@ -1031,7 +1031,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
           {resolvedHttpClient ? (
               <div className={SUMMARY}>
                 <div className={SUMMARY_TEXT}>
-                  {resolvedHttpClient.inheritSystem ? 'Usa la configuración global de Axios' : 'Usa configuración local de Axios'}
+                  {resolvedHttpClient.inheritSystem
+                    ? 'Usa el cliente HTTP que inyecta la aplicación anfitriona'
+                    : 'Usa una configuración de transporte local'}
                 </div>
               </div>
           ) : null}
@@ -1042,6 +1044,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
 
   return (
     <CompactConfigPanel
+      // Ya vive dentro de la sección «Datos y conexiones»: repetir el título
+      // aquí producía dos cabeceras seguidas diciendo lo mismo (duplicación D5).
+      embedded
       title="Datos y conexión"
       description="Persistencia, JSON y API."
       summary={validationMessage}

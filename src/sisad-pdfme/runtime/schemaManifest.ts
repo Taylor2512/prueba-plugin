@@ -16,10 +16,11 @@ import { resolveSchemaRuntimeMetadata } from '../schemas/schemaRuntimeMetadata.j
 import type {
   SchemaCodecId,
   SchemaCompletionPolicy,
+  SchemaDataBinding,
   SchemaInteractionKind,
 } from '../schemas/schemaRuntimeMetadata.js';
 
-export type { SchemaInteractionKind, SchemaCompletionPolicy, SchemaCodecId };
+export type { SchemaInteractionKind, SchemaCompletionPolicy, SchemaCodecId, SchemaDataBinding };
 
 export type SchemaRuntimeManifest = SchemaDefinition & {
   aliases: string[];
@@ -30,6 +31,8 @@ export type SchemaRuntimeManifest = SchemaDefinition & {
   interactionKind: SchemaInteractionKind;
   completion: SchemaCompletionPolicy;
   codec: SchemaCodecId;
+  /** Qué tipo de dato externo admite. Derivado del registry, no de una lista. */
+  dataBinding: SchemaDataBinding;
 };
 
 export const buildSchemaRuntimeManifest = (
@@ -46,6 +49,7 @@ export const buildSchemaRuntimeManifest = (
       interactionKind: metadata.interactionKind,
       completion: metadata.completion,
       codec: metadata.codec,
+      dataBinding: metadata.dataBinding,
     };
   });
 

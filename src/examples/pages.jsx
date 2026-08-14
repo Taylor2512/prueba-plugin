@@ -30,6 +30,7 @@ import {
   buildExpandedFormValues,
 } from './builders.js';
 import { createExampleInstance, useController, useEventLog, useRuntimeConfig } from './runtime.js';
+import { createRuntimeConfig } from './catalog.js';
 import {
   DocumentationShell,
   DynamicInfoPanel,
@@ -141,6 +142,7 @@ function RecipientSelect({ value, onChange }) {
       <select
         value={value ?? ''}
         onChange={(event) => onChange(event.target.value)}
+        data-testid="lab-active-user-select"
         className="box-border h-11 w-full min-w-0 max-w-[8rem] appearance-none truncate rounded-full border border-amber-300/40 bg-amber-300/10 px-3 text-xs font-medium text-amber-100 outline-none transition hover:border-amber-300/70 focus-visible:ring-2 focus-visible:ring-amber-300/60"
       >
         {MULTI_USER_RECIPIENTS.map((recipient) => (
@@ -175,6 +177,28 @@ export function RuntimePage({ config, currentPath }) {
     [config, record],
   );
 
+  /**
+   * Configuración efectiva con el contexto de colaboración.
+   *
+   * `Preview` sólo aplica acceso per-user cuando encuentra
+   * `options.collaboration.activeRecipientId`; si no, renderiza todos los
+   * schemas sin restricción. El lab declaraba `collaboration: true` —un
+   * booleano— así que ese contexto nunca llegaba y el aislamiento entre
+   * Usuarios no se aplicaba aunque la plantilla trajera ownership (RTP-510).
+   */
+  const collaborativeConfig = useMemo(() => {
+    if (!config.collaboration) return runtimeConfig;
+    // `createRuntimeConfig` hace el deep-merge del perfil: usar su API de
+    // overrides en vez de un spread manual evita perder ramas anidadas.
+    return createRuntimeConfig(config.runtimeProfile || config.instanceId, {
+      collaboration: {
+        enabled: true,
+        activeRecipientId: state.activeRecipientId ?? null,
+      },
+      recipients: { activeRecipientId: state.activeRecipientId ?? null },
+    });
+  }, [config.runtimeProfile, config.instanceId, config.collaboration, state.activeRecipientId, runtimeConfig]);
+
   const instance = useMemo(
     () =>
       createExampleInstance(
@@ -182,7 +206,7 @@ export function RuntimePage({ config, currentPath }) {
         {
           template,
           values,
-          config: runtimeConfig,
+          config: collaborativeConfig,
           documents: DEMO_DOCUMENTS,
           recipients: MULTI_USER_RECIPIENTS,
           activeRecipientId: state.activeRecipientId,
@@ -197,6 +221,7 @@ export function RuntimePage({ config, currentPath }) {
       config,
       template,
       values,
+      collaborativeConfig,
       runtimeConfig,
       state.activeRecipientId,
       pageHandlers,

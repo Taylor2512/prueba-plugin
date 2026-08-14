@@ -45,7 +45,29 @@ describe('schema runtime manifest', () => {
       expect(entry.interactionKind, entry.type).toBeTruthy();
       expect(entry.completion, entry.type).toBeTruthy();
       expect(entry.codec, entry.type).toBeTruthy();
+      expect(entry.dataBinding, entry.type).toBeTruthy();
     });
+  });
+
+  it('declara el tipo de binding externo por familia, sin listas por tipo', () => {
+    // Una elección enlaza su LISTA de opciones; un escalar, un solo valor.
+    expect(byType.get('select')?.dataBinding).toBe('collection');
+    expect(byType.get('radiogroup')?.dataBinding).toBe('collection');
+    expect(byType.get('checkboxgroup')?.dataBinding).toBe('collection');
+    expect(byType.get('table')?.dataBinding).toBe('collection');
+
+    expect(byType.get('text')?.dataBinding).toBe('scalar');
+    expect(byType.get('number')?.dataBinding).toBe('scalar');
+    expect(byType.get('date')?.dataBinding).toBe('scalar');
+    expect(byType.get('qrcode')?.dataBinding).toBe('scalar');
+
+    expect(byType.get('signature')?.dataBinding).toBe('artifact');
+    expect(byType.get('attachment')?.dataBinding).toBe('artifact');
+    expect(byType.get('image')?.dataBinding).toBe('artifact');
+
+    // Formas y acciones no enlazan datos externos.
+    expect(byType.get('line')?.dataBinding).toBe('none');
+    expect(byType.get('approve')?.dataBinding).toBe('none');
   });
 
   it('un código de barras es computado, no una entrada obligatoria', () => {
@@ -101,6 +123,7 @@ describe('schema runtime manifest', () => {
         interactionKind: entry.interactionKind,
         completion: entry.completion,
         codec: entry.codec,
+        dataBinding: entry.dataBinding,
       }).toEqual(metadata);
     });
   });

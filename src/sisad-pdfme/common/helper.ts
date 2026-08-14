@@ -63,9 +63,34 @@ const cloneStructural = <T>(value: T, seen: WeakMap<object, unknown>): T => {
     value.forEach((entry) => next.push(cloneStructural(entry, seen)));
     return next as unknown as T;
   }
+  // Tipos estructurables comunes: se clonan de verdad. Aliasarlos sería un
+  // riesgo real —mutar el clon mutaría el original— y basta con que el objeto
+  // contenga UNA función en cualquier rama para caer aquí.
+  if (value instanceof Date) return new Date(value.getTime()) as unknown as T;
+  if (value instanceof RegExp) return new RegExp(value.source, value.flags) as unknown as T;
+  if (value instanceof Map) {
+    const next = new Map<unknown, unknown>();
+    seen.set(objectValue, next);
+    value.forEach((entry, key) => next.set(cloneStructural(key, seen), cloneStructural(entry, seen)));
+    return next as unknown as T;
+  }
+  if (value instanceof Set) {
+    const next = new Set<unknown>();
+    seen.set(objectValue, next);
+    value.forEach((entry) => next.add(cloneStructural(entry, seen)));
+    return next as unknown as T;
+  }
+  if (ArrayBuffer.isView(value)) {
+    const view = value as unknown as { slice?: () => unknown };
+    if (typeof view.slice === 'function') return view.slice() as unknown as T;
+    return value;
+  }
+  if (value instanceof ArrayBuffer) return value.slice(0) as unknown as T;
+
   if (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) {
-    // Date, Map, Uint8Array, instancias de clase: se conserva la referencia
-    // antes que producir una copia estructuralmente incorrecta.
+    // Instancias de clase, nodos DOM, Blob: no se pueden reconstruir sin
+    // conocer su constructor. Se conserva la referencia antes que producir
+    // una copia estructuralmente incorrecta.
     return value;
   }
 

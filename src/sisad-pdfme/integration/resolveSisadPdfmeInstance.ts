@@ -1,3 +1,4 @@
+import type { SisadPdfmeIntegrationResources } from './http/integrationResources.js';
 import { createDefaultTemplate } from '../templates/createDefaultTemplate.js';
 import { createTemplateFromRecipe, type SisadPdfmeTemplateRecipe } from '../templates/createTemplateFromRecipe.js';
 import type { Template } from '@sisad-pdfme/common';
@@ -98,6 +99,16 @@ export type SisadPdfmeInstanceResources = {
   documents?: unknown[] | null;
   signatureProviders?: unknown[] | null;
   adapters?: SisadPdfmeHostDataAdapters;
+  /**
+   * Recursos de integración: transporte HTTP, fuentes de datos, providers de
+   * firma y fuentes tipográficas.
+   *
+   * Es la segunda rama NO serializable de `resources`, junto a `adapters`.
+   * `createSisadPdfmeInstanceBundle` la retira del bundle portable: contiene
+   * clientes vivos y funciones que no pueden viajar en un JSON, y credenciales
+   * que no deben persistirse (RTP-470).
+   */
+  integrations?: SisadPdfmeIntegrationResources;
   config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
 };
 

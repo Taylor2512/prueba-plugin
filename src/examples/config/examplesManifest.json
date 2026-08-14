@@ -6,7 +6,8 @@
     "runtime-form": "/runtime/form",
     "runtime-viewer": "/runtime/viewer",
     "runtime-form-digital-agreements": "/runtime/form/digital-agreements",
-    "schemas": "/schemas"
+    "schemas": "/schemas",
+    "runtime-form-multi-user": "/runtime/form/multi-user"
   },
   "primaryRoutes": [
     {
@@ -225,6 +226,69 @@
         }
       },
       "mode": "form"
+    },
+    {
+      "id": "runtime-form-multi-user",
+      "path": "/runtime/form/multi-user",
+      "title": "Runtime · Form multiusuario",
+      "description": "Form con schemas asignados por Usuario para verificar aislamiento real entre A y B.",
+      "shell": "immersive",
+      "instanceId": "runtime-form-multi-user",
+      "runtimeProfile": "runtime-form",
+      "viewportName": "runtime-form-multi-user",
+      "modeBadge": "form",
+      "mode": "form",
+      "collaboration": true,
+      "template": {
+        "builder": "multiUserShowcase",
+        "options": {
+          "familySource": "multiUser"
+        }
+      },
+      "state": {
+        "activeRecipientId": "initializer"
+      },
+      "actions": {
+        "recipientSelect": {
+          "type": "select",
+          "label": "Usuario activo"
+        }
+      },
+      "infoPanels": [
+        {
+          "key": "capture",
+          "title": "Captura de datos",
+          "description": "Último campo modificado",
+          "type": "metrics",
+          "metrics": [
+            {
+              "label": "Última entrada",
+              "path": "lastInput",
+              "fallback": "sin cambios"
+            }
+          ]
+        },
+        {
+          "key": "events",
+          "title": "Eventos",
+          "description": "Cambios de input",
+          "type": "events"
+        },
+        {
+          "key": "controller",
+          "title": "Controles del runtime",
+          "description": "Inspecciona template, snapshot, validación, selección y asignación sin salir del Form.",
+          "type": "controller"
+        }
+      ],
+      "handlers": {
+        "onInputChange": {
+          "type": "setState",
+          "field": "lastInput",
+          "format": "nameValue",
+          "record": true
+        }
+      }
     },
     {
       "id": "runtime-viewer",
@@ -483,7 +547,13 @@
           "record": true
         }
       },
-      "mode": "form"
+      "mode": "form",
+      "actions": {
+        "recipientSelect": {
+          "type": "select",
+          "label": "Usuario activo"
+        }
+      }
     },
     {
       "id": "schemas",

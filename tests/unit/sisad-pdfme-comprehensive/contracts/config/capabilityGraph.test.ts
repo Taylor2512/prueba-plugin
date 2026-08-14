@@ -20,6 +20,8 @@ import { featureRegistry } from '../../../../../src/sisad-pdfme/config/featureRe
 import { actionConfigRegistry } from '../../../../../src/sisad-pdfme/config/actionConfigRegistry';
 import { componentRegistry } from '../../../../../src/sisad-pdfme/config/componentRegistry';
 import { VIEW_FEATURES } from '../../../../../src/sisad-pdfme/ui/commands/viewCommands';
+import { INTEGRATION_CAPABILITIES } from '../../../../../src/sisad-pdfme/config/capabilityInventory';
+import { createMissingHttpClientAdapter } from '../../../../../src/sisad-pdfme/integration/http/httpClient';
 
 const baseConfig = resolveSisadPdfmeConfig({});
 
@@ -146,5 +148,87 @@ describe('capability graph', () => {
     expect(resolveCapabilityState(limited, 'schema-surface:catalog', { schemaType: 'signature' }).executable).toBe(false);
     // Sin tipo la pregunta es por la superficie, no por un tipo concreto.
     expect(resolveCapabilityState(limited, 'schema-surface:catalog').executable).toBe(true);
+  });
+});
+
+/**
+ * Capabilities de integración (RTP-470).
+ *
+ * La disponibilidad de un recurso de integración no es configuración: depende
+ * de si el host inyectó el recurso vivo. Se resuelve por el MISMO grafo para
+ * que Form, Viewer, Generator y Snapshot no inventen su propia comprobación.
+ */
+describe('capabilities de integración', () => {
+  it('sin recursos inyectados todo es fail-closed', () => {
+    INTEGRATION_CAPABILITIES.forEach((id) => {
+      const state = resolveCapabilityState(baseConfig, `integration:${id}`);
+      expect(state.registered, id).toBe(true);
+      expect(state.executable, id).toBe(false);
+      expect(state.reason, id).toBe(`${id}-not-injected`);
+    });
+  });
+
+  it('el transporte inyectado habilita httpClient', () => {
+    const state = resolveCapabilityState(baseConfig, 'integration:httpClient', {
+      integrations: { httpClient: createMissingHttpClientAdapter() },
+    });
+    expect(state.executable).toBe(true);
+  });
+
+  it('una fuente de datos sin transporte no es ejecutable', () => {
+    const state = resolveCapabilityState(baseConfig, 'integration:dataSources', {
+      integrations: { dataSources: { pokemon: {} } },
+    });
+    expect(state.executable).toBe(false);
+    expect(state.blockedBy).toContain('integration:httpClient');
+  });
+
+  it('fuente de datos con transporte sí resuelve', () => {
+    const state = resolveCapabilityState(baseConfig, 'integration:dataSources', {
+      integrations: {
+        httpClient: createMissingHttpClientAdapter(),
+        dataSources: { pokemon: {} },
+      },
+    });
+    expect(state.executable).toBe(true);
+  });
+
+  it('un registro de fuentes de datos vacío no cuenta como inyectado', () => {
+    const state = resolveCapabilityState(baseConfig, 'integration:dataSources', {
+      integrations: { httpClient: createMissingHttpClientAdapter(), dataSources: {} },
+    });
+    expect(state.executable).toBe(false);
+  });
+
+  it('la ejecución de firma depende de la feature de firmas', () => {
+    const sinFirmas = resolveSisadPdfmeConfig({ signatures: { enabled: false } });
+    const state = resolveCapabilityState(sinFirmas, 'integration:signatureExecution', {
+      integrations: { signatureExecution: { proveedor: {} } },
+    });
+    expect(state.executable).toBe(false);
+    expect(state.blockedBy).toContain('feature:signatures');
+  });
+
+  it('leer datos y fuentes tipográficas sigue siendo posible en readonly', () => {
+    // Un Viewer en solo lectura necesita fuentes para renderizar y puede leer
+    // datos remotos: la disponibilidad del recurso no es mutación.
+    const readonly = resolveSisadPdfmeConfig({ runtime: { readonly: true } });
+    expect(
+      resolveCapabilityState(readonly, 'integration:fonts', { integrations: { fonts: {} } }).executable,
+    ).toBe(true);
+    expect(
+      resolveCapabilityState(readonly, 'integration:httpClient', {
+        integrations: { httpClient: createMissingHttpClientAdapter() },
+      }).executable,
+    ).toBe(true);
+  });
+
+  it('la firma sí queda bloqueada en readonly, vía feature:signatures', () => {
+    const readonly = resolveSisadPdfmeConfig({ runtime: { readonly: true } });
+    const state = resolveCapabilityState(readonly, 'integration:signatureExecution', {
+      integrations: { signatureExecution: { proveedor: {} } },
+    });
+    expect(state.executable).toBe(false);
+    expect(state.blockedBy).toContain('feature:signatures');
   });
 });

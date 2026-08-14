@@ -27,8 +27,20 @@ type StatusTag = {
  * extensos sin saturar el sidebar.
  */
 type CompactConfigPanelProps = {
+  /**
+   * Título del panel. Sigue siendo obligatorio aunque `embedded` lo oculte:
+   * alimenta el modal de edición detallada y la etiqueta accesible.
+   */
   title: string;
   description?: string;
+  /**
+   * El panel ya vive dentro de una sección que anuncia lo mismo.
+   *
+   * Sin esto, «Datos y conexiones» contenía otra cabecera «Datos y conexión»
+   * y «Asignación y bloqueo» repetía su propio nombre: dos niveles de
+   * jerarquía diciendo lo mismo y consumiendo vertical.
+   */
+  embedded?: boolean;
   summary?: React.ReactNode;
   statusTags?: StatusTag[];
   quickActions?: React.ReactNode;
@@ -53,6 +65,7 @@ const EMPTY_TAGS: StatusTag[] = [];
 const CompactConfigPanel = ({
   title,
   description,
+  embedded = false,
   summary,
   statusTags = EMPTY_TAGS,
   quickActions,
@@ -78,15 +91,17 @@ const CompactConfigPanel = ({
     <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'flex flex-col gap-2 rounded-[0.95rem] border-0 bg-transparent p-0 shadow-none')}>
       <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-head', 'flex items-start justify-between gap-2')}>
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-copy', 'min-w-0 flex-1')}>
-          <div
-            className={mergeClassNames(
-              DESIGNER_CLASSNAME + 'compact-config-panel-title',
-              'min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.875rem] font-bold leading-[1.2] text-slate-900',
-            )}
-          >
-            {title}
-          </div>
-          {description ? (
+          {embedded ? null : (
+            <div
+              className={mergeClassNames(
+                DESIGNER_CLASSNAME + 'compact-config-panel-title',
+                'min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.875rem] font-bold leading-[1.2] text-slate-900',
+              )}
+            >
+              {title}
+            </div>
+          )}
+          {description && !embedded ? (
             <div
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'compact-config-panel-description',

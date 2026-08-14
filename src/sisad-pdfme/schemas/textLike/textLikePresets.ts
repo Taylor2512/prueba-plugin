@@ -10,7 +10,7 @@ import { createTextLikeSchemaPlugin } from './textLikeSchemaFactory.js';
 export const fullName = createTextLikeSchemaPlugin({
   type: 'fullName',
   label: 'Nombre completo',
-  sourceField: 'recipient.name',
+  sourceField: 'user.name',
   icon: renderLucideIcon(User, { stroke: '#374151' }),
   category: 'Destinatario',
   tags: ['name', 'full name', 'recipient', 'text'],
@@ -19,7 +19,7 @@ export const fullName = createTextLikeSchemaPlugin({
 export const emailAddress = createTextLikeSchemaPlugin({
   type: 'emailAddress',
   label: 'Correo electrónico',
-  sourceField: 'recipient.email',
+  sourceField: 'user.email',
   icon: renderLucideIcon(Mail, { stroke: '#374151' }),
   category: 'Destinatario',
   tags: ['email', 'recipient', 'text'],
@@ -28,7 +28,7 @@ export const emailAddress = createTextLikeSchemaPlugin({
 export const company = createTextLikeSchemaPlugin({
   type: 'company',
   label: 'Empresa',
-  sourceField: 'recipient.company',
+  sourceField: 'user.company',
   icon: renderLucideIcon(Building2, { stroke: '#374151' }),
   category: 'Destinatario',
   tags: ['company', 'organization', 'recipient', 'text'],
@@ -37,7 +37,7 @@ export const company = createTextLikeSchemaPlugin({
 export const title = createTextLikeSchemaPlugin({
   type: 'title',
   label: 'Cargo',
-  sourceField: 'recipient.title',
+  sourceField: 'user.title',
   icon: renderLucideIcon(Briefcase, { stroke: '#374151' }),
   category: 'Destinatario',
   tags: ['title', 'job title', 'position', 'recipient', 'text'],

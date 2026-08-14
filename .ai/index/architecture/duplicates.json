@@ -8,6 +8,13 @@
       ]
     },
     {
+      "hash": "0c2eda7c5bde26586d9f4a53fa89c36947090ba79f73a97d1ca626984ba5593f",
+      "paths": [
+        ".agents/skills/sisad-data-integration/SKILL.md",
+        ".claude/skills/sisad-data-integration/SKILL.md"
+      ]
+    },
+    {
       "hash": "1cccdc0e6df6cd705bb562c5c0c34ea83af665b58664584e6def2a5fc0c91be2",
       "paths": [
         ".agents/skills/sisad-dynamic-capabilities/SKILL.md",

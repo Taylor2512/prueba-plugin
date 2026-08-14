@@ -6,10 +6,26 @@ import type {
   SisadPdfmeInstanceDefinition,
   SisadPdfmeInstanceResources,
 } from './resolveSisadPdfmeInstance.js';
+import {
+  NON_PORTABLE_RESOURCE_KEYS,
+  stripSecrets,
+  type NonPortableResourceKey,
+} from './http/integrationResources.js';
 
 export type SisadPdfmeInstanceBundleVersion = 1;
 
-export type SisadPdfmeInstanceBundleResources = Omit<SisadPdfmeInstanceResources, 'adapters'>;
+/**
+ * Recursos que SÍ pueden viajar en el bundle.
+ *
+ * Se excluyen las dos ramas no serializables: `adapters` (normalizadores de
+ * datos del host) e `integrations` (clientes vivos, providers y funciones).
+ * La lista canónica vive en `NON_PORTABLE_RESOURCE_KEYS` para que añadir una
+ * rama nueva no requiera acordarse de tocar este tipo (RTP-470).
+ */
+export type SisadPdfmeInstanceBundleResources = Omit<
+  SisadPdfmeInstanceResources,
+  NonPortableResourceKey
+>;
 
 export type SisadPdfmeInstanceBundle = {
   version: SisadPdfmeInstanceBundleVersion;
@@ -38,13 +54,29 @@ const clonePortableValue = <T>(value: T): T => {
   return JSON.parse(JSON.stringify(value)) as T;
 };
 
-const stripAdapters = (
+/**
+ * Deja el bundle sólo con lo portable.
+ *
+ * Dos pasos, no uno:
+ *
+ * 1. se retiran las ramas no serializables (`adapters`, `integrations`);
+ * 2. se limpian credenciales y funciones del resto.
+ *
+ * El segundo paso hace falta porque la configuración declarativa de conexión
+ * (`SchemaHttpAuthConfig`) admite `token`, `username`, `password` y
+ * `headerValue`, y esa configuración SÍ es portable. Sin la limpieza, exportar
+ * un bundle podía llevarse credenciales del host dentro de la plantilla.
+ */
+const stripNonPortable = (
   resources?: SisadPdfmeInstanceResources,
 ): SisadPdfmeInstanceBundleResources | undefined => {
   if (!resources) return undefined;
-  const { adapters: _adapters, ...portableResources } = resources;
-  void _adapters;
-  return clonePortableValue(portableResources);
+  const portableResources = { ...resources } as Record<string, unknown>;
+  NON_PORTABLE_RESOURCE_KEYS.forEach((key) => {
+    delete portableResources[key];
+  });
+  const { value } = stripSecrets(portableResources);
+  return clonePortableValue(value) as SisadPdfmeInstanceBundleResources;
 };
 
 export const createSisadPdfmeInstanceBundle = (
@@ -54,8 +86,10 @@ export const createSisadPdfmeInstanceBundle = (
   const valid = !issues.some((issue) => issue.severity === 'error');
   return {
     version: 1,
-    definition: clonePortableValue(input.definition),
-    resources: stripAdapters(input.resources),
+    // La definición lleva la configuración declarativa de conexión, que admite
+    // `token`/`password`/`headerValue`. Nunca debe exportarse con ellos.
+    definition: clonePortableValue(stripSecrets(input.definition).value),
+    resources: stripNonPortable(input.resources),
     issues,
     valid,
   };

@@ -1,10 +1,20 @@
 /**
- * Autorrelleno de schemas a partir de los datos del destinatario.
+ * Autorrelleno de schemas a partir de los datos del Usuario.
  *
  * Los presets de `schemas/textLike/textLikePresets.ts` declaran un
- * `prefillSource` (`recipient.name`, `recipient.email`…). Este módulo es quien
- * lo consume: traduce esa fuente al dato real del destinatario propietario del
- * schema y devuelve el parche a aplicar sobre el schema.
+ * `prefillSource` (`user.name`, `user.email`…). Este módulo es quien lo
+ * consume: traduce esa fuente al dato real del Usuario propietario del schema
+ * y devuelve el parche a aplicar sobre el schema.
+ *
+ * ## Frontera User / Recipient (RTP-525)
+ *
+ * `User` es el concepto del core reusable. `Recipient` pertenece al host y
+ * sólo sobrevive aquí como ALIAS de compatibilidad: las plantillas ya
+ * persistidas llevan `prefillSource: 'recipient.email'` dentro de su JSON, así
+ * que dejar de aceptarlo rompería documentos existentes.
+ *
+ * La regla es asimétrica a propósito: se ACEPTA `recipient.*` al leer, pero se
+ * EMITE siempre `user.*` al escribir.
  *
  * Reglas:
  * - Solo se autorrellena cuando hay un valor real. Un campo sin fuente resuelta
@@ -20,22 +30,37 @@ import type { SchemaForUI } from '@sisad-pdfme/common';
 import { normalizeText } from '../shared/text.js';
 import type { CollaborationRecipientOption } from './collaborationContext.js';
 
-/** Fuentes declaradas por los presets, mapeadas a la clave del destinatario. */
+/** Fuentes canónicas, mapeadas a la clave del Usuario. */
 const PREFILL_SOURCE_FIELD = {
-  'recipient.name': 'name',
-  'recipient.email': 'email',
-  'recipient.company': 'company',
-  'recipient.title': 'title',
+  'user.name': 'name',
+  'user.email': 'email',
+  'user.company': 'company',
+  'user.title': 'title',
 } as const;
 
-export type RecipientPrefillSource = keyof typeof PREFILL_SOURCE_FIELD;
+export type UserPrefillSource = keyof typeof PREFILL_SOURCE_FIELD;
+
+/**
+ * Alias legacy → canónico.
+ *
+ * Sólo se consulta al LEER. Nada en el core vuelve a escribir `recipient.*`.
+ */
+const LEGACY_SOURCE_ALIAS: Record<string, UserPrefillSource> = {
+  'recipient.name': 'user.name',
+  'recipient.email': 'user.email',
+  'recipient.company': 'user.company',
+  'recipient.title': 'user.title',
+};
+
+/** Compatibilidad de tipo para consumidores previos al rename. */
+export type RecipientPrefillSource = UserPrefillSource;
 
 /** Tipos de schema que se autorrellenan aunque no declaren `prefillSource`. */
-const TYPE_FALLBACK_SOURCE: Record<string, RecipientPrefillSource> = {
-  fullname: 'recipient.name',
-  emailaddress: 'recipient.email',
-  company: 'recipient.company',
-  title: 'recipient.title',
+const TYPE_FALLBACK_SOURCE: Record<string, UserPrefillSource> = {
+  fullname: 'user.name',
+  emailaddress: 'user.email',
+  company: 'user.company',
+  title: 'user.title',
 };
 
 type PrefillableSchema = SchemaForUI & {
@@ -52,14 +77,25 @@ type PrefillableSchema = SchemaForUI & {
  * Prioriza `prefillSource` (lo que declara el preset) y cae al tipo para
  * schemas creados antes de que el preset lo declarara.
  */
-export const resolvePrefillSource = (schema: PrefillableSchema | null): RecipientPrefillSource | null => {
+export const resolvePrefillSource = (schema: PrefillableSchema | null): UserPrefillSource | null => {
   if (!schema) return null;
   const declared = normalizeText(schema.prefillSource);
-  if (declared && declared in PREFILL_SOURCE_FIELD) {
-    return declared as RecipientPrefillSource;
+  if (declared) {
+    if (declared in PREFILL_SOURCE_FIELD) return declared as UserPrefillSource;
+    // Plantilla anterior al rename: se acepta y se resuelve al canónico.
+    const alias = LEGACY_SOURCE_ALIAS[declared];
+    if (alias) return alias;
   }
   const type = normalizeText(schema.type).toLowerCase();
   return TYPE_FALLBACK_SOURCE[type] || null;
+};
+
+/** Normaliza una fuente declarada al espacio canónico. `null` si no existe. */
+export const normalizePrefillSource = (value: unknown): UserPrefillSource | null => {
+  const declared = normalizeText(value);
+  if (!declared) return null;
+  if (declared in PREFILL_SOURCE_FIELD) return declared as UserPrefillSource;
+  return LEGACY_SOURCE_ALIAS[declared] || null;
 };
 
 /**
@@ -69,8 +105,8 @@ export const resolvePrefillSource = (schema: PrefillableSchema | null): Recipien
  * destinatario no expone un cargo y la empresa está oculta en el formulario.
  * Devuelven `null` y el campo queda editable hasta que exista la fuente.
  */
-export const resolveRecipientPrefillValue = (
-  source: RecipientPrefillSource | null,
+export const resolveUserPrefillValue = (
+  source: UserPrefillSource | null,
   recipient: CollaborationRecipientOption | null | undefined,
 ): string | null => {
   if (!source || !recipient) return null;
@@ -92,7 +128,7 @@ export const applyRecipientPrefill = <T extends PrefillableSchema>(
   const source = resolvePrefillSource(schema);
   if (!source) return schema;
 
-  const value = resolveRecipientPrefillValue(source, recipient);
+  const value = resolveUserPrefillValue(source, recipient);
   if (!value) return schema;
 
   if (schema.content === value && schema.readOnly === true && schema.required !== true) {
@@ -124,3 +160,6 @@ export const resolveSchemaPrefillRecipient = (
   if (!ownerId) return activeRecipient;
   return recipientOptions.find((recipient) => recipient.id === ownerId) || activeRecipient;
 };
+
+/** Alias de compatibilidad para consumidores previos al rename (RTP-525). */
+export const resolveRecipientPrefillValue = resolveUserPrefillValue;

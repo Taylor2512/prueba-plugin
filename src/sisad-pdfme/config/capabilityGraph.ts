@@ -26,8 +26,10 @@ import {
   type CapabilityDescriptor,
   type CapabilityId,
   type CapabilityKind,
+  type IntegrationCapability,
   type SchemaSurface,
 } from './capabilityInventory.js';
+import type { SisadPdfmeIntegrationResources } from '../integration/http/integrationResources.js';
 import {
   selectActionState,
   selectComponentState,
@@ -60,6 +62,13 @@ export type CapabilityResolutionContext = {
    * desconocido es fail-closed.
    */
   controllerSupport?: Partial<Record<SisadPdfmeControllerCapabilityDomain, boolean>>;
+  /**
+   * Recursos de integración que el host inyectó de verdad.
+   *
+   * No es configuración: es presencia de un recurso vivo. Se pasa aparte
+   * porque `ResolvedConfig` es serializable y estos recursos no.
+   */
+  integrations?: SisadPdfmeIntegrationResources | null;
 };
 
 export type CapabilityState = SisadPdfmeFeatureState & {
@@ -195,6 +204,44 @@ const resolveControllerCapability = (
   };
 };
 
+/**
+ * Un recurso de integración está disponible si el host lo inyectó.
+ *
+ * Ausente = fail-closed. Es la diferencia entre «el host no lo configuró» y
+ * «asumamos que hay red»: lo segundo produce peticiones que nadie puede
+ * ejecutar y errores en tiempo de uso en vez de una superficie apagada.
+ */
+const resolveIntegrationCapability = (
+  source: SisadPdfmeConfigSource,
+  id: IntegrationCapability,
+  context: CapabilityResolutionContext,
+  descriptor: CapabilityDescriptor,
+): Omit<CapabilityState, 'capabilityId' | 'kind' | 'blockedBy'> => {
+  const resources = context.integrations ?? null;
+  const resource = resources?.[id];
+  const present =
+    id === 'dataSources' || id === 'signatureExecution'
+      ? Boolean(resource && Object.keys(resource as Record<string, unknown>).length > 0)
+      : Boolean(resource);
+  return {
+    id,
+    registered: true,
+    supported: present,
+    enabled: present,
+    // Un recurso de integración no tiene superficie propia que ocultar.
+    visible: true,
+    // Leer datos o fuentes tipográficas es legítimo en solo lectura. La única
+    // integración que muta es la firma, y su restricción vive en
+    // `feature:signatures`, que es su dependencia declarada.
+    permitted: true,
+    available: present,
+    active: false,
+    executable: present,
+    reason: present ? undefined : `${id}-not-injected`,
+    sources: [...descriptor.sources],
+  };
+};
+
 const resolveBase = (
   source: SisadPdfmeConfigSource,
   descriptor: CapabilityDescriptor,
@@ -211,6 +258,13 @@ const resolveBase = (
       return resolveViewCapability(source, descriptor.id as ViewFeature, context);
     case 'schema-surface':
       return resolveSchemaSurfaceCapability(source, descriptor.id as SchemaSurface, context);
+    case 'integration':
+      return resolveIntegrationCapability(
+        source,
+        descriptor.id as IntegrationCapability,
+        context,
+        descriptor,
+      );
     case 'controller-domain':
       return resolveControllerCapability(
         source,

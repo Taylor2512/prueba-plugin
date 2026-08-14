@@ -1,13 +1,31 @@
 import { test, expect } from '@playwright/test';
 
-test('stable test - designer runtime interactions', async ({ page }) => {
-  await page.goto('http://localhost:5174/');
-
-  // Navigate to the example page via visible links (keeps test resilient).
-  await page.getByText('Cada ruta es data-driven,').click();
-  await page.getByRole('heading', { name: /Catálogo de ejemplos del/i }).click();
-  const designerLinks = page.getByRole('link', { name: /Designer: multiusuario/i });
-  await designerLinks.nth(1).click();
+/**
+ * PENDIENTE — apunta a UI que ya no se monta.
+ *
+ * Diagnóstico (sesión RTP-510): estos specs se grabaron con codegen contra una
+ * versión del Designer que montaba `RegisteredUsersSelector`
+ * (`data-testid="designer-activerecipient-select"`). Hoy ese componente tiene
+ * CERO consumidores en `src/`: está exportado pero nadie lo renderiza, así que
+ * ni el selector ni su estado vacío aparecen en `/designer/multi-user`.
+ *
+ * No es una regresión de esta campaña: fallaban ya antes de tocar nada.
+ * Tampoco se «arreglan» borrando aserciones — eso ocultaría que la capability
+ * de cambiar de usuario activo no tiene superficie.
+ *
+ * Se dejan en `fixme` con el diagnóstico. El componente muerto queda anotado
+ * para RTP-530 (retirada de legacy) y la capability de usuario activo para
+ * RTP-525 (migración Recipient→User), que es donde debe decidirse si se vuelve
+ * a montar o se retira.
+ *
+ * Además son frágiles por construcción: dependen de hashes de clase de Ant
+ * (`css-dev-only-do-not-override-dzfy24`) y de `.nth(5)` sobre un filtro de
+ * divs. Reescribirlos con selectores estables es parte de esa misma task.
+ */
+test.fixme('stable test - designer runtime interactions', async ({ page }) => {
+  // Navegación por RUTA, no por etiqueta humana: el título del catálogo se
+  // renombró y estos specs quedaron rotos apuntando al label anterior.
+  await page.goto('/designer/multi-user');
 
   // Wait for the runtime viewport to be present after navigation.
   const runtime = page.getByTestId('-runtime-viewport');

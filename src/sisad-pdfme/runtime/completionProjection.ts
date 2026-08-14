@@ -44,6 +44,8 @@ export type UserCompletionProjection = {
   validTotal: number;
   invalidTotal: number;
   pendingSchemaUids: string[];
+  /** Dimensión canónica. `complete` es su derivada. */
+  status: CompletionStatus;
   complete: boolean;
 };
 
@@ -53,6 +55,7 @@ export type DocumentCompletionProjection = {
   schemaTotal: number;
   schemaCompleted: number;
   invalidSchemas: string[];
+  status: CompletionStatus;
   complete: boolean;
 };
 
@@ -60,6 +63,7 @@ export type ExecutionCompletionProjection = {
   runtimeSessionId: string;
   users: UserCompletionProjection[];
   documents: DocumentCompletionProjection[];
+  status: CompletionStatus;
   complete: boolean;
 };
 
@@ -77,6 +81,8 @@ export const projectUserCompletion = (
   const assigned = relevantSchemas.filter((schema) => schema.assignedUserIds?.includes(userId));
   const completed = (schema: CompletionSchemaRecord) => schema.interaction?.completed === true;
   const valid = (schema: CompletionSchemaRecord) => schema.interaction?.valid !== false;
+  const pending = relevantSchemas.filter((schema) => schema.required && !completed(schema));
+  const status = statusOf(relevantSchemas.some((schema) => !valid(schema)), pending.length > 0);
   return {
     userId,
     requiredTotal: required.length,
@@ -85,8 +91,9 @@ export const projectUserCompletion = (
     assignedInteracted: assigned.filter((schema) => schema.interaction?.touched === true).length,
     validTotal: relevantSchemas.filter(valid).length,
     invalidTotal: relevantSchemas.filter((schema) => !valid(schema)).length,
-    pendingSchemaUids: relevantSchemas.filter((schema) => schema.required && !completed(schema)).map((schema) => schema.schemaUid),
-    complete: required.every(completed) && relevantSchemas.every(valid),
+    pendingSchemaUids: pending.map((schema) => schema.schemaUid),
+    status,
+    complete: status === 'complete',
   };
 };
 
@@ -99,13 +106,18 @@ export const projectDocumentCompletion = (
   const users = userIds.map((userId) => projectUserCompletion(userId, documentSchemas));
   const completedSchemas = new Set(users.flatMap((user) => user.pendingSchemaUids));
   const invalidSchemas = documentSchemas.filter((schema) => schema.interaction?.valid === false).map((schema) => schema.schemaUid);
+  const hasPending =
+    completedSchemas.size > 0 ||
+    documentSchemas.some((schema) => schema.required && schema.interaction?.completed !== true);
+  const status = statusOf(invalidSchemas.length > 0, hasPending);
   return {
     documentId,
     users,
     schemaTotal: documentSchemas.length,
     schemaCompleted: documentSchemas.filter((schema) => !schema.required || schema.interaction?.completed === true).length,
     invalidSchemas,
-    complete: invalidSchemas.length === 0 && documentSchemas.every((schema) => !schema.required || schema.interaction?.completed === true) && completedSchemas.size === 0,
+    status,
+    complete: status === 'complete',
   };
 };
 
@@ -117,5 +129,10 @@ export const projectExecutionCompletion = (
 ): ExecutionCompletionProjection => {
   const documents = documentIds.map((documentId) => projectDocumentCompletion(documentId, userIds, schemas));
   const users = userIds.map((userId) => projectUserCompletion(userId, schemas));
-  return { runtimeSessionId, users, documents, complete: documents.every((document) => document.complete) };
+  // `invalid` gana sobre `pending`: una ejecución con errores no está «casi lista».
+  const status = statusOf(
+    documents.some((document) => document.status === 'invalid'),
+    documents.some((document) => document.status === 'pending'),
+  );
+  return { runtimeSessionId, users, documents, status, complete: status === 'complete' };
 };
