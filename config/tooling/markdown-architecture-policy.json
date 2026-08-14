@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "taskFamilies": {
+    "AIARCH": "ai-architecture",
+    "COREUX": "core-ux",
+    "VISUX": "visual-ux",
+    "name": "naming",
+    "PORTDOC": "portability"
+  },
+  "canonicalStatuses": [
+    "BACKLOG",
+    "READY",
+    "IN_PROGRESS",
+    "REVIEW",
+    "BLOCKED",
+    "PARTIAL",
+    "PASS",
+    "ARCHIVED"
+  ],
+  "hubs": [
+    ".ai",
+    ".ai/architecture",
+    ".ai/analysis",
+    ".ai/analysis/runtime-platform",
+    ".ai/brain/00-product",
+    ".ai/brain/20-contracts",
+    ".ai/brain/30-decisions",
+    ".ai/brain/40-runtime",
+    ".ai/brain/45-integrations",
+    ".ai/brain/50-guides",
+    ".ai/brain/60-quality",
+    ".ai/brain/70-memory",
+    ".ai/brain/70-memory/topics",
+    ".ai/brain/90-reference",
+    ".ai/knowledge",
+    ".ai/knowledge/domain",
+    ".ai/knowledge/runtime-platform",
+    ".ai/plans",
+    ".ai/prompts",
+    ".ai/routes",
+    ".ai/scrum",
+    ".ai/scrum/task-cards",
+    ".ai/scrum/task-cards/ai-architecture",
+    ".ai/scrum/task-cards/core-ux",
+    ".ai/scrum/task-cards/naming",
+    ".ai/scrum/task-cards/portability",
+    ".ai/scrum/task-cards/runtime-platform",
+    ".ai/scrum/task-cards/tooling-architecture",
+    ".ai/scrum/task-cards/visual-ux",
+    ".ai/research",
+    ".ai/templates",
+    ".ai/playbooks",
+    ".ai/agents",
+    "reports/runtime-platform",
+    "reports/runtime-platform/evidence",
+    "reports/runtime-platform/evidence/details"
+  ],
+  "transientCandidates": [
+    ".trace-tmp"
+  ],
+  "candidateOnly": [
+    "src/styles/sisad-tailwind-bridge.css"
+  ],
+  "deprecatedSkills": [
+    "worktree-coordination",
+    "sisad-worktree-coordination"
+  ],
+  "archives": [
+    ".ai/archive"
+  ],
+  "runtimeActiveRange": {
+    "min": 425,
+    "max": 545
+  },
+  "autoHubRoots": [
+    ".ai",
+    ".claude",
+    ".codex",
+    ".github",
+    "docs",
+    "reports",
+    "src/sisad-pdfme"
+  ],
+  "autoHubExcludePrefixes": [
+    ".ai/archive",
+    ".ai/index",
+    ".ai/cache",
+    ".agents/skills",
+    ".claude/skills",
+    "reports/architecture"
+  ]
+}

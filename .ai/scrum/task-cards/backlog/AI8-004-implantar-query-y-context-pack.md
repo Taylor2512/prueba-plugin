@@ -1,3 +1,8 @@
+---
+id: AI8-004
+status: BACKLOG
+---
+
 # AI8-004 — Implantar query y context pack
 
 ## Metadata

@@ -553,7 +553,7 @@ docs/11-migraciones/01-legacy-templates.md
 .ai/scrum/task-cards/CONFIG-004-create-legacy-config-migration.md
 → .ai/scrum/task-cards/CONFIG-004-migrate-config-to.md
 
-.ai/scrum/task-cards/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md
+.ai/scrum/task-cards/core-ux/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md
 → .ai/scrum/task-cards/COREUX-006-implementar-dispatcher-y-host-callback-adapter.md
 ```
 

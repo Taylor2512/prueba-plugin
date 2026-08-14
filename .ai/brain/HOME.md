@@ -55,3 +55,23 @@ Core contracts:
 - `SCHEMA-MANIFEST-OWNERSHIP-CONTRACT.md`
 - `AUTONOMOUS-EXECUTION-CONTRACT.md`
 <!-- autonomous-runtime:brain:end -->
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Secciones
+
+- [00-product](./00-product/README.md)
+- [20-contracts](./20-contracts/README.md)
+- [30-decisions](./30-decisions/README.md)
+- [40-runtime](./40-runtime/README.md)
+- [45-integrations](./45-integrations/README.md)
+- [50-guides](./50-guides/README.md)
+- [60-quality](./60-quality/README.md)
+- [70-memory](./70-memory/README.md)
+- [90-reference](./90-reference/README.md)
+
+### Notas
+
+- [Brain neutral SISAD-PDFME](./README.md)
+<!-- project-tools:navigation:end -->

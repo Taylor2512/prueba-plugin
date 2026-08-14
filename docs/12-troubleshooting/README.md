@@ -16,3 +16,15 @@
 - [Troubleshooting — Runtime](./04-runtime.md)
 - [Troubleshooting de integración externa](./05-integracion-en-otro-proyecto.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Troubleshooting — Canvas](./01-canvas.md)
+- [Troubleshooting — PDF worker](./02-pdf-worker.md)
+- [Troubleshooting — Regresiones Tailwind](./03-tailwind-regressions.md)
+- [Troubleshooting — Runtime](./04-runtime.md)
+- [Troubleshooting de integración externa](./05-integracion-en-otro-proyecto.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

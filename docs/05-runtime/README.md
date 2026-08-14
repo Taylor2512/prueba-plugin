@@ -17,3 +17,15 @@
 - [Validación](./04-validation.md)
 - [Filtrado por recipient](./05-recipient-filtering.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Form](./01-form.md)
+- [Viewer](./02-viewer.md)
+- [Valores](./03-values.md)
+- [Validación](./04-validation.md)
+- [Filtrado por recipient](./05-recipient-filtering.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

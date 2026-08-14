@@ -1,0 +1,188 @@
+---
+id: COREUX-018
+status: PASS
+---
+
+# COREUX-018 — Cerrar lifecycle de Guardar y autosave
+
+**Wave:** W2  
+**Prioridad:** P0  
+**Riesgo:** Muy alto  
+**Owner sugerido:** runtime-architect  
+**Modelo sugerido:** Sol high  
+**Dependencias:** COREUX-006, COREUX-012  
+**Worktree/rama:** pendiente
+
+## Restricción de activación
+
+No pasar a Ready mientras el WIP global permanezca en 3. Antes de activarla,
+reconciliar `CONFIG-020`, `CONFIG-001` y `UX-001`.
+
+## Objetivo observable
+
+Una sola acción global con dirty/saving/saved/error y correlación.
+
+## Casos de uso
+
+Dominios: CMD, EVT, RUN, VIS.
+
+VIS-001, VIS-002, VIS-003, VIS-004, VIS-005, VIS-006, VIS-007, VIS-008, VIS-009, VIS-010, VIS-011, VIS-012, VIS-013, VIS-014, VIS-015, CMD-001, CMD-002, CMD-003, CMD-004, CMD-005, CMD-006, CMD-007, CMD-008, CMD-009, CMD-010, CMD-011, CMD-012, CMD-013, CMD-014, CMD-015, EVT-001, EVT-002, EVT-003, EVT-004, EVT-005, EVT-006, EVT-007, EVT-008, EVT-009, EVT-010, EVT-011, EVT-012, EVT-013, EVT-014, EVT-015, RUN-001, RUN-002, RUN-003, RUN-004, RUN-005, RUN-006, RUN-007, RUN-008, RUN-009, RUN-010, RUN-011, RUN-012, RUN-013, RUN-014, RUN-015
+
+Fuente: `reports/core-ux/01-USE-CASE-MATRIX.md`.
+
+## Patrones
+
+Command, Adapter, State machine
+
+## Lectura mínima
+
+1. `.ai/START.md`
+2. `.ai/routes/designer-core-ux.md`
+3. `.ai/architecture/EVENT-COMMAND-EFFECT-ARCHITECTURE.md`
+4. `.ai/architecture/DESIGNER-SURFACE-ARCHITECTURE.md`
+5. `.ai/governance/ANTI-HALLUCINATION.md`
+6. `.ai/governance/ANTI-LOOP.md`
+7. `.ai/governance/ANTI-OVERFLOW.md`
+8. Esta task-card
+
+## Archivos candidatos
+
+- `src/sisad-pdfme/ui/components/CtlBar.tsx`
+- `src/sisad-pdfme/react/useSisadPdfmeController.ts`
+- `src/sisad-pdfme/adapters/persistenceAdapter.ts`
+- `src/sisad-pdfme/config/SisadPdfmeConfig.ts`
+- `tests/unit/sisad-pdfme/persistence/**`
+
+Confirmar rutas antes de editar. No crear un archivo nuevo si la responsabilidad
+ya existe bajo otro nombre.
+
+## Archivos protegidos por defecto
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+- `.tailwind-migration-backups/**`
+
+Solo se permite tocar un archivo protegido cuando aparece explícitamente en
+Archivos candidatos y existe prueba focal roja.
+
+## Invariantes
+
+- Solo código productivo bajo `src/sisad-pdfme/**`.
+- TypeScript/TSX.
+- Cero imports hacia /features/modules.
+- No segundo registry, event bus, snapshot o renderer.
+- No `setTimeout` de coordinación.
+- No z-index arbitrario.
+- Tailwind-first; `tokens.css` solo para variables técnicas.
+- Un writer; máximo dos readers read-only.
+- No afirmar gates no ejecutados.
+
+## Caracterización previa
+
+1. `pwd`
+2. `git branch --show-current`
+3. `git status --short`
+4. registrar commit base;
+5. abrir máximo 8 archivos;
+6. máximo 2 búsquedas amplias;
+7. escribir hipótesis y test focal;
+8. registrar claim.
+
+## Pasos
+
+1. Definir revision y dirty source.
+2. Emitir save lifecycle.
+3. Bloquear doble submit.
+4. Implementar autosave cancelable.
+5. Distinguir request callback y succeeded event.
+
+## Criterios de aceptación
+
+- [x] Estado nunca pasa a `saved` antes de que el adapter resuelva; un rechazo
+      deja `error` y `revision` sin incrementar.
+- [x] El error permite reintentar: el snapshot que falló queda pendiente y
+      `retry()` reintenta exactamente ese.
+- [ ] Un solo Guardar visible por instancia: es de CtlBar (COREUX-013).
+
+Entrega: `runtime/saveLifecycle.ts`. Sustituye el `controller.save()`
+fire-and-forget, que llamaba a `saveTemplate()` y volvía sin esperar nada.
+Emite `save.requested/started/succeeded/failed` con un `correlationId` común, y
+los guardados concurrentes se encolan en vez de escribir en paralelo — que es
+el comportamiento que necesita un autosave. Sin `setTimeout` en el ciclo de
+vida. 11/11 en `tests/unit/sisad-pdfme/persistence/saveLifecycle.test.ts`.
+
+## Gates focales
+
+```bash
+npm run lint
+npm run build
+npm run quality:direct-config-readers
+npm run quality:duplicate-functions
+npx vitest run <tests-focales>
+```
+
+Agregar Playwright solo cuando cambie comportamiento visible.
+
+## Presupuesto
+
+- Máximo 5 archivos productivos.
+- Máximo 8 lecturas iniciales.
+- Máximo 2 rondas de búsqueda.
+- Máximo 3 intentos de parche.
+- Un dominio por commit.
+- Contexto máximo 75 %.
+
+## Condición de parada
+
+Detenerse y entregar handoff si:
+
+- se requiere tocar otro dominio;
+- se excede presupuesto;
+- aparece conflicto con otra claim;
+- la solución exige una API paralela;
+- no existe prueba focal;
+- se filtra lógica del host;
+- el cambio altera snapshot/geometría sin migración específica.
+
+## Rollback
+
+Commit atómico. Preservar:
+
+```txt
+schemaUid
+documentId
+pageNumber
+ownerRecipientId
+ownerRecipientIds
+ownerColor
+required
+readOnly
+locks
+selection
+zoom
+scroll
+snapshotVersion
+```
+
+## Handoff
+
+```txt
+task
+claim
+rama/worktree
+commit base
+causa confirmada
+archivos
+cambios
+eventos/commands afectados
+UC cubiertos
+gates ejecutados
+gates no ejecutados
+riesgos
+rollback
+siguiente acción
+```

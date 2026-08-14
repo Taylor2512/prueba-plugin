@@ -17,3 +17,16 @@
 - [Matriz de regresión — restauración funcional](./06-matriz-regresion-restauracion-funcional.md)
 - [Matriz de regresión COREUX](./07-coreux-regression-matrix.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Checklist manual](./01-manual-checklist.md)
+- [Regression Matrix](./02-regression-matrix.md)
+- [Playwright](./03-playwright.md)
+- [Vitest](./04-vitest.md)
+- [Matriz de regresión — restauración funcional](./06-matriz-regresion-restauracion-funcional.md)
+- [Matriz de regresión COREUX](./07-coreux-regression-matrix.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

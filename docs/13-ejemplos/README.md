@@ -81,3 +81,17 @@ Ant Design, Moveable ni Selecto; por eso los shells declaran `font-sans`,
 - [Presets de configuración SISAD PDFME](./07-presets-configuracion.md)
 - [Ejemplos declarativos JSON](./08-ejemplos-declarativos-json.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Ejemplo — Basic Designer](./01-basic-designer.md)
+- [Ejemplo — Multi Document Routing](./02-multi-document-routing.md)
+- [Ejemplo — Generator Runtime](./03-generator-runtime.md)
+- [Ejemplos dinámicos con datos externos](./04-dynamic-host-integration-s.md)
+- [Ejemplo copy/paste](./06-integracion-copy-paste.md)
+- [Presets de configuración SISAD PDFME](./07-presets-configuracion.md)
+- [Ejemplos declarativos JSON](./08-ejemplos-declarativos-json.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

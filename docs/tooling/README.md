@@ -36,8 +36,19 @@ ciclo normal del repositorio.
 
 ### Notas
 
-- [Reconciliación de paths de arquitectura](./ARCHITECTURE-PATH-RECONCILIATION.md)
 - [Importación segura de una arquitectura](./ARCHITECTURE-IMPORT.md)
-- [Manual de comandos](./COMMANDS.md)
+- [Reconciliación de paths de arquitectura](./ARCHITECTURE-PATH-RECONCILIATION.md)
+- [Manual de comandos de arquitectura/documentación](./COMMANDS.md)
 - [Sanitización Markdown](./MARKDOWN-SANITIZATION.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Importación segura de una arquitectura](./ARCHITECTURE-IMPORT.md)
+- [Reconciliación de paths de arquitectura](./ARCHITECTURE-PATH-RECONCILIATION.md)
+- [Manual de comandos de arquitectura/documentación](./COMMANDS.md)
+- [Sanitización Markdown](./MARKDOWN-SANITIZATION.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

@@ -1,5 +1,5 @@
 {
-  "type": "additive-overlay-with-hash-checked-brain-targets",
+  "type": "additive-overlay-with-hash-checked-../../archive/migrations/digital-agreements-runtime-brain-targets",
   "safeRoots": [
     ".ai",
     ".agents",
@@ -17,5 +17,5 @@
     ".ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md",
     ".ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md"
   ],
-  "instructions": "Copy additive files. Apply existing Brain updates only through tools/sisad-pdfme-runtime/apply-brain-targets.mjs or manual merge if hash conflicts. Do not hand-edit generated navigation/indexes; regenerate with existing project-tools."
+  "instructions": "Copy additive files. Apply existing Brain updates only through tools/sisad-pdfme-runtime/apply-../../archive/migrations/digital-agreements-runtime-brain-targets.mjs or manual merge if hash conflicts. Do not hand-edit generated navigation/indexes; regenerate with existing project-tools."
 }

@@ -7,7 +7,7 @@ const campaign = path.join(root, '.ai/ops/campaigns/digital-agreements-pdfme-int
 const required = [
   '.ai/analysis/DA-PDFME-EXAMPLES-DEEP-AUDIT.md',
   '.ai/analysis/DA-PDFME-CONFIG-PARITY-MATRIX.md',
-  '.ai/brain/40-integrations/SISAD-PDFME-EXAMPLES-TO-DIGITAL-AGREEMENTS.md',
+  '.ai/brain/45-integrations/SISAD-PDFME-EXAMPLES-TO-DIGITAL-AGREEMENTS.md',
   '.ai/brain/20-contracts/PDFME-JSON-CONFIG-HOST-BOUNDARY.md',
   '.ai/brain/70-memory/topics/digital-agreements-pdfme-examples.md',
   '.ai/brain/70-memory/deltas/2026-08-11-da-pdfme-examples-v8.md',

@@ -1,6 +1,6 @@
 ---
 id: AIARCH-006
-state: backlog
+
 wave: W1
 priority: P0
 risk: high
@@ -22,6 +22,7 @@ context:
     - src/sisad-pdfme/**
   maxFiles: 8
   maxTokens: 12000
+status: BACKLOG
 ---
 
 # AIARCH-006 — Crear generador de context packets

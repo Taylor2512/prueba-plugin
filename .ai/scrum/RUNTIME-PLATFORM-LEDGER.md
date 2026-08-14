@@ -1,5 +1,13 @@
 # Ledger — Runtime Platform
 
+<!-- effective-runtime-state:start -->
+## Effective runtime state
+
+Canonical generated view: [views/RUNTIME-PLATFORM.md](./views/RUNTIME-PLATFORM.md)
+
+This block overrides stale status summaries below; historical entries remain provenance.
+<!-- effective-runtime-state:end -->
+
 - `RTP-000` — wave 0 — P0 — READY — Live source truth, Git/hash drift y baseline
 - `RTP-005` — wave 0 — P0 — BACKLOG — Canonicalizar infraestructura Playwright/Vitest y test authority
 - `RTP-010` — wave 0 — P1 — BACKLOG — Fijar identidad SISAD-PDFME y nomenclatura policy

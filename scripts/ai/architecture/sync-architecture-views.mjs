@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+import fs from "node:fs";import path from "node:path";
+const root=path.resolve(process.argv[2]||".");const audit=JSON.parse(fs.readFileSync(path.join(root,"reports/architecture/task-status-audit.json"),"utf8"));const rows=audit.rows||[],view=path.join(root,".ai/scrum/views");fs.mkdirSync(view,{recursive:true});
+function doc(title,desc,filter){const r=rows.filter(filter).sort((a,b)=>a.id.localeCompare(b.id,undefined,{numeric:true}));return[`# ${title}`,"",desc,"",...(r.length?r.map(x=>`- [${x.id}](../${x.path.replace(/^\.ai\/scrum\//,"")}) — \`${x.effectiveStatus}\``):["- none"]),"","> Generated. Authority: task card + evidence + dependency DAG.",""].join("\n")}
+fs.writeFileSync(path.join(view,"ACTIVE.md"),doc("Active","Work in progress/review.",x=>["IN_PROGRESS","REVIEW","READY"].includes(x.effectiveStatus)));
+fs.writeFileSync(path.join(view,"BLOCKED.md"),doc("Blocked / Partial","Blocked or dependency-incomplete work.",x=>["BLOCKED","PARTIAL"].includes(x.effectiveStatus)));
+fs.writeFileSync(path.join(view,"COMPLETED.md"),doc("Completed","Effective PASS tasks.",x=>x.effectiveStatus==="PASS"));
+const rtp=rows.filter(x=>/^RTP-\d+$/.test(x.id)).sort((a,b)=>Number(a.id.split("-")[1])-Number(b.id.split("-")[1]));
+fs.writeFileSync(path.join(view,"RUNTIME-PLATFORM.md"),["# Runtime Platform state","","| Task | Effective | Open dependencies |","|---|---|---|",...rtp.map(x=>`| [${x.id}](../${x.path.replace(/^\.ai\/scrum\//,"")}) | **${x.effectiveStatus}** | ${(x.openDependencies||[]).join(", ")||"-"} |`),"","> Generated from evidence-aware reconciliation.",""].join("\n"));
+const ledger=path.join(root,".ai/scrum/RUNTIME-PLATFORM-LEDGER.md");if(fs.existsSync(ledger)){const S="<!-- effective-runtime-state:start -->",E="<!-- effective-runtime-state:end -->",cur=fs.readFileSync(ledger,"utf8"),block=`${S}\n## Effective runtime state\n\nCanonical generated view: [views/RUNTIME-PLATFORM.md](./views/RUNTIME-PLATFORM.md)\n\nThis block overrides stale status summaries below; historical entries remain provenance.\n${E}`,a=cur.indexOf(S),b=cur.indexOf(E),next=a>=0&&b>=a?cur.slice(0,a)+block+cur.slice(b+E.length):cur.replace(/^(#.+\n)/,`$1\n${block}\n`);fs.writeFileSync(ledger,next,"utf8")}
+console.log(JSON.stringify({rows:rows.length,runtime:rtp.length},null,2));

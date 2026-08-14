@@ -10,4 +10,5 @@ provider profiles must reference those roles rather than copy governance.
 ### Notas
 
 - [Codex runtime platform](./runtime-platform.md)
+- [Codex runtime verifier](./runtime-verifier.md)
 <!-- project-tools:navigation:end -->

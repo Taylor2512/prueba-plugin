@@ -15,3 +15,14 @@
 - [Glosario](./03-glosario.md)
 - [Arquitectura general del componente](./04-arquitectura-general.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Qué es `sisad-pdfme`](./01-que-es-sisad-pdfme.md)
+- [Para qué sirve](./02-para-que-sirve.md)
+- [Glosario](./03-glosario.md)
+- [Arquitectura general del componente](./04-arquitectura-general.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

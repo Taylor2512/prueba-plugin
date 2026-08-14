@@ -8,36 +8,44 @@
       "to": ".agents/skills/sisad-runtime-platform"
     },
     {
+      "from": ".ai/agents/explorer.md",
+      "to": ".ai/agents/explorer.md"
+    },
+    {
+      "from": ".ai/agents/qa.md",
+      "to": ".ai/agents/qa.md"
+    },
+    {
       "from": ".ai/analysis/runtime-platform",
       "to": ".ai/analysis/runtime-platform"
     },
     {
-      "from": ".ai/index/runtime-platform",
-      "to": ".ai/index/runtime-platform"
+      "from": ".ai/architecture/AI-ASSISTANT-ARCHITECTURE.md",
+      "to": ".ai/architecture/AI-ASSISTANT-ARCHITECTURE.md"
     },
     {
-      "from": ".ai/scrum/task-cards/runtime-platform",
-      "to": ".ai/scrum/task-cards/runtime-platform"
+      "from": ".ai/architecture/MEMORY-ARCHITECTURE.md",
+      "to": ".ai/architecture/MEMORY-ARCHITECTURE.md"
     },
     {
-      "from": "reports/runtime-platform",
-      "to": "reports/runtime-platform"
+      "from": ".ai/archive/generated-domain-artifacts/index.ts",
+      "to": ".ai/archive/generated-domain-artifacts/index.ts"
     },
     {
-      "from": ".claude/agents/sisad-runtime-platform.md",
-      "to": ".claude/agents/sisad-runtime-platform.md"
+      "from": ".ai/brain/45-integrations",
+      "to": ".ai/brain/45-integrations"
     },
     {
-      "from": ".codex/agents/runtime-platform.md",
-      "to": ".codex/agents/runtime-platform.md"
-    },
-    {
-      "from": ".github/agents/sisad-runtime-platform-agent.md",
-      "to": ".github/agents/sisad-runtime-platform-agent.md"
+      "from": ".ai/archive/memory/CURRENT-reconciliation-proposal.md",
+      "to": ".ai/archive/memory/CURRENT-reconciliation-proposal.md"
     },
     {
       "from": ".ai/brain/70-memory/topics/runtime-platform.md",
       "to": ".ai/brain/70-memory/topics/runtime-platform.md"
+    },
+    {
+      "from": ".ai/index/runtime-platform",
+      "to": ".ai/index/runtime-platform"
     },
     {
       "from": ".ai/knowledge/RUNTIME-PLATFORM-INDEX.md",
@@ -48,12 +56,180 @@
       "to": ".ai/memory/RTP-MEMORY-DELTA.md"
     },
     {
+      "from": ".ai/archive/migrations/digital-agreements-runtime-brain-targets",
+      "to": ".ai/archive/migrations/digital-agreements-runtime-brain-targets"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/record",
+      "to": ".ai/archive/campaigns/runtime-hardening/record"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-000.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-000.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-010.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-010.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-020.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-020.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-030.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-030.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-040.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-040.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-050.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-050.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-060.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-060.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-070.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-070.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-080.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-080.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-090.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-090.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-100.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-100.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-110.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-110.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-120.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-120.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-130.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-130.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-140.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-140.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-150.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-150.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-160.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-160.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-170.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-170.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-180.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-180.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-190.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-190.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-200.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-200.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-210.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-210.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-220.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-220.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-230.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-230.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-240.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-240.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-250.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-250.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-260.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-260.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-270.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-270.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/TASK-LEDGER.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/TASK-LEDGER.md"
+    },
+    {
+      "from": ".ai/plans/AIARCH-EXECUTION-ORDER.md",
+      "to": ".ai/plans/AIARCH-EXECUTION-ORDER.md"
+    },
+    {
+      "from": ".ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME.md",
+      "to": ".ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME.md"
+    },
+    {
       "from": ".ai/plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md",
       "to": ".ai/plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md"
     },
     {
+      "from": ".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md",
+      "to": ".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/PLAN.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/PLAN.md"
+    },
+    {
+      "from": ".ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md",
+      "to": ".ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md"
+    },
+    {
       "from": ".ai/plans/RUNTIME-PLATFORM-CROSSWALK.md",
       "to": ".ai/plans/RUNTIME-PLATFORM-CROSSWALK.md"
+    },
+    {
+      "from": ".ai/playbooks/EXECUTE-TASK.md",
+      "to": ".ai/playbooks/EXECUTE-TASK.md"
+    },
+    {
+      "from": ".ai/playbooks/UPDATE-MEMORY.md",
+      "to": ".ai/playbooks/UPDATE-MEMORY.md"
+    },
+    {
+      "from": ".ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md",
+      "to": ".ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md"
+    },
+    {
+      "from": ".ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md",
+      "to": ".ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/PROMPT-BOOT.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/PROMPT-BOOT.md"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/PROMPT-MASTER.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/PROMPT-MASTER.md"
     },
     {
       "from": ".ai/prompts/RTP-CLAUDE-START.md",
@@ -80,32 +256,12 @@
       "to": ".ai/quality/RUNTIME-PLATFORM-GATES.md"
     },
     {
-      "from": ".ai/scrum/RUNTIME-PLATFORM-LEDGER.md",
-      "to": ".ai/scrum/RUNTIME-PLATFORM-LEDGER.md"
+      "from": ".ai/research/OFFICIAL-PROVIDER-FINDINGS.md",
+      "to": ".ai/research/OFFICIAL-PROVIDER-FINDINGS.md"
     },
     {
-      "from": ".ai/architecture/AI-ASSISTANT-ARCHITECTURE.md",
-      "to": ".ai/architecture/AI-ASSISTANT-ARCHITECTURE.md"
-    },
-    {
-      "from": ".ai/architecture/MEMORY-ARCHITECTURE.md",
-      "to": ".ai/architecture/MEMORY-ARCHITECTURE.md"
-    },
-    {
-      "from": ".ai/plans/AIARCH-EXECUTION-ORDER.md",
-      "to": ".ai/plans/AIARCH-EXECUTION-ORDER.md"
-    },
-    {
-      "from": ".ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md",
-      "to": ".ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md"
-    },
-    {
-      "from": ".ai/playbooks/EXECUTE-TASK.md",
-      "to": ".ai/playbooks/EXECUTE-TASK.md"
-    },
-    {
-      "from": ".ai/playbooks/UPDATE-MEMORY.md",
-      "to": ".ai/playbooks/UPDATE-MEMORY.md"
+      "from": ".ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md",
+      "to": ".ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md"
     },
     {
       "from": ".ai/scrum/MERGE-INSTRUCTIONS.md",
@@ -120,76 +276,668 @@
       "to": ".ai/scrum/PRODUCT-BACKLOG-ROWS.md"
     },
     {
+      "from": ".ai/scrum/RUNTIME-PLATFORM-LEDGER.md",
+      "to": ".ai/scrum/RUNTIME-PLATFORM-LEDGER.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md",
+      "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-001-congelar-baseline-y.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-001-congelar-baseline-y.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-002-adoptar-hot-path.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-002-adoptar-hot-path.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-003-migrar-conocimiento-a-jsonl.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-003-migrar-conocimiento-a-jsonl.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-005-compactar-routes.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-005-compactar-routes.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-006-compactar-skills-y-aliases.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-006-compactar-skills-y-aliases.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-007-consolidar-agentes.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-007-consolidar-agentes.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-008-generar-adapters-de-proveedor.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-008-generar-adapters-de-proveedor.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-009-migrar-memoria-y-ttl.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-009-migrar-memoria-y-ttl.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-010-migrar-lifecycle-de-tareas.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-010-migrar-lifecycle-de-tareas.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-011-consolidar-contratos-de-usuarios-y-color.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-011-consolidar-contratos-de-usuarios-y-color.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-012-consolidar-matriz-de-schemas.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-012-consolidar-matriz-de-schemas.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-013-inventariar-namespace-css.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-013-inventariar-namespace-css.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-014-actualizar-trazabilidad.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-014-actualizar-trazabilidad.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-015-implementar-gates.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-015-implementar-gates.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-016-crear-evals-de-costo-y-precision.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-016-crear-evals-de-costo-y-precision.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-017-migrar-coreux-decl-restore-name.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-017-migrar-coreux-decl-restore-name.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-018-rollout-y-eliminacion-controlada.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-018-rollout-y-eliminacion-controlada.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-008-expandir-maquina-de-estados-de-interaccion.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-008-expandir-maquina-de-estados-de-interaccion.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-009-crear-coordinador-de-efectos-del-designer.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-009-crear-coordinador-de-efectos-del-designer.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-012-conectar-commandbus-eventos-e-historial.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-012-conectar-commandbus-eventos-e-historial.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-016-completar-comandos-de-pagina.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-016-completar-comandos-de-pagina.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-017-unificar-zoom-fit-page-y-fit-width.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-017-unificar-zoom-fit-page-y-fit-width.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-020-crear-estado-responsive-unico-de-superficies.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-020-crear-estado-responsive-unico-de-superficies.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-024-formalizar-contrato-del-rightsidebar.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-024-formalizar-contrato-del-rightsidebar.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-025-completar-listview-compacto-y-menu-por-fila.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-025-completar-listview-compacto-y-menu-por-fila.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-027-completar-documentsrail-y-documentcontroller.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-027-completar-documentsrail-y-documentcontroller.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-032-consolidar-datos-y-conexiones.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-032-consolidar-datos-y-conexiones.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-034-unificar-editor-de-opciones.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-034-unificar-editor-de-opciones.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-038-cerrar-contrato-de-choice-fields.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-038-cerrar-contrato-de-choice-fields.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-041-unificar-owner-tone-y-field-chrome.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-041-unificar-owner-tone-y-field-chrome.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-044-alinear-moveable-con-access-interaction-y-events.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-044-alinear-moveable-con-access-interaction-y-events.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-047-completar-snapshot-e-historial-versionado.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-047-completar-snapshot-e-historial-versionado.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-049-cerrar-paridad-designer-form-y-viewer.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-049-cerrar-paridad-designer-form-y-viewer.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-050-unificar-validacion-generator-converter-y-persistence.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-050-unificar-validacion-generator-converter-y-persistence.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-054-crear-playwright-y-regresion-visual-integral.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-054-crear-playwright-y-regresion-visual-integral.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/core-ux/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md",
+      "to": ".ai/scrum/task-cards/core-ux/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-001-inventariar-y-clasificar-ocurrencias.md",
+      "to": ".ai/scrum/task-cards/naming/name-001-inventariar-y-clasificar-ocurrencias.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-002-crear-pol-tica-y-gate-preventivo.md",
+      "to": ".ai/scrum/task-cards/naming/name-002-crear-pol-tica-y-gate-preventivo.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-003-renombrar-vocabulario-del-inspector.md",
+      "to": ".ai/scrum/task-cards/naming/name-003-renombrar-vocabulario-del-inspector.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-004-sanear-migraci-n-de-config-a.md",
+      "to": ".ai/scrum/task-cards/naming/name-004-sanear-migraci-n-de-config-a.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-005-renombrar-eventos-y-callbacks-del-host.md",
+      "to": ".ai/scrum/task-cards/naming/name-005-renombrar-eventos-y-callbacks-del-host.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-006-versionar-snapshots-y-metadata.md",
+      "to": ".ai/scrum/task-cards/naming/name-006-versionar-snapshots-y-metadata.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-007-renombrar-provider-de-colaboraci-n.md",
+      "to": ".ai/scrum/task-cards/naming/name-007-renombrar-provider-de-colaboraci-n.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-008-sanear-almacenamiento-de-comentarios.md",
+      "to": ".ai/scrum/task-cards/naming/name-008-sanear-almacenamiento-de-comentarios.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-009-sanear-firma-y-familias-de-schema.md",
+      "to": ".ai/scrum/task-cards/naming/name-009-sanear-firma-y-familias-de-schema.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-010-renombrar-documentaci-n-y-arquitectura-ia.md",
+      "to": ".ai/scrum/task-cards/naming/name-010-renombrar-documentaci-n-y-arquitectura-ia.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-011-administrar-aliases-p-blicos-deprecados.md",
+      "to": ".ai/scrum/task-cards/naming/name-011-administrar-aliases-p-blicos-deprecados.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/naming/name-012-retirar-compatibilidad-obsoleta.md",
+      "to": ".ai/scrum/task-cards/naming/name-012-retirar-compatibilidad-obsoleta.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/portability/PORTDOC-001-auditar-api-publica.md",
+      "to": ".ai/scrum/task-cards/portability/PORTDOC-001-auditar-api-publica.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/portability/PORTDOC-002-actualizar-ejemplos.md",
+      "to": ".ai/scrum/task-cards/portability/PORTDOC-002-actualizar-ejemplos.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/portability/PORTDOC-003-consumer-test.md",
+      "to": ".ai/scrum/task-cards/portability/PORTDOC-003-consumer-test.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/portability/PORTDOC-004-gate-drift-documental.md",
+      "to": ".ai/scrum/task-cards/portability/PORTDOC-004-gate-drift-documental.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/runtime-platform",
+      "to": ".ai/scrum/task-cards/runtime-platform"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-023-corregir-header-e-identidad-del-detailview.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-023-corregir-header-e-identidad-del-detailview.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-033-cerrar-media-barcode-table-y-shapes.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-033-cerrar-media-barcode-table-y-shapes.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md"
+    },
+    {
+      "from": ".ai/scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md",
+      "to": ".ai/scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md"
+    },
+    {
       "from": ".ai/templates/TASK-CARD.md",
       "to": ".ai/templates/TASK-CARD.md"
     },
     {
-      "from": ".ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME.md",
-      "to": ".ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME.md"
+      "from": ".claude/agents/sisad-runtime-platform.md",
+      "to": ".claude/agents/sisad-runtime-platform.md"
     },
     {
-      "from": ".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md",
-      "to": ".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md"
+      "from": ".codex/agents/runtime-platform.md",
+      "to": ".codex/agents/runtime-platform.md"
     },
     {
-      "from": ".ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md",
-      "to": ".ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md"
-    },
-    {
-      "from": ".ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md",
-      "to": ".ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md"
-    },
-    {
-      "from": ".ai/research/OFFICIAL-PROVIDER-FINDINGS.md",
-      "to": ".ai/research/OFFICIAL-PROVIDER-FINDINGS.md"
-    },
-    {
-      "from": ".ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md",
-      "to": ".ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md"
-    },
-    {
-      "from": "docs/AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md",
-      "to": "docs/AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md"
-    },
-    {
-      "from": ".ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline.md",
-      "to": ".ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline.md"
-    },
-    {
-      "from": ".ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz.md",
-      "to": ".ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz.md"
-    },
-    {
-      "from": ".ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema.md",
-      "to": ".ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema.md"
-    },
-    {
-      "from": ".ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos.md",
-      "to": ".ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos.md"
-    },
-    {
-      "from": ".ai/scrum/task-cards/AIARCH-030-rollout-documentacion-y-retrospectiva.md",
-      "to": ".ai/scrum/task-cards/AIARCH-030-rollout-documentacion-y-retrospectiva.md"
-    },
-    {
-      "from": ".ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y.md",
-      "to": ".ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y.md"
-    },
-    {
-      "from": ".ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path.md",
-      "to": ".ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path.md"
-    },
-    {
-      "from": ".ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-a.md",
-      "to": ".ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-a.md"
-    },
-    {
-      "from": ".ai/agents/explorer.md",
-      "to": ".ai/agents/explorer.md"
-    },
-    {
-      "from": ".ai/agents/qa.md",
-      "to": ".ai/agents/qa.md"
+      "from": ".github/agents/sisad-runtime-platform-agent.md",
+      "to": ".github/agents/sisad-runtime-platform-agent.md"
     },
     {
       "from": "docs/02-conceptos/04-recipients.md",
@@ -200,12 +948,64 @@
       "to": "docs/05-runtime/05-recipient-filtering.md"
     },
     {
+      "from": "docs/08-api-reference/07-configuracion-completa.md",
+      "to": "docs/08-api-reference/07-configuracion-completa.md"
+    },
+    {
+      "from": "docs/08-api-reference/05-generator-api.md",
+      "to": "docs/08-api-reference/05-generator-api.md"
+    },
+    {
+      "from": "docs/08-api-reference/08-api-publica-controller-hooks-adapters.md",
+      "to": "docs/08-api-reference/08-api-publica-controller-hooks-adapters.md"
+    },
+    {
+      "from": "docs/08-api-reference/06-plugin-api.md",
+      "to": "docs/08-api-reference/06-plugin-api.md"
+    },
+    {
+      "from": "docs/08-api-reference/09-restauracion-y-paridad-api-publica.md",
+      "to": "docs/08-api-reference/09-restauracion-y-paridad-api-publica.md"
+    },
+    {
+      "from": "docs/08-api-reference/10-sisad-pdfme-instance-api.md",
+      "to": "docs/08-api-reference/10-sisad-pdfme-instance-api.md"
+    },
+    {
+      "from": "docs/08-api-reference/11-events-actions-controller.md",
+      "to": "docs/08-api-reference/11-events-actions-controller.md"
+    },
+    {
       "from": "docs/13-ejemplos/04-dynamic-host-integration-s.md",
       "to": "docs/13-ejemplos/04-dynamic-host-integration-s.md"
     },
     {
-      "from": ".ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md",
-      "to": ".ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md"
+      "from": "docs/AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md",
+      "to": "docs/AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md"
+    },
+    {
+      "from": "reports/runtime-platform",
+      "to": "reports/runtime-platform"
+    },
+    {
+      "from": "reports/runtime-platform/evidence/details/examples-refactor-closeout.md",
+      "to": "reports/runtime-platform/evidence/details/examples-refactor-closeout.md"
+    },
+    {
+      "from": "reports/runtime-platform/evidence/details/form-access-fix.md",
+      "to": "reports/runtime-platform/evidence/details/form-access-fix.md"
+    },
+    {
+      "from": "reports/runtime-platform/evidence/details/form-all-schema-interaction-hardening.md",
+      "to": "reports/runtime-platform/evidence/details/form-all-schema-interaction-hardening.md"
+    },
+    {
+      "from": "reports/runtime-platform/evidence/details/RTP-510-multiuser-wiring.md",
+      "to": "reports/runtime-platform/evidence/details/RTP-510-multiuser-wiring.md"
+    },
+    {
+      "from": "reports/runtime-platform/evidence/details/RTP-530-ui-dead-code.md",
+      "to": "reports/runtime-platform/evidence/details/RTP-530-ui-dead-code.md"
     }
   ]
 }

@@ -121,17 +121,17 @@
       "sha256": "13b6fe4688e383c682d9928379ef379c56cd2425c9e4f54a16dbe0e6593f9eee"
     },
     {
-      "path": ".ai/brain/40-integrations/DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md",
+      "path": ".ai/brain/45-integrations/DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md",
       "bytes": 455,
       "sha256": "b97184009b8a3ef097447cd40497026f020540396e6780c37eb80a82e2bb4b20"
     },
     {
-      "path": ".ai/brain/40-integrations/EXTERNAL-FORMS-USER-EXECUTION.md",
+      "path": ".ai/brain/45-integrations/EXTERNAL-FORMS-USER-EXECUTION.md",
       "bytes": 330,
       "sha256": "728102c8c3970b06344169c15d581aca46cf875a7fd2558d4a4552b9d2deef33"
     },
     {
-      "path": ".ai/brain/40-integrations/SISAD-PDFME-DESIGNER-CONSUMER.md",
+      "path": ".ai/brain/45-integrations/SISAD-PDFME-DESIGNER-CONSUMER.md",
       "bytes": 301,
       "sha256": "67a0d767113dc51ce920211b4b7f0f93461c949c477cf8ceeae212fbaf1da67a"
     },
@@ -186,42 +186,42 @@
       "sha256": "d310a3a15b67f4eefa5bae7274aa9f12dd79e0d710785ccdecb4b9c7ca7a1c81"
     },
     {
-      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/ARCHITECTURE.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/ARCHITECTURE.md",
       "bytes": 869,
       "sha256": "754437f5ee1d488ce9771de2ecadd52ea444e10c79f79ebe29573a47c4c5ac88"
     },
     {
-      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/GLOSSARY.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/GLOSSARY.md",
       "bytes": 1080,
       "sha256": "fb6a76403888f72d09da55432242e03f02625e5e8023da5df7a05fa2133ed211"
     },
     {
-      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md",
       "bytes": 772,
       "sha256": "ec2d65a16cd74f1592a356ddaafd95ca8c611e5c061bf7f7aacc3f3f8f743346"
     },
     {
-      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md",
       "bytes": 445,
       "sha256": "021141693ea6082d38cba0d35439b3a4d3a73ede02a74118859582340449d04d"
     },
     {
-      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md",
       "bytes": 437,
       "sha256": "96c04fa5a2477e568dd1303525f164c158e2620ebf8d93b584de2b39aae9dc13"
     },
     {
-      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md",
       "bytes": 703,
       "sha256": "92861a398d29e937a7b0321806a1a61f1ed9aee35381a39d2d982129a0f2bd7e"
     },
     {
-      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md",
       "bytes": 366,
       "sha256": "f5ef95e96a5a2ef91c3dd2a41be3da2cfe42d7238c8e16667f05f79cf7b20daf"
     },
     {
-      "path": ".ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md",
       "bytes": 418,
       "sha256": "091b63d0807bcc92218d68ccefc77c6685a9f79a70c8934fa00040f076a38cf2"
     },
@@ -411,7 +411,7 @@
       "sha256": "60832f3384fc7aff5754d619f38c259c9b671130dac331d14c5ea4394d1c9ace"
     },
     {
-      "path": "tools/sisad-pdfme-runtime/apply-brain-targets.mjs",
+      "path": "tools/sisad-pdfme-runtime/apply-../../archive/migrations/digital-agreements-runtime-brain-targets.mjs",
       "bytes": 1757,
       "sha256": "b329ba0f207858c7fd4fb49a3f53e06cf20e18aa26edc2924a387181e3ceab4e"
     },

@@ -21,3 +21,17 @@
 - [Runtime modes](./06-runtime-modes.md)
 - [Snapshot](./07-snapshot.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Template](./01-template.md)
+- [Documents y Pages](./02-documents-pages.md)
+- [Schemas](./03-schemas.md)
+- [Recipients](./04-recipients.md)
+- [Assignments](./05-assignments.md)
+- [Runtime modes](./06-runtime-modes.md)
+- [Snapshot](./07-snapshot.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

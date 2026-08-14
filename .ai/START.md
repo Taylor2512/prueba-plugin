@@ -68,3 +68,18 @@ Primary production-completion prompt:
 
 When three providers are active, read `.ai/architecture/SAME-REPO-MULTI-AGENT.md` before any write.
 <!-- SISAD-PDFME-CONSOLIDATION:.ai/START.md:END -->
+
+<!-- SISAD-MD-REPAIR:.ai/START.md:START -->
+## Markdown architecture maintenance
+
+Canonical maintenance commands:
+
+```bash
+npm run architecture:audit
+npm run architecture:repair
+npm run architecture:repair:apply
+npm run architecture:verify
+```
+
+Task execution state is evidence + dependency driven. Views are generated.
+<!-- SISAD-MD-REPAIR:.ai/START.md:END -->

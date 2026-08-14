@@ -65,3 +65,12 @@ La lista inicial debe permanecer corta. Skills existentes se conservan; los alia
 <!-- project-tools:navigation:start -->
 ## Navegación generada
 <!-- project-tools:navigation:end -->
+
+<!-- SISAD-MD-REPAIR:.ai/skills/README.md:START -->
+## Coordination policy
+
+`same-repo-coordination` is the canonical coordination skill for this project.
+
+`worktree-coordination` and `sisad-worktree-coordination` are deprecated compatibility aliases.
+Do not create worktrees. Remove an alias only after a reference/adapter audit proves it unused.
+<!-- SISAD-MD-REPAIR:.ai/skills/README.md:END -->

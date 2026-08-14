@@ -1,6 +1,48 @@
 {
   "exact": [
     {
+      "hash": "5576592bb5e8d3c27d695a63d18d4cd3cf0cb784035d1e44d521032b2b6920a9",
+      "paths": [
+        ".agents/skills/inspector-capability-profiles/SKILL.md",
+        ".claude/skills/inspector-capability-profiles/SKILL.md"
+      ]
+    },
+    {
+      "hash": "de75b12c5f49c72976bf5a04a15cc43d492c246380dddcbebd266692e2c7c407",
+      "paths": [
+        ".agents/skills/multiuser-form-release/SKILL.md",
+        ".claude/skills/multiuser-form-release/SKILL.md"
+      ]
+    },
+    {
+      "hash": "55d11d982b86595297b29955d282556440e87467f8d794747316c8de257d7420",
+      "paths": [
+        ".agents/skills/production-closeout/SKILL.md",
+        ".claude/skills/production-closeout/SKILL.md"
+      ]
+    },
+    {
+      "hash": "a7351f70aedf03a68b46e9e413b477a5354308463b58e43ccd144293d5d6c201",
+      "paths": [
+        ".agents/skills/runtime-access-authority/SKILL.md",
+        ".claude/skills/runtime-access-authority/SKILL.md"
+      ]
+    },
+    {
+      "hash": "55d2a5efb8f607dec7f8ce44c9daf03cd570874cd860f00bc016f3943489a0be",
+      "paths": [
+        ".agents/skills/same-repo-coordination/SKILL.md",
+        ".claude/skills/same-repo-coordination/SKILL.md"
+      ]
+    },
+    {
+      "hash": "021df5d6d1a03588f31e3ac7fa3fb86c49c47415254d384dc2e7a2a01c1be7ff",
+      "paths": [
+        ".agents/skills/signature-adoption-platform/SKILL.md",
+        ".claude/skills/signature-adoption-platform/SKILL.md"
+      ]
+    },
+    {
       "hash": "d9a09352f356b19c97acb5f7789fc2e5fd9be53f4d2127b8050b2377463e0ac7",
       "paths": [
         ".agents/skills/sisad-autonomous-runtime/SKILL.md",
