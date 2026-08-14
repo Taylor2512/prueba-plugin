@@ -39,3 +39,28 @@
 - `RTP-320` — wave 7 — P0 — BACKLOG — Consumer integration smoke and distribution contract
 - `RTP-330` — wave 7 — P1 — BACKLOG — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad
 - `RTP-340` — wave 7 — P1 — BACKLOG — Brain/docs/index/evidence closeout and context regeneration
+
+<!-- runtime-execution:ledger:start -->
+## Execution orchestration continuation
+
+| Task | Focus |
+|---|---|
+| RTP-345 | Brain/context/path reconciliation |
+| RTP-350 | execution baseline |
+| RTP-355 | schema interaction/completion |
+| RTP-360 | User assignments/value scope |
+| RTP-365 | RuntimeSession × User × Document |
+| RTP-370 | ExecutionPlan |
+| RTP-375 | sequential |
+| RTP-380 | parallel |
+| RTP-385 | mixed/shared conflicts |
+| RTP-390 | massive fan-out |
+| RTP-395 | execution results/PDF artifacts |
+| RTP-400 | canonical PDF merge |
+| RTP-405 | append/multi-document/bundle |
+| RTP-410 | all-schema harness |
+| RTP-415 | browser/performance/privacy/parity |
+| RTP-420 | release/closeout |
+
+Status real se determina por source/evidence, no por esta tabla.
+<!-- runtime-execution:ledger:end -->

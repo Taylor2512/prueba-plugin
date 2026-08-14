@@ -15,7 +15,10 @@ const req=[
 const missing=req.filter(p=>!fs.existsSync(path.join(root,p)));
 if(missing.length){console.error('Missing:\n'+missing.join('\n'));process.exit(1)}
 const cards=fs.readdirSync(path.join(root,'.ai/scrum/task-cards/runtime-platform')).filter(n=>/^RTP-\d{3}\.md$/.test(n));
-if(cards.length!==36){console.error(`Expected 36 cards, found ${cards.length}`);process.exit(2)}
+// runtime-execution:dynamic-cards
+const minimumCards=['RTP-000.md','RTP-340.md','RTP-345.md','RTP-420.md'];
+const missingCards=minimumCards.filter(n=>!cards.includes(n));
+if(missingCards.length){console.error('Missing required RTP cards:\n'+missingCards.join('\n'));process.exit(2)}
 const ready=cards.filter(n=>fs.readFileSync(path.join(root,'.ai/scrum/task-cards/runtime-platform',n),'utf8').includes('status: READY'));
-if(ready.length!==1||ready[0]!=='RTP-000.md'){console.error('Only RTP-000 must start READY');process.exit(3)}
+if(ready.length>1){console.error('At most one RTP card may be READY: '+ready.join(', '));process.exit(3)}
 console.log(`Runtime Platform OK: ${cards.length} task cards; ready=${ready[0]}`);

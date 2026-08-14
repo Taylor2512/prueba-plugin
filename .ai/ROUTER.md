@@ -21,3 +21,11 @@ El router selecciona una sola superficie propietaria. Devuelve `routeId`,
 
 Las routes viven en `.ai/routes/`. Una sola route posee el parche; las demás
 aportan contratos de lectura cuando exista una dependencia demostrada.
+
+<!-- runtime-execution:router:start -->
+## Execution/runtime routes
+
+- multi-user / sequential / parallel / massive -> `.ai/routes/execution-orchestration.md`
+- touched / dirty / completed / schema completion -> `.ai/routes/schema-completion.md`
+- PDF merge / append / composition -> `.ai/routes/pdf-composition.md`
+<!-- runtime-execution:router:end -->

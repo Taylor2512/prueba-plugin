@@ -31,3 +31,13 @@ Schema registry
 
 No cargar todos los índices ni todos los docs. Los índices son lookup y el
 source vivo manda sobre este Brain.
+
+<!-- runtime-execution:home:start -->
+## Execution orchestration
+
+Para multi-user, execution shapes, schema completion y PDF composition:
+
+- `.ai/knowledge/EXECUTION-ORCHESTRATION-INDEX.md`
+- `.ai/plans/PLAN_SISAD_PDFME_EXECUTION_ORCHESTRATION.md`
+- `.ai/scrum/task-cards/runtime-platform/RTP-345.md`
+<!-- runtime-execution:home:end -->

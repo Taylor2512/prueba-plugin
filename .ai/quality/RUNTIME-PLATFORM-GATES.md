@@ -21,3 +21,18 @@ prueba de que fueron ejecutados.
 Gates funcionales extra: registry-derived all-schema suite, sibling draft preservation,
 atomic multi-key patch, host push no echo, Viewer zero mutation, Snapshot semantic roundtrip,
 large-PDF cleanup/leak, object URL cleanup, keyboard/pointer accessibility.
+
+<!-- runtime-execution:gates:start -->
+## Execution orchestration gates
+
+- schema completion matrix;
+- pairwise sibling isolation;
+- User × Document × Session isolation;
+- two Forms same JS realm;
+- two BrowserContexts;
+- sequential/parallel/mixed/massive simulations;
+- canonical PDF merge/conflicts;
+- multi-document append;
+- provenance manifest;
+- performance/privacy/memory.
+<!-- runtime-execution:gates:end -->
