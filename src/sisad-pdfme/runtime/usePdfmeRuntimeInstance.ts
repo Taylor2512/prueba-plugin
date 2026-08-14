@@ -37,6 +37,9 @@ export type RuntimeInputChange = {
   name: string;
   value: unknown;
   origin?: RuntimeInputOrigin;
+  transactionId?: string;
+  phase?: 'draft' | 'commit';
+  revision?: number;
 };
 
 /** Espejo local de los inputs que el runtime tiene ahora mismo. */
@@ -193,6 +196,8 @@ export type UsePdfmeRuntimeInstanceConfig = {
   isolationKey?: string | null;
   template: RuntimeTemplateLike;
   inputs: RuntimeInputsLike;
+  /** Monotonic host revision for controlled input reconciliation. */
+  inputsRevision?: number;
   options: RuntimeOptionsLike;
   plugins: RuntimePluginsLike;
   /** Designer/Form/Viewer classes (injected to avoid a hard dependency + ease testing). */
@@ -247,6 +252,7 @@ export function usePdfmeRuntimeInstance(
    * cambio de identidad del host es un eco (ya aplicado) o un update real.
    */
   const runtimeInputsMirrorRef = useRef<RuntimeInputsMirror>(null);
+  const localInputsRevisionRef = useRef<number>(config.inputsRevision ?? 0);
   /** Flag used to skip the immediate echo after designer-originated changes. */
   const templateSyncFromDesignerRef = useRef(false);
   const lastAppliedTemplateSignatureRef = useRef<string>(getTemplateSignature(config.template));
@@ -263,7 +269,7 @@ export function usePdfmeRuntimeInstance(
     latest.current = config;
   }, [config]);
 
-  const { mode, template, options, inputs, isolationKey } = config;
+  const { mode, template, options, inputs, inputsRevision, isolationKey } = config;
 
   /** Mounts or remounts the runtime when the mode or the execution context changes. */
   useEffect(() => {
@@ -322,10 +328,16 @@ export function usePdfmeRuntimeInstance(
       lastAppliedTemplateRef.current = cfg.template;
       lastAppliedOptionsRef.current = cfg.options;
       runtimeInputsMirrorRef.current = cloneMirror(cfg.inputs);
+      localInputsRevisionRef.current = cfg.inputsRevision ?? 0;
       form.onChangeInput((payload: RuntimeInputChange) => {
         // Eco de nuestro propio `setInputs`: el espejo ya lo refleja y el host
         // ya conoce el valor. Reenviarlo lo marcaría como edición del usuario.
         if (payload.origin === 'host') return;
+        if (typeof payload.revision === 'number') {
+          localInputsRevisionRef.current = Math.max(localInputsRevisionRef.current, payload.revision);
+        } else {
+          localInputsRevisionRef.current += 1;
+        }
         applyChangeToMirror(runtimeInputsMirrorRef, payload);
         latest.current.onInputChange?.(payload);
       });
@@ -411,10 +423,19 @@ export function usePdfmeRuntimeInstance(
   useEffect(() => {
     const instance = instanceRef.current;
     if (!instance || mode === 'designer') return;
+    if (
+      typeof inputsRevision === 'number' &&
+      inputsRevision < localInputsRevisionRef.current
+    ) {
+      return;
+    }
+    if (typeof inputsRevision === 'number') {
+      localInputsRevisionRef.current = inputsRevision;
+    }
     if (inputsMatchRuntimeMirror(inputs, runtimeInputsMirrorRef.current)) return;
     runtimeInputsMirrorRef.current = cloneMirror(inputs);
     instance.setInputs(cloneDeep(inputs));
-  }, [inputs, mode]);
+  }, [inputs, inputsRevision, mode]);
 
   return { instanceRef };
 }

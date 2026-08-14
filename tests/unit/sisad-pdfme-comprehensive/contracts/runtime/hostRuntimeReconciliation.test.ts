@@ -81,6 +81,7 @@ const buildConfig = (
   onInputChange: UsePdfmeRuntimeInstanceConfig['onInputChange'],
   containerRef: { current: HTMLElement | null },
   isolationKey?: string | null,
+  inputsRevision?: number,
 ): UsePdfmeRuntimeInstanceConfig => ({
   containerRef: containerRef as never,
   mode: 'form',
@@ -92,6 +93,7 @@ const buildConfig = (
   runtime: RUNTIME,
   onTemplateChange: () => undefined,
   onInputChange,
+  inputsRevision,
 });
 
 describe('RTP-040 host ↔ runtime input reconciliation', () => {
@@ -150,6 +152,22 @@ describe('RTP-040 host ↔ runtime input reconciliation', () => {
 
     expect(FakeForm.last?.setInputsCalls).toHaveLength(1);
     expect(FakeForm.last?.setInputsCalls[0]).toEqual([{ nombre: 'JOHN' }]);
+  });
+
+  it('no aplica un host push con revisión anterior a la edición local', () => {
+    const { rerender } = renderHook(
+      (props: { inputs: Inputs; inputsRevision: number }) =>
+        usePdfmeRuntimeInstance(
+          buildConfig(props.inputs, onInputChange, containerRef, null, props.inputsRevision),
+        ),
+      { initialProps: { inputs: [{ nombre: '' }], inputsRevision: 0 } },
+    );
+
+    FakeForm.last?.emitUserChange({ index: 0, name: 'nombre', value: 'local' });
+    rerender({ inputs: [{ nombre: 'stale-host' }], inputsRevision: 0 });
+
+    expect(FakeForm.last?.setInputsCalls).toHaveLength(0);
+    expect(FakeForm.last?.inputs).toEqual([{ nombre: 'local' }]);
   });
 
   it('aplica un update del host sin cambio previo del usuario', () => {
