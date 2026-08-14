@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { collectChangedInputs } from '../../src/sisad-pdfme/ui/Form.tsx';
+import { collectChangedInputs } from '../../src/sisad-pdfme/ui/Form';
 
 describe('collectChangedInputs', () => {
   it('returns no changes when inputs are identical', () => {

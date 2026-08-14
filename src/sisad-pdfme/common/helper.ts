@@ -40,8 +40,50 @@ import {
   DEFAULT_FONT_VALUE,
 } from './constants.js';
 
-/** Clonado profundo usado como política común de inmutabilidad. */
-export const cloneDeep = structuredClone;
+/**
+ * Clonado profundo usado como política común de inmutabilidad.
+ *
+ * `structuredClone` es la vía rápida, pero lanza `DataCloneError` ante valores
+ * no estructurables —y `SisadPdfmeGlobalConfig.events` acepta callbacks del
+ * host por contrato—. Un `config` legal con handlers hacía fallar
+ * `migrateSisadPdfmeConfig` y `SisadPdfmeConfigService.update` (RTP-435).
+ *
+ * El fallback clona la estructura y pasa POR REFERENCIA lo que no es
+ * clonable: una función es identidad del host, no dato a duplicar.
+ */
+const cloneStructural = <T>(value: T, seen: WeakMap<object, unknown>): T => {
+  if (!value || typeof value !== 'object') return value;
+  const objectValue = value as unknown as object;
+  const cached = seen.get(objectValue);
+  if (cached !== undefined) return cached as T;
+
+  if (Array.isArray(value)) {
+    const next: unknown[] = [];
+    seen.set(objectValue, next);
+    value.forEach((entry) => next.push(cloneStructural(entry, seen)));
+    return next as unknown as T;
+  }
+  if (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) {
+    // Date, Map, Uint8Array, instancias de clase: se conserva la referencia
+    // antes que producir una copia estructuralmente incorrecta.
+    return value;
+  }
+
+  const next: Record<string, unknown> = {};
+  seen.set(objectValue, next);
+  Object.entries(value as Record<string, unknown>).forEach(([key, entry]) => {
+    next[key] = cloneStructural(entry, seen);
+  });
+  return next as unknown as T;
+};
+
+export const cloneDeep = <T>(value: T): T => {
+  try {
+    return structuredClone(value);
+  } catch {
+    return cloneStructural(value, new WeakMap<object, unknown>());
+  }
+};
 
 /** Elimina duplicados preservando el primer orden de aparición. */
 const uniq = <T,>(array: Array<T>) => Array.from(new Set(array));

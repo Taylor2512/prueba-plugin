@@ -1,7 +1,13 @@
 import { cloneDeep } from '@sisad-pdfme/common';
 import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
-import { createSisadPdfmeConfig } from './createSisadPdfmeConfig.js';
+import {
+  compileSisadPdfmeConfig,
+  hashResolvedConfig,
+  type CompiledSisadPdfmeConfig,
+  type ResolvedConfigIdentity,
+} from './configCompiler.js';
 import { classifySisadPdfmeConfigChange, type SisadPdfmeConfigChangeImpact } from './configChangeImpact.js';
+import { planConfigChange, type ConfigChangeSet } from './configEffectPlan.js';
 import { migrateSisadPdfmeConfig, type SisadPdfmeConfigMigrationIssue } from './configMigration.js';
 import { validateSisadPdfmeConfig, type SisadPdfmeConfigIssue } from './configValidation.js';
 import {
@@ -19,6 +25,12 @@ export type SisadPdfmeConfigChange = {
   previous: ResolvedSisadPdfmeConfig;
   next: ResolvedSisadPdfmeConfig;
   impact: SisadPdfmeConfigChangeImpact;
+  /**
+   * Plan de efectos a nivel de capability. `impact` dice si hay que
+   * reconstruir recursos; `changeSet` dice QUÉ capabilities se movieron y en
+   * qué dimensiones, para que una superficie no repinte de más (RTP-445).
+   */
+  changeSet: ConfigChangeSet;
   issues: SisadPdfmeConfigIssue[];
   migrationIssues: SisadPdfmeConfigMigrationIssue[];
 };
@@ -28,6 +40,12 @@ export type SisadPdfmeConfigServiceListener = (change: SisadPdfmeConfigChange) =
 export interface SisadPdfmeConfigService {
   getRawConfig(): SisadPdfmeGlobalConfig;
   getResolvedConfig(): ResolvedSisadPdfmeConfig;
+  /**
+   * Revisión monotónica y hash semántico de la configuración vigente. Permite
+   * a una superficie comprobar si su vista sigue siendo la actual sin comparar
+   * objetos en profundidad (RTP-435).
+   */
+  getConfigIdentity(): ResolvedConfigIdentity;
   getIssues(): SisadPdfmeConfigIssue[];
   getMigrationIssues(): SisadPdfmeConfigMigrationIssue[];
   getSelectors(): SisadPdfmeConfigSelectors;
@@ -49,6 +67,9 @@ export interface SisadPdfmeConfigService {
 
 const isResolvedConfigValue = (value: unknown): value is ResolvedSisadPdfmeConfig =>
   Boolean(value && typeof value === 'object' && 'config' in value && 'runtimeOptions' in value && 'designerEngine' in value);
+
+const isCompiledConfigValue = (value: ResolvedSisadPdfmeConfig): value is CompiledSisadPdfmeConfig =>
+  typeof value.revision === 'number' && typeof value.hash === 'string';
 
 const isRecordLike = (value: unknown): value is Record<string, unknown> =>
   Boolean(value) && typeof value === 'object' && !Array.isArray(value);
@@ -74,7 +95,7 @@ const mergeConfigRecord = <T extends Record<string, unknown>>(base: T, patch?: R
 class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
   private readonly initialRaw: SisadPdfmeGlobalConfig;
   private raw: SisadPdfmeGlobalConfig;
-  private resolved: ResolvedSisadPdfmeConfig;
+  private resolved: CompiledSisadPdfmeConfig;
   private issues: SisadPdfmeConfigIssue[] = [];
   private migrationIssues: SisadPdfmeConfigMigrationIssue[] = [];
   private listeners = new Set<SisadPdfmeConfigServiceListener>();
@@ -85,12 +106,21 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
     if (isResolvedConfigValue(initial)) {
       this.initialRaw = cloneDeep(initial.raw || {});
       this.raw = cloneDeep(initial.raw || {});
-      this.resolved = initial;
+      // Una configuración ya resuelta que llega de fuera puede no traer
+      // identidad; se compila para dársela sin descartar la instancia.
+      this.resolved = isCompiledConfigValue(initial)
+        ? initial
+        : Object.assign(initial, {
+            revision: 1,
+            hash: hashResolvedConfig(initial),
+            issues: [] as SisadPdfmeConfigIssue[],
+            migrationIssues: [] as SisadPdfmeConfigMigrationIssue[],
+          });
       this.syncDiagnostics(true);
     } else {
       this.initialRaw = cloneDeep(initial || {});
       this.raw = cloneDeep(initial || {});
-      this.resolved = createSisadPdfmeConfig(this.raw);
+      this.resolved = compileSisadPdfmeConfig(this.raw);
       this.syncDiagnostics(false);
     }
   }
@@ -101,6 +131,10 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
 
   getResolvedConfig(): ResolvedSisadPdfmeConfig {
     return this.resolved;
+  }
+
+  getConfigIdentity(): ResolvedConfigIdentity {
+    return { revision: this.resolved.revision, hash: this.resolved.hash };
   }
 
   getIssues(): SisadPdfmeConfigIssue[] {
@@ -176,7 +210,7 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
     this.issues = validateSisadPdfmeConfig(this.raw);
     this.raw = migration.config;
     if (!preserveResolved) {
-      this.resolved = createSisadPdfmeConfig(this.raw);
+      this.resolved = compileSisadPdfmeConfig(this.raw, { previous: this.resolved ?? null });
     }
   }
 
@@ -190,7 +224,9 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
     const normalizedNextRaw = cloneDeep(nextRaw || {});
     const migration = migrateSisadPdfmeConfig(normalizedNextRaw);
     const impact = classifySisadPdfmeConfigChange(this.raw, migration.config);
-    const nextResolved = createSisadPdfmeConfig(migration.config);
+    // La revisión avanza sólo si el hash semántico cambia: reescribir la misma
+    // configuración no consume revisión ni invalida vistas ajenas.
+    const nextResolved = compileSisadPdfmeConfig(migration.config, { previous });
 
     if (!impact.rebuildResources) {
       nextResolved.designerEngine = previous.designerEngine;
@@ -209,14 +245,15 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
   }
 
   private buildChange(
-    previous: ResolvedSisadPdfmeConfig,
-    next: ResolvedSisadPdfmeConfig,
+    previous: CompiledSisadPdfmeConfig,
+    next: CompiledSisadPdfmeConfig,
     impact: SisadPdfmeConfigChangeImpact,
   ): SisadPdfmeConfigChange {
     return {
       previous,
       next,
       impact,
+      changeSet: planConfigChange({ previous, next }),
       issues: this.issues,
       migrationIssues: this.migrationIssues,
     };

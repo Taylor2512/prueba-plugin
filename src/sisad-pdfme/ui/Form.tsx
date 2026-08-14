@@ -72,6 +72,32 @@ export const mergeFormInputRows = (
 ): Array<Record<string, string>> =>
   next.map((row, index) => ({ ...(previous[index] || {}), ...(row || {}) }));
 
+/**
+ * Diferencia por campo entre dos conjuntos de filas de inputs.
+ *
+ * Una clave presente sólo en `previous` cuenta como cambio a `undefined`: el
+ * consumidor necesita distinguir «campo borrado» de «campo ausente del patch».
+ * Vive fuera de `setInputs` porque es lógica pura y era la única parte del
+ * diff que no se podía ejercer sin montar un runtime completo.
+ */
+export const collectChangedInputs = (
+  previous: Array<Record<string, string>>,
+  next: Array<Record<string, string>>,
+): Array<{ index: number; name: string; value: string }> => {
+  const changed: Array<{ index: number; name: string; value: string }> = [];
+  next.forEach((row, index) => {
+    const previousRow = previous[index] || {};
+    const names = new Set([...Object.keys(row || {}), ...Object.keys(previousRow)]);
+    names.forEach((name) => {
+      const nextValue = (row || {})[name];
+      if (nextValue !== previousRow[name]) {
+        changed.push({ index, name, value: nextValue });
+      }
+    });
+  });
+  return changed;
+};
+
 /** Runtime interactivo para llenar campos del template. */
 class Form extends PagedPreviewUI {
   private onChangeInputCallback?: (arg: FormInputChange) => void;
@@ -223,22 +249,10 @@ class Form extends PagedPreviewUI {
 
     super.setInputs(mergedInputs);
 
-    const changedInputs: Array<{ index: number; name: string; value: string }> = [];
+    const changedInputs = collectChangedInputs(previousInputs, mergedInputs);
 
-    mergedInputs.forEach((input, index) => {
-      const prevInput = previousInputs[index] || {};
-
-      const allKeys = new Set([...Object.keys(input), ...Object.keys(prevInput)]);
-
-      allKeys.forEach((name) => {
-        const newValue = input[name];
-        const oldValue = prevInput[name];
-
-        if (newValue !== oldValue) {
-          changedInputs.push({ index, name, value: newValue });
-          this.recordInteraction(index, name, newValue, 'host');
-        }
-      });
+    changedInputs.forEach((input) => {
+      this.recordInteraction(input.index, input.name, input.value, 'host');
     });
 
     changedInputs.forEach((input) => {

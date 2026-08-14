@@ -19,6 +19,45 @@ export { classifySisadPdfmeConfigChange } from './configChangeImpact.js';
 export { createSisadPdfmeConfigSelectors } from './configSelectors.js';
 export { createSisadPdfmeConfigService } from './SisadPdfmeConfigService.js';
 export { createInspectorConfigurationResolver } from './InspectorConfigurationResolver.js';
+export {
+  capabilityInventory,
+  capabilityId,
+  capabilityIds,
+  capabilitiesOfKind,
+  findCapability,
+  SCHEMA_SURFACES,
+  CONTROLLER_DOMAINS,
+} from './capabilityInventory.js';
+export { createCapabilityGraph, resolveCapabilityState } from './capabilityGraph.js';
+export { compileSisadPdfmeConfig, hashResolvedConfig } from './configCompiler.js';
+export {
+  planConfigChange,
+  disabledCapabilities,
+  enabledCapabilities,
+  CAPABILITY_FLAGS,
+} from './configEffectPlan.js';
+
+export type {
+  CapabilityDescriptor,
+  CapabilityId,
+  CapabilityKind,
+  SchemaSurface,
+} from './capabilityInventory.js';
+export type {
+  CapabilityGraph,
+  CapabilityResolutionContext,
+  CapabilityState,
+} from './capabilityGraph.js';
+export type {
+  CompiledSisadPdfmeConfig,
+  ResolvedConfigIdentity,
+} from './configCompiler.js';
+export type {
+  CapabilityFlag,
+  CapabilityTransition,
+  ConfigChangeSet,
+  ConfigEffectKind,
+} from './configEffectPlan.js';
 
 export type {
   SisadPdfmeController,

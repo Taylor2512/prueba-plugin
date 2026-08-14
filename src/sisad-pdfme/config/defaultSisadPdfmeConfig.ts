@@ -18,8 +18,12 @@ export const defaultSisadPdfmeVisibilityConfig: Required<SisadPdfmeVisibilityCon
     contextMenu: true,
     pageNavigator: true,
     zoomControls: true,
-    grid: false,
-    rulers: false,
+    // `visibility.*` es política del host: sólo puede apagar. Que la rejilla y
+    // las reglas empiecen ocultas es un default de PRESENTACIÓN y vive en
+    // `canvas.grid` / `canvas.rulers`. Mantenerlo aquí dejaba sus toggles
+    // permanentemente inalcanzables (RTP-440).
+    grid: true,
+    rulers: true,
     guides: true,
     snapLines: true,
     selectionBox: true,
@@ -128,6 +132,19 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
     moveable: true,
     snapLines: true,
     guides: true,
+    // Defaults de presentación: la superficie existe y es alternable, pero
+    // arranca apagada. El estado efectivo sigue siendo el histórico.
+    grid: false,
+    rulers: false,
+    // Capabilities de ajuste, independientes entre sí. `objectSnap` arranca
+    // encendido porque es el comportamiento histórico del canvas; el ajuste a
+    // rejilla arranca apagado, como la propia rejilla.
+    snapToGrid: false,
+    objectSnap: true,
+    guideCreation: true,
+    guideSnap: true,
+    gridStepMm: 10,
+    gridSubdivisions: 2,
     emptyClickClearsSelection: true,
     multiSelect: true,
     platformSelection: 'auto',

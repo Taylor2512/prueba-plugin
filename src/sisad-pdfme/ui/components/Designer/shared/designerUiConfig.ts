@@ -14,6 +14,10 @@
 import type { ResolvedSisadPdfmeConfig, SisadPdfmeVisibilityConfig } from '../../../../config/SisadPdfmeConfig.js';
 import { asRecord } from '../../../../shared/objectGuards.js';
 import { resolveVisibilityConfig, resolveReassignVisibilityState } from './visibilityConfig.js';
+import { configFromRuntimeOptions } from '../../../../config/configFromRuntimeOptions.js';
+import { resolveSisadPdfmeConfig } from '../../../../config/resolveSisadPdfmeConfig.js';
+import { resolveCapabilityState } from '../../../../config/capabilityGraph.js';
+import { capabilitiesOfKind } from '../../../../config/capabilityInventory.js';
 import {
   resolveDesignerActionState,
   type DesignerActionContext,
@@ -42,50 +46,90 @@ export type ResolvedDesignerUiMap = {
 
 type ResolvedDesignerUiSource = Pick<ResolvedSisadPdfmeConfig, 'config' | 'visibility'>;
 
-/** Mapea ids de acción → flags de `visibility.actions`/paneles. */
-const actionVisibilityKey: Record<string, (visibility?: SisadPdfmeVisibilityConfig) => boolean> = {
-  'reassignrecipient': (v) => v?.actions?.reassign !== false,
-  'duplicate-schema': (v) => v?.actions?.duplicate !== false,
-  duplicate: (v) => v?.actions?.duplicate !== false,
-  'delete-schema': (v) => v?.actions?.delete !== false,
-  delete: (v) => v?.actions?.delete !== false,
-  'hide-schema': (v) => v?.actions?.hide !== false,
-  'lock-position': (v) => v?.actions?.lock !== false,
-  'unlock-position': (v) => v?.actions?.unlock !== false,
-  copy: (v) => v?.actions?.copy !== false,
-  paste: (v) => v?.actions?.paste !== false,
-  'switch-right-panel-fields': (v) => v?.sidebars?.right?.panels?.fields !== false,
-  'switch-right-panel-detail': (v) => v?.sidebars?.right?.panels?.detail !== false,
-  'switch-right-panel-comments': (v) => v?.sidebars?.right?.panels?.comments !== false,
-  'switch-right-panel-documents': (v) => v?.sidebars?.right?.panels?.documents !== false,
-  'add-comment': (v) => v?.modals?.comments !== false,
+/**
+ * Alias camelCase del chrome → id canónico del registry de configuración.
+ *
+ * El Designer usa `duplicate`/`delete` en algunas superficies; la
+ * configuración sólo conoce `duplicate-schema`/`delete-schema`. El alias evita
+ * que existan dos definiciones de la misma acción.
+ */
+const CONFIG_ACTION_ALIAS: Record<string, string> = {
+  duplicate: 'duplicate-schema',
+  delete: 'delete-schema',
+  lock: 'lock-position',
+  unlock: 'unlock-position',
+  hide: 'hide-schema',
+  show: 'show-schema',
 };
 
-export const buildDesignerUiMapFromResolvedConfig = (source: ResolvedDesignerUiSource): ResolvedDesignerUiMap => {
-  const visibility = source.visibility;
-  const canEditStructure = source.config.collaboration?.canEditStructure !== false;
-  const assignmentEnabled = source.config.assignment?.enabled === true;
-  const reassignVisible = visibility.actions?.reassign !== false && assignmentEnabled;
-  const assignmentModalVisible = visibility.modals?.assignment !== false;
-
+/**
+ * Overrides de configuración por acción, derivados del CapabilityGraph.
+ *
+ * Antes existía aquí una tabla `actionVisibilityKey` que volvía a mapear cada
+ * acción a su rama de `visibility.*`. Era una reescritura de los `sources` que
+ * `actionConfigRegistry` ya declara, así que botón y controller podían
+ * discrepar en cuanto una de las dos tablas se quedaba atrás: `align`,
+ * `distribute`, `match-size` y `show-schema` existían en la configuración pero
+ * NO en la tabla del Designer, y `readonly` no llegaba a ninguna acción del
+ * chrome (RTP-460).
+ *
+ * Ahora hay una sola autoridad: la configuración resuelve la política y el
+ * registry del Designer resuelve las reglas de superficie (handler presente,
+ * reglas de selección).
+ */
+const deriveActionOverrides = (
+  source: ResolvedDesignerUiSource,
+  context: { readOnly: boolean; assignmentModalVisible: boolean },
+): ResolvedDesignerUiMap['actions'] => {
   const actions: ResolvedDesignerUiMap['actions'] = {};
-  Object.entries(actionVisibilityKey).forEach(([actionId, isVisible]) => {
-    actions[actionId] = {
+
+  const put = (designerId: string, configId: string) => {
+    const capability = resolveCapabilityState(source, `action:${configId}`, {
+      readOnly: context.readOnly,
+      // La disponibilidad por selección/portapapeles la decide la superficie
+      // en `resolveDesignerActionState`; aquí sólo se resuelve la POLÍTICA.
+      selectionCount: 1,
+      recipientCount: 1,
+      hasClipboard: true,
+    });
+    actions[designerId] = {
       visibleByConfig:
-        actionId === 'reassignrecipient'
-          ? reassignVisible && assignmentModalVisible
-          : isVisible(visibility),
-      enabledByConfig: true,
+        configId === 'reassignrecipient'
+          ? capability.visible && context.assignmentModalVisible
+          : capability.visible,
+      enabledByConfig: capability.permitted && capability.enabled,
     };
+  };
+
+  capabilitiesOfKind('action').forEach((descriptor) => put(descriptor.id, descriptor.id));
+  Object.entries(CONFIG_ACTION_ALIAS).forEach(([designerId, configId]) => put(designerId, configId));
+
+  return actions;
+};
+
+const buildMap = (
+  source: ResolvedDesignerUiSource,
+  overrides: {
+    canEditStructure: boolean;
+    assignmentEnabled: boolean;
+    reassignVisible: boolean;
+    assignmentModalVisible: boolean;
+    visibility: SisadPdfmeVisibilityConfig | undefined;
+  },
+): ResolvedDesignerUiMap => {
+  const { visibility } = overrides;
+  const actions = deriveActionOverrides(source, {
+    readOnly: source.config.runtime?.readonly === true,
+    assignmentModalVisible: overrides.assignmentModalVisible,
   });
 
   return {
     visibility,
-    permissions: { canEditStructure },
+    permissions: { canEditStructure: overrides.canEditStructure },
     features: {
-      assignmentEnabled,
-      reassignVisible,
-      assignmentModalVisible,
+      assignmentEnabled: overrides.assignmentEnabled,
+      reassignVisible: overrides.reassignVisible,
+      assignmentModalVisible: overrides.assignmentModalVisible,
       commentsPanelVisible: visibility?.sidebars?.right?.panels?.comments !== false,
       documentsPanelVisible: visibility?.sidebars?.right?.panels?.documents !== false,
       fieldsPanelVisible: visibility?.sidebars?.right?.panels?.fields !== false,
@@ -93,19 +137,32 @@ export const buildDesignerUiMapFromResolvedConfig = (source: ResolvedDesignerUiS
     },
     actions,
     resolveAction(actionId, context = {}) {
-      const overrides = actions[actionId];
+      const actionOverrides = actions[actionId];
       return resolveDesignerActionState(actionId, {
-        canEditStructure,
+        canEditStructure: overrides.canEditStructure,
         ...context,
-        ...(overrides
+        ...(actionOverrides
           ? {
-              visibleByConfig: context.visibleByConfig ?? overrides.visibleByConfig,
-              enabledByConfig: context.enabledByConfig ?? overrides.enabledByConfig,
+              visibleByConfig: context.visibleByConfig ?? actionOverrides.visibleByConfig,
+              enabledByConfig: context.enabledByConfig ?? actionOverrides.enabledByConfig,
             }
           : {}),
       });
     },
   };
+};
+
+export const buildDesignerUiMapFromResolvedConfig = (source: ResolvedDesignerUiSource): ResolvedDesignerUiMap => {
+  const visibility = source.visibility;
+  const assignmentEnabled = source.config.assignment?.enabled === true;
+  return buildMap(source, {
+    canEditStructure: source.config.collaboration?.canEditStructure !== false,
+    assignmentEnabled,
+    // `assignment.enabled=false` OCULTA la acción; no la deja visible-deshabilitada.
+    reassignVisible: visibility.actions?.reassign !== false && assignmentEnabled,
+    assignmentModalVisible: visibility.modals?.assignment !== false,
+    visibility,
+  });
 };
 
 export const buildDesignerUiMap = (options: unknown): ResolvedDesignerUiMap => {
@@ -113,46 +170,16 @@ export const buildDesignerUiMap = (options: unknown): ResolvedDesignerUiMap => {
   const reassign = resolveReassignVisibilityState(options);
   const optionsRecord = asRecord(options);
   const collaboration = asRecord(optionsRecord?.collaboration);
-  const canEditStructure = collaboration?.canEditStructure !== false;
 
-  const actions: ResolvedDesignerUiMap['actions'] = {};
-  Object.entries(actionVisibilityKey).forEach(([actionId, isVisible]) => {
-    actions[actionId] = {
-      // Reassign replica el comportamiento del toolbar: assignment.enabled=false
-      // OCULTA la acción (no la deja visible-deshabilitada).
-      visibleByConfig:
-        actionId === 'reassignrecipient'
-          ? reassign.reassignVisible && reassign.assignmentModalVisible
-          : isVisible(visibility),
-      enabledByConfig: true,
-    };
-  });
+  // Camino de compatibilidad: las opciones sueltas se resuelven a una
+  // configuración completa para que ambos caminos deriven del MISMO grafo.
+  const source = resolveSisadPdfmeConfig(configFromRuntimeOptions(options));
 
-  return {
+  return buildMap(source, {
+    canEditStructure: collaboration?.canEditStructure !== false,
+    assignmentEnabled: reassign.assignmentEnabled,
+    reassignVisible: reassign.reassignVisible,
+    assignmentModalVisible: reassign.assignmentModalVisible,
     visibility,
-    permissions: { canEditStructure },
-    features: {
-      assignmentEnabled: reassign.assignmentEnabled,
-      reassignVisible: reassign.reassignVisible,
-      assignmentModalVisible: reassign.assignmentModalVisible,
-      commentsPanelVisible: visibility?.sidebars?.right?.panels?.comments !== false,
-      documentsPanelVisible: visibility?.sidebars?.right?.panels?.documents !== false,
-      fieldsPanelVisible: visibility?.sidebars?.right?.panels?.fields !== false,
-      detailPanelVisible: visibility?.sidebars?.right?.panels?.detail !== false,
-    },
-    actions,
-    resolveAction(actionId, context = {}) {
-      const overrides = actions[actionId];
-      return resolveDesignerActionState(actionId, {
-        canEditStructure,
-        ...context,
-        ...(overrides
-          ? {
-              visibleByConfig: context.visibleByConfig ?? overrides.visibleByConfig,
-              enabledByConfig: context.enabledByConfig ?? overrides.enabledByConfig,
-            }
-          : {}),
-      });
-    },
-  };
+  });
 };

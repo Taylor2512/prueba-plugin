@@ -120,24 +120,39 @@ export const resolveSisadPdfmeConfig = (
   const migratedInput = migrateSisadPdfmeConfig(input).config;
   const baseConfig = deepMerge(defaultSisadPdfmeConfig as unknown as Record<string, unknown>, migratedInput as Record<string, unknown>) as ResolvedSisadPdfmeConfig['config'];
   const ui = normalizeUiConfig(input.ui);
-  const visibility = deepMerge(
+  /**
+   * `migrateSisadPdfmeConfig` ya funde el alias deprecado `ui.visibility`
+   * dentro de `visibility` dando prioridad a la ruta canónica, así que
+   * `migratedInput.visibility` es la autoridad completa.
+   *
+   * Antes se volvía a mezclar `ui.visibility` NORMALIZADA encima —es decir,
+   * rellenada con TODOS los defaults—, de modo que cualquier `visibility`
+   * canónica del host quedaba pisada por el default. Sólo pasaba inadvertido
+   * mientras default y valor coincidían (RTP-440).
+   */
+  const mergedVisibility = deepMerge(
     defaultSisadPdfmeVisibilityConfig as unknown as Record<string, unknown>,
     migratedInput.visibility as Record<string, unknown> | undefined,
-  ) as ResolvedSisadPdfmeConfig['visibility'];
-  const mergedVisibility = deepMerge(
-    visibility as unknown as Record<string, unknown>,
-    ui.visibility as Record<string, unknown> | undefined,
   ) as ResolvedSisadPdfmeConfig['visibility'];
   const layoutOptions = resolveLayoutPresetOptions(ui, baseConfig);
   const hiddenCatalogTypes = Object.entries(mergedVisibility.schemas.catalog || {})
     .filter(([, isVisible]) => isVisible === false)
     .map(([schemaType]) => schemaType);
   const designerEngineBuilder = new DesignerEngineBuilder()
+    // Las ocho capabilities de vista viajan completas. Antes sólo llegaban
+    // cuatro, así que `grid` y `rulers` eran siempre `undefined` dentro del
+    // canvas y su configuración no tenía ningún efecto (RTP-455).
     .withCanvasFeatureToggles({
       selecto: baseConfig.canvas.selecto,
       moveable: baseConfig.canvas.moveable,
       snapLines: baseConfig.canvas.snapLines,
       guides: baseConfig.canvas.guides,
+      grid: baseConfig.canvas.grid,
+      rulers: baseConfig.canvas.rulers,
+      snapToGrid: baseConfig.canvas.snapToGrid,
+      objectSnap: baseConfig.canvas.objectSnap,
+      guideCreation: baseConfig.canvas.guideCreation,
+      guideSnap: baseConfig.canvas.guideSnap,
     })
     .withCanvasUseDefaultStyles(true)
     .withAutoAttachIdentity(baseConfig.schemas.autoAttachIdentity)

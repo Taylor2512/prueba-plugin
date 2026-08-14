@@ -312,6 +312,30 @@ export type SisadPdfmeGlobalConfig = {
     moveable?: boolean;
     snapLines?: boolean;
     guides?: boolean;
+    /**
+     * Estado INICIAL de la rejilla. Es un default de presentación, no una
+     * política: `visibility.canvas.grid` decide si el host permite mostrarla.
+     * Antes sólo existía la rama de visibility, así que apagar la rejilla por
+     * defecto también dejaba su toggle inalcanzable (RTP-440).
+     */
+    grid?: boolean;
+    /** Estado inicial de las reglas. Ver `grid`. */
+    rulers?: boolean;
+    /**
+     * Ajuste a la rejilla. Independiente de que la rejilla se VEA: se puede
+     * dibujar sin capturar y capturar sin dibujar.
+     */
+    snapToGrid?: boolean;
+    /** Ajuste contra otros elementos y bordes de página. */
+    objectSnap?: boolean;
+    /** El usuario puede crear guías arrastrando desde las reglas. */
+    guideCreation?: boolean;
+    /** Ajuste contra las guías creadas por el usuario. */
+    guideSnap?: boolean;
+    /** Paso mayor de la rejilla, en mm de página. */
+    gridStepMm?: number;
+    /** Subdivisiones dentro del paso mayor. */
+    gridSubdivisions?: number;
     emptyClickClearsSelection?: boolean;
     multiSelect?: boolean;
     platformSelection?: 'auto' | 'mac' | 'windows' | 'linux';
@@ -394,6 +418,14 @@ export type ResolvedSisadPdfmeConfig = {
     };
   };
   visibility: Required<SisadPdfmeVisibilityConfig>;
+  /**
+   * Identidad de la compilación. La rellena `compileSisadPdfmeConfig`; queda
+   * opcional porque `resolveSisadPdfmeConfig` sigue siendo utilizable como
+   * paso de normalización puro (RTP-435).
+   */
+  revision?: number;
+  /** Hash semántico del par `config`/`visibility`. Ver `revision`. */
+  hash?: string;
   runtimeOptions: Record<string, unknown>;
   designerEngine: DesignerEngine;
   adapters: {

@@ -1,58 +1,62 @@
+/**
+ * Manifest de runtime derivado del registry vivo.
+ *
+ * Este módulo es una PROYECCIÓN, no una autoridad. Antes mantenía sus propios
+ * conjuntos de tipos (`choiceTypes`, `signingTypes`, `visualTypes`,
+ * `complexTypes`, `computedTypes`) para clasificar cada schema, duplicando la
+ * taxonomía que `schemas/schemaFamilies.ts` ya poseía. La duplicación estaba
+ * rota: `computedTypes` contenía `'barcodes'` —la clave del mapa de plugins—
+ * y ninguno de los trece tipos reales de código de barras coincidía, así que
+ * todos se clasificaban como entrada obligatoria (RTP-475).
+ *
+ * La taxonomía la resuelve `schemas/schemaRuntimeMetadata.ts`.
+ */
 import type { SchemaDefinition } from '../schemas/schemaBuilder.js';
+import { resolveSchemaRuntimeMetadata } from '../schemas/schemaRuntimeMetadata.js';
+import type {
+  SchemaCodecId,
+  SchemaCompletionPolicy,
+  SchemaInteractionKind,
+} from '../schemas/schemaRuntimeMetadata.js';
 
-export type SchemaInteractionKind = 'input' | 'choice' | 'signing' | 'artifact' | 'action' | 'computed' | 'visual' | 'complex';
+export type { SchemaInteractionKind, SchemaCompletionPolicy, SchemaCodecId };
 
 export type SchemaRuntimeManifest = SchemaDefinition & {
   aliases: string[];
+  /** Familia semántica del registry, no la categoría de catálogo. */
   family: string;
+  /** Categoría de catálogo, tal y como la declara el plugin. */
+  category: string;
   interactionKind: SchemaInteractionKind;
-  completion: 'required-value' | 'selection' | 'signing' | 'artifact' | 'action' | 'none';
-  codec: 'string' | 'number' | 'date' | 'boolean' | 'array' | 'opaque';
-};
-
-const choiceTypes = new Set(['select', 'dropdown', 'radioGroup', 'checkbox', 'checkboxGroup']);
-const signingTypes = new Set(['signature', 'initials', 'dateSigned']);
-const artifactTypes = new Set(['attachment']);
-const visualTypes = new Set(['image', 'svg', 'line', 'rectangle', 'ellipse']);
-const complexTypes = new Set(['table']);
-const computedTypes = new Set(['barcodes']);
-
-const resolveKind = (type: string): SchemaInteractionKind => {
-  if (choiceTypes.has(type)) return 'choice';
-  if (signingTypes.has(type)) return 'signing';
-  if (artifactTypes.has(type)) return 'artifact';
-  if (visualTypes.has(type)) return 'visual';
-  if (complexTypes.has(type)) return 'complex';
-  if (computedTypes.has(type)) return 'computed';
-  if (type === 'approve' || type === 'decline' || type === 'note') return 'action';
-  return 'input';
-};
-
-const resolveCodec = (type: string): SchemaRuntimeManifest['codec'] => {
-  if (type === 'number') return 'number';
-  if (type === 'date' || type === 'time' || type === 'dateTime' || type === 'dateSigned') return 'date';
-  if (choiceTypes.has(type)) return type === 'checkbox' ? 'boolean' : 'array';
-  if (signingTypes.has(type) || artifactTypes.has(type)) return 'opaque';
-  return 'string';
+  completion: SchemaCompletionPolicy;
+  codec: SchemaCodecId;
 };
 
 export const buildSchemaRuntimeManifest = (
   definitions: SchemaDefinition[],
   aliases: Record<string, string[]> = {},
-): SchemaRuntimeManifest[] => definitions.map((definition) => {
-  const type = definition.type.toLowerCase();
-  const interactionKind = resolveKind(type);
-  return {
-    ...definition,
-    aliases: [...(aliases[type] ?? [])],
-    family: definition.category,
-    interactionKind,
-    completion: interactionKind === 'choice' ? 'selection'
-      : interactionKind === 'signing' ? 'signing'
-        : interactionKind === 'artifact' ? 'artifact'
-          : interactionKind === 'action' ? 'action'
-            : interactionKind === 'visual' || interactionKind === 'computed' ? 'none'
-              : 'required-value',
-    codec: resolveCodec(type),
-  };
-});
+): SchemaRuntimeManifest[] =>
+  definitions.map((definition) => {
+    const type = definition.type.toLowerCase();
+    const metadata = resolveSchemaRuntimeMetadata(type);
+    return {
+      ...definition,
+      aliases: [...(aliases[type] ?? [])],
+      family: metadata.family,
+      interactionKind: metadata.interactionKind,
+      completion: metadata.completion,
+      codec: metadata.codec,
+    };
+  });
+
+/** Índice por tipo y alias. Un tipo desconocido devuelve `null`, no un default. */
+export const indexSchemaRuntimeManifest = (
+  manifest: SchemaRuntimeManifest[],
+): Map<string, SchemaRuntimeManifest> => {
+  const index = new Map<string, SchemaRuntimeManifest>();
+  manifest.forEach((entry) => {
+    index.set(entry.type.toLowerCase(), entry);
+    entry.aliases.forEach((alias) => index.set(alias.toLowerCase(), entry));
+  });
+  return index;
+};

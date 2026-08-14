@@ -1,3 +1,30 @@
+/**
+ * Proyecciones de completitud.
+ *
+ * ## Tri-estado (RTP-490)
+ *
+ * `complete: boolean` no distingue «faltan campos» de «hay un campo
+ * inválido», y son situaciones distintas: la primera se resuelve rellenando,
+ * la segunda corrigiendo. Colapsarlas obligaba a las superficies a añadir sus
+ * propios booleanos sueltos para saber qué mensaje mostrar.
+ *
+ * `status` es la dimensión canónica:
+ *
+ * - `complete`   — nada obligatorio pendiente y nada inválido;
+ * - `pending`    — nada inválido, pero queda algo obligatorio por rellenar;
+ * - `invalid`    — hay al menos un valor que no valida.
+ *
+ * `invalid` gana sobre `pending`: un formulario con errores no está
+ * «casi terminado».
+ *
+ * `complete` se conserva como derivada (`status === 'complete'`) para no
+ * romper a los consumidores existentes.
+ */
+export type CompletionStatus = 'complete' | 'pending' | 'invalid';
+
+const statusOf = (hasInvalid: boolean, hasPending: boolean): CompletionStatus =>
+  hasInvalid ? 'invalid' : hasPending ? 'pending' : 'complete';
+
 export type CompletionSchemaRecord = {
   schemaUid: string;
   documentId: string;

@@ -44,7 +44,9 @@ import {
 } from '../../../../collaboration/schemaRuntimeAccess.js';
 
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
-import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
+import { resolveSisadPdfmeConfig } from '../../../../../config/resolveSisadPdfmeConfig.js';
+import { resolveCapabilityState } from '../../../../../config/capabilityGraph.js';
 
 /**
  * Modo del menú contextual del canvas.
@@ -727,49 +729,83 @@ const buildCriticalPrimaryActions = (
 /**
  * Determina si una acción contextual debe mostrarse según la visibilidad global.
  */
+/**
+ * Ids del menú contextual → capability canónica de configuración.
+ *
+ * El menú tiene ids propios (`delete-multi`, `copy-style`, `align-left`…) que
+ * no existen en `actionConfigRegistry`. Antes se resolvían con un `switch` que
+ * volvía a mapear cada uno a su rama de `visibility.actions`: una TERCERA
+ * tabla con la misma información que el registry de configuración y que el
+ * mapa del Designer, con las tres libres de desincronizarse (RTP-465).
+ *
+ * Ahora sólo se declara la correspondencia; la política la resuelve el grafo.
+ * Un id ausente de este mapa no tiene política propia y permanece visible: es
+ * chrome del menú, no una acción configurable.
+ */
+export const CONTEXT_ACTION_CAPABILITY: Record<string, string[]> = {
+  delete: ['action:delete-schema'],
+  'delete-multi': ['action:delete-schema'],
+  duplicate: ['action:duplicate-schema'],
+  'copy-style': ['action:copy'],
+  'paste-style': ['action:paste'],
+  readonly: ['action:lock-position', 'action:unlock-position'],
+  lock: ['action:lock-position', 'action:unlock-position'],
+  'lock-multi': ['action:lock-position', 'action:unlock-position'],
+  'collaboration-lock': ['action:lock-position', 'action:unlock-position'],
+  'collaboration-lock-multi': ['action:lock-position', 'action:unlock-position'],
+  hidden: ['action:hide-schema', 'action:show-schema'],
+  show: ['action:hide-schema', 'action:show-schema'],
+  'show-multi': ['action:hide-schema', 'action:show-schema'],
+  hide: ['action:hide-schema', 'action:show-schema'],
+  'hide-multi': ['action:hide-schema', 'action:show-schema'],
+  'align-left': ['action:align'],
+  'align-center': ['action:align'],
+  'align-right': ['action:align'],
+  'align-top': ['action:align'],
+  'align-middle': ['action:align'],
+  'align-bottom': ['action:align'],
+  'distribute-horizontal': ['action:distribute'],
+  'distribute-vertical': ['action:distribute'],
+};
+
+/**
+ * El menú sólo recibe la rama `visibility.actions`, así que se resuelve una
+ * configuración canónica alrededor de ella. Es la misma información que
+ * consultaba el `switch` anterior; lo que cambia es que ahora la interpreta el
+ * grafo y no una tabla local.
+ *
+ * Se memoiza por identidad del objeto de visibilidad: el menú se reconstruye a
+ * cada apertura y la configuración resuelta no cambia entre ellas.
+ */
+const contextSourceCache = new WeakMap<object, Pick<ResolvedSisadPdfmeConfig, 'config' | 'visibility'>>();
+
+const resolveContextSource = (actionsVisibility: SisadPdfmeVisibilityConfig['actions']) => {
+  const key = actionsVisibility as unknown as object;
+  const cached = contextSourceCache.get(key);
+  if (cached) return cached;
+  const resolved = resolveSisadPdfmeConfig({ visibility: { actions: actionsVisibility } });
+  const source = { config: resolved.config, visibility: resolved.visibility };
+  contextSourceCache.set(key, source);
+  return source;
+};
+
+/**
+ * `rename-label` no tiene acción propia en la configuración pero sí bandera de
+ * visibilidad, así que conserva su lectura directa.
+ */
 const isContextActionVisible = (
   actionId: string,
   visibility?: SisadPdfmeVisibilityConfig['actions'],
 ) => {
   if (!visibility) return true;
+  if (actionId === 'rename-label') return visibility.rename !== false;
 
-  switch (actionId) {
-    case 'delete':
-    case 'delete-multi':
-      return visibility.delete !== false;
-    case 'duplicate':
-      return visibility.duplicate !== false;
-    case 'rename-label':
-      return visibility.rename !== false;
-    case 'copy-style':
-      return visibility.copy !== false;
-    case 'paste-style':
-      return visibility.paste !== false;
-    case 'readonly':
-    case 'lock':
-    case 'lock-multi':
-    case 'collaboration-lock':
-    case 'collaboration-lock-multi':
-      return visibility.lock !== false || visibility.unlock !== false;
-    case 'hidden':
-    case 'show':
-    case 'show-multi':
-    case 'hide':
-    case 'hide-multi':
-      return visibility.hide !== false || visibility.show !== false;
-    case 'align-left':
-    case 'align-center':
-    case 'align-right':
-    case 'align-top':
-    case 'align-middle':
-    case 'align-bottom':
-      return visibility.align !== false;
-    case 'distribute-horizontal':
-    case 'distribute-vertical':
-      return visibility.distribute !== false;
-    default:
-      return true;
-  }
+  const capabilities = CONTEXT_ACTION_CAPABILITY[actionId];
+  if (!capabilities) return true;
+  const source = resolveContextSource(visibility);
+  // Una entrada con varias capabilities es un par simétrico (bloquear /
+  // desbloquear): basta con que una siga permitida para que el ítem exista.
+  return capabilities.some((capabilityId) => resolveCapabilityState(source, capabilityId).visible);
 };
 
 /**

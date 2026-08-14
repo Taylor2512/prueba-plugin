@@ -60,6 +60,11 @@ import Padding from './Padding.js';
 import StaticSchema from '../../StaticSchema.js';
 import SnapLines from './SnapLines.js';
 import { computeSnapResult, type SnapLine } from './snapEngine.js';
+import {
+  canvasViewDataAttributes,
+  resolveCanvasViewCapabilities,
+} from './canvasViewCapabilities.js';
+import { createGridGeometry, gridCssVariables, snapPointToGrid } from './gridGeometry.js';
 import { resolveSchemaTone } from '../shared/schemaTone.js';
 import { mixHexColor } from '../../../../schemas/shared/fieldChrome.js';
 import { deriveInteractionState } from '../shared/interactionState.js';
@@ -228,6 +233,19 @@ export type CanvasFeatureToggles = {
   mask?: boolean;
   moveable?: boolean;
   deleteButton?: boolean;
+  /**
+   * Reglas. Tienen toggle propio: antes se derivaban de `guides`, así que
+   * apagar las guías apagaba también las reglas (RTP-455).
+   */
+  rulers?: boolean;
+  /** Ajuste a la rejilla. Independiente de que la rejilla se vea. */
+  snapToGrid?: boolean;
+  /** Ajuste contra otros elementos y bordes de página (`snapEngine`). */
+  objectSnap?: boolean;
+  /** El usuario puede crear guías arrastrando desde las reglas. */
+  guideCreation?: boolean;
+  /** Ajuste contra las guías creadas por el usuario. */
+  guideSnap?: boolean;
 };
 
 /**
@@ -442,6 +460,24 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const configFromOptions = useMemo(() => configFromRuntimeOptions(options), [options]);
   const resolvedConfig = useSisadPdfmeConfig(configFromOptions);
   const canvasVisibility = resolvedConfig.visibility.canvas;
+  /**
+   * Estado efectivo de las ocho capabilities de vista, cada una resuelta por
+   * separado. Sustituye a las expresiones inline que ataban las reglas a las
+   * guías y confundían «snap activo» con «líneas de snap visibles» (RTP-455).
+   */
+  const viewCapabilities = useMemo(
+    () =>
+      resolveCanvasViewCapabilities({
+        toggles: featureToggles,
+        visibility: canvasVisibility,
+        canvasEnabled: resolvedConfig.config.canvas.enabled !== false,
+      }),
+    [featureToggles, canvasVisibility, resolvedConfig.config.canvas.enabled],
+  );
+  const viewDataAttributes = useMemo(
+    () => canvasViewDataAttributes(viewCapabilities),
+    [viewCapabilities],
+  );
   /**
    * Plataforma detectada para normalización de atajos y selección.
    */
@@ -771,14 +807,35 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       .filter((s) => !activeElementIdSet.has(s.id))
       .map((s) => ({ x: s.position.x, y: s.position.y, width: s.width, height: s.height }));
 
-    const snapResult = modifierKeys.alt
-      ? { snapped: { x: actualLeft, y: actualTop }, lines: [] as SnapLine[] }
-      : computeSnapResult(
-        { x: actualLeft, y: actualTop, width: targetWidthMm, height: targetHeightMm },
-        { width: pageWidthMm, height: pageHeightMm },
-        others,
-        snapThresholdMm,
-      );
+    /*
+     * Object snap y snap-to-grid son capabilities INDEPENDIENTES y se componen
+     * en un orden fijo: primero la rejilla —que es una retícula absoluta del
+     * documento— y sobre su resultado el ajuste contra vecinos, que es
+     * relativo y debe poder ganarle. Alt suspende ambos, como siempre.
+     */
+    const suppressSnap = modifierKeys.alt;
+    const gridSnapped =
+      !suppressSnap && viewCapabilities.snapToGrid.active
+        ? snapPointToGrid(
+          createGridGeometry({
+            pageMm: { width: pageWidthMm, height: pageHeightMm },
+            stepMm: resolvedConfig.config.canvas.gridStepMm,
+            subdivisions: resolvedConfig.config.canvas.gridSubdivisions,
+            originMm: { x: paddingLeftMm, y: paddingTopMm },
+          }),
+          { x: actualLeft, y: actualTop },
+        ).point
+        : { x: actualLeft, y: actualTop };
+
+    const snapResult =
+      suppressSnap || !viewCapabilities.objectSnap.active
+        ? { snapped: gridSnapped, lines: [] as SnapLine[] }
+        : computeSnapResult(
+          { x: gridSnapped.x, y: gridSnapped.y, width: targetWidthMm, height: targetHeightMm },
+          { width: pageWidthMm, height: pageHeightMm },
+          others,
+          snapThresholdMm,
+        );
 
     const nextTop = clampValue(snapResult.snapped.y, minY, maxY);
     const nextLeft = clampValue(snapResult.snapped.x, minX, maxX);
@@ -791,12 +848,15 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       cancelAnimationFrame(snapRafRef.current);
     }
     snapRafRef.current = requestAnimationFrame(() => {
+      // Ver las líneas y que el snap actúe son capabilities distintas: el
+      // ajuste puede estar activo sin pintar nada.
+      const visibleLines = viewCapabilities.snapLines.active ? snapResult.lines : [];
       const key = JSON.stringify(
-        snapResult.lines.map((line) => `${line.type}:${line.pos}:${line.label || ''}`),
+        visibleLines.map((line) => `${line.type}:${line.pos}:${line.label || ''}`),
       );
       if (snapLinesKeyRef.current !== key) {
         snapLinesKeyRef.current = key;
-        setSnapLines(snapResult.lines);
+        setSnapLines(visibleLines);
       }
     });
   };
@@ -1587,6 +1647,43 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     });
   }, [paperRefs, pageCursor, schemasList]);
 
+  /**
+   * Pinta la rejilla en el espacio de CADA página.
+   *
+   * Antes era un `background-image` de paso fijo `24px` sobre el contenedor
+   * del canvas: no significaba ninguna medida del documento, no seguía al
+   * zoom y no se alineaba con el borde del papel en multipágina.
+   *
+   * Las variables se proyectan a zoom 1 a propósito: el zoom es un
+   * `transform: scale()` de una capa ancestro (`Paper`), así que escala el
+   * patrón junto con el papel y la paridad rejilla/snap se conserva sola.
+   */
+  useEffect(() => {
+    paperRefs.current.forEach((paper, index) => {
+      if (!paper) return;
+      const pageSize = pageSizes[index] || pageSizes[0];
+      if (!pageSize) return;
+      const [paddingTopMm, , , paddingLeftMm] = getPaddingMm(basePdf);
+      const geometry = createGridGeometry({
+        pageMm: { width: pageSize.width, height: pageSize.height },
+        stepMm: resolvedConfig.config.canvas.gridStepMm,
+        subdivisions: resolvedConfig.config.canvas.gridSubdivisions,
+        originMm: { x: paddingLeftMm, y: paddingTopMm },
+      });
+      Object.entries(gridCssVariables(geometry, 1)).forEach(([name, value]) => {
+        paper.style.setProperty(name, value);
+      });
+      paper.dataset.gridVisible = String(viewCapabilities.grid.active);
+    });
+  }, [
+    paperRefs,
+    pageSizes,
+    basePdf,
+    resolvedConfig.config.canvas.gridStepMm,
+    resolvedConfig.config.canvas.gridSubdivisions,
+    viewCapabilities.grid.active,
+  ]);
+
   useEffect(() => {
     const cleanups: Array<() => void> = [];
 
@@ -1624,11 +1721,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       data-interaction-dragging={interactionState.isDragging ? 'true' : 'false'}
       data-interaction-resizing={interactionState.isResizing ? 'true' : 'false'}
       data-interaction-rotating={interactionState.isRotating ? 'true' : 'false'}
-      data-grid-visible={feature.grid && canvasVisibility?.grid !== false ? 'true' : 'false'}
-      data-guides-visible={feature.guides && canvasVisibility?.guides !== false ? 'true' : 'false'}
-      data-rulers-visible={feature.guides && canvasVisibility?.rulers !== false ? 'true' : 'false'}
-      data-snaps-enabled={feature.snapLines && canvasVisibility?.snapLines !== false ? 'true' : 'false'}
-      data-snaps-visible={feature.snapLines && canvasVisibility?.snapLines !== false ? 'true' : 'false'}
+      {...viewDataAttributes}
       data-owner-badges-visible={canvasVisibility?.ownerBadges !== false ? 'true' : 'false'}
       data-required-markers-visible={canvasVisibility?.requiredMarkers !== false ? 'true' : 'false'}
       data-lock-badges-visible={canvasVisibility?.lockBadges !== false ? 'true' : 'false'}

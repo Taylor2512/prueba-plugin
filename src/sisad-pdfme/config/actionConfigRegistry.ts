@@ -132,7 +132,7 @@ export const actionConfigRegistry: Record<ActionId, ActionDefinition> = {
       const readOnly = context?.readOnly === true || config.config.runtime.readonly === true;
       const visible = config.visibility.actions?.paste !== false;
       const available = context?.hasClipboard !== false;
-      return createState('paste', 'pasteSchemas', ['visibility.actions.paste'], {
+      return createActionState('paste', 'pasteSchemas', ['visibility.actions.paste'], {
         supported: visible,
         enabled: visible && !readOnly && available,
         visible,

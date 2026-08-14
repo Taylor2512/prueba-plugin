@@ -14,12 +14,25 @@ import { expect, test, type Page } from '@playwright/test';
 const NUMBER = '#text-number-1';
 const TEXT = '#text-text-0';
 
-const blur = (page: Page) => page.locator('body').click({ position: { x: 5, y: 5 } });
+const blur = (page: Page) =>
+  page.evaluate(() => (document.activeElement instanceof HTMLElement ? document.activeElement.blur() : undefined));
 
 const clear = async (page: Page, selector: string) => {
-  await page.locator(selector).click();
-  await page.keyboard.press('ControlOrMeta+a');
-  await page.keyboard.press('Delete');
+  const loc = page.locator(selector);
+  await loc.click();
+  // Robustly clear contenteditable or input/textarea values
+  await loc.evaluate((el: any) => {
+    try {
+      if (el.isContentEditable) el.innerText = '';
+      else if (typeof el.value !== 'undefined') el.value = '';
+      else el.textContent = '';
+    } catch (e) {
+      // ignore
+    }
+    // clear any selection
+    const sel = document.getSelection && document.getSelection();
+    if (sel && sel.removeAllRanges) sel.removeAllRanges();
+  });
 };
 
 /** Escribe sin salir del campo: deja ver el draft antes de que se confirme. */
