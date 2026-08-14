@@ -46,3 +46,15 @@ For full runtime/capability completion use:
 The coordinator continues through unblocked RTP tasks automatically and stops only at final
 release or a true external blocker.
 <!-- autonomous-runtime:end -->
+
+<!-- SISAD-PDFME-PORTABLE-INTEGRATION:.ai/START.md:START -->
+## Portable integrations and interrupted runtime resume
+
+Para continuar una sesión runtime interrumpida, usar primero:
+
+`.ai/prompts/PROMPT_SISAD_PDFME_RESUME_AND_INTEGRATE.md`
+
+La regla es reconciliar source/evidence/ledger antes de confiar en el status de una task.
+PokeAPI es sólo fixture; la arquitectura HTTP debe ser transport-neutral y permitir clientes
+inyectados por el host.
+<!-- SISAD-PDFME-PORTABLE-INTEGRATION:.ai/START.md:END -->

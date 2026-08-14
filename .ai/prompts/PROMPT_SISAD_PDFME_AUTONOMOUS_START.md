@@ -469,3 +469,25 @@ When queue appears empty:
 Only then stop.
 
 Do not ask whether to continue.
+
+<!-- SISAD-PDFME-PORTABLE-INTEGRATION:.ai/prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md:START -->
+## Portable integration extension
+
+Antes de closeout, el autonomous loop debe cubrir también la arquitectura definida por:
+
+- `.ai/brain/20-contracts/HTTP-CLIENT-CONTRACT.md`
+- `.ai/brain/20-contracts/DATA-SOURCE-CONTRACT.md`
+- `.ai/brain/20-contracts/DATA-BINDING-CONTRACT.md`
+- `.ai/brain/20-contracts/INTEGRATION-RUNTIME-CONTRACT.md`
+- `.ai/brain/20-contracts/FONT-REGISTRY-CONTRACT.md`
+- `.ai/plans/PLAN_SISAD_PDFME_PORTABLE_INTEGRATION_RUNTIME.md`
+
+PokeAPI es exclusivamente example/fixture.
+
+No añadir Axios como dependencia obligatoria del core. Debe poder inyectarse un cliente Axios
+existente, conservando defaults/interceptors/Authorization del host, o sustituirse por fetch/fake
+transport sin cambiar schemas/templates.
+
+Si una ejecución anterior terminó antes de completar la queue, reanudar desde la primera task
+sin evidence válida; no saltar directamente a nuevas features.
+<!-- SISAD-PDFME-PORTABLE-INTEGRATION:.ai/prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md:END -->
