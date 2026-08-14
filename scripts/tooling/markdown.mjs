@@ -167,7 +167,13 @@ export function canonicalizeSegment(segment, config) {
 }
 
 export function hasVersionToken(relativePath, config) {
-  return normalizeRelative(relativePath)
+  const normalizedPath = normalizeRelative(relativePath);
+  if (config.naming.operationalIdentityPatterns?.some((pattern) => {
+    pattern.lastIndex = 0;
+    return pattern.test(normalizedPath);
+  })) return false;
+
+  return normalizedPath
     .split("/")
     .some((segment) => {
       const ext = path.extname(segment);

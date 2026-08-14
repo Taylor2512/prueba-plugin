@@ -81,6 +81,10 @@ export function scanArchitecture(root, config) {
   const markdown = markdownFiles(root, config);
   const versioned = files
     .map((abs) => relative(root, abs))
+    .filter((rel) => !config.naming.operationalIdentityPatterns.some((pattern) => {
+      pattern.lastIndex = 0;
+      return pattern.test(rel);
+    }))
     .filter((rel) => hasVersionToken(rel, config));
 
   return {

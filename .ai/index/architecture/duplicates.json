@@ -1,4 +1,33 @@
 {
-  "exact": [],
+  "exact": [
+    {
+      "hash": "f791ccf16627b2f0f1249e154e6d5eba38fdc8a911f75a5d75b2630a6bb2325a",
+      "paths": [
+        ".agents/skills/sisad-form-transaction/SKILL.md",
+        ".claude/skills/sisad-form-transaction/SKILL.md"
+      ]
+    },
+    {
+      "hash": "4144821b2fdb7413557c662002f3bc6f7a1df31aea48d5f38887e6bbf7533e41",
+      "paths": [
+        ".agents/skills/sisad-schema-runtime-contract/SKILL.md",
+        ".claude/skills/sisad-schema-runtime-contract/SKILL.md"
+      ]
+    },
+    {
+      "hash": "c21ec81868d52ec1222b75aefeef90030d3599c492e45eca7e6fa4fc6af6100b",
+      "paths": [
+        ".agents/skills/sisad-tooling-safety/SKILL.md",
+        ".claude/skills/sisad-tooling-safety/SKILL.md"
+      ]
+    },
+    {
+      "hash": "25143ade785de62843366017ed2cef120d960a84e7a91c621771e4de7264e76b",
+      "paths": [
+        ".agents/skills/sisad-user-runtime/SKILL.md",
+        ".claude/skills/sisad-user-runtime/SKILL.md"
+      ]
+    }
+  ],
   "near": []
 }

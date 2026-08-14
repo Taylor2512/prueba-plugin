@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "sourceBaseline": "unificados/SISAD-PDFME-SOURCE-BASELINE.json",
+  "invariants": [
+    "Host Recipient != SISAD-PDFME User",
+    "no business routing in reusable core",
+    "SchemaAssignments has one canonical exported shape",
+    "Form local mutation precedes host notification",
+    "0 false [] null empty remain semantically distinct",
+    "User x Document x Session state isolation",
+    "filesystem installers are preflight/conflict-safe"
+  ],
+  "highRiskPaths": [
+    "src/sisad-pdfme/contracts/assignments.ts",
+    "src/sisad-pdfme/assignments/index.ts",
+    "src/sisad-pdfme/ui/Form.tsx",
+    "src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts",
+    "src/sisad-pdfme/integration/normalizeHostData.ts",
+    "scripts/tooling/importer.mjs",
+    "scripts/install-project-tools.mjs",
+    "scripts/install-tests.mjs"
+  ]
+}

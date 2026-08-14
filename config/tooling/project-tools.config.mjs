@@ -109,6 +109,11 @@ export default {
       /(?:[-_.])20\d{2}[-_.]?\d{2}[-_.]?\d{2}$/g,
       /(?:[-_.])20\d{6}$/g,
     ],
+    // Campaign execution identities are operational records, not document revisions.
+    operationalIdentityPatterns: [
+      /^\.ai\/ops\//,
+      /^\.ai\/(?:plans|prompts)\/(?:PLAN|PROMPT)_[A-Z0-9_-]+_V\d+\.md$/,
+    ],
     allowedHistoricalIdsInContent: true,
     scope: architectureRoots,
   },

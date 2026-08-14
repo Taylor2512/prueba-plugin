@@ -1,7 +1,7 @@
 ---
 id: SPRT-000
 campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
-status: ready
+status: done
 ---
 
 # Live baseline and public API snapshot
@@ -22,11 +22,11 @@ SISAD-PDFME only. No external-project source or business semantics.
 - evidence before PASS.
 
 ## Acceptance
-- [ ] focal behavior characterized;
-- [ ] implementation, if required, is host-agnostic;
-- [ ] focal tests pass;
-- [ ] public compatibility evaluated;
-- [ ] `.ai/evidence/SPRT-000.md` created.
+- [x] focal behavior characterized;
+- [x] implementation, if required, is host-agnostic;
+- [x] focal tests pass;
+- [x] public compatibility evaluated;
+- [x] evidence created at `reports/runtime-platform/evidence/SPRT-000.md` because `.ai/evidence/` is historical in the live state table.
 
 ## Dependency
 baseline

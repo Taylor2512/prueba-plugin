@@ -1,0 +1,15 @@
+{
+  "threshold": 0.57,
+  "target": 2.0,
+  "baseline": {
+    "percentage": 0.5540793837154215,
+    "clones": 44
+  },
+  "provenance": {
+    "repository": "prueba-plugin",
+    "head": "d526bc66f7c51878093cc2174b0487d62ac46c55",
+    "report": "reports/jscpd-owned/jscpd-report.json",
+    "generatedAt": "2026-08-14T03:41:37.300Z",
+    "formula": "nextThreshold(p) = round2(ceil(p * 100) / 100 + 0.01)"
+  }
+}

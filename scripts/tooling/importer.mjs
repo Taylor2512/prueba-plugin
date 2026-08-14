@@ -173,13 +173,7 @@ function copyIncoming(sourceFile, targetFile, rawRel, targetRel, incomingMap) {
   }
 
   ensureDir(path.dirname(targetFile));
-  copyIncoming(
-            sourceFile,
-            targetFile,
-            rawRel,
-            rel,
-            incomingMap,
-          );
+  fs.copyFileSync(sourceFile, targetFile);
 }
 
 export function importArchitecture(repoRoot, config, {

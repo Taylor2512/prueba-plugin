@@ -1,0 +1,10 @@
+{
+  "path": [".ai", ".agents", ".github", "docs"],
+  "format": ["markdown"],
+  "mode": "mild",
+  "minLines": 6,
+  "minTokens": 70,
+  "reporters": ["console", "json"],
+  "output": "reports/jscpd-docs",
+  "ignore": ["**/reports/**", "**/generated/**", "**/archive/**"]
+}

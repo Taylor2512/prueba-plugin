@@ -9,12 +9,17 @@ import {
   externalBackupRoot,
   parseArgs,
   readJson,
+  sha256File,
   writeJson,
 } from "./tooling/core.mjs";
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.positional[0] || ".");
 const apply = args.has("apply");
+const conflictPolicy = args.get("conflict", "keep-target");
+if (!["keep-target", "prefer-source"].includes(conflictPolicy)) {
+  throw new Error("--conflict must be keep-target or prefer-source.");
+}
 const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const configModule = await import(
@@ -62,6 +67,9 @@ const payload = [
 
 const backup = externalBackupRoot(root, "tooling-backup");
 const changes = [];
+const conflicts = [];
+const createFiles = [];
+const replaceFiles = [];
 
 for (const rel of payload) {
   const source = path.join(packageRoot, rel);
@@ -69,18 +77,26 @@ for (const rel of payload) {
   if (!fs.existsSync(source)) throw new Error(`Package file missing: ${rel}`);
 
   const exists = fs.existsSync(target);
-  changes.push({ action: exists ? "replace" : "create", path: rel });
+  if (!exists) {
+    changes.push({ action: "create", path: rel });
+  } else if (sha256File(source) === sha256File(target)) {
+    changes.push({ action: "identical", path: rel });
+  } else {
+    const conflict = { action: "conflict", path: rel };
+    conflicts.push(conflict);
+    changes.push(conflict);
+  }
 
   if (!apply) continue;
 
-  if (exists) {
-    ensureDir(backup);
-    backupPath(root, backup, rel);
+  if (!exists) {
+    createFiles.push({ source, target });
+  } else if (conflictPolicy === "prefer-source" && sha256File(source) !== sha256File(target)) {
+    replaceFiles.push({ source, target, rel });
   }
-  ensureDir(path.dirname(target));
-  fs.copyFileSync(source, target);
 }
 
+const payloadCanApply = conflicts.length === 0 || conflictPolicy === "prefer-source";
 const packageJson = path.join(root, "package.json");
 if (fs.existsSync(packageJson)) {
   const pkg = readJson(packageJson);
@@ -88,13 +104,40 @@ if (fs.existsSync(packageJson)) {
 
   const next = structuredClone(pkg);
   next.scripts = next.scripts || {};
-  Object.assign(next.scripts, config.packageScripts);
+  const scriptConflicts = Object.entries(config.packageScripts).filter(
+    ([name, value]) => next.scripts[name] !== undefined && next.scripts[name] !== value,
+  );
+  if (scriptConflicts.length > 0) {
+    const conflict = { action: "package-script-conflict", path: "package.json", scripts: scriptConflicts.map(([name]) => name) };
+    conflicts.push(conflict);
+    changes.push(conflict);
+  }
 
-  changes.push({ action: "merge-package-scripts", path: "package.json" });
-  if (apply) {
+  for (const [name, value] of Object.entries(config.packageScripts)) {
+    if (next.scripts[name] === undefined || conflictPolicy === "prefer-source") next.scripts[name] = value;
+  }
+
+  if (JSON.stringify(next) !== JSON.stringify(pkg)) {
+    changes.push({ action: "merge-package-scripts", path: "package.json" });
+    if (apply && payloadCanApply && (scriptConflicts.length === 0 || conflictPolicy === "prefer-source")) {
+      ensureDir(backup);
+      backupPath(root, backup, "package.json");
+      writeJson(packageJson, next);
+    }
+  }
+}
+
+const canApply = apply && payloadCanApply && (conflicts.length === 0 || conflictPolicy === "prefer-source");
+if (canApply) {
+  for (const { source, target } of createFiles) {
+    ensureDir(path.dirname(target));
+    fs.copyFileSync(source, target);
+  }
+  for (const { source, target, rel } of replaceFiles) {
     ensureDir(backup);
-    backupPath(root, backup, "package.json");
-    writeJson(packageJson, next);
+    backupPath(root, backup, rel);
+    ensureDir(path.dirname(target));
+    fs.copyFileSync(source, target);
   }
 }
 
@@ -103,7 +146,10 @@ console.log(JSON.stringify({
   root,
   backup: apply ? backup : null,
   changes,
+  conflicts,
 }, null, 2));
+
+if (conflicts.length > 0 && conflictPolicy === "keep-target") process.exitCode = 3;
 
 if (!apply) {
   console.log("\nDry-run only. Re-run with --apply after reviewing the plan.");
