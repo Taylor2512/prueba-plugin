@@ -39,15 +39,26 @@ export const useSisadPdfmeRecipientRuntime = ({
         : resolvedConfig.config.recipients.activeRecipientId ?? undefined,
   });
 
-  const effectiveActiveRecipientId = recipientRegistry.state.activeRecipientId;
+  // The registry applies a controlled id in an effect. Keep the controlled
+  // value available during that transition so Preview never evaluates access
+  // against the previous user while the registry catches up.
+  const effectiveActiveRecipientId =
+    recipientRegistry.state.activeRecipientId || activeRecipientId || resolvedConfig.config.recipients.activeRecipientId || null;
   const recipientFilterEnabled =
     resolvedConfig.visibility.runtime?.recipientFilter !== false;
   const collaborationOptions = useMemo(
-    () =>
-      recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
-        ? { activeRecipientId: effectiveActiveRecipientId, isGlobalView }
-        : { isGlobalView },
-    [effectiveActiveRecipientId, isGlobalView, recipientFilterEnabled],
+    () => ({
+        ...(recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
+          ? { activeRecipientId: effectiveActiveRecipientId }
+          : {}),
+        isGlobalView,
+        // Keep Preview on the registry's normalized recipient/user authority.
+        // Passing the list also makes access resolution deterministic when the
+        // active user changes without reconstructing the template.
+        recipientOptions: recipientRegistry.state.recipients,
+        users: recipientRegistry.state.recipients,
+      }),
+    [effectiveActiveRecipientId, isGlobalView, recipientFilterEnabled, recipientRegistry.state.recipients],
   );
 
   return {

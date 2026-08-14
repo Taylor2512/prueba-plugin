@@ -18,6 +18,10 @@ import usePreviewRuntime from './usePreviewRuntime.js';
 import type { FormJsonEnvelope } from '../designerEngine';
 import { UI_CLASSNAME } from '../constants.js';
 import { OptionsContext } from '../contexts.js';
+import {
+  buildRecipientNameMap,
+  normalizeCollaborationRecipients,
+} from '../collaborationContext.js';
 import { resolveRuntimeSchemaAccess } from '../collaboration/schemaRuntimeAccess.js';
 
 /**
@@ -43,17 +47,29 @@ const Preview = ({
 }) => {
   const { token } = theme.useToken();
   const previewOptions = useContext(OptionsContext) as {
-    collaboration?: { activeRecipientId?: string | null; isGlobalView?: boolean };
+    collaboration?: {
+      activeRecipientId?: string | null;
+      isGlobalView?: boolean;
+      recipientOptions?: unknown[];
+      users?: unknown[];
+    };
   };
   // Recipient access only applies when the host supplies a collaboration view
   // (active recipient or global). Otherwise the form renders all schemas as before.
   const collab = previewOptions?.collaboration;
+  const recipientOptions = normalizeCollaborationRecipients(collab?.recipientOptions || collab?.users);
   const accessCtx =
-    collab && (collab.activeRecipientId || collab.isGlobalView)
+    collab && (collab.activeRecipientId || collab.isGlobalView || recipientOptions.length > 0)
       ? {
-          recipientColorMap: new Map<string, string>(),
-          recipientNameMap: new Map<string, string>(),
+          recipientColorMap: new Map(
+            recipientOptions
+              .filter((recipient) => Boolean(recipient.color))
+              .map((recipient) => [recipient.id, recipient.color as string] as const),
+          ),
+          recipientNameMap: buildRecipientNameMap(recipientOptions),
           activeRecipientId: collab.activeRecipientId ?? null,
+          activeRecipient:
+            recipientOptions.find((recipient) => recipient.id === collab.activeRecipientId) ?? null,
           isGlobalView: collab.isGlobalView === true,
           actorColor: null,
           canEditStructure: true,

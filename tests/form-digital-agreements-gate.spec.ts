@@ -317,6 +317,26 @@ test.describe('MULTI-USER — aislamiento entre usuarios', () => {
   });
 });
 
+test.describe('MULTI-USER — ownership single', () => {
+  test('Alice y Bob sólo editan los schemas asignados', async ({ page }) => {
+    await page.goto('/runtime/form/multi-user');
+    await page.waitForSelector('[data-testid="lab-active-user-select"]');
+
+    const aliceField = page.locator('#text-text-0');
+    const bobField = page.locator('#text-number-1');
+
+    await userSelect(page).selectOption('alice');
+    await expect(aliceField).toHaveCount(1);
+    await expect(aliceField).toHaveAttribute('contenteditable', /true|plaintext-only/);
+    await expect(bobField).toHaveCount(0);
+
+    await userSelect(page).selectOption('bob');
+    await expect(aliceField).toHaveCount(0);
+    await expect(bobField).toHaveCount(1);
+    await expect(bobField).toHaveAttribute('contenteditable', /true|plaintext-only/);
+  });
+});
+
 /**
  * Aislamiento entre CONTEXTOS de navegador: dos sesiones independientes no
  * pueden compartir estado aunque corran contra la misma aplicación.

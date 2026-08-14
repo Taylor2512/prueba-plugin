@@ -207,7 +207,11 @@ export function RuntimePage({ config, currentPath }) {
           template,
           values,
           config: collaborativeConfig,
-          documents: DEMO_DOCUMENTS,
+          // Un documento demo trae SU PROPIA plantilla y
+          // `resolveActiveDocumentTemplate` la prefiere sobre la construida.
+          // En rutas con ownership per-user eso pisaba los owners y el
+          // aislamiento entre Usuarios dejaba de aplicarse (RTP-510).
+          documents: config.documents === false ? [] : DEMO_DOCUMENTS,
           recipients: MULTI_USER_RECIPIENTS,
           activeRecipientId: state.activeRecipientId,
           onEvent: handleEvent,

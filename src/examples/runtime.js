@@ -49,7 +49,12 @@ export const createExampleInstance = (descriptor, props = {}) => {
 
   if (props.template) definition.template = props.template;
   if (runtime.defaultState) definition.defaultState = runtime.defaultState;
-  if (Object.keys(runtime.state).length > 0) definition.state = runtime.state;
+  const definitionState = {
+    ...runtime.state,
+    ...(props.activeRecipientId !== undefined ? { activeRecipientId: props.activeRecipientId } : {}),
+    ...(props.activeDocumentId !== undefined ? { activeDocumentId: props.activeDocumentId } : {}),
+  };
+  if (Object.keys(definitionState).length > 0) definition.state = definitionState;
 
   return defineSisadPdfmeInstance({
     id: resolved.id,
