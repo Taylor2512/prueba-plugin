@@ -50,6 +50,15 @@ try {
   code = await runCli(["validate", root]);
   assert.equal(code, 0);
 
+  fs.mkdirSync(path.join(root, ".ai/ops/campaigns/EXAMPLE-V2"), { recursive: true });
+  fs.mkdirSync(path.join(root, ".ai/plans"), { recursive: true });
+  fs.mkdirSync(path.join(root, ".ai/prompts"), { recursive: true });
+  fs.writeFileSync(path.join(root, ".ai/ops/campaigns/EXAMPLE-V2/README.md"), "# Campaign\n");
+  fs.writeFileSync(path.join(root, ".ai/plans/PLAN_EXAMPLE_V2.md"), "# Plan\n");
+  fs.writeFileSync(path.join(root, ".ai/prompts/PROMPT_EXAMPLE_V2.md"), "# Prompt\n");
+  code = await runCli(["validate", root, "--check=names"]);
+  assert.equal(code, 0);
+
   console.log("project-tools synthetic tests PASS");
 } finally {
   fs.rmSync(root, { recursive: true, force: true });

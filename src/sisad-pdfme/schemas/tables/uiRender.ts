@@ -36,6 +36,25 @@ function createButton(options: {
 }
 
 type RowType = InstanceType<typeof Row>;
+export type TableEditingPosition = { rowIndex: number; colIndex: number };
+export type TableEditingState = {
+  head: TableEditingPosition;
+  body: TableEditingPosition;
+};
+
+export const createTableEditingState = (): TableEditingState => ({
+  head: { rowIndex: -1, colIndex: -1 },
+  body: { rowIndex: -1, colIndex: -1 },
+});
+
+export const resetTableEditingState = (state: TableEditingState): void => {
+  state.head.rowIndex = -1;
+  state.head.colIndex = -1;
+  state.body.rowIndex = -1;
+  state.body.colIndex = -1;
+};
+
+const tableEditingStateByRoot = new WeakMap<HTMLDivElement, TableEditingState>();
 
 const cellUiRender = cell.ui;
 
@@ -116,11 +135,12 @@ const drawBorder = (
 const renderRowUi = (args: {
   rows: RowType[];
   arg: UIRenderProps<TableSchema>;
-  editingPosition: { rowIndex: number; colIndex: number };
-  onChangeEditingPosition: (position: { rowIndex: number; colIndex: number }) => void;
+  editingPosition: TableEditingPosition;
+  onChangeEditingPosition: (position: TableEditingPosition) => void;
+  resetEditingPosition: () => void;
   offsetY?: number;
 }) => {
-  const { rows, arg, onChangeEditingPosition, offsetY = 0, editingPosition } = args;
+  const { rows, arg, onChangeEditingPosition, offsetY = 0, editingPosition, resetEditingPosition } = args;
   const value = JSON.parse(arg.value || '[]') as string[][];
 
   let rowOffsetY = offsetY;
@@ -195,15 +215,6 @@ const renderRowUi = (args: {
   });
 };
 
-const headEditingPosition = { rowIndex: -1, colIndex: -1 };
-const bodyEditingPosition = { rowIndex: -1, colIndex: -1 };
-const resetEditingPosition = () => {
-  headEditingPosition.rowIndex = -1;
-  headEditingPosition.colIndex = -1;
-  bodyEditingPosition.rowIndex = -1;
-  bodyEditingPosition.colIndex = -1;
-};
-
 /** Azul por defecto de la cabecera; se sustituye por el tono del dueño. */
 const DEFAULT_TABLE_HEAD_BG = '#2980ba';
 
@@ -227,6 +238,9 @@ const applyOwnerToneToHead = (schema: TableSchema): TableSchema => {
 
 export const renderTableUi = async (arg: UIRenderProps<TableSchema>) => {
   const { rootElement, onChange, value, mode, scale} = arg;
+  const editingState = tableEditingStateByRoot.get(rootElement) || createTableEditingState();
+  tableEditingStateByRoot.set(rootElement, editingState);
+  const resetEditingPosition = () => resetTableEditingState(editingState);
   const schema = applyOwnerToneToHead(arg.schema);
   const body = getBody(value);
   const bodyWidthRange = getBodyWithRange(value, schema.__bodyRange);
@@ -236,8 +250,8 @@ export const renderTableUi = async (arg: UIRenderProps<TableSchema>) => {
   rootElement.innerHTML = '';
 
   const handleChangeEditingPosition = (
-    newPosition: { rowIndex: number; colIndex: number },
-    editingPosition: { rowIndex: number; colIndex: number },
+    newPosition: TableEditingPosition,
+    editingPosition: TableEditingPosition,
   ) => {
     resetEditingPosition();
     editingPosition.rowIndex = newPosition.rowIndex;
@@ -249,8 +263,9 @@ export const renderTableUi = async (arg: UIRenderProps<TableSchema>) => {
     renderRowUi({
       rows: table.head,
       arg,
-      editingPosition: headEditingPosition,
-      onChangeEditingPosition: (p) => handleChangeEditingPosition(p, headEditingPosition),
+      editingPosition: editingState.head,
+      onChangeEditingPosition: (p) => handleChangeEditingPosition(p, editingState.head),
+      resetEditingPosition,
     });
   }
 
@@ -258,10 +273,11 @@ export const renderTableUi = async (arg: UIRenderProps<TableSchema>) => {
   renderRowUi({
     rows: table.body,
     arg,
-    editingPosition: bodyEditingPosition,
+    editingPosition: editingState.body,
     onChangeEditingPosition: (p) => {
-      handleChangeEditingPosition(p, bodyEditingPosition);
+      handleChangeEditingPosition(p, editingState.body);
     },
+    resetEditingPosition,
     offsetY,
   });
 

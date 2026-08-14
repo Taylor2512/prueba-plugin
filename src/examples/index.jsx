@@ -69,9 +69,7 @@ export {
   buildSnapshotFormValues,
 } from './builders.js';
 
-export { createExampleInstance } from './instances.js';
-
-export { useController, useEventLog, useRuntimeConfig } from './hooks.js';
+export { createExampleInstance, useController, useEventLog, useRuntimeConfig } from './runtime.js';
 
 export {
   appendTemplatePages,

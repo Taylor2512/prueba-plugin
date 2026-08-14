@@ -21,6 +21,7 @@ try {
     path.join(source, ".ai/v7/brain-v2/NEW-V3.md"),
     "# New\n\n[Keep](../../brain/KEEP.md)\n",
   );
+  fs.writeFileSync(path.join(source, ".ai/brain/data.json"), '{"ok":true}\n');
 
   let code = await runCli(["import", target, `--source=${source}`]);
   assert.equal(code, 3); // conflict reported, no mutation
@@ -33,6 +34,7 @@ try {
     "# Keep target\n",
   );
   assert.equal(fs.existsSync(path.join(target, ".ai/brain/NEW.md")), true);
+  assert.equal(fs.readFileSync(path.join(target, ".ai/brain/data.json"), "utf8"), '{"ok":true}\n');
 
   const imported = fs.readFileSync(path.join(target, ".ai/brain/NEW.md"), "utf8");
   assert.equal(imported.includes("./KEEP.md"), true);

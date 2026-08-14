@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-08-13T20:45:52.825Z`
+- **Fecha generación:** `2026-08-14T04:39:40.975Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `811`
+- **Archivos candidatos incluidos:** `924`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -102,6 +102,8 @@ prueba-plugin
 │       │   └── SKILL.md
 │       ├── sisad-evidence-grounding
 │       │   └── SKILL.md
+│       ├── sisad-form-transaction
+│       │   └── SKILL.md
 │       ├── sisad-form-viewer-parity
 │       │   └── SKILL.md
 │       ├── sisad-frontend-component-architecture
@@ -152,6 +154,8 @@ prueba-plugin
 │       │   └── SKILL.md
 │       ├── sisad-schema-plugin
 │       │   └── SKILL.md
+│       ├── sisad-schema-runtime-contract
+│       │   └── SKILL.md
 │       ├── sisad-security-privacy
 │       │   └── SKILL.md
 │       ├── sisad-skill-evaluation
@@ -167,6 +171,12 @@ prueba-plugin
 │       ├── sisad-test-log-distillation
 │       │   └── SKILL.md
 │       ├── sisad-testing-pyramid
+│       │   └── SKILL.md
+│       ├── sisad-tooling-safety
+│       │   └── SKILL.md
+│       ├── sisad-user-model-migration
+│       │   └── SKILL.md
+│       ├── sisad-user-runtime
 │       │   └── SKILL.md
 │       ├── sisad-visual-regression
 │       │   └── SKILL.md
@@ -200,20 +210,27 @@ prueba-plugin
 │   │   ├── traceability-steward.md
 │   │   └── UX-DESIGNER.md
 │   ├── analysis
-│   │   └── runtime-platform
+│   │   ├── runtime-platform
+│   │   │   ├── 00-EXECUTIVE.md
+│   │   │   ├── 01-SOURCE-COVERAGE.md
+│   │   │   ├── 02-FORM-STATE-RISKS.md
+│   │   │   ├── 03-PDF-LIFECYCLE.md
+│   │   │   ├── 04-GENERATOR-CONVERTER.md
+│   │   │   ├── 05-SCHEMA-RUNTIME.md
+│   │   │   ├── 06-ARTIFACT-SIGNATURE.md
+│   │   │   ├── 07-MULTIDOC-COLLAB.md
+│   │   │   ├── 08-PERFORMANCE-MEMORY.md
+│   │   │   ├── 09-A11Y-INPUT.md
+│   │   │   ├── 10-NOMENCLATURE.md
+│   │   │   ├── 11-TEST-INFRA.md
+│   │   │   └── RISK-REGISTER.md
+│   │   └── sisad-pdfme-runtime-hardening
 │   │       ├── 00-EXECUTIVE.md
-│   │       ├── 01-SOURCE-COVERAGE.md
-│   │       ├── 02-FORM-STATE-RISKS.md
-│   │       ├── 03-PDF-LIFECYCLE.md
-│   │       ├── 04-GENERATOR-CONVERTER.md
-│   │       ├── 05-SCHEMA-RUNTIME.md
-│   │       ├── 06-ARTIFACT-SIGNATURE.md
-│   │       ├── 07-MULTIDOC-COLLAB.md
-│   │       ├── 08-PERFORMANCE-MEMORY.md
-│   │       ├── 09-A11Y-INPUT.md
-│   │       ├── 10-NOMENCLATURE.md
-│   │       ├── 11-TEST-INFRA.md
-│   │       └── RISK-REGISTER.md
+│   │       ├── 01-USER-MODEL.md
+│   │       ├── 02-DESIGNER-STABILITY.md
+│   │       ├── 03-FORM-HARDENING.md
+│   │       ├── 04-SCHEMA-BEHAVIOR.md
+│   │       └── 05-TOOLING-SAFETY.md
 │   ├── architecture
 │   │   ├── 00-SYSTEM-MAP.md
 │   │   ├── 01-KNOWLEDGE-MODEL.md
@@ -319,21 +336,36 @@ prueba-plugin
 │   │   │   ├── ARTIFACT-CONTRACT.md
 │   │   │   ├── CONFIG-RUNTIME-BOUNDARY.md
 │   │   │   ├── DOCUMENTATION-NAMING.md
+│   │   │   ├── FORM-COMPLETION-CONTRACT.md
+│   │   │   ├── FORM-RUNTIME-ISOLATION.md
 │   │   │   ├── FORM-TRANSACTION-CONTRACT.md
 │   │   │   ├── FORM-VIEWER-GENERATOR-PARITY.md
+│   │   │   ├── HOST-PARTICIPANT-USER-BOUNDARY.md
 │   │   │   ├── MULTI-DOCUMENT-CONTRACT.md
 │   │   │   ├── PDF-RESOURCE-LIFECYCLE.md
 │   │   │   ├── PUBLIC-API-CONTRACT.md
+│   │   │   ├── RUNTIME-SESSION-IDENTITY.md
+│   │   │   ├── SCHEMA-INTERACTION-INVARIANTS.md
+│   │   │   ├── SCHEMA-INTERACTION-ISOLATION.md
 │   │   │   ├── SCHEMA-RUNTIME-MANIFEST.md
 │   │   │   ├── SCHEMA-VALUE-CODEC.md
 │   │   │   ├── SIGNATURE-CONTRACT.md
-│   │   │   └── SNAPSHOT-VERSIONING-CONTRACT.md
+│   │   │   ├── SNAPSHOT-VERSIONING-CONTRACT.md
+│   │   │   ├── TOOLING-SAFE-APPLY-CONTRACT.md
+│   │   │   └── USER-ASSIGNMENT-CONTRACT.md
 │   │   ├── 30-decisions
 │   │   │   ├── ADR-RTP-001-SISAD-PDFME-PRODUCT-IDENTITY.md
 │   │   │   ├── ADR-RTP-002-LOCAL-FIRST-FORM.md
 │   │   │   ├── ADR-RTP-003-MANIFEST-INCREMENTAL.md
 │   │   │   ├── ADR-RTP-004-PDF-LIFECYCLE-OWNERSHIP.md
+│   │   │   ├── ADR-RTP-005-USER-RECIPIENT-BOUNDARY.md
+│   │   │   ├── ADR-RTP-006-USER-ASSIGNMENT-INDEX.md
+│   │   │   ├── ADR-RTP-007-FORM-CODEC-PARITY.md
 │   │   │   └── ADR-TOOLING-CENTRALIZATION.md
+│   │   ├── 40-integrations
+│   │   │   ├── DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md
+│   │   │   ├── EXTERNAL-FORMS-USER-EXECUTION.md
+│   │   │   └── SISAD-PDFME-DESIGNER-CONSUMER.md
 │   │   ├── 40-runtime
 │   │   │   ├── ARTIFACT-LIFECYCLE.md
 │   │   │   ├── FORM-RUNTIME.md
@@ -348,17 +380,24 @@ prueba-plugin
 │   │   │   ├── CONSUMER-INTEGRATION.md
 │   │   │   ├── DEBUG-FORM-DRAFT-LOSS.md
 │   │   │   ├── DEBUG-PDF-MEMORY.md
-│   │   │   └── PROJECT-TOOLS.md
+│   │   │   ├── FORM-HARDENING.md
+│   │   │   ├── PROJECT-TOOLS.md
+│   │   │   ├── SCHEMA-FAMILY-RELEASE.md
+│   │   │   ├── TOOLING-SAFE-APPLY.md
+│   │   │   └── USER-MODEL-MIGRATION.md
 │   │   ├── 60-quality
 │   │   │   ├── DEFINITION-OF-DONE-SCHEMA.md
 │   │   │   ├── PERFORMANCE-BUDGETS-TO-MEASURE.md
-│   │   │   └── RUNTIME-REGRESSION-MATRIX.md
+│   │   │   ├── RUNTIME-REGRESSION-MATRIX.md
+│   │   │   ├── SCHEMA-RUNTIME-COVERAGE-MATRIX.md
+│   │   │   └── SISAD-PDFME-RELEASE-GATE.md
 │   │   ├── 70-memory
 │   │   │   ├── CURRENT.md
 │   │   │   ├── CURRENT.reconciled.md
 │   │   │   ├── HANDOFF.md
 │   │   │   └── topics
 │   │   │       ├── runtime-platform.md
+│   │   │       ├── sisad-pdfme-digital-agreements-runtime.md
 │   │   │       └── tooling-architecture.md
 │   │   ├── 80-work
 │   │   │   └── ACTIVE.md
@@ -444,8 +483,53 @@ prueba-plugin
 │   │   │   ├── runtime.md
 │   │   │   └── schemas.md
 │   │   └── TTL-POLICY.md
+│   ├── migrations
+│   │   └── sisad-pdfme-digital-agreements-runtime
+│   │       ├── brain-targets
+│   │       │   └── .ai
+│   │       │       └── brain
+│   │       │           ├── 00-product
+│   │       │           │   └── …
+│   │       │           └── 20-contracts
+│   │       │               └── …
+│   │       └── README.md
 │   ├── MODEL-ROUTER.md
 │   ├── OBSERVABILITY.md
+│   ├── ops
+│   │   ├── campaigns
+│   │   │   └── SISAD-PDFME-RUNTIME-HARDENING-V2
+│   │   │       ├── README.md
+│   │   │       └── START.md
+│   │   └── tasks
+│   │       ├── SPRT-000.md
+│   │       ├── SPRT-010.md
+│   │       ├── SPRT-020.md
+│   │       ├── SPRT-030.md
+│   │       ├── SPRT-040.md
+│   │       ├── SPRT-050.md
+│   │       ├── SPRT-060.md
+│   │       ├── SPRT-070.md
+│   │       ├── SPRT-080.md
+│   │       ├── SPRT-090.md
+│   │       ├── SPRT-100.md
+│   │       ├── SPRT-110.md
+│   │       ├── SPRT-120.md
+│   │       ├── SPRT-130.md
+│   │       ├── SPRT-140.md
+│   │       ├── SPRT-150.md
+│   │       ├── SPRT-160.md
+│   │       ├── SPRT-170.md
+│   │       ├── SPRT-180.md
+│   │       ├── SPRT-190.md
+│   │       ├── SPRT-200.md
+│   │       ├── SPRT-210.md
+│   │       ├── SPRT-220.md
+│   │       ├── SPRT-230.md
+│   │       ├── SPRT-240.md
+│   │       ├── SPRT-250.md
+│   │       ├── SPRT-260.md
+│   │       ├── SPRT-270.md
+│   │       └── TASK-LEDGER-SPRT-V2.md
 │   ├── ORCHESTRATION.md
 │   ├── plans
 │   │   ├── AIARCH-EXECUTION-ORDER.md
@@ -455,6 +539,10 @@ prueba-plugin
 │   │   ├── PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md
 │   │   ├── PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md
 │   │   ├── PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md
+│   │   ├── PLAN_SISAD_PDFME_FORM_HARDENING.md
+│   │   ├── PLAN_SISAD_PDFME_RUNTIME_HARDENING_V2.md
+│   │   ├── PLAN_SISAD_PDFME_SCHEMA_RUNTIME.md
+│   │   ├── PLAN_SISAD_PDFME_TOOLING_SAFETY.md
 │   │   ├── PLAN_TOOLING_ARCHITECTURE_CLEANUP.md
 │   │   ├── PLAN-MAESTRO-AI-ARCHITECTURE.md
 │   │   ├── RUNTIME-PLATFORM-CROSSWALK.md
@@ -485,6 +573,13 @@ prueba-plugin
 │   │   ├── PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md
 │   │   ├── PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md
 │   │   ├── PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md
+│   │   ├── PROMPT_SISAD_PDFME_FORM.md
+│   │   ├── PROMPT_SISAD_PDFME_REVIEW.md
+│   │   ├── PROMPT_SISAD_PDFME_RUNTIME_BOOT_V2.md
+│   │   ├── PROMPT_SISAD_PDFME_RUNTIME_MASTER_V2.md
+│   │   ├── PROMPT_SISAD_PDFME_SCHEMA_FAMILY.md
+│   │   ├── PROMPT_SISAD_PDFME_TOOLING.md
+│   │   ├── PROMPT_SISAD_PDFME_USER_MODEL.md
 │   │   ├── PROVIDER-SYNC.md
 │   │   ├── PROVIDER-SYNC.prompt.md
 │   │   ├── REVIEW.md
@@ -664,15 +759,21 @@ prueba-plugin
 │   │   │   │   ├── README.md
 │   │   │   │   ├── RTP-000.md
 │   │   │   │   ├── RTP-005.md
+│   │   │   │   ├── RTP-008.md
 │   │   │   │   ├── RTP-010.md
+│   │   │   │   ├── RTP-015.md
 │   │   │   │   ├── RTP-020.md
+│   │   │   │   ├── RTP-022.md
 │   │   │   │   ├── RTP-030.md
 │   │   │   │   ├── RTP-040.md
+│   │   │   │   ├── RTP-045.md
 │   │   │   │   ├── RTP-050.md
+│   │   │   │   ├── RTP-055.md
 │   │   │   │   ├── RTP-060.md
 │   │   │   │   ├── RTP-070.md
 │   │   │   │   ├── RTP-080.md
 │   │   │   │   ├── RTP-090.md
+│   │   │   │   ├── RTP-095.md
 │   │   │   │   ├── RTP-100.md
 │   │   │   │   ├── RTP-110.md
 │   │   │   │   ├── RTP-120.md
@@ -685,7 +786,12 @@ prueba-plugin
 │   │   │   │   ├── RTP-190.md
 │   │   │   │   ├── RTP-200.md
 │   │   │   │   ├── RTP-210.md
+│   │   │   │   ├── RTP-215.md
 │   │   │   │   ├── RTP-220.md
+│   │   │   │   ├── RTP-222.md
+│   │   │   │   ├── RTP-225.md
+│   │   │   │   ├── RTP-226.md
+│   │   │   │   ├── RTP-227.md
 │   │   │   │   ├── RTP-230.md
 │   │   │   │   ├── RTP-240.md
 │   │   │   │   ├── RTP-250.md
@@ -694,8 +800,11 @@ prueba-plugin
 │   │   │   │   ├── RTP-280.md
 │   │   │   │   ├── RTP-290.md
 │   │   │   │   ├── RTP-300.md
+│   │   │   │   ├── RTP-305.md
 │   │   │   │   ├── RTP-310.md
+│   │   │   │   ├── RTP-315.md
 │   │   │   │   ├── RTP-320.md
+│   │   │   │   ├── RTP-325.md
 │   │   │   │   ├── RTP-330.md
 │   │   │   │   └── RTP-340.md
 │   │   │   ├── tooling-architecture
@@ -704,10 +813,17 @@ prueba-plugin
 │   │   │   │   ├── TOOL-CENTRAL-CONFIG.md
 │   │   │   │   ├── TOOL-CLOSEOUT.md
 │   │   │   │   ├── TOOL-COMPATIBILITY.md
+│   │   │   │   ├── TOOL-DEDUP-RUNTIME-SEMANTIC.md
+│   │   │   │   ├── TOOL-IMPORT-NONMARKDOWN.md
 │   │   │   │   ├── TOOL-IMPORTER.md
+│   │   │   │   ├── TOOL-INSTALL-SAFETY.md
 │   │   │   │   ├── TOOL-MANUALS.md
 │   │   │   │   ├── TOOL-MARKDOWN-ENGINE.md
-│   │   │   │   └── TOOL-STABLE-NAMES.md
+│   │   │   │   ├── TOOL-PATH-SEMANTIC-SAFETY.md
+│   │   │   │   ├── TOOL-SCRIPT-PORTABILITY.md
+│   │   │   │   ├── TOOL-STABLE-NAMES.md
+│   │   │   │   ├── TOOL-TEST-COVERAGE-QUALITY.md
+│   │   │   │   └── TOOL-TEST-INSTALL-PREFLIGHT.md
 │   │   │   ├── VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md
 │   │   │   ├── VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md
 │   │   │   ├── VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md
@@ -779,6 +895,16 @@ prueba-plugin
 │   │   └── sisad-traceability.md
 │   ├── README.md
 │   └── skills
+│       ├── sisad-form-transaction
+│       │   └── SKILL.md
+│       ├── sisad-schema-runtime-contract
+│       │   └── SKILL.md
+│       ├── sisad-tooling-safety
+│       │   └── SKILL.md
+│       ├── sisad-user-model-migration
+│       │   └── SKILL.md
+│       ├── sisad-user-runtime
+│       │   └── SKILL.md
 │       ├── testsprite-onboard
 │       │   └── SKILL.md
 │       └── testsprite-verify
@@ -967,6 +1093,15 @@ prueba-plugin
 ├── README.md
 ├── reports
 │   ├── runtime-platform
+│   │   ├── evidence
+│   │   │   ├── examples-refactor-closeout-2026-08-13.md
+│   │   │   ├── form-access-fix-2026-08-14.md
+│   │   │   ├── RTP-040.md
+│   │   │   ├── RTP-045.md
+│   │   │   ├── RTP-220-parcial-roles-readonly.md
+│   │   │   ├── SPRT-000.md
+│   │   │   ├── SPRT-010.md
+│   │   │   └── SPRT-020.md
 │   │   ├── EXECUTIVE-SUMMARY.md
 │   │   └── TREE.md
 │   └── tooling-architecture
@@ -974,10 +1109,7 @@ prueba-plugin
 ├── SHA256.md
 ├── src
 │   ├── examples
-│   │   ├── ARCHITECTURE_GUIDE.md
-│   │   ├── PAGES_CONSOLIDATION.md
-│   │   ├── QUICKSTART.md
-│   │   └── REFACTORING_GUIDE.md
+│   │   └── README.md
 │   └── sisad-pdfme
 │       ├── AGENTS.md
 │       ├── common
@@ -1020,19 +1152,16 @@ prueba-plugin
 │           └── README.md
 ├── templates
 │   └── TASK-CARD-SCHEMA-DYN.md
-├── test-results
-│   ├── test-1-stable-stable-test---designer-runtime-interactions-chromium
-│   │   └── error-context.md
-│   └── test-1-test-chromium
-│       └── error-context.md
 └── tools
     ├── ai-quality
     │   ├── README-KNOWLEDGE-INDEX.md
     │   └── README.md
     ├── digital-agreements-contracts
     │   └── README.md
-    └── pdfme-form-runtime
-        ├── COMMAND-CHECKLIST.md
+    ├── pdfme-form-runtime
+    │   ├── COMMAND-CHECKLIST.md
+    │   └── README.md
+    └── sisad-pdfme-runtime
         └── README.md
 ```
 
@@ -1254,614 +1383,727 @@ prueba-plugin
 | 212 | `.ai/plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md` | markdown | 69 | 2.0 | completo |
 | 213 | `.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md` | markdown | 198 | 13.4 | completo |
 | 214 | `.ai/plans/PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md` | markdown | 702 | 21.6 | completo |
-| 215 | `.ai/plans/PLAN_TOOLING_ARCHITECTURE_CLEANUP.md` | markdown | 53 | 1.5 | completo |
-| 216 | `.ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md` | markdown | 46 | 0.9 | completo |
-| 217 | `.ai/plans/RUNTIME-PLATFORM-CROSSWALK.md` | markdown | 16 | 0.6 | completo |
-| 218 | `.ai/plans/SISAD-PDFME-UNIT-TEST-COVERAGE.md` | markdown | 6 | 0.4 | completo |
-| 219 | `.ai/playbooks/EXECUTE-TASK.md` | markdown | 14 | 0.3 | completo |
-| 220 | `.ai/playbooks/IMPROVE-DESIGNER-CORE-UX.md` | markdown | 24 | 0.6 | completo |
-| 221 | `.ai/playbooks/MAINTAIN-TRACEABILITY.md` | markdown | 9 | 0.2 | completo |
-| 222 | `.ai/playbooks/UPDATE-MEMORY.md` | markdown | 9 | 0.3 | completo |
-| 223 | `.ai/prompts/COREUX_ANALYZE.prompt.md` | markdown | 18 | 0.4 | completo |
-| 224 | `.ai/prompts/COREUX_CANVAS.prompt.md` | markdown | 11 | 0.3 | completo |
-| 225 | `.ai/prompts/COREUX_EVENT_EFFECT_AUDIT.prompt.md` | markdown | 16 | 0.3 | completo |
-| 226 | `.ai/prompts/COREUX_IMPLEMENT.prompt.md` | markdown | 25 | 0.4 | completo |
-| 227 | `.ai/prompts/COREUX_RELEASE.prompt.md` | markdown | 14 | 0.3 | completo |
-| 228 | `.ai/prompts/COREUX_REVIEW.prompt.md` | markdown | 18 | 0.3 | completo |
-| 229 | `.ai/prompts/COREUX_SCHEMA_FAMILY.prompt.md` | markdown | 21 | 0.3 | completo |
-| 230 | `.ai/prompts/COREUX_VISUAL_QA.prompt.md` | markdown | 20 | 0.4 | completo |
-| 231 | `.ai/prompts/CREATE-TASK.prompt.md` | markdown | 6 | 0.2 | completo |
-| 232 | `.ai/prompts/DIAGNOSE.md` | markdown | 5 | 0.2 | completo |
-| 233 | `.ai/prompts/DIAGNOSE.prompt.md` | markdown | 6 | 0.2 | completo |
-| 234 | `.ai/prompts/DISTILL-LOG.prompt.md` | markdown | 6 | 0.2 | completo |
-| 235 | `.ai/prompts/IMPLEMENT.md` | markdown | 5 | 0.2 | completo |
-| 236 | `.ai/prompts/IMPLEMENT.prompt.md` | markdown | 6 | 0.2 | completo |
-| 237 | `.ai/prompts/MEMORY-DELTA.md` | markdown | 5 | 0.2 | completo |
-| 238 | `.ai/prompts/MEMORY-DELTA.prompt.md` | markdown | 6 | 0.2 | completo |
-| 239 | `.ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md` | markdown | 95 | 2.8 | completo |
-| 240 | `.ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md` | markdown | 237 | 5.5 | completo |
-| 241 | `.ai/prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md` | markdown | 490 | 11.1 | completo |
-| 242 | `.ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md` | markdown | 72 | 1.9 | completo |
-| 243 | `.ai/prompts/PROVIDER-SYNC.md` | markdown | 5 | 0.2 | completo |
-| 244 | `.ai/prompts/PROVIDER-SYNC.prompt.md` | markdown | 6 | 0.2 | completo |
-| 245 | `.ai/prompts/REVIEW.md` | markdown | 5 | 0.2 | completo |
-| 246 | `.ai/prompts/REVIEW.prompt.md` | markdown | 6 | 0.2 | completo |
-| 247 | `.ai/prompts/RTP-CLAUDE-START.md` | markdown | 41 | 1.4 | completo |
-| 248 | `.ai/prompts/RTP-CODEX-START.md` | markdown | 41 | 1.3 | completo |
-| 249 | `.ai/prompts/RTP-COPILOT-START.md` | markdown | 41 | 1.3 | completo |
-| 250 | `.ai/prompts/RTP-GENERIC-START.md` | markdown | 41 | 1.3 | completo |
-| 251 | `.ai/prompts/RTP-START.md` | markdown | 38 | 1.2 | completo |
-| 252 | `.ai/prompts/SISAD-PDFME-UNIT-TEST-START.md` | markdown | 7 | 0.5 | completo |
-| 253 | `.ai/prompts/TOOLING-ARCHITECTURE-START.md` | markdown | 24 | 1.1 | completo |
-| 254 | `.ai/prompts/TRACE.md` | markdown | 5 | 0.2 | completo |
-| 255 | `.ai/prompts/TRACEABILITY.prompt.md` | markdown | 6 | 0.2 | completo |
-| 256 | `.ai/quality/RUNTIME-PLATFORM-GATES.md` | markdown | 23 | 0.7 | completo |
-| 257 | `.ai/research/OFFICIAL-PROVIDER-FINDINGS.md` | markdown | 46 | 2.2 | completo |
-| 258 | `.ai/research/OFFICIAL-SOURCES.md` | markdown | 21 | 1.1 | completo |
-| 259 | `.ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md` | markdown | 55 | 2.2 | completo |
-| 260 | `.ai/routes/ai-architecture.md` | markdown | 17 | 0.3 | completo |
-| 261 | `.ai/routes/assignments.md` | markdown | 21 | 0.5 | completo |
-| 262 | `.ai/routes/canvas.md` | markdown | 17 | 0.4 | completo |
-| 263 | `.ai/routes/capabilities.md` | markdown | 21 | 0.5 | completo |
-| 264 | `.ai/routes/commands.md` | markdown | 21 | 0.5 | completo |
-| 265 | `.ai/routes/configuration.md` | markdown | 17 | 0.4 | completo |
-| 266 | `.ai/routes/controller.md` | markdown | 21 | 0.5 | completo |
-| 267 | `.ai/routes/css-tailwind.md` | markdown | 21 | 0.4 | completo |
-| 268 | `.ai/routes/designer-core-ux.md` | markdown | 40 | 0.7 | completo |
-| 269 | `.ai/routes/docs-memory.md` | markdown | 22 | 0.5 | completo |
-| 270 | `.ai/routes/events-effects.md` | markdown | 22 | 0.6 | completo |
-| 271 | `.ai/routes/inspector.md` | markdown | 17 | 0.4 | completo |
-| 272 | `.ai/routes/left-sidebar.md` | markdown | 18 | 0.4 | completo |
-| 273 | `.ai/routes/persistence.md` | markdown | 17 | 0.4 | completo |
-| 274 | `.ai/routes/provider-adapters.md` | markdown | 21 | 0.5 | completo |
-| 275 | `.ai/routes/quality.md` | markdown | 17 | 0.3 | completo |
-| 276 | `.ai/routes/recipients-ownership.md` | markdown | 17 | 0.4 | completo |
-| 277 | `.ai/routes/right-sidebar.md` | markdown | 21 | 0.5 | completo |
-| 278 | `.ai/routes/runtime-contracts.md` | markdown | 17 | 0.4 | completo |
-| 279 | `.ai/routes/runtime-snapshot.md` | markdown | 21 | 0.5 | completo |
-| 280 | `.ai/routes/runtime.md` | markdown | 21 | 0.5 | completo |
-| 281 | `.ai/routes/runtimes.md` | markdown | 17 | 0.4 | completo |
-| 282 | `.ai/routes/schemas.md` | markdown | 17 | 0.4 | completo |
-| 283 | `.ai/routes/testing.md` | markdown | 21 | 0.4 | completo |
-| 284 | `.ai/routes/token-context.md` | markdown | 22 | 0.5 | completo |
-| 285 | `.ai/routes/traceability.md` | markdown | 22 | 0.6 | completo |
-| 286 | `.ai/routes/ux-design.md` | markdown | 21 | 0.5 | completo |
-| 287 | `.ai/routes/ux.md` | markdown | 17 | 0.4 | completo |
-| 288 | `.ai/scrum/MERGE-INSTRUCTIONS.md` | markdown | 28 | 0.5 | completo |
-| 289 | `.ai/scrum/MERGE.md` | markdown | 14 | 0.5 | completo |
-| 290 | `.ai/scrum/PRODUCT-BACKLOG-ROWS.md` | markdown | 34 | 3.7 | completo |
-| 291 | `.ai/scrum/PRODUCT-BACKLOG.md` | markdown | 13 | 0.4 | completo |
-| 292 | `.ai/scrum/RUNTIME-PLATFORM-LEDGER.md` | markdown | 38 | 3.5 | completo |
-| 293 | `.ai/scrum/VISUX-EXECUTION-ORDER.md` | markdown | 39 | 0.9 | completo |
-| 294 | `.ai/scrum/VISUX-MERGE-INSTRUCTIONS.md` | markdown | 16 | 0.6 | completo |
-| 295 | `.ai/scrum/VISUX-PRODUCT-BACKLOG-ROWS.md` | markdown | 48 | 7.0 | completo |
-| 296 | `.ai/skills/README.md` | markdown | 67 | 5.0 | completo |
-| 297 | `.ai/subagents/DECISION-MATRIX.md` | markdown | 14 | 0.5 | completo |
-| 298 | `.ai/templates/BEHAVIOR-RECORD.md` | markdown | 13 | 0.1 | completo |
-| 299 | `.ai/templates/CONTEXT-MANIFEST.md` | markdown | 10 | 0.1 | completo |
-| 300 | `.ai/templates/DECISION.md` | markdown | 12 | 0.2 | completo |
-| 301 | `.ai/templates/EVIDENCE-PACKET.md` | markdown | 12 | 0.2 | completo |
-| 302 | `.ai/templates/HANDOFF.md` | markdown | 11 | 0.1 | completo |
-| 303 | `.ai/templates/METHOD-RECORD.md` | markdown | 15 | 0.2 | completo |
-| 304 | `.ai/templates/TASK-CARD.md` | markdown | 26 | 0.3 | completo |
-| 305 | `.ai/traceability/METHOD-REGISTRY.md` | markdown | 327 | 40.9 | completo |
-| 306 | `.claude/agents/sisad-explorer.md` | markdown | 10 | 0.3 | completo |
-| 307 | `.claude/agents/sisad-log-distiller.md` | markdown | 10 | 0.3 | completo |
-| 308 | `.claude/agents/sisad-provider-auditor.md` | markdown | 9 | 0.3 | completo |
-| 309 | `.claude/agents/sisad-reviewer.md` | markdown | 10 | 0.3 | completo |
-| 310 | `.claude/agents/sisad-runtime-platform.md` | markdown | 5 | 0.2 | completo |
-| 311 | `.claude/agents/sisad-traceability.md` | markdown | 10 | 0.3 | completo |
-| 312 | `.codex/agents/README.md` | markdown | 13 | 0.4 | completo |
-| 313 | `.codex/agents/runtime-platform.md` | markdown | 3 | 0.1 | completo |
-| 314 | `.github/agents/sisad-architect.agent.md` | markdown | 7 | 0.3 | completo |
-| 315 | `.github/agents/sisad-config.agent.md` | markdown | 6 | 0.3 | completo |
-| 316 | `.github/agents/sisad-coordinator.agent.md` | markdown | 7 | 0.2 | completo |
-| 317 | `.github/agents/sisad-dry-auditor.agent.md` | markdown | 7 | 0.3 | completo |
-| 318 | `.github/agents/sisad-dry-reviewer.agent.md` | markdown | 5 | 0.4 | completo |
-| 319 | `.github/agents/sisad-explorer.agent.md` | markdown | 7 | 0.2 | completo |
-| 320 | `.github/agents/sisad-implementer.agent.md` | markdown | 7 | 0.2 | completo |
-| 321 | `.github/agents/sisad-memory-steward.agent.md` | markdown | 7 | 0.3 | completo |
-| 322 | `.github/agents/sisad-provider-adapter-steward.agent.md` | markdown | 7 | 0.3 | completo |
-| 323 | `.github/agents/sisad-qa.agent.md` | markdown | 7 | 0.2 | completo |
-| 324 | `.github/agents/sisad-reviewer.agent.md` | markdown | 7 | 0.2 | completo |
-| 325 | `.github/agents/sisad-runtime-platform-agent.md` | markdown | 4 | 0.2 | completo |
-| 326 | `.github/agents/sisad-scrum-coordinator.agent.md` | markdown | 7 | 0.3 | completo |
-| 327 | `.github/agents/sisad-task-planner.agent.md` | markdown | 5 | 0.3 | completo |
-| 328 | `.github/agents/sisad-test-specialist.agent.md` | markdown | 6 | 0.3 | completo |
-| 329 | `.github/agents/sisad-token-steward.agent.md` | markdown | 7 | 0.3 | completo |
-| 330 | `.github/agents/sisad-traceability-steward.agent.md` | markdown | 7 | 0.2 | completo |
-| 331 | `.github/agents/sisad-ux.agent.md` | markdown | 6 | 0.3 | completo |
-| 332 | `.github/instructions/ai-docs.instructions.md` | markdown | 5 | 0.2 | completo |
-| 333 | `.github/instructions/ai.instructions.md` | markdown | 5 | 0.2 | completo |
-| 334 | `.github/instructions/canvas.instructions.md` | markdown | 5 | 0.2 | completo |
-| 335 | `.github/instructions/quality.instructions.md` | markdown | 4 | 0.2 | completo |
-| 336 | `.github/instructions/schemas.instructions.md` | markdown | 5 | 0.2 | completo |
-| 337 | `.github/instructions/sisad-core.instructions.md` | markdown | 5 | 0.2 | completo |
-| 338 | `.github/prompts/color-contract.prompt.md` | markdown | 8 | 0.3 | completo |
-| 339 | `.github/prompts/diagnose-task.prompt.md` | markdown | 8 | 0.3 | completo |
-| 340 | `.github/prompts/implement-task.prompt.md` | markdown | 8 | 0.2 | completo |
-| 341 | `.github/prompts/review-diff.prompt.md` | markdown | 8 | 0.2 | completo |
-| 342 | `.github/prompts/triage-jscpd.prompt.md` | markdown | 4 | 0.3 | completo |
-| 343 | `.github/prompts/update-trace.prompt.md` | markdown | 8 | 0.2 | completo |
-| 344 | `.github/prompts/update-traceability.prompt.md` | markdown | 7 | 0.1 | completo |
-| 345 | `reports/runtime-platform/EXECUTIVE-SUMMARY.md` | markdown | 8 | 0.5 | completo |
-| 346 | `reports/runtime-platform/TREE.md` | markdown | 183 | 7.6 | completo |
-| 347 | `reports/tooling-architecture/ANALYSIS.md` | markdown | 57 | 1.9 | completo |
-| 348 | `src/examples/ARCHITECTURE_GUIDE.md` | markdown | 420 | 13.6 | completo |
-| 349 | `src/examples/PAGES_CONSOLIDATION.md` | markdown | 71 | 1.7 | completo |
-| 350 | `src/examples/QUICKSTART.md` | markdown | 354 | 7.5 | completo |
-| 351 | `src/examples/REFACTORING_GUIDE.md` | markdown | 73 | 2.1 | completo |
-| 352 | `src/sisad-pdfme/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 353 | `src/sisad-pdfme/COREUX-ROADMAP.md` | markdown | 3 | 0.1 | completo |
-| 354 | `src/sisad-pdfme/DECLARATIVE-INSTANCE-ROADMAP.md` | markdown | 3 | 0.1 | completo |
-| 355 | `test-results/test-1-stable-stable-test---designer-runtime-interactions-chromium/error-context.md` | markdown | 286 | 12.1 | completo |
-| 356 | `test-results/test-1-test-chromium/error-context.md` | markdown | 269 | 12.1 | completo |
-| 357 | `tools/ai-quality/README-KNOWLEDGE-INDEX.md` | markdown | 11 | 0.3 | completo |
-| 358 | `tools/ai-quality/README.md` | markdown | 19 | 0.4 | completo |
-| 359 | `tools/digital-agreements-contracts/README.md` | markdown | 33 | 0.9 | completo |
-| 360 | `tools/pdfme-form-runtime/COMMAND-CHECKLIST.md` | markdown | 42 | 0.8 | completo |
-| 361 | `tools/pdfme-form-runtime/README.md` | markdown | 15 | 0.5 | completo |
-| 362 | `.agents/skills/canvas-safety/SKILL.md` | markdown | 23 | 0.5 | completo |
-| 363 | `.agents/skills/configuration/SKILL.md` | markdown | 23 | 0.4 | completo |
-| 364 | `.agents/skills/context-engineering/SKILL.md` | markdown | 24 | 0.5 | completo |
-| 365 | `.agents/skills/dry-refactor/SKILL.md` | markdown | 23 | 0.4 | completo |
-| 366 | `.agents/skills/event-effect/SKILL.md` | markdown | 23 | 0.4 | completo |
-| 367 | `.agents/skills/inspector-contract/SKILL.md` | markdown | 23 | 0.5 | completo |
-| 368 | `.agents/skills/left-sidebar/SKILL.md` | markdown | 23 | 0.4 | completo |
-| 369 | `.agents/skills/memory-gc/SKILL.md` | markdown | 23 | 0.4 | completo |
-| 370 | `.agents/skills/public-api/SKILL.md` | markdown | 23 | 0.4 | completo |
-| 371 | `.agents/skills/quality-evidence/SKILL.md` | markdown | 23 | 0.5 | completo |
-| 372 | `.agents/skills/recipient-assignment/SKILL.md` | markdown | 23 | 0.5 | completo |
-| 373 | `.agents/skills/responsive-ux/SKILL.md` | markdown | 23 | 0.5 | completo |
-| 374 | `.agents/skills/runtime-parity/SKILL.md` | markdown | 23 | 0.5 | completo |
-| 375 | `.agents/skills/schema-family/SKILL.md` | markdown | 24 | 0.5 | completo |
-| 376 | `.agents/skills/sisad-accessibility/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 377 | `.agents/skills/sisad-action-state/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 378 | `.agents/skills/sisad-ai-architecture/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 379 | `.agents/skills/sisad-behavior-traceability/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 380 | `.agents/skills/sisad-canvas-interaction/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 381 | `.agents/skills/sisad-canvas-safety/SKILL.md` | markdown | 12 | 0.6 | completo |
-| 382 | `.agents/skills/sisad-capability-audit/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 383 | `.agents/skills/sisad-collaboration-assignments/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 384 | `.agents/skills/sisad-command-history/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 385 | `.agents/skills/sisad-configuration-service/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 386 | `.agents/skills/sisad-context-budget/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 387 | `.agents/skills/sisad-context-packet/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 388 | `.agents/skills/sisad-context-rot-check/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 389 | `.agents/skills/sisad-controller-parity/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 390 | `.agents/skills/sisad-css-tailwind/SKILL.md` | markdown | 12 | 0.5 | completo |
-| 391 | `.agents/skills/sisad-decision-record/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 392 | `.agents/skills/sisad-declarative-instance/SKILL.md` | markdown | 25 | 0.5 | completo |
-| 393 | `.agents/skills/sisad-dedup-triage/SKILL.md` | markdown | 10 | 0.6 | completo |
-| 394 | `.agents/skills/sisad-designer-core-ux/SKILL.md` | markdown | 22 | 0.5 | completo |
-| 395 | `.agents/skills/sisad-designer-safety/SKILL.md` | markdown | 8 | 0.6 | completo |
-| 396 | `.agents/skills/sisad-dry-refactor/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 397 | `.agents/skills/sisad-dry-refactoring/SKILL.md` | markdown | 18 | 0.7 | completo |
-| 398 | `.agents/skills/sisad-event-effect-contract/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 399 | `.agents/skills/sisad-evidence-grounding/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 400 | `.agents/skills/sisad-form-viewer-parity/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 401 | `.agents/skills/sisad-frontend-component-architecture/SKILL.md` | markdown | 25 | 0.5 | completo |
-| 402 | `.agents/skills/sisad-incident-recovery/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 403 | `.agents/skills/sisad-inspector-contract/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 404 | `.agents/skills/sisad-knowledge-gc/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 405 | `.agents/skills/sisad-left-sidebar-catalog/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 406 | `.agents/skills/sisad-memory-delta/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 407 | `.agents/skills/sisad-memory-scrum/SKILL.md` | markdown | 8 | 0.5 | completo |
-| 408 | `.agents/skills/sisad-method-registry/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 409 | `.agents/skills/sisad-multi-document-routing/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 410 | `.agents/skills/sisad-orchestrate-task/SKILL.md` | markdown | 16 | 0.8 | completo |
-| 411 | `.agents/skills/sisad-pattern-selection/SKILL.md` | markdown | 12 | 0.6 | completo |
-| 412 | `.agents/skills/sisad-prompt-evaluation/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 413 | `.agents/skills/sisad-provider-adapter-sync/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 414 | `.agents/skills/sisad-public-api-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 415 | `.agents/skills/sisad-quality-gates/SKILL.md` | markdown | 8 | 0.5 | completo |
-| 416 | `.agents/skills/sisad-react-performance/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 417 | `.agents/skills/sisad-recipient-assignment-policy/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 418 | `.agents/skills/sisad-research-verify/SKILL.md` | markdown | 8 | 0.6 | completo |
-| 419 | `.agents/skills/sisad-responsive-ux/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 420 | `.agents/skills/sisad-right-sidebar-contract/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 421 | `.agents/skills/sisad-runtime-platform/SKILL.md` | markdown | 10 | 0.5 | completo |
-| 422 | `.agents/skills/sisad-schema-behavior-matrix/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 423 | `.agents/skills/sisad-schema-family-refactor/SKILL.md` | markdown | 16 | 0.6 | completo |
-| 424 | `.agents/skills/sisad-schema-plugin/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 425 | `.agents/skills/sisad-security-privacy/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 426 | `.agents/skills/sisad-skill-evaluation/SKILL.md` | markdown | 16 | 0.6 | completo |
-| 427 | `.agents/skills/sisad-snapshot-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 428 | `.agents/skills/sisad-tailwind-design-system/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 429 | `.agents/skills/sisad-task-execution/SKILL.md` | markdown | 20 | 0.6 | completo |
-| 430 | `.agents/skills/sisad-task-orchestration/SKILL.md` | markdown | 25 | 0.5 | completo |
-| 431 | `.agents/skills/sisad-test-log-distillation/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 432 | `.agents/skills/sisad-testing-pyramid/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 433 | `.agents/skills/sisad-visual-regression/SKILL.md` | markdown | 25 | 0.4 | completo |
-| 434 | `.agents/skills/sisad-worktree-coordination/SKILL.md` | markdown | 31 | 0.7 | completo |
-| 435 | `.agents/skills/snapshot/SKILL.md` | markdown | 23 | 0.4 | completo |
-| 436 | `.agents/skills/tailwind-system/SKILL.md` | markdown | 23 | 0.4 | completo |
-| 437 | `.agents/skills/traceability/SKILL.md` | markdown | 23 | 0.4 | completo |
-| 438 | `.agents/skills/worktree-coordination/SKILL.md` | markdown | 23 | 0.5 | completo |
-| 439 | `.ai/analysis/runtime-platform/00-EXECUTIVE.md` | markdown | 14 | 1.1 | completo |
-| 440 | `.ai/analysis/runtime-platform/01-SOURCE-COVERAGE.md` | markdown | 9 | 0.4 | completo |
-| 441 | `.ai/analysis/runtime-platform/02-FORM-STATE-RISKS.md` | markdown | 5 | 0.4 | completo |
-| 442 | `.ai/analysis/runtime-platform/03-PDF-LIFECYCLE.md` | markdown | 3 | 0.3 | completo |
-| 443 | `.ai/analysis/runtime-platform/04-GENERATOR-CONVERTER.md` | markdown | 3 | 0.3 | completo |
-| 444 | `.ai/analysis/runtime-platform/05-SCHEMA-RUNTIME.md` | markdown | 3 | 0.3 | completo |
-| 445 | `.ai/analysis/runtime-platform/06-ARTIFACT-SIGNATURE.md` | markdown | 3 | 0.3 | completo |
-| 446 | `.ai/analysis/runtime-platform/07-MULTIDOC-COLLAB.md` | markdown | 3 | 0.3 | completo |
-| 447 | `.ai/analysis/runtime-platform/08-PERFORMANCE-MEMORY.md` | markdown | 3 | 0.3 | completo |
-| 448 | `.ai/analysis/runtime-platform/09-A11Y-INPUT.md` | markdown | 3 | 0.3 | completo |
-| 449 | `.ai/analysis/runtime-platform/10-NOMENCLATURE.md` | markdown | 3 | 0.3 | completo |
-| 450 | `.ai/analysis/runtime-platform/11-TEST-INFRA.md` | markdown | 3 | 0.3 | completo |
-| 451 | `.ai/analysis/runtime-platform/RISK-REGISTER.md` | markdown | 16 | 0.9 | completo |
-| 452 | `.ai/brain/00-product/ARCHITECTURE.md` | markdown | 23 | 0.6 | completo |
-| 453 | `.ai/brain/00-product/GLOSSARY.md` | markdown | 11 | 0.7 | completo |
-| 454 | `.ai/brain/00-product/PRODUCT-IDENTITY.md` | markdown | 15 | 0.7 | completo |
-| 455 | `.ai/brain/00-product/SOURCE-TRUTH.md` | markdown | 29 | 0.9 | completo |
-| 456 | `.ai/brain/00-product/STACK.md` | markdown | 16 | 0.3 | completo |
-| 457 | `.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md` | markdown | 3 | 0.2 | completo |
-| 458 | `.ai/brain/20-contracts/ARTIFACT-CONTRACT.md` | markdown | 3 | 0.2 | completo |
-| 459 | `.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md` | markdown | 3 | 0.2 | completo |
-| 460 | `.ai/brain/20-contracts/DOCUMENTATION-NAMING.md` | markdown | 8 | 0.4 | completo |
-| 461 | `.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md` | markdown | 18 | 0.5 | completo |
-| 462 | `.ai/brain/20-contracts/FORM-VIEWER-GENERATOR-PARITY.md` | markdown | 3 | 0.2 | completo |
-| 463 | `.ai/brain/20-contracts/MULTI-DOCUMENT-CONTRACT.md` | markdown | 3 | 0.2 | completo |
-| 464 | `.ai/brain/20-contracts/PDF-RESOURCE-LIFECYCLE.md` | markdown | 3 | 0.2 | completo |
-| 465 | `.ai/brain/20-contracts/PUBLIC-API-CONTRACT.md` | markdown | 3 | 0.3 | completo |
-| 466 | `.ai/brain/20-contracts/SCHEMA-RUNTIME-MANIFEST.md` | markdown | 3 | 0.2 | completo |
-| 467 | `.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md` | markdown | 3 | 0.2 | completo |
-| 468 | `.ai/brain/20-contracts/SIGNATURE-CONTRACT.md` | markdown | 3 | 0.3 | completo |
-| 469 | `.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md` | markdown | 3 | 0.2 | completo |
-| 470 | `.ai/brain/30-decisions/ADR-RTP-001-SISAD-PDFME-PRODUCT-IDENTITY.md` | markdown | 3 | 0.2 | completo |
-| 471 | `.ai/brain/30-decisions/ADR-RTP-002-LOCAL-FIRST-FORM.md` | markdown | 3 | 0.3 | completo |
-| 472 | `.ai/brain/30-decisions/ADR-RTP-003-MANIFEST-INCREMENTAL.md` | markdown | 3 | 0.2 | completo |
-| 473 | `.ai/brain/30-decisions/ADR-RTP-004-PDF-LIFECYCLE-OWNERSHIP.md` | markdown | 3 | 0.2 | completo |
-| 474 | `.ai/brain/30-decisions/ADR-TOOLING-CENTRALIZATION.md` | markdown | 22 | 0.6 | completo |
-| 475 | `.ai/brain/40-runtime/ARTIFACT-LIFECYCLE.md` | markdown | 5 | 0.2 | completo |
-| 476 | `.ai/brain/40-runtime/FORM-RUNTIME.md` | markdown | 5 | 0.2 | completo |
-| 477 | `.ai/brain/40-runtime/MULTI-DOCUMENT.md` | markdown | 5 | 0.1 | completo |
-| 478 | `.ai/brain/40-runtime/PDF-GENERATION.md` | markdown | 5 | 0.2 | completo |
-| 479 | `.ai/brain/40-runtime/PDF-RENDERING.md` | markdown | 5 | 0.2 | completo |
-| 480 | `.ai/brain/40-runtime/SIGNATURE-RUNTIME.md` | markdown | 5 | 0.2 | completo |
-| 481 | `.ai/brain/40-runtime/SNAPSHOT-ROUNDTRIP.md` | markdown | 5 | 0.1 | completo |
-| 482 | `.ai/brain/40-runtime/VIEWER-RUNTIME.md` | markdown | 5 | 0.1 | completo |
-| 483 | `.ai/brain/50-guides/ADD-OR-HARDEN-SCHEMA.md` | markdown | 3 | 0.2 | completo |
-| 484 | `.ai/brain/50-guides/CONSUMER-INTEGRATION.md` | markdown | 3 | 0.2 | completo |
-| 485 | `.ai/brain/50-guides/DEBUG-FORM-DRAFT-LOSS.md` | markdown | 3 | 0.2 | completo |
-| 486 | `.ai/brain/50-guides/DEBUG-PDF-MEMORY.md` | markdown | 3 | 0.2 | completo |
-| 487 | `.ai/brain/50-guides/PROJECT-TOOLS.md` | markdown | 21 | 0.3 | completo |
-| 488 | `.ai/brain/60-quality/DEFINITION-OF-DONE-SCHEMA.md` | markdown | 3 | 0.4 | completo |
-| 489 | `.ai/brain/60-quality/PERFORMANCE-BUDGETS-TO-MEASURE.md` | markdown | 3 | 0.3 | completo |
-| 490 | `.ai/brain/60-quality/RUNTIME-REGRESSION-MATRIX.md` | markdown | 3 | 0.3 | completo |
-| 491 | `.ai/brain/70-memory/CURRENT.md` | markdown | 7 | 0.3 | completo |
-| 492 | `.ai/brain/70-memory/CURRENT.reconciled.md` | markdown | 13 | 0.6 | completo |
-| 493 | `.ai/brain/70-memory/HANDOFF.md` | markdown | 5 | 0.3 | completo |
-| 494 | `.ai/brain/80-work/ACTIVE.md` | markdown | 3 | 0.1 | completo |
-| 495 | `.ai/brain/90-reference/CURRENT-ARCHITECTURE-MAP.md` | markdown | 27 | 0.8 | completo |
-| 496 | `.ai/brain/90-reference/EXISTING-AI-ARCHITECTURE.md` | markdown | 13 | 0.5 | completo |
-| 497 | `.ai/brain/90-reference/RUNTIME-HOTSPOTS.md` | markdown | 52 | 4.6 | completo |
-| 498 | `.ai/index/runtime-platform/README.md` | markdown | 19 | 0.6 | completo |
-| 499 | `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md` | markdown | 22 | 2.1 | completo |
-| 500 | `.ai/knowledge/domain/COREUX-EFFECTS.md` | markdown | 90 | 1.8 | completo |
-| 501 | `.ai/knowledge/domain/COREUX-EVENTS.md` | markdown | 59 | 4.9 | completo |
-| 502 | `.ai/knowledge/domain/COREUX-PATTERNS.md` | markdown | 29 | 1.5 | completo |
-| 503 | `.ai/knowledge/domain/COREUX-USE-CASES.md` | markdown | 156 | 12.7 | completo |
-| 504 | `.ai/knowledge/domain/CURRENT-PUBLIC-API.md` | markdown | 13 | 1.1 | completo |
-| 505 | `.ai/knowledge/domain/DECLARATIVE-API.md` | markdown | 74 | 1.4 | completo |
-| 506 | `.ai/knowledge/domain/DECLARATIVE-BASELINE.md` | markdown | 60 | 5.9 | completo |
-| 507 | `.ai/knowledge/domain/DECLARATIVE-USE-CASES.md` | markdown | 70 | 7.1 | completo |
-| 508 | `.ai/knowledge/domain/DESIGNER-INTERACTION-MATRIX.md` | markdown | 50 | 1.4 | completo |
-| 509 | `.ai/knowledge/domain/DETAILVIEW-PROFILES.md` | markdown | 57 | 1.5 | completo |
-| 510 | `.ai/knowledge/domain/EFFECT-CATALOG.md` | markdown | 38 | 1.1 | completo |
-| 511 | `.ai/knowledge/domain/EVENT-CATALOG.md` | markdown | 72 | 1.3 | completo |
-| 512 | `.ai/knowledge/domain/FORM-VIEWER-PDF-PARITY.md` | markdown | 38 | 1.1 | completo |
-| 513 | `.ai/knowledge/domain/LEFT-SIDEBAR-BEHAVIOR.md` | markdown | 64 | 1.8 | completo |
-| 514 | `.ai/knowledge/domain/OWNER-COLOR-CONTRACT.md` | markdown | 61 | 1.8 | completo |
-| 515 | `.ai/knowledge/domain/SCHEMA-BEHAVIOR-MATRIX.md` | markdown | 41 | 1.9 | completo |
-| 516 | `.ai/knowledge/domain/USER-RECIPIENT-USE-CASES.md` | markdown | 49 | 2.5 | completo |
-| 517 | `.ai/memory/topics/ai-architecture.md` | markdown | 3 | 0.1 | completo |
-| 518 | `.ai/memory/topics/canvas.md` | markdown | 3 | 0.1 | completo |
-| 519 | `.ai/memory/topics/configuration.md` | markdown | 3 | 0.1 | completo |
-| 520 | `.ai/memory/topics/runtime.md` | markdown | 3 | 0.1 | completo |
-| 521 | `.ai/memory/topics/schemas.md` | markdown | 3 | 0.1 | completo |
-| 522 | `.ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline.md` | markdown | 72 | 1.6 | completo |
-| 523 | `.ai/scrum/task-cards/AIARCH-002-corregir-fuente-de-estado-y-arranque.md` | markdown | 73 | 1.6 | completo |
-| 524 | `.ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz.md` | markdown | 72 | 1.6 | completo |
-| 525 | `.ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md` | markdown | 72 | 1.6 | completo |
-| 526 | `.ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md` | markdown | 72 | 1.6 | completo |
-| 527 | `.ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md` | markdown | 72 | 1.6 | completo |
-| 528 | `.ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md` | markdown | 72 | 1.6 | completo |
-| 529 | `.ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md` | markdown | 72 | 1.6 | completo |
-| 530 | `.ai/scrum/task-cards/AIARCH-010-generar-method-registry-desde-codigo.md` | markdown | 72 | 1.6 | completo |
-| 531 | `.ai/scrum/task-cards/AIARCH-011-consolidar-casos-y-behavior-catalog.md` | markdown | 72 | 1.6 | completo |
-| 532 | `.ai/scrum/task-cards/AIARCH-012-consolidar-event-effect-catalogs.md` | markdown | 72 | 1.6 | completo |
-| 533 | `.ai/scrum/task-cards/AIARCH-013-construir-trace-matrix-y-coverage-gate.md` | markdown | 72 | 1.6 | completo |
-| 534 | `.ai/scrum/task-cards/AIARCH-014-depurar-skill-registry-y-aliases.md` | markdown | 72 | 1.6 | completo |
-| 535 | `.ai/scrum/task-cards/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md` | markdown | 72 | 1.6 | completo |
-| 536 | `.ai/scrum/task-cards/AIARCH-016-consolidar-agent-registry.md` | markdown | 72 | 1.6 | completo |
-| 537 | `.ai/scrum/task-cards/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md` | markdown | 72 | 1.6 | completo |
-| 538 | `.ai/scrum/task-cards/AIARCH-018-actualizar-adapter-de-claude.md` | markdown | 72 | 1.6 | completo |
-| 539 | `.ai/scrum/task-cards/AIARCH-019-actualizar-adapter-de-codex.md` | markdown | 72 | 1.6 | completo |
-| 540 | `.ai/scrum/task-cards/AIARCH-020-actualizar-adapter-de-copilot.md` | markdown | 72 | 1.6 | completo |
-| 541 | `.ai/scrum/task-cards/AIARCH-021-implementar-provider-drift-gate.md` | markdown | 72 | 1.6 | completo |
-| 542 | `.ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema.md` | markdown | 72 | 1.6 | completo |
-| 543 | `.ai/scrum/task-cards/AIARCH-023-consolidar-scrum-claims-y-vistas.md` | markdown | 72 | 1.6 | completo |
-| 544 | `.ai/scrum/task-cards/AIARCH-024-crear-evidence-store-y-log-distillation.md` | markdown | 72 | 1.6 | completo |
-| 545 | `.ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos.md` | markdown | 72 | 1.6 | completo |
-| 546 | `.ai/scrum/task-cards/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md` | markdown | 72 | 1.6 | completo |
-| 547 | `.ai/scrum/task-cards/AIARCH-027-migrar-planes-coreux-decl-restore.md` | markdown | 72 | 1.6 | completo |
-| 548 | `.ai/scrum/task-cards/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md` | markdown | 72 | 1.6 | completo |
-| 549 | `.ai/scrum/task-cards/AIARCH-029-integrar-scripts-en-package-ci.md` | markdown | 72 | 1.6 | completo |
-| 550 | `.ai/scrum/task-cards/AIARCH-030-rollout-documentacion-y-retrospectiva.md` | markdown | 72 | 1.6 | completo |
-| 551 | `.ai/scrum/task-cards/COREUX-001-congelar-baseline-visual-y-responsive.md` | markdown | 177 | 4.6 | completo |
-| 552 | `.ai/scrum/task-cards/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md` | markdown | 176 | 4.9 | completo |
-| 553 | `.ai/scrum/task-cards/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md` | markdown | 179 | 4.6 | completo |
-| 554 | `.ai/scrum/task-cards/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md` | markdown | 177 | 4.7 | completo |
-| 555 | `.ai/scrum/task-cards/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md` | markdown | 178 | 4.4 | completo |
-| 556 | `.ai/scrum/task-cards/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md` | markdown | 190 | 5.2 | completo |
-| 557 | `.ai/scrum/task-cards/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md` | markdown | 192 | 5.3 | completo |
-| 558 | `.ai/scrum/task-cards/COREUX-008-expandir-maquina-de-estados-de-interaccion.md` | markdown | 177 | 4.6 | completo |
-| 559 | `.ai/scrum/task-cards/COREUX-009-crear-coordinador-de-efectos-del-designer.md` | markdown | 185 | 5.0 | completo |
-| 560 | `.ai/scrum/task-cards/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md` | markdown | 181 | 5.0 | completo |
-| 561 | `.ai/scrum/task-cards/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md` | markdown | 180 | 4.7 | completo |
-| 562 | `.ai/scrum/task-cards/COREUX-012-conectar-commandbus-eventos-e-historial.md` | markdown | 183 | 4.9 | completo |
-| 563 | `.ai/scrum/task-cards/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md` | markdown | 188 | 5.0 | completo |
-| 564 | `.ai/scrum/task-cards/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md` | markdown | 184 | 4.9 | completo |
-| 565 | `.ai/scrum/task-cards/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md` | markdown | 189 | 5.3 | completo |
-| 566 | `.ai/scrum/task-cards/COREUX-016-completar-comandos-de-pagina.md` | markdown | 180 | 4.7 | completo |
-| 567 | `.ai/scrum/task-cards/COREUX-017-unificar-zoom-fit-page-y-fit-width.md` | markdown | 192 | 5.4 | completo |
-| 568 | `.ai/scrum/task-cards/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md` | markdown | 184 | 5.1 | completo |
-| 569 | `.ai/scrum/task-cards/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md` | markdown | 184 | 5.1 | completo |
-| 570 | `.ai/scrum/task-cards/COREUX-020-crear-estado-responsive-unico-de-superficies.md` | markdown | 173 | 4.3 | completo |
-| 571 | `.ai/scrum/task-cards/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md` | markdown | 174 | 4.3 | completo |
-| 572 | `.ai/scrum/task-cards/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md` | markdown | 173 | 4.3 | completo |
-| 573 | `.ai/scrum/task-cards/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md` | markdown | 175 | 4.3 | completo |
-| 574 | `.ai/scrum/task-cards/COREUX-024-formalizar-contrato-del-rightsidebar.md` | markdown | 174 | 4.3 | completo |
-| 575 | `.ai/scrum/task-cards/COREUX-025-completar-listview-compacto-y-menu-por-fila.md` | markdown | 174 | 4.5 | completo |
-| 576 | `.ai/scrum/task-cards/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md` | markdown | 178 | 4.7 | completo |
-| 577 | `.ai/scrum/task-cards/COREUX-027-completar-documentsrail-y-documentcontroller.md` | markdown | 175 | 4.3 | completo |
-| 578 | `.ai/scrum/task-cards/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md` | markdown | 175 | 4.5 | completo |
-| 579 | `.ai/scrum/task-cards/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md` | markdown | 174 | 4.2 | completo |
-| 580 | `.ai/scrum/task-cards/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md` | markdown | 173 | 4.5 | completo |
-| 581 | `.ai/scrum/task-cards/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md` | markdown | 173 | 4.3 | completo |
-| 582 | `.ai/scrum/task-cards/COREUX-032-consolidar-datos-y-conexiones.md` | markdown | 173 | 4.2 | completo |
-| 583 | `.ai/scrum/task-cards/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md` | markdown | 174 | 4.5 | completo |
-| 584 | `.ai/scrum/task-cards/COREUX-034-unificar-editor-de-opciones.md` | markdown | 175 | 4.2 | completo |
-| 585 | `.ai/scrum/task-cards/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md` | markdown | 175 | 4.5 | completo |
-| 586 | `.ai/scrum/task-cards/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md` | markdown | 174 | 4.3 | completo |
-| 587 | `.ai/scrum/task-cards/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md` | markdown | 174 | 4.3 | completo |
-| 588 | `.ai/scrum/task-cards/COREUX-038-cerrar-contrato-de-choice-fields.md` | markdown | 176 | 4.3 | completo |
-| 589 | `.ai/scrum/task-cards/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md` | markdown | 173 | 4.2 | completo |
-| 590 | `.ai/scrum/task-cards/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md` | markdown | 176 | 4.4 | completo |
-| 591 | `.ai/scrum/task-cards/COREUX-041-unificar-owner-tone-y-field-chrome.md` | markdown | 175 | 4.4 | completo |
-| 592 | `.ai/scrum/task-cards/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md` | markdown | 174 | 4.4 | completo |
-| 593 | `.ai/scrum/task-cards/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md` | markdown | 175 | 4.5 | completo |
-| 594 | `.ai/scrum/task-cards/COREUX-044-alinear-moveable-con-access-interaction-y-events.md` | markdown | 175 | 4.4 | completo |
-| 595 | `.ai/scrum/task-cards/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md` | markdown | 176 | 4.5 | completo |
-| 596 | `.ai/scrum/task-cards/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md` | markdown | 174 | 4.3 | completo |
-| 597 | `.ai/scrum/task-cards/COREUX-047-completar-snapshot-e-historial-versionado.md` | markdown | 176 | 4.4 | completo |
-| 598 | `.ai/scrum/task-cards/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md` | markdown | 174 | 4.4 | completo |
-| 599 | `.ai/scrum/task-cards/COREUX-049-cerrar-paridad-designer-form-y-viewer.md` | markdown | 177 | 4.3 | completo |
-| 600 | `.ai/scrum/task-cards/COREUX-050-unificar-validacion-generator-converter-y-persistence.md` | markdown | 176 | 4.4 | completo |
-| 601 | `.ai/scrum/task-cards/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md` | markdown | 175 | 4.4 | completo |
-| 602 | `.ai/scrum/task-cards/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md` | markdown | 174 | 4.2 | completo |
-| 603 | `.ai/scrum/task-cards/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md` | markdown | 174 | 4.2 | completo |
-| 604 | `.ai/scrum/task-cards/COREUX-054-crear-playwright-y-regresion-visual-integral.md` | markdown | 174 | 4.5 | completo |
-| 605 | `.ai/scrum/task-cards/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md` | markdown | 175 | 4.0 | completo |
-| 606 | `.ai/scrum/task-cards/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md` | markdown | 176 | 4.3 | completo |
-| 607 | `.ai/scrum/task-cards/name-001-inventariar-y-clasificar-ocurrencias.md` | markdown | 39 | 0.9 | completo |
-| 608 | `.ai/scrum/task-cards/name-002-crear-pol-tica-y-gate-preventivo.md` | markdown | 39 | 0.9 | completo |
-| 609 | `.ai/scrum/task-cards/name-003-renombrar-vocabulario-del-inspector.md` | markdown | 39 | 0.9 | completo |
-| 610 | `.ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-a.md` | markdown | 39 | 0.9 | completo |
-| 611 | `.ai/scrum/task-cards/name-005-renombrar-eventos-y-callbacks-del-host.md` | markdown | 39 | 0.9 | completo |
-| 612 | `.ai/scrum/task-cards/name-006-versionar-snapshots-y-metadata.md` | markdown | 39 | 0.9 | completo |
-| 613 | `.ai/scrum/task-cards/name-007-renombrar-provider-de-colaboraci-n.md` | markdown | 39 | 0.9 | completo |
-| 614 | `.ai/scrum/task-cards/name-008-sanear-almacenamiento-de-comentarios.md` | markdown | 39 | 0.9 | completo |
-| 615 | `.ai/scrum/task-cards/name-009-sanear-firma-y-familias-de-schema.md` | markdown | 38 | 0.9 | completo |
-| 616 | `.ai/scrum/task-cards/name-010-renombrar-documentaci-n-y-arquitectura-ia.md` | markdown | 39 | 0.9 | completo |
-| 617 | `.ai/scrum/task-cards/name-011-administrar-aliases-p-blicos-deprecados.md` | markdown | 39 | 0.9 | completo |
-| 618 | `.ai/scrum/task-cards/name-012-retirar-compatibilidad-obsoleta.md` | markdown | 39 | 0.9 | completo |
-| 619 | `.ai/scrum/task-cards/PORTDOC-001-auditar-api-publica.md` | markdown | 10 | 0.2 | completo |
-| 620 | `.ai/scrum/task-cards/PORTDOC-002-actualizar-ejemplos.md` | markdown | 10 | 0.2 | completo |
-| 621 | `.ai/scrum/task-cards/PORTDOC-003-consumer-test.md` | markdown | 10 | 0.2 | completo |
-| 622 | `.ai/scrum/task-cards/PORTDOC-004-gate-drift-documental.md` | markdown | 10 | 0.2 | completo |
-| 623 | `.ai/scrum/task-cards/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md` | markdown | 172 | 4.6 | completo |
-| 624 | `.ai/scrum/task-cards/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md` | markdown | 168 | 5.2 | completo |
-| 625 | `.ai/scrum/task-cards/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md` | markdown | 166 | 4.6 | completo |
-| 626 | `.ai/scrum/task-cards/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md` | markdown | 166 | 4.7 | completo |
-| 627 | `.ai/scrum/task-cards/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md` | markdown | 166 | 4.5 | completo |
-| 628 | `.ai/scrum/task-cards/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md` | markdown | 166 | 4.5 | completo |
-| 629 | `.ai/scrum/task-cards/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md` | markdown | 166 | 4.4 | completo |
-| 630 | `.ai/scrum/task-cards/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md` | markdown | 165 | 4.4 | completo |
-| 631 | `.ai/scrum/task-cards/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md` | markdown | 165 | 4.3 | completo |
-| 632 | `.ai/scrum/task-cards/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md` | markdown | 165 | 4.3 | completo |
-| 633 | `.ai/scrum/task-cards/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md` | markdown | 165 | 4.4 | completo |
-| 634 | `.ai/scrum/task-cards/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md` | markdown | 165 | 4.4 | completo |
-| 635 | `.ai/scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md` | markdown | 164 | 4.4 | completo |
-| 636 | `.ai/scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md` | markdown | 164 | 4.3 | completo |
-| 637 | `.ai/scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md` | markdown | 164 | 4.4 | completo |
-| 638 | `.ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md` | markdown | 164 | 4.4 | completo |
-| 639 | `.ai/scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md` | markdown | 164 | 4.4 | completo |
-| 640 | `.ai/scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md` | markdown | 165 | 4.3 | completo |
-| 641 | `.ai/scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md` | markdown | 166 | 4.5 | completo |
-| 642 | `.ai/scrum/task-cards/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md` | markdown | 165 | 4.5 | completo |
-| 643 | `.ai/scrum/task-cards/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md` | markdown | 164 | 4.5 | completo |
-| 644 | `.ai/scrum/task-cards/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md` | markdown | 164 | 4.5 | completo |
-| 645 | `.ai/scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md` | markdown | 165 | 4.5 | completo |
-| 646 | `.ai/scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md` | markdown | 164 | 4.4 | completo |
-| 647 | `.ai/scrum/task-cards/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md` | markdown | 164 | 4.4 | completo |
-| 648 | `.ai/scrum/task-cards/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md` | markdown | 165 | 4.5 | completo |
-| 649 | `.ai/scrum/task-cards/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md` | markdown | 164 | 4.4 | completo |
-| 650 | `.ai/scrum/task-cards/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md` | markdown | 166 | 4.4 | completo |
-| 651 | `.ai/scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md` | markdown | 166 | 4.3 | completo |
-| 652 | `.ai/scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md` | markdown | 167 | 4.4 | completo |
-| 653 | `.ai/scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md` | markdown | 163 | 4.3 | completo |
-| 654 | `.ai/scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md` | markdown | 163 | 4.2 | completo |
-| 655 | `.ai/scrum/task-cards/VISUX-033-cerrar-media-barcode-table-y-shapes.md` | markdown | 165 | 4.2 | completo |
-| 656 | `.ai/scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md` | markdown | 166 | 4.4 | completo |
-| 657 | `.ai/scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md` | markdown | 165 | 4.4 | completo |
-| 658 | `.ai/scrum/task-cards/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md` | markdown | 165 | 4.4 | completo |
-| 659 | `.ai/scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md` | markdown | 165 | 4.5 | completo |
-| 660 | `.ai/scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md` | markdown | 166 | 4.5 | completo |
-| 661 | `.ai/scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md` | markdown | 166 | 4.4 | completo |
-| 662 | `.ai/scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md` | markdown | 172 | 4.4 | completo |
-| 663 | `.ai/scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md` | markdown | 165 | 4.3 | completo |
-| 664 | `.ai/scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md` | markdown | 173 | 4.5 | completo |
-| 665 | `.claude/skills/testsprite-onboard/SKILL.md` | markdown | 189 | 8.5 | completo |
-| 666 | `.claude/skills/testsprite-verify/SKILL.md` | markdown | 491 | 25.1 | completo |
-| 667 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 39 | 1.6 | completo |
-| 668 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
-| 669 | `src/sisad-pdfme/config/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 670 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
-| 671 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
-| 672 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
-| 673 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
-| 674 | `src/sisad-pdfme/schemas/AGENTS.md` | markdown | 6 | 0.1 | completo |
-| 675 | `src/sisad-pdfme/shared/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 676 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
-| 677 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
-| 678 | `.ai/brain/10-domains/adapters/FILES.md` | markdown | 7 | 0.4 | completo |
-| 679 | `.ai/brain/10-domains/adapters/README.md` | markdown | 26 | 0.8 | completo |
-| 680 | `.ai/brain/10-domains/assignments/FILES.md` | markdown | 3 | 0.1 | completo |
-| 681 | `.ai/brain/10-domains/assignments/README.md` | markdown | 22 | 0.5 | completo |
-| 682 | `.ai/brain/10-domains/browser/FILES.md` | markdown | 4 | 0.2 | completo |
-| 683 | `.ai/brain/10-domains/browser/README.md` | markdown | 23 | 0.5 | completo |
-| 684 | `.ai/brain/10-domains/canvas/FILES.md` | markdown | 5 | 0.2 | completo |
-| 685 | `.ai/brain/10-domains/canvas/README.md` | markdown | 24 | 0.6 | completo |
-| 686 | `.ai/brain/10-domains/collaboration/FILES.md` | markdown | 8 | 0.5 | completo |
-| 687 | `.ai/brain/10-domains/collaboration/README.md` | markdown | 27 | 0.9 | completo |
-| 688 | `.ai/brain/10-domains/commands/FILES.md` | markdown | 3 | 0.1 | completo |
-| 689 | `.ai/brain/10-domains/commands/README.md` | markdown | 22 | 0.5 | completo |
-| 690 | `.ai/brain/10-domains/comments/FILES.md` | markdown | 3 | 0.1 | completo |
-| 691 | `.ai/brain/10-domains/comments/README.md` | markdown | 22 | 0.5 | completo |
-| 692 | `.ai/brain/10-domains/common/FILES.md` | markdown | 14 | 0.8 | completo |
-| 693 | `.ai/brain/10-domains/common/README.md` | markdown | 29 | 0.9 | completo |
-| 694 | `.ai/brain/10-domains/config/FILES.md` | markdown | 21 | 1.5 | completo |
-| 695 | `.ai/brain/10-domains/config/README.md` | markdown | 29 | 1.0 | completo |
-| 696 | `.ai/brain/10-domains/context/FILES.md` | markdown | 3 | 0.1 | completo |
-| 697 | `.ai/brain/10-domains/context/README.md` | markdown | 22 | 0.5 | completo |
-| 698 | `.ai/brain/10-domains/contracts/FILES.md` | markdown | 9 | 0.5 | completo |
-| 699 | `.ai/brain/10-domains/contracts/README.md` | markdown | 28 | 0.8 | completo |
-| 700 | `.ai/brain/10-domains/converter/FILES.md` | markdown | 12 | 0.7 | completo |
-| 701 | `.ai/brain/10-domains/converter/README.md` | markdown | 29 | 0.9 | completo |
-| 702 | `.ai/brain/10-domains/devtools/FILES.md` | markdown | 3 | 0.1 | completo |
-| 703 | `.ai/brain/10-domains/devtools/README.md` | markdown | 22 | 0.5 | completo |
-| 704 | `.ai/brain/10-domains/documents/FILES.md` | markdown | 3 | 0.1 | completo |
-| 705 | `.ai/brain/10-domains/documents/README.md` | markdown | 22 | 0.5 | completo |
-| 706 | `.ai/brain/10-domains/editor/FILES.md` | markdown | 3 | 0.1 | completo |
-| 707 | `.ai/brain/10-domains/editor/README.md` | markdown | 22 | 0.5 | completo |
-| 708 | `.ai/brain/10-domains/externalForms/FILES.md` | markdown | 3 | 0.1 | completo |
-| 709 | `.ai/brain/10-domains/externalForms/README.md` | markdown | 22 | 0.5 | completo |
-| 710 | `.ai/brain/10-domains/generator/FILES.md` | markdown | 8 | 0.4 | completo |
-| 711 | `.ai/brain/10-domains/generator/README.md` | markdown | 27 | 0.8 | completo |
-| 712 | `.ai/brain/10-domains/index.ts/FILES.md` | markdown | 3 | 0.1 | completo |
-| 713 | `.ai/brain/10-domains/index.ts/README.md` | markdown | 22 | 0.5 | completo |
-| 714 | `.ai/brain/10-domains/integration/FILES.md` | markdown | 10 | 0.7 | completo |
-| 715 | `.ai/brain/10-domains/integration/README.md` | markdown | 29 | 1.0 | completo |
-| 716 | `.ai/brain/10-domains/react/FILES.md` | markdown | 16 | 1.1 | completo |
-| 717 | `.ai/brain/10-domains/react/README.md` | markdown | 29 | 1.0 | completo |
-| 718 | `.ai/brain/10-domains/recipients/FILES.md` | markdown | 10 | 0.7 | completo |
-| 719 | `.ai/brain/10-domains/recipients/README.md` | markdown | 29 | 1.0 | completo |
-| 720 | `.ai/brain/10-domains/runtime/ARCHITECTURE.md` | markdown | 19 | 0.8 | completo |
-| 721 | `.ai/brain/10-domains/runtime/FILES.md` | markdown | 10 | 0.6 | completo |
-| 722 | `.ai/brain/10-domains/runtime/README.md` | markdown | 30 | 1.0 | completo |
-| 723 | `.ai/brain/10-domains/schemas/FILES.md` | markdown | 92 | 6.9 | completo |
-| 724 | `.ai/brain/10-domains/schemas/README.md` | markdown | 30 | 1.0 | completo |
-| 725 | `.ai/brain/10-domains/schemas/RUNTIME-MATRIX.md` | markdown | 42 | 5.0 | completo |
-| 726 | `.ai/brain/10-domains/shared/FILES.md` | markdown | 18 | 1.2 | completo |
-| 727 | `.ai/brain/10-domains/shared/README.md` | markdown | 29 | 0.9 | completo |
-| 728 | `.ai/brain/10-domains/templates/FILES.md` | markdown | 5 | 0.3 | completo |
-| 729 | `.ai/brain/10-domains/templates/README.md` | markdown | 24 | 0.6 | completo |
-| 730 | `.ai/brain/10-domains/ui/FILES.md` | markdown | 179 | 18.5 | completo |
-| 731 | `.ai/brain/10-domains/ui/README.md` | markdown | 29 | 1.1 | completo |
-| 732 | `.ai/brain/70-memory/topics/runtime-platform.md` | markdown | 4 | 0.2 | completo |
-| 733 | `.ai/brain/70-memory/topics/tooling-architecture.md` | markdown | 11 | 0.4 | completo |
-| 734 | `.ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y.md` | markdown | 25 | 0.6 | completo |
-| 735 | `.ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path.md` | markdown | 25 | 0.6 | completo |
-| 736 | `.ai/scrum/task-cards/backlog/AI8-003-migrar-conocimiento-a-jsonl.md` | markdown | 25 | 0.6 | completo |
-| 737 | `.ai/scrum/task-cards/backlog/AI8-005-compactar-routes.md` | markdown | 25 | 0.5 | completo |
-| 738 | `.ai/scrum/task-cards/backlog/AI8-006-compactar-skills-y-aliases.md` | markdown | 25 | 0.6 | completo |
-| 739 | `.ai/scrum/task-cards/backlog/AI8-007-consolidar-agentes.md` | markdown | 25 | 0.5 | completo |
-| 740 | `.ai/scrum/task-cards/backlog/AI8-008-generar-adapters-de-proveedor.md` | markdown | 25 | 0.5 | completo |
-| 741 | `.ai/scrum/task-cards/backlog/AI8-009-migrar-memoria-y-ttl.md` | markdown | 25 | 0.5 | completo |
-| 742 | `.ai/scrum/task-cards/backlog/AI8-010-migrar-lifecycle-de-tareas.md` | markdown | 25 | 0.5 | completo |
-| 743 | `.ai/scrum/task-cards/backlog/AI8-011-consolidar-contratos-de-usuarios-y-color.md` | markdown | 25 | 0.6 | completo |
-| 744 | `.ai/scrum/task-cards/backlog/AI8-012-consolidar-matriz-de-schemas.md` | markdown | 25 | 0.5 | completo |
-| 745 | `.ai/scrum/task-cards/backlog/AI8-013-inventariar-namespace-css.md` | markdown | 25 | 0.6 | completo |
-| 746 | `.ai/scrum/task-cards/backlog/AI8-014-actualizar-trazabilidad.md` | markdown | 25 | 0.5 | completo |
-| 747 | `.ai/scrum/task-cards/backlog/AI8-015-implementar-gates.md` | markdown | 25 | 0.5 | completo |
-| 748 | `.ai/scrum/task-cards/backlog/AI8-016-crear-evals-de-costo-y-precision.md` | markdown | 25 | 0.6 | completo |
-| 749 | `.ai/scrum/task-cards/backlog/AI8-017-migrar-coreux-decl-restore-name.md` | markdown | 25 | 0.6 | completo |
-| 750 | `.ai/scrum/task-cards/backlog/AI8-018-rollout-y-eliminacion-controlada.md` | markdown | 25 | 0.6 | completo |
-| 751 | `.ai/scrum/task-cards/runtime-platform/README.md` | markdown | 46 | 3.1 | completo |
-| 752 | `.ai/scrum/task-cards/runtime-platform/RTP-000.md` | markdown | 57 | 1.8 | completo |
-| 753 | `.ai/scrum/task-cards/runtime-platform/RTP-005.md` | markdown | 57 | 1.8 | completo |
-| 754 | `.ai/scrum/task-cards/runtime-platform/RTP-010.md` | markdown | 55 | 1.8 | completo |
-| 755 | `.ai/scrum/task-cards/runtime-platform/RTP-020.md` | markdown | 55 | 1.8 | completo |
-| 756 | `.ai/scrum/task-cards/runtime-platform/RTP-030.md` | markdown | 56 | 1.8 | completo |
-| 757 | `.ai/scrum/task-cards/runtime-platform/RTP-040.md` | markdown | 56 | 1.9 | completo |
-| 758 | `.ai/scrum/task-cards/runtime-platform/RTP-050.md` | markdown | 55 | 1.8 | completo |
-| 759 | `.ai/scrum/task-cards/runtime-platform/RTP-060.md` | markdown | 55 | 1.8 | completo |
-| 760 | `.ai/scrum/task-cards/runtime-platform/RTP-070.md` | markdown | 56 | 1.8 | completo |
-| 761 | `.ai/scrum/task-cards/runtime-platform/RTP-080.md` | markdown | 56 | 1.8 | completo |
-| 762 | `.ai/scrum/task-cards/runtime-platform/RTP-090.md` | markdown | 55 | 1.8 | completo |
-| 763 | `.ai/scrum/task-cards/runtime-platform/RTP-100.md` | markdown | 55 | 1.8 | completo |
-| 764 | `.ai/scrum/task-cards/runtime-platform/RTP-110.md` | markdown | 55 | 1.8 | completo |
-| 765 | `.ai/scrum/task-cards/runtime-platform/RTP-120.md` | markdown | 55 | 1.7 | completo |
-| 766 | `.ai/scrum/task-cards/runtime-platform/RTP-130.md` | markdown | 55 | 1.8 | completo |
-| 767 | `.ai/scrum/task-cards/runtime-platform/RTP-140.md` | markdown | 55 | 1.8 | completo |
-| 768 | `.ai/scrum/task-cards/runtime-platform/RTP-150.md` | markdown | 55 | 1.8 | completo |
-| 769 | `.ai/scrum/task-cards/runtime-platform/RTP-160.md` | markdown | 55 | 1.8 | completo |
-| 770 | `.ai/scrum/task-cards/runtime-platform/RTP-170.md` | markdown | 55 | 1.8 | completo |
-| 771 | `.ai/scrum/task-cards/runtime-platform/RTP-180.md` | markdown | 55 | 1.8 | completo |
-| 772 | `.ai/scrum/task-cards/runtime-platform/RTP-190.md` | markdown | 57 | 1.9 | completo |
-| 773 | `.ai/scrum/task-cards/runtime-platform/RTP-200.md` | markdown | 56 | 1.8 | completo |
-| 774 | `.ai/scrum/task-cards/runtime-platform/RTP-210.md` | markdown | 55 | 1.8 | completo |
-| 775 | `.ai/scrum/task-cards/runtime-platform/RTP-220.md` | markdown | 55 | 1.8 | completo |
-| 776 | `.ai/scrum/task-cards/runtime-platform/RTP-230.md` | markdown | 55 | 1.8 | completo |
-| 777 | `.ai/scrum/task-cards/runtime-platform/RTP-240.md` | markdown | 55 | 1.8 | completo |
-| 778 | `.ai/scrum/task-cards/runtime-platform/RTP-250.md` | markdown | 56 | 1.9 | completo |
-| 779 | `.ai/scrum/task-cards/runtime-platform/RTP-260.md` | markdown | 55 | 1.8 | completo |
-| 780 | `.ai/scrum/task-cards/runtime-platform/RTP-270.md` | markdown | 55 | 1.8 | completo |
-| 781 | `.ai/scrum/task-cards/runtime-platform/RTP-280.md` | markdown | 55 | 1.8 | completo |
-| 782 | `.ai/scrum/task-cards/runtime-platform/RTP-290.md` | markdown | 55 | 1.8 | completo |
-| 783 | `.ai/scrum/task-cards/runtime-platform/RTP-300.md` | markdown | 55 | 1.8 | completo |
-| 784 | `.ai/scrum/task-cards/runtime-platform/RTP-310.md` | markdown | 55 | 1.8 | completo |
-| 785 | `.ai/scrum/task-cards/runtime-platform/RTP-320.md` | markdown | 55 | 1.8 | completo |
-| 786 | `.ai/scrum/task-cards/runtime-platform/RTP-330.md` | markdown | 56 | 1.8 | completo |
-| 787 | `.ai/scrum/task-cards/runtime-platform/RTP-340.md` | markdown | 55 | 1.8 | completo |
-| 788 | `.ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md` | markdown | 23 | 0.6 | completo |
-| 789 | `.ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md` | markdown | 23 | 0.5 | completo |
-| 790 | `.ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md` | markdown | 23 | 0.6 | completo |
-| 791 | `.ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md` | markdown | 23 | 0.5 | completo |
-| 792 | `.ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md` | markdown | 23 | 0.6 | completo |
-| 793 | `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md` | markdown | 23 | 0.5 | completo |
-| 794 | `.ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md` | markdown | 23 | 0.5 | completo |
-| 795 | `.ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md` | markdown | 23 | 0.6 | completo |
-| 796 | `.ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md` | markdown | 23 | 0.6 | completo |
-| 797 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
-| 798 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
-| 799 | `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 800 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
-| 801 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
-| 802 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md` | markdown | 6 | 0.2 | completo |
-| 803 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
-| 804 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
-| 805 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
-| 806 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
-| 807 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
-| 808 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
-| 809 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
-| 810 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
-| 811 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
+| 215 | `.ai/plans/PLAN_SISAD_PDFME_FORM_HARDENING.md` | markdown | 7 | 0.4 | completo |
+| 216 | `.ai/plans/PLAN_SISAD_PDFME_RUNTIME_HARDENING_V2.md` | markdown | 40 | 1.5 | completo |
+| 217 | `.ai/plans/PLAN_SISAD_PDFME_SCHEMA_RUNTIME.md` | markdown | 7 | 0.4 | completo |
+| 218 | `.ai/plans/PLAN_SISAD_PDFME_TOOLING_SAFETY.md` | markdown | 12 | 0.4 | completo |
+| 219 | `.ai/plans/PLAN_TOOLING_ARCHITECTURE_CLEANUP.md` | markdown | 53 | 1.5 | completo |
+| 220 | `.ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md` | markdown | 46 | 0.9 | completo |
+| 221 | `.ai/plans/RUNTIME-PLATFORM-CROSSWALK.md` | markdown | 16 | 0.6 | completo |
+| 222 | `.ai/plans/SISAD-PDFME-UNIT-TEST-COVERAGE.md` | markdown | 6 | 0.4 | completo |
+| 223 | `.ai/playbooks/EXECUTE-TASK.md` | markdown | 14 | 0.3 | completo |
+| 224 | `.ai/playbooks/IMPROVE-DESIGNER-CORE-UX.md` | markdown | 24 | 0.6 | completo |
+| 225 | `.ai/playbooks/MAINTAIN-TRACEABILITY.md` | markdown | 9 | 0.2 | completo |
+| 226 | `.ai/playbooks/UPDATE-MEMORY.md` | markdown | 9 | 0.3 | completo |
+| 227 | `.ai/prompts/COREUX_ANALYZE.prompt.md` | markdown | 18 | 0.4 | completo |
+| 228 | `.ai/prompts/COREUX_CANVAS.prompt.md` | markdown | 11 | 0.3 | completo |
+| 229 | `.ai/prompts/COREUX_EVENT_EFFECT_AUDIT.prompt.md` | markdown | 16 | 0.3 | completo |
+| 230 | `.ai/prompts/COREUX_IMPLEMENT.prompt.md` | markdown | 25 | 0.4 | completo |
+| 231 | `.ai/prompts/COREUX_RELEASE.prompt.md` | markdown | 14 | 0.3 | completo |
+| 232 | `.ai/prompts/COREUX_REVIEW.prompt.md` | markdown | 18 | 0.3 | completo |
+| 233 | `.ai/prompts/COREUX_SCHEMA_FAMILY.prompt.md` | markdown | 21 | 0.3 | completo |
+| 234 | `.ai/prompts/COREUX_VISUAL_QA.prompt.md` | markdown | 20 | 0.4 | completo |
+| 235 | `.ai/prompts/CREATE-TASK.prompt.md` | markdown | 6 | 0.2 | completo |
+| 236 | `.ai/prompts/DIAGNOSE.md` | markdown | 5 | 0.2 | completo |
+| 237 | `.ai/prompts/DIAGNOSE.prompt.md` | markdown | 6 | 0.2 | completo |
+| 238 | `.ai/prompts/DISTILL-LOG.prompt.md` | markdown | 6 | 0.2 | completo |
+| 239 | `.ai/prompts/IMPLEMENT.md` | markdown | 5 | 0.2 | completo |
+| 240 | `.ai/prompts/IMPLEMENT.prompt.md` | markdown | 6 | 0.2 | completo |
+| 241 | `.ai/prompts/MEMORY-DELTA.md` | markdown | 5 | 0.2 | completo |
+| 242 | `.ai/prompts/MEMORY-DELTA.prompt.md` | markdown | 6 | 0.2 | completo |
+| 243 | `.ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md` | markdown | 95 | 2.8 | completo |
+| 244 | `.ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md` | markdown | 237 | 5.5 | completo |
+| 245 | `.ai/prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md` | markdown | 490 | 11.1 | completo |
+| 246 | `.ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md` | markdown | 72 | 1.9 | completo |
+| 247 | `.ai/prompts/PROMPT_SISAD_PDFME_FORM.md` | markdown | 6 | 0.3 | completo |
+| 248 | `.ai/prompts/PROMPT_SISAD_PDFME_REVIEW.md` | markdown | 7 | 0.4 | completo |
+| 249 | `.ai/prompts/PROMPT_SISAD_PDFME_RUNTIME_BOOT_V2.md` | markdown | 12 | 0.4 | completo |
+| 250 | `.ai/prompts/PROMPT_SISAD_PDFME_RUNTIME_MASTER_V2.md` | markdown | 26 | 0.8 | completo |
+| 251 | `.ai/prompts/PROMPT_SISAD_PDFME_SCHEMA_FAMILY.md` | markdown | 6 | 0.3 | completo |
+| 252 | `.ai/prompts/PROMPT_SISAD_PDFME_TOOLING.md` | markdown | 6 | 0.3 | completo |
+| 253 | `.ai/prompts/PROMPT_SISAD_PDFME_USER_MODEL.md` | markdown | 6 | 0.4 | completo |
+| 254 | `.ai/prompts/PROVIDER-SYNC.md` | markdown | 5 | 0.2 | completo |
+| 255 | `.ai/prompts/PROVIDER-SYNC.prompt.md` | markdown | 6 | 0.2 | completo |
+| 256 | `.ai/prompts/REVIEW.md` | markdown | 5 | 0.2 | completo |
+| 257 | `.ai/prompts/REVIEW.prompt.md` | markdown | 6 | 0.2 | completo |
+| 258 | `.ai/prompts/RTP-CLAUDE-START.md` | markdown | 41 | 1.4 | completo |
+| 259 | `.ai/prompts/RTP-CODEX-START.md` | markdown | 41 | 1.3 | completo |
+| 260 | `.ai/prompts/RTP-COPILOT-START.md` | markdown | 41 | 1.3 | completo |
+| 261 | `.ai/prompts/RTP-GENERIC-START.md` | markdown | 41 | 1.3 | completo |
+| 262 | `.ai/prompts/RTP-START.md` | markdown | 38 | 1.2 | completo |
+| 263 | `.ai/prompts/SISAD-PDFME-UNIT-TEST-START.md` | markdown | 7 | 0.5 | completo |
+| 264 | `.ai/prompts/TOOLING-ARCHITECTURE-START.md` | markdown | 24 | 1.1 | completo |
+| 265 | `.ai/prompts/TRACE.md` | markdown | 5 | 0.2 | completo |
+| 266 | `.ai/prompts/TRACEABILITY.prompt.md` | markdown | 6 | 0.2 | completo |
+| 267 | `.ai/quality/RUNTIME-PLATFORM-GATES.md` | markdown | 23 | 0.7 | completo |
+| 268 | `.ai/research/OFFICIAL-PROVIDER-FINDINGS.md` | markdown | 46 | 2.2 | completo |
+| 269 | `.ai/research/OFFICIAL-SOURCES.md` | markdown | 21 | 1.1 | completo |
+| 270 | `.ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md` | markdown | 55 | 2.2 | completo |
+| 271 | `.ai/routes/ai-architecture.md` | markdown | 17 | 0.3 | completo |
+| 272 | `.ai/routes/assignments.md` | markdown | 21 | 0.5 | completo |
+| 273 | `.ai/routes/canvas.md` | markdown | 17 | 0.4 | completo |
+| 274 | `.ai/routes/capabilities.md` | markdown | 21 | 0.5 | completo |
+| 275 | `.ai/routes/commands.md` | markdown | 21 | 0.5 | completo |
+| 276 | `.ai/routes/configuration.md` | markdown | 17 | 0.4 | completo |
+| 277 | `.ai/routes/controller.md` | markdown | 21 | 0.5 | completo |
+| 278 | `.ai/routes/css-tailwind.md` | markdown | 21 | 0.4 | completo |
+| 279 | `.ai/routes/designer-core-ux.md` | markdown | 40 | 0.7 | completo |
+| 280 | `.ai/routes/docs-memory.md` | markdown | 22 | 0.5 | completo |
+| 281 | `.ai/routes/events-effects.md` | markdown | 22 | 0.6 | completo |
+| 282 | `.ai/routes/inspector.md` | markdown | 17 | 0.4 | completo |
+| 283 | `.ai/routes/left-sidebar.md` | markdown | 18 | 0.4 | completo |
+| 284 | `.ai/routes/persistence.md` | markdown | 17 | 0.4 | completo |
+| 285 | `.ai/routes/provider-adapters.md` | markdown | 21 | 0.5 | completo |
+| 286 | `.ai/routes/quality.md` | markdown | 17 | 0.3 | completo |
+| 287 | `.ai/routes/recipients-ownership.md` | markdown | 17 | 0.4 | completo |
+| 288 | `.ai/routes/right-sidebar.md` | markdown | 21 | 0.5 | completo |
+| 289 | `.ai/routes/runtime-contracts.md` | markdown | 17 | 0.4 | completo |
+| 290 | `.ai/routes/runtime-snapshot.md` | markdown | 21 | 0.5 | completo |
+| 291 | `.ai/routes/runtime.md` | markdown | 21 | 0.5 | completo |
+| 292 | `.ai/routes/runtimes.md` | markdown | 17 | 0.4 | completo |
+| 293 | `.ai/routes/schemas.md` | markdown | 17 | 0.4 | completo |
+| 294 | `.ai/routes/testing.md` | markdown | 21 | 0.4 | completo |
+| 295 | `.ai/routes/token-context.md` | markdown | 22 | 0.5 | completo |
+| 296 | `.ai/routes/traceability.md` | markdown | 22 | 0.6 | completo |
+| 297 | `.ai/routes/ux-design.md` | markdown | 21 | 0.5 | completo |
+| 298 | `.ai/routes/ux.md` | markdown | 17 | 0.4 | completo |
+| 299 | `.ai/scrum/MERGE-INSTRUCTIONS.md` | markdown | 28 | 0.5 | completo |
+| 300 | `.ai/scrum/MERGE.md` | markdown | 14 | 0.5 | completo |
+| 301 | `.ai/scrum/PRODUCT-BACKLOG-ROWS.md` | markdown | 34 | 3.7 | completo |
+| 302 | `.ai/scrum/PRODUCT-BACKLOG.md` | markdown | 13 | 0.4 | completo |
+| 303 | `.ai/scrum/RUNTIME-PLATFORM-LEDGER.md` | markdown | 41 | 3.8 | completo |
+| 304 | `.ai/scrum/VISUX-EXECUTION-ORDER.md` | markdown | 39 | 0.9 | completo |
+| 305 | `.ai/scrum/VISUX-MERGE-INSTRUCTIONS.md` | markdown | 16 | 0.6 | completo |
+| 306 | `.ai/scrum/VISUX-PRODUCT-BACKLOG-ROWS.md` | markdown | 48 | 7.0 | completo |
+| 307 | `.ai/skills/README.md` | markdown | 67 | 5.0 | completo |
+| 308 | `.ai/subagents/DECISION-MATRIX.md` | markdown | 14 | 0.5 | completo |
+| 309 | `.ai/templates/BEHAVIOR-RECORD.md` | markdown | 13 | 0.1 | completo |
+| 310 | `.ai/templates/CONTEXT-MANIFEST.md` | markdown | 10 | 0.1 | completo |
+| 311 | `.ai/templates/DECISION.md` | markdown | 12 | 0.2 | completo |
+| 312 | `.ai/templates/EVIDENCE-PACKET.md` | markdown | 12 | 0.2 | completo |
+| 313 | `.ai/templates/HANDOFF.md` | markdown | 11 | 0.1 | completo |
+| 314 | `.ai/templates/METHOD-RECORD.md` | markdown | 15 | 0.2 | completo |
+| 315 | `.ai/templates/TASK-CARD.md` | markdown | 26 | 0.3 | completo |
+| 316 | `.ai/traceability/METHOD-REGISTRY.md` | markdown | 327 | 40.9 | completo |
+| 317 | `.claude/agents/sisad-explorer.md` | markdown | 10 | 0.3 | completo |
+| 318 | `.claude/agents/sisad-log-distiller.md` | markdown | 10 | 0.3 | completo |
+| 319 | `.claude/agents/sisad-provider-auditor.md` | markdown | 9 | 0.3 | completo |
+| 320 | `.claude/agents/sisad-reviewer.md` | markdown | 10 | 0.3 | completo |
+| 321 | `.claude/agents/sisad-runtime-platform.md` | markdown | 5 | 0.2 | completo |
+| 322 | `.claude/agents/sisad-traceability.md` | markdown | 10 | 0.3 | completo |
+| 323 | `.codex/agents/README.md` | markdown | 13 | 0.4 | completo |
+| 324 | `.codex/agents/runtime-platform.md` | markdown | 3 | 0.1 | completo |
+| 325 | `.github/agents/sisad-architect.agent.md` | markdown | 7 | 0.3 | completo |
+| 326 | `.github/agents/sisad-config.agent.md` | markdown | 6 | 0.3 | completo |
+| 327 | `.github/agents/sisad-coordinator.agent.md` | markdown | 7 | 0.2 | completo |
+| 328 | `.github/agents/sisad-dry-auditor.agent.md` | markdown | 7 | 0.3 | completo |
+| 329 | `.github/agents/sisad-dry-reviewer.agent.md` | markdown | 5 | 0.4 | completo |
+| 330 | `.github/agents/sisad-explorer.agent.md` | markdown | 7 | 0.2 | completo |
+| 331 | `.github/agents/sisad-implementer.agent.md` | markdown | 7 | 0.2 | completo |
+| 332 | `.github/agents/sisad-memory-steward.agent.md` | markdown | 7 | 0.3 | completo |
+| 333 | `.github/agents/sisad-provider-adapter-steward.agent.md` | markdown | 7 | 0.3 | completo |
+| 334 | `.github/agents/sisad-qa.agent.md` | markdown | 7 | 0.2 | completo |
+| 335 | `.github/agents/sisad-reviewer.agent.md` | markdown | 7 | 0.2 | completo |
+| 336 | `.github/agents/sisad-runtime-platform-agent.md` | markdown | 4 | 0.2 | completo |
+| 337 | `.github/agents/sisad-scrum-coordinator.agent.md` | markdown | 7 | 0.3 | completo |
+| 338 | `.github/agents/sisad-task-planner.agent.md` | markdown | 5 | 0.3 | completo |
+| 339 | `.github/agents/sisad-test-specialist.agent.md` | markdown | 6 | 0.3 | completo |
+| 340 | `.github/agents/sisad-token-steward.agent.md` | markdown | 7 | 0.3 | completo |
+| 341 | `.github/agents/sisad-traceability-steward.agent.md` | markdown | 7 | 0.2 | completo |
+| 342 | `.github/agents/sisad-ux.agent.md` | markdown | 6 | 0.3 | completo |
+| 343 | `.github/instructions/ai-docs.instructions.md` | markdown | 5 | 0.2 | completo |
+| 344 | `.github/instructions/ai.instructions.md` | markdown | 5 | 0.2 | completo |
+| 345 | `.github/instructions/canvas.instructions.md` | markdown | 5 | 0.2 | completo |
+| 346 | `.github/instructions/quality.instructions.md` | markdown | 4 | 0.2 | completo |
+| 347 | `.github/instructions/schemas.instructions.md` | markdown | 5 | 0.2 | completo |
+| 348 | `.github/instructions/sisad-core.instructions.md` | markdown | 5 | 0.2 | completo |
+| 349 | `.github/prompts/color-contract.prompt.md` | markdown | 8 | 0.3 | completo |
+| 350 | `.github/prompts/diagnose-task.prompt.md` | markdown | 8 | 0.3 | completo |
+| 351 | `.github/prompts/implement-task.prompt.md` | markdown | 8 | 0.2 | completo |
+| 352 | `.github/prompts/review-diff.prompt.md` | markdown | 8 | 0.2 | completo |
+| 353 | `.github/prompts/triage-jscpd.prompt.md` | markdown | 4 | 0.3 | completo |
+| 354 | `.github/prompts/update-trace.prompt.md` | markdown | 8 | 0.2 | completo |
+| 355 | `.github/prompts/update-traceability.prompt.md` | markdown | 7 | 0.1 | completo |
+| 356 | `reports/runtime-platform/EXECUTIVE-SUMMARY.md` | markdown | 8 | 0.5 | completo |
+| 357 | `reports/runtime-platform/TREE.md` | markdown | 183 | 7.6 | completo |
+| 358 | `reports/tooling-architecture/ANALYSIS.md` | markdown | 57 | 1.9 | completo |
+| 359 | `src/examples/README.md` | markdown | 86 | 3.7 | completo |
+| 360 | `src/sisad-pdfme/AGENTS.md` | markdown | 3 | 0.2 | completo |
+| 361 | `src/sisad-pdfme/COREUX-ROADMAP.md` | markdown | 3 | 0.1 | completo |
+| 362 | `src/sisad-pdfme/DECLARATIVE-INSTANCE-ROADMAP.md` | markdown | 3 | 0.1 | completo |
+| 363 | `tools/ai-quality/README-KNOWLEDGE-INDEX.md` | markdown | 11 | 0.3 | completo |
+| 364 | `tools/ai-quality/README.md` | markdown | 19 | 0.4 | completo |
+| 365 | `tools/digital-agreements-contracts/README.md` | markdown | 33 | 0.9 | completo |
+| 366 | `tools/pdfme-form-runtime/COMMAND-CHECKLIST.md` | markdown | 42 | 0.8 | completo |
+| 367 | `tools/pdfme-form-runtime/README.md` | markdown | 15 | 0.5 | completo |
+| 368 | `tools/sisad-pdfme-runtime/README.md` | markdown | 12 | 0.5 | completo |
+| 369 | `.agents/skills/canvas-safety/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 370 | `.agents/skills/configuration/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 371 | `.agents/skills/context-engineering/SKILL.md` | markdown | 24 | 0.5 | completo |
+| 372 | `.agents/skills/dry-refactor/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 373 | `.agents/skills/event-effect/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 374 | `.agents/skills/inspector-contract/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 375 | `.agents/skills/left-sidebar/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 376 | `.agents/skills/memory-gc/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 377 | `.agents/skills/public-api/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 378 | `.agents/skills/quality-evidence/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 379 | `.agents/skills/recipient-assignment/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 380 | `.agents/skills/responsive-ux/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 381 | `.agents/skills/runtime-parity/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 382 | `.agents/skills/schema-family/SKILL.md` | markdown | 24 | 0.5 | completo |
+| 383 | `.agents/skills/sisad-accessibility/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 384 | `.agents/skills/sisad-action-state/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 385 | `.agents/skills/sisad-ai-architecture/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 386 | `.agents/skills/sisad-behavior-traceability/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 387 | `.agents/skills/sisad-canvas-interaction/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 388 | `.agents/skills/sisad-canvas-safety/SKILL.md` | markdown | 12 | 0.6 | completo |
+| 389 | `.agents/skills/sisad-capability-audit/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 390 | `.agents/skills/sisad-collaboration-assignments/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 391 | `.agents/skills/sisad-command-history/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 392 | `.agents/skills/sisad-configuration-service/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 393 | `.agents/skills/sisad-context-budget/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 394 | `.agents/skills/sisad-context-packet/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 395 | `.agents/skills/sisad-context-rot-check/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 396 | `.agents/skills/sisad-controller-parity/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 397 | `.agents/skills/sisad-css-tailwind/SKILL.md` | markdown | 12 | 0.5 | completo |
+| 398 | `.agents/skills/sisad-decision-record/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 399 | `.agents/skills/sisad-declarative-instance/SKILL.md` | markdown | 25 | 0.5 | completo |
+| 400 | `.agents/skills/sisad-dedup-triage/SKILL.md` | markdown | 10 | 0.6 | completo |
+| 401 | `.agents/skills/sisad-designer-core-ux/SKILL.md` | markdown | 22 | 0.5 | completo |
+| 402 | `.agents/skills/sisad-designer-safety/SKILL.md` | markdown | 8 | 0.6 | completo |
+| 403 | `.agents/skills/sisad-dry-refactor/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 404 | `.agents/skills/sisad-dry-refactoring/SKILL.md` | markdown | 18 | 0.7 | completo |
+| 405 | `.agents/skills/sisad-event-effect-contract/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 406 | `.agents/skills/sisad-evidence-grounding/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 407 | `.agents/skills/sisad-form-transaction/SKILL.md` | markdown | 6 | 0.2 | completo |
+| 408 | `.agents/skills/sisad-form-viewer-parity/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 409 | `.agents/skills/sisad-frontend-component-architecture/SKILL.md` | markdown | 25 | 0.5 | completo |
+| 410 | `.agents/skills/sisad-incident-recovery/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 411 | `.agents/skills/sisad-inspector-contract/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 412 | `.agents/skills/sisad-knowledge-gc/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 413 | `.agents/skills/sisad-left-sidebar-catalog/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 414 | `.agents/skills/sisad-memory-delta/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 415 | `.agents/skills/sisad-memory-scrum/SKILL.md` | markdown | 8 | 0.5 | completo |
+| 416 | `.agents/skills/sisad-method-registry/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 417 | `.agents/skills/sisad-multi-document-routing/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 418 | `.agents/skills/sisad-orchestrate-task/SKILL.md` | markdown | 16 | 0.8 | completo |
+| 419 | `.agents/skills/sisad-pattern-selection/SKILL.md` | markdown | 12 | 0.6 | completo |
+| 420 | `.agents/skills/sisad-prompt-evaluation/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 421 | `.agents/skills/sisad-provider-adapter-sync/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 422 | `.agents/skills/sisad-public-api-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 423 | `.agents/skills/sisad-quality-gates/SKILL.md` | markdown | 8 | 0.5 | completo |
+| 424 | `.agents/skills/sisad-react-performance/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 425 | `.agents/skills/sisad-recipient-assignment-policy/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 426 | `.agents/skills/sisad-research-verify/SKILL.md` | markdown | 8 | 0.6 | completo |
+| 427 | `.agents/skills/sisad-responsive-ux/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 428 | `.agents/skills/sisad-right-sidebar-contract/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 429 | `.agents/skills/sisad-runtime-platform/SKILL.md` | markdown | 10 | 0.5 | completo |
+| 430 | `.agents/skills/sisad-schema-behavior-matrix/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 431 | `.agents/skills/sisad-schema-family-refactor/SKILL.md` | markdown | 16 | 0.6 | completo |
+| 432 | `.agents/skills/sisad-schema-plugin/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 433 | `.agents/skills/sisad-schema-runtime-contract/SKILL.md` | markdown | 6 | 0.2 | completo |
+| 434 | `.agents/skills/sisad-security-privacy/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 435 | `.agents/skills/sisad-skill-evaluation/SKILL.md` | markdown | 16 | 0.6 | completo |
+| 436 | `.agents/skills/sisad-snapshot-compatibility/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 437 | `.agents/skills/sisad-tailwind-design-system/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 438 | `.agents/skills/sisad-task-execution/SKILL.md` | markdown | 20 | 0.6 | completo |
+| 439 | `.agents/skills/sisad-task-orchestration/SKILL.md` | markdown | 25 | 0.5 | completo |
+| 440 | `.agents/skills/sisad-test-log-distillation/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 441 | `.agents/skills/sisad-testing-pyramid/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 442 | `.agents/skills/sisad-tooling-safety/SKILL.md` | markdown | 6 | 0.2 | completo |
+| 443 | `.agents/skills/sisad-user-model-migration/SKILL.md` | markdown | 15 | 0.6 | completo |
+| 444 | `.agents/skills/sisad-user-runtime/SKILL.md` | markdown | 6 | 0.3 | completo |
+| 445 | `.agents/skills/sisad-visual-regression/SKILL.md` | markdown | 25 | 0.4 | completo |
+| 446 | `.agents/skills/sisad-worktree-coordination/SKILL.md` | markdown | 31 | 0.7 | completo |
+| 447 | `.agents/skills/snapshot/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 448 | `.agents/skills/tailwind-system/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 449 | `.agents/skills/traceability/SKILL.md` | markdown | 23 | 0.4 | completo |
+| 450 | `.agents/skills/worktree-coordination/SKILL.md` | markdown | 23 | 0.5 | completo |
+| 451 | `.ai/analysis/runtime-platform/00-EXECUTIVE.md` | markdown | 14 | 1.1 | completo |
+| 452 | `.ai/analysis/runtime-platform/01-SOURCE-COVERAGE.md` | markdown | 9 | 0.4 | completo |
+| 453 | `.ai/analysis/runtime-platform/02-FORM-STATE-RISKS.md` | markdown | 5 | 0.4 | completo |
+| 454 | `.ai/analysis/runtime-platform/03-PDF-LIFECYCLE.md` | markdown | 3 | 0.3 | completo |
+| 455 | `.ai/analysis/runtime-platform/04-GENERATOR-CONVERTER.md` | markdown | 3 | 0.3 | completo |
+| 456 | `.ai/analysis/runtime-platform/05-SCHEMA-RUNTIME.md` | markdown | 3 | 0.3 | completo |
+| 457 | `.ai/analysis/runtime-platform/06-ARTIFACT-SIGNATURE.md` | markdown | 3 | 0.3 | completo |
+| 458 | `.ai/analysis/runtime-platform/07-MULTIDOC-COLLAB.md` | markdown | 3 | 0.3 | completo |
+| 459 | `.ai/analysis/runtime-platform/08-PERFORMANCE-MEMORY.md` | markdown | 3 | 0.3 | completo |
+| 460 | `.ai/analysis/runtime-platform/09-A11Y-INPUT.md` | markdown | 3 | 0.3 | completo |
+| 461 | `.ai/analysis/runtime-platform/10-NOMENCLATURE.md` | markdown | 3 | 0.3 | completo |
+| 462 | `.ai/analysis/runtime-platform/11-TEST-INFRA.md` | markdown | 3 | 0.3 | completo |
+| 463 | `.ai/analysis/runtime-platform/RISK-REGISTER.md` | markdown | 16 | 0.9 | completo |
+| 464 | `.ai/analysis/sisad-pdfme-runtime-hardening/00-EXECUTIVE.md` | markdown | 39 | 1.2 | completo |
+| 465 | `.ai/analysis/sisad-pdfme-runtime-hardening/01-USER-MODEL.md` | markdown | 27 | 0.7 | completo |
+| 466 | `.ai/analysis/sisad-pdfme-runtime-hardening/02-DESIGNER-STABILITY.md` | markdown | 18 | 0.5 | completo |
+| 467 | `.ai/analysis/sisad-pdfme-runtime-hardening/03-FORM-HARDENING.md` | markdown | 43 | 0.8 | completo |
+| 468 | `.ai/analysis/sisad-pdfme-runtime-hardening/04-SCHEMA-BEHAVIOR.md` | markdown | 17 | 0.4 | completo |
+| 469 | `.ai/analysis/sisad-pdfme-runtime-hardening/05-TOOLING-SAFETY.md` | markdown | 26 | 0.7 | completo |
+| 470 | `.ai/brain/00-product/ARCHITECTURE.md` | markdown | 23 | 0.6 | completo |
+| 471 | `.ai/brain/00-product/GLOSSARY.md` | markdown | 11 | 0.7 | completo |
+| 472 | `.ai/brain/00-product/PRODUCT-IDENTITY.md` | markdown | 15 | 0.7 | completo |
+| 473 | `.ai/brain/00-product/SOURCE-TRUTH.md` | markdown | 29 | 0.9 | completo |
+| 474 | `.ai/brain/00-product/STACK.md` | markdown | 16 | 0.3 | completo |
+| 475 | `.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md` | markdown | 3 | 0.2 | completo |
+| 476 | `.ai/brain/20-contracts/ARTIFACT-CONTRACT.md` | markdown | 3 | 0.2 | completo |
+| 477 | `.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md` | markdown | 3 | 0.2 | completo |
+| 478 | `.ai/brain/20-contracts/DOCUMENTATION-NAMING.md` | markdown | 8 | 0.4 | completo |
+| 479 | `.ai/brain/20-contracts/FORM-COMPLETION-CONTRACT.md` | markdown | 9 | 0.4 | completo |
+| 480 | `.ai/brain/20-contracts/FORM-RUNTIME-ISOLATION.md` | markdown | 23 | 0.6 | completo |
+| 481 | `.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md` | markdown | 18 | 0.5 | completo |
+| 482 | `.ai/brain/20-contracts/FORM-VIEWER-GENERATOR-PARITY.md` | markdown | 3 | 0.2 | completo |
+| 483 | `.ai/brain/20-contracts/HOST-PARTICIPANT-USER-BOUNDARY.md` | markdown | 67 | 1.6 | completo |
+| 484 | `.ai/brain/20-contracts/MULTI-DOCUMENT-CONTRACT.md` | markdown | 3 | 0.2 | completo |
+| 485 | `.ai/brain/20-contracts/PDF-RESOURCE-LIFECYCLE.md` | markdown | 3 | 0.2 | completo |
+| 486 | `.ai/brain/20-contracts/PUBLIC-API-CONTRACT.md` | markdown | 3 | 0.3 | completo |
+| 487 | `.ai/brain/20-contracts/RUNTIME-SESSION-IDENTITY.md` | markdown | 11 | 0.4 | completo |
+| 488 | `.ai/brain/20-contracts/SCHEMA-INTERACTION-INVARIANTS.md` | markdown | 12 | 0.7 | completo |
+| 489 | `.ai/brain/20-contracts/SCHEMA-INTERACTION-ISOLATION.md` | markdown | 15 | 0.5 | completo |
+| 490 | `.ai/brain/20-contracts/SCHEMA-RUNTIME-MANIFEST.md` | markdown | 3 | 0.2 | completo |
+| 491 | `.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md` | markdown | 3 | 0.2 | completo |
+| 492 | `.ai/brain/20-contracts/SIGNATURE-CONTRACT.md` | markdown | 3 | 0.3 | completo |
+| 493 | `.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md` | markdown | 3 | 0.2 | completo |
+| 494 | `.ai/brain/20-contracts/TOOLING-SAFE-APPLY-CONTRACT.md` | markdown | 18 | 0.6 | completo |
+| 495 | `.ai/brain/20-contracts/USER-ASSIGNMENT-CONTRACT.md` | markdown | 34 | 0.8 | completo |
+| 496 | `.ai/brain/30-decisions/ADR-RTP-001-SISAD-PDFME-PRODUCT-IDENTITY.md` | markdown | 3 | 0.2 | completo |
+| 497 | `.ai/brain/30-decisions/ADR-RTP-002-LOCAL-FIRST-FORM.md` | markdown | 3 | 0.3 | completo |
+| 498 | `.ai/brain/30-decisions/ADR-RTP-003-MANIFEST-INCREMENTAL.md` | markdown | 3 | 0.2 | completo |
+| 499 | `.ai/brain/30-decisions/ADR-RTP-004-PDF-LIFECYCLE-OWNERSHIP.md` | markdown | 3 | 0.2 | completo |
+| 500 | `.ai/brain/30-decisions/ADR-RTP-005-USER-RECIPIENT-BOUNDARY.md` | markdown | 8 | 0.4 | completo |
+| 501 | `.ai/brain/30-decisions/ADR-RTP-006-USER-ASSIGNMENT-INDEX.md` | markdown | 5 | 0.3 | completo |
+| 502 | `.ai/brain/30-decisions/ADR-RTP-007-FORM-CODEC-PARITY.md` | markdown | 5 | 0.3 | completo |
+| 503 | `.ai/brain/30-decisions/ADR-TOOLING-CENTRALIZATION.md` | markdown | 22 | 0.6 | completo |
+| 504 | `.ai/brain/40-integrations/DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md` | markdown | 8 | 0.4 | completo |
+| 505 | `.ai/brain/40-integrations/EXTERNAL-FORMS-USER-EXECUTION.md` | markdown | 12 | 0.3 | completo |
+| 506 | `.ai/brain/40-integrations/SISAD-PDFME-DESIGNER-CONSUMER.md` | markdown | 6 | 0.3 | completo |
+| 507 | `.ai/brain/40-runtime/ARTIFACT-LIFECYCLE.md` | markdown | 5 | 0.2 | completo |
+| 508 | `.ai/brain/40-runtime/FORM-RUNTIME.md` | markdown | 5 | 0.2 | completo |
+| 509 | `.ai/brain/40-runtime/MULTI-DOCUMENT.md` | markdown | 5 | 0.1 | completo |
+| 510 | `.ai/brain/40-runtime/PDF-GENERATION.md` | markdown | 5 | 0.2 | completo |
+| 511 | `.ai/brain/40-runtime/PDF-RENDERING.md` | markdown | 5 | 0.2 | completo |
+| 512 | `.ai/brain/40-runtime/SIGNATURE-RUNTIME.md` | markdown | 5 | 0.2 | completo |
+| 513 | `.ai/brain/40-runtime/SNAPSHOT-ROUNDTRIP.md` | markdown | 5 | 0.1 | completo |
+| 514 | `.ai/brain/40-runtime/VIEWER-RUNTIME.md` | markdown | 5 | 0.1 | completo |
+| 515 | `.ai/brain/50-guides/ADD-OR-HARDEN-SCHEMA.md` | markdown | 3 | 0.2 | completo |
+| 516 | `.ai/brain/50-guides/CONSUMER-INTEGRATION.md` | markdown | 3 | 0.2 | completo |
+| 517 | `.ai/brain/50-guides/DEBUG-FORM-DRAFT-LOSS.md` | markdown | 3 | 0.2 | completo |
+| 518 | `.ai/brain/50-guides/DEBUG-PDF-MEMORY.md` | markdown | 3 | 0.2 | completo |
+| 519 | `.ai/brain/50-guides/FORM-HARDENING.md` | markdown | 7 | 0.3 | completo |
+| 520 | `.ai/brain/50-guides/PROJECT-TOOLS.md` | markdown | 21 | 0.3 | completo |
+| 521 | `.ai/brain/50-guides/SCHEMA-FAMILY-RELEASE.md` | markdown | 5 | 0.3 | completo |
+| 522 | `.ai/brain/50-guides/TOOLING-SAFE-APPLY.md` | markdown | 5 | 0.2 | completo |
+| 523 | `.ai/brain/50-guides/USER-MODEL-MIGRATION.md` | markdown | 5 | 0.3 | completo |
+| 524 | `.ai/brain/60-quality/DEFINITION-OF-DONE-SCHEMA.md` | markdown | 3 | 0.4 | completo |
+| 525 | `.ai/brain/60-quality/PERFORMANCE-BUDGETS-TO-MEASURE.md` | markdown | 3 | 0.3 | completo |
+| 526 | `.ai/brain/60-quality/RUNTIME-REGRESSION-MATRIX.md` | markdown | 3 | 0.3 | completo |
+| 527 | `.ai/brain/60-quality/SCHEMA-RUNTIME-COVERAGE-MATRIX.md` | markdown | 6 | 0.4 | completo |
+| 528 | `.ai/brain/60-quality/SISAD-PDFME-RELEASE-GATE.md` | markdown | 15 | 0.5 | completo |
+| 529 | `.ai/brain/70-memory/CURRENT.md` | markdown | 7 | 0.3 | completo |
+| 530 | `.ai/brain/70-memory/CURRENT.reconciled.md` | markdown | 13 | 0.6 | completo |
+| 531 | `.ai/brain/70-memory/HANDOFF.md` | markdown | 5 | 0.3 | completo |
+| 532 | `.ai/brain/80-work/ACTIVE.md` | markdown | 3 | 0.1 | completo |
+| 533 | `.ai/brain/90-reference/CURRENT-ARCHITECTURE-MAP.md` | markdown | 27 | 0.8 | completo |
+| 534 | `.ai/brain/90-reference/EXISTING-AI-ARCHITECTURE.md` | markdown | 13 | 0.5 | completo |
+| 535 | `.ai/brain/90-reference/RUNTIME-HOTSPOTS.md` | markdown | 52 | 4.6 | completo |
+| 536 | `.ai/index/runtime-platform/README.md` | markdown | 19 | 0.6 | completo |
+| 537 | `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md` | markdown | 22 | 2.1 | completo |
+| 538 | `.ai/knowledge/domain/COREUX-EFFECTS.md` | markdown | 90 | 1.8 | completo |
+| 539 | `.ai/knowledge/domain/COREUX-EVENTS.md` | markdown | 59 | 4.9 | completo |
+| 540 | `.ai/knowledge/domain/COREUX-PATTERNS.md` | markdown | 29 | 1.5 | completo |
+| 541 | `.ai/knowledge/domain/COREUX-USE-CASES.md` | markdown | 156 | 12.7 | completo |
+| 542 | `.ai/knowledge/domain/CURRENT-PUBLIC-API.md` | markdown | 13 | 1.1 | completo |
+| 543 | `.ai/knowledge/domain/DECLARATIVE-API.md` | markdown | 74 | 1.4 | completo |
+| 544 | `.ai/knowledge/domain/DECLARATIVE-BASELINE.md` | markdown | 60 | 5.9 | completo |
+| 545 | `.ai/knowledge/domain/DECLARATIVE-USE-CASES.md` | markdown | 70 | 7.1 | completo |
+| 546 | `.ai/knowledge/domain/DESIGNER-INTERACTION-MATRIX.md` | markdown | 50 | 1.4 | completo |
+| 547 | `.ai/knowledge/domain/DETAILVIEW-PROFILES.md` | markdown | 57 | 1.5 | completo |
+| 548 | `.ai/knowledge/domain/EFFECT-CATALOG.md` | markdown | 38 | 1.1 | completo |
+| 549 | `.ai/knowledge/domain/EVENT-CATALOG.md` | markdown | 72 | 1.3 | completo |
+| 550 | `.ai/knowledge/domain/FORM-VIEWER-PDF-PARITY.md` | markdown | 38 | 1.1 | completo |
+| 551 | `.ai/knowledge/domain/LEFT-SIDEBAR-BEHAVIOR.md` | markdown | 64 | 1.8 | completo |
+| 552 | `.ai/knowledge/domain/OWNER-COLOR-CONTRACT.md` | markdown | 61 | 1.8 | completo |
+| 553 | `.ai/knowledge/domain/SCHEMA-BEHAVIOR-MATRIX.md` | markdown | 41 | 1.9 | completo |
+| 554 | `.ai/knowledge/domain/USER-RECIPIENT-USE-CASES.md` | markdown | 49 | 2.5 | completo |
+| 555 | `.ai/memory/topics/ai-architecture.md` | markdown | 3 | 0.1 | completo |
+| 556 | `.ai/memory/topics/canvas.md` | markdown | 3 | 0.1 | completo |
+| 557 | `.ai/memory/topics/configuration.md` | markdown | 3 | 0.1 | completo |
+| 558 | `.ai/memory/topics/runtime.md` | markdown | 3 | 0.1 | completo |
+| 559 | `.ai/memory/topics/schemas.md` | markdown | 3 | 0.1 | completo |
+| 560 | `.ai/migrations/sisad-pdfme-digital-agreements-runtime/README.md` | markdown | 12 | 0.5 | completo |
+| 561 | `.ai/ops/tasks/SPRT-000.md` | markdown | 32 | 0.9 | completo |
+| 562 | `.ai/ops/tasks/SPRT-010.md` | markdown | 32 | 0.9 | completo |
+| 563 | `.ai/ops/tasks/SPRT-020.md` | markdown | 32 | 0.8 | completo |
+| 564 | `.ai/ops/tasks/SPRT-030.md` | markdown | 32 | 0.8 | completo |
+| 565 | `.ai/ops/tasks/SPRT-040.md` | markdown | 32 | 0.7 | completo |
+| 566 | `.ai/ops/tasks/SPRT-050.md` | markdown | 32 | 0.8 | completo |
+| 567 | `.ai/ops/tasks/SPRT-060.md` | markdown | 32 | 0.8 | completo |
+| 568 | `.ai/ops/tasks/SPRT-070.md` | markdown | 32 | 0.7 | completo |
+| 569 | `.ai/ops/tasks/SPRT-080.md` | markdown | 32 | 0.7 | completo |
+| 570 | `.ai/ops/tasks/SPRT-090.md` | markdown | 32 | 0.7 | completo |
+| 571 | `.ai/ops/tasks/SPRT-100.md` | markdown | 32 | 0.7 | completo |
+| 572 | `.ai/ops/tasks/SPRT-110.md` | markdown | 32 | 0.7 | completo |
+| 573 | `.ai/ops/tasks/SPRT-120.md` | markdown | 32 | 0.8 | completo |
+| 574 | `.ai/ops/tasks/SPRT-130.md` | markdown | 32 | 0.7 | completo |
+| 575 | `.ai/ops/tasks/SPRT-140.md` | markdown | 32 | 0.8 | completo |
+| 576 | `.ai/ops/tasks/SPRT-150.md` | markdown | 32 | 0.8 | completo |
+| 577 | `.ai/ops/tasks/SPRT-160.md` | markdown | 32 | 0.7 | completo |
+| 578 | `.ai/ops/tasks/SPRT-170.md` | markdown | 32 | 0.8 | completo |
+| 579 | `.ai/ops/tasks/SPRT-180.md` | markdown | 32 | 0.7 | completo |
+| 580 | `.ai/ops/tasks/SPRT-190.md` | markdown | 32 | 0.7 | completo |
+| 581 | `.ai/ops/tasks/SPRT-200.md` | markdown | 32 | 0.8 | completo |
+| 582 | `.ai/ops/tasks/SPRT-210.md` | markdown | 32 | 0.8 | completo |
+| 583 | `.ai/ops/tasks/SPRT-220.md` | markdown | 32 | 0.7 | completo |
+| 584 | `.ai/ops/tasks/SPRT-230.md` | markdown | 32 | 0.8 | completo |
+| 585 | `.ai/ops/tasks/SPRT-240.md` | markdown | 32 | 0.7 | completo |
+| 586 | `.ai/ops/tasks/SPRT-250.md` | markdown | 32 | 0.8 | completo |
+| 587 | `.ai/ops/tasks/SPRT-260.md` | markdown | 32 | 0.7 | completo |
+| 588 | `.ai/ops/tasks/SPRT-270.md` | markdown | 16 | 0.5 | completo |
+| 589 | `.ai/ops/tasks/TASK-LEDGER-SPRT-V2.md` | markdown | 31 | 1.6 | completo |
+| 590 | `.ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline.md` | markdown | 72 | 1.6 | completo |
+| 591 | `.ai/scrum/task-cards/AIARCH-002-corregir-fuente-de-estado-y-arranque.md` | markdown | 73 | 1.6 | completo |
+| 592 | `.ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz.md` | markdown | 72 | 1.6 | completo |
+| 593 | `.ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md` | markdown | 72 | 1.6 | completo |
+| 594 | `.ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md` | markdown | 72 | 1.6 | completo |
+| 595 | `.ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md` | markdown | 72 | 1.6 | completo |
+| 596 | `.ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md` | markdown | 72 | 1.6 | completo |
+| 597 | `.ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md` | markdown | 72 | 1.6 | completo |
+| 598 | `.ai/scrum/task-cards/AIARCH-010-generar-method-registry-desde-codigo.md` | markdown | 72 | 1.6 | completo |
+| 599 | `.ai/scrum/task-cards/AIARCH-011-consolidar-casos-y-behavior-catalog.md` | markdown | 72 | 1.6 | completo |
+| 600 | `.ai/scrum/task-cards/AIARCH-012-consolidar-event-effect-catalogs.md` | markdown | 72 | 1.6 | completo |
+| 601 | `.ai/scrum/task-cards/AIARCH-013-construir-trace-matrix-y-coverage-gate.md` | markdown | 72 | 1.6 | completo |
+| 602 | `.ai/scrum/task-cards/AIARCH-014-depurar-skill-registry-y-aliases.md` | markdown | 72 | 1.6 | completo |
+| 603 | `.ai/scrum/task-cards/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md` | markdown | 72 | 1.6 | completo |
+| 604 | `.ai/scrum/task-cards/AIARCH-016-consolidar-agent-registry.md` | markdown | 72 | 1.6 | completo |
+| 605 | `.ai/scrum/task-cards/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md` | markdown | 72 | 1.6 | completo |
+| 606 | `.ai/scrum/task-cards/AIARCH-018-actualizar-adapter-de-claude.md` | markdown | 72 | 1.6 | completo |
+| 607 | `.ai/scrum/task-cards/AIARCH-019-actualizar-adapter-de-codex.md` | markdown | 72 | 1.6 | completo |
+| 608 | `.ai/scrum/task-cards/AIARCH-020-actualizar-adapter-de-copilot.md` | markdown | 72 | 1.6 | completo |
+| 609 | `.ai/scrum/task-cards/AIARCH-021-implementar-provider-drift-gate.md` | markdown | 72 | 1.6 | completo |
+| 610 | `.ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema.md` | markdown | 72 | 1.6 | completo |
+| 611 | `.ai/scrum/task-cards/AIARCH-023-consolidar-scrum-claims-y-vistas.md` | markdown | 72 | 1.6 | completo |
+| 612 | `.ai/scrum/task-cards/AIARCH-024-crear-evidence-store-y-log-distillation.md` | markdown | 72 | 1.6 | completo |
+| 613 | `.ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos.md` | markdown | 72 | 1.6 | completo |
+| 614 | `.ai/scrum/task-cards/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md` | markdown | 72 | 1.6 | completo |
+| 615 | `.ai/scrum/task-cards/AIARCH-027-migrar-planes-coreux-decl-restore.md` | markdown | 72 | 1.6 | completo |
+| 616 | `.ai/scrum/task-cards/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md` | markdown | 72 | 1.6 | completo |
+| 617 | `.ai/scrum/task-cards/AIARCH-029-integrar-scripts-en-package-ci.md` | markdown | 72 | 1.6 | completo |
+| 618 | `.ai/scrum/task-cards/AIARCH-030-rollout-documentacion-y-retrospectiva.md` | markdown | 72 | 1.6 | completo |
+| 619 | `.ai/scrum/task-cards/COREUX-001-congelar-baseline-visual-y-responsive.md` | markdown | 177 | 4.6 | completo |
+| 620 | `.ai/scrum/task-cards/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md` | markdown | 176 | 4.9 | completo |
+| 621 | `.ai/scrum/task-cards/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md` | markdown | 179 | 4.6 | completo |
+| 622 | `.ai/scrum/task-cards/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md` | markdown | 177 | 4.7 | completo |
+| 623 | `.ai/scrum/task-cards/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md` | markdown | 178 | 4.4 | completo |
+| 624 | `.ai/scrum/task-cards/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md` | markdown | 190 | 5.2 | completo |
+| 625 | `.ai/scrum/task-cards/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md` | markdown | 192 | 5.3 | completo |
+| 626 | `.ai/scrum/task-cards/COREUX-008-expandir-maquina-de-estados-de-interaccion.md` | markdown | 177 | 4.6 | completo |
+| 627 | `.ai/scrum/task-cards/COREUX-009-crear-coordinador-de-efectos-del-designer.md` | markdown | 185 | 5.0 | completo |
+| 628 | `.ai/scrum/task-cards/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md` | markdown | 181 | 5.0 | completo |
+| 629 | `.ai/scrum/task-cards/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md` | markdown | 180 | 4.7 | completo |
+| 630 | `.ai/scrum/task-cards/COREUX-012-conectar-commandbus-eventos-e-historial.md` | markdown | 183 | 4.9 | completo |
+| 631 | `.ai/scrum/task-cards/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md` | markdown | 188 | 5.0 | completo |
+| 632 | `.ai/scrum/task-cards/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md` | markdown | 184 | 4.9 | completo |
+| 633 | `.ai/scrum/task-cards/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md` | markdown | 189 | 5.3 | completo |
+| 634 | `.ai/scrum/task-cards/COREUX-016-completar-comandos-de-pagina.md` | markdown | 180 | 4.7 | completo |
+| 635 | `.ai/scrum/task-cards/COREUX-017-unificar-zoom-fit-page-y-fit-width.md` | markdown | 192 | 5.4 | completo |
+| 636 | `.ai/scrum/task-cards/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md` | markdown | 184 | 5.1 | completo |
+| 637 | `.ai/scrum/task-cards/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md` | markdown | 184 | 5.1 | completo |
+| 638 | `.ai/scrum/task-cards/COREUX-020-crear-estado-responsive-unico-de-superficies.md` | markdown | 173 | 4.3 | completo |
+| 639 | `.ai/scrum/task-cards/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md` | markdown | 174 | 4.3 | completo |
+| 640 | `.ai/scrum/task-cards/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md` | markdown | 173 | 4.3 | completo |
+| 641 | `.ai/scrum/task-cards/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md` | markdown | 175 | 4.3 | completo |
+| 642 | `.ai/scrum/task-cards/COREUX-024-formalizar-contrato-del-rightsidebar.md` | markdown | 174 | 4.3 | completo |
+| 643 | `.ai/scrum/task-cards/COREUX-025-completar-listview-compacto-y-menu-por-fila.md` | markdown | 174 | 4.5 | completo |
+| 644 | `.ai/scrum/task-cards/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md` | markdown | 178 | 4.7 | completo |
+| 645 | `.ai/scrum/task-cards/COREUX-027-completar-documentsrail-y-documentcontroller.md` | markdown | 175 | 4.3 | completo |
+| 646 | `.ai/scrum/task-cards/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md` | markdown | 175 | 4.5 | completo |
+| 647 | `.ai/scrum/task-cards/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md` | markdown | 174 | 4.2 | completo |
+| 648 | `.ai/scrum/task-cards/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md` | markdown | 173 | 4.5 | completo |
+| 649 | `.ai/scrum/task-cards/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md` | markdown | 173 | 4.3 | completo |
+| 650 | `.ai/scrum/task-cards/COREUX-032-consolidar-datos-y-conexiones.md` | markdown | 173 | 4.2 | completo |
+| 651 | `.ai/scrum/task-cards/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md` | markdown | 174 | 4.5 | completo |
+| 652 | `.ai/scrum/task-cards/COREUX-034-unificar-editor-de-opciones.md` | markdown | 175 | 4.2 | completo |
+| 653 | `.ai/scrum/task-cards/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md` | markdown | 175 | 4.5 | completo |
+| 654 | `.ai/scrum/task-cards/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md` | markdown | 174 | 4.3 | completo |
+| 655 | `.ai/scrum/task-cards/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md` | markdown | 174 | 4.3 | completo |
+| 656 | `.ai/scrum/task-cards/COREUX-038-cerrar-contrato-de-choice-fields.md` | markdown | 176 | 4.3 | completo |
+| 657 | `.ai/scrum/task-cards/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md` | markdown | 173 | 4.2 | completo |
+| 658 | `.ai/scrum/task-cards/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md` | markdown | 176 | 4.4 | completo |
+| 659 | `.ai/scrum/task-cards/COREUX-041-unificar-owner-tone-y-field-chrome.md` | markdown | 175 | 4.4 | completo |
+| 660 | `.ai/scrum/task-cards/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md` | markdown | 174 | 4.4 | completo |
+| 661 | `.ai/scrum/task-cards/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md` | markdown | 175 | 4.5 | completo |
+| 662 | `.ai/scrum/task-cards/COREUX-044-alinear-moveable-con-access-interaction-y-events.md` | markdown | 175 | 4.4 | completo |
+| 663 | `.ai/scrum/task-cards/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md` | markdown | 176 | 4.5 | completo |
+| 664 | `.ai/scrum/task-cards/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md` | markdown | 174 | 4.3 | completo |
+| 665 | `.ai/scrum/task-cards/COREUX-047-completar-snapshot-e-historial-versionado.md` | markdown | 176 | 4.4 | completo |
+| 666 | `.ai/scrum/task-cards/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md` | markdown | 174 | 4.4 | completo |
+| 667 | `.ai/scrum/task-cards/COREUX-049-cerrar-paridad-designer-form-y-viewer.md` | markdown | 177 | 4.3 | completo |
+| 668 | `.ai/scrum/task-cards/COREUX-050-unificar-validacion-generator-converter-y-persistence.md` | markdown | 176 | 4.4 | completo |
+| 669 | `.ai/scrum/task-cards/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md` | markdown | 175 | 4.4 | completo |
+| 670 | `.ai/scrum/task-cards/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md` | markdown | 174 | 4.2 | completo |
+| 671 | `.ai/scrum/task-cards/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md` | markdown | 174 | 4.2 | completo |
+| 672 | `.ai/scrum/task-cards/COREUX-054-crear-playwright-y-regresion-visual-integral.md` | markdown | 174 | 4.5 | completo |
+| 673 | `.ai/scrum/task-cards/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md` | markdown | 175 | 4.0 | completo |
+| 674 | `.ai/scrum/task-cards/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md` | markdown | 176 | 4.3 | completo |
+| 675 | `.ai/scrum/task-cards/name-001-inventariar-y-clasificar-ocurrencias.md` | markdown | 39 | 0.9 | completo |
+| 676 | `.ai/scrum/task-cards/name-002-crear-pol-tica-y-gate-preventivo.md` | markdown | 39 | 0.9 | completo |
+| 677 | `.ai/scrum/task-cards/name-003-renombrar-vocabulario-del-inspector.md` | markdown | 39 | 0.9 | completo |
+| 678 | `.ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-a.md` | markdown | 39 | 0.9 | completo |
+| 679 | `.ai/scrum/task-cards/name-005-renombrar-eventos-y-callbacks-del-host.md` | markdown | 39 | 0.9 | completo |
+| 680 | `.ai/scrum/task-cards/name-006-versionar-snapshots-y-metadata.md` | markdown | 39 | 0.9 | completo |
+| 681 | `.ai/scrum/task-cards/name-007-renombrar-provider-de-colaboraci-n.md` | markdown | 39 | 0.9 | completo |
+| 682 | `.ai/scrum/task-cards/name-008-sanear-almacenamiento-de-comentarios.md` | markdown | 39 | 0.9 | completo |
+| 683 | `.ai/scrum/task-cards/name-009-sanear-firma-y-familias-de-schema.md` | markdown | 38 | 0.9 | completo |
+| 684 | `.ai/scrum/task-cards/name-010-renombrar-documentaci-n-y-arquitectura-ia.md` | markdown | 39 | 0.9 | completo |
+| 685 | `.ai/scrum/task-cards/name-011-administrar-aliases-p-blicos-deprecados.md` | markdown | 39 | 0.9 | completo |
+| 686 | `.ai/scrum/task-cards/name-012-retirar-compatibilidad-obsoleta.md` | markdown | 39 | 0.9 | completo |
+| 687 | `.ai/scrum/task-cards/PORTDOC-001-auditar-api-publica.md` | markdown | 10 | 0.2 | completo |
+| 688 | `.ai/scrum/task-cards/PORTDOC-002-actualizar-ejemplos.md` | markdown | 10 | 0.2 | completo |
+| 689 | `.ai/scrum/task-cards/PORTDOC-003-consumer-test.md` | markdown | 10 | 0.2 | completo |
+| 690 | `.ai/scrum/task-cards/PORTDOC-004-gate-drift-documental.md` | markdown | 10 | 0.2 | completo |
+| 691 | `.ai/scrum/task-cards/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md` | markdown | 172 | 4.6 | completo |
+| 692 | `.ai/scrum/task-cards/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md` | markdown | 168 | 5.2 | completo |
+| 693 | `.ai/scrum/task-cards/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md` | markdown | 166 | 4.6 | completo |
+| 694 | `.ai/scrum/task-cards/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md` | markdown | 166 | 4.7 | completo |
+| 695 | `.ai/scrum/task-cards/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md` | markdown | 166 | 4.5 | completo |
+| 696 | `.ai/scrum/task-cards/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md` | markdown | 166 | 4.5 | completo |
+| 697 | `.ai/scrum/task-cards/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md` | markdown | 166 | 4.4 | completo |
+| 698 | `.ai/scrum/task-cards/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md` | markdown | 165 | 4.4 | completo |
+| 699 | `.ai/scrum/task-cards/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md` | markdown | 165 | 4.3 | completo |
+| 700 | `.ai/scrum/task-cards/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md` | markdown | 165 | 4.3 | completo |
+| 701 | `.ai/scrum/task-cards/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md` | markdown | 165 | 4.4 | completo |
+| 702 | `.ai/scrum/task-cards/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md` | markdown | 165 | 4.4 | completo |
+| 703 | `.ai/scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md` | markdown | 164 | 4.4 | completo |
+| 704 | `.ai/scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md` | markdown | 164 | 4.3 | completo |
+| 705 | `.ai/scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md` | markdown | 164 | 4.4 | completo |
+| 706 | `.ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md` | markdown | 164 | 4.4 | completo |
+| 707 | `.ai/scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md` | markdown | 164 | 4.4 | completo |
+| 708 | `.ai/scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md` | markdown | 165 | 4.3 | completo |
+| 709 | `.ai/scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md` | markdown | 166 | 4.5 | completo |
+| 710 | `.ai/scrum/task-cards/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md` | markdown | 165 | 4.5 | completo |
+| 711 | `.ai/scrum/task-cards/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md` | markdown | 164 | 4.5 | completo |
+| 712 | `.ai/scrum/task-cards/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md` | markdown | 164 | 4.5 | completo |
+| 713 | `.ai/scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md` | markdown | 165 | 4.5 | completo |
+| 714 | `.ai/scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md` | markdown | 164 | 4.4 | completo |
+| 715 | `.ai/scrum/task-cards/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md` | markdown | 164 | 4.4 | completo |
+| 716 | `.ai/scrum/task-cards/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md` | markdown | 165 | 4.5 | completo |
+| 717 | `.ai/scrum/task-cards/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md` | markdown | 164 | 4.4 | completo |
+| 718 | `.ai/scrum/task-cards/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md` | markdown | 166 | 4.4 | completo |
+| 719 | `.ai/scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md` | markdown | 166 | 4.3 | completo |
+| 720 | `.ai/scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md` | markdown | 167 | 4.4 | completo |
+| 721 | `.ai/scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md` | markdown | 163 | 4.3 | completo |
+| 722 | `.ai/scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md` | markdown | 163 | 4.2 | completo |
+| 723 | `.ai/scrum/task-cards/VISUX-033-cerrar-media-barcode-table-y-shapes.md` | markdown | 165 | 4.2 | completo |
+| 724 | `.ai/scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md` | markdown | 166 | 4.4 | completo |
+| 725 | `.ai/scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md` | markdown | 165 | 4.4 | completo |
+| 726 | `.ai/scrum/task-cards/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md` | markdown | 165 | 4.4 | completo |
+| 727 | `.ai/scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md` | markdown | 165 | 4.5 | completo |
+| 728 | `.ai/scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md` | markdown | 166 | 4.5 | completo |
+| 729 | `.ai/scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md` | markdown | 166 | 4.4 | completo |
+| 730 | `.ai/scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md` | markdown | 172 | 4.4 | completo |
+| 731 | `.ai/scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md` | markdown | 165 | 4.3 | completo |
+| 732 | `.ai/scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md` | markdown | 173 | 4.5 | completo |
+| 733 | `.claude/skills/sisad-form-transaction/SKILL.md` | markdown | 6 | 0.2 | completo |
+| 734 | `.claude/skills/sisad-schema-runtime-contract/SKILL.md` | markdown | 6 | 0.2 | completo |
+| 735 | `.claude/skills/sisad-tooling-safety/SKILL.md` | markdown | 6 | 0.2 | completo |
+| 736 | `.claude/skills/sisad-user-model-migration/SKILL.md` | markdown | 3 | 0.1 | completo |
+| 737 | `.claude/skills/sisad-user-runtime/SKILL.md` | markdown | 6 | 0.3 | completo |
+| 738 | `.claude/skills/testsprite-onboard/SKILL.md` | markdown | 189 | 8.5 | completo |
+| 739 | `.claude/skills/testsprite-verify/SKILL.md` | markdown | 491 | 25.1 | completo |
+| 740 | `reports/runtime-platform/evidence/examples-refactor-closeout-2026-08-13.md` | markdown | 97 | 4.7 | completo |
+| 741 | `reports/runtime-platform/evidence/form-access-fix-2026-08-14.md` | markdown | 36 | 1.2 | completo |
+| 742 | `reports/runtime-platform/evidence/RTP-040.md` | markdown | 94 | 4.0 | completo |
+| 743 | `reports/runtime-platform/evidence/RTP-045.md` | markdown | 86 | 3.7 | completo |
+| 744 | `reports/runtime-platform/evidence/RTP-220-parcial-roles-readonly.md` | markdown | 59 | 2.4 | completo |
+| 745 | `reports/runtime-platform/evidence/SPRT-000.md` | markdown | 49 | 1.7 | completo |
+| 746 | `reports/runtime-platform/evidence/SPRT-010.md` | markdown | 28 | 1.2 | completo |
+| 747 | `reports/runtime-platform/evidence/SPRT-020.md` | markdown | 68 | 3.4 | completo |
+| 748 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 39 | 1.6 | completo |
+| 749 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
+| 750 | `src/sisad-pdfme/config/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 751 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
+| 752 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
+| 753 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
+| 754 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
+| 755 | `src/sisad-pdfme/schemas/AGENTS.md` | markdown | 6 | 0.1 | completo |
+| 756 | `src/sisad-pdfme/shared/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 757 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
+| 758 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
+| 759 | `.ai/brain/10-domains/adapters/FILES.md` | markdown | 7 | 0.4 | completo |
+| 760 | `.ai/brain/10-domains/adapters/README.md` | markdown | 26 | 0.8 | completo |
+| 761 | `.ai/brain/10-domains/assignments/FILES.md` | markdown | 3 | 0.1 | completo |
+| 762 | `.ai/brain/10-domains/assignments/README.md` | markdown | 22 | 0.5 | completo |
+| 763 | `.ai/brain/10-domains/browser/FILES.md` | markdown | 4 | 0.2 | completo |
+| 764 | `.ai/brain/10-domains/browser/README.md` | markdown | 23 | 0.5 | completo |
+| 765 | `.ai/brain/10-domains/canvas/FILES.md` | markdown | 5 | 0.2 | completo |
+| 766 | `.ai/brain/10-domains/canvas/README.md` | markdown | 24 | 0.6 | completo |
+| 767 | `.ai/brain/10-domains/collaboration/FILES.md` | markdown | 8 | 0.5 | completo |
+| 768 | `.ai/brain/10-domains/collaboration/README.md` | markdown | 27 | 0.9 | completo |
+| 769 | `.ai/brain/10-domains/commands/FILES.md` | markdown | 3 | 0.1 | completo |
+| 770 | `.ai/brain/10-domains/commands/README.md` | markdown | 22 | 0.5 | completo |
+| 771 | `.ai/brain/10-domains/comments/FILES.md` | markdown | 3 | 0.1 | completo |
+| 772 | `.ai/brain/10-domains/comments/README.md` | markdown | 22 | 0.5 | completo |
+| 773 | `.ai/brain/10-domains/common/FILES.md` | markdown | 14 | 0.8 | completo |
+| 774 | `.ai/brain/10-domains/common/README.md` | markdown | 29 | 0.9 | completo |
+| 775 | `.ai/brain/10-domains/config/FILES.md` | markdown | 21 | 1.5 | completo |
+| 776 | `.ai/brain/10-domains/config/README.md` | markdown | 29 | 1.0 | completo |
+| 777 | `.ai/brain/10-domains/context/FILES.md` | markdown | 3 | 0.1 | completo |
+| 778 | `.ai/brain/10-domains/context/README.md` | markdown | 22 | 0.5 | completo |
+| 779 | `.ai/brain/10-domains/contracts/FILES.md` | markdown | 9 | 0.5 | completo |
+| 780 | `.ai/brain/10-domains/contracts/README.md` | markdown | 28 | 0.8 | completo |
+| 781 | `.ai/brain/10-domains/converter/FILES.md` | markdown | 12 | 0.7 | completo |
+| 782 | `.ai/brain/10-domains/converter/README.md` | markdown | 29 | 0.9 | completo |
+| 783 | `.ai/brain/10-domains/devtools/FILES.md` | markdown | 3 | 0.1 | completo |
+| 784 | `.ai/brain/10-domains/devtools/README.md` | markdown | 22 | 0.5 | completo |
+| 785 | `.ai/brain/10-domains/documents/FILES.md` | markdown | 3 | 0.1 | completo |
+| 786 | `.ai/brain/10-domains/documents/README.md` | markdown | 22 | 0.5 | completo |
+| 787 | `.ai/brain/10-domains/editor/FILES.md` | markdown | 3 | 0.1 | completo |
+| 788 | `.ai/brain/10-domains/editor/README.md` | markdown | 22 | 0.5 | completo |
+| 789 | `.ai/brain/10-domains/externalForms/FILES.md` | markdown | 3 | 0.1 | completo |
+| 790 | `.ai/brain/10-domains/externalForms/README.md` | markdown | 22 | 0.5 | completo |
+| 791 | `.ai/brain/10-domains/generator/FILES.md` | markdown | 8 | 0.4 | completo |
+| 792 | `.ai/brain/10-domains/generator/README.md` | markdown | 27 | 0.8 | completo |
+| 793 | `.ai/brain/10-domains/index.ts/FILES.md` | markdown | 3 | 0.1 | completo |
+| 794 | `.ai/brain/10-domains/index.ts/README.md` | markdown | 22 | 0.5 | completo |
+| 795 | `.ai/brain/10-domains/integration/FILES.md` | markdown | 10 | 0.7 | completo |
+| 796 | `.ai/brain/10-domains/integration/README.md` | markdown | 29 | 1.0 | completo |
+| 797 | `.ai/brain/10-domains/react/FILES.md` | markdown | 16 | 1.1 | completo |
+| 798 | `.ai/brain/10-domains/react/README.md` | markdown | 29 | 1.0 | completo |
+| 799 | `.ai/brain/10-domains/recipients/FILES.md` | markdown | 10 | 0.7 | completo |
+| 800 | `.ai/brain/10-domains/recipients/README.md` | markdown | 29 | 1.0 | completo |
+| 801 | `.ai/brain/10-domains/runtime/ARCHITECTURE.md` | markdown | 19 | 0.8 | completo |
+| 802 | `.ai/brain/10-domains/runtime/FILES.md` | markdown | 10 | 0.6 | completo |
+| 803 | `.ai/brain/10-domains/runtime/README.md` | markdown | 30 | 1.0 | completo |
+| 804 | `.ai/brain/10-domains/schemas/FILES.md` | markdown | 92 | 6.9 | completo |
+| 805 | `.ai/brain/10-domains/schemas/README.md` | markdown | 30 | 1.0 | completo |
+| 806 | `.ai/brain/10-domains/schemas/RUNTIME-MATRIX.md` | markdown | 42 | 5.0 | completo |
+| 807 | `.ai/brain/10-domains/shared/FILES.md` | markdown | 18 | 1.2 | completo |
+| 808 | `.ai/brain/10-domains/shared/README.md` | markdown | 29 | 0.9 | completo |
+| 809 | `.ai/brain/10-domains/templates/FILES.md` | markdown | 5 | 0.3 | completo |
+| 810 | `.ai/brain/10-domains/templates/README.md` | markdown | 24 | 0.6 | completo |
+| 811 | `.ai/brain/10-domains/ui/FILES.md` | markdown | 179 | 18.5 | completo |
+| 812 | `.ai/brain/10-domains/ui/README.md` | markdown | 29 | 1.1 | completo |
+| 813 | `.ai/brain/70-memory/topics/runtime-platform.md` | markdown | 4 | 0.2 | completo |
+| 814 | `.ai/brain/70-memory/topics/sisad-pdfme-digital-agreements-runtime.md` | markdown | 9 | 0.5 | completo |
+| 815 | `.ai/brain/70-memory/topics/tooling-architecture.md` | markdown | 11 | 0.4 | completo |
+| 816 | `.ai/ops/campaigns/SISAD-PDFME-RUNTIME-HARDENING-V2/README.md` | markdown | 6 | 0.2 | completo |
+| 817 | `.ai/ops/campaigns/SISAD-PDFME-RUNTIME-HARDENING-V2/START.md` | markdown | 10 | 0.2 | completo |
+| 818 | `.ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y.md` | markdown | 25 | 0.6 | completo |
+| 819 | `.ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path.md` | markdown | 25 | 0.6 | completo |
+| 820 | `.ai/scrum/task-cards/backlog/AI8-003-migrar-conocimiento-a-jsonl.md` | markdown | 25 | 0.6 | completo |
+| 821 | `.ai/scrum/task-cards/backlog/AI8-005-compactar-routes.md` | markdown | 25 | 0.5 | completo |
+| 822 | `.ai/scrum/task-cards/backlog/AI8-006-compactar-skills-y-aliases.md` | markdown | 25 | 0.6 | completo |
+| 823 | `.ai/scrum/task-cards/backlog/AI8-007-consolidar-agentes.md` | markdown | 25 | 0.5 | completo |
+| 824 | `.ai/scrum/task-cards/backlog/AI8-008-generar-adapters-de-proveedor.md` | markdown | 25 | 0.5 | completo |
+| 825 | `.ai/scrum/task-cards/backlog/AI8-009-migrar-memoria-y-ttl.md` | markdown | 25 | 0.5 | completo |
+| 826 | `.ai/scrum/task-cards/backlog/AI8-010-migrar-lifecycle-de-tareas.md` | markdown | 25 | 0.5 | completo |
+| 827 | `.ai/scrum/task-cards/backlog/AI8-011-consolidar-contratos-de-usuarios-y-color.md` | markdown | 25 | 0.6 | completo |
+| 828 | `.ai/scrum/task-cards/backlog/AI8-012-consolidar-matriz-de-schemas.md` | markdown | 25 | 0.5 | completo |
+| 829 | `.ai/scrum/task-cards/backlog/AI8-013-inventariar-namespace-css.md` | markdown | 25 | 0.6 | completo |
+| 830 | `.ai/scrum/task-cards/backlog/AI8-014-actualizar-trazabilidad.md` | markdown | 25 | 0.5 | completo |
+| 831 | `.ai/scrum/task-cards/backlog/AI8-015-implementar-gates.md` | markdown | 25 | 0.5 | completo |
+| 832 | `.ai/scrum/task-cards/backlog/AI8-016-crear-evals-de-costo-y-precision.md` | markdown | 25 | 0.6 | completo |
+| 833 | `.ai/scrum/task-cards/backlog/AI8-017-migrar-coreux-decl-restore-name.md` | markdown | 25 | 0.6 | completo |
+| 834 | `.ai/scrum/task-cards/backlog/AI8-018-rollout-y-eliminacion-controlada.md` | markdown | 25 | 0.6 | completo |
+| 835 | `.ai/scrum/task-cards/runtime-platform/README.md` | markdown | 46 | 3.1 | completo |
+| 836 | `.ai/scrum/task-cards/runtime-platform/RTP-000.md` | markdown | 57 | 1.8 | completo |
+| 837 | `.ai/scrum/task-cards/runtime-platform/RTP-005.md` | markdown | 57 | 1.8 | completo |
+| 838 | `.ai/scrum/task-cards/runtime-platform/RTP-008.md` | markdown | 37 | 1.2 | completo |
+| 839 | `.ai/scrum/task-cards/runtime-platform/RTP-010.md` | markdown | 55 | 1.8 | completo |
+| 840 | `.ai/scrum/task-cards/runtime-platform/RTP-015.md` | markdown | 39 | 1.2 | completo |
+| 841 | `.ai/scrum/task-cards/runtime-platform/RTP-020.md` | markdown | 55 | 1.8 | completo |
+| 842 | `.ai/scrum/task-cards/runtime-platform/RTP-022.md` | markdown | 39 | 1.2 | completo |
+| 843 | `.ai/scrum/task-cards/runtime-platform/RTP-030.md` | markdown | 56 | 1.8 | completo |
+| 844 | `.ai/scrum/task-cards/runtime-platform/RTP-040.md` | markdown | 56 | 1.9 | completo |
+| 845 | `.ai/scrum/task-cards/runtime-platform/RTP-045.md` | markdown | 70 | 2.6 | completo |
+| 846 | `.ai/scrum/task-cards/runtime-platform/RTP-050.md` | markdown | 55 | 1.8 | completo |
+| 847 | `.ai/scrum/task-cards/runtime-platform/RTP-055.md` | markdown | 38 | 1.1 | completo |
+| 848 | `.ai/scrum/task-cards/runtime-platform/RTP-060.md` | markdown | 55 | 1.8 | completo |
+| 849 | `.ai/scrum/task-cards/runtime-platform/RTP-070.md` | markdown | 56 | 1.8 | completo |
+| 850 | `.ai/scrum/task-cards/runtime-platform/RTP-080.md` | markdown | 56 | 1.8 | completo |
+| 851 | `.ai/scrum/task-cards/runtime-platform/RTP-090.md` | markdown | 55 | 1.8 | completo |
+| 852 | `.ai/scrum/task-cards/runtime-platform/RTP-095.md` | markdown | 38 | 1.1 | completo |
+| 853 | `.ai/scrum/task-cards/runtime-platform/RTP-100.md` | markdown | 55 | 1.8 | completo |
+| 854 | `.ai/scrum/task-cards/runtime-platform/RTP-110.md` | markdown | 55 | 1.8 | completo |
+| 855 | `.ai/scrum/task-cards/runtime-platform/RTP-120.md` | markdown | 55 | 1.7 | completo |
+| 856 | `.ai/scrum/task-cards/runtime-platform/RTP-130.md` | markdown | 55 | 1.8 | completo |
+| 857 | `.ai/scrum/task-cards/runtime-platform/RTP-140.md` | markdown | 55 | 1.8 | completo |
+| 858 | `.ai/scrum/task-cards/runtime-platform/RTP-150.md` | markdown | 55 | 1.8 | completo |
+| 859 | `.ai/scrum/task-cards/runtime-platform/RTP-160.md` | markdown | 55 | 1.8 | completo |
+| 860 | `.ai/scrum/task-cards/runtime-platform/RTP-170.md` | markdown | 55 | 1.8 | completo |
+| 861 | `.ai/scrum/task-cards/runtime-platform/RTP-180.md` | markdown | 55 | 1.8 | completo |
+| 862 | `.ai/scrum/task-cards/runtime-platform/RTP-190.md` | markdown | 57 | 1.9 | completo |
+| 863 | `.ai/scrum/task-cards/runtime-platform/RTP-200.md` | markdown | 56 | 1.8 | completo |
+| 864 | `.ai/scrum/task-cards/runtime-platform/RTP-210.md` | markdown | 55 | 1.8 | completo |
+| 865 | `.ai/scrum/task-cards/runtime-platform/RTP-215.md` | markdown | 39 | 1.2 | completo |
+| 866 | `.ai/scrum/task-cards/runtime-platform/RTP-220.md` | markdown | 55 | 1.8 | completo |
+| 867 | `.ai/scrum/task-cards/runtime-platform/RTP-222.md` | markdown | 39 | 1.2 | completo |
+| 868 | `.ai/scrum/task-cards/runtime-platform/RTP-225.md` | markdown | 71 | 2.6 | completo |
+| 869 | `.ai/scrum/task-cards/runtime-platform/RTP-226.md` | markdown | 38 | 1.1 | completo |
+| 870 | `.ai/scrum/task-cards/runtime-platform/RTP-227.md` | markdown | 38 | 1.1 | completo |
+| 871 | `.ai/scrum/task-cards/runtime-platform/RTP-230.md` | markdown | 55 | 1.8 | completo |
+| 872 | `.ai/scrum/task-cards/runtime-platform/RTP-240.md` | markdown | 55 | 1.8 | completo |
+| 873 | `.ai/scrum/task-cards/runtime-platform/RTP-250.md` | markdown | 56 | 1.9 | completo |
+| 874 | `.ai/scrum/task-cards/runtime-platform/RTP-260.md` | markdown | 55 | 1.8 | completo |
+| 875 | `.ai/scrum/task-cards/runtime-platform/RTP-270.md` | markdown | 55 | 1.8 | completo |
+| 876 | `.ai/scrum/task-cards/runtime-platform/RTP-280.md` | markdown | 55 | 1.8 | completo |
+| 877 | `.ai/scrum/task-cards/runtime-platform/RTP-290.md` | markdown | 55 | 1.8 | completo |
+| 878 | `.ai/scrum/task-cards/runtime-platform/RTP-300.md` | markdown | 55 | 1.8 | completo |
+| 879 | `.ai/scrum/task-cards/runtime-platform/RTP-305.md` | markdown | 38 | 1.2 | completo |
+| 880 | `.ai/scrum/task-cards/runtime-platform/RTP-310.md` | markdown | 55 | 1.8 | completo |
+| 881 | `.ai/scrum/task-cards/runtime-platform/RTP-315.md` | markdown | 72 | 2.6 | completo |
+| 882 | `.ai/scrum/task-cards/runtime-platform/RTP-320.md` | markdown | 55 | 1.8 | completo |
+| 883 | `.ai/scrum/task-cards/runtime-platform/RTP-325.md` | markdown | 38 | 1.0 | completo |
+| 884 | `.ai/scrum/task-cards/runtime-platform/RTP-330.md` | markdown | 56 | 1.8 | completo |
+| 885 | `.ai/scrum/task-cards/runtime-platform/RTP-340.md` | markdown | 55 | 1.8 | completo |
+| 886 | `.ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md` | markdown | 23 | 0.6 | completo |
+| 887 | `.ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md` | markdown | 23 | 0.5 | completo |
+| 888 | `.ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md` | markdown | 23 | 0.6 | completo |
+| 889 | `.ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md` | markdown | 23 | 0.5 | completo |
+| 890 | `.ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md` | markdown | 23 | 0.6 | completo |
+| 891 | `.ai/scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md` | markdown | 11 | 0.4 | completo |
+| 892 | `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md` | markdown | 11 | 0.4 | completo |
+| 893 | `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md` | markdown | 23 | 0.5 | completo |
+| 894 | `.ai/scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md` | markdown | 12 | 0.5 | completo |
+| 895 | `.ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md` | markdown | 23 | 0.5 | completo |
+| 896 | `.ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md` | markdown | 23 | 0.6 | completo |
+| 897 | `.ai/scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md` | markdown | 10 | 0.3 | completo |
+| 898 | `.ai/scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md` | markdown | 11 | 0.4 | completo |
+| 899 | `.ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md` | markdown | 23 | 0.6 | completo |
+| 900 | `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md` | markdown | 10 | 0.3 | completo |
+| 901 | `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md` | markdown | 10 | 0.3 | completo |
+| 902 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
+| 903 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
+| 904 | `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 905 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
+| 906 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
+| 907 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md` | markdown | 6 | 0.2 | completo |
+| 908 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
+| 909 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
+| 910 | `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/ARCHITECTURE.md` | markdown | 27 | 0.8 | completo |
+| 911 | `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/GLOSSARY.md` | markdown | 16 | 1.1 | completo |
+| 912 | `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md` | markdown | 22 | 0.8 | completo |
+| 913 | `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md` | markdown | 10 | 0.4 | completo |
+| 914 | `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md` | markdown | 8 | 0.4 | completo |
+| 915 | `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md` | markdown | 26 | 0.7 | completo |
+| 916 | `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md` | markdown | 8 | 0.4 | completo |
+| 917 | `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md` | markdown | 8 | 0.4 | completo |
+| 918 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
+| 919 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
+| 920 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
+| 921 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
+| 922 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
+| 923 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
+| 924 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1113
+- **extensión no incluida:** 1123
 - **directorio ignorado: dependencia/build/salida generada:** 8
 - **archivo binario/minificado/lock ignorado:** 3
 
 ## Totales
 
-- **KB originales candidatos:** `1350.9`
-- **KB incluidos en contenido:** `1349.1`
+- **KB originales candidatos:** `1402.5`
+- **KB incluidos en contenido:** `1400.7`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -15417,7 +15659,125 @@ La sanitización se considera terminada cuando:
 
 <a id="file-0215"></a>
 
-### 0215 — `.ai/plans/PLAN_TOOLING_ARCHITECTURE_CLEANUP.md`
+### 0215 — `.ai/plans/PLAN_SISAD_PDFME_FORM_HARDENING.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `7`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `b7b3afd0c6`
+- **Estado:** `completo`
+
+```markdown
+# Plan — Form hardening
+
+Characterization pairwise -> transaction protocol -> reconciliation -> codec -> validation /
+completion -> schema family conformance -> multiuser/multidoc -> two-instance isolation ->
+BrowserContext concurrency -> performance/IME/accessibility -> consumer smoke.
+
+Designer/Viewer/Generator se usan como parity consumers, no como nuevos state owners.
+```
+
+<a id="file-0216"></a>
+
+### 0216 — `.ai/plans/PLAN_SISAD_PDFME_RUNTIME_HARDENING_V2.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `40`
+- **Tamaño original:** `1.5 KB`
+- **SHA1 corto:** `e771e04be9`
+- **Estado:** `completo`
+
+```markdown
+# Plan — SISAD-PDFME runtime hardening V2
+
+## Wave 0 — source truth and tooling
+- `SPRT-000` live baseline and public API snapshot.
+- `SPRT-010` importer/installer/test-installer characterization and safety.
+- `SPRT-020` dedup/order/stable-name baseline.
+
+## Wave 1 — identity and assignments
+- `SPRT-030` characterize legacy Recipient terminology.
+- `SPRT-040` introduce canonical `SisadPdfmeUser`.
+- `SPRT-050` normalize `users/activeUserId` at public boundary.
+- `SPRT-060` canonical user assignment model.
+- `SPRT-070` explicit snapshot migration.
+
+## Wave 2 — Form transaction core
+- `SPRT-080` transaction protocol.
+- `SPRT-090` host reconciliation with revision/origin.
+- `SPRT-100` lifecycle/focus/caret/IME.
+- `SPRT-110` interaction/touched/dirty/completion state.
+
+## Wave 3 — schema platform
+- `SPRT-120` schema runtime manifest.
+- `SPRT-130` value codecs and empty semantics.
+- `SPRT-140` text/number/date families.
+- `SPRT-150` choice/boolean families.
+- `SPRT-160` signature/initials/dateSigned.
+- `SPRT-170` artifacts/actions.
+- `SPRT-180` table/media/shapes/barcodes.
+
+## Wave 4 — isolation/parity
+- `SPRT-190` User × Document × Session isolation.
+- `SPRT-200` two-Form/multi-instance concurrency.
+- `SPRT-210` pairwise schema interaction harness.
+- `SPRT-220` Form/Viewer/Snapshot/PDF parity.
+- `SPRT-230` accessibility/performance/leak gate.
+
+## Wave 5 — release and cleanup
+- `SPRT-240` public compatibility/deprecation gate.
+- `SPRT-250` remove proven duplicate/legacy branches.
+- `SPRT-260` regenerate Brain/index/context packs and closeout.
+```
+
+<a id="file-0217"></a>
+
+### 0217 — `.ai/plans/PLAN_SISAD_PDFME_SCHEMA_RUNTIME.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `7`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `67ffc8e63b`
+- **Estado:** `completo`
+
+```markdown
+# Plan — dynamic schema runtime
+
+Derivar un manifest del registry vivo. Cada family aporta codec/validation/capabilities.
+Construir un harness `describe.each(registryDerivedCases)` y una matriz pairwise. Resolver
+bugs en autoridad común antes de parchear plugins. Un nuevo schema debería requerir:
+plugin + manifest/capabilities + codec/validation + tests, no cambios dispersos en Form,
+Viewer, Snapshot, Completion y Generator.
+```
+
+<a id="file-0218"></a>
+
+### 0218 — `.ai/plans/PLAN_SISAD_PDFME_TOOLING_SAFETY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `04c6048ebc`
+- **Estado:** `completo`
+
+```markdown
+# Plan — tooling safety
+
+1. freeze tests para importer/installers;
+2. corregir copyIncoming non-Markdown;
+3. extraer preflight plan reusable;
+4. install-project-tools create/identical/conflict/safe-update;
+5. package scripts conflict report;
+6. install-tests all-or-nothing/new-only;
+7. dedup ratchet por owned scope;
+8. compatibility allowlist de migración User;
+9. multi-OS script portability;
+10. docs/Brain/tooling closeout.
+```
+
+<a id="file-0219"></a>
+
+### 0219 — `.ai/plans/PLAN_TOOLING_ARCHITECTURE_CLEANUP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `53`
@@ -15481,9 +15841,9 @@ General repository maintenance belongs to `scripts/project-tools.mjs`.
 Run lint, focused tests for scripts, tooling doctor, documentation gates and inspect Git diff.
 ```
 
-<a id="file-0216"></a>
+<a id="file-0220"></a>
 
-### 0216 — `.ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md`
+### 0220 — `.ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `46`
@@ -15540,9 +15900,9 @@ W4 migration, dedup, CI y rollout
 - adapters repo-wide <2 páginas.
 ```
 
-<a id="file-0217"></a>
+<a id="file-0221"></a>
 
-### 0217 — `.ai/plans/RUNTIME-PLATFORM-CROSSWALK.md`
+### 0221 — `.ai/plans/RUNTIME-PLATFORM-CROSSWALK.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -15569,9 +15929,9 @@ volver a probar integración runtime.
 Evidence historical puede reducir trabajo, pero source vivo decide si una expectativa sigue cerrada.
 ```
 
-<a id="file-0218"></a>
+<a id="file-0222"></a>
 
-### 0218 — `.ai/plans/SISAD-PDFME-UNIT-TEST-COVERAGE.md`
+### 0222 — `.ai/plans/SISAD-PDFME-UNIT-TEST-COVERAGE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -15588,9 +15948,9 @@ Playwright de interacción real.
 No silenciar tests; cada fallo debe clasificarse como bug, drift de contrato o fixture.
 ```
 
-<a id="file-0219"></a>
+<a id="file-0223"></a>
 
-### 0219 — `.ai/playbooks/EXECUTE-TASK.md`
+### 0223 — `.ai/playbooks/EXECUTE-TASK.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -15615,9 +15975,9 @@ No silenciar tests; cada fallo debe clasificarse como bug, drift de contrato o f
 12. Release claim.
 ```
 
-<a id="file-0220"></a>
+<a id="file-0224"></a>
 
-### 0220 — `.ai/playbooks/IMPROVE-DESIGNER-CORE-UX.md`
+### 0224 — `.ai/playbooks/IMPROVE-DESIGNER-CORE-UX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -15652,9 +16012,9 @@ No silenciar tests; cada fallo debe clasificarse como bug, drift de contrato o f
 ``​`
 ```
 
-<a id="file-0221"></a>
+<a id="file-0225"></a>
 
-### 0221 — `.ai/playbooks/MAINTAIN-TRACEABILITY.md`
+### 0225 — `.ai/playbooks/MAINTAIN-TRACEABILITY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -15674,9 +16034,9 @@ No silenciar tests; cada fallo debe clasificarse como bug, drift de contrato o f
 7. Run traceability validator.
 ```
 
-<a id="file-0222"></a>
+<a id="file-0226"></a>
 
-### 0222 — `.ai/playbooks/UPDATE-MEMORY.md`
+### 0226 — `.ai/playbooks/UPDATE-MEMORY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -15696,9 +16056,9 @@ No silenciar tests; cada fallo debe clasificarse como bug, drift de contrato o f
 - preserve task state in Scrum, not memory.
 ```
 
-<a id="file-0223"></a>
+<a id="file-0227"></a>
 
-### 0223 — `.ai/prompts/COREUX_ANALYZE.prompt.md`
+### 0227 — `.ai/prompts/COREUX_ANALYZE.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -15727,9 +16087,9 @@ Entrega:
 10. condición de parada.
 ```
 
-<a id="file-0224"></a>
+<a id="file-0228"></a>
 
-### 0224 — `.ai/prompts/COREUX_CANVAS.prompt.md`
+### 0228 — `.ai/prompts/COREUX_CANVAS.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -15751,9 +16111,9 @@ Antes de tocar Moveable/Selecto:
 No usar setTimeout ni compensaciones CSS.
 ```
 
-<a id="file-0225"></a>
+<a id="file-0229"></a>
 
-### 0225 — `.ai/prompts/COREUX_EVENT_EFFECT_AUDIT.prompt.md`
+### 0229 — `.ai/prompts/COREUX_EVENT_EFFECT_AUDIT.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -15780,9 +16140,9 @@ Entrega matriz producer→event→consumer→test y lista de eventos configurado
 emisión, emisiones sin contrato y effects sin cleanup.
 ```
 
-<a id="file-0226"></a>
+<a id="file-0230"></a>
 
-### 0226 — `.ai/prompts/COREUX_IMPLEMENT.prompt.md`
+### 0230 — `.ai/prompts/COREUX_IMPLEMENT.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -15818,9 +16178,9 @@ UI intent → action/access → command → mutation → event → effect → sn
 Cierra con evidencia exacta y gates reales.
 ```
 
-<a id="file-0227"></a>
+<a id="file-0231"></a>
 
-### 0227 — `.ai/prompts/COREUX_RELEASE.prompt.md`
+### 0231 — `.ai/prompts/COREUX_RELEASE.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -15845,9 +16205,9 @@ no ejecutado
 No declarar release completo mientras exista P0 o contrato público sin prueba.
 ```
 
-<a id="file-0228"></a>
+<a id="file-0232"></a>
 
-### 0228 — `.ai/prompts/COREUX_REVIEW.prompt.md`
+### 0232 — `.ai/prompts/COREUX_REVIEW.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -15876,9 +16236,9 @@ Verifica:
 Cita archivo/línea y propone rollback concreto.
 ```
 
-<a id="file-0229"></a>
+<a id="file-0233"></a>
 
-### 0229 — `.ai/prompts/COREUX_SCHEMA_FAMILY.prompt.md`
+### 0233 — `.ai/prompts/COREUX_SCHEMA_FAMILY.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -15910,9 +16270,9 @@ Playwright focal
 No edites otra familia salvo helper compartido explícitamente aprobado.
 ```
 
-<a id="file-0230"></a>
+<a id="file-0234"></a>
 
-### 0230 — `.ai/prompts/COREUX_VISUAL_QA.prompt.md`
+### 0234 — `.ai/prompts/COREUX_VISUAL_QA.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -15943,9 +16303,9 @@ Valida:
 No actualices baselines para ocultar regresiones.
 ```
 
-<a id="file-0231"></a>
+<a id="file-0235"></a>
 
-### 0231 — `.ai/prompts/CREATE-TASK.prompt.md`
+### 0235 — `.ai/prompts/CREATE-TASK.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -15962,9 +16322,9 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0232"></a>
+<a id="file-0236"></a>
 
-### 0232 — `.ai/prompts/DIAGNOSE.md`
+### 0236 — `.ai/prompts/DIAGNOSE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -15980,9 +16340,9 @@ Diagnostica una sola pregunta. No edites. Devuelve evidence packet, confianza, t
 No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
 ```
 
-<a id="file-0233"></a>
+<a id="file-0237"></a>
 
-### 0233 — `.ai/prompts/DIAGNOSE.prompt.md`
+### 0237 — `.ai/prompts/DIAGNOSE.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -15999,9 +16359,9 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0234"></a>
+<a id="file-0238"></a>
 
-### 0234 — `.ai/prompts/DISTILL-LOG.prompt.md`
+### 0238 — `.ai/prompts/DISTILL-LOG.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16018,9 +16378,9 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0235"></a>
+<a id="file-0239"></a>
 
-### 0235 — `.ai/prompts/IMPLEMENT.md`
+### 0239 — `.ai/prompts/IMPLEMENT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -16036,9 +16396,9 @@ Implementa una task activa, máximo cinco archivos productivos, test rojo y trac
 No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
 ```
 
-<a id="file-0236"></a>
+<a id="file-0240"></a>
 
-### 0236 — `.ai/prompts/IMPLEMENT.prompt.md`
+### 0240 — `.ai/prompts/IMPLEMENT.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16055,9 +16415,9 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0237"></a>
+<a id="file-0241"></a>
 
-### 0237 — `.ai/prompts/MEMORY-DELTA.md`
+### 0241 — `.ai/prompts/MEMORY-DELTA.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -16073,9 +16433,9 @@ Actualiza solo la capa de memoria correcta; excluye logs, hipótesis e historial
 No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
 ```
 
-<a id="file-0238"></a>
+<a id="file-0242"></a>
 
-### 0238 — `.ai/prompts/MEMORY-DELTA.prompt.md`
+### 0242 — `.ai/prompts/MEMORY-DELTA.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -16092,9 +16452,9 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0239"></a>
+<a id="file-0243"></a>
 
-### 0239 — `.ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md`
+### 0243 — `.ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `95`
@@ -16200,9 +16560,9 @@ diferencia y solicita una task separada de código; no alteres la API dentro de
 esta tarea documental.
 ```
 
-<a id="file-0240"></a>
+<a id="file-0244"></a>
 
-### 0240 — `.ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md`
+### 0244 — `.ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `237`
@@ -16450,9 +16810,9 @@ No continúes en ciclos de análisis repetidos. Después de una lectura focal,
 formula una hipótesis verificable, crea el test y realiza un parche pequeño.
 ```
 
-<a id="file-0241"></a>
+<a id="file-0245"></a>
 
-### 0241 — `.ai/prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md`
+### 0245 — `.ai/prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `490`
@@ -16953,9 +17313,9 @@ no verificado
 No declares “legacy eliminado” si aún existen valores persistidos, aliases públicos o imports oficiales.
 ```
 
-<a id="file-0242"></a>
+<a id="file-0246"></a>
 
-### 0242 — `.ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md`
+### 0246 — `.ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -17038,9 +17398,169 @@ UI intent
 Empezar por `VISUX-001`. No aplicar cambios productivos durante esa task.
 ```
 
-<a id="file-0243"></a>
+<a id="file-0247"></a>
 
-### 0243 — `.ai/prompts/PROVIDER-SYNC.md`
+### 0247 — `.ai/prompts/PROMPT_SISAD_PDFME_FORM.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `9c992f20de`
+- **Estado:** `completo`
+
+```markdown
+# Prompt — Form hardening
+
+Primero reproduce el bug de interacción. Verifica Form local-first y runtime mirror actuales.
+Extiende transaction/revision sin regresarlos. Prueba rapid typing, host rerender, stale
+write, clear, `0`, `false`, pairwise sibling interactions, two Forms y cleanup. No parchees
+40 plugins si el defecto pertenece al motor común.
+```
+
+<a id="file-0248"></a>
+
+### 0248 — `.ai/prompts/PROMPT_SISAD_PDFME_REVIEW.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `7`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `2228044c90`
+- **Estado:** `completo`
+
+```markdown
+# Prompt — reviewer/QA
+
+Revisa el diff contra contracts, no sólo lint. Busca: business leakage, Recipient semantics
+nuevas en core, truthiness bugs, stale writes, assignment drift, missing migration,
+singleton mutable state, remount por input, deep imports, test que sólo importa sin behavior,
+installer partial writes y claims de PASS sin comando. Devuelve BLOCKING/IMPORTANT/NIT con
+evidencia concreta.
+```
+
+<a id="file-0249"></a>
+
+### 0249 — `.ai/prompts/PROMPT_SISAD_PDFME_RUNTIME_BOOT_V2.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `5a9017d97b`
+- **Estado:** `completo`
+
+```markdown
+# Boot — SISAD-PDFME runtime hardening
+
+1. `git status --short`
+2. read `AGENTS.md`, `.ai/START.md`, `.ai/NOW.md`, `.ai/ROUTER.md`
+3. read `.ai/ops/tasks/TASK-LEDGER-SPRT-V2.md`
+4. choose first task without PASS evidence
+5. load only task + routed contract/module + focal tests
+6. execute one task
+7. validate/evidence/session handoff
+8. stop
+
+Do not search for or require any external-project source.
+```
+
+<a id="file-0250"></a>
+
+### 0250 — `.ai/prompts/PROMPT_SISAD_PDFME_RUNTIME_MASTER_V2.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `26`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `d5cfe21474`
+- **Estado:** `completo`
+
+```markdown
+# Master prompt — SISAD-PDFME runtime hardening V2
+
+You are working **only in the SISAD-PDFME repository**.
+
+Do not assume knowledge of any external application, business module or backend.
+
+Canonical terminology:
+- external actor/participant = host concept;
+- `SisadPdfmeUser` = reusable interaction identity;
+- `User`, `activeUserId`, `assignedUserId(s)` are canonical internals;
+- `Recipient*` is legacy compatibility debt only.
+
+Priorities:
+1. source/tests/evidence;
+2. Designer stability;
+3. Form correctness;
+4. user/document/session isolation;
+5. schema registry/manifest/codec;
+6. all-schema behavior;
+7. public API compatibility;
+8. tooling safety and dedup.
+
+Never add routing, request lifecycle, notification, batch-business or host API semantics to core.
+
+One task/session. Characterize before refactor. Preserve dirty-tree work.
+Evidence before PASS.
+```
+
+<a id="file-0251"></a>
+
+### 0251 — `.ai/prompts/PROMPT_SISAD_PDFME_SCHEMA_FAMILY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `b0debb97d5`
+- **Estado:** `completo`
+
+```markdown
+# Prompt — schema family
+
+Deriva cases del registry/manifest. Para la family asignada cierra codec, Form, access,
+validation, Viewer, Snapshot, PDF y applicable input/a11y gates. Ejecuta pairwise test contra
+al menos otra family. No crear switch global nuevo por type salvo que el registry contract
+lo exija y quede justificado.
+```
+
+<a id="file-0252"></a>
+
+### 0252 — `.ai/prompts/PROMPT_SISAD_PDFME_TOOLING.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `d6435bef1c`
+- **Estado:** `completo`
+
+```markdown
+# Prompt — tooling safety
+
+Toda mutación filesystem requiere dry-run/preflight serializable. Reproduce defectos antes
+de editar. Mantén config central. No overwrites silenciosos, no partial install por default,
+backups externos. Verifica Windows/macOS cuando aplique. Nunca uses path reconciliation para
+rename semántico Recipient→User.
+```
+
+<a id="file-0253"></a>
+
+### 0253 — `.ai/prompts/PROMPT_SISAD_PDFME_USER_MODEL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `ae5fd504e5`
+- **Estado:** `completo`
+
+```markdown
+# Prompt — User model migration
+
+Ejecuta la task User/Recipient indicada. No hagas global rename. Caracteriza adapters,
+registry, access, snapshots y public exports. Introduce User semantics canónicas y conserva
+aliases de compatibilidad. No transportar routing/Request fields al User. Para Form con N
+users, activeUser debe ser explícito/fail-closed. Tests de snapshot/API obligatorios.
+```
+
+<a id="file-0254"></a>
+
+### 0254 — `.ai/prompts/PROVIDER-SYNC.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -17056,9 +17576,9 @@ Compara adapters Codex/Claude/Copilot contra registries canónicos.
 No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
 ```
 
-<a id="file-0244"></a>
+<a id="file-0255"></a>
 
-### 0244 — `.ai/prompts/PROVIDER-SYNC.prompt.md`
+### 0255 — `.ai/prompts/PROVIDER-SYNC.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -17075,9 +17595,9 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0245"></a>
+<a id="file-0256"></a>
 
-### 0245 — `.ai/prompts/REVIEW.md`
+### 0256 — `.ai/prompts/REVIEW.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -17093,9 +17613,9 @@ Revisa diff independiente: contrato, duplicidad, lifecycle, a11y, tests y rollba
 No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
 ```
 
-<a id="file-0246"></a>
+<a id="file-0257"></a>
 
-### 0246 — `.ai/prompts/REVIEW.prompt.md`
+### 0257 — `.ai/prompts/REVIEW.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -17112,9 +17632,9 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0247"></a>
+<a id="file-0258"></a>
 
-### 0247 — `.ai/prompts/RTP-CLAUDE-START.md`
+### 0258 — `.ai/prompts/RTP-CLAUDE-START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -17166,9 +17686,9 @@ Evidence exacta, comandos exactos, resultados exactos, blockers, HEAD y siguient
 Usa skills existentes de runtime-parity, schema-family, public-api, quality-evidence y context-engineering. Para Haiku: no reanalices el repo completo; ejecuta una task acotada y deja handoff al agotar contexto.
 ```
 
-<a id="file-0248"></a>
+<a id="file-0259"></a>
 
-### 0248 — `.ai/prompts/RTP-CODEX-START.md`
+### 0259 — `.ai/prompts/RTP-CODEX-START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -17220,9 +17740,9 @@ Evidence exacta, comandos exactos, resultados exactos, blockers, HEAD y siguient
 Sigue `AGENTS.md`/instrucciones anidadas del worktree si existen. Mantén diffs focales, no inventes APIs no presentes y prioriza tests de caracterización antes del refactor.
 ```
 
-<a id="file-0249"></a>
+<a id="file-0260"></a>
 
-### 0249 — `.ai/prompts/RTP-COPILOT-START.md`
+### 0260 — `.ai/prompts/RTP-COPILOT-START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -17274,9 +17794,9 @@ Evidence exacta, comandos exactos, resultados exactos, blockers, HEAD y siguient
 Usa las instrucciones path-specific existentes y limita sugerencias a la task. No expandas la solución hacia Canvas/Inspector si la task es Form/Converter.
 ```
 
-<a id="file-0250"></a>
+<a id="file-0261"></a>
 
-### 0250 — `.ai/prompts/RTP-GENERIC-START.md`
+### 0261 — `.ai/prompts/RTP-GENERIC-START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -17328,9 +17848,9 @@ Evidence exacta, comandos exactos, resultados exactos, blockers, HEAD y siguient
 No dependas de comandos propietarios del proveedor. Devuelve evidencia textual y cambios reproducibles.
 ```
 
-<a id="file-0251"></a>
+<a id="file-0262"></a>
 
-### 0251 — `.ai/prompts/RTP-START.md`
+### 0262 — `.ai/prompts/RTP-START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -17379,9 +17899,9 @@ para localizar y abre máximo 8–10 archivos antes de fijar hipótesis.
 Evidence exacta, comandos exactos, resultados exactos, blockers, HEAD y siguiente task.
 ```
 
-<a id="file-0252"></a>
+<a id="file-0263"></a>
 
-### 0252 — `.ai/prompts/SISAD-PDFME-UNIT-TEST-START.md`
+### 0263 — `.ai/prompts/SISAD-PDFME-UNIT-TEST-START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -17399,9 +17919,9 @@ Vitest no sustituye Playwright para Canvas, drag/drop, touch/IME, visual ni PDF 
 No declares PASS sin ejecutar el comando.
 ```
 
-<a id="file-0253"></a>
+<a id="file-0264"></a>
 
-### 0253 — `.ai/prompts/TOOLING-ARCHITECTURE-START.md`
+### 0264 — `.ai/prompts/TOOLING-ARCHITECTURE-START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -17436,9 +17956,9 @@ Empieza en `TOOL-BASELINE`. No ejecutes las siguientes tasks hasta tener el mapa
 del worktree vivo.
 ```
 
-<a id="file-0254"></a>
+<a id="file-0265"></a>
 
-### 0254 — `.ai/prompts/TRACE.md`
+### 0265 — `.ai/prompts/TRACE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -17454,9 +17974,9 @@ Relaciona métodos cambiados con UC/BHV/EVT/FX/TST/TSK y marca candidate/verifie
 No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
 ```
 
-<a id="file-0255"></a>
+<a id="file-0266"></a>
 
-### 0255 — `.ai/prompts/TRACEABILITY.prompt.md`
+### 0266 — `.ai/prompts/TRACEABILITY.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -17473,9 +17993,9 @@ Return structured output. Do not narrate chain-of-thought. Do not load broad
 context unless a specific unknown remains.
 ```
 
-<a id="file-0256"></a>
+<a id="file-0267"></a>
 
-### 0256 — `.ai/quality/RUNTIME-PLATFORM-GATES.md`
+### 0267 — `.ai/quality/RUNTIME-PLATFORM-GATES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -17509,9 +18029,9 @@ atomic multi-key patch, host push no echo, Viewer zero mutation, Snapshot semant
 large-PDF cleanup/leak, object URL cleanup, keyboard/pointer accessibility.
 ```
 
-<a id="file-0257"></a>
+<a id="file-0268"></a>
 
-### 0257 — `.ai/research/OFFICIAL-PROVIDER-FINDINGS.md`
+### 0268 — `.ai/research/OFFICIAL-PROVIDER-FINDINGS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `46`
@@ -17568,9 +18088,9 @@ Fuentes:
 - https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/create-custom-agents
 ```
 
-<a id="file-0258"></a>
+<a id="file-0269"></a>
 
-### 0258 — `.ai/research/OFFICIAL-SOURCES.md`
+### 0269 — `.ai/research/OFFICIAL-SOURCES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17602,9 +18122,9 @@ Fuentes:
 - https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills
 ```
 
-<a id="file-0259"></a>
+<a id="file-0270"></a>
 
-### 0259 — `.ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md`
+### 0270 — `.ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -17670,9 +18190,9 @@ Los schemas interactivos deben respetar keyboard semantics equivalentes sin hace
 Designer cambie valores con un click destinado únicamente a selección.
 ```
 
-<a id="file-0260"></a>
+<a id="file-0271"></a>
 
-### 0260 — `.ai/routes/ai-architecture.md`
+### 0271 — `.ai/routes/ai-architecture.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -17700,9 +18220,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0261"></a>
+<a id="file-0272"></a>
 
-### 0261 — `.ai/routes/assignments.md`
+### 0272 — `.ai/routes/assignments.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17734,9 +18254,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0262"></a>
+<a id="file-0273"></a>
 
-### 0262 — `.ai/routes/canvas.md`
+### 0273 — `.ai/routes/canvas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -17764,9 +18284,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0263"></a>
+<a id="file-0274"></a>
 
-### 0263 — `.ai/routes/capabilities.md`
+### 0274 — `.ai/routes/capabilities.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17798,9 +18318,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0264"></a>
+<a id="file-0275"></a>
 
-### 0264 — `.ai/routes/commands.md`
+### 0275 — `.ai/routes/commands.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17832,9 +18352,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0265"></a>
+<a id="file-0276"></a>
 
-### 0265 — `.ai/routes/configuration.md`
+### 0276 — `.ai/routes/configuration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -17862,9 +18382,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0266"></a>
+<a id="file-0277"></a>
 
-### 0266 — `.ai/routes/controller.md`
+### 0277 — `.ai/routes/controller.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17896,9 +18416,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0267"></a>
+<a id="file-0278"></a>
 
-### 0267 — `.ai/routes/css-tailwind.md`
+### 0278 — `.ai/routes/css-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17930,9 +18450,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0268"></a>
+<a id="file-0279"></a>
 
-### 0268 — `.ai/routes/designer-core-ux.md`
+### 0279 — `.ai/routes/designer-core-ux.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -17983,9 +18503,9 @@ DESCONOCIDO
 Solo `src/sisad-pdfme/**` recibe cambios productivos.
 ```
 
-<a id="file-0269"></a>
+<a id="file-0280"></a>
 
-### 0269 — `.ai/routes/docs-memory.md`
+### 0280 — `.ai/routes/docs-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -18018,9 +18538,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0270"></a>
+<a id="file-0281"></a>
 
-### 0270 — `.ai/routes/events-effects.md`
+### 0281 — `.ai/routes/events-effects.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -18053,9 +18573,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0271"></a>
+<a id="file-0282"></a>
 
-### 0271 — `.ai/routes/inspector.md`
+### 0282 — `.ai/routes/inspector.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -18083,9 +18603,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0272"></a>
+<a id="file-0283"></a>
 
-### 0272 — `.ai/routes/left-sidebar.md`
+### 0283 — `.ai/routes/left-sidebar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -18114,9 +18634,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0273"></a>
+<a id="file-0284"></a>
 
-### 0273 — `.ai/routes/persistence.md`
+### 0284 — `.ai/routes/persistence.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -18144,9 +18664,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0274"></a>
+<a id="file-0285"></a>
 
-### 0274 — `.ai/routes/provider-adapters.md`
+### 0285 — `.ai/routes/provider-adapters.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -18178,9 +18698,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0275"></a>
+<a id="file-0286"></a>
 
-### 0275 — `.ai/routes/quality.md`
+### 0286 — `.ai/routes/quality.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -18208,9 +18728,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0276"></a>
+<a id="file-0287"></a>
 
-### 0276 — `.ai/routes/recipients-ownership.md`
+### 0287 — `.ai/routes/recipients-ownership.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -18238,9 +18758,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0277"></a>
+<a id="file-0288"></a>
 
-### 0277 — `.ai/routes/right-sidebar.md`
+### 0288 — `.ai/routes/right-sidebar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -18272,9 +18792,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0278"></a>
+<a id="file-0289"></a>
 
-### 0278 — `.ai/routes/runtime-contracts.md`
+### 0289 — `.ai/routes/runtime-contracts.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -18302,9 +18822,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0279"></a>
+<a id="file-0290"></a>
 
-### 0279 — `.ai/routes/runtime-snapshot.md`
+### 0290 — `.ai/routes/runtime-snapshot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -18336,9 +18856,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0280"></a>
+<a id="file-0291"></a>
 
-### 0280 — `.ai/routes/runtime.md`
+### 0291 — `.ai/routes/runtime.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -18370,9 +18890,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0281"></a>
+<a id="file-0292"></a>
 
-### 0281 — `.ai/routes/runtimes.md`
+### 0292 — `.ai/routes/runtimes.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -18400,9 +18920,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0282"></a>
+<a id="file-0293"></a>
 
-### 0282 — `.ai/routes/schemas.md`
+### 0293 — `.ai/routes/schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -18430,9 +18950,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0283"></a>
+<a id="file-0294"></a>
 
-### 0283 — `.ai/routes/testing.md`
+### 0294 — `.ai/routes/testing.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -18464,9 +18984,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0284"></a>
+<a id="file-0295"></a>
 
-### 0284 — `.ai/routes/token-context.md`
+### 0295 — `.ai/routes/token-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -18499,9 +19019,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0285"></a>
+<a id="file-0296"></a>
 
-### 0285 — `.ai/routes/traceability.md`
+### 0296 — `.ai/routes/traceability.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -18534,9 +19054,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0286"></a>
+<a id="file-0297"></a>
 
-### 0286 — `.ai/routes/ux-design.md`
+### 0297 — `.ai/routes/ux-design.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -18568,9 +19088,9 @@ Una sola ruta posee el parche. No cargar catálogos completos cuando un índice 
 consulta al registro es suficiente.
 ```
 
-<a id="file-0287"></a>
+<a id="file-0298"></a>
 
-### 0287 — `.ai/routes/ux.md`
+### 0298 — `.ai/routes/ux.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `17`
@@ -18598,9 +19118,9 @@ trace IDs, gates y condición de parada.
 8 archivos de diagnóstico, una route propietaria y máximo dos skills.
 ```
 
-<a id="file-0288"></a>
+<a id="file-0299"></a>
 
-### 0288 — `.ai/scrum/MERGE-INSTRUCTIONS.md`
+### 0299 — `.ai/scrum/MERGE-INSTRUCTIONS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -18639,9 +19159,9 @@ dry-run installer
 ``​`
 ```
 
-<a id="file-0289"></a>
+<a id="file-0300"></a>
 
-### 0289 — `.ai/scrum/MERGE.md`
+### 0300 — `.ai/scrum/MERGE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -18666,9 +19186,9 @@ No asumir archivos históricos como `SPRINT-CURRENT.md` o `CLAIMS.md` si no
 existen en el worktree actual.
 ```
 
-<a id="file-0290"></a>
+<a id="file-0301"></a>
 
-### 0290 — `.ai/scrum/PRODUCT-BACKLOG-ROWS.md`
+### 0301 — `.ai/scrum/PRODUCT-BACKLOG-ROWS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -18713,9 +19233,9 @@ existen en el worktree actual.
 | AIARCH-030 | P0 | Rollout, documentación y retrospectiva | [task](./task-cards/AIARCH-030-rollout-documentacion-y-retrospectiva.md) |
 ```
 
-<a id="file-0291"></a>
+<a id="file-0302"></a>
 
-### 0291 — `.ai/scrum/PRODUCT-BACKLOG.md`
+### 0302 — `.ai/scrum/PRODUCT-BACKLOG.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -18739,14 +19259,14 @@ Backlog canónico priorizado. Las tareas activas viven en `ACTIVE.md` y las cerr
 |    |           |         |        |
 ```
 
-<a id="file-0292"></a>
+<a id="file-0303"></a>
 
-### 0292 — `.ai/scrum/RUNTIME-PLATFORM-LEDGER.md`
+### 0303 — `.ai/scrum/RUNTIME-PLATFORM-LEDGER.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `38`
-- **Tamaño original:** `3.5 KB`
-- **SHA1 corto:** `60322714d6`
+- **Líneas:** `41`
+- **Tamaño original:** `3.8 KB`
+- **SHA1 corto:** `e3c22cc624`
 - **Estado:** `completo`
 
 ```markdown
@@ -18757,7 +19277,8 @@ Backlog canónico priorizado. Las tareas activas viven en `ACTIVE.md` y las cerr
 - `RTP-010` — wave 0 — P1 — BACKLOG — Fijar identidad SISAD-PDFME y nomenclatura policy
 - `RTP-020` — wave 0 — P0 — BACKLOG — Inventario registry-derived + generic runtime characterization harness
 - `RTP-030` — wave 1 — P0 — BACKLOG — Motor local-first de transacciones Form
-- `RTP-040` — wave 1 — P0 — BACKLOG — Origin/revision y controlled/uncontrolled reconciliation
+- `RTP-040` — wave 1 — P0 — IN-PROGRESS — Origin/revision y controlled/uncontrolled reconciliation
+- `RTP-045` — wave 1 — P0 — IN-PROGRESS — Facade público: props declaradas vs. propagadas
 - `RTP-050` — wave 1 — P1 — BACKLOG — Eventos canónicos de input/runtime + adapters legacy
 - `RTP-060` — wave 1 — P0 — BACKLOG — Lifecycle, remount, focus, caret, IME y cleanup
 - `RTP-070` — wave 2 — P0 — BACKLOG — SchemaRuntimeManifest incremental sobre registry existente
@@ -18776,6 +19297,7 @@ Backlog canónico priorizado. Las tareas activas viven en `ACTIVE.md` y las cerr
 - `RTP-200` — wave 4 — P0 — BACKLOG — Snapshot, bundle, migration and semantic roundtrip
 - `RTP-210` — wave 4 — P0 — BACKLOG — Multi-document/multipage routing and active ID isolation
 - `RTP-220` — wave 5 — P0 — BACKLOG — Recipients, ownership, colors, locks and runtime access
+- `RTP-225` — wave 5 — P1 — BACKLOG — N ejecuciones aisladas sin asumir fan-out masivo
 - `RTP-230` — wave 5 — P1 — BACKLOG — Comments, collaboration and conflict-safe state
 - `RTP-240` — wave 5 — P0 — BACKLOG — Persistence/save/autosave one-write lifecycle
 - `RTP-250` — wave 5 — P0 — BACKLOG — Declarative config profiles and capability resolution
@@ -18785,14 +19307,15 @@ Backlog canónico priorizado. Las tareas activas viven en `ACTIVE.md` y las cerr
 - `RTP-290` — wave 6 — P0 — BACKLOG — Security/privacy/artifact sanitization and secret boundaries
 - `RTP-300` — wave 6 — P1 — BACKLOG — Examples + docs as contract consumers, no demo-runtime duplication
 - `RTP-310` — wave 6 — P0 — BACKLOG — All-schema Playwright + integration/release gates
+- `RTP-315` — wave 6 — P0 — BACKLOG — Concurrencia real de sesiones con BrowserContext aislados
 - `RTP-320` — wave 7 — P0 — BACKLOG — Consumer integration smoke and distribution contract
 - `RTP-330` — wave 7 — P1 — BACKLOG — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad
 - `RTP-340` — wave 7 — P1 — BACKLOG — Brain/docs/index/evidence closeout and context regeneration
 ```
 
-<a id="file-0293"></a>
+<a id="file-0304"></a>
 
-### 0293 — `.ai/scrum/VISUX-EXECUTION-ORDER.md`
+### 0304 — `.ai/scrum/VISUX-EXECUTION-ORDER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -18842,9 +19365,9 @@ VISUX-042
 - No ejecutar una VISUX y una COREUX relacionada sobre los mismos archivos.
 ```
 
-<a id="file-0294"></a>
+<a id="file-0305"></a>
 
-### 0294 — `.ai/scrum/VISUX-MERGE-INSTRUCTIONS.md`
+### 0305 — `.ai/scrum/VISUX-MERGE-INSTRUCTIONS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -18871,9 +19394,9 @@ VISUX-042
    - archivar según el flujo vigente.
 ```
 
-<a id="file-0295"></a>
+<a id="file-0306"></a>
 
-### 0295 — `.ai/scrum/VISUX-PRODUCT-BACKLOG-ROWS.md`
+### 0306 — `.ai/scrum/VISUX-PRODUCT-BACKLOG-ROWS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -18932,9 +19455,9 @@ Fusionar en `.ai/scrum/PRODUCT-BACKLOG.md`; no reemplazarlo.
 | VISUX-042 | Backlog | W6 | P0 | high | qa-reviewer | Crear suite visual, gates, documentación y release | VISUX-035, VISUX-040, VISUX-041 | COREUX-053, COREUX-054, COREUX-055, COREUX-056 |
 ```
 
-<a id="file-0296"></a>
+<a id="file-0307"></a>
 
-### 0296 — `.ai/skills/README.md`
+### 0307 — `.ai/skills/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `67`
@@ -19012,9 +19535,9 @@ La lista inicial debe permanecer corta. Skills existentes se conservan; los alia
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0297"></a>
+<a id="file-0308"></a>
 
-### 0297 — `.ai/subagents/DECISION-MATRIX.md`
+### 0308 — `.ai/subagents/DECISION-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -19039,9 +19562,9 @@ La lista inicial debe permanecer corta. Skills existentes se conservan; los alia
 Estimate context saved before delegation.
 ```
 
-<a id="file-0298"></a>
+<a id="file-0309"></a>
 
-### 0298 — `.ai/templates/BEHAVIOR-RECORD.md`
+### 0309 — `.ai/templates/BEHAVIOR-RECORD.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -19065,9 +19588,9 @@ Estimate context saved before delegation.
 - status:
 ```
 
-<a id="file-0299"></a>
+<a id="file-0310"></a>
 
-### 0299 — `.ai/templates/CONTEXT-MANIFEST.md`
+### 0310 — `.ai/templates/CONTEXT-MANIFEST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -19088,9 +19611,9 @@ subagents: []
 ---
 ```
 
-<a id="file-0300"></a>
+<a id="file-0311"></a>
 
-### 0300 — `.ai/templates/DECISION.md`
+### 0311 — `.ai/templates/DECISION.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -19113,9 +19636,9 @@ subagents: []
 - verifiedAt:
 ```
 
-<a id="file-0301"></a>
+<a id="file-0312"></a>
 
-### 0301 — `.ai/templates/EVIDENCE-PACKET.md`
+### 0312 — `.ai/templates/EVIDENCE-PACKET.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -19138,9 +19661,9 @@ subagents: []
 - artifactPath:
 ```
 
-<a id="file-0302"></a>
+<a id="file-0313"></a>
 
-### 0302 — `.ai/templates/HANDOFF.md`
+### 0313 — `.ai/templates/HANDOFF.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -19162,9 +19685,9 @@ subagents: []
 - stop:
 ```
 
-<a id="file-0303"></a>
+<a id="file-0314"></a>
 
-### 0303 — `.ai/templates/METHOD-RECORD.md`
+### 0314 — `.ai/templates/METHOD-RECORD.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -19190,9 +19713,9 @@ subagents: []
 - verifiedAt:
 ```
 
-<a id="file-0304"></a>
+<a id="file-0315"></a>
 
-### 0304 — `.ai/templates/TASK-CARD.md`
+### 0315 — `.ai/templates/TASK-CARD.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -19229,9 +19752,9 @@ subagents: []
 ## Handoff
 ```
 
-<a id="file-0305"></a>
+<a id="file-0316"></a>
 
-### 0305 — `.ai/traceability/METHOD-REGISTRY.md`
+### 0316 — `.ai/traceability/METHOD-REGISTRY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `327`
@@ -19569,9 +20092,9 @@ No equivale a cobertura verificada. Promover relaciones mediante tests/review.
 | MTH-0319 | right-sidebar | `buildDetailWidgets` | const | no | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx:61` |
 ```
 
-<a id="file-0306"></a>
+<a id="file-0317"></a>
 
-### 0306 — `.claude/agents/sisad-explorer.md`
+### 0317 — `.claude/agents/sisad-explorer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -19592,9 +20115,9 @@ Lee `AGENTS.md`, la task activa y su route. Devuelve ≤1.200 tokens. No edites
 salvo worktree/claim explícito. La memoria automática no sustituye `.ai/memory`.
 ```
 
-<a id="file-0307"></a>
+<a id="file-0318"></a>
 
-### 0307 — `.claude/agents/sisad-log-distiller.md`
+### 0318 — `.claude/agents/sisad-log-distiller.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -19615,9 +20138,9 @@ Lee `AGENTS.md`, la task activa y su route. Devuelve ≤1.200 tokens. No edites
 salvo worktree/claim explícito. La memoria automática no sustituye `.ai/memory`.
 ```
 
-<a id="file-0308"></a>
+<a id="file-0319"></a>
 
-### 0308 — `.claude/agents/sisad-provider-auditor.md`
+### 0319 — `.claude/agents/sisad-provider-auditor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -19637,9 +20160,9 @@ Return at most 1,200 tokens using the evidence-packet schema. Do not edit unless
 the task explicitly grants a dedicated worktree.
 ```
 
-<a id="file-0309"></a>
+<a id="file-0320"></a>
 
-### 0309 — `.claude/agents/sisad-reviewer.md`
+### 0320 — `.claude/agents/sisad-reviewer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -19660,9 +20183,9 @@ Lee `AGENTS.md`, la task activa y su route. Devuelve ≤1.200 tokens. No edites
 salvo worktree/claim explícito. La memoria automática no sustituye `.ai/memory`.
 ```
 
-<a id="file-0310"></a>
+<a id="file-0321"></a>
 
-### 0310 — `.claude/agents/sisad-runtime-platform.md`
+### 0321 — `.claude/agents/sisad-runtime-platform.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -19678,9 +20201,9 @@ description: Ejecuta una task RTP de SISAD-PDFME con contexto mínimo y evidenci
 Lee `.ai/prompts/RTP-CLAUDE-START.md` y la task activa. No cargues todas las task-cards.
 ```
 
-<a id="file-0311"></a>
+<a id="file-0322"></a>
 
-### 0311 — `.claude/agents/sisad-traceability.md`
+### 0322 — `.claude/agents/sisad-traceability.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -19701,9 +20224,9 @@ Lee `AGENTS.md`, la task activa y su route. Devuelve ≤1.200 tokens. No edites
 salvo worktree/claim explícito. La memoria automática no sustituye `.ai/memory`.
 ```
 
-<a id="file-0312"></a>
+<a id="file-0323"></a>
 
-### 0312 — `.codex/agents/README.md`
+### 0323 — `.codex/agents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -19727,9 +20250,9 @@ provider profiles must reference those roles rather than copy governance.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0313"></a>
+<a id="file-0324"></a>
 
-### 0313 — `.codex/agents/runtime-platform.md`
+### 0324 — `.codex/agents/runtime-platform.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -19743,9 +20266,9 @@ provider profiles must reference those roles rather than copy governance.
 Entrada: `.ai/prompts/RTP-CODEX-START.md`. Ejecutar una task RTP por vez.
 ```
 
-<a id="file-0314"></a>
+<a id="file-0325"></a>
 
-### 0314 — `.github/agents/sisad-architect.agent.md`
+### 0325 — `.github/agents/sisad-architect.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -19763,9 +20286,9 @@ Mode: read-only. Do not expand scope. Return evidence, confidence, affected trac
 IDs, gates and stop condition.
 ```
 
-<a id="file-0315"></a>
+<a id="file-0326"></a>
 
-### 0315 — `.github/agents/sisad-config.agent.md`
+### 0326 — `.github/agents/sisad-config.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -19782,9 +20305,9 @@ description: Configuración unificada, selectors y API pública.
 Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
 ```
 
-<a id="file-0316"></a>
+<a id="file-0327"></a>
 
-### 0316 — `.github/agents/sisad-coordinator.agent.md`
+### 0327 — `.github/agents/sisad-coordinator.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -19802,9 +20325,9 @@ Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
 budgets and protected paths. Return trace IDs and executed/non-executed gates.
 ```
 
-<a id="file-0317"></a>
+<a id="file-0328"></a>
 
-### 0317 — `.github/agents/sisad-dry-auditor.agent.md`
+### 0328 — `.github/agents/sisad-dry-auditor.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -19822,9 +20345,9 @@ tools: ["read", "search"]
 Lee `AGENTS.md`, `.ai/START.md` y [sisad-explorer](../../.ai/agents/explorer.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
 ```
 
-<a id="file-0318"></a>
+<a id="file-0329"></a>
 
-### 0318 — `.github/agents/sisad-dry-reviewer.agent.md`
+### 0329 — `.github/agents/sisad-dry-reviewer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -19840,9 +20363,9 @@ description: Reviews proposed or completed SISAD PDFME refactors for safe dedupl
 Operate read-only. Classify each clone, verify the canonical owner, look for boolean-heavy abstractions, confirm characterization tests and ensure vendor/generated paths are not treated as owned debt.
 ```
 
-<a id="file-0319"></a>
+<a id="file-0330"></a>
 
-### 0319 — `.github/agents/sisad-explorer.agent.md`
+### 0330 — `.github/agents/sisad-explorer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -19860,9 +20383,9 @@ Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
 budgets and protected paths. Return trace IDs and executed/non-executed gates.
 ```
 
-<a id="file-0320"></a>
+<a id="file-0331"></a>
 
-### 0320 — `.github/agents/sisad-implementer.agent.md`
+### 0331 — `.github/agents/sisad-implementer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -19880,9 +20403,9 @@ Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
 budgets and protected paths. Return trace IDs and executed/non-executed gates.
 ```
 
-<a id="file-0321"></a>
+<a id="file-0332"></a>
 
-### 0321 — `.github/agents/sisad-memory-steward.agent.md`
+### 0332 — `.github/agents/sisad-memory-steward.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -19900,9 +20423,9 @@ Mode: docs-writer. Do not expand scope. Return evidence, confidence, affected tr
 IDs, gates and stop condition.
 ```
 
-<a id="file-0322"></a>
+<a id="file-0333"></a>
 
-### 0322 — `.github/agents/sisad-provider-adapter-steward.agent.md`
+### 0333 — `.github/agents/sisad-provider-adapter-steward.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -19920,9 +20443,9 @@ Mode: docs-writer. Do not expand scope. Return evidence, confidence, affected tr
 IDs, gates and stop condition.
 ```
 
-<a id="file-0323"></a>
+<a id="file-0334"></a>
 
-### 0323 — `.github/agents/sisad-qa.agent.md`
+### 0334 — `.github/agents/sisad-qa.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -19940,9 +20463,9 @@ Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
 budgets and protected paths. Return trace IDs and executed/non-executed gates.
 ```
 
-<a id="file-0324"></a>
+<a id="file-0335"></a>
 
-### 0324 — `.github/agents/sisad-reviewer.agent.md`
+### 0335 — `.github/agents/sisad-reviewer.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -19960,9 +20483,9 @@ Use `AGENTS.md`, the active task, one route and one skill. Respect claims,
 budgets and protected paths. Return trace IDs and executed/non-executed gates.
 ```
 
-<a id="file-0325"></a>
+<a id="file-0336"></a>
 
-### 0325 — `.github/agents/sisad-runtime-platform-agent.md`
+### 0336 — `.github/agents/sisad-runtime-platform-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -19977,9 +20500,9 @@ description: Runtime hardening specialist for SISAD-PDFME.
 Use `.ai/prompts/RTP-COPILOT-START.md` and the active RTP card. Do not copy demo/runtime logic into host-specific layers.
 ```
 
-<a id="file-0326"></a>
+<a id="file-0337"></a>
 
-### 0326 — `.github/agents/sisad-scrum-coordinator.agent.md`
+### 0337 — `.github/agents/sisad-scrum-coordinator.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -19997,9 +20520,9 @@ tools: ["read", "search"]
 Lee `AGENTS.md`, `.ai/START.md` y [coordinator](../../.ai/agents/coordinator.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
 ```
 
-<a id="file-0327"></a>
+<a id="file-0338"></a>
 
-### 0327 — `.github/agents/sisad-task-planner.agent.md`
+### 0338 — `.github/agents/sisad-task-planner.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -20015,9 +20538,9 @@ description: Converts a bounded SISAD PDFME problem into a Ready task-card with 
 Do not edit application code. Produce one task-card, not a project-wide roadmap. Respect WIP and link to canonical policies rather than copying them.
 ```
 
-<a id="file-0328"></a>
+<a id="file-0339"></a>
 
-### 0328 — `.github/agents/sisad-test-specialist.agent.md`
+### 0339 — `.github/agents/sisad-test-specialist.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -20034,9 +20557,9 @@ description: Diseña y revisa pruebas unitarias y Playwright focales para SISAD 
 Lee `AGENTS.md`, `.ai/START.md` y [sisad-qa](../../.ai/agents/qa.md). Mantente dentro de esa responsabilidad. Devuelve evidencia estructurada y no dupliques reglas en este perfil.
 ```
 
-<a id="file-0329"></a>
+<a id="file-0340"></a>
 
-### 0329 — `.github/agents/sisad-token-steward.agent.md`
+### 0340 — `.github/agents/sisad-token-steward.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -20054,9 +20577,9 @@ Mode: read-only. Do not expand scope. Return evidence, confidence, affected trac
 IDs, gates and stop condition.
 ```
 
-<a id="file-0330"></a>
+<a id="file-0341"></a>
 
-### 0330 — `.github/agents/sisad-traceability-steward.agent.md`
+### 0341 — `.github/agents/sisad-traceability-steward.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -20074,9 +20597,9 @@ Mode: docs-writer. Do not expand scope. Return evidence, confidence, affected tr
 IDs, gates and stop condition.
 ```
 
-<a id="file-0331"></a>
+<a id="file-0342"></a>
 
-### 0331 — `.github/agents/sisad-ux.agent.md`
+### 0342 — `.github/agents/sisad-ux.agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -20093,9 +20616,9 @@ description: UX responsive, accesibilidad y visual regression.
 Follow the corresponding `.ai/agents/` contract. Work from one task-card. Respect anti-hallucination, anti-loop and context budgets. Return a structured evidence-based result.
 ```
 
-<a id="file-0332"></a>
+<a id="file-0343"></a>
 
-### 0332 — `.github/instructions/ai-docs.instructions.md`
+### 0343 — `.github/instructions/ai-docs.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -20111,9 +20634,9 @@ applyTo: ".ai/**/*.md,.agents/**/*.md,AGENTS.md,CLAUDE.md,CODEX.md,.github/**/*.
 Mantén adapters cortos, una fuente por regla, progressive disclosure, IDs trazables y memoria por delta. No sobrescribas Sprint/Current/Handoff sin merge.
 ```
 
-<a id="file-0333"></a>
+<a id="file-0344"></a>
 
-### 0333 — `.github/instructions/ai.instructions.md`
+### 0344 — `.github/instructions/ai.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -20129,9 +20652,9 @@ applyTo: ".ai/**/*.md,.agents/**/*.md,AGENTS.md,CLAUDE.md,CODEX.md,.github/**/*.
 Mantén hot path corto, una fuente por regla, catálogos JSONL, adapters generados y memoria por delta.
 ```
 
-<a id="file-0334"></a>
+<a id="file-0345"></a>
 
-### 0334 — `.github/instructions/canvas.instructions.md`
+### 0345 — `.github/instructions/canvas.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -20147,9 +20670,9 @@ applyTo: "src/sisad-pdfme/ui/components/Designer/Canvas/**/*.{ts,tsx}"
 Canvas es frontera protegida. Requiere reproducción, test focal y revisión de access/selection/interaction antes de tocar Moveable, Selecto o coordinate math.
 ```
 
-<a id="file-0335"></a>
+<a id="file-0346"></a>
 
-### 0335 — `.github/instructions/quality.instructions.md`
+### 0346 — `.github/instructions/quality.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -20164,9 +20687,9 @@ applyTo: "{scripts,tools,configs,.ai}/**/*"
 Separate owned, vendor and generated metrics. Keep documentation canonical and link rather than copy. Validate skills, relative links, TOML/JSON and Markdown duplication.
 ```
 
-<a id="file-0336"></a>
+<a id="file-0347"></a>
 
-### 0336 — `.github/instructions/schemas.instructions.md`
+### 0347 — `.github/instructions/schemas.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -20182,9 +20705,9 @@ applyTo: "src/sisad-pdfme/schemas/**/*.{ts,tsx}"
 Cada familia cubre Factory, Designer, DetailView, Form, Viewer, Generator, Snapshot y owner/semantic color.
 ```
 
-<a id="file-0337"></a>
+<a id="file-0348"></a>
 
-### 0337 — `.github/instructions/sisad-core.instructions.md`
+### 0348 — `.github/instructions/sisad-core.instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -20200,9 +20723,9 @@ applyTo: "src/sisad-pdfme/**/*.{ts,tsx}"
 Core nuevo TypeScript/TSX. No imports hacia /features/modules. Preserva API, identity, routing, ownership y snapshot.
 ```
 
-<a id="file-0338"></a>
+<a id="file-0349"></a>
 
-### 0338 — `.github/prompts/color-contract.prompt.md`
+### 0349 — `.github/prompts/color-contract.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -20221,9 +20744,9 @@ Audit activerecipient color versus stored ownerColor across all surfaces.
 Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.
 ```
 
-<a id="file-0339"></a>
+<a id="file-0350"></a>
 
-### 0339 — `.github/prompts/diagnose-task.prompt.md`
+### 0350 — `.github/prompts/diagnose-task.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -20242,9 +20765,9 @@ Diagnose the active task without editing; return evidence and a focal test.
 Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.
 ```
 
-<a id="file-0340"></a>
+<a id="file-0351"></a>
 
-### 0340 — `.github/prompts/implement-task.prompt.md`
+### 0351 — `.github/prompts/implement-task.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -20263,9 +20786,9 @@ Implement only the active task within its file and token budget.
 Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.
 ```
 
-<a id="file-0341"></a>
+<a id="file-0352"></a>
 
-### 0341 — `.github/prompts/review-diff.prompt.md`
+### 0352 — `.github/prompts/review-diff.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -20284,9 +20807,9 @@ Review the current diff independently and classify P0/P1/P2.
 Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.
 ```
 
-<a id="file-0342"></a>
+<a id="file-0353"></a>
 
-### 0342 — `.github/prompts/triage-jscpd.prompt.md`
+### 0353 — `.github/prompts/triage-jscpd.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -20301,9 +20824,9 @@ description: Classify the current jscpd JSON and prepare an ordered owned-code b
 Run the project parser, separate owned/vendor/generated, apply `.ai/DUPLICATION-POLICY.md`, and create/update task-cards. Do not refactor vendor or modify thresholds to make the report green.
 ```
 
-<a id="file-0343"></a>
+<a id="file-0354"></a>
 
-### 0343 — `.github/prompts/update-trace.prompt.md`
+### 0354 — `.github/prompts/update-trace.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -20322,9 +20845,9 @@ Update UC/BHV/MTH/EVT/FX/TST links for the current diff.
 Use `AGENTS.md`, the active task and `.ai/templates/EVIDENCE-PACKET.md`.
 ```
 
-<a id="file-0344"></a>
+<a id="file-0355"></a>
 
-### 0344 — `.github/prompts/update-traceability.prompt.md`
+### 0355 — `.github/prompts/update-traceability.prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -20342,9 +20865,9 @@ Update UC/BHV/EVT/FX/MTH/TST links for the current diff.
 Use `AGENTS.md` and `.ai/templates/EVIDENCE-PACKET.md`.
 ```
 
-<a id="file-0345"></a>
+<a id="file-0356"></a>
 
-### 0345 — `reports/runtime-platform/EXECUTIVE-SUMMARY.md`
+### 0356 — `reports/runtime-platform/EXECUTIVE-SUMMARY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -20363,9 +20886,9 @@ families → Viewer/Generator/Converter/Snapshot → documents/recipients → qu
 release/naming/Brain.
 ```
 
-<a id="file-0346"></a>
+<a id="file-0357"></a>
 
-### 0346 — `reports/runtime-platform/TREE.md`
+### 0357 — `reports/runtime-platform/TREE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `183`
@@ -20559,9 +21082,9 @@ scripts/ai/validate-runtime-platform-v2.mjs
 ``​`
 ```
 
-<a id="file-0347"></a>
+<a id="file-0358"></a>
 
-### 0347 — `reports/tooling-architecture/ANALYSIS.md`
+### 0358 — `reports/tooling-architecture/ANALYSIS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -20629,998 +21152,124 @@ specialized tools (only real special cases)
 ``​`
 ```
 
-<a id="file-0348"></a>
+<a id="file-0359"></a>
 
-### 0348 — `src/examples/ARCHITECTURE_GUIDE.md`
+### 0359 — `src/examples/README.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `420`
-- **Tamaño original:** `13.6 KB`
-- **SHA1 corto:** `c6668a16be`
+- **Líneas:** `86`
+- **Tamaño original:** `3.7 KB`
+- **SHA1 corto:** `cd5a7d115b`
 - **Estado:** `completo`
 
 ```markdown
-# Arquitectura Declarativa: /src/examples
+# Laboratorio de ejemplos — SISAD-PDFME
 
-## Visión General (Post-Refactorización)
+Host de demostración del runtime reusable (`src/sisad-pdfme`). Todo lo que se
+ve en pantalla se deriva de datos: el manifest declara las rutas y sus paneles,
+el archivo de datos declara familias y fixtures, y el registry de schemas del
+paquete aporta los tipos descubiertos en tiempo de ejecución.
 
-Antes de esta refactorización, `/src/examples` tenía 800+ líneas de código duplicado. Ahora funciona 100% declarativamente desde JSON, con **una sola página universal y componentes reutilizables**.
+## Estructura
 
-``​`
-┌─ USUARIO ──────────────────────────────────────────────────────────┐
-│                    pagesConfig.json                                │
-│  Define: title, badges, handlers, panels, template, state         │
-└─────────────────────────┬────────────────────────────────────────┘
-                          │
-                    ┌─────▼─────┐
-                    │   index   │
-                    │.jsx (9 ℓ) │
-                    └─────┬─────┘
-                          │
-            ┌─────────────┴──────────────┐
-            │                            │
-      ┌─────▼──────┐            ┌────────▼────────┐
-      │generatePages│            │generatePages    │
-      │.js (50 ℓ)  │            │ Returns exports │
-      └─────┬──────┘            └────────┬────────┘
-            │                            │
-      ┌─────▼──────────┐         ┌───────▼──────────┐
-      │ Universal Page │◄────────┤ UniversalPage.jsx│
-      │  Component     │         │  (100 ℓ generic)│
-      └─────┬──────────┘         └───────┬──────────┘
-            │                            │
-      ┌─────▼────────┐    ┌─────────────┬──────────────┐
-      │  Handlers    │    │             │              │
-      │  Library     │    │             │              │
-      │ (80 ℓ)       │    │             │              │
-      └──────────────┘    │      ┌──────▼───┐    ┌────▼─────┐
-                          │      │ Dynamic  │    │ SISAD    │
-                          │      │InfoPanel │    │Instance  │
-                          │      │(80 ℓ)   │    │builders  │
-                          └──────┴──────────┴────┴──────────┘
+| Archivo | Responsabilidad |
+| --- | --- |
+| `index.jsx` | API pública. `getLab()` entrega las rutas resueltas al router del host. |
+| `catalog.js` | Deriva familias, rutas, recipients, documentos y perfiles de config. |
+| `builders.js` | Constructores de templates (puros, sin conocer manifest ni catálogo). |
+| `runtime.js` | Fábrica de instancias y hooks compartidos del runtime. |
+| `pages.jsx` | Página universal de runtime, páginas de documentación y `buildRouteDefinitions()`. |
+| `ui.jsx` | Componentes Tailwind-only y `DynamicInfoPanel`. |
+| `hostBundle.js` | Superficie de integración host: construcción y export a bundle portable. |
+| `config/examplesManifest.json` | Rutas, paneles, handlers y descriptores de instancia. |
+| `config/examplesData.json` | Layout de página, sample values, recipients, familias y documentos demo. |
+| `config/sisad-pdfme.s.json` | Perfiles de configuración del runtime. |
+
+Flujo de dependencias, sin ciclos:
+
+``​`text
+config/*.json → builders.js → catalog.js → ui.jsx → pages.jsx → index.jsx
+                                        ↘ runtime.js ↗
 ``​`
 
-## Arquitectura en Capas
+## Agregar un ejemplo nuevo
 
-``​`
-┌────────────────────────────────────────────────────────────────┐
-│ 1. CONFIG LAYER (JSON)                                         │
-│    pagesConfig.json ← Define todo lo que una página necesita  │
-│    layoutDefaults.json, sampleData.json, recipients.json       │
-│    sisad-pdfme.s.json (profiles)                              │
-└────────────────────────────────────────────────────────────────┘
-
-┌────────────────────────────────────────────────────────────────┐
-│ 2. GENERATION LAYER (automático)                               │
-│    pageGenerator.js ← Lee config y genera metadata             │
-│    generatePages.js ← Crea todas las páginas                   │
-│    handlerFactory.js ← Crea handlers desde spec                │
-│    UniversalPage.jsx ← Componente único para cualquier config │
-│    DynamicInfoPanel.jsx ← Renderiza paneles desde config      │
-└────────────────────────────────────────────────────────────────┘
-
-┌────────────────────────────────────────────────────────────────┐
-│ 3. RUNTIME LAYER (ejecuta)                                     │
-│    generated pages (designer / form / viewer)                 │
-└────────────────────────────────────────────────────────────────┘
-``​`
-
----
-
-## Flujo de Ejecución
-
-### Agregar nueva página (3 líneas)
-
-**Antes: 80+ líneas de JSX + handlers + state**
-``​`javascript
-// 80+ líneas en NewPage.jsx
-export function NewPageComponent({ currentPath }) {
-  const [state, setState] = useState(...);
-  const config = useRuntimeConfig(...);
-  // ... 70+ más líneas
-}
-``​`
-
-**Después: 1 línea en pagesConfig.json**
-``​`json
-{
-  "pages": {
-    "my-new-page": {
-      "title": "Mi página nueva",
-      "modeBadge": "custom",
-      "instanceId": "designer-single-user",
-      "template": { "builder": "showcaseTemplate" },
-      "infoPanels": [
-        { "key": "summary", "type": "metrics", "metrics": [...] }
-      ]
-    }
-  }
-}
-``​`
-
-Eso es todo. Automáticamente:
-- Se genera `MyNewPage` component
-- Se crea con handlers, state, config
-- Se integra en el router
-
-### Cambiar un handler (actualizar JSON)
-
-**Antes: Edit archivo JSX**
-``​`javascript
-// Generated runtime page
-const handleInputChange = useCallback(
-  (payload) => {
-    setLastInput(`${payload.name} = ${String(payload.value)}`);
-    record('onInputChange', { campo: payload.name, índice: payload.index });
-  },
-  [record],
-);
-``​`
-
-**Después: Edit pagesConfig.json**
-``​`json
-"handlers": {
-  "onInputChange": {
-    "type": "custom",
-    "record": true,
-    "fn": "customInputHandler"  // define en commonHandlers si es genérico
-  }
-}
-``​`
-
----
-
-## Componentes Clave
-
-### 1. pageGenerator.js
-Lee configuración JSON y devuelve funciones para construir páginas.
-
-``​`javascript
-export const getPageConfig = (pageKey) → PageConfig
-export const buildPageTemplate = (config, builders, FAMILY) → Template
-export const createPageHandlers = (config, context) → Handlers
-export const getPageInfo = (config, state, computed) → InfoData
-``​`
-
-### 2. UniversalPage.jsx
-Componente único que funciona para TODAS las páginas.
-
-``​`javascript
-export function createUniversalPage(pageKey, dependencies) {
-  return function UniversalPageComponent({ currentPath }) {
-    // 1. Load config
-    // 2. Create state from config.state
-    // 3. Create handlers from config.handlers
-    // 4. Create instance using handlers
-    // 5. Render with DynamicInfoPanel
-  }
-}
-``​`
-
-### 3. DynamicInfoPanel.jsx
-Renderiza paneles de información según configuración.
-
-``​`javascript
-const panelRenderers = {
-  metrics: ({ config, context }) => <MetricGrid ... />,
-  controller: ({ context }) => <ControllerPanel ... />,
-  events: ({ context }) => <EventLog ... />,
-  families: () => <FamilyBadgeList ... />,
-};
-``​`
-
-### 4. handlerFactory.js
-Crea handlers desde especificación declarativa.
-
-``​`javascript
-export const createHandlers = (spec, context) → Handlers
-export const commonHandlers = {
-  onEvent, onTemplateChange, onRecipientsChange, ...
-}
-``​`
-
----
-
-## Flujo de Datos en Página
-
-``​`
-pagesConfig.json
-   │
-   ├─→ pageGenerator.getPageConfig('designer-multi-user')
-   │
-   ├─→ buildPageTemplate(config, templateBuilders, FAMILY)
-   │   └─→ buildShowcaseTemplate() or buildMultiUserShowcaseTemplate()
-   │
-   ├─→ createPageHandlers(config, { record, setTemplate, setState })
-   │   ├─→ config.handlers: { onTemplateChange, onAssignmentChange, ... }
-   │   └─→ commonHandlers: factory de funciones comunes
-   │
-   ├─→ createDesignerMultiUserInstance({
-   │     template,
-   │     config,
-   │     ...handlers
-   │   })
-   │
-   └─→ DynamicInfoPanel(
-        config.infoPanels → renderiza paneles dinámicamente
-      )
-``​`
-
----
-
-## Checklist de Configuración de Página
-
-Para agregar una nueva página, completar estos campos en `pagesConfig.json`:
+No hace falta crear archivos: basta una entrada en `primaryRoutes` de
+`config/examplesManifest.json`.
 
 ``​`json
 {
-  "pages": {
-    "my-page": {
-      "title": "string",                    // ✓ requerido
-      "modeBadge": "string",                // ✓ requerido
-      "viewportName": "string",             // ✓ requerido
-      "instanceId": "string",               // ✓ requerido (key en instanceBuilders)
-      "path": "/ruta/relativa",            // ✓ requerido
-
-      "template": {                         // ✓ requerido
-        "builder": "showcaseTemplate|multiUserShowcase",
-        "options": { "familyKeys": [...] }
-      },
-
-      "state": {                            // opcional
-        "field1": "initialValue",
-        "field2": 0
-      },
-
-      "actions": {                          // opcional
-        "recipientSelect": { "type": "select" }
-      },
-
-      "infoPanels": [                       // ✓ requerido
-        {
-          "key": "string",
-          "title": "string",
-          "description": "string",
-          "type": "metrics|controller|events|families",
-          "metrics": [                      // solo si type=metrics
-            { "label": "string", "path": "state.field|template.path", "value": "static", "fallback": "default" }
-          ]
-        }
-      ],
-
-      "handlers": {                         // opcional
-        "onEvent": { "type": "custom" },
-        "onTemplateChange": { "type": "setTemplate", "record": true }
-      }
-    }
-  }
-}
-``​`
-
----
-
-## Patrones de Handler
-
-``​`json
-"handlers": {
-  // Tipo: setState
-  "onAssignmentChange": {
-    "type": "increment",
-    "field": "assignments",
-    "record": true
-  },
-
-  // Tipo: setTemplate
-  "onTemplateChange": {
-    "type": "setTemplate",
-    "record": true
-  },
-
-  // Tipo: custom (define en commonHandlers)
-  "onInputChange": {
-    "type": "custom",
-    "record": true
-  }
-}
-``​`
-
----
-
-## Extender Panel Types
-
-Para agregar nuevo tipo de panel, editar `DynamicInfoPanel.jsx`:
-
-``​`javascript
-const panelRenderers = {
-  // Existentes: metrics, controller, events, families
-
-  // Nuevo:
-  myCustomPanel: ({ config, context }) => (
-    <div>
-      {/* render custom content */}
-    </div>
-  ),
-};
-``​`
-
-Luego usar en `pagesConfig.json`:
-``​`json
-{
-  "key": "custom",
-  "type": "myCustomPanel",
-  "title": "Mi Panel"
-}
-``​`
-
----
-
-## Performance & Caching
-
-- ✅ Config JSON se carga una sola vez
-- ✅ pageGenerator crea factories (no re-renders)
-- ✅ UniversalPage usa useMemo para handlers e instance
-- ✅ No overhead comparado con páginas hardcodeadas
-
----
-
-## Testing
-
-### Unit: pageGenerator
-``​`javascript
-describe('pageGenerator', () => {
-  it('should load page config', () => {
-    const config = getPageConfig('designer-single-user');
-    expect(config.title).toBe('Designer · una persona...');
-  });
-
-  it('should build template with familyKeys', () => {
-    const template = buildPageTemplate(config, builders, FAMILY);
-    expect(template.schemas.length).toBeGreaterThan(0);
-  });
-});
-``​`
-
-### Integration: UniversalPage
-``​`javascript
-describe('UniversalPage', () => {
-  it('should render page from config', () => {
-    const DesignerPage = createUniversalPage('designer-single-user', deps);
-    const { getByText } = render(<DesignerPage />);
-    expect(getByText('Designer · una persona...')).toBeInTheDocument();
-  });
-});
-``​`
-
----
-
-## Debugging
-
-1. **Ver qué config carga una página:**
-   ``​`javascript
-   import { getPageConfig } from './pages/pageGenerator.js';
-   const config = getPageConfig('designer-multi-user');
-   console.log(JSON.stringify(config, null, 2));
-   ``​`
-
-2. **Ver qué template genera:**
-   ``​`javascript
-   import { buildPageTemplate } from './pages/pageGenerator.js';
-   const template = buildPageTemplate(config, builders, FAMILY);
-   console.log('Pages:', template.schemas.length);
-   console.log('Schemas:', template.schemas.flat().length);
-   ``​`
-
-3. **Ver qué handlers crea:**
-   ``​`javascript
-   import { createPageHandlers } from './pages/pageGenerator.js';
-   const handlers = createPageHandlers(config, context);
-   console.log('Handlers:', Object.keys(handlers));
-   ``​`
-
----
-
-## FAQ
-
-**P: ¿Cómo cambio el título de una página?**
-A: Edita `pagesConfig.json` → `pages[pageKey].title`
-
-**P: ¿Cómo agrego un nuevo panel a una página?**
-A: Agrega objeto a `pages[pageKey].infoPanels` array
-
-**P: ¿Cómo creo un handler personalizado?**
-A: Agrégalo a `commonHandlers` en `handlerFactory.js`, luego referencia en config:
-``​`json
-"handlers": {
-  "myHandler": { "type": "custom" }
-}
-``​`
-
-**P: ¿Puedo mezclar declarativo + imperativo?**
-A: Sí, UniversalPage acepta sobrescrituras:
-``​`javascript
-const MyPage = createUniversalPage('pageKey', dependencies);
-// Luego wrappear con lógica imperativa si necesario
-``​`
-
-**P: ¿Cómo testeo un cambio en pagesConfig.json?**
-A: Unit test en pageGenerator, integration test en UniversalPage:
-``​`javascript
-it('should reflect config change', () => {
-  const config = getPageConfig('designer-single-user');
-  expect(config.title).toMatch(/nuevo título/);
-});
-``​`
-
----
-
-## Roadmap
-
-- [ ] Auto-generate routes desde `pagesConfig.json`
-- [ ] Strategy pattern para layouts alternativos
-- [ ] CLI tool para validar `pagesConfig.json`
-- [ ] Migrador automático de páginas viejas
-- [ ] Schema validation para JSON config
-```
-
-<a id="file-0349"></a>
-
-### 0349 — `src/examples/PAGES_CONSOLIDATION.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `71`
-- **Tamaño original:** `1.7 KB`
-- **SHA1 corto:** `5c40011efd`
-- **Estado:** `completo`
-
-```markdown
-# Pages Consolidation
-
-## Current State
-
-`src/examples/pages` now has 8 real files:
-
-``​`txt
-pages/
-├─ CatalogPage.jsx
-├─ DynamicRouter.jsx
-├─ RuntimePageShell.jsx
-├─ SchemaFamilyPage.jsx
-├─ SchemasCatalogPage.jsx
-├─ UniversalPage.jsx
-├─ generatePages.js
-└─ pageGenerator.js
-``​`
-
-`AppShell` still exists as a public export, but it is now just an alias of `DynamicRouter` from `src/examples/index.jsx`.
-
-## What Was Consolidated
-
-- Generated immersive pages moved into `generatePages.js` and `UniversalPage.jsx`.
-- Repeated info panels moved into `DynamicInfoPanel`.
-- The old per-page factory file and the old `*Info.jsx` files were removed.
-- Navigation now uses `react-router-dom` instead of manual `pushState`.
-
-## Recommended Usage
-
-``​`javascript
-import { AppShell } from '@/examples';
-
-export function App() {
-  return <AppShell initialPath="/" />;
-}
-``​`
-
-``​`javascript
-import { DesignerSingleUserPage } from '@/examples';
-
-export function Example() {
-  return <DesignerSingleUserPage currentPath="/designer/single-user" />;
-}
-``​`
-
-``​`javascript
-import { useNavigation } from '@/examples/helpers/navigation.js';
-
-function NavigationMenu() {
-  const nav = useNavigation();
-
-  return (
-    <>
-      <button onClick={nav.toDesignerSingleUser}>Designer</button>
-      <button onClick={nav.toRuntimeForm}>Form</button>
-      <button onClick={nav.toCatalog}>Catalog</button>
-    </>
-  );
-}
-``​`
-
-## Navigation Contract
-
-1. `Link` and `NavLink` stay client-side.
-2. `useNavigation()` delegates to `useNavigate()`.
-3. `DynamicRouter` syncs with `window.location.pathname` and `popstate`.
-
-## Verification
-
-- `npm run build`
-- Browser navigation across catalog, designer, form, viewer, and schema routes without full reload
-```
-
-<a id="file-0350"></a>
-
-### 0350 — `src/examples/QUICKSTART.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `354`
-- **Tamaño original:** `7.5 KB`
-- **SHA1 corto:** `b42baa7b33`
-- **Estado:** `completo`
-
-```markdown
-# Quick Start: Sistema Declarativo de Ejemplos
-
-## Agregar nueva página en 3 pasos
-
-### Paso 1: Editar pagesConfig.json
-``​`json
-{
-  "pages": {
-    "mi-nueva-pagina": {
-      "title": "Mi Nueva Página",
-      "modeBadge": "custom",
-      "viewportName": "mi-nueva-pagina",
-      "instanceId": "designer-single-user",
-      "path": "/mi-pagina",
-      "template": {
-        "builder": "showcaseTemplate",
-        "options": { "familySource": "all" }
-      },
-      "infoPanels": [
-        {
-          "key": "summary",
-          "title": "Resumen",
-          "type": "metrics",
-          "metrics": [
-            { "label": "Estado", "value": "Activo" }
-          ]
-        }
-      ]
-    }
-  }
-}
-``​`
-
-### Paso 2: Nada más
-La página se genera automáticamente.
-
-### Paso 3: Usar
-``​`javascript
-import { generatePages } from './examples/pages/generatePages.js';
-const pages = generatePages();
-const MyNewPage = pages['mi-nueva-pagina'];
-``​`
-
----
-
-## Cambiar configuración de una página
-
-### Cambiar título
-``​`json
-// pagesConfig.json
-"designer-single-user": {
-  "title": "Nuevo título aquí"
-}
-``​`
-
-### Cambiar badge
-``​`json
-"designer-multi-user": {
-  "modeBadge": "nuevo badge"
-}
-``​`
-
-### Cambiar template
-``​`json
-"runtime-form": {
+  "id": "runtime-viewer-compacto",
+  "path": "/runtime/viewer/compacto",
+  "title": "Runtime · Viewer compacto",
+  "description": "Solo lectura con un subconjunto reducido de familias.",
+  "shell": "immersive",
+  "instanceId": "runtime-viewer",
+  "mode": "viewer",
+  "viewportName": "runtime-viewer-compacto",
+  "modeBadge": "viewer",
   "template": {
-    "builder": "multiUserShowcase",
-    "options": { "familySource": "multiUser" }
-  }
-}
-``​`
-
-### Agregar panel de información
-``​`json
-"designer-single-user": {
-  "infoPanels": [
-    { "existing panels..." },
-    {
-      "key": "nuevo-panel",
-      "title": "Mi Panel Nuevo",
-      "type": "metrics",
-      "metrics": [
-        { "label": "Algo", "path": "state.campo" }
-      ]
-    }
-  ]
-}
-``​`
-
----
-
-## Cambiar datos globales (sin recompilación)
-
-### Cambiar layout de página
-Editar `config/layoutDefaults.json`:
-``​`json
-{
-  "pageSize": {"width": 210, "height": 297},
-  "pagePadding": [15, 15, 15, 15],        // ← cambiar aquí
-  "gaps": {"column": 6, "row": 6},
-  "fallbackSize": {"width": 45, "height": 7}
-}
-``​`
-
-### Cambiar sample data
-Editar `config/sampleData.json`:
-``​`json
-{
-  "es": {
-    "text": "Nuevo texto aquí",
-    "fullName": "Nuevo nombre"
+    "builder": "showcaseTemplate",
+    "options": { "familyKeys": ["text", "table"] }
   },
-  "en": {
-    "text": "New text here",
-    "fullName": "New name"
-  }
-}
-``​`
-
-### Cambiar recipients de colaboración
-Editar `config/recipients.json`:
-``​`json
-{
-  "multiUser": [
-    {"id": "alice", "name": "Alice", "color": "#2563eb"},
-    {"id": "bob", "name": "Bob", "color": "#f59e0b"},
-    {"id": "nueva-persona", "name": "Nueva Persona", "color": "#8b5cf6"}
-  ]
-}
-``​`
-
----
-
-## Cambiar comportamiento de página
-
-### Cambiar handler de evento
-En `pagesConfig.json`:
-``​`json
-"designer-multi-user": {
-  "handlers": {
-    "onAssignmentChange": {
-      "type": "increment",
-      "field": "assignments",
-      "record": true
-    }
-  }
-}
-``​`
-
-### Ver handlers disponibles (commonHandlers)
-En `helpers/handlerFactory.js`:
-``​`javascript
-export const commonHandlers = {
-  onEvent,
-  onTemplateChange,
-  onRecipientsChange,
-  onActiveRecipientChange,
-  onAssignmentChange,
-  onInputChange,
-  onSave,
-};
-``​`
-
----
-
-## Trabajar con perfiles de configuración
-
-### Ver perfiles disponibles
-En `config/sisad-pdfme.s.json`:
-``​`json
-{
-  "profiles": {
-    "designer-single-user": {...},
-    "designer-multi-user": {...},
-    "runtime-form": {...},
-    "runtime-viewer": {...}
-  }
-}
-``​`
-
-### Cambiar comportamiento por profile
-``​`json
-{
-  "profiles": {
-    "designer-single-user": {
-      "collaboration": {"enabled": false},
-      "sidebars": {"right": {"defaultPanel": "detail"}}
-    }
-  }
-}
-``​`
-
----
-
-## Extensiones Avanzadas
-
-### Crear nuevo tipo de panel
-En `components/DynamicInfoPanel.jsx`:
-``​`javascript
-const panelRenderers = {
-  // Existentes: metrics, controller, events, families
-
-  miPanelCustom: ({ config, context }) => (
-    <div>
-      {/* Tu contenido aquí */}
-    </div>
-  )
-};
-``​`
-
-Usar en config:
-``​`json
-{
   "infoPanels": [
-    {
-      "key": "custom",
-      "type": "miPanelCustom",
-      "title": "Mi Panel Personalizado"
-    }
+    { "key": "events", "title": "Eventos", "description": "Acciones del viewer", "type": "events" }
   ]
 }
 ``​`
 
-### Crear nuevo handler personalizado
-En `helpers/handlerFactory.js`:
-``​`javascript
-export const commonHandlers = {
-  // ...
-  miHandlerCustomo: (record) => (payload) => {
-    // Tu lógica aquí
-    record('miHandlerCustomo', payload);
-  }
-};
-``​`
+Registra además la ruta en el bloque `routes` si no declaras `path`.
 
-Usar en config:
-``​`json
-{
-  "handlers": {
-    "miHandlerCustomo": { "type": "custom" }
-  }
-}
-``​`
+### Campos del manifest
 
----
+- `mode`: `designer` | `form` | `viewer`. Define el descriptor de la instancia.
+- `collaboration`: `true` añade estado de recipient activo al designer.
+- `page`: usa una página de documentación (`catalog`, `schemas`) en lugar de la
+  página universal de runtime.
+- `template.builder` / `values.builder`: `showcaseTemplate`, `multiUserShowcase`
+  o `snapshotForm`. Los registries viven en `pages.jsx`.
+- `template.options`: `familyKeys` (lista explícita) o `familySource` (clave de
+  `familySources` en `examplesData.json`).
+- `formSnapshot`: snapshot declarativo del host que consume `snapshotForm`.
+- `handlers`: `setState`, `setTemplate` o `increment`, con `field`, `format`
+  (`nameValue`, `recipientId`), `valuePath` y `record`.
+- `infoPanels`: paneles `metrics`, `controller`, `events` o `families`. Los
+  `path` de las métricas se resuelven sobre el contexto de la página y soportan
+  acceso anidado más `flat()`.
 
-## Debugging
+## Agregar una familia de schema
 
-### Ver configuración de una página
-``​`javascript
-import { getPageConfig } from './examples/pages/pageGenerator.js';
-const config = getPageConfig('designer-single-user');
-console.log(JSON.stringify(config, null, 2));
-``​`
+Añade la entrada a `families` en `config/examplesData.json`. La ruta
+`/schemas/<slug>`, la tarjeta del catálogo y la página de familia se generan
+solas. Los tipos declarados ahí son la semilla del orden; los que el registry
+del paquete descubra se agregan automáticamente.
 
-### Ver qué handlers se crean
-``​`javascript
-import { createPageHandlers } from './examples/pages/pageGenerator.js';
-const handlers = createPageHandlers(config, context);
-console.log('Handlers:', Object.keys(handlers));
-``​`
+## Frontera
 
-### Validar pagesConfig.json
-``​`javascript
-import PagesConfig from './examples/config/pagesConfig.json';
-Object.keys(PagesConfig.pages).forEach(key => {
-  console.log(`✓ ${key} OK`);
-});
-``​`
-
----
-
-## Checklist para Nueva Página
-
-- [ ] Agregar entrada en `pagesConfig.json`
-- [ ] Definir `title`, `modeBadge`, `viewportName`
-- [ ] Seleccionar `instanceId` (designer-single-user, designer-multi-user, runtime-form, runtime-viewer)
-- [ ] Configurar `template` (builder + options)
-- [ ] Agregar `infoPanels` (mínimo 1)
-- [ ] (Opcional) Definir `state` inicial
-- [ ] (Opcional) Definir `handlers` si necesita eventos
-- [ ] (Opcional) Definir `actions` para UI interactiva
-- [ ] Testear: verificar que `getPageConfig(pageKey)` retorna datos válidos
-- [ ] Listo ✓
-
----
-
-## Comandos Útiles
-
-### Validar JSON
-``​`bash
-node -e "console.log(JSON.stringify(require('./src/examples/config/pagesConfig.json'), null, 2))" | head -50
-``​`
-
-### Lint todos los ejemplos
-``​`bash
-npm run lint -- src/examples/
-``​`
-
-### Test de ejemplos
-``​`bash
-npm test src/examples/
-``​`
-
----
-
-## Cambios Frecuentes
-
-| Necesito cambiar... | Archivo | Acción |
-|------------|---------|--------|
-| Título de página | pagesConfig.json | Editar `title` |
-| Handler de evento | pagesConfig.json | Editar `handlers` |
-| Panel de info | pagesConfig.json | Editar `infoPanels` |
-| Layout de páginas | layoutDefaults.json | Editar valores |
-| Datos de ejemplo | sampleData.json | Editar por locale |
-| Recipients | recipients.json | Agregar/editar array |
-| Profile de SISAD | sisad-pdfme.s.json | Editar `base` o `profiles` |
-| Lógica de handler | handlerFactory.js | Editar `commonHandlers` |
-| Renderizado de panel | DynamicInfoPanel.jsx | Editar `panelRenderers` |
-
----
-
-## FAQ Rápido
-
-**P: ¿Cómo agrego un locale nuevo?**
-A: En `sampleData.json`, copia el objeto `es` con nombre nuevo (ej: `pt`).
-
-**P: ¿Cómo cambio el template de una página?**
-A: Edita `pagesConfig.json` → `pages[key].template.builder` y `options`.
-
-**P: ¿Cómo agrego un recipient nuevo?**
-A: En `recipients.json` → `multiUser` array, agrega `{id, name, color}`.
-
-**P: ¿Cómo creo un handler personalizado?**
-A: En `handlerFactory.js` → `commonHandlers`, crea función. Luego en config: `"handlers": { "nombre": { "type": "custom" } }`.
-
-**P: ¿Puedo mixear declarativo e imperativo?**
-A: Sí, puedes importar `UniversalPage` y wrappearla con lógica.
-
-**P: ¿Dónde está el storage de configuración?**
-A: Todo en JSON files bajo `src/examples/config/`.
-
-**P: ¿Cuál es la fuente de verdad para páginas?**
-A: `pagesConfig.json`. Si está en sync, todo está en sync.
-
----
-
-## Próximas Tareas
-
-- [ ] Auto-generar rutas desde `pagesConfig.json`
-- [ ] Agregar validación de schema JSON
-- [ ] Crear CLI tool para auditar config
-- [ ] Migrador automático de páginas viejas
-- [ ] Tests para cada página declarativa
+Este directorio es host-land: puede conocer el runtime reusable, nunca al revés.
+El estilo externo es Tailwind-only; el runtime aporta su propia superficie
+mediante `SISAD_PDFME_HOST_SURFACE_CLASS`.
 ```
 
-<a id="file-0351"></a>
+<a id="file-0360"></a>
 
-### 0351 — `src/examples/REFACTORING_GUIDE.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `73`
-- **Tamaño original:** `2.1 KB`
-- **SHA1 corto:** `8002d7d88b`
-- **Estado:** `completo`
-
-```markdown
-# Refactoring Guide: `src/examples`
-
-## Summary
-
-The example host is now organized around:
-
-- `generatePages.js` for generated page exports
-- `UniversalPage.jsx` for shared page behavior
-- `DynamicRouter.jsx` for in-app navigation
-- JSON-backed config and builders for templates, runtime profiles, and routes
-
-This removes the need for a separate per-page factory file and eliminates duplicated per-page info components.
-
-## Current Layout
-
-``​`txt
-src/examples/
-├── builders/
-├── catalog/
-├── components/
-├── config/
-├── definitions/
-├── helpers/
-├── instances/
-├── pages/
-│   ├── CatalogPage.jsx
-│   ├── DynamicRouter.jsx
-│   ├── RuntimePageShell.jsx
-│   ├── SchemaFamilyPage.jsx
-│   ├── SchemasCatalogPage.jsx
-│   ├── UniversalPage.jsx
-│   ├── generatePages.js
-│   └── pageGenerator.js
-└── routes/
-``​`
-
-## Main Patterns
-
-### 1. Instance factories
-
-`src/examples/instances/Instances.js` keeps the instance construction centralized so each runtime mode only declares its differences.
-
-### 2. Data-driven templates
-
-`buildShowcaseTemplate()` and `buildMultiUserShowcaseTemplate()` use JSON-backed layout and sample data, which keeps the examples easy to tune without duplicating constants.
-
-### 3. Shared page runtime
-
-`generatePages.js` produces the runtime pages from config, and `UniversalPage.jsx` renders them with one shared code path.
-
-### 4. Router-driven navigation
-
-`DynamicRouter.jsx` owns `currentPath`, and `helpers/navigation.js` now calls `useNavigate()` so navigation stays inside the router.
-
-## Adding a New Example
-
-1. Add the route and page metadata in `src/examples/config/pagesConfig.json`.
-2. Add or reuse an instance factory in `src/examples/instances/Instances.js`.
-3. Add any needed builder or selector logic in the shared builders/helpers.
-4. Export the page through `generatePages.js` if it belongs to the generated runtime family.
-
-## Useful Commands
-
-``​`bash
-npm run build
-npm run lint
-``​`
-
-## Notes
-
-- Keep `src/examples` host-side only.
-- Keep navigation on `react-router-dom`.
-- Prefer config over page-specific duplication.
-```
-
-<a id="file-0352"></a>
-
-### 0352 — `src/sisad-pdfme/AGENTS.md`
+### 0360 — `src/sisad-pdfme/AGENTS.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `6`
+- **Líneas:** `3`
 - **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `9acb15b7e1`
+- **SHA1 corto:** `1e8aecc25b`
 - **Estado:** `completo`
 
 ```markdown
-# Reglas locales
+# Scoped Agent Guidance
 
-- Este árbol es una librería reusable.
-- No importar negocio host.
-- Proteger API pública y múltiples instancias.
-- Usar adapters/config/events.
+Domain: `pdfme-platform`, R3. This is reusable downstream code. Preserve public API, runtime parity, canvas geometry, snapshots and upstream/downstream sync. No host business logic.
 ```
 
-<a id="file-0353"></a>
+<a id="file-0361"></a>
 
-### 0353 — `src/sisad-pdfme/COREUX-ROADMAP.md`
+### 0361 — `src/sisad-pdfme/COREUX-ROADMAP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -21634,9 +21283,9 @@ npm run lint
 Este archivo no contiene implementación. Apunta al plan y task-cards canónicos bajo `.ai/`.
 ```
 
-<a id="file-0354"></a>
+<a id="file-0362"></a>
 
-### 0354 — `src/sisad-pdfme/DECLARATIVE-INSTANCE-ROADMAP.md`
+### 0362 — `src/sisad-pdfme/DECLARATIVE-INSTANCE-ROADMAP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -21650,590 +21299,9 @@ Este archivo no contiene implementación. Apunta al plan y task-cards canónicos
 Plan canónico: `.ai/plans/PLAN_MAESTRO_INSTANCIAS_DECLARATIVAS_SISAD_PDFME_2026-07-31.md`.
 ```
 
-<a id="file-0355"></a>
+<a id="file-0363"></a>
 
-### 0355 — `test-results/test-1-stable-stable-test---designer-runtime-interactions-chromium/error-context.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `286`
-- **Tamaño original:** `12.1 KB`
-- **SHA1 corto:** `28ca9161df`
-- **Estado:** `completo`
-
-```markdown
-# Instructions
-
-- Following Playwright test failed.
-- Explain why, be concise, respect Playwright best practices.
-- Provide a snippet of code with the fix, if possible.
-
-# Test info
-
-- Name: test-1-stable.spec.ts >> stable test - designer runtime interactions
-- Location: tests/test-1-stable.spec.ts:3:1
-
-# Error details
-
-``​`
-Error: expect(locator).toBeVisible() failed
-
-Locator: getByTestId('designer-activerecipient-select')
-Expected: visible
-Timeout: 20000ms
-Error: element(s) not found
-
-Call log:
-  - Expect "toBeVisible" with timeout 20000ms
-  - waiting for getByTestId('designer-activerecipient-select')
-
-``​`
-
-``​`yaml
-- banner:
-  - link "Volver al catálogo":
-    - /url: /
-  - heading "Designer · flujo multiusuario" [level=1]
-  - text: colaboración Recipient activo
-  - combobox "Recipient activo":
-    - option "Alice" [selected]
-    - option "Bob"
-    - option "Carla"
-  - text: Ir a otro ejemplo
-  - combobox "Ir a otro ejemplo":
-    - 'option "Designer: un usuario"'
-    - 'option "Designer: multiusuario" [selected]'
-    - 'option "Runtime: Form"'
-    - 'option "Runtime: Viewer"'
-    - option "Schemas"
-    - option "Texto y campos simples"
-    - option "Texto multivariable"
-    - option "Selección"
-    - option "Booleanos"
-    - option "Fecha y hora"
-    - option "Firma"
-    - option "Tablas"
-    - option "Códigos de barras"
-    - option "Media"
-    - option "Formas"
-    - option "Acciones"
-  - button "Información"
-- main:
-  - text: Campos
-  - tablist "Tipos de campo":
-    - tab "Estándar" [selected]: Base 38
-    - tab "Personalizados": Custom
-    - tab "Prerrellenado": Auto
-  - textbox "Buscar campo..."
-  - button "Todos"
-  - button "Favoritos (0)"
-  - button "Recientes (0)"
-  - group "Diseño del catálogo":
-    - button "Ver como lista detallada (≡)": Lista
-    - button "Ver como tarjetas densas (▦)": Tarjetas
-    - button "Ver solo iconos (⠿)": Iconos
-  - button "Alternar categoría Firmas" [expanded]: Firmas 3
-  - button "Fecha de firma Fecha de firma": Fecha de firma
-  - button "Marcar como favorito": ★
-  - button "Iniciales Iniciales": Iniciales
-  - button "Marcar como favorito": ★
-  - button "Firma Firma": Firma
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Texto" [expanded]: Texto 2
-  - button "Número"
-  - button "Marcar como favorito": ★
-  - button "Texto Texto": Texto
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Imagen y medios" [expanded]: Imagen y medios 2
-  - button "Imagen Imagen": Imagen
-  - button "Marcar como favorito": ★
-  - button "SVG SVG": SVG
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Selecciones" [expanded]: Selecciones 4
-  - button "Casilla Casilla": Casilla
-  - button "Marcar como favorito": ★
-  - button "Grupo de Casillas Grupo de Casillas": Grupo de Casillas
-  - button "Marcar como favorito": ★
-  - button "Opción Opción": Opción
-  - button "Marcar como favorito": ★
-  - button "Lista Desplegable Lista Desplegable": Lista Desplegable
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Fecha y Hora" [expanded]: Fecha y Hora 3
-  - button "Fecha Fecha": Fecha
-  - button "Marcar como favorito": ★
-  - button "Fecha Y Hora Fecha Y Hora": Fecha Y Hora
-  - button "Marcar como favorito": ★
-  - button "Hora Hora": Hora
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría QR y Códigos" [expanded]: QR y Códigos 12
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "DataMatrix DataMatrix": DataMatrix
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Japan Post Japan Post": Japan Post
-  - button "Marcar como favorito": ★
-  - button "NW7 NW7": NW7
-  - button "Marcar como favorito": ★
-  - button "PDF417 PDF417": PDF417
-  - button "Marcar como favorito": ★
-  - button "Código QR Código QR": Código QR
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Estructura" [expanded]: Estructura 4
-  - button "Óvalo Óvalo": Óvalo
-  - button "Marcar como favorito": ★
-  - button "Línea Línea": Línea
-  - button "Marcar como favorito": ★
-  - button "Rectángulo Rectángulo": Rectángulo
-  - button "Marcar como favorito": ★
-  - button "Tabla Tabla": Tabla
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Acción" [expanded]: Acción 4
-  - button "Aprobar Aprobar": Aprobar
-  - button "Marcar como favorito": ★
-  - button "Adjunto Adjunto": Adjunto
-  - button "Marcar como favorito": ★
-  - button "Rechazar Rechazar": Rechazar
-  - button "Marcar como favorito": ★
-  - button "Nota Nota": Nota
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Destinatario" [expanded]: Destinatario 4
-  - button "Company Company": Company
-  - button "Marcar como favorito": ★
-  - button "Correo electrónico Correo electrónico": Correo electrónico
-  - button "Marcar como favorito": ★
-  - button "Fullname Fullname": Fullname
-  - button "Marcar como favorito": ★
-  - button "Título Título": Título
-  - button "Marcar como favorito": ★
-  - button "Ocultar catálogo de campos" [expanded]
-  - button "Pág 1/1"
-  - text: 1 seleccionado
-  - button "Guardar"
-  - status "Cambios sin guardar"
-  - button "Más acciones"
-  - button "Deshacer"
-  - button "Rehacer"
-  - button "Ajustar página"
-  - button "Reducir zoom"
-  - combobox "Nivel de zoom"
-  - text: 100%
-  - button "Aumentar zoom"
-  - complementary "Panel derecho del diseñador":
-    - tablist "Panel derecho":
-      - tab "Abrir panel Campos": Campos
-      - tab "Abrir panel Detalle" [selected]: Detalle
-      - tab "Abrir panel Comentarios": Com.
-      - tab "Abrir panel Documentos": Docs
-    - button "Ocultar panel derecho" [expanded]
-    - text: text Texto · Alice · Pág. 1 1 seleccionado Guardado
-    - button "Volver a campos"
-    - button "Colapsar sección Información del campo" [expanded]: Información del campo Nombre visible y metadatos.
-    - text: "* Nombre del campo"
-    - textbox "* Nombre del campo": text
-    - button "Renombrar campo"
-    - button "Editar texto"
-    - button "Colapsar sección Reglas de llenado" [expanded]: Reglas de llenado Reglas y restricciones del valor.
-    - text: Obligatorio
-    - switch "Obligatorio"
-    - text: Tipo de validación
-    - combobox "Tipo de validación"
-    - text: Selecciona una validación
-    - button "Colapsar sección Interacción" [expanded]: Interacción Edición y visibilidad.
-    - text: Solo lectura
-    - switch "Solo lectura"
-    - button "Expandir sección Ubicación y tamaño": Ubicación y tamaño Posición, tamaño y rotación.
-    - button "Expandir sección Formato": Formato Estilo visual y opacidad.
-    - button "Expandir sección Datos y conexiones": Datos y conexiones Persistencia, JSON y API.
-    - button "Expandir sección Asignación y bloqueo": Asignación y bloqueo Permisos, estado y auditoría.
-  - text: "Texto de ejemplo 42 Ada Lovelace ada@acme.com Acme Labs Analista senior Add text here using {} for variables ✍ Firma Alice Firma dibujada ✍ Firma Alice Firma dibujada 13/08/2026 07/29/2026 02:30 PM 07/28/2026 14:30 Seleccionar"
-  - button
-  - img
-  - text: Adjuntar archivo Nota informativa
-  - button "Aprobar":
-    - img
-    - text: Aprobar
-  - button "Rechazar":
-    - img
-    - text: Rechazar
-  - text: Seleccionar
-  - button
-  - text: Seleccionar
-  - button
-  - radiogroup "Grupo de opción":
-    - radio "Opción 1" [checked] [disabled]
-    - radio "Opción 2" [disabled]
-  - group "Grupo de casillas":
-    - checkbox "Casilla 1" [disabled]
-    - checkbox "Casilla 2" [disabled]
-  - toolbar "Barra contextual de edición":
-    - button "Eliminar"
-    - button "Más acciones": Más
-  - text: 97px × 15px
-  - status
-``​`
-
-# Test source
-
-``​`ts
-  1  | import { test, expect } from '@playwright/test';
-  2  |
-  3  | test('stable test - designer runtime interactions', async ({ page }) => {
-  4  |   await page.goto('http://localhost:5174/');
-  5  |
-  6  |   // Navigate to the example page via visible links (keeps test resilient).
-  7  |   await page.getByText('Cada ruta es data-driven,').click();
-  8  |   await page.getByRole('heading', { name: /Catálogo de ejemplos del/i }).click();
-  9  |   const designerLinks = page.getByRole('link', { name: /Designer: multiusuario/i });
-  10 |   await designerLinks.nth(1).click();
-  11 |
-  12 |   // Wait for the runtime viewport to be present after navigation.
-  13 |   const runtime = page.getByTestId('-runtime-viewport');
-  14 |   await expect(runtime).toBeVisible({ timeout: 30000 });
-  15 |   await expect(runtime.getByText(/Texto de ejemplo/)).toBeVisible({ timeout: 20000 });
-  16 |
-  17 |   // Prefer scoped locators for action buttons inside the runtime viewport
-  18 |   const approve = runtime.locator('button.sisad-pdfme-action-button:has-text("Aprobar")');
-  19 |   await expect(approve).toBeVisible({ timeout: 10000 });
-  20 |   const reject = runtime.locator('button.sisad-pdfme-action-button:has-text("Rechazar")');
-  21 |   await expect(reject).toBeVisible({ timeout: 10000 });
-  22 |
-  23 |   // Select a field in the canvas to open the inspector
-  24 |   await runtime.locator('#text-0').click();
-  25 |   const requiredSwitch = page.getByTestId('inspector-required-switch');
-  26 |   await expect(requiredSwitch).toBeVisible({ timeout: 10000 });
-  27 |   await requiredSwitch.click();
-  28 |   await requiredSwitch.click();
-  29 |
-  30 |   // Expand/collapse and interact with inspector to surface the active-recipient select
-  31 |   await page.getByRole('button', { name: /Colapsar sección Interacción/i }).click();
-  32 |   await page.locator(
-  33 |     '.ant-form-item.fr-field.css-dev-only-do-not-override-dzfy24.ant-form-item-has-success > .ant-row > .ant-col.ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content',
-  34 |   ).click();
-  35 |   await page.locator(
-  36 |     '.ant-form-item.fr-field.css-dev-only-do-not-override-dzfy24.ant-form-item-has-success > .ant-row > .ant-col.ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content',
-  37 |   ).click();
-  38 |   await page.locator(
-  39 |     '.ant-form-item.fr-field.css-dev-only-do-not-override-dzfy24.ant-form-item-has-success > .ant-row > .ant-col.ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content',
-  40 |   ).dblclick();
-  41 |   await page.locator(
-  42 |     '.ant-form-item.fr-field.css-dev-only-do-not-override-dzfy24.ant-form-item-has-success > .ant-row > .ant-col.ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content',
-  43 |   ).dblclick();
-  44 |   await page.getByRole('button', { name: /Colapsar sección Reglas de/i }).click();
-  45 |   await page.locator('.sisad-pdfme-designer-detail-view-sections').click();
-  46 |   await page.getByRole('button', { name: /Expandir sección Reglas de/i }).click();
-  47 |   await page.locator('div').filter({ hasText: /^Solo lectura$/ }).nth(5).click();
-  48 |
-  49 |   // Interact with the active recipient select using testid scoped locator
-  50 |   const activeSelect = page.getByTestId('designer-activerecipient-select');
-> 51 |   await expect(activeSelect).toBeVisible({ timeout: 20000 });
-     |                              ^ Error: expect(locator).toBeVisible() failed
-  52 |   await activeSelect.selectOption({ label: 'bob' }).catch(() => {});
-  53 |   await activeSelect.selectOption({ label: 'carla' }).catch(() => {});
-  54 |   await activeSelect.selectOption({ label: 'bob' }).catch(() => {});
-  55 |
-  56 |   // Final quick assertions to ensure page remains responsive
-  57 |   await expect(runtime).toBeVisible();
-  58 | });
-  59 |
-``​`
-```
-
-<a id="file-0356"></a>
-
-### 0356 — `test-results/test-1-test-chromium/error-context.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `269`
-- **Tamaño original:** `12.1 KB`
-- **SHA1 corto:** `fb2acc6eb5`
-- **Estado:** `completo`
-
-```markdown
-# Instructions
-
-- Following Playwright test failed.
-- Explain why, be concise, respect Playwright best practices.
-- Provide a snippet of code with the fix, if possible.
-
-# Test info
-
-- Name: test-1.spec.ts >> test
-- Location: tests/test-1.spec.ts:3:1
-
-# Error details
-
-``​`
-Error: expect(locator).toBeVisible() failed
-
-Locator: getByTestId('designer-activerecipient-select')
-Expected: visible
-Timeout: 20000ms
-Error: element(s) not found
-
-Call log:
-  - Expect "toBeVisible" with timeout 20000ms
-  - waiting for getByTestId('designer-activerecipient-select')
-
-``​`
-
-``​`yaml
-- banner:
-  - link "Volver al catálogo":
-    - /url: /
-  - heading "Designer · flujo multiusuario" [level=1]
-  - text: colaboración Recipient activo
-  - combobox "Recipient activo":
-    - option "Alice" [selected]
-    - option "Bob"
-    - option "Carla"
-  - text: Ir a otro ejemplo
-  - combobox "Ir a otro ejemplo":
-    - 'option "Designer: un usuario"'
-    - 'option "Designer: multiusuario" [selected]'
-    - 'option "Runtime: Form"'
-    - 'option "Runtime: Viewer"'
-    - option "Schemas"
-    - option "Texto y campos simples"
-    - option "Texto multivariable"
-    - option "Selección"
-    - option "Booleanos"
-    - option "Fecha y hora"
-    - option "Firma"
-    - option "Tablas"
-    - option "Códigos de barras"
-    - option "Media"
-    - option "Formas"
-    - option "Acciones"
-  - button "Información"
-- main:
-  - text: Campos
-  - tablist "Tipos de campo":
-    - tab "Estándar" [selected]: Base 38
-    - tab "Personalizados": Custom
-    - tab "Prerrellenado": Auto
-  - textbox "Buscar campo..."
-  - button "Todos"
-  - button "Favoritos (0)"
-  - button "Recientes (0)"
-  - group "Diseño del catálogo":
-    - button "Ver como lista detallada (≡)": Lista
-    - button "Ver como tarjetas densas (▦)": Tarjetas
-    - button "Ver solo iconos (⠿)": Iconos
-  - button "Alternar categoría Firmas" [expanded]: Firmas 3
-  - button "Fecha de firma Fecha de firma": Fecha de firma
-  - button "Marcar como favorito": ★
-  - button "Iniciales Iniciales": Iniciales
-  - button "Marcar como favorito": ★
-  - button "Firma Firma": Firma
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Texto" [expanded]: Texto 2
-  - button "Número"
-  - button "Marcar como favorito": ★
-  - button "Texto Texto": Texto
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Imagen y medios" [expanded]: Imagen y medios 2
-  - button "Imagen Imagen": Imagen
-  - button "Marcar como favorito": ★
-  - button "SVG SVG": SVG
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Selecciones" [expanded]: Selecciones 4
-  - button "Casilla Casilla": Casilla
-  - button "Marcar como favorito": ★
-  - button "Grupo de Casillas Grupo de Casillas": Grupo de Casillas
-  - button "Marcar como favorito": ★
-  - button "Opción Opción": Opción
-  - button "Marcar como favorito": ★
-  - button "Lista Desplegable Lista Desplegable": Lista Desplegable
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Fecha y Hora" [expanded]: Fecha y Hora 3
-  - button "Fecha Fecha": Fecha
-  - button "Marcar como favorito": ★
-  - button "Fecha Y Hora Fecha Y Hora": Fecha Y Hora
-  - button "Marcar como favorito": ★
-  - button "Hora Hora": Hora
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría QR y Códigos" [expanded]: QR y Códigos 12
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "DataMatrix DataMatrix": DataMatrix
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Japan Post Japan Post": Japan Post
-  - button "Marcar como favorito": ★
-  - button "NW7 NW7": NW7
-  - button "Marcar como favorito": ★
-  - button "PDF417 PDF417": PDF417
-  - button "Marcar como favorito": ★
-  - button "Código QR Código QR": Código QR
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Código de barras Código de barras": Código de barras
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Estructura" [expanded]: Estructura 4
-  - button "Óvalo Óvalo": Óvalo
-  - button "Marcar como favorito": ★
-  - button "Línea Línea": Línea
-  - button "Marcar como favorito": ★
-  - button "Rectángulo Rectángulo": Rectángulo
-  - button "Marcar como favorito": ★
-  - button "Tabla Tabla": Tabla
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Acción" [expanded]: Acción 4
-  - button "Aprobar Aprobar": Aprobar
-  - button "Marcar como favorito": ★
-  - button "Adjunto Adjunto": Adjunto
-  - button "Marcar como favorito": ★
-  - button "Rechazar Rechazar": Rechazar
-  - button "Marcar como favorito": ★
-  - button "Nota Nota": Nota
-  - button "Marcar como favorito": ★
-  - button "Alternar categoría Destinatario" [expanded]: Destinatario 4
-  - button "Company Company": Company
-  - button "Marcar como favorito": ★
-  - button "Correo electrónico Correo electrónico": Correo electrónico
-  - button "Marcar como favorito": ★
-  - button "Fullname Fullname": Fullname
-  - button "Marcar como favorito": ★
-  - button "Título Título": Título
-  - button "Marcar como favorito": ★
-  - button "Ocultar catálogo de campos" [expanded]
-  - button "Pág 1/1"
-  - text: 1 seleccionado
-  - button "Guardar"
-  - status "Cambios sin guardar"
-  - button "Más acciones"
-  - button "Deshacer"
-  - button "Rehacer"
-  - button "Ajustar página"
-  - button "Reducir zoom"
-  - combobox "Nivel de zoom"
-  - text: 100%
-  - button "Aumentar zoom"
-  - complementary "Panel derecho del diseñador":
-    - tablist "Panel derecho":
-      - tab "Abrir panel Campos": Campos
-      - tab "Abrir panel Detalle" [selected]: Detalle
-      - tab "Abrir panel Comentarios": Com.
-      - tab "Abrir panel Documentos": Docs
-    - button "Ocultar panel derecho" [expanded]
-    - text: text Texto · Alice · Pág. 1 1 seleccionado Guardado
-    - button "Volver a campos"
-    - button "Colapsar sección Información del campo" [expanded]: Información del campo Nombre visible y metadatos.
-    - text: "* Nombre del campo"
-    - textbox "* Nombre del campo": text
-    - button "Renombrar campo"
-    - button "Editar texto"
-    - button "Colapsar sección Reglas de llenado" [expanded]: Reglas de llenado Reglas y restricciones del valor.
-    - text: Obligatorio
-    - switch "Obligatorio"
-    - text: Tipo de validación
-    - combobox "Tipo de validación"
-    - text: Selecciona una validación
-    - button "Colapsar sección Interacción" [expanded]: Interacción Edición y visibilidad.
-    - text: Solo lectura
-    - switch "Solo lectura"
-    - button "Expandir sección Ubicación y tamaño": Ubicación y tamaño Posición, tamaño y rotación.
-    - button "Expandir sección Formato": Formato Estilo visual y opacidad.
-    - button "Expandir sección Datos y conexiones": Datos y conexiones Persistencia, JSON y API.
-    - button "Expandir sección Asignación y bloqueo": Asignación y bloqueo Permisos, estado y auditoría.
-  - text: "Texto de ejemplo 42 Ada Lovelace ada@acme.com Acme Labs Analista senior Add text here using {} for variables ✍ Firma Alice Firma dibujada ✍ Firma Alice Firma dibujada 13/08/2026 07/29/2026 02:30 PM 07/28/2026 14:30 Seleccionar"
-  - button
-  - img
-  - text: Adjuntar archivo Nota informativa
-  - button "Aprobar":
-    - img
-    - text: Aprobar
-  - button "Rechazar":
-    - img
-    - text: Rechazar
-  - text: Seleccionar
-  - button
-  - text: Seleccionar
-  - button
-  - radiogroup "Grupo de opción":
-    - radio "Opción 1" [checked] [disabled]
-    - radio "Opción 2" [disabled]
-  - group "Grupo de casillas":
-    - checkbox "Casilla 1" [disabled]
-    - checkbox "Casilla 2" [disabled]
-  - toolbar "Barra contextual de edición":
-    - button "Eliminar"
-    - button "Más acciones": Más
-  - text: 97px × 15px
-  - status
-``​`
-
-# Test source
-
-``​`ts
-  1  | import { test, expect } from '@playwright/test';
-  2  |
-  3  | test('test', async ({ page }) => {
-  4  |   await page.goto('http://localhost:5174/');
-  5  |   await page.getByText('Cada ruta es data-driven,').click();
-  6  |   await page.getByRole('heading', { name: 'Catálogo de ejemplos del' }).click();
-  7  |   await expect(page.getByRole('banner')).toBeVisible();
-  8  |   await page.getByRole('link', { name: 'Designer: multiusuario Colaboración con varios usuarios y cambio de actor' }).click();
-  9  |   await page.locator('.sisad-pdfme-designer-canvas').click();
-  10 |   await expect(page.locator('.sisad-pdfme-designer-canvas')).toBeVisible();
-  11 |   // Check runtime viewport contains the expected sample text and primary actions.
-  12 |   const runtime = page.getByTestId('-runtime-viewport');
-  13 |   await expect(runtime.getByText(/Texto de ejemplo/)).toBeVisible();
-  14 |   // Target the runtime action buttons specifically by their action-button class.
-  15 |   await expect(runtime.locator('button.sisad-pdfme-action-button:has-text("Aprobar")')).toBeVisible();
-  16 |   await expect(runtime.locator('button.sisad-pdfme-action-button:has-text("Rechazar")')).toBeVisible();
-  17 |   await expect(runtime.locator('#text-0')).toHaveText(/Texto de ejemplo/);
-  18 |   // Select the sample text field so the inspector shows the field widgets.
-  19 |   await runtime.locator('#text-0').click();
-  20 |   await expect(page.getByTestId('inspector-required-switch')).toBeVisible();
-  21 |   await page.getByTestId('inspector-required-switch').click();
-  22 |   await page.getByTestId('inspector-required-switch').click();
-  23 |   await page.getByRole('button', { name: 'Colapsar sección Interacción' }).click();
-  24 |   await page.locator('.ant-form-item.fr-field.css-dev-only-do-not-override-dzfy24.ant-form-item-has-success > .ant-row > .ant-col.ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content').click();
-  25 |   await page.locator('.ant-form-item.fr-field.css-dev-only-do-not-override-dzfy24.ant-form-item-has-success > .ant-row > .ant-col.ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content').click();
-  26 |   await page.locator('.ant-form-item.fr-field.css-dev-only-do-not-override-dzfy24.ant-form-item-has-success > .ant-row > .ant-col.ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content').dblclick();
-  27 |   await page.locator('.ant-form-item.fr-field.css-dev-only-do-not-override-dzfy24.ant-form-item-has-success > .ant-row > .ant-col.ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content').dblclick();
-  28 |   await page.getByRole('button', { name: 'Colapsar sección Reglas de' }).click();
-  29 |   await page.locator('.sisad-pdfme-designer-detail-view-sections').click();
-  30 |   await page.getByRole('button', { name: 'Expandir sección Reglas de' }).click();
-  31 |   await page.locator('div').filter({ hasText: /^Solo lectura$/ }).nth(5).click();
-  32 |   // Wait for the active-recipient select to appear and be interactive.
-> 33 |   await expect(page.getByTestId('designer-activerecipient-select')).toBeVisible({ timeout: 20000 });
-     |                                                                     ^ Error: expect(locator).toBeVisible() failed
-  34 |   await page.getByTestId('designer-activerecipient-select').selectOption('bob');
-  35 |   await page.getByTestId('designer-activerecipient-select').selectOption('carla');
-  36 |   await page.getByTestId('designer-activerecipient-select').selectOption('bob');
-  37 |   await page.getByLabel('Lista de campos del documento').click();
-  38 |   await page.getByTestId('designer-activerecipient-select').selectOption('alice');
-  39 |   await page.getByText('Texto de ejemplo42Ada').click();
-  40 |   await page.getByRole('button', { name: 'Fecha de firma Fecha de firma' }).click();
-  41 |   await page.getByRole('button', { name: 'Número' }).click();
-  42 | });
-``​`
-```
-
-<a id="file-0357"></a>
-
-### 0357 — `tools/ai-quality/README-KNOWLEDGE-INDEX.md`
+### 0363 — `tools/ai-quality/README-KNOWLEDGE-INDEX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -22255,9 +21323,9 @@ These tools augment the current indexing design. After live validation, reconcil
 the existing `.ai/scripts/build-markdown-index.mjs` instead of maintaining permanent duplicate generators.
 ```
 
-<a id="file-0358"></a>
+<a id="file-0364"></a>
 
-### 0358 — `tools/ai-quality/README.md`
+### 0364 — `tools/ai-quality/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -22287,9 +21355,9 @@ the existing `.ai/scripts/build-markdown-index.mjs` instead of maintaining perma
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0359"></a>
+<a id="file-0365"></a>
 
-### 0359 — `tools/digital-agreements-contracts/README.md`
+### 0365 — `tools/digital-agreements-contracts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -22333,9 +21401,9 @@ them; regeneration remains owned by the repository's existing context-pack tooli
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0360"></a>
+<a id="file-0366"></a>
 
-### 0360 — `tools/pdfme-form-runtime/COMMAND-CHECKLIST.md`
+### 0366 — `tools/pdfme-form-runtime/COMMAND-CHECKLIST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -22388,9 +21456,9 @@ git diff --no-index <normalized-upstream-root> <normalized-downstream-root>
 Preferir manifest/hash por archivos owned en vez de comparar dependencias/build outputs.
 ```
 
-<a id="file-0361"></a>
+<a id="file-0367"></a>
 
-### 0361 — `tools/pdfme-form-runtime/README.md`
+### 0367 — `tools/pdfme-form-runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -22416,9 +21484,34 @@ Do not create duplicate wrappers unless a PFM task proves a tooling gap.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0362"></a>
+<a id="file-0368"></a>
 
-### 0362 — `.agents/skills/canvas-safety/SKILL.md`
+### 0368 — `tools/sisad-pdfme-runtime/README.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `b70a3c85a6`
+- **Estado:** `completo`
+
+```markdown
+# SISAD-PDFME runtime campaign tools
+
+Diagnostics only; they do not replace existing project-tools/indexing architecture.
+
+``​`bash
+node tools/sisad-pdfme-runtime/audit-user-recipient-boundary.mjs .
+node tools/sisad-pdfme-runtime/audit-assignment-contract.mjs .
+node tools/sisad-pdfme-runtime/audit-tooling-safety.mjs .
+node tools/sisad-pdfme-runtime/validate-campaign.mjs .
+node tools/sisad-pdfme-runtime/apply-brain-targets.mjs .          # dry run
+node tools/sisad-pdfme-runtime/apply-brain-targets.mjs . --apply  # hash checked
+``​`
+```
+
+<a id="file-0369"></a>
+
+### 0369 — `.agents/skills/canvas-safety/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22452,9 +21545,9 @@ description: Selection, geometry, Moveable, Selecto and placement.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0363"></a>
+<a id="file-0370"></a>
 
-### 0363 — `.agents/skills/configuration/SKILL.md`
+### 0370 — `.agents/skills/configuration/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22488,9 +21581,9 @@ description: ConfigService, selectors, actions and visibility.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0364"></a>
+<a id="file-0371"></a>
 
-### 0364 — `.agents/skills/context-engineering/SKILL.md`
+### 0371 — `.agents/skills/context-engineering/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -22525,9 +21618,9 @@ description: Build minimal context packs and stop context rot.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0365"></a>
+<a id="file-0372"></a>
 
-### 0365 — `.agents/skills/dry-refactor/SKILL.md`
+### 0372 — `.agents/skills/dry-refactor/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22561,9 +21654,9 @@ description: Deduplication without semantic merges.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0366"></a>
+<a id="file-0373"></a>
 
-### 0366 — `.agents/skills/event-effect/SKILL.md`
+### 0373 — `.agents/skills/event-effect/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22597,9 +21690,9 @@ description: Intent, policy, command, event, effect and cleanup.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0367"></a>
+<a id="file-0374"></a>
 
-### 0367 — `.agents/skills/inspector-contract/SKILL.md`
+### 0374 — `.agents/skills/inspector-contract/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22633,9 +21726,9 @@ description: DetailView taxonomy, widgets and property writers.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0368"></a>
+<a id="file-0375"></a>
 
-### 0368 — `.agents/skills/left-sidebar/SKILL.md`
+### 0375 — `.agents/skills/left-sidebar/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22669,9 +21762,9 @@ description: Catalog, layouts, search, favorites and drag/drop.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0369"></a>
+<a id="file-0376"></a>
 
-### 0369 — `.agents/skills/memory-gc/SKILL.md`
+### 0376 — `.agents/skills/memory-gc/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22705,9 +21798,9 @@ description: Memory delta, TTL, invalidation and compaction.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0370"></a>
+<a id="file-0377"></a>
 
-### 0370 — `.agents/skills/public-api/SKILL.md`
+### 0377 — `.agents/skills/public-api/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22741,9 +21834,9 @@ description: Public API, portability and backward compatibility.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0371"></a>
+<a id="file-0378"></a>
 
-### 0371 — `.agents/skills/quality-evidence/SKILL.md`
+### 0378 — `.agents/skills/quality-evidence/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22777,9 +21870,9 @@ description: Focal tests, log distillation, gates and no false green.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0372"></a>
+<a id="file-0379"></a>
 
-### 0372 — `.agents/skills/recipient-assignment/SKILL.md`
+### 0379 — `.agents/skills/recipient-assignment/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22813,9 +21906,9 @@ description: Recipients, owner color, locks and reassignment.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0373"></a>
+<a id="file-0380"></a>
 
-### 0373 — `.agents/skills/responsive-ux/SKILL.md`
+### 0380 — `.agents/skills/responsive-ux/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22849,9 +21942,9 @@ description: Responsive surfaces, accessibility and visual regression.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0374"></a>
+<a id="file-0381"></a>
 
-### 0374 — `.agents/skills/runtime-parity/SKILL.md`
+### 0381 — `.agents/skills/runtime-parity/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -22885,9 +21978,9 @@ description: Designer, Form, Viewer, Generator and controller parity.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0375"></a>
+<a id="file-0382"></a>
 
-### 0375 — `.agents/skills/schema-family/SKILL.md`
+### 0382 — `.agents/skills/schema-family/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -22922,9 +22015,9 @@ description: One schema across all surfaces and snapshot.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0376"></a>
+<a id="file-0383"></a>
 
-### 0376 — `.agents/skills/sisad-accessibility/SKILL.md`
+### 0383 — `.agents/skills/sisad-accessibility/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -22960,9 +22053,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0377"></a>
+<a id="file-0384"></a>
 
-### 0377 — `.agents/skills/sisad-action-state/SKILL.md`
+### 0384 — `.agents/skills/sisad-action-state/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23004,9 +22097,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0378"></a>
+<a id="file-0385"></a>
 
-### 0378 — `.agents/skills/sisad-ai-architecture/SKILL.md`
+### 0385 — `.agents/skills/sisad-ai-architecture/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23048,9 +22141,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0379"></a>
+<a id="file-0386"></a>
 
-### 0379 — `.agents/skills/sisad-behavior-traceability/SKILL.md`
+### 0386 — `.agents/skills/sisad-behavior-traceability/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23092,9 +22185,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0380"></a>
+<a id="file-0387"></a>
 
-### 0380 — `.agents/skills/sisad-canvas-interaction/SKILL.md`
+### 0387 — `.agents/skills/sisad-canvas-interaction/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23130,9 +22223,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0381"></a>
+<a id="file-0388"></a>
 
-### 0381 — `.agents/skills/sisad-canvas-safety/SKILL.md`
+### 0388 — `.agents/skills/sisad-canvas-safety/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -23155,9 +22248,9 @@ metadata:
 Antes de editar, identifica sistema de coordenadas, paper root, scroll y zoom. Selección e inspección son independientes de edición. No uses z-index o timeouts para ocultar colisiones. Ejecuta Playwright focal en página 1 y página >1, paneles abiertos/cerrados y selección múltiple.
 ```
 
-<a id="file-0382"></a>
+<a id="file-0389"></a>
 
-### 0382 — `.agents/skills/sisad-capability-audit/SKILL.md`
+### 0389 — `.agents/skills/sisad-capability-audit/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23199,9 +22292,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0383"></a>
+<a id="file-0390"></a>
 
-### 0383 — `.agents/skills/sisad-collaboration-assignments/SKILL.md`
+### 0390 — `.agents/skills/sisad-collaboration-assignments/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23237,9 +22330,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0384"></a>
+<a id="file-0391"></a>
 
-### 0384 — `.agents/skills/sisad-command-history/SKILL.md`
+### 0391 — `.agents/skills/sisad-command-history/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23281,9 +22374,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0385"></a>
+<a id="file-0392"></a>
 
-### 0385 — `.agents/skills/sisad-configuration-service/SKILL.md`
+### 0392 — `.agents/skills/sisad-configuration-service/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23319,9 +22412,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0386"></a>
+<a id="file-0393"></a>
 
-### 0386 — `.agents/skills/sisad-context-budget/SKILL.md`
+### 0393 — `.agents/skills/sisad-context-budget/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23357,9 +22450,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0387"></a>
+<a id="file-0394"></a>
 
-### 0387 — `.agents/skills/sisad-context-packet/SKILL.md`
+### 0394 — `.agents/skills/sisad-context-packet/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23401,9 +22494,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0388"></a>
+<a id="file-0395"></a>
 
-### 0388 — `.agents/skills/sisad-context-rot-check/SKILL.md`
+### 0395 — `.agents/skills/sisad-context-rot-check/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23445,9 +22538,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0389"></a>
+<a id="file-0396"></a>
 
-### 0389 — `.agents/skills/sisad-controller-parity/SKILL.md`
+### 0396 — `.agents/skills/sisad-controller-parity/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23489,9 +22582,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0390"></a>
+<a id="file-0397"></a>
 
-### 0390 — `.agents/skills/sisad-css-tailwind/SKILL.md`
+### 0397 — `.agents/skills/sisad-css-tailwind/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -23514,9 +22607,9 @@ metadata:
 Usa Tailwind para presentación y tokens CSS para variables. Mantén CSS técnico solo cuando Moveable/Selecto, pseudo-elementos o geometría lo exijan. Centraliza variantes y className builders. No uses `!important` o z-index como parche. Ejecuta gates visuales.
 ```
 
-<a id="file-0391"></a>
+<a id="file-0398"></a>
 
-### 0391 — `.agents/skills/sisad-decision-record/SKILL.md`
+### 0398 — `.agents/skills/sisad-decision-record/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23558,9 +22651,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0392"></a>
+<a id="file-0399"></a>
 
-### 0392 — `.agents/skills/sisad-declarative-instance/SKILL.md`
+### 0399 — `.agents/skills/sisad-declarative-instance/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23596,9 +22689,9 @@ Preferir:
 - No tocar geometría para simplificar montaje.
 ```
 
-<a id="file-0393"></a>
+<a id="file-0400"></a>
 
-### 0393 — `.agents/skills/sisad-dedup-triage/SKILL.md`
+### 0400 — `.agents/skills/sisad-dedup-triage/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -23619,9 +22712,9 @@ Run the report parser. Group clones by shared responsibility, not file proximity
 Use `.ai/DUPLICATION-POLICY.md` and `.ai/patterns/DUPLICATION-TAXONOMY.md`.
 ```
 
-<a id="file-0394"></a>
+<a id="file-0401"></a>
 
-### 0394 — `.agents/skills/sisad-designer-core-ux/SKILL.md`
+### 0401 — `.agents/skills/sisad-designer-core-ux/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -23654,9 +22747,9 @@ Intent → Policy → Command → Mutation → Event → Effect
 - preservar metadata crítica.
 ```
 
-<a id="file-0395"></a>
+<a id="file-0402"></a>
 
-### 0395 — `.agents/skills/sisad-designer-safety/SKILL.md`
+### 0402 — `.agents/skills/sisad-designer-safety/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -23675,9 +22768,9 @@ description: Protect canvas geometry, Moveable, Selecto, multipage routing, over
 Trace documentId, pageNumber, scale, scroll, paper rect and schema coordinates. Preserve selection versus transform semantics, modal suspension, locked/readOnly behavior and owner color. Do not use setTimeout or z-index to hide ordering bugs. Require Playwright when layout or pointer behavior changes.
 ```
 
-<a id="file-0396"></a>
+<a id="file-0403"></a>
 
-### 0396 — `.agents/skills/sisad-dry-refactor/SKILL.md`
+### 0403 — `.agents/skills/sisad-dry-refactor/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23713,9 +22806,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0397"></a>
+<a id="file-0404"></a>
 
-### 0397 — `.agents/skills/sisad-dry-refactoring/SKILL.md`
+### 0404 — `.agents/skills/sisad-dry-refactoring/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -23744,9 +22837,9 @@ metadata:
 - Nunca excluyas código propio para ocultar clones.
 ```
 
-<a id="file-0398"></a>
+<a id="file-0405"></a>
 
-### 0398 — `.agents/skills/sisad-event-effect-contract/SKILL.md`
+### 0405 — `.agents/skills/sisad-event-effect-contract/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23788,9 +22881,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0399"></a>
+<a id="file-0406"></a>
 
-### 0399 — `.agents/skills/sisad-evidence-grounding/SKILL.md`
+### 0406 — `.agents/skills/sisad-evidence-grounding/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23826,9 +22919,28 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0400"></a>
+<a id="file-0407"></a>
 
-### 0400 — `.agents/skills/sisad-form-viewer-parity/SKILL.md`
+### 0407 — `.agents/skills/sisad-form-transaction/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `48f4c07c89`
+- **Estado:** `completo`
+
+```markdown
+---
+name: sisad-form-transaction
+description: Harden local-first Form transactions, revisions, lifecycle and sibling isolation.
+---
+Load the active SPRT task and only the relevant SISAD-PDFME source/tests.
+Do not assume or load external project source.
+```
+
+<a id="file-0408"></a>
+
+### 0408 — `.agents/skills/sisad-form-viewer-parity/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -23870,9 +22982,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0401"></a>
+<a id="file-0409"></a>
 
-### 0401 — `.agents/skills/sisad-frontend-component-architecture/SKILL.md`
+### 0409 — `.agents/skills/sisad-frontend-component-architecture/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23908,9 +23020,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0402"></a>
+<a id="file-0410"></a>
 
-### 0402 — `.agents/skills/sisad-incident-recovery/SKILL.md`
+### 0410 — `.agents/skills/sisad-incident-recovery/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23946,9 +23058,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0403"></a>
+<a id="file-0411"></a>
 
-### 0403 — `.agents/skills/sisad-inspector-contract/SKILL.md`
+### 0411 — `.agents/skills/sisad-inspector-contract/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -23984,9 +23096,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0404"></a>
+<a id="file-0412"></a>
 
-### 0404 — `.agents/skills/sisad-knowledge-gc/SKILL.md`
+### 0412 — `.agents/skills/sisad-knowledge-gc/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24028,9 +23140,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0405"></a>
+<a id="file-0413"></a>
 
-### 0405 — `.agents/skills/sisad-left-sidebar-catalog/SKILL.md`
+### 0413 — `.agents/skills/sisad-left-sidebar-catalog/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24072,9 +23184,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0406"></a>
+<a id="file-0414"></a>
 
-### 0406 — `.agents/skills/sisad-memory-delta/SKILL.md`
+### 0414 — `.agents/skills/sisad-memory-delta/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24110,9 +23222,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0407"></a>
+<a id="file-0415"></a>
 
-### 0407 — `.agents/skills/sisad-memory-scrum/SKILL.md`
+### 0415 — `.agents/skills/sisad-memory-scrum/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -24131,9 +23243,9 @@ description: Update SISAD PDFME Scrum artifacts and durable memory by delta afte
 Update task-card first, then board and sprint. Produce MEMORY-DELTA and integrate only durable changes into PROJECT/CURRENT/DECISIONS/RISKS/METRICS. Keep raw logs and temporary hypotheses out of memory. Enforce WIP and Definition of Done.
 ```
 
-<a id="file-0408"></a>
+<a id="file-0416"></a>
 
-### 0408 — `.agents/skills/sisad-method-registry/SKILL.md`
+### 0416 — `.agents/skills/sisad-method-registry/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24175,9 +23287,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0409"></a>
+<a id="file-0417"></a>
 
-### 0409 — `.agents/skills/sisad-multi-document-routing/SKILL.md`
+### 0417 — `.agents/skills/sisad-multi-document-routing/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24213,9 +23325,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0410"></a>
+<a id="file-0418"></a>
 
-### 0410 — `.agents/skills/sisad-orchestrate-task/SKILL.md`
+### 0418 — `.agents/skills/sisad-orchestrate-task/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -24242,9 +23354,9 @@ description: Orchestrate one SISAD PDFME task-card with bounded context, model r
 Read `.ai/ORCHESTRATION.md` for constraints. Do not create a multi-agent workflow for a small single-file task.
 ```
 
-<a id="file-0411"></a>
+<a id="file-0419"></a>
 
-### 0411 — `.agents/skills/sisad-pattern-selection/SKILL.md`
+### 0419 — `.agents/skills/sisad-pattern-selection/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -24267,9 +23379,9 @@ metadata:
 Describe primero la variación y el owner. Consulta la matriz canónica. Prefiere composición y funciones puras. Introduce infraestructura solo cuando reduzca puntos de cambio reales. Rechaza hooks triviales, wrappers vacíos, registries redundantes y factories sin semántica.
 ```
 
-<a id="file-0412"></a>
+<a id="file-0420"></a>
 
-### 0412 — `.agents/skills/sisad-prompt-evaluation/SKILL.md`
+### 0420 — `.agents/skills/sisad-prompt-evaluation/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24305,9 +23417,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0413"></a>
+<a id="file-0421"></a>
 
-### 0413 — `.agents/skills/sisad-provider-adapter-sync/SKILL.md`
+### 0421 — `.agents/skills/sisad-provider-adapter-sync/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24349,9 +23461,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0414"></a>
+<a id="file-0422"></a>
 
-### 0414 — `.agents/skills/sisad-public-api-compatibility/SKILL.md`
+### 0422 — `.agents/skills/sisad-public-api-compatibility/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24387,9 +23499,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0415"></a>
+<a id="file-0423"></a>
 
-### 0415 — `.agents/skills/sisad-quality-gates/SKILL.md`
+### 0423 — `.agents/skills/sisad-quality-gates/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -24408,9 +23520,9 @@ description: Select and execute the correct lint, build, unit, Playwright, dupli
 Read the task-card and `.ai/QUALITY-GATES.md`. Run the smallest focal set during iteration, then the declared close set. Capture command, exit code and relevant summary. Do not claim green for commands not executed. Distinguish pre-existing failures from introduced failures with evidence.
 ```
 
-<a id="file-0416"></a>
+<a id="file-0424"></a>
 
-### 0416 — `.agents/skills/sisad-react-performance/SKILL.md`
+### 0424 — `.agents/skills/sisad-react-performance/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24446,9 +23558,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0417"></a>
+<a id="file-0425"></a>
 
-### 0417 — `.agents/skills/sisad-recipient-assignment-policy/SKILL.md`
+### 0425 — `.agents/skills/sisad-recipient-assignment-policy/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24490,9 +23602,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0418"></a>
+<a id="file-0426"></a>
 
-### 0418 — `.agents/skills/sisad-research-verify/SKILL.md`
+### 0426 — `.agents/skills/sisad-research-verify/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -24511,9 +23623,9 @@ description: Verify current technical behavior against primary official document
 State the exact uncertainty. Prefer official docs, specifications and upstream repositories. Record access date and version scope. Separate source fact, inference and project recommendation. Do not browse when the answer is fully determined by local code. Do not implement code in this skill.
 ```
 
-<a id="file-0419"></a>
+<a id="file-0427"></a>
 
-### 0419 — `.agents/skills/sisad-responsive-ux/SKILL.md`
+### 0427 — `.agents/skills/sisad-responsive-ux/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24549,9 +23661,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0420"></a>
+<a id="file-0428"></a>
 
-### 0420 — `.agents/skills/sisad-right-sidebar-contract/SKILL.md`
+### 0428 — `.agents/skills/sisad-right-sidebar-contract/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24593,9 +23705,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0421"></a>
+<a id="file-0429"></a>
 
-### 0421 — `.agents/skills/sisad-runtime-platform/SKILL.md`
+### 0429 — `.agents/skills/sisad-runtime-platform/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -24616,9 +23728,9 @@ Reusar, no duplicar, skills existentes: `runtime-parity`, `sisad-form-viewer-par
 Workflow: characterize → authority → minimal change → focal gates → evidence → memory delta.
 ```
 
-<a id="file-0422"></a>
+<a id="file-0430"></a>
 
-### 0422 — `.agents/skills/sisad-schema-behavior-matrix/SKILL.md`
+### 0430 — `.agents/skills/sisad-schema-behavior-matrix/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24660,9 +23772,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0423"></a>
+<a id="file-0431"></a>
 
-### 0423 — `.agents/skills/sisad-schema-family-refactor/SKILL.md`
+### 0431 — `.agents/skills/sisad-schema-family-refactor/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -24689,9 +23801,9 @@ metadata:
 - Preserva identidad, routing, ownership, grupos y opciones.
 ```
 
-<a id="file-0424"></a>
+<a id="file-0432"></a>
 
-### 0424 — `.agents/skills/sisad-schema-plugin/SKILL.md`
+### 0432 — `.agents/skills/sisad-schema-plugin/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24727,9 +23839,28 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0425"></a>
+<a id="file-0433"></a>
 
-### 0425 — `.agents/skills/sisad-security-privacy/SKILL.md`
+### 0433 — `.agents/skills/sisad-schema-runtime-contract/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `e915b479d9`
+- **Estado:** `completo`
+
+```markdown
+---
+name: sisad-schema-runtime-contract
+description: Complete schema manifest, codec, interaction and cross-surface behavior.
+---
+Load the active SPRT task and only the relevant SISAD-PDFME source/tests.
+Do not assume or load external project source.
+```
+
+<a id="file-0434"></a>
+
+### 0434 — `.agents/skills/sisad-security-privacy/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24765,9 +23896,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0426"></a>
+<a id="file-0435"></a>
 
-### 0426 — `.agents/skills/sisad-skill-evaluation/SKILL.md`
+### 0435 — `.agents/skills/sisad-skill-evaluation/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -24794,9 +23925,9 @@ metadata:
 - Fusiona skills solapadas y elimina las que no mejoran resultados.
 ```
 
-<a id="file-0427"></a>
+<a id="file-0436"></a>
 
-### 0427 — `.agents/skills/sisad-snapshot-compatibility/SKILL.md`
+### 0436 — `.agents/skills/sisad-snapshot-compatibility/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24832,9 +23963,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0428"></a>
+<a id="file-0437"></a>
 
-### 0428 — `.agents/skills/sisad-tailwind-design-system/SKILL.md`
+### 0437 — `.agents/skills/sisad-tailwind-design-system/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24870,9 +24001,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0429"></a>
+<a id="file-0438"></a>
 
-### 0429 — `.agents/skills/sisad-task-execution/SKILL.md`
+### 0438 — `.agents/skills/sisad-task-execution/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -24903,9 +24034,9 @@ metadata:
 No termines en análisis si puedes completar un cambio seguro. No inventes validaciones que no ejecutaste.
 ```
 
-<a id="file-0430"></a>
+<a id="file-0439"></a>
 
-### 0430 — `.agents/skills/sisad-task-orchestration/SKILL.md`
+### 0439 — `.agents/skills/sisad-task-orchestration/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -24941,9 +24072,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0431"></a>
+<a id="file-0440"></a>
 
-### 0431 — `.agents/skills/sisad-test-log-distillation/SKILL.md`
+### 0440 — `.agents/skills/sisad-test-log-distillation/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -24985,9 +24116,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0432"></a>
+<a id="file-0441"></a>
 
-### 0432 — `.agents/skills/sisad-testing-pyramid/SKILL.md`
+### 0441 — `.agents/skills/sisad-testing-pyramid/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -25023,9 +24154,75 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0433"></a>
+<a id="file-0442"></a>
 
-### 0433 — `.agents/skills/sisad-visual-regression/SKILL.md`
+### 0442 — `.agents/skills/sisad-tooling-safety/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `8bf62d9200`
+- **Estado:** `completo`
+
+```markdown
+---
+name: sisad-tooling-safety
+description: Characterize and harden installers, importers, dedup and stable-name tooling.
+---
+Load the active SPRT task and only the relevant SISAD-PDFME source/tests.
+Do not assume or load external project source.
+```
+
+<a id="file-0443"></a>
+
+### 0443 — `.agents/skills/sisad-user-model-migration/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `15`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `2f7a85cc0f`
+- **Estado:** `completo`
+
+```markdown
+---
+name: sisad-user-model-migration
+description: Migrate User, Recipient, assignment, access and snapshot identity semantics without global renames.
+---
+
+# Skill — SISAD-PDFME User model migration
+
+Use when changing Recipient/User/assignment/access/snapshot identity semantics.
+
+1. Prove current public/snapshot shape.
+2. Keep Host Recipient and core User separate.
+3. Add canonical API before deleting compatibility aliases.
+4. No global rename; migrate by symbol/boundary.
+5. Test snapshot/API roundtrip and consumer adapters.
+6. Ratchet new Recipient-centric core usages to zero.
+```
+
+<a id="file-0444"></a>
+
+### 0444 — `.agents/skills/sisad-user-runtime/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `d181053674`
+- **Estado:** `completo`
+
+```markdown
+---
+name: sisad-user-runtime
+description: Migrate SISAD-PDFME interaction identity from legacy Recipient naming to canonical User semantics.
+---
+Load the active SPRT task and only the relevant SISAD-PDFME source/tests.
+Do not assume or load external project source.
+```
+
+<a id="file-0445"></a>
+
+### 0445 — `.agents/skills/sisad-visual-regression/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -25061,9 +24258,9 @@ project: sisad-pdfme
 No cargar esta skill fuera de su dominio.
 ```
 
-<a id="file-0434"></a>
+<a id="file-0446"></a>
 
-### 0434 — `.agents/skills/sisad-worktree-coordination/SKILL.md`
+### 0446 — `.agents/skills/sisad-worktree-coordination/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -25105,9 +24302,9 @@ Detener ante cambio de dominio, fuente duplicada, falta de evidencia o
 presupuesto agotado.
 ```
 
-<a id="file-0435"></a>
+<a id="file-0447"></a>
 
-### 0435 — `.agents/skills/snapshot/SKILL.md`
+### 0447 — `.agents/skills/snapshot/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -25141,9 +24338,9 @@ description: Snapshot, documents, routing and migrations.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0436"></a>
+<a id="file-0448"></a>
 
-### 0436 — `.agents/skills/tailwind-system/SKILL.md`
+### 0448 — `.agents/skills/tailwind-system/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -25177,9 +24374,9 @@ description: Tailwind-first tokens and CSS boundary.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0437"></a>
+<a id="file-0449"></a>
 
-### 0437 — `.agents/skills/traceability/SKILL.md`
+### 0449 — `.agents/skills/traceability/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -25213,9 +24410,9 @@ description: UC/BHV/MTH/EVT/FX/TST/TSK graph maintenance.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0438"></a>
+<a id="file-0450"></a>
 
-### 0438 — `.agents/skills/worktree-coordination/SKILL.md`
+### 0450 — `.agents/skills/worktree-coordination/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -25249,9 +24446,9 @@ description: Claims, leases, worktrees and atomic handoffs.
 Cambio de dominio, presupuesto agotado, fuente duplicada o evidencia insuficiente.
 ```
 
-<a id="file-0439"></a>
+<a id="file-0451"></a>
 
-### 0439 — `.ai/analysis/runtime-platform/00-EXECUTIVE.md`
+### 0451 — `.ai/analysis/runtime-platform/00-EXECUTIVE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -25276,9 +24473,9 @@ P0 confirmados por el snapshot:
 No hacer big-bang. Primero source truth + characterization, luego protocolo local-first, después manifest/codec, luego familias y finalmente PDF lifecycle/performance/release.
 ```
 
-<a id="file-0440"></a>
+<a id="file-0452"></a>
 
-### 0440 — `.ai/analysis/runtime-platform/01-SOURCE-COVERAGE.md`
+### 0452 — `.ai/analysis/runtime-platform/01-SOURCE-COVERAGE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -25298,9 +24495,9 @@ No hacer big-bang. Primero source truth + characterization, luego protocolo loca
 Archivos marcados `truncado` u `omitido` no se consideran analizados semánticamente; solo inventariados. RTP-000 abre source vivo cuando sean necesarios.
 ```
 
-<a id="file-0441"></a>
+<a id="file-0453"></a>
 
-### 0441 — `.ai/analysis/runtime-platform/02-FORM-STATE-RISKS.md`
+### 0453 — `.ai/analysis/runtime-platform/02-FORM-STATE-RISKS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -25316,9 +24513,9 @@ El snapshot muestra tres capas de estado: clase `Form`, `usePreviewRuntime` y `u
 Caso obligatorio de regresión: schema A texto escribe sin blur → schema B radio/checkboxGroup interactúa → A conserva draft/caret/valor. Repetir con host rerender y update externo.
 ```
 
-<a id="file-0442"></a>
+<a id="file-0454"></a>
 
-### 0442 — `.ai/analysis/runtime-platform/03-PDF-LIFECYCLE.md`
+### 0454 — `.ai/analysis/runtime-platform/03-PDF-LIFECYCLE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25332,9 +24529,9 @@ Caso obligatorio de regresión: schema A texto escribe sin blur → schema B rad
 Auditar PDF.js LoadingTask/DocumentProxy/PageProxy/RenderTask. Separar: carga, render visible, conversión batch, cancelación, cleanup y destroy. No usar un timeout como sustituto permanente de un protocolo de cierre; primero caracterizar la carrera que motivó `scheduleDestroyInstance`.
 ```
 
-<a id="file-0443"></a>
+<a id="file-0455"></a>
 
-### 0443 — `.ai/analysis/runtime-platform/04-GENERATOR-CONVERTER.md`
+### 0455 — `.ai/analysis/runtime-platform/04-GENERATOR-CONVERTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25348,9 +24545,9 @@ Auditar PDF.js LoadingTask/DocumentProxy/PageProxy/RenderTask. Separar: carga, r
 Generator usa pdf-lib y plugin pdfRender; converter usa PDF.js en browser/node. Casos: blank PDF, real PDF, rotated pages, crop/media boxes, multipage, many pages, huge pages, custom fonts, structured schema values, barcodes/table/image, errors parciales, abort/cleanup y deterministic output.
 ```
 
-<a id="file-0444"></a>
+<a id="file-0456"></a>
 
-### 0444 — `.ai/analysis/runtime-platform/05-SCHEMA-RUNTIME.md`
+### 0456 — `.ai/analysis/runtime-platform/05-SCHEMA-RUNTIME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25364,9 +24561,9 @@ Generator usa pdf-lib y plugin pdfRender; converter usa PDF.js en browser/node. 
 Definition of Done por schema: factory/default, Designer, inspector, Form initial/edit/clear, sibling isolation, readonly/hidden/access, validation, touched/dirty/completion, host rerender/update, Viewer no-mutation, Snapshot roundtrip, Generator/PDF, keyboard/touch, lifecycle cleanup, multipage/multidoc/recipient isolation.
 ```
 
-<a id="file-0445"></a>
+<a id="file-0457"></a>
 
-### 0445 — `.ai/analysis/runtime-platform/06-ARTIFACT-SIGNATURE.md`
+### 0457 — `.ai/analysis/runtime-platform/06-ARTIFACT-SIGNATURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25380,9 +24577,9 @@ Definition of Done por schema: factory/default, Designer, inspector, Form initia
 Attachment no debe reducirse a filenames cuando el host necesita archivos reales. File/Blob son efímeros; el runtime emite selección y el host resuelve refs. Firma draw/image/P12/provider necesita estados cancel/replace/fail/restore; credenciales nunca en snapshot/config.
 ```
 
-<a id="file-0446"></a>
+<a id="file-0458"></a>
 
-### 0446 — `.ai/analysis/runtime-platform/07-MULTIDOC-COLLAB.md`
+### 0458 — `.ai/analysis/runtime-platform/07-MULTIDOC-COLLAB.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25396,9 +24593,9 @@ Attachment no debe reducirse a filenames cuando el host necesita archivos reales
 Verificar 0/1/2/N recipients, copy/disabled/shared, active recipient null/global, ownership colors, locks, comments y assignment. Verificar 1/N documents, add/delete/reorder, active ID, page routing, schema isolation y snapshot.
 ```
 
-<a id="file-0447"></a>
+<a id="file-0459"></a>
 
-### 0447 — `.ai/analysis/runtime-platform/08-PERFORMANCE-MEMORY.md`
+### 0459 — `.ai/analysis/runtime-platform/08-PERFORMANCE-MEMORY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25412,9 +24609,9 @@ Verificar 0/1/2/N recipients, copy/disabled/shared, active recipient null/global
 Medir: mount, first page, page switch, schema keystroke latency, 50/200/1000 schemas, 1/10/100 pages, memory after repeated open/close, object URLs, PDF.js workers/render tasks, converter concurrency y template signature cost. No optimizar por intuición.
 ```
 
-<a id="file-0448"></a>
+<a id="file-0460"></a>
 
-### 0448 — `.ai/analysis/runtime-platform/09-A11Y-INPUT.md`
+### 0460 — `.ai/analysis/runtime-platform/09-A11Y-INPUT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25428,9 +24625,9 @@ Medir: mount, first page, page switch, schema keystroke latency, 50/200/1000 sch
 Form: keyboard first, IME/composition, native text editing expectations, checkbox Space, radio arrows/Space, combobox navigation, focus retention. Designer: pointer mouse/touch/pen y selection intent separado de value mutation.
 ```
 
-<a id="file-0449"></a>
+<a id="file-0461"></a>
 
-### 0449 — `.ai/analysis/runtime-platform/10-NOMENCLATURE.md`
+### 0461 — `.ai/analysis/runtime-platform/10-NOMENCLATURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25444,9 +24641,9 @@ Form: keyboard first, IME/composition, native text editing expectations, checkbo
 Nuevo código: SISAD-PDFME. Legacy `Pdfme*` se clasifica KEEP-COMPAT / RENAME-INTERNAL / ALIAS-PUBLIC / REMOVE. La migración de nombres se ejecuta después del hardening funcional para no esconder regresiones en diffs masivos.
 ```
 
-<a id="file-0450"></a>
+<a id="file-0462"></a>
 
-### 0450 — `.ai/analysis/runtime-platform/11-TEST-INFRA.md`
+### 0462 — `.ai/analysis/runtime-platform/11-TEST-INFRA.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25460,9 +24657,9 @@ Nuevo código: SISAD-PDFME. Legacy `Pdfme*` se clasifica KEEP-COMPAT / RENAME-IN
 El snapshot contiene `playwright.config.ts` y `playwright.config.js` con testDir, proyectos, reporter, parallelism y retry diferentes. Antes de usar Playwright como gate final, elegir una configuración canónica y convertir la otra en redirect/eliminación controlada.
 ```
 
-<a id="file-0451"></a>
+<a id="file-0463"></a>
 
-### 0451 — `.ai/analysis/runtime-platform/RISK-REGISTER.md`
+### 0463 — `.ai/analysis/runtime-platform/RISK-REGISTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -25489,9 +24686,257 @@ El snapshot contiene `playwright.config.ts` y `playwright.config.js` con testDir
 - R14 MEDIUM — legacy `Pdfme*` naming hides product boundaries.
 ```
 
-<a id="file-0452"></a>
+<a id="file-0464"></a>
 
-### 0452 — `.ai/brain/00-product/ARCHITECTURE.md`
+### 0464 — `.ai/analysis/sisad-pdfme-runtime-hardening/00-EXECUTIVE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `39`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `ff075f7f4c`
+- **Estado:** `completo`
+
+```markdown
+# SISAD-PDFME runtime hardening — executive
+
+## Product boundary
+
+This campaign is entirely about **SISAD-PDFME**.
+
+No external application, module, backend or business workflow is part of this repository's
+canonical knowledge. External systems are represented only through generic host contracts.
+
+## Current direction
+
+Designer is mature enough that the safest strategy is:
+- characterize;
+- freeze public behavior;
+- remove regressions;
+- improve internals behind stable public contracts.
+
+Form needs deeper hardening:
+- local-first transaction protocol;
+- host reconciliation/revisions;
+- user/document/session isolation;
+- schema value codecs;
+- schema manifest/capabilities;
+- interaction-state/completion;
+- signature/artifact isolation;
+- all-schema behavior parity;
+- multi-instance concurrency.
+
+## Terminology correction
+
+Canonical reusable identity is `User`, not a business `Recipient`.
+Existing Recipient-named internals are legacy migration debt.
+
+## Release principle
+
+A schema is complete only when its declared capabilities pass:
+Factory, Designer, Inspector, Form, reset/clear, sibling isolation, access, validation,
+touched/dirty, host rerender, Viewer, Snapshot, PDF, keyboard/touch/IME, cleanup,
+multi-document and multi-user tests.
+```
+
+<a id="file-0465"></a>
+
+### 0465 — `.ai/analysis/sisad-pdfme-runtime-hardening/01-USER-MODEL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `27`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `1f6bb46661`
+- **Estado:** `completo`
+
+```markdown
+# User model migration analysis
+
+Target:
+
+``​`text
+Host participant
+      |
+      | adapter
+      v
+SisadPdfmeUser
+      |
+      +-- activeUser
+      +-- assignedUser(s)
+      +-- auditUser
+``​`
+
+Migration is compatibility-first, not a mass rename.
+
+Stages:
+1. characterize Recipient-named public/internal behavior;
+2. add `SisadPdfmeUser`;
+3. add `users` + `activeUserId`;
+4. accept legacy `recipients` + `activeRecipientId` at the public boundary;
+5. canonicalize immediately after normalization;
+6. migrate registry/access/appearance/assignments;
+7. migrate snapshots with explicit version adapters;
+8. deprecate legacy aliases only after consumer-contract tests pass.
+```
+
+<a id="file-0466"></a>
+
+### 0466 — `.ai/analysis/sisad-pdfme-runtime-hardening/02-DESIGNER-STABILITY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `18`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `893862bb25`
+- **Estado:** `completo`
+
+```markdown
+# Designer stability strategy
+
+Designer is not the main rewrite target.
+
+Protect:
+- drag/drop preview and drop semantics;
+- canvas scroll/zoom/pan;
+- selection/multi-selection;
+- move/resize/rotate;
+- snapping/guides/grid;
+- left/right sidebars;
+- schema inspector;
+- user assignment and color;
+- multi-document switching;
+- import/export/snapshot;
+- keyboard and accessibility.
+
+Any internal refactor must demonstrate no regression through contract + interaction tests.
+```
+
+<a id="file-0467"></a>
+
+### 0467 — `.ai/analysis/sisad-pdfme-runtime-hardening/03-FORM-HARDENING.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `43`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `300f2870e5`
+- **Estado:** `completo`
+
+```markdown
+# Form hardening strategy
+
+Canonical pipeline:
+
+``​`text
+mount
+ -> hydrate template/inputs
+ -> resolve active user
+ -> resolve document
+ -> resolve access/assignment
+ -> render
+ -> prefill/restore
+ -> draft
+ -> local mutation
+ -> validate
+ -> atomic transaction
+ -> commit
+ -> touched/dirty
+ -> notify host
+ -> reconcile revision
+ -> completion
+ -> Viewer/Snapshot/PDF
+ -> dispose
+``​`
+
+Target transaction metadata:
+
+``​`ts
+type SchemaInputTransaction = {
+  transactionId: string;
+  unitIndex: number;
+  schemaUid: string;
+  schemaName: string;
+  changes: Array<{ key: string; value: unknown }>;
+  phase: 'draft' | 'commit';
+  origin: 'user' | 'host' | 'prefill' | 'restore' | 'migration' | 'system';
+  revision: number;
+  touched?: boolean;
+  timestamp: number;
+};
+``​`
+
+Do not force full render per keystroke. Preserve caret, focus and IME composition.
+```
+
+<a id="file-0468"></a>
+
+### 0468 — `.ai/analysis/sisad-pdfme-runtime-hardening/04-SCHEMA-BEHAVIOR.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `17`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `076679c856`
+- **Estado:** `completo`
+
+```markdown
+# All-schema behavior strategy
+
+Every schema family must define:
+- interaction kind;
+- value codec;
+- empty semantics;
+- validation;
+- readonly/hidden/locked behavior;
+- assignment/access;
+- Form renderer behavior;
+- Viewer/PDF behavior;
+- snapshot migration;
+- cleanup;
+- accessibility;
+- interaction state/completion semantics where applicable.
+
+Use registry-driven tests and pairwise interaction tests rather than independent ad-hoc fixes.
+```
+
+<a id="file-0469"></a>
+
+### 0469 — `.ai/analysis/sisad-pdfme-runtime-hardening/05-TOOLING-SAFETY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `26`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `5cef7edfaa`
+- **Estado:** `completo`
+
+```markdown
+# Tooling / installation / dedup safety
+
+Installers/importers/migrations must use two phases:
+
+``​`text
+PREPARE
+ -> create
+ -> identical
+ -> safe-update
+ -> conflict
+ -> skip
+
+if conflict exists
+ -> no apply by default
+
+APPLY
+ -> execute validated plan atomically as practical
+``​`
+
+Rules:
+- no partial test/tool installation after a discovered conflict;
+- existing package scripts are not overwritten silently;
+- Markdown and non-Markdown import paths have separate characterized tests;
+- dedup is ratcheted by semantic scope, not forced into unsafe abstractions;
+- ordering/renames use stable-name and link validators;
+- generated indexes/context packs are regenerated, not patched by hand.
+```
+
+<a id="file-0470"></a>
+
+### 0470 — `.ai/brain/00-product/ARCHITECTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -25525,9 +24970,9 @@ Host boundaries
 El host no es dueño de Canvas, Renderer, Inspector, Form internals ni schema semantics.
 ```
 
-<a id="file-0453"></a>
+<a id="file-0471"></a>
 
-### 0453 — `.ai/brain/00-product/GLOSSARY.md`
+### 0471 — `.ai/brain/00-product/GLOSSARY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -25549,9 +24994,9 @@ El host no es dueño de Canvas, Renderer, Inspector, Form internals ni schema se
 - **Host**: aplicación consumidora; no forma parte del core reusable.
 ```
 
-<a id="file-0454"></a>
+<a id="file-0472"></a>
 
-### 0454 — `.ai/brain/00-product/PRODUCT-IDENTITY.md`
+### 0472 — `.ai/brain/00-product/PRODUCT-IDENTITY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -25577,9 +25022,9 @@ mantienen temporalmente solo donde un cambio rompería compatibilidad o generar�
 nomenclatura demasiado grande para una task funcional. `RTP-330` sanea esto al final.
 ```
 
-<a id="file-0455"></a>
+<a id="file-0473"></a>
 
-### 0455 — `.ai/brain/00-product/SOURCE-TRUTH.md`
+### 0473 — `.ai/brain/00-product/SOURCE-TRUTH.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -25619,9 +25064,9 @@ Estos hashes describen los context packs adjuntos, no el HEAD del repositorio.
 Antes de modificar producto, confirmar `git status`, branch, HEAD y source vivo.
 ```
 
-<a id="file-0456"></a>
+<a id="file-0474"></a>
 
-### 0456 — `.ai/brain/00-product/STACK.md`
+### 0474 — `.ai/brain/00-product/STACK.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -25648,9 +25093,9 @@ Antes de modificar producto, confirmar `git status`, branch, HEAD y source vivo.
 Las versiones exactas deben leerse de `package.json` vivo en cada baseline.
 ```
 
-<a id="file-0457"></a>
+<a id="file-0475"></a>
 
-### 0457 — `.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md`
+### 0475 — `.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25664,9 +25109,9 @@ Las versiones exactas deben leerse de `package.json` vivo en cada baseline.
 Seleccionable ≠ editable ≠ movable ≠ deletable. Resolver común debe integrar readonly, lock, owner, active recipient, runtime mode y permission context. Canvas/List/Inspector/commands consumen el mismo resultado.
 ```
 
-<a id="file-0458"></a>
+<a id="file-0476"></a>
 
-### 0458 — `.ai/brain/20-contracts/ARTIFACT-CONTRACT.md`
+### 0476 — `.ai/brain/20-contracts/ARTIFACT-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25680,9 +25125,9 @@ Seleccionable ≠ editable ≠ movable ≠ deletable. Resolver común debe integ
 File/Blob son efímeros y no deben persistirse directamente en snapshot. Form emite selección; host/provider resuelve almacenamiento; runtime recibe referencia estable serializable y metadata.
 ```
 
-<a id="file-0459"></a>
+<a id="file-0477"></a>
 
-### 0459 — `.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md`
+### 0477 — `.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25696,9 +25141,9 @@ File/Blob son efímeros y no deben persistirse directamente en snapshot. Form em
 JSON contiene comportamiento/capabilities. Estado vivo (`template`, `inputs`, recipients/documents activos, IDs activos) vive en definition/state/resources. Funciones y secretos viven en handlers/providers, nunca en JSON.
 ```
 
-<a id="file-0460"></a>
+<a id="file-0478"></a>
 
-### 0460 — `.ai/brain/20-contracts/DOCUMENTATION-NAMING.md`
+### 0478 — `.ai/brain/20-contracts/DOCUMENTATION-NAMING.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -25717,9 +25162,67 @@ JSON contiene comportamiento/capabilities. Estado vivo (`template`, `inputs`, re
 - A cleanup cannot discard divergent content silently.
 ```
 
-<a id="file-0461"></a>
+<a id="file-0479"></a>
 
-### 0461 — `.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md`
+### 0479 — `.ai/brain/20-contracts/FORM-COMPLETION-CONTRACT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `9`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `10eb7254b4`
+- **Estado:** `completo`
+
+```markdown
+# Form completion contract
+
+`touched`, `dirty`, `valid`, `committed` y `completed` son estados diferentes.
+
+Completion se deriva de schema capabilities + required/access + codec/validation. El host
+puede exigir un criterio de negocio superior, pero no debe inferirlo con truthiness.
+
+Valores válidos como `0`, `false` y `[]` se evalúan con codec. Campos readonly/hidden que
+no corresponden al User activo no bloquean completion salvo policy explícita.
+```
+
+<a id="file-0480"></a>
+
+### 0480 — `.ai/brain/20-contracts/FORM-RUNTIME-ISOLATION.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `23`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `b24e4de083`
+- **Estado:** `completo`
+
+```markdown
+# Form runtime isolation
+
+Mutable Form state is scoped by:
+
+``​`text
+runtimeSession
+  x user
+  x document
+``​`
+
+The host owns the meaning of the runtime session identifier. SISAD-PDFME treats it as opaque.
+
+State that must never leak between scopes:
+- inputs/drafts;
+- touched/dirty/validation;
+- signatures/initials;
+- artifacts/attachments;
+- transient action state;
+- focus/editing state where persisted by runtime;
+- completion projections.
+
+In multi-user Form mode, `activeUserId` must be explicit or the runtime must fail closed.
+Do not silently select the first configured user for an execution surface.
+```
+
+<a id="file-0481"></a>
+
+### 0481 — `.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -25748,9 +25251,9 @@ interface SchemaInputTransaction {
 Reglas: commit local antes de callback; patches multi-key atómicos; host push no reaparece como user event; sibling B nunca revierte A.
 ```
 
-<a id="file-0462"></a>
+<a id="file-0482"></a>
 
-### 0462 — `.ai/brain/20-contracts/FORM-VIEWER-GENERATOR-PARITY.md`
+### 0482 — `.ai/brain/20-contracts/FORM-VIEWER-GENERATOR-PARITY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25764,9 +25267,89 @@ Reglas: commit local antes de callback; patches multi-key atómicos; host push n
 La misma semántica de valor debe ser entendida por Form, Viewer, Generator/PDF y Snapshot. Viewer no muta. Generator no inventa parsing alternativo. Visual-only schemas declaran explícitamente que no son editables en Form.
 ```
 
-<a id="file-0463"></a>
+<a id="file-0483"></a>
 
-### 0463 — `.ai/brain/20-contracts/MULTI-DOCUMENT-CONTRACT.md`
+### 0483 — `.ai/brain/20-contracts/HOST-PARTICIPANT-USER-BOUNDARY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `67`
+- **Tamaño original:** `1.6 KB`
+- **SHA1 corto:** `d46104a1a7`
+- **Estado:** `completo`
+
+```markdown
+# Host participant / SISAD-PDFME user boundary
+
+## Canon
+
+SISAD-PDFME is a standalone reusable document platform. It does not know the business
+entities, routing model, request model, notification model or persistence model of any host.
+
+A host may have any external actor representation:
+- person;
+- signer;
+- approver;
+- reviewer;
+- customer;
+- employee;
+- workflow actor;
+- anonymous/session actor.
+
+The host adapts that entity into a `SisadPdfmeUser`.
+
+## Canonical SISAD-PDFME concept
+
+``​`ts
+type SisadPdfmeUser = {
+  id: string;
+  displayName: string;
+  color?: string;
+  role?: string;
+  disabled?: boolean;
+  capabilities?: {
+    canEdit?: boolean;
+    canSign?: boolean;
+    canApprove?: boolean;
+    canComment?: boolean;
+    canEditStructure?: boolean;
+  };
+  hostReference?: {
+    type: string;
+    id: string;
+  };
+  metadata?: Record<string, unknown>;
+};
+``​`
+
+`hostReference` is opaque. Core logic must not branch on its `type`.
+
+## Internal identities
+
+- active user: actor operating this runtime instance;
+- assigned user: actor authorized/expected to interact with a schema;
+- audit user: actor that created, changed or locked an object.
+
+These identities may coincide but are not the same responsibility.
+
+## Forbidden host leakage
+
+Core must not require host concepts such as:
+- routing order/stages;
+- request/envelope state;
+- notifications/channels;
+- batch membership;
+- backend identifiers unrelated to document interaction;
+- host API DTOs.
+
+## Legacy terminology
+
+Existing `Recipient*`, `activeRecipientId`, `ownerRecipientId` symbols are migration debt.
+They may remain as compatibility aliases while canonical internals move to `User*`.
+```
+
+<a id="file-0484"></a>
+
+### 0484 — `.ai/brain/20-contracts/MULTI-DOCUMENT-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25780,9 +25363,9 @@ La misma semántica de valor debe ser entendida por Form, Viewer, Generator/PDF 
 `documents[]` conserva orden de negocio. `activeDocumentId` representa selección y jamás reordena la colección. Routing conserva documentId/pageNumber/schemaUid y estado por documento.
 ```
 
-<a id="file-0464"></a>
+<a id="file-0485"></a>
 
-### 0464 — `.ai/brain/20-contracts/PDF-RESOURCE-LIFECYCLE.md`
+### 0485 — `.ai/brain/20-contracts/PDF-RESOURCE-LIFECYCLE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25796,9 +25379,9 @@ La misma semántica de valor debe ser entendida por Form, Viewer, Generator/PDF 
 PDF.js document/page/render tasks y object URLs deben tener lifecycle explícito. Nunca llamar cleanup durante render activo. Cancelar/esperar renders al desmontar. Revocar object URLs cuando dejan de ser necesarios.
 ```
 
-<a id="file-0465"></a>
+<a id="file-0486"></a>
 
-### 0465 — `.ai/brain/20-contracts/PUBLIC-API-CONTRACT.md`
+### 0486 — `.ai/brain/20-contracts/PUBLIC-API-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25812,9 +25395,86 @@ PDF.js document/page/render tasks y object URLs deben tener lifecycle explícito
 Hosts consumen `SisadPdfmeInstance`, wrappers públicos, config/controller/bundle/adapters. No deep-importan Canvas, Moveable, Selecto, DetailView ni registries internos. Nuevas capabilities deben aparecer primero en API pública/config/controller.
 ```
 
-<a id="file-0466"></a>
+<a id="file-0487"></a>
 
-### 0466 — `.ai/brain/20-contracts/SCHEMA-RUNTIME-MANIFEST.md`
+### 0487 — `.ai/brain/20-contracts/RUNTIME-SESSION-IDENTITY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `11`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `c676c8190c`
+- **Estado:** `completo`
+
+```markdown
+# Runtime session identity
+
+Dentro de SISAD-PDFME el aislamiento mutable se define por:
+
+``​`text
+userId × documentId × sessionScopeKey
+``​`
+
+`sessionScopeKey` es opaco para el reusable. El host puede derivarlo de request/recipient,
+pero el core no interpreta Request/routing. Cambiar cualquiera de esas dimensiones puede
+recrear el runtime; una actualización de input normal no debe remount.
+```
+
+<a id="file-0488"></a>
+
+### 0488 — `.ai/brain/20-contracts/SCHEMA-INTERACTION-INVARIANTS.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `55f3acce63`
+- **Estado:** `completo`
+
+```markdown
+# Schema interaction invariants
+
+1. A visible draft in schema A must survive any interaction with schema B.
+2. Local runtime state is updated before host notification.
+3. Multi-property schema changes are atomic.
+4. `draft` and `commit` are different phases.
+5. `touched`, `dirty`, `valid` and `completed` are different states.
+6. Host synchronization cannot overwrite a newer local revision with an older echo.
+7. `0`, `false`, `[]`, `null`, `undefined` and `""` are not interchangeable.
+8. Schema behavior is declared through registry/manifest/codec, not duplicated switches.
+9. User/document/session isolation applies to every schema family.
+10. Form, Viewer, Snapshot and PDF must agree on normalized values.
+```
+
+<a id="file-0489"></a>
+
+### 0489 — `.ai/brain/20-contracts/SCHEMA-INTERACTION-ISOLATION.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `15`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `614aae4cd2`
+- **Estado:** `completo`
+
+```markdown
+# Schema interaction isolation
+
+Una interacción sobre schema B no puede revertir estado aceptado de schema A.
+
+Claves:
+- local-first;
+- patch multi-key atómico;
+- schemaUid estable;
+- `origin + revision + transactionId` para reconcile;
+- no reconstruir estado desde DOM;
+- no usar truthiness para empty/equality;
+- plugins no escriben storage de siblings directamente;
+- dos Forms simultáneos no comparten mutable singleton state.
+
+Gate obligatorio: pairwise interaction matrix además del test individual de cada schema.
+```
+
+<a id="file-0490"></a>
+
+### 0490 — `.ai/brain/20-contracts/SCHEMA-RUNTIME-MANIFEST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25828,9 +25488,9 @@ Hosts consumen `SisadPdfmeInstance`, wrappers públicos, config/controller/bundl
 Facade incremental sobre el registry existente. Describe `type`, aliases, family, interactionKind, capabilities, codec, validation, artifact/layout policy y migrations. No reemplaza plugins ni crea un segundo registry.
 ```
 
-<a id="file-0467"></a>
+<a id="file-0491"></a>
 
-### 0467 — `.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md`
+### 0491 — `.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25844,9 +25504,9 @@ Facade incremental sobre el registry existente. Describe `type`, aliases, family
 Cada familia debe implementar semántica equivalente a `read`, `normalize`, `toInput`, `toSnapshot`, `equals`, `isEmpty`. Evita que `false`, `0`, `[]`, `null` y `''` se confundan.
 ```
 
-<a id="file-0468"></a>
+<a id="file-0492"></a>
 
-### 0468 — `.ai/brain/20-contracts/SIGNATURE-CONTRACT.md`
+### 0492 — `.ai/brain/20-contracts/SIGNATURE-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25860,9 +25520,9 @@ Cada familia debe implementar semántica equivalente a `read`, `normalize`, `toI
 `draw`, `image` y P12/local son capacidades nativas/reutilizables. Providers externos implementan un contrato genérico. Secretos/credenciales nunca entran en schema, config JSON o snapshot. La firma digital PDF real no debe simularse con una imagen.
 ```
 
-<a id="file-0469"></a>
+<a id="file-0493"></a>
 
-### 0469 — `.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md`
+### 0493 — `.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25876,9 +25536,87 @@ Cada familia debe implementar semántica equivalente a `read`, `normalize`, `toI
 Snapshot portable, serializable y versionado. Toda migration es explícita, reversible donde sea posible y testeada. Artifact binario no se serializa; se serializa referencia estable.
 ```
 
-<a id="file-0470"></a>
+<a id="file-0494"></a>
 
-### 0470 — `.ai/brain/30-decisions/ADR-RTP-001-SISAD-PDFME-PRODUCT-IDENTITY.md`
+### 0494 — `.ai/brain/20-contracts/TOOLING-SAFE-APPLY-CONTRACT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `18`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `990b0c804e`
+- **Estado:** `completo`
+
+```markdown
+# Tooling safe-apply contract
+
+Toda herramienta que modifique filesystem usa dos fases:
+
+``​`text
+PREPARE -> plan serializable create/identical/update/conflict/skip
+APPLY   -> ejecuta exactamente el plan validado
+``​`
+
+Reglas:
+- dry-run por defecto;
+- backup externo antes de overwrite/delete;
+- keep-target por defecto en conflicto;
+- no partial apply tras detectar conflicto salvo `--new-only` explícito;
+- no delete de contenido divergente;
+- no path traversal;
+- package-script conflict se reporta, no se pisa silenciosamente;
+- semantic identifier rename nunca usa global path/text replacement.
+```
+
+<a id="file-0495"></a>
+
+### 0495 — `.ai/brain/20-contracts/USER-ASSIGNMENT-CONTRACT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `34`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `3cb1321b48`
+- **Estado:** `completo`
+
+```markdown
+# User assignment contract
+
+A schema assignment answers: **which SISAD-PDFME user(s) may/should interact with this schema?**
+
+Canonical fields:
+
+``​`ts
+type AssignmentMode = 'unassigned' | 'single' | 'multiple' | 'shared';
+
+type SchemaUserAssignment = {
+  mode: AssignmentMode;
+  assignedUserId?: string | null;
+  assignedUserIds?: string[];
+};
+``​`
+
+Canonical assignment index:
+
+``​`text
+userId
+  -> documentId
+      -> pageNumber
+          -> schemaUid[]
+``​`
+
+Do not add a second host-actor dimension below `userId`.
+
+Audit identity is separate:
+- `createdByUserId`
+- `lastModifiedByUserId`
+- `lockedByUserId`
+
+Legacy `ownerRecipientId`, `ownerRecipientIds` and `recipientId` may be read by migrations,
+but new core state should not write them once the compatibility gate is complete.
+```
+
+<a id="file-0496"></a>
+
+### 0496 — `.ai/brain/30-decisions/ADR-RTP-001-SISAD-PDFME-PRODUCT-IDENTITY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25892,9 +25630,9 @@ Snapshot portable, serializable y versionado. Toda migration es explícita, reve
 SISAD-PDFME se trata como plataforma propia. pdfme se documenta únicamente como inspiración histórica/compatibilidad. No se diseñan APIs nuevas con nombres genéricos `Pdfme*` salvo compatibilidad explícita.
 ```
 
-<a id="file-0471"></a>
+<a id="file-0497"></a>
 
-### 0471 — `.ai/brain/30-decisions/ADR-RTP-002-LOCAL-FIRST-FORM.md`
+### 0497 — `.ai/brain/30-decisions/ADR-RTP-002-LOCAL-FIRST-FORM.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25908,9 +25646,9 @@ SISAD-PDFME se trata como plataforma propia. pdfme se documenta únicamente como
 Una interacción del usuario actualiza primero el runtime local mediante transacción atómica y luego notifica al host. El host puede reconciliar por origin/revision, pero no es autoridad sincrónica del draft de teclado.
 ```
 
-<a id="file-0472"></a>
+<a id="file-0498"></a>
 
-### 0472 — `.ai/brain/30-decisions/ADR-RTP-003-MANIFEST-INCREMENTAL.md`
+### 0498 — `.ai/brain/30-decisions/ADR-RTP-003-MANIFEST-INCREMENTAL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25924,9 +25662,9 @@ Una interacción del usuario actualiza primero el runtime local mediante transac
 No reemplazar el plugin registry. Añadir una fachada de runtime metadata que se nutre de los registries/families actuales y se convierte gradualmente en autoridad transversal.
 ```
 
-<a id="file-0473"></a>
+<a id="file-0499"></a>
 
-### 0473 — `.ai/brain/30-decisions/ADR-RTP-004-PDF-LIFECYCLE-OWNERSHIP.md`
+### 0499 — `.ai/brain/30-decisions/ADR-RTP-004-PDF-LIFECYCLE-OWNERSHIP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -25940,9 +25678,66 @@ No reemplazar el plugin registry. Añadir una fachada de runtime metadata que se
 Carga/render/cleanup/cancelación de PDF.js y object URL lifecycle tienen owner explícito. Unmount React no equivale automáticamente a cleanup seguro de PDF.js si existe render activo.
 ```
 
-<a id="file-0474"></a>
+<a id="file-0500"></a>
 
-### 0474 — `.ai/brain/30-decisions/ADR-TOOLING-CENTRALIZATION.md`
+### 0500 — `.ai/brain/30-decisions/ADR-RTP-005-USER-RECIPIENT-BOUNDARY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `8`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `0d2ee6fd42`
+- **Estado:** `completo`
+
+```markdown
+# ADR RTP-005 — User/Recipient boundary
+
+**Decision:** SISAD-PDFME adopta `User` como identidad interna de interacción. `Recipient`
+permanece como concepto del host/compatibilidad temporal. La migración es staged y no
+renombra todo el repositorio de una vez.
+
+**Why:** evita filtrar routing/request semantics al reusable y separa active/assigned/audit
+identity.
+```
+
+<a id="file-0501"></a>
+
+### 0501 — `.ai/brain/30-decisions/ADR-RTP-006-USER-ASSIGNMENT-INDEX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `b2f6f54dc7`
+- **Estado:** `completo`
+
+```markdown
+# ADR RTP-006 — Canonical User assignment index
+
+**Decision target:** después de characterization, la estructura reusable preferida es
+`userId -> documentId -> pageNumber -> schemaUid[]`; metadata de auditoría vive separada.
+Snapshot migrations preservan formatos anteriores explícitamente.
+```
+
+<a id="file-0502"></a>
+
+### 0502 — `.ai/brain/30-decisions/ADR-RTP-007-FORM-CODEC-PARITY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `136018a372`
+- **Estado:** `completo`
+
+```markdown
+# ADR RTP-007 — Form/Viewer/Snapshot/PDF value parity
+
+Cada schema family tiene una semántica canónica de valor/empty/equality/serialization.
+Form, Viewer, Snapshot y Generator consumen la misma semántica; no se crean parsers
+paralelos ni truthiness shortcuts.
+```
+
+<a id="file-0503"></a>
+
+### 0503 — `.ai/brain/30-decisions/ADR-TOOLING-CENTRALIZATION.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -25975,9 +25770,74 @@ Specialized analyzers may remain under `tools/`, but repository architecture lif
 belongs to `scripts/project-tools.mjs`.
 ```
 
-<a id="file-0475"></a>
+<a id="file-0504"></a>
 
-### 0475 — `.ai/brain/40-runtime/ARTIFACT-LIFECYCLE.md`
+### 0504 — `.ai/brain/40-integrations/DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `8`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `59d85b6568`
+- **Estado:** `completo`
+
+```markdown
+# DigitalAgreements Recipient -> SISAD-PDFME User
+
+DigitalAgreements conserva Recipient y business routing. El adapter público convierte sólo
+lo necesario para interacción PDF: id/displayName/color/role/capabilities/hostReference.
+
+No pasar Position, Request status, notification channels ni massive stage al reusable.
+Designer puede mostrar/gestionar Users; la persistencia backend vuelve a traducir User
+assignment a Recipient projection en el host.
+```
+
+<a id="file-0505"></a>
+
+### 0505 — `.ai/brain/40-integrations/EXTERNAL-FORMS-USER-EXECUTION.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `3cdc4952e9`
+- **Estado:** `completo`
+
+```markdown
+# ExternalForms -> SISAD-PDFME User execution
+
+ExternalForms autentica/autoriza al Recipient y construye:
+- active User;
+- active Document;
+- serializable inputs;
+- access projection;
+- signature context;
+- opaque session scope.
+
+SISAD-PDFME ejecuta Form. No decide routing, next recipient, Request completion ni backend
+fan-out.
+```
+
+<a id="file-0506"></a>
+
+### 0506 — `.ai/brain/40-integrations/SISAD-PDFME-DESIGNER-CONSUMER.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `e054a722ca`
+- **Estado:** `completo`
+
+```markdown
+# DigitalAgreements Designer consumer contract
+
+El host consume API pública (`integration`, Designer/Form/Viewer, schemas/shared según
+boundary documentado). No deep import de Canvas/Moveable/Selecto/registries internos.
+
+Conectividad SISAD, guardar/enviar, Request y routing permanecen host-owned.
+```
+
+<a id="file-0507"></a>
+
+### 0507 — `.ai/brain/40-runtime/ARTIFACT-LIFECYCLE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -25993,9 +25853,9 @@ File/Blob selected → ephemeral artifact event → host storage/provider → st
 ``​`
 ```
 
-<a id="file-0476"></a>
+<a id="file-0508"></a>
 
-### 0476 — `.ai/brain/40-runtime/FORM-RUNTIME.md`
+### 0508 — `.ai/brain/40-runtime/FORM-RUNTIME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -26011,9 +25871,9 @@ user input → schema interaction → codec → local transaction → runtime st
 ``​`
 ```
 
-<a id="file-0477"></a>
+<a id="file-0509"></a>
 
-### 0477 — `.ai/brain/40-runtime/MULTI-DOCUMENT.md`
+### 0509 — `.ai/brain/40-runtime/MULTI-DOCUMENT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -26029,9 +25889,9 @@ documents registry → activeDocumentId → page routing → schemas/inputs isol
 ``​`
 ```
 
-<a id="file-0478"></a>
+<a id="file-0510"></a>
 
-### 0478 — `.ai/brain/40-runtime/PDF-GENERATION.md`
+### 0510 — `.ai/brain/40-runtime/PDF-GENERATION.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -26047,9 +25907,9 @@ template + inputs → validate/preflight → dynamic template → pdf-lib docume
 ``​`
 ```
 
-<a id="file-0479"></a>
+<a id="file-0511"></a>
 
-### 0479 — `.ai/brain/40-runtime/PDF-RENDERING.md`
+### 0511 — `.ai/brain/40-runtime/PDF-RENDERING.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -26065,9 +25925,9 @@ ArrayBuffer/URL → PDF.js loading task → document → page → viewport → r
 ``​`
 ```
 
-<a id="file-0480"></a>
+<a id="file-0512"></a>
 
-### 0480 — `.ai/brain/40-runtime/SIGNATURE-RUNTIME.md`
+### 0512 — `.ai/brain/40-runtime/SIGNATURE-RUNTIME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -26083,9 +25943,9 @@ schema mode → native or external provider → pending/completed/failed → ser
 ``​`
 ```
 
-<a id="file-0481"></a>
+<a id="file-0513"></a>
 
-### 0481 — `.ai/brain/40-runtime/SNAPSHOT-ROUNDTRIP.md`
+### 0513 — `.ai/brain/40-runtime/SNAPSHOT-ROUNDTRIP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -26101,9 +25961,9 @@ runtime state → canonical snapshot → serialize/version → migrate/deseriali
 ``​`
 ```
 
-<a id="file-0482"></a>
+<a id="file-0514"></a>
 
-### 0482 — `.ai/brain/40-runtime/VIEWER-RUNTIME.md`
+### 0514 — `.ai/brain/40-runtime/VIEWER-RUNTIME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -26119,9 +25979,9 @@ template + inputs → codec/read semantics → render readonly → zero mutation
 ``​`
 ```
 
-<a id="file-0483"></a>
+<a id="file-0515"></a>
 
-### 0483 — `.ai/brain/50-guides/ADD-OR-HARDEN-SCHEMA.md`
+### 0515 — `.ai/brain/50-guides/ADD-OR-HARDEN-SCHEMA.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26135,9 +25995,9 @@ template + inputs → codec/read semantics → render readonly → zero mutation
 Register plugin → derive manifest → codec → validation/access → Designer/Inspector → Form → Viewer → PDF → Snapshot → registry-driven tests. Never add a new hardcoded branch to every surface.
 ```
 
-<a id="file-0484"></a>
+<a id="file-0516"></a>
 
-### 0484 — `.ai/brain/50-guides/CONSUMER-INTEGRATION.md`
+### 0516 — `.ai/brain/50-guides/CONSUMER-INTEGRATION.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26151,9 +26011,9 @@ Register plugin → derive manifest → codec → validation/access → Designer
 Consumer uses public config/instance/controller/resources/handlers. No imports from Canvas, DetailView, Moveable, Selecto or internal registry. Consumer business rules stay outside SISAD-PDFME.
 ```
 
-<a id="file-0485"></a>
+<a id="file-0517"></a>
 
-### 0485 — `.ai/brain/50-guides/DEBUG-FORM-DRAFT-LOSS.md`
+### 0517 — `.ai/brain/50-guides/DEBUG-FORM-DRAFT-LOSS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26167,9 +26027,9 @@ Consumer uses public config/instance/controller/resources/handlers. No imports f
 Trace user event → renderer onChange → local input patch → transaction origin/revision → host callback → host rerender/setInputs. Verify identity/key and sibling interaction. DOM text is evidence, not source of truth.
 ```
 
-<a id="file-0486"></a>
+<a id="file-0518"></a>
 
-### 0486 — `.ai/brain/50-guides/DEBUG-PDF-MEMORY.md`
+### 0518 — `.ai/brain/50-guides/DEBUG-PDF-MEMORY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26183,9 +26043,29 @@ Trace user event → renderer onChange → local input patch → transaction ori
 Measure LoadingTask/Document/Page/RenderTask creation and cleanup; count object URLs; repeat mount/unmount; test 1/10/100 pages. Do not call PDF.js cleanup while render is active.
 ```
 
-<a id="file-0487"></a>
+<a id="file-0519"></a>
 
-### 0487 — `.ai/brain/50-guides/PROJECT-TOOLS.md`
+### 0519 — `.ai/brain/50-guides/FORM-HARDENING.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `7`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `002983c7e2`
+- **Estado:** `completo`
+
+```markdown
+# Guide — Form hardening
+
+Orden recomendado: reproduce -> local-first -> transaction/revision -> codec -> validation
+/completion -> pairwise schema isolation -> multiuser/multidoc -> browser concurrency ->
+consumer integration -> performance/a11y -> release.
+
+No corregir 40 schemas individualmente antes de demostrar si el defecto es del motor común.
+```
+
+<a id="file-0520"></a>
+
+### 0520 — `.ai/brain/50-guides/PROJECT-TOOLS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -26217,9 +26097,63 @@ For overlay/package integration use `architecture:import`.
 Never use destructive sync (`--delete`) for `.ai` architecture.
 ```
 
-<a id="file-0488"></a>
+<a id="file-0521"></a>
 
-### 0488 — `.ai/brain/60-quality/DEFINITION-OF-DONE-SCHEMA.md`
+### 0521 — `.ai/brain/50-guides/SCHEMA-FAMILY-RELEASE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `69fe6c4273`
+- **Estado:** `completo`
+
+```markdown
+# Guide — schema family release
+
+Para cada family: inventory manifest -> codec -> Designer/Inspector -> Form -> access ->
+validation -> Viewer -> Snapshot -> PDF -> pairwise interactions -> multiuser/multidoc ->
+cleanup. Registrar qué gates no aplican y por qué.
+```
+
+<a id="file-0522"></a>
+
+### 0522 — `.ai/brain/50-guides/TOOLING-SAFE-APPLY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `ad89631d58`
+- **Estado:** `completo`
+
+```markdown
+# Guide — safe installer/importer
+
+Primero producir plan JSON; luego aplicar. Un conflict detiene la fase por defecto. Backups
+fuera del repo. No mezclar install con semantic refactor. Probar Windows/macOS paths y ZIP
+safety en tests focales.
+```
+
+<a id="file-0523"></a>
+
+### 0523 — `.ai/brain/50-guides/USER-MODEL-MIGRATION.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `5`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `aa4829d33e`
+- **Estado:** `completo`
+
+```markdown
+# Guide — User model migration
+
+No global replace. Introducir API canónica, aliases deprecated, adapters y snapshot
+migrations. Aplicar ratchet “no new recipient-centric core usage”. Retirar aliases sólo
+cuando standalone, embedded SISAD-WEB y ExternalForms pasan contract gates.
+```
+
+<a id="file-0524"></a>
+
+### 0524 — `.ai/brain/60-quality/DEFINITION-OF-DONE-SCHEMA.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26233,9 +26167,9 @@ Never use destructive sync (`--delete`) for `.ai` architecture.
 Factory/default ✓ Designer ✓ Inspector ✓ Form initial/edit/clear ✓ sibling isolation ✓ readonly/hidden/lock/owner ✓ validation ✓ touched/dirty ✓ host rerender/update ✓ Viewer no mutation ✓ Snapshot roundtrip ✓ Generator/PDF ✓ keyboard/touch ✓ lifecycle cleanup ✓ multipage/multidoc ✓ recipient isolation ✓.
 ```
 
-<a id="file-0489"></a>
+<a id="file-0525"></a>
 
-### 0489 — `.ai/brain/60-quality/PERFORMANCE-BUDGETS-TO-MEASURE.md`
+### 0525 — `.ai/brain/60-quality/PERFORMANCE-BUDGETS-TO-MEASURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26249,9 +26183,9 @@ Factory/default ✓ Designer ✓ Inspector ✓ Form initial/edit/clear ✓ sibli
 RTP-280 must measure before choosing thresholds: first render, keystroke p95, schema switch, page switch, memory after 20 mount/unmount, 100-page converter, 1000-schema template signature, object URL count and PDF worker/render-task cleanup.
 ```
 
-<a id="file-0490"></a>
+<a id="file-0526"></a>
 
-### 0490 — `.ai/brain/60-quality/RUNTIME-REGRESSION-MATRIX.md`
+### 0526 — `.ai/brain/60-quality/RUNTIME-REGRESSION-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26265,9 +26199,56 @@ RTP-280 must measure before choosing thresholds: first render, keystroke p95, sc
 Combinaciones: empty/default/prefill/restore × editable/required/readonly/hidden/locked/owner mismatch × mouse/keyboard/touch/IME × sibling same/different family × host same/older/new revision × single/multi page/document × Form/Viewer/Snapshot/PDF × mount/rerender/unmount/remount/dispose.
 ```
 
-<a id="file-0491"></a>
+<a id="file-0527"></a>
 
-### 0491 — `.ai/brain/70-memory/CURRENT.md`
+### 0527 — `.ai/brain/60-quality/SCHEMA-RUNTIME-COVERAGE-MATRIX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `3e8caa62cb`
+- **Estado:** `completo`
+
+```markdown
+# Schema runtime coverage matrix
+
+La matriz machine-readable vive en `unificados/SISAD-PDFME-SCHEMA-RUNTIME-MATRIX.json`.
+No es una lista hardcodeada para runtime: es una checklist de QA derivada del catálogo
+observado. El test harness debe derivar tipos/capabilities del registry vivo y reportar drift
+contra esta referencia, no usarla como runtime source-of-truth.
+```
+
+<a id="file-0528"></a>
+
+### 0528 — `.ai/brain/60-quality/SISAD-PDFME-RELEASE-GATE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `15`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `9318497392`
+- **Estado:** `completo`
+
+```markdown
+# SISAD-PDFME release gate
+
+Release sólo con evidencia de:
+- unit/contract family tests;
+- Form pairwise isolation;
+- multiuser/multidoc isolation;
+- Viewer/Snapshot/PDF parity;
+- public API consumer smoke;
+- Playwright BrowserContext concurrency;
+- accessibility/keyboard/touch/IME relevantes;
+- leak/cleanup/performance budget;
+- lint/typecheck/build según autoridad real del repo;
+- boundary audit y no new recipient-centric core usage.
+
+Conteo bruto de tests no sustituye estos gates.
+```
+
+<a id="file-0529"></a>
+
+### 0529 — `.ai/brain/70-memory/CURRENT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -26285,9 +26266,9 @@ Combinaciones: empty/default/prefill/restore × editable/required/readonly/hidde
 - Do not start family fixes before characterization/runtime protocol.
 ```
 
-<a id="file-0492"></a>
+<a id="file-0530"></a>
 
-### 0492 — `.ai/brain/70-memory/CURRENT.reconciled.md`
+### 0530 — `.ai/brain/70-memory/CURRENT.reconciled.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -26311,9 +26292,9 @@ Este archivo es una **propuesta**. No sobrescribir
 sigue coincidiendo.
 ```
 
-<a id="file-0493"></a>
+<a id="file-0531"></a>
 
-### 0493 — `.ai/brain/70-memory/HANDOFF.md`
+### 0531 — `.ai/brain/70-memory/HANDOFF.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -26329,9 +26310,9 @@ usePreviewRuntime, usePdfmeRuntimeInstance, schema registry/families, config, sn
 generator/converter and relevant tests. Only then promote RTP-005/RTP-020.
 ```
 
-<a id="file-0494"></a>
+<a id="file-0532"></a>
 
-### 0494 — `.ai/brain/80-work/ACTIVE.md`
+### 0532 — `.ai/brain/80-work/ACTIVE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -26345,9 +26326,9 @@ generator/converter and relevant tests. Only then promote RTP-005/RTP-020.
 `RTP-000` — source truth / live rebaseline.
 ```
 
-<a id="file-0495"></a>
+<a id="file-0533"></a>
 
-### 0495 — `.ai/brain/90-reference/CURRENT-ARCHITECTURE-MAP.md`
+### 0533 — `.ai/brain/90-reference/CURRENT-ARCHITECTURE-MAP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -26385,9 +26366,9 @@ Los conteos de `.ai/index/runtime-platform/*.jsonl` pueden quedar obsoletos
 hasta que esos índices se regeneren desde el worktree vivo.
 ```
 
-<a id="file-0496"></a>
+<a id="file-0534"></a>
 
-### 0496 — `.ai/brain/90-reference/EXISTING-AI-ARCHITECTURE.md`
+### 0534 — `.ai/brain/90-reference/EXISTING-AI-ARCHITECTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -26411,9 +26392,9 @@ No instalar una segunda jerarquía paralela. Las migraciones de nombre deben
 usar aliases verificables y Git conserva el historial.
 ```
 
-<a id="file-0497"></a>
+<a id="file-0535"></a>
 
-### 0497 — `.ai/brain/90-reference/RUNTIME-HOTSPOTS.md`
+### 0535 — `.ai/brain/90-reference/RUNTIME-HOTSPOTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `52`
@@ -26476,9 +26457,9 @@ usar aliases verificables y Git conserva el historial.
 - `src/sisad-pdfme/ui/Designer.tsx` — 412 líneas — completo
 ```
 
-<a id="file-0498"></a>
+<a id="file-0536"></a>
 
-### 0498 — `.ai/index/runtime-platform/README.md`
+### 0536 — `.ai/index/runtime-platform/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -26508,9 +26489,9 @@ Antes de usar métricas de cobertura, confirmar que el índice fue regenerado
 contra el HEAD actual.
 ```
 
-<a id="file-0499"></a>
+<a id="file-0537"></a>
 
-### 0499 — `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md`
+### 0537 — `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -26543,9 +26524,9 @@ Modelo único por feature: `registered · supported · enabled · visible · per
 Regla transversal: **visible ≠ enabled ≠ permitted**; ocultar del catálogo no elimina schema del canvas/snapshot; cambiar visibilidad de panel nunca cambia routing.
 ```
 
-<a id="file-0500"></a>
+<a id="file-0538"></a>
 
-### 0500 — `.ai/knowledge/domain/COREUX-EFFECTS.md`
+### 0538 — `.ai/knowledge/domain/COREUX-EFFECTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `90`
@@ -26646,9 +26627,9 @@ rollback
 ``​`
 ```
 
-<a id="file-0501"></a>
+<a id="file-0539"></a>
 
-### 0501 — `.ai/knowledge/domain/COREUX-EVENTS.md`
+### 0539 — `.ai/knowledge/domain/COREUX-EVENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `59`
@@ -26718,9 +26699,9 @@ El código actual expone un event hub genérico con `type: string`; este catálo
 - Eventos de alta frecuencia pueden coalescerse, pero nunca perder el estado final.
 ```
 
-<a id="file-0502"></a>
+<a id="file-0540"></a>
 
-### 0502 — `.ai/knowledge/domain/COREUX-PATTERNS.md`
+### 0540 — `.ai/knowledge/domain/COREUX-PATTERNS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -26760,9 +26741,9 @@ Crear una abstracción solo cuando:
 5. no crea otra API paralela.
 ```
 
-<a id="file-0503"></a>
+<a id="file-0541"></a>
 
-### 0503 — `.ai/knowledge/domain/COREUX-USE-CASES.md`
+### 0541 — `.ai/knowledge/domain/COREUX-USE-CASES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `156`
@@ -26929,9 +26910,9 @@ Alcance de implementación: `src/sisad-pdfme/**`.
 | QLT-015 | QLT | Docs/release | Manual, migración y changelog verificables. |
 ```
 
-<a id="file-0504"></a>
+<a id="file-0542"></a>
 
-### 0504 — `.ai/knowledge/domain/CURRENT-PUBLIC-API.md`
+### 0542 — `.ai/knowledge/domain/CURRENT-PUBLIC-API.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -26955,9 +26936,9 @@ Barrel `@/sisad-pdfme/config` y `@/sisad-pdfme/integration` (main). Tras CONFIG-
 Pendiente: no re-exportar internals de UI/Canvas (objetivo plan §20).
 ```
 
-<a id="file-0505"></a>
+<a id="file-0543"></a>
 
-### 0505 — `.ai/knowledge/domain/DECLARATIVE-API.md`
+### 0543 — `.ai/knowledge/domain/DECLARATIVE-API.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `74`
@@ -27042,9 +27023,9 @@ sin permiso → visible deshabilitado con reason
 ``​`
 ```
 
-<a id="file-0506"></a>
+<a id="file-0544"></a>
 
-### 0506 — `.ai/knowledge/domain/DECLARATIVE-BASELINE.md`
+### 0544 — `.ai/knowledge/domain/DECLARATIVE-BASELINE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `60`
@@ -27115,9 +27096,9 @@ Fecha de corte: 2026-07-31
 - Declarar un gate de frontera de lenguaje e imports publicos antes de migrar mas helpers fuera de `src/`.
 ```
 
-<a id="file-0507"></a>
+<a id="file-0545"></a>
 
-### 0507 — `.ai/knowledge/domain/DECLARATIVE-USE-CASES.md`
+### 0545 — `.ai/knowledge/domain/DECLARATIVE-USE-CASES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `70`
@@ -27198,9 +27179,9 @@ Fecha de corte: 2026-07-31
 | UC-066 | Compatibilidad API baja | Designer/Form/Viewer actuales siguen disponibles. | Compatibility |
 ```
 
-<a id="file-0508"></a>
+<a id="file-0546"></a>
 
-### 0508 — `.ai/knowledge/domain/DESIGNER-INTERACTION-MATRIX.md`
+### 0546 — `.ai/knowledge/domain/DESIGNER-INTERACTION-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `50`
@@ -27261,9 +27242,9 @@ Mutations must go through policy + command bus:
 - `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/*`
 ```
 
-<a id="file-0509"></a>
+<a id="file-0547"></a>
 
-### 0509 — `.ai/knowledge/domain/DETAILVIEW-PROFILES.md`
+### 0547 — `.ai/knowledge/domain/DETAILVIEW-PROFILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -27331,9 +27312,9 @@ Every visible control must have:
 - `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx`
 ```
 
-<a id="file-0510"></a>
+<a id="file-0548"></a>
 
-### 0510 — `.ai/knowledge/domain/EFFECT-CATALOG.md`
+### 0548 — `.ai/knowledge/domain/EFFECT-CATALOG.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -27382,9 +27363,9 @@ decide business policy.
 - `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SchemaAssignmentDialog.tsx`
 ```
 
-<a id="file-0511"></a>
+<a id="file-0549"></a>
 
-### 0511 — `.ai/knowledge/domain/EVENT-CATALOG.md`
+### 0549 — `.ai/knowledge/domain/EVENT-CATALOG.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27467,9 +27448,9 @@ This catalog documents the canonical events expected by the core UX.
 - One dispatcher adapts canonical events to legacy host callbacks.
 ```
 
-<a id="file-0512"></a>
+<a id="file-0550"></a>
 
-### 0512 — `.ai/knowledge/domain/FORM-VIEWER-PDF-PARITY.md`
+### 0550 — `.ai/knowledge/domain/FORM-VIEWER-PDF-PARITY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -27518,9 +27499,9 @@ generating Snapshot/PDF output.
 - `src/sisad-pdfme/common/schema.ts`
 ```
 
-<a id="file-0513"></a>
+<a id="file-0551"></a>
 
-### 0513 — `.ai/knowledge/domain/LEFT-SIDEBAR-BEHAVIOR.md`
+### 0551 — `.ai/knowledge/domain/LEFT-SIDEBAR-BEHAVIOR.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `64`
@@ -27595,9 +27576,9 @@ The implementation must:
 - `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
 ```
 
-<a id="file-0514"></a>
+<a id="file-0552"></a>
 
-### 0514 — `.ai/knowledge/domain/OWNER-COLOR-CONTRACT.md`
+### 0552 — `.ai/knowledge/domain/OWNER-COLOR-CONTRACT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `61`
@@ -27669,9 +27650,9 @@ recipient changed.
 - `src/sisad-pdfme/schemas/shared/fieldChrome.ts`
 ```
 
-<a id="file-0515"></a>
+<a id="file-0553"></a>
 
-### 0515 — `.ai/knowledge/domain/SCHEMA-BEHAVIOR-MATRIX.md`
+### 0553 — `.ai/knowledge/domain/SCHEMA-BEHAVIOR-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -27723,9 +27704,9 @@ Form, Viewer, PDF and Snapshot.
 - `src/sisad-pdfme/schemas/signature/*`
 ```
 
-<a id="file-0516"></a>
+<a id="file-0554"></a>
 
-### 0516 — `.ai/knowledge/domain/USER-RECIPIENT-USE-CASES.md`
+### 0554 — `.ai/knowledge/domain/USER-RECIPIENT-USE-CASES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `49`
@@ -27785,9 +27766,9 @@ persisted ownership metadata.
 - `src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts`
 ```
 
-<a id="file-0517"></a>
+<a id="file-0555"></a>
 
-### 0517 — `.ai/memory/topics/ai-architecture.md`
+### 0555 — `.ai/memory/topics/ai-architecture.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -27801,9 +27782,9 @@ persisted ownership metadata.
 AGENTS corto, task-card única, progressive disclosure, memory delta y provider adapters delgados.
 ```
 
-<a id="file-0518"></a>
+<a id="file-0556"></a>
 
-### 0518 — `.ai/memory/topics/canvas.md`
+### 0556 — `.ai/memory/topics/canvas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -27817,9 +27798,9 @@ AGENTS corto, task-card única, progressive disclosure, memory delta y provider 
 Proteger coordinateMath, Moveable y Selecto. Characterization test antes de cambios.
 ```
 
-<a id="file-0519"></a>
+<a id="file-0557"></a>
 
-### 0519 — `.ai/memory/topics/configuration.md`
+### 0557 — `.ai/memory/topics/configuration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -27833,9 +27814,9 @@ Proteger coordinateMath, Moveable y Selecto. Characterization test antes de camb
 Fuente única: ConfigService/selectors/registries. visible ≠ enabled ≠ permitted ≠ available.
 ```
 
-<a id="file-0520"></a>
+<a id="file-0558"></a>
 
-### 0520 — `.ai/memory/topics/runtime.md`
+### 0558 — `.ai/memory/topics/runtime.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -27849,9 +27830,9 @@ Fuente única: ConfigService/selectors/registries. visible ≠ enabled ≠ permi
 Designer/Form/Viewer comparten normalization, events, values y snapshot.
 ```
 
-<a id="file-0521"></a>
+<a id="file-0559"></a>
 
-### 0521 — `.ai/memory/topics/schemas.md`
+### 0559 — `.ai/memory/topics/schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -27865,9 +27846,1322 @@ Designer/Form/Viewer comparten normalization, events, values y snapshot.
 Factory + Registry + Strategy. Cubrir Designer/Inspector/Form/Viewer/Generator/Snapshot.
 ```
 
-<a id="file-0522"></a>
+<a id="file-0560"></a>
 
-### 0522 — `.ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline.md`
+### 0560 — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/README.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `2c3ade6fd0`
+- **Estado:** `completo`
+
+```markdown
+# Hash-checked Brain migration
+
+Los archivos `brain-targets/**` son reemplazos propuestos para documentos canónicos ya
+existentes. **No copiarlos a ciegas.** Ejecutar el helper:
+
+``​`bash
+node tools/sisad-pdfme-runtime/apply-brain-targets.mjs .
+node tools/sisad-pdfme-runtime/apply-brain-targets.mjs . --apply
+``​`
+
+El apply sólo modifica un target si su SHA1 actual comienza con el baseline registrado.
+Si el Brain vivo cambió, reporta `CONFLICT_HASH` y se debe hacer merge manual.
+```
+
+<a id="file-0561"></a>
+
+### 0561 — `.ai/ops/tasks/SPRT-000.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `e84c4eb6b7`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-000
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: done
+---
+
+# Live baseline and public API snapshot
+
+## Objective
+Record current HEAD, public exports, runtime surfaces, schema catalog and tests.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [x] focal behavior characterized;
+- [x] implementation, if required, is host-agnostic;
+- [x] focal tests pass;
+- [x] public compatibility evaluated;
+- [x] evidence created at `reports/runtime-platform/evidence/SPRT-000.md` because `.ai/evidence/` is historical in the live state table.
+
+## Dependency
+baseline
+```
+
+<a id="file-0562"></a>
+
+### 0562 — `.ai/ops/tasks/SPRT-010.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `fab70ffc76`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-010
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: done
+---
+
+# Tooling install/import safety
+
+## Objective
+Characterize and repair installer/importer/test-installer partial/conflict behavior.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [x] focal behavior characterized;
+- [x] implementation, if required, is host-agnostic;
+- [x] focal tests pass;
+- [x] public compatibility evaluated;
+- [x] evidence created at `reports/runtime-platform/evidence/SPRT-010.md` because `.ai/evidence/` is historical in the live state table.
+
+## Dependency
+SPRT-000
+```
+
+<a id="file-0563"></a>
+
+### 0563 — `.ai/ops/tasks/SPRT-020.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `40def3c75b`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-020
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: done
+---
+
+# Dedup and ordering baseline
+
+## Objective
+Establish semantic dedup ratchet, stable naming and documentation/order gates.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [x] focal behavior characterized;
+- [x] implementation, if required, is host-agnostic;
+- [x] focal tests pass;
+- [x] public compatibility evaluated;
+- [x] evidence recorded in `reports/runtime-platform/evidence/SPRT-020.md`.
+
+## Dependency
+SPRT-010
+```
+
+<a id="file-0564"></a>
+
+### 0564 — `.ai/ops/tasks/SPRT-030.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `76ee70fbce`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-030
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Legacy Recipient terminology characterization
+
+## Objective
+Inventory Recipient-named symbols and classify public alias vs internal debt.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-030.md` created.
+
+## Dependency
+SPRT-020
+```
+
+<a id="file-0565"></a>
+
+### 0565 — `.ai/ops/tasks/SPRT-040.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `bbc65e78e4`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-040
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Canonical SisadPdfmeUser model
+
+## Objective
+Introduce User model without removing compatibility aliases.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-040.md` created.
+
+## Dependency
+SPRT-030
+```
+
+<a id="file-0566"></a>
+
+### 0566 — `.ai/ops/tasks/SPRT-050.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `e7804138d1`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-050
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Public users normalization
+
+## Objective
+Normalize users/activeUserId at public boundary; keep legacy inputs compatible.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-050.md` created.
+
+## Dependency
+SPRT-040
+```
+
+<a id="file-0567"></a>
+
+### 0567 — `.ai/ops/tasks/SPRT-060.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `913bcfc3d9`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-060
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Canonical user assignments
+
+## Objective
+Remove redundant user→recipient dimension from canonical assignments.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-060.md` created.
+
+## Dependency
+SPRT-050
+```
+
+<a id="file-0568"></a>
+
+### 0568 — `.ai/ops/tasks/SPRT-070.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `4712cff696`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-070
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Snapshot user migration
+
+## Objective
+Version and migrate legacy ownership/recipient snapshots explicitly.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-070.md` created.
+
+## Dependency
+SPRT-060
+```
+
+<a id="file-0569"></a>
+
+### 0569 — `.ai/ops/tasks/SPRT-080.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `787939ff1a`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-080
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Form transaction protocol
+
+## Objective
+Add transactionId/revision/origin/phase and atomic patches.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-080.md` created.
+
+## Dependency
+SPRT-070
+```
+
+<a id="file-0570"></a>
+
+### 0570 — `.ai/ops/tasks/SPRT-090.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `6980bc9cab`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-090
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Host reconciliation protocol
+
+## Objective
+Prevent stale host echoes and multi-update lost writes.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-090.md` created.
+
+## Dependency
+SPRT-080
+```
+
+<a id="file-0571"></a>
+
+### 0571 — `.ai/ops/tasks/SPRT-100.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `9a68ef16e4`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-100
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Form input lifecycle
+
+## Objective
+Preserve focus/caret/IME and avoid full render per keystroke.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-100.md` created.
+
+## Dependency
+SPRT-090
+```
+
+<a id="file-0572"></a>
+
+### 0572 — `.ai/ops/tasks/SPRT-110.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `eb658b5787`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-110
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Interaction/completion state
+
+## Objective
+Separate touched/dirty/valid/completed from values.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-110.md` created.
+
+## Dependency
+SPRT-100
+```
+
+<a id="file-0573"></a>
+
+### 0573 — `.ai/ops/tasks/SPRT-120.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `7488d28842`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-120
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Schema runtime manifest
+
+## Objective
+Make capabilities/interaction/value/validation discoverable through one registry.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-120.md` created.
+
+## Dependency
+SPRT-110
+```
+
+<a id="file-0574"></a>
+
+### 0574 — `.ai/ops/tasks/SPRT-130.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `d82fc318a9`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-130
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Schema value codecs
+
+## Objective
+Normalize value/empty semantics including 0/false/[]/null/empty string.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-130.md` created.
+
+## Dependency
+SPRT-120
+```
+
+<a id="file-0575"></a>
+
+### 0575 — `.ai/ops/tasks/SPRT-140.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `8870b1a5eb`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-140
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Text number date family hardening
+
+## Objective
+Close all Form/Viewer/Snapshot/PDF behavior for text-like/date schemas.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-140.md` created.
+
+## Dependency
+SPRT-130
+```
+
+<a id="file-0576"></a>
+
+### 0576 — `.ai/ops/tasks/SPRT-150.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `262832e72f`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-150
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Choice boolean family hardening
+
+## Objective
+Close checkbox/select/radio/group semantics and atomic selection.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-150.md` created.
+
+## Dependency
+SPRT-140
+```
+
+<a id="file-0577"></a>
+
+### 0577 — `.ai/ops/tasks/SPRT-160.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `52e2334429`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-160
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Signing family hardening
+
+## Objective
+Isolate signature/initials/dateSigned by user/document/session.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-160.md` created.
+
+## Dependency
+SPRT-150
+```
+
+<a id="file-0578"></a>
+
+### 0578 — `.ai/ops/tasks/SPRT-170.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `82f1f20b14`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-170
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Artifact and action hardening
+
+## Objective
+Define attachment/action lifecycle, cancellation, retry and cleanup.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-170.md` created.
+
+## Dependency
+SPRT-160
+```
+
+<a id="file-0579"></a>
+
+### 0579 — `.ai/ops/tasks/SPRT-180.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `fedf429c78`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-180
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Complex visual/computed families
+
+## Objective
+Close table/media/shapes/barcode parity and lifecycle.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-180.md` created.
+
+## Dependency
+SPRT-170
+```
+
+<a id="file-0580"></a>
+
+### 0580 — `.ai/ops/tasks/SPRT-190.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `d92cb465ac`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-190
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# User document session isolation
+
+## Objective
+Prove no mutable state leaks across runtime scopes.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-190.md` created.
+
+## Dependency
+SPRT-180
+```
+
+<a id="file-0581"></a>
+
+### 0581 — `.ai/ops/tasks/SPRT-200.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `e7deea1faa`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-200
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Multi-instance concurrency
+
+## Objective
+Run two+ Form instances with independent users/documents simultaneously.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-200.md` created.
+
+## Dependency
+SPRT-190
+```
+
+<a id="file-0582"></a>
+
+### 0582 — `.ai/ops/tasks/SPRT-210.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `ddcc62f469`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-210
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Pairwise schema interaction harness
+
+## Objective
+Prove interacting with schema B never corrupts schema A across family pairs.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-210.md` created.
+
+## Dependency
+SPRT-200
+```
+
+<a id="file-0583"></a>
+
+### 0583 — `.ai/ops/tasks/SPRT-220.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `6b248bfc15`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-220
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Runtime parity gate
+
+## Objective
+Prove normalized state agrees across Form, Viewer, Snapshot and PDF.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-220.md` created.
+
+## Dependency
+SPRT-210
+```
+
+<a id="file-0584"></a>
+
+### 0584 — `.ai/ops/tasks/SPRT-230.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `1bebd9f9e9`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-230
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Performance accessibility leak gate
+
+## Objective
+Large-doc/schema, keyboard/touch/IME, cleanup and memory characterization.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-230.md` created.
+
+## Dependency
+SPRT-220
+```
+
+<a id="file-0585"></a>
+
+### 0585 — `.ai/ops/tasks/SPRT-240.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `fc950322ea`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-240
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Public compatibility gate
+
+## Objective
+Verify legacy aliases/public consumers before deprecation.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-240.md` created.
+
+## Dependency
+SPRT-230
+```
+
+<a id="file-0586"></a>
+
+### 0586 — `.ai/ops/tasks/SPRT-250.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `10c0e5021d`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-250
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Legacy/dead/duplicate cleanup
+
+## Objective
+Remove only branches proven unnecessary after compatibility gate.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-250.md` created.
+
+## Dependency
+SPRT-240
+```
+
+<a id="file-0587"></a>
+
+### 0587 — `.ai/ops/tasks/SPRT-260.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `4cdad28cd8`
+- **Estado:** `completo`
+
+```markdown
+---
+id: SPRT-260
+campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
+status: planned
+---
+
+# Brain/index/context closeout
+
+## Objective
+Regenerate current knowledge and leave minimal handoff.
+
+## Product boundary
+SISAD-PDFME only. No external-project source or business semantics.
+
+## Rules
+- live source/tests > exported packs;
+- one writer;
+- preserve dirty-tree work;
+- characterize before refactor;
+- keep Designer stable unless this task explicitly targets Designer;
+- canonical reusable identity is User;
+- evidence before PASS.
+
+## Acceptance
+- [ ] focal behavior characterized;
+- [ ] implementation, if required, is host-agnostic;
+- [ ] focal tests pass;
+- [ ] public compatibility evaluated;
+- [ ] `.ai/evidence/SPRT-260.md` created.
+
+## Dependency
+SPRT-250
+```
+
+<a id="file-0588"></a>
+
+### 0588 — `.ai/ops/tasks/SPRT-270.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `16`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `eddbbf8aad`
+- **Estado:** `completo`
+
+```markdown
+# SPRT-270 — Closeout del refactor de `src/examples`
+
+## Scope
+
+Auditar y cerrar las consolidaciones existentes de ejemplos, sin iniciar otro
+refactor ni editar context packs generados.
+
+## Evidence
+
+See `reports/runtime-platform/evidence/examples-refactor-closeout-2026-08-13.md`.
+
+## Exit status
+
+`PARTIAL`: build, Form focal y navegacion pasan. El gate de style permanece
+bloqueado por tooling drift: `package.json` declara un script cuyo archivo no
+existe y el reemplazo encontrado escanea un alcance distinto.
+```
+
+<a id="file-0589"></a>
+
+### 0589 — `.ai/ops/tasks/TASK-LEDGER-SPRT-V2.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `31`
+- **Tamaño original:** `1.6 KB`
+- **SHA1 corto:** `9678afa02b`
+- **Estado:** `completo`
+
+```markdown
+# Task ledger — SISAD-PDFME RUNTIME HARDENING V2
+
+| Task | Status | Objective |
+|---|---|---|
+| `SPRT-000` | READY | Live baseline and public API snapshot |
+| `SPRT-010` | PLANNED | Tooling install/import safety |
+| `SPRT-020` | DONE | Dedup and ordering baseline |
+| `SPRT-030` | PLANNED | Legacy Recipient terminology characterization |
+| `SPRT-040` | PLANNED | Canonical SisadPdfmeUser model |
+| `SPRT-050` | PLANNED | Public users normalization |
+| `SPRT-060` | PLANNED | Canonical user assignments |
+| `SPRT-070` | PLANNED | Snapshot user migration |
+| `SPRT-080` | PLANNED | Form transaction protocol |
+| `SPRT-090` | PLANNED | Host reconciliation protocol |
+| `SPRT-100` | PLANNED | Form input lifecycle |
+| `SPRT-110` | PLANNED | Interaction/completion state |
+| `SPRT-120` | PLANNED | Schema runtime manifest |
+| `SPRT-130` | PLANNED | Schema value codecs |
+| `SPRT-140` | PLANNED | Text number date family hardening |
+| `SPRT-150` | PLANNED | Choice boolean family hardening |
+| `SPRT-160` | PLANNED | Signing family hardening |
+| `SPRT-170` | PLANNED | Artifact and action hardening |
+| `SPRT-180` | PLANNED | Complex visual/computed families |
+| `SPRT-190` | PLANNED | User document session isolation |
+| `SPRT-200` | PLANNED | Multi-instance concurrency |
+| `SPRT-210` | PLANNED | Pairwise schema interaction harness |
+| `SPRT-220` | PLANNED | Runtime parity gate |
+| `SPRT-230` | PLANNED | Performance accessibility leak gate |
+| `SPRT-240` | PLANNED | Public compatibility gate |
+| `SPRT-250` | PLANNED | Legacy/dead/duplicate cleanup |
+| `SPRT-260` | PLANNED | Brain/index/context closeout |
+```
+
+<a id="file-0590"></a>
+
+### 0590 — `.ai/scrum/task-cards/AIARCH-001-auditar-y-congelar-baseline.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -27950,9 +29244,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0523"></a>
+<a id="file-0591"></a>
 
-### 0523 — `.ai/scrum/task-cards/AIARCH-002-corregir-fuente-de-estado-y-arranque.md`
+### 0591 — `.ai/scrum/task-cards/AIARCH-002-corregir-fuente-de-estado-y-arranque.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `73`
@@ -28036,9 +29330,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0524"></a>
+<a id="file-0592"></a>
 
-### 0524 — `.ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz.md`
+### 0592 — `.ai/scrum/task-cards/AIARCH-003-adoptar-adapters-raiz.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28121,9 +29415,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0525"></a>
+<a id="file-0593"></a>
 
-### 0525 — `.ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md`
+### 0593 — `.ai/scrum/task-cards/AIARCH-004-implementar-router-por-context-manifest.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28206,9 +29500,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0526"></a>
+<a id="file-0594"></a>
 
-### 0526 — `.ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md`
+### 0594 — `.ai/scrum/task-cards/AIARCH-005-aplicar-presupuesto-l0l4.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28291,9 +29585,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0527"></a>
+<a id="file-0595"></a>
 
-### 0527 — `.ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md`
+### 0595 — `.ai/scrum/task-cards/AIARCH-007-migrar-memoria-a-indice-y-topics.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28376,9 +29670,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0528"></a>
+<a id="file-0596"></a>
 
-### 0528 — `.ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md`
+### 0596 — `.ai/scrum/task-cards/AIARCH-008-implementar-memory-gc-e-invalidacion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28461,9 +29755,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0529"></a>
+<a id="file-0597"></a>
 
-### 0529 — `.ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md`
+### 0597 — `.ai/scrum/task-cards/AIARCH-009-adoptar-ids-de-trazabilidad.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28546,9 +29840,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0530"></a>
+<a id="file-0598"></a>
 
-### 0530 — `.ai/scrum/task-cards/AIARCH-010-generar-method-registry-desde-codigo.md`
+### 0598 — `.ai/scrum/task-cards/AIARCH-010-generar-method-registry-desde-codigo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28631,9 +29925,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0531"></a>
+<a id="file-0599"></a>
 
-### 0531 — `.ai/scrum/task-cards/AIARCH-011-consolidar-casos-y-behavior-catalog.md`
+### 0599 — `.ai/scrum/task-cards/AIARCH-011-consolidar-casos-y-behavior-catalog.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28716,9 +30010,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0532"></a>
+<a id="file-0600"></a>
 
-### 0532 — `.ai/scrum/task-cards/AIARCH-012-consolidar-event-effect-catalogs.md`
+### 0600 — `.ai/scrum/task-cards/AIARCH-012-consolidar-event-effect-catalogs.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28801,9 +30095,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0533"></a>
+<a id="file-0601"></a>
 
-### 0533 — `.ai/scrum/task-cards/AIARCH-013-construir-trace-matrix-y-coverage-gate.md`
+### 0601 — `.ai/scrum/task-cards/AIARCH-013-construir-trace-matrix-y-coverage-gate.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28886,9 +30180,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0534"></a>
+<a id="file-0602"></a>
 
-### 0534 — `.ai/scrum/task-cards/AIARCH-014-depurar-skill-registry-y-aliases.md`
+### 0602 — `.ai/scrum/task-cards/AIARCH-014-depurar-skill-registry-y-aliases.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -28971,9 +30265,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0535"></a>
+<a id="file-0603"></a>
 
-### 0535 — `.ai/scrum/task-cards/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md`
+### 0603 — `.ai/scrum/task-cards/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29056,9 +30350,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0536"></a>
+<a id="file-0604"></a>
 
-### 0536 — `.ai/scrum/task-cards/AIARCH-016-consolidar-agent-registry.md`
+### 0604 — `.ai/scrum/task-cards/AIARCH-016-consolidar-agent-registry.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29141,9 +30435,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0537"></a>
+<a id="file-0605"></a>
 
-### 0537 — `.ai/scrum/task-cards/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md`
+### 0605 — `.ai/scrum/task-cards/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29226,9 +30520,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0538"></a>
+<a id="file-0606"></a>
 
-### 0538 — `.ai/scrum/task-cards/AIARCH-018-actualizar-adapter-de-claude.md`
+### 0606 — `.ai/scrum/task-cards/AIARCH-018-actualizar-adapter-de-claude.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29311,9 +30605,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0539"></a>
+<a id="file-0607"></a>
 
-### 0539 — `.ai/scrum/task-cards/AIARCH-019-actualizar-adapter-de-codex.md`
+### 0607 — `.ai/scrum/task-cards/AIARCH-019-actualizar-adapter-de-codex.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29396,9 +30690,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0540"></a>
+<a id="file-0608"></a>
 
-### 0540 — `.ai/scrum/task-cards/AIARCH-020-actualizar-adapter-de-copilot.md`
+### 0608 — `.ai/scrum/task-cards/AIARCH-020-actualizar-adapter-de-copilot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29481,9 +30775,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0541"></a>
+<a id="file-0609"></a>
 
-### 0541 — `.ai/scrum/task-cards/AIARCH-021-implementar-provider-drift-gate.md`
+### 0609 — `.ai/scrum/task-cards/AIARCH-021-implementar-provider-drift-gate.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29566,9 +30860,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0542"></a>
+<a id="file-0610"></a>
 
-### 0542 — `.ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema.md`
+### 0610 — `.ai/scrum/task-cards/AIARCH-022-migrar-task-card-a-esquema.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29651,9 +30945,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0543"></a>
+<a id="file-0611"></a>
 
-### 0543 — `.ai/scrum/task-cards/AIARCH-023-consolidar-scrum-claims-y-vistas.md`
+### 0611 — `.ai/scrum/task-cards/AIARCH-023-consolidar-scrum-claims-y-vistas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29736,9 +31030,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0544"></a>
+<a id="file-0612"></a>
 
-### 0544 — `.ai/scrum/task-cards/AIARCH-024-crear-evidence-store-y-log-distillation.md`
+### 0612 — `.ai/scrum/task-cards/AIARCH-024-crear-evidence-store-y-log-distillation.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29821,9 +31115,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0545"></a>
+<a id="file-0613"></a>
 
-### 0545 — `.ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos.md`
+### 0613 — `.ai/scrum/task-cards/AIARCH-025-crear-validadores-mecanicos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29906,9 +31200,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0546"></a>
+<a id="file-0614"></a>
 
-### 0546 — `.ai/scrum/task-cards/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md`
+### 0614 — `.ai/scrum/task-cards/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -29991,9 +31285,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0547"></a>
+<a id="file-0615"></a>
 
-### 0547 — `.ai/scrum/task-cards/AIARCH-027-migrar-planes-coreux-decl-restore.md`
+### 0615 — `.ai/scrum/task-cards/AIARCH-027-migrar-planes-coreux-decl-restore.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -30076,9 +31370,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0548"></a>
+<a id="file-0616"></a>
 
-### 0548 — `.ai/scrum/task-cards/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md`
+### 0616 — `.ai/scrum/task-cards/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -30161,9 +31455,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0549"></a>
+<a id="file-0617"></a>
 
-### 0549 — `.ai/scrum/task-cards/AIARCH-029-integrar-scripts-en-package-ci.md`
+### 0617 — `.ai/scrum/task-cards/AIARCH-029-integrar-scripts-en-package-ci.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -30246,9 +31540,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0550"></a>
+<a id="file-0618"></a>
 
-### 0550 — `.ai/scrum/task-cards/AIARCH-030-rollout-documentacion-y-retrospectiva.md`
+### 0618 — `.ai/scrum/task-cards/AIARCH-030-rollout-documentacion-y-retrospectiva.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -30331,9 +31625,9 @@ scope o necesidad de tocar producto.
 Commit atómico de documentación/scripts; conservar aliases durante una versión.
 ```
 
-<a id="file-0551"></a>
+<a id="file-0619"></a>
 
-### 0551 — `.ai/scrum/task-cards/COREUX-001-congelar-baseline-visual-y-responsive.md`
+### 0619 — `.ai/scrum/task-cards/COREUX-001-congelar-baseline-visual-y-responsive.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `177`
@@ -30521,9 +31815,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0552"></a>
+<a id="file-0620"></a>
 
-### 0552 — `.ai/scrum/task-cards/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md`
+### 0620 — `.ai/scrum/task-cards/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -30710,9 +32004,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0553"></a>
+<a id="file-0621"></a>
 
-### 0553 — `.ai/scrum/task-cards/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md`
+### 0621 — `.ai/scrum/task-cards/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `179`
@@ -30902,9 +32196,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0554"></a>
+<a id="file-0622"></a>
 
-### 0554 — `.ai/scrum/task-cards/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md`
+### 0622 — `.ai/scrum/task-cards/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `177`
@@ -31092,9 +32386,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0555"></a>
+<a id="file-0623"></a>
 
-### 0555 — `.ai/scrum/task-cards/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md`
+### 0623 — `.ai/scrum/task-cards/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `178`
@@ -31283,9 +32577,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0556"></a>
+<a id="file-0624"></a>
 
-### 0556 — `.ai/scrum/task-cards/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md`
+### 0624 — `.ai/scrum/task-cards/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `190`
@@ -31486,9 +32780,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0557"></a>
+<a id="file-0625"></a>
 
-### 0557 — `.ai/scrum/task-cards/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md`
+### 0625 — `.ai/scrum/task-cards/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `192`
@@ -31691,9 +32985,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0558"></a>
+<a id="file-0626"></a>
 
-### 0558 — `.ai/scrum/task-cards/COREUX-008-expandir-maquina-de-estados-de-interaccion.md`
+### 0626 — `.ai/scrum/task-cards/COREUX-008-expandir-maquina-de-estados-de-interaccion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `177`
@@ -31881,9 +33175,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0559"></a>
+<a id="file-0627"></a>
 
-### 0559 — `.ai/scrum/task-cards/COREUX-009-crear-coordinador-de-efectos-del-designer.md`
+### 0627 — `.ai/scrum/task-cards/COREUX-009-crear-coordinador-de-efectos-del-designer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `185`
@@ -32079,9 +33373,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0560"></a>
+<a id="file-0628"></a>
 
-### 0560 — `.ai/scrum/task-cards/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md`
+### 0628 — `.ai/scrum/task-cards/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `181`
@@ -32273,9 +33567,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0561"></a>
+<a id="file-0629"></a>
 
-### 0561 — `.ai/scrum/task-cards/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md`
+### 0629 — `.ai/scrum/task-cards/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `180`
@@ -32466,9 +33760,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0562"></a>
+<a id="file-0630"></a>
 
-### 0562 — `.ai/scrum/task-cards/COREUX-012-conectar-commandbus-eventos-e-historial.md`
+### 0630 — `.ai/scrum/task-cards/COREUX-012-conectar-commandbus-eventos-e-historial.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `183`
@@ -32662,9 +33956,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0563"></a>
+<a id="file-0631"></a>
 
-### 0563 — `.ai/scrum/task-cards/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md`
+### 0631 — `.ai/scrum/task-cards/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `188`
@@ -32863,9 +34157,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0564"></a>
+<a id="file-0632"></a>
 
-### 0564 — `.ai/scrum/task-cards/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md`
+### 0632 — `.ai/scrum/task-cards/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `184`
@@ -33060,9 +34354,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0565"></a>
+<a id="file-0633"></a>
 
-### 0565 — `.ai/scrum/task-cards/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md`
+### 0633 — `.ai/scrum/task-cards/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `189`
@@ -33262,9 +34556,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0566"></a>
+<a id="file-0634"></a>
 
-### 0566 — `.ai/scrum/task-cards/COREUX-016-completar-comandos-de-pagina.md`
+### 0634 — `.ai/scrum/task-cards/COREUX-016-completar-comandos-de-pagina.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `180`
@@ -33455,9 +34749,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0567"></a>
+<a id="file-0635"></a>
 
-### 0567 — `.ai/scrum/task-cards/COREUX-017-unificar-zoom-fit-page-y-fit-width.md`
+### 0635 — `.ai/scrum/task-cards/COREUX-017-unificar-zoom-fit-page-y-fit-width.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `192`
@@ -33660,9 +34954,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0568"></a>
+<a id="file-0636"></a>
 
-### 0568 — `.ai/scrum/task-cards/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md`
+### 0636 — `.ai/scrum/task-cards/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `184`
@@ -33857,9 +35151,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0569"></a>
+<a id="file-0637"></a>
 
-### 0569 — `.ai/scrum/task-cards/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md`
+### 0637 — `.ai/scrum/task-cards/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `184`
@@ -34054,9 +35348,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0570"></a>
+<a id="file-0638"></a>
 
-### 0570 — `.ai/scrum/task-cards/COREUX-020-crear-estado-responsive-unico-de-superficies.md`
+### 0638 — `.ai/scrum/task-cards/COREUX-020-crear-estado-responsive-unico-de-superficies.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -34240,9 +35534,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0571"></a>
+<a id="file-0639"></a>
 
-### 0571 — `.ai/scrum/task-cards/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md`
+### 0639 — `.ai/scrum/task-cards/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -34427,9 +35721,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0572"></a>
+<a id="file-0640"></a>
 
-### 0572 — `.ai/scrum/task-cards/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md`
+### 0640 — `.ai/scrum/task-cards/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -34613,9 +35907,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0573"></a>
+<a id="file-0641"></a>
 
-### 0573 — `.ai/scrum/task-cards/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md`
+### 0641 — `.ai/scrum/task-cards/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -34801,9 +36095,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0574"></a>
+<a id="file-0642"></a>
 
-### 0574 — `.ai/scrum/task-cards/COREUX-024-formalizar-contrato-del-rightsidebar.md`
+### 0642 — `.ai/scrum/task-cards/COREUX-024-formalizar-contrato-del-rightsidebar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -34988,9 +36282,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0575"></a>
+<a id="file-0643"></a>
 
-### 0575 — `.ai/scrum/task-cards/COREUX-025-completar-listview-compacto-y-menu-por-fila.md`
+### 0643 — `.ai/scrum/task-cards/COREUX-025-completar-listview-compacto-y-menu-por-fila.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -35175,9 +36469,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0576"></a>
+<a id="file-0644"></a>
 
-### 0576 — `.ai/scrum/task-cards/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md`
+### 0644 — `.ai/scrum/task-cards/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `178`
@@ -35366,9 +36660,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0577"></a>
+<a id="file-0645"></a>
 
-### 0577 — `.ai/scrum/task-cards/COREUX-027-completar-documentsrail-y-documentcontroller.md`
+### 0645 — `.ai/scrum/task-cards/COREUX-027-completar-documentsrail-y-documentcontroller.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -35554,9 +36848,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0578"></a>
+<a id="file-0646"></a>
 
-### 0578 — `.ai/scrum/task-cards/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md`
+### 0646 — `.ai/scrum/task-cards/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -35742,9 +37036,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0579"></a>
+<a id="file-0647"></a>
 
-### 0579 — `.ai/scrum/task-cards/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md`
+### 0647 — `.ai/scrum/task-cards/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -35929,9 +37223,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0580"></a>
+<a id="file-0648"></a>
 
-### 0580 — `.ai/scrum/task-cards/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md`
+### 0648 — `.ai/scrum/task-cards/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -36115,9 +37409,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0581"></a>
+<a id="file-0649"></a>
 
-### 0581 — `.ai/scrum/task-cards/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md`
+### 0649 — `.ai/scrum/task-cards/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -36301,9 +37595,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0582"></a>
+<a id="file-0650"></a>
 
-### 0582 — `.ai/scrum/task-cards/COREUX-032-consolidar-datos-y-conexiones.md`
+### 0650 — `.ai/scrum/task-cards/COREUX-032-consolidar-datos-y-conexiones.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -36487,9 +37781,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0583"></a>
+<a id="file-0651"></a>
 
-### 0583 — `.ai/scrum/task-cards/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md`
+### 0651 — `.ai/scrum/task-cards/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -36674,9 +37968,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0584"></a>
+<a id="file-0652"></a>
 
-### 0584 — `.ai/scrum/task-cards/COREUX-034-unificar-editor-de-opciones.md`
+### 0652 — `.ai/scrum/task-cards/COREUX-034-unificar-editor-de-opciones.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -36862,9 +38156,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0585"></a>
+<a id="file-0653"></a>
 
-### 0585 — `.ai/scrum/task-cards/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md`
+### 0653 — `.ai/scrum/task-cards/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -37050,9 +38344,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0586"></a>
+<a id="file-0654"></a>
 
-### 0586 — `.ai/scrum/task-cards/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md`
+### 0654 — `.ai/scrum/task-cards/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -37237,9 +38531,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0587"></a>
+<a id="file-0655"></a>
 
-### 0587 — `.ai/scrum/task-cards/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md`
+### 0655 — `.ai/scrum/task-cards/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -37424,9 +38718,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0588"></a>
+<a id="file-0656"></a>
 
-### 0588 — `.ai/scrum/task-cards/COREUX-038-cerrar-contrato-de-choice-fields.md`
+### 0656 — `.ai/scrum/task-cards/COREUX-038-cerrar-contrato-de-choice-fields.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -37613,9 +38907,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0589"></a>
+<a id="file-0657"></a>
 
-### 0589 — `.ai/scrum/task-cards/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md`
+### 0657 — `.ai/scrum/task-cards/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -37799,9 +39093,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0590"></a>
+<a id="file-0658"></a>
 
-### 0590 — `.ai/scrum/task-cards/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md`
+### 0658 — `.ai/scrum/task-cards/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -37988,9 +39282,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0591"></a>
+<a id="file-0659"></a>
 
-### 0591 — `.ai/scrum/task-cards/COREUX-041-unificar-owner-tone-y-field-chrome.md`
+### 0659 — `.ai/scrum/task-cards/COREUX-041-unificar-owner-tone-y-field-chrome.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -38176,9 +39470,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0592"></a>
+<a id="file-0660"></a>
 
-### 0592 — `.ai/scrum/task-cards/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md`
+### 0660 — `.ai/scrum/task-cards/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -38363,9 +39657,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0593"></a>
+<a id="file-0661"></a>
 
-### 0593 — `.ai/scrum/task-cards/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md`
+### 0661 — `.ai/scrum/task-cards/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -38551,9 +39845,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0594"></a>
+<a id="file-0662"></a>
 
-### 0594 — `.ai/scrum/task-cards/COREUX-044-alinear-moveable-con-access-interaction-y-events.md`
+### 0662 — `.ai/scrum/task-cards/COREUX-044-alinear-moveable-con-access-interaction-y-events.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -38739,9 +40033,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0595"></a>
+<a id="file-0663"></a>
 
-### 0595 — `.ai/scrum/task-cards/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md`
+### 0663 — `.ai/scrum/task-cards/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -38928,9 +40222,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0596"></a>
+<a id="file-0664"></a>
 
-### 0596 — `.ai/scrum/task-cards/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md`
+### 0664 — `.ai/scrum/task-cards/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -39115,9 +40409,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0597"></a>
+<a id="file-0665"></a>
 
-### 0597 — `.ai/scrum/task-cards/COREUX-047-completar-snapshot-e-historial-versionado.md`
+### 0665 — `.ai/scrum/task-cards/COREUX-047-completar-snapshot-e-historial-versionado.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -39304,9 +40598,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0598"></a>
+<a id="file-0666"></a>
 
-### 0598 — `.ai/scrum/task-cards/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md`
+### 0666 — `.ai/scrum/task-cards/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -39491,9 +40785,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0599"></a>
+<a id="file-0667"></a>
 
-### 0599 — `.ai/scrum/task-cards/COREUX-049-cerrar-paridad-designer-form-y-viewer.md`
+### 0667 — `.ai/scrum/task-cards/COREUX-049-cerrar-paridad-designer-form-y-viewer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `177`
@@ -39681,9 +40975,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0600"></a>
+<a id="file-0668"></a>
 
-### 0600 — `.ai/scrum/task-cards/COREUX-050-unificar-validacion-generator-converter-y-persistence.md`
+### 0668 — `.ai/scrum/task-cards/COREUX-050-unificar-validacion-generator-converter-y-persistence.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -39870,9 +41164,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0601"></a>
+<a id="file-0669"></a>
 
-### 0601 — `.ai/scrum/task-cards/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md`
+### 0669 — `.ai/scrum/task-cards/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -40058,9 +41352,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0602"></a>
+<a id="file-0670"></a>
 
-### 0602 — `.ai/scrum/task-cards/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md`
+### 0670 — `.ai/scrum/task-cards/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -40245,9 +41539,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0603"></a>
+<a id="file-0671"></a>
 
-### 0603 — `.ai/scrum/task-cards/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md`
+### 0671 — `.ai/scrum/task-cards/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -40432,9 +41726,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0604"></a>
+<a id="file-0672"></a>
 
-### 0604 — `.ai/scrum/task-cards/COREUX-054-crear-playwright-y-regresion-visual-integral.md`
+### 0672 — `.ai/scrum/task-cards/COREUX-054-crear-playwright-y-regresion-visual-integral.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `174`
@@ -40619,9 +41913,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0605"></a>
+<a id="file-0673"></a>
 
-### 0605 — `.ai/scrum/task-cards/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md`
+### 0673 — `.ai/scrum/task-cards/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `175`
@@ -40807,9 +42101,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0606"></a>
+<a id="file-0674"></a>
 
-### 0606 — `.ai/scrum/task-cards/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md`
+### 0674 — `.ai/scrum/task-cards/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `176`
@@ -40996,9 +42290,9 @@ siguiente acción
 ``​`
 ```
 
-<a id="file-0607"></a>
+<a id="file-0675"></a>
 
-### 0607 — `.ai/scrum/task-cards/name-001-inventariar-y-clasificar-ocurrencias.md`
+### 0675 — `.ai/scrum/task-cards/name-001-inventariar-y-clasificar-ocurrencias.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41048,9 +42342,9 @@ Crear el inventario exhaustivo y clasificar cada coincidencia antes de editar c�
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0608"></a>
+<a id="file-0676"></a>
 
-### 0608 — `.ai/scrum/task-cards/name-002-crear-pol-tica-y-gate-preventivo.md`
+### 0676 — `.ai/scrum/task-cards/name-002-crear-pol-tica-y-gate-preventivo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41100,9 +42394,9 @@ Governance, script, allowlist y package script propuesto.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0609"></a>
+<a id="file-0677"></a>
 
-### 0609 — `.ai/scrum/task-cards/name-003-renombrar-vocabulario-del-inspector.md`
+### 0677 — `.ai/scrum/task-cards/name-003-renombrar-vocabulario-del-inspector.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41152,9 +42446,9 @@ DetailView taxonomy, builders, imports y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0610"></a>
+<a id="file-0678"></a>
 
-### 0610 — `.ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-a.md`
+### 0678 — `.ai/scrum/task-cards/name-004-sanear-migraci-n-de-config-a.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41204,9 +42498,9 @@ Config migration, validation, resolver y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0611"></a>
+<a id="file-0679"></a>
 
-### 0611 — `.ai/scrum/task-cards/name-005-renombrar-eventos-y-callbacks-del-host.md`
+### 0679 — `.ai/scrum/task-cards/name-005-renombrar-eventos-y-callbacks-del-host.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41256,9 +42550,9 @@ Dispatcher, bridge, contracts, wrapper y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0612"></a>
+<a id="file-0680"></a>
 
-### 0612 — `.ai/scrum/task-cards/name-006-versionar-snapshots-y-metadata.md`
+### 0680 — `.ai/scrum/task-cards/name-006-versionar-snapshots-y-metadata.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41308,9 +42602,9 @@ Snapshot, adapter, schema migration, meta, fixtures y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0613"></a>
+<a id="file-0681"></a>
 
-### 0613 — `.ai/scrum/task-cards/name-007-renombrar-provider-de-colaboraci-n.md`
+### 0681 — `.ai/scrum/task-cards/name-007-renombrar-provider-de-colaboraci-n.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41360,9 +42654,9 @@ Collaboration adapter, config migration, types, docs y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0614"></a>
+<a id="file-0682"></a>
 
-### 0614 — `.ai/scrum/task-cards/name-008-sanear-almacenamiento-de-comentarios.md`
+### 0682 — `.ai/scrum/task-cards/name-008-sanear-almacenamiento-de-comentarios.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41412,9 +42706,9 @@ Common comments, contracts, snapshot tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0615"></a>
+<a id="file-0683"></a>
 
-### 0615 — `.ai/scrum/task-cards/name-009-sanear-firma-y-familias-de-schema.md`
+### 0683 — `.ai/scrum/task-cards/name-009-sanear-firma-y-familias-de-schema.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -41463,9 +42757,9 @@ Signature helpers, schema families y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0616"></a>
+<a id="file-0684"></a>
 
-### 0616 — `.ai/scrum/task-cards/name-010-renombrar-documentaci-n-y-arquitectura-ia.md`
+### 0684 — `.ai/scrum/task-cards/name-010-renombrar-documentaci-n-y-arquitectura-ia.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41515,9 +42809,9 @@ Docs, `.ai`, `.agents`, `.github` y manifests activos.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0617"></a>
+<a id="file-0685"></a>
 
-### 0617 — `.ai/scrum/task-cards/name-011-administrar-aliases-p-blicos-deprecados.md`
+### 0685 — `.ai/scrum/task-cards/name-011-administrar-aliases-p-blicos-deprecados.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41567,9 +42861,9 @@ Entrypoints, exports, changelog, migration guide y tests.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0618"></a>
+<a id="file-0686"></a>
 
-### 0618 — `.ai/scrum/task-cards/name-012-retirar-compatibilidad-obsoleta.md`
+### 0686 — `.ai/scrum/task-cards/name-012-retirar-compatibilidad-obsoleta.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -41619,9 +42913,9 @@ Solo elementos aprobados tras auditoría de consumidores.
 Detenerse si aparece un export público, valor persistido o dependencia de tercero no cubierto por la task-card.
 ```
 
-<a id="file-0619"></a>
+<a id="file-0687"></a>
 
-### 0619 — `.ai/scrum/task-cards/PORTDOC-001-auditar-api-publica.md`
+### 0687 — `.ai/scrum/task-cards/PORTDOC-001-auditar-api-publica.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -41642,9 +42936,9 @@ Comparar entrypoint raíz, integration y documentación. Cero símbolos
 documentados inexistentes y cero imports internos en ejemplos.
 ```
 
-<a id="file-0620"></a>
+<a id="file-0688"></a>
 
-### 0620 — `.ai/scrum/task-cards/PORTDOC-002-actualizar-ejemplos.md`
+### 0688 — `.ai/scrum/task-cards/PORTDOC-002-actualizar-ejemplos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -41665,9 +42959,9 @@ Corregir worker, adapters, state/defaultState, bundle/snapshot y
 multidocumento.
 ```
 
-<a id="file-0621"></a>
+<a id="file-0689"></a>
 
-### 0621 — `.ai/scrum/task-cards/PORTDOC-003-consumer-test.md`
+### 0689 — `.ai/scrum/task-cards/PORTDOC-003-consumer-test.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -41688,9 +42982,9 @@ Crear un proyecto React/Vite limpio y demostrar Designer, Form, Viewer,
 Tailwind, PDF.js, save, snapshot, PDF, recipients y multidocumento.
 ```
 
-<a id="file-0622"></a>
+<a id="file-0690"></a>
 
-### 0622 — `.ai/scrum/task-cards/PORTDOC-004-gate-drift-documental.md`
+### 0690 — `.ai/scrum/task-cards/PORTDOC-004-gate-drift-documental.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -41711,9 +43005,9 @@ Detectar nombres retirados, APIs inexistentes, imports internos, links rotos y
 factories invocadas con firmas incompatibles.
 ```
 
-<a id="file-0623"></a>
+<a id="file-0691"></a>
 
-### 0623 — `.ai/scrum/task-cards/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md`
+### 0691 — `.ai/scrum/task-cards/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `172`
@@ -41896,9 +43190,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0624"></a>
+<a id="file-0692"></a>
 
-### 0624 — `.ai/scrum/task-cards/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md`
+### 0692 — `.ai/scrum/task-cards/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -42077,9 +43371,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0625"></a>
+<a id="file-0693"></a>
 
-### 0625 — `.ai/scrum/task-cards/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md`
+### 0693 — `.ai/scrum/task-cards/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -42256,9 +43550,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0626"></a>
+<a id="file-0694"></a>
 
-### 0626 — `.ai/scrum/task-cards/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md`
+### 0694 — `.ai/scrum/task-cards/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -42435,9 +43729,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0627"></a>
+<a id="file-0695"></a>
 
-### 0627 — `.ai/scrum/task-cards/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md`
+### 0695 — `.ai/scrum/task-cards/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -42614,9 +43908,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0628"></a>
+<a id="file-0696"></a>
 
-### 0628 — `.ai/scrum/task-cards/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md`
+### 0696 — `.ai/scrum/task-cards/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -42793,9 +44087,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0629"></a>
+<a id="file-0697"></a>
 
-### 0629 — `.ai/scrum/task-cards/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md`
+### 0697 — `.ai/scrum/task-cards/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -42972,9 +44266,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0630"></a>
+<a id="file-0698"></a>
 
-### 0630 — `.ai/scrum/task-cards/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md`
+### 0698 — `.ai/scrum/task-cards/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -43150,9 +44444,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0631"></a>
+<a id="file-0699"></a>
 
-### 0631 — `.ai/scrum/task-cards/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md`
+### 0699 — `.ai/scrum/task-cards/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -43328,9 +44622,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0632"></a>
+<a id="file-0700"></a>
 
-### 0632 — `.ai/scrum/task-cards/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md`
+### 0700 — `.ai/scrum/task-cards/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -43506,9 +44800,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0633"></a>
+<a id="file-0701"></a>
 
-### 0633 — `.ai/scrum/task-cards/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md`
+### 0701 — `.ai/scrum/task-cards/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -43684,9 +44978,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0634"></a>
+<a id="file-0702"></a>
 
-### 0634 — `.ai/scrum/task-cards/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md`
+### 0702 — `.ai/scrum/task-cards/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -43862,9 +45156,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0635"></a>
+<a id="file-0703"></a>
 
-### 0635 — `.ai/scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md`
+### 0703 — `.ai/scrum/task-cards/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `164`
@@ -44039,9 +45333,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0636"></a>
+<a id="file-0704"></a>
 
-### 0636 — `.ai/scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md`
+### 0704 — `.ai/scrum/task-cards/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `164`
@@ -44216,9 +45510,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0637"></a>
+<a id="file-0705"></a>
 
-### 0637 — `.ai/scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md`
+### 0705 — `.ai/scrum/task-cards/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `164`
@@ -44393,9 +45687,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0638"></a>
+<a id="file-0706"></a>
 
-### 0638 — `.ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md`
+### 0706 — `.ai/scrum/task-cards/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `164`
@@ -44570,9 +45864,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0639"></a>
+<a id="file-0707"></a>
 
-### 0639 — `.ai/scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md`
+### 0707 — `.ai/scrum/task-cards/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `164`
@@ -44747,9 +46041,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0640"></a>
+<a id="file-0708"></a>
 
-### 0640 — `.ai/scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md`
+### 0708 — `.ai/scrum/task-cards/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -44925,9 +46219,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0641"></a>
+<a id="file-0709"></a>
 
-### 0641 — `.ai/scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md`
+### 0709 — `.ai/scrum/task-cards/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -45104,9 +46398,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0642"></a>
+<a id="file-0710"></a>
 
-### 0642 — `.ai/scrum/task-cards/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md`
+### 0710 — `.ai/scrum/task-cards/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -45282,9 +46576,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0643"></a>
+<a id="file-0711"></a>
 
-### 0643 — `.ai/scrum/task-cards/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md`
+### 0711 — `.ai/scrum/task-cards/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `164`
@@ -45459,9 +46753,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0644"></a>
+<a id="file-0712"></a>
 
-### 0644 — `.ai/scrum/task-cards/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md`
+### 0712 — `.ai/scrum/task-cards/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `164`
@@ -45636,9 +46930,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0645"></a>
+<a id="file-0713"></a>
 
-### 0645 — `.ai/scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md`
+### 0713 — `.ai/scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -45814,9 +47108,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0646"></a>
+<a id="file-0714"></a>
 
-### 0646 — `.ai/scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md`
+### 0714 — `.ai/scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `164`
@@ -45991,9 +47285,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0647"></a>
+<a id="file-0715"></a>
 
-### 0647 — `.ai/scrum/task-cards/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md`
+### 0715 — `.ai/scrum/task-cards/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `164`
@@ -46168,9 +47462,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0648"></a>
+<a id="file-0716"></a>
 
-### 0648 — `.ai/scrum/task-cards/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md`
+### 0716 — `.ai/scrum/task-cards/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -46346,9 +47640,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0649"></a>
+<a id="file-0717"></a>
 
-### 0649 — `.ai/scrum/task-cards/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md`
+### 0717 — `.ai/scrum/task-cards/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `164`
@@ -46523,9 +47817,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0650"></a>
+<a id="file-0718"></a>
 
-### 0650 — `.ai/scrum/task-cards/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md`
+### 0718 — `.ai/scrum/task-cards/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -46702,9 +47996,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0651"></a>
+<a id="file-0719"></a>
 
-### 0651 — `.ai/scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md`
+### 0719 — `.ai/scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -46881,9 +48175,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0652"></a>
+<a id="file-0720"></a>
 
-### 0652 — `.ai/scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md`
+### 0720 — `.ai/scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `167`
@@ -47061,9 +48355,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0653"></a>
+<a id="file-0721"></a>
 
-### 0653 — `.ai/scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md`
+### 0721 — `.ai/scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `163`
@@ -47237,9 +48531,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0654"></a>
+<a id="file-0722"></a>
 
-### 0654 — `.ai/scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md`
+### 0722 — `.ai/scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `163`
@@ -47413,9 +48707,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0655"></a>
+<a id="file-0723"></a>
 
-### 0655 — `.ai/scrum/task-cards/VISUX-033-cerrar-media-barcode-table-y-shapes.md`
+### 0723 — `.ai/scrum/task-cards/VISUX-033-cerrar-media-barcode-table-y-shapes.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -47591,9 +48885,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0656"></a>
+<a id="file-0724"></a>
 
-### 0656 — `.ai/scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md`
+### 0724 — `.ai/scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -47770,9 +49064,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0657"></a>
+<a id="file-0725"></a>
 
-### 0657 — `.ai/scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md`
+### 0725 — `.ai/scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -47948,9 +49242,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0658"></a>
+<a id="file-0726"></a>
 
-### 0658 — `.ai/scrum/task-cards/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md`
+### 0726 — `.ai/scrum/task-cards/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -48126,9 +49420,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0659"></a>
+<a id="file-0727"></a>
 
-### 0659 — `.ai/scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md`
+### 0727 — `.ai/scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -48304,9 +49598,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0660"></a>
+<a id="file-0728"></a>
 
-### 0660 — `.ai/scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md`
+### 0728 — `.ai/scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -48483,9 +49777,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0661"></a>
+<a id="file-0729"></a>
 
-### 0661 — `.ai/scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md`
+### 0729 — `.ai/scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `166`
@@ -48662,9 +49956,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0662"></a>
+<a id="file-0730"></a>
 
-### 0662 — `.ai/scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md`
+### 0730 — `.ai/scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `172`
@@ -48847,9 +50141,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0663"></a>
+<a id="file-0731"></a>
 
-### 0663 — `.ai/scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md`
+### 0731 — `.ai/scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `165`
@@ -49025,9 +50319,9 @@ stop:
 ``​`
 ```
 
-<a id="file-0664"></a>
+<a id="file-0732"></a>
 
-### 0664 — `.ai/scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md`
+### 0732 — `.ai/scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `173`
@@ -49211,9 +50505,101 @@ stop:
 ``​`
 ```
 
-<a id="file-0665"></a>
+<a id="file-0733"></a>
 
-### 0665 — `.claude/skills/testsprite-onboard/SKILL.md`
+### 0733 — `.claude/skills/sisad-form-transaction/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `48f4c07c89`
+- **Estado:** `completo`
+
+```markdown
+---
+name: sisad-form-transaction
+description: Harden local-first Form transactions, revisions, lifecycle and sibling isolation.
+---
+Load the active SPRT task and only the relevant SISAD-PDFME source/tests.
+Do not assume or load external project source.
+```
+
+<a id="file-0734"></a>
+
+### 0734 — `.claude/skills/sisad-schema-runtime-contract/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `e915b479d9`
+- **Estado:** `completo`
+
+```markdown
+---
+name: sisad-schema-runtime-contract
+description: Complete schema manifest, codec, interaction and cross-surface behavior.
+---
+Load the active SPRT task and only the relevant SISAD-PDFME source/tests.
+Do not assume or load external project source.
+```
+
+<a id="file-0735"></a>
+
+### 0735 — `.claude/skills/sisad-tooling-safety/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `8bf62d9200`
+- **Estado:** `completo`
+
+```markdown
+---
+name: sisad-tooling-safety
+description: Characterize and harden installers, importers, dedup and stable-name tooling.
+---
+Load the active SPRT task and only the relevant SISAD-PDFME source/tests.
+Do not assume or load external project source.
+```
+
+<a id="file-0736"></a>
+
+### 0736 — `.claude/skills/sisad-user-model-migration/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `3`
+- **Tamaño original:** `0.1 KB`
+- **SHA1 corto:** `1b40ad570a`
+- **Estado:** `completo`
+
+```markdown
+# Alias
+
+Canonical skill: `../../../.agents/skills/sisad-user-model-migration/SKILL.md`.
+```
+
+<a id="file-0737"></a>
+
+### 0737 — `.claude/skills/sisad-user-runtime/SKILL.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `d181053674`
+- **Estado:** `completo`
+
+```markdown
+---
+name: sisad-user-runtime
+description: Migrate SISAD-PDFME interaction identity from legacy Recipient naming to canonical User semantics.
+---
+Load the active SPRT task and only the relevant SISAD-PDFME source/tests.
+Do not assume or load external project source.
+```
+
+<a id="file-0738"></a>
+
+### 0738 — `.claude/skills/testsprite-onboard/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `189`
@@ -49413,9 +50799,9 @@ the **`testsprite-verify`** skill takes over: after the user changes code, it ru
 covering that change before they report the work done. Onboard once; verify continuously.
 ```
 
-<a id="file-0666"></a>
+<a id="file-0739"></a>
 
-### 0666 — `.claude/skills/testsprite-verify/SKILL.md`
+### 0739 — `.claude/skills/testsprite-verify/SKILL.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `491`
@@ -49917,9 +51303,630 @@ When you tell the user the feature is done, include:
   can be wrong; the human should look.
 ```
 
-<a id="file-0667"></a>
+<a id="file-0740"></a>
 
-### 0667 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
+### 0740 — `reports/runtime-platform/evidence/examples-refactor-closeout-2026-08-13.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `97`
+- **Tamaño original:** `4.7 KB`
+- **SHA1 corto:** `e09bb942a8`
+- **Estado:** `completo`
+
+```markdown
+# Evidence — examples refactor closeout
+
+Date: 2026-08-13
+Task: `SPRT-270`
+Result: `PARTIAL`
+
+## Scope and ownership
+
+The closeout audited only the existing `src/examples` refactor. Other dirty
+tree files were not attributed to this task.
+
+Current refactor files modified:
+
+- `src/examples/runtime.js` added as the shared instance/hooks module.
+- `src/examples/hooks.js` removed.
+- `src/examples/instances.js` removed.
+- `src/examples/pages.jsx` updated to import `runtime.js`.
+- `src/examples/index.jsx` updated to preserve the public exports.
+- `src/examples/README.md` updated for the consolidated module.
+- `tests/test-form-navigation.spec.ts` corrected to assert one exact accessible-name match.
+- `.agents/skills/sisad-user-model-migration/SKILL.md` received the required YAML frontmatter.
+
+Previously reported and confirmed absent from the worktree:
+
+- `src/examples/definitions/Definitions.jsx`
+- `src/examples/pages/pageGenerator.js`
+- `src/examples/config/pagesConfig.json`
+- `src/examples/config/digitalAgreementsForm.json`
+
+## API preservation
+
+The public exports remain available through `src/examples/index.jsx`:
+
+- `createExampleInstance`
+- `useController`
+- `useEventLog`
+- `useRuntimeConfig`
+
+## Manifest classification
+
+`GOD_MANIFEST_RISK`.
+
+Evidence: `src/examples/config/examplesManifest.json` has a healthy top-level
+shape (`routes`, `primaryRoutes`, `familyRoutes`), but the
+`runtime-form-digital-agreements` route embeds a large `formSnapshot` with
+`templateFields` and `recipients` at lines 285-434, alongside route metadata,
+runtime descriptor fields (`instanceId`, `runtimeProfile`, `mode`), template
+builder configuration, values builder, handlers and info panels. Schema
+catalog data is not embedded there; it is derived from
+`examplesData.json` and the runtime schema registry. The classification is a
+risk only; no manifest refactor was performed in closeout.
+
+## Playwright selector
+
+The catalog contains two links matching the regex: the top navigation link and
+the route card link. Their accessible names differ because the card includes
+the description and `ABRIR`. The test now targets the navigation link with
+`getByRole('link', { name: 'Runtime · Form DigitalAgreements', exact: true })`
+and asserts the route remains uniquely identified. No CSS selector is used.
+
+## Orphan reference classification
+
+- `LIVE_REFERENCE`: `src/sisad-pdfme/**/hooks.js` imports are valid runtime files and are unrelated to the deleted example `hooks.js`.
+- `HISTORICAL_REFERENCE`: `unificados/**` contains archived source/documentation references to deleted example files.
+- `GENERATED_REFERENCE`: `.ai/index/runtime-platform/{symbols,code-files}.jsonl` contains stale generated entries for deleted files; not edited manually.
+- `STALE_REFERENCE`: none found in active `src/examples`, tests, package scripts or active README files for the deleted example files.
+- Git history and `.git/index` matches are repository metadata, not live source references.
+
+## Tooling drift
+
+`package.json` declares `quality:example-style-boundary` as
+`scripts/quality/check-example-style-boundary.mjs`, but that file is absent.
+The existing `scripts/quality/check_style-boundary.mjs` is not an equivalent
+replacement: it scans all `src/` and reports 127 findings from the reusable
+runtime, whereas the missing gate is named and documented as an examples
+boundary gate. Status: `STOP-TOOLING`; no replacement was wired.
+
+## Skill drift
+
+- `sisad-form-transaction`: canonical and valid frontmatter in `.agents` and `.claude`.
+- `sisad-tooling-safety`: canonical and valid frontmatter in `.agents` and `.claude`.
+- `sisad-user-model-migration`: canonical, referenced by campaign manifests, and was missing frontmatter in `.agents`; frontmatter was restored. `.claude` is an alias to it.
+
+## Prompt drift
+
+- `LIVE`: `tools/sisad-pdfme-runtime/validate-campaign.mjs` references `PROMPT_SISAD_PDFME_DA_RUNTIME_BOOT.md`, but the file is absent, so the validator is stale/broken.
+- `GENERATED_REFERENCE`: `.ai/migrations/**/FILE-MANIFEST.json` lists the three absent DA prompt paths.
+- `SUPERSEDED`: current campaign inventory contains `PROMPT_SISAD_PDFME_RUNTIME_BOOT_V2.md` and `PROMPT_SISAD_PDFME_RUNTIME_MASTER_V2.md`; no missing prompts were created.
+- `STALE`: no active reference to `PROMPT_SISAD_PDFME_DA_INTEGRATION.md` beyond generated migration metadata was found.
+
+## Validation results
+
+- `git diff --check`: PASS.
+- `npx vitest run tests/unit/sisad-pdfme-comprehensive/contracts/form/digitalAgreementsForm.test.ts`: PASS, 2 tests.
+- `npx playwright test tests/test-form-navigation.spec.ts --reporter=line`: PASS, 1 test.
+- `npm run build`: PASS; existing Vite/Tailwind/chunk warnings remain.
+- `npm run quality:example-style-boundary`: BLOCKED; declared script file missing.
+```
+
+<a id="file-0741"></a>
+
+### 0741 — `reports/runtime-platform/evidence/form-access-fix-2026-08-14.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `36`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `7437d32a49`
+- **Estado:** `completo`
+
+```markdown
+# Evidence — Form access and snapshot input fix
+
+Date: 2026-08-14
+
+## Root cause
+
+`resolveRuntimeSchemaAccess()` treated ownerless schemas as visible but not
+editable in `form`. `Preview` then projected `readOnly: true` into the
+renderer. The snapshot builder also treated `getInputFromTemplate()` results
+as `{ name, value }` records instead of objects keyed by schema name.
+
+## Changes
+
+- Ownerless schemas are editable in normal Form mode.
+- Locked and explicit readonly precedence is preserved.
+- Viewer/PDF remain readonly.
+- Global Form view remains readonly.
+- Snapshot values are written under their real schema names and preserve `0`,
+  `false`, and empty strings.
+- Added resolver, builder, and Playwright interaction coverage.
+
+## Validation
+
+- Resolver and builder focal tests: PASS, 8 tests.
+- Runtime suite: PASS, 64 tests.
+- Schema suite: PASS, 98 tests.
+- DigitalAgreements Form contract: PASS, 2 tests.
+- Playwright navigation and Form/Viewer interaction: PASS, 2 tests.
+- Build: PASS.
+- Focal `git diff --check`: PASS.
+
+## Scope
+
+Only the central access policy, generic snapshot builder, and their tests were
+changed. No DigitalAgreements business logic, backend, Form component,
+Viewer component, schema renderer, or PDF generator was modified.
+```
+
+<a id="file-0742"></a>
+
+### 0742 — `reports/runtime-platform/evidence/RTP-040.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `94`
+- **Tamaño original:** `4.0 KB`
+- **SHA1 corto:** `39dc6cc4e7`
+- **Estado:** `completo`
+
+```markdown
+# Evidence — RTP-040
+
+Origin/revision y controlled/uncontrolled reconciliation.
+
+- Worktree: `/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin`
+- Branch: `main`
+- HEAD al iniciar: `66dfd6a`
+- Fecha: 2026-08-13
+
+## Defecto reproducido — CONFIRMADO
+
+Dos defectos distintos, no uno.
+
+**1. El host recibía su propia escritura como si fuera del usuario.**
+`Form.setInputs` difunde y emite `onChangeInputCallback` por cada campo cambiado
+(`src/sisad-pdfme/ui/Form.tsx`). El adapter reenviaba esa emisión a
+`onInputChange`, así que un `setInputs` del host volvía al host indistinguible de
+una edición real y marcaba como tocados campos que el propio host acababa de
+rellenar.
+
+**2. Un update legítimo del host se descartaba en silencio.**
+El guard era un booleano de un solo uso (`inputsSyncFromRuntimeRef`) consumido
+por el *siguiente* cambio de identidad de `inputs`, fuera o no el eco. Si el host
+aplicaba un prefill/restore encadenado a una pulsación, el efecto consumía la
+bandera y nunca empujaba el valor al runtime.
+
+Repro ejecutado antes del cambio:
+
+``​`
+FAIL  aplica un update del host que llega justo después de un cambio del usuario
+      expected 1, received 0
+FAIL  aplica un update del host que corrige el valor recién escrito por el usuario
+      expected 1, received 0
+FAIL  ignora una identidad nueva cuyo contenido ya está en el runtime
+      expected 0, received 1
+Test Files  1 failed (1) | Tests  3 failed | 6 passed (9)
+``​`
+
+El tercero es el coste de la reconciliación por identidad: empujaba `setInputs`
+aunque el runtime ya tuviera ese contenido, lo que revienta caret/IME al escribir.
+
+## Cambio aplicado
+
+- `src/sisad-pdfme/ui/Form.tsx` — cada notificación declara su `origin`
+  (`'user'` desde la interacción, `'host'` desde el diff de `setInputs`). Tipo
+  público nuevo `FormInputChange`; el payload existente solo gana un campo.
+- `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts` — el guard booleano se
+  sustituye por un espejo del contenido que el runtime tiene
+  (`runtimeInputsMirrorRef`) comparado con `inputsMatchRuntimeMirror`. Los ecos
+  con `origin === 'host'` no se reenvían al host. Ante cualquier forma que no
+  sepa comparar, el espejo se invalida y se empuja: el fallo va hacia empujar de
+  más, nunca hacia perder un valor.
+
+## Gates ejecutados
+
+``​`
+npx vitest run tests/unit/sisad-pdfme-comprehensive/contracts/runtime
+  Test Files  2 passed (2) | Tests  36 passed (36)
+``​`
+
+Verificación adicional sobre el `Form` real (no el doble de test): instanciando
+`Form` con un template mínimo, `setInputs` emite
+`{ index: 0, name: 'nombre', value: 'prefill', origin: 'host' }`. No se incorpora
+al suite permanente porque montar `Form` en jsdom produce un error de render de
+React ajeno a esta aserción.
+
+Suite completo (`npm run test:sisad-pdfme`):
+
+``​`
+Test Files  5 failed | 420 passed (425)
+Tests       5 failed | 2271 passed (2276)
+``​`
+
+Los 5 fallos son preexistentes y ajenos a este cambio; el run previo al slice dio
+exactamente los mismos totales:
+
+- 4 × `files/converter/*.file.test.ts` — `resolves every relative import/export
+  target` marca `./types.js` como no resuelto porque solo existe
+  `converter/types.d.ts`, y la lista de extensiones del helper
+  (`tests/.../helpers/sourceContract.ts`) no incluye `.d.ts`. Falso positivo del
+  helper.
+- 1 × `contracts/integration/normalizeHostData.test.ts` — `normalizeHostData({
+  template, inputs: [] })` devuelve `[]` en vez de caer a los inputs derivados
+  del template. Bug real, en un test que ya estaba sin trackear en el worktree al
+  iniciar la sesión. No se tocó.
+
+## Límites
+
+- No se implementó `transactionId` ni `revision` numérica. La reconciliación es
+  por contenido, que resuelve el caso real observado sin introducir un contador
+  que ningún consumidor emite todavía. `draft/commit` sigue siendo RTP-030.
+- `tsc --noEmit` reporta 151 errores en `src/`, todos preexistentes; ninguno
+  apunta a líneas introducidas aquí. El proyecto no expone script `typecheck`,
+  así que no es gate.
+```
+
+<a id="file-0743"></a>
+
+### 0743 — `reports/runtime-platform/evidence/RTP-045.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `86`
+- **Tamaño original:** `3.7 KB`
+- **SHA1 corto:** `a4050277fe`
+- **Estado:** `completo`
+
+```markdown
+# Evidence — RTP-045
+
+Facade público: props declaradas vs. propagadas.
+
+- Worktree: `/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin`
+- Branch: `main`
+- HEAD al iniciar: `66dfd6a`
+- Fecha: 2026-08-13
+
+## Defecto — CONFIRMADO
+
+`SisadPdfmePreviewRuntimeProps` declaraba `activeDocumentId` y
+`signatureProviders`. El destructuring del componente no tomaba ninguno de los
+dos y ninguno aparecía en el resto del archivo: props muertas. Un consumidor que
+las pasara no recibía error, solo silencio.
+
+Contraste: `SisadPdfmeDesigner` sí consumía `signatureProviders`, con su propia
+copia local de la normalización.
+
+Defecto asociado y más grave, no detectado en el análisis original: el efecto de
+montaje de `usePdfmeRuntimeInstance` estaba keyed solo por `mode`. Cambiar
+`activeRecipientId` o `activeDocumentId` no remontaba ni reiniciaba la instancia;
+solo empujaba `options` e `inputs` a la instancia viva. El aislamiento al
+conmutar de destinatario dependía por completo de que el host desmontara.
+
+## Cambio aplicado
+
+- `src/sisad-pdfme/react/signatureProviderMerge.ts` — **nuevo**. Normalización y
+  merge extraídos de `SisadPdfmeDesigner`, que los tenía inline. El host gana
+  ante colisión de `key`.
+- `src/sisad-pdfme/react/SisadPdfmeDesigner.tsx` — pasa a consumir el módulo
+  compartido; se elimina la copia local.
+- `src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx` — desestructura ambas
+  props. `signatureProviders` se mergea en
+  `options.designerEngine.signature.providers`, que es donde
+  `resolveSignatureProviderSource` los descubre. `activeRecipientId` +
+  `activeDocumentId` componen un `isolationKey`.
+- `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts` — `isolationKey` opcional
+  añadido a las deps del efecto de montaje. Si el host no lo entrega, el valor es
+  constante y el ciclo de vida no cambia: compatible hacia atrás.
+
+`SisadPdfmeForm` no se tocó; sigue siendo un passthrough de 13 líneas.
+
+## Gates ejecutados
+
+``​`
+npx vitest run tests/unit/sisad-pdfme-comprehensive/contracts/runtime
+  Test Files  2 passed (2) | Tests  36 passed (36)
+
+npx vitest run .../contracts/runtime/signatureProviderMerge.test.ts
+  Test Files  1 passed (1) | Tests  19 passed (19)
+
+npx eslint <10 archivos tocados>
+  0 errors (8 warnings, todas preexistentes: directivas eslint-disable sin uso)
+
+git diff --check
+  limpio
+``​`
+
+Cobertura nueva: remonta al cambiar destinatario, remonta al cambiar documento,
+no arrastra lo escrito en el contexto anterior, conserva la instancia si el
+contexto no cambia.
+
+Suite completo: `Test Files 5 failed | 420 passed (425)`,
+`Tests 5 failed | 2271 passed (2276)` — mismos totales que antes del slice.
+Detalle de los 5 en `RTP-040.md`.
+
+## Riesgo adyacente detectado, no corregido
+
+`SisadPdfmePreviewRuntime` resuelve los inputs con
+`Array.isArray(inputs) ? inputs : getInputFromTemplate(template)`. Un array vacío
+es un array, así que `values={[]}` renderiza sin inputs en vez de caer a los
+valores derivados del template. Es la misma clase de defecto que el test
+preexistente de `normalizeHostData` ya está señalando en el módulo hermano.
+
+No se corrigió aquí: decidir si `[]` significa "sin datos" o "usa el template" es
+contrato de producto, y afecta a hosts que hoy pasen `[]` a propósito.
+
+## Límites
+
+- `activeDocumentId` se usa hoy para aislar el ciclo de vida, no para particionar
+  estado por documento dentro de una misma instancia. El modelo completo
+  recipient × documento es RTP-210.
+- Remontar al conmutar de contexto descarta scroll y página activa. Es el
+  comportamiento correcto para el aislamiento, pero es un cambio observable para
+  un host que hoy conmute `activeRecipientId` esperando continuidad visual.
+```
+
+<a id="file-0744"></a>
+
+### 0744 — `reports/runtime-platform/evidence/RTP-220-parcial-roles-readonly.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `59`
+- **Tamaño original:** `2.4 KB`
+- **SHA1 corto:** `8ec6236ed1`
+- **Estado:** `completo`
+
+```markdown
+# Evidence parcial — RTP-220 (regla de roles readonly)
+
+Esto **no** cierra RTP-220. Documenta un hallazgo y una corrección acotada
+encontrados al verificar el modelo de acceso por destinatario.
+
+- Branch: `main` — HEAD al iniciar: `66dfd6a` — Fecha: 2026-08-13
+
+## Corrección a una premisa previa
+
+Se había recomendado "cablear `recipientPermissionResolver`" por no tener
+consumidores. Verificado en el código: **la premisa era incorrecta en su
+conclusión**.
+
+El modelo de acceso del modo formulario sí existe y sí está cableado:
+`ui/collaboration/schemaRuntimeAccess.ts` → consumido por
+`ui/components/Preview.tsx`, que resuelve visible/editable/readonly por schema
+según destinatario activo, ownership y locks.
+
+`recipients/recipientPermissionResolver.ts` responde una pregunta distinta
+—`canEditStructure` / `canAssign` / `canUnassign` / `canShare`—, que es permiso
+estructural de Designer, no acceso de llenado. Sigue sin consumidores, pero
+cablearlo al Form habría sido inventarle un consumidor. No se hizo.
+
+## Hallazgo real — CONFIRMADO
+
+La regla "viewer/reviewer/commenter no editan" estaba escrita tres veces:
+
+| Ubicación | Estado |
+|---|---|
+| `ui/collaborationContext.ts` | canónica, cableada |
+| `recipients/recipientPermissionResolver.ts` | copia, sin consumidores |
+| `schemas/signature/propPanel.ts` | copia **divergente**: bloqueaba `viewer` y `reviewer`, dejaba pasar `commenter` |
+
+Es decir, un `commenter` era readonly según la regla canónica pero podía operar
+el widget de modo de firma del inspector.
+
+## Cambio aplicado
+
+- `src/sisad-pdfme/common/collaboration.ts` — fuente única:
+  `READONLY_RECIPIENT_ROLES` e `isReadonlyRecipientRole`, reexportadas desde
+  `common/index.ts`.
+- Los tres puntos anteriores pasan a consumirla.
+
+Efecto observable: `commenter` queda bloqueado también en el inspector de firma.
+Es la regla canónica aplicada, pero es un cambio de comportamiento.
+
+## Gates ejecutados
+
+``​`
+npx vitest run .../contracts/recipients .../contracts/schemas/schemaValueAdapter.test.ts
+  Test Files  2 passed (2) | Tests  49 passed (49)
+``​`
+
+## Pendiente para RTP-220
+
+- decidir el destino de `recipientPermissionResolver`: darle consumidor en los
+  flujos de assignment del Designer, o retirarlo;
+- unificar el modelo de acceso entre `schemaRuntimeAccess` y el resolver de
+  permisos bajo un único contrato, que es lo que la card pide de verdad.
+```
+
+<a id="file-0745"></a>
+
+### 0745 — `reports/runtime-platform/evidence/SPRT-000.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `49`
+- **Tamaño original:** `1.7 KB`
+- **SHA1 corto:** `34c1c7ad70`
+- **Estado:** `completo`
+
+```markdown
+# Evidence — SPRT-000 live baseline
+
+Date: 2026-08-13
+Branch: `main`
+HEAD: `d526bc66f7c51878093cc2174b0487d62ac46c55`
+
+## Scope
+
+Baseline of the live SISAD-PDFME source. The dirty tree contains unrelated
+work; this task does not attribute those files.
+
+## Public API confirmed
+
+`src/sisad-pdfme/index.ts` exports the instance API, React provider and
+Designer/Form/Viewer wrappers, configuration factories, snapshot bundle
+operations, adapters, generator and converter aliases.
+
+## Runtime surfaces confirmed
+
+- Form and Viewer wrappers are exported from `src/sisad-pdfme/integration/index.ts`.
+- `usePdfmeRuntimeInstance.ts` owns injected Designer/Form/Viewer lifecycle,
+  input synchronization, template synchronization and isolation keys.
+- Runtime modes and host reconciliation have focused contract tests.
+
+## Configuration, schemas and artifacts
+
+- Configuration barrel exports default/create/resolve/profile/migration/
+  validation/service APIs.
+- Schema family and value behavior have focused contract tests.
+- Snapshot types and adapter are exported through the shared/contracts barrels.
+- Generator exposes PDF generation and preflight; converter exposes browser
+  implementations plus semantic aliases.
+
+## Tests
+
+- `npm run test:sisad-pdfme:runtime`: PASS, 4 files, 57 tests.
+- `npm run test:sisad-pdfme:schemas`: PASS, 3 files, 98 tests.
+- DigitalAgreements Form contract: PASS, 2 tests.
+
+## Decision
+
+`SPRT-000` baseline is complete. No product source was changed by this
+baseline task. The next dependency is `SPRT-010`.
+
+## Risk
+
+The repository still contains unrelated dirty-tree changes and generated
+pack/index drift. Future tasks must preserve ownership boundaries and use live
+source as authority.
+```
+
+<a id="file-0746"></a>
+
+### 0746 — `reports/runtime-platform/evidence/SPRT-010.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `28`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `5dae3642d8`
+- **Estado:** `completo`
+
+```markdown
+# Evidence — SPRT-010 tooling install/import safety
+
+Date: 2026-08-13
+
+## Changes
+
+- Fixed non-Markdown importer copy path in `scripts/tooling/importer.mjs`.
+- Hardened `scripts/install-project-tools.mjs` with identical/create/conflict
+  planning, `keep-target` default, explicit `--conflict=prefer-source`, external
+  backups and all-or-nothing apply on conflicts.
+- Hardened `scripts/install-tests.mjs` with dry-run planning, conflict refusal
+  before mutation and explicit `--new-only` application.
+- Added JSON importer coverage to `tests/tooling/importer.test.mjs`.
+
+## Verification
+
+- `node tools/sisad-pdfme-runtime/audit-tooling-safety.mjs .`: PASS, no findings.
+- `node --test tests/tooling/importer.test.mjs tests/tooling/project-tools.test.mjs`: PASS, 2 tests.
+- Temporary installer preflight: default conflict returned code 3 and made no changes.
+- Temporary installer `--new-only`: copied absent files and preserved conflict.
+- Temporary project-tools installer: `keep-target` blocked all apply; explicit
+  `prefer-source` replaced with an external backup.
+- `git diff --check`: PASS.
+
+## Boundary
+
+No SISAD-PDFME runtime product source or business rules were changed. The
+changes are tooling-only and preserve existing dry-run/`--apply` usage.
+```
+
+<a id="file-0747"></a>
+
+### 0747 — `reports/runtime-platform/evidence/SPRT-020.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `68`
+- **Tamaño original:** `3.4 KB`
+- **SHA1 corto:** `73de4400b0`
+- **Estado:** `completo`
+
+```markdown
+# Evidence — SPRT-020 dedup and stable document names
+
+Date: 2026-08-14
+
+## Dedup baseline provenance
+
+| Field | Value |
+|---|---|
+| repository | `prueba-plugin` |
+| HEAD | `d526bc66f7c51878093cc2174b0487d62ac46c55` |
+| report | `reports/jscpd-owned/jscpd-report.json` |
+| percentage | `0.5540793837154215` |
+| clones | `44` |
+| duplicated lines | `538` |
+| threshold | `0.57` |
+| baseline source | Local current owned profile |
+| decision | Local baseline initialized |
+
+The SISAD-WEB historical baseline (`7.6118%`, 641 clones) is a different
+lineage: the current profile has 477 sources and 44 clones. The local
+threshold is reproducible with the existing ratchet formula:
+`round2(ceil(percentage * 100) / 100 + 0.01) = 0.57`.
+
+## Stable-name resolution
+
+| Old path | Classification | Action | New path / exemption basis |
+|---|---|---|---|
+| `.ai/ops/campaigns/SISAD-PDFME-RUNTIME-HARDENING-V2/PACKAGE-MANIFEST.json` | CAMPAIGN_RECORD | preserve | `.ai/ops/**` operational namespace |
+| `.ai/ops/campaigns/SISAD-PDFME-RUNTIME-HARDENING-V2/README.md` | CAMPAIGN_RECORD | preserve | `.ai/ops/**` operational namespace |
+| `.ai/ops/campaigns/SISAD-PDFME-RUNTIME-HARDENING-V2/START.md` | CAMPAIGN_RECORD | preserve | `.ai/ops/**` operational namespace |
+| `.ai/ops/tasks/TASK-LEDGER-SPRT-V2.md` | TASK_CARD | preserve | `.ai/ops/**` operational namespace |
+| `.ai/plans/PLAN_SISAD_PDFME_RUNTIME_HARDENING_V2.md` | CAMPAIGN_RECORD | preserve | typed `PLAN_*_Vn` execution identity |
+| `.ai/prompts/PROMPT_SISAD_PDFME_RUNTIME_BOOT_V2.md` | CAMPAIGN_RECORD | preserve | typed `PROMPT_*_Vn` execution identity |
+| `.ai/prompts/PROMPT_SISAD_PDFME_RUNTIME_MASTER_V2.md` | CAMPAIGN_RECORD | preserve | typed `PROMPT_*_Vn` execution identity |
+
+The validator now applies this semantic classification in both scan and
+metadata paths. It does not whitelist arbitrary versioned documents.
+
+## SchemaAssignments compatibility
+
+- Live consumers in `src/sisad-pdfme/assignments/index.ts` and
+  `src/sisad-pdfme/common/collaboration.ts` use the three-level
+  recipient/document/page shape.
+- No live TypeScript/JavaScript consumer imports the former four-level
+  contract from `contracts/index.ts`.
+- `SchemaAssignments` remains the three-level public contract;
+  `UserSchemaAssignments` is an additive name for the four-level shape.
+- `contracts/index.ts` exports both without duplicate declarations.
+- Build and focal contracts pass, with no root public facade regression.
+
+## Validation
+
+| Command | Result | Meaning |
+|---|---|---|
+| `npm run quality:duplicates:owned` | PASS | owned profile executable |
+| `npm run quality:duplicates:vendor` | PASS | vendor profile executable, zero clones |
+| `npm run quality:duplicates:docs` | PASS | docs profile executable |
+| `npm run quality:duplicates:ratchet` | PASS | current percentage below `0.57` |
+| controlled ratchet probe at `0.58` | PASS as rejection | exit `1`, threshold enforced |
+| `npm run docs:names` | PASS | versioned canonical paths `0` |
+| `npm run docs:broken-links` | PASS | broken Markdown links `0` |
+| `npm run docs:validate` | PASS | architecture validation green |
+| tooling test | PASS | operational namespace coverage |
+| `npm run test:sisad-pdfme:runtime` | PASS | 57 tests |
+| `npm run test:sisad-pdfme:schemas` | PASS | 98 tests |
+| DigitalAgreements Form test | PASS | 2 tests |
+| `npm run build` | PASS | exit `0` |
+| `git diff --check` | PASS | no whitespace errors |
+```
+
+<a id="file-0748"></a>
+
+### 0748 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -49969,9 +51976,9 @@ de cada módulo. Actualiza el módulo propietario y, si cambia una regla transve
 redistribuye una responsabilidad de `common`.
 ```
 
-<a id="file-0668"></a>
+<a id="file-0749"></a>
 
-### 0668 — `src/sisad-pdfme/common/README.md`
+### 0749 — `src/sisad-pdfme/common/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -50015,9 +52022,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Revisar alineación de `ownerRecipientIds` entre Zod (`string[]`) y utilidades que aceptan `string | string[]`.
 ```
 
-<a id="file-0669"></a>
+<a id="file-0750"></a>
 
-### 0669 — `src/sisad-pdfme/config/AGENTS.md`
+### 0750 — `src/sisad-pdfme/config/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -50034,14 +52041,14 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Tests de merge, migración y selectors.
 ```
 
-<a id="file-0670"></a>
+<a id="file-0751"></a>
 
-### 0670 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
+### 0751 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
 - **Tamaño original:** `4.8 KB`
-- **SHA1 corto:** `1824999377`
+- **SHA1 corto:** `9abada547b`
 - **Estado:** `completo`
 
 ```markdown
@@ -50192,7 +52199,7 @@ Selecto
 SnapshotAdapter
 schemas
 DetailView
-ContentCustomForm
+DigitalAgreements
 Uanataca
 reglas de negocio SISAD
 ``​`
@@ -50215,9 +52222,9 @@ Debe exponer utilidades puras consumibles por UI, generator, importadores o adap
 ``​`
 ```
 
-<a id="file-0671"></a>
+<a id="file-0752"></a>
 
-### 0671 — `src/sisad-pdfme/converter/README.md`
+### 0752 — `src/sisad-pdfme/converter/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -50270,9 +52277,9 @@ Este módulo no debe conocer:
 Debe mantenerse como utilidad técnica reutilizable por el runtime.
 ```
 
-<a id="file-0672"></a>
+<a id="file-0753"></a>
 
-### 0672 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
+### 0753 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `151`
@@ -50434,9 +52441,9 @@ Riesgos técnicos:
 ``​`
 ```
 
-<a id="file-0673"></a>
+<a id="file-0754"></a>
 
-### 0673 — `src/sisad-pdfme/runtime/README.md`
+### 0754 — `src/sisad-pdfme/runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -50462,9 +52469,9 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
 ```
 
-<a id="file-0674"></a>
+<a id="file-0755"></a>
 
-### 0674 — `src/sisad-pdfme/schemas/AGENTS.md`
+### 0755 — `src/sisad-pdfme/schemas/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -50481,9 +52488,9 @@ Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reg
 - No switches dispersos.
 ```
 
-<a id="file-0675"></a>
+<a id="file-0756"></a>
 
-### 0675 — `src/sisad-pdfme/shared/AGENTS.md`
+### 0756 — `src/sisad-pdfme/shared/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -50500,9 +52507,9 @@ Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reg
 - Roundtrip obligatorio.
 ```
 
-<a id="file-0676"></a>
+<a id="file-0757"></a>
 
-### 0676 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
+### 0757 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -50681,9 +52688,9 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 | types.ts | 147 | 161 |
 ```
 
-<a id="file-0677"></a>
+<a id="file-0758"></a>
 
-### 0677 — `src/sisad-pdfme/ui/README.md`
+### 0758 — `src/sisad-pdfme/ui/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -50732,9 +52739,9 @@ git diff -- src/sisad-pdfme/ui
 ``​`
 ```
 
-<a id="file-0678"></a>
+<a id="file-0759"></a>
 
-### 0678 — `.ai/brain/10-domains/adapters/FILES.md`
+### 0759 — `.ai/brain/10-domains/adapters/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -50752,9 +52759,9 @@ git diff -- src/sisad-pdfme/ui
 - `src/sisad-pdfme/adapters/index.ts` — 15 líneas — completo
 ```
 
-<a id="file-0679"></a>
+<a id="file-0760"></a>
 
-### 0679 — `.ai/brain/10-domains/adapters/README.md`
+### 0760 — `.ai/brain/10-domains/adapters/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -50791,9 +52798,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0680"></a>
+<a id="file-0761"></a>
 
-### 0680 — `.ai/brain/10-domains/assignments/FILES.md`
+### 0761 — `.ai/brain/10-domains/assignments/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -50807,9 +52814,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/assignments/index.ts` — 588 líneas — completo
 ```
 
-<a id="file-0681"></a>
+<a id="file-0762"></a>
 
-### 0681 — `.ai/brain/10-domains/assignments/README.md`
+### 0762 — `.ai/brain/10-domains/assignments/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -50842,9 +52849,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0682"></a>
+<a id="file-0763"></a>
 
-### 0682 — `.ai/brain/10-domains/browser/FILES.md`
+### 0763 — `.ai/brain/10-domains/browser/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -50859,9 +52866,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/browser/objectUrls.ts` — 32 líneas — completo
 ```
 
-<a id="file-0683"></a>
+<a id="file-0764"></a>
 
-### 0683 — `.ai/brain/10-domains/browser/README.md`
+### 0764 — `.ai/brain/10-domains/browser/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -50895,9 +52902,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0684"></a>
+<a id="file-0765"></a>
 
-### 0684 — `.ai/brain/10-domains/canvas/FILES.md`
+### 0765 — `.ai/brain/10-domains/canvas/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -50913,9 +52920,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/canvas/canvasRenderState.ts` — 146 líneas — completo
 ```
 
-<a id="file-0685"></a>
+<a id="file-0766"></a>
 
-### 0685 — `.ai/brain/10-domains/canvas/README.md`
+### 0766 — `.ai/brain/10-domains/canvas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -50950,9 +52957,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0686"></a>
+<a id="file-0767"></a>
 
-### 0686 — `.ai/brain/10-domains/collaboration/FILES.md`
+### 0767 — `.ai/brain/10-domains/collaboration/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -50971,9 +52978,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/collaboration/appearance.ts` — 55 líneas — completo
 ```
 
-<a id="file-0687"></a>
+<a id="file-0768"></a>
 
-### 0687 — `.ai/brain/10-domains/collaboration/README.md`
+### 0768 — `.ai/brain/10-domains/collaboration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -51011,9 +53018,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0688"></a>
+<a id="file-0769"></a>
 
-### 0688 — `.ai/brain/10-domains/commands/FILES.md`
+### 0769 — `.ai/brain/10-domains/commands/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -51027,9 +53034,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/commands/index.ts` — 214 líneas — completo
 ```
 
-<a id="file-0689"></a>
+<a id="file-0770"></a>
 
-### 0689 — `.ai/brain/10-domains/commands/README.md`
+### 0770 — `.ai/brain/10-domains/commands/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -51062,9 +53069,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0690"></a>
+<a id="file-0771"></a>
 
-### 0690 — `.ai/brain/10-domains/comments/FILES.md`
+### 0771 — `.ai/brain/10-domains/comments/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -51078,9 +53085,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/comments/index.ts` — 494 líneas — completo
 ```
 
-<a id="file-0691"></a>
+<a id="file-0772"></a>
 
-### 0691 — `.ai/brain/10-domains/comments/README.md`
+### 0772 — `.ai/brain/10-domains/comments/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -51113,9 +53120,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0692"></a>
+<a id="file-0773"></a>
 
-### 0692 — `.ai/brain/10-domains/common/FILES.md`
+### 0773 — `.ai/brain/10-domains/common/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -51140,9 +53147,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/common/version.ts` — 10 líneas — completo
 ```
 
-<a id="file-0693"></a>
+<a id="file-0774"></a>
 
-### 0693 — `.ai/brain/10-domains/common/README.md`
+### 0774 — `.ai/brain/10-domains/common/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -51182,9 +53189,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0694"></a>
+<a id="file-0775"></a>
 
-### 0694 — `.ai/brain/10-domains/config/FILES.md`
+### 0775 — `.ai/brain/10-domains/config/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -51216,9 +53223,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/config/createSisadPdfmeConfig.ts` — 5 líneas — completo
 ```
 
-<a id="file-0695"></a>
+<a id="file-0776"></a>
 
-### 0695 — `.ai/brain/10-domains/config/README.md`
+### 0776 — `.ai/brain/10-domains/config/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -51258,9 +53265,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0696"></a>
+<a id="file-0777"></a>
 
-### 0696 — `.ai/brain/10-domains/context/FILES.md`
+### 0777 — `.ai/brain/10-domains/context/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -51274,9 +53281,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/context/RecipientContext.ts` — 111 líneas — completo
 ```
 
-<a id="file-0697"></a>
+<a id="file-0778"></a>
 
-### 0697 — `.ai/brain/10-domains/context/README.md`
+### 0778 — `.ai/brain/10-domains/context/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -51309,9 +53316,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0698"></a>
+<a id="file-0779"></a>
 
-### 0698 — `.ai/brain/10-domains/contracts/FILES.md`
+### 0779 — `.ai/brain/10-domains/contracts/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -51331,9 +53338,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/contracts/assignments.ts` — 72 líneas — completo
 ```
 
-<a id="file-0699"></a>
+<a id="file-0780"></a>
 
-### 0699 — `.ai/brain/10-domains/contracts/README.md`
+### 0780 — `.ai/brain/10-domains/contracts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -51372,9 +53379,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0700"></a>
+<a id="file-0781"></a>
 
-### 0700 — `.ai/brain/10-domains/converter/FILES.md`
+### 0781 — `.ai/brain/10-domains/converter/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -51397,9 +53404,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/converter/index.shared.ts` — 5 líneas — completo
 ```
 
-<a id="file-0701"></a>
+<a id="file-0782"></a>
 
-### 0701 — `.ai/brain/10-domains/converter/README.md`
+### 0782 — `.ai/brain/10-domains/converter/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -51439,9 +53446,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0702"></a>
+<a id="file-0783"></a>
 
-### 0702 — `.ai/brain/10-domains/devtools/FILES.md`
+### 0783 — `.ai/brain/10-domains/devtools/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -51455,9 +53462,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/devtools/index.ts` — 68 líneas — completo
 ```
 
-<a id="file-0703"></a>
+<a id="file-0784"></a>
 
-### 0703 — `.ai/brain/10-domains/devtools/README.md`
+### 0784 — `.ai/brain/10-domains/devtools/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -51490,9 +53497,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0704"></a>
+<a id="file-0785"></a>
 
-### 0704 — `.ai/brain/10-domains/documents/FILES.md`
+### 0785 — `.ai/brain/10-domains/documents/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -51506,9 +53513,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/documents/index.ts` — 269 líneas — completo
 ```
 
-<a id="file-0705"></a>
+<a id="file-0786"></a>
 
-### 0705 — `.ai/brain/10-domains/documents/README.md`
+### 0786 — `.ai/brain/10-domains/documents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -51541,9 +53548,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0706"></a>
+<a id="file-0787"></a>
 
-### 0706 — `.ai/brain/10-domains/editor/FILES.md`
+### 0787 — `.ai/brain/10-domains/editor/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -51557,9 +53564,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/editor/index.ts` — 178 líneas — completo
 ```
 
-<a id="file-0707"></a>
+<a id="file-0788"></a>
 
-### 0707 — `.ai/brain/10-domains/editor/README.md`
+### 0788 — `.ai/brain/10-domains/editor/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -51592,9 +53599,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0708"></a>
+<a id="file-0789"></a>
 
-### 0708 — `.ai/brain/10-domains/externalForms/FILES.md`
+### 0789 — `.ai/brain/10-domains/externalForms/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -51608,9 +53615,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/externalForms/externalFormRunner.ts` — 383 líneas — completo
 ```
 
-<a id="file-0709"></a>
+<a id="file-0790"></a>
 
-### 0709 — `.ai/brain/10-domains/externalForms/README.md`
+### 0790 — `.ai/brain/10-domains/externalForms/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -51643,9 +53650,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0710"></a>
+<a id="file-0791"></a>
 
-### 0710 — `.ai/brain/10-domains/generator/FILES.md`
+### 0791 — `.ai/brain/10-domains/generator/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -51664,9 +53671,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/generator/constants.ts` — 1 líneas — completo
 ```
 
-<a id="file-0711"></a>
+<a id="file-0792"></a>
 
-### 0711 — `.ai/brain/10-domains/generator/README.md`
+### 0792 — `.ai/brain/10-domains/generator/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -51704,9 +53711,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0712"></a>
+<a id="file-0793"></a>
 
-### 0712 — `.ai/brain/10-domains/index.ts/FILES.md`
+### 0793 — `.ai/brain/10-domains/index.ts/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -51720,9 +53727,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/index.ts` — 52 líneas — completo
 ```
 
-<a id="file-0713"></a>
+<a id="file-0794"></a>
 
-### 0713 — `.ai/brain/10-domains/index.ts/README.md`
+### 0794 — `.ai/brain/10-domains/index.ts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -51755,9 +53762,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0714"></a>
+<a id="file-0795"></a>
 
-### 0714 — `.ai/brain/10-domains/integration/FILES.md`
+### 0795 — `.ai/brain/10-domains/integration/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -51778,9 +53785,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/integration/defineSisadPdfmeInstance.ts` — 43 líneas — completo
 ```
 
-<a id="file-0715"></a>
+<a id="file-0796"></a>
 
-### 0715 — `.ai/brain/10-domains/integration/README.md`
+### 0796 — `.ai/brain/10-domains/integration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -51820,9 +53827,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0716"></a>
+<a id="file-0797"></a>
 
-### 0716 — `.ai/brain/10-domains/react/FILES.md`
+### 0797 — `.ai/brain/10-domains/react/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -51849,9 +53856,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/react/useSisadPdfmeConfig.ts` — 12 líneas — completo
 ```
 
-<a id="file-0717"></a>
+<a id="file-0798"></a>
 
-### 0717 — `.ai/brain/10-domains/react/README.md`
+### 0798 — `.ai/brain/10-domains/react/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -51891,9 +53898,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0718"></a>
+<a id="file-0799"></a>
 
-### 0718 — `.ai/brain/10-domains/recipients/FILES.md`
+### 0799 — `.ai/brain/10-domains/recipients/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -51914,9 +53921,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/recipients/recipientColorResolver.ts` — 52 líneas — completo
 ```
 
-<a id="file-0719"></a>
+<a id="file-0800"></a>
 
-### 0719 — `.ai/brain/10-domains/recipients/README.md`
+### 0800 — `.ai/brain/10-domains/recipients/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -51956,9 +53963,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0720"></a>
+<a id="file-0801"></a>
 
-### 0720 — `.ai/brain/10-domains/runtime/ARCHITECTURE.md`
+### 0801 — `.ai/brain/10-domains/runtime/ARCHITECTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -51988,9 +53995,9 @@ Riesgos actuales a caracterizar:
 4. callbacks legacy y eventos canónicos pueden duplicarse si no hay origin/revision.
 ```
 
-<a id="file-0721"></a>
+<a id="file-0802"></a>
 
-### 0721 — `.ai/brain/10-domains/runtime/FILES.md`
+### 0802 — `.ai/brain/10-domains/runtime/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -52011,9 +54018,9 @@ Riesgos actuales a caracterizar:
 - `src/sisad-pdfme/runtime/runtimeModes.ts` — 68 líneas — completo
 ```
 
-<a id="file-0722"></a>
+<a id="file-0803"></a>
 
-### 0722 — `.ai/brain/10-domains/runtime/README.md`
+### 0803 — `.ai/brain/10-domains/runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -52054,9 +54061,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0723"></a>
+<a id="file-0804"></a>
 
-### 0723 — `.ai/brain/10-domains/schemas/FILES.md`
+### 0804 — `.ai/brain/10-domains/schemas/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `92`
@@ -52159,9 +54166,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/schemas/constants.ts` — 2 líneas — completo
 ```
 
-<a id="file-0724"></a>
+<a id="file-0805"></a>
 
-### 0724 — `.ai/brain/10-domains/schemas/README.md`
+### 0805 — `.ai/brain/10-domains/schemas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -52202,9 +54209,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0725"></a>
+<a id="file-0806"></a>
 
-### 0725 — `.ai/brain/10-domains/schemas/RUNTIME-MATRIX.md`
+### 0806 — `.ai/brain/10-domains/schemas/RUNTIME-MATRIX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -52257,9 +54264,9 @@ necesarios y tests/consumidores reales.
 - `pdf417` — family `shapeBarcode` — interaction `computed/visual` — debe cerrar Designer/Form/Viewer/PDF/Snapshot/access/tests.
 ```
 
-<a id="file-0726"></a>
+<a id="file-0807"></a>
 
-### 0726 — `.ai/brain/10-domains/shared/FILES.md`
+### 0807 — `.ai/brain/10-domains/shared/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -52288,9 +54295,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/shared/objectGuards.ts` — 5 líneas — completo
 ```
 
-<a id="file-0727"></a>
+<a id="file-0808"></a>
 
-### 0727 — `.ai/brain/10-domains/shared/README.md`
+### 0808 — `.ai/brain/10-domains/shared/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -52330,9 +54337,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0728"></a>
+<a id="file-0809"></a>
 
-### 0728 — `.ai/brain/10-domains/templates/FILES.md`
+### 0809 — `.ai/brain/10-domains/templates/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -52348,9 +54355,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/templates/index.ts` — 6 líneas — completo
 ```
 
-<a id="file-0729"></a>
+<a id="file-0810"></a>
 
-### 0729 — `.ai/brain/10-domains/templates/README.md`
+### 0810 — `.ai/brain/10-domains/templates/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -52385,9 +54392,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0730"></a>
+<a id="file-0811"></a>
 
-### 0730 — `.ai/brain/10-domains/ui/FILES.md`
+### 0811 — `.ai/brain/10-domains/ui/FILES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `179`
@@ -52577,9 +54584,9 @@ necesarios y tests/consumidores reales.
 - `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaInteractionState.ts` — 7 líneas — omitido por presupuesto total
 ```
 
-<a id="file-0731"></a>
+<a id="file-0812"></a>
 
-### 0731 — `.ai/brain/10-domains/ui/README.md`
+### 0812 — `.ai/brain/10-domains/ui/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -52619,9 +54626,9 @@ necesarios y tests/consumidores reales.
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0732"></a>
+<a id="file-0813"></a>
 
-### 0732 — `.ai/brain/70-memory/topics/runtime-platform.md`
+### 0813 — `.ai/brain/70-memory/topics/runtime-platform.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -52636,9 +54643,31 @@ Durable decisions: local-first Form; manifest incremental; canonical codecs; PDF
 lifecycle explicit; public host boundaries; registry-driven tests; identity SISAD-PDFME.
 ```
 
-<a id="file-0733"></a>
+<a id="file-0814"></a>
 
-### 0733 — `.ai/brain/70-memory/topics/tooling-architecture.md`
+### 0814 — `.ai/brain/70-memory/topics/sisad-pdfme-digital-agreements-runtime.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `9`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `501d8865d8`
+- **Estado:** `completo`
+
+```markdown
+# Memory topic — SISAD-PDFME × DigitalAgreements runtime
+
+- DigitalAgreements: Recipient/business routing.
+- SISAD-PDFME: User/document interaction.
+- Designer avanzado: estabilizar, no reescribir.
+- Form prioridad: transaction/revision, codec, access, completion, multiuser/multidoc.
+- Assignment target: User→Document→Page→schemaUid[] after characterization/migration.
+- Tooling: dry-run + preflight + conflict-safe apply; importer non-Markdown defect is P0.
+- Source/evidence outrank task ledger; reconcile stale status before repeating work.
+```
+
+<a id="file-0815"></a>
+
+### 0815 — `.ai/brain/70-memory/topics/tooling-architecture.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -52660,9 +54689,51 @@ Durable decisions:
 - duplicate implementation paths become wrappers, then are removed after consumers migrate.
 ```
 
-<a id="file-0734"></a>
+<a id="file-0816"></a>
 
-### 0734 — `.ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y.md`
+### 0816 — `.ai/ops/campaigns/SISAD-PDFME-RUNTIME-HARDENING-V2/README.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `6`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `673c83488b`
+- **Estado:** `completo`
+
+```markdown
+# SISAD-PDFME runtime hardening V2
+
+Standalone product campaign.
+
+No external application/module/backend is part of the product Brain.
+External needs are represented only as generic host contracts and consumer-contract tests.
+```
+
+<a id="file-0817"></a>
+
+### 0817 — `.ai/ops/campaigns/SISAD-PDFME-RUNTIME-HARDENING-V2/START.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.2 KB`
+- **SHA1 corto:** `0e65d15668`
+- **Estado:** `completo`
+
+```markdown
+# Start
+
+Read:
+1. `AGENTS.md`
+2. `.ai/START.md`
+3. `.ai/NOW.md`
+4. `.ai/ROUTER.md`
+5. `.ai/ops/tasks/TASK-LEDGER-SPRT-V2.md`
+
+Execute one task. Do not load external-project source.
+```
+
+<a id="file-0818"></a>
+
+### 0818 — `.ai/scrum/task-cards/backlog/AI8-001-congelar-baseline-y.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -52698,9 +54769,9 @@ Auditar los 320 archivos IA actuales, tamaños, enlaces y estado antes de migrar
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0735"></a>
+<a id="file-0819"></a>
 
-### 0735 — `.ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path.md`
+### 0819 — `.ai/scrum/task-cards/backlog/AI8-002-adoptar-hot-path.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -52736,9 +54807,9 @@ Reemplazar AGENTS/START/ROUTER/BUDGETS tras review y corregir fuentes de estado.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0736"></a>
+<a id="file-0820"></a>
 
-### 0736 — `.ai/scrum/task-cards/backlog/AI8-003-migrar-conocimiento-a-jsonl.md`
+### 0820 — `.ai/scrum/task-cards/backlog/AI8-003-migrar-conocimiento-a-jsonl.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -52774,9 +54845,9 @@ Consolidar casos, behaviors, schemas, events, effects y methods en catálogos co
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0737"></a>
+<a id="file-0821"></a>
 
-### 0737 — `.ai/scrum/task-cards/backlog/AI8-005-compactar-routes.md`
+### 0821 — `.ai/scrum/task-cards/backlog/AI8-005-compactar-routes.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -52812,9 +54883,9 @@ Reducir routes solapadas a doce dominios canónicos con aliases.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0738"></a>
+<a id="file-0822"></a>
 
-### 0738 — `.ai/scrum/task-cards/backlog/AI8-006-compactar-skills-y-aliases.md`
+### 0822 — `.ai/scrum/task-cards/backlog/AI8-006-compactar-skills-y-aliases.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -52850,9 +54921,9 @@ Mantener dieciocho skills canónicas y mapear las existentes sin duplicar cuerpo
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0739"></a>
+<a id="file-0823"></a>
 
-### 0739 — `.ai/scrum/task-cards/backlog/AI8-007-consolidar-agentes.md`
+### 0823 — `.ai/scrum/task-cards/backlog/AI8-007-consolidar-agentes.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -52888,9 +54959,9 @@ Reducir roles canónicos y separar manager/readers/writers.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0740"></a>
+<a id="file-0824"></a>
 
-### 0740 — `.ai/scrum/task-cards/backlog/AI8-008-generar-adapters-de-proveedor.md`
+### 0824 — `.ai/scrum/task-cards/backlog/AI8-008-generar-adapters-de-proveedor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -52926,9 +54997,9 @@ Sincronizar Claude, Codex y Copilot desde registries.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0741"></a>
+<a id="file-0825"></a>
 
-### 0741 — `.ai/scrum/task-cards/backlog/AI8-009-migrar-memoria-y-ttl.md`
+### 0825 — `.ai/scrum/task-cards/backlog/AI8-009-migrar-memoria-y-ttl.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -52964,9 +55035,9 @@ Adoptar stable/current/handoff/decisions/risks/topics/cache.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0742"></a>
+<a id="file-0826"></a>
 
-### 0742 — `.ai/scrum/task-cards/backlog/AI8-010-migrar-lifecycle-de-tareas.md`
+### 0826 — `.ai/scrum/task-cards/backlog/AI8-010-migrar-lifecycle-de-tareas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -53002,9 +55073,9 @@ Backlog/archive JSONL; materializar solo Ready/In progress.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0743"></a>
+<a id="file-0827"></a>
 
-### 0743 — `.ai/scrum/task-cards/backlog/AI8-011-consolidar-contratos-de-usuarios-y-color.md`
+### 0827 — `.ai/scrum/task-cards/backlog/AI8-011-consolidar-contratos-de-usuarios-y-color.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -53040,9 +55111,9 @@ Promover activeRecipient versus stored ownerColor a contrato canónico.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0744"></a>
+<a id="file-0828"></a>
 
-### 0744 — `.ai/scrum/task-cards/backlog/AI8-012-consolidar-matriz-de-schemas.md`
+### 0828 — `.ai/scrum/task-cards/backlog/AI8-012-consolidar-matriz-de-schemas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -53078,9 +55149,9 @@ Validar todas las familias y surfaces contra el catálogo V8.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0745"></a>
+<a id="file-0829"></a>
 
-### 0745 — `.ai/scrum/task-cards/backlog/AI8-013-inventariar-namespace-css.md`
+### 0829 — `.ai/scrum/task-cards/backlog/AI8-013-inventariar-namespace-css.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -53116,9 +55187,9 @@ Mapear concatenaciones DESIGNER_CLASSNAME/UI_CLASSNAME y stable data hooks.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0746"></a>
+<a id="file-0830"></a>
 
-### 0746 — `.ai/scrum/task-cards/backlog/AI8-014-actualizar-trazabilidad.md`
+### 0830 — `.ai/scrum/task-cards/backlog/AI8-014-actualizar-trazabilidad.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -53154,9 +55225,9 @@ Promover relaciones candidate mediante tests/review y limpiar stale edges.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0747"></a>
+<a id="file-0831"></a>
 
-### 0747 — `.ai/scrum/task-cards/backlog/AI8-015-implementar-gates.md`
+### 0831 — `.ai/scrum/task-cards/backlog/AI8-015-implementar-gates.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -53192,9 +55263,9 @@ Validar budgets, links, aliases, provider drift, memory y task manifests.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0748"></a>
+<a id="file-0832"></a>
 
-### 0748 — `.ai/scrum/task-cards/backlog/AI8-016-crear-evals-de-costo-y-precision.md`
+### 0832 — `.ai/scrum/task-cards/backlog/AI8-016-crear-evals-de-costo-y-precision.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -53230,9 +55301,9 @@ Medir files/tokens, route, skill, false green, color y schema retrieval.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0749"></a>
+<a id="file-0833"></a>
 
-### 0749 — `.ai/scrum/task-cards/backlog/AI8-017-migrar-coreux-decl-restore-name.md`
+### 0833 — `.ai/scrum/task-cards/backlog/AI8-017-migrar-coreux-decl-restore-name.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -53268,9 +55339,9 @@ Convertir task cards frías en backlog/archive y conservar trace IDs.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0750"></a>
+<a id="file-0834"></a>
 
-### 0750 — `.ai/scrum/task-cards/backlog/AI8-018-rollout-y-eliminacion-controlada.md`
+### 0834 — `.ai/scrum/task-cards/backlog/AI8-018-rollout-y-eliminacion-controlada.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -53306,9 +55377,9 @@ Retirar archivos obsoletos tras una versión de aliases y métricas estables.
 WIP lleno, conflicto de ownership, necesidad de tocar producto o migración sin backup.
 ```
 
-<a id="file-0751"></a>
+<a id="file-0835"></a>
 
-### 0751 — `.ai/scrum/task-cards/runtime-platform/README.md`
+### 0835 — `.ai/scrum/task-cards/runtime-platform/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `46`
@@ -53365,9 +55436,9 @@ Authority: source/evidence > ledger > card > plan. RTP-000 is the only initial R
 <!-- project-tools:navigation:end -->
 ```
 
-<a id="file-0752"></a>
+<a id="file-0836"></a>
 
-### 0752 — `.ai/scrum/task-cards/runtime-platform/RTP-000.md`
+### 0836 — `.ai/scrum/task-cards/runtime-platform/RTP-000.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -53435,9 +55506,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0753"></a>
+<a id="file-0837"></a>
 
-### 0753 — `.ai/scrum/task-cards/runtime-platform/RTP-005.md`
+### 0837 — `.ai/scrum/task-cards/runtime-platform/RTP-005.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -53505,9 +55576,59 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0754"></a>
+<a id="file-0838"></a>
 
-### 0754 — `.ai/scrum/task-cards/runtime-platform/RTP-010.md`
+### 0838 — `.ai/scrum/task-cards/runtime-platform/RTP-008.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `37`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `8524051f45`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-008
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 0
+priority: P0
+depends_on: ["RTP-005"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-008 — Reconciliar source, evidence y ledger antes de continuar
+
+## Read set inicial
+
+- `reports/runtime-platform/evidence/`
+- `src/sisad-pdfme/ui/Form.tsx`
+- `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts`
+- `src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx`
+
+## Required work
+
+1. comparar claims de RTP-040/RTP-045 con source vivo y evidence
+2. actualizar sólo status/evidence factual; no repetir cambios ya implementados
+3. registrar baseline commands/tests actuales
+
+## Acceptance
+
+- ninguna task ya implementada se reejecuta por ledger stale
+- evidence/source quedan reconciliados
+- 0 cambios funcionales innecesarios
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0839"></a>
+
+### 0839 — `.ai/scrum/task-cards/runtime-platform/RTP-010.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -53573,9 +55694,61 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0755"></a>
+<a id="file-0840"></a>
 
-### 0755 — `.ai/scrum/task-cards/runtime-platform/RTP-020.md`
+### 0840 — `.ai/scrum/task-cards/runtime-platform/RTP-015.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `39`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `ce4f92d004`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-015
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 1
+priority: P0
+depends_on: ["RTP-008", "RTP-010"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User
+
+## Read set inicial
+
+- `src/sisad-pdfme/adapters/recipientsAdapter.ts`
+- `src/sisad-pdfme/recipients/recipientTypes.ts`
+- `src/sisad-pdfme/integration/normalizeHostData.ts`
+- `src/sisad-pdfme/react/SisadPdfmeProvider.tsx`
+
+## Required work
+
+1. characterize public Recipient API y snapshots
+2. introducir SisadPdfmeUser + createUsersAdapter con compatibility aliases
+3. definir activeUserId y no-business-field policy
+4. añadir contract tests
+
+## Acceptance
+
+- Recipient!=User documentado y executable
+- sin global rename
+- routing/Request fields no aparecen en User
+- compat API sigue verde
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0841"></a>
+
+### 0841 — `.ai/scrum/task-cards/runtime-platform/RTP-020.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -53641,9 +55814,61 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0756"></a>
+<a id="file-0842"></a>
 
-### 0756 — `.ai/scrum/task-cards/runtime-platform/RTP-030.md`
+### 0842 — `.ai/scrum/task-cards/runtime-platform/RTP-022.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `39`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `bb2d3e120a`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-022
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 1
+priority: P0
+depends_on: ["RTP-015"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page
+
+## Read set inicial
+
+- `src/sisad-pdfme/contracts/assignments.ts`
+- `src/sisad-pdfme/assignments/index.ts`
+- `src/sisad-pdfme/common/collaboration.ts`
+- `snapshot/migration sources resolved by symbol search`
+
+## Required work
+
+1. repro del duplicate exported type
+2. inventariar shape real en source/tests/snapshots
+3. definir type canónico y legacy type explícito
+4. crear migration y consistency validation
+
+## Acceptance
+
+- una sola export canónica SchemaAssignments
+- legacy shape tiene nombre distinto
+- roundtrip fixtures no pierden assignment
+- audit user no se codifica como dimensión redundant
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0843"></a>
+
+### 0843 — `.ai/scrum/task-cards/runtime-platform/RTP-030.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -53710,9 +55935,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0757"></a>
+<a id="file-0844"></a>
 
-### 0757 — `.ai/scrum/task-cards/runtime-platform/RTP-040.md`
+### 0844 — `.ai/scrum/task-cards/runtime-platform/RTP-040.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -53779,9 +56004,92 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0758"></a>
+<a id="file-0845"></a>
 
-### 0758 — `.ai/scrum/task-cards/runtime-platform/RTP-050.md`
+### 0845 — `.ai/scrum/task-cards/runtime-platform/RTP-045.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `70`
+- **Tamaño original:** `2.6 KB`
+- **SHA1 corto:** `3a8f8f88f0`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-045
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: IN-PROGRESS
+wave: 1
+priority: P0
+depends_on: ["RTP-040"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-045 — Facade público: props declaradas vs. propagadas
+
+## Product identity
+
+Trabaja sobre **SISAD-PDFME**, plataforma propia inspirada históricamente en pdfme. No
+introducir nuevas abstracciones `Pdfme*` salvo compatibilidad explícita.
+
+## Motivo
+
+`SisadPdfmePreviewRuntimeProps` declaraba `activeDocumentId` y `signatureProviders`,
+pero `SisadPdfmePreviewRuntime` no los desestructuraba: eran props muertas. Un
+consumidor que las pasara obtenía silencio, no un error, y terminaba compensando
+en el host lo que el reusable decía soportar.
+
+Asociado: el efecto de montaje de `usePdfmeRuntimeInstance` estaba keyed solo por
+`mode`, así que un cambio de destinatario o documento reutilizaba la instancia viva.
+
+## Read set inicial
+
+- `src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx`
+- `src/sisad-pdfme/react/SisadPdfmeForm.tsx`
+- `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts`
+- `nearest focused tests`
+
+## Required work
+
+1. confirmar HEAD/status y que las premisas siguen vivas;
+2. escribir characterization/repro antes de un cambio de riesgo;
+3. cambiar la mínima autoridad correcta, no parchear cada consumidor;
+4. ejecutar gates focales reales;
+5. escribir evidence `reports/runtime-platform/evidence/RTP-045.md`;
+6. actualizar ledger/memory delta solo con hechos verificados.
+
+## Acceptance
+
+- toda prop declarada en el facade público se consume o se elimina del tipo;
+- `signatureProviders` llega al modo formulario con las mismas reglas que al Designer;
+- un cambio de `activeRecipientId`/`activeDocumentId` reinicia el contexto de ejecución;
+- `SisadPdfmeForm` sigue siendo un passthrough delgado;
+- no reglas de negocio de un host dentro del reusable;
+- no deep imports nuevos de internals desde consumidores;
+- `git diff --check` limpio en archivos tocados;
+- no declarar build/test PASS sin ejecutar el comando.
+
+## Stop conditions
+
+- source pack y worktree no pueden reconciliarse;
+- requiere contrato de producto no definido;
+- requiere backend/secretos concretos para simular éxito;
+- necesita >5 archivos productivos en el mismo slice sin dividir task;
+- fallo pertenece a otro dominio y no existe evidencia de causalidad.
+
+## Forbidden
+
+`reset --hard`, `clean`, force push, cambios masivos de nomenclatura fuera de RTP-330,
+listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar packs
+unificados manualmente, silenciar tests.
+```
+
+<a id="file-0846"></a>
+
+### 0846 — `.ai/scrum/task-cards/runtime-platform/RTP-050.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -53847,9 +56155,60 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0759"></a>
+<a id="file-0847"></a>
 
-### 0759 — `.ai/scrum/task-cards/runtime-platform/RTP-060.md`
+### 0847 — `.ai/scrum/task-cards/runtime-platform/RTP-055.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `38`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `6d8bbb7a04`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-055
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 2
+priority: P0
+depends_on: ["RTP-040", "RTP-050"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first
+
+## Read set inicial
+
+- `src/sisad-pdfme/ui/Form.tsx`
+- `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts`
+- `src/sisad-pdfme/contracts/events.ts`
+
+## Required work
+
+1. preservar local-first actual
+2. añadir transactionId/revision/phase/origin extensible
+3. soportar patch multi-key atómico sin romper callback legacy
+4. documentar [] vs undefined
+
+## Acceptance
+
+- stale host revision no pisa user draft
+- host push no reaparece user
+- legacy callback adapter conserva compatibilidad
+- no remount por keystroke
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0848"></a>
+
+### 0848 — `.ai/scrum/task-cards/runtime-platform/RTP-060.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -53915,9 +56274,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0760"></a>
+<a id="file-0849"></a>
 
-### 0760 — `.ai/scrum/task-cards/runtime-platform/RTP-070.md`
+### 0849 — `.ai/scrum/task-cards/runtime-platform/RTP-070.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -53984,9 +56343,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0761"></a>
+<a id="file-0850"></a>
 
-### 0761 — `.ai/scrum/task-cards/runtime-platform/RTP-080.md`
+### 0850 — `.ai/scrum/task-cards/runtime-platform/RTP-080.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -54053,9 +56412,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0762"></a>
+<a id="file-0851"></a>
 
-### 0762 — `.ai/scrum/task-cards/runtime-platform/RTP-090.md`
+### 0851 — `.ai/scrum/task-cards/runtime-platform/RTP-090.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54121,9 +56480,60 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0763"></a>
+<a id="file-0852"></a>
 
-### 0763 — `.ai/scrum/task-cards/runtime-platform/RTP-100.md`
+### 0852 — `.ai/scrum/task-cards/runtime-platform/RTP-095.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `38`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `684e4b94c6`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-095
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 2
+priority: P0
+depends_on: ["RTP-080", "RTP-090"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-095 — Harness pairwise de interacción entre schemas
+
+## Read set inicial
+
+- `schema runtime registry/manifest`
+- `Form focused tests`
+- `tests/unit/sisad-pdfme-comprehensive/contracts/schemas`
+
+## Required work
+
+1. derivar casos del registry
+2. crear pairs representativos por interactionKind
+3. repro old-field→new-field rollback
+4. agregar two-instance pair tests
+
+## Acceptance
+
+- schema B nunca revierte A
+- radio/group patches sin estado intermedio
+- false/0 preservados
+- harness no hardcodea todos los tipos en Form
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0853"></a>
+
+### 0853 — `.ai/scrum/task-cards/runtime-platform/RTP-100.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54189,9 +56599,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0764"></a>
+<a id="file-0854"></a>
 
-### 0764 — `.ai/scrum/task-cards/runtime-platform/RTP-110.md`
+### 0854 — `.ai/scrum/task-cards/runtime-platform/RTP-110.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54257,9 +56667,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0765"></a>
+<a id="file-0855"></a>
 
-### 0765 — `.ai/scrum/task-cards/runtime-platform/RTP-120.md`
+### 0855 — `.ai/scrum/task-cards/runtime-platform/RTP-120.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54325,9 +56735,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0766"></a>
+<a id="file-0856"></a>
 
-### 0766 — `.ai/scrum/task-cards/runtime-platform/RTP-130.md`
+### 0856 — `.ai/scrum/task-cards/runtime-platform/RTP-130.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54393,9 +56803,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0767"></a>
+<a id="file-0857"></a>
 
-### 0767 — `.ai/scrum/task-cards/runtime-platform/RTP-140.md`
+### 0857 — `.ai/scrum/task-cards/runtime-platform/RTP-140.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54461,9 +56871,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0768"></a>
+<a id="file-0858"></a>
 
-### 0768 — `.ai/scrum/task-cards/runtime-platform/RTP-150.md`
+### 0858 — `.ai/scrum/task-cards/runtime-platform/RTP-150.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54529,9 +56939,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0769"></a>
+<a id="file-0859"></a>
 
-### 0769 — `.ai/scrum/task-cards/runtime-platform/RTP-160.md`
+### 0859 — `.ai/scrum/task-cards/runtime-platform/RTP-160.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54597,9 +57007,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0770"></a>
+<a id="file-0860"></a>
 
-### 0770 — `.ai/scrum/task-cards/runtime-platform/RTP-170.md`
+### 0860 — `.ai/scrum/task-cards/runtime-platform/RTP-170.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54665,9 +57075,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0771"></a>
+<a id="file-0861"></a>
 
-### 0771 — `.ai/scrum/task-cards/runtime-platform/RTP-180.md`
+### 0861 — `.ai/scrum/task-cards/runtime-platform/RTP-180.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54733,9 +57143,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0772"></a>
+<a id="file-0862"></a>
 
-### 0772 — `.ai/scrum/task-cards/runtime-platform/RTP-190.md`
+### 0862 — `.ai/scrum/task-cards/runtime-platform/RTP-190.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -54803,9 +57213,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0773"></a>
+<a id="file-0863"></a>
 
-### 0773 — `.ai/scrum/task-cards/runtime-platform/RTP-200.md`
+### 0863 — `.ai/scrum/task-cards/runtime-platform/RTP-200.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -54872,9 +57282,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0774"></a>
+<a id="file-0864"></a>
 
-### 0774 — `.ai/scrum/task-cards/runtime-platform/RTP-210.md`
+### 0864 — `.ai/scrum/task-cards/runtime-platform/RTP-210.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -54940,9 +57350,61 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0775"></a>
+<a id="file-0865"></a>
 
-### 0775 — `.ai/scrum/task-cards/runtime-platform/RTP-220.md`
+### 0865 — `.ai/scrum/task-cards/runtime-platform/RTP-215.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `39`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `19793885be`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-215
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 5
+priority: P0
+depends_on: ["RTP-210", "RTP-015", "RTP-055"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-215 — Aislamiento User×Document×RuntimeSession
+
+## Read set inicial
+
+- `src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx`
+- `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts`
+- `src/sisad-pdfme/documents/`
+- `nearest runtime tests`
+
+## Required work
+
+1. reemplazar semántica interna Recipient por User en isolation contract sin romper aliases
+2. hacer sessionScopeKey explícito/opaco
+3. probar switch rápido user/document
+4. probar restore/cache boundaries
+
+## Acceptance
+
+- A:D1 no contamina B:D1 ni A:D2
+- session key no contiene business rules interpretadas
+- cleanup del contexto anterior
+- compat activeRecipientId cubierta
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0866"></a>
+
+### 0866 — `.ai/scrum/task-cards/runtime-platform/RTP-220.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55008,9 +57470,247 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0776"></a>
+<a id="file-0867"></a>
 
-### 0776 — `.ai/scrum/task-cards/runtime-platform/RTP-230.md`
+### 0867 — `.ai/scrum/task-cards/runtime-platform/RTP-222.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `39`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `3a43a15294`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-222
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 5
+priority: P0
+depends_on: ["RTP-015", "RTP-022", "RTP-220"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-222 — Migrar registry/access/appearance a User con aliases
+
+## Read set inicial
+
+- `src/sisad-pdfme/recipients/`
+- `src/sisad-pdfme/ui/collaboration/schemaRuntimeAccess.ts`
+- `src/sisad-pdfme/collaboration/`
+- `src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts`
+
+## Required work
+
+1. caracterizar access resolver real vs structural permission resolver
+2. crear UserRegistry/activeUser canonical facade
+3. migrar appearance/lock/access en slices
+4. decidir y documentar fate de recipientPermissionResolver
+
+## Acceptance
+
+- un access projection común por surface
+- no duplicación de role/readonly rules
+- color no es identidad
+- legacy registry funciona sólo como adapter/facade
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0868"></a>
+
+### 0868 — `.ai/scrum/task-cards/runtime-platform/RTP-225.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `71`
+- **Tamaño original:** `2.6 KB`
+- **SHA1 corto:** `2cdaeb9ffd`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-225
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 5
+priority: P1
+depends_on: ["RTP-220"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo
+
+## Product identity
+
+Trabaja sobre **SISAD-PDFME**, plataforma propia inspirada históricamente en pdfme. No
+introducir nuevas abstracciones `Pdfme*` salvo compatibilidad explícita.
+
+## Motivo
+
+El reusable debe poder ejecutar N contextos de destinatario aislados, vengan de
+donde vengan. Lo que **no** debe hacer es inventar la activación del lote: quién
+entra y cuándo es decisión del host y del backend.
+
+La distinción importa porque el fan-out masivo en una misma etapa está
+caracterizado aguas arriba como no soportado. El componente puede demostrar
+aislamiento; el producto no puede prometer E2E masivo mientras esa capacidad siga
+sin demostrarse en el backend.
+
+## Read set inicial
+
+- `src/sisad-pdfme/recipients/`
+- `src/sisad-pdfme/react/useSisadPdfmeRecipientRuntime.ts`
+- `nearest focused tests`
+
+## Required work
+
+1. confirmar HEAD/status y que las premisas siguen vivas;
+2. escribir characterization/repro antes de un cambio de riesgo;
+3. cambiar la mínima autoridad correcta, no parchear cada consumidor;
+4. ejecutar gates focales reales;
+5. escribir evidence `reports/runtime-platform/evidence/RTP-225.md`;
+6. actualizar ledger/memory delta solo con hechos verificados.
+
+## Acceptance
+
+- N contextos de destinatario montan y se destruyen sin estado compartido;
+- el coste de memoria por contexto no crece de forma no lineal;
+- el reusable no expone ni deduce estado de lote, posición ni completitud;
+- la evidencia distingue explícitamente "aislamiento demostrado" de
+  "fan-out soportado", y no declara lo segundo;
+- no reglas de negocio de un host dentro del reusable;
+- no deep imports nuevos de internals desde consumidores;
+- `git diff --check` limpio en archivos tocados;
+- no declarar build/test PASS sin ejecutar el comando.
+
+## Stop conditions
+
+- source pack y worktree no pueden reconciliarse;
+- requiere contrato de producto no definido;
+- requiere backend/secretos concretos para simular éxito;
+- necesita >5 archivos productivos en el mismo slice sin dividir task;
+- fallo pertenece a otro dominio y no existe evidencia de causalidad.
+
+## Forbidden
+
+`reset --hard`, `clean`, force push, cambios masivos de nomenclatura fuera de RTP-330,
+listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar packs
+unificados manualmente, silenciar tests, simular activación de lote en el navegador.
+```
+
+<a id="file-0869"></a>
+
+### 0869 — `.ai/scrum/task-cards/runtime-platform/RTP-226.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `38`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `2e7059913f`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-226
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 6
+priority: P0
+depends_on: ["RTP-222", "RTP-320"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-226 — Contrato DigitalAgreements Recipient -> User
+
+## Read set inicial
+
+- `public integration exports`
+- `DigitalAgreements adapter docs/consumer source disponible`
+- `nearest consumer contract tests`
+
+## Required work
+
+1. definir mapping whitelist
+2. probar 1/N recipients y routing metadata excluded
+3. probar assignment projection y signature policy technical mapping
+4. no deep imports
+
+## Acceptance
+
+- DigitalAgreements conserva Recipient
+- SISAD-PDFME recibe User
+- position/SMS/WA/Request no cruzan core
+- Designer consumer smoke PASS
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0870"></a>
+
+### 0870 — `.ai/scrum/task-cards/runtime-platform/RTP-227.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `38`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `423855b830`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-227
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 6
+priority: P0
+depends_on: ["RTP-215", "RTP-222"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-227 — Contrato ExternalForms Recipient execution -> User Form
+
+## Read set inicial
+
+- `src/sisad-pdfme/react/SisadPdfmeForm.tsx`
+- `public integration facade`
+- `ExternalForms consumer source disponible`
+
+## Required work
+
+1. modelar active User explícito
+2. probar access/read-only/hidden por assignment
+3. probar signature identity/session isolation
+4. probar values/artifact boundary sin routing interno
+
+## Acceptance
+
+- Form no selecciona silenciosamente user incorrecto
+- same template different users isolated
+- completion reusable vs Request completion separados
+- public API only
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0871"></a>
+
+### 0871 — `.ai/scrum/task-cards/runtime-platform/RTP-230.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55076,9 +57776,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0777"></a>
+<a id="file-0872"></a>
 
-### 0777 — `.ai/scrum/task-cards/runtime-platform/RTP-240.md`
+### 0872 — `.ai/scrum/task-cards/runtime-platform/RTP-240.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55144,9 +57844,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0778"></a>
+<a id="file-0873"></a>
 
-### 0778 — `.ai/scrum/task-cards/runtime-platform/RTP-250.md`
+### 0873 — `.ai/scrum/task-cards/runtime-platform/RTP-250.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -55213,9 +57913,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0779"></a>
+<a id="file-0874"></a>
 
-### 0779 — `.ai/scrum/task-cards/runtime-platform/RTP-260.md`
+### 0874 — `.ai/scrum/task-cards/runtime-platform/RTP-260.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55281,9 +57981,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0780"></a>
+<a id="file-0875"></a>
 
-### 0780 — `.ai/scrum/task-cards/runtime-platform/RTP-270.md`
+### 0875 — `.ai/scrum/task-cards/runtime-platform/RTP-270.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55349,9 +58049,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0781"></a>
+<a id="file-0876"></a>
 
-### 0781 — `.ai/scrum/task-cards/runtime-platform/RTP-280.md`
+### 0876 — `.ai/scrum/task-cards/runtime-platform/RTP-280.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55417,9 +58117,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0782"></a>
+<a id="file-0877"></a>
 
-### 0782 — `.ai/scrum/task-cards/runtime-platform/RTP-290.md`
+### 0877 — `.ai/scrum/task-cards/runtime-platform/RTP-290.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55485,9 +58185,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0783"></a>
+<a id="file-0878"></a>
 
-### 0783 — `.ai/scrum/task-cards/runtime-platform/RTP-300.md`
+### 0878 — `.ai/scrum/task-cards/runtime-platform/RTP-300.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55553,9 +58253,60 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0784"></a>
+<a id="file-0879"></a>
 
-### 0784 — `.ai/scrum/task-cards/runtime-platform/RTP-310.md`
+### 0879 — `.ai/scrum/task-cards/runtime-platform/RTP-305.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `38`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `26b040ede1`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-305
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 7
+priority: P1
+depends_on: ["RTP-095", "RTP-160"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-305 — Quality gate registry-driven de comportamiento
+
+## Read set inicial
+
+- `scripts/testing/count-sisad-pdfme-tests.mjs`
+- `scripts/testing/validate-sisad-pdfme-test-map.mjs`
+- `schema registry/manifest`
+- `tests/unit/sisad-pdfme-comprehensive`
+
+## Required work
+
+1. mantener count/map como inventory
+2. crear behavior coverage reporter por capability/family
+3. detectar gaps Form/Viewer/Snapshot/PDF/access
+4. integrar reporte al release sin usar count como PASS principal
+
+## Acceptance
+
+- reporte distingue structural vs behavioral coverage
+- nuevos schemas aparecen automáticamente como gap
+- 0 required capability sin evidencia al release
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0880"></a>
+
+### 0880 — `.ai/scrum/task-cards/runtime-platform/RTP-310.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55621,9 +58372,94 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0785"></a>
+<a id="file-0881"></a>
 
-### 0785 — `.ai/scrum/task-cards/runtime-platform/RTP-320.md`
+### 0881 — `.ai/scrum/task-cards/runtime-platform/RTP-315.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `72`
+- **Tamaño original:** `2.6 KB`
+- **SHA1 corto:** `8d359de44f`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-315
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 6
+priority: P0
+depends_on: ["RTP-210", "RTP-220", "RTP-310"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-315 — Concurrencia real de sesiones con BrowserContext aislados
+
+## Product identity
+
+Trabaja sobre **SISAD-PDFME**, plataforma propia inspirada históricamente en pdfme. No
+introducir nuevas abstracciones `Pdfme*` salvo compatibilidad explícita.
+
+## Motivo
+
+El aislamiento entre destinatarios se verifica hoy conmutando `activeRecipientId`
+dentro de una misma sesión. Eso no prueba lo que importa: dos personas firmando a
+la vez desde navegadores distintos. Un unit test sobre `activeRecipientId` nunca
+detecta contaminación por storage, cache de documento ni estado de módulo
+compartido.
+
+Playwright aísla almacenamiento y cookies por `BrowserContext`; dos contextos son
+la forma correcta de representar dos sesiones reales.
+
+## Read set inicial
+
+- `playwright.config.ts`
+- `tests/*.spec.ts`
+- `nearest focused tests`
+
+## Required work
+
+1. confirmar HEAD/status y que las premisas siguen vivas;
+2. escribir characterization/repro antes de un cambio de riesgo;
+3. cambiar la mínima autoridad correcta, no parchear cada consumidor;
+4. ejecutar gates focales reales;
+5. escribir evidence `reports/runtime-platform/evidence/RTP-315.md`;
+6. actualizar ledger/memory delta solo con hechos verificados.
+
+## Acceptance
+
+- dos `BrowserContext` simultáneos sobre el mismo template no comparten valores;
+- typing, signature, initials, checkbox, radioGroup, attachment y table se
+  verifican en ambos contextos;
+- un refresh en un contexto restaura solo su propio estado;
+- cambiar de documento en un contexto no altera el otro;
+- no reglas de negocio de un host dentro del reusable;
+- no deep imports nuevos de internals desde consumidores;
+- `git diff --check` limpio en archivos tocados;
+- no declarar build/test PASS sin ejecutar el comando.
+
+## Stop conditions
+
+- source pack y worktree no pueden reconciliarse;
+- requiere contrato de producto no definido;
+- requiere backend/secretos concretos para simular éxito;
+- necesita >5 archivos productivos en el mismo slice sin dividir task;
+- fallo pertenece a otro dominio y no existe evidencia de causalidad.
+
+## Forbidden
+
+`reset --hard`, `clean`, force push, cambios masivos de nomenclatura fuera de RTP-330,
+listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar packs
+unificados manualmente, silenciar tests, simular dos destinatarios mutando una
+variable dentro de una sola sesión.
+```
+
+<a id="file-0882"></a>
+
+### 0882 — `.ai/scrum/task-cards/runtime-platform/RTP-320.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55689,9 +58525,60 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0786"></a>
+<a id="file-0883"></a>
 
-### 0786 — `.ai/scrum/task-cards/runtime-platform/RTP-330.md`
+### 0883 — `.ai/scrum/task-cards/runtime-platform/RTP-325.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `38`
+- **Tamaño original:** `1.0 KB`
+- **SHA1 corto:** `1a972ed4c2`
+- **Estado:** `completo`
+
+```markdown
+---
+id: RTP-325
+campaign: SISAD-PDFME-RUNTIME-PLATFORM
+status: BACKLOG
+wave: 8
+priority: P1
+depends_on: ["RTP-226", "RTP-227", "RTP-310", "RTP-320"]
+max_initial_source_files: 10
+max_modified_product_files_per_slice: 5
+max_search_rounds_before_hypothesis: 2
+max_repair_rounds: 2
+---
+
+# RTP-325 — Gate de compatibilidad antes de retirar Recipient aliases
+
+## Read set inicial
+
+- `public exports`
+- `snapshot migrations`
+- `compatibility allowlist`
+- `consumer tests`
+
+## Required work
+
+1. medir usages legacy
+2. prohibir nuevos usos core
+3. verificar standalone + embedded + ExternalForms
+4. sólo entonces proponer deprecation removal
+
+## Acceptance
+
+- sin breaking removal prematuro
+- migration path documentado
+- compatibility budget decrece por ratchet
+
+## Mandatory safety
+
+Source/evidence > ledger/card. Confirmar Git/status. Characterization antes de refactor riesgoso. No `reset --hard`, `clean`, stash blanket, force push, mass rename, recursive copy standalone→embedded ni silenciar tests. No reglas DigitalAgreements/Request dentro del reusable.
+```
+
+<a id="file-0884"></a>
+
+### 0884 — `.ai/scrum/task-cards/runtime-platform/RTP-330.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -55758,9 +58645,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0787"></a>
+<a id="file-0885"></a>
 
-### 0787 — `.ai/scrum/task-cards/runtime-platform/RTP-340.md`
+### 0885 — `.ai/scrum/task-cards/runtime-platform/RTP-340.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -55826,9 +58713,9 @@ listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar
 unificados manualmente, silenciar tests.
 ```
 
-<a id="file-0788"></a>
+<a id="file-0886"></a>
 
-### 0788 — `.ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md`
+### 0886 — `.ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -55862,9 +58749,9 @@ domain: tooling-architecture
 - `git diff --check` limpio.
 ```
 
-<a id="file-0789"></a>
+<a id="file-0887"></a>
 
-### 0789 — `.ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md`
+### 0887 — `.ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -55898,9 +58785,9 @@ domain: tooling-architecture
 - `git diff --check` limpio.
 ```
 
-<a id="file-0790"></a>
+<a id="file-0888"></a>
 
-### 0790 — `.ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md`
+### 0888 — `.ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -55934,9 +58821,9 @@ domain: tooling-architecture
 - `git diff --check` limpio.
 ```
 
-<a id="file-0791"></a>
+<a id="file-0889"></a>
 
-### 0791 — `.ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md`
+### 0889 — `.ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -55970,9 +58857,9 @@ domain: tooling-architecture
 - `git diff --check` limpio.
 ```
 
-<a id="file-0792"></a>
+<a id="file-0890"></a>
 
-### 0792 — `.ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md`
+### 0890 — `.ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -56006,9 +58893,57 @@ domain: tooling-architecture
 - `git diff --check` limpio.
 ```
 
-<a id="file-0793"></a>
+<a id="file-0891"></a>
 
-### 0793 — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md`
+### 0891 — `.ai/scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `11`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `df14c947bf`
+- **Estado:** `completo`
+
+```markdown
+---
+id: TOOL-DEDUP-RUNTIME-SEMANTIC
+status: BACKLOG
+domain: tooling-architecture
+priority: P1
+---
+# Dedup semántico del runtime
+
+Crear profile owned de SISAD-PDFME y cluster tags para schema-family/codec/access/Form. Usar
+ratchet como gate primario. Zero-duplicate sólo en scopes maduros. No extraer abstracciones
+si los contracts de valor/lifecycle difieren.
+```
+
+<a id="file-0892"></a>
+
+### 0892 — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `11`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `8b30c54336`
+- **Estado:** `completo`
+
+```markdown
+---
+id: TOOL-IMPORT-NONMARKDOWN
+status: BACKLOG
+domain: tooling-architecture
+priority: P0
+---
+# Corregir importer non-Markdown
+
+Crear repro para `copyIncoming()` con `.mjs`/`.json`. Verificar en source vivo la llamada
+recursiva y el identificador fuera de scope. Corregir mediante copy atómico/seguro y cubrir
+ZIP/folder, keep-target, unsafe paths y backups. No ejecutar imports mixtos antes del PASS.
+```
+
+<a id="file-0893"></a>
+
+### 0893 — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -56042,9 +58977,34 @@ domain: tooling-architecture
 - `git diff --check` limpio.
 ```
 
-<a id="file-0794"></a>
+<a id="file-0894"></a>
 
-### 0794 — `.ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md`
+### 0894 — `.ai/scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `69f50a1cbc`
+- **Estado:** `completo`
+
+```markdown
+---
+id: TOOL-INSTALL-SAFETY
+status: BACKLOG
+domain: tooling-architecture
+priority: P0
+---
+# Preflight y conflict-safe install-project-tools
+
+Caracterizar `scripts/install-project-tools.mjs`. Introducir plan completo antes de apply:
+create/identical/safe-update/conflict. Keep-target en conflicto; `--prefer-source` explícito.
+Detectar conflictos de `package.json.scripts` en vez de pisarlos con `Object.assign`.
+Backups externos y cero partial apply por defecto.
+```
+
+<a id="file-0895"></a>
+
+### 0895 — `.ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -56078,9 +59038,9 @@ domain: tooling-architecture
 - `git diff --check` limpio.
 ```
 
-<a id="file-0795"></a>
+<a id="file-0896"></a>
 
-### 0795 — `.ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md`
+### 0896 — `.ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -56114,9 +59074,56 @@ domain: tooling-architecture
 - `git diff --check` limpio.
 ```
 
-<a id="file-0796"></a>
+<a id="file-0897"></a>
 
-### 0796 — `.ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md`
+### 0897 — `.ai/scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `9cdde57948`
+- **Estado:** `completo`
+
+```markdown
+---
+id: TOOL-PATH-SEMANTIC-SAFETY
+status: BACKLOG
+domain: tooling-architecture
+priority: P1
+---
+# Separar path reconciliation de identifier migration
+
+Documentar/testear que path tooling mueve paths/references, pero no ejecuta renames
+semánticos Recipient→User. Añadir guard/guide para impedir global replace accidental.
+```
+
+<a id="file-0898"></a>
+
+### 0898 — `.ai/scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `11`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `374130637c`
+- **Estado:** `completo`
+
+```markdown
+---
+id: TOOL-SCRIPT-PORTABILITY
+status: BACKLOG
+domain: tooling-architecture
+priority: P1
+---
+# Portabilidad de scripts npm y memoria build
+
+Caracterizar macOS/Windows: inline env vars (`VITE_PORT=...`, `NODE_OPTIONS=...`), configs
+Playwright duplicados/version skew y `--max-old-space-size=81922`. Medir y decidir; no
+cambiar 81922 a 8192 por suposición. Preferir Node wrapper o cross-platform strategy.
+```
+
+<a id="file-0899"></a>
+
+### 0899 — `.ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -56150,9 +59157,55 @@ domain: tooling-architecture
 - `git diff --check` limpio.
 ```
 
-<a id="file-0797"></a>
+<a id="file-0900"></a>
 
-### 0797 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
+### 0900 — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `72b8561074`
+- **Estado:** `completo`
+
+```markdown
+---
+id: TOOL-TEST-COVERAGE-QUALITY
+status: BACKLOG
+domain: tooling-architecture
+priority: P1
+---
+# Mejorar calidad del test map SISAD-PDFME
+
+Mantener count/file-map como inventario. Añadir reporter de behavior coverage derivado de
+SchemaRuntimeManifest/capabilities y pairwise matrix. Release no pasa sólo por >=1000 tests.
+```
+
+<a id="file-0901"></a>
+
+### 0901 — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.3 KB`
+- **SHA1 corto:** `14fbf20607`
+- **Estado:** `completo`
+
+```markdown
+---
+id: TOOL-TEST-INSTALL-PREFLIGHT
+status: BACKLOG
+domain: tooling-architecture
+priority: P1
+---
+# Hacer install-tests transaccional
+
+Preflight de todo `tests/` antes de copiar. Default: conflicto => no escribir nada. Opción
+`--new-only` explícita para añadir únicamente ausentes. Reporte JSON de plan y resultado.
+```
+
+<a id="file-0902"></a>
+
+### 0902 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -56193,9 +59246,9 @@ Este bloque contiene la base visual y funcional usada por Preview/Form/Viewer en
 6. Validar persistencia/prefill/API del hook sin sobrescribir valores ya digitados por usuario.
 ```
 
-<a id="file-0798"></a>
+<a id="file-0903"></a>
 
-### 0798 — `src/sisad-pdfme/ui/components/README.md`
+### 0903 — `src/sisad-pdfme/ui/components/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -56234,9 +59287,9 @@ Este paquete contiene una copia completa de los archivos runtime/base UI enviado
 Este bloque es sensible porque conecta el runtime visual con plugins imperativos (`Renderer`), preprocesamiento de PDF (`Paper`/`Preview`) y sincronización de datos (`usePreviewRuntime`). La documentación refuerza que la geometría del canvas debe seguir controlada por schemas y servicios internos, no por estilos arbitrarios de plugins o hosts.
 ```
 
-<a id="file-0799"></a>
+<a id="file-0904"></a>
 
-### 0799 — `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md`
+### 0904 — `src/sisad-pdfme/ui/components/Designer/Canvas/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -56253,9 +59306,9 @@ Este bloque es sensible porque conecta el runtime visual con plugins imperativos
 - Playwright focal.
 ```
 
-<a id="file-0800"></a>
+<a id="file-0905"></a>
 
-### 0800 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
+### 0905 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -56284,14 +59337,14 @@ Este bloque es sensible porque conecta el runtime visual con plugins imperativos
 - `Guides.tsx`, `Mask.tsx` y `Padding.tsx` quedan como slots visuales puros.
 ```
 
-<a id="file-0801"></a>
+<a id="file-0906"></a>
 
-### 0801 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
+### 0906 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
 - **Tamaño original:** `1.2 KB`
-- **SHA1 corto:** `824d856ac8`
+- **SHA1 corto:** `ed62b3559e`
 - **Estado:** `completo`
 
 ```markdown
@@ -56318,12 +59371,12 @@ Este paquete contiene copias completas de los archivos del core visual/interacti
 
 ## Regla de arquitectura
 
-Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ContentCustomForm`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
+Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
 ```
 
-<a id="file-0802"></a>
+<a id="file-0907"></a>
 
-### 0802 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md`
+### 0907 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -56340,9 +59393,9 @@ Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar 
 - No duplicar lógica de selección.
 ```
 
-<a id="file-0803"></a>
+<a id="file-0908"></a>
 
-### 0803 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
+### 0908 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -56368,9 +59421,9 @@ Se documentó el bloque de composición del sidebar derecho del diseñador SISAD
 Estos archivos deben mantenerse como capa de composición visual y navegación del sidebar. No deberían incorporar reglas internas del canvas, manipulación directa de Moveable/Selecto, ni persistencia de negocio. Las mutaciones deben seguir delegándose a callbacks, bridges o comandos ya recibidos por props.
 ```
 
-<a id="file-0804"></a>
+<a id="file-0909"></a>
 
-### 0804 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
+### 0909 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -56399,9 +59452,238 @@ Este paquete contiene versiones documentadas de los archivos del sidebar derecho
 - Se conservó la separación esperada: el sidebar orquesta vistas, pero no manipula canvas, Moveable, Selecto ni schemas directamente.
 ```
 
-<a id="file-0805"></a>
+<a id="file-0910"></a>
 
-### 0805 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
+### 0910 — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/ARCHITECTURE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `27`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `5b0e5dd488`
+- **Estado:** `completo`
+
+```markdown
+# Arquitectura de producto
+
+``​`text
+Public integration
+  SisadPdfmeInstance / config / controller / bundles / host adapters
+        ↓
+Host boundary normalization
+  Recipient (host) -> User (SISAD-PDFME) / documents / signatures / persistence
+        ↓
+React surfaces
+  Designer / Form / Viewer
+        ↓
+Runtime protocol
+  lifecycle / events / transactions / revision / artifacts / save
+        ↓
+Access + assignment
+  active User / assigned User(s) / audit User / locks / capabilities
+        ↓
+Schema platform
+  plugin registry / family / manifest / codec / validation / completion
+        ↓
+PDF platform
+  Preview / PDF.js conversion / pdf-lib generation / snapshot + migrations
+``​`
+
+El host no es dueño de Canvas, Renderer, Inspector, Form internals ni schema semantics.
+SISAD-PDFME no es dueño de routing/Request/massive/notification rules del host.
+```
+
+<a id="file-0911"></a>
+
+### 0911 — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/GLOSSARY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `16`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `d337158756`
+- **Estado:** `completo`
+
+```markdown
+# Glosario
+
+- **Schema**: campo/objeto declarativo del documento.
+- **Runtime**: ejecución interactiva o de lectura de schemas sobre páginas PDF.
+- **Surface**: Designer, Form o Viewer.
+- **User**: identidad interna de SISAD-PDFME que interactúa con un documento.
+- **Recipient**: entidad de negocio de un host (por ejemplo DigitalAgreements); puede adaptarse a User, no es sinónimo.
+- **Active User**: actor actual de una instancia.
+- **Assigned User**: actor autorizado/esperado para un schema.
+- **Audit User**: actor que creó/modificó/bloqueó.
+- **Manifest**: metadata/capabilities runtime derivada del registry, no un registry paralelo.
+- **Codec**: semántica canónica read/normalize/write/serialize/equality por familia.
+- **Transaction**: cambio local atómico con origin/revision/phase/transactionId.
+- **Artifact**: archivo/binario efímero que requiere resolución host antes de snapshot estable.
+- **Snapshot**: estado portable/versionado del documento/runtime con migrations explícitas.
+- **Host**: aplicación consumidora; no forma parte del core reusable.
+```
+
+<a id="file-0912"></a>
+
+### 0912 — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `22`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `9973412766`
+- **Estado:** `completo`
+
+```markdown
+# Source truth
+
+Prioridad:
+
+``​`text
+worktree vivo + Git HEAD
+> tests/gates realmente ejecutados
+> evidencia de task
+> Brain canónico
+> context packs/unificados
+> documentación histórica
+``​`
+
+Snapshot de referencia suministrado el 2026-08-13:
+
+- code pack: `2026-08-13T21:48:53.383Z`, SHA-256 `b631dfea742311cabbb40ccb23e6749f7be2f29ce86d92dabc749f997f69b6a3`;
+- docs pack: `2026-08-13T21:48:52.765Z`, SHA-256 `fdd49cb2883656fae1ab9e8b0662150498eff46a27bd851b6468ef752317ce3b`;
+- styles pack: SHA-256 `f40a732b082864e891dbe1b68deadd4b2faf865258d97444ab0288cd607a762c`.
+
+Estos hashes describen context packs, no el HEAD. Antes de modificar producto confirmar
+`git status --short`, branch, HEAD y contenido vivo. Source/evidence prevalecen sobre un
+ledger desactualizado.
+```
+
+<a id="file-0913"></a>
+
+### 0913 — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `10`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `7baedb9475`
+- **Estado:** `completo`
+
+```markdown
+# Access / assignment
+
+Seleccionable ≠ editable ≠ movable ≠ deletable ≠ visible.
+
+El resolver común integra: runtime mode, readonly, lock, active User, assigned User(s),
+assignmentMode y permission/capability context. Canvas/List/Inspector/commands/Form/Viewer
+consumen una proyección coherente sin duplicar reglas.
+
+DigitalAgreements Recipient/routing no entra aquí. El host adapta Recipient→User y entrega
+el contexto autorizado.
+```
+
+<a id="file-0914"></a>
+
+### 0914 — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `8`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `fe8c1329ea`
+- **Estado:** `completo`
+
+```markdown
+# Config/runtime boundary
+
+JSON contiene comportamiento/capabilities. Estado vivo (`template`, `inputs`, users,
+documents, activeUserId, activeDocumentId, sessionScopeKey) vive en definition/state/resources.
+Funciones y secretos viven en handlers/providers, nunca en JSON.
+
+Compatibility inputs `recipients/activeRecipientId` pueden aceptarse en boundary durante la
+migración, pero deben normalizarse una sola vez hacia User semantics.
+```
+
+<a id="file-0915"></a>
+
+### 0915 — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `26`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `e20f6a40cd`
+- **Estado:** `completo`
+
+```markdown
+# Form transaction contract
+
+``​`ts
+interface SchemaInputTransaction {
+  transactionId: string;
+  unitIndex: number;
+  schemaName: string;
+  schemaUid?: string;
+  changes: Record<string, unknown>;
+  phase: 'draft' | 'commit';
+  origin: 'user' | 'host' | 'prefill' | 'restore' | 'migration' | 'system';
+  revision: number;
+  touched: boolean;
+  timestamp: number;
+}
+``​`
+
+Reglas:
+- commit/mutation local antes de callback;
+- patches multi-key atómicos;
+- host push no reaparece como user event;
+- stale revision no pisa draft nuevo;
+- sibling B nunca revierte A;
+- `setInputs` no remounta por defecto;
+- `inputs=[]` y `inputs=undefined` tienen semántica distinta y testeada;
+- DOM no es source-of-truth.
+```
+
+<a id="file-0916"></a>
+
+### 0916 — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `8`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `89ef44d58c`
+- **Estado:** `completo`
+
+```markdown
+# Schema value codec
+
+Cada family implementa una semántica equivalente a:
+`read`, `normalize`, `toInput`, `toSnapshot`, `equals`, `isEmpty`.
+
+Form, Viewer, Snapshot, Completion y Generator consumen la misma semántica. `false`, `0`,
+`[]`, `null`, `undefined` y `''` no se confunden. Un schema puede declarar que no es
+editable sin perder parity de representación.
+```
+
+<a id="file-0917"></a>
+
+### 0917 — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `8`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `22ba0da93d`
+- **Estado:** `completo`
+
+```markdown
+# Snapshot/versioning
+
+Snapshot portable, serializable y versionado. Toda migration es explícita y testeada.
+Artifact binario no se serializa; se serializa referencia estable.
+
+La migración Recipient→User y la migración de assignment dimensions deben reconocer
+formatos antiguos por version/shape, producir el formato nuevo y conservar roundtrip
+semántico. Nunca reinterpretar silenciosamente un objeto ambiguo.
+```
+
+<a id="file-0918"></a>
+
+### 0918 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -56433,9 +59715,9 @@ Se generó documentación para los 18 archivos de overlays del canvas:
 5. Documentar restricciones arquitectónicas importantes cuando aplicaba.
 ```
 
-<a id="file-0806"></a>
+<a id="file-0919"></a>
 
-### 0806 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
+### 0919 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -56481,9 +59763,9 @@ Este paquete contiene copias completas de los archivos enviados, con documentaci
 Estos módulos pertenecen a la capa visual/interactiva del canvas. Deben seguir sin contener reglas de negocio del host, lógica Uanataca, persistencia HTTP, manipulación directa de Moveable/Selecto ni hacks de z-index para ocultar problemas.
 ```
 
-<a id="file-0807"></a>
+<a id="file-0920"></a>
 
-### 0807 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
+### 0920 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -56536,9 +59818,9 @@ La documentación se agregó con JSDoc en puntos de extensión y mantenimiento:
 5. En colaboración, validar casos de owner único, multi-owner, shared, locked by me y locked by other.
 ```
 
-<a id="file-0808"></a>
+<a id="file-0921"></a>
 
-### 0808 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
+### 0921 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -56587,9 +59869,9 @@ Wrapper de compatibilidad para widgets imperativos de plugins. Se documentaron:
 - Confirmar que clicks dentro del inspector no disparen Selecto, Moveable ni drag/drop del canvas.
 ```
 
-<a id="file-0809"></a>
+<a id="file-0922"></a>
 
-### 0809 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
+### 0922 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -56620,9 +59902,9 @@ Este paquete contiene copias documentadas de tres archivos del inspector del dis
 - `WidgetRenderer` conserva el render imperativo en cada render para no cambiar el contrato heredado.
 ```
 
-<a id="file-0810"></a>
+<a id="file-0923"></a>
 
-### 0810 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
+### 0923 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -56664,9 +59946,9 @@ El bloque `ListView` representa la lista lateral derecha de campos/schemas del d
 - Si se cambia el DOM del row, preservar `data-testid="right-sidebar-field-item"` y el drag handle.
 ```
 
-<a id="file-0811"></a>
+<a id="file-0924"></a>
 
-### 0811 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
+### 0924 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`

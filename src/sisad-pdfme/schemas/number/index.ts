@@ -1,4 +1,6 @@
-import type { Plugin, Schema } from '@sisad-pdfme/common';
+import type { Plugin, Schema, UIRenderProps } from '@sisad-pdfme/common';
+import { renderTextUi } from '../text/uiRender.js';
+import type { TextSchema } from '../text/types.js';
 import text from '../text/index.js';
 import { createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
@@ -13,9 +15,82 @@ import {
   COMMON_PROPERTY_MAP,
 } from '../propPanel/commonInspectorFields.js';
 
-const schema: Plugin<Schema> = createSchemaPlugin<Schema>(
+type NumberSchema = Schema & {
+  decimals?: number;
+  validationMin?: number;
+  validationMax?: number;
+};
+
+const NUMBER_DRAFT_PATTERN = /^-?(?:\d+(?:[.,]\d*)?|[.,]\d*)?$/;
+
+/** Keeps the input transport as string while providing a canonical number value on commit. */
+export const normalizeNumberDraft = (value: unknown): string | null => {
+  const draft = String(value ?? '').trim().replace(',', '.');
+  if (!draft || !NUMBER_DRAFT_PATTERN.test(draft)) return null;
+  const parsed = Number(draft);
+  return Number.isFinite(parsed) ? String(parsed) : null;
+};
+
+export const isNumberDraft = (value: unknown): boolean => {
+  const draft = String(value ?? '').trim().replace(',', '.');
+  return draft === '' || NUMBER_DRAFT_PATTERN.test(draft);
+};
+
+export const isNumberWithinBounds = (value: unknown, schema: NumberSchema): boolean => {
+  const draft = String(value ?? '').trim().replace(',', '.');
+  const canonical = normalizeNumberDraft(draft);
+  if (canonical === null || canonical === '') return false;
+  const decimals = Number(schema.decimals);
+  const decimalPart = draft.split('.')[1] || '';
+  if (Number.isFinite(decimals) && decimals >= 0 && decimalPart.length > decimals) return false;
+  const parsed = Number(canonical);
+  const min = Number(schema.validationMin);
+  const max = Number(schema.validationMax);
+  return (!Number.isFinite(min) || parsed >= min) && (!Number.isFinite(max) || parsed <= max);
+};
+
+const renderNumberUi = async (arg: UIRenderProps<NumberSchema>) => {
+  let latestDraft = String(arg.value ?? '');
+  const originalOnChange = arg.onChange;
+  const originalStopEditing = arg.stopEditing;
+  const textSchema = {
+    ...arg.schema,
+    type: 'text',
+  } as TextSchema;
+
+  await renderTextUi({
+    ...arg,
+    schema: textSchema,
+    onChange: (changes) => {
+      const list = Array.isArray(changes) ? changes : [changes];
+      const contentChange = list.find((change) => change.key === 'content');
+      if (contentChange) {
+        latestDraft = String(contentChange.value ?? '');
+        if (!isNumberDraft(latestDraft)) {
+          arg.rootElement.dataset.numberValid = 'false';
+          return;
+        }
+        arg.rootElement.dataset.numberValid = String(
+          latestDraft.trim() === '' || isNumberWithinBounds(latestDraft, arg.schema),
+        );
+      }
+      originalOnChange?.(changes);
+    },
+    stopEditing: () => {
+      const canonical = normalizeNumberDraft(latestDraft);
+      if (canonical !== null && isNumberWithinBounds(canonical, arg.schema)) {
+        originalOnChange?.([{ key: 'content', value: canonical }]);
+      } else if (latestDraft.trim() !== '') {
+        originalOnChange?.([{ key: 'content', value: '' }]);
+      }
+      originalStopEditing?.();
+    },
+  } as UIRenderProps<TextSchema>);
+};
+
+const schema: Plugin<NumberSchema> = createSchemaPlugin<NumberSchema>(
   {
-    ui: text.ui,
+    ui: renderNumberUi,
     pdf: text.pdf,
     propPanel: {
       schema: ({ i18n }) => ({

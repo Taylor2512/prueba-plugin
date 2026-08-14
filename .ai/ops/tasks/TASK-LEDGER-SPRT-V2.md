@@ -4,7 +4,7 @@
 |---|---|---|
 | `SPRT-000` | READY | Live baseline and public API snapshot |
 | `SPRT-010` | PLANNED | Tooling install/import safety |
-| `SPRT-020` | PLANNED | Dedup and ordering baseline |
+| `SPRT-020` | DONE | Dedup and ordering baseline |
 | `SPRT-030` | PLANNED | Legacy Recipient terminology characterization |
 | `SPRT-040` | PLANNED | Canonical SisadPdfmeUser model |
 | `SPRT-050` | PLANNED | Public users normalization |

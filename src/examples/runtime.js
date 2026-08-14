@@ -1,11 +1,14 @@
 /**
- * Fábrica de instancias del runtime reusable.
- *
- * El descriptor de cada ejemplo sale del manifest (`mode`, `collaboration`),
- * así que agregar un ejemplo nuevo no requiere registrar un builder aquí.
+ * Runtime support for the example lab: instance construction and shared hooks.
+ * The manifest remains the source of behavior; this module only adapts it to
+ * React and the reusable SISAD-PDFME instance contract.
  */
+import { useCallback, useMemo, useRef, useState } from 'react';
+
 import { getInputFromTemplate } from '@sisad-pdfme/common';
 import { defineSisadPdfmeInstance } from '@/sisad-pdfme';
+
+import { createRuntimeConfig } from './catalog.js';
 
 const DESIGNER_STATE = { template: null };
 const DESIGNER_COLLABORATIVE_STATE = { template: null, activeRecipientId: null };
@@ -26,9 +29,7 @@ const buildRuntimeDefaults = (mode, descriptor, props) => {
   return { state, resources, defaultState: { inputs: defaultInputs } };
 };
 
-/**
- * @param {{ id: string, mode: 'designer'|'form'|'viewer', collaboration?: boolean }} descriptor
- */
+/** @param {{ id: string, mode: 'designer'|'form'|'viewer', collaboration?: boolean }} descriptor */
 export const createExampleInstance = (descriptor, props = {}) => {
   const { handlers: explicitHandlers, ...runtimeProps } = props;
   const handlers = explicitHandlers || Object.fromEntries(
@@ -62,3 +63,30 @@ export const createExampleInstance = (descriptor, props = {}) => {
     handlers: Object.fromEntries(Object.entries(handlers).filter(([, value]) => Boolean(value))),
   });
 };
+
+export function useRuntimeConfig(profile) {
+  return useMemo(() => createRuntimeConfig(profile), [profile]);
+}
+
+export function useEventLog(maxEntries = 40) {
+  const [events, setEvents] = useState([]);
+
+  const record = useCallback((name, detail) => {
+    setEvents((current) => [
+      ...current.slice(-Math.max(0, maxEntries - 1)),
+      { id: `${Date.now()}-${current.length}`, name, detail, at: new Date().toLocaleTimeString('es') },
+    ]);
+  }, [maxEntries]);
+
+  const clear = useCallback(() => setEvents([]), []);
+  return { events, record, clear };
+}
+
+export function useController() {
+  const controllerRef = useRef(null);
+  const handleControllerReady = useCallback((controller) => {
+    controllerRef.current = controller;
+  }, []);
+  const getController = useCallback(() => controllerRef.current, []);
+  return { controllerRef, handleControllerReady, getController };
+}

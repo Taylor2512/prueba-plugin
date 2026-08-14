@@ -20,7 +20,6 @@ type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
 // keyed by group+option, which survives re-renders. No timers involved.
 const OPTION_DOUBLE_CLICK_MS = 450;
 const lastOptionClickAt = new Map<string, number>();
-const lastFormOptionCommitAt = new Map<string, number>();
 
 export type OptionGroupRuntimeParams = {
   options: OptionItem[];
@@ -250,17 +249,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     };
 
     if (rowsInteractive && typeof onChange === 'function') {
-      const clickKey = `${groupKey}:${opt.optionId}:form`;
       row.addEventListener('mouseup', (e) => {
-        const now = Date.now();
-        const prev = lastFormOptionCommitAt.get(clickKey) || 0;
-        if (now - prev <= OPTION_DOUBLE_CLICK_MS) {
-          lastFormOptionCommitAt.delete(clickKey);
-          e.preventDefault();
-          e.stopPropagation();
-          return;
-        }
-        lastFormOptionCommitAt.set(clickKey, now);
         e.preventDefault();
         e.stopPropagation();
         commitSelection();

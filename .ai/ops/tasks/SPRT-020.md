@@ -1,7 +1,7 @@
 ---
 id: SPRT-020
 campaign: SISAD-PDFME-RUNTIME-HARDENING-V2
-status: planned
+status: done
 ---
 
 # Dedup and ordering baseline
@@ -22,11 +22,11 @@ SISAD-PDFME only. No external-project source or business semantics.
 - evidence before PASS.
 
 ## Acceptance
-- [ ] focal behavior characterized;
-- [ ] implementation, if required, is host-agnostic;
-- [ ] focal tests pass;
-- [ ] public compatibility evaluated;
-- [ ] `.ai/evidence/SPRT-020.md` created.
+- [x] focal behavior characterized;
+- [x] implementation, if required, is host-agnostic;
+- [x] focal tests pass;
+- [x] public compatibility evaluated;
+- [x] evidence recorded in `reports/runtime-platform/evidence/SPRT-020.md`.
 
 ## Dependency
 SPRT-010

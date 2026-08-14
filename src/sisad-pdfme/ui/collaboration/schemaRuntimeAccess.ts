@@ -554,7 +554,7 @@ export const resolveSchemaAccessState = (
  * 4. vista global y pdf pueden ver todo.
  * 5. viewer y pdf nunca editan.
  * 6. designer puede editar si `canEditStructure` lo permite y no está locked.
- * 7. form edita solo si el destinatario activo es owner o el schema es shared.
+ * 7. form edita schemas sin owner, shared o del destinatario activo.
  *
  * @param schema Schema evaluado.
  * @param mode Modo runtime donde se evalúa el acceso.
@@ -705,9 +705,10 @@ export const resolveRuntimeSchemaAccess = (
 
   /**
    * Form:
-   * editable únicamente si el schema es shared o pertenece al destinatario activo.
+   * un schema sin owner es un campo común del formulario y permanece editable.
+   * Los schemas shared y del destinatario activo conservan la misma regla.
    */
-  const editable = state.isShared || state.isOwnerActive;
+  const editable = !isGlobalView && (noOwner || state.isShared || state.isOwnerActive);
 
   if (!editable) {
     return {
@@ -724,7 +725,7 @@ export const resolveRuntimeSchemaAccess = (
     visible: true,
     editable: true,
     readonly: false,
-    reason: state.isShared ? 'shared' : 'active-owner',
+    reason: noOwner ? 'no-owner' : state.isShared ? 'shared' : 'active-owner',
   };
 };
 

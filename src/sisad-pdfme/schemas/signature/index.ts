@@ -356,6 +356,7 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
       let lastY = 0;
 
       canvas.addEventListener('pointerdown', (ev) => {
+        if (canvas.setPointerCapture) canvas.setPointerCapture(ev.pointerId);
         drawing = true;
         const rect = canvas.getBoundingClientRect();
         lastX = ev.clientX - rect.left;
@@ -373,9 +374,14 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
         lastX = x;
         lastY = y;
       });
-      const stop = () => (drawing = false);
+      const stop = (ev: PointerEvent) => {
+        drawing = false;
+        if (canvas.releasePointerCapture && canvas.hasPointerCapture?.(ev.pointerId)) {
+          canvas.releasePointerCapture(ev.pointerId);
+        }
+      };
       canvas.addEventListener('pointerup', stop);
-      canvas.addEventListener('pointerleave', stop);
+      canvas.addEventListener('pointercancel', stop);
 
       const buttons = document.createElement('div');
       buttons.style.display = 'flex';

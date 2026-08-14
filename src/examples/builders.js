@@ -205,11 +205,19 @@ export function buildSnapshotFormValues(snapshot = {}) {
   const template = buildSnapshotFormTemplate(snapshot);
   const defaults = getInputFromTemplate(template);
   const valueByName = Object.fromEntries(
-    (snapshot.templateFields || []).map((field) => [field.indexName, field.value]),
+    (snapshot.templateFields || []).map((field) => [
+      field.indexName,
+      field.value ?? field.defaultValue ?? '',
+    ]),
   );
 
-  return defaults.map((input) => ({
-    ...input,
-    value: valueByName[input.name] ?? input.value,
-  }));
+  return defaults.map((input) => {
+    const next = { ...input };
+    for (const name of Object.keys(next)) {
+      if (Object.prototype.hasOwnProperty.call(valueByName, name)) {
+        next[name] = valueByName[name];
+      }
+    }
+    return next;
+  });
 }

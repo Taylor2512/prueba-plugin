@@ -1,0 +1,1206 @@
+{
+  "version": 1,
+  "principle": "registry-driven; applicability derives from capabilities",
+  "schemas": [
+    {
+      "type": "text",
+      "family": "text-like",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "number",
+      "family": "text-like",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "fullName",
+      "family": "text-like",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "emailAddress",
+      "family": "text-like",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "company",
+      "family": "text-like",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "title",
+      "family": "text-like",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "multiVariableText",
+      "family": "text-like",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "select",
+      "family": "choice",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "dropdown",
+      "family": "choice",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "checkbox",
+      "family": "boolean",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "radioGroup",
+      "family": "choice",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "checkboxGroup",
+      "family": "choice",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "date",
+      "family": "date-time",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "time",
+      "family": "date-time",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "dateTime",
+      "family": "date-time",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "dateSigned",
+      "family": "signing",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "signature",
+      "family": "signing",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "initials",
+      "family": "signing",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "attachment",
+      "family": "action-artifact",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "note",
+      "family": "action-artifact",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "approve",
+      "family": "action-artifact",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "decline",
+      "family": "action-artifact",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "image",
+      "family": "visual-artifact",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "svg",
+      "family": "visual",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "table",
+      "family": "complex",
+      "editableInForm": true,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "line",
+      "family": "shape",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "rectangle",
+      "family": "shape",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "ellipse",
+      "family": "shape",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "qrcode",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "japanpost",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "ean13",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "ean8",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "code39",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "code128",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "nw7",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "itf14",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "upca",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "upce",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "gs1datamatrix",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    },
+    {
+      "type": "pdf417",
+      "family": "barcode",
+      "editableInForm": false,
+      "gates": [
+        "factory",
+        "designer",
+        "inspector",
+        "form",
+        "clear-reset",
+        "sibling-isolation",
+        "access",
+        "codec",
+        "validation",
+        "host-rerender",
+        "viewer",
+        "snapshot",
+        "pdf",
+        "multi-document",
+        "multi-user",
+        "cleanup"
+      ],
+      "conditionalGates": [
+        "keyboard-ime",
+        "touch-pointer",
+        "artifact-lifecycle",
+        "signature-isolation",
+        "computed-regeneration"
+      ]
+    }
+  ]
+}

@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-08-13T20:45:54.071Z`
+- **Fecha generación:** `2026-08-14T04:39:42.263Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `5`
 - **Límite por archivo:** `80 KB`
@@ -43,18 +43,18 @@ prueba-plugin
 | 1 | `src/styles/tailwind.css` | css | 3 | 0.1 | completo |
 | 2 | `src/style.css` | css | 30 | 0.9 | completo |
 | 3 | `src/styles/sisad-tailwind-bridge.css` | css | 0 | 0.0 | completo |
-| 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 0 | 0.0 | completo |
+| 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 237 | 8.2 | completo |
 | 5 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 85 | 3.5 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1922
+- **extensión no incluida:** 2045
 - **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `4.4`
-- **KB incluidos en contenido:** `4.4`
+- **KB originales candidatos:** `12.6`
+- **KB incluidos en contenido:** `12.6`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -142,13 +142,250 @@ body {
 ### 0004 — `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
 
 - **Lenguaje:** `css`
-- **Líneas:** `0`
-- **Tamaño original:** `0.0 KB`
-- **SHA1 corto:** `da39a3ee5e`
+- **Líneas:** `237`
+- **Tamaño original:** `8.2 KB`
+- **SHA1 corto:** `3b1bb334e0`
 - **Estado:** `completo`
+- **Símbolos detectados:** `selector: .sisad-pdfme-root`, `selector: .sisad-pdfme-lab-runtime-host`, `selector: .sisad-pdfme-designer-snap-lines`
 
 ```css
+/* ============================================================
+   sisad-pdfme.css — reglas del runtime que Tailwind no alcanza.
 
+   El layout (root, workspace, stage, canvas, paper, preview) vive en
+   utilidades Tailwind dentro del JSX. Aquí solo queda lo que no se puede
+   expresar como clase en un componente propio:
+
+   - tokens de runtime consumidos por estilos inline (`var(--…)` sin fallback);
+   - DOM de terceros (moveable, scena-guides) y nodos marcados por dataset;
+   - variantes dirigidas por `data-*` con fondos multicapa.
+
+   No duplicar aquí reglas que ya posee una clase Tailwind del JSX: la doble
+   propiedad es lo que hace que un cambio de geometría se pierda a medias.
+   ============================================================ */
+
+/* ---------- Tokens de runtime ----------
+   Alias cortos y tokens de schema consumidos desde estilos inline en
+   `schemas/**` y `ui/components/**`. Varios consumidores no llevan fallback
+   (`var(--sisad-schema-radius)`, `var(--sisad-schema-selected-shadow)`), así
+   que sin estas definiciones la declaración se descarta por completo. */
+.sisad-pdfme-root {
+  font-family: var(--font-family-ui);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-base);
+  -webkit-font-smoothing: antialiased;
+  --bg-hover: var(--color-bg-hover);
+  --bg-active: var(--color-bg-active);
+  --border-subtle: var(--color-border-subtle);
+  --border-soft: var(--color-border-soft);
+  --border-strong: var(--color-gray-400);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+  --transition: 180ms ease;
+  --sisad-schema-radius: 4px;
+  --sisad-schema-border-alpha: 0.64;
+  --sisad-schema-surface-alpha: 0.14;
+  --sisad-schema-selected-color: var(--sisad-pdfme-selection-color, #4200ca);
+  --sisad-schema-selected-shadow: 0 0 0 1px var(--sisad-schema-selected-color);
+  --sisad-schema-font-size: 11px;
+  --sisad-schema-line-height: 1.2;
+  --sisad-schema-padding-x: 6px;
+  --sisad-schema-padding-y: 3px;
+}
+
+/* Preflight cubre esto en la app, pero el runtime también se monta embebido:
+   con content-box el papel y el stage miden de más y descentran el documento. */
+.sisad-pdfme-root,
+.sisad-pdfme-root *,
+.sisad-pdfme-root *::before,
+.sisad-pdfme-root *::after {
+  box-sizing: border-box;
+}
+
+.sisad-pdfme-root ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.sisad-pdfme-root ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sisad-pdfme-root ::-webkit-scrollbar-thumb {
+  background: var(--border-soft);
+  border-radius: 100px;
+}
+
+.sisad-pdfme-root ::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+.sisad-pdfme-lab-runtime-host {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/*
+ * Reduced motion en el chrome del diseñador.
+ *
+ * Las transiciones de los botones vienen de Ant Design, no de nuestras clases,
+ * así que una utilidad motion-reduce en el JSX no las alcanza. Se neutralizan
+ * aquí, acotado a sus clusters. El !important es necesario por la
+ * especificidad de antd; no cruza ningún límite porque apunta a superficie
+ * propia.
+ */
+@media (prefers-reduced-motion: reduce) {
+  [class*='control-bar-cluster'],
+  [class*='control-bar-cluster'] * {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+  }
+}
+
+/* ---------- Rejilla del canvas ----------
+   Variante dirigida por data-attribute con seis capas de fondo; la clase
+   Tailwind del canvas define solo el fondo base. */
+.sisad-pdfme-designer-canvas[data-grid-visible='true'] {
+  --sisad-grid-step: 24px;
+  --sisad-grid-line: rgba(148, 163, 184, 0.16);
+  --sisad-grid-line-strong: rgba(148, 163, 184, 0.24);
+  background-image:
+    linear-gradient(to right, var(--sisad-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--sisad-grid-line) 1px, transparent 1px),
+    linear-gradient(to right, var(--sisad-grid-line-strong) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--sisad-grid-line-strong) 1px, transparent 1px),
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
+  background-size:
+    var(--sisad-grid-step) var(--sisad-grid-step),
+    var(--sisad-grid-step) var(--sisad-grid-step),
+    calc(var(--sisad-grid-step) * 4) calc(var(--sisad-grid-step) * 4),
+    calc(var(--sisad-grid-step) * 4) calc(var(--sisad-grid-step) * 4),
+    auto,
+    auto;
+}
+
+/* ---------- Página del diseñador ----------
+   `data-canvas-page` lo marca Canvas por dataset sobre los refs de Paper, no
+   hay JSX propio donde colgar la clase. Solo se declara lo que la presentación
+   Tailwind de Paper no cubre: recorte del contenido a la página. */
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] > .sisad-pdfme-designer-custom-undefined {
+  display: none;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] > .sisad-pdfme-designer-padding {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--color-border-18);
+  opacity: 1;
+  mix-blend-mode: multiply;
+}
+
+.sisad-pdfme-designer-canvas[data-padding-visible='false'] [data-canvas-page='true'] > .sisad-pdfme-designer-padding {
+  display: none;
+}
+
+/* ---------- Guías y snap (scena-guides) ---------- */
+.sisad-pdfme-designer-guides-ruler .scena-guides-text,
+.sisad-pdfme-designer-guides-ruler .scena-guides-number {
+  font-size: 0.625rem;
+  opacity: 0.82;
+}
+
+.sisad-pdfme-designer-guides-ruler .scena-guides-guide.scena-guides-adder {
+  opacity: 0.72;
+}
+
+.sisad-pdfme-designer-snap-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.sisad-pdfme-designer-snap-line[data-is-center='true'] {
+  filter: drop-shadow(0 0 2px var(--color-danger-32));
+}
+
+.sisad-pdfme-designer-canvas[data-guides-visible='false'] [data-canvas-page='true'] .scena-guides-manager {
+  display: none;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] .scena-guides-manager {
+  backdrop-filter: blur(0.0125rem);
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] .scena-guides-guide-origin {
+  background: transparent;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] .scena-guides-guide.scena-guides-adder {
+  background: var(--color-info-55);
+}
+
+/* ---------- Controles de moveable ---------- */
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] .moveable-control-box {
+  z-index: 12;
+  --moveable-color: var(--color-info);
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] .moveable-control-box .moveable-line {
+  background: var(--moveable-color);
+  opacity: 0.95;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] .moveable-control-box .moveable-control {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 62.4375rem;
+  border: 1px solid var(--color-white);
+  background: var(--moveable-color);
+  box-shadow:
+    0 0 0 1px var(--color-bg-elevated),
+    0 1px 0.25rem var(--color-gray-900-10);
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] .moveable-control-box .moveable-origin {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 62.4375rem;
+  border: 1px solid var(--color-white);
+  background: var(--color-warning);
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page='true'] .moveable-control-box .moveable-rotation-line {
+  border-color: var(--moveable-color);
+  opacity: 0.9;
+}
+
+/* ---------- Interacción de schemas ----------
+   El estado lo escribe el runtime en el dataset del nodo seleccionable; sin
+   estas reglas el contenido interno del schema roba el puntero a moveable. */
+.sisad-pdfme-ui-custom-selectable[data-schema-active='true']:not([data-schema-editing='true']) > * {
+  pointer-events: none;
+}
+
+.sisad-pdfme-ui-custom-selectable[data-schema-active='true']:not([data-schema-editing='true']) [data-schema-interactive-control] {
+  pointer-events: auto;
+}
+
+.sisad-pdfme-ui-custom-selectable[data-schema-active='false'] [data-checkbox-group-add-option],
+.sisad-pdfme-ui-custom-selectable[data-schema-active='false'] [data-radio-group-add-option],
+.sisad-pdfme-ui-custom-selectable[data-schema-active='false'] [data-checkbox-convert-to-group] {
+  display: none !important;
+}
 ```
 
 <a id="file-0005"></a>

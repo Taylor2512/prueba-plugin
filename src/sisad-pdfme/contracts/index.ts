@@ -25,10 +25,10 @@
 /**
  * Contratos de assignments de schemas.
  *
- * `SchemaAssignments` representa el formato normalizado actual.
+ * `UserSchemaAssignments` representa el formato normalizado actual.
  * `SchemaAssignments` conserva compatibilidad con snapshots antiguos.
  */
-export type { SchemaAssignments, SchemaAssignments } from './assignments.js';
+export type { SchemaAssignments, UserSchemaAssignments } from './assignments.js';
 
 /**
  * Contratos base del sistema de comandos.

@@ -12,9 +12,8 @@ paquete aporta los tipos descubiertos en tiempo de ejecución.
 | `index.jsx` | API pública. `getLab()` entrega las rutas resueltas al router del host. |
 | `catalog.js` | Deriva familias, rutas, recipients, documentos y perfiles de config. |
 | `builders.js` | Constructores de templates (puros, sin conocer manifest ni catálogo). |
-| `instances.js` | Fábrica de instancias del runtime a partir del descriptor del manifest. |
+| `runtime.js` | Fábrica de instancias y hooks compartidos del runtime. |
 | `pages.jsx` | Página universal de runtime, páginas de documentación y `buildRouteDefinitions()`. |
-| `hooks.js` | `useRuntimeConfig`, `useEventLog`, `useController`. |
 | `ui.jsx` | Componentes Tailwind-only y `DynamicInfoPanel`. |
 | `hostBundle.js` | Superficie de integración host: construcción y export a bundle portable. |
 | `config/examplesManifest.json` | Rutas, paneles, handlers y descriptores de instancia. |
@@ -25,8 +24,7 @@ Flujo de dependencias, sin ciclos:
 
 ```text
 config/*.json → builders.js → catalog.js → ui.jsx → pages.jsx → index.jsx
-                                        ↘ hooks.js ↗
-                                        ↘ instances.js ↗
+                                        ↘ runtime.js ↗
 ```
 
 ## Agregar un ejemplo nuevo

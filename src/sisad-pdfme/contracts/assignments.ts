@@ -31,7 +31,7 @@
  * Esta es la estructura recomendada para snapshots nuevos porque conserva
  * más contexto que el formato .
  */
-export type SchemaAssignments = Record<
+export type UserSchemaAssignments = Record<
   string,
   Record<string, Record<string, Record<string, string[]>>>
 >;
@@ -60,7 +60,7 @@ export type SchemaAssignments = Record<
  * - compatibilidad con snapshots anteriores;
  * - migraciones desde versiones donde no existía agrupación por userId;
  * - lectura de templates antiguos sin romper runtime;
- * - adaptación hacia `SchemaAssignments` cuando se requiera contexto por usuario.
+ * - adaptación hacia `UserSchemaAssignments` cuando se requiera contexto por usuario.
  *
  * Limitación:
  * No conserva el primer nivel `userId`, por lo que no permite distinguir

@@ -27,8 +27,7 @@ import {
   buildSnapshotFormTemplate,
   buildSnapshotFormValues,
 } from './builders.js';
-import { createExampleInstance } from './instances.js';
-import { useController, useEventLog, useRuntimeConfig } from './hooks.js';
+import { createExampleInstance, useController, useEventLog, useRuntimeConfig } from './runtime.js';
 import {
   DocumentationShell,
   DynamicInfoPanel,
