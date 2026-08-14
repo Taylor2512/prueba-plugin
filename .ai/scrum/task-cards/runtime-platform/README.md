@@ -44,3 +44,13 @@ Authority: source/evidence > ledger > card > plan. RTP-000 is the only initial R
 - [RTP-330 — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad](./RTP-330.md)
 - [RTP-340 — Brain/docs/index/evidence closeout and context regeneration](./RTP-340.md)
 <!-- project-tools:navigation:end -->
+
+<!-- autonomous-runtime:tasks:start -->
+## Autonomous continuation
+
+Cards RTP-425 through RTP-545 complete capability/configuration, grid geometry, runtime/schema
+authority, production concurrency, legacy reduction and release.
+
+A coordinator may execute multiple cards continuously, but every card remains a bounded evidence
+unit.
+<!-- autonomous-runtime:tasks:end -->

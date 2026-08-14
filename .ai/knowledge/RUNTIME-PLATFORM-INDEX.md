@@ -11,3 +11,16 @@ Canonical entry:
 Continuation tasks:
 `RTP-345` -> `RTP-420`.
 <!-- runtime-execution:index:end -->
+
+<!-- autonomous-runtime:index:start -->
+## Capability / production hardening continuation
+
+Context:
+`.ai/knowledge/runtime-platform/CURRENT-SNAPSHOT.md`
+
+Queue:
+`RTP-425` through `RTP-545`.
+
+Primary prompt:
+`.ai/prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md`
+<!-- autonomous-runtime:index:end -->

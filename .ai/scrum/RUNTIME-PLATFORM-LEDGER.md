@@ -64,3 +64,19 @@
 
 Status real se determina por source/evidence, no por esta tabla.
 <!-- runtime-execution:ledger:end -->
+
+<!-- autonomous-runtime:ledger:start -->
+## Autonomous runtime continuation
+
+| Range | Focus |
+|---|---|
+| RTP-425..445 | source/config/capability authority |
+| RTP-450..465 | grid + Designer convergence |
+| RTP-470..480 | runtime + schema registry/codec |
+| RTP-485..505 | concurrency/completion/merge/result/PDF |
+| RTP-510..520 | real multi-user + all-schema + comparator |
+| RTP-525..535 | User migration + legacy/dead/dedup |
+| RTP-540..545 | production gates + release |
+
+Actual state is source/evidence-driven. This section is not evidence of completion.
+<!-- autonomous-runtime:ledger:end -->

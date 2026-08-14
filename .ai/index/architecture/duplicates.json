@@ -1,10 +1,59 @@
 {
   "exact": [
     {
+      "hash": "d9a09352f356b19c97acb5f7789fc2e5fd9be53f4d2127b8050b2377463e0ac7",
+      "paths": [
+        ".agents/skills/sisad-autonomous-runtime/SKILL.md",
+        ".claude/skills/sisad-autonomous-runtime/SKILL.md"
+      ]
+    },
+    {
+      "hash": "1cccdc0e6df6cd705bb562c5c0c34ea83af665b58664584e6def2a5fc0c91be2",
+      "paths": [
+        ".agents/skills/sisad-dynamic-capabilities/SKILL.md",
+        ".claude/skills/sisad-dynamic-capabilities/SKILL.md"
+      ]
+    },
+    {
+      "hash": "1d7707faa9d2ae2c872b7f97f5c82bb50ea38a40cc05549f7014924ded71224a",
+      "paths": [
+        ".agents/skills/sisad-execution-orchestration/SKILL.md",
+        ".claude/skills/sisad-execution-orchestration/SKILL.md"
+      ]
+    },
+    {
       "hash": "f791ccf16627b2f0f1249e154e6d5eba38fdc8a911f75a5d75b2630a6bb2325a",
       "paths": [
         ".agents/skills/sisad-form-transaction/SKILL.md",
         ".claude/skills/sisad-form-transaction/SKILL.md"
+      ]
+    },
+    {
+      "hash": "3a3ea1260ef3efcb631b6d30ce536cecf78de158e8284c8ac97b58ef191ae088",
+      "paths": [
+        ".agents/skills/sisad-grid-geometry/SKILL.md",
+        ".claude/skills/sisad-grid-geometry/SKILL.md"
+      ]
+    },
+    {
+      "hash": "521b6247196743c49f7263431c5dfdc1152c39c2fe502654f15ceed0b3df6218",
+      "paths": [
+        ".agents/skills/sisad-pdf-composition/SKILL.md",
+        ".claude/skills/sisad-pdf-composition/SKILL.md"
+      ]
+    },
+    {
+      "hash": "6ad086f4114975eb661c1f9494715a520a0d38ae5a56fae47dfec7e83943e0f1",
+      "paths": [
+        ".agents/skills/sisad-safe-legacy-retirement/SKILL.md",
+        ".claude/skills/sisad-safe-legacy-retirement/SKILL.md"
+      ]
+    },
+    {
+      "hash": "6e548b1d2f72412cba2e5ebb84cc7048c94a2401f017fd6d67f4b4829307d287",
+      "paths": [
+        ".agents/skills/sisad-schema-completion/SKILL.md",
+        ".claude/skills/sisad-schema-completion/SKILL.md"
       ]
     },
     {

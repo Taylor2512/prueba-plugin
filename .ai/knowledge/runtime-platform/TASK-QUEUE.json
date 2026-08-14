@@ -1,0 +1,191 @@
+{
+  "campaign": "SISAD-PDFME-RUNTIME-PLATFORM",
+  "taskRange": {
+    "first": "RTP-425",
+    "last": "RTP-545"
+  },
+  "tasks": [
+    {
+      "id": "RTP-425",
+      "dependsOn": [],
+      "title": "Reconciliar baseline de configuración y runtime"
+    },
+    {
+      "id": "RTP-430",
+      "dependsOn": [
+        "RTP-425"
+      ],
+      "title": "Inventariar capabilities ejecutables"
+    },
+    {
+      "id": "RTP-435",
+      "dependsOn": [
+        "RTP-430"
+      ],
+      "title": "Compilar configuración a snapshot inmutable"
+    },
+    {
+      "id": "RTP-440",
+      "dependsOn": [
+        "RTP-435"
+      ],
+      "title": "Hacer fail-closed el CapabilityGraph"
+    },
+    {
+      "id": "RTP-445",
+      "dependsOn": [
+        "RTP-440"
+      ],
+      "title": "Crear impact graph y effect plan dinámico"
+    },
+    {
+      "id": "RTP-450",
+      "dependsOn": [
+        "RTP-445"
+      ],
+      "title": "Crear GridGeometry canónica"
+    },
+    {
+      "id": "RTP-455",
+      "dependsOn": [
+        "RTP-450"
+      ],
+      "title": "Cerrar grid, snap, guides y rulers"
+    },
+    {
+      "id": "RTP-460",
+      "dependsOn": [
+        "RTP-440"
+      ],
+      "title": "Converger registries del Designer"
+    },
+    {
+      "id": "RTP-465",
+      "dependsOn": [
+        "RTP-460"
+      ],
+      "title": "Eliminar direct config readers y reglas duplicadas"
+    },
+    {
+      "id": "RTP-470",
+      "dependsOn": [
+        "RTP-465"
+      ],
+      "title": "Converger capabilities de Runtime"
+    },
+    {
+      "id": "RTP-475",
+      "dependsOn": [
+        "RTP-470"
+      ],
+      "title": "Hacer plugin-owned el schema manifest"
+    },
+    {
+      "id": "RTP-480",
+      "dependsOn": [
+        "RTP-475"
+      ],
+      "title": "Enriquecer codecs, validation y completion"
+    },
+    {
+      "id": "RTP-485",
+      "dependsOn": [
+        "RTP-425"
+      ],
+      "title": "Cerrar optimistic concurrency de execution scopes"
+    },
+    {
+      "id": "RTP-490",
+      "dependsOn": [
+        "RTP-480",
+        "RTP-485"
+      ],
+      "title": "Endurecer completion projections"
+    },
+    {
+      "id": "RTP-495",
+      "dependsOn": [
+        "RTP-480",
+        "RTP-485"
+      ],
+      "title": "Bloquear canonical merge conflictivo"
+    },
+    {
+      "id": "RTP-500",
+      "dependsOn": [
+        "RTP-495"
+      ],
+      "title": "Crear codec durable de ExecutionResult"
+    },
+    {
+      "id": "RTP-505",
+      "dependsOn": [
+        "RTP-500"
+      ],
+      "title": "Endurecer composición PDF"
+    },
+    {
+      "id": "RTP-510",
+      "dependsOn": [
+        "RTP-470",
+        "RTP-485",
+        "RTP-490"
+      ],
+      "title": "Conectar multi-user al Form real"
+    },
+    {
+      "id": "RTP-515",
+      "dependsOn": [
+        "RTP-480",
+        "RTP-510"
+      ],
+      "title": "Crear all-schema stress harness dinámico"
+    },
+    {
+      "id": "RTP-520",
+      "dependsOn": [
+        "RTP-515"
+      ],
+      "title": "Auditar parity contra referencia DocuSign"
+    },
+    {
+      "id": "RTP-525",
+      "dependsOn": [
+        "RTP-510"
+      ],
+      "title": "Migrar compatibilidad Recipient hacia User"
+    },
+    {
+      "id": "RTP-530",
+      "dependsOn": [
+        "RTP-525"
+      ],
+      "title": "Retirar legacy y dead code de forma segura"
+    },
+    {
+      "id": "RTP-535",
+      "dependsOn": [
+        "RTP-530"
+      ],
+      "title": "Reducir duplicación y aumentar genericidad"
+    },
+    {
+      "id": "RTP-540",
+      "dependsOn": [
+        "RTP-505",
+        "RTP-515",
+        "RTP-535"
+      ],
+      "title": "Cerrar performance, a11y, privacy y browser concurrency"
+    },
+    {
+      "id": "RTP-545",
+      "dependsOn": [
+        "RTP-540",
+        "RTP-520"
+      ],
+      "title": "Release autónomo y closeout"
+    }
+  ],
+  "evidenceRoot": "reports/runtime-platform/evidence"
+}

@@ -36,3 +36,21 @@ large-PDF cleanup/leak, object URL cleanup, keyboard/pointer accessibility.
 - provenance manifest;
 - performance/privacy/memory.
 <!-- runtime-execution:gates:end -->
+
+<!-- autonomous-runtime:gates:start -->
+## Capability/production gates
+
+- capability graph fail-closed;
+- direct config reader audit;
+- dynamic config effect plan;
+- grid/snap page-space parity;
+- schema registry/codec coverage;
+- optimistic concurrency;
+- conflict-blocking canonical merge;
+- execution result codec;
+- bounded PDF composition;
+- multi-user real Form;
+- all-schema/pairwise;
+- dead-code/dedup/cycle ratchets;
+- performance/a11y/privacy/browser contexts.
+<!-- autonomous-runtime:gates:end -->

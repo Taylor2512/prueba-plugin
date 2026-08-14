@@ -35,3 +35,14 @@ orientar
 Consolidados completos, todos los task-cards, todos los skills, logs completos,
 backups, coverage, reportes históricos, índices JSONL completos o adapters de
 todos los proveedores.
+
+<!-- autonomous-runtime:start -->
+## Autonomous runtime completion
+
+For full runtime/capability completion use:
+
+`.ai/prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md`
+
+The coordinator continues through unblocked RTP tasks automatically and stops only at final
+release or a true external blocker.
+<!-- autonomous-runtime:end -->

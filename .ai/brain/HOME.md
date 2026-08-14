@@ -41,3 +41,17 @@ Para multi-user, execution shapes, schema completion y PDF composition:
 - `.ai/plans/PLAN_SISAD_PDFME_EXECUTION_ORCHESTRATION.md`
 - `.ai/scrum/task-cards/runtime-platform/RTP-345.md`
 <!-- runtime-execution:home:end -->
+
+<!-- autonomous-runtime:brain:start -->
+## Dynamic capability / autonomous runtime
+
+Start:
+`.ai/knowledge/runtime-platform/TASK-EXECUTION-MAP.md`
+
+Core contracts:
+- `CAPABILITY-RESOLUTION-CONTRACT.md`
+- `CONFIG-COMPILATION-CONTRACT.md`
+- `GRID-GEOMETRY-CONTRACT.md`
+- `SCHEMA-MANIFEST-OWNERSHIP-CONTRACT.md`
+- `AUTONOMOUS-EXECUTION-CONTRACT.md`
+<!-- autonomous-runtime:brain:end -->
