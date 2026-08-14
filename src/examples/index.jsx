@@ -67,6 +67,8 @@ export {
   buildShowcaseTemplate,
   buildSnapshotFormTemplate,
   buildSnapshotFormValues,
+  buildExpandedFormTemplate,
+  buildExpandedFormValues,
 } from './builders.js';
 
 export { createExampleInstance, useController, useEventLog, useRuntimeConfig } from './runtime.js';

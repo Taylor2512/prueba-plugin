@@ -208,6 +208,12 @@
           "title": "Eventos",
           "description": "Cambios de input",
           "type": "events"
+        },
+        {
+          "key": "controller",
+          "title": "Controles del runtime",
+          "description": "Inspecciona template, snapshot, validación, selección y asignación sin salir del Form.",
+          "type": "controller"
         }
       ],
       "handlers": {
@@ -277,7 +283,7 @@
       "viewportName": "runtime-form-digital-agreements",
       "modeBadge": "form",
       "template": {
-        "builder": "snapshotForm",
+        "builder": "expandedForm",
         "options": {
           "source": "DigitalAgreements"
         }
@@ -433,7 +439,7 @@
         ]
       },
       "values": {
-        "builder": "snapshotForm"
+        "builder": "expandedForm"
       },
       "state": {
         "lastInput": ""
@@ -461,6 +467,12 @@
           "title": "Eventos",
           "description": "Cambios de input",
           "type": "events"
+        },
+        {
+          "key": "controller",
+          "title": "Controles del runtime",
+          "description": "Inspecciona template, snapshot, validación, selección y asignación sin salir del Form.",
+          "type": "controller"
         }
       ],
       "handlers": {

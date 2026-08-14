@@ -26,6 +26,8 @@ import {
   buildShowcaseTemplate,
   buildSnapshotFormTemplate,
   buildSnapshotFormValues,
+  buildExpandedFormTemplate,
+  buildExpandedFormValues,
 } from './builders.js';
 import { createExampleInstance, useController, useEventLog, useRuntimeConfig } from './runtime.js';
 import {
@@ -47,10 +49,12 @@ const TEMPLATE_BUILDERS = {
   showcaseTemplate: (config) => buildShowcaseTemplate(resolveFamilyGroups(config.template?.options)),
   multiUserShowcase: (config) => buildMultiUserShowcaseTemplate(resolveFamilyGroups(config.template?.options)),
   snapshotForm: (config) => buildSnapshotFormTemplate(config.formSnapshot),
+  expandedForm: (config) => buildExpandedFormTemplate(config.formSnapshot),
 };
 
 const VALUES_BUILDERS = {
   snapshotForm: (config) => buildSnapshotFormValues(config.formSnapshot),
+  expandedForm: (config) => buildExpandedFormValues(config.formSnapshot),
 };
 
 const buildFromRegistry = (registry, name, config) => {

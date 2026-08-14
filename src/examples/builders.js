@@ -6,7 +6,7 @@
  * `catalog.js` puede consumirlos sin generar un ciclo de imports.
  */
 import { cloneDeep, getInputFromTemplate } from '@sisad-pdfme/common';
-import { createDefaultSchema } from '@sisad-pdfme/schemas';
+import { createDefaultSchema, getBuiltInFields, getSchemaFamily } from '@sisad-pdfme/schemas';
 import { createDefaultTemplate, decorateCollaborationUsers, decorateTemplateWithCollaboration } from '@/sisad-pdfme/devtools';
 import Data from './config/examplesData.json';
 
@@ -220,4 +220,38 @@ export function buildSnapshotFormValues(snapshot = {}) {
     }
     return next;
   });
+}
+
+const isExcludedFromExpandedForm = (type) => getSchemaFamily(type) === 'barcode';
+
+/**
+ * LAB-only form template: preserves the declarative snapshot and appends one
+ * registry-derived coverage page for every non-barcode schema type.
+ */
+export function buildExpandedFormTemplate(snapshot = {}) {
+  const base = buildSnapshotFormTemplate(snapshot);
+  const groupsByFamily = new Map();
+  getBuiltInFields()
+    .map((definition) => definition.type)
+    .filter((type) => type && !isExcludedFromExpandedForm(type))
+    .forEach((type) => {
+      const family = getSchemaFamily(type);
+      const group = groupsByFamily.get(family) || { title: `Schema coverage · ${family}`, types: [] };
+      // Two instances make sibling isolation and repeated interaction visible
+      // in the LAB while still deriving the type list from the live registry.
+      group.types.push(type, type);
+      groupsByFamily.set(family, group);
+    });
+  const coverage = buildShowcaseTemplate(Array.from(groupsByFamily.values()));
+  return {
+    ...base,
+    schemas: [...(base.schemas || []), ...(coverage.schemas || [])],
+  };
+}
+
+export function buildExpandedFormValues(snapshot = {}) {
+  const template = buildExpandedFormTemplate(snapshot);
+  const baseValues = buildSnapshotFormValues(snapshot);
+  const defaults = getInputFromTemplate(template);
+  return defaults.map((input, index) => ({ ...(input || {}), ...(baseValues[index] || {}) }));
 }
