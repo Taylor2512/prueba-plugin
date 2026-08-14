@@ -67,7 +67,7 @@ export const normalizeHostData = ({
   const normalizedSignatureProviders = Array.isArray(signatureProviders)
     ? signatureProviderAdapter.toProviders(signatureProviders)
     : [];
-  const normalizedInputs = Array.isArray(inputs)
+  const normalizedInputs = Array.isArray(inputs) && inputs.length > 0
     ? cloneDeep(inputs)
     : getInputFromTemplate(normalizedTemplate);
   const resolvedActiveRecipientId = String(

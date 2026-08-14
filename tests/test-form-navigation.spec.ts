@@ -38,6 +38,14 @@ test('Form mutates editable text and choice schemas while Viewer stays readonly'
   const editableSelect = viewport.locator('select').first();
   await editableSelect.selectOption({ index: 1 });
   await expect(editableSelect).toHaveValue('option1');
+  await expect(editableText).toHaveText('Form interaction');
+
+  const editableNumber = viewport.locator('#text-number-1');
+  if (await editableNumber.count()) {
+    await editableNumber.first().fill('42');
+    await expect(editableNumber.first()).toHaveText('42');
+    await expect(editableText).toHaveText('Form interaction');
+  }
 
   const radio = viewport.getByRole('radio', { name: 'Opción 2' });
   await radio.click();
@@ -46,6 +54,7 @@ test('Form mutates editable text and choice schemas while Viewer stays readonly'
   const checkbox = viewport.getByRole('checkbox', { name: 'Casilla 1' });
   await checkbox.click();
   await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+  await expect(editableText).toHaveText('Form interaction');
 
   await page.goto('http://localhost:5174/runtime/viewer');
   const viewer = page.getByTestId('-runtime-viewport');
@@ -55,4 +64,24 @@ test('Form mutates editable text and choice schemas while Viewer stays readonly'
   for (let index = 0; index < await viewerChoices.count(); index += 1) {
     await expect(viewerChoices.nth(index)).toBeDisabled();
   }
+});
+
+test('Form preserves focus and accepts sequential text and number input', async ({ page }) => {
+  await page.goto('http://localhost:5174/runtime/form/digital-agreements');
+  const viewport = page.getByTestId('-runtime-viewport');
+
+  const editableText = viewport.locator('[contenteditable="true"], [contenteditable="plaintext-only"]').first();
+  await expect(editableText).toBeVisible();
+  await editableText.fill('');
+  await editableText.click();
+  await editableText.pressSequentially('ABC 123', { delay: 20 });
+  await expect(editableText).toHaveText('ABC 123');
+
+  const editableNumber = viewport.locator('#text-number-1');
+  await expect(editableNumber.first()).toBeVisible();
+  await editableNumber.first().fill('');
+  await editableNumber.first().click();
+  await editableNumber.first().pressSequentially('-12.50', { delay: 20 });
+  await expect(editableNumber.first()).toHaveText('-12.50');
+  await expect(editableText).toHaveText('ABC 123');
 });

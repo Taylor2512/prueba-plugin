@@ -55,34 +55,36 @@ const buildSchemaBuilderStableJsonSignature = (v: unknown) => {
   }
 };
 
-// Global cache for last signatures per schema id or per root element
+// Keep dedupe state scoped to the rendered root. A schema id is only unique
+// inside one runtime instance; two Forms may legitimately reuse the id.
 const _lastSigBySchemaId = new Map<string, string>();
-const _lastSigByElement = new WeakMap<Element, string>();
+const _lastSigByRoot = new WeakMap<object, Map<string, string>>();
 
-const getOnChangeCacheKey = (schema: unknown, rootElement: unknown): string | Element | null => {
-  if (isRecord(schema) && typeof schema.id === 'string' && schema.id) {
-    return schema.id;
-  }
-  if (rootElement instanceof Element) {
-    return rootElement;
-  }
-  return null;
-};
+const getSchemaId = (schema: unknown) =>
+  isRecord(schema) && typeof schema.id === 'string' && schema.id ? schema.id : '__anonymous__';
 
-const shouldSkipDuplicateEmission = (cacheKey: string | Element | null, signature: string): boolean => {
-  if (typeof cacheKey === 'string') {
-    const last = _lastSigBySchemaId.get(cacheKey);
+const shouldSkipDuplicateEmission = (
+  schema: unknown,
+  rootElement: unknown,
+  signature: string,
+): boolean => {
+  if (rootElement && typeof rootElement === 'object') {
+    const root = rootElement as object;
+    const schemaId = getSchemaId(schema);
+    const signatures = _lastSigByRoot.get(root) || new Map<string, string>();
+    const last = signatures.get(schemaId);
     if (last === signature) return true;
-    _lastSigBySchemaId.set(cacheKey, signature);
+    signatures.set(schemaId, signature);
+    _lastSigByRoot.set(root, signatures);
     return false;
   }
 
-  if (cacheKey instanceof Element) {
-    const last = _lastSigByElement.get(cacheKey);
-    if (last === signature) return true;
-    _lastSigByElement.set(cacheKey, signature);
-  }
-
+  // UI plugins normally receive a rootElement. Preserve a conservative
+  // fallback for non-DOM consumers without allowing roots to collide.
+  const schemaId = getSchemaId(schema);
+  const last = _lastSigBySchemaId.get(schemaId);
+  if (last === signature) return true;
+  _lastSigBySchemaId.set(schemaId, signature);
   return false;
 };
 
@@ -106,7 +108,7 @@ export const createSchemaPlugin = <T extends Schema>(
         if (typeof originalOnChange !== 'function') return undefined;
         try {
           const sig = buildSchemaBuilderStableJsonSignature(payload);
-          if (shouldSkipDuplicateEmission(getOnChangeCacheKey(schema, rootElement), sig)) return;
+          if (shouldSkipDuplicateEmission(schema, rootElement, sig)) return;
         } catch (e) {
           // ignore signature errors and proceed
         }

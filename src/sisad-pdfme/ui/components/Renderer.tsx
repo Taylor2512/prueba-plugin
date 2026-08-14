@@ -85,6 +85,27 @@ type DesignerStyleAwareSchema = SchemaForUI & {
  * Estilo fijo para que el root imperativo del plugin ocupe todo el wrapper.
  */
 const FILL_STYLE: React.CSSProperties = { height: '100%', width: '100%' };
+
+const getSchemaRenderSignature = (schema: SchemaForUI, mode: UIRenderProps<Schema>['mode']) => {
+  if (mode !== 'form') return JSON.stringify(schema);
+
+  // Form values are supplied through `value`. Ignore the duplicated schema
+  // content so access-policy clones do not remount the imperative editor.
+  const { content: _content, ...renderSchema } = schema as SchemaForUI & { content?: unknown };
+  return JSON.stringify(renderSchema);
+};
+
+const hasFocusedPluginEditor = (rootElement: HTMLDivElement): boolean => {
+  if (typeof document === 'undefined') return false;
+  const activeElement = document.activeElement;
+  if (!activeElement || !rootElement.contains(activeElement)) return false;
+  if (activeElement instanceof HTMLElement && activeElement.isContentEditable) return true;
+  if (activeElement instanceof HTMLTextAreaElement) return true;
+  if (activeElement instanceof HTMLInputElement) {
+    return !['checkbox', 'radio', 'button', 'submit', 'reset'].includes(activeElement.type);
+  }
+  return false;
+};
 /**
  * Propiedades CSS bloqueadas en designerStyle.
  *
@@ -358,25 +379,49 @@ const Renderer = (props: RendererProps) => {
   const { token: theme } = antdTheme.useToken();
 
   const ref = useRef<HTMLDivElement>(null);
+  const schemaRef = useRef(schema);
+  schemaRef.current = schema;
+  const volatileRenderPropsRef = useRef({
+    value,
+    onChange,
+    stopEditing,
+    tabIndex,
+    placeholder,
+  });
+  volatileRenderPropsRef.current = {
+    value,
+    onChange,
+    stopEditing,
+    tabIndex,
+    placeholder,
+  };
   const _cache = useContext(CacheContext);
   const plugin = pluginsRegistry.findByType(schema.type) || getBuiltInSchemaPluginByType(schema.type);
+  const schemaRenderSignature = getSchemaRenderSignature(schema, mode);
 
   const renderPlugin = useCallback(() => {
     const rootElement = ref.current;
-    if (!plugin?.ui || !rootElement || !schema.type) return undefined;
+    const currentSchema = schemaRef.current;
+    if (!plugin?.ui || !rootElement || !currentSchema.type) return undefined;
+
+    // Imperative Form editors must not be replaced while typing. React may
+    // re-run this effect because the host publishes a new input snapshot.
+    if (mode === 'form' && hasFocusedPluginEditor(rootElement)) return undefined;
+
+    const currentProps = volatileRenderPropsRef.current;
 
     rootElement.innerHTML = '';
 
     void plugin.ui({
-      value,
-      schema,
+      value: currentProps.value,
+      schema: currentSchema,
       basePdf,
       rootElement,
       mode,
-      onChange,
-      stopEditing,
-      tabIndex,
-      placeholder,
+      onChange: currentProps.onChange,
+      stopEditing: currentProps.stopEditing,
+      tabIndex: currentProps.tabIndex,
+      placeholder: currentProps.placeholder,
       options,
       theme,
       i18n: renderI18n,
@@ -385,26 +430,41 @@ const Renderer = (props: RendererProps) => {
     });
 
     return () => {
-      rootElement.innerHTML = '';
+      if (mode !== 'form' || !hasFocusedPluginEditor(rootElement)) {
+        rootElement.innerHTML = '';
+      }
     };
   }, [
     _cache,
     basePdf,
     mode,
-    onChange,
     options,
-    placeholder,
     plugin,
     renderI18n,
     scale,
-    schema,
-    stopEditing,
-    tabIndex,
+    schemaRenderSignature,
     theme,
-    value,
   ]);
 
   useEffect(() => renderPlugin(), [renderPlugin]);
+
+  const previousValueRef = useRef(value);
+  useEffect(() => {
+    if (previousValueRef.current === value) return undefined;
+    previousValueRef.current = value;
+
+    const rootElement = ref.current;
+    const activeElement = typeof document === 'undefined' ? null : document.activeElement;
+
+    // Form plugins own their editor DOM. Re-rendering while an editor is focused
+    // replaces the node, which loses focus and reduces sequential typing to one
+    // character per render. Keep the local draft; external updates sync on blur.
+    if (rootElement && activeElement && rootElement.contains(activeElement)) {
+      return undefined;
+    }
+
+    return renderPlugin();
+  }, [renderPlugin, value]);
 
   if (!plugin) {
     console.error(`[@sisad-pdfme/ui] Renderer for type ${schema.type} not found. 

@@ -165,21 +165,23 @@ export const createBarCode = async (arg: {
 
   let res: Uint8Array;
 
-  if (typeof window !== 'undefined') {
+  const bwipjsModule = bwipjs as unknown as {
+    toCanvas?: (canvas: HTMLCanvasElement, options: RenderOptions) => Promise<void> | void;
+    toBuffer?: (options: RenderOptions) => Promise<Uint8Array> | Uint8Array;
+  };
+
+  if (typeof window !== 'undefined' && typeof bwipjsModule.toCanvas === 'function') {
     const canvas = document.createElement('canvas');
-    // Use a type assertion to safely call toCanvas
-    const bwipjsModule = bwipjs as unknown as {
-      toCanvas(canvas: HTMLCanvasElement, options: RenderOptions): void;
-    };
-    bwipjsModule.toCanvas(canvas, bwipjsArg);
+    await bwipjsModule.toCanvas(canvas, bwipjsArg);
     const dataUrl = canvas.toDataURL('image/png');
     res = b64toUint8Array(dataUrl);
-  } else {
-    // Use a type assertion to safely call toBuffer
-    const bwipjsModule = bwipjs as unknown as {
-      toBuffer(options: RenderOptions): Promise<Uint8Array>;
-    };
+  } else if (typeof bwipjsModule.toBuffer === 'function') {
+    // Vitest/SSR resolve the Node export even when a DOM exists. The buffer
+    // path keeps the renderer deterministic while the browser build uses the
+    // canvas implementation above.
     res = await bwipjsModule.toBuffer(bwipjsArg);
+  } else {
+    throw new Error('[@sisad-pdfme/schemas/barcodes] No bwip-js renderer available');
   }
 
   return res;
