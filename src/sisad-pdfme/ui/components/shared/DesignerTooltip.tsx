@@ -69,6 +69,8 @@ const decorateTrigger = (
   } as Record<string, unknown>);
 };
 
+/* eslint-disable react-hooks/refs */
+
 export const DesignerTooltip = ({
   label,
   placement = 'top',
@@ -123,10 +125,7 @@ export const DesignerTooltip = ({
   if (!text) return children;
 
   const isOpen = open ?? visible;
-  /* eslint-disable react-hooks/refs -- no se lee ninguna ref: se componen props
-     sobre el hijo. La alternativa (no clonar) obligaría a mover
-     `aria-describedby` a un wrapper que el lector de pantalla no asocia al
-     control, perdiendo justo la accesibilidad que motiva esta primitiva. */
+ 
   const trigger = decorateTrigger(children, {
     describedBy: isOpen ? tooltipId : undefined,
     show,

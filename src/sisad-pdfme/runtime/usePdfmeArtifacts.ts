@@ -68,7 +68,7 @@ export type UsePdfmeArtifactsConfig = {
   /** Status reporter. Receives a key and context; host renders text. */
   onStatus?: (event: { type: string; message?: string; context?: unknown }) => void;
   getErrorMessage?: (error: unknown) => string;
-  createObjectUrl?: (bytes: Uint8Array | ArrayBuffer, mimeType: string) => string;
+  createObjectUrl?: (bytes: BlobPart, mimeType: string) => string;
   revokeObjectUrls?: (urls: Array<string | null | undefined>) => void;
 };
 
@@ -101,7 +101,7 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
   const latest = useRef(config);
   // Excepción a react-hooks/refs: patrón "latest ref". `latest.current` solo se
   // lee desde callbacks estables, nunca durante el render.
-  // eslint-disable-next-line react-hooks/refs
+  
   latest.current = config;
 
   useEffect(() => {
@@ -121,7 +121,7 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
   );
   /** Creates object URLs using the host override or default browser helper. */
   const makeUrl = useCallback(
-    (bytes: Uint8Array | ArrayBuffer, mime: string) => (latest.current.createObjectUrl ?? defaultCreateObjectUrl)(bytes, mime),
+    (bytes: BlobPart, mime: string) => (latest.current.createObjectUrl ?? defaultCreateObjectUrl)(bytes as BlobPart, mime),
     [],
   );
   /** Emits semantic status events; UI rendering stays in the host. */
@@ -195,7 +195,7 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
         revoke([generatedPdfUrlRef.current]);
         generatedPdfUrlRef.current = '';
       }
-      const nextUrl = makeUrl(pdfBytes, 'application/pdf');
+      const nextUrl = makeUrl(pdfBytes as unknown as BlobPart, 'application/pdf');
       setState((prev) => ({ ...prev, generatedPdfBytes: pdfBytes, generatedPdfUrl: nextUrl }));
       status({ type: 'generate-success' });
     } catch (error) {
@@ -232,7 +232,7 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
     try {
       const imageBuffers = await cfg.pdf2img(state.generatedPdfBytes, { scale: 1, imageType: 'png' });
       revoke(imagesRef.current);
-      const imageUrls = imageBuffers.map((buffer) => makeUrl(buffer, 'image/png'));
+      const imageUrls = imageBuffers.map((buffer) => makeUrl(buffer as unknown as BlobPart, 'image/png'));
       if (roundtripPdfUrlRef.current) {
         revoke([roundtripPdfUrlRef.current]);
         roundtripPdfUrlRef.current = '';
@@ -261,7 +261,7 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
       const buffers = await Promise.all(state.images.map((url) => fetch(url).then((r) => r.arrayBuffer())));
       const pdfBuffer = await cfg.img2pdf(buffers, { margin: [10, 10, 10, 10], size: { width: 210, height: 297 } });
       if (roundtripPdfUrlRef.current) revoke([roundtripPdfUrlRef.current]);
-      const nextRoundtripUrl = makeUrl(pdfBuffer, 'application/pdf');
+      const nextRoundtripUrl = makeUrl(pdfBuffer as unknown as BlobPart, 'application/pdf');
       setState((prev) => ({ ...prev, roundtripPdfUrl: nextRoundtripUrl }));
       status({ type: 'img2pdf-success' });
     } catch (error) {

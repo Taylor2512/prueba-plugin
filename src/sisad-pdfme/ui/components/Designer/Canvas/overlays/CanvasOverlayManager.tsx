@@ -23,6 +23,7 @@ import {
 import CommentsOverlay from './CommentsOverlay.js';
 import ShortcutHelpPanel from '../../Shortcuts/ShortcutHelpPanel.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import { buildRecipientNameMap } from '../../../../collaborationContext.js';
 import { OptionsContext } from '../../../../contexts.js';
 import { asRecord } from '../../../../../shared/objectGuards.js';
 
@@ -179,16 +180,10 @@ type CanvasOverlayManagerProps = {
 
   /**
    * Subconjunto de contexto colaborativo necesario para permisos,
-   * labels y estado de toolbar.
+   * labels y estado de toolbar. Acepta cualquier subconjunto de la forma
+   * de `EffectiveCollaborationContext` para evitar rupturas entre callers.
    */
-  collaborationContext?: Pick<
-    EffectiveCollaborationContext,
-    | 'actorId'
-    | 'activeRecipientId'
-    | 'activeRecipient'
-    | 'recipientNameMap'
-    | 'canEditStructure'
-  >;
+  collaborationContext?: Partial<EffectiveCollaborationContext>;
 
   /**
    * Clase CSS adicional para el contenedor raíz.
@@ -348,6 +343,22 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
     [activeElements, schemasList],
   );
 
+  const safeCollabForToolbar = useMemo(() => {
+    if (!collaborationContext) return undefined;
+    const recipientOptions = collaborationContext.recipientOptions ?? [];
+    const recipientNameMap = collaborationContext.recipientNameMap ?? buildRecipientNameMap(recipientOptions);
+    return {
+      actorId: (collaborationContext as EffectiveCollaborationContext).actorId ?? null,
+      activeRecipientId: (collaborationContext as EffectiveCollaborationContext).activeRecipientId ?? null,
+      activeRecipient: (collaborationContext as EffectiveCollaborationContext).activeRecipient ?? null,
+      recipientNameMap,
+      canEditStructure: collaborationContext.canEditStructure ?? true,
+    } as Pick<
+      EffectiveCollaborationContext,
+      'actorId' | 'activeRecipientId' | 'activeRecipient' | 'recipientNameMap' | 'canEditStructure'
+    >;
+  }, [collaborationContext]);
+
   /**
    * Página activa de la selección.
    *
@@ -379,7 +390,7 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
             contextMenuOpen={contextMenuOpen}
             externalActions={contextMenuExternalActions}
             hasClipboardData={hasClipboardData}
-            collaborationContext={collaborationContext}
+            collaborationContext={safeCollabForToolbar}
           />
 
           {/**

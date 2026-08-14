@@ -22,7 +22,7 @@ try {
   // Excepción a no-require-imports: la carga tiene que ser síncrona y poder
   // fallar sin abortar el módulo. `import` estático rompería el entry cuando
   // `canvas` no está instalado, e `import()` dinámico es asíncrono.
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  
   ({ createCanvas } = require('canvas'));
 } catch {
   // canvas module not available

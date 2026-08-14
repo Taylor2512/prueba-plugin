@@ -223,7 +223,7 @@ export type Plugin<T = Schema> = {
  * el mapa es heterogéneo, así que un parámetro concreto o `Plugin<Schema>`
  * rechazaría plugins válidos por varianza.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export type Plugins = { [key: string]: Plugin<any> };
 
 export interface PluginRegistry {

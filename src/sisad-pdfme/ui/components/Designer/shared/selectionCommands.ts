@@ -472,10 +472,10 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
         normalizedIds.length > 1
           ? `Se eliminarán ${normalizedIds.length} campos. ¿Deseas continuar?`
           : 'Este campo tiene comentarios o conexiones. ¿Deseas eliminarlo?';
-      // Excepción a no-alert: `deleteSelection` devuelve un booleano síncrono
+      // Excepción a: `deleteSelection` devuelve un booleano síncrono
       // que sus llamadores usan para decidir si continúan. Un modal asíncrono
       // cambiaría ese contrato.
-      // eslint-disable-next-line no-alert
+      
       if (!window.confirm(confirmLabel)) return false;
     }
 

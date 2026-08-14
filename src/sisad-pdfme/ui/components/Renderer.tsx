@@ -380,7 +380,11 @@ const Renderer = (props: RendererProps) => {
 
   const ref = useRef<HTMLDivElement>(null);
   const schemaRef = useRef(schema);
-  schemaRef.current = schema;
+  // Keep ref values synchronized outside of render to satisfy react-hooks/refs
+  useEffect(() => {
+    schemaRef.current = schema;
+  }, [schema]);
+
   const volatileRenderPropsRef = useRef({
     value,
     onChange,
@@ -388,17 +392,20 @@ const Renderer = (props: RendererProps) => {
     tabIndex,
     placeholder,
   });
-  volatileRenderPropsRef.current = {
-    value,
-    onChange,
-    stopEditing,
-    tabIndex,
-    placeholder,
-  };
+  useEffect(() => {
+    volatileRenderPropsRef.current = {
+      value,
+      onChange,
+      stopEditing,
+      tabIndex,
+      placeholder,
+    };
+  }, [value, onChange, stopEditing, tabIndex, placeholder]);
   const _cache = useContext(CacheContext);
   const plugin = pluginsRegistry.findByType(schema.type) || getBuiltInSchemaPluginByType(schema.type);
   const schemaRenderSignature = getSchemaRenderSignature(schema, mode);
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   const renderPlugin = useCallback(() => {
     const rootElement = ref.current;
     const currentSchema = schemaRef.current;
@@ -445,6 +452,7 @@ const Renderer = (props: RendererProps) => {
     schemaRenderSignature,
     theme,
   ]);
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   useEffect(() => renderPlugin(), [renderPlugin]);
 

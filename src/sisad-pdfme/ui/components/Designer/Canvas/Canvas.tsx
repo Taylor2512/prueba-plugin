@@ -94,6 +94,7 @@ import {
 } from '../shared/selectionIdentityResolver.js';
 import { applyPageMetadataDataset } from '../../shared/pageMetadata.js';
 import type { EffectiveCollaborationContext } from '../../../collaborationContext.js';
+import { buildRecipientNameMap, buildRecipientColorMap } from '../../../collaborationContext.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
 import CanvasStateOverlay from './overlays/CanvasStateOverlay.js';
@@ -336,10 +337,7 @@ export interface CanvasProps {
     uploadPdf?: () => void;
   };
   selectionCommands?: SelectionCommandSet;
-  collaborationContext?: Pick<
-    EffectiveCollaborationContext,
-    'actorId' | 'activeRecipientId' | 'activeRecipient' | 'recipientNameMap' | 'canEditStructure'
-  >;
+  collaborationContext?: Partial<EffectiveCollaborationContext>;
   onInteractionStateChange?: (state: InteractionState) => void;
 
   // ── Canvas render state inputs (Phase 4) ────────────────────────────
@@ -486,6 +484,18 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     canEditStructure: collaborationContext?.canEditStructure ?? true,
   }), [collaborationContext?.actorId, collaborationContext?.canEditStructure]);
 
+  const safeCollaborationContext = useMemo<EffectiveCollaborationContext | undefined>(() => {
+    if (!collaborationContext) return undefined;
+    const recipientOptions = collaborationContext.recipientOptions ?? [];
+    const recipientNameMap = collaborationContext.recipientNameMap ?? buildRecipientNameMap(recipientOptions as any);
+    const recipientColorMap = collaborationContext.recipientColorMap ?? buildRecipientColorMap(recipientOptions as any);
+    return {
+      ...(collaborationContext as Partial<EffectiveCollaborationContext>),
+      recipientNameMap,
+      recipientColorMap,
+    } as unknown as EffectiveCollaborationContext;
+  }, [collaborationContext]);
+
   /**
    * Refs a guías verticales/horizontales por página.
    */
@@ -560,7 +570,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     () =>
       // Excepción a react-hooks/refs: las refs se pasan como getters que el
       // servicio invoca al resolver coordenadas, ya montado, no en el render.
-      // eslint-disable-next-line react-hooks/refs
+      
       new DesignerCoordinateService({
         getZoom: () => scale,
         getCanvasRoot: () => rootRef.current,
@@ -989,7 +999,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   // memoización manual es la correcta —la ref es estable— pero reescribirla
   // para satisfacer al compilador cambiaría cuándo se recalcula el selector.
   const resolveSchemaElementById = useCallback(
-    // eslint-disable-next-line react-hooks/preserve-manual-memoization
+     
     (schemaId: string, pageIndex?: number | null) => {
       const selector = buildSchemaSelector(schemaId);
 
@@ -1633,7 +1643,6 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
          * como contenedores. En el primer render valen `null` y la librería los
          * revalúa tras el commit, que es el contrato que ya asume el runtime.
          */
-        /* eslint-disable react-hooks/refs */
         <SelectoSlot
           container={rootRef.current}
           rootContainer={rootRef.current}
@@ -1760,7 +1769,6 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
             }
           }}
         />
-        /* eslint-enable react-hooks/refs */
       ) : null}
       <Paper
         scale={scale}
@@ -1912,7 +1920,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                   }
                 : undefined
               }
-              collaborationContext={collaborationContext}
+              collaborationContext={safeCollaborationContext}
               onMouseDownCapture={
                 !editing
                   ? (event) => {
@@ -2019,7 +2027,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
           // derecho: ambos son el mismo componente sobre la misma selección.
           contextMenuExternalActions={canvasContextMenuExternalActions}
           hasClipboardData={hasClipboardData}
-          collaborationContext={collaborationContext}
+          collaborationContext={safeCollaborationContext}
         />
       {!externalSchemaDragActive ? (
         <InlineEditOverlay
@@ -2041,7 +2049,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
         activeRequired={contextMenuSelectionRequired}
         activeHidden={contextMenuSelectionHidden}
         selectionSchemas={contextMenuSelectionSchemas}
-        collaborationContext={collaborationContext}
+        collaborationContext={safeCollaborationContext}
         canEditStructure={selectionCommands?.canEditStructure !== false}
         onClose={closeContextMenu}
       />

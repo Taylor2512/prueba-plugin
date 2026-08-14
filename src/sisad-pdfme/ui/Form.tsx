@@ -24,6 +24,14 @@
 import type { PreviewProps } from '@sisad-pdfme/common';
 import { PagedPreviewUI } from './PagedPreviewUI';
 import type { FormJsonEnvelope } from './designerEngine';
+import {
+  applySchemaInteraction,
+  createSchemaInteractionState,
+} from '../runtime/schemaInteractionState';
+import type {
+  SchemaInteractionOrigin,
+  SchemaInteractionState,
+} from '../runtime/schemaInteractionState';
 
 /** Procedencia de un cambio de input notificado por el runtime. */
 export type FormInputChangeOrigin = 'user' | 'host';
@@ -47,7 +55,7 @@ export type FormSchemaInteractionState = {
   committed: boolean;
   completed: boolean;
   interactionCount: number;
-  origin: FormInputChangeOrigin | 'initial';
+  origin: SchemaInteractionOrigin;
   revision: number;
   transactionId: string | null;
   initialValue: string;
@@ -86,19 +94,26 @@ class Form extends PagedPreviewUI {
         const schemaRecord = schema as { schemaUid?: string; id?: string; required?: boolean };
         const schemaUid = String(schemaRecord.schemaUid || schemaRecord.id || schema.name);
         const initialValue = String(this.initialInputValues[pageIndex]?.[schema.name] ?? schema.content ?? '');
+        const state = createSchemaInteractionState({
+          schemaUid,
+          schemaName: schema.name,
+          schemaType: schema.type,
+          initialValue,
+          policy: { required: schemaRecord.required },
+        });
         this.interactionStates.set(`${pageIndex}:${schemaUid}`, {
           schemaUid,
           schemaName: schema.name,
           schemaType: schema.type,
           pageIndex,
-          touched: false,
-          dirty: false,
-          valid: schemaRecord.required ? initialValue !== '' : true,
-          committed: false,
-          completed: initialValue !== '',
-          interactionCount: 0,
-          origin: 'initial',
-          revision: 0,
+          touched: state.touched,
+          dirty: state.dirty,
+          valid: state.valid,
+          committed: state.committed,
+          completed: state.completed,
+          interactionCount: state.interactionCount,
+          origin: state.lastOrigin,
+          revision: state.revision,
           transactionId: null,
           initialValue,
           currentValue: initialValue,
@@ -136,21 +151,49 @@ class Form extends PagedPreviewUI {
     const resolved = this.resolveInteractionState(index, name, value);
     const schemaRecord = resolved.schema as { type?: string; required?: boolean } | undefined;
     const revision = ++this.interactionRevision;
-    const completed = value !== '';
-    const valid = schemaRecord?.required ? completed : true;
+    const prevState: SchemaInteractionState = resolved.previous
+      ? {
+          schemaUid: resolved.previous.schemaUid,
+          schemaName: resolved.previous.schemaName,
+          schemaType: resolved.previous.schemaType,
+          touched: resolved.previous.touched,
+          dirty: resolved.previous.dirty,
+          committed: resolved.previous.committed,
+          valid: resolved.previous.valid,
+          completed: resolved.previous.completed,
+          interactionCount: resolved.previous.interactionCount,
+          initialValue: resolved.previous.initialValue,
+          currentValue: resolved.previous.currentValue,
+          lastOrigin: resolved.previous.origin,
+          revision: resolved.previous.revision,
+          lastTransactionId: resolved.previous.transactionId ?? undefined,
+        }
+      : createSchemaInteractionState({
+          schemaUid: resolved.schemaUid,
+          schemaName: name,
+          schemaType: String(schemaRecord?.type || 'unknown'),
+          initialValue: resolved.initialValue,
+        });
+    const next = applySchemaInteraction(
+      prevState,
+      value,
+      origin,
+      { required: schemaRecord?.required },
+      { revision, transactionId: `form-${revision}`, committed: true },
+    );
     this.interactionStates.set(resolved.key, {
       schemaUid: resolved.schemaUid,
       schemaName: name,
       schemaType: String(schemaRecord?.type || 'unknown'),
       pageIndex: index,
-      touched: origin === 'user' ? true : resolved.previous?.touched || false,
-      dirty: value !== resolved.initialValue,
-      valid,
-      committed: true,
-      completed,
-      interactionCount: (resolved.previous?.interactionCount || 0) + (origin === 'user' ? 1 : 0),
+      touched: next.touched,
+      dirty: next.dirty,
+      valid: next.valid,
+      committed: next.committed,
+      completed: next.completed,
+      interactionCount: next.interactionCount,
       origin,
-      revision,
+      revision: next.revision,
       transactionId: `form-${revision}`,
       initialValue: resolved.initialValue,
       currentValue: value,

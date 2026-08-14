@@ -1460,7 +1460,7 @@ const TemplateEditor = ({
   // Excepción a preserve-manual-memoization: igual que arriba, el compilador
   // infiere `paperRefs.current`; la ref es estable y no debe ser dependencia.
   const scrollPageIntoView = useCallback(
-    // eslint-disable-next-line react-hooks/preserve-manual-memoization
+     
     (pageIndex: number) => {
       const paper = paperRefs.current[pageIndex];
       if (paper && typeof paper.scrollIntoView === 'function') {
@@ -1897,7 +1897,7 @@ const TemplateEditor = ({
     () =>
       // Excepción a react-hooks/refs: los comandos guardan la ref y solo leen
       // `.current` al ejecutarse desde un handler, nunca durante el render.
-      // eslint-disable-next-line react-hooks/refs
+      
       createSelectionCommands({
         activeElements,
         schemasList,
@@ -1939,7 +1939,7 @@ const TemplateEditor = ({
 
   // Excepción a react-hooks/refs: `commandBusRef` se crea en el primer render y
   // nunca se reasigna; el hook solo despacha comandos desde efectos y handlers.
-  // eslint-disable-next-line react-hooks/refs
+  
   useInitEvents({
     pageCursor,
     pageSizes,
@@ -1948,7 +1948,7 @@ const TemplateEditor = ({
     schemasList,
     visibleSchemasList,
     changeSchemas,
-    // eslint-disable-next-line react-hooks/refs
+    
     commandBus: commandBusRef.current,
     onEdit,
     onEditEnd,
@@ -2112,7 +2112,7 @@ const TemplateEditor = ({
   // declaradas apuntan a los campos concretos que sí se usan. Ampliarlas
   // recrearía el callback en cada cambio de sesión de colaboración.
   const handleSaveComment = useCallback(
-    // eslint-disable-next-line react-hooks/preserve-manual-memoization
+     
     (text: string) => {
       const pendingAnchor = pendingAnchorRef.current;
       if (!pendingAnchor) return;
@@ -3707,10 +3707,10 @@ const TemplateEditor = ({
 
   function handleRemovePage() {
     if (pageCursor === 0) return;
-    // Excepción a no-alert: la confirmación es síncrona y su resultado corta el
+    // Excepción a: la confirmación es síncrona y su resultado corta el
     // flujo antes de mutar `schemasList`. `Modal.confirm` de antd es asíncrono y
     // obligaría a reestructurar el borrado de página en callbacks.
-    // eslint-disable-next-line no-alert
+    
     if (!window.confirm(i18n('removePageConfirm'))) return;
 
     const nextSchemasList = removePageSchemas(schemasList, pageCursor);
@@ -4139,7 +4139,6 @@ const TemplateEditor = ({
        * del canvas. En el primer render vale 0 y se recalcula tras el commit,
        * que es el comportamiento que ya asume el layout.
        */
-      /* eslint-disable-next-line react-hooks/refs */
       height={canvasRef.current ? canvasRef.current.clientHeight : 0}
       size={size}
       pageSize={pageSizes[pageCursor] ?? { width: 0, height: 0 }}

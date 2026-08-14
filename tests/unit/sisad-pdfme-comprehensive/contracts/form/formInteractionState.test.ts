@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { mergeFormInputRows } from '../../../../../src/sisad-pdfme/ui/Form';
+import {
+  applySchemaInteraction,
+  createSchemaInteractionState,
+} from '../../../../../src/sisad-pdfme/runtime/schemaInteractionState';
 
 type State = {
   initialValue: string;
@@ -20,6 +24,29 @@ const applyChange = (state: State, value: string, origin: State['origin']): Stat
 });
 
 describe('Form schema interaction projection', () => {
+  it.each([
+    ['zero', 0],
+    ['false', false],
+  ])('completes required scalar %s without truthiness', (_label, value) => {
+    const initial = createSchemaInteractionState({
+      schemaUid: 'field', schemaName: 'field', schemaType: 'input', initialValue: '',
+      policy: { required: true },
+    });
+    const next = applySchemaInteraction(initial, value, 'user', { required: true });
+    expect(next.valid).toBe(true);
+    expect(next.completed).toBe(true);
+  });
+
+  it('does not complete a required empty array unless a policy allows it', () => {
+    const initial = createSchemaInteractionState({
+      schemaUid: 'group', schemaName: 'group', schemaType: 'checkboxGroup', initialValue: [],
+      policy: { required: true },
+    });
+    const next = applySchemaInteraction(initial, [], 'user', { required: true });
+    expect(next.valid).toBe(false);
+    expect(next.completed).toBe(false);
+  });
+
   it('preserves schema A when a controlled Form row updates only schema B', () => {
     expect(mergeFormInputRows([{ schemaA: 'A', schemaB: '' }], [{ schemaB: 'B' }])).toEqual([
       { schemaA: 'A', schemaB: 'B' },
