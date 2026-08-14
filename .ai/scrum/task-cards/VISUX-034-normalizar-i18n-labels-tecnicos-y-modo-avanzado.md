@@ -164,3 +164,9 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md:START -->
+## Consolidation refinement
+Remove product-facing Axios, Recipient, raw UIDs, mode names (`single`) and internal IDs from
+normal mode. Keep them only in advanced/debug diagnostics where useful.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md:END -->

@@ -161,3 +161,9 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md:START -->
+## Consolidation refinement
+Actions use action/artifact lifecycle, not generic collection DataSource UI.
+Attachment persists stable reference/metadata, not Blob in snapshot.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md:END -->

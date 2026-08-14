@@ -164,3 +164,10 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md:START -->
+## Consolidation refinement
+Text-like/number/date-time profiles expose only applicable fields.
+Number preserves 0/negative/decimal semantics.
+Date/time separates format, locale and timezone.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md:END -->

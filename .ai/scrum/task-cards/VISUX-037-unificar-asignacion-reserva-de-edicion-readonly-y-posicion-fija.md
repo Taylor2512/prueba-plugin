@@ -163,3 +163,9 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md:START -->
+## Consolidation refinement
+Use the single canonical runtime access authority.
+Do not conflate assignment, readonly, lock and fixed-position.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md:END -->

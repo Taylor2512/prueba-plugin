@@ -161,3 +161,11 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md:START -->
+## Consolidation refinement
+Separate identity, adoption style and acquisition method.
+`allowedMethods` != selected method.
+Provider/P12 fields render only when applicable.
+Signature and initials share style profile but maintain separate artifacts.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md:END -->

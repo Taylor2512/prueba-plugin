@@ -58,3 +58,13 @@ La regla es reconciliar source/evidence/ledger antes de confiar en el status de 
 PokeAPI es sólo fixture; la arquitectura HTTP debe ser transport-neutral y permitir clientes
 inyectados por el host.
 <!-- SISAD-PDFME-PORTABLE-INTEGRATION:.ai/START.md:END -->
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/START.md:START -->
+## Consolidation entry
+
+Primary production-completion prompt:
+
+`.ai/prompts/PROMPT_SISAD_PDFME_CONSOLIDATE_TO_PRODUCTION.md`
+
+When three providers are active, read `.ai/architecture/SAME-REPO-MULTI-AGENT.md` before any write.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/START.md:END -->

@@ -171,3 +171,10 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md:START -->
+## Consolidation refinement
+Visual release is a dependency of final production closeout.
+Include the previously reviewed inspector/signature/reference image scenarios and prevent
+technical implementation labels from leaking into normal UX.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md:END -->

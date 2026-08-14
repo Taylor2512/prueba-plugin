@@ -26,3 +26,14 @@ explícitamente.
 - evidence posee logs y resultados;
 - provider auto-memory es auxiliar;
 - una migración de memoria debe actualizar referencias y validadores en el mismo cambio.
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/architecture/MEMORY-ARCHITECTURE.md:START -->
+## Same-repo provider memory
+
+Claude, Codex and Copilot do not own separate canonical memories.
+
+Provider memory is auxiliary only.
+Canonical continuation remains CURRENT/HANDOFF/task/evidence.
+
+Agent interruption must not turn a partial implementation into durable memory.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/architecture/MEMORY-ARCHITECTURE.md:END -->

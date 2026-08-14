@@ -31,3 +31,18 @@
 
 Los adapters no copian governance. El gate valida que sigan apuntando a la
 autoridad neutral y que no creen reglas funcionales divergentes.
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/architecture/PROVIDER-COMPATIBILITY.md:START -->
+## Same-branch execution policy
+
+This project intentionally does not use worktrees for Claude/Codex/Copilot concurrency.
+
+All provider adapters must enforce:
+- exact file claims;
+- no overlapping writers;
+- one integrator lease;
+- no destructive Git;
+- shared Brain and skills.
+
+Model selection is task-profile based; see `.ai/providers/MODEL-ROUTING.json`.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/architecture/PROVIDER-COMPATIBILITY.md:END -->

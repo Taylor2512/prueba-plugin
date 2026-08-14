@@ -163,3 +163,9 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md:START -->
+## Consolidation refinement
+Measure runtime config updates, large option lists, multi-page Form, signature assets and
+mount/dispose memory. Presentation-only config must not remount Form.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md:END -->

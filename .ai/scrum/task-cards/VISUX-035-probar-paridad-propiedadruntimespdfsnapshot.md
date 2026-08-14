@@ -163,3 +163,10 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md:START -->
+## Consolidation refinement
+For every visible property prove:
+read -> edit -> persist -> Form -> Viewer -> Snapshot -> PDF.
+Remote data must remain deterministic offline after commit.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md:END -->

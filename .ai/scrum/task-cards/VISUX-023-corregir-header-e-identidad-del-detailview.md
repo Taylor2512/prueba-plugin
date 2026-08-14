@@ -163,3 +163,10 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md:START -->
+## Consolidation refinement
+Normal product UI uses User/assignee language.
+Raw UID, legacy Recipient aliases and technical owner IDs belong to advanced/debug mode.
+Assignment, lock and audit are separate.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-023-corregir-header-e-identidad-del-detailview.md:END -->

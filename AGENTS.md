@@ -29,3 +29,19 @@ vigentes.
 Usa `CONFIRMADO`, `INFERIDO`, `HIPÓTESIS` o `DESCONOCIDO`. No declares gates
 verdes sin ejecutarlos. Revalida `pwd`, branch, HEAD y `git status` antes de
 editar y al reanudar una sesión.
+
+<!-- SISAD-PDFME-CONSOLIDATION:AGENTS.md:START -->
+## Shared-branch multi-agent policy
+
+Claude, Codex and GitHub Copilot may be active in this repository simultaneously.
+
+Project constraint: same repository, same branch, no worktrees.
+
+Before editing, acquire exact path claims via:
+
+`node scripts/ai/same-repo-coordinator.mjs claim . --agent <agent> --task <id> --paths <paths...>`
+
+Do not edit another writer's claim.
+Only the integrator lease holder may stage/commit/push.
+Full release validation uses the validation lease.
+<!-- SISAD-PDFME-CONSOLIDATION:AGENTS.md:END -->

@@ -164,3 +164,8 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md:START -->
+## Consolidation refinement
+Include signature/initials/font parity and capability-driven inspector consequences.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md:END -->

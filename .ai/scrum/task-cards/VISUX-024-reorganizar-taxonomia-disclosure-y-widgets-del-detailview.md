@@ -162,3 +162,11 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md:START -->
+## Consolidation refinement
+Complete F3/F4: sections derive from family/capabilities/dataBinding.
+No generic universal inspector.
+No duplicated nested titles.
+Geometry/form rows use compact progressive disclosure.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md:END -->

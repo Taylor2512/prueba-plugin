@@ -170,3 +170,9 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md:START -->
+## Consolidation refinement
+Include searchable combobox keyboard semantics, remote list focus, signature modal focus and
+small-sidebar layouts.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md:END -->

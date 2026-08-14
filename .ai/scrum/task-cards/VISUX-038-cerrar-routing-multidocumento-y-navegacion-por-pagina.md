@@ -164,3 +164,8 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md:START -->
+## Consolidation refinement
+Document switching must preserve correct User-scoped state and never leak D1/D2 values.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md:END -->

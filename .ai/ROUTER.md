@@ -39,3 +39,13 @@ aportan contratos de lectura cuando exista una dependencia demostrada.
 - legacy / dead code / dedup -> `.ai/plans/PLAN_SISAD_PDFME_LEGACY_CLEANUP.md`
 - autonomous completion -> `.ai/plans/PLAN_SISAD_PDFME_AUTONOMOUS_COMPLETION.md`
 <!-- autonomous-runtime:router:end -->
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/ROUTER.md:START -->
+## Consolidation routes
+
+- multi-user/access -> `runtime-access-authority` skill + RTP-510
+- all-schema/remote options -> `multiuser-form-release` / RTP-515
+- inspector/signing UX -> `inspector-capability-profiles` / VISUX
+- same-repo concurrency -> `same-repo-coordination`
+- release -> `production-closeout`
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/ROUTER.md:END -->

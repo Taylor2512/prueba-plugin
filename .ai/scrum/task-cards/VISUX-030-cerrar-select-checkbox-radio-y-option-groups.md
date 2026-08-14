@@ -165,3 +165,9 @@ rollback:
 next action:
 stop:
 ```
+
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md:START -->
+## Consolidation refinement
+Choice inspector covers static + remote options, typed values, selectedMissingPolicy,
+search/pagination/virtualization and multiple independent instances.
+<!-- SISAD-PDFME-CONSOLIDATION:.ai/scrum/task-cards/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md:END -->
