@@ -84,3 +84,7 @@ del paquete descubra se agregan automáticamente.
 Este directorio es host-land: puede conocer el runtime reusable, nunca al revés.
 El estilo externo es Tailwind-only; el runtime aporta su propia superficie
 mediante `SISAD_PDFME_HOST_SURFACE_CLASS`.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+<!-- project-tools:navigation:end -->

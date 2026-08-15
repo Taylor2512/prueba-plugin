@@ -78,7 +78,15 @@
     "test:sisad-pdfme:count": "node scripts/testing/count-sisad-pdfme-tests.mjs .",
     "test:sisad-pdfme:generate": "node scripts/testing/generate-sisad-pdfme-file-tests.mjs . --apply",
     "test:sisad-pdfme:runtime": "vitest run tests/unit/sisad-pdfme-comprehensive/contracts/runtime tests/unit/sisad-pdfme-comprehensive/contracts/form",
-    "test:sisad-pdfme:schemas": "vitest run tests/unit/sisad-pdfme-comprehensive/contracts/schemas"
+    "test:sisad-pdfme:schemas": "vitest run tests/unit/sisad-pdfme-comprehensive/contracts/schemas",
+    "architecture:audit": "node scripts/ai/architecture/architecture-maintenance.mjs audit .",
+    "architecture:repair": "node scripts/ai/architecture/architecture-maintenance.mjs plan .",
+    "architecture:repair:apply": "node scripts/ai/architecture/architecture-maintenance.mjs apply .",
+    "architecture:verify": "node scripts/ai/architecture/architecture-maintenance.mjs verify .",
+    "architecture:status": "node scripts/ai/architecture/reconcile-task-statuses.mjs .",
+    "architecture:status:apply": "node scripts/ai/architecture/reconcile-task-statuses.mjs . --apply",
+    "architecture:hubs": "node scripts/ai/architecture/build-markdown-hubs.mjs .",
+    "architecture:hubs:apply": "node scripts/ai/architecture/build-markdown-hubs.mjs . --apply"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",

@@ -13,3 +13,11 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 ## Regla de arquitectura
 
 Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Notas
+
+- [Documentación técnica — Runtime SISAD PDFME](./documentacion-runtime-sisad-pdfme.md)
+<!-- project-tools:navigation:end -->

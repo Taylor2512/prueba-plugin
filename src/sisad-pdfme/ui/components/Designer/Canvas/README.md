@@ -22,3 +22,16 @@ Este paquete contiene copias completas de los archivos del core visual/interacti
 ## Regla de arquitectura
 
 Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Secciones
+
+- [Canvas overlays con JSDoc — SISAD PDFME](./overlays/README.md)
+
+### Notas
+
+- [Reglas locales](./AGENTS.md)
+- [Reporte de documentación JSDoc — Canvas core](./documentacion-canvas-core-jsdoc.md)
+<!-- project-tools:navigation:end -->

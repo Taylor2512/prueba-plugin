@@ -40,3 +40,11 @@ Este módulo no debe conocer:
 - reglas SISAD de negocio
 
 Debe mantenerse como utilidad técnica reutilizable por el runtime.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Notas
+
+- [Documentación técnica — `@sisad-pdfme/converter`](./documentacion-converter-sisad-pdfme.md)
+<!-- project-tools:navigation:end -->

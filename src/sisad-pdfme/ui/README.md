@@ -37,3 +37,14 @@ Antes de reemplazar archivos en tu proyecto, compara con `git diff` y revisa esp
 git diff -- src/sisad-pdfme/ui
 ```
 
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Secciones
+
+- [Runtime / Preview base — SISAD PDFME JSDoc](./components/README.md)
+
+### Notas
+
+- [Documentación técnica — UI Runtime SISAD PDFME](./documentacion-ui-runtime-sisad-pdfme.md)
+<!-- project-tools:navigation:end -->

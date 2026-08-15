@@ -31,3 +31,11 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Revisar si `collaboration.ts` debe preservar author desde overrides cuando identity viene vacío.
 - Revisar estrategia de cache en `expression.ts` para evitar crecimiento indefinido.
 - Revisar alineación de `ownerRecipientIds` entre Zod (`string[]`) y utilidades que aceptan `string | string[]`.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Notas
+
+- [Índice técnico de `@sisad-pdfme/common`](./documentacion-common-sisad-pdfme.md)
+<!-- project-tools:navigation:end -->

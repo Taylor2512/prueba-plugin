@@ -18,3 +18,12 @@ Este paquete contiene copias documentadas de tres archivos del inspector del dis
 - `SchemaOptionsEditor` sigue usando `changeSchemas` como única vía de persistencia.
 - `SchemaFieldCommentsWidget` mantiene comentarios embebidos en `activeSchema.comments`.
 - `WidgetRenderer` conserva el render imperativo en cada render para no cambiar el contrato heredado.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Notas
+
+- [Documentación aplicada — DetailView / Inspector](./documentacion-detailview-inspector-jsdoc.md)
+- [Documentación agregada — DetailView comments/options widgets](./documentacion-detailview-options-comments-jsdoc.md)
+<!-- project-tools:navigation:end -->

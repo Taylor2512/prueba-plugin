@@ -26,3 +26,11 @@ Este paquete contiene una copia completa de los archivos runtime/base UI enviado
 ## Observaciones
 
 Este bloque es sensible porque conecta el runtime visual con plugins imperativos (`Renderer`), preprocesamiento de PDF (`Paper`/`Preview`) y sincronización de datos (`usePreviewRuntime`). La documentación refuerza que la geometría del canvas debe seguir controlada por schemas y servicios internos, no por estilos arbitrarios de plugins o hosts.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Notas
+
+- [Documentación técnica — Runtime / Preview base](./documentacion-runtime-preview-base-jsdoc.md)
+<!-- project-tools:navigation:end -->

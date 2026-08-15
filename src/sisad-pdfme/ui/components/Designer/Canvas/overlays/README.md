@@ -33,3 +33,11 @@ Este paquete contiene copias completas de los archivos enviados, con documentaci
 ## Nota de arquitectura
 
 Estos módulos pertenecen a la capa visual/interactiva del canvas. Deben seguir sin contener reglas de negocio del host, lógica Uanataca, persistencia HTTP, manipulación directa de Moveable/Selecto ni hacks de z-index para ocultar problemas.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Notas
+
+- [Reporte de documentación JSDoc](./documentacion-canvas-overlays-jsdoc.md)
+<!-- project-tools:navigation:end -->

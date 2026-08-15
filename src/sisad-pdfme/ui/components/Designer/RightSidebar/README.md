@@ -16,3 +16,17 @@ Este paquete contiene versiones documentadas de los archivos del sidebar derecho
 - Se mantuvo la lógica funcional original.
 - Se documentaron responsabilidades y restricciones de cada componente.
 - Se conservó la separación esperada: el sidebar orquesta vistas, pero no manipula canvas, Moveable, Selecto ni schemas directamente.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Secciones
+
+- [DetailView comments/options widgets — JSDoc](./DetailView/README.md)
+- [ListView JSDoc — SISAD PDFME](./ListView/README.md)
+
+### Notas
+
+- [Reglas locales](./AGENTS.md)
+- [Documentación agregada — RightSidebar Rails](./documentacion-right-sidebar-rails-jsdoc.md)
+<!-- project-tools:navigation:end -->

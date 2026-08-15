@@ -37,13 +37,14 @@ No ejecutar `docs:sanitize:apply` hasta revisar las colisiones.
 
 ### Secciones
 
+- [.ai](.ai/README.md)
 - [Claude adapter](.claude/README.md)
 - [Codex adapter](.codex/README.md)
 - [Documentación de `sisad-pdfme`](./docs/README.md)
 
 ### Notas
 
-- [AGENTS.md — SISAD PDFME V8 Lean](./AGENTS.md)
-- [Claude Code — adaptador V8](./CLAUDE.md)
-- [Codex — adaptador V8](./CODEX.md)
+- [AGENTS.md — SISAD-PDFME](./AGENTS.md)
+- [Claude Code — adaptador](./CLAUDE.md)
+- [Codex — adaptador](./CODEX.md)
 <!-- project-tools:navigation:end -->

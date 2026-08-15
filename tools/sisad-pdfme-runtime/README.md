@@ -10,3 +10,7 @@ node tools/sisad-pdfme-runtime/validate-campaign.mjs .
 node tools/sisad-pdfme-runtime/apply-brain-targets.mjs .          # dry run
 node tools/sisad-pdfme-runtime/apply-brain-targets.mjs . --apply  # hash checked
 ```
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+<!-- project-tools:navigation:end -->
