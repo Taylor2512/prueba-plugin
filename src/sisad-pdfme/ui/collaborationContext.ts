@@ -178,7 +178,20 @@ export const buildEffectiveCollaborationContext = (
     userColor: ownerColor,
     actorColor,
     recipientOptions,
-    recipientColorMap: buildRecipientColorMap(recipientOptions),
+    // `buildRecipientColorMap` expects `SisadPdfmeRecipient[]` which uses
+    // `label` as the display name. Map our CollaborationRecipientOption[] into
+    // a compatible shape to avoid type mismatches while preserving available
+    // contact fields.
+    recipientColorMap: buildRecipientColorMap(
+      recipientOptions.map((r) => ({
+        id: r.id,
+        label: r.name || r.tag || r.id,
+        color: r.color ?? undefined,
+        email: r.email ?? undefined,
+        company: r.company ?? undefined,
+        title: r.title ?? undefined,
+      })),
+    ),
     recipientNameMap: buildRecipientNameMap(recipientOptions),
     activeRecipientId,
     activeRecipient,

@@ -66,6 +66,14 @@ export const rectToPointArea = (rect: DOMRectLike): PointArea => ({
   pos4: [rect.right, rect.bottom],
 });
 
+/**
+ * Congela el rectángulo vivo del elemento en un `Rect` propio.
+ *
+ * wrapper-check: allow getPageRectInViewport — devolver el `DOMRect` sería el
+ * error: es un objeto vivo que el navegador puede recalcular y que arrastra
+ * `x`, `y` y `toJSON`. Copiar los seis campos ES el propósito, no un
+ * envoltorio.
+ */
 export const getPageRectInViewport = (pageEl: HTMLElement): Rect => {
   const rect = pageEl.getBoundingClientRect();
   return {

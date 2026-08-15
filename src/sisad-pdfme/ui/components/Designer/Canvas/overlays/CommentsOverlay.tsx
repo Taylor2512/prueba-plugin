@@ -159,6 +159,7 @@ const CommentsOverlay = ({
     y: number;
     left: number;
     top: number;
+    pageIndex: number;
     schemaUid?: string;
     authorName?: string;
     authorColor?: string;

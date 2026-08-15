@@ -1,4 +1,5 @@
-import { getInputFromTemplate } from '@sisad-pdfme/common';
+import { getInputFromTemplate, cloneDeep } from '@sisad-pdfme/common';
+import type { Template } from '@sisad-pdfme/common/types';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import React, { useEffect, useMemo, useRef } from 'react';
 import type {
@@ -9,8 +10,11 @@ import type {
 import { useSisadPdfmeController } from '@sisad-pdfme/react/useSisadPdfmeController';
 import { usePdfmeRuntimeInstance } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
 import type { UsePdfmeRuntimeInstanceConfig } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
+import { migrateTemplate, checkTemplate } from '@sisad-pdfme/common/helper';
+import { createDefaultTemplate } from '@sisad-pdfme/templates/createDefaultTemplate';
 import Form from '@sisad-pdfme/ui/Form';
 import Viewer from '@sisad-pdfme/ui/Viewer';
+import Designer from '@sisad-pdfme/ui/Designer';
 import { useSisadPdfmeRecipientRuntime } from '@sisad-pdfme/react/useSisadPdfmeRecipientRuntime';
 import { mergeHostSurfaceClassName } from '@sisad-pdfme/react/hostSurface';
 import { mergeSignatureProviders } from '@sisad-pdfme/react/signatureProviderMerge';
@@ -63,9 +67,58 @@ export type SisadPdfmePreviewRuntimeProps = {
   style?: React.CSSProperties;
 };
 
+/**
+ * Thin constructor adapters: adapt existing UI classes that accept `PreviewProps`
+ * to the `RuntimeConstructorLike` expected by `usePdfmeRuntimeInstance`.
+ *
+ * Reuse existing classes (`Designer`, `Form`, `Viewer`) rather than
+ * duplicating logic. The adapters translate the common props object into
+ * `PreviewProps` and return an instance compatible with `RuntimeInstanceLike`.
+ */
+const adapterFor = (UIClass: any) =>
+  class Adapter {
+    private inner: any;
+    constructor(props: any) {
+      // The UI classes expect `PreviewProps`/`DesignerProps` with domContainer
+      // renamed to `domContainer` in schema; the hook provides `domContainer`.
+      this.inner = new UIClass({ ...props });
+    }
+    destroy() {
+      if (typeof this.inner.destroy === 'function') return this.inner.destroy();
+    }
+    updateOptions(options: any) {
+      if (typeof this.inner.getOptions === 'function') {
+        // many classes expose runtime API; prefer calling public updater if exists
+        if (typeof this.inner.setOptions === 'function') return this.inner.setOptions(options);
+      }
+      if (typeof this.inner.updateOptions === 'function') return this.inner.updateOptions(options);
+    }
+    updateTemplate(template: any) {
+      if (typeof this.inner.updateTemplate === 'function') return this.inner.updateTemplate(template);
+    }
+    setInputs(inputs: any) {
+      if (typeof this.inner.setInputs === 'function') return this.inner.setInputs(inputs);
+    }
+    fitToWidth() {
+      return typeof this.inner.fitToWidth === 'function' ? this.inner.fitToWidth() : undefined;
+    }
+    fitToPage() {
+      return typeof this.inner.fitToPage === 'function' ? this.inner.fitToPage() : undefined;
+    }
+    onChangeTemplate(cb: any) {
+      if (typeof this.inner.onChangeTemplate === 'function') return this.inner.onChangeTemplate(cb);
+    }
+    onChangeInput(cb: any) {
+      if (typeof this.inner.onChangeInput === 'function') return this.inner.onChangeInput(cb);
+    }
+    onPageChange(cb: any) {
+      if (typeof this.inner.onPageChange === 'function') return this.inner.onPageChange(cb);
+    }
+  } as unknown as UsePdfmeRuntimeInstanceConfig['runtime']['Designer'];
+
 const runtimeByMode = {
-  form: { Designer: Form, Form, Viewer },
-  viewer: { Designer: Viewer, Form, Viewer },
+  form: { Designer: adapterFor(Designer), Form: adapterFor(Form), Viewer: adapterFor(Viewer) },
+  viewer: { Designer: adapterFor(Designer), Form: adapterFor(Form), Viewer: adapterFor(Viewer) },
 };
 
 export const SisadPdfmePreviewRuntime = ({
@@ -92,15 +145,37 @@ export const SisadPdfmePreviewRuntime = ({
       recipients,
       activeRecipientId,
     });
-  const runtimeInputs = useMemo(
-    () =>
-      Array.isArray(inputs)
-        ? inputs
-        : getInputFromTemplate(
-            template as UsePdfmeRuntimeInstanceConfig['template'],
-          ),
-    [inputs, template],
-  );
+  const safeTemplate = useMemo<Template>(() => {
+    try {
+      if (!template || typeof template !== 'object') return createDefaultTemplate();
+      const cloned = cloneDeep(template) as Template;
+      try {
+        migrateTemplate(cloned as Template);
+      } catch {
+        // swallow migration errors — we'll fall back to defaults below
+      }
+      if (!cloned.schemas || !Array.isArray(cloned.schemas) || cloned.schemas.length === 0) {
+        const def = createDefaultTemplate();
+        cloned.schemas = def.schemas as Template['schemas'];
+        cloned.basePdf = cloned.basePdf ?? def.basePdf;
+      }
+      return cloned as Template;
+    } catch {
+      return createDefaultTemplate();
+    }
+  }, [template]);
+
+  const runtimeInputs = useMemo(() => {
+    if (Array.isArray(inputs)) return inputs;
+    // Ensure safeTemplate conforms to Template before passing to helper
+    try {
+      // checkTemplate will migrate and throw on invalid shape; fall back to defaults on error
+      checkTemplate(safeTemplate);
+      return getInputFromTemplate(safeTemplate);
+    } catch {
+      return getInputFromTemplate(createDefaultTemplate());
+    }
+  }, [inputs, safeTemplate]);
 
   /**
    * Identidad del contexto de ejecución recipient × documento.
@@ -137,7 +212,7 @@ export const SisadPdfmePreviewRuntime = ({
       containerRef,
       mode,
       isolationKey,
-      template: template as UsePdfmeRuntimeInstanceConfig['template'],
+      template: safeTemplate,
       inputs: runtimeInputs,
       onTemplateChange: () => undefined,
       onPageChange: () => undefined,
@@ -158,7 +233,9 @@ export const SisadPdfmePreviewRuntime = ({
         ...flatSchemaPlugins,
         ...(plugins || {}),
       },
-      runtime: runtimeByMode[mode],
+      // runtimeByMode contains UI classes that accept `PreviewProps`.
+      // The hook expects constructors matching `RuntimeConstructorLike`.
+      runtime: runtimeByMode[mode] as UsePdfmeRuntimeInstanceConfig['runtime'],
       ...(mode === 'form' ? { onInputChange } : {}),
     }),
     [

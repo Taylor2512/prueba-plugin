@@ -25,3 +25,13 @@ Task cards are authoritative work records. `../views/` is generated.
 - [State authority](./STATE-AUTHORITY.md)
 - [Visual UX execution policy](./VISUAL-UX-POLICY.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Merge policy](./MERGE-POLICY.md)
+- [State authority](./STATE-AUTHORITY.md)
+- [Visual UX execution policy](./VISUAL-UX-POLICY.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

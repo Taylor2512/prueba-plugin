@@ -102,6 +102,26 @@ module.exports = [
       'no-unused-vars': ['warn', { args: 'none', ignoreRestSiblings: true }],
       'import/no-unresolved': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
+      // The `@typescript-eslint/ban-types` rule caused runtime errors in some
+      // ESLint plugin versions (missing export). Keep `no-explicit-any` as a
+      // warning and use code reviews/ADRs to discourage top-level `unknown`.
+      // Temporarily disabled to avoid blocking CI/local lint runs.
+      // '@typescript-eslint/ban-types': [
+      //   'warn',
+      //   {
+      //     types: {
+      //       unknown: {
+      //         message:
+      //           'Avoid using `unknown` as a top-level type. Narrow it with type guards, or define a named alias/adapter that expresses intent.',
+      //       },
+      //       any: {
+      //         message:
+      //           'Avoid using `any`. Prefer a precise type or `unknown` + narrowing; use adapters or validators at boundaries.',
+      //       },
+      //     },
+      //     extendDefaults: true,
+      //   },
+      // ],
       '@typescript-eslint/no-unused-vars': ['warn', { args: 'none', ignoreRestSiblings: true }],
       'jsx-a11y/anchor-is-valid': 'off',
       // Relax some rules that are noisy for this codebase and/or covered by TypeScript

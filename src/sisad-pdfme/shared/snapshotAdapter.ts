@@ -31,6 +31,7 @@ import {
 import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 import { cloneDeep } from '@sisad-pdfme/common';
+import { stripSecrets } from '@sisad-pdfme/common/secrets';
 
 export interface ValidationResult {
   valid: boolean;
@@ -46,24 +47,73 @@ export type DesignerState = Omit<
   'version' | 'templateId' | 'createdAt' | 'updatedAt' | 'metadata'
 >;
 
-const normalizeConnectivityRecord = <T extends Record<string, unknown>>(value: unknown): T | undefined => {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
-  return cloneDeep(value) as T;
+const normalizeSnapshotFileConnectivityMap = (value: unknown): Record<string, SnapshotFileConnectivity> | undefined => {
+  const record = asRecord(value);
+  if (!record) return undefined;
+  const out: Record<string, SnapshotFileConnectivity> = {};
+  for (const k of Object.keys(record)) {
+    const entry = asRecord(record[k]);
+    if (!entry) continue;
+    const normalized: SnapshotFileConnectivity = {
+      cabinetId: typeof entry.cabinetId === 'string' ? entry.cabinetId : entry.cabinetId === null ? null : undefined,
+      folderId: typeof entry.folderId === 'string' ? entry.folderId : entry.folderId === null ? null : undefined,
+      subfolderId: typeof entry.subfolderId === 'string' ? entry.subfolderId : entry.subfolderId === null ? null : undefined,
+      fileTypeId: typeof entry.fileTypeId === 'string' ? entry.fileTypeId : entry.fileTypeId === null ? null : undefined,
+      ...cloneDeep(entry),
+    };
+    const key = normalizeLooseText(k);
+    out[key] = normalized;
+  }
+  return Object.keys(out).length ? out : undefined;
+};
+
+const normalizeSnapshotSchemaConnectivityMap = (value: unknown): Record<string, Record<string, SnapshotSchemaConnectivity>> | undefined => {
+  const record = asRecord(value);
+  if (!record) return undefined;
+  const out: Record<string, Record<string, SnapshotSchemaConnectivity>> = {};
+  for (const fileKey of Object.keys(record)) {
+    const fileEntry = asRecord(record[fileKey]);
+    if (!fileEntry) continue;
+    const inner: Record<string, SnapshotSchemaConnectivity> = {};
+    for (const schemaKey of Object.keys(fileEntry)) {
+      const schemaRec = asRecord(fileEntry[schemaKey]);
+      if (!schemaRec) continue;
+      const normalized: SnapshotSchemaConnectivity = {
+        indexId: typeof schemaRec.indexId === 'string' ? schemaRec.indexId : schemaRec.indexId === null ? null : undefined,
+        indexName: typeof schemaRec.indexName === 'string' ? schemaRec.indexName : schemaRec.indexName === null ? null : undefined,
+        schemaName: typeof schemaRec.schemaName === 'string' ? schemaRec.schemaName : schemaRec.schemaName === null ? null : undefined,
+        schemaType: typeof schemaRec.schemaType === 'string' ? schemaRec.schemaType : schemaRec.schemaType === null ? null : undefined,
+        ...cloneDeep(schemaRec),
+      };
+      const sKey = normalizeLooseText(schemaKey);
+      inner[sKey] = normalized;
+    }
+    const fKey = normalizeLooseText(fileKey);
+    if (Object.keys(inner).length) out[fKey] = inner;
+  }
+  return Object.keys(out).length ? out : undefined;
+};
+
+const normalizeGenericRecord = (value: unknown): Record<string, unknown> | undefined => {
+  const record = asRecord(value);
+  if (!record) return undefined;
+  return cloneDeep(record) as Record<string, unknown>;
 };
 
 export const normalizeSnapshotConnectivity = (
   connectivity?: SnapshotConnectivity | null,
 ): SnapshotConnectivity | undefined => {
   if (!connectivity || typeof connectivity !== 'object') return undefined;
-  const byFile = normalizeConnectivityRecord<Record<string, SnapshotFileConnectivity>>(connectivity.byFile);
-  const bySchema = normalizeConnectivityRecord<Record<string, Record<string, SnapshotSchemaConnectivity>>>(connectivity.bySchema);
-  const byRecipient = normalizeConnectivityRecord<Record<string, unknown>>(connectivity.byRecipient);
-  const sourceMapping = normalizeConnectivityRecord<Record<string, unknown>>(connectivity.sourceMapping);
+
+  const byFile = normalizeSnapshotFileConnectivityMap(connectivity.byFile || connectivity.sourceMapping);
+  const bySchema = normalizeSnapshotSchemaConnectivityMap(connectivity.bySchema);
+  const byRecipient = normalizeGenericRecord(connectivity.byRecipient);
+  const sourceMapping = normalizeGenericRecord(connectivity.sourceMapping);
 
   if (!byFile && !bySchema && !byRecipient && !sourceMapping) return undefined;
 
   return {
-    byFile: byFile || sourceMapping || undefined,
+    byFile: byFile || undefined,
     bySchema: bySchema || undefined,
     byRecipient: byRecipient || undefined,
     sourceMapping: sourceMapping || undefined,
@@ -80,7 +130,7 @@ const resolveSnapshotConnectivityRecord = (snapshot: unknown): SnapshotConnectiv
     bySchema: asRecord(connectivity?.bySchema) || undefined,
     byRecipient: asRecord(connectivity?.byRecipient) || undefined,
     sourceMapping: sourceMapping || undefined,
-  });
+  } as unknown as SnapshotConnectivity);
 };
 
 const normalizeConnectivityKey = normalizeLooseText;
@@ -352,7 +402,7 @@ class SnapshotAdapterImpl {
       bySchema: bySchema || undefined,
       byRecipient: byRecipient || undefined,
       sourceMapping: sourceMapping || undefined,
-    });
+    } as unknown as SnapshotConnectivity);
   }
 
   private _resolveSignaturePolicyId(sourceSnapshot: Record<string, unknown>): string | null {
@@ -568,4 +618,23 @@ export const resolveSnapshotConnectivityBySchema = (
   return null;
 };
 
-export const serializeSnapshotForTxt = (snapshot: unknown = {}) => JSON.stringify(snapshot || {}, null, 2);
+/**
+ * Serializa un snapshot para escribirlo a fichero.
+ *
+ * **Retira credenciales.** La configuración declarativa de conexión
+ * (`SchemaHttpAuthConfig`) admite `token`, `username`, `password` y
+ * `headerValue`, se edita desde el inspector y se guarda **dentro del propio
+ * schema**; los schemas van en `documents[].pages[].schemas[]`. Sin esta
+ * limpieza, exportar un snapshot escribía la contraseña del host en un fichero
+ * que el usuario comparte.
+ *
+ * `createSisadPdfmeInstanceBundle` ya aplicaba `stripSecrets` por esta misma
+ * razón. Esta ruta —la que de verdad sale de la máquina— no lo hacía.
+ *
+ * Consecuencia asumida: un snapshot exportado y vuelto a importar pierde la
+ * credencial escrita a mano y hay que volver a introducirla. Es el precio
+ * correcto; la alternativa es publicarla. La solución de fondo es que el
+ * template no admita secretos literales, y eso sigue abierto.
+ */
+export const serializeSnapshotForTxt = (snapshot: unknown = {}) =>
+  JSON.stringify(stripSecrets(snapshot || {}).value, null, 2);

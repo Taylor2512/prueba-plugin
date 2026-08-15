@@ -8,26 +8,24 @@
 - [architecture](./architecture/README.md)
 - [brain](./brain/README.md)
 - `catalogs/`
-- [contracts](./brain/20-contracts/README.md)
 - [evals](./evals/README.md)
 - [governance](./governance/README.md)
 - [knowledge](./knowledge/README.md)
 - [memory](./memory/README.md)
-- `migrations/`
-- `ops/`
+- [migrations](./migrations/README.md)
+- [ops](./ops/README.md)
 - [plans](./plans/README.md)
 - [playbooks](./playbooks/README.md)
 - [prompts](./prompts/README.md)
-- `providers/`
-- `quality/`
+- [providers](./providers/README.md)
 - [research](./research/README.md)
 - [routes](./routes/README.md)
 - `scripts/`
 - [scrum](./scrum/README.md)
 - [skills](./skills/README.md)
-- `subagents/`
+- [subagents](./subagents/README.md)
 - [templates](./templates/README.md)
-- `traceability/`
+- [traceability](./traceability/README.md)
 - [Budgets V8](./BUDGETS.md)
 - [Presupuesto de contexto](./CONTEXT-BUDGET.md)
 - [Política de contexto](./CONTEXT-POLICY.md)

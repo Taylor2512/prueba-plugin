@@ -127,7 +127,10 @@ const PluginIcon = (props: PluginIconProps) => {
     ...styles,
   }), [resolvedSize, iconColor, styles]);
 
-  const iconName = label || plugin?.key || 'schema-icon';
+  // Some plugin declarations may not include a registration key on the
+  // object instance; prefer the provided label and fall back to a stable
+  // string to avoid TS errors referencing `plugin.key`.
+  const iconName = label || (plugin as any)?.key || 'schema-icon';
 
   const iconContent = useMemo(() => {
     if (typeof plugin.icon === 'string') {

@@ -12,6 +12,11 @@
 - [MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog](./MDA-060.md) — `BACKLOG`
 - [MDA-070 — Normalizar documentación pública y numeración](./MDA-070.md) — `BACKLOG`
 - [MDA-080 — Cerrar gates de arquitectura documental](./MDA-080.md) — `BACKLOG`
+- [MDA-090 — Consolidar topología Scrum](./MDA-090.md) — `BACKLOG`
+- [MDA-100 — Consolidar Brain e inventarios](./MDA-100.md) — `BACKLOG`
+- [MDA-110 — Cerrar huérfanos y grafo Markdown](./MDA-110.md) — `BACKLOG`
+- [MDA-120 — Reducir duplicidad semántica](./MDA-120.md) — `BACKLOG`
+- [MDA-130 — Cerrar saneamiento de arquitectura IA](./MDA-130.md) — `BACKLOG`
 - [Eliminar duplicidad entre tools/ai-quality y arquitectura IA](./TOOL-AI-DEDUP.md) — `BACKLOG`
 - [Baseline de scripts/tools y consumers](./TOOL-BASELINE.md) — `READY`
 - [TOOL-CAPABILITY-AUDIT](./TOOL-CAPABILITY-AUDIT.md) — `BACKLOG`

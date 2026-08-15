@@ -286,7 +286,7 @@ export function pasteSchemaDesignerMeta(
 }
 
 /** Genera un UUID  compatible con browser y Node */
-function generateSchemaUid(): string {
+export function generateSchemaUid(): string {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
     return crypto.randomUUID();
   }

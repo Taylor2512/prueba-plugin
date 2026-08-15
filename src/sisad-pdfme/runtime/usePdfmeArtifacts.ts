@@ -258,6 +258,10 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
     setBusy(true);
     status({ type: 'img2pdf-start' });
     try {
+      // `state.images` son object URLs (`blob:`) creadas por `runPdf2Img` en esta
+      // misma sesión: leerlas no sale del navegador. Por eso NO pasan por
+      // `fetchAssetArrayBuffer` —no hay origen, ni credenciales, ni status HTTP
+      // que verificar— y quedan deliberadamente con `fetch` directo.
       const buffers = await Promise.all(state.images.map((url) => fetch(url).then((r) => r.arrayBuffer())));
       const pdfBuffer = await cfg.img2pdf(buffers, { margin: [10, 10, 10, 10], size: { width: 210, height: 297 } });
       if (roundtripPdfUrlRef.current) revoke([roundtripPdfUrlRef.current]);

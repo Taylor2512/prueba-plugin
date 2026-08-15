@@ -45,18 +45,22 @@ const WidgetRenderer = (props: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const latestPropsRef = useRef(otherProps);
   const activeSchema = (otherProps as { activeSchema?: { id?: string; type?: string } }).activeSchema;
-  const renderSignature = useMemo(
-    () =>
-      JSON.stringify({
+  const renderSignature = useMemo(() => {
+    try {
+      return JSON.stringify({
         value: otherProps.value,
         readOnly: otherProps.readOnly,
         disabled: otherProps.disabled,
         hidden: otherProps.hidden,
         schemaId: activeSchema?.id || null,
         schemaType: activeSchema?.type || null,
-      }),
-    [activeSchema?.id, activeSchema?.type, otherProps.disabled, otherProps.hidden, otherProps.readOnly, otherProps.value],
-  );
+      });
+    } catch {
+      // Defensive: if structured cloning fails for any prop, fall back to
+      // a minimal signature to avoid breaking imperative widgets.
+      return String(activeSchema?.id || '') + '|' + String(activeSchema?.type || '');
+    }
+  }, [activeSchema?.id, activeSchema?.type, otherProps.disabled, otherProps.hidden, otherProps.readOnly, otherProps.value]);
   useEffect(() => {
     latestPropsRef.current = otherProps;
   }, [otherProps]);

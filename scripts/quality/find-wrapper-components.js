@@ -17,19 +17,41 @@ const options = {
 const findings = [];
 const parseErrors = [];
 
+/**
+ * Símbolos verificados como frontera de composición intencionada.
+ *
+ * El marcador de fichero silencia el módulo entero, que es demasiado grueso:
+ * un `wrapper-check: allow` en la cabecera de un módulo grande esconde también
+ * los wrappers reales que aparezcan después. `wrapper-check: allow <símbolo>`
+ * registra la verificación junto a la función concreta y deja el resto del
+ * fichero bajo vigilancia.
+ *
+ * El propio informe pide «verify whether this is an intentional composition
+ * boundary»; esto es dónde se anota esa verificación.
+ */
+const allowedSymbols = (source) =>
+  new Set(
+    [...source.matchAll(/wrapper-check:\s*(?:allow|ignore)\s+([A-Za-z_$][\w$]*)/gi)].map(
+      (match) => match[1],
+    ),
+  );
+
 for (const file of walkFilesSync(options.root).filter((item) =>
   isSourceFile(item, { includeTests: options.includeTests }),
 )) {
   const source = readTextFile(file);
-  if (/wrapper-check:\s*(allow|ignore)\b/i.test(source.slice(0, 1200))) continue;
+  if (/wrapper-check:\s*(allow|ignore)\s*$/im.test(source.slice(0, 1200))) continue;
 
   const program = parseProgram(file, source, { errors: parseErrors });
   if (!program) continue;
 
+  const allowed = allowedSymbols(source);
+  const fileFindings = [];
   const reexport = findReexport(file, program, source);
-  if (reexport) findings.push(reexport);
-  findings.push(...findReactWrappers(file, program));
-  findings.push(...findObjectReturnWrappers(file, program, source));
+  if (reexport) fileFindings.push(reexport);
+  fileFindings.push(...findReactWrappers(file, program));
+  fileFindings.push(...findObjectReturnWrappers(file, program, source));
+  findings.push(...fileFindings.filter((item) => !allowed.has(item.symbol)));
 }
 
 const results = uniqueBy(findings, (item) => `${item.file}:${item.category}:${item.symbol}:${item.target}`).sort(sortFindings);

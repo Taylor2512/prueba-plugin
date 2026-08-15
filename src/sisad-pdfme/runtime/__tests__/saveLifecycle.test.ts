@@ -21,7 +21,15 @@ describe("createSaveLifecycle", () => {
       persist,
       onStateChange: (state) => states.push(state),
       dispatcher: {
-        emit: (name, payload, meta) => events.push([name, payload, meta]),
+        // Minimal fake dispatcher implementing the InstanceEventDispatcher shape
+        emit: (name, payload, meta) => {
+          events.push([name, payload, meta]);
+          return { name, payload, meta } as any;
+        },
+        dispatch: (event, _hostCallbackPayload) => event as any,
+        subscribe: () => () => undefined,
+        listenerCount: () => 0,
+        clear: () => undefined,
       },
     });
 
@@ -87,7 +95,7 @@ describe("createSaveLifecycle", () => {
       .fn()
       .mockRejectedValueOnce(new Error("boom"))
       .mockResolvedValueOnce(undefined);
-    const lifecycle = createSaveLifecycle({ persist, getErrorMessage: (error) => error.message });
+    const lifecycle = createSaveLifecycle({ persist, getErrorMessage: (error) => (error instanceof Error ? error.message : String(error)) });
 
     const failed = await lifecycle.save({ id: "snapshot-1" });
     expect(failed).toEqual({ ok: false, error: "boom" });

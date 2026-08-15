@@ -19,7 +19,10 @@ import {
   upsertById,
   type SchemaCommentReply,
 } from '@sisad-pdfme/common';
+import { ensureAnchorId, ensureComment } from '@sisad-pdfme/common/collaboration';
 import { message } from 'antd';
+
+import { generateSchemaUid } from '@sisad-pdfme/shared/schemaDesignerMeta';
 import { DndContext } from '@dnd-kit/core';
 import { pdf2size } from '@sisad-pdfme/converter';
 import PluginIcon from '@sisad-pdfme/ui/components/Designer/PluginIcon';
@@ -371,19 +374,19 @@ const applyTopLevelCommentEventToTemplate = (
   if (!('type' in event) || !event.type.startsWith('comment.')) return template;
   if (!('schemaId' in event) || !isTopLevelCommentSchemaId(event.schemaId)) return template;
 
-  const nextTemplate = cloneDeep(template) as Template;
+  const nextTemplate = { ...template } as Template;
 
   if (event.type === 'comment.deleted') {
     return removeTopLevelComment(nextTemplate, event.commentId);
   }
 
   const commentEvent = event as Extract<Parameters<typeof applyCollaborationEvent>[1], { type: 'comment.created' | 'comment.updated' }>;
-  const anchor = cloneDeep(commentEvent.anchor || commentEvent.comment.anchor || undefined);
-  const comment = cloneDeep(commentEvent.comment);
+  const anchor = ensureAnchorId(commentEvent.anchor || commentEvent.comment.anchor || undefined) as TopLevelCommentEntry['anchor'];
+  const comment = ensureComment(commentEvent.comment || {} as any) as TopLevelCommentEntry['comment'];
   const topLevelEntry: TopLevelCommentEntry = {
     id: comment.id,
-    anchor: anchor as TopLevelCommentEntry['anchor'],
-    comment: comment as TopLevelCommentEntry['comment'],
+    anchor,
+    comment,
   };
   return upsertTopLevelComment(nextTemplate, topLevelEntry);
 };
@@ -2696,7 +2699,18 @@ const TemplateEditor = ({
 
       if (!found) return;
 
-      const defaultSchema = cloneDeep(found[1].propPanel.defaultSchema);
+      // Plugins may declare a minimal `defaultSchema`. Normalize required
+      // fields before adding so SchemaForUI invariants (e.g., `id`) hold.
+      const rawDefault = found[1].propPanel.defaultSchema as Partial<Schema>;
+      const defaultSchema: Schema = {
+        ...rawDefault,
+        id: rawDefault.id || generateSchemaUid(),
+        name: rawDefault.name || '',
+        position: rawDefault.position || { x: 0, y: 0 },
+        width: rawDefault.width || 45,
+        height: rawDefault.height || 10,
+        type: rawDefault.type || normalizedType,
+      } as Schema;
       addSchemaAtCenter(defaultSchema);
     },
     [addSchemaAtCenter, pluginsRegistry],

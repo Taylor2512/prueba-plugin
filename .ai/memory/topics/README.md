@@ -26,3 +26,15 @@ Operational CURRENT/HANDOFF topics live under `../../brain/70-memory/` and are n
 - [runtime](./runtime.md)
 - [schemas](./schemas.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [ai-architecture](./ai-architecture.md)
+- [canvas](./canvas.md)
+- [configuration](./configuration.md)
+- [runtime](./runtime.md)
+- [schemas](./schemas.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

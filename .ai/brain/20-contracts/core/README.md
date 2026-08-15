@@ -21,3 +21,14 @@
 - [Contrato del proyecto](./PROJECT-CONTRACT.md)
 - [Public API contract](./PUBLIC-API-CONTRACT.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Events and effects](./EVENT-EFFECT-CONTRACT.md)
+- [Markdown topology contract](./MARKDOWN-TOPOLOGY-CONTRACT.md)
+- [Contrato del proyecto](./PROJECT-CONTRACT.md)
+- [Public API contract](./PUBLIC-API-CONTRACT.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

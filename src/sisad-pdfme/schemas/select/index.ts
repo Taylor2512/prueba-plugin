@@ -187,8 +187,9 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
     // Chevron is decorative (pointer-events:none). Shown in every UI mode so the
     // field always reads as a dropdown; the native <select> overlay (interactive)
     // MUST only mount in form mode — in designer it would capture pointer events
-    // and block drag/selection/Moveable.
-    const shouldShowChevron = mode !== 'pdf';
+    // and block drag/selection/Moveable. Do not compare to 'pdf' literal;
+    // treat any non-form mode as viewer-like for chevron visibility.
+    const shouldShowChevron = mode !== 'form';
     const shouldMountNativeSelect = mode === 'form' && !schema.readOnly;
 
     if (shouldShowChevron) {

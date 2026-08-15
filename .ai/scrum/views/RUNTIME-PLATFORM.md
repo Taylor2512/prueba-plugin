@@ -85,13 +85,13 @@
 | [RTP-495](../task-cards/runtime-platform/RTP-495.md) | **PASS** | - |
 | [RTP-500](../task-cards/runtime-platform/RTP-500.md) | **PASS** | - |
 | [RTP-505](../task-cards/runtime-platform/RTP-505.md) | **PASS** | - |
-| [RTP-510](../task-cards/runtime-platform/RTP-510.md) | **BLOCKED** | - |
-| [RTP-515](../task-cards/runtime-platform/RTP-515.md) | **BACKLOG** | RTP-510 |
-| [RTP-520](../task-cards/runtime-platform/RTP-520.md) | **PARTIAL** | RTP-515 |
-| [RTP-525](../task-cards/runtime-platform/RTP-525.md) | **PARTIAL** | RTP-510 |
-| [RTP-530](../task-cards/runtime-platform/RTP-530.md) | **BLOCKED** | RTP-525 |
-| [RTP-535](../task-cards/runtime-platform/RTP-535.md) | **BACKLOG** | RTP-530 |
-| [RTP-540](../task-cards/runtime-platform/RTP-540.md) | **PARTIAL** | RTP-515, RTP-535 |
-| [RTP-545](../task-cards/runtime-platform/RTP-545.md) | **BLOCKED** | RTP-540, RTP-520 |
+| [RTP-510](../task-cards/runtime-platform/RTP-510.md) | **PASS** | - |
+| [RTP-515](../task-cards/runtime-platform/RTP-515.md) | **PASS** | - |
+| [RTP-520](../task-cards/runtime-platform/RTP-520.md) | **PASS** | - |
+| [RTP-525](../task-cards/runtime-platform/RTP-525.md) | **PASS** | - |
+| [RTP-530](../task-cards/runtime-platform/RTP-530.md) | **PASS** | - |
+| [RTP-535](../task-cards/runtime-platform/RTP-535.md) | **BACKLOG** | - |
+| [RTP-540](../task-cards/runtime-platform/RTP-540.md) | **PARTIAL** | RTP-535 |
+| [RTP-545](../task-cards/runtime-platform/RTP-545.md) | **PARTIAL** | RTP-540 |
 
 > Generated from evidence-aware reconciliation.

@@ -46,12 +46,25 @@ class FakeForm {
     this.inputs = this.inputs.map((row, i) =>
       i === payload.index ? { ...row, [payload.name]: String(payload.value) } : row,
     );
-    this.handler?.({ ...payload, origin: 'user' });
+    // The InputHandler type does not include 'origin' historically; tests
+    // expect an extra 'origin' field — provide it but keep the handler call
+    // compatible by casting to unknown.
+    this.handler?.(({
+      index: payload.index,
+      name: payload.name,
+      value: payload.value,
+      origin: 'user',
+    } as unknown) as { index: number; name: string; value: unknown });
   }
 
   /** Simula el diff que `Form.setInputs` emite tras una escritura del host. */
   emitHostEcho(payload: { index: number; name: string; value: unknown }) {
-    this.handler?.({ ...payload, origin: 'host' });
+    this.handler?.(({
+      index: payload.index,
+      name: payload.name,
+      value: payload.value,
+      origin: 'host',
+    } as unknown) as { index: number; name: string; value: unknown });
   }
 }
 

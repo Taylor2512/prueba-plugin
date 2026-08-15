@@ -21,3 +21,14 @@
 - [DetailView](./DETAILVIEW-CONTRACT.md)
 - [LeftSidebar](./LEFT-SIDEBAR-CONTRACT.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Contrato de clases y selectores](./CLASS-NAMESPACE-CONTRACT.md)
+- [Designer interaction](./DESIGNER-INTERACTION-CONTRACT.md)
+- [DetailView](./DETAILVIEW-CONTRACT.md)
+- [LeftSidebar](./LEFT-SIDEBAR-CONTRACT.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

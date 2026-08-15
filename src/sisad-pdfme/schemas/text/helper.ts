@@ -9,6 +9,8 @@ import {
   getFallbackFontName,
   getDefaultFont,
   DEFAULT_FONT_NAME,
+  fetchAssetArrayBuffer,
+  type AssetFetchOptions,
 } from '@sisad-pdfme/common';
 import type { TextSchema, FontWidthCalcValues } from '@sisad-pdfme/schemas/text/types';
 import {
@@ -112,6 +114,7 @@ export const getFontKitFont = async (
   fontName: string | undefined,
   font: Font,
   _cache: Map<string | number, fontkit.Font>,
+  assetOptions: AssetFetchOptions = {},
 ) => {
   const fntNm = fontName || getFallbackFontName(font);
   const cacheKey = getCacheKey(fntNm);
@@ -120,15 +123,15 @@ export const getFontKitFont = async (
   }
 
   const currentFont = font[fntNm] || getFallbackFont(font) || getDefaultFont()[DEFAULT_FONT_NAME];
-  let fontData = currentFont.data;
+  let fontData = currentFont.data as string | ArrayBuffer | Uint8Array;
   if (typeof fontData === 'string') {
     fontData = fontData.startsWith('http')
-      ? await fetch(fontData).then((res) => res.arrayBuffer())
+      ? await fetchAssetArrayBuffer(fontData, assetOptions)
       : b64toUint8Array(fontData);
   }
 
   // Normalize font bytes to Uint8Array before handing them to fontkit.
-  const fontDataBuffer = fontData instanceof Uint8Array ? fontData : new Uint8Array(fontData);
+  const fontDataBuffer = fontData instanceof Uint8Array ? fontData : new Uint8Array(fontData as ArrayBuffer);
   const fontKitFont = fontkit.create(fontDataBuffer) as fontkit.Font;
   _cache.set(cacheKey, fontKitFont);
 

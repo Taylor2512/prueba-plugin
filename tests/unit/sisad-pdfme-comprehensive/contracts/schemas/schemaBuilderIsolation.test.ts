@@ -9,11 +9,11 @@ const definition = {
   category: 'Test',
 };
 
-const plugin = createSchemaPlugin({
+const plugin = createSchemaPlugin(({
   pdf: () => undefined,
   ui: ({ onChange }) => onChange?.([{ key: 'content', value: 'changed' }]),
   propPanel: { defaultSchema: { type: 'test', name: '' } },
-} as Plugin, definition);
+} as unknown) as Plugin, definition);
 
 const render = (rootElement: HTMLDivElement, onChange: () => void) =>
   plugin.ui({

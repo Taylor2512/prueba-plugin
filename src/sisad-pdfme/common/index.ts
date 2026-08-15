@@ -54,6 +54,9 @@ export {
   getInputFromTemplate,
   isBlankPdf,
 } from '@sisad-pdfme/common/helper';
+/** Descarga de assets remotos (fuentes, PDF base) con status verificado. */
+export { fetchAssetArrayBuffer, fetchAssetBlob, AssetFetchError } from '@sisad-pdfme/common/assetFetch';
+export type { AssetTransport, AssetFetchOptions } from '@sisad-pdfme/common/assetFetch';
 /** Helpers de colaboración, comments y assignments. */
 export {
   buildSchemaAssignments,

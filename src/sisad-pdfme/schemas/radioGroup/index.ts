@@ -52,7 +52,7 @@ import { renderOptionGroupPdf } from '@sisad-pdfme/schemas/options/optionGroupPd
 type RadioOption = OptionItem;
 
 const normalizeRadioGroupOptions = (schema: RadioGroupSchema): RadioOption[] => {
-  return normalizeOptionGroupOptions(schema.options, 'Opción') as RadioOption[];
+  return normalizeOptionGroupOptions(schema.options, 'Opción');
 };
 
 const resolveRadioGroupSelectedOptionId = (

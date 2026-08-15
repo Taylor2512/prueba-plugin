@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "testDir": "testsprite_tests",
+  "reportDir": "reports/testsprite",
+  "expectedPort": 5174,
+  "serverUrl": "http://127.0.0.1:5174/",
+  "activeTestPattern": "^TC\\d+.*\\.py$",
+  "safeResidueNames": [
+    ".DS_Store"
+  ],
+  "safeResiduePrefixes": [
+    "._"
+  ],
+  "safeResidueExtensions": [
+    ".pyc"
+  ],
+  "safeResidueDirectories": [
+    "__pycache__"
+  ],
+  "generatedSessionPaths": [
+    "testsprite_tests/tmp",
+    "testsprite_tests/standard_prd.json",
+    "testsprite_tests/testsprite_frontend_test_plan.json"
+  ],
+  "legacyRootHelpers": [
+    "run-testsprite-all-local.py",
+    "cleanup-testsprite-artifacts.sh"
+  ],
+  "staleMarkers": [
+    "Test blocked during agent run:",
+    "TEST BLOCKED"
+  ],
+  "wrongPorts": [
+    4173,
+    5173
+  ],
+  "backupSuffix": "testsprite-cleanup-backup"
+}

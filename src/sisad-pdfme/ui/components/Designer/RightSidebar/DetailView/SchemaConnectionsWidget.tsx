@@ -28,6 +28,7 @@ import {
   resolveDesignerHttpClientConfig,
   type DesignerEngine,
   type SchemaDesignerConfig,
+  type SchemaRequestConfig,
   type SchemaHttpAuthConfig,
   type SchemaHttpClientConfig,
   type SchemaFormJsonConfig,
@@ -855,31 +856,33 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
               <div className={GRID_2}>
             <div className={FIELD}>
               <span className={FIELD_LABEL}>Modo de ejecución</span>
-              <FormSelect
-                id="connections-api-request-mode"
-                name="connections-api-request-mode"
-                value={api.requestMode || 'read'}
-                onChange={(value) => updateApi({ requestMode: value as any })}
-                options={[
-                  { label: 'Lectura', value: 'read' },
-                  { label: 'Escritura', value: 'submit' },
-                  { label: 'Sincronización', value: 'sync' },
-                  { label: 'Opciones', value: 'options' },
-                ]}
-              />
+                      <FormSelect
+                        id="connections-api-request-mode"
+                        name="connections-api-request-mode"
+                        value={api.requestMode || 'read'}
+                        onChange={(value) => updateApi({ requestMode: value as unknown as NonNullable<SchemaRequestConfig['requestMode']> })}
+                        options={
+                          [
+                            { label: 'Lectura', value: 'read' },
+                            { label: 'Escritura', value: 'submit' },
+                            { label: 'Sincronización', value: 'sync' },
+                            { label: 'Opciones', value: 'options' },
+                          ]
+                        }
+                      />
             </div>
             <div className={FIELD}>
               <span className={FIELD_LABEL}>Tipo de autenticación</span>
-              <FormSelect
-                id="connections-api-auth-mode"
-                name="connections-api-auth-mode"
-                value={api.http?.auth?.mode || 'inherit'}
-                onChange={(value) => updateApiAuthMode(value as any)}
-                options={[
-                  { label: 'Heredada', value: 'inherit' },
-                  { label: 'Manual', value: 'manual' },
-                ]}
-              />
+                      <FormSelect
+                        id="connections-api-auth-mode"
+                        name="connections-api-auth-mode"
+                        value={api.http?.auth?.mode || 'inherit'}
+                        onChange={(value) => updateApiAuthMode(value as unknown as 'inherit' | 'manual')}
+                        options={[
+                          { label: 'Heredada', value: 'inherit' },
+                          { label: 'Manual', value: 'manual' },
+                        ]}
+                      />
             </div>
           </div>
           <div className={INLINE_CHECKS}>
@@ -901,12 +904,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                     <div className={GRID_2}>
                       <div className={FIELD}>
                         <span className={FIELD_LABEL}>Tipo de token</span>
-                        <Select
+                        <FormSelect
                           id="connections-api-auth-type"
                           name="connections-api-auth-type"
-                          size="small"
                           value={api.http?.auth?.type || 'bearer'}
-                          onChange={(value) => updateApiAuthType(value)}
+                          onChange={(value) => updateApiAuthType(value as SchemaHttpAuthConfig['type'])}
                           options={[
                             { label: 'Token portador', value: 'bearer' },
                             { label: 'Básico', value: 'basic' },

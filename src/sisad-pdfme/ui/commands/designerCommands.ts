@@ -1,4 +1,5 @@
 import { cloneDeep } from '@sisad-pdfme/common';
+import { ensureAnchorId, ensureComment } from '@sisad-pdfme/common/collaboration';
 
 import type {
   Command,
@@ -154,11 +155,15 @@ export const createCommentCommand = ({
   meta,
   execute: ({ emit }) => {
     execute();
-    emit({ type: 'comment.updated', pageIndex: targetComment.pageIndex });
+    const pageNumber = (targetComment && ((targetComment.comment && targetComment.comment.pageNumber) ?? (targetComment.anchor && targetComment.anchor.pageNumber))) ?? undefined;
+    const pageIndex = Number.isFinite(Number(pageNumber)) ? Math.max(0, Number(pageNumber) - 1) : undefined;
+    emit({ type: 'comment.updated', pageIndex });
   },
   undo: ({ emit }) => {
     undo();
-    emit({ type: 'comment.updated', pageIndex: targetComment.pageIndex });
+    const pageNumber = (targetComment && ((targetComment.comment && targetComment.comment.pageNumber) ?? (targetComment.anchor && targetComment.anchor.pageNumber))) ?? undefined;
+    const pageIndex = Number.isFinite(Number(pageNumber)) ? Math.max(0, Number(pageNumber) - 1) : undefined;
+    emit({ type: 'comment.updated', pageIndex });
   },
 });
 
@@ -182,7 +187,11 @@ export const createCommentCommandEvent = (
 /**
  * Construye una entrada top-level de comentario para snapshots globales.
  */
-export const buildTopLevelCommentEntry = (entry: TopLevelPdfCommentEntry): TopLevelPdfCommentEntry => entry;
+export const buildTopLevelCommentEntry = (entry: TopLevelPdfCommentEntry): TopLevelPdfCommentEntry => ({
+  id: String(entry?.id || (entry as any)?.comment?.id || (entry as any)?.anchor?.id || ''),
+  anchor: ensureAnchorId((entry as any)?.anchor || (entry as any)?.comment?.anchor || {}) as TopLevelPdfCommentEntry['anchor'],
+  comment: ensureComment((entry as any)?.comment || entry) as unknown as TopLevelPdfCommentEntry['comment'],
+});
 
 /* ------------------------------------------------------------------ */
 /* Comandos de estructura de página (COREUX-016)                       */
@@ -288,7 +297,7 @@ export const createPageStructureCommand = <T extends Record<string, unknown>>({
   meta = {},
 }: PageStructureCommandArgs<T>): { command: Command } | { rejection: PageStructureRejection } => {
   const result = applyPageStructure(pages, operation, pageIndex);
-  if (!result.ok) return { rejection: result.reason };
+  if (!result.ok) return { rejection: (result as any).reason };
 
   const before = cloneDeep(pages);
   const after = cloneDeep(result.pages);

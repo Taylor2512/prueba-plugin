@@ -345,6 +345,13 @@ export const resolveSchemaOwnerTone = (
 ): string =>
   resolveSchemaOwnerColorValue(schema) || normalizeColor(fallback) || '#94A3B8';
 
+/**
+ * Proyecta un tono en las cuatro variables CSS que consume el chrome.
+ *
+ * wrapper-check: allow resolveSchemaOwnerStyleVars — no republica el resultado
+ * delegado: lo abre en cuatro nombres distintos, que es la traducción que evita
+ * que cada consumidor repita los nombres de las variables.
+ */
 export const resolveSchemaOwnerStyleVars = (
   schema: unknown,
   fallback?: string | null,

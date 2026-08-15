@@ -180,6 +180,9 @@ export const snapPointToGrid = (
  * elemento no debe redimensionarlo. El ajuste por otros bordes es
  * responsabilidad del object snap (`snapEngine`), que es una capability
  * distinta.
+ *
+ * wrapper-check: allow snapRectToGrid — conservar el tamaño mientras se ajusta
+ * el origen es precisamente la decisión de diseño que documenta este bloque.
  */
 export const snapRectToGrid = (
   geometry: GridGeometry,

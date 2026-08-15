@@ -22,6 +22,8 @@
     "quality:dead-dependencies": "knip --dependencies",
     "quality:cycles": "knip --cycles",
     "quality:dead-code:audit": "knip",
+    "quality:dead-exports:ratchet": "node scripts/quality/dead-exports-ratchet.mjs",
+    "quality:dead-exports:ratchet:update": "node scripts/quality/dead-exports-ratchet.mjs --update",
     "quality:dead-code:fix:unsafe": "knip --fix",
     "quality:dead-code:ci": "knip --production",
     "quality:template-contracts": "node scripts/quality/validate-form-template-runtime-references.mjs",

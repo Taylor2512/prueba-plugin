@@ -21,6 +21,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import * as Y from 'yjs';
 import { Awareness } from 'y-protocols/awareness';
 import { cloneDeep, type SchemaForUI } from '@sisad-pdfme/common';
+import { toSchemaCommentsArray, toSchemaAnchorsArray } from './collaborationAdapters';
+import { toSchemaComment, toSchemaCommentAnchor } from './collaborationAdapters';
 import type {
   CollaborationHistoryEntry,
   CollaborationPresence,
@@ -244,7 +246,7 @@ const ensureTimestamp = (value?: number) => (Number.isFinite(value as number) ? 
 const ensureSessionId = (value?: string) => String(value || 'local');
 
 const stripSchemaForBaseStore = (schema: SchemaForUI): SchemaForUI => {
-  const next = cloneDeep(schema);
+  const next = { ...schema } as SchemaForUI;
   delete next.comments;
   delete next.commentAnchors;
   delete next.commentsAnchors;
@@ -253,32 +255,30 @@ const stripSchemaForBaseStore = (schema: SchemaForUI): SchemaForUI => {
   return next;
 };
 
+// `ensure*` helpers are provided by the common collaboration module.
+
 const mergeAuxIntoSchema = (
   schema: SchemaForUI,
   commentsEntry?: CommentsStoreEntry | null,
   lockEntry?: LockStoreEntry | null,
-): SchemaForUI => ({
-  ...cloneDeep(schema),
-  ...(commentsEntry
-    ? {
-      comments: cloneDeep(commentsEntry.comments || []),
-      commentAnchors: cloneDeep(commentsEntry.commentAnchors || commentsEntry.commentsAnchors || []),
-      commentsAnchors: cloneDeep(commentsEntry.commentsAnchors || commentsEntry.commentAnchors || []),
-      commentsCount:
-        typeof commentsEntry.commentsCount === 'number'
-          ? commentsEntry.commentsCount
-          : Array.isArray(commentsEntry.comments)
-            ? commentsEntry.comments.length
-            : 0,
-    }
-    : null),
-  ...(lockEntry
-    ? {
-      lock: lockEntry.lock ? cloneDeep(lockEntry.lock) : undefined,
-      state: lockEntry.state,
-    }
-    : null),
-});
+): SchemaForUI => {
+  const base = { ...schema } as SchemaForUI;
+  if (commentsEntry) {
+    base.comments = toSchemaCommentsArray(commentsEntry.comments || []);
+    base.commentAnchors = toSchemaAnchorsArray(commentsEntry.commentAnchors || commentsEntry.commentsAnchors || []);
+    base.commentsAnchors = toSchemaAnchorsArray(commentsEntry.commentsAnchors || commentsEntry.commentAnchors || []);
+    base.commentsCount = typeof commentsEntry.commentsCount === 'number'
+      ? commentsEntry.commentsCount
+      : Array.isArray(commentsEntry.comments)
+        ? commentsEntry.comments.length
+        : 0;
+  }
+  if (lockEntry) {
+    base.lock = lockEntry.lock ? { ...(lockEntry.lock as Record<string, unknown>) } : undefined;
+    base.state = lockEntry.state;
+  }
+  return base;
+};
 
 const createHistoryEntryFromEvent = (event: CollaborationEvent): CollaborationHistoryEntry => {
   const timestamp = ensureTimestamp(event.timestamp);
@@ -314,7 +314,7 @@ const createHistoryEntryFromEvent = (event: CollaborationEvent): CollaborationHi
     timestamp,
     payload:
       event.type === 'update'
-        ? cloneDeep(event.patch)
+        ? ({ ...(event.patch || {}) } as Record<string, unknown>)
         : event.type === 'create'
           ? { schemaUid: event.schema.schemaUid, pageNumber: event.schema.pageNumber }
           : event.type === 'comment' || event.type === 'comment.created' || event.type === 'comment.updated'
@@ -376,8 +376,8 @@ const createCommentUpsertLifecycleEvent = (
 ): CollaborationEvent => ({
   type,
   schemaId: schema.id,
-  comment: cloneDeep(comment),
-  anchor: comment.anchor ? cloneDeep(comment.anchor) : undefined,
+  comment: toSchemaComment(comment),
+  anchor: comment.anchor ? toSchemaCommentAnchor(comment.anchor, (comment as any)?.id) : undefined,
   pageIndex,
   ...metadata,
 });
@@ -388,8 +388,8 @@ const collectCommentLifecycleEvents = (
   metadata: Pick<CollaborationEvent, 'actorId' | 'sessionId' | 'timestamp'>,
   pageIndex?: number,
 ): CollaborationEvent[] => {
-  const previousComments = Array.isArray(before.comments) ? before.comments : [];
-  const nextComments = Array.isArray(after.comments) ? after.comments : [];
+  const previousComments = Array.isArray(before.comments) ? toSchemaCommentsArray(before.comments as any[]) : [];
+  const nextComments = Array.isArray(after.comments) ? toSchemaCommentsArray(after.comments as any[]) : [];
   const previousById = new Map(previousComments.map((comment) => [comment.id, comment] as const));
   const nextById = new Map(nextComments.map((comment) => [comment.id, comment] as const));
   const events: CollaborationEvent[] = [];
@@ -454,10 +454,10 @@ const buildCommentCollectionsFromEvent = (
     };
   }
 
-  const nextComment = cloneDeep(event.comment);
-  const eventAnchor = cloneDeep(event.anchor || nextComment.anchor);
+  const nextComment = toSchemaComment(event.comment || {});
+  const eventAnchor = toSchemaCommentAnchor(event.anchor || nextComment.anchor || {}, nextComment.id);
   if (eventAnchor && !nextComment.anchor) {
-    nextComment.anchor = cloneDeep(eventAnchor);
+    nextComment.anchor = eventAnchor;
   }
   if (eventAnchor && !eventAnchor.id) {
     eventAnchor.id = nextComment.id;
@@ -487,7 +487,7 @@ const buildCommentCollectionsFromEvent = (
     if (commentAtIndex >= 0) {
       nextComments[commentAtIndex] = {
         ...nextComments[commentAtIndex],
-        anchor: cloneDeep(resolvedAnchor),
+        anchor: toSchemaCommentAnchor(resolvedAnchor, nextComment.id),
       } as SchemaComment;
     }
   }
@@ -537,7 +537,7 @@ export const applyCollaborationEvent = (
 
   if (event.type === 'create') {
     const page = nextSchemasList[pageIndex] || [];
-    nextSchemasList[pageIndex] = page.concat([cloneDeep(event.schema)]);
+    nextSchemasList[pageIndex] = page.concat([{ ...(event.schema as SchemaForUI) }]);
     return nextSchemasList;
   }
 
@@ -590,8 +590,8 @@ export const applyCollaborationEvent = (
     for (let i = 0; i < nextSchemasList.length; i += 1) {
       const updated = updateSchemaOnPage(i, event.schemaId, (schema) => {
         if (isStaleEvent(schema, event.timestamp)) return schema;
-        const currentComments = Array.isArray(schema.comments) ? schema.comments : [];
-        const currentAnchors = Array.isArray(schema.commentAnchors) ? schema.commentAnchors : [];
+        const currentComments = Array.isArray(schema.comments) ? toSchemaCommentsArray(schema.comments as any[]) : [];
+        const currentAnchors = Array.isArray(schema.commentAnchors) ? toSchemaAnchorsArray(schema.commentAnchors as any[]) : [];
         const { comments, anchors, commentsCount } = buildCommentCollectionsFromEvent(
           event,
           currentComments,
@@ -692,7 +692,7 @@ export const diffCollaborationEvents = (
     if (!previousEntry) {
       events.push({
         type: 'create',
-        schema: cloneDeep(nextEntry.schema),
+        schema: { ...(nextEntry.schema as SchemaForUI) },
         pageIndex: nextEntry.pageIndex,
         actorId: metadata.actorId,
         sessionId: metadata.sessionId,
@@ -904,9 +904,7 @@ export const createYjsCollaborationProvider = ({
   };
 
   const emitHistory = () => {
-    const values = room
-      ? cloneDeep(room.doc.getArray<CollaborationHistoryEntry>('history').toArray())
-      : [];
+    const values = room ? room.doc.getArray<CollaborationHistoryEntry>('history').toArray().slice() : [];
     historyListeners.forEach((listener) => listener(values));
   };
 
@@ -994,9 +992,9 @@ export const createYjsCollaborationProvider = ({
           id: schemaId,
           name: schemaId,
           type: 'text',
-          comments: cloneDeep(previousEntry?.comments || []),
-          commentAnchors: cloneDeep(previousEntry?.commentAnchors || previousEntry?.commentsAnchors || []),
-          commentsAnchors: cloneDeep(previousEntry?.commentsAnchors || previousEntry?.commentAnchors || []),
+          comments: toSchemaCommentsArray(previousEntry?.comments || []),
+          commentAnchors: toSchemaAnchorsArray(previousEntry?.commentAnchors || previousEntry?.commentsAnchors || []),
+          commentsAnchors: toSchemaAnchorsArray(previousEntry?.commentsAnchors || previousEntry?.commentAnchors || []),
           commentsCount:
             typeof previousEntry?.commentsCount === 'number'
               ? previousEntry.commentsCount
@@ -1011,9 +1009,9 @@ export const createYjsCollaborationProvider = ({
           id: schemaId,
           name: schemaId,
           type: 'text',
-          comments: cloneDeep(nextEntry?.comments || []),
-          commentAnchors: cloneDeep(nextEntry?.commentAnchors || nextEntry?.commentsAnchors || []),
-          commentsAnchors: cloneDeep(nextEntry?.commentsAnchors || nextEntry?.commentAnchors || []),
+          comments: toSchemaCommentsArray(nextEntry?.comments || []),
+          commentAnchors: toSchemaAnchorsArray(nextEntry?.commentAnchors || nextEntry?.commentsAnchors || []),
+          commentsAnchors: toSchemaAnchorsArray(nextEntry?.commentsAnchors || nextEntry?.commentAnchors || []),
           commentsCount:
             typeof nextEntry?.commentsCount === 'number'
               ? nextEntry.commentsCount
@@ -1042,9 +1040,9 @@ export const createYjsCollaborationProvider = ({
             type: 'update',
             schemaId,
             patch: {
-              comments: cloneDeep(nextEntry.comments || []),
-              commentAnchors: cloneDeep(nextEntry.commentAnchors || nextEntry.commentsAnchors || []),
-              commentsAnchors: cloneDeep(nextEntry.commentsAnchors || nextEntry.commentAnchors || []),
+              comments: toSchemaCommentsArray(nextEntry.comments || []),
+              commentAnchors: toSchemaAnchorsArray(nextEntry.commentAnchors || nextEntry.commentsAnchors || []),
+              commentsAnchors: toSchemaAnchorsArray(nextEntry.commentsAnchors || nextEntry.commentAnchors || []),
               commentsCount:
                 typeof nextEntry.commentsCount === 'number'
                   ? nextEntry.commentsCount
@@ -1080,7 +1078,7 @@ export const createYjsCollaborationProvider = ({
           listener({
             type: 'lock',
             schemaId,
-            lock: cloneDeep(nextEntry.lock),
+            lock: { ...(nextEntry.lock as Record<string, unknown>) },
             state: nextEntry.state,
             pageIndex: nextEntry.pageIndex,
             sessionId: safeSessionId,
@@ -1187,19 +1185,19 @@ export const createYjsCollaborationProvider = ({
             lastModifiedBy: event.actorId || safeActorId,
           }),
         });
-        if (event.schema.comments || event.schema.commentAnchors || event.schema.commentsAnchors) {
-          commentsMap.set(event.schema.id, {
-            comments: cloneDeep(event.schema.comments || []),
-            commentAnchors: cloneDeep(event.schema.commentAnchors || event.schema.commentsAnchors || []),
-            commentsAnchors: cloneDeep(event.schema.commentsAnchors || event.schema.commentAnchors || []),
-            commentsCount:
-              typeof event.schema.commentsCount === 'number'
-                ? event.schema.commentsCount
-                : Array.isArray(event.schema.comments)
-                  ? event.schema.comments.length
-                  : 0,
-          });
-        }
+          if (event.schema.comments || event.schema.commentAnchors || event.schema.commentsAnchors) {
+            commentsMap.set(event.schema.id, {
+              comments: toSchemaCommentsArray(event.schema.comments || []),
+              commentAnchors: toSchemaAnchorsArray(event.schema.commentAnchors || event.schema.commentsAnchors || []),
+              commentsAnchors: toSchemaAnchorsArray(event.schema.commentsAnchors || event.schema.commentAnchors || []),
+              commentsCount:
+                typeof event.schema.commentsCount === 'number'
+                  ? event.schema.commentsCount
+                  : Array.isArray(event.schema.comments)
+                    ? (event.schema.comments as any[]).length
+                    : 0,
+            });
+          }
         if (event.schema.lock) {
           locksMap.set(event.schema.id, {
             lock: cloneDeep(event.schema.lock),
@@ -1305,14 +1303,14 @@ export const createYjsCollaborationProvider = ({
       });
       if (comments || commentAnchors || commentsAnchors || typeof commentsCount === 'number') {
         commentsMap.set(event.schemaId, {
-          comments: cloneDeep(comments || []),
-          commentAnchors: cloneDeep(commentAnchors || commentsAnchors || []),
-          commentsAnchors: cloneDeep(commentsAnchors || commentAnchors || []),
+          comments: toSchemaCommentsArray(comments || []),
+          commentAnchors: toSchemaAnchorsArray(commentAnchors || commentsAnchors || []),
+          commentsAnchors: toSchemaAnchorsArray(commentsAnchors || commentAnchors || []),
           commentsCount:
             typeof commentsCount === 'number'
               ? commentsCount
               : Array.isArray(comments)
-                ? comments.length
+                ? (comments as any[]).length
                 : 0,
         });
       }

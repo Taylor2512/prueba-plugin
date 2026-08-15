@@ -40,7 +40,7 @@ type DetailHeaderCardProps = {
   className?: string;
   collaborationContext?: Pick<
     EffectiveCollaborationContext,
-    'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor'
+    'recipientOptions' | 'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor' | 'canEditStructure'
   > | null;
   /** When provided, renders a back button as the trailing action. */
   onBack?: () => void;

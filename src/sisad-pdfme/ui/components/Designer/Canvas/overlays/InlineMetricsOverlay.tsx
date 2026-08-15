@@ -30,9 +30,10 @@ const resolveBadgePosition = (bounds: NonNullable<InlineMetricsOverlayProps['bou
   const minLeft = viewportLeft + BADGE_GAP;
   const maxLeft = Math.max(minLeft, viewportLeft + viewportWidth - BADGE_SIZE.width - BADGE_GAP);
   const left = clampBadgeValue(bounds.left, minLeft, maxLeft);
+  const bottom = bounds.top + bounds.height;
   const enoughSpaceAbove = bounds.top - viewportTop >= TOOLBAR_HEIGHT_HINT + BADGE_SIZE.height + BADGE_GAP * 2;
   const preferredTop = enoughSpaceAbove
-    ? bounds.bottom + BADGE_GAP
+    ? bottom + BADGE_GAP
     : bounds.top - BADGE_SIZE.height - BADGE_GAP;
   const maxTop = Math.max(viewportTop + BADGE_GAP, viewportTop + viewportHeight - BADGE_SIZE.height - BADGE_GAP);
   const top = clampBadgeValue(preferredTop, viewportTop + BADGE_GAP, maxTop);

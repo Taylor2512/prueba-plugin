@@ -92,3 +92,16 @@ coverage-final.json
 /playwright/.auth/
 testsprite_tests/tmp/
 testsprite_tests/tmp/config.json
+
+# testsprite-cleanup:start
+# TestSprite local/generated residue
+testsprite_tests/**/__pycache__/
+testsprite_tests/**/*.pyc
+testsprite_tests/.DS_Store
+testsprite_tests/**/.DS_Store
+testsprite_tests/._*
+testsprite_tests/**/._*
+testsprite_tests/tmp/
+testsprite_tests/local-run-results.json
+testsprite_tests/LOCAL-RUN-RESULTS.md
+# testsprite-cleanup:end

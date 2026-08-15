@@ -429,16 +429,22 @@ export const createSchemaComment = (
   resolved: false,
 
   /**
-   * Se clona el anchor para evitar mutación por referencia.
-   */
-  anchor: overrides.anchor ? cloneDeep(overrides.anchor) : undefined,
-
-  /**
    * Replies también se clonan para proteger el estado original.
    */
   replies: Array.isArray(overrides.replies)
-    ? cloneDeep(overrides.replies)
+    ? (overrides.replies as SchemaCommentReply[]).map((r) => ({
+        ...(r as SchemaCommentReply),
+        id:
+          typeof (r as SchemaCommentReply)?.id === 'string' && String((r as SchemaCommentReply)?.id).trim()
+            ? String((r as SchemaCommentReply)?.id)
+            : createEntityId('reply'),
+      }))
     : [],
+
+  /**
+   * Normaliza el anchor usando createSchemaCommentAnchor para garantizar `id`.
+   */
+  anchor: overrides.anchor ? createSchemaCommentAnchor(overrides.anchor as CommentAnchorDraft, {}) : undefined,
 });
 
 /**
@@ -490,6 +496,56 @@ export const createSchemaCommentAnchor = (
   authorName: normalizeCollaborationCommonText(identity.authorName) || undefined,
   authorColor: normalizeCollaborationCommonText(identity.authorColor) || undefined,
 });
+
+/**
+ * Asegura que un anchor tenga `id` y normaliza campos mínimos.
+ * Reutiliza `createSchemaCommentAnchor` para aplicar las reglas canon.
+ */
+export const ensureAnchorId = (anchor?: unknown): CommentAnchor & { id: string } =>
+  createSchemaCommentAnchor((anchor as Record<string, unknown>) || {}, {
+    authorId: (anchor && ((anchor as Record<string, unknown>).authorId as string)) || undefined,
+    authorName: (anchor && ((anchor as Record<string, unknown>).authorName as string)) || undefined,
+    authorColor: (anchor && ((anchor as Record<string, unknown>).authorColor as string)) || undefined,
+    timestamp: Number((anchor as Record<string, unknown>)?.timestamp) || undefined,
+  });
+
+export const ensureAnchorsArray = (anchors?: unknown[]): Array<CommentAnchor & { id: string }> =>
+  Array.isArray(anchors) ? anchors.map((a) => ensureAnchorId(a)) : [];
+
+/**
+ * Normaliza un comentario parcial en un `SchemaComment` garantizando `id`,
+ * anchor (normalizado) y replies (con id).
+ */
+export const ensureComment = (comment?: unknown): SchemaComment & { id: string } => {
+  const c = (comment || {}) as Record<string, unknown>;
+  const identity: CommentAuthorIdentity = {
+    authorId: (c.authorId as string) || undefined,
+    authorName: (c.authorName as string) || undefined,
+    authorColor: (c.authorColor as string) || undefined,
+    timestamp: Number(c.timestamp) || undefined,
+  };
+
+  const replies = Array.isArray(c.replies)
+    ? (c.replies as unknown[]).map((r) => ({
+        ...(r as Record<string, unknown> || {}),
+        id:
+          typeof (r as Record<string, unknown>)?.id === 'string' && String((r as Record<string, unknown>)?.id).trim()
+            ? String((r as Record<string, unknown>)?.id)
+            : createEntityId('reply'),
+      }))
+    : [];
+
+  const anchor = c.anchor ? ensureAnchorId(c.anchor) : undefined;
+
+  return createSchemaComment(normalizeCollaborationCommonText(String(c?.text || '')), identity, {
+    ...(c as SchemaCommentDraft),
+    anchor,
+    replies,
+  } as SchemaCommentDraft) as SchemaComment & { id: string };
+};
+
+export const ensureCommentsArray = (comments?: unknown[]): Array<SchemaComment & { id: string }> =>
+  Array.isArray(comments) ? comments.map((c) => ensureComment(c)) : [];
 
 /**
  * Inserta o actualiza un item dentro de un array usando su id.
@@ -551,7 +607,7 @@ type SchemaAssignmentLocation = {
 };
 
 const resolveSchemaAssignmentLocation = (
-  schema: SchemaForUI,
+  schema: SchemaForUI | Record<string, unknown>,
   pageIndex: number,
 ): SchemaAssignmentLocation | null => {
   const rawSchema = schema as CollaborativeAssignmentSchema;

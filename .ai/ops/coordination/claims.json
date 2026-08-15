@@ -4,8 +4,19 @@
     "task": "RTP-545",
     "mode": "write",
     "paths": [
+      "src/sisad-pdfme/schemas/checkboxGroup/index.ts",
+      "src/sisad-pdfme/schemas/radioGroup/index.ts",
       "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx"
     ],
-    "startedAt": "2026-08-15T15:50:08.674Z"
+    "startedAt": "2026-08-15T21:19:31.689Z"
+  },
+  "claude": {
+    "agent": "claude",
+    "task": "RTP-530",
+    "mode": "write",
+    "paths": [
+      "src/sisad-pdfme/common/assetFetch.ts,src/sisad-pdfme/common/helper.ts,src/sisad-pdfme/schemas/text/helper.ts,src/sisad-pdfme/schemas/text/pdfRender.ts,src/sisad-pdfme/runtime/usePdfmeArtifacts.ts,reports/runtime-platform/evidence"
+    ],
+    "startedAt": "2026-08-15T23:23:41.839Z"
   }
 }

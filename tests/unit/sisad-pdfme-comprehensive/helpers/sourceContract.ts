@@ -5,7 +5,7 @@ import ts from 'typescript';
 export const absoluteSource = (sourcePath: string) => path.resolve(process.cwd(), sourcePath);
 export const readSource = (sourcePath: string) => fs.readFileSync(absoluteSource(sourcePath), 'utf8');
 
-export function parseSource(sourcePath: string) {
+export function parseSource(sourcePath: string): any {
   const absolute = absoluteSource(sourcePath);
   const content = fs.readFileSync(absolute, 'utf8');
   const kind = sourcePath.endsWith('.tsx')
@@ -15,7 +15,7 @@ export function parseSource(sourcePath: string) {
       : sourcePath.endsWith('.js')
         ? ts.ScriptKind.JS
         : ts.ScriptKind.TS;
-  return ts.createSourceFile(absolute, content, ts.ScriptTarget.Latest, true, kind);
+  return ts.createSourceFile(absolute, content, ts.ScriptTarget.Latest, true, kind) as any;
 }
 
 export const syntaxDiagnostics = (sourcePath: string) =>

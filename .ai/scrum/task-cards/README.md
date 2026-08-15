@@ -5,7 +5,7 @@
 
 - `active/`
 - [ai-architecture](./ai-architecture/README.md)
-- `backlog/`
+- [backlog](./backlog/README.md)
 - [core-ux](./core-ux/README.md)
 - [naming](./naming/README.md)
 - [portability](./portability/README.md)

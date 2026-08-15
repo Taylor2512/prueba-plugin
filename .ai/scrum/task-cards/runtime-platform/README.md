@@ -196,14 +196,14 @@ unit.
 - [RTP-495 — Bloquear canonical merge conflictivo](./RTP-495.md) — `PASS`
 - [RTP-500 — Crear codec durable de ExecutionResult](./RTP-500.md) — `PASS`
 - [RTP-505 — Endurecer composición PDF](./RTP-505.md) — `PASS`
-- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md)
+- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md) — `PASS`
 - [RTP-515 — Crear all-schema stress harness dinámico](./RTP-515.md) — `BACKLOG`
-- [RTP-520 — Auditar parity contra referencia DocuSign](./RTP-520.md) — `PARTIAL`
-- [RTP-525 — Migrar compatibilidad Recipient hacia User](./RTP-525.md) — `PARTIAL`
-- [RTP-530 — Retirar legacy y dead code de forma segura](./RTP-530.md) — `BLOCKED`
+- [RTP-520 — Auditar parity contra referencia DocuSign](./RTP-520.md) — `PASS`
+- [RTP-525 — Migrar compatibilidad Recipient hacia User](./RTP-525.md) — `PASS`
+- [RTP-530 — Retirar legacy y dead code de forma segura](./RTP-530.md) — `PARTIAL`
 - [RTP-535 — Reducir duplicación y aumentar genericidad](./RTP-535.md) — `BACKLOG`
-- [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](./RTP-540.md) — `PARTIAL`
-- [RTP-545 — Release autónomo y closeout](./RTP-545.md) — `BLOCKED`
+- [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](./RTP-540.md) — `PASS`
+- [RTP-545 — Release autónomo y closeout](./RTP-545.md) — `PARTIAL`
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->

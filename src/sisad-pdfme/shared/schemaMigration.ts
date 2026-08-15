@@ -48,12 +48,10 @@ export function migrateDesignerMetaToConfig(sourceMeta: SchemaDesignerMeta & Rec
   const ownershipBase = isPlainObject(sourceMeta.ownership) ? sourceMeta.ownership : {};
   const sourceOwnerRecipientId = typeof sourceMeta.ownerRecipientId === 'string' ? sourceMeta.ownerRecipientId : undefined;
   if (sourceMeta.ownership !== undefined || sourceOwnerRecipientId !== undefined) {
+    const ownerRecipientIdCandidate = (ownershipBase as Record<string, unknown>).ownerRecipientId ?? sourceOwnerRecipientId;
     collaboration.ownership = {
       ...ownershipBase,
-      ownerRecipientId:
-        typeof (ownershipBase as Record<string, unknown>).ownerRecipientId === 'string'
-          ? (ownershipBase as Record<string, unknown>).ownerRecipientId
-          : sourceOwnerRecipientId,
+      ownerRecipientId: typeof ownerRecipientIdCandidate === 'string' ? ownerRecipientIdCandidate : undefined,
     };
     hasCollaboration = true;
   }
@@ -94,7 +92,7 @@ export function migrateDesignerMetaToConfig(sourceMeta: SchemaDesignerMeta & Rec
     runtime.signature = sourceMeta.signature;
     hasRuntime = true;
   }
-  if (sourceMeta.state !== undefined) {
+  if (sourceMeta.state !== undefined && typeof sourceMeta.state === 'string') {
     runtime.state = sourceMeta.state;
     hasRuntime = true;
   }
@@ -111,6 +109,11 @@ export function migrateDesignerMetaToConfig(sourceMeta: SchemaDesignerMeta & Rec
 
 /**
  * Convierte `DesignerConfig` de vuelta a `SchemaDesignerMeta`.
+ *
+ * wrapper-check: allow serializeDesignerConfig — es un serializador entre dos
+ * formas persistidas: aplanar la estructura agrupada a la plana ES su trabajo.
+ * «Componer el objeto a partir de los parámetros» describe la función, no un
+ * envoltorio que sobre.
  */
 export function serializeDesignerConfig(designerConfig: DesignerConfig): SchemaDesignerMeta {
   const { identity, collaboration, bindings, ui, runtime } = designerConfig;

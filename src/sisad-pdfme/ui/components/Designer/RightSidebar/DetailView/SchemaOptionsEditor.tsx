@@ -206,7 +206,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
 
   /** Persiste opciones de radioGroup y recalcula metadata visual del grupo. */
   const commitRadio = (nextOptions: OptionItem[], desiredSelected?: string) => {
-    const safeOptions = nextOptions.length ? nextOptions : (buildDefaultOptionGroupOptions('Opción', 1) as OptionItem[]);
+    const safeOptions = nextOptions.length ? nextOptions : buildDefaultOptionGroupOptions('Opción', 1);
     const fallback = safeOptions[0]?.optionId || 'option_1';
     const nextSelected =
       desiredSelected && safeOptions.some((option) => option.optionId === desiredSelected)
@@ -228,7 +228,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
 
   /** Persiste opciones de checkboxGroup y ajusta selección múltiple válida. */
   const commitCheckbox = (nextOptions: OptionItem[], desiredSelected?: Set<string>) => {
-    const safeOptions = nextOptions.length ? nextOptions : (buildDefaultOptionGroupOptions('Casilla', 2) as OptionItem[]);
+    const safeOptions = nextOptions.length ? nextOptions : buildDefaultOptionGroupOptions('Casilla', 2);
     const validIds = new Set(safeOptions.map((option) => option.optionId));
     const requested = Array.from(desiredSelected ?? checkboxSelected).filter((id) => validIds.has(id));
     const nextSelected = clampMultiOptionSelection(requested, safeOptions, selectionLimits(schema));

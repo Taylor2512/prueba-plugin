@@ -28,7 +28,7 @@ const makeDefaultCustomField = (): CustomFieldDef => ({
   validation: 'None',
   helpText: '',
   autoPlaceText: '',
-  options: [],
+  options: '',
 });
 
 type UseLeftSidebarCatalogStateArgs = {

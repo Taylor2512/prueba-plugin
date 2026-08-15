@@ -5,11 +5,13 @@
 
 - [Orden AIARCH](./AIARCH-EXECUTION-ORDER.md)
 - [Orden de ejecución — COREUX](./COREUX-EXECUTION-ORDER.md)
+- [Plan — AI structure cleanup](./PLAN_AI_STRUCTURE_CLEANUP.md)
 - [Plan de continuidad — Integración simple y portable de SISAD PDFME](./PLAN_CONTINUIDAD_INTEGRACION_SIMPLE_SISAD_PDFME.md)
 - [Plan maestro — SISAD PDFME Core UX, funcionalidades, eventos y efectos](./PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME.md)
 - [Plan Maestro — SISAD-PDFME Runtime Platform](./PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md)
 - [Plan maestro visual y de comportamiento — SISAD PDFME](./PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md)
 - [Plan — Markdown architecture repair](./PLAN_MARKDOWN_ARCHITECTURE_REPAIR.md)
+- [RTP-545 — Plan reducido para cerrar release closeout (slices iniciales)](./PLAN_RTP_545_RELEASE_CLOSEOUT.md) — `PLAN`
 - [Plan — same repo, same branch, three agents](./PLAN_SAME_REPO_THREE_AGENT_EXECUTION.md)
 - [Plan maestro de saneamiento de nomenclatura y compatibilidad — SISAD PDFME](./PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md)
 - [Plan — autonomous completion](./PLAN_SISAD_PDFME_AUTONOMOUS_COMPLETION.md)

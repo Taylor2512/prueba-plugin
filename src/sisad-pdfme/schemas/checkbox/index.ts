@@ -70,8 +70,12 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       padding: '0',
       margin: '0',
     });
-    wrapper.setAttribute('role', mode !== 'viewer' && mode !== 'pdf' ? 'checkbox' : 'presentation');
-    if (mode !== 'viewer' && mode !== 'pdf') {
+    // 'mode' is typed as 'viewer' | 'form' | 'designer'. Treat any non-viewer
+    // mode as interactive. Avoid comparing against 'pdf' literal which is not
+    // part of the Mode type to keep TypeScript happy.
+    const isInteractive = mode !== 'viewer';
+    wrapper.setAttribute('role', isInteractive ? 'checkbox' : 'presentation');
+    if (isInteractive) {
       wrapper.setAttribute('aria-checked', String(checked));
       if (!canToggle) {
         wrapper.setAttribute('aria-disabled', 'true');
@@ -88,7 +92,7 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       checked,
       color,
       ownerColor,
-      mode: mode === 'viewer' || mode === 'pdf' ? mode : isDesigner ? 'designer' : 'form',
+      mode: mode === 'viewer' ? 'viewer' : isDesigner ? 'designer' : 'form',
       size: 18,
       fill: true,
       readOnly: !canToggle,

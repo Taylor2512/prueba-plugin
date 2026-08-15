@@ -14,8 +14,6 @@
 - [Matriz integral de casos de uso — instancias declarativas](./DECLARATIVE-USE-CASES.md)
 - [Designer Interaction Matrix](./DESIGNER-INTERACTION-MATRIX.md)
 - [DetailView Profiles](./DETAILVIEW-PROFILES.md)
-- [Effect Catalog](../EFFECT-CATALOG.md)
-- [Event Catalog](../EVENT-CATALOG.md)
 - [Form / Viewer / PDF Parity](./FORM-VIEWER-PDF-PARITY.md)
 - [Left Sidebar Behavior](./LEFT-SIDEBAR-BEHAVIOR.md)
 - [Owner Color Contract](./OWNER-COLOR-CONTRACT.md)

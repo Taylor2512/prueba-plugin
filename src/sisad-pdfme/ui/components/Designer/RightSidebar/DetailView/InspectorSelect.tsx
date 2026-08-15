@@ -11,6 +11,7 @@ export type InspectorSelectProps = {
   disabled?: boolean;
   readOnly?: boolean;
   label?: string;
+  name?: string;
   className?: string;
   testId?: string;
 };
@@ -22,6 +23,7 @@ export const InspectorSelect = ({
   disabled,
   readOnly,
   label,
+  name,
   className,
   testId,
 }: InspectorSelectProps) => (
@@ -32,6 +34,7 @@ export const InspectorSelect = ({
     {label ? <span className="font-medium text-slate-900">{label}</span> : null}
     <FormSelect
       testId={testId}
+      name={name}
       value={value}
       options={options}
       disabled={disabled || readOnly}

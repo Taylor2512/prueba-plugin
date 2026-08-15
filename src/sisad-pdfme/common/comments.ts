@@ -19,6 +19,8 @@ import {
   createSchemaCommentAnchor,
   upsertById,
   removeById,
+  ensureAnchorId,
+  ensureComment,
 } from '@sisad-pdfme/common/collaboration';
 
 /** Identidad mínima del autor usada para comments y anchors. */
@@ -38,8 +40,8 @@ const getTopLevelEntries = (template: TemplateWithComments): TopLevelPdfCommentE
   if (Array.isArray(template.__commentAnchors)) {
     return template.__commentAnchors.map((entry) => ({
       id: String(entry?.id || entry?.comment?.id || entry?.anchor?.id || ''),
-      anchor: cloneDeep((entry?.anchor || {}) as TopLevelPdfCommentEntry['anchor']),
-      comment: cloneDeep((entry?.comment || {}) as PdfComment),
+      anchor: ensureAnchorId(entry?.anchor || entry?.comment?.anchor || {}) as TopLevelPdfCommentEntry['anchor'],
+      comment: ensureComment(entry?.comment || {}) as unknown as PdfComment,
     }));
   }
   return [];
@@ -49,13 +51,13 @@ const getTopLevelEntries = (template: TemplateWithComments): TopLevelPdfCommentE
 const setTopLevelEntries = (template: TemplateWithComments, entries: TopLevelPdfCommentEntry[]) => {
   template.pdfComments = entries.map((entry) => ({
     id: entry.id,
-    anchor: cloneDeep(entry.anchor),
-    comment: cloneDeep(entry.comment),
+    anchor: ensureAnchorId(entry.anchor || {}) as TopLevelPdfCommentEntry['anchor'],
+    comment: ensureComment(entry.comment || {}) as unknown as PdfComment,
   }));
   template.__commentAnchors = template.pdfComments.map((entry) => ({
     id: entry.id,
-    anchor: cloneDeep(entry.anchor),
-    comment: cloneDeep(entry.comment),
+    anchor: ensureAnchorId(entry.anchor || {}) as TopLevelPdfCommentEntry['anchor'],
+    comment: ensureComment(entry.comment || {}) as unknown as PdfComment,
   }));
 };
 

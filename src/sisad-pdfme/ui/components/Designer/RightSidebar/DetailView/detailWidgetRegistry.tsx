@@ -13,7 +13,7 @@
  * junto a componentes locales y Fast Refresh no puede aplicarse aquí.
  */
 import React from 'react';
-import type { GlobalToken, PropPanelWidgetProps, SchemaForUI, UIOptions } from '@sisad-pdfme/common';
+import type { GlobalToken, PropPanelWidgetProps, SchemaForUI, UIOptions, PluginRegistry } from '@sisad-pdfme/common';
 import { Button, Divider, Tooltip } from 'antd';
 import { Pencil, Type } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
@@ -75,13 +75,7 @@ const resolveWidgetLabel = (widgetProps: PropPanelWidgetProps): string | undefin
  * Parámetros usados para construir el registro final de widgets.
  */
 type BuildWidgetsParams = {
-  pluginsRegistry: {
-    values: () => Iterable<{
-      propPanel: {
-        widgets?: Record<string, (props: PropPanelWidgetProps) => void>;
-      };
-    }>;
-  };
+  pluginsRegistry: PluginRegistry;
   options: UIOptions;
   token: GlobalToken;
   typedI18n: (key: string) => string;
@@ -266,7 +260,7 @@ const buildDetailWidgets = (
   }
 
   for (const plugin of params.pluginsRegistry.values()) {
-    const pluginWidgets = plugin.propPanel.widgets || {};
+    const pluginWidgets = (plugin.propPanel.widgets || {}) as Record<string, (props: PropPanelWidgetProps) => void>;
     Object.entries(pluginWidgets).forEach(([widgetKey, widgetValue]) => {
       const PluginWidgetRenderer = (p: PropPanelWidgetProps) => {
         const { props, options, token, typedI18n } = useWidgetParams();

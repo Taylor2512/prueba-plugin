@@ -75,8 +75,28 @@ export const buildDetailHeaderSummary = (
     'recipientOptions' | 'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor' | 'canEditStructure'
   > | null,
 ): HeaderSummary => {
+  const ownerColorContext = collaborationContext
+    ? {
+        recipientOptions: collaborationContext.recipientOptions || [],
+        recipientColorMap: collaborationContext.recipientColorMap || new Map(),
+        recipientNameMap: collaborationContext.recipientNameMap || new Map(),
+        activeRecipientId: collaborationContext.activeRecipientId || null,
+        isGlobalView: collaborationContext.isGlobalView || false,
+        actorColor: collaborationContext.actorColor || null,
+        canEditStructure: collaborationContext.canEditStructure || false,
+        actorId: undefined,
+        activeRecipient: collaborationContext.activeRecipientId
+          ? {
+              id: collaborationContext.activeRecipientId,
+              name: collaborationContext.recipientNameMap?.get(collaborationContext.activeRecipientId) || collaborationContext.activeRecipientId,
+              color: collaborationContext.recipientColorMap?.get(collaborationContext.activeRecipientId) || null,
+            }
+          : null,
+      }
+    : null;
+
   const interactionState = resolveSchemaInteractionState(activeSchema, {
-    collaborationContext: collaborationContext || undefined,
+    collaborationContext: ownerColorContext,
   });
   const schemaName = typeof activeSchema.name === 'string' ? activeSchema.name : 'Campo';
   const schemaType = getSchemaTypeLabel(activeSchema.type || 'schema');

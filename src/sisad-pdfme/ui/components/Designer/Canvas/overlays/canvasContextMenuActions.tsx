@@ -1638,6 +1638,66 @@ export const buildCanvasContextMenuGroups = (
   const contextMenuLockLabel = accessState?.contextMenuLockLabel || 'Bloquear posición';
 
   /**
+   * Grupos de protección y colaboración.
+   *
+   * El menú de selección única y el de selección múltiple los declaraban
+   * literalmente iguales: mismas etiquetas, mismas condiciones de deshabilitado
+   * y mismos motivos. Sólo cambian el prefijo del grupo (`single`/`multi`) y el
+   * sufijo del comando.
+   *
+   * Mantenerlos separados significaba que corregir un motivo de bloqueo había
+   * que hacerlo dos veces, y que divergieran era cuestión de tiempo.
+   */
+  const lockedByOtherReason = accessState?.isLockedByOther
+    ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
+    : null;
+  const roleReason = canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar';
+
+  const protectionGroup = (scope: 'single' | 'multi'): CanvasContextMenuGroup => ({
+    id: `${scope}-protection`,
+    label: 'Protección',
+    items: compactItems([
+      commandItem(
+        scope === 'multi' ? 'lock-multi' : 'lock',
+        resolveToggleLabel(activeReadOnly, 'Desbloquear posición', 'Bloquear posición'),
+        <Lock size={14} />,
+        commands?.toggleReadOnly,
+        {
+          active: activeReadOnly,
+          disabled: !canEditStructure || Boolean(accessState?.isLockedByOther),
+          disabledReason: lockedByOtherReason ?? roleReason,
+        },
+      ),
+    ]),
+  });
+
+  const collaborationGroup = (scope: 'single' | 'multi'): CanvasContextMenuGroup => ({
+    id: `${scope}-collaboration`,
+    label: 'Colaboración',
+    items: compactItems([
+      commandItem(
+        scope === 'multi' ? 'collaboration-lock-multi' : 'collaboration-lock',
+        contextMenuLockLabel,
+        <Lock size={14} />,
+        accessState?.isLockedByMe ? commands?.clearSelection : undefined,
+        {
+          active: Boolean(accessState?.isLockedByMe),
+          disabled:
+            !canEditStructure ||
+            Boolean(accessState?.isLockedByOther) ||
+            !hasAction(commands?.clearSelection),
+          disabledReason:
+            lockedByOtherReason ??
+            (accessState?.isLockedByMe
+              ? 'Libera la edición actual para cambiar de campo'
+              : 'La edición se bloquea al seleccionar el campo'),
+          forceVisible: true,
+        },
+      ),
+    ]),
+  });
+
+  /**
    * Menú sobre canvas vacío:
    * inserción, pegado, páginas, comentarios y acciones de documento.
    */
@@ -1783,52 +1843,8 @@ export const buildCanvasContextMenuGroups = (
           ),
         ]),
       },
-      {
-        id: 'single-protection',
-        label: 'Protección',
-        items: compactItems([
-          commandItem(
-            'lock',
-            resolveToggleLabel(activeReadOnly, 'Desbloquear posición', 'Bloquear posición'),
-            <Lock size={14} />,
-            commands?.toggleReadOnly,
-            {
-              active: activeReadOnly,
-              disabled: !canEditStructure || Boolean(accessState?.isLockedByOther),
-              disabledReason: accessState?.isLockedByOther
-                ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
-                : canEditStructure
-                  ? undefined
-                  : 'El rol actual solo permite revisar y comentar',
-            },
-          ),
-        ]),
-      },
-      {
-        id: 'single-collaboration',
-        label: 'Colaboración',
-        items: compactItems([
-          commandItem(
-            'collaboration-lock',
-            contextMenuLockLabel,
-            <Lock size={14} />,
-            accessState?.isLockedByMe ? commands?.clearSelection : undefined,
-            {
-              active: Boolean(accessState?.isLockedByMe),
-              disabled:
-                !canEditStructure ||
-                Boolean(accessState?.isLockedByOther) ||
-                !hasAction(commands?.clearSelection),
-              disabledReason: accessState?.isLockedByOther
-                ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
-                : accessState?.isLockedByMe
-                  ? 'Libera la edición actual para cambiar de campo'
-                  : 'La edición se bloquea al seleccionar el campo',
-              forceVisible: true,
-            },
-          ),
-        ]),
-      },
+      protectionGroup('single'),
+      collaborationGroup('single'),
       {
         id: 'single-order',
         label: 'Orden',
@@ -2069,52 +2085,8 @@ export const buildCanvasContextMenuGroups = (
         ),
       ]),
     },
-    {
-      id: 'multi-protection',
-      label: 'Protección',
-      items: compactItems([
-        commandItem(
-          'lock-multi',
-          resolveToggleLabel(activeReadOnly, 'Desbloquear posición', 'Bloquear posición'),
-          <Lock size={14} />,
-          commands?.toggleReadOnly,
-          {
-            active: activeReadOnly,
-            disabled: !canEditStructure || Boolean(accessState?.isLockedByOther),
-            disabledReason: accessState?.isLockedByOther
-              ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
-              : canEditStructure
-                ? undefined
-                : 'El rol actual solo permite revisar y comentar',
-          },
-        ),
-      ]),
-    },
-    {
-      id: 'multi-collaboration',
-      label: 'Colaboración',
-      items: compactItems([
-        commandItem(
-          'collaboration-lock-multi',
-          contextMenuLockLabel,
-          <Lock size={14} />,
-          accessState?.isLockedByMe ? commands?.clearSelection : undefined,
-          {
-            active: Boolean(accessState?.isLockedByMe),
-            disabled:
-              !canEditStructure ||
-              Boolean(accessState?.isLockedByOther) ||
-              !hasAction(commands?.clearSelection),
-            disabledReason: accessState?.isLockedByOther
-              ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
-              : accessState?.isLockedByMe
-                ? 'Libera la edición actual para cambiar de campo'
-                : 'La edición se bloquea al seleccionar el campo',
-            forceVisible: true,
-          },
-        ),
-      ]),
-    },
+    protectionGroup('multi'),
+    collaborationGroup('multi'),
     {
       id: 'multi-order',
       label: 'Orden',

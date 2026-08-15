@@ -3,7 +3,7 @@
 <!-- effective-runtime-state:start -->
 ## Effective runtime state
 
-Canonical generated view: [views/RUNTIME-PLATFORM.md](./views/RUNTIME-PLATFORM.md)
+Canonical generated view: [views/RUNTIME-PLATFORM.md](../../scrum/views/RUNTIME-PLATFORM.md)
 
 This block overrides stale status summaries below; historical entries remain provenance.
 <!-- effective-runtime-state:end -->

@@ -172,7 +172,10 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     activeSchema.ownerColor ||
     activeSchema.userColor ||
     null;
-  const ownerMode = collaborative.ownerMode || resolvedSchemaState.ownerMode || resolveOwnerMode(Array.isArray(ownerRecipientIds) ? ownerRecipientIds : []);
+  const ownerMode =
+    collaborative.ownerMode ||
+    resolvedSchemaState.ownerMode ||
+    resolveOwnerMode(collaborative.ownerMode, Array.isArray(ownerRecipientIds) ? ownerRecipientIds : []);
   const lock = collaborative.lock || activeSchema.lock;
   const selectedCount = Array.isArray(props.activeElements) ? props.activeElements.length : 0;
   const selectedSchemaIds = useMemo(() => {
@@ -237,8 +240,56 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     });
   };
 
+  /**
+   * Selector de propietario registrado.
+   *
+   * Existía dos veces, literalmente copiado: en «Propietario registrado» y
+   * dentro del modal. Las dos copias declaraban `id="collaboration-owner"`, así
+   * que el documento acababa con un id duplicado, y la segunda estaba además
+   * bajo la etiqueta «Creado por» aunque editaba el propietario.
+   *
+   * Se define una vez y se instancia con el id que corresponda.
+   */
+  const renderOwnerSelect = (id: string) => (
+    <FormSelect
+      id={id}
+      name={id}
+      value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
+      options={recipientSelectOptions}
+      onChange={(value) => {
+        const nextRecipient = recipientOptions.find((recipient) => recipient.id === value) || null;
+        const nextRecipientColor = nextRecipient?.color || resolvedOwnerColor || undefined;
+
+        commitOwnerPatch({
+          ownerRecipientIds: value ? [value] : [],
+          ownerRecipientId: value || undefined,
+          recipientId: value || undefined,
+          ownerRecipientName: nextRecipient?.name || undefined,
+          ownerColor: nextRecipientColor,
+          userColor: nextRecipientColor,
+          ownerMode: value ? 'single' : undefined,
+        });
+      }}
+      placeholder="Selecciona un usuario registrado"
+      allowClear
+      showSearch
+      optionFilterProp="label"
+      testId="collaboration-owner-select"
+      onClear={() =>
+        commitOwnerPatch({
+          ownerRecipientIds: [],
+          ownerRecipientId: undefined,
+          recipientId: undefined,
+          ownerRecipientName: undefined,
+          ownerColor: undefined,
+          userColor: undefined,
+          ownerMode: undefined,
+        })
+      }
+    />
+  );
+
   const hasLock = accessState.hasCollaborationLock;
-  const authorOptions = recipientSelectOptions;
   const resolvedOwnerLabel = accessState.ownerLabel || interactionState.owner.name || 'Sin asignar';
   const resolvedLockedByText = isOwnLock ? 'Tú' : lockedByLabel;
   const selectionHint = selectedCount > 1 ? ` · ${selectedCount} seleccionados` : '';
@@ -289,42 +340,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
               Propietario registrado
             </div>
             {hasRecipientOptions ? (
-              <FormSelect
-                id="collaboration-owner"
-                name="collaboration-owner"
-                value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
-                options={recipientSelectOptions}
-                onChange={(value) => {
-                  const nextRecipient = recipientOptions.find((recipient) => recipient.id === value) || null;
-                  const nextRecipientColor = nextRecipient?.color || resolvedOwnerColor || undefined;
-
-                  commitOwnerPatch({
-                    ownerRecipientIds: value ? [value] : [],
-                    ownerRecipientId: value || undefined,
-                    recipientId: value || undefined,
-                    ownerRecipientName: nextRecipient?.name || undefined,
-                    ownerColor: nextRecipientColor,
-                    userColor: nextRecipientColor,
-                    ownerMode: value ? 'single' : undefined,
-                  });
-                }}
-                placeholder="Selecciona un usuario registrado"
-                allowClear
-                showSearch
-                optionFilterProp="label"
-                testId="collaboration-owner-select"
-                onClear={() =>
-                  commitOwnerPatch({
-                    ownerRecipientIds: [],
-                    ownerRecipientId: undefined,
-                    recipientId: undefined,
-                    ownerRecipientName: undefined,
-                    ownerColor: undefined,
-                    userColor: undefined,
-                    ownerMode: undefined,
-                  })
-                }
-              />
+              renderOwnerSelect('collaboration-owner')
             ) : (
               <Input
                 id="collaboration-owner-raw"
@@ -442,53 +458,30 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                   <div className={GRID_2}>
                     <div className={FIELD}>
                       <div className={FIELD_LABEL}>Creado por</div>
-                      {hasRecipientOptions ? (
-                        <FormSelect
-                          id="collaboration-created-by"
-                          name="collaboration-created-by"
-                          value={activeSchema.createdBy || collaborative.createdBy || undefined}
-                          options={authorOptions}
-                          onChange={(value) => {
-                            const nextAuthor = recipientOptions.find((recipient) => recipient.id === value) || null;
-                            commit({
-                              createdBy: value || undefined,
-                              userColor: nextAuthor?.color || collaborative.userColor || undefined,
-                            });
-                          }}
-                          placeholder="Selecciona autor"
-                          testId="collaboration-created-by-select"
-                        />
-                      ) : (
-                        <Input
-                          id="collaboration-created-by-raw"
-                          name="collaboration-created-by-raw"
-                          value={activeSchema.createdBy || collaborative.createdBy || ''}
-                          onChange={(event) => commit({ createdBy: event.target.value || undefined })}
-                          placeholder="user-1"
-                        />
-                      )}
+                      {/*
+                        Este campo renderizaba el selector de PROPIETARIO bajo la
+                        etiqueta «Creado por», y su alternativa sin usuarios
+                        registrados editaba `lastModifiedBy`. Ninguna de las dos
+                        escribía `createdBy`, que es el campo que la etiqueta
+                        promete y que el engine sí soporta.
+                      */}
+                      <Input
+                        id="collaboration-created-by"
+                        name="collaboration-created-by"
+                        value={activeSchema.createdBy || collaborative.createdBy || ''}
+                        onChange={(event) => commit({ createdBy: event.target.value || undefined })}
+                        placeholder="user-1"
+                      />
                     </div>
                     <div className={FIELD}>
                       <div className={FIELD_LABEL}>Modificado por</div>
-                      {hasRecipientOptions ? (
-                        <FormSelect
-                          id="collaboration-modified-by"
-                          name="collaboration-modified-by"
-                          value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || undefined}
-                          options={authorOptions}
-                          onChange={(value) => commit({ lastModifiedBy: value || undefined })}
-                          placeholder="Selecciona editor"
-                          testId="collaboration-modified-by-select"
-                        />
-                      ) : (
-                        <Input
-                          id="collaboration-modified-by-raw"
-                          name="collaboration-modified-by-raw"
-                          value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || ''}
-                          onChange={(event) => commit({ lastModifiedBy: event.target.value || undefined })}
-                          placeholder="user-1"
-                        />
-                      )}
+                      <Input
+                        id="collaboration-modified-by"
+                        name="collaboration-modified-by"
+                        value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || ''}
+                        onChange={(event) => commit({ lastModifiedBy: event.target.value || undefined })}
+                        placeholder="user-1"
+                      />
                     </div>
                     <div className={FIELD}>
                       <div className={FIELD_LABEL}>Creado el</div>

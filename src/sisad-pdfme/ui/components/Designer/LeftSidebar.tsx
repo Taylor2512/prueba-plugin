@@ -1389,7 +1389,7 @@ const LeftSidebar = ({
               {...attributes}
               onClick={() => {
                 if (draggableActive) return;
-                handleSchemaClick(cloneDeep(plugin.propPanel.defaultSchema), pluginType);
+                handleSchemaClick(cloneDeep(plugin.propPanel.defaultSchema) as any, pluginType);
               }}
             >
               <PluginIcon
@@ -1535,7 +1535,7 @@ const LeftSidebar = ({
                 if (draggableActive) return;
                 const schema = createSchemaInstance();
                 if (!schema) return;
-                handleSchemaClick(cloneDeep(schema), definition.pluginType);
+                handleSchemaClick(cloneDeep(schema) as any, definition.pluginType);
               }}
               >
                 <span className={mergeClassNames(

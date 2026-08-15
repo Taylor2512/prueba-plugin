@@ -165,7 +165,9 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     }
     applyOptionGroupRowVariant(row, { showOptionLabels: resolvedShowOptionLabels });
     row.style.minHeight = mode === 'viewer' ? '14px' : '16px';
-    if (mode === 'viewer' || mode === 'pdf' || readOnly || !rowsValueInteractive) {
+    // Treat any non-form mode as non-interactive for option toggling. Avoid
+    // checking 'pdf' literal which is not part of the OptionGroupRenderMode.
+    if (mode === 'viewer' || readOnly || !rowsValueInteractive) {
       row.setAttribute('aria-disabled', 'true');
       row.disabled = true;
       row.style.opacity = '0.85';

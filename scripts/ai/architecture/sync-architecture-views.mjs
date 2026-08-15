@@ -7,5 +7,9 @@ fs.writeFileSync(path.join(view,"BLOCKED.md"),doc("Blocked / Partial","Blocked o
 fs.writeFileSync(path.join(view,"COMPLETED.md"),doc("Completed","Effective PASS tasks.",x=>x.effectiveStatus==="PASS"));
 const rtp=rows.filter(x=>/^RTP-\d+$/.test(x.id)).sort((a,b)=>Number(a.id.split("-")[1])-Number(b.id.split("-")[1]));
 fs.writeFileSync(path.join(view,"RUNTIME-PLATFORM.md"),["# Runtime Platform state","","| Task | Effective | Open dependencies |","|---|---|---|",...rtp.map(x=>`| [${x.id}](../${x.path.replace(/^\.ai\/scrum\//,"")}) | **${x.effectiveStatus}** | ${(x.openDependencies||[]).join(", ")||"-"} |`),"","> Generated from evidence-aware reconciliation.",""].join("\n"));
-const ledger=path.join(root,".ai/scrum/views/RUNTIME-PLATFORM.md");if(fs.existsSync(ledger)){const S="<!-- effective-runtime-state:start -->",E="<!-- effective-runtime-state:end -->",cur=fs.readFileSync(ledger,"utf8"),block=`${S}\n## Effective runtime state\n\nCanonical generated view: [views/RUNTIME-PLATFORM.md](./views/RUNTIME-PLATFORM.md)\n\nThis block overrides stale status summaries below; historical entries remain provenance.\n${E}`,a=cur.indexOf(S),b=cur.indexOf(E),next=a>=0&&b>=a?cur.slice(0,a)+block+cur.slice(b+E.length):cur.replace(/^(#.+\n)/,`$1\n${block}\n`);fs.writeFileSync(ledger,next,"utf8")}
+// El bloque `effective-runtime-state` apuntaba al ledger de `.ai/scrum/`, que ya
+// está archivado. Reapuntarlo a la vista generada lo dejó inyectando dentro del
+// propio fichero que la línea anterior acaba de escribir, con un enlace
+// `./views/RUNTIME-PLATFORM.md` que desde `views/` no resuelve. Retirado: la
+// vista canónica la genera esta misma ejecución y no necesita anunciarse a sí misma.
 console.log(JSON.stringify({rows:rows.length,runtime:rtp.length},null,2));

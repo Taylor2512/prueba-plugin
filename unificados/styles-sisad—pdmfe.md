@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-08-15T14:56:11.042Z`
+- **Fecha generación:** `2026-08-15T22:39:43.944Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
-- **Archivos candidatos incluidos:** `10`
+- **Archivos candidatos incluidos:** `5`
 - **Límite por archivo:** `80 KB`
 - **Límite total de contenido:** `1200 KB`
 
@@ -24,37 +24,16 @@
 
 ```text
 prueba-plugin
-├── src
-│   ├── sisad-pdfme
-│   │   └── ui
-│   │       └── styles
-│   │           ├── sisad-pdfme.css
-│   │           └── tokens.css
-│   ├── style.css
-│   └── styles
-│       ├── sisad-tailwind-bridge.css
-│       └── tailwind.css
-└── test-results
-    ├── .playwright-artifacts-0
-    │   └── traces
-    │       └── resources
-    │           └── c0ed7510eabd4e2e00f63af576a10fa11941f237.css
-    ├── .playwright-artifacts-1
-    │   └── traces
-    │       └── resources
-    │           └── c0ed7510eabd4e2e00f63af576a10fa11941f237.css
-    ├── .playwright-artifacts-2
-    │   └── traces
-    │       └── resources
-    │           └── c0ed7510eabd4e2e00f63af576a10fa11941f237.css
-    ├── .playwright-artifacts-3
-    │   └── traces
-    │       └── resources
-    │           └── c0ed7510eabd4e2e00f63af576a10fa11941f237.css
-    └── .playwright-artifacts-4
-        └── traces
-            └── resources
-                └── c0ed7510eabd4e2e00f63af576a10fa11941f237.css
+└── src
+    ├── sisad-pdfme
+    │   └── ui
+    │       └── styles
+    │           ├── sisad-pdfme.css
+    │           └── tokens.css
+    ├── style.css
+    └── styles
+        ├── sisad-tailwind-bridge.css
+        └── tailwind.css
 ```
 
 ## Archivos incluidos
@@ -66,21 +45,16 @@ prueba-plugin
 | 3 | `src/styles/sisad-tailwind-bridge.css` | css | 0 | 0.0 | completo |
 | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 242 | 8.5 | completo |
 | 5 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 85 | 3.5 | completo |
-| 6 | `test-results/.playwright-artifacts-0/traces/resources/c0ed7510eabd4e2e00f63af576a10fa11941f237.css` | css | 30 | 0.9 | completo |
-| 7 | `test-results/.playwright-artifacts-1/traces/resources/c0ed7510eabd4e2e00f63af576a10fa11941f237.css` | css | 30 | 0.9 | completo |
-| 8 | `test-results/.playwright-artifacts-2/traces/resources/c0ed7510eabd4e2e00f63af576a10fa11941f237.css` | css | 30 | 0.9 | completo |
-| 9 | `test-results/.playwright-artifacts-3/traces/resources/c0ed7510eabd4e2e00f63af576a10fa11941f237.css` | css | 30 | 0.9 | completo |
-| 10 | `test-results/.playwright-artifacts-4/traces/resources/c0ed7510eabd4e2e00f63af576a10fa11941f237.css` | css | 30 | 0.9 | completo |
 
 ## Resumen de exclusiones
 
 - **extensión no incluida:** 2455
-- **directorio ignorado: dependencia/build/salida generada:** 9
+- **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `17.3`
-- **KB incluidos en contenido:** `17.3`
+- **KB originales candidatos:** `13.0`
+- **KB incluidos en contenido:** `13.0`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -515,226 +489,6 @@ body {
   --schema-outline: 0.0625rem solid transparent;
   --wix-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --wix-reveal-dur: 220ms;
-}
-```
-
-<a id="file-0006"></a>
-
-### 0006 — `test-results/.playwright-artifacts-0/traces/resources/c0ed7510eabd4e2e00f63af576a10fa11941f237.css`
-
-- **Lenguaje:** `css`
-- **Líneas:** `30`
-- **Tamaño original:** `0.9 KB`
-- **SHA1 corto:** `c0ed7510ea`
-- **Estado:** `completo`
-- **Símbolos detectados:** `selector: #root`
-
-```css
-/**
- * style.css — baseline mínimo del documento.
- *
- * Las directivas @tailwind viven en src/styles/tailwind.css (importada por
- * src/main.jsx). Mantenerlas aquí generaba DOBLE emisión de Tailwind.
- * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
- *
- * Este archivo solo define la cadena de tamaño html/body/#root. Tailwind
- * preflight sigue desactivado a propósito (canvas, PDF, inputs, Ant Design,
- * Moveable y Selecto dependen de los defaults del navegador), así que el
- * único reset permitido aquí es el margen del body y el alto del documento.
- *
- * Prohibido: resets universales de input/button/select/headings y cualquier
- * selector que alcance internals de src/sisad-pdfme.
- */
-
-html,
-body,
-#root {
-  width: 100%;
-  min-width: 320px;
-  min-height: 100%;
-  margin: 0;
-}
-
-body {
-  min-height: 100dvh;
-  overflow-x: hidden;
-  background: #020617;
-}
-```
-
-<a id="file-0007"></a>
-
-### 0007 — `test-results/.playwright-artifacts-1/traces/resources/c0ed7510eabd4e2e00f63af576a10fa11941f237.css`
-
-- **Lenguaje:** `css`
-- **Líneas:** `30`
-- **Tamaño original:** `0.9 KB`
-- **SHA1 corto:** `c0ed7510ea`
-- **Estado:** `completo`
-- **Símbolos detectados:** `selector: #root`
-
-```css
-/**
- * style.css — baseline mínimo del documento.
- *
- * Las directivas @tailwind viven en src/styles/tailwind.css (importada por
- * src/main.jsx). Mantenerlas aquí generaba DOBLE emisión de Tailwind.
- * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
- *
- * Este archivo solo define la cadena de tamaño html/body/#root. Tailwind
- * preflight sigue desactivado a propósito (canvas, PDF, inputs, Ant Design,
- * Moveable y Selecto dependen de los defaults del navegador), así que el
- * único reset permitido aquí es el margen del body y el alto del documento.
- *
- * Prohibido: resets universales de input/button/select/headings y cualquier
- * selector que alcance internals de src/sisad-pdfme.
- */
-
-html,
-body,
-#root {
-  width: 100%;
-  min-width: 320px;
-  min-height: 100%;
-  margin: 0;
-}
-
-body {
-  min-height: 100dvh;
-  overflow-x: hidden;
-  background: #020617;
-}
-```
-
-<a id="file-0008"></a>
-
-### 0008 — `test-results/.playwright-artifacts-2/traces/resources/c0ed7510eabd4e2e00f63af576a10fa11941f237.css`
-
-- **Lenguaje:** `css`
-- **Líneas:** `30`
-- **Tamaño original:** `0.9 KB`
-- **SHA1 corto:** `c0ed7510ea`
-- **Estado:** `completo`
-- **Símbolos detectados:** `selector: #root`
-
-```css
-/**
- * style.css — baseline mínimo del documento.
- *
- * Las directivas @tailwind viven en src/styles/tailwind.css (importada por
- * src/main.jsx). Mantenerlas aquí generaba DOBLE emisión de Tailwind.
- * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
- *
- * Este archivo solo define la cadena de tamaño html/body/#root. Tailwind
- * preflight sigue desactivado a propósito (canvas, PDF, inputs, Ant Design,
- * Moveable y Selecto dependen de los defaults del navegador), así que el
- * único reset permitido aquí es el margen del body y el alto del documento.
- *
- * Prohibido: resets universales de input/button/select/headings y cualquier
- * selector que alcance internals de src/sisad-pdfme.
- */
-
-html,
-body,
-#root {
-  width: 100%;
-  min-width: 320px;
-  min-height: 100%;
-  margin: 0;
-}
-
-body {
-  min-height: 100dvh;
-  overflow-x: hidden;
-  background: #020617;
-}
-```
-
-<a id="file-0009"></a>
-
-### 0009 — `test-results/.playwright-artifacts-3/traces/resources/c0ed7510eabd4e2e00f63af576a10fa11941f237.css`
-
-- **Lenguaje:** `css`
-- **Líneas:** `30`
-- **Tamaño original:** `0.9 KB`
-- **SHA1 corto:** `c0ed7510ea`
-- **Estado:** `completo`
-- **Símbolos detectados:** `selector: #root`
-
-```css
-/**
- * style.css — baseline mínimo del documento.
- *
- * Las directivas @tailwind viven en src/styles/tailwind.css (importada por
- * src/main.jsx). Mantenerlas aquí generaba DOBLE emisión de Tailwind.
- * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
- *
- * Este archivo solo define la cadena de tamaño html/body/#root. Tailwind
- * preflight sigue desactivado a propósito (canvas, PDF, inputs, Ant Design,
- * Moveable y Selecto dependen de los defaults del navegador), así que el
- * único reset permitido aquí es el margen del body y el alto del documento.
- *
- * Prohibido: resets universales de input/button/select/headings y cualquier
- * selector que alcance internals de src/sisad-pdfme.
- */
-
-html,
-body,
-#root {
-  width: 100%;
-  min-width: 320px;
-  min-height: 100%;
-  margin: 0;
-}
-
-body {
-  min-height: 100dvh;
-  overflow-x: hidden;
-  background: #020617;
-}
-```
-
-<a id="file-0010"></a>
-
-### 0010 — `test-results/.playwright-artifacts-4/traces/resources/c0ed7510eabd4e2e00f63af576a10fa11941f237.css`
-
-- **Lenguaje:** `css`
-- **Líneas:** `30`
-- **Tamaño original:** `0.9 KB`
-- **SHA1 corto:** `c0ed7510ea`
-- **Estado:** `completo`
-- **Símbolos detectados:** `selector: #root`
-
-```css
-/**
- * style.css — baseline mínimo del documento.
- *
- * Las directivas @tailwind viven en src/styles/tailwind.css (importada por
- * src/main.jsx). Mantenerlas aquí generaba DOBLE emisión de Tailwind.
- * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
- *
- * Este archivo solo define la cadena de tamaño html/body/#root. Tailwind
- * preflight sigue desactivado a propósito (canvas, PDF, inputs, Ant Design,
- * Moveable y Selecto dependen de los defaults del navegador), así que el
- * único reset permitido aquí es el margen del body y el alto del documento.
- *
- * Prohibido: resets universales de input/button/select/headings y cualquier
- * selector que alcance internals de src/sisad-pdfme.
- */
-
-html,
-body,
-#root {
-  width: 100%;
-  min-width: 320px;
-  min-height: 100%;
-  margin: 0;
-}
-
-body {
-  min-height: 100dvh;
-  overflow-x: hidden;
-  background: #020617;
 }
 ```
 

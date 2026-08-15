@@ -185,16 +185,16 @@ export type PropPanelInspectorConfig = {
  * @template T - Type of the extended Schema object.
  * @property {Record<string, PropPanelSchema> | ((propPanelProps: Omit<PropPanelProps, 'rootElement'>) => Record<string, PropPanelSchema>)} schema - A function returning a form-render schema object or the schema object itself. When a function, it takes properties passed from the designer as arguments.
  * @property {Record<string, (props: PropPanelWidgetProps) => void>} [widgets] - An object of functions returning form-render widgets. The functions take, as arguments, both form-render's WidgetProps and properties passed from the designer.
- * @property {T} defaultSchema - The default schema set when adding the schema.
+ * @property {Partial<T>} defaultSchema - The default schema set when adding the schema. Partial is allowed to support concise plugin declarations that supply only the minimal overrides; producers should canonicalize full schema shapes before persisting.
  */
 export interface PropPanel<T extends Schema> {
   schema:
     | ((propPanelProps: Omit<PropPanelProps, 'rootElement'>) => Record<string, PropPanelSchema>)
     | Record<string, PropPanelSchema>;
 
-  widgets?: Record<string, (props: PropPanelWidgetProps) => void>;
+  widgets?: Record<string, unknown> | Record<string, (props: PropPanelWidgetProps) => void>;
   inspector?: PropPanelInspectorConfig;
-  defaultSchema: T;
+  defaultSchema: Partial<T>;
 }
 
 /**

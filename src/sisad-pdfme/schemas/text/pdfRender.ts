@@ -8,6 +8,8 @@ import {
   getDefaultFont,
   getFallbackFontName,
   mm2pt,
+  fetchAssetArrayBuffer,
+  type AssetFetchOptions,
 } from '@sisad-pdfme/common';
 import {
   VERTICAL_ALIGN_TOP,
@@ -35,8 +37,9 @@ const embedAndGetFontObj = async (arg: {
   pdfDoc: PDFDocument;
   font: Font;
   _cache: Map<PDFDocument, { [key: string]: PDFFont }>;
+  assetOptions?: AssetFetchOptions;
 }) => {
-  const { pdfDoc, font, _cache } = arg;
+  const { pdfDoc, font, _cache, assetOptions } = arg;
   if (_cache.has(pdfDoc)) {
     return _cache.get(pdfDoc) as { [key: string]: PDFFont };
   }
@@ -45,7 +48,7 @@ const embedAndGetFontObj = async (arg: {
     Object.values(font).map(async (v) => {
       let fontData = v.data;
       if (typeof fontData === 'string' && fontData.startsWith('http')) {
-        fontData = await fetch(fontData).then((res) => res.arrayBuffer());
+        fontData = await fetchAssetArrayBuffer(fontData, assetOptions);
       }
       return pdfDoc.embedFont(fontData, {
         subset: typeof v.subset === 'undefined' ? true : v.subset,

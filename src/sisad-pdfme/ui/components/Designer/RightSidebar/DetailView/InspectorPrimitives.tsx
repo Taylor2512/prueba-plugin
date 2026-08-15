@@ -204,7 +204,13 @@ export const InspectorSummaryCard = ({
     compact: 318,
     minimal: 256,
   });
-  const visibleTagCount = inspectorDensity === 'minimal' ? 1 : inspectorDensity === 'compact' ? 2 : undefined;
+  // Normalize 'full' to 'comfortable' for inspector consumers which only accept
+  // 'comfortable' | 'compact' | 'minimal'. This avoids narrowing issues when the
+  // hook returns 'full' for wide containers.
+  const inspectorDensityNormalized: 'comfortable' | 'compact' | 'minimal' =
+    inspectorDensity === 'full' ? 'comfortable' : inspectorDensity;
+
+  const visibleTagCount = inspectorDensityNormalized === 'minimal' ? 1 : inspectorDensityNormalized === 'compact' ? 2 : undefined;
 
   return (
     <div
@@ -241,8 +247,8 @@ export const InspectorSummaryCard = ({
           />
         ) : null}
       </div>
-      {metrics && metrics.length > 0 ? <InspectorMetricRow metrics={metrics} density={inspectorDensity} /> : null}
-      {actions && actions.length > 0 ? <InspectorActionRow actions={actions} density={inspectorDensity} /> : null}
+      {metrics && metrics.length > 0 ? <InspectorMetricRow metrics={metrics} density={inspectorDensityNormalized} /> : null}
+      {actions && actions.length > 0 ? <InspectorActionRow actions={actions} density={inspectorDensityNormalized} /> : null}
       {children}
     </div>
   );
@@ -291,6 +297,23 @@ export const BooleanSwitchWidget = ({
     aria-label={ariaLabel}
   />
 );
+
+// Export a minimal wrapper that matches the `FormSelect` contract used across
+// inspector widgets to simplify substitutions when a Select is needed. This
+// keeps the file focused on primitives without introducing Select logic here.
+export type MinimalSelectProps<T = string | number> = {
+  id?: string;
+  name?: string;
+  value?: T | undefined;
+  options?: Array<{ label: React.ReactNode; value: T }>;
+  onChange?: (next: T) => void;
+  placeholder?: string;
+};
+
+export const MinimalSelect = <T extends string | number = string>(_props: MinimalSelectProps<T>) => {
+  // Intentionally a no-op placeholder. Real selects must use `FormSelect`.
+  return null;
+};
 
 /** Props del estado vacío visual del inspector. */
 type InspectorEmptyStateProps = {

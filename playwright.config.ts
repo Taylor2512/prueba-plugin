@@ -11,7 +11,8 @@ export default defineConfig({
   fullyParallel: false,
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: [['list']],
+  reporter: [
+    ['json'],['list']],
   expect: { timeout: 5000 },
   use: {
     baseURL,

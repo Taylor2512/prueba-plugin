@@ -39,6 +39,7 @@ import {
   DEFAULT_FONT_NAME,
   DEFAULT_FONT_VALUE,
 } from '@sisad-pdfme/common/constants';
+import { fetchAssetBlob, type AssetFetchOptions } from '@sisad-pdfme/common/assetFetch';
 
 /**
  * Clonado profundo usado como política común de inmutabilidad.
@@ -253,18 +254,23 @@ export const getInputFromTemplate = (template: Template): { [key: string]: strin
   return [input];
 };
 
-/** Normaliza PDF base desde URL/string/ArrayBuffer/Uint8Array hacia data URI PDF base64. */
+/**
+ * Normaliza PDF base desde URL/string/ArrayBuffer/Uint8Array hacia data URI PDF base64.
+ *
+ * `options` es opcional para no romper a los llamadores que no tienen recursos
+ * de runtime a mano; quien sí los tiene puede pasar el transporte del host y
+ * heredar su timeout y su política de credenciales.
+ */
 export const getB64BasePdf = async (
   customPdf: ArrayBuffer | Uint8Array | string,
+  options: AssetFetchOptions = {},
 ): Promise<string> => {
   if (
     typeof customPdf === 'string' &&
     !customPdf.startsWith('data:application/pdf;') &&
     typeof window !== 'undefined'
   ) {
-    const response = await fetch(customPdf);
-    const blob = await response.blob();
-    return blob2Base64Pdf(blob);
+    return blob2Base64Pdf(await fetchAssetBlob(customPdf, options));
   }
 
   if (typeof customPdf === 'string') {

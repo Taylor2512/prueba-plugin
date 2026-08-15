@@ -25,15 +25,13 @@
 - [Route — Right sidebar/inspector](./right-sidebar.md)
 - [Route — Commands, events y effects](./runtime-contracts.md)
 - [Route — Documents/snapshot](./runtime-snapshot.md)
-- [Route — Form/Viewer/Generator](./runtime.md)
 - [Route — Designer/Form/Viewer/Generator](./runtime.md)
 - [Route — schema completion](./schema-completion.md)
 - [Route — Familias de schema](./schemas.md)
 - [Route — Tests/logs](./testing.md)
 - [Route — Context/token optimization](./token-context.md)
 - [Route — Traceability](./traceability.md)
-- [Route — Responsive/accessibility](./ux.md)
-- [Route — Responsive, a11y y Tailwind](./ux.md)
+- [Route — Responsive / accessibility / Tailwind](./ux.md)
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->

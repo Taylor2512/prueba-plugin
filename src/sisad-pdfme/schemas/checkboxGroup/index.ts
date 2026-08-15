@@ -68,7 +68,7 @@ const normalizeSelectionLimit = (value: unknown): number | undefined => {
 };
 
 const normalizeCheckboxGroupOptions = (schema: CheckboxGroupSchema): CheckboxOption[] => {
-  return normalizeOptionGroupOptions(schema.options, 'Casilla', 2) as CheckboxOption[];
+  return normalizeOptionGroupOptions(schema.options, 'Casilla', 2);
 };
 
 const resolveSelectionLimits = (schema: CheckboxGroupSchema) => {

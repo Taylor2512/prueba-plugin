@@ -1,4 +1,4 @@
-import { cloneDeep, normalizeRecipientIds } from '@sisad-pdfme/common';
+import { normalizeRecipientIds } from '@sisad-pdfme/common';
 import type { SchemaForUI, Template } from '@sisad-pdfme/common';
 import { resolveCollaboratorById } from '@sisad-pdfme/collaboration/appearance';
 import type { CollaboratorUser } from '@sisad-pdfme/collaboration/recipientPalette';
@@ -106,7 +106,7 @@ const OWNER_COLOR_EXTRACTORS: Partial<
  * Returns `''` when the schema has no owner color, so callers can tell "no
  * owner" from "render something anyway".
  */
-export function resolveSchemaOwnerColorValue(schema: SchemaForUI | null | undefined): string {
+export function resolveSchemaOwnerColorValue(schema: Partial<SchemaForUI> | null | undefined): string {
   const source = schema as OwnerColorAwareSchema | null | undefined;
   for (const key of DEFAULT_PRIORITY) {
     const color = OWNER_COLOR_EXTRACTORS[key]?.(source) ?? '';
@@ -149,7 +149,7 @@ const resolveOwnerRecipientColor = (
  * the color of whoever edited it last instead of its owner.
  */
 export function resolveSchemaOwnerColor(
-  schema: SchemaForUI,
+  schema: Partial<SchemaForUI>,
   users: CollaboratorUser[] = [],
   options: SchemaOwnershipAppearanceOptions = {},
 ): string {
@@ -225,10 +225,10 @@ export function decorateTemplateWithCollaboration(
   users: CollaboratorUser[] = [],
   options: SchemaOwnershipAppearanceOptions = {},
 ): Template {
-  if (!template || !Array.isArray(template.schemas)) return cloneDeep(template);
+  if (!template || !Array.isArray(template.schemas)) return template;
 
   return {
-    ...cloneDeep(template),
+    ...template,
     schemas: template.schemas.map((pageSchemas: SchemaForUI[] = []) =>
       pageSchemas.map((schema) => decorateSchemaWithCollaboration(schema, users, options)),
     ),
