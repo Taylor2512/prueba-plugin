@@ -19,7 +19,7 @@
  */
 import { useCallback, useMemo, useState } from 'react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import { Button, Collapse, Divider, Input, InputNumber, Select, Space, Tag } from 'antd';
+import { Button, Collapse, Divider, Input, InputNumber, Space, Tag } from 'antd';
 import { DatabaseZap, Globe2, FileJson2 } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
@@ -37,6 +37,7 @@ import { PairEditor, SectionHeader, SCHEMA_CONFIG_COLLAPSE, SCHEMA_CONFIG_NESTED
 import { getMissingConnectionFields } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation';
 import CompactConfigPanel from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel';
 import { BooleanSwitchWidget } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives';
+import FormSelect from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/FormSelect';
 
 /**
  * Props injected into the schema connections widget by DetailView.
@@ -644,12 +645,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                   <div className={GRID_2}>
                     <div className={FIELD}>
                       <span className={FIELD_LABEL}>Modo</span>
-                      <Select
+                      <FormSelect
                         id="connections-persistence-mode"
                         name="connections-persistence-mode"
-                        size="small"
                         value={persistence.mode || 'local'}
-                        onChange={(value) => updatePersistence({ mode: value })}
+                        onChange={(value) => updatePersistence({ mode: value as SchemaPersistenceConfig['mode'] })}
                         options={[
                           { label: 'Local', value: 'local' },
                           { label: 'Remoto', value: 'remote' },
@@ -727,12 +727,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                   <div className={GRID_2}>
                     <div className={FIELD}>
                       <span className={FIELD_LABEL}>Formato</span>
-                      <Select
+                      <FormSelect
                         id="connections-json-format"
                         name="connections-json-format"
-                        size="small"
                         value={formJson.format || 'nested'}
-                        onChange={(value) => updateFormJson({ format: value })}
+                        onChange={(value) => updateFormJson({ format: value as SchemaFormJsonConfig['format'] })}
                         options={[
                           { label: 'Anidado', value: 'nested' },
                           { label: 'Plano', value: 'flat' },
@@ -815,20 +814,19 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             </div>
             <div className={FIELD}>
               <span className={FIELD_LABEL}>Método</span>
-              <Select
-                id="connections-api-method"
-                name="connections-api-method"
-                size="small"
-                value={api.method || 'GET'}
-                onChange={(value) => updateApi({ method: value })}
-                options={[
-                  { label: 'GET', value: 'GET' },
-                  { label: 'POST', value: 'POST' },
-                  { label: 'PUT', value: 'PUT' },
-                  { label: 'PATCH', value: 'PATCH' },
-                  { label: 'DELETE', value: 'DELETE' },
-                ]}
-              />
+                      <FormSelect
+                        id="connections-api-method"
+                        name="connections-api-method"
+                        value={api.method || 'GET'}
+                        onChange={(value) => updateApi({ method: value })}
+                        options={[
+                          { label: 'GET', value: 'GET' },
+                          { label: 'POST', value: 'POST' },
+                          { label: 'PUT', value: 'PUT' },
+                          { label: 'PATCH', value: 'PATCH' },
+                          { label: 'DELETE', value: 'DELETE' },
+                        ]}
+                      />
             </div>
             <div className={FIELD}>
               <span className={FIELD_LABEL}>Base URL</span>
@@ -854,15 +852,14 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
               />
             </div>
           </div>
-          <div className={GRID_2}>
+              <div className={GRID_2}>
             <div className={FIELD}>
               <span className={FIELD_LABEL}>Modo de ejecución</span>
-              <Select
+              <FormSelect
                 id="connections-api-request-mode"
                 name="connections-api-request-mode"
-                size="small"
                 value={api.requestMode || 'read'}
-                onChange={(value) => updateApi({ requestMode: value })}
+                onChange={(value) => updateApi({ requestMode: value as any })}
                 options={[
                   { label: 'Lectura', value: 'read' },
                   { label: 'Escritura', value: 'submit' },
@@ -873,12 +870,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             </div>
             <div className={FIELD}>
               <span className={FIELD_LABEL}>Tipo de autenticación</span>
-              <Select
+              <FormSelect
                 id="connections-api-auth-mode"
                 name="connections-api-auth-mode"
-                size="small"
                 value={api.http?.auth?.mode || 'inherit'}
-                onChange={(value) => updateApiAuthMode(value)}
+                onChange={(value) => updateApiAuthMode(value as any)}
                 options={[
                   { label: 'Heredada', value: 'inherit' },
                   { label: 'Manual', value: 'manual' },

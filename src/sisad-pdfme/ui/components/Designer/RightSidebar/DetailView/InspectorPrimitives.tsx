@@ -109,6 +109,7 @@ export const InspectorActionRow = ({
           type={action.type || 'default'}
           onClick={action.onClick}
           onPointerDown={stopInspectorPointerEvent}
+          onMouseDown={stopInspectorPointerEvent}
           disabled={action.disabled}
           className={mergeClassNames(
             'inline-flex appearance-none items-center justify-center rounded-lg border border-slate-200/70 bg-white px-1.5 text-[0.62rem] font-semibold text-slate-700 shadow-none transition hover:border-slate-300 hover:bg-slate-50',

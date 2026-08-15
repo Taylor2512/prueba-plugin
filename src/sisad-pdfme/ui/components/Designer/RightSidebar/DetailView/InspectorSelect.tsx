@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select } from 'antd';
+import FormSelect from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/FormSelect';
 import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 export type InspectorSelectOption = { label: React.ReactNode; value: string };
@@ -30,13 +30,12 @@ export const InspectorSelect = ({
     className,
   )}>
     {label ? <span className="font-medium text-slate-900">{label}</span> : null}
-    <Select
-      data-testid={testId}
+    <FormSelect
+      testId={testId}
       value={value}
       options={options}
       disabled={disabled || readOnly}
       onChange={(nextValue) => onChange?.(String(nextValue))}
-      size="small"
       className="w-full"
     />
   </label>

@@ -7,7 +7,8 @@
  */
 import React, { useMemo } from 'react';
 import { type PropPanelWidgetProps, type SchemaForUI } from '@sisad-pdfme/common';
-import { Collapse, Divider, Input, InputNumber, Select, Space } from 'antd';
+import { Collapse, Divider, Input, InputNumber, Space } from 'antd';
+import FormSelect from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/FormSelect';
 import { Users } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
@@ -266,7 +267,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
           <div className={GRID_2}>
             <div className={FIELD}>
               <div className={FIELD_LABEL}>Estado</div>
-              <Select id="collaboration-state" name="collaboration-state" value={state} options={STATE_OPTIONS} onChange={(value) => updateState(value)} />
+              <FormSelect id="collaboration-state" name="collaboration-state" value={state} options={STATE_OPTIONS} onChange={(value) => updateState(value)} />
             </div>
             <div className={FIELD}>
               <div className={FIELD_LABEL}>Nombre visible</div>
@@ -288,7 +289,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
               Propietario registrado
             </div>
             {hasRecipientOptions ? (
-              <Select
+              <FormSelect
                 id="collaboration-owner"
                 name="collaboration-owner"
                 value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
@@ -311,6 +312,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                 allowClear
                 showSearch
                 optionFilterProp="label"
+                testId="collaboration-owner-select"
                 onClear={() =>
                   commitOwnerPatch({
                     ownerRecipientIds: [],
@@ -441,7 +443,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                     <div className={FIELD}>
                       <div className={FIELD_LABEL}>Creado por</div>
                       {hasRecipientOptions ? (
-                        <Select
+                        <FormSelect
                           id="collaboration-created-by"
                           name="collaboration-created-by"
                           value={activeSchema.createdBy || collaborative.createdBy || undefined}
@@ -454,7 +456,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                             });
                           }}
                           placeholder="Selecciona autor"
-                          allowClear
+                          testId="collaboration-created-by-select"
                         />
                       ) : (
                         <Input
@@ -469,14 +471,14 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                     <div className={FIELD}>
                       <div className={FIELD_LABEL}>Modificado por</div>
                       {hasRecipientOptions ? (
-                        <Select
+                        <FormSelect
                           id="collaboration-modified-by"
                           name="collaboration-modified-by"
                           value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || undefined}
                           options={authorOptions}
                           onChange={(value) => commit({ lastModifiedBy: value || undefined })}
                           placeholder="Selecciona editor"
-                          allowClear
+                          testId="collaboration-modified-by-select"
                         />
                       ) : (
                         <Input
