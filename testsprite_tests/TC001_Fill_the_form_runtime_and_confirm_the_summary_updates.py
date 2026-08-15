@@ -2,8 +2,13 @@ import asyncio
 import re
 from playwright import async_api
 from playwright.async_api import expect
+from testsprite_tests.startup import ensure_or_report
 
 async def run_test():
+    # Skip early if local frontend server is not reachable
+    if not await ensure_or_report("http://localhost:5174", timeout=1.5):
+        return
+
     pw = None
     browser = None
     context = None
