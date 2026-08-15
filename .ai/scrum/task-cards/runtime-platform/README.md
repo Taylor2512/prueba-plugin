@@ -196,7 +196,7 @@ unit.
 - [RTP-495 — Bloquear canonical merge conflictivo](./RTP-495.md) — `PASS`
 - [RTP-500 — Crear codec durable de ExecutionResult](./RTP-500.md) — `PASS`
 - [RTP-505 — Endurecer composición PDF](./RTP-505.md) — `PASS`
-- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md) — `BLOCKED`
+- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md)
 - [RTP-515 — Crear all-schema stress harness dinámico](./RTP-515.md) — `BACKLOG`
 - [RTP-520 — Auditar parity contra referencia DocuSign](./RTP-520.md) — `PARTIAL`
 - [RTP-525 — Migrar compatibilidad Recipient hacia User](./RTP-525.md) — `PARTIAL`

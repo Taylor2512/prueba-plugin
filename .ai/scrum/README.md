@@ -6,6 +6,8 @@
 - `archive/`
 - [task-cards](./task-cards/README.md)
 - [views](./views/README.md)
+- [Active](./ACTIVE.md)
+- [Completed](./COMPLETED.md)
 - [Merge seguro](./MERGE-INSTRUCTIONS.md)
 - [Merge seguro de arquitectura](./MERGE.md)
 - [Filas para Product Backlog](./PRODUCT-BACKLOG-ROWS.md)

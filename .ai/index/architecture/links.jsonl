@@ -929,6 +929,8 @@
 {"from":".ai/routes/README.md","to":".ai/routes/traceability.md","fragment":null}
 {"from":".ai/routes/README.md","to":".ai/routes/ux-design.md","fragment":null}
 {"from":".ai/routes/README.md","to":".ai/routes/ux.md","fragment":null}
+{"from":".ai/scrum/ACTIVE.md","to":".ai/scrum/task-cards/runtime-platform/RTP-530.md","fragment":null}
+{"from":".ai/scrum/ACTIVE.md","to":".ai/scrum/task-cards/runtime-platform/RTP-545.md","fragment":null}
 {"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md","fragment":null}
 {"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md","fragment":null}
 {"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md","fragment":null}
@@ -960,6 +962,8 @@
 {"from":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","to":".ai/scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md","fragment":null}
 {"from":".ai/scrum/README.md","to":".ai/scrum/task-cards/README.md","fragment":null}
 {"from":".ai/scrum/README.md","to":".ai/scrum/views/README.md","fragment":null}
+{"from":".ai/scrum/README.md","to":".ai/scrum/ACTIVE.md","fragment":null}
+{"from":".ai/scrum/README.md","to":".ai/scrum/COMPLETED.md","fragment":null}
 {"from":".ai/scrum/README.md","to":".ai/scrum/MERGE-INSTRUCTIONS.md","fragment":null}
 {"from":".ai/scrum/README.md","to":".ai/scrum/MERGE.md","fragment":null}
 {"from":".ai/scrum/README.md","to":".ai/scrum/PRODUCT-BACKLOG-ROWS.md","fragment":null}

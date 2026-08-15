@@ -2,18 +2,37 @@
 /**
  * Gate de frontera de lenguaje/imports para `src/`.
  *
- * Reglas:
- * - `src/` solo puede contener JS/JSX/JSON.
- * - `src/` no puede importar archivos internos de `src/sisad-pdfme`.
- * - `src/` solo puede consumir entrypoints públicos documentados.
+ * La frontera tiene DOS lados y el gate vigila los dos:
+ *
+ * - `src/sisad-pdfme/**` es el componente reusable y va en **TypeScript**
+ *   (`.ts`/`.tsx`). Un `.js` ahí dentro es una fuga del host hacia el core.
+ * - el resto de `src/` es el host de ejemplos y va en **JavaScript**
+ *   (`.js`/`.jsx`). Un `.ts` ahí es el core desbordándose hacia el host.
+ *
+ * La versión anterior recorría `src/` entero con una única lista permitida de
+ * JS/JSX/JSON, así que denunciaba los 437 archivos TypeScript del propio
+ * componente —exactamente al revés de la regla— y el gate no podía usarse.
+ *
+ * Además:
+ * - el host no puede importar archivos internos de `src/sisad-pdfme`;
+ * - el host solo consume entrypoints públicos documentados.
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative, resolve } from 'node:path';
+import { join, relative, resolve, sep } from 'node:path';
 
 const ROOT = resolve(process.cwd(), getArgValue('--root') || '.');
 const _DIR = join(ROOT, 'src/');
+const CORE_DIR = join(ROOT, 'src', 'sisad-pdfme');
 
-const ALLOWED_EXTENSIONS = new Set(['.js', '.jsx', '.json']);
+/** Recursos que ambos lados pueden contener: no son código de ninguno. */
+const SHARED_EXTENSIONS = new Set(['.json', '.css', '.md', '.svg', '.png', '.woff', '.woff2']);
+const CORE_EXTENSIONS = new Set(['.ts', '.tsx']);
+const HOST_EXTENSIONS = new Set(['.js', '.jsx']);
+
+/** Declaraciones globales del proyecto; no son código del host. */
+const HOST_TYPE_DECLARATION = /\.d\.ts$/;
+
+const isCoreFile = (file) => file === CORE_DIR || file.startsWith(CORE_DIR + sep);
 const ALLOWED_PUBLIC_IMPORTS = [
   '@/sisad-pdfme/config',
   '@/sisad-pdfme/devtools',
@@ -37,6 +56,8 @@ function getArgValue(name) {
 
 function collectFiles(dir) {
   return readdirSync(dir).flatMap((entry) => {
+    // Los archivos ocultos son ruido del sistema (.DS_Store), no código fuente.
+    if (entry.startsWith('.')) return [];
     const fullPath = join(dir, entry);
     if (statSync(fullPath).isDirectory()) return collectFiles(fullPath);
     return [fullPath];
@@ -60,15 +81,26 @@ if (!statSync(_DIR, { throwIfNoEntry: false })) {
 
 for (const file of collectFiles(_DIR)) {
   const extension = file.slice(file.lastIndexOf('.'));
-  if (!ALLOWED_EXTENSIONS.has(extension)) {
+  const inCore = isCoreFile(file);
+
+  if (SHARED_EXTENSIONS.has(extension)) continue;
+  // Declaraciones globales de tipos: no son código del host ni del core.
+  if (!inCore && HOST_TYPE_DECLARATION.test(file)) continue;
+
+  const allowed = inCore ? CORE_EXTENSIONS : HOST_EXTENSIONS;
+  if (!allowed.has(extension)) {
     violations.push({
       file: relative(ROOT, file),
-      reason: `extensión no permitida (${extension || 'sin extensión'})`,
+      reason: inCore
+        ? `el componente va en TypeScript: extensión no permitida (${extension || 'sin extensión'})`
+        : `el host de ejemplos va en JavaScript: extensión no permitida (${extension || 'sin extensión'})`,
     });
     continue;
   }
 
-  if (extension === '.json') continue;
+  // Los imports profundos y con extensión TS sólo se vigilan en el host: el
+  // core importa sus propios módulos con toda legitimidad.
+  if (inCore) continue;
 
   const source = readFileSync(file, 'utf8');
   const importRegex = /(?:import|export)\s+(?:[\s\S]*?\sfrom\s*)?['"]([^'"]+)['"]|import\(\s*['"]([^'"]+)['"]\s*\)/g;
@@ -100,4 +132,4 @@ if (violations.length > 0) {
   process.exit(1);
 }
 
-console.log('✓ src/ usa solo JS/JSX/JSON y entrypoints públicos');
+console.log('✓ src/sisad-pdfme en TypeScript, host en JavaScript, entrypoints públicos respetados');

@@ -12,17 +12,27 @@ function bodyLabel(text,label){return text.match(new RegExp(`^\\*\\*(?:${label})
 function norm(v){const s=String(v||"").trim().toLowerCase().replace(/[_-]+/g," ");if(["pass","done","closed","completed","completo","completado"].includes(s))return"PASS";if(["blocked","bloqueado"].includes(s))return"BLOCKED";if(["partial","parcial"].includes(s))return"PARTIAL";if(["in progress","active","claimed","en progreso"].includes(s))return"IN_PROGRESS";if(["review","in review","revisión","revision"].includes(s))return"REVIEW";if(["ready","listo"].includes(s))return"READY";if(["archived","archivado"].includes(s))return"ARCHIVED";return"BACKLOG"}
 function evidenceState(t){const m=t.match(/^\s*(?:status|estado)\s*:\s*([A-Za-z_-]+)\s*$/im);return m?norm(m[1]):null}
 function parseDeps(fields,text){const raw=[fields.depends_on,fields.dependsOn,bodyLabel(text,"Dependencias|Dependencies")].filter(Boolean).join(" ");return[...raw.matchAll(/[A-Za-z]+-\d+/g)].map(m=>m[0].toUpperCase())}
+/** Elimina el estado "de display" del cuerpo, nunca del frontmatter. */
+function stripDisplayState(body){
+ return body
+   .replace(/^\*\*(?:Estado|State|Status)\s*:\*\*\s*.+?\s*$/gim,"")
+   .replace(/^(?:Estado|State|Status)\s*:\s*.+?\s*$/gim,"");
+}
 function canonicalize(text,id,state){
- const x=front(text);let body=text;
- // Remove legacy display state after materializing canonical frontmatter.
- body=body.replace(/^\*\*(?:Estado|State|Status)\s*:\*\*\s*.+?\s*$/gim,"").replace(/^(?:Estado|State|Status)\s*:\s*.+?\s*$/gim,"");
+ const x=front(text);
  if(x.match){
+   // El barrido de estado de display se aplica SOLO al cuerpo. Aplicarlo al
+   // texto completo borraba también la línea `status:` del frontmatter, con lo
+   // que `body.replace(x.match[0], ...)` dejaba de encontrar el bloque original
+   // y la card acababa SIN status — leyéndose luego como BACKLOG.
+   const head=text.slice(0,x.match.index+x.match[0].length);
+   const rest=stripDisplayState(text.slice(head.length));
    let block=x.match[1];
    if(/^status:/m.test(block))block=block.replace(/^status:\s*.*$/m,`status: ${state}`);else block+=`\nstatus: ${state}`;
    if(!/^id:/m.test(block))block=`id: ${id}\n${block}`;
-   return body.replace(x.match[0],`---\n${block}\n---`).replace(/\n{3,}/g,"\n\n");
+   return `---\n${block}\n---${rest}`.replace(/\n{3,}/g,"\n\n");
  }
- return `---\nid: ${id}\nstatus: ${state}\n---\n\n${body.trimStart().replace(/\n{3,}/g,"\n\n")}`;
+ return `---\nid: ${id}\nstatus: ${state}\n---\n\n${stripDisplayState(text).trimStart().replace(/\n{3,}/g,"\n\n")}`;
 }
 
 const byId=new Map();
