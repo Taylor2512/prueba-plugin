@@ -1,11 +1,1 @@
-{
-  "claude": {
-    "agent": "claude",
-    "task": "RTP-545",
-    "mode": "write",
-    "paths": [
-      "vite.config.js"
-    ],
-    "startedAt": "2026-08-15T14:41:46.017Z"
-  }
-}
+{}

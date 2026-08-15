@@ -12,12 +12,13 @@ import {
   decorateTemplateWithCollaboration,
 } from '@/sisad-pdfme/devtools';
 
+// Entrypoint público: el host no alcanza módulos internos del componente.
 import {
   createDocumentsAdapter,
   createRecipientsAdapter,
   createSignatureProviderAdapter,
-} from '../sisad-pdfme/adapters/index.ts';
-import { normalizeHostData as normalizeSisadPdfmeHostData } from '../sisad-pdfme/integration/normalizeHostData.ts';
+  normalizeHostData as normalizeSisadPdfmeHostData,
+} from '@/sisad-pdfme/integration';
 
 /* ── Utilidades ───────────────────────────────────────────────────────── */
 

@@ -2,10 +2,6 @@
 
 **Responsabilidad:** PDF↔imagen/tamaño y conversores browser/node.
 
-Snapshot: **10 archivos / 547 líneas / 17.1 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/converter/img2pdf.ts` — 193 líneas
 - `src/sisad-pdfme/converter/pdf2img.ts` — 110 líneas
 - `src/sisad-pdfme/converter/index.browser.ts` — 59 líneas
@@ -22,8 +18,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — converter](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [converter source index](../../../index/architecture/domains/converter.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

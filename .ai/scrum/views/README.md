@@ -21,3 +21,14 @@
 - [Completed](./COMPLETED.md)
 - [Runtime Platform state](./RUNTIME-PLATFORM.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [Active](./ACTIVE.md)
+- [Blocked / Partial](./BLOCKED.md)
+- [Completed](./COMPLETED.md)
+- [Runtime Platform state](./RUNTIME-PLATFORM.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

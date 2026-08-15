@@ -1,6 +1,11 @@
-# runtime-platform
+# Runtime Platform analysis
 
-<!-- sisad-architecture-hub:start -->
+Diagnostic and historical analysis for Runtime Platform.
+Durable product rules belong in `../../brain/`; current execution belongs in `../../scrum/`.
+
+Use this folder for evidence-backed analysis, not as a second task-state authority.
+
+<!-- ai-structure:navigation:start -->
 ## Navigation
 
 - [Análisis ejecutivo Runtime Platform](./00-EXECUTIVE.md)
@@ -21,8 +26,8 @@
 - [Risk register](./RISK-REGISTER.md)
 - [Schema completion analysis](./SCHEMA-COMPLETION.md)
 
-> Managed index. Update source documents, not this list.
-<!-- sisad-architecture-hub:end -->
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada

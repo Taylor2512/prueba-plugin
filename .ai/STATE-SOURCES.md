@@ -7,9 +7,9 @@ tratada como autoridad solo porque aparezca en documentación histórica.
 |---|---|
 | entrada operativa | `.ai/START.md` |
 | trabajo activo resumido | `.ai/brain/80-work/ACTIVE.md` |
-| campaña Runtime Platform | `.ai/scrum/RUNTIME-PLATFORM-LEDGER.md` |
+| campaña Runtime Platform | `.ai/scrum/views/RUNTIME-PLATFORM.md` |
 | task-cards | `.ai/scrum/task-cards/**/*.md` |
-| backlog general | `.ai/scrum/PRODUCT-BACKLOG.md` |
+| backlog general | `.ai/scrum/views/BACKLOG.md` |
 | continuidad inmediata | `.ai/brain/70-memory/HANDOFF.md` |
 | estado técnico resumido | `.ai/brain/70-memory/CURRENT.md` |
 | memoria durable | `.ai/memory/PROJECT.md`, `.ai/memory/INDEX.md`, `.ai/memory/topics/` |

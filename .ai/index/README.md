@@ -14,3 +14,14 @@ Los conteos embebidos en un índice pueden quedar obsoletos después de renombre
 o cambios de source. Regenerar antes de usarlos como métrica de cobertura.
 
 No abrir JSONL completos por defecto; consultar por path/ID/símbolo.
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [architecture](./architecture/README.md)
+- [runtime-platform](./runtime-platform/README.md)
+- [Recipient/color matrix](./RECIPIENT-COLOR-MATRIX.md)
+- [Matriz compacta de schemas](./SCHEMA-MATRIX.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

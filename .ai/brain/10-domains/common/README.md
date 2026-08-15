@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Tipos, helpers, schema core, expressions y colaboración común.
 
-Snapshot: **12 archivos / 3,229 líneas / 270.4 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/common/collaboration.ts` — 841 líneas
 - `src/sisad-pdfme/common/expression.ts` — 486 líneas
 - `src/sisad-pdfme/common/helper.ts` — 346 líneas
@@ -22,8 +18,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — common](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [common source index](../../../index/architecture/domains/common.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

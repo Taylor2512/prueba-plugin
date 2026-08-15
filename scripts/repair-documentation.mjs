@@ -43,7 +43,7 @@ run('normalize-documentation.mjs',[repo,'--apply','--backup',backup]);
 
 // 2) install durable policy/decision/guide. These are additive canonical documents.
 const payloadFiles=[
-  ['payload/.ai/brain/20-contracts/DOCUMENTATION-NAMING.md','.ai/brain/20-contracts/DOCUMENTATION-NAMING.md'],
+  ['payload/.ai/brain/20-contracts/operations/DOCUMENTATION-NAMING.md','.ai/brain/20-contracts/operations/DOCUMENTATION-NAMING.md'],
   ['payload/.ai/brain/30-decisions/ADR-013-STABLE-DOCUMENTATION-PATHS.md','.ai/brain/30-decisions/ADR-013-STABLE-DOCUMENTATION-PATHS.md'],
   ['payload/.ai/brain/50-guides/DOCUMENTATION-REPAIR.md','.ai/brain/50-guides/DOCUMENTATION-REPAIR.md'],
 ];

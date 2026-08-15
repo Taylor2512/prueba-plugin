@@ -4,8 +4,8 @@
 
 - task activa;
 - skill principal: `left-sidebar`;
-- `.ai/contracts/LEFT-SIDEBAR-CONTRACT.md`;
-- `.ai/contracts/CLASS-NAMESPACE-CONTRACT.md`;
+- `.ai/brain/20-contracts/designer/LEFT-SIDEBAR-CONTRACT.md`;
+- `.ai/brain/20-contracts/designer/CLASS-NAMESPACE-CONTRACT.md`;
 - consultas puntuales a catálogos.
 
 ## Output

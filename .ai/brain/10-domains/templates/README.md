@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Templates defaults/recipes.
 
-Snapshot: **3 archivos / 197 líneas / 6.3 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/templates/createTemplateFromRecipe.ts` — 154 líneas
 - `src/sisad-pdfme/templates/createDefaultTemplate.ts` — 37 líneas
 - `src/sisad-pdfme/templates/index.ts` — 6 líneas
@@ -17,8 +13,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — templates](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [templates source index](../../../index/architecture/domains/templates.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

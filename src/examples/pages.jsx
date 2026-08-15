@@ -16,6 +16,7 @@ import {
   FAMILY,
   FAMILY_ROUTE_CONFIG,
   FAMILY_ROUTE_GROUPS,
+  MULTI_DOCUMENT_DOCUMENTS,
   MULTI_USER_RECIPIENTS,
   PRIMARY_ROUTE_GROUPS,
   getSchemaRoute,
@@ -155,6 +156,39 @@ function RecipientSelect({ value, onChange }) {
   );
 }
 
+/**
+ * Conmutador de documento activo.
+ *
+ * Es el equivalente de `RecipientSelect` para la otra mitad del scope: sin él
+ * `activeDocumentId` sólo podía cambiarse desde código, así que el aislamiento
+ * entre documentos no era observable en navegador (RTP-510.A).
+ */
+function DocumentSelect({ documents, value, onChange }) {
+  return (
+    <label className="flex min-w-0 items-center">
+      <span className="sr-only">Documento activo</span>
+      <select
+        value={value ?? ''}
+        onChange={(event) => onChange(event.target.value)}
+        data-testid="lab-active-document-select"
+        className="box-border h-11 w-full min-w-0 max-w-[9rem] appearance-none truncate rounded-full border border-sky-300/40 bg-sky-300/10 px-3 text-xs font-medium text-sky-100 outline-none transition hover:border-sky-300/70 focus-visible:ring-2 focus-visible:ring-sky-300/60"
+      >
+        {documents.map((document) => (
+          <option key={document.id} value={document.id}>
+            {document.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+/** Documentos de la ruta: los de estructura común sólo si el ejemplo lo pide. */
+const resolveRouteDocuments = (config) => {
+  if (config.documents === false) return [];
+  return config.documents === 'multiDocument' ? MULTI_DOCUMENT_DOCUMENTS : DEMO_DOCUMENTS;
+};
+
 export function RuntimePage({ config, currentPath }) {
   const runtimeConfig = useRuntimeConfig(config.runtimeProfile || config.instanceId);
   const { events, record, clear } = useEventLog();
@@ -171,6 +205,8 @@ export function RuntimePage({ config, currentPath }) {
   );
 
   const handleEvent = useCallback((event) => record(event.name, event.payload), [record]);
+
+  const routeDocuments = useMemo(() => resolveRouteDocuments(config), [config]);
 
   const pageHandlers = useMemo(
     () => createPageHandlers(config, { record, setTemplate, setState }),
@@ -211,23 +247,26 @@ export function RuntimePage({ config, currentPath }) {
           // `resolveActiveDocumentTemplate` la prefiere sobre la construida.
           // En rutas con ownership per-user eso pisaba los owners y el
           // aislamiento entre Usuarios dejaba de aplicarse (RTP-510).
-          documents: config.documents === false ? [] : DEMO_DOCUMENTS,
+          documents: routeDocuments,
           recipients: MULTI_USER_RECIPIENTS,
           activeRecipientId: state.activeRecipientId,
+          activeDocumentId: state.activeDocumentId,
           onEvent: handleEvent,
           onControllerReady: handleControllerReady,
           ...pageHandlers,
         },
       ),
-    // Solo el recipient activo altera la instancia: el resto del estado de la
-    // página (contadores, último input) alimenta los paneles, no al runtime.
+    // Sólo el scope activo (User × Document) altera la instancia: el resto del
+    // estado de la página (contadores, último input) alimenta los paneles.
     [
       config,
       template,
       values,
       collaborativeConfig,
       runtimeConfig,
+      routeDocuments,
       state.activeRecipientId,
+      state.activeDocumentId,
       pageHandlers,
       handleEvent,
       handleControllerReady,
@@ -253,11 +292,22 @@ export function RuntimePage({ config, currentPath }) {
       modeBadge={config.modeBadge}
       currentPath={currentPath || config.path || EXAMPLE_ROUTE_MAP[config.id]}
       actions={
-        config.actions?.recipientSelect ? (
-          <RecipientSelect
-            value={state.activeRecipientId}
-            onChange={(activeRecipientId) => setState((prev) => ({ ...prev, activeRecipientId }))}
-          />
+        config.actions?.recipientSelect || config.actions?.documentSelect ? (
+          <div className="flex min-w-0 items-center gap-2">
+            {config.actions?.recipientSelect ? (
+              <RecipientSelect
+                value={state.activeRecipientId}
+                onChange={(activeRecipientId) => setState((prev) => ({ ...prev, activeRecipientId }))}
+              />
+            ) : null}
+            {config.actions?.documentSelect ? (
+              <DocumentSelect
+                documents={routeDocuments}
+                value={state.activeDocumentId}
+                onChange={(activeDocumentId) => setState((prev) => ({ ...prev, activeDocumentId }))}
+              />
+            ) : null}
+          </div>
         ) : null
       }
       infoTitle="Información"

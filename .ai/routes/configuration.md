@@ -4,7 +4,7 @@
 
 - task activa;
 - skill principal: `configuration`;
-- `.ai/contracts/CONFIGURATION-CONTRACT.md`;
+- `.ai/brain/20-contracts/configuration/CONFIGURATION-CONTRACT.md`;
 - consultas puntuales a catálogos.
 
 ## Output

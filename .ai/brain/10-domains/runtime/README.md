@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Lifecycle de instancias, eventos, artifacts y save.
 
-Snapshot: **8 archivos / 1,416 líneas / 50.2 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts` — 316 líneas
 - `src/sisad-pdfme/runtime/usePdfmeArtifacts.ts` — 285 líneas
 - `src/sisad-pdfme/runtime/instanceEventDispatcher.ts` — 201 líneas
@@ -26,5 +22,20 @@ necesarios y tests/consumidores reales.
 ### Notas
 
 - [Runtime architecture](./ARCHITECTURE.md)
-- [Files — runtime](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [runtime source index](../../../index/architecture/domains/runtime.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [Runtime architecture](./ARCHITECTURE.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

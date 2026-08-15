@@ -56,3 +56,10 @@ aportan contratos de lectura cuando exista una dependencia demostrada.
 For topology, task-status drift, archive, broken navigation or provider-doc duplication:
 read `brain/20-contracts/MARKDOWN-TOPOLOGY-CONTRACT.md` and run `npm run architecture:audit`.
 <!-- SISAD-MD-REPAIR:.ai/ROUTER.md:END -->
+
+<!-- AI-STRUCTURE-ROUTE:START -->
+## Architecture cleanup route
+
+Markdown topology / orphan / duplicate / Scrum / Brain structure:
+use `.ai/prompts/PROMPT_AI_STRUCTURE_CLEANUP.md` and the tooling-architecture MDA cards.
+<!-- AI-STRUCTURE-ROUTE:END -->

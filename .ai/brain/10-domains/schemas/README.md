@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Plugins, familias, factories, rendering y prop panels.
 
-Snapshot: **90 archivos / 15,226 líneas / 517.8 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/schemas/signature/propPanel.ts` — 724 líneas
 - `src/sisad-pdfme/schemas/shared/fieldChrome.ts` — 617 líneas
 - `src/sisad-pdfme/schemas/options/optionGroupFactory.ts` — 563 líneas
@@ -25,6 +21,21 @@ necesarios y tests/consumidores reales.
 
 ### Notas
 
-- [Files — schemas](./FILES.md)
 - [Schema Runtime Matrix](./RUNTIME-MATRIX.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [schemas source index](../../../index/architecture/domains/schemas.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [Schema Runtime Matrix](./RUNTIME-MATRIX.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

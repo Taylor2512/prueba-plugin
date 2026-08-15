@@ -1,5 +1,7 @@
 # MEMORY-DELTA
 
-Actualiza solo la capa de memoria correcta; excluye logs, hipótesis e historial.
+Convierte resultados verificados en el delta mínimo de memoria correcto.
 
-No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+Excluye logs, hipótesis, historial transitorio y estados ya derivados de task/evidence.
+No dupliques CURRENT/HANDOFF.
+No expongas chain-of-thought.

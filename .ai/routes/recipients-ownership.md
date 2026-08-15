@@ -4,7 +4,7 @@
 
 - task activa;
 - skill principal: `recipient-assignment`;
-- `.ai/contracts/RECIPIENT-OWNERSHIP-COLOR.md`;
+- `.ai/brain/20-contracts/runtime/RECIPIENT-OWNERSHIP-COLOR.md`;
 - consultas puntuales a catálogos.
 
 ## Output

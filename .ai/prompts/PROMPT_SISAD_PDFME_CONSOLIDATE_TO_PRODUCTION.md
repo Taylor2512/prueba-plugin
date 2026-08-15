@@ -37,8 +37,8 @@ AGENTS.md
 .ai/ROUTER.md
 .ai/architecture/SAME-REPO-MULTI-AGENT.md
 .ai/architecture/PROVIDER-MODEL-POLICY.md
-.ai/brain/20-contracts/SAME-REPO-MULTI-AGENT-CONTRACT.md
-.ai/brain/20-contracts/PRODUCTION-OBJECTIVE-CONTRACT.md
+.ai/brain/20-contracts/operations/SAME-REPO-MULTI-AGENT-CONTRACT.md
+.ai/brain/20-contracts/operations/PRODUCTION-OBJECTIVE-CONTRACT.md
 current task
 current evidence
 nearest source/tests.

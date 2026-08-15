@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Registry, colores y resolución de destinatarios.
 
-Snapshot: **8 archivos / 803 líneas / 29.4 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/recipients/recipientRegistry.ts` — 196 líneas
 - `src/sisad-pdfme/recipients/recipientResolver.ts` — 170 líneas
 - `src/sisad-pdfme/recipients/recipientTypes.ts` — 115 líneas
@@ -22,8 +18,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — recipients](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [recipients source index](../../../index/architecture/domains/recipients.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

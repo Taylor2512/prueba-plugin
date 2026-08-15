@@ -1,5 +1,7 @@
 # DIAGNOSE
 
-Diagnostica una sola pregunta. No edites. Devuelve evidence packet, confianza, test focal y stop.
+Diagnostica una sola pregunta. No edites.
 
-No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+Devuelve evidence packet, confianza, test focal y stop condition.
+Carga contexto adicional únicamente cuando una incógnita concreta lo requiera.
+No expongas chain-of-thought.

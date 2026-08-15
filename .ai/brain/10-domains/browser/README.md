@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Object URLs y descargas browser.
 
-Snapshot: **2 archivos / 71 líneas / 2.3 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/browser/downloads.ts` — 39 líneas
 - `src/sisad-pdfme/browser/objectUrls.ts` — 32 líneas
 
@@ -16,8 +12,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — browser](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [browser source index](../../../index/architecture/domains/browser.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

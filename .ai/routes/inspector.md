@@ -4,7 +4,7 @@
 
 - task activa;
 - skill principal: `inspector-contract`;
-- `.ai/contracts/DETAILVIEW-CONTRACT.md`;
+- `.ai/brain/20-contracts/designer/DETAILVIEW-CONTRACT.md`;
 - consultas puntuales a catálogos.
 
 ## Output

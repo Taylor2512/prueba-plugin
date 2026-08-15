@@ -4,7 +4,7 @@
 
 - task activa;
 - skill principal: `event-effect`;
-- `.ai/contracts/EVENT-EFFECT-CONTRACT.md`;
+- `.ai/brain/20-contracts/core/EVENT-EFFECT-CONTRACT.md`;
 - consultas puntuales a catálogos.
 
 ## Output

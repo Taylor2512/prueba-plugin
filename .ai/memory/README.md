@@ -20,7 +20,7 @@
 
 ### Secciones
 
-- [topics](./topics/README.md)
+- [Stable memory topics](./topics/README.md)
 
 ### Notas
 
@@ -32,3 +32,18 @@
 - [Compatibility memory delta](./RTP-MEMORY-DELTA.md)
 - [TTL](./TTL-POLICY.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [topics](./topics/README.md)
+- [CURRENT](./CURRENT.template.md)
+- [HANDOFF](./HANDOFF.template.md)
+- [Memory index](./INDEX.md)
+- [Memory GC](./MEMORY-GC.md)
+- [Project memory](./PROJECT.md)
+- [Compatibility memory delta](./RTP-MEMORY-DELTA.md)
+- [TTL](./TTL-POLICY.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

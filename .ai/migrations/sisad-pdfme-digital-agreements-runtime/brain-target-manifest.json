@@ -17,29 +17,29 @@
       "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md"
     },
     {
-      "target": ".ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md",
+      "target": ".ai/brain/20-contracts/runtime/ACCESS-OWNERSHIP-CONTRACT.md",
       "expectedSha1Prefix": "1602b3341b",
-      "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md"
+      "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/runtime/ACCESS-OWNERSHIP-CONTRACT.md"
     },
     {
-      "target": ".ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md",
+      "target": ".ai/brain/20-contracts/configuration/CONFIG-RUNTIME-BOUNDARY.md",
       "expectedSha1Prefix": "9f105e64ab",
-      "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md"
+      "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/configuration/CONFIG-RUNTIME-BOUNDARY.md"
     },
     {
-      "target": ".ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md",
+      "target": ".ai/brain/20-contracts/runtime/FORM-TRANSACTION-CONTRACT.md",
       "expectedSha1Prefix": "8a391eebff",
-      "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md"
+      "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/runtime/FORM-TRANSACTION-CONTRACT.md"
     },
     {
-      "target": ".ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md",
+      "target": ".ai/brain/20-contracts/runtime/SCHEMA-VALUE-CODEC.md",
       "expectedSha1Prefix": "b78a10e6ec",
-      "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md"
+      "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/runtime/SCHEMA-VALUE-CODEC.md"
     },
     {
-      "target": ".ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md",
+      "target": ".ai/brain/20-contracts/runtime/SNAPSHOT-VERSIONING-CONTRACT.md",
       "expectedSha1Prefix": "7da800f4b0",
-      "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md"
+      "source": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/runtime/SNAPSHOT-VERSIONING-CONTRACT.md"
     }
   ]
 }

@@ -23,3 +23,15 @@
 - [Política de tokens y recursos](./TOKEN-RESOURCE-POLICY.md)
 - [Política de trazabilidad](./TRACEABILITY-POLICY.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [Política de nomenclatura, versiones y compatibilidad](./NAMING-COMPATIBILITY-POLICY.md)
+- [Política de drift entre proveedores](./PROVIDER-DRIFT-POLICY.md)
+- [Política de subagentes y coste](./SUBAGENT-COST-POLICY.md)
+- [Política de tokens y recursos](./TOKEN-RESOURCE-POLICY.md)
+- [Política de trazabilidad](./TRACEABILITY-POLICY.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

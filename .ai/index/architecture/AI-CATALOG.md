@@ -1,0 +1,889 @@
+# AI Markdown catalog
+
+> Generated catalog. Do not edit manually.
+
+- [Budgets V8](../../BUDGETS.md) — `.ai/BUDGETS.md`
+- [Presupuesto de contexto](../../CONTEXT-BUDGET.md) — `.ai/CONTEXT-BUDGET.md`
+- [Política de contexto](../../CONTEXT-POLICY.md) — `.ai/CONTEXT-POLICY.md`
+- [Protocolo de decisión](../../DECISION-PROTOCOL.md) — `.ai/DECISION-PROTOCOL.md`
+- [Router de modelos](../../MODEL-ROUTER.md) — `.ai/MODEL-ROUTER.md`
+- [Observabilidad](../../OBSERVABILITY.md) — `.ai/OBSERVABILITY.md`
+- [Orquestación](../../ORCHESTRATION.md) — `.ai/ORCHESTRATION.md`
+- [.ai](../../README.md) — `.ai/README.md`
+- [Router](../../ROUTER.md) — `.ai/ROUTER.md`
+- [START](../../START.md) — `.ai/START.md`
+- [Fuentes de estado](../../STATE-SOURCES.md) — `.ai/STATE-SOURCES.md`
+- [canvas-specialist](../../agents/CANVAS-SPECIALIST.md) — `.ai/agents/CANVAS-SPECIALIST.md`
+- [provider-adapter-steward](../../agents/PROVIDER-ADAPTER-STEWARD.md) — `.ai/agents/PROVIDER-ADAPTER-STEWARD.md`
+- [agents](../../agents/README.md) — `.ai/agents/README.md`
+- [Agent registry](../../agents/REGISTRY.md) — `.ai/agents/REGISTRY.md`
+- [runtime-architect](../../agents/RUNTIME-ARCHITECT.md) — `.ai/agents/RUNTIME-ARCHITECT.md`
+- [schema-specialist](../../agents/SCHEMA-SPECIALIST.md) — `.ai/agents/SCHEMA-SPECIALIST.md`
+- [token-steward](../../agents/TOKEN-STEWARD.md) — `.ai/agents/TOKEN-STEWARD.md`
+- [ux-designer](../../agents/UX-DESIGNER.md) — `.ai/agents/UX-DESIGNER.md`
+- [architect](../../agents/architect.md) — `.ai/agents/architect.md`
+- [coordinator](../../agents/coordinator.md) — `.ai/agents/coordinator.md`
+- [domain-specialist](../../agents/domain-specialist.md) — `.ai/agents/domain-specialist.md`
+- [explorer](../../agents/explorer.md) — `.ai/agents/explorer.md`
+- [implementer](../../agents/implementer.md) — `.ai/agents/implementer.md`
+- [memory-steward](../../agents/memory-steward.md) — `.ai/agents/memory-steward.md`
+- [provider-steward](../../agents/provider-steward.md) — `.ai/agents/provider-steward.md`
+- [qa](../../agents/qa.md) — `.ai/agents/qa.md`
+- [reviewer](../../agents/reviewer.md) — `.ai/agents/reviewer.md`
+- [traceability-steward](../../agents/traceability-steward.md) — `.ai/agents/traceability-steward.md`
+- [analysis](../../analysis/README.md) — `.ai/analysis/README.md`
+- [Análisis ejecutivo Runtime Platform](../../analysis/runtime-platform/00-EXECUTIVE.md) — `.ai/analysis/runtime-platform/00-EXECUTIVE.md`
+- [Source coverage](../../analysis/runtime-platform/01-SOURCE-COVERAGE.md) — `.ai/analysis/runtime-platform/01-SOURCE-COVERAGE.md`
+- [Form state / echo risks](../../analysis/runtime-platform/02-FORM-STATE-RISKS.md) — `.ai/analysis/runtime-platform/02-FORM-STATE-RISKS.md`
+- [PDF loading/render lifecycle](../../analysis/runtime-platform/03-PDF-LIFECYCLE.md) — `.ai/analysis/runtime-platform/03-PDF-LIFECYCLE.md`
+- [Generator / converter](../../analysis/runtime-platform/04-GENERATOR-CONVERTER.md) — `.ai/analysis/runtime-platform/04-GENERATOR-CONVERTER.md`
+- [Schema runtime completeness](../../analysis/runtime-platform/05-SCHEMA-RUNTIME.md) — `.ai/analysis/runtime-platform/05-SCHEMA-RUNTIME.md`
+- [Artifact/signature](../../analysis/runtime-platform/06-ARTIFACT-SIGNATURE.md) — `.ai/analysis/runtime-platform/06-ARTIFACT-SIGNATURE.md`
+- [Documents/recipients/collaboration](../../analysis/runtime-platform/07-MULTIDOC-COLLAB.md) — `.ai/analysis/runtime-platform/07-MULTIDOC-COLLAB.md`
+- [Performance / memory](../../analysis/runtime-platform/08-PERFORMANCE-MEMORY.md) — `.ai/analysis/runtime-platform/08-PERFORMANCE-MEMORY.md`
+- [Accessibility / input modalities](../../analysis/runtime-platform/09-A11Y-INPUT.md) — `.ai/analysis/runtime-platform/09-A11Y-INPUT.md`
+- [Product nomenclature audit](../../analysis/runtime-platform/10-NOMENCLATURE.md) — `.ai/analysis/runtime-platform/10-NOMENCLATURE.md`
+- [Test infrastructure risk](../../analysis/runtime-platform/11-TEST-INFRA.md) — `.ai/analysis/runtime-platform/11-TEST-INFRA.md`
+- [Execution orchestration analysis](../../analysis/runtime-platform/EXECUTION-ORCHESTRATION.md) — `.ai/analysis/runtime-platform/EXECUTION-ORCHESTRATION.md`
+- [Markdown architecture debt](../../analysis/runtime-platform/MARKDOWN-ARCHITECTURE-DEBT.md) — `.ai/analysis/runtime-platform/MARKDOWN-ARCHITECTURE-DEBT.md`
+- [PDF composition analysis](../../analysis/runtime-platform/PDF-COMPOSITION.md) — `.ai/analysis/runtime-platform/PDF-COMPOSITION.md`
+- [Runtime Platform analysis](../../analysis/runtime-platform/README.md) — `.ai/analysis/runtime-platform/README.md`
+- [Risk register](../../analysis/runtime-platform/RISK-REGISTER.md) — `.ai/analysis/runtime-platform/RISK-REGISTER.md`
+- [Schema completion analysis](../../analysis/runtime-platform/SCHEMA-COMPLETION.md) — `.ai/analysis/runtime-platform/SCHEMA-COMPLETION.md`
+- [SISAD-PDFME runtime hardening — executive](../../analysis/sisad-pdfme-runtime-hardening/00-EXECUTIVE.md) — `.ai/analysis/sisad-pdfme-runtime-hardening/00-EXECUTIVE.md`
+- [User model migration analysis](../../analysis/sisad-pdfme-runtime-hardening/01-USER-MODEL.md) — `.ai/analysis/sisad-pdfme-runtime-hardening/01-USER-MODEL.md`
+- [Designer stability strategy](../../analysis/sisad-pdfme-runtime-hardening/02-DESIGNER-STABILITY.md) — `.ai/analysis/sisad-pdfme-runtime-hardening/02-DESIGNER-STABILITY.md`
+- [Form hardening strategy](../../analysis/sisad-pdfme-runtime-hardening/03-FORM-HARDENING.md) — `.ai/analysis/sisad-pdfme-runtime-hardening/03-FORM-HARDENING.md`
+- [All-schema behavior strategy](../../analysis/sisad-pdfme-runtime-hardening/04-SCHEMA-BEHAVIOR.md) — `.ai/analysis/sisad-pdfme-runtime-hardening/04-SCHEMA-BEHAVIOR.md`
+- [Tooling / installation / dedup safety](../../analysis/sisad-pdfme-runtime-hardening/05-TOOLING-SAFETY.md) — `.ai/analysis/sisad-pdfme-runtime-hardening/05-TOOLING-SAFETY.md`
+- [sisad-pdfme-runtime-hardening](../../analysis/sisad-pdfme-runtime-hardening/README.md) — `.ai/analysis/sisad-pdfme-runtime-hardening/README.md`
+- [Mapa del sistema de conocimiento IA](../../architecture/00-SYSTEM-MAP.md) — `.ai/architecture/00-SYSTEM-MAP.md`
+- [Modelo de conocimiento](../../architecture/01-KNOWLEDGE-MODEL.md) — `.ai/architecture/01-KNOWLEDGE-MODEL.md`
+- [Hot, warm y cold storage](../../architecture/02-HOT-WARM-COLD.md) — `.ai/architecture/02-HOT-WARM-COLD.md`
+- [Adaptadores de proveedores](../../architecture/03-PROVIDER-ADAPTERS.md) — `.ai/architecture/03-PROVIDER-ADAPTERS.md`
+- [Ciclo de tareas](../../architecture/04-TASK-LIFECYCLE.md) — `.ai/architecture/04-TASK-LIFECYCLE.md`
+- [Arquitectura de asistentes IA](../../architecture/AI-ASSISTANT-ARCHITECTURE.md) — `.ai/architecture/AI-ASSISTANT-ARCHITECTURE.md`
+- [ADR — Arquitectura de superficies del Designer](../../architecture/DESIGNER-SURFACE-ARCHITECTURE.md) — `.ai/architecture/DESIGNER-SURFACE-ARCHITECTURE.md`
+- [ADR — Eventos, comandos y efectos del Designer](../../architecture/EVENT-COMMAND-EFFECT-ARCHITECTURE.md) — `.ai/architecture/EVENT-COMMAND-EFFECT-ARCHITECTURE.md`
+- [Grafo de conocimiento y trazabilidad](../../architecture/KNOWLEDGE-GRAPH.md) — `.ai/architecture/KNOWLEDGE-GRAPH.md`
+- [Arquitectura de memoria](../../architecture/MEMORY-ARCHITECTURE.md) — `.ai/architecture/MEMORY-ARCHITECTURE.md`
+- [Memory consolidation](../../architecture/MEMORY-CONSOLIDATION.md) — `.ai/architecture/MEMORY-CONSOLIDATION.md`
+- [Compatibilidad de proveedores](../../architecture/PROVIDER-COMPATIBILITY.md) — `.ai/architecture/PROVIDER-COMPATIBILITY.md`
+- [Provider model policy](../../architecture/PROVIDER-MODEL-POLICY.md) — `.ai/architecture/PROVIDER-MODEL-POLICY.md`
+- [architecture](../../architecture/README.md) — `.ai/architecture/README.md`
+- [Same-repo multi-agent architecture](../../architecture/SAME-REPO-MULTI-AGENT.md) — `.ai/architecture/SAME-REPO-MULTI-AGENT.md`
+- [SISAD-PDFME — AUTONOMOUS CONSOLIDATION TO PRODUCTION](../../architecture/SISAD-PRODUCTION-OBJECTIVE.md) — `.ai/architecture/SISAD-PRODUCTION-OBJECTIVE.md`
+- [archive](../../archive/README.md) — `.ai/archive/README.md`
+- [campaigns](../../archive/campaigns/README.md) — `.ai/archive/campaigns/README.md`
+- [Plan — SISAD-PDFME runtime hardening V2](../../archive/campaigns/runtime-hardening/PLAN.md) — `.ai/archive/campaigns/runtime-hardening/PLAN.md`
+- [Boot — SISAD-PDFME runtime hardening](../../archive/campaigns/runtime-hardening/PROMPT-BOOT.md) — `.ai/archive/campaigns/runtime-hardening/PROMPT-BOOT.md`
+- [Master prompt — SISAD-PDFME runtime hardening V2](../../archive/campaigns/runtime-hardening/PROMPT-MASTER.md) — `.ai/archive/campaigns/runtime-hardening/PROMPT-MASTER.md`
+- [runtime-hardening](../../archive/campaigns/runtime-hardening/README.md) — `.ai/archive/campaigns/runtime-hardening/README.md`
+- [Task ledger — SISAD-PDFME RUNTIME HARDENING V2](../../archive/campaigns/runtime-hardening/TASK-LEDGER.md) — `.ai/archive/campaigns/runtime-hardening/TASK-LEDGER.md`
+- [SISAD-PDFME runtime hardening V2](../../archive/campaigns/runtime-hardening/record/README.md) — `.ai/archive/campaigns/runtime-hardening/record/README.md`
+- [Start](../../archive/campaigns/runtime-hardening/record/START.md) — `.ai/archive/campaigns/runtime-hardening/record/START.md`
+- [tasks](../../archive/campaigns/runtime-hardening/tasks/README.md) — `.ai/archive/campaigns/runtime-hardening/tasks/README.md`
+- [Live baseline and public API snapshot](../../archive/campaigns/runtime-hardening/tasks/SPRT-000.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-000.md`
+- [Tooling install/import safety](../../archive/campaigns/runtime-hardening/tasks/SPRT-010.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-010.md`
+- [Dedup and ordering baseline](../../archive/campaigns/runtime-hardening/tasks/SPRT-020.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-020.md`
+- [Legacy Recipient terminology characterization](../../archive/campaigns/runtime-hardening/tasks/SPRT-030.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-030.md`
+- [Canonical SisadPdfmeUser model](../../archive/campaigns/runtime-hardening/tasks/SPRT-040.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-040.md`
+- [Public users normalization](../../archive/campaigns/runtime-hardening/tasks/SPRT-050.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-050.md`
+- [Canonical user assignments](../../archive/campaigns/runtime-hardening/tasks/SPRT-060.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-060.md`
+- [Snapshot user migration](../../archive/campaigns/runtime-hardening/tasks/SPRT-070.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-070.md`
+- [Form transaction protocol](../../archive/campaigns/runtime-hardening/tasks/SPRT-080.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-080.md`
+- [Host reconciliation protocol](../../archive/campaigns/runtime-hardening/tasks/SPRT-090.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-090.md`
+- [Form input lifecycle](../../archive/campaigns/runtime-hardening/tasks/SPRT-100.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-100.md`
+- [Interaction/completion state](../../archive/campaigns/runtime-hardening/tasks/SPRT-110.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-110.md`
+- [Schema runtime manifest](../../archive/campaigns/runtime-hardening/tasks/SPRT-120.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-120.md`
+- [Schema value codecs](../../archive/campaigns/runtime-hardening/tasks/SPRT-130.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-130.md`
+- [Text number date family hardening](../../archive/campaigns/runtime-hardening/tasks/SPRT-140.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-140.md`
+- [Choice boolean family hardening](../../archive/campaigns/runtime-hardening/tasks/SPRT-150.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-150.md`
+- [Signing family hardening](../../archive/campaigns/runtime-hardening/tasks/SPRT-160.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-160.md`
+- [Artifact and action hardening](../../archive/campaigns/runtime-hardening/tasks/SPRT-170.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-170.md`
+- [Complex visual/computed families](../../archive/campaigns/runtime-hardening/tasks/SPRT-180.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-180.md`
+- [User document session isolation](../../archive/campaigns/runtime-hardening/tasks/SPRT-190.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-190.md`
+- [Multi-instance concurrency](../../archive/campaigns/runtime-hardening/tasks/SPRT-200.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-200.md`
+- [Pairwise schema interaction harness](../../archive/campaigns/runtime-hardening/tasks/SPRT-210.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-210.md`
+- [Runtime parity gate](../../archive/campaigns/runtime-hardening/tasks/SPRT-220.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-220.md`
+- [Performance accessibility leak gate](../../archive/campaigns/runtime-hardening/tasks/SPRT-230.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-230.md`
+- [Public compatibility gate](../../archive/campaigns/runtime-hardening/tasks/SPRT-240.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-240.md`
+- [Legacy/dead/duplicate cleanup](../../archive/campaigns/runtime-hardening/tasks/SPRT-250.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-250.md`
+- [Brain/index/context closeout](../../archive/campaigns/runtime-hardening/tasks/SPRT-260.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-260.md`
+- [SPRT-270 — Closeout del refactor de `src/examples`](../../archive/campaigns/runtime-hardening/tasks/SPRT-270.md) — `.ai/archive/campaigns/runtime-hardening/tasks/SPRT-270.md`
+- [generated-domain-artifacts](../../archive/generated-domain-artifacts/README.md) — `.ai/archive/generated-domain-artifacts/README.md`
+- [Files — index.ts](../../archive/generated-domain-artifacts/index.ts/FILES.md) — `.ai/archive/generated-domain-artifacts/index.ts/FILES.md`
+- [Domain — index.ts](../../archive/generated-domain-artifacts/index.ts/README.md) — `.ai/archive/generated-domain-artifacts/index.ts/README.md`
+- [Current — Runtime Platform (reconciliación sugerida)](../../archive/memory/CURRENT-reconciliation-proposal.md) — `.ai/archive/memory/CURRENT-reconciliation-proposal.md`
+- [memory](../../archive/memory/README.md) — `.ai/archive/memory/README.md`
+- [migrations](../../archive/migrations/README.md) — `.ai/archive/migrations/README.md`
+- [.ai](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/README.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/README.md`
+- [Arquitectura de producto](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/ARCHITECTURE.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/ARCHITECTURE.md`
+- [Glosario](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/GLOSSARY.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/GLOSSARY.md`
+- [00-product](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/README.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/README.md`
+- [Source truth](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md`
+- [Access / assignment](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md`
+- [Config/runtime boundary](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md`
+- [Form transaction contract](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md`
+- [20-contracts](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/README.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/README.md`
+- [Schema value codec](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md`
+- [Snapshot/versioning](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md`
+- [brain](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/README.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/README.md`
+- [digital-agreements-runtime-brain-targets](../../archive/migrations/digital-agreements-runtime-brain-targets/README.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/README.md`
+- [scrum](../../archive/scrum/README.md) — `.ai/archive/scrum/README.md`
+- [Ledger — Runtime Platform](../../archive/scrum/RUNTIME-PLATFORM-LEDGER.md) — `.ai/archive/scrum/RUNTIME-PLATFORM-LEDGER.md`
+- [task-cards](../../archive/task-cards/README.md) — `.ai/archive/task-cards/README.md`
+- [AI8-001 — Congelar baseline y backup](../../archive/task-cards/ai-architecture-legacy/AI8-001-congelar-baseline-y.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-001-congelar-baseline-y.md`
+- [AI8-002 — Adoptar hot path V8](../../archive/task-cards/ai-architecture-legacy/AI8-002-adoptar-hot-path.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-002-adoptar-hot-path.md`
+- [AI8-003 — Migrar conocimiento a JSONL](../../archive/task-cards/ai-architecture-legacy/AI8-003-migrar-conocimiento-a-jsonl.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-003-migrar-conocimiento-a-jsonl.md`
+- [AI8-005 — Compactar routes](../../archive/task-cards/ai-architecture-legacy/AI8-005-compactar-routes.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-005-compactar-routes.md`
+- [AI8-006 — Compactar skills y aliases](../../archive/task-cards/ai-architecture-legacy/AI8-006-compactar-skills-y-aliases.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-006-compactar-skills-y-aliases.md`
+- [AI8-007 — Consolidar agentes](../../archive/task-cards/ai-architecture-legacy/AI8-007-consolidar-agentes.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-007-consolidar-agentes.md`
+- [AI8-008 — Generar adapters de proveedor](../../archive/task-cards/ai-architecture-legacy/AI8-008-generar-adapters-de-proveedor.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-008-generar-adapters-de-proveedor.md`
+- [AI8-009 — Migrar memoria y TTL](../../archive/task-cards/ai-architecture-legacy/AI8-009-migrar-memoria-y-ttl.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-009-migrar-memoria-y-ttl.md`
+- [AI8-010 — Migrar lifecycle de tareas](../../archive/task-cards/ai-architecture-legacy/AI8-010-migrar-lifecycle-de-tareas.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-010-migrar-lifecycle-de-tareas.md`
+- [AI8-011 — Consolidar contratos de usuarios y color](../../archive/task-cards/ai-architecture-legacy/AI8-011-consolidar-contratos-de-usuarios-y-color.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-011-consolidar-contratos-de-usuarios-y-color.md`
+- [AI8-012 — Consolidar matriz de schemas](../../archive/task-cards/ai-architecture-legacy/AI8-012-consolidar-matriz-de-schemas.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-012-consolidar-matriz-de-schemas.md`
+- [AI8-013 — Inventariar namespace CSS](../../archive/task-cards/ai-architecture-legacy/AI8-013-inventariar-namespace-css.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-013-inventariar-namespace-css.md`
+- [AI8-014 — Actualizar trazabilidad](../../archive/task-cards/ai-architecture-legacy/AI8-014-actualizar-trazabilidad.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-014-actualizar-trazabilidad.md`
+- [AI8-015 — Implementar gates](../../archive/task-cards/ai-architecture-legacy/AI8-015-implementar-gates.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-015-implementar-gates.md`
+- [AI8-016 — Crear evals de costo y precisión](../../archive/task-cards/ai-architecture-legacy/AI8-016-crear-evals-de-costo-y-precision.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-016-crear-evals-de-costo-y-precision.md`
+- [AI8-017 — Migrar COREUX/DECL/RESTORE/NAME](../../archive/task-cards/ai-architecture-legacy/AI8-017-migrar-coreux-decl-restore-name.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-017-migrar-coreux-decl-restore-name.md`
+- [AI8-018 — Rollout y eliminación controlada](../../archive/task-cards/ai-architecture-legacy/AI8-018-rollout-y-eliminacion-controlada.md) — `.ai/archive/task-cards/ai-architecture-legacy/AI8-018-rollout-y-eliminacion-controlada.md`
+- [ai-architecture-legacy](../../archive/task-cards/ai-architecture-legacy/README.md) — `.ai/archive/task-cards/ai-architecture-legacy/README.md`
+- [Arquitectura de producto](../../brain/00-product/ARCHITECTURE.md) — `.ai/brain/00-product/ARCHITECTURE.md`
+- [Glosario](../../brain/00-product/GLOSSARY.md) — `.ai/brain/00-product/GLOSSARY.md`
+- [Product Identity — SISAD-PDFME](../../brain/00-product/PRODUCT-IDENTITY.md) — `.ai/brain/00-product/PRODUCT-IDENTITY.md`
+- [00-product](../../brain/00-product/README.md) — `.ai/brain/00-product/README.md`
+- [Source truth](../../brain/00-product/SOURCE-TRUTH.md) — `.ai/brain/00-product/SOURCE-TRUTH.md`
+- [Stack runtime relevante](../../brain/00-product/STACK.md) — `.ai/brain/00-product/STACK.md`
+- [10-domains](../../brain/10-domains/README.md) — `.ai/brain/10-domains/README.md`
+- [Domain — adapters](../../brain/10-domains/adapters/README.md) — `.ai/brain/10-domains/adapters/README.md`
+- [Domain — assignments](../../brain/10-domains/assignments/README.md) — `.ai/brain/10-domains/assignments/README.md`
+- [Domain — browser](../../brain/10-domains/browser/README.md) — `.ai/brain/10-domains/browser/README.md`
+- [Domain — canvas](../../brain/10-domains/canvas/README.md) — `.ai/brain/10-domains/canvas/README.md`
+- [Domain — collaboration](../../brain/10-domains/collaboration/README.md) — `.ai/brain/10-domains/collaboration/README.md`
+- [Domain — commands](../../brain/10-domains/commands/README.md) — `.ai/brain/10-domains/commands/README.md`
+- [Domain — comments](../../brain/10-domains/comments/README.md) — `.ai/brain/10-domains/comments/README.md`
+- [Domain — common](../../brain/10-domains/common/README.md) — `.ai/brain/10-domains/common/README.md`
+- [Domain — config](../../brain/10-domains/config/README.md) — `.ai/brain/10-domains/config/README.md`
+- [Domain — context](../../brain/10-domains/context/README.md) — `.ai/brain/10-domains/context/README.md`
+- [Domain — contracts](../../brain/10-domains/contracts/README.md) — `.ai/brain/10-domains/contracts/README.md`
+- [Domain — converter](../../brain/10-domains/converter/README.md) — `.ai/brain/10-domains/converter/README.md`
+- [Domain — devtools](../../brain/10-domains/devtools/README.md) — `.ai/brain/10-domains/devtools/README.md`
+- [Domain — documents](../../brain/10-domains/documents/README.md) — `.ai/brain/10-domains/documents/README.md`
+- [Domain — editor](../../brain/10-domains/editor/README.md) — `.ai/brain/10-domains/editor/README.md`
+- [Domain — externalForms](../../brain/10-domains/externalForms/README.md) — `.ai/brain/10-domains/externalForms/README.md`
+- [Domain — generator](../../brain/10-domains/generator/README.md) — `.ai/brain/10-domains/generator/README.md`
+- [Domain — integration](../../brain/10-domains/integration/README.md) — `.ai/brain/10-domains/integration/README.md`
+- [Domain — react](../../brain/10-domains/react/README.md) — `.ai/brain/10-domains/react/README.md`
+- [Domain — recipients](../../brain/10-domains/recipients/README.md) — `.ai/brain/10-domains/recipients/README.md`
+- [Runtime architecture](../../brain/10-domains/runtime/ARCHITECTURE.md) — `.ai/brain/10-domains/runtime/ARCHITECTURE.md`
+- [Domain — runtime](../../brain/10-domains/runtime/README.md) — `.ai/brain/10-domains/runtime/README.md`
+- [Domain — schemas](../../brain/10-domains/schemas/README.md) — `.ai/brain/10-domains/schemas/README.md`
+- [Schema Runtime Matrix](../../brain/10-domains/schemas/RUNTIME-MATRIX.md) — `.ai/brain/10-domains/schemas/RUNTIME-MATRIX.md`
+- [Domain — shared](../../brain/10-domains/shared/README.md) — `.ai/brain/10-domains/shared/README.md`
+- [Domain — templates](../../brain/10-domains/templates/README.md) — `.ai/brain/10-domains/templates/README.md`
+- [Domain — ui](../../brain/10-domains/ui/README.md) — `.ai/brain/10-domains/ui/README.md`
+- [20-contracts](../../brain/20-contracts/README.md) — `.ai/brain/20-contracts/README.md`
+- [Capability registry contract](../../brain/20-contracts/configuration/CAPABILITY-REGISTRY-CONTRACT.md) — `.ai/brain/20-contracts/configuration/CAPABILITY-REGISTRY-CONTRACT.md`
+- [Capability resolution contract](../../brain/20-contracts/configuration/CAPABILITY-RESOLUTION-CONTRACT.md) — `.ai/brain/20-contracts/configuration/CAPABILITY-RESOLUTION-CONTRACT.md`
+- [Config compilation contract](../../brain/20-contracts/configuration/CONFIG-COMPILATION-CONTRACT.md) — `.ai/brain/20-contracts/configuration/CONFIG-COMPILATION-CONTRACT.md`
+- [Config/runtime boundary](../../brain/20-contracts/configuration/CONFIG-RUNTIME-BOUNDARY.md) — `.ai/brain/20-contracts/configuration/CONFIG-RUNTIME-BOUNDARY.md`
+- [Configuración](../../brain/20-contracts/configuration/CONFIGURATION-CONTRACT.md) — `.ai/brain/20-contracts/configuration/CONFIGURATION-CONTRACT.md`
+- [Dynamic config change contract](../../brain/20-contracts/configuration/DYNAMIC-CONFIG-CHANGE-CONTRACT.md) — `.ai/brain/20-contracts/configuration/DYNAMIC-CONFIG-CHANGE-CONTRACT.md`
+- [Grid geometry contract](../../brain/20-contracts/configuration/GRID-GEOMETRY-CONTRACT.md) — `.ai/brain/20-contracts/configuration/GRID-GEOMETRY-CONTRACT.md`
+- [Inspector capability contract](../../brain/20-contracts/configuration/INSPECTOR-CAPABILITY-CONTRACT.md) — `.ai/brain/20-contracts/configuration/INSPECTOR-CAPABILITY-CONTRACT.md`
+- [configuration](../../brain/20-contracts/configuration/README.md) — `.ai/brain/20-contracts/configuration/README.md`
+- [Events and effects](../../brain/20-contracts/core/EVENT-EFFECT-CONTRACT.md) — `.ai/brain/20-contracts/core/EVENT-EFFECT-CONTRACT.md`
+- [Markdown topology contract](../../brain/20-contracts/core/MARKDOWN-TOPOLOGY-CONTRACT.md) — `.ai/brain/20-contracts/core/MARKDOWN-TOPOLOGY-CONTRACT.md`
+- [Contrato del proyecto](../../brain/20-contracts/core/PROJECT-CONTRACT.md) — `.ai/brain/20-contracts/core/PROJECT-CONTRACT.md`
+- [Public API contract](../../brain/20-contracts/core/PUBLIC-API-CONTRACT.md) — `.ai/brain/20-contracts/core/PUBLIC-API-CONTRACT.md`
+- [core](../../brain/20-contracts/core/README.md) — `.ai/brain/20-contracts/core/README.md`
+- [Contrato de clases y selectores](../../brain/20-contracts/designer/CLASS-NAMESPACE-CONTRACT.md) — `.ai/brain/20-contracts/designer/CLASS-NAMESPACE-CONTRACT.md`
+- [Designer interaction](../../brain/20-contracts/designer/DESIGNER-INTERACTION-CONTRACT.md) — `.ai/brain/20-contracts/designer/DESIGNER-INTERACTION-CONTRACT.md`
+- [DetailView](../../brain/20-contracts/designer/DETAILVIEW-CONTRACT.md) — `.ai/brain/20-contracts/designer/DETAILVIEW-CONTRACT.md`
+- [LeftSidebar](../../brain/20-contracts/designer/LEFT-SIDEBAR-CONTRACT.md) — `.ai/brain/20-contracts/designer/LEFT-SIDEBAR-CONTRACT.md`
+- [designer](../../brain/20-contracts/designer/README.md) — `.ai/brain/20-contracts/designer/README.md`
+- [Canonical merge conflict contract](../../brain/20-contracts/documents/CANONICAL-MERGE-CONFLICT-CONTRACT.md) — `.ai/brain/20-contracts/documents/CANONICAL-MERGE-CONFLICT-CONTRACT.md`
+- [PDF composition contract](../../brain/20-contracts/documents/PDF-COMPOSITION-CONTRACT.md) — `.ai/brain/20-contracts/documents/PDF-COMPOSITION-CONTRACT.md`
+- [PDF composition manifest](../../brain/20-contracts/documents/PDF-COMPOSITION-MANIFEST.md) — `.ai/brain/20-contracts/documents/PDF-COMPOSITION-MANIFEST.md`
+- [PDF composition safety contract](../../brain/20-contracts/documents/PDF-COMPOSITION-SAFETY-CONTRACT.md) — `.ai/brain/20-contracts/documents/PDF-COMPOSITION-SAFETY-CONTRACT.md`
+- [PDF resource lifecycle](../../brain/20-contracts/documents/PDF-RESOURCE-LIFECYCLE.md) — `.ai/brain/20-contracts/documents/PDF-RESOURCE-LIFECYCLE.md`
+- [documents](../../brain/20-contracts/documents/README.md) — `.ai/brain/20-contracts/documents/README.md`
+- [Execution context contract](../../brain/20-contracts/execution/EXECUTION-CONTEXT-CONTRACT.md) — `.ai/brain/20-contracts/execution/EXECUTION-CONTEXT-CONTRACT.md`
+- [Execution plan contract](../../brain/20-contracts/execution/EXECUTION-PLAN-CONTRACT.md) — `.ai/brain/20-contracts/execution/EXECUTION-PLAN-CONTRACT.md`
+- [Execution result codec contract](../../brain/20-contracts/execution/EXECUTION-RESULT-CODEC-CONTRACT.md) — `.ai/brain/20-contracts/execution/EXECUTION-RESULT-CODEC-CONTRACT.md`
+- [Execution result contract](../../brain/20-contracts/execution/EXECUTION-RESULT-CONTRACT.md) — `.ai/brain/20-contracts/execution/EXECUTION-RESULT-CONTRACT.md`
+- [execution](../../brain/20-contracts/execution/README.md) — `.ai/brain/20-contracts/execution/README.md`
+- [Data Binding Contract](../../brain/20-contracts/integration/DATA-BINDING-CONTRACT.md) — `.ai/brain/20-contracts/integration/DATA-BINDING-CONTRACT.md`
+- [Data Source Contract](../../brain/20-contracts/integration/DATA-SOURCE-CONTRACT.md) — `.ai/brain/20-contracts/integration/DATA-SOURCE-CONTRACT.md`
+- [Font Registry Contract](../../brain/20-contracts/integration/FONT-REGISTRY-CONTRACT.md) — `.ai/brain/20-contracts/integration/FONT-REGISTRY-CONTRACT.md`
+- [Host participant / SISAD-PDFME user boundary](../../brain/20-contracts/integration/HOST-PARTICIPANT-USER-BOUNDARY.md) — `.ai/brain/20-contracts/integration/HOST-PARTICIPANT-USER-BOUNDARY.md`
+- [HTTP Client Contract](../../brain/20-contracts/integration/HTTP-CLIENT-CONTRACT.md) — `.ai/brain/20-contracts/integration/HTTP-CLIENT-CONTRACT.md`
+- [Integration Runtime Contract](../../brain/20-contracts/integration/INTEGRATION-RUNTIME-CONTRACT.md) — `.ai/brain/20-contracts/integration/INTEGRATION-RUNTIME-CONTRACT.md`
+- [integration](../../brain/20-contracts/integration/README.md) — `.ai/brain/20-contracts/integration/README.md`
+- [Agent claim contract](../../brain/20-contracts/operations/AGENT-CLAIM-CONTRACT.md) — `.ai/brain/20-contracts/operations/AGENT-CLAIM-CONTRACT.md`
+- [AI structure contract](../../brain/20-contracts/operations/AI-STRUCTURE-CONTRACT.md) — `.ai/brain/20-contracts/operations/AI-STRUCTURE-CONTRACT.md`
+- [Archive and residue contract](../../brain/20-contracts/operations/ARCHIVE-AND-RESIDUE-CONTRACT.md) — `.ai/brain/20-contracts/operations/ARCHIVE-AND-RESIDUE-CONTRACT.md`
+- [Autonomous execution contract](../../brain/20-contracts/operations/AUTONOMOUS-EXECUTION-CONTRACT.md) — `.ai/brain/20-contracts/operations/AUTONOMOUS-EXECUTION-CONTRACT.md`
+- [Contract — stable architecture paths](../../brain/20-contracts/operations/DOCUMENTATION-NAMING.md) — `.ai/brain/20-contracts/operations/DOCUMENTATION-NAMING.md`
+- [Integrator lease contract](../../brain/20-contracts/operations/INTEGRATOR-LEASE-CONTRACT.md) — `.ai/brain/20-contracts/operations/INTEGRATOR-LEASE-CONTRACT.md`
+- [Legacy retirement contract](../../brain/20-contracts/operations/LEGACY-RETIREMENT-CONTRACT.md) — `.ai/brain/20-contracts/operations/LEGACY-RETIREMENT-CONTRACT.md`
+- [Memory update contract](../../brain/20-contracts/operations/MEMORY-UPDATE-CONTRACT.md) — `.ai/brain/20-contracts/operations/MEMORY-UPDATE-CONTRACT.md`
+- [Production objective contract](../../brain/20-contracts/operations/PRODUCTION-OBJECTIVE-CONTRACT.md) — `.ai/brain/20-contracts/operations/PRODUCTION-OBJECTIVE-CONTRACT.md`
+- [Provider model selection contract](../../brain/20-contracts/operations/PROVIDER-MODEL-SELECTION-CONTRACT.md) — `.ai/brain/20-contracts/operations/PROVIDER-MODEL-SELECTION-CONTRACT.md`
+- [operations](../../brain/20-contracts/operations/README.md) — `.ai/brain/20-contracts/operations/README.md`
+- [Same repo multi-agent contract](../../brain/20-contracts/operations/SAME-REPO-MULTI-AGENT-CONTRACT.md) — `.ai/brain/20-contracts/operations/SAME-REPO-MULTI-AGENT-CONTRACT.md`
+- [Task status authority contract](../../brain/20-contracts/operations/TASK-STATUS-AUTHORITY-CONTRACT.md) — `.ai/brain/20-contracts/operations/TASK-STATUS-AUTHORITY-CONTRACT.md`
+- [Tooling safe-apply contract](../../brain/20-contracts/operations/TOOLING-SAFE-APPLY-CONTRACT.md) — `.ai/brain/20-contracts/operations/TOOLING-SAFE-APPLY-CONTRACT.md`
+- [Runtime access authority contract](../../brain/20-contracts/runtime/ACCESS-AUTHORITY-CONTRACT.md) — `.ai/brain/20-contracts/runtime/ACCESS-AUTHORITY-CONTRACT.md`
+- [Access/ownership](../../brain/20-contracts/runtime/ACCESS-OWNERSHIP-CONTRACT.md) — `.ai/brain/20-contracts/runtime/ACCESS-OWNERSHIP-CONTRACT.md`
+- [Form completion contract](../../brain/20-contracts/runtime/FORM-COMPLETION-CONTRACT.md) — `.ai/brain/20-contracts/runtime/FORM-COMPLETION-CONTRACT.md`
+- [Form runtime isolation](../../brain/20-contracts/runtime/FORM-RUNTIME-ISOLATION.md) — `.ai/brain/20-contracts/runtime/FORM-RUNTIME-ISOLATION.md`
+- [Form transaction contract](../../brain/20-contracts/runtime/FORM-TRANSACTION-CONTRACT.md) — `.ai/brain/20-contracts/runtime/FORM-TRANSACTION-CONTRACT.md`
+- [Runtime parity](../../brain/20-contracts/runtime/FORM-VIEWER-GENERATOR-PARITY.md) — `.ai/brain/20-contracts/runtime/FORM-VIEWER-GENERATOR-PARITY.md`
+- [Multi-document contract](../../brain/20-contracts/runtime/MULTI-DOCUMENT-CONTRACT.md) — `.ai/brain/20-contracts/runtime/MULTI-DOCUMENT-CONTRACT.md`
+- [Multi-user Form release contract](../../brain/20-contracts/runtime/MULTIUSER-FORM-RELEASE-CONTRACT.md) — `.ai/brain/20-contracts/runtime/MULTIUSER-FORM-RELEASE-CONTRACT.md`
+- [Optimistic concurrency contract](../../brain/20-contracts/runtime/OPTIMISTIC-CONCURRENCY-CONTRACT.md) — `.ai/brain/20-contracts/runtime/OPTIMISTIC-CONCURRENCY-CONTRACT.md`
+- [runtime](../../brain/20-contracts/runtime/README.md) — `.ai/brain/20-contracts/runtime/README.md`
+- [Usuarios, ownership y color](../../brain/20-contracts/runtime/RECIPIENT-OWNERSHIP-COLOR.md) — `.ai/brain/20-contracts/runtime/RECIPIENT-OWNERSHIP-COLOR.md`
+- [Runtime session identity](../../brain/20-contracts/runtime/RUNTIME-SESSION-IDENTITY.md) — `.ai/brain/20-contracts/runtime/RUNTIME-SESSION-IDENTITY.md`
+- [Schema completion contract](../../brain/20-contracts/runtime/SCHEMA-COMPLETION-CONTRACT.md) — `.ai/brain/20-contracts/runtime/SCHEMA-COMPLETION-CONTRACT.md`
+- [Schema interaction invariants](../../brain/20-contracts/runtime/SCHEMA-INTERACTION-INVARIANTS.md) — `.ai/brain/20-contracts/runtime/SCHEMA-INTERACTION-INVARIANTS.md`
+- [Schema interaction isolation](../../brain/20-contracts/runtime/SCHEMA-INTERACTION-ISOLATION.md) — `.ai/brain/20-contracts/runtime/SCHEMA-INTERACTION-ISOLATION.md`
+- [Schema manifest ownership contract](../../brain/20-contracts/runtime/SCHEMA-MANIFEST-OWNERSHIP-CONTRACT.md) — `.ai/brain/20-contracts/runtime/SCHEMA-MANIFEST-OWNERSHIP-CONTRACT.md`
+- [Schema runtime manifest](../../brain/20-contracts/runtime/SCHEMA-RUNTIME-MANIFEST.md) — `.ai/brain/20-contracts/runtime/SCHEMA-RUNTIME-MANIFEST.md`
+- [Contrato transversal de schemas](../../brain/20-contracts/runtime/SCHEMA-SURFACE-CONTRACT.md) — `.ai/brain/20-contracts/runtime/SCHEMA-SURFACE-CONTRACT.md`
+- [Schema value codec](../../brain/20-contracts/runtime/SCHEMA-VALUE-CODEC.md) — `.ai/brain/20-contracts/runtime/SCHEMA-VALUE-CODEC.md`
+- [Shared value conflict contract](../../brain/20-contracts/runtime/SHARED-VALUE-CONFLICT-CONTRACT.md) — `.ai/brain/20-contracts/runtime/SHARED-VALUE-CONFLICT-CONTRACT.md`
+- [Snapshot/versioning](../../brain/20-contracts/runtime/SNAPSHOT-VERSIONING-CONTRACT.md) — `.ai/brain/20-contracts/runtime/SNAPSHOT-VERSIONING-CONTRACT.md`
+- [User assignment contract](../../brain/20-contracts/runtime/USER-ASSIGNMENT-CONTRACT.md) — `.ai/brain/20-contracts/runtime/USER-ASSIGNMENT-CONTRACT.md`
+- [User completion contract](../../brain/20-contracts/runtime/USER-COMPLETION-CONTRACT.md) — `.ai/brain/20-contracts/runtime/USER-COMPLETION-CONTRACT.md`
+- [Artifact contract](../../brain/20-contracts/signing/ARTIFACT-CONTRACT.md) — `.ai/brain/20-contracts/signing/ARTIFACT-CONTRACT.md`
+- [signing](../../brain/20-contracts/signing/README.md) — `.ai/brain/20-contracts/signing/README.md`
+- [Signature adoption contract](../../brain/20-contracts/signing/SIGNATURE-ADOPTION-CONTRACT.md) — `.ai/brain/20-contracts/signing/SIGNATURE-ADOPTION-CONTRACT.md`
+- [Signature contract](../../brain/20-contracts/signing/SIGNATURE-CONTRACT.md) — `.ai/brain/20-contracts/signing/SIGNATURE-CONTRACT.md`
+- [ADR RTP-001 — Product identity](../../brain/30-decisions/ADR-RTP-001-SISAD-PDFME-PRODUCT-IDENTITY.md) — `.ai/brain/30-decisions/ADR-RTP-001-SISAD-PDFME-PRODUCT-IDENTITY.md`
+- [ADR RTP-002 — Local-first Form](../../brain/30-decisions/ADR-RTP-002-LOCAL-FIRST-FORM.md) — `.ai/brain/30-decisions/ADR-RTP-002-LOCAL-FIRST-FORM.md`
+- [ADR RTP-003 — Manifest incremental](../../brain/30-decisions/ADR-RTP-003-MANIFEST-INCREMENTAL.md) — `.ai/brain/30-decisions/ADR-RTP-003-MANIFEST-INCREMENTAL.md`
+- [ADR RTP-004 — PDF lifecycle](../../brain/30-decisions/ADR-RTP-004-PDF-LIFECYCLE-OWNERSHIP.md) — `.ai/brain/30-decisions/ADR-RTP-004-PDF-LIFECYCLE-OWNERSHIP.md`
+- [ADR RTP-005 — User/Recipient boundary](../../brain/30-decisions/ADR-RTP-005-USER-RECIPIENT-BOUNDARY.md) — `.ai/brain/30-decisions/ADR-RTP-005-USER-RECIPIENT-BOUNDARY.md`
+- [ADR RTP-006 — Canonical User assignment index](../../brain/30-decisions/ADR-RTP-006-USER-ASSIGNMENT-INDEX.md) — `.ai/brain/30-decisions/ADR-RTP-006-USER-ASSIGNMENT-INDEX.md`
+- [ADR RTP-007 — Form/Viewer/Snapshot/PDF value parity](../../brain/30-decisions/ADR-RTP-007-FORM-CODEC-PARITY.md) — `.ai/brain/30-decisions/ADR-RTP-007-FORM-CODEC-PARITY.md`
+- [ADR RTP-008 — Execution shapes outside Form](../../brain/30-decisions/ADR-RTP-008-EXECUTION-SHAPES-OUTSIDE-FORM.md) — `.ai/brain/30-decisions/ADR-RTP-008-EXECUTION-SHAPES-OUTSIDE-FORM.md`
+- [ADR RTP-009 — Completion as projection](../../brain/30-decisions/ADR-RTP-009-COMPLETION-AS-PROJECTION.md) — `.ai/brain/30-decisions/ADR-RTP-009-COMPLETION-AS-PROJECTION.md`
+- [ADR RTP-010 — Canonical PDF merge](../../brain/30-decisions/ADR-RTP-010-CANONICAL-PDF-MERGE.md) — `.ai/brain/30-decisions/ADR-RTP-010-CANONICAL-PDF-MERGE.md`
+- [ADR RTP-011 — Capability graph as authority](../../brain/30-decisions/ADR-RTP-011-CAPABILITY-GRAPH-AS-AUTHORITY.md) — `.ai/brain/30-decisions/ADR-RTP-011-CAPABILITY-GRAPH-AS-AUTHORITY.md`
+- [ADR RTP-012 — Grid in page space](../../brain/30-decisions/ADR-RTP-012-GRID-IN-PAGE-SPACE.md) — `.ai/brain/30-decisions/ADR-RTP-012-GRID-IN-PAGE-SPACE.md`
+- [ADR RTP-013 — Plugin-owned schema metadata](../../brain/30-decisions/ADR-RTP-013-PLUGIN-OWNED-SCHEMA-METADATA.md) — `.ai/brain/30-decisions/ADR-RTP-013-PLUGIN-OWNED-SCHEMA-METADATA.md`
+- [ADR RTP-014 — Conflict blocks canonical merge](../../brain/30-decisions/ADR-RTP-014-CONFLICT-BLOCKS-CANONICAL-MERGE.md) — `.ai/brain/30-decisions/ADR-RTP-014-CONFLICT-BLOCKS-CANONICAL-MERGE.md`
+- [ADR RTP-015 — Autonomous task loop](../../brain/30-decisions/ADR-RTP-015-AUTONOMOUS-TASK-LOOP.md) — `.ai/brain/30-decisions/ADR-RTP-015-AUTONOMOUS-TASK-LOOP.md`
+- [ADR RTP-016 — Same branch multi-agent coordination](../../brain/30-decisions/ADR-RTP-016-SAME-BRANCH-MULTI-AGENT.md) — `.ai/brain/30-decisions/ADR-RTP-016-SAME-BRANCH-MULTI-AGENT.md`
+- [ADR RTP-017 — Single runtime access authority](../../brain/30-decisions/ADR-RTP-017-SINGLE-RUNTIME-ACCESS-AUTHORITY.md) — `.ai/brain/30-decisions/ADR-RTP-017-SINGLE-RUNTIME-ACCESS-AUTHORITY.md`
+- [ADR RTP-018 — One integrator in a shared working tree](../../brain/30-decisions/ADR-RTP-018-ONE-INTEGRATOR-SAME-WORKTREE.md) — `.ai/brain/30-decisions/ADR-RTP-018-ONE-INTEGRATOR-SAME-WORKTREE.md`
+- [ADR RTP-019 — Evidence-driven task status](../../brain/30-decisions/ADR-RTP-019-EVIDENCE-DRIVEN-TASK-STATUS.md) — `.ai/brain/30-decisions/ADR-RTP-019-EVIDENCE-DRIVEN-TASK-STATUS.md`
+- [ADR RTP-020 — Domain task folders](../../brain/30-decisions/ADR-RTP-020-DOMAIN-TASK-FOLDERS.md) — `.ai/brain/30-decisions/ADR-RTP-020-DOMAIN-TASK-FOLDERS.md`
+- [ADR — Centralize repository tooling](../../brain/30-decisions/ADR-TOOLING-CENTRALIZATION.md) — `.ai/brain/30-decisions/ADR-TOOLING-CENTRALIZATION.md`
+- [30-decisions](../../brain/30-decisions/README.md) — `.ai/brain/30-decisions/README.md`
+- [ARTIFACT-LIFECYCLE](../../brain/40-runtime/ARTIFACT-LIFECYCLE.md) — `.ai/brain/40-runtime/ARTIFACT-LIFECYCLE.md`
+- [Config effect planning](../../brain/40-runtime/CONFIG-EFFECT-PLANNING.md) — `.ai/brain/40-runtime/CONFIG-EFFECT-PLANNING.md`
+- [Data Integration Runtime](../../brain/40-runtime/DATA-INTEGRATION-RUNTIME.md) — `.ai/brain/40-runtime/DATA-INTEGRATION-RUNTIME.md`
+- [Dynamic capabilities](../../brain/40-runtime/DYNAMIC-CAPABILITIES.md) — `.ai/brain/40-runtime/DYNAMIC-CAPABILITIES.md`
+- [Execution orchestration](../../brain/40-runtime/EXECUTION-ORCHESTRATION.md) — `.ai/brain/40-runtime/EXECUTION-ORCHESTRATION.md`
+- [Execution shapes](../../brain/40-runtime/EXECUTION-SHAPES.md) — `.ai/brain/40-runtime/EXECUTION-SHAPES.md`
+- [FORM-RUNTIME](../../brain/40-runtime/FORM-RUNTIME.md) — `.ai/brain/40-runtime/FORM-RUNTIME.md`
+- [Grid / snap runtime](../../brain/40-runtime/GRID-SNAP-RUNTIME.md) — `.ai/brain/40-runtime/GRID-SNAP-RUNTIME.md`
+- [Legacy cleanup runtime](../../brain/40-runtime/LEGACY-CLEANUP.md) — `.ai/brain/40-runtime/LEGACY-CLEANUP.md`
+- [MULTI-DOCUMENT](../../brain/40-runtime/MULTI-DOCUMENT.md) — `.ai/brain/40-runtime/MULTI-DOCUMENT.md`
+- [Multi-user Form](../../brain/40-runtime/MULTI-USER-FORM.md) — `.ai/brain/40-runtime/MULTI-USER-FORM.md`
+- [PDF composition runtime](../../brain/40-runtime/PDF-COMPOSITION.md) — `.ai/brain/40-runtime/PDF-COMPOSITION.md`
+- [PDF-GENERATION](../../brain/40-runtime/PDF-GENERATION.md) — `.ai/brain/40-runtime/PDF-GENERATION.md`
+- [PDF-RENDERING](../../brain/40-runtime/PDF-RENDERING.md) — `.ai/brain/40-runtime/PDF-RENDERING.md`
+- [40-runtime](../../brain/40-runtime/README.md) — `.ai/brain/40-runtime/README.md`
+- [Schema completion runtime](../../brain/40-runtime/SCHEMA-COMPLETION.md) — `.ai/brain/40-runtime/SCHEMA-COMPLETION.md`
+- [SIGNATURE-RUNTIME](../../brain/40-runtime/SIGNATURE-RUNTIME.md) — `.ai/brain/40-runtime/SIGNATURE-RUNTIME.md`
+- [SNAPSHOT-ROUNDTRIP](../../brain/40-runtime/SNAPSHOT-ROUNDTRIP.md) — `.ai/brain/40-runtime/SNAPSHOT-ROUNDTRIP.md`
+- [VIEWER-RUNTIME](../../brain/40-runtime/VIEWER-RUNTIME.md) — `.ai/brain/40-runtime/VIEWER-RUNTIME.md`
+- [DigitalAgreements Recipient -> SISAD-PDFME User](../../brain/45-integrations/DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md) — `.ai/brain/45-integrations/DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md`
+- [ExternalForms -> SISAD-PDFME User execution](../../brain/45-integrations/EXTERNAL-FORMS-USER-EXECUTION.md) — `.ai/brain/45-integrations/EXTERNAL-FORMS-USER-EXECUTION.md`
+- [45-integrations](../../brain/45-integrations/README.md) — `.ai/brain/45-integrations/README.md`
+- [DigitalAgreements Designer consumer contract](../../brain/45-integrations/SISAD-PDFME-DESIGNER-CONSUMER.md) — `.ai/brain/45-integrations/SISAD-PDFME-DESIGNER-CONSUMER.md`
+- [Add/harden schema](../../brain/50-guides/ADD-OR-HARDEN-SCHEMA.md) — `.ai/brain/50-guides/ADD-OR-HARDEN-SCHEMA.md`
+- [Guide — autonomous campaign execution](../../brain/50-guides/AUTONOMOUS-CAMPAIGN-EXECUTION.md) — `.ai/brain/50-guides/AUTONOMOUS-CAMPAIGN-EXECUTION.md`
+- [Consumer integration](../../brain/50-guides/CONSUMER-INTEGRATION.md) — `.ai/brain/50-guides/CONSUMER-INTEGRATION.md`
+- [Guide — debug dynamic configuration](../../brain/50-guides/DEBUG-DYNAMIC-CONFIG.md) — `.ai/brain/50-guides/DEBUG-DYNAMIC-CONFIG.md`
+- [Debug Form draft loss](../../brain/50-guides/DEBUG-FORM-DRAFT-LOSS.md) — `.ai/brain/50-guides/DEBUG-FORM-DRAFT-LOSS.md`
+- [Guide — debug grid/snap](../../brain/50-guides/DEBUG-GRID-SNAP.md) — `.ai/brain/50-guides/DEBUG-GRID-SNAP.md`
+- [Debug PDF memory](../../brain/50-guides/DEBUG-PDF-MEMORY.md) — `.ai/brain/50-guides/DEBUG-PDF-MEMORY.md`
+- [Guide — debug schema completion](../../brain/50-guides/DEBUG-SCHEMA-COMPLETION.md) — `.ai/brain/50-guides/DEBUG-SCHEMA-COMPLETION.md`
+- [Guide — Form hardening](../../brain/50-guides/FORM-HARDENING.md) — `.ai/brain/50-guides/FORM-HARDENING.md`
+- [Integrar datos externos](../../brain/50-guides/INTEGRATE-EXTERNAL-DATA.md) — `.ai/brain/50-guides/INTEGRATE-EXTERNAL-DATA.md`
+- [Guide — Project tools](../../brain/50-guides/PROJECT-TOOLS.md) — `.ai/brain/50-guides/PROJECT-TOOLS.md`
+- [50-guides](../../brain/50-guides/README.md) — `.ai/brain/50-guides/README.md`
+- [Guide — resume interrupted agent](../../brain/50-guides/RESUME-INTERRUPTED-AGENT.md) — `.ai/brain/50-guides/RESUME-INTERRUPTED-AGENT.md`
+- [Guide — safe dead-code removal](../../brain/50-guides/SAFE-DEAD-CODE-REMOVAL.md) — `.ai/brain/50-guides/SAFE-DEAD-CODE-REMOVAL.md`
+- [Guide — schema family release](../../brain/50-guides/SCHEMA-FAMILY-RELEASE.md) — `.ai/brain/50-guides/SCHEMA-FAMILY-RELEASE.md`
+- [Guide — test execution shapes](../../brain/50-guides/TEST-EXECUTION-SHAPES.md) — `.ai/brain/50-guides/TEST-EXECUTION-SHAPES.md`
+- [Guide — test PDF composition](../../brain/50-guides/TEST-PDF-COMPOSITION.md) — `.ai/brain/50-guides/TEST-PDF-COMPOSITION.md`
+- [Guide — Claude + Codex + Copilot in one repo](../../brain/50-guides/THREE-AGENT-SAME-REPO.md) — `.ai/brain/50-guides/THREE-AGENT-SAME-REPO.md`
+- [Guide — safe installer/importer](../../brain/50-guides/TOOLING-SAFE-APPLY.md) — `.ai/brain/50-guides/TOOLING-SAFE-APPLY.md`
+- [Guide — User model migration](../../brain/50-guides/USER-MODEL-MIGRATION.md) — `.ai/brain/50-guides/USER-MODEL-MIGRATION.md`
+- [Autonomous release gates](../../brain/60-quality/AUTONOMOUS-RELEASE-GATES.md) — `.ai/brain/60-quality/AUTONOMOUS-RELEASE-GATES.md`
+- [Capability coverage matrix](../../brain/60-quality/CAPABILITY-COVERAGE-MATRIX.md) — `.ai/brain/60-quality/CAPABILITY-COVERAGE-MATRIX.md`
+- [Definition of Done — schema](../../brain/60-quality/DEFINITION-OF-DONE-SCHEMA.md) — `.ai/brain/60-quality/DEFINITION-OF-DONE-SCHEMA.md`
+- [Execution orchestration matrix](../../brain/60-quality/EXECUTION-ORCHESTRATION-MATRIX.md) — `.ai/brain/60-quality/EXECUTION-ORCHESTRATION-MATRIX.md`
+- [Grid geometry gates](../../brain/60-quality/GRID-GEOMETRY-GATES.md) — `.ai/brain/60-quality/GRID-GEOMETRY-GATES.md`
+- [Legacy cleanup gates](../../brain/60-quality/LEGACY-CLEANUP-GATES.md) — `.ai/brain/60-quality/LEGACY-CLEANUP-GATES.md`
+- [PDF composition gates](../../brain/60-quality/PDF-COMPOSITION-GATES.md) — `.ai/brain/60-quality/PDF-COMPOSITION-GATES.md`
+- [Performance budgets to establish](../../brain/60-quality/PERFORMANCE-BUDGETS-TO-MEASURE.md) — `.ai/brain/60-quality/PERFORMANCE-BUDGETS-TO-MEASURE.md`
+- [Production closeout gates](../../brain/60-quality/PRODUCTION-CLOSEOUT-GATES.md) — `.ai/brain/60-quality/PRODUCTION-CLOSEOUT-GATES.md`
+- [60-quality](../../brain/60-quality/README.md) — `.ai/brain/60-quality/README.md`
+- [Runtime Platform gates](../../brain/60-quality/RUNTIME-PLATFORM-GATES.md) — `.ai/brain/60-quality/RUNTIME-PLATFORM-GATES.md`
+- [Runtime regression matrix](../../brain/60-quality/RUNTIME-REGRESSION-MATRIX.md) — `.ai/brain/60-quality/RUNTIME-REGRESSION-MATRIX.md`
+- [Same-repo collision gates](../../brain/60-quality/SAME-REPO-COLLISION-GATES.md) — `.ai/brain/60-quality/SAME-REPO-COLLISION-GATES.md`
+- [Schema completion matrix](../../brain/60-quality/SCHEMA-COMPLETION-MATRIX.md) — `.ai/brain/60-quality/SCHEMA-COMPLETION-MATRIX.md`
+- [Schema runtime coverage matrix](../../brain/60-quality/SCHEMA-RUNTIME-COVERAGE-MATRIX.md) — `.ai/brain/60-quality/SCHEMA-RUNTIME-COVERAGE-MATRIX.md`
+- [SISAD-PDFME release gate](../../brain/60-quality/SISAD-PDFME-RELEASE-GATE.md) — `.ai/brain/60-quality/SISAD-PDFME-RELEASE-GATE.md`
+- [Current — Runtime Platform](../../brain/70-memory/CURRENT.md) — `.ai/brain/70-memory/CURRENT.md`
+- [Handoff seed](../../brain/70-memory/HANDOFF.md) — `.ai/brain/70-memory/HANDOFF.md`
+- [70-memory](../../brain/70-memory/README.md) — `.ai/brain/70-memory/README.md`
+- [topics](../../brain/70-memory/topics/README.md) — `.ai/brain/70-memory/topics/README.md`
+- [Consolidation objective memory](../../brain/70-memory/topics/consolidation-objective.md) — `.ai/brain/70-memory/topics/consolidation-objective.md`
+- [Dynamic capabilities memory](../../brain/70-memory/topics/dynamic-capabilities.md) — `.ai/brain/70-memory/topics/dynamic-capabilities.md`
+- [Execution orchestration memory](../../brain/70-memory/topics/execution-orchestration.md) — `.ai/brain/70-memory/topics/execution-orchestration.md`
+- [Memory topic — Runtime Platform](../../brain/70-memory/topics/runtime-platform.md) — `.ai/brain/70-memory/topics/runtime-platform.md`
+- [Memory topic — SISAD-PDFME × DigitalAgreements runtime](../../brain/70-memory/topics/sisad-pdfme-digital-agreements-runtime.md) — `.ai/brain/70-memory/topics/sisad-pdfme-digital-agreements-runtime.md`
+- [Memory — tooling architecture](../../brain/70-memory/topics/tooling-architecture.md) — `.ai/brain/70-memory/topics/tooling-architecture.md`
+- [Active work](../../brain/80-work/ACTIVE.md) — `.ai/brain/80-work/ACTIVE.md`
+- [80-work](../../brain/80-work/README.md) — `.ai/brain/80-work/README.md`
+- [AI architecture map](../../brain/90-reference/ARCHITECTURE-MAP.md) — `.ai/brain/90-reference/ARCHITECTURE-MAP.md`
+- [90-reference](../../brain/90-reference/README.md) — `.ai/brain/90-reference/README.md`
+- [SISAD-PDFME Brain — HOME](../../brain/HOME.md) — `.ai/brain/HOME.md`
+- [Brain neutral SISAD-PDFME](../../brain/README.md) — `.ai/brain/README.md`
+- [EVAL-001 — Boot ≤5 files](../../evals/EVAL-001.md) — `.ai/evals/EVAL-001.md`
+- [EVAL-002 — Recipient color](../../evals/EVAL-002.md) — `.ai/evals/EVAL-002.md`
+- [EVAL-003 — Schema family](../../evals/EVAL-003.md) — `.ai/evals/EVAL-003.md`
+- [EVAL-004 — Class namespace](../../evals/EVAL-004.md) — `.ai/evals/EVAL-004.md`
+- [EVAL-005 — No false green](../../evals/EVAL-005.md) — `.ai/evals/EVAL-005.md`
+- [EVAL-006 — Subagent cost](../../evals/EVAL-006.md) — `.ai/evals/EVAL-006.md`
+- [EVAL-007 — Provider parity](../../evals/EVAL-007.md) — `.ai/evals/EVAL-007.md`
+- [EVAL-008 — Task lifecycle](../../evals/EVAL-008.md) — `.ai/evals/EVAL-008.md`
+- [EVAL-009 — Memory TTL](../../evals/EVAL-009.md) — `.ai/evals/EVAL-009.md`
+- [EVAL-010 — Trace promotion](../../evals/EVAL-010.md) — `.ai/evals/EVAL-010.md`
+- [evals](../../evals/README.md) — `.ai/evals/README.md`
+- [Política de nomenclatura, versiones y compatibilidad](../../governance/NAMING-COMPATIBILITY-POLICY.md) — `.ai/governance/NAMING-COMPATIBILITY-POLICY.md`
+- [Política de drift entre proveedores](../../governance/PROVIDER-DRIFT-POLICY.md) — `.ai/governance/PROVIDER-DRIFT-POLICY.md`
+- [governance](../../governance/README.md) — `.ai/governance/README.md`
+- [Política de subagentes y coste](../../governance/SUBAGENT-COST-POLICY.md) — `.ai/governance/SUBAGENT-COST-POLICY.md`
+- [Política de tokens y recursos](../../governance/TOKEN-RESOURCE-POLICY.md) — `.ai/governance/TOKEN-RESOURCE-POLICY.md`
+- [Política de trazabilidad](../../governance/TRACEABILITY-POLICY.md) — `.ai/governance/TRACEABILITY-POLICY.md`
+- [Índices](../README.md) — `.ai/index/README.md`
+- [Recipient/color matrix](../RECIPIENT-COLOR-MATRIX.md) — `.ai/index/RECIPIENT-COLOR-MATRIX.md`
+- [Matriz compacta de schemas](../SCHEMA-MATRIX.md) — `.ai/index/SCHEMA-MATRIX.md`
+- [architecture](./README.md) — `.ai/index/architecture/README.md`
+- [Runtime hotspots](./RUNTIME-HOTSPOTS.md) — `.ai/index/architecture/RUNTIME-HOTSPOTS.md`
+- [domains](./domains/README.md) — `.ai/index/architecture/domains/README.md`
+- [Source index — adapters](./domains/adapters.md) — `.ai/index/architecture/domains/adapters.md`
+- [Source index — assignments](./domains/assignments.md) — `.ai/index/architecture/domains/assignments.md`
+- [Source index — browser](./domains/browser.md) — `.ai/index/architecture/domains/browser.md`
+- [Source index — canvas](./domains/canvas.md) — `.ai/index/architecture/domains/canvas.md`
+- [Source index — collaboration](./domains/collaboration.md) — `.ai/index/architecture/domains/collaboration.md`
+- [Source index — commands](./domains/commands.md) — `.ai/index/architecture/domains/commands.md`
+- [Source index — comments](./domains/comments.md) — `.ai/index/architecture/domains/comments.md`
+- [Source index — common](./domains/common.md) — `.ai/index/architecture/domains/common.md`
+- [Source index — config](./domains/config.md) — `.ai/index/architecture/domains/config.md`
+- [Source index — context](./domains/context.md) — `.ai/index/architecture/domains/context.md`
+- [Source index — contracts](./domains/contracts.md) — `.ai/index/architecture/domains/contracts.md`
+- [Source index — converter](./domains/converter.md) — `.ai/index/architecture/domains/converter.md`
+- [Source index — devtools](./domains/devtools.md) — `.ai/index/architecture/domains/devtools.md`
+- [Source index — documents](./domains/documents.md) — `.ai/index/architecture/domains/documents.md`
+- [Source index — editor](./domains/editor.md) — `.ai/index/architecture/domains/editor.md`
+- [Source index — externalForms](./domains/externalForms.md) — `.ai/index/architecture/domains/externalForms.md`
+- [Source index — generator](./domains/generator.md) — `.ai/index/architecture/domains/generator.md`
+- [Source index — integration](./domains/integration.md) — `.ai/index/architecture/domains/integration.md`
+- [Source index — react](./domains/react.md) — `.ai/index/architecture/domains/react.md`
+- [Source index — recipients](./domains/recipients.md) — `.ai/index/architecture/domains/recipients.md`
+- [Source index — runtime](./domains/runtime.md) — `.ai/index/architecture/domains/runtime.md`
+- [Source index — schemas](./domains/schemas.md) — `.ai/index/architecture/domains/schemas.md`
+- [Source index — shared](./domains/shared.md) — `.ai/index/architecture/domains/shared.md`
+- [Source index — templates](./domains/templates.md) — `.ai/index/architecture/domains/templates.md`
+- [Source index — ui](./domains/ui.md) — `.ai/index/architecture/domains/ui.md`
+- [Runtime Platform indexes](../runtime-platform/README.md) — `.ai/index/runtime-platform/README.md`
+- [Catálogo de efectos](../../knowledge/EFFECT-CATALOG.md) — `.ai/knowledge/EFFECT-CATALOG.md`
+- [Catálogo de eventos](../../knowledge/EVENT-CATALOG.md) — `.ai/knowledge/EVENT-CATALOG.md`
+- [Execution orchestration index](../../knowledge/EXECUTION-ORCHESTRATION-INDEX.md) — `.ai/knowledge/EXECUTION-ORCHESTRATION-INDEX.md`
+- [knowledge](../../knowledge/README.md) — `.ai/knowledge/README.md`
+- [Runtime Platform knowledge pointer](../../knowledge/RUNTIME-PLATFORM-INDEX.md) — `.ai/knowledge/RUNTIME-PLATFORM-INDEX.md`
+- [Source register](../../knowledge/SOURCE-REGISTER.md) — `.ai/knowledge/SOURCE-REGISTER.md`
+- [Índice de casos de uso](../../knowledge/USE-CASE-INDEX.md) — `.ai/knowledge/USE-CASE-INDEX.md`
+- [Matriz de comportamiento por dominio — baseline (CONFIG-002 / Fase 0)](../../knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md) — `.ai/knowledge/domain/CONFIGURATION-BEHAVIOR-MATRIX.md`
+- [Arquitectura de efectos](../../knowledge/domain/COREUX-EFFECTS.md) — `.ai/knowledge/domain/COREUX-EFFECTS.md`
+- [Catálogo canónico de eventos propuesto](../../knowledge/domain/COREUX-EVENTS.md) — `.ai/knowledge/domain/COREUX-EVENTS.md`
+- [Matriz de patrones de diseño](../../knowledge/domain/COREUX-PATTERNS.md) — `.ai/knowledge/domain/COREUX-PATTERNS.md`
+- [Matriz integral — SISAD PDFME Core UX, funcionalidades, eventos y efectos](../../knowledge/domain/COREUX-USE-CASES.md) — `.ai/knowledge/domain/COREUX-USE-CASES.md`
+- [API pública de configuración — estado tras CONFIG-001](../../knowledge/domain/CURRENT-PUBLIC-API.md) — `.ai/knowledge/domain/CURRENT-PUBLIC-API.md`
+- [Borrador de API pública declarativa](../../knowledge/domain/DECLARATIVE-API.md) — `.ai/knowledge/domain/DECLARATIVE-API.md`
+- [Baseline de complejidad y comportamiento](../../knowledge/domain/DECLARATIVE-BASELINE.md) — `.ai/knowledge/domain/DECLARATIVE-BASELINE.md`
+- [Matriz integral de casos de uso — instancias declarativas](../../knowledge/domain/DECLARATIVE-USE-CASES.md) — `.ai/knowledge/domain/DECLARATIVE-USE-CASES.md`
+- [Designer Interaction Matrix](../../knowledge/domain/DESIGNER-INTERACTION-MATRIX.md) — `.ai/knowledge/domain/DESIGNER-INTERACTION-MATRIX.md`
+- [DetailView Profiles](../../knowledge/domain/DETAILVIEW-PROFILES.md) — `.ai/knowledge/domain/DETAILVIEW-PROFILES.md`
+- [Form / Viewer / PDF Parity](../../knowledge/domain/FORM-VIEWER-PDF-PARITY.md) — `.ai/knowledge/domain/FORM-VIEWER-PDF-PARITY.md`
+- [Left Sidebar Behavior](../../knowledge/domain/LEFT-SIDEBAR-BEHAVIOR.md) — `.ai/knowledge/domain/LEFT-SIDEBAR-BEHAVIOR.md`
+- [Owner Color Contract](../../knowledge/domain/OWNER-COLOR-CONTRACT.md) — `.ai/knowledge/domain/OWNER-COLOR-CONTRACT.md`
+- [domain](../../knowledge/domain/README.md) — `.ai/knowledge/domain/README.md`
+- [Schema Behavior Matrix](../../knowledge/domain/SCHEMA-BEHAVIOR-MATRIX.md) — `.ai/knowledge/domain/SCHEMA-BEHAVIOR-MATRIX.md`
+- [User / Recipient Use Cases](../../knowledge/domain/USER-RECIPIENT-USE-CASES.md) — `.ai/knowledge/domain/USER-RECIPIENT-USE-CASES.md`
+- [Autonomous execution context](../../knowledge/runtime-platform/AUTONOMY.md) — `.ai/knowledge/runtime-platform/AUTONOMY.md`
+- [Current snapshot](../../knowledge/runtime-platform/CURRENT-SNAPSHOT.md) — `.ai/knowledge/runtime-platform/CURRENT-SNAPSHOT.md`
+- [Runtime architecture hotspots](../../knowledge/runtime-platform/HOTSPOTS.md) — `.ai/knowledge/runtime-platform/HOTSPOTS.md`
+- [runtime-platform](../../knowledge/runtime-platform/README.md) — `.ai/knowledge/runtime-platform/README.md`
+- [Risk register](../../knowledge/runtime-platform/RISK-REGISTER.md) — `.ai/knowledge/runtime-platform/RISK-REGISTER.md`
+- [Source priority](../../knowledge/runtime-platform/SOURCE-PRIORITY.md) — `.ai/knowledge/runtime-platform/SOURCE-PRIORITY.md`
+- [Execution map](../../knowledge/runtime-platform/TASK-EXECUTION-MAP.md) — `.ai/knowledge/runtime-platform/TASK-EXECUTION-MAP.md`
+- [CURRENT](../../memory/CURRENT.template.md) — `.ai/memory/CURRENT.template.md`
+- [HANDOFF](../../memory/HANDOFF.template.md) — `.ai/memory/HANDOFF.template.md`
+- [Memory index](../../memory/INDEX.md) — `.ai/memory/INDEX.md`
+- [Memory GC](../../memory/MEMORY-GC.md) — `.ai/memory/MEMORY-GC.md`
+- [Project memory](../../memory/PROJECT.md) — `.ai/memory/PROJECT.md`
+- [memory](../../memory/README.md) — `.ai/memory/README.md`
+- [Compatibility memory delta](../../memory/RTP-MEMORY-DELTA.md) — `.ai/memory/RTP-MEMORY-DELTA.md`
+- [TTL](../../memory/TTL-POLICY.md) — `.ai/memory/TTL-POLICY.md`
+- [Stable memory topics](../../memory/topics/README.md) — `.ai/memory/topics/README.md`
+- [ai-architecture](../../memory/topics/ai-architecture.md) — `.ai/memory/topics/ai-architecture.md`
+- [canvas](../../memory/topics/canvas.md) — `.ai/memory/topics/canvas.md`
+- [configuration](../../memory/topics/configuration.md) — `.ai/memory/topics/configuration.md`
+- [runtime](../../memory/topics/runtime.md) — `.ai/memory/topics/runtime.md`
+- [schemas](../../memory/topics/schemas.md) — `.ai/memory/topics/schemas.md`
+- [migrations](../../migrations/README.md) — `.ai/migrations/README.md`
+- [Hash-checked Brain migration](../../migrations/sisad-pdfme-digital-agreements-runtime/README.md) — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/README.md`
+- [ops](../../ops/README.md) — `.ai/ops/README.md`
+- [Same-repo coordination](../../ops/coordination/README.md) — `.ai/ops/coordination/README.md`
+- [Orden AIARCH](../../plans/AIARCH-EXECUTION-ORDER.md) — `.ai/plans/AIARCH-EXECUTION-ORDER.md`
+- [Orden de ejecución — COREUX](../../plans/COREUX-EXECUTION-ORDER.md) — `.ai/plans/COREUX-EXECUTION-ORDER.md`
+- [Plan maestro](../../plans/PLAN-MAESTRO-AI-ARCHITECTURE.md) — `.ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md`
+- [Plan — AI structure cleanup](../../plans/PLAN_AI_STRUCTURE_CLEANUP.md) — `.ai/plans/PLAN_AI_STRUCTURE_CLEANUP.md`
+- [Plan de continuidad — Integración simple y portable de SISAD PDFME](../../plans/PLAN_CONTINUIDAD_INTEGRACION_SIMPLE_SISAD_PDFME.md) — `.ai/plans/PLAN_CONTINUIDAD_INTEGRACION_SIMPLE_SISAD_PDFME.md`
+- [Plan maestro — SISAD PDFME Core UX, funcionalidades, eventos y efectos](../../plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME.md) — `.ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME.md`
+- [Plan Maestro — SISAD-PDFME Runtime Platform](../../plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md) — `.ai/plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md`
+- [Plan maestro visual y de comportamiento — SISAD PDFME](../../plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md) — `.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md`
+- [Plan — Markdown architecture repair](../../plans/PLAN_MARKDOWN_ARCHITECTURE_REPAIR.md) — `.ai/plans/PLAN_MARKDOWN_ARCHITECTURE_REPAIR.md`
+- [Plan — same repo, same branch, three agents](../../plans/PLAN_SAME_REPO_THREE_AGENT_EXECUTION.md) — `.ai/plans/PLAN_SAME_REPO_THREE_AGENT_EXECUTION.md`
+- [Plan maestro de saneamiento de nomenclatura y compatibilidad — SISAD PDFME](../../plans/PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md) — `.ai/plans/PLAN_SANEAMIENTO_NOMENCLATURA_COMPATIBILIDAD.md`
+- [Plan — autonomous completion](../../plans/PLAN_SISAD_PDFME_AUTONOMOUS_COMPLETION.md) — `.ai/plans/PLAN_SISAD_PDFME_AUTONOMOUS_COMPLETION.md`
+- [Plan — final SISAD-PDFME consolidation](../../plans/PLAN_SISAD_PDFME_CONSOLIDATION.md) — `.ai/plans/PLAN_SISAD_PDFME_CONSOLIDATION.md`
+- [Plan — dynamic capabilities](../../plans/PLAN_SISAD_PDFME_DYNAMIC_CAPABILITIES.md) — `.ai/plans/PLAN_SISAD_PDFME_DYNAMIC_CAPABILITIES.md`
+- [Plan maestro — SISAD-PDFME execution orchestration](../../plans/PLAN_SISAD_PDFME_EXECUTION_ORCHESTRATION.md) — `.ai/plans/PLAN_SISAD_PDFME_EXECUTION_ORCHESTRATION.md`
+- [Plan — Form hardening](../../plans/PLAN_SISAD_PDFME_FORM_HARDENING.md) — `.ai/plans/PLAN_SISAD_PDFME_FORM_HARDENING.md`
+- [Plan — grid geometry](../../plans/PLAN_SISAD_PDFME_GRID_GEOMETRY.md) — `.ai/plans/PLAN_SISAD_PDFME_GRID_GEOMETRY.md`
+- [Plan — legacy/dead cleanup](../../plans/PLAN_SISAD_PDFME_LEGACY_CLEANUP.md) — `.ai/plans/PLAN_SISAD_PDFME_LEGACY_CLEANUP.md`
+- [Plan — PDF composition](../../plans/PLAN_SISAD_PDFME_PDF_COMPOSITION.md) — `.ai/plans/PLAN_SISAD_PDFME_PDF_COMPOSITION.md`
+- [Plan — SISAD-PDFME Portable Integration Runtime](../../plans/PLAN_SISAD_PDFME_PORTABLE_INTEGRATION_RUNTIME.md) — `.ai/plans/PLAN_SISAD_PDFME_PORTABLE_INTEGRATION_RUNTIME.md`
+- [Plan — production hardening](../../plans/PLAN_SISAD_PDFME_RUNTIME_PRODUCTION.md) — `.ai/plans/PLAN_SISAD_PDFME_RUNTIME_PRODUCTION.md`
+- [Plan — schema interaction and completion](../../plans/PLAN_SISAD_PDFME_SCHEMA_COMPLETION.md) — `.ai/plans/PLAN_SISAD_PDFME_SCHEMA_COMPLETION.md`
+- [Plan — schema registry](../../plans/PLAN_SISAD_PDFME_SCHEMA_REGISTRY.md) — `.ai/plans/PLAN_SISAD_PDFME_SCHEMA_REGISTRY.md`
+- [Plan — dynamic schema runtime](../../plans/PLAN_SISAD_PDFME_SCHEMA_RUNTIME.md) — `.ai/plans/PLAN_SISAD_PDFME_SCHEMA_RUNTIME.md`
+- [Plan — tooling safety](../../plans/PLAN_SISAD_PDFME_TOOLING_SAFETY.md) — `.ai/plans/PLAN_SISAD_PDFME_TOOLING_SAFETY.md`
+- [Plan — Tooling architecture cleanup](../../plans/PLAN_TOOLING_ARCHITECTURE_CLEANUP.md) — `.ai/plans/PLAN_TOOLING_ARCHITECTURE_CLEANUP.md`
+- [plans](../../plans/README.md) — `.ai/plans/README.md`
+- [Crosswalk con trabajo histórico](../../plans/RUNTIME-PLATFORM-CROSSWALK.md) — `.ai/plans/RUNTIME-PLATFORM-CROSSWALK.md`
+- [Plan — cobertura unitaria SISAD-PDFME](../../plans/SISAD-PDFME-UNIT-TEST-COVERAGE.md) — `.ai/plans/SISAD-PDFME-UNIT-TEST-COVERAGE.md`
+- [Execute task](../../playbooks/EXECUTE-TASK.md) — `.ai/playbooks/EXECUTE-TASK.md`
+- [Playbook — Mejorar SISAD PDFME Core UX](../../playbooks/IMPROVE-DESIGNER-CORE-UX.md) — `.ai/playbooks/IMPROVE-DESIGNER-CORE-UX.md`
+- [Maintain traceability](../../playbooks/MAINTAIN-TRACEABILITY.md) — `.ai/playbooks/MAINTAIN-TRACEABILITY.md`
+- [playbooks](../../playbooks/README.md) — `.ai/playbooks/README.md`
+- [Update memory](../../playbooks/UPDATE-MEMORY.md) — `.ai/playbooks/UPDATE-MEMORY.md`
+- [Prompt — análisis COREUX](../../prompts/COREUX_ANALYZE.prompt.md) — `.ai/prompts/COREUX_ANALYZE.prompt.md`
+- [Prompt — interacción Canvas](../../prompts/COREUX_CANVAS.prompt.md) — `.ai/prompts/COREUX_CANVAS.prompt.md`
+- [Prompt — auditoría de eventos y efectos](../../prompts/COREUX_EVENT_EFFECT_AUDIT.prompt.md) — `.ai/prompts/COREUX_EVENT_EFFECT_AUDIT.prompt.md`
+- [Prompt — implementación COREUX](../../prompts/COREUX_IMPLEMENT.prompt.md) — `.ai/prompts/COREUX_IMPLEMENT.prompt.md`
+- [Prompt — cierre y release](../../prompts/COREUX_RELEASE.prompt.md) — `.ai/prompts/COREUX_RELEASE.prompt.md`
+- [Prompt — review COREUX](../../prompts/COREUX_REVIEW.prompt.md) — `.ai/prompts/COREUX_REVIEW.prompt.md`
+- [Prompt — schema family](../../prompts/COREUX_SCHEMA_FAMILY.prompt.md) — `.ai/prompts/COREUX_SCHEMA_FAMILY.prompt.md`
+- [Prompt — QA visual](../../prompts/COREUX_VISUAL_QA.prompt.md) — `.ai/prompts/COREUX_VISUAL_QA.prompt.md`
+- [CREATE-TASK.prompt.md](../../prompts/CREATE-TASK.prompt.md) — `.ai/prompts/CREATE-TASK.prompt.md`
+- [DIAGNOSE](../../prompts/DIAGNOSE.md) — `.ai/prompts/DIAGNOSE.md`
+- [DISTILL-LOG.prompt.md](../../prompts/DISTILL-LOG.prompt.md) — `.ai/prompts/DISTILL-LOG.prompt.md`
+- [IMPLEMENT](../../prompts/IMPLEMENT.md) — `.ai/prompts/IMPLEMENT.md`
+- [MEMORY-DELTA](../../prompts/MEMORY-DELTA.md) — `.ai/prompts/MEMORY-DELTA.md`
+- [SISAD-PDFME — cleanup `.ai/**`](../../prompts/PROMPT_AI_STRUCTURE_CLEANUP.md) — `.ai/prompts/PROMPT_AI_STRUCTURE_CLEANUP.md`
+- [Claude — runtime owner](../../prompts/PROMPT_CLAUDE_RUNTIME_OWNER.md) — `.ai/prompts/PROMPT_CLAUDE_RUNTIME_OWNER.md`
+- [Prompt para Codex — Mejorar documentación de implementación SISAD PDFME](../../prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md) — `.ai/prompts/PROMPT_CODEX_MEJORAR_DOCUMENTACION_IMPLEMENTACION_SISAD_PDFME.md`
+- [Prompt maestro — Refactorización dinámica de `src/sisad-pdfme/schemas`](../../prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md) — `.ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md`
+- [Prompt maestro para Codex — Saneamiento de `legacy` y `canonical` en SISAD PDFME](../../prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md) — `.ai/prompts/PROMPT_CODEX_SANEAMIENTO_NOMENCLATURA.md`
+- [Codex — independent verifier](../../prompts/PROMPT_CODEX_VERIFIER.md) — `.ai/prompts/PROMPT_CODEX_VERIFIER.md`
+- [Prompt maestro para Codex — corrección visual y comportamiento SISAD PDFME](../../prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md) — `.ai/prompts/PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md`
+- [GitHub Copilot — reviewer / UX / disjoint writer](../../prompts/PROMPT_COPILOT_REVIEWER.md) — `.ai/prompts/PROMPT_COPILOT_REVIEWER.md`
+- [SISAD-PDFME — autonomous Markdown architecture repair](../../prompts/PROMPT_MARKDOWN_ARCHITECTURE_REPAIR.md) — `.ai/prompts/PROMPT_MARKDOWN_ARCHITECTURE_REPAIR.md`
+- [SISAD-PDFME — AUTONOMOUS RUNTIME COMPLETION](../../prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md) — `.ai/prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md`
+- [SISAD-PDFME — AUTONOMOUS CONSOLIDATION TO PRODUCTION](../../prompts/PROMPT_SISAD_PDFME_CONSOLIDATE_TO_PRODUCTION.md) — `.ai/prompts/PROMPT_SISAD_PDFME_CONSOLIDATE_TO_PRODUCTION.md`
+- [Prompt — dynamic capabilities](../../prompts/PROMPT_SISAD_PDFME_DYNAMIC_CAPABILITIES.md) — `.ai/prompts/PROMPT_SISAD_PDFME_DYNAMIC_CAPABILITIES.md`
+- [Prompt — SISAD-PDFME execution orchestration](../../prompts/PROMPT_SISAD_PDFME_EXECUTION_ORCHESTRATION.md) — `.ai/prompts/PROMPT_SISAD_PDFME_EXECUTION_ORCHESTRATION.md`
+- [Prompt — Form hardening](../../prompts/PROMPT_SISAD_PDFME_FORM.md) — `.ai/prompts/PROMPT_SISAD_PDFME_FORM.md`
+- [Prompt — grid geometry](../../prompts/PROMPT_SISAD_PDFME_GRID_GEOMETRY.md) — `.ai/prompts/PROMPT_SISAD_PDFME_GRID_GEOMETRY.md`
+- [Prompt — legacy/dead cleanup](../../prompts/PROMPT_SISAD_PDFME_LEGACY_CLEANUP.md) — `.ai/prompts/PROMPT_SISAD_PDFME_LEGACY_CLEANUP.md`
+- [Prompt — multi-user QA](../../prompts/PROMPT_SISAD_PDFME_MULTIUSER_QA.md) — `.ai/prompts/PROMPT_SISAD_PDFME_MULTIUSER_QA.md`
+- [Prompt — PDF composition](../../prompts/PROMPT_SISAD_PDFME_PDF_COMPOSITION.md) — `.ai/prompts/PROMPT_SISAD_PDFME_PDF_COMPOSITION.md`
+- [Prompt — runtime release](../../prompts/PROMPT_SISAD_PDFME_RELEASE.md) — `.ai/prompts/PROMPT_SISAD_PDFME_RELEASE.md`
+- [SISAD-PDFME — RESUME UNFINISHED RUNTIME AND PORTABLE INTEGRATIONS](../../prompts/PROMPT_SISAD_PDFME_RESUME_AND_INTEGRATE.md) — `.ai/prompts/PROMPT_SISAD_PDFME_RESUME_AND_INTEGRATE.md`
+- [Prompt — reviewer/QA](../../prompts/PROMPT_SISAD_PDFME_REVIEW.md) — `.ai/prompts/PROMPT_SISAD_PDFME_REVIEW.md`
+- [Prompt — runtime review](../../prompts/PROMPT_SISAD_PDFME_RUNTIME_REVIEW.md) — `.ai/prompts/PROMPT_SISAD_PDFME_RUNTIME_REVIEW.md`
+- [Prompt — schema completion](../../prompts/PROMPT_SISAD_PDFME_SCHEMA_COMPLETION.md) — `.ai/prompts/PROMPT_SISAD_PDFME_SCHEMA_COMPLETION.md`
+- [Prompt — schema family](../../prompts/PROMPT_SISAD_PDFME_SCHEMA_FAMILY.md) — `.ai/prompts/PROMPT_SISAD_PDFME_SCHEMA_FAMILY.md`
+- [Prompt — schema registry](../../prompts/PROMPT_SISAD_PDFME_SCHEMA_REGISTRY.md) — `.ai/prompts/PROMPT_SISAD_PDFME_SCHEMA_REGISTRY.md`
+- [Prompt — tooling safety](../../prompts/PROMPT_SISAD_PDFME_TOOLING.md) — `.ai/prompts/PROMPT_SISAD_PDFME_TOOLING.md`
+- [Prompt — User model migration](../../prompts/PROMPT_SISAD_PDFME_USER_MODEL.md) — `.ai/prompts/PROMPT_SISAD_PDFME_USER_MODEL.md`
+- [PROVIDER-SYNC](../../prompts/PROVIDER-SYNC.md) — `.ai/prompts/PROVIDER-SYNC.md`
+- [prompts](../../prompts/README.md) — `.ai/prompts/README.md`
+- [REVIEW](../../prompts/REVIEW.md) — `.ai/prompts/REVIEW.md`
+- [START — SISAD-PDFME Runtime Platform](../../prompts/RTP-CLAUDE-START.md) — `.ai/prompts/RTP-CLAUDE-START.md`
+- [START — SISAD-PDFME Runtime Platform](../../prompts/RTP-CODEX-START.md) — `.ai/prompts/RTP-CODEX-START.md`
+- [START — SISAD-PDFME Runtime Platform](../../prompts/RTP-COPILOT-START.md) — `.ai/prompts/RTP-COPILOT-START.md`
+- [START — SISAD-PDFME Runtime Platform](../../prompts/RTP-GENERIC-START.md) — `.ai/prompts/RTP-GENERIC-START.md`
+- [START — SISAD-PDFME Runtime Platform](../../prompts/RTP-START.md) — `.ai/prompts/RTP-START.md`
+- [Prompt de arranque](../../prompts/SISAD-PDFME-UNIT-TEST-START.md) — `.ai/prompts/SISAD-PDFME-UNIT-TEST-START.md`
+- [Prompt de arranque — tooling architecture cleanup](../../prompts/TOOLING-ARCHITECTURE-START.md) — `.ai/prompts/TOOLING-ARCHITECTURE-START.md`
+- [TRACE](../../prompts/TRACE.md) — `.ai/prompts/TRACE.md`
+- [TRACEABILITY.prompt.md](../../prompts/TRACEABILITY.prompt.md) — `.ai/prompts/TRACEABILITY.prompt.md`
+- [providers](../../providers/README.md) — `.ai/providers/README.md`
+- [Recommended three-agent assignment](../../providers/THREE-AGENT-ASSIGNMENT.md) — `.ai/providers/THREE-AGENT-ASSIGNMENT.md`
+- [DocuSign capability comparator](../../research/DOCUSIGN-CAPABILITY-COMPARATOR.md) — `.ai/research/DOCUSIGN-CAPABILITY-COMPARATOR.md`
+- [Hallazgos oficiales de proveedores — 2026-07-31](../../research/OFFICIAL-PROVIDER-FINDINGS.md) — `.ai/research/OFFICIAL-PROVIDER-FINDINGS.md`
+- [Official sources — verified 2026-08-02](../../research/OFFICIAL-SOURCES.md) — `.ai/research/OFFICIAL-SOURCES.md`
+- [research](../../research/README.md) — `.ai/research/README.md`
+- [Investigación oficial — runtime PDF](../../research/RUNTIME-PDF-OFFICIAL-SOURCES.md) — `.ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md`
+- [routes](../../routes/README.md) — `.ai/routes/README.md`
+- [Route — Arquitectura IA](../../routes/ai-architecture.md) — `.ai/routes/ai-architecture.md`
+- [Route — Recipients/assignment](../../routes/assignments.md) — `.ai/routes/assignments.md`
+- [Route — Canvas y selección](../../routes/canvas.md) — `.ai/routes/canvas.md`
+- [Route — Method/capability inventory](../../routes/capabilities.md) — `.ai/routes/capabilities.md`
+- [Route — Commands/history](../../routes/commands.md) — `.ai/routes/commands.md`
+- [Route — Config y actions](../../routes/configuration.md) — `.ai/routes/configuration.md`
+- [Route — Controller/API parity](../../routes/controller.md) — `.ai/routes/controller.md`
+- [Route — Tailwind/tokens](../../routes/css-tailwind.md) — `.ai/routes/css-tailwind.md`
+- [Ruta — Designer Core UX](../../routes/designer-core-ux.md) — `.ai/routes/designer-core-ux.md`
+- [Route — Memory and handoff](../../routes/docs-memory.md) — `.ai/routes/docs-memory.md`
+- [Route — Events and effects](../../routes/events-effects.md) — `.ai/routes/events-effects.md`
+- [Route — execution orchestration](../../routes/execution-orchestration.md) — `.ai/routes/execution-orchestration.md`
+- [Route — RightSidebar y DetailView](../../routes/inspector.md) — `.ai/routes/inspector.md`
+- [Route — Catálogo y drag/drop](../../routes/left-sidebar.md) — `.ai/routes/left-sidebar.md`
+- [Route — PDF composition](../../routes/pdf-composition.md) — `.ai/routes/pdf-composition.md`
+- [Route — Documentos y snapshot](../../routes/persistence.md) — `.ai/routes/persistence.md`
+- [Route — Provider sync](../../routes/provider-adapters.md) — `.ai/routes/provider-adapters.md`
+- [Route — Pruebas y calidad](../../routes/quality.md) — `.ai/routes/quality.md`
+- [Route — Usuarios, ownership y color](../../routes/recipients-ownership.md) — `.ai/routes/recipients-ownership.md`
+- [Route — Right sidebar/inspector](../../routes/right-sidebar.md) — `.ai/routes/right-sidebar.md`
+- [Route — Commands, events y effects](../../routes/runtime-contracts.md) — `.ai/routes/runtime-contracts.md`
+- [Route — Documents/snapshot](../../routes/runtime-snapshot.md) — `.ai/routes/runtime-snapshot.md`
+- [Route — Designer/Form/Viewer/Generator](../../routes/runtime.md) — `.ai/routes/runtime.md`
+- [Route — schema completion](../../routes/schema-completion.md) — `.ai/routes/schema-completion.md`
+- [Route — Familias de schema](../../routes/schemas.md) — `.ai/routes/schemas.md`
+- [Route — Tests/logs](../../routes/testing.md) — `.ai/routes/testing.md`
+- [Route — Context/token optimization](../../routes/token-context.md) — `.ai/routes/token-context.md`
+- [Route — Traceability](../../routes/traceability.md) — `.ai/routes/traceability.md`
+- [Route — Responsive / accessibility / Tailwind](../../routes/ux.md) — `.ai/routes/ux.md`
+- [scrum](../../scrum/README.md) — `.ai/scrum/README.md`
+- [Merge policy](../../scrum/governance/MERGE-POLICY.md) — `.ai/scrum/governance/MERGE-POLICY.md`
+- [Scrum governance](../../scrum/governance/README.md) — `.ai/scrum/governance/README.md`
+- [State authority](../../scrum/governance/STATE-AUTHORITY.md) — `.ai/scrum/governance/STATE-AUTHORITY.md`
+- [Visual UX execution policy](../../scrum/governance/VISUAL-UX-POLICY.md) — `.ai/scrum/governance/VISUAL-UX-POLICY.md`
+- [AIARCH-006 — Crear generador de context packets](../../scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md) — `.ai/scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md`
+- [task-cards](../../scrum/task-cards/README.md) — `.ai/scrum/task-cards/README.md`
+- [AIARCH-001 — Auditar y congelar baseline](../../scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md`
+- [AIARCH-002 — Corregir fuente de estado y arranque](../../scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md`
+- [AIARCH-003 — Adoptar adapters raíz](../../scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md`
+- [AIARCH-004 — Implementar router por Context Manifest](../../scrum/task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md`
+- [AIARCH-005 — Aplicar presupuesto L0–L4](../../scrum/task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md`
+- [AIARCH-007 — Migrar memoria a índice y topics](../../scrum/task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md`
+- [AIARCH-008 — Implementar memory GC e invalidación](../../scrum/task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md`
+- [AIARCH-009 — Adoptar IDs de trazabilidad](../../scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md`
+- [AIARCH-010 — Generar method registry desde código](../../scrum/task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md`
+- [AIARCH-011 — Consolidar casos y behavior catalog](../../scrum/task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md`
+- [AIARCH-012 — Consolidar event/effect catalogs](../../scrum/task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md`
+- [AIARCH-013 — Construir trace matrix y coverage gate](../../scrum/task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md`
+- [AIARCH-014 — Depurar skill registry y aliases](../../scrum/task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md`
+- [AIARCH-015 — Añadir skills de contexto y trazabilidad](../../scrum/task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md`
+- [AIARCH-016 — Consolidar agent registry](../../scrum/task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md`
+- [AIARCH-017 — Aplicar política de subagentes y coste](../../scrum/task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md`
+- [AIARCH-018 — Actualizar adapter de Claude](../../scrum/task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md`
+- [AIARCH-019 — Actualizar adapter de Codex](../../scrum/task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md`
+- [AIARCH-020 — Actualizar adapter de Copilot](../../scrum/task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md`
+- [AIARCH-021 — Implementar provider drift gate](../../scrum/task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md`
+- [AIARCH-022 — Migrar task-card a esquema](../../scrum/task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md`
+- [AIARCH-023 — Consolidar Scrum, claims y vistas](../../scrum/task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md`
+- [AIARCH-024 — Crear evidence store y log distillation](../../scrum/task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md`
+- [AIARCH-025 — Crear validadores mecánicos](../../scrum/task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md`
+- [AIARCH-026 — Crear evals por proveedor y caso de uso](../../scrum/task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md`
+- [AIARCH-027 — Migrar planes COREUX/DECL/RESTORE](../../scrum/task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md`
+- [AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos](../../scrum/task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md`
+- [AIARCH-029 — Integrar scripts en package/CI](../../scrum/task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md`
+- [AIARCH-030 — Rollout, documentación y retrospectiva](../../scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md`
+- [ai-architecture](../../scrum/task-cards/ai-architecture/README.md) — `.ai/scrum/task-cards/ai-architecture/README.md`
+- [AI8-004 — Implantar query y context pack](../../scrum/task-cards/backlog/AI8-004-implantar-query-y-context-pack.md) — `.ai/scrum/task-cards/backlog/AI8-004-implantar-query-y-context-pack.md`
+- [backlog](../../scrum/task-cards/backlog/README.md) — `.ai/scrum/task-cards/backlog/README.md`
+- [COREUX-001 — Congelar baseline visual y responsive](../../scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md) — `.ai/scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md`
+- [COREUX-002 — Inventariar capacidades y funcionalidades ejecutables](../../scrum/task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md) — `.ai/scrum/task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md`
+- [COREUX-003 — Auditar cobertura real de eventos y efectos](../../scrum/task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md) — `.ai/scrum/task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md`
+- [COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual](../../scrum/task-cards/core-ux/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md) — `.ai/scrum/task-cards/core-ux/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md`
+- [COREUX-005 — Crear catálogo tipado y versionado de eventos](../../scrum/task-cards/core-ux/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md) — `.ai/scrum/task-cards/core-ux/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md`
+- [COREUX-006 — Implementar dispatcher único y adapter legacy onX](../../scrum/task-cards/core-ux/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md) — `.ai/scrum/task-cards/core-ux/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md`
+- [COREUX-007 — Instrumentar eventos del Designer y toolbar](../../scrum/task-cards/core-ux/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md) — `.ai/scrum/task-cards/core-ux/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md`
+- [COREUX-008 — Expandir máquina de estados de interacción](../../scrum/task-cards/core-ux/COREUX-008-expandir-maquina-de-estados-de-interaccion.md) — `.ai/scrum/task-cards/core-ux/COREUX-008-expandir-maquina-de-estados-de-interaccion.md`
+- [COREUX-009 — Crear coordinador de efectos del Designer](../../scrum/task-cards/core-ux/COREUX-009-crear-coordinador-de-efectos-del-designer.md) — `.ai/scrum/task-cards/core-ux/COREUX-009-crear-coordinador-de-efectos-del-designer.md`
+- [COREUX-010 — Completar modelo canónico de acceso a schemas](../../scrum/task-cards/core-ux/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md) — `.ai/scrum/task-cards/core-ux/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md`
+- [COREUX-011 — Unificar ActionConfigRegistry y designerActionState](../../scrum/task-cards/core-ux/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md) — `.ai/scrum/task-cards/core-ux/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md`
+- [COREUX-012 — Conectar CommandBus, eventos e historial](../../scrum/task-cards/core-ux/COREUX-012-conectar-commandbus-eventos-e-historial.md) — `.ai/scrum/task-cards/core-ux/COREUX-012-conectar-commandbus-eventos-e-historial.md`
+- [COREUX-013 — Corregir layout, safe area y contraste de CtlBar](../../scrum/task-cards/core-ux/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md) — `.ai/scrum/task-cards/core-ux/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md`
+- [COREUX-014 — Reemplazar tooltips nativos por primitive controlada](../../scrum/task-cards/core-ux/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md) — `.ai/scrum/task-cards/core-ux/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md`
+- [COREUX-015 — Convertir toggles de vista en comandos configurables](../../scrum/task-cards/core-ux/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md) — `.ai/scrum/task-cards/core-ux/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md`
+- [COREUX-016 — Completar comandos de página](../../scrum/task-cards/core-ux/COREUX-016-completar-comandos-de-pagina.md) — `.ai/scrum/task-cards/core-ux/COREUX-016-completar-comandos-de-pagina.md`
+- [COREUX-017 — Unificar zoom, fit page y fit width](../../scrum/task-cards/core-ux/COREUX-017-unificar-zoom-fit-page-y-fit-width.md) — `.ai/scrum/task-cards/core-ux/COREUX-017-unificar-zoom-fit-page-y-fit-width.md`
+- [COREUX-018 — Cerrar lifecycle de Guardar y autosave](../../scrum/task-cards/core-ux/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md) — `.ai/scrum/task-cards/core-ux/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md`
+- [COREUX-019 — Cerrar lifecycle de exportación y artifacts](../../scrum/task-cards/core-ux/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md) — `.ai/scrum/task-cards/core-ux/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md`
+- [COREUX-020 — Crear estado responsive único de superficies](../../scrum/task-cards/core-ux/COREUX-020-crear-estado-responsive-unico-de-superficies.md) — `.ai/scrum/task-cards/core-ux/COREUX-020-crear-estado-responsive-unico-de-superficies.md`
+- [COREUX-021 — Unificar rails y colapso de ambos sidebars](../../scrum/task-cards/core-ux/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md) — `.ai/scrum/task-cards/core-ux/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md`
+- [COREUX-022 — Preservar ancla visual del viewport al cambiar layout](../../scrum/task-cards/core-ux/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md) — `.ai/scrum/task-cards/core-ux/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md`
+- [COREUX-023 — Consolidar catálogo izquierdo y layouts](../../scrum/task-cards/core-ux/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md) — `.ai/scrum/task-cards/core-ux/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md`
+- [COREUX-024 — Formalizar contrato del RightSidebar](../../scrum/task-cards/core-ux/COREUX-024-formalizar-contrato-del-rightsidebar.md) — `.ai/scrum/task-cards/core-ux/COREUX-024-formalizar-contrato-del-rightsidebar.md`
+- [COREUX-025 — Completar ListView compacto y menú por fila](../../scrum/task-cards/core-ux/COREUX-025-completar-listview-compacto-y-menu-por-fila.md) — `.ai/scrum/task-cards/core-ux/COREUX-025-completar-listview-compacto-y-menu-por-fila.md`
+- [COREUX-026 — Corregir regla y lifecycle de Reasignar responsable](../../scrum/task-cards/core-ux/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md) — `.ai/scrum/task-cards/core-ux/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md`
+- [COREUX-027 — Completar DocumentsRail y DocumentController](../../scrum/task-cards/core-ux/COREUX-027-completar-documentsrail-y-documentcontroller.md) — `.ai/scrum/task-cards/core-ux/COREUX-027-completar-documentsrail-y-documentcontroller.md`
+- [COREUX-028 — Completar CommentsRail y lifecycle de comentarios](../../scrum/task-cards/core-ux/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md) — `.ai/scrum/task-cards/core-ux/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md`
+- [COREUX-029 — Cerrar perfiles del inspector por familia](../../scrum/task-cards/core-ux/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md) — `.ai/scrum/task-cards/core-ux/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md`
+- [COREUX-030 — Formalizar contrato de widgets del DetailView](../../scrum/task-cards/core-ux/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md) — `.ai/scrum/task-cards/core-ux/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md`
+- [COREUX-031 — Optimizar geometría, alineación y precisión visual](../../scrum/task-cards/core-ux/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md) — `.ai/scrum/task-cards/core-ux/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md`
+- [COREUX-032 — Consolidar Datos y conexiones](../../scrum/task-cards/core-ux/COREUX-032-consolidar-datos-y-conexiones.md) — `.ai/scrum/task-cards/core-ux/COREUX-032-consolidar-datos-y-conexiones.md`
+- [COREUX-033 — Consolidar Asignación, bloqueo y auditoría](../../scrum/task-cards/core-ux/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md) — `.ai/scrum/task-cards/core-ux/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md`
+- [COREUX-034 — Unificar editor de opciones](../../scrum/task-cards/core-ux/COREUX-034-unificar-editor-de-opciones.md) — `.ai/scrum/task-cards/core-ux/COREUX-034-unificar-editor-de-opciones.md`
+- [COREUX-035 — Hacer inspector de firma dependiente del modo](../../scrum/task-cards/core-ux/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md) — `.ai/scrum/task-cards/core-ux/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md`
+- [COREUX-036 — Centralizar defaults de creación de schemas](../../scrum/task-cards/core-ux/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md) — `.ai/scrum/task-cards/core-ux/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md`
+- [COREUX-037 — Cerrar contrato de campos text-like, number y date/time](../../scrum/task-cards/core-ux/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md) — `.ai/scrum/task-cards/core-ux/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md`
+- [COREUX-038 — Cerrar contrato de choice fields](../../scrum/task-cards/core-ux/COREUX-038-cerrar-contrato-de-choice-fields.md) — `.ai/scrum/task-cards/core-ux/COREUX-038-cerrar-contrato-de-choice-fields.md`
+- [COREUX-039 — Cerrar contrato runtime de firma, initials y dateSigned](../../scrum/task-cards/core-ux/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md) — `.ai/scrum/task-cards/core-ux/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md`
+- [COREUX-040 — Cerrar contratos de action y visual schemas](../../scrum/task-cards/core-ux/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md) — `.ai/scrum/task-cards/core-ux/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md`
+- [COREUX-041 — Unificar owner tone y field chrome](../../scrum/task-cards/core-ux/COREUX-041-unificar-owner-tone-y-field-chrome.md) — `.ai/scrum/task-cards/core-ux/COREUX-041-unificar-owner-tone-y-field-chrome.md`
+- [COREUX-042 — Consolidar selección y shortcuts multiplataforma](../../scrum/task-cards/core-ux/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md) — `.ai/scrum/task-cards/core-ux/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md`
+- [COREUX-043 — Cerrar drag/drop, placement y no-overlap](../../scrum/task-cards/core-ux/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md) — `.ai/scrum/task-cards/core-ux/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md`
+- [COREUX-044 — Alinear Moveable con access, interaction y events](../../scrum/task-cards/core-ux/COREUX-044-alinear-moveable-con-access-interaction-y-events.md) — `.ai/scrum/task-cards/core-ux/COREUX-044-alinear-moveable-con-access-interaction-y-events.md`
+- [COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit](../../scrum/task-cards/core-ux/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md) — `.ai/scrum/task-cards/core-ux/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md`
+- [COREUX-046 — Cerrar routing multidocumento y navegación](../../scrum/task-cards/core-ux/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md) — `.ai/scrum/task-cards/core-ux/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md`
+- [COREUX-047 — Completar snapshot e historial versionado](../../scrum/task-cards/core-ux/COREUX-047-completar-snapshot-e-historial-versionado.md) — `.ai/scrum/task-cards/core-ux/COREUX-047-completar-snapshot-e-historial-versionado.md`
+- [COREUX-048 — Cerrar paridad del controller y capacidades](../../scrum/task-cards/core-ux/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md) — `.ai/scrum/task-cards/core-ux/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md`
+- [COREUX-049 — Cerrar paridad Designer, Form y Viewer](../../scrum/task-cards/core-ux/COREUX-049-cerrar-paridad-designer-form-y-viewer.md) — `.ai/scrum/task-cards/core-ux/COREUX-049-cerrar-paridad-designer-form-y-viewer.md`
+- [COREUX-050 — Unificar validación, generator, converter y persistence](../../scrum/task-cards/core-ux/COREUX-050-unificar-validacion-generator-converter-y-persistence.md) — `.ai/scrum/task-cards/core-ux/COREUX-050-unificar-validacion-generator-converter-y-persistence.md`
+- [COREUX-051 — Cerrar responsive, touch y accesibilidad](../../scrum/task-cards/core-ux/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md) — `.ai/scrum/task-cards/core-ux/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md`
+- [COREUX-052 — Estabilizar rendimiento y evitar remounts](../../scrum/task-cards/core-ux/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md) — `.ai/scrum/task-cards/core-ux/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md`
+- [COREUX-053 — Crear suite contractual de eventos y efectos](../../scrum/task-cards/core-ux/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md) — `.ai/scrum/task-cards/core-ux/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md`
+- [COREUX-054 — Crear Playwright y regresión visual integral](../../scrum/task-cards/core-ux/COREUX-054-crear-playwright-y-regresion-visual-integral.md) — `.ai/scrum/task-cards/core-ux/COREUX-054-crear-playwright-y-regresion-visual-integral.md`
+- [COREUX-055 — Añadir gates de frontera, duplicidad y drift](../../scrum/task-cards/core-ux/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md) — `.ai/scrum/task-cards/core-ux/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md`
+- [COREUX-056 — Documentar configuración, eventos, efectos y release](../../scrum/task-cards/core-ux/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md) — `.ai/scrum/task-cards/core-ux/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md`
+- [core-ux](../../scrum/task-cards/core-ux/README.md) — `.ai/scrum/task-cards/core-ux/README.md`
+- [naming](../../scrum/task-cards/naming/README.md) — `.ai/scrum/task-cards/naming/README.md`
+- [NAME-001 — Inventariar y clasificar ocurrencias](../../scrum/task-cards/naming/name-001-inventariar-y-clasificar-ocurrencias.md) — `.ai/scrum/task-cards/naming/name-001-inventariar-y-clasificar-ocurrencias.md`
+- [NAME-002 — Crear política y gate preventivo](../../scrum/task-cards/naming/name-002-crear-pol-tica-y-gate-preventivo.md) — `.ai/scrum/task-cards/naming/name-002-crear-pol-tica-y-gate-preventivo.md`
+- [NAME-003 — Renombrar vocabulario del inspector](../../scrum/task-cards/naming/name-003-renombrar-vocabulario-del-inspector.md) — `.ai/scrum/task-cards/naming/name-003-renombrar-vocabulario-del-inspector.md`
+- [NAME-004 — Sanear migración de Config a](../../scrum/task-cards/naming/name-004-sanear-migraci-n-de-config-a.md) — `.ai/scrum/task-cards/naming/name-004-sanear-migraci-n-de-config-a.md`
+- [NAME-005 — Renombrar eventos y callbacks del host](../../scrum/task-cards/naming/name-005-renombrar-eventos-y-callbacks-del-host.md) — `.ai/scrum/task-cards/naming/name-005-renombrar-eventos-y-callbacks-del-host.md`
+- [NAME-006 — Versionar snapshots y metadata](../../scrum/task-cards/naming/name-006-versionar-snapshots-y-metadata.md) — `.ai/scrum/task-cards/naming/name-006-versionar-snapshots-y-metadata.md`
+- [NAME-007 — Renombrar provider de colaboración](../../scrum/task-cards/naming/name-007-renombrar-provider-de-colaboraci-n.md) — `.ai/scrum/task-cards/naming/name-007-renombrar-provider-de-colaboraci-n.md`
+- [NAME-008 — Sanear almacenamiento de comentarios](../../scrum/task-cards/naming/name-008-sanear-almacenamiento-de-comentarios.md) — `.ai/scrum/task-cards/naming/name-008-sanear-almacenamiento-de-comentarios.md`
+- [NAME-009 — Sanear firma y familias de schema](../../scrum/task-cards/naming/name-009-sanear-firma-y-familias-de-schema.md) — `.ai/scrum/task-cards/naming/name-009-sanear-firma-y-familias-de-schema.md`
+- [NAME-010 — Renombrar documentación y arquitectura IA](../../scrum/task-cards/naming/name-010-renombrar-documentaci-n-y-arquitectura-ia.md) — `.ai/scrum/task-cards/naming/name-010-renombrar-documentaci-n-y-arquitectura-ia.md`
+- [NAME-011 — Administrar aliases públicos deprecados](../../scrum/task-cards/naming/name-011-administrar-aliases-p-blicos-deprecados.md) — `.ai/scrum/task-cards/naming/name-011-administrar-aliases-p-blicos-deprecados.md`
+- [NAME-012 — Retirar compatibilidad obsoleta](../../scrum/task-cards/naming/name-012-retirar-compatibilidad-obsoleta.md) — `.ai/scrum/task-cards/naming/name-012-retirar-compatibilidad-obsoleta.md`
+- [Auditar API pública](../../scrum/task-cards/portability/PORTDOC-001-auditar-api-publica.md) — `.ai/scrum/task-cards/portability/PORTDOC-001-auditar-api-publica.md`
+- [Actualizar ejemplos](../../scrum/task-cards/portability/PORTDOC-002-actualizar-ejemplos.md) — `.ai/scrum/task-cards/portability/PORTDOC-002-actualizar-ejemplos.md`
+- [Crear consumer test](../../scrum/task-cards/portability/PORTDOC-003-consumer-test.md) — `.ai/scrum/task-cards/portability/PORTDOC-003-consumer-test.md`
+- [Gate de drift documental](../../scrum/task-cards/portability/PORTDOC-004-gate-drift-documental.md) — `.ai/scrum/task-cards/portability/PORTDOC-004-gate-drift-documental.md`
+- [portability](../../scrum/task-cards/portability/README.md) — `.ai/scrum/task-cards/portability/README.md`
+- [Runtime Platform task cards](../../scrum/task-cards/runtime-platform/README.md) — `.ai/scrum/task-cards/runtime-platform/README.md`
+- [RTP-000 — Live source truth, Git/hash drift y baseline](../../scrum/task-cards/runtime-platform/RTP-000.md) — `.ai/scrum/task-cards/runtime-platform/RTP-000.md`
+- [RTP-005 — Canonicalizar infraestructura Playwright/Vitest y test authority](../../scrum/task-cards/runtime-platform/RTP-005.md) — `.ai/scrum/task-cards/runtime-platform/RTP-005.md`
+- [RTP-008 — Reconciliar source, evidence y ledger antes de continuar](../../scrum/task-cards/runtime-platform/RTP-008.md) — `.ai/scrum/task-cards/runtime-platform/RTP-008.md`
+- [RTP-010 — Fijar identidad SISAD-PDFME y nomenclatura policy](../../scrum/task-cards/runtime-platform/RTP-010.md) — `.ai/scrum/task-cards/runtime-platform/RTP-010.md`
+- [RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User](../../scrum/task-cards/runtime-platform/RTP-015.md) — `.ai/scrum/task-cards/runtime-platform/RTP-015.md`
+- [RTP-020 — Inventario registry-derived + generic runtime characterization harness](../../scrum/task-cards/runtime-platform/RTP-020.md) — `.ai/scrum/task-cards/runtime-platform/RTP-020.md`
+- [RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page](../../scrum/task-cards/runtime-platform/RTP-022.md) — `.ai/scrum/task-cards/runtime-platform/RTP-022.md`
+- [RTP-030 — Motor local-first de transacciones Form](../../scrum/task-cards/runtime-platform/RTP-030.md) — `.ai/scrum/task-cards/runtime-platform/RTP-030.md`
+- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](../../scrum/task-cards/runtime-platform/RTP-040.md) — `.ai/scrum/task-cards/runtime-platform/RTP-040.md`
+- [RTP-045 — Facade público: props declaradas vs. propagadas](../../scrum/task-cards/runtime-platform/RTP-045.md) — `.ai/scrum/task-cards/runtime-platform/RTP-045.md`
+- [RTP-050 — Eventos canónicos de input/runtime + adapters legacy](../../scrum/task-cards/runtime-platform/RTP-050.md) — `.ai/scrum/task-cards/runtime-platform/RTP-050.md`
+- [RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first](../../scrum/task-cards/runtime-platform/RTP-055.md) — `.ai/scrum/task-cards/runtime-platform/RTP-055.md`
+- [RTP-060 — Lifecycle, remount, focus, caret, IME y cleanup](../../scrum/task-cards/runtime-platform/RTP-060.md) — `.ai/scrum/task-cards/runtime-platform/RTP-060.md`
+- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](../../scrum/task-cards/runtime-platform/RTP-070.md) — `.ai/scrum/task-cards/runtime-platform/RTP-070.md`
+- [RTP-080 — SchemaValueCodec por familia](../../scrum/task-cards/runtime-platform/RTP-080.md) — `.ai/scrum/task-cards/runtime-platform/RTP-080.md`
+- [RTP-090 — Validation, touched, dirty, completion y access boundary](../../scrum/task-cards/runtime-platform/RTP-090.md) — `.ai/scrum/task-cards/runtime-platform/RTP-090.md`
+- [RTP-095 — Harness pairwise de interacción entre schemas](../../scrum/task-cards/runtime-platform/RTP-095.md) — `.ai/scrum/task-cards/runtime-platform/RTP-095.md`
+- [RTP-100 — Text-like, number, presets y multiVariableText](../../scrum/task-cards/runtime-platform/RTP-100.md) — `.ai/scrum/task-cards/runtime-platform/RTP-100.md`
+- [RTP-110 — Select/dropdown, checkbox, radioGroup, checkboxGroup](../../scrum/task-cards/runtime-platform/RTP-110.md) — `.ai/scrum/task-cards/runtime-platform/RTP-110.md`
+- [RTP-120 — Date, time, dateTime y dateSigned](../../scrum/task-cards/runtime-platform/RTP-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-120.md`
+- [RTP-130 — Signature, initials, draw/image/P12/provider](../../scrum/task-cards/runtime-platform/RTP-130.md) — `.ai/scrum/task-cards/runtime-platform/RTP-130.md`
+- [RTP-140 — Attachment, note, approve y decline artifacts/actions](../../scrum/task-cards/runtime-platform/RTP-140.md) — `.ai/scrum/task-cards/runtime-platform/RTP-140.md`
+- [RTP-150 — Image/SVG/table/shapes/barcodes visual/complex schemas](../../scrum/task-cards/runtime-platform/RTP-150.md) — `.ai/scrum/task-cards/runtime-platform/RTP-150.md`
+- [RTP-160 — Custom plugin runtime contract and auto-discovery harness](../../scrum/task-cards/runtime-platform/RTP-160.md) — `.ai/scrum/task-cards/runtime-platform/RTP-160.md`
+- [RTP-170 — Viewer zero-mutation and parity](../../scrum/task-cards/runtime-platform/RTP-170.md) — `.ai/scrum/task-cards/runtime-platform/RTP-170.md`
+- [RTP-180 — Generator/preflight parity and structured values](../../scrum/task-cards/runtime-platform/RTP-180.md) — `.ai/scrum/task-cards/runtime-platform/RTP-180.md`
+- [RTP-190 — PDF.js converter loading/render/cancel/cleanup/concurrency](../../scrum/task-cards/runtime-platform/RTP-190.md) — `.ai/scrum/task-cards/runtime-platform/RTP-190.md`
+- [RTP-200 — Snapshot, bundle, migration and semantic roundtrip](../../scrum/task-cards/runtime-platform/RTP-200.md) — `.ai/scrum/task-cards/runtime-platform/RTP-200.md`
+- [RTP-210 — Multi-document/multipage routing and active ID isolation](../../scrum/task-cards/runtime-platform/RTP-210.md) — `.ai/scrum/task-cards/runtime-platform/RTP-210.md`
+- [RTP-215 — Aislamiento User×Document×RuntimeSession](../../scrum/task-cards/runtime-platform/RTP-215.md) — `.ai/scrum/task-cards/runtime-platform/RTP-215.md`
+- [RTP-220 — Recipients, ownership, colors, locks and runtime access](../../scrum/task-cards/runtime-platform/RTP-220.md) — `.ai/scrum/task-cards/runtime-platform/RTP-220.md`
+- [RTP-222 — Migrar registry/access/appearance a User con aliases](../../scrum/task-cards/runtime-platform/RTP-222.md) — `.ai/scrum/task-cards/runtime-platform/RTP-222.md`
+- [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](../../scrum/task-cards/runtime-platform/RTP-225.md) — `.ai/scrum/task-cards/runtime-platform/RTP-225.md`
+- [RTP-226 — Contrato DigitalAgreements Recipient -> User](../../scrum/task-cards/runtime-platform/RTP-226.md) — `.ai/scrum/task-cards/runtime-platform/RTP-226.md`
+- [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](../../scrum/task-cards/runtime-platform/RTP-227.md) — `.ai/scrum/task-cards/runtime-platform/RTP-227.md`
+- [RTP-230 — Comments, collaboration and conflict-safe state](../../scrum/task-cards/runtime-platform/RTP-230.md) — `.ai/scrum/task-cards/runtime-platform/RTP-230.md`
+- [RTP-240 — Persistence/save/autosave one-write lifecycle](../../scrum/task-cards/runtime-platform/RTP-240.md) — `.ai/scrum/task-cards/runtime-platform/RTP-240.md`
+- [RTP-250 — Declarative config profiles and capability resolution](../../scrum/task-cards/runtime-platform/RTP-250.md) — `.ai/scrum/task-cards/runtime-platform/RTP-250.md`
+- [RTP-260 — Controller/public API/action-state parity](../../scrum/task-cards/runtime-platform/RTP-260.md) — `.ai/scrum/task-cards/runtime-platform/RTP-260.md`
+- [RTP-270 — Keyboard, accessibility, pointer/touch/pen and responsive runtime](../../scrum/task-cards/runtime-platform/RTP-270.md) — `.ai/scrum/task-cards/runtime-platform/RTP-270.md`
+- [RTP-280 — Performance/memory/leak campaign for large PDFs/schemas](../../scrum/task-cards/runtime-platform/RTP-280.md) — `.ai/scrum/task-cards/runtime-platform/RTP-280.md`
+- [RTP-290 — Security/privacy/artifact sanitization and secret boundaries](../../scrum/task-cards/runtime-platform/RTP-290.md) — `.ai/scrum/task-cards/runtime-platform/RTP-290.md`
+- [RTP-300 — Examples + docs as contract consumers, no demo-runtime duplication](../../scrum/task-cards/runtime-platform/RTP-300.md) — `.ai/scrum/task-cards/runtime-platform/RTP-300.md`
+- [RTP-305 — Quality gate registry-driven de comportamiento](../../scrum/task-cards/runtime-platform/RTP-305.md) — `.ai/scrum/task-cards/runtime-platform/RTP-305.md`
+- [RTP-310 — All-schema Playwright + integration/release gates](../../scrum/task-cards/runtime-platform/RTP-310.md) — `.ai/scrum/task-cards/runtime-platform/RTP-310.md`
+- [RTP-315 — Concurrencia real de sesiones con BrowserContext aislados](../../scrum/task-cards/runtime-platform/RTP-315.md) — `.ai/scrum/task-cards/runtime-platform/RTP-315.md`
+- [RTP-320 — Consumer integration smoke and distribution contract](../../scrum/task-cards/runtime-platform/RTP-320.md) — `.ai/scrum/task-cards/runtime-platform/RTP-320.md`
+- [RTP-325 — Gate de compatibilidad antes de retirar Recipient aliases](../../scrum/task-cards/runtime-platform/RTP-325.md) — `.ai/scrum/task-cards/runtime-platform/RTP-325.md`
+- [RTP-330 — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad](../../scrum/task-cards/runtime-platform/RTP-330.md) — `.ai/scrum/task-cards/runtime-platform/RTP-330.md`
+- [RTP-340 — Brain/docs/index/evidence closeout and context regeneration](../../scrum/task-cards/runtime-platform/RTP-340.md) — `.ai/scrum/task-cards/runtime-platform/RTP-340.md`
+- [RTP-345 — Reconciliar Brain, contexto y paths persistentes](../../scrum/task-cards/runtime-platform/RTP-345.md) — `.ai/scrum/task-cards/runtime-platform/RTP-345.md`
+- [RTP-350 — Congelar baseline de execution runtime](../../scrum/task-cards/runtime-platform/RTP-350.md) — `.ai/scrum/task-cards/runtime-platform/RTP-350.md`
+- [RTP-355 — Crear autoridad canónica de interaction/completion](../../scrum/task-cards/runtime-platform/RTP-355.md) — `.ai/scrum/task-cards/runtime-platform/RTP-355.md`
+- [RTP-360 — Cerrar User assignment y value scope](../../scrum/task-cards/runtime-platform/RTP-360.md) — `.ai/scrum/task-cards/runtime-platform/RTP-360.md`
+- [RTP-365 — Cerrar RuntimeExecutionContext y aislamiento](../../scrum/task-cards/runtime-platform/RTP-365.md) — `.ai/scrum/task-cards/runtime-platform/RTP-365.md`
+- [RTP-370 — Implementar ExecutionPlan genérico de LAB](../../scrum/task-cards/runtime-platform/RTP-370.md) — `.ai/scrum/task-cards/runtime-platform/RTP-370.md`
+- [RTP-375 — Validar ejecución secuencial](../../scrum/task-cards/runtime-platform/RTP-375.md) — `.ai/scrum/task-cards/runtime-platform/RTP-375.md`
+- [RTP-380 — Validar ejecución paralela](../../scrum/task-cards/runtime-platform/RTP-380.md) — `.ai/scrum/task-cards/runtime-platform/RTP-380.md`
+- [RTP-385 — Cerrar mixed execution y conflictos shared](../../scrum/task-cards/runtime-platform/RTP-385.md) — `.ai/scrum/task-cards/runtime-platform/RTP-385.md`
+- [RTP-390 — Cerrar massive fan-out](../../scrum/task-cards/runtime-platform/RTP-390.md) — `.ai/scrum/task-cards/runtime-platform/RTP-390.md`
+- [RTP-395 — Definir execution result y PDF artifacts](../../scrum/task-cards/runtime-platform/RTP-395.md) — `.ai/scrum/task-cards/runtime-platform/RTP-395.md`
+- [RTP-400 — Implementar canonical PDF merge](../../scrum/task-cards/runtime-platform/RTP-400.md) — `.ai/scrum/task-cards/runtime-platform/RTP-400.md`
+- [RTP-405 — Cerrar append, multi-document y massive bundle](../../scrum/task-cards/runtime-platform/RTP-405.md) — `.ai/scrum/task-cards/runtime-platform/RTP-405.md`
+- [RTP-410 — Crear all-schema execution/completion harness](../../scrum/task-cards/runtime-platform/RTP-410.md) — `.ai/scrum/task-cards/runtime-platform/RTP-410.md`
+- [RTP-415 — Cerrar browser, performance, privacy y parity gates](../../scrum/task-cards/runtime-platform/RTP-415.md) — `.ai/scrum/task-cards/runtime-platform/RTP-415.md`
+- [RTP-420 — Release y closeout del runtime](../../scrum/task-cards/runtime-platform/RTP-420.md) — `.ai/scrum/task-cards/runtime-platform/RTP-420.md`
+- [RTP-425 — Reconciliar baseline de configuración y runtime](../../scrum/task-cards/runtime-platform/RTP-425.md) — `.ai/scrum/task-cards/runtime-platform/RTP-425.md`
+- [RTP-430 — Inventariar capabilities ejecutables](../../scrum/task-cards/runtime-platform/RTP-430.md) — `.ai/scrum/task-cards/runtime-platform/RTP-430.md`
+- [RTP-435 — Compilar configuración a snapshot inmutable](../../scrum/task-cards/runtime-platform/RTP-435.md) — `.ai/scrum/task-cards/runtime-platform/RTP-435.md`
+- [RTP-440 — Hacer fail-closed el CapabilityGraph](../../scrum/task-cards/runtime-platform/RTP-440.md) — `.ai/scrum/task-cards/runtime-platform/RTP-440.md`
+- [RTP-445 — Crear impact graph y effect plan dinámico](../../scrum/task-cards/runtime-platform/RTP-445.md) — `.ai/scrum/task-cards/runtime-platform/RTP-445.md`
+- [RTP-450 — Crear GridGeometry canónica](../../scrum/task-cards/runtime-platform/RTP-450.md) — `.ai/scrum/task-cards/runtime-platform/RTP-450.md`
+- [RTP-455 — Cerrar grid, snap, guides y rulers](../../scrum/task-cards/runtime-platform/RTP-455.md) — `.ai/scrum/task-cards/runtime-platform/RTP-455.md`
+- [RTP-460 — Converger registries del Designer](../../scrum/task-cards/runtime-platform/RTP-460.md) — `.ai/scrum/task-cards/runtime-platform/RTP-460.md`
+- [RTP-465 — Eliminar direct config readers y reglas duplicadas](../../scrum/task-cards/runtime-platform/RTP-465.md) — `.ai/scrum/task-cards/runtime-platform/RTP-465.md`
+- [RTP-470 — Converger capabilities de Runtime](../../scrum/task-cards/runtime-platform/RTP-470.md) — `.ai/scrum/task-cards/runtime-platform/RTP-470.md`
+- [RTP-475 — Hacer plugin-owned el schema manifest](../../scrum/task-cards/runtime-platform/RTP-475.md) — `.ai/scrum/task-cards/runtime-platform/RTP-475.md`
+- [RTP-480 — Enriquecer codecs, validation y completion](../../scrum/task-cards/runtime-platform/RTP-480.md) — `.ai/scrum/task-cards/runtime-platform/RTP-480.md`
+- [RTP-485 — Cerrar optimistic concurrency de execution scopes](../../scrum/task-cards/runtime-platform/RTP-485.md) — `.ai/scrum/task-cards/runtime-platform/RTP-485.md`
+- [RTP-490 — Endurecer completion projections](../../scrum/task-cards/runtime-platform/RTP-490.md) — `.ai/scrum/task-cards/runtime-platform/RTP-490.md`
+- [RTP-495 — Bloquear canonical merge conflictivo](../../scrum/task-cards/runtime-platform/RTP-495.md) — `.ai/scrum/task-cards/runtime-platform/RTP-495.md`
+- [RTP-500 — Crear codec durable de ExecutionResult](../../scrum/task-cards/runtime-platform/RTP-500.md) — `.ai/scrum/task-cards/runtime-platform/RTP-500.md`
+- [RTP-505 — Endurecer composición PDF](../../scrum/task-cards/runtime-platform/RTP-505.md) — `.ai/scrum/task-cards/runtime-platform/RTP-505.md`
+- [RTP-510 — Conectar multi-user al Form real](../../scrum/task-cards/runtime-platform/RTP-510.md) — `.ai/scrum/task-cards/runtime-platform/RTP-510.md`
+- [RTP-515 — Crear all-schema stress harness dinámico](../../scrum/task-cards/runtime-platform/RTP-515.md) — `.ai/scrum/task-cards/runtime-platform/RTP-515.md`
+- [RTP-520 — Auditar parity contra referencia DocuSign](../../scrum/task-cards/runtime-platform/RTP-520.md) — `.ai/scrum/task-cards/runtime-platform/RTP-520.md`
+- [RTP-525 — Migrar compatibilidad Recipient hacia User](../../scrum/task-cards/runtime-platform/RTP-525.md) — `.ai/scrum/task-cards/runtime-platform/RTP-525.md`
+- [RTP-530 — Retirar legacy y dead code de forma segura](../../scrum/task-cards/runtime-platform/RTP-530.md) — `.ai/scrum/task-cards/runtime-platform/RTP-530.md`
+- [RTP-535 — Reducir duplicación y aumentar genericidad](../../scrum/task-cards/runtime-platform/RTP-535.md) — `.ai/scrum/task-cards/runtime-platform/RTP-535.md`
+- [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](../../scrum/task-cards/runtime-platform/RTP-540.md) — `.ai/scrum/task-cards/runtime-platform/RTP-540.md`
+- [RTP-545 — Release autónomo y closeout](../../scrum/task-cards/runtime-platform/RTP-545.md) — `.ai/scrum/task-cards/runtime-platform/RTP-545.md`
+- [MDA-001 — Auditar arquitectura Markdown y congelar baseline](../../scrum/task-cards/tooling-architecture/MDA-001.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-001.md`
+- [MDA-010 — Reconciliar autoridad de estados y vistas](../../scrum/task-cards/tooling-architecture/MDA-010.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-010.md`
+- [MDA-020 — Organizar task cards por dominio](../../scrum/task-cards/tooling-architecture/MDA-020.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-020.md`
+- [MDA-030 — Archivar campañas legacy y retirar residuos transitorios](../../scrum/task-cards/tooling-architecture/MDA-030.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-030.md`
+- [MDA-040 — Generar hubs README y reparar enlaces](../../scrum/task-cards/tooling-architecture/MDA-040.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-040.md`
+- [MDA-050 — Consolidar routes, skills y adapters de proveedor](../../scrum/task-cards/tooling-architecture/MDA-050.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-050.md`
+- [MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog](../../scrum/task-cards/tooling-architecture/MDA-060.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-060.md`
+- [MDA-070 — Normalizar documentación pública y numeración](../../scrum/task-cards/tooling-architecture/MDA-070.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-070.md`
+- [MDA-080 — Cerrar gates de arquitectura documental](../../scrum/task-cards/tooling-architecture/MDA-080.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-080.md`
+- [MDA-090 — Consolidar topología Scrum](../../scrum/task-cards/tooling-architecture/MDA-090.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-090.md`
+- [MDA-100 — Consolidar Brain e inventarios](../../scrum/task-cards/tooling-architecture/MDA-100.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-100.md`
+- [MDA-110 — Cerrar huérfanos y grafo Markdown](../../scrum/task-cards/tooling-architecture/MDA-110.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-110.md`
+- [MDA-120 — Reducir duplicidad semántica](../../scrum/task-cards/tooling-architecture/MDA-120.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-120.md`
+- [MDA-130 — Cerrar saneamiento de arquitectura IA](../../scrum/task-cards/tooling-architecture/MDA-130.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-130.md`
+- [tooling-architecture](../../scrum/task-cards/tooling-architecture/README.md) — `.ai/scrum/task-cards/tooling-architecture/README.md`
+- [Eliminar duplicidad entre tools/ai-quality y arquitectura IA](../../scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md`
+- [Baseline de scripts/tools y consumers](../../scrum/task-cards/tooling-architecture/TOOL-BASELINE.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md`
+- [TOOL-CAPABILITY-AUDIT](../../scrum/task-cards/tooling-architecture/TOOL-CAPABILITY-AUDIT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CAPABILITY-AUDIT.md`
+- [Centralizar configuración de tooling](../../scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md`
+- [Gates finales y limpieza](../../scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md`
+- [Migrar consumers y retirar wrappers redundantes](../../scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md`
+- [Dedup semántico del runtime](../../scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md`
+- [TOOL-GRID-GEOMETRY-AUDIT](../../scrum/task-cards/tooling-architecture/TOOL-GRID-GEOMETRY-AUDIT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-GRID-GEOMETRY-AUDIT.md`
+- [Corregir importer non-Markdown](../../scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md`
+- [Validar import ZIP/folder no destructivo](../../scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md`
+- [Preflight y conflict-safe install-project-tools](../../scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md`
+- [TOOL-LEGACY-RETIREMENT](../../scrum/task-cards/tooling-architecture/TOOL-LEGACY-RETIREMENT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-LEGACY-RETIREMENT.md`
+- [Actualizar manuales/package scripts/Brain](../../scrum/task-cards/tooling-architecture/TOOL-MANUALS.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md`
+- [Consolidar sanitización/index/topology/links](../../scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md`
+- [Separar path reconciliation de identifier migration](../../scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md`
+- [TOOL — provider model routing](../../scrum/task-cards/tooling-architecture/TOOL-PROVIDER-MODEL-ROUTING.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-PROVIDER-MODEL-ROUTING.md`
+- [TOOL-RUNTIME-AUTOPILOT](../../scrum/task-cards/tooling-architecture/TOOL-RUNTIME-AUTOPILOT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-RUNTIME-AUTOPILOT.md`
+- [TOOL — same repo coordination](../../scrum/task-cards/tooling-architecture/TOOL-SAME-REPO-COORDINATION.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-SAME-REPO-COORDINATION.md`
+- [Portabilidad de scripts npm y memoria build](../../scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md`
+- [Eliminar paths de arquitectura versionados](../../scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md`
+- [Mejorar calidad del test map SISAD-PDFME](../../scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md`
+- [Hacer install-tests transaccional](../../scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md`
+- [visual-ux](../../scrum/task-cards/visual-ux/README.md) — `.ai/scrum/task-cards/visual-ux/README.md`
+- [VISUX-001 — Congelar baseline visual y estados reproducibles](../../scrum/task-cards/visual-ux/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md) — `.ai/scrum/task-cards/visual-ux/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md`
+- [VISUX-002 — Inventariar componentes visuales, scroll owners y fuentes de estado](../../scrum/task-cards/visual-ux/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md) — `.ai/scrum/task-cards/visual-ux/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md`
+- [VISUX-003 — Auditar tokens, contraste, densidad y lenguaje visual](../../scrum/task-cards/visual-ux/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md) — `.ai/scrum/task-cards/visual-ux/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md`
+- [VISUX-004 — Unificar auditoría de acciones, acceso y motivos de deshabilitación](../../scrum/task-cards/visual-ux/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md) — `.ai/scrum/task-cards/visual-ux/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md`
+- [VISUX-005 — Crear un estado responsive único del workspace](../../scrum/task-cards/visual-ux/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md) — `.ai/scrum/task-cards/visual-ux/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md`
+- [VISUX-006 — Unificar rails y colapso de ambos sidebars](../../scrum/task-cards/visual-ux/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md) — `.ai/scrum/task-cards/visual-ux/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md`
+- [VISUX-007 — Preservar ancla visual, zoom y scroll al cambiar layout](../../scrum/task-cards/visual-ux/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md) — `.ai/scrum/task-cards/visual-ux/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md`
+- [VISUX-008 — Corregir header de guardar, navegación de páginas y estado de selección](../../scrum/task-cards/visual-ux/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md) — `.ai/scrum/task-cards/visual-ux/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md`
+- [VISUX-009 — Cerrar contrato de zoom, fit, undo y redo](../../scrum/task-cards/visual-ux/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md`
+- [VISUX-010 — Reemplazar tooltips nativos y cerrar foco de controles](../../scrum/task-cards/visual-ux/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md) — `.ai/scrum/task-cards/visual-ux/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md`
+- [VISUX-011 — Unificar toolbar contextual y menú Más](../../scrum/task-cards/visual-ux/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md) — `.ai/scrum/task-cards/visual-ux/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md`
+- [VISUX-012 — Hacer overlays collision-aware y coordinar stack visual](../../scrum/task-cards/visual-ux/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md) — `.ai/scrum/task-cards/visual-ux/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md`
+- [VISUX-013 — Compactar shell, tabs y colapso del LeftSidebar](../../scrum/task-cards/visual-ux/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md) — `.ai/scrum/task-cards/visual-ux/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md`
+- [VISUX-014 — Cerrar búsqueda, filtros y selector de layout del catálogo](../../scrum/task-cards/visual-ux/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md`
+- [VISUX-015 — Compactar grupos, cards, favoritos y owner tone del catálogo](../../scrum/task-cards/visual-ux/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md`
+- [VISUX-016 — Cerrar custom fields, auto fields y catálogo de recipients](../../scrum/task-cards/visual-ux/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md) — `.ai/scrum/task-cards/visual-ux/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md`
+- [VISUX-017 — Cerrar drag preview, drop setup y feedback de colocación](../../scrum/task-cards/visual-ux/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md) — `.ai/scrum/task-cards/visual-ux/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md`
+- [VISUX-018 — Hacer responsive la navegación del RightSidebar](../../scrum/task-cards/visual-ux/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md) — `.ai/scrum/task-cards/visual-ux/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md`
+- [VISUX-019 — Formalizar panel registry, header contextual y scroll owner](../../scrum/task-cards/visual-ux/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md) — `.ai/scrum/task-cards/visual-ux/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md`
+- [VISUX-020 — Compactar ListView y separar identidad, estados y acciones](../../scrum/task-cards/visual-ux/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md) — `.ai/scrum/task-cards/visual-ux/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md`
+- [VISUX-021 — Cerrar selección, reorder, localizar y menú por fila](../../scrum/task-cards/visual-ux/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md) — `.ai/scrum/task-cards/visual-ux/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md`
+- [VISUX-022 — Corregir disponibilidad y lifecycle de Reasignar responsable](../../scrum/task-cards/visual-ux/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md) — `.ai/scrum/task-cards/visual-ux/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md`
+- [VISUX-023 — Corregir header e identidad del DetailView](../../scrum/task-cards/visual-ux/VISUX-023-corregir-header-e-identidad-del-detailview.md) — `.ai/scrum/task-cards/visual-ux/VISUX-023-corregir-header-e-identidad-del-detailview.md`
+- [VISUX-024 — Reorganizar taxonomía, disclosure y widgets del DetailView](../../scrum/task-cards/visual-ux/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md) — `.ai/scrum/task-cards/visual-ux/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md`
+- [VISUX-025 — Cerrar alcance y lifecycle del CommentsRail](../../scrum/task-cards/visual-ux/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md) — `.ai/scrum/task-cards/visual-ux/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md`
+- [VISUX-026 — Separar documento, página y acciones del DocumentsRail](../../scrum/task-cards/visual-ux/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md) — `.ai/scrum/task-cards/visual-ux/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md`
+- [VISUX-027 — Unificar estados empty, loading, error y disabled del RightSidebar](../../scrum/task-cards/visual-ux/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md) — `.ai/scrum/task-cards/visual-ux/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md`
+- [VISUX-028 — Unificar field chrome, owner tone y estados visuales](../../scrum/task-cards/visual-ux/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md) — `.ai/scrum/task-cards/visual-ux/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md`
+- [VISUX-029 — Cerrar perfiles text-like, number y date/time](../../scrum/task-cards/visual-ux/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md) — `.ai/scrum/task-cards/visual-ux/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md`
+- [VISUX-030 — Cerrar select, checkbox, radio y option groups](../../scrum/task-cards/visual-ux/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md) — `.ai/scrum/task-cards/visual-ux/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md`
+- [VISUX-031 — Hacer el inspector de firma dependiente del modo](../../scrum/task-cards/visual-ux/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md`
+- [VISUX-032 — Cerrar action schemas: attachment, note, approve y decline](../../scrum/task-cards/visual-ux/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md) — `.ai/scrum/task-cards/visual-ux/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md`
+- [VISUX-033 — Cerrar media, barcode, table y shapes](../../scrum/task-cards/visual-ux/VISUX-033-cerrar-media-barcode-table-y-shapes.md) — `.ai/scrum/task-cards/visual-ux/VISUX-033-cerrar-media-barcode-table-y-shapes.md`
+- [VISUX-034 — Normalizar i18n, labels técnicos y modo avanzado](../../scrum/task-cards/visual-ux/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md) — `.ai/scrum/task-cards/visual-ux/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md`
+- [VISUX-035 — Probar paridad propiedad→runtimes→PDF→snapshot](../../scrum/task-cards/visual-ux/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md) — `.ai/scrum/task-cards/visual-ux/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md`
+- [VISUX-036 — Cerrar selección y edición de grupos de opciones](../../scrum/task-cards/visual-ux/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md) — `.ai/scrum/task-cards/visual-ux/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md`
+- [VISUX-037 — Unificar asignación, reserva de edición, readonly y posición fija](../../scrum/task-cards/visual-ux/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md) — `.ai/scrum/task-cards/visual-ux/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md`
+- [VISUX-038 — Cerrar routing multidocumento y navegación por página](../../scrum/task-cards/visual-ux/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md) — `.ai/scrum/task-cards/visual-ux/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md`
+- [VISUX-039 — Cerrar paridad visual de Designer, Form y Viewer](../../scrum/task-cards/visual-ux/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md) — `.ai/scrum/task-cards/visual-ux/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md`
+- [VISUX-040 — Cerrar responsive, touch, teclado y accesibilidad integral](../../scrum/task-cards/visual-ux/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md) — `.ai/scrum/task-cards/visual-ux/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md`
+- [VISUX-041 — Estabilizar rendimiento y evitar remounts presentacionales](../../scrum/task-cards/visual-ux/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md) — `.ai/scrum/task-cards/visual-ux/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md`
+- [VISUX-042 — Crear suite visual, gates, documentación y release](../../scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md) — `.ai/scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md`
+- [Active](../../scrum/views/ACTIVE.md) — `.ai/scrum/views/ACTIVE.md`
+- [Blocked / Partial](../../scrum/views/BLOCKED.md) — `.ai/scrum/views/BLOCKED.md`
+- [Completed](../../scrum/views/COMPLETED.md) — `.ai/scrum/views/COMPLETED.md`
+- [views](../../scrum/views/README.md) — `.ai/scrum/views/README.md`
+- [Runtime Platform state](../../scrum/views/RUNTIME-PLATFORM.md) — `.ai/scrum/views/RUNTIME-PLATFORM.md`
+- [Skill registry](../../skills/README.md) — `.ai/skills/README.md`
+- [Subagent decision matrix](../../subagents/DECISION-MATRIX.md) — `.ai/subagents/DECISION-MATRIX.md`
+- [subagents](../../subagents/README.md) — `.ai/subagents/README.md`
+- [Behavior record](../../templates/BEHAVIOR-RECORD.md) — `.ai/templates/BEHAVIOR-RECORD.md`
+- [CONTEXT-MANIFEST.md](../../templates/CONTEXT-MANIFEST.md) — `.ai/templates/CONTEXT-MANIFEST.md`
+- [Context pack](../../templates/CONTEXT-PACK.md) — `.ai/templates/CONTEXT-PACK.md`
+- [ADR-ID — Decision](../../templates/DECISION.md) — `.ai/templates/DECISION.md`
+- [Evidence packet](../../templates/EVIDENCE-PACKET.md) — `.ai/templates/EVIDENCE-PACKET.md`
+- [Handoff](../../templates/HANDOFF.md) — `.ai/templates/HANDOFF.md`
+- [Method record](../../templates/METHOD-RECORD.md) — `.ai/templates/METHOD-RECORD.md`
+- [templates](../../templates/README.md) — `.ai/templates/README.md`
+- [TSK-ID — Title](../../templates/TASK-CARD.md) — `.ai/templates/TASK-CARD.md`
+- [Registro de métodos y símbolos](../../traceability/METHOD-REGISTRY.md) — `.ai/traceability/METHOD-REGISTRY.md`
+- [traceability](../../traceability/README.md) — `.ai/traceability/README.md`

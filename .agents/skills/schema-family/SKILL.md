@@ -16,7 +16,7 @@ description: One schema across all surfaces and snapshot.
 
 ## References
 
-- `../../.ai/contracts/SCHEMA-SURFACE-CONTRACT.md`
+- `../../.ai/brain/20-contracts/runtime/SCHEMA-SURFACE-CONTRACT.md`
 - `../../.ai/index/SCHEMA-MATRIX.md`
 
 ## Stop

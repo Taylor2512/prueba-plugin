@@ -76,27 +76,27 @@
       "sha256": "2de15ef3ca6990e21c08db6f59e54f53c758511b9521c25c74836373c9f15c05"
     },
     {
-      "path": ".ai/brain/20-contracts/FORM-COMPLETION-CONTRACT.md",
+      "path": ".ai/brain/20-contracts/runtime/FORM-COMPLETION-CONTRACT.md",
       "bytes": 455,
       "sha256": "a3447182247bd0e14dc2af26cfbf6411b54f2722ae0dd84bfca460551cf99303"
     },
     {
-      "path": ".ai/brain/20-contracts/RUNTIME-SESSION-IDENTITY.md",
+      "path": ".ai/brain/20-contracts/runtime/RUNTIME-SESSION-IDENTITY.md",
       "bytes": 394,
       "sha256": "fe6f7ab1755e98277218b8f15531bf2c009a0972ed70ae6f6b7b6e7ba8d8cfbd"
     },
     {
-      "path": ".ai/brain/20-contracts/SCHEMA-INTERACTION-ISOLATION.md",
+      "path": ".ai/brain/20-contracts/runtime/SCHEMA-INTERACTION-ISOLATION.md",
       "bytes": 525,
       "sha256": "c5d67106ec6c0b06412661e8c8a89ddceb10ff747beb2c52637589434a0ba23a"
     },
     {
-      "path": ".ai/brain/20-contracts/TOOLING-SAFE-APPLY-CONTRACT.md",
+      "path": ".ai/brain/20-contracts/operations/TOOLING-SAFE-APPLY-CONTRACT.md",
       "bytes": 599,
       "sha256": "e9f9c0cb2a68ef660fc085aa65e1bafb62e7d0ce2e7e0c62b05bb210d0456510"
     },
     {
-      "path": ".ai/brain/20-contracts/USER-ASSIGNMENT-CONTRACT.md",
+      "path": ".ai/brain/20-contracts/runtime/USER-ASSIGNMENT-CONTRACT.md",
       "bytes": 541,
       "sha256": "3abf509d347e6bc58394c2629dccdfa5bebc3afd13710f4dfd8d9b4e8b998caf"
     },
@@ -201,27 +201,27 @@
       "sha256": "ec2d65a16cd74f1592a356ddaafd95ca8c611e5c061bf7f7aacc3f3f8f743346"
     },
     {
-      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/runtime/ACCESS-OWNERSHIP-CONTRACT.md",
       "bytes": 445,
       "sha256": "021141693ea6082d38cba0d35439b3a4d3a73ede02a74118859582340449d04d"
     },
     {
-      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/configuration/CONFIG-RUNTIME-BOUNDARY.md",
       "bytes": 437,
       "sha256": "96c04fa5a2477e568dd1303525f164c158e2620ebf8d93b584de2b39aae9dc13"
     },
     {
-      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/runtime/FORM-TRANSACTION-CONTRACT.md",
       "bytes": 703,
       "sha256": "92861a398d29e937a7b0321806a1a61f1ed9aee35381a39d2d982129a0f2bd7e"
     },
     {
-      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/runtime/SCHEMA-VALUE-CODEC.md",
       "bytes": 366,
       "sha256": "f5ef95e96a5a2ef91c3dd2a41be3da2cfe42d7238c8e16667f05f79cf7b20daf"
     },
     {
-      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md",
+      "path": ".ai/archive/migrations/digital-agreements-runtime-../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/runtime/SNAPSHOT-VERSIONING-CONTRACT.md",
       "bytes": 418,
       "sha256": "091b63d0807bcc92218d68ccefc77c6685a9f79a70c8934fa00040f076a38cf2"
     },

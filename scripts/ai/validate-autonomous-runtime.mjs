@@ -7,10 +7,10 @@ const root = path.resolve(process.argv[2] || '.');
 const required = [
   '.ai/prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md',
   '.ai/knowledge/runtime-platform/TASK-QUEUE.json',
-  '.ai/brain/20-contracts/CAPABILITY-RESOLUTION-CONTRACT.md',
-  '.ai/brain/20-contracts/CONFIG-COMPILATION-CONTRACT.md',
-  '.ai/brain/20-contracts/GRID-GEOMETRY-CONTRACT.md',
-  '.ai/brain/20-contracts/AUTONOMOUS-EXECUTION-CONTRACT.md',
+  '.ai/brain/20-contracts/configuration/CAPABILITY-RESOLUTION-CONTRACT.md',
+  '.ai/brain/20-contracts/configuration/CONFIG-COMPILATION-CONTRACT.md',
+  '.ai/brain/20-contracts/configuration/GRID-GEOMETRY-CONTRACT.md',
+  '.ai/brain/20-contracts/operations/AUTONOMOUS-EXECUTION-CONTRACT.md',
   '.ai/scrum/task-cards/runtime-platform/RTP-425.md',
   '.ai/scrum/task-cards/runtime-platform/RTP-545.md',
 ];

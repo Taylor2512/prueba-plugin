@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Locks, owner appearance y políticas colaborativas.
 
-Snapshot: **6 archivos / 1,150 líneas / 34.2 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/collaboration/index.ts` — 441 líneas
 - `src/sisad-pdfme/collaboration/lockManager.ts` — 253 líneas
 - `src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts` — 236 líneas
@@ -20,8 +16,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — collaboration](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [collaboration source index](../../../index/architecture/domains/collaboration.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

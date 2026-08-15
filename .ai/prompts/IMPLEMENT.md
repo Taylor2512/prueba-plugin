@@ -1,5 +1,7 @@
 # IMPLEMENT
 
-Implementa una task activa, máximo cinco archivos productivos, test rojo y trace delta.
+Implementa una task activa respetando claim/context manifest.
 
-No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+Máximo cinco archivos productivos salvo evidence que justifique ampliar el scope.
+Incluye test focal, trace delta, gates y stop condition.
+No expongas chain-of-thought.

@@ -14,6 +14,15 @@
 
 ### Secciones
 
-- [runtime-platform](./runtime-platform/README.md)
+- [Runtime Platform analysis](./runtime-platform/README.md)
 - [sisad-pdfme-runtime-hardening](./sisad-pdfme-runtime-hardening/README.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [runtime-platform](./runtime-platform/README.md)
+- [sisad-pdfme-runtime-hardening](./sisad-pdfme-runtime-hardening/README.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

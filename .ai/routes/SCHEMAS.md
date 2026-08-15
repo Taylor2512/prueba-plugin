@@ -4,7 +4,7 @@
 
 - task activa;
 - skill principal: `schema-family`;
-- `.ai/contracts/SCHEMA-SURFACE-CONTRACT.md`;
+- `.ai/brain/20-contracts/runtime/SCHEMA-SURFACE-CONTRACT.md`;
 - consultas puntuales a catálogos.
 
 ## Output

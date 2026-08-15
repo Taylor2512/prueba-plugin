@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Traducción genérica host ↔ contratos SISAD-PDFME.
 
-Snapshot: **5 archivos / 122 líneas / 4.9 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/adapters/documentsAdapter.ts` — 39 líneas
 - `src/sisad-pdfme/adapters/recipientsAdapter.ts` — 26 líneas
 - `src/sisad-pdfme/adapters/signatureProviderAdapter.ts` — 25 líneas
@@ -19,8 +15,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — adapters](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [adapters source index](../../../index/architecture/domains/adapters.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

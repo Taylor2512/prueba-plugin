@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Snapshot, storage, migration, shortcuts y utilidades compartidas.
 
-Snapshot: **16 archivos / 3,158 líneas / 105.1 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/shared/snapshotAdapter.ts` — 571 líneas
 - `src/sisad-pdfme/shared/keyboardShortcuts.ts` — 339 líneas
 - `src/sisad-pdfme/shared/templateValidator.ts` — 323 líneas
@@ -22,8 +18,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — shared](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [shared source index](../../../index/architecture/domains/shared.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

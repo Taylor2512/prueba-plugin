@@ -28,40 +28,24 @@
       "to": ".ai/architecture/MEMORY-ARCHITECTURE.md"
     },
     {
-      "from": ".ai/archive/generated-domain-artifacts/index.ts",
-      "to": ".ai/archive/generated-domain-artifacts/index.ts"
+      "from": ".ai/archive/campaigns/runtime-hardening/PLAN.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/PLAN.md"
     },
     {
-      "from": ".ai/brain/45-integrations",
-      "to": ".ai/brain/45-integrations"
+      "from": ".ai/archive/campaigns/runtime-hardening/PROMPT-BOOT.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/PROMPT-BOOT.md"
     },
     {
-      "from": ".ai/archive/memory/CURRENT-reconciliation-proposal.md",
-      "to": ".ai/archive/memory/CURRENT-reconciliation-proposal.md"
-    },
-    {
-      "from": ".ai/brain/70-memory/topics/runtime-platform.md",
-      "to": ".ai/brain/70-memory/topics/runtime-platform.md"
-    },
-    {
-      "from": ".ai/index/runtime-platform",
-      "to": ".ai/index/runtime-platform"
-    },
-    {
-      "from": ".ai/knowledge/RUNTIME-PLATFORM-INDEX.md",
-      "to": ".ai/knowledge/RUNTIME-PLATFORM-INDEX.md"
-    },
-    {
-      "from": ".ai/memory/RTP-MEMORY-DELTA.md",
-      "to": ".ai/memory/RTP-MEMORY-DELTA.md"
-    },
-    {
-      "from": ".ai/archive/migrations/digital-agreements-runtime-brain-targets",
-      "to": ".ai/archive/migrations/digital-agreements-runtime-brain-targets"
+      "from": ".ai/archive/campaigns/runtime-hardening/PROMPT-MASTER.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/PROMPT-MASTER.md"
     },
     {
       "from": ".ai/archive/campaigns/runtime-hardening/record",
       "to": ".ai/archive/campaigns/runtime-hardening/record"
+    },
+    {
+      "from": ".ai/archive/campaigns/runtime-hardening/TASK-LEDGER.md",
+      "to": ".ai/archive/campaigns/runtime-hardening/TASK-LEDGER.md"
     },
     {
       "from": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-000.md",
@@ -176,8 +160,400 @@
       "to": ".ai/archive/campaigns/runtime-hardening/tasks/SPRT-270.md"
     },
     {
-      "from": ".ai/archive/campaigns/runtime-hardening/TASK-LEDGER.md",
-      "to": ".ai/archive/campaigns/runtime-hardening/TASK-LEDGER.md"
+      "from": ".ai/archive/generated-domain-artifacts/index.ts",
+      "to": ".ai/archive/generated-domain-artifacts/index.ts"
+    },
+    {
+      "from": ".ai/archive/memory/CURRENT-reconciliation-proposal.md",
+      "to": ".ai/archive/memory/CURRENT-reconciliation-proposal.md"
+    },
+    {
+      "from": ".ai/archive/migrations/digital-agreements-runtime-brain-targets",
+      "to": ".ai/archive/migrations/digital-agreements-runtime-brain-targets"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-001-congelar-baseline-y.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-001-congelar-baseline-y.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-002-adoptar-hot-path.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-002-adoptar-hot-path.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-003-migrar-conocimiento-a-jsonl.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-003-migrar-conocimiento-a-jsonl.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-005-compactar-routes.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-005-compactar-routes.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-006-compactar-skills-y-aliases.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-006-compactar-skills-y-aliases.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-007-consolidar-agentes.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-007-consolidar-agentes.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-008-generar-adapters-de-proveedor.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-008-generar-adapters-de-proveedor.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-009-migrar-memoria-y-ttl.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-009-migrar-memoria-y-ttl.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-010-migrar-lifecycle-de-tareas.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-010-migrar-lifecycle-de-tareas.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-011-consolidar-contratos-de-usuarios-y-color.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-011-consolidar-contratos-de-usuarios-y-color.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-012-consolidar-matriz-de-schemas.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-012-consolidar-matriz-de-schemas.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-013-inventariar-namespace-css.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-013-inventariar-namespace-css.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-014-actualizar-trazabilidad.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-014-actualizar-trazabilidad.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-015-implementar-gates.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-015-implementar-gates.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-016-crear-evals-de-costo-y-precision.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-016-crear-evals-de-costo-y-precision.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-017-migrar-coreux-decl-restore-name.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-017-migrar-coreux-decl-restore-name.md"
+    },
+    {
+      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-018-rollout-y-eliminacion-controlada.md",
+      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-018-rollout-y-eliminacion-controlada.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/ACCESS-AUTHORITY-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/ACCESS-AUTHORITY-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/ACCESS-OWNERSHIP-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/ACCESS-OWNERSHIP-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/AGENT-CLAIM-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/AGENT-CLAIM-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/ARCHIVE-AND-RESIDUE-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/ARCHIVE-AND-RESIDUE-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/signing/ARTIFACT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/signing/ARTIFACT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/AUTONOMOUS-EXECUTION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/AUTONOMOUS-EXECUTION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/documents/CANONICAL-MERGE-CONFLICT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/documents/CANONICAL-MERGE-CONFLICT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/configuration/CAPABILITY-REGISTRY-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/configuration/CAPABILITY-REGISTRY-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/configuration/CAPABILITY-RESOLUTION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/configuration/CAPABILITY-RESOLUTION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/configuration/CONFIG-COMPILATION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/configuration/CONFIG-COMPILATION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/configuration/CONFIG-RUNTIME-BOUNDARY.md",
+      "to": ".ai/brain/20-contracts/configuration/CONFIG-RUNTIME-BOUNDARY.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/integration/DATA-BINDING-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/integration/DATA-BINDING-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/integration/DATA-SOURCE-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/integration/DATA-SOURCE-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/DOCUMENTATION-NAMING.md",
+      "to": ".ai/brain/20-contracts/operations/DOCUMENTATION-NAMING.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/configuration/DYNAMIC-CONFIG-CHANGE-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/configuration/DYNAMIC-CONFIG-CHANGE-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/execution/EXECUTION-CONTEXT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/execution/EXECUTION-CONTEXT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/execution/EXECUTION-PLAN-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/execution/EXECUTION-PLAN-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/execution/EXECUTION-RESULT-CODEC-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/execution/EXECUTION-RESULT-CODEC-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/execution/EXECUTION-RESULT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/execution/EXECUTION-RESULT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/integration/FONT-REGISTRY-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/integration/FONT-REGISTRY-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/FORM-COMPLETION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/FORM-COMPLETION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/FORM-RUNTIME-ISOLATION.md",
+      "to": ".ai/brain/20-contracts/runtime/FORM-RUNTIME-ISOLATION.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/FORM-TRANSACTION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/FORM-TRANSACTION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/FORM-VIEWER-GENERATOR-PARITY.md",
+      "to": ".ai/brain/20-contracts/runtime/FORM-VIEWER-GENERATOR-PARITY.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/configuration/GRID-GEOMETRY-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/configuration/GRID-GEOMETRY-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/integration/HOST-PARTICIPANT-USER-BOUNDARY.md",
+      "to": ".ai/brain/20-contracts/integration/HOST-PARTICIPANT-USER-BOUNDARY.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/integration/HTTP-CLIENT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/integration/HTTP-CLIENT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/configuration/INSPECTOR-CAPABILITY-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/configuration/INSPECTOR-CAPABILITY-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/integration/INTEGRATION-RUNTIME-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/integration/INTEGRATION-RUNTIME-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/INTEGRATOR-LEASE-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/INTEGRATOR-LEASE-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/LEGACY-RETIREMENT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/LEGACY-RETIREMENT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/core/MARKDOWN-TOPOLOGY-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/core/MARKDOWN-TOPOLOGY-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/MEMORY-UPDATE-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/MEMORY-UPDATE-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/MULTI-DOCUMENT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/MULTI-DOCUMENT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/MULTIUSER-FORM-RELEASE-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/MULTIUSER-FORM-RELEASE-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/OPTIMISTIC-CONCURRENCY-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/OPTIMISTIC-CONCURRENCY-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/documents/PDF-COMPOSITION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/documents/PDF-COMPOSITION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/documents/PDF-COMPOSITION-MANIFEST.md",
+      "to": ".ai/brain/20-contracts/documents/PDF-COMPOSITION-MANIFEST.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/documents/PDF-COMPOSITION-SAFETY-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/documents/PDF-COMPOSITION-SAFETY-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/documents/PDF-RESOURCE-LIFECYCLE.md",
+      "to": ".ai/brain/20-contracts/documents/PDF-RESOURCE-LIFECYCLE.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/PRODUCTION-OBJECTIVE-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/PRODUCTION-OBJECTIVE-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/PROVIDER-MODEL-SELECTION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/PROVIDER-MODEL-SELECTION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/core/PUBLIC-API-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/core/PUBLIC-API-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/RUNTIME-SESSION-IDENTITY.md",
+      "to": ".ai/brain/20-contracts/runtime/RUNTIME-SESSION-IDENTITY.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/SAME-REPO-MULTI-AGENT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/SAME-REPO-MULTI-AGENT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/SCHEMA-COMPLETION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/SCHEMA-COMPLETION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/SCHEMA-INTERACTION-INVARIANTS.md",
+      "to": ".ai/brain/20-contracts/runtime/SCHEMA-INTERACTION-INVARIANTS.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/SCHEMA-INTERACTION-ISOLATION.md",
+      "to": ".ai/brain/20-contracts/runtime/SCHEMA-INTERACTION-ISOLATION.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/SCHEMA-MANIFEST-OWNERSHIP-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/SCHEMA-MANIFEST-OWNERSHIP-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/SCHEMA-RUNTIME-MANIFEST.md",
+      "to": ".ai/brain/20-contracts/runtime/SCHEMA-RUNTIME-MANIFEST.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/SCHEMA-VALUE-CODEC.md",
+      "to": ".ai/brain/20-contracts/runtime/SCHEMA-VALUE-CODEC.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/SHARED-VALUE-CONFLICT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/SHARED-VALUE-CONFLICT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/signing/SIGNATURE-ADOPTION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/signing/SIGNATURE-ADOPTION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/signing/SIGNATURE-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/signing/SIGNATURE-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/SNAPSHOT-VERSIONING-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/SNAPSHOT-VERSIONING-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/TASK-STATUS-AUTHORITY-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/TASK-STATUS-AUTHORITY-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/operations/TOOLING-SAFE-APPLY-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/operations/TOOLING-SAFE-APPLY-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/USER-ASSIGNMENT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/USER-ASSIGNMENT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/USER-COMPLETION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/USER-COMPLETION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/45-integrations",
+      "to": ".ai/brain/45-integrations"
+    },
+    {
+      "from": ".ai/brain/70-memory/topics/runtime-platform.md",
+      "to": ".ai/brain/70-memory/topics/runtime-platform.md"
+    },
+    {
+      "from": ".ai/brain/90-reference/ARCHITECTURE-MAP.md",
+      "to": ".ai/brain/90-reference/ARCHITECTURE-MAP.md"
+    },
+    {
+      "from": ".ai/brain/90-reference/ARCHITECTURE-MAP.md",
+      "to": ".ai/brain/90-reference/ARCHITECTURE-MAP.md"
+    },
+    {
+      "from": ".ai/index/architecture/RUNTIME-HOTSPOTS.md",
+      "to": ".ai/index/architecture/RUNTIME-HOTSPOTS.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/designer/CLASS-NAMESPACE-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/designer/CLASS-NAMESPACE-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/configuration/CONFIGURATION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/configuration/CONFIGURATION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/designer/DESIGNER-INTERACTION-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/designer/DESIGNER-INTERACTION-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/designer/DETAILVIEW-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/designer/DETAILVIEW-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/core/EVENT-EFFECT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/core/EVENT-EFFECT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/designer/LEFT-SIDEBAR-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/designer/LEFT-SIDEBAR-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/core/PROJECT-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/core/PROJECT-CONTRACT.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/README.md",
+      "to": ".ai/brain/20-contracts/README.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/RECIPIENT-OWNERSHIP-COLOR.md",
+      "to": ".ai/brain/20-contracts/runtime/RECIPIENT-OWNERSHIP-COLOR.md"
+    },
+    {
+      "from": ".ai/brain/20-contracts/runtime/SCHEMA-SURFACE-CONTRACT.md",
+      "to": ".ai/brain/20-contracts/runtime/SCHEMA-SURFACE-CONTRACT.md"
+    },
+    {
+      "from": ".ai/index/runtime-platform",
+      "to": ".ai/index/runtime-platform"
+    },
+    {
+      "from": ".ai/knowledge/EFFECT-CATALOG.md",
+      "to": ".ai/knowledge/EFFECT-CATALOG.md"
+    },
+    {
+      "from": ".ai/knowledge/EVENT-CATALOG.md",
+      "to": ".ai/knowledge/EVENT-CATALOG.md"
+    },
+    {
+      "from": ".ai/knowledge/RUNTIME-PLATFORM-INDEX.md",
+      "to": ".ai/knowledge/RUNTIME-PLATFORM-INDEX.md"
+    },
+    {
+      "from": ".ai/memory/RTP-MEMORY-DELTA.md",
+      "to": ".ai/memory/RTP-MEMORY-DELTA.md"
     },
     {
       "from": ".ai/plans/AIARCH-EXECUTION-ORDER.md",
@@ -194,10 +570,6 @@
     {
       "from": ".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md",
       "to": ".ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md"
-    },
-    {
-      "from": ".ai/archive/campaigns/runtime-hardening/PLAN.md",
-      "to": ".ai/archive/campaigns/runtime-hardening/PLAN.md"
     },
     {
       "from": ".ai/plans/PLAN-MAESTRO-AI-ARCHITECTURE.md",
@@ -224,14 +596,6 @@
       "to": ".ai/prompts/PROMPT_CODEX_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md"
     },
     {
-      "from": ".ai/archive/campaigns/runtime-hardening/PROMPT-BOOT.md",
-      "to": ".ai/archive/campaigns/runtime-hardening/PROMPT-BOOT.md"
-    },
-    {
-      "from": ".ai/archive/campaigns/runtime-hardening/PROMPT-MASTER.md",
-      "to": ".ai/archive/campaigns/runtime-hardening/PROMPT-MASTER.md"
-    },
-    {
       "from": ".ai/prompts/RTP-CLAUDE-START.md",
       "to": ".ai/prompts/RTP-CLAUDE-START.md"
     },
@@ -252,8 +616,8 @@
       "to": ".ai/prompts/RTP-START.md"
     },
     {
-      "from": ".ai/quality/RUNTIME-PLATFORM-GATES.md",
-      "to": ".ai/quality/RUNTIME-PLATFORM-GATES.md"
+      "from": ".ai/brain/60-quality/RUNTIME-PLATFORM-GATES.md",
+      "to": ".ai/brain/60-quality/RUNTIME-PLATFORM-GATES.md"
     },
     {
       "from": ".ai/research/OFFICIAL-PROVIDER-FINDINGS.md",
@@ -264,20 +628,40 @@
       "to": ".ai/research/RUNTIME-PDF-OFFICIAL-SOURCES.md"
     },
     {
-      "from": ".ai/scrum/MERGE-INSTRUCTIONS.md",
-      "to": ".ai/scrum/MERGE-INSTRUCTIONS.md"
+      "from": ".ai/routes/runtime.md",
+      "to": ".ai/routes/runtime.md"
     },
     {
-      "from": ".ai/scrum/MERGE.md",
-      "to": ".ai/scrum/MERGE.md"
+      "from": ".ai/routes/ux.md",
+      "to": ".ai/routes/ux.md"
     },
     {
-      "from": ".ai/scrum/PRODUCT-BACKLOG-ROWS.md",
-      "to": ".ai/scrum/PRODUCT-BACKLOG-ROWS.md"
+      "from": ".ai/scrum/views/ACTIVE.md",
+      "to": ".ai/scrum/views/ACTIVE.md"
     },
     {
-      "from": ".ai/scrum/RUNTIME-PLATFORM-LEDGER.md",
-      "to": ".ai/scrum/RUNTIME-PLATFORM-LEDGER.md"
+      "from": ".ai/scrum/views/COMPLETED.md",
+      "to": ".ai/scrum/views/COMPLETED.md"
+    },
+    {
+      "from": ".ai/scrum/governance/MERGE-POLICY.md",
+      "to": ".ai/scrum/governance/MERGE-POLICY.md"
+    },
+    {
+      "from": ".ai/scrum/governance/MERGE-POLICY.md",
+      "to": ".ai/scrum/governance/MERGE-POLICY.md"
+    },
+    {
+      "from": ".ai/scrum/views/BACKLOG.md",
+      "to": ".ai/scrum/views/BACKLOG.md"
+    },
+    {
+      "from": ".ai/scrum/views/BACKLOG.md",
+      "to": ".ai/scrum/views/BACKLOG.md"
+    },
+    {
+      "from": ".ai/scrum/views/RUNTIME-PLATFORM.md",
+      "to": ".ai/scrum/views/RUNTIME-PLATFORM.md"
     },
     {
       "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md",
@@ -394,74 +778,6 @@
     {
       "from": ".ai/scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md",
       "to": ".ai/scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-001-congelar-baseline-y.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-001-congelar-baseline-y.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-002-adoptar-hot-path.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-002-adoptar-hot-path.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-003-migrar-conocimiento-a-jsonl.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-003-migrar-conocimiento-a-jsonl.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-005-compactar-routes.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-005-compactar-routes.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-006-compactar-skills-y-aliases.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-006-compactar-skills-y-aliases.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-007-consolidar-agentes.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-007-consolidar-agentes.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-008-generar-adapters-de-proveedor.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-008-generar-adapters-de-proveedor.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-009-migrar-memoria-y-ttl.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-009-migrar-memoria-y-ttl.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-010-migrar-lifecycle-de-tareas.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-010-migrar-lifecycle-de-tareas.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-011-consolidar-contratos-de-usuarios-y-color.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-011-consolidar-contratos-de-usuarios-y-color.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-012-consolidar-matriz-de-schemas.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-012-consolidar-matriz-de-schemas.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-013-inventariar-namespace-css.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-013-inventariar-namespace-css.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-014-actualizar-trazabilidad.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-014-actualizar-trazabilidad.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-015-implementar-gates.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-015-implementar-gates.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-016-crear-evals-de-costo-y-precision.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-016-crear-evals-de-costo-y-precision.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-017-migrar-coreux-decl-restore-name.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-017-migrar-coreux-decl-restore-name.md"
-    },
-    {
-      "from": ".ai/archive/task-cards/ai-architecture-legacy/AI8-018-rollout-y-eliminacion-controlada.md",
-      "to": ".ai/archive/task-cards/ai-architecture-legacy/AI8-018-rollout-y-eliminacion-controlada.md"
     },
     {
       "from": ".ai/scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md",
@@ -924,6 +1240,18 @@
       "to": ".ai/scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md"
     },
     {
+      "from": ".ai/scrum/views/VISUAL-UX.md",
+      "to": ".ai/scrum/views/VISUAL-UX.md"
+    },
+    {
+      "from": ".ai/scrum/governance/VISUAL-UX-POLICY.md",
+      "to": ".ai/scrum/governance/VISUAL-UX-POLICY.md"
+    },
+    {
+      "from": ".ai/scrum/views/VISUAL-UX.md",
+      "to": ".ai/scrum/views/VISUAL-UX.md"
+    },
+    {
       "from": ".ai/templates/TASK-CARD.md",
       "to": ".ai/templates/TASK-CARD.md"
     },
@@ -948,20 +1276,20 @@
       "to": "docs/05-runtime/05-recipient-filtering.md"
     },
     {
-      "from": "docs/08-api-reference/07-configuracion-completa.md",
-      "to": "docs/08-api-reference/07-configuracion-completa.md"
-    },
-    {
       "from": "docs/08-api-reference/05-generator-api.md",
       "to": "docs/08-api-reference/05-generator-api.md"
     },
     {
-      "from": "docs/08-api-reference/08-api-publica-controller-hooks-adapters.md",
-      "to": "docs/08-api-reference/08-api-publica-controller-hooks-adapters.md"
-    },
-    {
       "from": "docs/08-api-reference/06-plugin-api.md",
       "to": "docs/08-api-reference/06-plugin-api.md"
+    },
+    {
+      "from": "docs/08-api-reference/07-configuracion-completa.md",
+      "to": "docs/08-api-reference/07-configuracion-completa.md"
+    },
+    {
+      "from": "docs/08-api-reference/08-api-publica-controller-hooks-adapters.md",
+      "to": "docs/08-api-reference/08-api-publica-controller-hooks-adapters.md"
     },
     {
       "from": "docs/08-api-reference/09-restauracion-y-paridad-api-publica.md",

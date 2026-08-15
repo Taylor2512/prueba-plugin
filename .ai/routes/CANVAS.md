@@ -4,7 +4,7 @@
 
 - task activa;
 - skill principal: `canvas-safety`;
-- `.ai/contracts/DESIGNER-INTERACTION-CONTRACT.md`;
+- `.ai/brain/20-contracts/designer/DESIGNER-INTERACTION-CONTRACT.md`;
 - consultas puntuales a catálogos.
 
 ## Output

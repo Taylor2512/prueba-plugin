@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 import { SISAD_PDFME_HOST_SURFACE_CLASS } from '@/sisad-pdfme/react/hostSurface';
@@ -602,6 +602,60 @@ export const resolvePath = (source, path) => {
 const firstPresent = (...candidates) =>
   candidates.find((candidate) => candidate !== undefined && candidate !== null && candidate !== '');
 
+/**
+ * Estado de interacción por schema, leído del controller.
+ *
+ * Existe para que un gate de navegador pueda aseverar `touched`/`dirty`/
+ * `valid`/`completed` contra el MODELO. Sin esta superficie sólo se puede
+ * mirar el DOM, y el DOM no dice si el runtime considera un campo tocado.
+ *
+ * Se recalcula cuando cambia el log de eventos: cada edición emite uno, así
+ * que el panel sigue al runtime sin sondeos ni temporizadores.
+ */
+export function InteractionPanel({ getController, events }) {
+  const states = useMemo(() => {
+    const controller = getController?.();
+    if (!controller?.getSchemaInteractionStates) return [];
+    return controller.getSchemaInteractionStates();
+    // `events` es la señal de que el runtime cambió; su contenido no se usa.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getController, events]);
+
+  if (states.length === 0) {
+    return (
+      <p className="m-0 text-xs text-slate-400" data-testid="lab-interaction-empty">
+        Sin estado de interacción todavía.
+      </p>
+    );
+  }
+
+  return (
+    <div className="space-y-1" data-testid="lab-interaction-list">
+      {states.map((state) => (
+        <div
+          key={`${state.pageIndex}:${state.schemaUid}`}
+          data-testid={`lab-interaction-${state.schemaName}`}
+          data-touched={String(state.touched)}
+          data-dirty={String(state.dirty)}
+          data-valid={String(state.valid)}
+          data-committed={String(state.committed)}
+          data-completed={String(state.completed)}
+          data-interaction-count={String(state.interactionCount)}
+          className="flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-[11px] text-slate-300"
+        >
+          <span className="truncate font-medium text-slate-200">{state.schemaName}</span>
+          <span className="shrink-0 tabular-nums text-slate-400">
+            {state.touched ? 'T' : '·'}
+            {state.dirty ? 'D' : '·'}
+            {state.valid ? 'V' : '!'}
+            {state.completed ? 'C' : '·'} ×{state.interactionCount}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const PANEL_RENDERERS = {
   metrics: ({ panel, context }) => (
     <MetricGrid
@@ -612,6 +666,9 @@ const PANEL_RENDERERS = {
     />
   ),
   controller: ({ context }) => <ControllerPanel getController={context.getController} />,
+  interaction: ({ context }) => (
+    <InteractionPanel getController={context.getController} events={context.events} />
+  ),
   events: ({ context }) => <EventLog events={context.events} onClear={context.clear} />,
   families: () => <FamilyOverview />,
 };

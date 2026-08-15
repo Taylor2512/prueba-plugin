@@ -9,8 +9,8 @@ const required = [
   ".ai/STATE-SOURCES.md",
   ".ai/brain/HOME.md",
   ".ai/brain/80-work/ACTIVE.md",
-  ".ai/scrum/PRODUCT-BACKLOG.md",
-  ".ai/scrum/RUNTIME-PLATFORM-LEDGER.md",
+  ".ai/scrum/views/BACKLOG.md",
+  ".ai/scrum/views/RUNTIME-PLATFORM.md",
 ];
 
 let failed = false;

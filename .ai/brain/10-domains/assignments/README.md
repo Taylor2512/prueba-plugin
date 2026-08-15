@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Asignación de schemas y ownership.
 
-Snapshot: **1 archivos / 588 líneas / 15.2 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/assignments/index.ts` — 588 líneas
 
 ## Regla
@@ -15,8 +11,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — assignments](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [assignments source index](../../../index/architecture/domains/assignments.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

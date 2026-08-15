@@ -1,5 +1,7 @@
 # REVIEW
 
-Revisa diff independiente: contrato, duplicidad, lifecycle, a11y, tests y rollback.
+Revisa diff de forma independiente: contratos, duplicidad, lifecycle, a11y, tests, seguridad y rollback.
 
-No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+Devuelve findings priorizados y gates faltantes.
+No edites salvo que la task lo autorice explícitamente.
+No expongas chain-of-thought.

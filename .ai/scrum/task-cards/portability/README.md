@@ -21,3 +21,14 @@
 - [Crear consumer test](./PORTDOC-003-consumer-test.md)
 - [Gate de drift documental](./PORTDOC-004-gate-drift-documental.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [Auditar API pública](./PORTDOC-001-auditar-api-publica.md)
+- [Actualizar ejemplos](./PORTDOC-002-actualizar-ejemplos.md)
+- [Crear consumer test](./PORTDOC-003-consumer-test.md)
+- [Gate de drift documental](./PORTDOC-004-gate-drift-documental.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

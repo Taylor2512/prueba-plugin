@@ -4,7 +4,7 @@
 
 - task activa;
 - skill principal: `snapshot`;
-- `.ai/contracts/PROJECT-CONTRACT.md`;
+- `.ai/brain/20-contracts/core/PROJECT-CONTRACT.md`;
 - consultas puntuales a catálogos.
 
 ## Output

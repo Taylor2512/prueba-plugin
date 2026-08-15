@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Wrappers React públicos, controller y recipient runtime.
 
-Snapshot: **14 archivos / 1,027 líneas / 39.2 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/react/SisadPdfmeDesigner.tsx` — 332 líneas
 - `src/sisad-pdfme/react/useSisadPdfmeController.ts` — 328 líneas
 - `src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx` — 114 líneas
@@ -22,8 +18,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — react](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [react source index](../../../index/architecture/domains/react.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

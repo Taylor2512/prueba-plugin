@@ -20,3 +20,11 @@ necesarios y tests/consumidores reales.
 
 - [Files — index.ts](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [Files — index.ts](./FILES.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

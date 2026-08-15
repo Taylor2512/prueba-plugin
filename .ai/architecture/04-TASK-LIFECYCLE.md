@@ -21,7 +21,7 @@ ledger/backlog existente
 Para Runtime Platform:
 
 ```text
-.ai/scrum/RUNTIME-PLATFORM-LEDGER.md
+.ai/scrum/views/RUNTIME-PLATFORM.md
 → .ai/scrum/task-cards/runtime-platform/RTP-*.md
 → reports/runtime-platform/evidence/
 ```

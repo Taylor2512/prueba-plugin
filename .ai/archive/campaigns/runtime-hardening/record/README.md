@@ -12,3 +12,11 @@ External needs are represented only as generic host contracts and consumer-contr
 
 - [Start](./START.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [Start](./START.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

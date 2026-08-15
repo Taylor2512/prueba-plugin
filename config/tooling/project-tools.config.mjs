@@ -49,8 +49,8 @@ const protectedPaths = new Set([
   ".ai/brain/70-memory/CURRENT.md",
   ".ai/brain/70-memory/HANDOFF.md",
   ".ai/brain/80-work/ACTIVE.md",
-  ".ai/scrum/PRODUCT-BACKLOG.md",
-  ".ai/scrum/RUNTIME-PLATFORM-LEDGER.md",
+  ".ai/scrum/views/BACKLOG.md",
+  ".ai/scrum/views/RUNTIME-PLATFORM.md",
 ]);
 
 const generatedPrefixes = [

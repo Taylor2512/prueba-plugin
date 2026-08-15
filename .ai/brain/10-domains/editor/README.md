@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Servicios de edición reusable.
 
-Snapshot: **1 archivos / 178 líneas / 5.0 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/editor/index.ts` — 178 líneas
 
 ## Regla
@@ -15,8 +11,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — editor](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [editor source index](../../../index/architecture/domains/editor.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

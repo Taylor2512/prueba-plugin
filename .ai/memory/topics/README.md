@@ -1,6 +1,9 @@
-# topics
+# Stable memory topics
 
-<!-- sisad-architecture-hub:start -->
+These topics contain durable project facts with TTL/revalidation.
+Operational CURRENT/HANDOFF topics live under `../../brain/70-memory/` and are not duplicated here.
+
+<!-- ai-structure:navigation:start -->
 ## Navigation
 
 - [ai-architecture](./ai-architecture.md)
@@ -9,8 +12,8 @@
 - [runtime](./runtime.md)
 - [schemas](./schemas.md)
 
-> Managed index. Update source documents, not this list.
-<!-- sisad-architecture-hub:end -->
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada

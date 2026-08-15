@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Instrumentación de laboratorio/desarrollo.
 
-Snapshot: **1 archivos / 68 líneas / 2.1 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/devtools/index.ts` — 68 líneas
 
 ## Regla
@@ -15,8 +11,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — devtools](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [devtools source index](../../../index/architecture/domains/devtools.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

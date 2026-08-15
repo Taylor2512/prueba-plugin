@@ -211,6 +211,12 @@
           "type": "events"
         },
         {
+          "key": "interaction",
+          "title": "Estado de interacción",
+          "description": "touched · dirty · valid · completed por schema",
+          "type": "interaction"
+        },
+        {
           "key": "controller",
           "title": "Controles del runtime",
           "description": "Inspecciona template, snapshot, validación, selección y asignación sin salir del Form.",
@@ -275,6 +281,12 @@
           "type": "events"
         },
         {
+          "key": "interaction",
+          "title": "Estado de interacción",
+          "description": "touched · dirty · valid · completed por schema",
+          "type": "interaction"
+        },
+        {
           "key": "controller",
           "title": "Controles del runtime",
           "description": "Inspecciona template, snapshot, validación, selección y asignación sin salir del Form.",
@@ -290,6 +302,81 @@
         }
       },
       "documents": false
+    },
+    {
+      "id": "runtime-form-multi-document",
+      "path": "/runtime/form/multi-document",
+      "title": "Runtime · Form multidocumento",
+      "description": "Mismo esquema en dos documentos para verificar que D1 y D2 no comparten valores.",
+      "shell": "immersive",
+      "instanceId": "runtime-form-multi-document",
+      "runtimeProfile": "runtime-form",
+      "viewportName": "runtime-form-multi-document",
+      "modeBadge": "form",
+      "mode": "form",
+      "collaboration": true,
+      "template": {
+        "builder": "multiUserShowcase",
+        "options": {
+          "familySource": "multiUser"
+        }
+      },
+      "state": {
+        "activeRecipientId": "initializer",
+        "activeDocumentId": "doc-uno"
+      },
+      "actions": {
+        "recipientSelect": {
+          "type": "select",
+          "label": "Usuario activo"
+        },
+        "documentSelect": {
+          "type": "select",
+          "label": "Documento activo"
+        }
+      },
+      "infoPanels": [
+        {
+          "key": "capture",
+          "title": "Captura de datos",
+          "description": "Último campo modificado",
+          "type": "metrics",
+          "metrics": [
+            {
+              "label": "Última entrada",
+              "path": "lastInput",
+              "fallback": "sin cambios"
+            }
+          ]
+        },
+        {
+          "key": "events",
+          "title": "Eventos",
+          "description": "Cambios de input",
+          "type": "events"
+        },
+        {
+          "key": "interaction",
+          "title": "Estado de interacción",
+          "description": "touched · dirty · valid · completed por schema",
+          "type": "interaction"
+        },
+        {
+          "key": "controller",
+          "title": "Controles del runtime",
+          "description": "Inspecciona template, snapshot, validación, selección y asignación sin salir del Form.",
+          "type": "controller"
+        }
+      ],
+      "handlers": {
+        "onInputChange": {
+          "type": "setState",
+          "field": "lastInput",
+          "format": "nameValue",
+          "record": true
+        }
+      },
+      "documents": "multiDocument"
     },
     {
       "id": "runtime-viewer",
@@ -532,6 +619,12 @@
           "title": "Eventos",
           "description": "Cambios de input",
           "type": "events"
+        },
+        {
+          "key": "interaction",
+          "title": "Estado de interacción",
+          "description": "touched · dirty · valid · completed por schema",
+          "type": "interaction"
         },
         {
           "key": "controller",

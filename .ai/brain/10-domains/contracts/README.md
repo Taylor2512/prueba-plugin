@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Eventos, capacidades y contratos tipados.
 
-Snapshot: **7 archivos / 1,834 líneas / 47.7 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/contracts/plugins.ts` — 439 líneas
 - `src/sisad-pdfme/contracts/events.ts` — 334 líneas
 - `src/sisad-pdfme/contracts/comments.ts` — 278 líneas
@@ -21,8 +17,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — contracts](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [contracts source index](../../../index/architecture/domains/contracts.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

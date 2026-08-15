@@ -16,7 +16,7 @@ description: Recipients, owner color, locks and reassignment.
 
 ## References
 
-- `../../.ai/contracts/RECIPIENT-OWNERSHIP-COLOR.md`
+- `../../.ai/brain/20-contracts/runtime/RECIPIENT-OWNERSHIP-COLOR.md`
 
 ## Stop
 

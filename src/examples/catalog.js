@@ -108,13 +108,25 @@ export const IMMERSIVE_ROUTE_OPTIONS = [
 
 export const MULTI_USER_RECIPIENTS = Data.recipients.multiUser;
 
-export const DEMO_DOCUMENTS = Data.demoDocuments.map((document) => ({
+const toDemoDocument = (document) => ({
   id: document.id,
   label: document.label,
   template: buildShowcaseTemplate(
     document.groups.map((group) => ({ title: group.title, types: typesOf(group.familyKeys) })),
   ),
-}));
+});
+
+export const DEMO_DOCUMENTS = Data.demoDocuments.map(toDemoDocument);
+
+/**
+ * Dos documentos con la MISMA estructura de schemas.
+ *
+ * `DEMO_DOCUMENTS` trae plantillas distintas, que sirven para navegar pero no
+ * para probar aislamiento: si los schemas no coinciden no hay forma de afirmar
+ * que un mismo campo vale una cosa en D1 y otra en D2. Este conjunto existe
+ * para esa comprobación (RTP-510.A).
+ */
+export const MULTI_DOCUMENT_DOCUMENTS = Data.multiDocumentSet.map(toDemoDocument);
 
 /* ── Configuración del runtime ────────────────────────────────────────── */
 

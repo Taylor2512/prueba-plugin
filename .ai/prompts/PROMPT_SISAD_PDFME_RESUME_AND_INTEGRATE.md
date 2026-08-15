@@ -36,7 +36,7 @@ Lee sólo:
 4. .ai/ROUTER.md
 5. .ai/prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md
 6. .ai/knowledge/runtime-platform/CURRENT-SNAPSHOT.md
-7. .ai/scrum/RUNTIME-PLATFORM-LEDGER.md
+7. .ai/scrum/views/RUNTIME-PLATFORM.md
 8. evidence de la última task aparentemente cerrada
 9. card de la siguiente task
 10. nearest source/tests

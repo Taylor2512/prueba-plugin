@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Modelo y routing de documentos.
 
-Snapshot: **1 archivos / 269 líneas / 9.4 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/documents/index.ts` — 269 líneas
 
 ## Regla
@@ -15,8 +11,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — documents](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [documents source index](../../../index/architecture/domains/documents.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

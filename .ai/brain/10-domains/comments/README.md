@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Comentarios/anclas sobre documentos/schemas.
 
-Snapshot: **1 archivos / 494 líneas / 12.7 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/comments/index.ts` — 494 líneas
 
 ## Regla
@@ -15,8 +11,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — comments](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [comments source index](../../../index/architecture/domains/comments.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

@@ -32,3 +32,18 @@
 - [Source register](./SOURCE-REGISTER.md)
 - [Índice de casos de uso](./USE-CASE-INDEX.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [domain](./domain/README.md)
+- [runtime-platform](./runtime-platform/README.md)
+- [Catálogo de efectos](./EFFECT-CATALOG.md)
+- [Catálogo de eventos](./EVENT-CATALOG.md)
+- [Execution orchestration index](./EXECUTION-ORCHESTRATION-INDEX.md)
+- [Runtime Platform knowledge pointer](./RUNTIME-PLATFORM-INDEX.md)
+- [Source register](./SOURCE-REGISTER.md)
+- [Índice de casos de uso](./USE-CASE-INDEX.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

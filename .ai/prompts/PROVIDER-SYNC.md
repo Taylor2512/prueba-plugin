@@ -1,5 +1,6 @@
 # PROVIDER-SYNC
 
-Compara adapters Codex/Claude/Copilot contra registries canónicos.
+Compara adapters Claude/Codex/Copilot contra AGENTS, START, routes y skills canónicos.
 
-No expongas chain-of-thought. Usa resultados estructurados y límites de contexto.
+Reporta drift y corrige sólo el adapter, no la regla de negocio canónica.
+No cargues contexto amplio sin una incógnita concreta.

@@ -128,7 +128,7 @@ Read in order:
 5. .ai/knowledge/runtime-platform/CURRENT-SNAPSHOT.md
 6. .ai/knowledge/runtime-platform/SOURCE-PRIORITY.md
 7. .ai/knowledge/runtime-platform/TASK-EXECUTION-MAP.md
-8. .ai/scrum/RUNTIME-PLATFORM-LEDGER.md
+8. .ai/scrum/views/RUNTIME-PLATFORM.md
 9. scripts/ai/runtime-work-queue.mjs output
 
 Run:
@@ -475,11 +475,11 @@ Do not ask whether to continue.
 
 Antes de closeout, el autonomous loop debe cubrir también la arquitectura definida por:
 
-- `.ai/brain/20-contracts/HTTP-CLIENT-CONTRACT.md`
-- `.ai/brain/20-contracts/DATA-SOURCE-CONTRACT.md`
-- `.ai/brain/20-contracts/DATA-BINDING-CONTRACT.md`
-- `.ai/brain/20-contracts/INTEGRATION-RUNTIME-CONTRACT.md`
-- `.ai/brain/20-contracts/FONT-REGISTRY-CONTRACT.md`
+- `.ai/brain/20-contracts/integration/HTTP-CLIENT-CONTRACT.md`
+- `.ai/brain/20-contracts/integration/DATA-SOURCE-CONTRACT.md`
+- `.ai/brain/20-contracts/integration/DATA-BINDING-CONTRACT.md`
+- `.ai/brain/20-contracts/integration/INTEGRATION-RUNTIME-CONTRACT.md`
+- `.ai/brain/20-contracts/integration/FONT-REGISTRY-CONTRACT.md`
 - `.ai/plans/PLAN_SISAD_PDFME_PORTABLE_INTEGRATION_RUNTIME.md`
 
 PokeAPI es exclusivamente example/fixture.

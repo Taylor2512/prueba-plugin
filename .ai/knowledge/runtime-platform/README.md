@@ -25,3 +25,16 @@
 - [Source priority](./SOURCE-PRIORITY.md)
 - [Execution map](./TASK-EXECUTION-MAP.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [Autonomous execution context](./AUTONOMY.md)
+- [Current snapshot](./CURRENT-SNAPSHOT.md)
+- [Runtime architecture hotspots](./HOTSPOTS.md)
+- [Risk register](./RISK-REGISTER.md)
+- [Source priority](./SOURCE-PRIORITY.md)
+- [Execution map](./TASK-EXECUTION-MAP.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

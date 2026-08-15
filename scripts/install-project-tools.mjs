@@ -38,7 +38,7 @@ const payload = [
   "docs/tooling/COMMANDS.md",
   "docs/tooling/ARCHITECTURE-IMPORT.md",
   "docs/tooling/MARKDOWN-SANITIZATION.md",
-  ".ai/brain/20-contracts/DOCUMENTATION-NAMING.md",
+  ".ai/brain/20-contracts/operations/DOCUMENTATION-NAMING.md",
   ".ai/brain/30-decisions/ADR-TOOLING-CENTRALIZATION.md",
   ".ai/brain/50-guides/PROJECT-TOOLS.md",
   ".ai/brain/70-memory/topics/tooling-architecture.md",

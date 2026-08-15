@@ -5,9 +5,9 @@
 
 - range: RTP-425..RTP-545
 - PASS: 17/25
-- next attention: RTP-510 — BLOCKED
+- next attention: RTP-510 — PARTIAL
 
-- RTP-510: BLOCKED
+- RTP-510: PARTIAL
 - RTP-520: PARTIAL (open: RTP-515)
 - RTP-525: PARTIAL (open: RTP-510)
 - RTP-530: BLOCKED (open: RTP-525)

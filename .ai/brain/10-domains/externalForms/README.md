@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Helpers reusable para ejecución host externa.
 
-Snapshot: **1 archivos / 383 líneas / 13.7 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/externalForms/externalFormRunner.ts` — 383 líneas
 
 ## Regla
@@ -15,8 +11,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — externalForms](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [externalForms source index](../../../index/architecture/domains/externalForms.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

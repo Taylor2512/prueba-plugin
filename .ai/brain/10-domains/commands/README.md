@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Comandos públicos/centrales.
 
-Snapshot: **1 archivos / 214 líneas / 5.4 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/commands/index.ts` — 214 líneas
 
 ## Regla
@@ -15,8 +11,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — commands](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [commands source index](../../../index/architecture/domains/commands.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

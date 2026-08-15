@@ -1,14 +1,14 @@
 # Execution orchestration index
 
 ## Contracts
-- `.ai/brain/20-contracts/EXECUTION-CONTEXT-CONTRACT.md`
-- `.ai/brain/20-contracts/EXECUTION-PLAN-CONTRACT.md`
-- `.ai/brain/20-contracts/SCHEMA-COMPLETION-CONTRACT.md`
-- `.ai/brain/20-contracts/USER-COMPLETION-CONTRACT.md`
-- `.ai/brain/20-contracts/SHARED-VALUE-CONFLICT-CONTRACT.md`
-- `.ai/brain/20-contracts/PDF-COMPOSITION-CONTRACT.md`
-- `.ai/brain/20-contracts/PDF-COMPOSITION-MANIFEST.md`
-- `.ai/brain/20-contracts/EXECUTION-RESULT-CONTRACT.md`
+- `.ai/brain/20-contracts/execution/EXECUTION-CONTEXT-CONTRACT.md`
+- `.ai/brain/20-contracts/execution/EXECUTION-PLAN-CONTRACT.md`
+- `.ai/brain/20-contracts/runtime/SCHEMA-COMPLETION-CONTRACT.md`
+- `.ai/brain/20-contracts/runtime/USER-COMPLETION-CONTRACT.md`
+- `.ai/brain/20-contracts/runtime/SHARED-VALUE-CONFLICT-CONTRACT.md`
+- `.ai/brain/20-contracts/documents/PDF-COMPOSITION-CONTRACT.md`
+- `.ai/brain/20-contracts/documents/PDF-COMPOSITION-MANIFEST.md`
+- `.ai/brain/20-contracts/execution/EXECUTION-RESULT-CONTRACT.md`
 
 ## Runtime
 - `.ai/brain/40-runtime/EXECUTION-ORCHESTRATION.md`

@@ -14,6 +14,17 @@ export default defineConfig({
       'antd/es/theme/internal': resolve(__dirname, 'node_modules/antd/es/theme/internal.js'),
     },
   },
+  /**
+   * El runtime automático de JSX, igual que `vite.config.js` vía
+   * `@vitejs/plugin-react` y que `"jsx": "react-jsx"` del tsconfig.
+   *
+   * Sin esto vitest cae en la transformación clásica, que exige `React` en el
+   * scope de cada módulo: importar cualquier surface real desde un test
+   * revienta con `React is not defined` en componentes que —correctamente— no
+   * importan React. Era la razón por la que los contratos sólo podían probar
+   * módulos puros y no la superficie de integración.
+   */
+  esbuild: { jsx: 'automatic' },
   test: {
     environment: 'jsdom',
     globals: true,

@@ -6,7 +6,7 @@ const req=[
  '.ai/brain/HOME.md',
  '.ai/brain/00-product/PRODUCT-IDENTITY.md',
  '.ai/plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md',
- '.ai/scrum/RUNTIME-PLATFORM-LEDGER.md',
+ '.ai/scrum/views/RUNTIME-PLATFORM.md',
  '.ai/scrum/task-cards/runtime-platform/RTP-000.md',
  '.ai/prompts/RTP-START.md',
  '.ai/index/runtime-platform/code-files.jsonl',

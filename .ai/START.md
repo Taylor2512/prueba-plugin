@@ -83,3 +83,13 @@ npm run architecture:verify
 
 Task execution state is evidence + dependency driven. Views are generated.
 <!-- SISAD-MD-REPAIR:.ai/START.md:END -->
+
+<!-- AI-STRUCTURE-CLEANUP:START -->
+## AI structure maintenance
+
+For `.ai/**` cleanup use:
+
+`npm run ai:structure:audit` → `npm run ai:structure:plan` → `npm run ai:structure:apply` → `npm run ai:structure:verify`.
+
+Do not recreate manual Scrum ledgers/views removed by the cleanup.
+<!-- AI-STRUCTURE-CLEANUP:END -->

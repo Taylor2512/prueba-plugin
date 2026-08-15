@@ -22,3 +22,13 @@
 - [Current — Runtime Platform](./CURRENT.md)
 - [Handoff seed](./HANDOFF.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [topics](./topics/README.md)
+- [Current — Runtime Platform](./CURRENT.md)
+- [Handoff seed](./HANDOFF.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

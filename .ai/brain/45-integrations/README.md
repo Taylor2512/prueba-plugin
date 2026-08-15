@@ -19,3 +19,13 @@
 - [ExternalForms -> SISAD-PDFME User execution](./EXTERNAL-FORMS-USER-EXECUTION.md)
 - [DigitalAgreements Designer consumer contract](./SISAD-PDFME-DESIGNER-CONSUMER.md)
 <!-- project-tools:navigation:end -->
+
+<!-- ai-structure:navigation:start -->
+## Navigation
+
+- [DigitalAgreements Recipient -> SISAD-PDFME User](./DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md)
+- [ExternalForms -> SISAD-PDFME User execution](./EXTERNAL-FORMS-USER-EXECUTION.md)
+- [DigitalAgreements Designer consumer contract](./SISAD-PDFME-DESIGNER-CONSUMER.md)
+
+> Generated navigation. Source content outside this block remains manual.
+<!-- ai-structure:navigation:end -->

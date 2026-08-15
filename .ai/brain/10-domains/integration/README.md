@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Fachada declarativa, instance resolver y bundles.
 
-Snapshot: **8 archivos / 1,524 líneas / 50.8 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/integration/resolveSisadPdfmeInstance.ts` — 424 líneas
 - `src/sisad-pdfme/integration/SisadPdfmeInstance.tsx` — 343 líneas
 - `src/sisad-pdfme/integration/index.ts` — 284 líneas
@@ -22,8 +18,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — integration](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [integration source index](../../../index/architecture/domains/integration.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->

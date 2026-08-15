@@ -86,7 +86,11 @@
     "architecture:status": "node scripts/ai/architecture/reconcile-task-statuses.mjs .",
     "architecture:status:apply": "node scripts/ai/architecture/reconcile-task-statuses.mjs . --apply",
     "architecture:hubs": "node scripts/ai/architecture/build-markdown-hubs.mjs .",
-    "architecture:hubs:apply": "node scripts/ai/architecture/build-markdown-hubs.mjs . --apply"
+    "architecture:hubs:apply": "node scripts/ai/architecture/build-markdown-hubs.mjs . --apply",
+    "ai:structure:audit": "node scripts/ai/architecture/ai-structure-maintenance.mjs audit .",
+    "ai:structure:plan": "node scripts/ai/architecture/ai-structure-maintenance.mjs plan .",
+    "ai:structure:apply": "node scripts/ai/architecture/ai-structure-maintenance.mjs apply .",
+    "ai:structure:verify": "node scripts/ai/architecture/ai-structure-maintenance.mjs verify ."
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",

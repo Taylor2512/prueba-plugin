@@ -2,10 +2,6 @@
 
 **Responsabilidad:** Designer/Form/Viewer, Canvas, sidebars, Preview, renderer y engine.
 
-Snapshot: **177 archivos / 49,142 líneas / 1698.2 KB**.
-
-## Hotspots
-
 - `src/sisad-pdfme/ui/components/Designer/index.tsx` — 4536 líneas
 - `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx` — 2133 líneas
 - `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx` — 2029 líneas
@@ -22,8 +18,12 @@ necesarios y tests/consumidores reales.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Notas
-
-- [Files — ui](./FILES.md)
 <!-- project-tools:navigation:end -->
+
+<!-- domain-source-index:start -->
+## Source index
+
+Generated inventory: [ui source index](../../../index/architecture/domains/ui.md).
+
+Do not copy line counts into Brain; source is live authority.
+<!-- domain-source-index:end -->
