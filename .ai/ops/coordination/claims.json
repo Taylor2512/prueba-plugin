@@ -1,46 +1,11 @@
 {
   "copilot": {
     "agent": "copilot",
-    "task": "finish-ai",
+    "task": "RTP-545",
     "mode": "write",
     "paths": [
-      ".ai/BUDGETS.md",
-      ".ai/CONTEXT-BUDGET.md",
-      ".ai/CONTEXT-POLICY.md",
-      ".ai/DECISION-PROTOCOL.md",
-      ".ai/MODEL-ROUTER.md",
-      ".ai/OBSERVABILITY.md",
-      ".ai/ORCHESTRATION.md",
-      ".ai/README.md",
-      ".ai/ROUTER.md",
-      ".ai/START.md",
-      ".ai/STATE-SOURCES.md",
-      ".ai/agents",
-      ".ai/analysis",
-      ".ai/architecture",
-      ".ai/archive",
-      ".ai/brain",
-      ".ai/catalogs",
-      ".ai/evals",
-      ".ai/governance",
-      ".ai/index",
-      ".ai/knowledge",
-      ".ai/memory",
-      ".ai/migrations",
-      ".ai/ops",
-      ".ai/plans",
-      ".ai/playbooks",
-      ".ai/prompts",
-      ".ai/providers",
-      ".ai/research",
-      ".ai/routes",
-      ".ai/scripts",
-      ".ai/scrum",
-      ".ai/skills",
-      ".ai/subagents",
-      ".ai/templates",
-      ".ai/traceability"
+      "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx"
     ],
-    "startedAt": "2026-08-15T15:19:46.187Z"
+    "startedAt": "2026-08-15T15:50:08.674Z"
   }
 }

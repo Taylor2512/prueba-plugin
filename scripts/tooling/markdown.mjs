@@ -244,6 +244,7 @@ export function markdownMetadata(root, abs, config) {
     type: fm.fields.type || fm.fields.kind || null,
     domain: fm.fields.domain || null,
     status: fm.fields.status || null,
+    lines: text ? text.split(/\r?\n/).length : 0,
     words: words(text).length,
     roughTokens: roughTokens(text),
     sha256: normalizedContentHash(text, config),

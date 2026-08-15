@@ -44,7 +44,7 @@ type SchemaOptionsEditorProps = {
  * que todos los tipos tengan todas las claves.
  */
 type OptionGroupSchema = SchemaForUI & {
-  options?: unknown[];
+  options?: Array<string | OptionItem>;
   content?: string;
   selectedOptionId?: string;
   defaultSelectedOptionId?: string;
@@ -141,7 +141,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
   /** Opciones normalizadas de grupos radio/checkbox. */
   const groupNoun = kind === 'checkbox' ? 'Casilla' : 'Opción';
   const groupOptions: OptionItem[] =
-    kind === 'select' ? [] : (normalizeOptionGroupOptions(schema.options, groupNoun) as OptionItem[]);
+    kind === 'select' ? [] : normalizeOptionGroupOptions(schema.options, groupNoun);
 
   /** Opciones normalizadas de select/dropdown. */
   const selectValues: string[] = kind === 'select'

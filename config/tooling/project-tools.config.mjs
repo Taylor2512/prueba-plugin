@@ -165,6 +165,10 @@ export default {
 
   quality: {
     largeFileLines: 700,
+    // Per-directory markdown line limits. Files under `.ai/` must respect
+    // these bounds. Defaults chosen to match the requested rule.
+    aiMarkdownMinLines: 100,
+    aiMarkdownMaxLines: 1000,
     duplicateThresholdPercent: 8,
     wrapperAudit: true,
     deadCodeProduction: true,

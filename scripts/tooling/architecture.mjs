@@ -639,6 +639,31 @@ export function validateArchitecture(root, config) {
     });
   }
 
+  // Enforce line-count rules for files under `.ai/` per configuration.
+  const aiMin = config.quality?.aiMarkdownMinLines ?? 100;
+  const aiMax = config.quality?.aiMarkdownMaxLines ?? 1000;
+
+  for (const node of index.nodes) {
+    if (!node.path) continue;
+    if (node.path === ".ai" || node.path.startsWith(".ai/")) {
+      const lines = typeof node.lines === "number"
+        ? node.lines
+        : (() => {
+          const abs = path.join(root, node.path);
+          const text = readTextSafe(abs);
+          return text ? text.split(/\r?\n/).length : 0;
+        })();
+
+      if (lines < aiMin || lines > aiMax) {
+        errors.push({
+          type: "ai-markdown-file-size",
+          path: node.path,
+          message: `Markdown file under .ai must be between ${aiMin} and ${aiMax} lines (found ${lines}).`,
+        });
+      }
+    }
+  }
+
   return {
     ok: errors.length === 0,
     errors,

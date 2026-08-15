@@ -2186,6 +2186,7 @@
 {"from":".ai/scrum/task-cards/runtime-platform/README.md","to":".ai/scrum/task-cards/runtime-platform/RTP-535.md","fragment":null}
 {"from":".ai/scrum/task-cards/runtime-platform/README.md","to":".ai/scrum/task-cards/runtime-platform/RTP-540.md","fragment":null}
 {"from":".ai/scrum/task-cards/runtime-platform/README.md","to":".ai/scrum/task-cards/runtime-platform/RTP-545.md","fragment":null}
+{"from":".ai/scrum/task-cards/runtime-platform/RTP-545.md","to":".ai/scrum/task-cards/runtime-platform/RTP-545-plan.md","fragment":null}
 {"from":".ai/scrum/task-cards/tooling-architecture/README.md","to":".ai/scrum/task-cards/tooling-architecture/MDA-001.md","fragment":null}
 {"from":".ai/scrum/task-cards/tooling-architecture/README.md","to":".ai/scrum/task-cards/tooling-architecture/MDA-010.md","fragment":null}
 {"from":".ai/scrum/task-cards/tooling-architecture/README.md","to":".ai/scrum/task-cards/tooling-architecture/MDA-020.md","fragment":null}
@@ -3076,6 +3077,7 @@
 {"from":"reports/runtime-platform/evidence/README.md","to":"reports/runtime-platform/evidence/SPRT-010.md","fragment":null}
 {"from":"reports/runtime-platform/evidence/README.md","to":"reports/runtime-platform/evidence/SPRT-020.md","fragment":null}
 {"from":"reports/runtime-platform/evidence/README.md","to":"reports/runtime-platform/evidence/VISUX-inspector-leaks.md","fragment":null}
+{"from":"reports/runtime-platform/evidence/RTP-530.md","to":"reports/runtime-platform/evidence/details/RTP-530-knip-classification.md","fragment":null}
 {"from":"reports/runtime-platform/evidence/details/README.md","to":"reports/runtime-platform/evidence/details/examples-refactor-closeout.md","fragment":null}
 {"from":"reports/runtime-platform/evidence/details/README.md","to":"reports/runtime-platform/evidence/details/form-access-fix.md","fragment":null}
 {"from":"reports/runtime-platform/evidence/details/README.md","to":"reports/runtime-platform/evidence/details/form-all-schema-interaction-hardening.md","fragment":null}
@@ -3086,6 +3088,8 @@
 {"from":"reports/runtime-platform/evidence/details/README.md","to":"reports/runtime-platform/evidence/details/examples-refactor-closeout.md","fragment":null}
 {"from":"reports/runtime-platform/evidence/details/README.md","to":"reports/runtime-platform/evidence/details/form-access-fix.md","fragment":null}
 {"from":"reports/runtime-platform/evidence/details/README.md","to":"reports/runtime-platform/evidence/details/form-all-schema-interaction-hardening.md","fragment":null}
+{"from":"reports/runtime-platform/evidence/details/RTP-530-knip-classification.md","to":"reports/runtime-platform/evidence/details/RTP-530-ui-dead-code.md","fragment":null}
+{"from":"reports/runtime-platform/evidence/details/RTP-530-knip-classification.md","to":"reports/runtime-platform/evidence/details/RTP-530-ui-dead-code.md","fragment":null}
 {"from":"src/sisad-pdfme/README.md","to":"src/sisad-pdfme/common/README.md","fragment":null}
 {"from":"src/sisad-pdfme/README.md","to":"src/sisad-pdfme/converter/README.md","fragment":null}
 {"from":"src/sisad-pdfme/README.md","to":"src/sisad-pdfme/runtime/README.md","fragment":null}
