@@ -1,5 +1,5 @@
 import { cloneDeep } from '@sisad-pdfme/common';
-import { normalizeLooseText } from '../shared/text.js';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 const DEFAULT_TEMPLATE_SCHEMA_VERSION = 2;
 

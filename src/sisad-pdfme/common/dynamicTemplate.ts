@@ -13,8 +13,8 @@
  * Este módulo toca layout/paginación. Evitar cambios amplios sin pruebas con PDFs multipágina.
  */
 
-import { Schema, Template, BasePdf, BlankPdf, CommonOptions } from './types.js';
-import { cloneDeep, isBlankPdf } from './helper.js';
+import { Schema, Template, BasePdf, BlankPdf, CommonOptions } from '@sisad-pdfme/common/types';
+import { cloneDeep, isBlankPdf } from '@sisad-pdfme/common/helper';
 
 /** Floating point tolerance for comparisons */
 const EPSILON = 0.01;

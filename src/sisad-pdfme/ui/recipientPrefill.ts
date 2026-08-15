@@ -27,8 +27,8 @@
  */
 
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { normalizeText } from '../shared/text.js';
-import type { CollaborationRecipientOption } from './collaborationContext.js';
+import { normalizeText } from '@sisad-pdfme/shared/text';
+import type { CollaborationRecipientOption } from '@sisad-pdfme/ui/collaborationContext';
 
 /** Fuentes canónicas, mapeadas a la clave del Usuario. */
 const PREFILL_SOURCE_FIELD = {

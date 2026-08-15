@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import type { CollaboratorUser } from './recipientPalette.js';
+import type { CollaboratorUser } from '@sisad-pdfme/collaboration/recipientPalette';
 
 const normalizeId = (value: unknown): string =>
   typeof value === 'string' ? value.trim() : '';

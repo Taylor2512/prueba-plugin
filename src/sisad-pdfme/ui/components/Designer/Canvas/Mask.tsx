@@ -7,9 +7,9 @@
  */
 import React from 'react';
 import { Size } from '@sisad-pdfme/common';
-import { RULER_HEIGHT, DESIGNER_CLASSNAME } from '../../../constants.js';
+import { RULER_HEIGHT, DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import { theme } from 'antd';
-import { mergeClassNames } from '../shared/className.js';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 /**
  * Props del overlay de máscara.

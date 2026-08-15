@@ -4,8 +4,8 @@
  * Rendering logic lives in textLikeSchemaFactory.ts.
  */
 import { User, Mail, Building2, Briefcase } from 'lucide-react';
-import { renderLucideIcon } from '../schemaBuilder.js';
-import { createTextLikeSchemaPlugin } from './textLikeSchemaFactory.js';
+import { renderLucideIcon } from '@sisad-pdfme/schemas/schemaBuilder';
+import { createTextLikeSchemaPlugin } from '@sisad-pdfme/schemas/textLike/textLikeSchemaFactory';
 
 export const fullName = createTextLikeSchemaPlugin({
   type: 'fullName',

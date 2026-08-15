@@ -33,20 +33,20 @@ import {
 } from 'lucide-react';
 
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import { INLINE_EDITABLE_TEXT_TYPES } from '../../../../../schemas/schemaFamilies.js';
-import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
-import { isOptionGroupType } from '../../../../../schemas/options/optionGroupLayout.js';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import { INLINE_EDITABLE_TEXT_TYPES } from '@sisad-pdfme/schemas/schemaFamilies';
+import { getSchemaTypeLabel } from '@sisad-pdfme/ui/components/Designer/shared/designerLabels';
+import { isOptionGroupType } from '@sisad-pdfme/schemas/options/optionGroupLayout';
 
 import {
   resolveSchemaAccessState,
   type SchemaAccessState,
-} from '../../../../collaboration/schemaRuntimeAccess.js';
+} from '@sisad-pdfme/ui/collaboration/schemaRuntimeAccess';
 
-import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
-import type { ResolvedSisadPdfmeConfig, SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
-import { resolveSisadPdfmeConfig } from '../../../../../config/resolveSisadPdfmeConfig.js';
-import { resolveCapabilityState } from '../../../../../config/capabilityGraph.js';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeVisibilityConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { resolveSisadPdfmeConfig } from '@sisad-pdfme/config/resolveSisadPdfmeConfig';
+import { resolveCapabilityState } from '@sisad-pdfme/config/capabilityGraph';
 
 /**
  * Modo del menú contextual del canvas.

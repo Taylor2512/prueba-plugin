@@ -6,12 +6,12 @@
  *
  * Rule: only `.sisad-pdfme-ui-custom-selectable[data-schema-id]` is selectable.
  */
-import { SELECTABLE_CLASSNAME } from '../../../constants.js';
-import { DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS } from './interactionTargetSelectors.js';
+import { SELECTABLE_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS } from '@sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors';
 import {
   isSelectableCanvasTarget,
   isCanvasSelectionExcludedTarget,
-} from './interactionTargetPolicy.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy';
 
 /** CSS selectors that Selecto must NEVER select. */
 export const SELECTO_EXCLUDED_SELECTORS = DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS;

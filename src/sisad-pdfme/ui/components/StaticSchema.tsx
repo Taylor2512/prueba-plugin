@@ -6,7 +6,7 @@
  */
 import React from 'react';
 import { isBlankPdf, replacePlaceholders, Template, type SchemaForUI } from '@sisad-pdfme/common';
-import Renderer from './Renderer.js';
+import Renderer from '@sisad-pdfme/ui/components/Renderer';
 
 /**
  * Renderiza schemas estáticos declarados en basePdf.staticSchema.

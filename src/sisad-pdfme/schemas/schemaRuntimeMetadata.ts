@@ -20,7 +20,7 @@
  * para el runtime, y `buildSchemaRuntimeManifest` pasa a ser una proyección
  * pura sin listas de tipos propias.
  */
-import { resolveSchemaSemanticFamily, type SchemaSemanticFamily } from './schemaFamilies.js';
+import { resolveSchemaSemanticFamily, type SchemaSemanticFamily } from '@sisad-pdfme/schemas/schemaFamilies';
 
 /** Naturaleza de la interacción que admite un schema. */
 export type SchemaInteractionKind =

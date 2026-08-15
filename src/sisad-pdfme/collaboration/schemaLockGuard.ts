@@ -15,9 +15,9 @@
  * Read-only command IDs (listed in PASSTHROUGH_COMMAND_IDS) are never blocked.
  */
 
-import type { Command } from '../contracts/commands';
-import type { CommandGuard } from '../ui/commands/commandBus.js';
-import type { LockManager } from './lockManager.js';
+import type { Command } from '@sisad-pdfme/contracts/commands';
+import type { CommandGuard } from '@sisad-pdfme/ui/commands/commandBus';
+import type { LockManager } from '@sisad-pdfme/collaboration/lockManager';
 
 /**
  * Resolves the schema UIDs that a command will mutate.

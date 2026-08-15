@@ -1,6 +1,6 @@
 import { Button, Typography } from 'antd';
-import { DESIGNER_CLASSNAME } from '../../../constants.ts';
-import { mergeClassNames } from './className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 const { Text } = Typography;
 

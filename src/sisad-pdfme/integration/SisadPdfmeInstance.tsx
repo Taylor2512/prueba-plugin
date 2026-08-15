@@ -1,5 +1,5 @@
-import { useSisadPdfmeInstance } from './useSisadPdfmeInstance.js';
-import type { SisadPdfmeInstanceInput } from './defineSisadPdfmeInstance.js';
+import { useSisadPdfmeInstance } from '@sisad-pdfme/integration/useSisadPdfmeInstance';
+import type { SisadPdfmeInstanceInput } from '@sisad-pdfme/integration/defineSisadPdfmeInstance';
 
 export type SisadPdfmeInstanceProps = SisadPdfmeInstanceInput;
 

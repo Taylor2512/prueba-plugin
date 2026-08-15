@@ -5,11 +5,11 @@
  * schemas activos. Se usa como adaptador visual entre `form-render`, Ant Design y
  * configuraciones de plugins sin acoplar el DetailView a un tipo concreto.
  */
-import { DESIGNER_CLASSNAME } from "../../../../constants.js";
+import { DESIGNER_CLASSNAME } from "@sisad-pdfme/ui/constants";
 import { Button, Form, Tooltip, theme } from 'antd';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import { isRecord } from '../../../../../shared/objectGuards.js';
-import { mergeClassNames } from '../../shared/className.js';
+import { isRecord } from '@sisad-pdfme/shared/objectGuards';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 /**
  * Configuración declarativa de cada botón del grupo.
  *

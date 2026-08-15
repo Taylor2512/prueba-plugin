@@ -1,6 +1,6 @@
-import type { DesignerEngine } from '../../ui/designerEngine.js';
-import type { SignatureProviderConfig, SignatureProviderKey } from './types.js';
-import { normalizeText } from '../../shared/text.js';
+import type { DesignerEngine } from '@sisad-pdfme/ui/designerEngine';
+import type { SignatureProviderConfig, SignatureProviderKey } from '@sisad-pdfme/schemas/signature/types';
+import { normalizeText } from '@sisad-pdfme/shared/text';
 
 export type SignatureProviderDefinition = {
   key: string;

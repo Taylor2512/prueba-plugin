@@ -11,7 +11,7 @@
  */
 
 import type { Lang, Dict } from '@sisad-pdfme/common';
-import { DEFAULT_LANG } from './constants.js';
+import { DEFAULT_LANG } from '@sisad-pdfme/ui/constants';
 
 const dictEn: Record<keyof Dict, string> = {
   cancel: 'Cancel',

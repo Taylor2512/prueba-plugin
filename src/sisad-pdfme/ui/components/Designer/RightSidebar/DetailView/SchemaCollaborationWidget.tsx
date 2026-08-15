@@ -9,26 +9,26 @@ import React, { useMemo } from 'react';
 import { type PropPanelWidgetProps, type SchemaForUI } from '@sisad-pdfme/common';
 import { Collapse, Divider, Input, InputNumber, Select, Space } from 'antd';
 import { Users } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 import {
   buildEffectiveCollaborationContext,
   resolveSchemaCollaborationState,
-} from '../../../../collaborationContext.js';
+} from '@sisad-pdfme/ui/collaborationContext';
 import {
   resolveSchemaCollaborativeMetadata,
   type DesignerEngine,
   type SchemaCollaborativeState,
-} from '../../../../designerEngine.js';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import CompactConfigPanel from './CompactConfigPanel.js';
+} from '@sisad-pdfme/ui/designerEngine';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import CompactConfigPanel from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel';
 import {
   normalizeRecipientIds,
   resolveOwnerMode,
-} from './schemaCollaborationUtils.js';
-import { resolveSchemaAccessState } from '../../../../collaboration/schemaRuntimeAccess.js';
-import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
-import { SCHEMA_CONFIG_COLLAPSE } from './SchemaConnectionsShared.js';
+} from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils';
+import { resolveSchemaAccessState } from '@sisad-pdfme/ui/collaboration/schemaRuntimeAccess';
+import { resolveSchemaInteractionState } from '@sisad-pdfme/ui/components/Designer/shared/schemaInteractionState';
+import { SCHEMA_CONFIG_COLLAPSE } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared';
 
 ;
 

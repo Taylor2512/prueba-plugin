@@ -11,8 +11,8 @@
  * 4. assignment.scope === 'recipient' && recipientId !== currentRecipientId → wrong_recipient_scope
  * 5. version_conflict detectado → collaboration_conflict
  */
-import type { CommandType, ActionSource } from './commandTypes.js';
-import { MUTATING_ACTIONS, READ_ONLY_SAFE_ACTIONS } from './commandTypes.js';
+import type { CommandType, ActionSource } from '@sisad-pdfme/shared/commandTypes';
+import { MUTATING_ACTIONS, READ_ONLY_SAFE_ACTIONS } from '@sisad-pdfme/shared/commandTypes';
 
 /** Contexto completo de una acción para validación */
 export interface InteractionGuardContext {

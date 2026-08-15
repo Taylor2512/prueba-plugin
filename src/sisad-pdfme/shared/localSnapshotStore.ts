@@ -16,8 +16,8 @@
  * No hay sincronización multi-tab (no se usa BroadcastChannel aquí).
  * Para colaboración real usar el backend REST.
  */
-import type { OfficialTemplateSnapshot } from './snapshot.js';
-import { readJsonStorageValue, resolveBrowserStorage } from './webStorage.js';
+import type { OfficialTemplateSnapshot } from '@sisad-pdfme/shared/snapshot';
+import { readJsonStorageValue, resolveBrowserStorage } from '@sisad-pdfme/shared/webStorage';
 
 // ── Constantes ──────────────────────────────────────────────────────────────
 

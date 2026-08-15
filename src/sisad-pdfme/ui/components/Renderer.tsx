@@ -15,12 +15,12 @@ import {
 } from '@sisad-pdfme/common';
 import { theme as antdTheme } from 'antd';
 import { getSchemaPluginByType as getBuiltInSchemaPluginByType } from '@sisad-pdfme/schemas';
-import { SELECTABLE_CLASSNAME, UI_CLASSNAME } from '../constants.js';
-import { PluginsRegistry, OptionsContext, I18nContext, CacheContext } from '../contexts.js';
-import { resolveSchemaVisualTone, resolveSchemaOwnerColorValue } from '../../schemas/shared/fieldChrome.js';
-import { buildPageMetadataAttrs } from './shared/pageMetadata.js';
-import type { EffectiveCollaborationContext } from '../collaborationContext.js';
-import { resolveSchemaCollaborationState } from '../collaborationContext.js';
+import { SELECTABLE_CLASSNAME, UI_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { PluginsRegistry, OptionsContext, I18nContext, CacheContext } from '@sisad-pdfme/ui/contexts';
+import { resolveSchemaVisualTone, resolveSchemaOwnerColorValue } from '@sisad-pdfme/schemas/shared/fieldChrome';
+import { buildPageMetadataAttrs } from '@sisad-pdfme/ui/components/shared/pageMetadata';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import { resolveSchemaCollaborationState } from '@sisad-pdfme/ui/collaborationContext';
 
 /**
  * Props externas del Renderer.

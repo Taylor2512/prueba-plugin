@@ -1,17 +1,19 @@
 import { getInputFromTemplate } from '@sisad-pdfme/common';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
-import React, { useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import type {
   ResolvedSisadPdfmeConfig,
+  SisadPdfmeController,
   SisadPdfmeGlobalConfig,
-} from '../config/SisadPdfmeConfig.js';
-import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
-import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
-import Form from '../ui/Form.js';
-import Viewer from '../ui/Viewer.js';
-import { useSisadPdfmeRecipientRuntime } from './useSisadPdfmeRecipientRuntime.js';
-import { mergeHostSurfaceClassName } from './hostSurface.js';
-import { mergeSignatureProviders } from './signatureProviderMerge.js';
+} from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { useSisadPdfmeController } from '@sisad-pdfme/react/useSisadPdfmeController';
+import { usePdfmeRuntimeInstance } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
+import type { UsePdfmeRuntimeInstanceConfig } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
+import Form from '@sisad-pdfme/ui/Form';
+import Viewer from '@sisad-pdfme/ui/Viewer';
+import { useSisadPdfmeRecipientRuntime } from '@sisad-pdfme/react/useSisadPdfmeRecipientRuntime';
+import { mergeHostSurfaceClassName } from '@sisad-pdfme/react/hostSurface';
+import { mergeSignatureProviders } from '@sisad-pdfme/react/signatureProviderMerge';
 
 type PreviewMode = 'form' | 'viewer';
 
@@ -46,6 +48,15 @@ export type SisadPdfmePreviewRuntimeProps = {
     name: string;
     value: unknown;
   }) => void;
+  /**
+   * API imperativa de la superficie montada.
+   *
+   * El Designer ya la entregaba; Form y Viewer no, así que un host que montara
+   * un Form no tenía forma de leer template, snapshot ni estado de interacción.
+   * La paridad es lo que permite aseverar `touched`/`dirty`/`valid`/`completed`
+   * contra el modelo en lugar de deducirlos del DOM.
+   */
+  onControllerReady?: (controller: SisadPdfmeController) => void;
   /** Clases adicionales del host. Se suman al contrato base de dimensiones. */
   className?: string;
   /** Estilos inline del host. El host es dueño del viewport. */
@@ -70,6 +81,7 @@ export const SisadPdfmePreviewRuntime = ({
   signatureProviders,
   plugins,
   onInputChange,
+  onControllerReady,
   className,
   style,
 }: SisadPdfmePreviewRuntimeProps) => {
@@ -164,7 +176,16 @@ export const SisadPdfmePreviewRuntime = ({
     ],
   );
 
-  usePdfmeRuntimeInstance(runtimeConfig);
+  const { instanceRef } = usePdfmeRuntimeInstance(runtimeConfig);
+  const controller = useSisadPdfmeController(
+    instanceRef as React.MutableRefObject<Record<string, unknown> | null>,
+  );
+
+  useEffect(() => {
+    onControllerReady?.(controller);
+    // El remontaje por cambio de contexto sustituye la instancia bajo el mismo
+    // controller, así que el host debe volver a leerla tras cada isolationKey.
+  }, [controller, isolationKey, onControllerReady]);
 
   return (
     <div

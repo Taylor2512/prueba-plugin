@@ -1,9 +1,9 @@
 import type { PDFDocumentProxy } from 'pdfjs-dist';
-import type { ImageType } from './types.js';
-import type { Pdf2ImgOptions } from './pdf2img.js';
-import type { Pdf2SizeOptions } from './pdf2size.js';
-import { pdf2img as convertPdfToImages } from './pdf2img.js';
-import { pdf2size as readPdfPageSizes } from './pdf2size.js';
+import type { ImageType } from '@sisad-pdfme/converter/types';
+import type { Pdf2ImgOptions } from '@sisad-pdfme/converter/pdf2img';
+import type { Pdf2SizeOptions } from '@sisad-pdfme/converter/pdf2size';
+import { pdf2img as convertPdfToImages } from '@sisad-pdfme/converter/pdf2img';
+import { pdf2size as readPdfPageSizes } from '@sisad-pdfme/converter/pdf2size';
 
 type ConverterCanvas = HTMLCanvasElement | OffscreenCanvas;
 

@@ -1,6 +1,6 @@
 /** Rejection action schema. Business confirmation and routing remain host-owned. */
 import { XCircle } from 'lucide-react';
-import { createDecisionActionPlugin } from './createDecisionActionPlugin.js';
+import { createDecisionActionPlugin } from '@sisad-pdfme/schemas/actions/createDecisionActionPlugin';
 
 const declinePlugin = createDecisionActionPlugin({
   type: 'decline',

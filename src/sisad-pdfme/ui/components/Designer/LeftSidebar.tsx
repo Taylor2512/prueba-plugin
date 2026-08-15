@@ -2,40 +2,40 @@ import React, { useContext, useEffect, useMemo, useCallback, useRef } from 'reac
 import { Schema, Plugin, BasePdf, getFallbackFontName, cloneDeep } from '@sisad-pdfme/common';
 import { Button } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
-import { DESIGNER_CLASSNAME, LEFT_SIDEBAR_WIDTH } from '../../constants.ts';
-import { normalizeLooseText } from '../../../shared/text.js';
-import { setFontNameRecursively } from '../../helper.js';
-import { OptionsContext, PluginsRegistry } from '../../contexts.js';
-import PluginIcon from './PluginIcon.js';
-import { SidebarFrame } from './RightSidebar/layout.js';
-import type { DesignerComponentBridge, DesignerSidebarPresentation } from '../../types.js';
-import LeftSidebarTabs, { type LeftSidebarTab, type SidebarTabOption } from './LeftSidebarTabs.js';
-import LeftSidebarSearch from './LeftSidebarSearch.js';
-import LeftSidebarCustomPanel, { type RuntimeCustomSchemaDefinition } from './LeftSidebarCustomPanel.js';
-import { LeftSidebarGroup, LeftSidebarEmptyState } from './LeftSidebarGroup.js';
+import { DESIGNER_CLASSNAME, LEFT_SIDEBAR_WIDTH } from '@sisad-pdfme/ui/constants';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
+import { setFontNameRecursively } from '@sisad-pdfme/ui/helper';
+import { OptionsContext, PluginsRegistry } from '@sisad-pdfme/ui/contexts';
+import PluginIcon from '@sisad-pdfme/ui/components/Designer/PluginIcon';
+import { SidebarFrame } from '@sisad-pdfme/ui/components/Designer/RightSidebar/layout';
+import type { DesignerComponentBridge, DesignerSidebarPresentation } from '@sisad-pdfme/ui/types';
+import LeftSidebarTabs, { type LeftSidebarTab, type SidebarTabOption } from '@sisad-pdfme/ui/components/Designer/LeftSidebarTabs';
+import LeftSidebarSearch from '@sisad-pdfme/ui/components/Designer/LeftSidebarSearch';
+import LeftSidebarCustomPanel, { type RuntimeCustomSchemaDefinition } from '@sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel';
+import { LeftSidebarGroup, LeftSidebarEmptyState } from '@sisad-pdfme/ui/components/Designer/LeftSidebarGroup';
 import LeftSidebarCustomFieldModal, {
   type CustomFieldDef,
-} from './LeftSidebarCustomFieldModal.js';
-import { mergeClassNames } from './shared/className.js';
-import type { DesignerRuntimeExtensions } from './shared/designerExtensions.js';
+} from '@sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import type { DesignerRuntimeExtensions } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
 import { builtInSchemaDefinitions, flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import type { SchemaDefinition } from '@sisad-pdfme/schemas';
 import {
   upsertCustomSchemaDefinition,
   createCustomSchemaFromDefinition,
-} from './schemaRegistry.js';
-import useLeftSidebarCatalogState from './useLeftSidebarCatalogState.js';
-import { normalizeHexColor } from './shared/recipientColor.js';
-import { buildAutoPlaceDescriptor } from './shared/schemaAutoPlace.js';
-import { useResponsiveDensity } from './shared/useResponsiveDensity.js';
-import { SidebarRail } from './shared/SidebarRail.js';
-import { CatalogLayoutToggle, type CatalogLayout } from './shared/CatalogLayoutToggle.js';
-import { getCatalogLabel } from './shared/designerLabels.js';
-import { lockDesignerSidebarScroll, unlockDesignerSidebarScroll } from './shared/interactionGuards.js';
-import { SidebarCollapseHandle } from './shared/SidebarCollapseHandle.js';
-import { useSidebarCollapse, resolveShortcutHint } from './shared/useSidebarCollapse.js';
-import { SisadPdfmeContext } from '../../../react/SisadPdfmeContext.js';
-import { useSisadPdfmeConfig } from '../../../react/useSisadPdfmeConfig.js';
+} from '@sisad-pdfme/ui/components/Designer/schemaRegistry';
+import useLeftSidebarCatalogState from '@sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState';
+import { normalizeHexColor } from '@sisad-pdfme/ui/components/Designer/shared/recipientColor';
+import { buildAutoPlaceDescriptor } from '@sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace';
+import { useResponsiveDensity, type DensityMode } from '@sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity';
+import { SidebarRail } from '@sisad-pdfme/ui/components/Designer/shared/SidebarRail';
+import { CatalogLayoutToggle, type CatalogLayout } from '@sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle';
+import { getCatalogLabel } from '@sisad-pdfme/ui/components/Designer/shared/designerLabels';
+import { lockDesignerSidebarScroll, unlockDesignerSidebarScroll } from '@sisad-pdfme/ui/components/Designer/shared/interactionGuards';
+import { SidebarCollapseHandle } from '@sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle';
+import { useSidebarCollapse, resolveShortcutHint } from '@sisad-pdfme/ui/components/Designer/shared/useSidebarCollapse';
+import { SisadPdfmeContext } from '@sisad-pdfme/react/SisadPdfmeContext';
+import { useSisadPdfmeConfig } from '@sisad-pdfme/react/useSisadPdfmeConfig';
 
 const schemaTypeCategoryMap: Record<string, string> = {
   text: 'Texto',
@@ -172,8 +172,29 @@ type ActiveRecipientOption = {
   massiveId?: string | null;
 };
 
-export type CatalogLayout = 'list' | 'tiles' | 'icons';
-export type SidebarDensity = 'comfortable' | 'compact' | 'narrow';
+export type { CatalogLayout };
+
+/**
+ * Densidades reales del catálogo.
+ *
+ * El tipo declaraba `narrow`, un valor que NO existe en ninguna otra parte del
+ * repositorio: `useResponsiveDensity` produce `minimal` y tanto los helpers de
+ * este archivo como `LeftSidebarCustomPanel` comparan contra `minimal`. El
+ * resultado era que TypeScript marcaba como imposibles las comparaciones
+ * correctas y rechazaba el paso de la densidad al panel.
+ */
+export type SidebarDensity = 'comfortable' | 'compact' | 'minimal';
+
+/**
+ * Traduce la densidad responsive a la que este sidebar sabe pintar.
+ *
+ * `useResponsiveDensity` tiene un cuarto modo, `full`, que el catálogo no
+ * distingue: sus helpers ramifican por `minimal` y `compact` y todo lo demás
+ * cae en el trazado ancho. Hacer la conversión explícita conserva ese
+ * comportamiento y deja de mezclar dos vocabularios en las mismas props.
+ */
+const toSidebarDensity = (mode: DensityMode): SidebarDensity =>
+  mode === 'minimal' || mode === 'compact' ? mode : 'comfortable';
 export type CatalogQuickFilter = 'all' | 'favorites' | 'recent';
 export type CatalogCapability = 'designer' | 'content' | 'layout' | 'selection' | 'prefill' | 'dynamic';
 const SHOW_ADVANCED_CATALOG_CONTROLS = false;
@@ -334,7 +355,7 @@ const SidebarButtons = ({
         definitions={filteredCustomDefinitions}
         variant={variant}
         density={sidebarDensityMode}
-        renderItem={renderCustomFieldItem}
+        renderDraggableItem={renderCustomFieldItem}
         resolvePlugin={resolvePlugin}
         onOpenCreate={onOpenCreate}
       />
@@ -1160,11 +1181,12 @@ const LeftSidebar = ({
   const showSearchInput = showSearch ?? isPanel;
   const sidebarRootRef = useRef<HTMLDivElement | null>(null);
   const sidebarScrollLockRef = useRef<ReturnType<typeof lockDesignerSidebarScroll> | null>(null);
-  const { mode: sidebarDensityMode, width: sidebarLiveWidth } = useResponsiveDensity(sidebarRootRef, {
+  const { mode: responsiveDensityMode, width: sidebarLiveWidth } = useResponsiveDensity(sidebarRootRef, {
     comfortable: 232,
     compact: 200,
     minimal: 164,
   });
+  const sidebarDensityMode = toSidebarDensity(responsiveDensityMode);
 
   useEffect(() => {
     if (sidebarLiveWidth <= 0) return;

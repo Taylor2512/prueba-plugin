@@ -1,6 +1,6 @@
-import type { SchemaConfigurationProfile } from './schemaConfigurationProfile.js';
-import type { SisadPdfmeFeatureState } from './featureRegistry.js';
-import { normalizeLooseText } from '../shared/text.js';
+import type { SchemaConfigurationProfile } from '@sisad-pdfme/config/schemaConfigurationProfile';
+import type { SisadPdfmeFeatureState } from '@sisad-pdfme/config/featureRegistry';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 export type SchemaCapabilityContext = {
   catalogEnabledTypes?: ReadonlyArray<string>;

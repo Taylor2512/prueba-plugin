@@ -28,8 +28,8 @@ import {
   type SisadPdfmeEvent,
   type SisadPdfmeEventName,
   type SisadPdfmeEventPayloads,
-} from '../contracts/events.js';
-import type { SisadPdfmeEventHandlers, SisadPdfmeEventName as HostCallbackName } from '../config/SisadPdfmeConfig.js';
+} from '@sisad-pdfme/contracts/events';
+import type { SisadPdfmeEventHandlers, SisadPdfmeEventName as HostCallbackName } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 export type SisadPdfmeEventListener = (event: SisadPdfmeAnyEvent) => void;
 

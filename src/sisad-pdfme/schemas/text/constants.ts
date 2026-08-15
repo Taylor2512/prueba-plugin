@@ -1,4 +1,4 @@
-import { ALIGNMENT, VERTICAL_ALIGNMENT, DYNAMIC_FONT_SIZE_FIT } from './types.js';
+import { ALIGNMENT, VERTICAL_ALIGNMENT, DYNAMIC_FONT_SIZE_FIT } from '@sisad-pdfme/schemas/text/types';
 
 export const DEFAULT_FONT_SIZE = 13;
 

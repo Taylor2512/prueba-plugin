@@ -22,7 +22,7 @@
  * `shared` sustituye el usuario por un marcador de scope compartido explícito,
  * de modo que todos los usuarios de la sesión escriben en la misma celda.
  */
-import type { SchemaValueScope } from './schemaAccess.js';
+import type { SchemaValueScope } from '@sisad-pdfme/runtime/schemaAccess';
 
 export type RuntimeScope = {
   runtimeSessionId: string;

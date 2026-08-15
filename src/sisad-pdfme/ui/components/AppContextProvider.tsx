@@ -9,9 +9,9 @@
  */
 import React, { useCallback, useMemo } from 'react';
 import { ConfigProvider as ThemeConfigProvider } from 'antd';
-import { I18nContext, FontContext, PluginsRegistry, OptionsContext } from '../contexts.js';
-import { i18n, getDict } from '../i18n.js';
-import { defaultTheme, sisadTheme } from '../theme.js';
+import { I18nContext, FontContext, PluginsRegistry, OptionsContext } from '@sisad-pdfme/ui/contexts';
+import { i18n, getDict } from '@sisad-pdfme/ui/i18n';
+import { defaultTheme, sisadTheme } from '@sisad-pdfme/ui/theme';
 import type { Dict, Font, Lang, UIOptions, PluginRegistry } from '@sisad-pdfme/common';
 
 /**

@@ -3,14 +3,14 @@ import {
   applySchemaCollaborativeDefaults,
   createSchemaCreationContext,
   DEFAULT_SCHEMA_CONFIG_STORAGE_KEY,
-} from '../../../designerEngine.js';
-import { uuid } from '../../../helper.js';
-import { resolveSmartDropPosition, type SmartPlacementInput } from '../Canvas/overlays/smartPlacement.js';
-import { createUniqueSchemaVariableName } from './schemaVariableName.js';
-import { filterSchemasByCollisionScope } from './schemaCollision.js';
-import { asRecord, isRecord } from '../../../../shared/objectGuards.js';
-import { normalizeLooseText } from '../../../../shared/text.js';
-import { isOptionGroupType } from '../../../../schemas/options/optionGroupLayout.js';
+} from '@sisad-pdfme/ui/designerEngine';
+import { uuid } from '@sisad-pdfme/ui/helper';
+import { resolveSmartDropPosition, type SmartPlacementInput } from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement';
+import { createUniqueSchemaVariableName } from '@sisad-pdfme/ui/components/Designer/shared/schemaVariableName';
+import { filterSchemasByCollisionScope } from '@sisad-pdfme/ui/components/Designer/shared/schemaCollision';
+import { asRecord, isRecord } from '@sisad-pdfme/shared/objectGuards';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
+import { isOptionGroupType } from '@sisad-pdfme/schemas/options/optionGroupLayout';
 
 /**
  * Controls how recipient assignment and collaboration metadata are handled

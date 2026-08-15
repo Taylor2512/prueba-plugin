@@ -10,8 +10,8 @@
 import {
   LAB_COLLABORATOR_PALETTE,
   decorateCollaborationUsers,
-} from '../collaboration/recipientPalette.js';
-import type { SisadPdfmeRecipient, SisadPdfmeRecipientsConfig } from './recipientTypes.js';
+} from '@sisad-pdfme/collaboration/recipientPalette';
+import type { SisadPdfmeRecipient, SisadPdfmeRecipientsConfig } from '@sisad-pdfme/recipients/recipientTypes';
 
 export { LAB_COLLABORATOR_PALETTE };
 

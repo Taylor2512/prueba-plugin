@@ -6,8 +6,8 @@
  * reutilización desde widgets y builders.
  */
 import { normalizeRecipientIds as normalizeRecipientIdsShared } from '@sisad-pdfme/common';
-export { resolveOwnerMode } from '../../../../collaborationContext.js';
-import type { SchemaCollaborativeState } from '../../../../designerEngine.js';
+export { resolveOwnerMode } from '@sisad-pdfme/ui/collaborationContext';
+import type { SchemaCollaborativeState } from '@sisad-pdfme/ui/designerEngine';
 
 /** Reexporta el normalizador compartido de destinatarios. */
 export { normalizeRecipientIdsShared as normalizeRecipientIds };

@@ -1,4 +1,4 @@
-import type { TextSchema } from '../text/types.js';
+import type { TextSchema } from '@sisad-pdfme/schemas/text/types';
 
 export interface MultiVariableTextSchema extends TextSchema {
   text: string;

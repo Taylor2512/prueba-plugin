@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { SisadPdfmeProviderValue } from '../config/SisadPdfmeConfig.js';
+import type { SisadPdfmeProviderValue } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 /**
  * Contexto del provider de sisad-pdfme.

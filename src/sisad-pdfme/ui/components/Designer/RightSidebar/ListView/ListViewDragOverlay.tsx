@@ -5,14 +5,14 @@
  * of the active field plus any additional selected fields. The overlay is
  * rendered into `document.body` so it is not clipped by sidebar overflow.
  */
-import { DESIGNER_CLASSNAME } from "../../../../constants.js";
+import { DESIGNER_CLASSNAME } from "@sisad-pdfme/ui/constants";
 import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { DragOverlay } from '@dnd-kit/core';
 import { SchemaForUI } from '@sisad-pdfme/common';
-import Item from './Item.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { resolveListViewItemDescriptor } from './listViewItemResolver.js';
+import Item from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { resolveListViewItemDescriptor } from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/listViewItemResolver';
 
 
 /**

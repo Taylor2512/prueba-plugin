@@ -24,7 +24,7 @@ import {
   resolveSchemaCollaborationState,
   type CollaborationRecipientOption,
   type EffectiveCollaborationContext,
-} from '../collaborationContext.js';
+} from '@sisad-pdfme/ui/collaborationContext';
 
 /**
  * Modo runtime donde se evalúa el acceso del schema.

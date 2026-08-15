@@ -14,7 +14,7 @@ import type {
   OwnerAwareSchemaLike,
   SisadPdfmeRecipient,
   SisadPdfmeRecipientsConfig,
-} from './recipientTypes.js';
+} from '@sisad-pdfme/recipients/recipientTypes';
 
 export type RecipientPermissionResolver = {
   canEditStructure(recipient: SisadPdfmeRecipient | null): boolean;

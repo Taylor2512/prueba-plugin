@@ -19,7 +19,7 @@
  * son iguales. Es la operación que el merge canónico usa para decidir si dos
  * ejecuciones realmente divergen (RTP-495).
  */
-import type { SchemaCodecId } from '../schemaRuntimeMetadata.js';
+import type { SchemaCodecId } from '@sisad-pdfme/schemas/schemaRuntimeMetadata';
 
 export type SchemaValueCodec<T = unknown> = {
   id: SchemaCodecId;

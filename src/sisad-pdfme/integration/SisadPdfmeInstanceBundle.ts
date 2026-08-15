@@ -1,16 +1,16 @@
 import {
   validateSisadPdfmeInstanceDefinition,
   type SisadPdfmeInstanceDefinitionIssue,
-} from './validateSisadPdfmeInstanceDefinition.js';
+} from '@sisad-pdfme/integration/validateSisadPdfmeInstanceDefinition';
 import type {
   SisadPdfmeInstanceDefinition,
   SisadPdfmeInstanceResources,
-} from './resolveSisadPdfmeInstance.js';
+} from '@sisad-pdfme/integration/resolveSisadPdfmeInstance';
 import {
   NON_PORTABLE_RESOURCE_KEYS,
   stripSecrets,
   type NonPortableResourceKey,
-} from './http/integrationResources.js';
+} from '@sisad-pdfme/integration/http/integrationResources';
 
 export type SisadPdfmeInstanceBundleVersion = 1;
 

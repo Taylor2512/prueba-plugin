@@ -13,8 +13,8 @@
  * - La resolución del activo respeta `defaultOwnerStrategy` ('none' no elige
  *   fallback automático).
  */
-import { resolveRecipientColors, buildRecipientColorMap } from './recipientColorResolver.js';
-import { recipientsToSnapshot, recipientsFromSnapshot } from './recipientSnapshot.js';
+import { resolveRecipientColors, buildRecipientColorMap } from '@sisad-pdfme/recipients/recipientColorResolver';
+import { recipientsToSnapshot, recipientsFromSnapshot } from '@sisad-pdfme/recipients/recipientSnapshot';
 import type {
   SisadPdfmeRecipient,
   SisadPdfmeRecipientRegistry,
@@ -22,7 +22,7 @@ import type {
   SisadPdfmeRecipientRegistryState,
   SisadPdfmeRecipientsConfig,
   SisadPdfmeRecipientsSnapshot,
-} from './recipientTypes.js';
+} from '@sisad-pdfme/recipients/recipientTypes';
 
 const normalizeRecipientRegistryText = (value: unknown) => String(value ?? '').trim();
 

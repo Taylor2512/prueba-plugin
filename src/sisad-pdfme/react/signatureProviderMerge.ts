@@ -7,7 +7,7 @@
  * fue precisamente lo que dejó `signatureProviders` declarado pero inerte en
  * `SisadPdfmePreviewRuntime`.
  */
-import type { SignatureProviderDefinition } from '../schemas/signature/providerRegistry.js';
+import type { SignatureProviderDefinition } from '@sisad-pdfme/schemas/signature/providerRegistry';
 
 /**
  * Convierte un provider opaco del host en una definición tipada.

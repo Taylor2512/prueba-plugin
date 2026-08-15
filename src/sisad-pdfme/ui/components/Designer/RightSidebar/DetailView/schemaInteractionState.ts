@@ -4,4 +4,4 @@ export {
   type SchemaInteractionBadge,
   type SchemaInteractionState,
   type SchemaInteractionStateContext,
-} from '../../shared/schemaInteractionState.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/schemaInteractionState';

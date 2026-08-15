@@ -1,6 +1,6 @@
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { getCatalogLabel, getSchemaTypeLabel } from '../../shared/designerLabels.js';
-import { normalizeText } from '../../../../../shared/text.js';
+import { getCatalogLabel, getSchemaTypeLabel } from '@sisad-pdfme/ui/components/Designer/shared/designerLabels';
+import { normalizeText } from '@sisad-pdfme/shared/text';
 
 export type SchemaDisplayInfo = {
   primaryLabel: string;

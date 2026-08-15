@@ -1,44 +1,44 @@
 import { cloneDeep, type ChangeSchemaItem, type Plugin, type Schema, type SchemaForUI } from '@sisad-pdfme/common';
-import { normalizeLooseText } from '../shared/text.js';
-import multiVariableText from './multiVariableText/index.js';
-import text from './text/index.js';
-import number from './number/index.js';
-import image from './graphics/image.js';
-import svg from './graphics/svg.js';
-import barcodes from './barcodes/index.js';
-import line from './shapes/line.js';
-import table from './tables/index.js';
-import { rectangle, ellipse } from './shapes/rectAndEllipse.js';
-import dateTime from './date/dateTime.js';
-import date from './date/date.js';
-import time from './date/time.js';
-import select from './select/index.js';
-import radioGroup from './radioGroup/index.js';
-import checkbox from './checkbox/index.js';
-import checkboxGroup from './checkboxGroup/index.js';
-import signature from './signature/index.js';
-import initials from './signature/initials.js';
-import dateSigned from './signature/dateSigned.js';
-import { fullName, emailAddress, company, title } from './textLike/textLikePresets.js';
-import attachment from './actions/attachment.js';
-import note from './actions/note.js';
-import approve from './actions/approve.js';
-import decline from './actions/decline.js';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
+import multiVariableText from '@sisad-pdfme/schemas/multiVariableText';
+import text from '@sisad-pdfme/schemas/text';
+import number from '@sisad-pdfme/schemas/number';
+import image from '@sisad-pdfme/schemas/graphics/image';
+import svg from '@sisad-pdfme/schemas/graphics/svg';
+import barcodes from '@sisad-pdfme/schemas/barcodes';
+import line from '@sisad-pdfme/schemas/shapes/line';
+import table from '@sisad-pdfme/schemas/tables';
+import { rectangle, ellipse } from '@sisad-pdfme/schemas/shapes/rectAndEllipse';
+import dateTime from '@sisad-pdfme/schemas/date/dateTime';
+import date from '@sisad-pdfme/schemas/date/date';
+import time from '@sisad-pdfme/schemas/date/time';
+import select from '@sisad-pdfme/schemas/select';
+import radioGroup from '@sisad-pdfme/schemas/radioGroup';
+import checkbox from '@sisad-pdfme/schemas/checkbox';
+import checkboxGroup from '@sisad-pdfme/schemas/checkboxGroup';
+import signature from '@sisad-pdfme/schemas/signature';
+import initials from '@sisad-pdfme/schemas/signature/initials';
+import dateSigned from '@sisad-pdfme/schemas/signature/dateSigned';
+import { fullName, emailAddress, company, title } from '@sisad-pdfme/schemas/textLike/textLikePresets';
+import attachment from '@sisad-pdfme/schemas/actions/attachment';
+import note from '@sisad-pdfme/schemas/actions/note';
+import approve from '@sisad-pdfme/schemas/actions/approve';
+import decline from '@sisad-pdfme/schemas/actions/decline';
 import {
   flattenSchemaPlugins,
   buildSchemaDefinitionFromPlugin as getSchemaDefinitionFromPlugin,
   listSchemaDefinitions,
   createSchemaPlugin,
   renderLucideIcon,
-} from './schemaBuilder.js';
-import type { SchemaPluginMap, SchemaPluginWithMetadata } from './schemaBuilder.js';
+} from '@sisad-pdfme/schemas/schemaBuilder';
+import type { SchemaPluginMap, SchemaPluginWithMetadata } from '@sisad-pdfme/schemas/schemaBuilder';
 import {
   createSchemaInspectorConfig,
   getSchemaFamilyInspectorPreset,
   getSchemaTypeInspectorPreset,
   normalizeSchemaFamily,
   resolveSchemaFamily,
-} from './schemaFamilies.js';
+} from '@sisad-pdfme/schemas/schemaFamilies';
 
 const schemaPlugins: SchemaPluginMap = {
   text,
@@ -389,19 +389,19 @@ export type {
   SchemaCapability,
   SchemaPluginMap,
   SchemaPluginEntry,
-} from './schemaBuilder.js';
+} from '@sisad-pdfme/schemas/schemaBuilder';
 
 // Export utility functions
 export {
   getDynamicHeightsForTable
-} from './tables/dynamicTemplate.js';
+} from '@sisad-pdfme/schemas/tables/dynamicTemplate';
 
 // Compact designer geometry helpers for option-based groups (radio/checkbox),
 // so callers can size a group's width/height to its option count.
 export {
   optionGroupDesignerWidthMM,
   optionGroupDesignerHeightMM,
-} from './options/optionGroupLayout.js';
+} from '@sisad-pdfme/schemas/options/optionGroupLayout';
 
 export {
   createSvgStr,
@@ -412,4 +412,4 @@ export {
   addAlphaToHex,
   hex2RgbColor,
   hex2PrintingColor,
-} from './utils.js';
+} from '@sisad-pdfme/schemas/utils';

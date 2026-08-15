@@ -1,5 +1,5 @@
 import { cloneDeep } from '@sisad-pdfme/common';
-import type { SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
+import type { SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 export type SisadPdfmeConfigMigrationSeverity = 'info' | 'warning';
 

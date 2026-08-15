@@ -30,12 +30,12 @@ import {
   checkTemplate,
   PDFME_VERSION,
 } from '@sisad-pdfme/common';
-import { BaseUIClass } from './class';
-import { DESTROYED_ERR_MSG } from './constants';
-import DesignerComponent from './components/Designer/index';
-import AppContextProvider from './components/AppContextProvider';
-import { DesignerRuntimeApi } from './types';
-import { SchemaDesignerConfig } from './designerEngine';
+import { BaseUIClass } from '@sisad-pdfme/ui/class';
+import { DESTROYED_ERR_MSG } from '@sisad-pdfme/ui/constants';
+import DesignerComponent from '@sisad-pdfme/ui/components/Designer';
+import AppContextProvider from '@sisad-pdfme/ui/components/AppContextProvider';
+import { DesignerRuntimeApi } from '@sisad-pdfme/ui/types';
+import { SchemaDesignerConfig } from '@sisad-pdfme/ui/designerEngine';
 
 type SchemaConfigMatcher = 'id' | 'name' | 'identity' | 'prefill-source';
 type DesignerTemplateChangeContext = {

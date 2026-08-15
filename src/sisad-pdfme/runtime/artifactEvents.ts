@@ -9,7 +9,7 @@
  * Esta traducción es pura: no emite, solo decide qué evento de exportación
  * corresponde. Quien emite es el dispatcher de la instancia.
  */
-import type { SisadPdfmeEventName, SisadPdfmeEventPayloads } from '../contracts/events.js';
+import type { SisadPdfmeEventName, SisadPdfmeEventPayloads } from '@sisad-pdfme/contracts/events';
 
 export type ArtifactStatusEvent = {
   type: string;

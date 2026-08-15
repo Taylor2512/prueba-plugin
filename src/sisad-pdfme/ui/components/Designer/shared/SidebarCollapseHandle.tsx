@@ -1,7 +1,7 @@
 import { Tooltip } from 'antd';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../constants.js';
-import { mergeClassNames } from './className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 export type SidebarCollapseHandleProps = {
   side: 'left' | 'right';

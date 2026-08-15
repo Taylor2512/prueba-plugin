@@ -12,7 +12,7 @@
  * el nodo a mano sin pasar por `beforeinput`. Para esos dos huecos hay una
  * segunda pasada en `input` que revierte al último texto admisible.
  */
-import { isAcceptableNumberInput, type NumberInputPolicy } from './inputPolicy.js';
+import { isAcceptableNumberInput, type NumberInputPolicy } from '@sisad-pdfme/schemas/number/inputPolicy';
 
 /** Tipos de `beforeinput` que sí pueden introducir caracteres nuevos. */
 const isInsertion = (inputType: string) => inputType.startsWith('insert');

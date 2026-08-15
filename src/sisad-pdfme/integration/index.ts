@@ -8,7 +8,7 @@ export {
   type ExternalFormSchemaState,
   type ExternalFormRunnerProps,
   type SchemaVisibility,
-} from '../externalForms/externalFormRunner.js';
+} from '@sisad-pdfme/externalForms/externalFormRunner';
 export {
   Designer,
   Form,
@@ -19,61 +19,61 @@ export {
   PdfViewer,
   RuntimeFormPanel,
   createDesignerRuntimeEventHub,
-} from '../ui/index.js';
+} from '@sisad-pdfme/ui';
 export {
   createSisadPdfmeConfig,
   defaultSisadPdfmeConfig,
   resolveSisadPdfmeConfig,
   createInspectorConfigurationResolver,
-} from '../config/index.js';
+} from '@sisad-pdfme/config';
 export {
   normalizeHostData,
-} from './normalizeHostData.js';
+} from '@sisad-pdfme/integration/normalizeHostData';
 export type {
   SisadPdfmeHostDataAdapters,
   SisadPdfmeHostDataInput,
   SisadPdfmeNormalizedHostData,
-} from './normalizeHostData.js';
+} from '@sisad-pdfme/integration/normalizeHostData';
 export {
   createTemplateFromRecipe,
-} from '../templates/index.js';
+} from '@sisad-pdfme/templates';
 export type {
   SisadPdfmeTemplateRecipe,
   SisadPdfmeTemplateRecipeGroup,
-} from '../templates/index.js';
-export { SisadPdfmeInstance } from './SisadPdfmeInstance.js';
+} from '@sisad-pdfme/templates';
+export { SisadPdfmeInstance } from '@sisad-pdfme/integration/SisadPdfmeInstance';
 export {
   resolveSisadPdfmeInstance,
   useSisadPdfmeInstance,
-} from './useSisadPdfmeInstance.js';
+} from '@sisad-pdfme/integration/useSisadPdfmeInstance';
 export {
   createSisadPdfmeInstanceBundle,
   parseSisadPdfmeInstanceBundle,
   restoreSisadPdfmeInstanceBundle,
   serializeSisadPdfmeInstanceBundle,
   validateSisadPdfmeInstanceBundle,
-} from './SisadPdfmeInstanceBundle.js';
+} from '@sisad-pdfme/integration/SisadPdfmeInstanceBundle';
 export type {
   SisadPdfmeInstanceInput,
   SisadPdfmeRegisteredInstance,
-} from './defineSisadPdfmeInstance.js';
+} from '@sisad-pdfme/integration/defineSisadPdfmeInstance';
 export {
   defineSisadPdfmeInstance,
-} from './defineSisadPdfmeInstance.js';
+} from '@sisad-pdfme/integration/defineSisadPdfmeInstance';
 export {
   validateSisadPdfmeInstanceDefinition,
-} from './validateSisadPdfmeInstanceDefinition.js';
+} from '@sisad-pdfme/integration/validateSisadPdfmeInstanceDefinition';
 export type {
   SisadPdfmeInstanceDefinitionIssue,
   SisadPdfmeInstanceDefinitionIssueSeverity,
-} from './validateSisadPdfmeInstanceDefinition.js';
+} from '@sisad-pdfme/integration/validateSisadPdfmeInstanceDefinition';
 export type {
   SisadPdfmeInstanceBundle,
   SisadPdfmeInstanceBundleInput,
   SisadPdfmeInstanceBundleResources,
   SisadPdfmeInstanceBundleReadResult,
   SisadPdfmeInstanceBundleVersion,
-} from './SisadPdfmeInstanceBundle.js';
+} from '@sisad-pdfme/integration/SisadPdfmeInstanceBundle';
 export type {
   SisadPdfmeInstanceDefinition,
   SisadPdfmeInstanceHandlers,
@@ -89,7 +89,7 @@ export type {
   SisadPdfmeInstanceStateFieldName,
   SisadPdfmeInstanceStateInput,
   SisadPdfmeInstanceResources,
-} from './resolveSisadPdfmeInstance.js';
+} from '@sisad-pdfme/integration/resolveSisadPdfmeInstance';
 import {
   SisadPdfmeProvider,
   SisadPdfmeDesigner,
@@ -101,7 +101,7 @@ import {
   useSisadPdfmeFeature,
   useSisadPdfmeAction,
   useSisadPdfmeComponent,
-} from '../react/index.js';
+} from '@sisad-pdfme/react';
 export {
   SisadPdfmeProvider,
   SisadPdfmeDesigner,
@@ -134,10 +134,10 @@ export type {
   SisadPdfmeUiClassNamesConfig,
   SisadPdfmeUiConfig,
   SisadPdfmeVisibilityConfig,
-} from '../config/index.js';
+} from '@sisad-pdfme/config';
 export type {
   InspectorConfigurationResolver,
-} from '../config/index.js';
+} from '@sisad-pdfme/config';
 export {
   createRecipientRegistry,
   normalizeRecipients,
@@ -152,7 +152,7 @@ export {
   recipientsToSnapshot,
   recipientsFromSnapshot,
   useRecipientRegistry,
-} from '../recipients/index.js';
+} from '@sisad-pdfme/recipients';
 export type {
   SchemaOwnerAppearance,
   SisadPdfmeAssignmentChangePayload,
@@ -160,20 +160,20 @@ export type {
   SisadPdfmeRecipientRegistryState,
   SisadPdfmeRecipientsConfig,
   SisadPdfmeRecipientsSnapshot,
-} from '../recipients/index.js';
+} from '@sisad-pdfme/recipients';
 export {
   createDocumentsAdapter,
   createPersistenceAdapter,
   createRecipientsAdapter,
   createSignatureProviderAdapter,
-} from '../adapters/index.js';
+} from '@sisad-pdfme/adapters';
 export {
   generatePdf as generateTemplatePdf,
   generatePdf,
   generatePdfBuffer,
   generatePdfWithPreflight,
   buildDynamicTemplate,
-} from '../generator/index.js';
+} from '@sisad-pdfme/generator';
 export {
   img2pdf as convertImagesToPdf,
   pdf2img as getPdfPageImages,
@@ -185,7 +185,7 @@ export {
   buildRuntimeFormOptions,
   buildRuntimeViewerOptions,
   DEFAULT_RUNTIME_THEME_TOKEN,
-} from '../runtime/options.js';
+} from '@sisad-pdfme/runtime/options';
 export {
   normalizeTemplatePagesForDocument,
   normalizeDocuments,
@@ -197,7 +197,7 @@ export {
   filterSchemasByFileAndPage,
   reconcileTemplateDocuments,
   mergeDesignerDocumentIntoFile,
-} from '../documents/index.js';
+} from '@sisad-pdfme/documents';
 export {
   CommandBus,
   createCommandBus,
@@ -213,15 +213,15 @@ export {
   createSelectionCommands,
   emitInlineEditRequest,
   setInlineEditRequestHandler,
-} from '../commands/index.js';
+} from '@sisad-pdfme/commands';
 export {
   createObjectUrl,
   revokeObjectUrls,
-} from '../browser/objectUrls.js';
+} from '@sisad-pdfme/browser/objectUrls';
 export {
   downloadUrl,
   downloadJson,
-} from '../browser/downloads.js';
+} from '@sisad-pdfme/browser/downloads';
 export {
   parsePdfmeSnapshot,
   extractDocumentsFromSnapshot,
@@ -231,11 +231,11 @@ export {
   extractAssignmentsFromSnapshot,
   serializeSnapshotForTxt,
   snapshotAdapter,
-} from '../shared/snapshotAdapter.js';
+} from '@sisad-pdfme/shared/snapshotAdapter';
 export {
   makeEmptySnapshot,
   SNAPSHOT_VERSION,
-} from '../contracts/index.js';
+} from '@sisad-pdfme/contracts';
 export {
   getSchemaPluginByType,
   getBuiltInFields,
@@ -245,11 +245,11 @@ export {
   registerPlugins,
   validateSchemaNameUniqueness,
   generateUniqueSchemaName,
-} from '../schemas/index.js';
-export { createSchemaController } from './schemaController.js';
+} from '@sisad-pdfme/schemas';
+export { createSchemaController } from '@sisad-pdfme/integration/schemaController';
 import * as pdfjsLib from 'pdfjs-dist//build/pdf';
 import PDFJSWorkerUrl from 'pdfjs-dist//build/pdf.worker.min.js?url';
-import { getBuiltInFields as getBuiltInFieldsLocal } from '../schemas/index.js';
+import { getBuiltInFields as getBuiltInFieldsLocal } from '@sisad-pdfme/schemas';
 
 /**
  * Configura PDF.js para el worker  usado por SISAD.

@@ -1,14 +1,14 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import type { CommandBus } from '../../../commands/commandBus.js';
+import type { CommandBus } from '@sisad-pdfme/ui/commands/commandBus';
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { DESIGNER_CLASSNAME } from '../../../constants.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import {
   getShortcuts,
   resolveShortcutByKeyboardEvent,
   type ShortcutDefinition,
-} from './keyboardShortcutRegistry.js';
-import type { SelectionCommandSet } from './selectionCommands.js';
-import { isEditableTarget, isFocusInsideDesigner, shouldSuppressDesignerShortcuts } from './interactionGuards.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import { isEditableTarget, isFocusInsideDesigner, shouldSuppressDesignerShortcuts } from '@sisad-pdfme/ui/components/Designer/shared/interactionGuards';
 
 export type ShortcutHandlerContext = {
   activeSchemas: SchemaForUI[];

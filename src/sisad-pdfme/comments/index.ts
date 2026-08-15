@@ -17,8 +17,8 @@ import {
   resolveCommentInSchema,
   updateCommentInSchema,
 } from '@sisad-pdfme/common';
-import { forEachSchemaInPages } from '../common/schemaPageTraversal.js';
-import { normalizeLooseText } from '../shared/text.js';
+import { forEachSchemaInPages } from '@sisad-pdfme/common/schemaPageTraversal';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 /**
  * Entrada parcial para actualizar la posición o asociación de un anchor.

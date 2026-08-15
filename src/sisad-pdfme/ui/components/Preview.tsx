@@ -8,21 +8,21 @@
 import { useContext } from 'react';
 import { SchemaForUI, PreviewProps, Size, replacePlaceholders } from '@sisad-pdfme/common';
 import { theme } from 'antd';
-import UnitPager from './UnitPager.js';
-import Root from './Root.js';
-import ErrorScreen from './ErrorScreen.js';
-import CtlBar from './CtlBar.js';
-import Paper from './Paper.js';
-import Renderer from './Renderer.js';
-import usePreviewRuntime from './usePreviewRuntime.js';
-import type { FormJsonEnvelope } from '../designerEngine';
-import { UI_CLASSNAME } from '../constants.js';
-import { OptionsContext } from '../contexts.js';
+import UnitPager from '@sisad-pdfme/ui/components/UnitPager';
+import Root from '@sisad-pdfme/ui/components/Root';
+import ErrorScreen from '@sisad-pdfme/ui/components/ErrorScreen';
+import CtlBar from '@sisad-pdfme/ui/components/CtlBar';
+import Paper from '@sisad-pdfme/ui/components/Paper';
+import Renderer from '@sisad-pdfme/ui/components/Renderer';
+import usePreviewRuntime from '@sisad-pdfme/ui/components/usePreviewRuntime';
+import type { FormJsonEnvelope } from '@sisad-pdfme/ui/designerEngine';
+import { UI_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { OptionsContext } from '@sisad-pdfme/ui/contexts';
 import {
   buildRecipientNameMap,
   normalizeCollaborationRecipients,
-} from '../collaborationContext.js';
-import { resolveRuntimeSchemaAccess } from '../collaboration/schemaRuntimeAccess.js';
+} from '@sisad-pdfme/ui/collaborationContext';
+import { resolveRuntimeSchemaAccess } from '@sisad-pdfme/ui/collaboration/schemaRuntimeAccess';
 
 /**
  * Componente runtime de vista previa/formulario.

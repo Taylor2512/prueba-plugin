@@ -4,7 +4,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { cmyk, degrees, degreesToRadians, rgb, Color } from 'pdf-lib';
 import { Schema, mm2pt, Mode, isHexValid, ColorType } from '@sisad-pdfme/common';
 import type { IconNode } from 'lucide-react';
-import { getDynamicHeightsForTable as _getDynamicHeightsForTable } from './tables/dynamicTemplate.js';
+import { getDynamicHeightsForTable as _getDynamicHeightsForTable } from '@sisad-pdfme/schemas/tables/dynamicTemplate';
 export const convertForPdfLayoutProps = ({
   schema,
   pageHeight,

@@ -50,16 +50,34 @@ export const normalizeSignerInitials = (value: unknown = ''): string =>
  *
  * Debe incluir destinatario y solicitud: si dos destinatarios comparten clave,
  * el segundo heredaría la firma del primero.
+ *
+ * `documentId` es opcional a propósito, porque las dos políticas son legítimas
+ * y sólo el host sabe cuál aplica:
+ *
+ * - **omitido** — el firmante adopta su estilo UNA vez para toda la solicitud
+ *   y lo reutiliza en todos sus documentos, que es lo habitual en una firma
+ *   de varias piezas;
+ * - **presente** — cada documento exige su propia ceremonia de adopción.
+ *
+ * Sin el parámetro no había forma de expresar la segunda: la clave no podía
+ * distinguir documentos y el aislamiento entre ellos era inalcanzable.
+ * Omitirlo produce exactamente la clave anterior, así que nada existente
+ * cambia de comportamiento.
  */
 export const buildSignatureProfileKey = ({
   requestId,
   recipientId,
+  documentId,
 }: {
   requestId?: unknown;
   recipientId?: unknown;
+  documentId?: unknown;
 } = {}): string | null => {
   const safeRequestId = normalizeText(requestId);
   const safeRecipientId = normalizeText(recipientId);
   if (!safeRequestId || !safeRecipientId) return null;
-  return `sisad-signature:${safeRequestId}:${safeRecipientId}`;
+
+  const safeDocumentId = normalizeText(documentId);
+  const base = `sisad-signature:${safeRequestId}:${safeRecipientId}`;
+  return safeDocumentId ? `${base}:${safeDocumentId}` : base;
 };

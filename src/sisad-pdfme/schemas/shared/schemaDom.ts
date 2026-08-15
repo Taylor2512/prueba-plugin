@@ -2,7 +2,7 @@
  * Shared DOM helpers for schema ui() functions.
  * Reduces repetition of createElement, setAttribute, classList.add, textContent.
  */
-import type { SisadSchemaBase, SchemaVisualFamily } from './schemaTypes.js';
+import type { SisadSchemaBase, SchemaVisualFamily } from '@sisad-pdfme/schemas/shared/schemaTypes';
 
 // ─── Root helpers ─────────────────────────────────────────────────────────────
 

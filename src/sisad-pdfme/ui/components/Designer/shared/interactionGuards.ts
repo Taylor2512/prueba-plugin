@@ -2,8 +2,8 @@ import {
   ANTD_POPUP_SELECTORS,
   DESKTOP_EDITABLE_TARGET_SELECTORS,
   buildSelectorList,
-} from './interactionTargetSelectors.js';
-import { resolveInteractionTarget } from './interactionTargetResolver.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors';
+import { resolveInteractionTarget } from '@sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver';
 
 const ANTD_POPUP_SELECTOR = buildSelectorList(ANTD_POPUP_SELECTORS);
 const DESKTOP_EDITABLE_TARGET_SELECTOR = buildSelectorList(DESKTOP_EDITABLE_TARGET_SELECTORS);

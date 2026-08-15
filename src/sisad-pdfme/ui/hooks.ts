@@ -29,14 +29,14 @@ import { pdf2img, pdf2size } from '@sisad-pdfme/converter';
 import {
   arrayBufferToBase64,
   round,
-} from './helper.js';
-import type { SelectionCommandSet } from './components/Designer/shared/selectionCommands.js';
-import type { CommandBus } from './commands/commandBus.js';
-import { RULER_HEIGHT, PAGE_GAP } from './constants.js';
+} from '@sisad-pdfme/ui/helper';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import type { CommandBus } from '@sisad-pdfme/ui/commands/commandBus';
+import { RULER_HEIGHT, PAGE_GAP } from '@sisad-pdfme/ui/constants';
 import {
   useDesignerKeyboardShortcuts,
-} from './components/Designer/shared/useDesignerKeyboardShortcuts.js';
-import type { SchemaCreationContext } from './designerEngine.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts';
+import type { SchemaCreationContext } from '@sisad-pdfme/ui/designerEngine';
 
 /** Guarda el valor previo de una variable React. */
 export function usePrevious<T>(value: T) {

@@ -19,7 +19,7 @@ import {
   registerActions,
   type ActionContext,
   type SchemaActionDefinition,
-} from './actionRegistry.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/actionRegistry';
 
 export type DesignerActionId = string;
 

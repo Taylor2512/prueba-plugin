@@ -1,4 +1,4 @@
-import { normalizeText } from '../../../../shared/text.js';
+import { normalizeText } from '@sisad-pdfme/shared/text';
 
 export const normalizeHexColor = (rawColor: unknown) => {
   const value = normalizeText(rawColor);

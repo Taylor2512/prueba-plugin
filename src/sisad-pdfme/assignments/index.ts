@@ -6,7 +6,7 @@ import {
   type SchemaAssignments,
   type Template,
 } from '@sisad-pdfme/common';
-import { normalizeLooseText } from '../shared/text.js';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 /**
  * Representa un destinatario mínimo válido para filtrar assignments.

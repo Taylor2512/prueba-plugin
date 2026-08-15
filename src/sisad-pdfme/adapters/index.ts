@@ -1,7 +1,7 @@
-export { createDocumentsAdapter } from './documentsAdapter.js';
-export { createPersistenceAdapter } from './persistenceAdapter.js';
-export { createRecipientsAdapter } from './recipientsAdapter.js';
-export { createSignatureProviderAdapter } from './signatureProviderAdapter.js';
+export { createDocumentsAdapter } from '@sisad-pdfme/adapters/documentsAdapter';
+export { createPersistenceAdapter } from '@sisad-pdfme/adapters/persistenceAdapter';
+export { createRecipientsAdapter } from '@sisad-pdfme/adapters/recipientsAdapter';
+export { createSignatureProviderAdapter } from '@sisad-pdfme/adapters/signatureProviderAdapter';
 export type {
   SisadPdfmeDocument,
   SisadPdfmeDocumentsAdapter,
@@ -9,7 +9,7 @@ export type {
   SisadPdfmeRecipientsAdapter,
   SisadPdfmeSignatureProvider,
   SisadPdfmeSignatureProviderAdapter,
-} from '../config/SisadPdfmeConfig.js';
+} from '@sisad-pdfme/config/SisadPdfmeConfig';
 export type {
   SisadPdfmeRecipient,
-} from '../recipients/index.js';
+} from '@sisad-pdfme/recipients';

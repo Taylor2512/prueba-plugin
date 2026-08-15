@@ -1,8 +1,8 @@
 import type { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import { isEditable } from '../utils.js';
-import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
+import { isEditable } from '@sisad-pdfme/schemas/utils';
+import { createSchemaPlugin, renderLucideIcon } from '@sisad-pdfme/schemas/schemaBuilder';
 import { SquareCheck } from 'lucide-react';
-import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
+import type { GroupMeta } from '@sisad-pdfme/shared/schemaDesignerMeta';
 import {
   createDesignerOptionGroupEl,
   syncDesignerOptionGroupPatch,
@@ -13,28 +13,28 @@ import {
   renderOptionGroupUi,
   resolveOptionGroupReadOnly,
   createOptionGroupPropPanelConfig,
-} from '../options/optionGroupFactory.js';
+} from '@sisad-pdfme/schemas/options/optionGroupFactory';
 import {
   clampMultiOptionSelection,
   resolveMultiOptionSelection,
   toggleMultiOptionSelection,
-} from '../options/optionSelectionBehavior.js';
-import { createOptionGroupOptionsEditor } from '../options/optionGroupEditorFactory.js';
-import type { OptionItem } from '../options/optionTypes.js';
+} from '@sisad-pdfme/schemas/options/optionSelectionBehavior';
+import { createOptionGroupOptionsEditor } from '@sisad-pdfme/schemas/options/optionGroupEditorFactory';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
 import {
   buildDefaultOptionGroupOptions,
   normalizeOptionId,
   normalizeOptionGroupOptions,
   normalizeOptionText,
-} from '../options/optionModel.js';
-import { renderOptionGroupPdf } from '../options/optionGroupPdfRender.js';
-import { markInspectorInteractive } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
+} from '@sisad-pdfme/schemas/options/optionModel';
+import { renderOptionGroupPdf } from '@sisad-pdfme/schemas/options/optionGroupPdfRender';
+import { markInspectorInteractive } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 
 // ─── Designer compact geometry constants ────────────────────────────────────
 // The + button is rendered as an external overlay (GroupOptionFloatingAction),
 // so the bounding box covers ONLY the stacked indicator squares.
 
-import { CHECKBOX_GROUP_LAYOUT } from '../options/optionGroupLayout.js';
+import { CHECKBOX_GROUP_LAYOUT } from '@sisad-pdfme/schemas/options/optionGroupLayout';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 

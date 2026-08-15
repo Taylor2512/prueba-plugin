@@ -5,7 +5,7 @@
  * una máscara de interacción. Mantiene esta decisión fuera de Canvas.tsx.
  */
 
-import type { CanvasRenderState } from '../../../../../canvas/canvasRenderState.js';
+import type { CanvasRenderState } from '@sisad-pdfme/canvas/canvasRenderState';
 
 /**
  * Razones normalizadas por las que el canvas debe bloquear interacción.

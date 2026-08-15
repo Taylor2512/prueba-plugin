@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tooltip } from 'antd';
-import { DESIGNER_CLASSNAME } from '../../../constants.js';
-import { mergeClassNames } from './className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 export type SidebarRailItem = {
   key: string;

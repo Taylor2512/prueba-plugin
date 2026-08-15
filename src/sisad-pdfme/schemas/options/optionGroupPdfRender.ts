@@ -1,6 +1,6 @@
 import type { PDFRenderProps, Schema } from '@sisad-pdfme/common';
-import type { OptionItem } from './optionTypes.js';
-import { convertForPdfLayoutProps, hex2PrintingColor } from '../utils.js';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
+import { convertForPdfLayoutProps, hex2PrintingColor } from '@sisad-pdfme/schemas/utils';
 
 export type OptionGroupPdfParams = {
   page: PDFRenderProps<Schema>['page'];

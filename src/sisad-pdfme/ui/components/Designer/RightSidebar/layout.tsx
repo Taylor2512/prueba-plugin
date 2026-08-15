@@ -1,6 +1,6 @@
 import React from 'react';
-import { DESIGNER_CLASSNAME } from '../../../constants.js';
-import { mergeClassNames } from '../shared/className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 /** Padding horizontal estándar del sidebar derecho, en píxeles. */
 export const SIDEBAR_H_PADDING_PX = 12;

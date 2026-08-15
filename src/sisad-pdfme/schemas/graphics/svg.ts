@@ -5,9 +5,9 @@ import {
   addAlphaToHex,
   createErrorElm,
   createSvgStr,
-} from '../utils.js';
+} from '@sisad-pdfme/schemas/utils';
 import { Route } from 'lucide-react';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
 
 const isValidSVG = (svgString: string): boolean => {
   try {

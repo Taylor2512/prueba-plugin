@@ -1,11 +1,11 @@
-import type { ShortcutDefinition, ShortcutPlatform } from './keyboardShortcuts.js';
+import type { ShortcutDefinition, ShortcutPlatform } from '@sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts';
 import {
   DESIGNER_SHORTCUTS,
   detectShortcutPlatform,
   isMacShortcutPlatform,
-} from './keyboardShortcuts.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts';
 
-export type { ShortcutDefinition, ShortcutPlatform } from './keyboardShortcuts.js';
+export type { ShortcutDefinition, ShortcutPlatform } from '@sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts';
 
 const registry = new Map<string, ShortcutDefinition>();
 const orderedIds: string[] = [];

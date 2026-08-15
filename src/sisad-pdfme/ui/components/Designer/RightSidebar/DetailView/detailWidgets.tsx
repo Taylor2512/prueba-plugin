@@ -7,9 +7,9 @@
  */
 import { Input, Popover, Tooltip } from 'antd';
 import { Palette, Pipette } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 
 /**
  * Paleta rápida de colores frecuentes para el inspector.

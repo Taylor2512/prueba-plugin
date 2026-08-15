@@ -6,7 +6,7 @@
  * que anidaba dos controles interactivos y provocaba propagación doble, foco
  * inconsistente y comportamiento distinto entre navegadores.
  */
-import { InspectorBooleanSwitch } from './InspectorBooleanSwitch.js';
+import { InspectorBooleanSwitch } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorBooleanSwitch';
 
 export type InspectorSwitchProps = {
   checked?: boolean;

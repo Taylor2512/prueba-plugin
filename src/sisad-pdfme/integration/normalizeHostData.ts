@@ -3,17 +3,17 @@ import {
   createDocumentsAdapter,
   createRecipientsAdapter,
   createSignatureProviderAdapter,
-} from '../adapters/index.js';
+} from '@sisad-pdfme/adapters';
 import type {
   SisadPdfmeDocument,
   SisadPdfmeDocumentsAdapter,
   SisadPdfmeRecipientsAdapter,
   SisadPdfmeSignatureProvider,
   SisadPdfmeSignatureProviderAdapter,
-} from '../config/SisadPdfmeConfig.js';
+} from '@sisad-pdfme/config/SisadPdfmeConfig';
 import type {
   SisadPdfmeRecipient,
-} from '../recipients/index.js';
+} from '@sisad-pdfme/recipients';
 
 export type SisadPdfmeHostDataAdapters = {
   recipients?: SisadPdfmeRecipientsAdapter<unknown>;

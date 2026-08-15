@@ -5,10 +5,10 @@
  * Approve/decline use createActionButtonEl from schemaDom.
  * Note/attachment use their own container helpers below.
  */
-import type { SisadSchemaBase } from '../shared/schemaTypes.js';
+import type { SisadSchemaBase } from '@sisad-pdfme/schemas/shared/schemaTypes';
 import type { PDFPage, RGB } from 'pdf-lib';
-import { applyFieldChrome, mixHexColor, resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
-import { createSchemaPart } from '../shared/schemaDom.js';
+import { applyFieldChrome, mixHexColor, resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
+import { createSchemaPart } from '@sisad-pdfme/schemas/shared/schemaDom';
 
 type ActionChromeColor = readonly [number, number, number];
 

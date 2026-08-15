@@ -8,7 +8,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Input } from 'antd';
 import type { InputRef } from 'antd';
-import { resolveSelectionToolbarPosition } from './floatingSurfaceGeometry.js';
+import { resolveSelectionToolbarPosition } from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry';
 
 /**
  * Sesión de edición inline activa.

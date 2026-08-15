@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Empty, Input, Modal, Tag, Typography } from 'antd';
 import type { InputRef } from 'antd';
-import type { ShortcutDefinition } from '../shared/keyboardShortcuts.js';
-import { formatShortcutForPlatform, getShortcuts } from '../shared/keyboardShortcutRegistry.js';
-import { mergeClassNames } from '../shared/className.js';
+import type { ShortcutDefinition } from '@sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts';
+import { formatShortcutForPlatform, getShortcuts } from '@sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 type ShortcutHelpPanelProps = {
   open: boolean;

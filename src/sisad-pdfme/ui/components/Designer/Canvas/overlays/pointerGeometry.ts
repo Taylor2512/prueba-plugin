@@ -6,7 +6,7 @@
  */
 
 import { px2mm } from '@sisad-pdfme/common';
-import { getPageRectInViewport } from '../../shared/coordinateMath.js';
+import { getPageRectInViewport } from '@sisad-pdfme/ui/components/Designer/shared/coordinateMath';
 
 /**
  * Punto bidimensional genérico en píxeles o milímetros según contexto.

@@ -5,7 +5,7 @@
  * colisiones con campos existentes. Trabaja en unidades del template/PDF.
  */
 
-import { clampPointToPageBounds, type PointLike } from './pointerGeometry.js';
+import { clampPointToPageBounds, type PointLike } from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry';
 
 /**
  * Entrada para resolver una posición de inserción inteligente.

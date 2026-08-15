@@ -1,10 +1,10 @@
 import { DEFAULT_FONT_NAME, Plugin, PDFRenderProps, getFallbackFontName } from '@sisad-pdfme/common';
-import { renderTextUi as textUiRender } from '../text/uiRender.js';
-import { renderTextPdf as textPdfRender } from '../text/pdfRender.js';
-import line from '../shapes/line.js';
-import { rectangle } from '../shapes/rectAndEllipse.js';
-import type { CellSchema } from './types.js';
-import { getCellPropPanelSchema, getDefaultCellStyles } from './helper.js';
+import { renderTextUi as textUiRender } from '@sisad-pdfme/schemas/text/uiRender';
+import { renderTextPdf as textPdfRender } from '@sisad-pdfme/schemas/text/pdfRender';
+import line from '@sisad-pdfme/schemas/shapes/line';
+import { rectangle } from '@sisad-pdfme/schemas/shapes/rectAndEllipse';
+import type { CellSchema } from '@sisad-pdfme/schemas/tables/types';
+import { getCellPropPanelSchema, getDefaultCellStyles } from '@sisad-pdfme/schemas/tables/helper';
 const linePdfRender = line.pdf;
 const rectanglePdfRender = rectangle.pdf;
 

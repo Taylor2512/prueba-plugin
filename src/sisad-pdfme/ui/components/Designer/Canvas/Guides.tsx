@@ -7,8 +7,8 @@
 import React, { Ref } from 'react';
 import GuidesComponent from '@scena/react-guides';
 import { ZOOM, Size } from '@sisad-pdfme/common';
-import { RULER_HEIGHT, DESIGNER_CLASSNAME } from '../../../constants.js';
-import { mergeClassNames } from '../shared/className.js';
+import { RULER_HEIGHT, DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 /**
  * Construye estilos absolutos comunes para esquina y reglas.

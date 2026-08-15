@@ -1,5 +1,5 @@
-import type { OptionItem } from './optionTypes.js';
-import { normalizeOptionText } from './optionModel.js';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
+import { normalizeOptionText } from '@sisad-pdfme/schemas/options/optionModel';
 
 const normalizeOptionIds = (ids: unknown, validIds: Set<string>): string[] => {
   if (!Array.isArray(ids)) return [];

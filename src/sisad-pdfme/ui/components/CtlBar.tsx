@@ -26,14 +26,14 @@ import {
 
 import type { MenuProps } from 'antd';
 import { Button, Dropdown, Select } from 'antd';
-import { I18nContext, OptionsContext } from '../contexts.js';
-import { useMaxZoom } from '../helper.js';
-import { UI_CLASSNAME } from '../constants.js';
-import { mergeClassNames } from './Designer/shared/className.js';
+import { I18nContext, OptionsContext } from '@sisad-pdfme/ui/contexts';
+import { useMaxZoom } from '@sisad-pdfme/ui/helper';
+import { UI_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 import {
   resolveDesignerActionState,
   describeDisabledReason,
-} from './Designer/shared/designerActionState.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/designerActionState';
 
 /**
  * Densidad visual de la barra de control.

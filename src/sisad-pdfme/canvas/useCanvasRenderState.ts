@@ -14,7 +14,7 @@
  */
 
 import { useMemo } from 'react';
-import type { CanvasRenderState } from './canvasRenderState.js';
+import type { CanvasRenderState } from '@sisad-pdfme/canvas/canvasRenderState';
 
 export interface CanvasRenderStateInput {
   /** Number of schemas on the current page */

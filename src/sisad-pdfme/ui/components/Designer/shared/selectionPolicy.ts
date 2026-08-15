@@ -1,4 +1,4 @@
-import { detectShortcutPlatform, type ShortcutPlatform } from './keyboardShortcuts.js';
+import { detectShortcutPlatform, type ShortcutPlatform } from '@sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts';
 
 export type PlatformKind = ShortcutPlatform | 'unknown';
 

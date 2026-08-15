@@ -7,8 +7,8 @@
  */
 import { useContext } from 'react';
 import { Size } from '@sisad-pdfme/common';
-import { I18nContext } from '../contexts.js';
-import { UI_CLASSNAME } from '../constants.js';
+import { I18nContext } from '@sisad-pdfme/ui/contexts';
+import { UI_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import { Result } from 'antd';
 
 /**

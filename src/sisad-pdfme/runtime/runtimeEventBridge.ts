@@ -15,10 +15,10 @@
  * exista contrato tipado para él. A medida que COREUX-007 mueva cada emisor a
  * nombres canónicos, su entrada desaparece de este mapa.
  */
-import type { DesignerRuntimeEvent, DesignerRuntimeEventHub } from '../ui/components/Designer/shared/designerExtensions.js';
-import type { SisadPdfmeEventName } from '../contracts/events.js';
-import { createSisadPdfmeCustomEvent } from '../contracts/events.js';
-import type { InstanceEventDispatcher } from './instanceEventDispatcher.js';
+import type { DesignerRuntimeEvent, DesignerRuntimeEventHub } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
+import type { SisadPdfmeEventName } from '@sisad-pdfme/contracts/events';
+import { createSisadPdfmeCustomEvent } from '@sisad-pdfme/contracts/events';
+import type { InstanceEventDispatcher } from '@sisad-pdfme/runtime/instanceEventDispatcher';
 
 /** Traducción de los `type` internos vigentes a nombres del catálogo. */
 export const RUNTIME_EVENT_TO_DOMAIN_EVENT: Record<string, SisadPdfmeEventName> = {

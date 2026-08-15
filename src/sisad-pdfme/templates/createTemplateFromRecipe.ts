@@ -1,6 +1,6 @@
 import { cloneDeep, type SchemaForUI, type Template } from '@sisad-pdfme/common';
-import { createDefaultSchema } from '../schemas/index.js';
-import { createDefaultTemplate, type CreateDefaultTemplateOptions } from './createDefaultTemplate.js';
+import { createDefaultSchema } from '@sisad-pdfme/schemas';
+import { createDefaultTemplate, type CreateDefaultTemplateOptions } from '@sisad-pdfme/templates/createDefaultTemplate';
 
 export type SisadPdfmeTemplateRecipeGroup = {
   title: string;

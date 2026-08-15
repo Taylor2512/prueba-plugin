@@ -6,8 +6,8 @@
  */
 import { Button, Tooltip } from 'antd';
 import { Check, PencilLine, X } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 
 /**

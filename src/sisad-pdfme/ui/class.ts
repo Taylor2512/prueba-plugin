@@ -19,8 +19,8 @@
  */
 
 import { createRoot, Root } from 'react-dom/client';
-import { DESTROYED_ERR_MSG, DEFAULT_LANG } from './constants.js';
-import { debounce } from './helper.js';
+import { DESTROYED_ERR_MSG, DEFAULT_LANG } from '@sisad-pdfme/ui/constants';
+import { debounce } from '@sisad-pdfme/ui/helper';
 import {
   cloneDeep,
   Template,

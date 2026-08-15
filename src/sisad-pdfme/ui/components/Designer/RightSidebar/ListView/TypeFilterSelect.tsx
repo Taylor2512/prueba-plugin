@@ -18,9 +18,9 @@
 import React, { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Check, ChevronDown } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { stopDesignerControlEvent } from '../../shared/interactionExclusions.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { stopDesignerControlEvent } from '@sisad-pdfme/ui/components/Designer/shared/interactionExclusions';
 
 type Option = { value: string; label: string };
 

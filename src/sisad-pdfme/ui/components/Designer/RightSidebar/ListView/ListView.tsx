@@ -15,24 +15,24 @@
  * state, bulk actions and sidebar layout.
  */
 import React, { useContext, useState, useMemo, useCallback, useRef, useEffect } from 'react';
-import type { SidebarProps } from '../../../../types.js';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { I18nContext } from '../../../../contexts.js';
+import type { SidebarProps } from '@sisad-pdfme/ui/types';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { I18nContext } from '@sisad-pdfme/ui/contexts';
 import { Input, message } from 'antd';
-import SelectableSortableContainer from './SelectableSortableContainer.js';
-import { SidebarBody, SidebarFooter, SidebarFrame, SidebarHeader } from '../layout.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { SidebarEmptyState } from '../../shared/SidebarEmptyState.js';
-import ListViewToolbar from './ListViewToolbar.js';
-import ListViewFooter from './ListViewFooter.js';
-import SchemaAssignmentDialog from '../shared/SchemaAssignmentDialog.js';
-import { filterSchemasForCollaborationView } from '../../../../collaborationContext.js';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import { emitDesignerRuntimeEvent } from '../../shared/designerExtensions.js';
-import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
-import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
-import { buildAssignSchemaOwnerOps, resolveSelectionOwner, resolveSchemaUid } from '../../shared/schemaAssignmentService.js';
-import { resetDesignerTransientInteractionState } from '../../shared/designerInteractionReset.js';
+import SelectableSortableContainer from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer';
+import { SidebarBody, SidebarFooter, SidebarFrame, SidebarHeader } from '@sisad-pdfme/ui/components/Designer/RightSidebar/layout';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { SidebarEmptyState } from '@sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState';
+import ListViewToolbar from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar';
+import ListViewFooter from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter';
+import SchemaAssignmentDialog from '@sisad-pdfme/ui/components/Designer/RightSidebar/shared/SchemaAssignmentDialog';
+import { filterSchemasForCollaborationView } from '@sisad-pdfme/ui/collaborationContext';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import { emitDesignerRuntimeEvent } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
+import { useResponsiveDensity } from '@sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity';
+import { getSchemaTypeLabel } from '@sisad-pdfme/ui/components/Designer/shared/designerLabels';
+import { buildAssignSchemaOwnerOps, resolveSelectionOwner, resolveSchemaUid } from '@sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService';
+import { resetDesignerTransientInteractionState } from '@sisad-pdfme/ui/components/Designer/shared/designerInteractionReset';
 
 const { TextArea } = Input;
 

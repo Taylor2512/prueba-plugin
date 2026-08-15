@@ -4,11 +4,11 @@ import {
   convertForPdfLayoutProps,
   hex2PrintingColor,
   createSvgStr,
-} from '../utils.js';
-import { HEX_COLOR_PATTERN } from '../constants.js';
+} from '@sisad-pdfme/schemas/utils';
+import { HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
 import { Minus } from 'lucide-react';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
 
 const DEFAULT_LINE_COLOR = '#000000';
 const HIT_POINT_HEIGHT = 16;

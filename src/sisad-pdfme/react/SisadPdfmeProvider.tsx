@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import { createSisadPdfmeConfigService } from '../config/SisadPdfmeConfigService.js';
-import { createSisadPdfmeConfig } from '../config/createSisadPdfmeConfig.js';
-import { createRecipientRegistry } from '../recipients/recipientRegistry.js';
-import type { ResolvedSisadPdfmeConfig, SisadPdfmeProviderProps, SisadPdfmeProviderValue } from '../config/SisadPdfmeConfig.js';
-import { SisadPdfmeContext } from './SisadPdfmeContext.js';
+import { createSisadPdfmeConfigService } from '@sisad-pdfme/config/SisadPdfmeConfigService';
+import { createSisadPdfmeConfig } from '@sisad-pdfme/config/createSisadPdfmeConfig';
+import { createRecipientRegistry } from '@sisad-pdfme/recipients/recipientRegistry';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeProviderProps, SisadPdfmeProviderValue } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { SisadPdfmeContext } from '@sisad-pdfme/react/SisadPdfmeContext';
 
 
 const isResolvedSisadPdfmeProviderConfig = (value: unknown): value is ResolvedSisadPdfmeConfig =>

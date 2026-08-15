@@ -7,11 +7,11 @@
  */
 import React from 'react';
 import { Button, Tag } from 'antd';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
-import { InspectorBooleanSwitch } from './InspectorBooleanSwitch.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { useResponsiveDensity } from '@sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
+import { InspectorBooleanSwitch } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorBooleanSwitch';
 
 /** Tag visual pequeño usado por tarjetas y headers del inspector. */
 export type InspectorTag = {

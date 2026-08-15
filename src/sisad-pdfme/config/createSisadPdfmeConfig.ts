@@ -1,5 +1,5 @@
-import { compileSisadPdfmeConfig } from './configCompiler.js';
-import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
+import { compileSisadPdfmeConfig } from '@sisad-pdfme/config/configCompiler';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 /**
  * Entrada pública de compilación.

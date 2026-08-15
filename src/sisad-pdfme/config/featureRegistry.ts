@@ -1,6 +1,6 @@
-import type { ResolvedSisadPdfmeConfig } from './SisadPdfmeConfig.js';
-import { resolveCommentsCapabilityState } from '../comments/index.js';
-import { resolveDocumentsCapabilityState } from '../documents/index.js';
+import type { ResolvedSisadPdfmeConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { resolveCommentsCapabilityState } from '@sisad-pdfme/comments';
+import { resolveDocumentsCapabilityState } from '@sisad-pdfme/documents';
 
 export type FeatureId =
   | 'runtime'

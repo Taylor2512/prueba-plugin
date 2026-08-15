@@ -15,8 +15,8 @@
  * Seguridad: no hay cifrado — solo para uso sin backend (dev / local).
  * Para producción con backend, usar la implementación REST del padre.
  */
-import type { ExternalFormStorage } from '../externalForms/externalFormRunner.js';
-import { readJsonStorageValue, resolveBrowserStorage } from './webStorage.js';
+import type { ExternalFormStorage } from '@sisad-pdfme/externalForms/externalFormRunner';
+import { readJsonStorageValue, resolveBrowserStorage } from '@sisad-pdfme/shared/webStorage';
 
 // ── Constantes ────────────────────────────────────────────────────────────────
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../constants.ts';
-import { mergeUniqueClassNames } from './shared/className.js';
-import { SidebarEmptyState } from './shared/SidebarEmptyState.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeUniqueClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { SidebarEmptyState } from '@sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState';
 
 type LeftSidebarGroupItem = React.ReactNode;
 

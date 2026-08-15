@@ -1,8 +1,8 @@
 import { getDynamicTemplate } from '@sisad-pdfme/common';
 import type { GenerateProps } from '@sisad-pdfme/common';
-import generate from './generate.js';
-import { validateRequiredFields } from './helper.js';
-import { createPdfPreflightReport } from './preflight.js';
+import generate from '@sisad-pdfme/generator/generate';
+import { validateRequiredFields } from '@sisad-pdfme/generator/helper';
+import { createPdfPreflightReport } from '@sisad-pdfme/generator/preflight';
 
 export { generate, validateRequiredFields, createPdfPreflightReport };
 export type {
@@ -10,7 +10,7 @@ export type {
   PdfPreflightIssueSeverity,
   PdfPreflightPageReport,
   PdfPreflightReport,
-} from './preflight.js';
+} from '@sisad-pdfme/generator/preflight';
 export const generatePdf = generate;
 
 export const buildDynamicTemplate = getDynamicTemplate;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Input, Modal } from 'antd';
-import { DESIGNER_CLASSNAME } from '../../constants.ts';
-import { mergeClassNames } from './shared/className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 export type CustomFieldDef = {
   id: string;

@@ -1,10 +1,10 @@
 import type * as CSS from 'csstype';
 import { UIRenderProps } from '@sisad-pdfme/common';
-import type { BarcodeSchema } from './types.js';
-import { validateBarcodeInput, createBarCode } from './helper.js';
-import { DEFAULT_BARCODE_COLOR } from './constants.js';
-import { resolveSchemaOwnerColorValue } from '../shared/fieldChrome.js';
-import { addAlphaToHex, isEditable, createErrorElm } from '../utils.js';
+import type { BarcodeSchema } from '@sisad-pdfme/schemas/barcodes/types';
+import { validateBarcodeInput, createBarCode } from '@sisad-pdfme/schemas/barcodes/helper';
+import { DEFAULT_BARCODE_COLOR } from '@sisad-pdfme/schemas/barcodes/constants';
+import { resolveSchemaOwnerColorValue } from '@sisad-pdfme/schemas/shared/fieldChrome';
+import { addAlphaToHex, isEditable, createErrorElm } from '@sisad-pdfme/schemas/utils';
 
 const fullSize = { width: '100%', height: '100%' };
 

@@ -15,31 +15,31 @@ import type {
   SchemaForUI,
 } from '@sisad-pdfme/common';
 import { isBlankPdf } from '@sisad-pdfme/common';
-import type { SidebarProps } from '../../../../types.js';
-import { I18nContext, PluginsRegistry } from '../../../../contexts.js';
+import type { SidebarProps } from '@sisad-pdfme/ui/types';
+import { I18nContext, PluginsRegistry } from '@sisad-pdfme/ui/contexts';
 import { theme } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
-import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import { asRecord, isRecord } from '@sisad-pdfme/shared/objectGuards';
+import type { SisadPdfmeVisibilityConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
 import {
   resolveDesignerSchemaAccessState,
   type SchemaAccessState,
   type SchemaAccessContext,
-} from '../../shared/accessPolicy.js';
-import { buildInspectorSections, type DetailInspectorSection } from './detailSchemas.js';
-import buildDetailWidgets, { InspectorWidgetParamsProvider } from './detailWidgetRegistry.js';
-import DetailViewContent from './DetailViewContent.js';
-import type { SectionFormInstance } from './DetailFormSection.js';
-import { createInspectorConfigurationResolver } from '../../../../../config/InspectorConfigurationResolver.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/accessPolicy';
+import { buildInspectorSections, type DetailInspectorSection } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas';
+import buildDetailWidgets, { InspectorWidgetParamsProvider } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry';
+import DetailViewContent from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent';
+import type { SectionFormInstance } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection';
+import { createInspectorConfigurationResolver } from '@sisad-pdfme/config/InspectorConfigurationResolver';
 import {
   getSchemaConfigStorageKey,
   getSchemaDesignerConfig,
   mergeSchemaDesignerConfig,
   type SchemaDesignerConfig,
-} from '../../../../designerEngine.js';
-import { useSisadPdfmeConfig } from '../../../../../react/useSisadPdfmeConfig.js';
-import { normalizeSignatureSchema, type SignatureSchema } from '../../../../../schemas/signature/types.js';
+} from '@sisad-pdfme/ui/designerEngine';
+import { useSisadPdfmeConfig } from '@sisad-pdfme/react/useSisadPdfmeConfig';
+import { normalizeSignatureSchema, type SignatureSchema } from '@sisad-pdfme/schemas/signature/types';
 
 /**
  * Props requeridas por el inspector principal del schema activo.

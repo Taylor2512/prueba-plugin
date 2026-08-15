@@ -1,6 +1,6 @@
 import { PDFFont, PDFDocument } from 'pdf-lib';
 import type { Font as FontKitFont } from 'fontkit';
-import type { TextSchema } from './types.js';
+import type { TextSchema } from '@sisad-pdfme/schemas/text/types';
 import {
   PDFRenderProps,
   ColorType,
@@ -19,7 +19,7 @@ import {
   DEFAULT_LINE_HEIGHT,
   DEFAULT_CHARACTER_SPACING,
   DEFAULT_FONT_COLOR,
-} from './constants.js';
+} from '@sisad-pdfme/schemas/text/constants';
 import {
   calculateDynamicFontSize,
   heightOfFontAtSize,
@@ -27,9 +27,9 @@ import {
   getFontKitFont,
   widthOfTextAtSize,
   splitTextToSize,
-} from './helper.js';
-import { convertForPdfLayoutProps, rotatePoint, hex2PrintingColor } from '../utils.js';
-import { shouldRenderFieldBackgroundInPdf } from '../shared/fieldChrome.js';
+} from '@sisad-pdfme/schemas/text/helper';
+import { convertForPdfLayoutProps, rotatePoint, hex2PrintingColor } from '@sisad-pdfme/schemas/utils';
+import { shouldRenderFieldBackgroundInPdf } from '@sisad-pdfme/schemas/shared/fieldChrome';
 
 const embedAndGetFontObj = async (arg: {
   pdfDoc: PDFDocument;

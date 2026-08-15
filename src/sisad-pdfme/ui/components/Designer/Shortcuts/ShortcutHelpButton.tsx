@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Tooltip } from 'antd';
 import type { ReactNode } from 'react';
 import { Keyboard } from 'lucide-react';
-import { cn } from '../../../utils/cn.js';
+import { cn } from '@sisad-pdfme/ui/utils/cn';
 
 type ShortcutHelpButtonProps = {
   onClick: () => void;

@@ -1,7 +1,7 @@
 import { Schema, BasePdf, BlankPdf, CommonOptions, isBlankPdf } from '@sisad-pdfme/common';
-import { createSingleTable } from './tableHelper.js';
-import { getBodyWithRange, getBody } from './helper.js';
-import { TableSchema } from './types.js';
+import { createSingleTable } from '@sisad-pdfme/schemas/tables/tableHelper';
+import { getBodyWithRange, getBody } from '@sisad-pdfme/schemas/tables/helper';
+import { TableSchema } from '@sisad-pdfme/schemas/tables/types';
 
 export const getDynamicHeightsForTable = async (
   value: string,

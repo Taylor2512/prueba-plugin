@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { createSaveLifecycle } from "../saveLifecycle";
+import { createSaveLifecycle } from "@sisad-pdfme/runtime/saveLifecycle";
 
 const deferred = () => {
   let resolve;

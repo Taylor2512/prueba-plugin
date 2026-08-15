@@ -1,27 +1,27 @@
-import type { SisadPdfmeIntegrationResources } from './http/integrationResources.js';
-import { createDefaultTemplate } from '../templates/createDefaultTemplate.js';
-import { createTemplateFromRecipe, type SisadPdfmeTemplateRecipe } from '../templates/createTemplateFromRecipe.js';
+import type { SisadPdfmeIntegrationResources } from '@sisad-pdfme/integration/http/integrationResources';
+import { createDefaultTemplate } from '@sisad-pdfme/templates/createDefaultTemplate';
+import { createTemplateFromRecipe, type SisadPdfmeTemplateRecipe } from '@sisad-pdfme/templates/createTemplateFromRecipe';
 import type { Template } from '@sisad-pdfme/common';
 import {
   normalizeHostData,
   type SisadPdfmeHostDataAdapters,
   type SisadPdfmeNormalizedHostData,
-} from './normalizeHostData.js';
+} from '@sisad-pdfme/integration/normalizeHostData';
 import {
   validateSisadPdfmeInstanceDefinition,
   type SisadPdfmeInstanceDefinitionIssue,
-} from './validateSisadPdfmeInstanceDefinition.js';
+} from '@sisad-pdfme/integration/validateSisadPdfmeInstanceDefinition';
 import type {
   SisadPdfmeDocument,
   ResolvedSisadPdfmeConfig,
   SisadPdfmeController,
   SisadPdfmeGlobalConfig,
-} from '../config/index.js';
+} from '@sisad-pdfme/config';
 import type {
   SisadPdfmeAssignmentChangePayload,
   SisadPdfmeRecipient,
-} from '../recipients/index.js';
-import type { SisadPdfmeAnyEvent } from '../contracts/events.js';
+} from '@sisad-pdfme/recipients';
+import type { SisadPdfmeAnyEvent } from '@sisad-pdfme/contracts/events';
 
 export type SisadPdfmeInstanceMode = 'designer' | 'form' | 'viewer';
 
@@ -415,6 +415,10 @@ export const resolveSisadPdfmeInstance = ({
     activeDocumentId,
     signatureProviders: normalized.signatureProviders,
     plugins,
+    // Paridad de API imperativa: el Designer la entregaba y Form/Viewer no, de
+    // modo que un host que montara un Form no podía leer template, snapshot ni
+    // estado de interacción de la superficie que tenía delante.
+    onControllerReady: handlers.onControllerReady,
   };
 
   return {

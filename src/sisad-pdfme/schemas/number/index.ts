@@ -1,10 +1,10 @@
 import type { Plugin, Schema, UIRenderProps } from '@sisad-pdfme/common';
-import { renderTextUi } from '../text/uiRender.js';
-import type { TextSchema } from '../text/types.js';
-import text from '../text/index.js';
-import { createSchemaPlugin } from '../schemaBuilder.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { attachNumberInputGuard } from './inputGuard.js';
+import { renderTextUi } from '@sisad-pdfme/schemas/text/uiRender';
+import type { TextSchema } from '@sisad-pdfme/schemas/text/types';
+import text from '@sisad-pdfme/schemas/text';
+import { createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { attachNumberInputGuard } from '@sisad-pdfme/schemas/number/inputGuard';
 import {
   isAcceptableNumberInput,
   isNumericDraftPart,
@@ -12,7 +12,7 @@ import {
   withCanonicalNumber,
   type NumberBoundsPolicy,
   type NumberInputPolicy,
-} from './inputPolicy.js';
+} from '@sisad-pdfme/schemas/number/inputPolicy';
 import {
   basicsFields,
   helpFields,
@@ -22,7 +22,7 @@ import {
   validationMaxField,
   validationMessageField,
   COMMON_PROPERTY_MAP,
-} from '../propPanel/commonInspectorFields.js';
+} from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 
 type NumberSchema = Schema & NumberBoundsPolicy;
 

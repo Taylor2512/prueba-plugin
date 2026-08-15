@@ -1,5 +1,5 @@
-import type { ResolvedSisadPdfmeConfig } from './SisadPdfmeConfig.js';
-import type { SisadPdfmeFeatureState } from './featureRegistry.js';
+import type { ResolvedSisadPdfmeConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import type { SisadPdfmeFeatureState } from '@sisad-pdfme/config/featureRegistry';
 
 export type ComponentId =
   | 'left-sidebar'

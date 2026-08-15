@@ -5,8 +5,8 @@
  * Es feedback visual, no calcula geometría ni modifica schemas.
  */
 
-import type { SnapLine } from '../SnapLines.js';
-import { mergeClassNames } from '../../shared/className.js';
+import type { SnapLine } from '@sisad-pdfme/ui/components/Designer/Canvas/SnapLines';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 /**
  * Props del feedback visual de snap activo.

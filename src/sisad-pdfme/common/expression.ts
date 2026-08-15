@@ -15,7 +15,7 @@
 
 import * as acorn from 'acorn';
 import type { Node as AcornNode, Identifier, Property } from 'estree';
-import type { SchemaPageArray } from './types.js';
+import type { SchemaPageArray } from '@sisad-pdfme/common/types';
 
 /** Cachea expresiones compiladas para no parsear el mismo placeholder repetidamente. */
 const expressionCache = new Map<string, (context: Record<string, unknown>) => unknown>();

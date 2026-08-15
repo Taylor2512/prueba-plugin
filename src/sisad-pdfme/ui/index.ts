@@ -12,20 +12,20 @@
  * - No agregar lógica de negocio ni imports profundos innecesarios para el host.
  */
 
-import Designer from './Designer';
-import Form from './Form';
-import Viewer from './Viewer';
-import { DesignerEngineBuilder } from './designerEngine';
+import Designer from '@sisad-pdfme/ui/Designer';
+import Form from '@sisad-pdfme/ui/Form';
+import Viewer from '@sisad-pdfme/ui/Viewer';
+import { DesignerEngineBuilder } from '@sisad-pdfme/ui/designerEngine';
 import './styles/tokens.css';
-export type { DesignerComponentBridge, DesignerRuntimeApi, SidebarProps } from './types';
-export type { DesignerDocumentsBridge } from './types';
+export type { DesignerComponentBridge, DesignerRuntimeApi, SidebarProps } from '@sisad-pdfme/ui/types';
+export type { DesignerDocumentsBridge } from '@sisad-pdfme/ui/types';
 export type {
 	DesignerRuntimeEvent,
 	DesignerRuntimeEventHub,
 	DesignerRuntimeEventListener,
 	DesignerRuntimeExtensions,
-} from './components/Designer/shared/designerExtensions';
-export { createDesignerRuntimeEventHub } from './components/Designer/shared/designerExtensions';
+} from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
+export { createDesignerRuntimeEventHub } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
 
 export const PdfEditor = Designer;
 export const PdfFormView = Form;
@@ -33,10 +33,10 @@ export const PdfViewer = Viewer;
 export const PdfEditorEngineBuilder = DesignerEngineBuilder;
 
 export { Designer, Viewer, Form, DesignerEngineBuilder };
-export { RuntimeFormPanel } from './components/RuntimeFormPanel';
-export * from './designerEngine';
-export { applyCollaborationEvent, useCollaborationSync } from './collaboration';
-export { defaultSisadPdfmeConfig, createSisadPdfmeConfig } from '../config/index.js';
+export { RuntimeFormPanel } from '@sisad-pdfme/ui/components/RuntimeFormPanel';
+export * from '@sisad-pdfme/ui/designerEngine';
+export { applyCollaborationEvent, useCollaborationSync } from '@sisad-pdfme/ui/collaboration';
+export { defaultSisadPdfmeConfig, createSisadPdfmeConfig } from '@sisad-pdfme/config';
 export {
   SisadPdfmeProvider,
   SisadPdfmeDesigner,
@@ -44,4 +44,4 @@ export {
   SisadPdfmeViewer,
   useSisadPdfmeConfig,
   useSisadPdfmeController,
-} from '../react/index.js';
+} from '@sisad-pdfme/react';

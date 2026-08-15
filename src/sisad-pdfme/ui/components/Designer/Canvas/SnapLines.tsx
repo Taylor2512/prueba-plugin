@@ -5,7 +5,7 @@
  * centros de página y otros schemas. Las posiciones se calculan en milímetros
  * y se convierten a píxeles usando ZOOM.
  */
-import { DESIGNER_CLASSNAME } from "../../../constants.js";
+import { DESIGNER_CLASSNAME } from "@sisad-pdfme/ui/constants";
 /**
  * SnapLines – Wix-style alignment guide overlay shown during element drag/resize.
  *
@@ -16,11 +16,11 @@ import { DESIGNER_CLASSNAME } from "../../../constants.js";
  */
 import React from 'react';
 import { ZOOM } from '@sisad-pdfme/common';
-import { mergeClassNames } from '../shared/className.js';
-import type { SnapLine } from './snapEngine.js';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import type { SnapLine } from '@sisad-pdfme/ui/components/Designer/Canvas/snapEngine';
 
 // Re-export para los consumidores históricos del overlay.
-export type { SnapLine, SnapComputation } from './snapEngine.js';
+export type { SnapLine, SnapComputation } from '@sisad-pdfme/ui/components/Designer/Canvas/snapEngine';
 
 /**
  * Props del overlay visual de snap lines.

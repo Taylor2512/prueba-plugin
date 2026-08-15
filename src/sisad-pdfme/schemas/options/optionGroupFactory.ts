@@ -22,28 +22,28 @@ import {
   createDesignerGroupStack,
   DESIGNER_OPTION_BOX_BORDER,
   resolveSchemaOwnerColorValue,
-} from '../shared/fieldChrome.js';
-import { clearSchemaRoot } from '../shared/schemaDom.js';
-import { HEX_COLOR_PATTERN } from '../constants.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+} from '@sisad-pdfme/schemas/shared/fieldChrome';
+import { clearSchemaRoot } from '@sisad-pdfme/schemas/shared/schemaDom';
+import { HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
 import {
   basicsFields,
   helpFields,
   dataLabelFields,
   COMMON_PROPERTY_MAP,
   hexColorField,
-} from '../propPanel/commonInspectorFields.js';
+} from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 import {
   type OptionGroupLayoutConfig,
   computeOptionGroupDesignerHeightMM,
   computeOptionGroupDesignerWidthMM,
   getOptionGroupLayoutConfig,
   type OptionGroupType,
-} from './optionGroupLayout.js';
-import { buildDefaultOptionGroupOptions, normalizeOptionText } from './optionModel.js';
-import { createOptionGroupRuntime } from './optionGroupRenderer.js';
-import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
-import { createOptionIndicatorElement } from './optionIndicator.js';
+} from '@sisad-pdfme/schemas/options/optionGroupLayout';
+import { buildDefaultOptionGroupOptions, normalizeOptionText } from '@sisad-pdfme/schemas/options/optionModel';
+import { createOptionGroupRuntime } from '@sisad-pdfme/schemas/options/optionGroupRenderer';
+import type { GroupMeta } from '@sisad-pdfme/shared/schemaDesignerMeta';
+import { createOptionIndicatorElement } from '@sisad-pdfme/schemas/options/optionIndicator';
 
 export type OptionGroupIndicatorShape = 'square' | 'circle';
 

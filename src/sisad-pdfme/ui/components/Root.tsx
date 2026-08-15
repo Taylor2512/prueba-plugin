@@ -6,9 +6,9 @@
  */
 import { useContext, forwardRef, ReactNode, Ref, useEffect } from 'react';
 import { Size } from '@sisad-pdfme/common';
-import { FontContext } from '../contexts.js';
-import { DESIGNER_CLASSNAME } from '../constants.js';
-import Spinner from './Spinner.js';
+import { FontContext } from '@sisad-pdfme/ui/contexts';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import Spinner from '@sisad-pdfme/ui/components/Spinner';
 import '../runtimeStyles.js';
 
 /**

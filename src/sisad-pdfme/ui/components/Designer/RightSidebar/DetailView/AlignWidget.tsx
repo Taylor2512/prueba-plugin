@@ -8,8 +8,8 @@
  */
 import { Button, Form, Tooltip } from 'antd';
 import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 import {
   AlignStartVertical,
   AlignStartHorizontal,
@@ -20,7 +20,7 @@ import {
   AlignVerticalSpaceAround,
   AlignHorizontalSpaceAround,
 } from 'lucide-react';
-import type { SelectionCommandSet, AlignType, DistributeType } from '../../shared/selectionCommands.js';
+import type { SelectionCommandSet, AlignType, DistributeType } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
 
 /**
  * Botones declarativos disponibles para alinear o distribuir la selección.

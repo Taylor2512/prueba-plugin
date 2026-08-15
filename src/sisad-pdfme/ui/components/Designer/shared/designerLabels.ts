@@ -1,4 +1,4 @@
-import { normalizeLooseText } from '../../../../shared/text.js';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 const DEFAULT_LABEL = 'Campo';
 

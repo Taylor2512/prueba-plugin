@@ -5,7 +5,7 @@ import {
   PropPanelSchema,
   getFallbackFontName,
 } from '@sisad-pdfme/common';
-import type { TextSchema } from './types.js';
+import type { TextSchema } from '@sisad-pdfme/schemas/text/types';
 import {
   DEFAULT_FONT_SIZE,
   DEFAULT_ALIGNMENT,
@@ -18,10 +18,10 @@ import {
   DEFAULT_DYNAMIC_FIT,
   DEFAULT_DYNAMIC_MIN_FONT_SIZE,
   DEFAULT_DYNAMIC_MAX_FONT_SIZE,
-} from './constants.js';
-import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
-import { getExtraFormatterSchema } from './extraFormatter.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+} from '@sisad-pdfme/schemas/text/constants';
+import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
+import { getExtraFormatterSchema } from '@sisad-pdfme/schemas/text/extraFormatter';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
 import {
   basicsFields,
   helpFields,
@@ -30,7 +30,7 @@ import {
   COMMON_PROPERTY_MAP,
   hexColorFields,
   typographyFields,
-} from '../propPanel/commonInspectorFields.js';
+} from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 
 const UseDynamicFontSize = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n } = props;

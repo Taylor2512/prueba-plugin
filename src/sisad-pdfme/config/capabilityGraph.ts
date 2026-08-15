@@ -28,20 +28,20 @@ import {
   type CapabilityKind,
   type IntegrationCapability,
   type SchemaSurface,
-} from './capabilityInventory.js';
-import type { SisadPdfmeIntegrationResources } from '../integration/http/integrationResources.js';
+} from '@sisad-pdfme/config/capabilityInventory';
+import type { SisadPdfmeIntegrationResources } from '@sisad-pdfme/integration/http/integrationResources';
 import {
   selectActionState,
   selectComponentState,
   selectFeatureState,
   type SisadPdfmeConfigSource,
-} from './configSelectors.js';
-import type { SisadPdfmeFeatureState } from './featureRegistry.js';
-import type { ActionId } from './actionConfigRegistry.js';
-import type { ComponentId } from './componentRegistry.js';
-import type { FeatureId } from './featureRegistry.js';
-import { resolveViewFeatureState, type ViewFeature } from '../ui/commands/viewCommands.js';
-import type { SisadPdfmeControllerCapabilityDomain } from './SisadPdfmeConfig.js';
+} from '@sisad-pdfme/config/configSelectors';
+import type { SisadPdfmeFeatureState } from '@sisad-pdfme/config/featureRegistry';
+import type { ActionId } from '@sisad-pdfme/config/actionConfigRegistry';
+import type { ComponentId } from '@sisad-pdfme/config/componentRegistry';
+import type { FeatureId } from '@sisad-pdfme/config/featureRegistry';
+import { resolveViewFeatureState, type ViewFeature } from '@sisad-pdfme/ui/commands/viewCommands';
+import type { SisadPdfmeControllerCapabilityDomain } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 export type CapabilityResolutionContext = {
   readOnly?: boolean;

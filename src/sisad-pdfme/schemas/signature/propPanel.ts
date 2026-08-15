@@ -1,12 +1,12 @@
-import type { DesignerEngine } from '../../ui/designerEngine.js';
-import { resolveActiveRecipient } from '../../ui/collaborationContext.js';
+import type { DesignerEngine } from '@sisad-pdfme/ui/designerEngine';
+import { resolveActiveRecipient } from '@sisad-pdfme/ui/collaborationContext';
 import { isReadonlyRecipientRole } from '@sisad-pdfme/common';
 import type { PropPanel, PropPanelSchema, PropPanelWidgetProps } from '@sisad-pdfme/common';
-import type { SignatureSchema, SignatureMode } from './types.js';
-import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { basicsFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
-import { markInspectorInteractive, stopInspectorPointerEvent } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
+import type { SignatureSchema, SignatureMode } from '@sisad-pdfme/schemas/signature/types';
+import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { basicsFields, COMMON_PROPERTY_MAP } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
+import { markInspectorInteractive, stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 import {
   getAvailableSignatureProviders,
   getSignatureProvider,
@@ -14,14 +14,14 @@ import {
   sanitizeSignatureProviderConfig,
   validateSignatureProviderConfig,
   type SignatureProviderDefinition,
-} from './providerRegistry.js';
+} from '@sisad-pdfme/schemas/signature/providerRegistry';
 import {
   SIGNATURE_MODE_OPTIONS,
   createModeAwareCapabilities,
   createModeAwareDisplay,
   normalizeSignatureSchema,
   sanitizeSignatureMetadata,
-} from './types.js';
+} from '@sisad-pdfme/schemas/signature/types';
 
 const buildColorField = (title: string): PropPanelSchema => ({
   title,

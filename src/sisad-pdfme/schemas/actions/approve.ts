@@ -1,6 +1,6 @@
 /** Approval action schema. Business confirmation and routing remain host-owned. */
 import { CheckCircle } from 'lucide-react';
-import { createDecisionActionPlugin } from './createDecisionActionPlugin.js';
+import { createDecisionActionPlugin } from '@sisad-pdfme/schemas/actions/createDecisionActionPlugin';
 
 const approvePlugin = createDecisionActionPlugin({
   type: 'approve',

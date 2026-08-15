@@ -43,74 +43,74 @@ import {
   isBlankPdf,
   replacePlaceholders,
 } from '@sisad-pdfme/common';
-import type { DesignerComponentBridge } from '../../../types.js';
-import { OptionsContext, PluginsRegistry } from '../../../contexts.js';
-import { RULER_HEIGHT, DESIGNER_CLASSNAME, SELECTABLE_CLASSNAME } from '../../../constants.js';
-import { usePrevious } from '../../../hooks.js';
-import { round, flatten } from '../../../helper.js';
-import Paper from '../../Paper.js';
-import Renderer from '../../Renderer.js';
-import { useSisadPdfmeConfig } from '../../../../react/useSisadPdfmeConfig.js';
-import { configFromRuntimeOptions } from '../../../../config/configFromRuntimeOptions.js';
-import Selecto from './Selecto.js';
-import Moveable from './Moveable.js';
-import Guides from './Guides.js';
-import Mask from './Mask.js';
-import Padding from './Padding.js';
-import StaticSchema from '../../StaticSchema.js';
-import SnapLines from './SnapLines.js';
-import { computeSnapResult, type SnapLine } from './snapEngine.js';
+import type { DesignerComponentBridge } from '@sisad-pdfme/ui/types';
+import { OptionsContext, PluginsRegistry } from '@sisad-pdfme/ui/contexts';
+import { RULER_HEIGHT, DESIGNER_CLASSNAME, SELECTABLE_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { usePrevious } from '@sisad-pdfme/ui/hooks';
+import { round, flatten } from '@sisad-pdfme/ui/helper';
+import Paper from '@sisad-pdfme/ui/components/Paper';
+import Renderer from '@sisad-pdfme/ui/components/Renderer';
+import { useSisadPdfmeConfig } from '@sisad-pdfme/react/useSisadPdfmeConfig';
+import { configFromRuntimeOptions } from '@sisad-pdfme/config/configFromRuntimeOptions';
+import Selecto from '@sisad-pdfme/ui/components/Designer/Canvas/Selecto';
+import Moveable from '@sisad-pdfme/ui/components/Designer/Canvas/Moveable';
+import Guides from '@sisad-pdfme/ui/components/Designer/Canvas/Guides';
+import Mask from '@sisad-pdfme/ui/components/Designer/Canvas/Mask';
+import Padding from '@sisad-pdfme/ui/components/Designer/Canvas/Padding';
+import StaticSchema from '@sisad-pdfme/ui/components/StaticSchema';
+import SnapLines from '@sisad-pdfme/ui/components/Designer/Canvas/SnapLines';
+import { computeSnapResult, type SnapLine } from '@sisad-pdfme/ui/components/Designer/Canvas/snapEngine';
 import {
   canvasViewDataAttributes,
   resolveCanvasViewCapabilities,
-} from './canvasViewCapabilities.js';
-import { createGridGeometry, gridCssVariables, snapPointToGrid } from './gridGeometry.js';
-import { resolveSchemaTone } from '../shared/schemaTone.js';
-import { mixHexColor } from '../../../../schemas/shared/fieldChrome.js';
-import { deriveInteractionState } from '../shared/interactionState.js';
-import type { InteractionState } from '../shared/interactionState.js';
+} from '@sisad-pdfme/ui/components/Designer/Canvas/canvasViewCapabilities';
+import { createGridGeometry, gridCssVariables, snapPointToGrid } from '@sisad-pdfme/ui/components/Designer/Canvas/gridGeometry';
+import { resolveSchemaTone } from '@sisad-pdfme/ui/components/Designer/shared/schemaTone';
+import { mixHexColor } from '@sisad-pdfme/schemas/shared/fieldChrome';
+import { deriveInteractionState } from '@sisad-pdfme/ui/components/Designer/shared/interactionState';
+import type { InteractionState } from '@sisad-pdfme/ui/components/Designer/shared/interactionState';
 import {
   type InlineEditTarget,
   type SelectionCommandSet,
-} from '../shared/selectionCommands.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
 import {
   detectPlatform,
   resolveSelectionIntent,
   isAdditiveSelectionIntent,
   type PlatformKind,
-} from '../shared/selectionPolicy.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/selectionPolicy';
 import {
   resolveDesignerSchemaAccessState,
   isTransformable,
   type SchemaAccessContext,
-} from '../shared/accessPolicy.js';
-import { DesignerCoordinateService } from '../shared/designerCoordinateService.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/accessPolicy';
+import { DesignerCoordinateService } from '@sisad-pdfme/ui/components/Designer/shared/designerCoordinateService';
 import {
   shouldSuppressCanvasRegionSelection,
   isEditableTarget,
   isAntDPopupTarget,
-} from '../shared/interactionGuards.js';
-import { isMoveableTarget } from '../shared/transformTargetGuards.js';
-import { isSelectoExcludedTarget } from '../shared/selectableTargetGuards.js';
-import { isCanvasSelectionExcludedTarget } from '../shared/interactionTargetPolicy.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/interactionGuards';
+import { isMoveableTarget } from '@sisad-pdfme/ui/components/Designer/shared/transformTargetGuards';
+import { isSelectoExcludedTarget } from '@sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards';
+import { isCanvasSelectionExcludedTarget } from '@sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy';
 import {
   isSameDocumentPageSelection,
   resolveSelectionPageIndex,
-} from '../shared/selectionIdentityResolver.js';
-import { applyPageMetadataDataset } from '../../shared/pageMetadata.js';
-import type { EffectiveCollaborationContext } from '../../../collaborationContext.js';
-import { buildRecipientNameMap, buildRecipientColorMap } from '../../../collaborationContext.js';
-import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
-import CanvasContextMenu from './overlays/CanvasContextMenu.js';
-import CanvasStateOverlay from './overlays/CanvasStateOverlay.js';
-import InlineEditOverlay, { type InlineEditSession } from './overlays/InlineEditOverlay.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver';
+import { applyPageMetadataDataset } from '@sisad-pdfme/ui/components/shared/pageMetadata';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import { buildRecipientNameMap, buildRecipientColorMap } from '@sisad-pdfme/ui/collaborationContext';
+import CanvasOverlayManager from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager';
+import CanvasContextMenu from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu';
+import CanvasStateOverlay from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay';
+import InlineEditOverlay, { type InlineEditSession } from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay';
 import {
   deriveCanvasBlockReason,
   shouldDisplayBlockingMask,
   type CanvasInteractionMode,
-} from './overlays/overlayState.js';
-import { useCanvasRenderState } from '../../../../canvas/useCanvasRenderState.js';
-import { isCanvasInteractive } from '../../../../canvas/canvasRenderState.js';
+} from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState';
+import { useCanvasRenderState } from '@sisad-pdfme/canvas/useCanvasRenderState';
+import { isCanvasInteractive } from '@sisad-pdfme/canvas/canvasRenderState';
 
 /**
  * Convierte milímetros a píxeles usando el factor CSS estándar de 96 DPI.

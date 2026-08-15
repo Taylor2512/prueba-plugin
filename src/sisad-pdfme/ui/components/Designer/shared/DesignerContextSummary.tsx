@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeClassNames } from './className.js';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 type DesignerContextSummaryProps = {
   documentName?: React.ReactNode;

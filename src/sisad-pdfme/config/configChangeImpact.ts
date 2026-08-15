@@ -1,4 +1,4 @@
-import type { SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
+import type { SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 export type SisadPdfmeConfigChangeImpact = {
   touchedPaths: string[];

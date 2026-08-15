@@ -7,10 +7,10 @@
 
 import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import type { InteractionState } from '../../shared/interactionState.js';
-import { getSchemaInteractionCapabilities } from '../../shared/schemaInteractionCapabilities.js';
-import { normalizeOptionGroupType } from '../../../../../schemas/options/optionGroupLayout.js';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import type { InteractionState } from '@sisad-pdfme/ui/components/Designer/shared/interactionState';
+import { getSchemaInteractionCapabilities } from '@sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities';
+import { normalizeOptionGroupType } from '@sisad-pdfme/schemas/options/optionGroupLayout';
 
 /**
  * Props de la acción flotante de grupos de opciones.

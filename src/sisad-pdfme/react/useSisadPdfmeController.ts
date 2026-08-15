@@ -15,22 +15,23 @@ import {
   assignSchemaOwner,
   resolveSchemaUid,
   resolveSelectionOwner,
-} from '../ui/components/Designer/shared/schemaAssignmentService.js';
-import { SisadPdfmeContext } from './SisadPdfmeContext.js';
-import { useSisadPdfmeConfigService } from './useSisadPdfmeConfigService.js';
-import { recipientsToSnapshot, recipientsFromSnapshot } from '../recipients/recipientSnapshot.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService';
+import { SisadPdfmeContext } from '@sisad-pdfme/react/SisadPdfmeContext';
+import { useSisadPdfmeConfigService } from '@sisad-pdfme/react/useSisadPdfmeConfigService';
+import { recipientsToSnapshot, recipientsFromSnapshot } from '@sisad-pdfme/recipients/recipientSnapshot';
 import type {
   SisadPdfmeAssignmentChangePayload,
   SisadPdfmeRecipientRegistry,
-} from '../recipients/recipientTypes.js';
+} from '@sisad-pdfme/recipients/recipientTypes';
 import type {
   SisadPdfmeController,
   SisadPdfmeControllerCapabilityDomain,
   SisadPdfmeControllerCapabilityState,
   SisadPdfmeGlobalConfig,
-} from '../config/SisadPdfmeConfig.js';
-import type { SisadPdfmeConfigService, SisadPdfmeConfigChange } from '../config/SisadPdfmeConfigService.js';
-import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from '../config/featureRegistry.js';
+  SisadPdfmeSchemaInteractionSnapshot,
+} from '@sisad-pdfme/config/SisadPdfmeConfig';
+import type { SisadPdfmeConfigService, SisadPdfmeConfigChange } from '@sisad-pdfme/config/SisadPdfmeConfigService';
+import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from '@sisad-pdfme/config/featureRegistry';
 
 type InstanceLike = {
   getTemplate?: () => unknown;
@@ -55,6 +56,8 @@ type InstanceLike = {
     patch: Record<string, unknown>,
     matcher?: 'id' | 'name' | 'identity' | 'prefill-source',
   ) => boolean;
+  /** Sólo el runtime Form lo implementa; Designer y Viewer no interactúan. */
+  getSchemaInteractionStates?: () => SisadPdfmeSchemaInteractionSnapshot[];
 };
 
 export type SisadPdfmeControllerContext = {
@@ -125,6 +128,13 @@ const resolveControllerCapabilityState = (
       return makeCapabilityState(domain, ['getSnapshot', 'restoreSnapshot'], has('getTemplate') && has('updateTemplate'), has('getTemplate') ? undefined : 'snapshot-unavailable');
     case 'save':
       return makeCapabilityState(domain, ['save'], has('saveTemplate'), has('saveTemplate') ? undefined : 'save-unavailable');
+    case 'interaction':
+      return makeCapabilityState(
+        domain,
+        ['getSchemaInteractionStates'],
+        has('getSchemaInteractionStates'),
+        has('getSchemaInteractionStates') ? undefined : 'interaction-unavailable',
+      );
     default:
       return makeCapabilityState(domain, [], false, 'unknown-capability');
   }
@@ -140,6 +150,13 @@ export const useSisadPdfmeController = (
   const configService = context.configService ?? providerValue?.configService ?? hookConfigService;
   const controller = useMemo(() => ({
     getTemplate: () => instanceRef.current?.getTemplate?.() ?? null,
+
+    /**
+     * Estado de interacción por schema. Lista vacía —no `null`— cuando la
+     * superficie montada no interactúa: el consumidor itera sin ramificar.
+     */
+    getSchemaInteractionStates: (): SisadPdfmeSchemaInteractionSnapshot[] =>
+      instanceRef.current?.getSchemaInteractionStates?.() ?? [],
     setTemplate: (template) => {
       instanceRef.current?.updateTemplate?.(template);
     },

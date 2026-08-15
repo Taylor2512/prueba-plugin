@@ -10,32 +10,32 @@
  * ownerColorMap, recipientNameMap ni listas para el AssignmentDialog.
  */
 import React, { useEffect, useMemo, useRef } from 'react';
-import Designer from '../ui/Designer.js';
+import Designer from '@sisad-pdfme/ui/Designer';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
-import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
-import type { UsePdfmeRuntimeInstanceConfig } from '../runtime/usePdfmeRuntimeInstance.js';
-import { useSisadPdfmeController } from './useSisadPdfmeController.js';
-import { useSisadPdfmeConfigService } from './useSisadPdfmeConfigService.js';
-import { mergeHostSurfaceClassName } from './hostSurface.js';
+import { usePdfmeRuntimeInstance } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
+import type { UsePdfmeRuntimeInstanceConfig } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
+import { useSisadPdfmeController } from '@sisad-pdfme/react/useSisadPdfmeController';
+import { useSisadPdfmeConfigService } from '@sisad-pdfme/react/useSisadPdfmeConfigService';
+import { mergeHostSurfaceClassName } from '@sisad-pdfme/react/hostSurface';
 import {
   createInstanceEventDispatcher,
   type SisadPdfmeHostCallbacks,
-} from '../runtime/instanceEventDispatcher.js';
-import { bridgeRuntimeEventHub } from '../runtime/runtimeEventBridge.js';
-import type { SisadPdfmeAnyEvent } from '../contracts/events.js';
-import { buildCollaborationSyncFromRegistry } from '../recipients/recipientResolver.js';
-import { useSisadPdfmeRecipientRuntime } from './useSisadPdfmeRecipientRuntime.js';
+} from '@sisad-pdfme/runtime/instanceEventDispatcher';
+import { bridgeRuntimeEventHub } from '@sisad-pdfme/runtime/runtimeEventBridge';
+import type { SisadPdfmeAnyEvent } from '@sisad-pdfme/contracts/events';
+import { buildCollaborationSyncFromRegistry } from '@sisad-pdfme/recipients/recipientResolver';
+import { useSisadPdfmeRecipientRuntime } from '@sisad-pdfme/react/useSisadPdfmeRecipientRuntime';
 import type {
   SisadPdfmeAssignmentChangePayload,
   SisadPdfmeRecipient,
-} from '../recipients/recipientTypes.js';
-import { mergeSignatureProviders } from './signatureProviderMerge.js';
+} from '@sisad-pdfme/recipients/recipientTypes';
+import { mergeSignatureProviders } from '@sisad-pdfme/react/signatureProviderMerge';
 import type {
   SisadPdfmeController,
   SisadPdfmeDocument,
   SisadPdfmeGlobalConfig,
   ResolvedSisadPdfmeConfig,
-} from '../config/SisadPdfmeConfig.js';
+} from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 /** Identificador de instancia para correlacionar eventos del mismo montaje. */
 let instanceSequence = 0;

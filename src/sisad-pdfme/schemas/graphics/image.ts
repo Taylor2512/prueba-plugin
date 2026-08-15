@@ -9,13 +9,13 @@ import {
   addAlphaToHex,
   isEditable,
   createSvgStr,
-} from '../utils.js';
-import { DEFAULT_OPACITY } from '../constants.js';
-import { getImageDimension } from './imagehelper.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { basicsFields } from '../propPanel/commonInspectorFields.js';
-import { applyCenteredImageFileInputStyle, createImageFileInput } from '../shared/imageFileInput.js';
-import { mixHexColor, resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
+} from '@sisad-pdfme/schemas/utils';
+import { DEFAULT_OPACITY } from '@sisad-pdfme/schemas/constants';
+import { getImageDimension } from '@sisad-pdfme/schemas/graphics/imagehelper';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { basicsFields } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
+import { applyCenteredImageFileInputStyle, createImageFileInput } from '@sisad-pdfme/schemas/shared/imageFileInput';
+import { mixHexColor, resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
 
 const getImageCacheKey = (schema: Schema, input: string) => `${schema.type}${input}`;
 const fullSize = { width: '100%', height: '100%' };

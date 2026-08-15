@@ -20,7 +20,7 @@ import type {
   PluginFamilyDefinition,
   PluginStrategyDefinition,
   SchemaInspectorSection,
-} from '../contracts/index.js';
+} from '@sisad-pdfme/contracts';
 import type { PDFPage, PDFDocument } from 'pdf-lib';
 import type { ThemeConfig, GlobalToken as AntGlobalToken } from 'antd';
 import type { WidgetProps as _PropPanelWidgetProps, Schema as _PropPanelSchema } from 'form-render';
@@ -49,7 +49,7 @@ import {
   DesignerProps,
   ColorType,
   SchemaPageArray,
-} from './schema.js';
+} from '@sisad-pdfme/common/schema';
 
 /** Alias del schema de form-render usado por propPanel. */
 export type PropPanelSchema = _PropPanelSchema;

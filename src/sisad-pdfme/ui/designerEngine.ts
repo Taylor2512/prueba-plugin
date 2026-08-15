@@ -22,24 +22,24 @@ import {
   UIOptions,
   type CommentScope,
 } from '@sisad-pdfme/common';
-import { normalizeLooseText } from '../shared/text.js';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 import type React from 'react';
-import type { LeftSidebarProps } from './components/Designer/LeftSidebar';
-import type { RightSidebarProps } from './components/Designer/RightSidebar/RightSidebar';
+import type { LeftSidebarProps } from '@sisad-pdfme/ui/components/Designer/LeftSidebar';
+import type { RightSidebarProps } from '@sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar';
 import {
   normalizeCollaborationRecipients,
   resolveOwnerMode,
   type CollaborationRecipientOption,
-} from './collaborationContext.js';
-import { asRecord } from '../shared/objectGuards.js';
-import type { DesignerRuntimeExtensions } from './components/Designer/shared/designerExtensions';
-import type { SignatureProviderDefinition } from '../schemas/signature/providerRegistry.js';
+} from '@sisad-pdfme/ui/collaborationContext';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
+import type { DesignerRuntimeExtensions } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
+import type { SignatureProviderDefinition } from '@sisad-pdfme/schemas/signature/providerRegistry';
 import type {
   CanvasClassNames,
   CanvasComponentSlots,
   CanvasFeatureToggles,
   CanvasStyleOverrides,
-} from './components/Designer/Canvas/Canvas.js';
+} from '@sisad-pdfme/ui/components/Designer/Canvas/Canvas';
 
 export const DEFAULT_SCHEMA_CONFIG_STORAGE_KEY = '__designer';
 

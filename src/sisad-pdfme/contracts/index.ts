@@ -28,7 +28,7 @@
  * `UserSchemaAssignments` representa el formato normalizado actual.
  * `SchemaAssignments` conserva compatibilidad con snapshots antiguos.
  */
-export type { SchemaAssignments, UserSchemaAssignments } from './assignments.js';
+export type { SchemaAssignments, UserSchemaAssignments } from '@sisad-pdfme/contracts/assignments';
 
 /**
  * Contratos base del sistema de comandos.
@@ -41,7 +41,7 @@ export type {
   CommandExecutionContext,
   CommandObserverEvent,
   CommandObserverPayload,
-} from './commands.js';
+} from '@sisad-pdfme/contracts/commands';
 
 /**
  * Contratos de comentarios PDF.
@@ -54,7 +54,7 @@ export type {
   PdfComment,
   PdfCommentReply,
   TopLevelPdfCommentEntry,
-} from './comments.js';
+} from '@sisad-pdfme/contracts/comments';
 
 /**
  * Contratos de plugins y secciones del inspector.
@@ -67,7 +67,7 @@ export type {
   PluginFamilyDefinition,
   PluginStrategyDefinition,
   SchemaInspectorSection,
-} from './plugins.js';
+} from '@sisad-pdfme/contracts/plugins';
 
 /**
  * Contratos de identidad, colaboración y metadata de diseñador para schemas.
@@ -80,7 +80,7 @@ export type {
   CollaborativeSchemaContract,
   SchemaIdentity,
   SchemaDesignerMeta,
-} from './schema.js';
+} from '@sisad-pdfme/contracts/schema';
 
 /**
  * Helpers oficiales para crear o transformar metadata de diseñador.
@@ -93,7 +93,7 @@ export {
   createSchemaDesignerMeta,
   duplicateSchemaDesignerMeta,
   pasteSchemaDesignerMeta,
-} from './schema.js';
+} from '@sisad-pdfme/contracts/schema';
 
 /**
  * Tipos base del core común.
@@ -110,7 +110,7 @@ export type {
   PreviewProps,
   UIProps,
   Plugin,
-} from '../common/types.js';
+} from '@sisad-pdfme/common/types';
 
 /* ── Fase 2: Guards e Interaction Layer ─────────────────────────────────────── */
 
@@ -124,7 +124,7 @@ export type {
   InteractionGuardContext,
   GuardResult,
   GuardRejectionReason,
-} from '../shared/interactionGuards.js';
+} from '@sisad-pdfme/shared/interactionGuards';
 
 /**
  * Helpers oficiales para validar interacciones del diseñador.
@@ -137,7 +137,7 @@ export {
   validateBulkInteraction,
   getBlockedSchemas,
   getAllowedSchemas,
-} from '../shared/interactionGuards.js';
+} from '@sisad-pdfme/shared/interactionGuards';
 
 /**
  * Tipos de comandos y origen de acción.
@@ -145,7 +145,7 @@ export {
  * Permiten clasificar operaciones y reconocer desde dónde se originan:
  * canvas, toolbar, sidebar, teclado, API externa, entre otros.
  */
-export type { CommandType, ActionSource } from '../shared/commandTypes.js';
+export type { CommandType, ActionSource } from '@sisad-pdfme/shared/commandTypes';
 
 /**
  * Catálogos de acciones por riesgo.
@@ -153,7 +153,7 @@ export type { CommandType, ActionSource } from '../shared/commandTypes.js';
  * `MUTATING_ACTIONS` agrupa acciones que modifican estado.
  * `READ_ONLY_SAFE_ACTIONS` agrupa acciones seguras de lectura/navegación.
  */
-export { MUTATING_ACTIONS, READ_ONLY_SAFE_ACTIONS } from '../shared/commandTypes.js';
+export { MUTATING_ACTIONS, READ_ONLY_SAFE_ACTIONS } from '@sisad-pdfme/shared/commandTypes';
 
 /* ── Fase 7: Snapshot oficial ───────────────────────────────────────────────── */
 
@@ -177,7 +177,7 @@ export type {
   PageBackground,
   SerializeOptions,
   SchemaWithDesigner,
-} from '../shared/snapshot.js';
+} from '@sisad-pdfme/shared/snapshot';
 
 /**
  * Utilidades base del snapshot oficial.
@@ -186,13 +186,13 @@ export type {
  * `isPreSnapshot` detecta formatos anteriores.
  * `makeEmptySnapshot` crea un snapshot vacío válido.
  */
-export { SNAPSHOT_VERSION, isPreSnapshot, makeEmptySnapshot } from '../shared/snapshot.js';
+export { SNAPSHOT_VERSION, isPreSnapshot, makeEmptySnapshot } from '@sisad-pdfme/shared/snapshot';
 
 /**
  * Adaptador oficial para serializar, hidratar, validar y migrar entre
  * estado del diseñador, template y snapshot.
  */
-export { snapshotAdapter } from '../shared/snapshotAdapter.js';
+export { snapshotAdapter } from '@sisad-pdfme/shared/snapshotAdapter';
 
 /**
  * Tipos auxiliares del adaptador de snapshot.
@@ -200,7 +200,7 @@ export { snapshotAdapter } from '../shared/snapshotAdapter.js';
  * `ValidationResult` describe el resultado de validación.
  * `DesignerState` representa el estado reconstruido o serializable.
  */
-export type { ValidationResult, DesignerState } from '../shared/snapshotAdapter.js';
+export type { ValidationResult, DesignerState } from '@sisad-pdfme/shared/snapshotAdapter';
 
 /* ── Fase 8: Provider Registry ──────────────────────────────────────────────── */
 
@@ -218,7 +218,7 @@ export type {
   SignatureResult,
   SignatureValidation,
   ExternalSignatureAdapter,
-} from '../shared/signatureRegistry.js';
+} from '@sisad-pdfme/shared/signatureRegistry';
 
 /**
  * API pública del registry de providers de firma.
@@ -231,7 +231,7 @@ export {
   ProviderNotRegisteredError,
   getAvailableProvidersForSchema,
   getDefaultProviderForSchema,
-} from '../shared/signatureRegistry.js';
+} from '@sisad-pdfme/shared/signatureRegistry';
 /**
  * Catálogo canónico de eventos.
  *
@@ -249,7 +249,7 @@ export {
   isSisadPdfmeEventOf,
   createSisadPdfmeEvent,
   createSisadPdfmeCustomEvent,
-} from './events.js';
+} from '@sisad-pdfme/contracts/events';
 
 export type {
   SisadPdfmeEventDomain,
@@ -263,4 +263,4 @@ export type {
   SisadPdfmeAnyEvent,
   SisadPdfmeSerializable,
   CreateEventContext,
-} from './events.js';
+} from '@sisad-pdfme/contracts/events';

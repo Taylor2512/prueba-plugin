@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Button } from 'antd';
 import { MessageSquare, MessageSquarePlus } from 'lucide-react';
-import type { DesignerCommentItem } from '../../../types.js';
-import { DESIGNER_CLASSNAME } from '../../../constants.js';
-import { SidebarSurfaceEmptyState, SidebarSurfaceHeader } from './shared/SidebarSurfacePrimitives.js';
-import { mergeClassNames } from '../shared/className.js';
+import type { DesignerCommentItem } from '@sisad-pdfme/ui/types';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { SidebarSurfaceEmptyState, SidebarSurfaceHeader } from '@sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 /**
  * Props del rail lateral de comentarios.

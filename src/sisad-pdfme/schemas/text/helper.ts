@@ -10,7 +10,7 @@ import {
   getDefaultFont,
   DEFAULT_FONT_NAME,
 } from '@sisad-pdfme/common';
-import type { TextSchema, FontWidthCalcValues } from './types.js';
+import type { TextSchema, FontWidthCalcValues } from '@sisad-pdfme/schemas/text/types';
 import {
   DEFAULT_FONT_SIZE,
   DEFAULT_CHARACTER_SPACING,
@@ -22,7 +22,7 @@ import {
   VERTICAL_ALIGN_TOP,
   LINE_END_FORBIDDEN_CHARS,
   LINE_START_FORBIDDEN_CHARS,
-} from './constants.js';
+} from '@sisad-pdfme/schemas/text/constants';
 
 export const getBrowserVerticalFontAdjustments = (
   fontKitFont: FontKitFont,

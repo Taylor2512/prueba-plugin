@@ -8,7 +8,7 @@ import {
   ArrowDownToLine,
   AlignJustify,
 } from 'lucide-react';
-import { createSvgStr } from '../../utils.js';
+import { createSvgStr } from '@sisad-pdfme/schemas/utils';
 
 export const TextStrikethroughIcon = createSvgStr(Strikethrough);
 

@@ -112,4 +112,4 @@ export const schemaHasGroupFloatingAction = (schemaType: string): boolean =>
  */
 export const schemaIsOptionBased = (schemaType: string): boolean =>
   getSchemaInteractionCapabilities(schemaType).isOptionBased;
-import { isOptionGroupType } from '../../../../schemas/options/optionGroupLayout.js';
+import { isOptionGroupType } from '@sisad-pdfme/schemas/options/optionGroupLayout';

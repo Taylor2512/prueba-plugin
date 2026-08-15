@@ -1,20 +1,20 @@
 import { Plugin, Schema } from '@sisad-pdfme/common';
-import svg from '../graphics/svg.js';
-import { isEditable } from '../utils.js';
-import { HEX_COLOR_PATTERN } from '../constants.js';
+import svg from '@sisad-pdfme/schemas/graphics/svg';
+import { isEditable } from '@sisad-pdfme/schemas/utils';
+import { HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
 import {
   hexColorField,
   basicsFields,
   helpFields,
   dataLabelFields,
   COMMON_PROPERTY_MAP,
-} from '../propPanel/commonInspectorFields.js';
+} from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 import { SquareCheck } from 'lucide-react';
-import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { buildAddOptionButton } from '../groupSchemaRender.js';
-import { renderOptionIndicatorSvg, createOptionIndicatorElement } from '../options/optionIndicator.js';
-import { buildCheckboxToGroupPatch } from '../options/optionValueAdapter.js';
+import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { buildAddOptionButton } from '@sisad-pdfme/schemas/groupSchemaRender';
+import { renderOptionIndicatorSvg, createOptionIndicatorElement } from '@sisad-pdfme/schemas/options/optionIndicator';
+import { buildCheckboxToGroupPatch } from '@sisad-pdfme/schemas/options/optionValueAdapter';
 
 const getCheckedIcon = (stroke = 'currentColor') => renderLucideIcon(SquareCheck, { stroke });
 

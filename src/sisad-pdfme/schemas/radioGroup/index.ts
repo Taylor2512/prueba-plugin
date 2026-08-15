@@ -1,15 +1,15 @@
 import type { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import { isEditable } from '../utils.js';
-import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
+import { isEditable } from '@sisad-pdfme/schemas/utils';
+import { createSchemaPlugin, renderLucideIcon } from '@sisad-pdfme/schemas/schemaBuilder';
 import { CircleDot } from 'lucide-react';
-import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
-import type { OptionItem } from '../options/optionTypes.js';
+import type { GroupMeta } from '@sisad-pdfme/shared/schemaDesignerMeta';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
 import {
   buildDefaultOptionGroupOptions,
   normalizeOptionId,
   normalizeOptionGroupOptions,
   normalizeOptionText,
-} from '../options/optionModel.js';
+} from '@sisad-pdfme/schemas/options/optionModel';
 
 type RadioGroupSchema = SchemaForUI & {
   groupId?: string;
@@ -30,7 +30,7 @@ type RadioGroupSchema = SchemaForUI & {
 
 import {
   RADIO_GROUP_LAYOUT,
-} from '../options/optionGroupLayout.js';
+} from '@sisad-pdfme/schemas/options/optionGroupLayout';
 import {
   createDesignerOptionGroupEl,
   syncDesignerOptionGroupPatch,
@@ -41,13 +41,13 @@ import {
   renderOptionGroupUi,
   resolveOptionGroupReadOnly,
   createOptionGroupPropPanelConfig,
-} from '../options/optionGroupFactory.js';
+} from '@sisad-pdfme/schemas/options/optionGroupFactory';
 import {
   resolveSingleOptionSelection,
-} from '../options/optionSelectionBehavior.js';
-import { createOptionGroupOptionsEditor } from '../options/optionGroupEditorFactory.js';
-import { markInspectorInteractive } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
-import { renderOptionGroupPdf } from '../options/optionGroupPdfRender.js';
+} from '@sisad-pdfme/schemas/options/optionSelectionBehavior';
+import { createOptionGroupOptionsEditor } from '@sisad-pdfme/schemas/options/optionGroupEditorFactory';
+import { markInspectorInteractive } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
+import { renderOptionGroupPdf } from '@sisad-pdfme/schemas/options/optionGroupPdfRender';
 
 type RadioOption = OptionItem;
 

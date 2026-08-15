@@ -1,5 +1,5 @@
-import type { ResolvedSisadPdfmeConfig, SisadPdfmeVisibilityConfig } from './SisadPdfmeConfig.js';
-import { shouldShowInspectorSection } from '../ui/components/Designer/shared/visibilityConfig.js';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeVisibilityConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { shouldShowInspectorSection } from '@sisad-pdfme/ui/components/Designer/shared/visibilityConfig';
 
 export type InspectorConfigurationResolver = {
   visibility: SisadPdfmeVisibilityConfig;

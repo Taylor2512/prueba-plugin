@@ -1,17 +1,17 @@
 import type { Plugin, PropPanelSchema, Schema } from '@sisad-pdfme/common';
 import type { LucideIcon } from 'lucide-react';
-import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { createSchemaPlugin, renderLucideIcon } from '@sisad-pdfme/schemas/schemaBuilder';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
 import {
   COMMON_PROPERTY_MAP,
   dataLabelFields,
   helpFields,
-} from '../propPanel/commonInspectorFields.js';
-import { resolveSchemaOwnerColorValue } from '../../collaboration/schemaOwnershipAppearance.js';
-import { renderSchemaWithChrome } from '../shared/renderSchemaWithChrome.js';
-import { createActionButtonEl } from '../shared/schemaDom.js';
-import { readableTextColor } from '../shared/fieldChrome.js';
-import type { ActionSchemaBase } from '../shared/schemaTypes.js';
+} from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
+import { resolveSchemaOwnerColorValue } from '@sisad-pdfme/collaboration/schemaOwnershipAppearance';
+import { renderSchemaWithChrome } from '@sisad-pdfme/schemas/shared/renderSchemaWithChrome';
+import { createActionButtonEl } from '@sisad-pdfme/schemas/shared/schemaDom';
+import { readableTextColor } from '@sisad-pdfme/schemas/shared/fieldChrome';
+import type { ActionSchemaBase } from '@sisad-pdfme/schemas/shared/schemaTypes';
 
 type DecisionActionSchema = ActionSchemaBase<{
   requiresReason?: boolean;

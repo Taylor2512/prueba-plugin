@@ -8,9 +8,9 @@ import { CalendarCheck } from 'lucide-react';
 import { format } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale/index.js';
 import type { Locale as DateFnsLocale } from 'date-fns';
-import { renderLucideIcon } from '../schemaBuilder.js';
-import { createSigningSchemaPlugin } from './signingSchemaFactory.js';
-import text from '../text/index.js';
+import { renderLucideIcon } from '@sisad-pdfme/schemas/schemaBuilder';
+import { createSigningSchemaPlugin } from '@sisad-pdfme/schemas/signature/signingSchemaFactory';
+import text from '@sisad-pdfme/schemas/text';
 
 const DATE_FORMAT_OPTIONS: Array<{ label: string; value: string }> = [
   { label: 'DD/MM/AAAA', value: 'dd/MM/yyyy' },

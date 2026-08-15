@@ -2,7 +2,7 @@ import type {
   SisadPdfmeGlobalConfig,
   SisadPdfmeUiClassNamesConfig,
   SisadPdfmeVisibilityConfig,
-} from './SisadPdfmeConfig.js';
+} from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 export const defaultSisadPdfmeVisibilityConfig: Required<SisadPdfmeVisibilityConfig> = {
   shell: {

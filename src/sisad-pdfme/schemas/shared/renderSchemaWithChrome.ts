@@ -10,9 +10,9 @@
  *
  * Restriction: does NOT touch x/y/width/height/rotation or Moveable/Selecto.
  */
-import type { SchemaVisualFamily, SisadSchemaBase } from './schemaTypes.js';
-import { clearSchemaRoot, setSchemaRootAttributes } from './schemaDom.js';
-import { applyFieldChrome, type SchemaRenderMode } from './fieldChrome.js';
+import type { SchemaVisualFamily, SisadSchemaBase } from '@sisad-pdfme/schemas/shared/schemaTypes';
+import { clearSchemaRoot, setSchemaRootAttributes } from '@sisad-pdfme/schemas/shared/schemaDom';
+import { applyFieldChrome, type SchemaRenderMode } from '@sisad-pdfme/schemas/shared/fieldChrome';
 
 export type RenderSchemaWithChromeOptions<TSchema extends SisadSchemaBase> = {
   schema: TSchema;

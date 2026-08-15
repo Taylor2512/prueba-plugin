@@ -1,5 +1,5 @@
 import { Schema } from '@sisad-pdfme/common';
-import { ALIGNMENT } from '../text/types.js';
+import { ALIGNMENT } from '@sisad-pdfme/schemas/text/types';
 
 export interface DateSchema extends Schema {
   format: string;

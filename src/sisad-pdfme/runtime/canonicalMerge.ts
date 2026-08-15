@@ -16,8 +16,8 @@
  *    un ganador publicable. `values` contiene ahora sólo los schemas sin
  *    conflicto, y `publishable` dice si el resultado puede ir al generador.
  */
-import { getSchemaValueCodec } from '../schemas/values/schemaValueCodec.js';
-import type { SchemaCodecId } from '../schemas/schemaRuntimeMetadata.js';
+import { getSchemaValueCodec } from '@sisad-pdfme/schemas/values/schemaValueCodec';
+import type { SchemaCodecId } from '@sisad-pdfme/schemas/schemaRuntimeMetadata';
 
 export type CanonicalSchemaDelta = {
   schemaUid: string;

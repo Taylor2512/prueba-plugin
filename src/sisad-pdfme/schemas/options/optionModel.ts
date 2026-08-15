@@ -1,5 +1,5 @@
-import type { OptionItem } from './optionTypes';
-import { normalizeLooseText } from '../../shared/text.js';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 export const normalizeOptionText = normalizeLooseText;
 export const normalizeText = normalizeOptionText;

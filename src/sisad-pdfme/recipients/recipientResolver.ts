@@ -14,13 +14,13 @@
  */
 import { normalizeRecipientIds } from '@sisad-pdfme/common';
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { resolveSchemaOwnerColor } from '../collaboration/schemaOwnershipAppearance.js';
+import { resolveSchemaOwnerColor } from '@sisad-pdfme/collaboration/schemaOwnershipAppearance';
 import type {
   OwnerAwareSchemaLike,
   SchemaOwnerAppearance,
   SisadPdfmeRecipientRegistry,
   SisadPdfmeRecipientRegistryState,
-} from './recipientTypes.js';
+} from '@sisad-pdfme/recipients/recipientTypes';
 
 const normalizeRecipientText = (value: unknown) => String(value ?? '').trim();
 

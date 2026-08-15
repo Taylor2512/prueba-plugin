@@ -23,10 +23,10 @@
  * objetos, sólo del contenido. Dos compilaciones del mismo input producen el
  * mismo hash y, por tanto, conservan la misma revisión.
  */
-import { resolveSisadPdfmeConfig } from './resolveSisadPdfmeConfig.js';
-import { migrateSisadPdfmeConfig, type SisadPdfmeConfigMigrationIssue } from './configMigration.js';
-import { validateSisadPdfmeConfig, type SisadPdfmeConfigIssue } from './configValidation.js';
-import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
+import { resolveSisadPdfmeConfig } from '@sisad-pdfme/config/resolveSisadPdfmeConfig';
+import { migrateSisadPdfmeConfig, type SisadPdfmeConfigMigrationIssue } from '@sisad-pdfme/config/configMigration';
+import { validateSisadPdfmeConfig, type SisadPdfmeConfigIssue } from '@sisad-pdfme/config/configValidation';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 /** Identidad de una configuración resuelta. */
 export type ResolvedConfigIdentity = {

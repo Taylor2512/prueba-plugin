@@ -1,7 +1,7 @@
 import { PDFRenderProps } from '@sisad-pdfme/common';
-import { MultiVariableTextSchema } from './types.js';
-import { renderTextPdf as parentPdfRender } from '../text/pdfRender.js';
-import { substituteVariables, validateVariables } from './helper.js';
+import { MultiVariableTextSchema } from '@sisad-pdfme/schemas/multiVariableText/types';
+import { renderTextPdf as parentPdfRender } from '@sisad-pdfme/schemas/text/pdfRender';
+import { substituteVariables, validateVariables } from '@sisad-pdfme/schemas/multiVariableText/helper';
 
 export const renderMultiVariableTextPdf = async (arg: PDFRenderProps<MultiVariableTextSchema>) => {
   const { value, schema, ...rest } = arg;

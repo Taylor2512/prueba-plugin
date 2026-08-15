@@ -1,11 +1,11 @@
 import { Plugin, Schema, mm2pt } from '@sisad-pdfme/common';
-import { HEX_COLOR_PATTERN } from '../constants.js';
-import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '../utils.js';
+import { HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
+import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '@sisad-pdfme/schemas/utils';
 import { toRadians } from 'pdf-lib';
 import { Circle, Square } from 'lucide-react';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
-import { hexColorFields } from '../propPanel/commonInspectorFields.js';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
+import { hexColorFields } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 
 interface ShapeSchema extends Schema {
   type: 'ellipse' | 'rectangle';

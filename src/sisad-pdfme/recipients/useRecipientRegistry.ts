@@ -11,13 +11,13 @@
  *   registry cambie — así `setActiveRecipient` fluye hasta el Designer montado.
  */
 import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
-import { createRecipientRegistry } from './recipientRegistry.js';
+import { createRecipientRegistry } from '@sisad-pdfme/recipients/recipientRegistry';
 import type {
   SisadPdfmeRecipient,
   SisadPdfmeRecipientRegistry,
   SisadPdfmeRecipientRegistryState,
   SisadPdfmeRecipientsConfig,
-} from './recipientTypes.js';
+} from '@sisad-pdfme/recipients/recipientTypes';
 
 export type RecipientsAdapterLike = {
   toRecipients(input: unknown[]): SisadPdfmeRecipient[];

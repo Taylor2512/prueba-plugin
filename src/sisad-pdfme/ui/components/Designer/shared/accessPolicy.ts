@@ -1,5 +1,5 @@
 import { Schema } from '@sisad-pdfme/common';
-import { resolveDesignerSchemaFamily, type SchemaFamily } from './schemaFamilies.js';
+import { resolveDesignerSchemaFamily, type SchemaFamily } from '@sisad-pdfme/ui/components/Designer/shared/schemaFamilies';
 
 /**
  * Contexto extendido para evaluar el acceso a un schema.

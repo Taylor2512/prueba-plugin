@@ -7,19 +7,19 @@
  */
 import React from 'react';
 import type { SchemaForUI, PropPanelWidgetProps } from '@sisad-pdfme/common';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { SidebarBody, SidebarFrame } from '../layout.js';
-import DetailHeaderCard from './DetailHeaderCard.js';
-import DetailFormSection, { type SectionFormInstance } from './DetailFormSection.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { SidebarBody, SidebarFrame } from '@sisad-pdfme/ui/components/Designer/RightSidebar/layout';
+import DetailHeaderCard from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard';
+import DetailFormSection, { type SectionFormInstance } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection';
 import { Lock } from 'lucide-react';
-import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
-import type { DetailInspectorSection } from './detailSchemas.js';
-import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
+import type { SchemaDesignerConfig } from '@sisad-pdfme/ui/designerEngine';
+import type { DetailInspectorSection } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas';
+import { stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 import {
   describeSchemaAccessDenyReason,
   type SchemaAccessState,
-} from '../../shared/accessPolicy.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/accessPolicy';
 
 /**
  * Props del layout visual del DetailView.

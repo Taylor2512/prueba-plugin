@@ -5,25 +5,25 @@ import type {
   DesignerCommentsBridge,
   DesignerDocumentsBridge,
   DesignerSidebarPresentation,
-} from '../../../types.js';
-import { DESIGNER_CLASSNAME } from '../../../constants.js';
-import ListView from './ListView/ListView.js';
-import DetailView from './DetailView/DetailView.js';
-import { SidebarFrame } from './layout.js';
-import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
-import CommentsRail, { CommentsRailProps } from './CommentsRail.js';
-import { mergeClassNames } from '../shared/className.js';
-import { SidebarRail, type SidebarRailItem } from '../shared/SidebarRail.js';
-import { SidebarCollapseHandle } from '../shared/SidebarCollapseHandle.js';
-import type { SelectionCommandSet } from '../shared/selectionCommands.js';
-import { useResponsiveDensity } from '../shared/useResponsiveDensity.js';
+} from '@sisad-pdfme/ui/types';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import ListView from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView';
+import DetailView from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView';
+import { SidebarFrame } from '@sisad-pdfme/ui/components/Designer/RightSidebar/layout';
+import DocumentsRail, { DocumentsRailProps } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail';
+import CommentsRail, { CommentsRailProps } from '@sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { SidebarRail, type SidebarRailItem } from '@sisad-pdfme/ui/components/Designer/shared/SidebarRail';
+import { SidebarCollapseHandle } from '@sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import { useResponsiveDensity } from '@sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity';
 import { Layers, SlidersHorizontal, FileText, MessageSquareText } from 'lucide-react';
 import {
   resolveRightSidebarContextHeader,
   type RightSidebarContextHeader,
-} from './contextHeader.js';
-import { resolveSchemaIdentityFromElement } from '../shared/selectionIdentityResolver.js';
-import { useDesignerUiConfig } from '../shared/useDesignerUiConfig.js';
+} from '@sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader';
+import { resolveSchemaIdentityFromElement } from '@sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver';
+import { useDesignerUiConfig } from '@sisad-pdfme/ui/components/Designer/shared/useDesignerUiConfig';
 
 /**
  * Props extendidas del sidebar derecho del diseñador.

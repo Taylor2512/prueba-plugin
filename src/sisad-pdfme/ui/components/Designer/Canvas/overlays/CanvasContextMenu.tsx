@@ -12,15 +12,15 @@ import {
   CanvasContextMenuMode,
   CanvasContextMenuExternalActions,
   buildCanvasContextMenuGroups,
-} from './canvasContextMenuActions.js';
+} from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions';
 
-import { resolveAnchoredFloatingSurfacePosition } from './floatingSurfaceGeometry.js';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import { mergeClassNames } from '../../shared/className.js';
-import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
-import { OptionsContext } from '../../../../contexts.js';
-import { asRecord } from '../../../../../shared/objectGuards.js';
-import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
+import { resolveAnchoredFloatingSurfacePosition } from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import { OptionsContext } from '@sisad-pdfme/ui/contexts';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
+import type { SisadPdfmeVisibilityConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 /**
  * Coordenada ancla donde debe abrirse el menú contextual.

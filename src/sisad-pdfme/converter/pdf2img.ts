@@ -1,5 +1,5 @@
 import type { PDFDocumentProxy } from 'pdfjs-dist';
-import type { ImageType } from './types.js';
+import type { ImageType } from '@sisad-pdfme/converter/types';
 
 /**
  * Adaptador de entorno requerido por pdf2img.

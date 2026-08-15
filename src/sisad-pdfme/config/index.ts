@@ -9,16 +9,16 @@
  * `resolveSisadPdfmeConfig` y la mayoría de los tipos públicos habían dejado de
  * exportarse, lo que rompía el barrel público `integration/index.ts`.
  */
-export { defaultSisadPdfmeConfig } from './defaultSisadPdfmeConfig.js';
-export { createSisadPdfmeConfig } from './createSisadPdfmeConfig.js';
-export { resolveSisadPdfmeConfig } from './resolveSisadPdfmeConfig.js';
-export { createProfiledConfig, deepMergeProfileConfig } from './profiledConfig.js';
-export { migrateSisadPdfmeConfig } from './configMigration.js';
-export { validateSisadPdfmeConfig } from './configValidation.js';
-export { classifySisadPdfmeConfigChange } from './configChangeImpact.js';
-export { createSisadPdfmeConfigSelectors } from './configSelectors.js';
-export { createSisadPdfmeConfigService } from './SisadPdfmeConfigService.js';
-export { createInspectorConfigurationResolver } from './InspectorConfigurationResolver.js';
+export { defaultSisadPdfmeConfig } from '@sisad-pdfme/config/defaultSisadPdfmeConfig';
+export { createSisadPdfmeConfig } from '@sisad-pdfme/config/createSisadPdfmeConfig';
+export { resolveSisadPdfmeConfig } from '@sisad-pdfme/config/resolveSisadPdfmeConfig';
+export { createProfiledConfig, deepMergeProfileConfig } from '@sisad-pdfme/config/profiledConfig';
+export { migrateSisadPdfmeConfig } from '@sisad-pdfme/config/configMigration';
+export { validateSisadPdfmeConfig } from '@sisad-pdfme/config/configValidation';
+export { classifySisadPdfmeConfigChange } from '@sisad-pdfme/config/configChangeImpact';
+export { createSisadPdfmeConfigSelectors } from '@sisad-pdfme/config/configSelectors';
+export { createSisadPdfmeConfigService } from '@sisad-pdfme/config/SisadPdfmeConfigService';
+export { createInspectorConfigurationResolver } from '@sisad-pdfme/config/InspectorConfigurationResolver';
 export {
   capabilityInventory,
   capabilityId,
@@ -27,37 +27,37 @@ export {
   findCapability,
   SCHEMA_SURFACES,
   CONTROLLER_DOMAINS,
-} from './capabilityInventory.js';
-export { createCapabilityGraph, resolveCapabilityState } from './capabilityGraph.js';
-export { compileSisadPdfmeConfig, hashResolvedConfig } from './configCompiler.js';
+} from '@sisad-pdfme/config/capabilityInventory';
+export { createCapabilityGraph, resolveCapabilityState } from '@sisad-pdfme/config/capabilityGraph';
+export { compileSisadPdfmeConfig, hashResolvedConfig } from '@sisad-pdfme/config/configCompiler';
 export {
   planConfigChange,
   disabledCapabilities,
   enabledCapabilities,
   CAPABILITY_FLAGS,
-} from './configEffectPlan.js';
+} from '@sisad-pdfme/config/configEffectPlan';
 
 export type {
   CapabilityDescriptor,
   CapabilityId,
   CapabilityKind,
   SchemaSurface,
-} from './capabilityInventory.js';
+} from '@sisad-pdfme/config/capabilityInventory';
 export type {
   CapabilityGraph,
   CapabilityResolutionContext,
   CapabilityState,
-} from './capabilityGraph.js';
+} from '@sisad-pdfme/config/capabilityGraph';
 export type {
   CompiledSisadPdfmeConfig,
   ResolvedConfigIdentity,
-} from './configCompiler.js';
+} from '@sisad-pdfme/config/configCompiler';
 export type {
   CapabilityFlag,
   CapabilityTransition,
   ConfigChangeSet,
   ConfigEffectKind,
-} from './configEffectPlan.js';
+} from '@sisad-pdfme/config/configEffectPlan';
 
 export type {
   SisadPdfmeController,
@@ -78,24 +78,24 @@ export type {
   ResolvedSisadPdfmeConfig,
   SisadPdfmeProviderValue,
   SisadPdfmeProviderProps,
-} from './SisadPdfmeConfig.js';
+} from '@sisad-pdfme/config/SisadPdfmeConfig';
 export type {
   SisadPdfmeConfigMigrationIssue,
   SisadPdfmeConfigMigrationResult,
-} from './configMigration.js';
-export type { SisadPdfmeConfigIssue } from './configValidation.js';
-export type { SisadPdfmeConfigChangeImpact } from './configChangeImpact.js';
+} from '@sisad-pdfme/config/configMigration';
+export type { SisadPdfmeConfigIssue } from '@sisad-pdfme/config/configValidation';
+export type { SisadPdfmeConfigChangeImpact } from '@sisad-pdfme/config/configChangeImpact';
 export type {
   SisadPdfmeConfigSelectors,
   SisadPdfmeConfigSource,
-} from './configSelectors.js';
+} from '@sisad-pdfme/config/configSelectors';
 export type {
   SisadPdfmeConfigService,
   SisadPdfmeConfigChange,
   SisadPdfmeConfigServiceListener,
-} from './SisadPdfmeConfigService.js';
+} from '@sisad-pdfme/config/SisadPdfmeConfigService';
 export type {
   InspectorConfigurationResolver,
-} from './InspectorConfigurationResolver.js';
+} from '@sisad-pdfme/config/InspectorConfigurationResolver';
 
-export type { SisadPdfmeRecipient } from '../recipients/recipientTypes.js';
+export type { SisadPdfmeRecipient } from '@sisad-pdfme/recipients/recipientTypes';

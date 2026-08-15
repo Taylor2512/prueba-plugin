@@ -11,7 +11,7 @@ import type {
   SisadPdfmeRecipient,
   SisadPdfmeRecipientRegistryState,
   SisadPdfmeRecipientsSnapshot,
-} from './recipientTypes.js';
+} from '@sisad-pdfme/recipients/recipientTypes';
 
 const normalizeRecipientSnapshotText = (value: unknown) => String(value ?? '').trim();
 

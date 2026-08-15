@@ -14,10 +14,10 @@
  */
 
 import { isReadonlyRecipientRole, normalizeRecipientIds, type SchemaForUI } from '@sisad-pdfme/common';
-import type { CollaborationSyncConfig, SchemaCreationContext } from './designerEngine.js';
-import { normalizeText } from '../shared/text.js';
-import { buildRecipientColorMap } from '../recipients/recipientColorResolver.js';
-export { buildRecipientColorMap } from '../recipients/recipientColorResolver.js';
+import type { CollaborationSyncConfig, SchemaCreationContext } from '@sisad-pdfme/ui/designerEngine';
+import { normalizeText } from '@sisad-pdfme/shared/text';
+import { buildRecipientColorMap } from '@sisad-pdfme/recipients/recipientColorResolver';
+export { buildRecipientColorMap } from '@sisad-pdfme/recipients/recipientColorResolver';
 
 export type CollaborationRecipientOption = {
   id: string;

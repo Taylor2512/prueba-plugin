@@ -1,6 +1,6 @@
 import * as pdfjsLib from 'pdfjs-dist//build/pdf';
 import PDFJSWorkerUrl from 'pdfjs-dist//build/pdf.worker.min.js?url';
-import { createEnvironmentConverters } from './createEnvironmentConverters.js';
+import { createEnvironmentConverters } from '@sisad-pdfme/converter/createEnvironmentConverters';
 
 /**
  * Entry point para navegador.
@@ -56,4 +56,4 @@ const { pdf2img, pdf2size } = createEnvironmentConverters({
 });
 
 export { pdf2img, pdf2size };
-export * from './index.shared.js';
+export * from '@sisad-pdfme/converter/index.shared';

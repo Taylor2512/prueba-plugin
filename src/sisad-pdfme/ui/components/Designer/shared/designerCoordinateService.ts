@@ -9,7 +9,7 @@ import {
   type PointArea,
   type Rect,
   type Size,
-} from './coordinateMath.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/coordinateMath';
 
 ;
 

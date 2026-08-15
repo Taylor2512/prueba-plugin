@@ -21,7 +21,7 @@ import {
   Plugins,
   BlankPdf,
   SchemaPageArray,
-} from './types.js';
+} from '@sisad-pdfme/common/types';
 import {
   Inputs as InputsSchema,
   UIOptions as UIOptionsSchema,
@@ -31,14 +31,14 @@ import {
   GenerateProps as GeneratePropsSchema,
   UIProps as UIPropsSchema,
   BlankPdf as BlankPdfSchema,
-} from './schema.js';
+} from '@sisad-pdfme/common/schema';
 import {
   MM_TO_PT_RATIO,
   PT_TO_MM_RATIO,
   PT_TO_PX_RATIO,
   DEFAULT_FONT_NAME,
   DEFAULT_FONT_VALUE,
-} from './constants.js';
+} from '@sisad-pdfme/common/constants';
 
 /**
  * Clonado profundo usado como política común de inmutabilidad.

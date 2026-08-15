@@ -15,8 +15,8 @@ import type {
   TableInput,
   StylesProps,
   Section,
-} from './types.js';
-import { Cell, Column, Row, Table } from './classes.js';
+} from '@sisad-pdfme/schemas/tables/types';
+import { Cell, Column, Row, Table } from '@sisad-pdfme/schemas/tables/classes';
 
 type StyleProp = 'styles' | 'headStyles' | 'bodyStyles' | 'alternateRowStyles' | 'columnStyles';
 

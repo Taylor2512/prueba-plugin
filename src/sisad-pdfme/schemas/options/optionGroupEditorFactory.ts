@@ -1,7 +1,7 @@
-import { clearSchemaRoot } from '../shared/schemaDom.js';
-import { createOptionIndicatorElement, type OptionIndicatorShape } from './optionIndicator.js';
-import { markInspectorInteractive, stopInspectorPointerEvent } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
-import { normalizeLooseText } from '../../shared/text.js';
+import { clearSchemaRoot } from '@sisad-pdfme/schemas/shared/schemaDom';
+import { createOptionIndicatorElement, type OptionIndicatorShape } from '@sisad-pdfme/schemas/options/optionIndicator';
+import { markInspectorInteractive, stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 export type OptionGroupEditorItem = {
   optionId: string;

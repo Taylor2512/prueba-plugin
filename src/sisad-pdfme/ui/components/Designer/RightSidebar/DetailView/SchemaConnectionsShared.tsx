@@ -8,8 +8,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Input } from 'antd';
 import { Plus, Trash2 } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 const PAIR_EDITOR_ROOT = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-config-pair-editor',

@@ -11,15 +11,15 @@
  * Este módulo solo manipula datos. No debe pintar CommentsRail ni depender de UI.
  */
 
-import { cloneDeep } from './helper.js';
-import type { Template, SchemaForUI, CommentAnchor, SchemaComment } from './types.js';
-import type { PdfComment, TopLevelPdfCommentEntry } from '../contracts/index.js';
+import { cloneDeep } from '@sisad-pdfme/common/helper';
+import type { Template, SchemaForUI, CommentAnchor, SchemaComment } from '@sisad-pdfme/common/types';
+import type { PdfComment, TopLevelPdfCommentEntry } from '@sisad-pdfme/contracts';
 import {
   createSchemaComment,
   createSchemaCommentAnchor,
   upsertById,
   removeById,
-} from './collaboration.js';
+} from '@sisad-pdfme/common/collaboration';
 
 /** Identidad mínima del autor usada para comments y anchors. */
 type Identity = { authorId?: string | null; authorName?: string | null; authorColor?: string | null };

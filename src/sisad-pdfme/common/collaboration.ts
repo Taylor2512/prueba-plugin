@@ -15,7 +15,7 @@
  * Este archivo no debe importar React, CSS, canvas, sidebars ni lógica visual.
  */
 
-import { cloneDeep } from './helper.js';
+import { cloneDeep } from '@sisad-pdfme/common/helper';
 
 import type {
   CommentScope,
@@ -24,7 +24,7 @@ import type {
   SchemaForUI,
   SchemaPageArray,
   CommentAnchor,
-} from './types.js';
+} from '@sisad-pdfme/common/types';
 
 /**
  * Normaliza uno o varios recipient/user ids a un arreglo único de strings.

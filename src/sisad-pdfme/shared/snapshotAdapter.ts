@@ -23,13 +23,13 @@ import type {
   SignatureConfig,
   SerializeOptions,
   SchemaWithDesigner,
-} from './snapshot.js';
+} from '@sisad-pdfme/shared/snapshot';
 import {
   SNAPSHOT_VERSION,
   isPreSnapshot,
-} from './snapshot.js';
-import { asRecord } from './objectGuards.js';
-import { normalizeLooseText } from './text.js';
+} from '@sisad-pdfme/shared/snapshot';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 import { cloneDeep } from '@sisad-pdfme/common';
 
 export interface ValidationResult {

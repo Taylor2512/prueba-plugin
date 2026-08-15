@@ -1,13 +1,13 @@
-import { getSchemaInteractionCapabilities } from '../ui/components/Designer/shared/schemaInteractionCapabilities.js';
+import { getSchemaInteractionCapabilities } from '@sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities';
 import {
   getDetailProfile,
   type DetailSectionKey,
-} from '../ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.js';
+} from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy';
 import {
   getSchemaTypeInspectorPreset,
   resolveSchemaSemanticFamily,
   type SchemaSemanticFamily,
-} from '../schemas/schemaFamilies.js';
+} from '@sisad-pdfme/schemas/schemaFamilies';
 
 export type SchemaConfigurationFamily =
   | 'text-like'

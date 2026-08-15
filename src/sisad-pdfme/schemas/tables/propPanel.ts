@@ -1,14 +1,14 @@
 import type { PropPanel } from '@sisad-pdfme/common';
-import type { TableSchema } from './types.js';
+import type { TableSchema } from '@sisad-pdfme/schemas/tables/types';
 import { getFallbackFontName, DEFAULT_FONT_NAME } from '@sisad-pdfme/common';
 import {
   getDefaultCellStyles,
   getCellPropPanelSchema,
   getColumnStylesPropPanelSchema,
-} from './helper.js';
-import { HEX_COLOR_PATTERN } from '../constants.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { hexColorField } from '../propPanel/commonInspectorFields.js';
+} from '@sisad-pdfme/schemas/tables/helper';
+import { HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { hexColorField } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 
 export const propPanel: PropPanel<TableSchema> = {
   schema: ({ activeSchema, options, i18n }) => {

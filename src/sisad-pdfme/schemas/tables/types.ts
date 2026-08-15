@@ -1,4 +1,4 @@
-import type { ALIGNMENT, VERTICAL_ALIGNMENT } from '../text/types.js';
+import type { ALIGNMENT, VERTICAL_ALIGNMENT } from '@sisad-pdfme/schemas/text/types';
 import type { Schema } from '@sisad-pdfme/common';
 
 export type Spacing = { top: number; right: number; bottom: number; left: number };

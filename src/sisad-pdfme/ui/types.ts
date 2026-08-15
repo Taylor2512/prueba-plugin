@@ -13,11 +13,11 @@
  */
 
 import type { SchemaForUI, SchemaCommentReply, Size, ChangeSchemas, BasePdf } from '@sisad-pdfme/common';
-import type { SchemaDesignerConfig } from './designerEngine';
-import type { EffectiveCollaborationContext } from './collaborationContext';
-import type { DesignerDocumentItem } from './components/Designer/RightSidebar/DocumentsRail';
-import type { InteractionPhase } from './components/Designer/shared/interactionState';
-import type { DesignerRuntimeExtensions } from './components/Designer/shared/designerExtensions';
+import type { SchemaDesignerConfig } from '@sisad-pdfme/ui/designerEngine';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import type { DesignerDocumentItem } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail';
+import type { InteractionPhase } from '@sisad-pdfme/ui/components/Designer/shared/interactionState';
+import type { DesignerRuntimeExtensions } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
 
 export type DesignerSidebarPresentation = 'docked' | 'overlay' | 'auto';
 

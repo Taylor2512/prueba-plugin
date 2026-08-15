@@ -1,5 +1,5 @@
 import { cloneDeep, type SchemaForUI, type Template } from '@sisad-pdfme/common';
-import { normalizeLooseText } from '../shared/text.js';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 import { img2pdf, pdf2img, pdf2size } from '@sisad-pdfme/converter';
 import type { Img2PdfOptions, Pdf2ImgOptions, Pdf2SizeOptions } from '@sisad-pdfme/converter';
 

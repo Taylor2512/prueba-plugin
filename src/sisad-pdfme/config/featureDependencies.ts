@@ -1,4 +1,4 @@
-import type { FeatureId } from './featureRegistry.js';
+import type { FeatureId } from '@sisad-pdfme/config/featureRegistry';
 
 export const featureDependencies: Record<FeatureId, FeatureId[]> = {
   runtime: [],

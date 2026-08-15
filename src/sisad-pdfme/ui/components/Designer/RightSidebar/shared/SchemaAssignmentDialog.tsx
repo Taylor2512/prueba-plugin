@@ -15,12 +15,12 @@ import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } 
 import { Input, Modal, Radio } from 'antd';
 import { Search, Users } from 'lucide-react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { OptionsContext } from '../../../../contexts.js';
-import type { CollaborationRecipientOption } from '../../../../collaborationContext.js';
-import { markInspectorInteractive, stopInspectorPointerEvent } from '../DetailView/inspectorInteractionGuards.js';
-import { resolveSchemaUid } from '../../shared/schemaAssignmentService.js';
-import { resetDesignerTransientInteractionState } from '../../shared/designerInteractionReset.js';
-import { normalizeText } from '../../../../../shared/text.js';
+import { OptionsContext } from '@sisad-pdfme/ui/contexts';
+import type { CollaborationRecipientOption } from '@sisad-pdfme/ui/collaborationContext';
+import { markInspectorInteractive, stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
+import { resolveSchemaUid } from '@sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService';
+import { resetDesignerTransientInteractionState } from '@sisad-pdfme/ui/components/Designer/shared/designerInteractionReset';
+import { normalizeText } from '@sisad-pdfme/shared/text';
 
 /** Razón normalizada de cierre del modal (lifecycle único). */
 type SchemaAssignmentCloseReason =

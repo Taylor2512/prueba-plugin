@@ -13,10 +13,10 @@
  * No sustituye a `configChangeImpact`: lo consume. La clasificación estructural
  * sigue siendo la autoridad sobre reconstrucción de recursos.
  */
-import { classifySisadPdfmeConfigChange, type SisadPdfmeConfigChangeImpact } from './configChangeImpact.js';
-import { createCapabilityGraph, type CapabilityResolutionContext, type CapabilityState } from './capabilityGraph.js';
-import type { CapabilityId } from './capabilityInventory.js';
-import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
+import { classifySisadPdfmeConfigChange, type SisadPdfmeConfigChangeImpact } from '@sisad-pdfme/config/configChangeImpact';
+import { createCapabilityGraph, type CapabilityResolutionContext, type CapabilityState } from '@sisad-pdfme/config/capabilityGraph';
+import type { CapabilityId } from '@sisad-pdfme/config/capabilityInventory';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 /** Dimensiones comparables de un estado de capability. */
 export const CAPABILITY_FLAGS = [

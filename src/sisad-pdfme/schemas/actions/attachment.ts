@@ -4,17 +4,17 @@
  */
 import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { Paperclip } from 'lucide-react';
-import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
 import {
   basicsFields,
   helpFields,
   dataLabelFields,
   COMMON_PROPERTY_MAP,
-} from '../propPanel/commonInspectorFields.js';
-import { createAttachmentContainerEl, drawActionFieldChrome } from './actionSchemaFactory.js';
-import type { AttachmentSchema } from './actionSchemaFactory.js';
-import { clearSchemaRoot, setSchemaRootAttributes } from '../shared/schemaDom.js';
+} from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
+import { createAttachmentContainerEl, drawActionFieldChrome } from '@sisad-pdfme/schemas/actions/actionSchemaFactory';
+import type { AttachmentSchema } from '@sisad-pdfme/schemas/actions/actionSchemaFactory';
+import { clearSchemaRoot, setSchemaRootAttributes } from '@sisad-pdfme/schemas/shared/schemaDom';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
 
 const MIME_TYPE_OPTIONS = [

@@ -26,8 +26,8 @@ import MoveableComponent, {
   type OnRotateGroupStart,
   type OnRotateStart,
 } from 'react-moveable';
-import { resolveFirstClassSelector } from '../shared/className.js';
-import { installPassiveTouchListenerGuard } from '../shared/passiveTouchListeners.js';
+import { resolveFirstClassSelector } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { installPassiveTouchListenerGuard } from '@sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners';
 
 installPassiveTouchListenerGuard();
 

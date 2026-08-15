@@ -1,6 +1,6 @@
-import type { SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
-import { migrateSisadPdfmeConfig } from './configMigration.js';
-import { normalizeLooseText } from '../shared/text.js';
+import type { SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { migrateSisadPdfmeConfig } from '@sisad-pdfme/config/configMigration';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 export type SisadPdfmeConfigIssueSeverity = 'error' | 'warning';
 

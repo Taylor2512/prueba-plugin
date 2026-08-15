@@ -14,12 +14,12 @@ export type {
   SisadPdfmeRecipientRegistryState,
   SisadPdfmeRecipientsConfig,
   SisadPdfmeRecipientsSnapshot,
-} from './recipientTypes.js';
+} from '@sisad-pdfme/recipients/recipientTypes';
 export {
   createRecipientRegistry,
   normalizeRecipients,
   type CreateRecipientRegistryOptions,
-} from './recipientRegistry.js';
+} from '@sisad-pdfme/recipients/recipientRegistry';
 export {
   buildAssignmentContextFromRegistry,
   buildCollaborationSyncFromRegistry,
@@ -29,25 +29,25 @@ export {
   type AssignmentContextFromRegistry,
   type CollaborationSyncFromRegistryOptions,
   type RegistryRecipientOption,
-} from './recipientResolver.js';
+} from '@sisad-pdfme/recipients/recipientResolver';
 export {
   buildRecipientColorMap,
   resolveRecipientColors,
   LAB_COLLABORATOR_PALETTE,
   type RecipientColorResolverOptions,
-} from './recipientColorResolver.js';
+} from '@sisad-pdfme/recipients/recipientColorResolver';
 export {
   createRecipientPermissionResolver,
   type RecipientPermissionResolver,
   type RecipientPermissionResolverOptions,
-} from './recipientPermissionResolver.js';
+} from '@sisad-pdfme/recipients/recipientPermissionResolver';
 export {
   recipientsFromSnapshot,
   recipientsToSnapshot,
-} from './recipientSnapshot.js';
+} from '@sisad-pdfme/recipients/recipientSnapshot';
 export {
   useRecipientRegistry,
   type RecipientsAdapterLike,
   type UseRecipientRegistryOptions,
   type UseRecipientRegistryResult,
-} from './useRecipientRegistry.js';
+} from '@sisad-pdfme/recipients/useRecipientRegistry';

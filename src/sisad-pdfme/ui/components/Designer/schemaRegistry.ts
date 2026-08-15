@@ -1,6 +1,6 @@
 import { cloneDeep, Schema } from '@sisad-pdfme/common';
-import { resolveSchemaAutoPlaceDescriptor } from './shared/schemaAutoPlace.js';
-import type { AutoPlaceResolver } from './shared/designerExtensions.js';
+import { resolveSchemaAutoPlaceDescriptor } from '@sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace';
+import type { AutoPlaceResolver } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
 
 type CustomSchemaDefinition = {
   id: string;

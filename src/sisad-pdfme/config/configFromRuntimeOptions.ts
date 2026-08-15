@@ -12,7 +12,7 @@
  * y descarta lo que es transporte de runtime. Es la condición previa para
  * poder colgar el hub de eventos de `designerEngine` (COREUX-006/007).
  */
-import type { SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
+import type { SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 /**
  * Claves de `SisadPdfmeGlobalConfig`. Todo lo demás que aparezca en las

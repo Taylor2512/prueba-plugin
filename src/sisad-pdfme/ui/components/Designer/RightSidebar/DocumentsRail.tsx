@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Popconfirm, Typography } from 'antd';
 import { FileText, FileUp, Plus, Trash2 } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../constants.js';
-import { SidebarBody, SidebarFrame, SidebarHeader } from './layout.js';
-import { mergeClassNames } from '../shared/className.js';
-import { SidebarSurfaceEmptyState, SidebarSurfaceHeader } from './shared/SidebarSurfacePrimitives.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { SidebarBody, SidebarFrame, SidebarHeader } from '@sisad-pdfme/ui/components/Designer/RightSidebar/layout';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { SidebarSurfaceEmptyState, SidebarSurfaceHeader } from '@sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives';
 
 const { Text } = Typography;
 

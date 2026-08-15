@@ -14,8 +14,8 @@
  */
 import React from 'react';
 import { Switch } from 'antd';
-import { mergeClassNames } from '../../shared/className.js';
-import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 
 /** Props de la primitive booleana del inspector. */
 export type InspectorBooleanSwitchProps = {

@@ -1,8 +1,8 @@
-import { propPanel as parentPropPanel } from '../text/propPanel.js';
+import { propPanel as parentPropPanel } from '@sisad-pdfme/schemas/text/propPanel';
 import { PropPanel, PropPanelWidgetProps } from '@sisad-pdfme/common';
-import { MultiVariableTextSchema } from './types.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { parseVariablesInput } from './helper.js';
+import { MultiVariableTextSchema } from '@sisad-pdfme/schemas/multiVariableText/types';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { parseVariablesInput } from '@sisad-pdfme/schemas/multiVariableText/helper';
 
 const mapDynamicVariables = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n, options } = props;

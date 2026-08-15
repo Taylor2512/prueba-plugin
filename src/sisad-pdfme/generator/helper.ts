@@ -13,8 +13,8 @@ import {
 } from '@sisad-pdfme/common';
 import { builtInPlugins } from '@sisad-pdfme/schemas';
 import { PDFPage, PDFDocument, PDFEmbeddedPage, TransformationMatrix } from 'pdf-lib';
-import { TOOL_NAME } from './constants.js';
-import type { EmbedPdfBox } from './types.js';
+import { TOOL_NAME } from '@sisad-pdfme/generator/constants';
+import type { EmbedPdfBox } from '@sisad-pdfme/generator/types';
 
 export const getEmbedPdfPages = async (arg: { template: Template; pdfDoc: PDFDocument }) => {
   const {

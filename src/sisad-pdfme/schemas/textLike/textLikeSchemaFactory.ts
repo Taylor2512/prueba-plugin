@@ -12,10 +12,10 @@ import {
   type PropPanel,
   type Schema,
 } from '@sisad-pdfme/common';
-import text from '../text/index.js';
-import { createSchemaPlugin } from '../schemaBuilder.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { HEX_COLOR_PATTERN } from '../constants.js';
+import text from '@sisad-pdfme/schemas/text';
+import { createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
 import {
   basicsFields,
   helpFields,
@@ -23,7 +23,7 @@ import {
   hexColorFields,
   typographyFields,
   COMMON_PROPERTY_MAP,
-} from '../propPanel/commonInspectorFields.js';
+} from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 
 export type TextLikePresetConfig = {
   type: string;

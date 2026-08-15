@@ -4,12 +4,12 @@
  */
 import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { StickyNote } from 'lucide-react';
-import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
-import { createNoteContainerEl, drawActionFieldChrome } from './actionSchemaFactory.js';
-import type { NoteSchema } from './actionSchemaFactory.js';
-import { clearSchemaRoot, setSchemaRootAttributes } from '../shared/schemaDom.js';
+import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
+import { createNoteContainerEl, drawActionFieldChrome } from '@sisad-pdfme/schemas/actions/actionSchemaFactory';
+import type { NoteSchema } from '@sisad-pdfme/schemas/actions/actionSchemaFactory';
+import { clearSchemaRoot, setSchemaRootAttributes } from '@sisad-pdfme/schemas/shared/schemaDom';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
 
 const notePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(

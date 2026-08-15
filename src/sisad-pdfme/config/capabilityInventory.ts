@@ -17,12 +17,12 @@
  * `inspector` existe como feature Y como component, y `runtime` existe como
  * feature Y como superficie de schema.
  */
-import { featureRegistry, type FeatureId } from './featureRegistry.js';
-import { featureDependencies } from './featureDependencies.js';
-import { actionConfigRegistry, type ActionId } from './actionConfigRegistry.js';
-import { componentRegistry, type ComponentId } from './componentRegistry.js';
-import { VIEW_FEATURES, type ViewFeature } from '../ui/commands/viewCommands.js';
-import type { SisadPdfmeControllerCapabilityDomain } from './SisadPdfmeConfig.js';
+import { featureRegistry, type FeatureId } from '@sisad-pdfme/config/featureRegistry';
+import { featureDependencies } from '@sisad-pdfme/config/featureDependencies';
+import { actionConfigRegistry, type ActionId } from '@sisad-pdfme/config/actionConfigRegistry';
+import { componentRegistry, type ComponentId } from '@sisad-pdfme/config/componentRegistry';
+import { VIEW_FEATURES, type ViewFeature } from '@sisad-pdfme/ui/commands/viewCommands';
+import type { SisadPdfmeControllerCapabilityDomain } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 export type CapabilityKind =
   | 'feature'
@@ -145,6 +145,7 @@ const controllerDependencies: Record<SisadPdfmeControllerCapabilityDomain, Capab
   validation: ['feature:runtime'],
   snapshot: ['feature:runtime'],
   save: ['feature:persistence'],
+  interaction: ['feature:runtime'],
 };
 
 const controllerSources: Record<SisadPdfmeControllerCapabilityDomain, string[]> = {
@@ -159,6 +160,8 @@ const controllerSources: Record<SisadPdfmeControllerCapabilityDomain, string[]> 
   validation: ['schemas.validateUniqueNames'],
   snapshot: ['persistence.serializeSnapshot'],
   save: ['persistence.mode', 'persistence.autosave'],
+  // La interacción sólo existe donde se rellena: el modo decide, no un flag.
+  interaction: ['runtime.mode', 'runtime.readonly'],
 };
 
 /**

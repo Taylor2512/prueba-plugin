@@ -18,7 +18,7 @@ export {
   revokeObjectUrls,
   downloadUrl,
   downloadJson,
-} from './integration/index.js';
+} from '@sisad-pdfme/integration';
 
 export type {
   SisadPdfmeInstanceInput,
@@ -49,4 +49,4 @@ export type {
   SisadPdfmeDocument,
   SisadPdfmeRecipient,
   SisadPdfmeSignatureProvider,
-} from './integration/index.js';
+} from '@sisad-pdfme/integration';

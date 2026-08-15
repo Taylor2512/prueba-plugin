@@ -13,7 +13,7 @@
  *
  * Regla dura: nada de aquí entra en template, snapshot ni bundle.
  */
-import type { HttpClientAdapter } from './httpClient.js';
+import type { HttpClientAdapter } from '@sisad-pdfme/integration/http/httpClient';
 
 /** Claves de `resources` que jamás pueden serializarse. */
 export const NON_PORTABLE_RESOURCE_KEYS = ['adapters', 'integrations'] as const;

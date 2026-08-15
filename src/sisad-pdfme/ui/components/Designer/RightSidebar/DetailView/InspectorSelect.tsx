@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select } from 'antd';
-import { mergeClassNames } from '../../shared/className.js';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 export type InspectorSelectOption = { label: React.ReactNode; value: string };
 

@@ -22,37 +22,37 @@ import {
 import { message } from 'antd';
 import { DndContext } from '@dnd-kit/core';
 import { pdf2size } from '@sisad-pdfme/converter';
-import PluginIcon from './PluginIcon.js';
-import RightSidebarDefault from './RightSidebar/RightSidebar.js';
-import LeftSidebarDefault from './LeftSidebar.js';
-import Canvas from './Canvas/Canvas.js';
-import type { CanvasFeatureToggles } from './Canvas/Canvas.js';
-import { createSelectionCommands } from './shared/selectionCommands.js';
+import PluginIcon from '@sisad-pdfme/ui/components/Designer/PluginIcon';
+import RightSidebarDefault from '@sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar';
+import LeftSidebarDefault from '@sisad-pdfme/ui/components/Designer/LeftSidebar';
+import Canvas from '@sisad-pdfme/ui/components/Designer/Canvas/Canvas';
+import type { CanvasFeatureToggles } from '@sisad-pdfme/ui/components/Designer/Canvas/Canvas';
+import { createSelectionCommands } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
 import {
   resolveActiveSchemasFromElements,
   resolveSchemaIdentityFromElement,
-} from './shared/selectionIdentityResolver.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver';
 import {
   copySchemasToClipboard,
   cutSchemasToClipboard,
   duplicateSchemas as duplicateSchemasFromClipboard,
   pasteSchemasFromClipboard,
   type SchemaClipboardPayload,
-} from './shared/schemaClipboard.js';
-import type { InteractionState } from './shared/interactionState.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/schemaClipboard';
+import type { InteractionState } from '@sisad-pdfme/ui/components/Designer/shared/interactionState';
 import {
   RULER_HEIGHT,
   RIGHT_SIDEBAR_WIDTH,
   LEFT_SIDEBAR_WIDTH,
   DESIGNER_CLASSNAME,
   SELECTABLE_CLASSNAME,
-} from '../../constants.js';
+} from '@sisad-pdfme/ui/constants';
 import {
   resolveDesignerSchemaAccessState,
   canRunSchemaCommand,
   type SchemaAccessContext,
-} from './shared/accessPolicy.js';
-import { I18nContext, OptionsContext, PluginsRegistry } from '../../contexts.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/accessPolicy';
+import { I18nContext, OptionsContext, PluginsRegistry } from '@sisad-pdfme/ui/contexts';
 import {
   schemasList2template,
   uuid,
@@ -61,30 +61,30 @@ import {
   getPagesScrollTopByIndex,
   applySchemaChanges as _changeSchemas,
   useMaxZoom,
-} from '../../helper.js';
-import { useUIPreProcessor, useScrollPageCursor, useInitEvents } from '../../hooks.js';
-import usePaperRefRegistry from '../shared/usePaperRefRegistry.js';
-import Root from '../Root.js';
-import ErrorScreen from '../ErrorScreen.js';
-import CtlBar, { type SaveStatus } from '../CtlBar.js';
-import CommentDialog from './Comments/CommentDialog.js';
-import { applyCollaborationEvent, diffCollaborationEvents, useCollaborationSync } from '../../collaboration.js';
-import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
-import type { DesignerRuntimeApi, DesignerSidebarPresentation, DesignerCommentItem } from '../../types.js';
-import type { SchemaComment, SchemaCommentAnchor } from '../../designerEngine.js';
-import { useSisadPdfmeConfig } from '../../../react/useSisadPdfmeConfig.js';
-import { validateTemplate } from '../../../shared/templateValidator.js';
+} from '@sisad-pdfme/ui/helper';
+import { useUIPreProcessor, useScrollPageCursor, useInitEvents } from '@sisad-pdfme/ui/hooks';
+import usePaperRefRegistry from '@sisad-pdfme/ui/components/shared/usePaperRefRegistry';
+import Root from '@sisad-pdfme/ui/components/Root';
+import ErrorScreen from '@sisad-pdfme/ui/components/ErrorScreen';
+import CtlBar, { type SaveStatus } from '@sisad-pdfme/ui/components/CtlBar';
+import CommentDialog from '@sisad-pdfme/ui/components/Designer/Comments/CommentDialog';
+import { applyCollaborationEvent, diffCollaborationEvents, useCollaborationSync } from '@sisad-pdfme/ui/collaboration';
+import type { DesignerDocumentItem } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail';
+import type { DesignerRuntimeApi, DesignerSidebarPresentation, DesignerCommentItem } from '@sisad-pdfme/ui/types';
+import type { SchemaComment, SchemaCommentAnchor } from '@sisad-pdfme/ui/designerEngine';
+import { useSisadPdfmeConfig } from '@sisad-pdfme/react/useSisadPdfmeConfig';
+import { validateTemplate } from '@sisad-pdfme/shared/templateValidator';
 import {
   extractClientPoint,
-} from './Canvas/overlays/pointerGeometry.js';
+} from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry';
 import {
   resolveSmartDropPosition,
-} from './Canvas/overlays/smartPlacement.js';
-import SchemaDragPreview from './Canvas/overlays/SchemaDragPreview.js';
-import SchemaDropCommitFlash from './Canvas/overlays/SchemaDropCommitFlash.js';
-import SchemaDropPlaceholder from './Canvas/overlays/SchemaDropPlaceholder.js';
-import { installPassiveTouchListenerGuard } from './shared/passiveTouchListeners.js';
-import { normalizeSignatureSchema, type SignatureSchema } from '../../../schemas/signature/types.js';
+} from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement';
+import SchemaDragPreview from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview';
+import SchemaDropCommitFlash from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash';
+import SchemaDropPlaceholder from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder';
+import { installPassiveTouchListenerGuard } from '@sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners';
+import { normalizeSignatureSchema, type SignatureSchema } from '@sisad-pdfme/schemas/signature/types';
 
 type CatalogLayout = 'list' | 'tiles' | 'icons';
 
@@ -101,17 +101,17 @@ type DesignerOptionsBridge = {
 import {
   lockDesignerSidebarScroll,
   unlockDesignerSidebarScroll,
-} from './shared/interactionGuards.js';
-import { isInspectorInteractiveTarget } from './RightSidebar/DetailView/inspectorInteractionGuards.js';
-import { filterSchemasByCollisionScope } from './shared/schemaCollision.js';
-import { resolvePointerDropTarget } from './shared/canvasDropPipeline.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/interactionGuards';
+import { isInspectorInteractiveTarget } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
+import { filterSchemasByCollisionScope } from '@sisad-pdfme/ui/components/Designer/shared/schemaCollision';
+import { resolvePointerDropTarget } from '@sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline';
 
 installPassiveTouchListenerGuard();
 
-import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
-import { applyRecipientPrefill, resolveSchemaPrefillRecipient } from '../../recipientPrefill.js';
-import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
-import { asRecord } from '../../../shared/objectGuards.js';
+import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '@sisad-pdfme/ui/collaborationContext';
+import { applyRecipientPrefill, resolveSchemaPrefillRecipient } from '@sisad-pdfme/ui/recipientPrefill';
+import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from '@sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 import {
   resolveDesignerEngine,
   attachSchemaIdentity,
@@ -120,17 +120,17 @@ import {
   createSchemaCreationContext,
   getSchemaDesignerConfig,
   mergeSchemaDesignerConfig,
-} from '../../designerEngine.js';
-import { CommandBus } from '../../commands/commandBus.js';
+} from '@sisad-pdfme/ui/designerEngine';
+import { CommandBus } from '@sisad-pdfme/ui/commands/commandBus';
 import {
   buildTopLevelCommentEntry,
   createCommentCommandEvent,
   createPageSnapshotCommand,
   createTemplateSnapshotCommand,
-} from '../../../commands/index.js';
-import { emitDesignerRuntimeEvent } from '../Designer/shared/designerExtensions.js';
-import { configFromRuntimeOptions } from '../../../config/configFromRuntimeOptions.js';
-import { computeFitZoom, type ViewportFitMode } from './shared/zoomContract.js';
+} from '@sisad-pdfme/commands';
+import { emitDesignerRuntimeEvent } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
+import { configFromRuntimeOptions } from '@sisad-pdfme/config/configFromRuntimeOptions';
+import { computeFitZoom, type ViewportFitMode } from '@sisad-pdfme/ui/components/Designer/shared/zoomContract';
 const DESIGNER_THEME_STYLE_ID = DESIGNER_CLASSNAME + 'theme-base';
 
 const stableHashSchemas = (schemas: Schema[][]) => {

@@ -2,7 +2,7 @@
 import {
   SisadPdfmePreviewRuntime,
   type SisadPdfmePreviewRuntimeProps,
-} from './SisadPdfmePreviewRuntime.js';
+} from '@sisad-pdfme/react/SisadPdfmePreviewRuntime';
 
 type Props = Omit<SisadPdfmePreviewRuntimeProps, 'mode' | 'inputs'> & {
   values?: unknown[];

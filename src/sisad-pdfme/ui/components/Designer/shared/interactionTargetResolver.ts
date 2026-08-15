@@ -4,8 +4,8 @@
  * Consolidates DOM target identification for designer interactions.
  * Replaces fragmented guards with a structured result.
  */
-import { SELECTABLE_CLASSNAME } from '../../../constants.js';
-import { isDesignerInteractionExcluded } from './interactionExclusions.js';
+import { SELECTABLE_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { isDesignerInteractionExcluded } from '@sisad-pdfme/ui/components/Designer/shared/interactionExclusions';
 
 type InteractionTargetKind =
   | 'schema-root'

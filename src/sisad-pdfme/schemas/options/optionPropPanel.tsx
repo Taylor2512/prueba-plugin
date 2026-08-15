@@ -1,5 +1,5 @@
 import React from 'react';
-import type { OptionItem } from './optionTypes';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
 
 // Minimal React wrapper for option list editing used in propPanel widgets.
 // The existing codebase relies heavily on DOM widgets; keep a thin React bridge.

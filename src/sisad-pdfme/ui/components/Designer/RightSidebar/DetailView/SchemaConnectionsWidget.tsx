@@ -21,8 +21,8 @@ import { useCallback, useMemo, useState } from 'react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
 import { Button, Collapse, Divider, Input, InputNumber, Select, Space, Tag } from 'antd';
 import { DatabaseZap, Globe2, FileJson2 } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 import {
   createSchemaDataRuntimeAdapter,
   resolveDesignerHttpClientConfig,
@@ -32,11 +32,11 @@ import {
   type SchemaHttpClientConfig,
   type SchemaFormJsonConfig,
   type SchemaPersistenceConfig,
-} from '../../../../designerEngine.js';
-import { PairEditor, SectionHeader, SCHEMA_CONFIG_COLLAPSE, SCHEMA_CONFIG_NESTED_COLLAPSE } from './SchemaConnectionsShared.js';
-import { getMissingConnectionFields } from './schemaConnectionsValidation.js';
-import CompactConfigPanel from './CompactConfigPanel.js';
-import { BooleanSwitchWidget } from './InspectorPrimitives.js';
+} from '@sisad-pdfme/ui/designerEngine';
+import { PairEditor, SectionHeader, SCHEMA_CONFIG_COLLAPSE, SCHEMA_CONFIG_NESTED_COLLAPSE } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared';
+import { getMissingConnectionFields } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation';
+import CompactConfigPanel from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel';
+import { BooleanSwitchWidget } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives';
 
 /**
  * Props injected into the schema connections widget by DetailView.

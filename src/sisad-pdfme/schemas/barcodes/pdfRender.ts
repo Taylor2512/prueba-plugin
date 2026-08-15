@@ -1,7 +1,7 @@
 import { PDFRenderProps } from '@sisad-pdfme/common';
-import { convertForPdfLayoutProps } from '../utils.js';
-import type { BarcodeSchema } from './types.js';
-import { createBarCode, validateBarcodeInput } from './helper.js';
+import { convertForPdfLayoutProps } from '@sisad-pdfme/schemas/utils';
+import type { BarcodeSchema } from '@sisad-pdfme/schemas/barcodes/types';
+import { createBarCode, validateBarcodeInput } from '@sisad-pdfme/schemas/barcodes/helper';
 import { PDFImage } from 'pdf-lib';
 
 const getBarcodeCacheKey = (schema: BarcodeSchema, value: string) => {

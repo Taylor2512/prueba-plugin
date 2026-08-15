@@ -7,11 +7,11 @@
  * Rule: only `.sisad-pdfme-ui-custom-selectable[data-schema-id]` is a valid
  * Moveable target. Options, overlays, buttons, popups must NEVER be targets.
  */
-import { DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS } from './interactionTargetSelectors.js';
+import { DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS } from '@sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors';
 import {
   isTransformableCanvasTarget,
   isCanvasTransformExcludedTarget,
-} from './interactionTargetPolicy.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy';
 
 /** CSS selectors that Moveable must NEVER receive as transform targets. */
 export const MOVEABLE_EXCLUDED_SELECTORS = DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS;

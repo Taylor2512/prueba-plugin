@@ -1,22 +1,22 @@
-import { createDesignerRuntimeEventHub } from '../ui/components/Designer/shared/designerExtensions.js';
-import { DesignerEngineBuilder } from '../ui/designerEngine.js';
-import { buildRuntimeOptions } from '../runtime/options.js';
+import { createDesignerRuntimeEventHub } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
+import { DesignerEngineBuilder } from '@sisad-pdfme/ui/designerEngine';
+import { buildRuntimeOptions } from '@sisad-pdfme/runtime/options';
 // Adapters compartidos: fuente única (TASK-LAB-026/TASK-ARCH-004). El resolver
 // tenía copias locales divergentes; la de documentos perdía `template` y
 // dejaba el canvas en `empty_page` con multi-documento.
-import { createRecipientsAdapter } from '../adapters/recipientsAdapter.js';
-import { createDocumentsAdapter } from '../adapters/documentsAdapter.js';
-import { createPersistenceAdapter } from '../adapters/persistenceAdapter.js';
-import { createSignatureProviderAdapter } from '../adapters/signatureProviderAdapter.js';
-import { migrateSisadPdfmeConfig } from './configMigration.js';
-import { defaultSisadPdfmeConfig, defaultSisadPdfmeVisibilityConfig } from './defaultSisadPdfmeConfig.js';
+import { createRecipientsAdapter } from '@sisad-pdfme/adapters/recipientsAdapter';
+import { createDocumentsAdapter } from '@sisad-pdfme/adapters/documentsAdapter';
+import { createPersistenceAdapter } from '@sisad-pdfme/adapters/persistenceAdapter';
+import { createSignatureProviderAdapter } from '@sisad-pdfme/adapters/signatureProviderAdapter';
+import { migrateSisadPdfmeConfig } from '@sisad-pdfme/config/configMigration';
+import { defaultSisadPdfmeConfig, defaultSisadPdfmeVisibilityConfig } from '@sisad-pdfme/config/defaultSisadPdfmeConfig';
 import type {
   ResolvedSisadPdfmeConfig,
   SisadPdfmeGlobalConfig,
   SisadPdfmeUiConfig,
   SisadPdfmeUiClassNamesConfig,
   SisadPdfmeSignatureProvider,
-} from './SisadPdfmeConfig.js';
+} from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 const isObject = (value: unknown): value is Record<string, unknown> => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
 

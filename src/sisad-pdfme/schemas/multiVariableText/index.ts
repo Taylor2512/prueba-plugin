@@ -1,10 +1,10 @@
 import type { Plugin } from '@sisad-pdfme/common';
-import { renderMultiVariableTextPdf } from './pdfRender.js';
-import { propPanel } from './propPanel.js';
-import { renderMultiVariableTextUi } from './uiRender.js';
-import type { MultiVariableTextSchema } from './types.js';
+import { renderMultiVariableTextPdf } from '@sisad-pdfme/schemas/multiVariableText/pdfRender';
+import { propPanel } from '@sisad-pdfme/schemas/multiVariableText/propPanel';
+import { renderMultiVariableTextUi } from '@sisad-pdfme/schemas/multiVariableText/uiRender';
+import type { MultiVariableTextSchema } from '@sisad-pdfme/schemas/multiVariableText/types';
 import { Type } from 'lucide-react';
-import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
+import { createSchemaPlugin, renderLucideIcon } from '@sisad-pdfme/schemas/schemaBuilder';
 
 const schema: Plugin<MultiVariableTextSchema> = createSchemaPlugin<MultiVariableTextSchema>({
   pdf: renderMultiVariableTextPdf,

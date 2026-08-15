@@ -1,4 +1,4 @@
-import type { SisadPdfmeSignatureProviderAdapter } from '../config/SisadPdfmeConfig.js';
+import type { SisadPdfmeSignatureProviderAdapter } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 export type {  SisadPdfmeSignatureProviderAdapter };
 

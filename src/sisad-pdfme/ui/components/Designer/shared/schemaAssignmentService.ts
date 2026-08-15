@@ -14,7 +14,7 @@
  * - El color visual se actualiza según el nuevo propietario.
  */
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { normalizeText } from '../../../../shared/text.js';
+import { normalizeText } from '@sisad-pdfme/shared/text';
 
 /**
  * Destinatario mínimo necesario para reasignar un schema.

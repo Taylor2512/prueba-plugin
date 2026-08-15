@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
-import { getCustomSchemaDefinitions, subscribeCustomSchemaDefinitions } from './schemaRegistry.js';
-import type { CatalogCapability, CatalogQuickFilter, CatalogLayout } from './LeftSidebar.js';
-import type { LeftSidebarTab } from './LeftSidebarTabs.js';
-import type { RuntimeCustomSchemaDefinition } from './LeftSidebarCustomPanel.js';
-import type { CustomFieldDef } from './LeftSidebarCustomFieldModal.js';
+import { getCustomSchemaDefinitions, subscribeCustomSchemaDefinitions } from '@sisad-pdfme/ui/components/Designer/schemaRegistry';
+import type { CatalogCapability, CatalogQuickFilter, CatalogLayout } from '@sisad-pdfme/ui/components/Designer/LeftSidebar';
+import type { LeftSidebarTab } from '@sisad-pdfme/ui/components/Designer/LeftSidebarTabs';
+import type { RuntimeCustomSchemaDefinition } from '@sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel';
+import type { CustomFieldDef } from '@sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal';
 
 const makeDefaultCustomField = (): CustomFieldDef => ({
   id: `custom-${Date.now()}`,

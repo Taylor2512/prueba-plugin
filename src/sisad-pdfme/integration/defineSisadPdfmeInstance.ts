@@ -3,7 +3,7 @@ import type {
   SisadPdfmeInstanceDefinition,
   SisadPdfmeInstanceHandlers,
   SisadPdfmeInstanceResources,
-} from './resolveSisadPdfmeInstance.js';
+} from '@sisad-pdfme/integration/resolveSisadPdfmeInstance';
 
 export type SisadPdfmeRegisteredInstance = {
   id: string;

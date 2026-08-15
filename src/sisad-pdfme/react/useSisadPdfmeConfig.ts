@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
-import type { ResolvedSisadPdfmeConfig } from '../config/SisadPdfmeConfig.js';
-import { useSisadPdfmeConfigService, type SisadPdfmeConfigInput } from './useSisadPdfmeConfigService.js';
+import type { ResolvedSisadPdfmeConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { useSisadPdfmeConfigService, type SisadPdfmeConfigInput } from '@sisad-pdfme/react/useSisadPdfmeConfigService';
 
 export const useSisadPdfmeConfig = (config?: SisadPdfmeConfigInput): ResolvedSisadPdfmeConfig => {
   const service = useSisadPdfmeConfigService(config);

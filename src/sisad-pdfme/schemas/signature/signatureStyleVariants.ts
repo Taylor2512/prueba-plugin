@@ -10,8 +10,8 @@ import {
   deriveSignerInitials,
   normalizeSignerInitials,
   normalizeSignerName,
-} from './signatureIdentity.js';
-import type { SignatureSchema } from './types.js';
+} from '@sisad-pdfme/schemas/signature/signatureIdentity';
+import type { SignatureSchema } from '@sisad-pdfme/schemas/signature/types';
 
 export type SignatureArtifactKind = 'signature' | 'initials';
 

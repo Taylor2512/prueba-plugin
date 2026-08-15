@@ -1,6 +1,6 @@
 import { Schema, SchemaForUI } from '@sisad-pdfme/common';
-import { resolveSchemaVisualTone } from '../../../../schemas/shared/fieldChrome.js';
-import { resolveSchemaOwnerColorValue } from '../../../../collaboration/schemaOwnershipAppearance.js';
+import { resolveSchemaVisualTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
+import { resolveSchemaOwnerColorValue } from '@sisad-pdfme/collaboration/schemaOwnershipAppearance';
 
 type ToneAwareSchema = (SchemaForUI | Schema) & {
   borderColor?: string;

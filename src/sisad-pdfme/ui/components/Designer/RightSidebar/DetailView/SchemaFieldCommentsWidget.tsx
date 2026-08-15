@@ -8,13 +8,13 @@ import {
   type PropPanelWidgetProps,
   type SchemaForUI,
 } from '@sisad-pdfme/common';
-import { uuid } from '../../../../helper.js';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import type { SchemaComment } from '../../../../designerEngine.js';
-import { InspectorEmptyState } from './InspectorPrimitives.js';
-import { asRecord } from '../../../../../shared/objectGuards.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
+import { uuid } from '@sisad-pdfme/ui/helper';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import type { SchemaComment } from '@sisad-pdfme/ui/designerEngine';
+import { InspectorEmptyState } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 
 /**
  * Props del widget de comentarios por campo del inspector.

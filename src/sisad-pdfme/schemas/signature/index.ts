@@ -1,15 +1,15 @@
 import type { Plugin, UIRenderProps } from '@sisad-pdfme/common';
 import { PenLine } from 'lucide-react';
-import image from '../graphics/image.js';
-import { isEditable } from '../utils.js';
-import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
-import { applyFieldChrome, mixHexColor, resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
-import type { SisadSchemaBase } from '../shared/schemaTypes.js';
-import { propPanel } from './propPanel.js';
-import { getSignatureProvider, resolveSignatureProviderSource } from './providerRegistry.js';
-import { normalizeSignatureSchema } from './types.js';
-import type { SignatureSchema } from './types.js';
-import { applyCenteredImageFileInputStyle, createImageFileInput } from '../shared/imageFileInput.js';
+import image from '@sisad-pdfme/schemas/graphics/image';
+import { isEditable } from '@sisad-pdfme/schemas/utils';
+import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
+import { applyFieldChrome, mixHexColor, resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
+import type { SisadSchemaBase } from '@sisad-pdfme/schemas/shared/schemaTypes';
+import { propPanel } from '@sisad-pdfme/schemas/signature/propPanel';
+import { getSignatureProvider, resolveSignatureProviderSource } from '@sisad-pdfme/schemas/signature/providerRegistry';
+import { normalizeSignatureSchema } from '@sisad-pdfme/schemas/signature/types';
+import type { SignatureSchema } from '@sisad-pdfme/schemas/signature/types';
+import { applyCenteredImageFileInputStyle, createImageFileInput } from '@sisad-pdfme/schemas/shared/imageFileInput';
 
 /**
  * Colores del chrome de una firma, derivados del dueño del campo.

@@ -17,19 +17,19 @@ export {
   usePdfmeRuntimeInstance,
   getTemplateSignature,
   scheduleDestroyInstance,
-} from '../runtime/usePdfmeRuntimeInstance.js';
+} from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
 export type {
   UsePdfmeRuntimeInstanceConfig,
   PdfmeRuntimeMode,
   PdfmeRuntimeConstructors,
   PdfmeRuntimeInstanceHandle,
-} from '../runtime/usePdfmeRuntimeInstance.js';
+} from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
 
-export { usePdfmeArtifacts } from '../runtime/usePdfmeArtifacts.js';
+export { usePdfmeArtifacts } from '@sisad-pdfme/runtime/usePdfmeArtifacts';
 export type {
   UsePdfmeArtifactsConfig,
   PdfmeArtifactsState,
-} from '../runtime/usePdfmeArtifacts.js';
+} from '@sisad-pdfme/runtime/usePdfmeArtifacts';
 
 // Runtime mode/status helpers
 export {
@@ -39,30 +39,30 @@ export {
   getErrorMessage,
   formatPageStatus,
   resolveInitialUxMode,
-} from '../runtime/runtimeModes.js';
+} from '@sisad-pdfme/runtime/runtimeModes';
 
 export {
   createPdfPreflightReport,
   generatePdfWithPreflight,
-} from '../generator/index.js';
+} from '@sisad-pdfme/generator';
 
 // Browser helpers
-export { createObjectUrl, revokeObjectUrls } from '../browser/objectUrls.js';
-export { downloadUrl, downloadJson } from '../browser/downloads.js';
+export { createObjectUrl, revokeObjectUrls } from '@sisad-pdfme/browser/objectUrls';
+export { downloadUrl, downloadJson } from '@sisad-pdfme/browser/downloads';
 
 // Templates + collaboration appearance
-export { createDefaultTemplate } from '../templates/createDefaultTemplate.js';
+export { createDefaultTemplate } from '@sisad-pdfme/templates/createDefaultTemplate';
 export {
   decorateCollaborationUsers,
   LAB_COLLABORATOR_PALETTE,
-} from '../collaboration/recipientPalette.js';
+} from '@sisad-pdfme/collaboration/recipientPalette';
 export {
   withAlpha,
   buildCollaboratorChipStyle,
   resolveCollaboratorById,
-} from '../collaboration/appearance.js';
+} from '@sisad-pdfme/collaboration/appearance';
 export {
   resolveSchemaOwnerColor,
   decorateSchemaWithCollaboration,
   decorateTemplateWithCollaboration,
-} from '../collaboration/schemaOwnershipAppearance.js';
+} from '@sisad-pdfme/collaboration/schemaOwnershipAppearance';

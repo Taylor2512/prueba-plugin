@@ -1,4 +1,4 @@
-import type { SisadPdfmeInstanceDefinition, SisadPdfmeInstanceMode } from './resolveSisadPdfmeInstance.js';
+import type { SisadPdfmeInstanceDefinition, SisadPdfmeInstanceMode } from '@sisad-pdfme/integration/resolveSisadPdfmeInstance';
 
 export type SisadPdfmeInstanceDefinitionIssueSeverity = 'error' | 'warning';
 

@@ -1,11 +1,11 @@
 import { useContext, useMemo } from 'react';
-import { useRecipientRegistry } from '../recipients/useRecipientRegistry.js';
+import { useRecipientRegistry } from '@sisad-pdfme/recipients/useRecipientRegistry';
 import type {
   ResolvedSisadPdfmeConfig,
   SisadPdfmeGlobalConfig,
-} from '../config/SisadPdfmeConfig.js';
-import { SisadPdfmeContext } from './SisadPdfmeContext.js';
-import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
+} from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { SisadPdfmeContext } from '@sisad-pdfme/react/SisadPdfmeContext';
+import { useSisadPdfmeConfig } from '@sisad-pdfme/react/useSisadPdfmeConfig';
 
 type RecipientRuntimeOptions = {
   config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;

@@ -2,15 +2,15 @@ import React from 'react';
 import { Tooltip } from 'antd';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { Check, ChevronDown, ChevronUp, Plus, X } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { INSPECTOR_INTERACTIVE_ATTR, stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
-import type { OptionItem } from '../../../../../schemas/options/optionTypes.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { INSPECTOR_INTERACTIVE_ATTR, stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
 import {
   buildDefaultOptionGroupOptions,
   normalizeOptionGroupOptions,
   normalizeOptionId,
-} from '../../../../../schemas/options/optionModel.js';
+} from '@sisad-pdfme/schemas/options/optionModel';
 import {
   clampMultiOptionSelection,
   normalizeStringOptions,
@@ -18,12 +18,12 @@ import {
   resolveMultiOptionSelection,
   resolveSingleOptionSelection,
   toggleMultiOptionSelection,
-} from '../../../../../schemas/options/optionSelectionBehavior.js';
+} from '@sisad-pdfme/schemas/options/optionSelectionBehavior';
 import {
   syncDesignerOptionGroupPatch,
   buildOptionGroupDesignerDimensions,
-} from '../../../../../schemas/options/optionGroupFactory.js';
-import { RADIO_GROUP_LAYOUT, CHECKBOX_GROUP_LAYOUT } from '../../../../../schemas/options/optionGroupLayout.js';
+} from '@sisad-pdfme/schemas/options/optionGroupFactory';
+import { RADIO_GROUP_LAYOUT, CHECKBOX_GROUP_LAYOUT } from '@sisad-pdfme/schemas/options/optionGroupLayout';
 
 /** Callback estándar para persistir cambios de schemas desde el inspector. */
 type ChangeSchemas = (_objs: { key: string; value: unknown; schemaId: string }[]) => void;

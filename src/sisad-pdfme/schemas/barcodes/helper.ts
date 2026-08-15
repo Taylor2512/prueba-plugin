@@ -1,7 +1,7 @@
 import { b64toUint8Array } from '@sisad-pdfme/common';
 import bwipjs, { RenderOptions } from 'bwip-js';
-import { BARCODE_TYPES, DEFAULT_BARCODE_INCLUDETEXT } from './constants.js';
-import { BarcodeTypes } from './types.js';
+import { BARCODE_TYPES, DEFAULT_BARCODE_INCLUDETEXT } from '@sisad-pdfme/schemas/barcodes/constants';
+import { BarcodeTypes } from '@sisad-pdfme/schemas/barcodes/types';
 
 // GTIN-13, GTIN-8, GTIN-12, GTIN-14
 const validateCheckDigit = (input: string, checkDigitPos: number) => {

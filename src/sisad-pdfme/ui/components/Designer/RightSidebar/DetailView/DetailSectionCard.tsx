@@ -6,9 +6,9 @@
  * todas las secciones del DetailView.
  */
 import React from 'react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import { ChevronDown } from 'lucide-react';
-import { mergeClassNames } from '../../shared/className.js';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 /**
  * Props del contenedor de sección del inspector.

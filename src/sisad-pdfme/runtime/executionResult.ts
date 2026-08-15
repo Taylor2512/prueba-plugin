@@ -17,7 +17,7 @@
  * - **contenido**: se transporta aparte, en un `ArtifactByteStore` que vive en
  *   memoria y no se serializa.
  */
-import type { PdfExecutionArtifact } from './pdfComposition.js';
+import type { PdfExecutionArtifact } from '@sisad-pdfme/runtime/pdfComposition';
 
 /** Referencia serializable a un artefacto. Nunca contiene bytes. */
 export type ExecutionArtifactReference = {

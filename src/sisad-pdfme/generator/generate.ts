@@ -15,7 +15,7 @@ import {
   postProcessing,
   getEmbedPdfPages,
   validateRequiredFields,
-} from './helper.js';
+} from '@sisad-pdfme/generator/helper';
 
 const generate = async (props: GenerateProps): Promise<Uint8Array<ArrayBuffer>> => {
   checkGenerateProps(props);

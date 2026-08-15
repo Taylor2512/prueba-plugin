@@ -1,4 +1,4 @@
-import type { PdfComment } from './comments.js';
+import type { PdfComment } from '@sisad-pdfme/contracts/comments';
 
 /**
  * Identidad técnica y trazabilidad base de un schema.
@@ -161,7 +161,7 @@ export type CollaborativeSchemaContract = SchemaIdentity & {
  * Vive en `shared/schemaDesignerMeta.ts` para evitar dependencias circulares
  * entre contratos, shared runtime y módulos UI.
  */
-export type { SchemaDesignerMeta } from '../shared/schemaDesignerMeta.js';
+export type { SchemaDesignerMeta } from '@sisad-pdfme/shared/schemaDesignerMeta';
 
 /**
  * Reexporta helpers oficiales para gestionar metadata de diseñador.
@@ -187,4 +187,4 @@ export {
    * Prepara metadata de diseñador para un schema pegado desde clipboard.
    */
   pasteSchemaDesignerMeta,
-} from '../shared/schemaDesignerMeta.js';
+} from '@sisad-pdfme/shared/schemaDesignerMeta';

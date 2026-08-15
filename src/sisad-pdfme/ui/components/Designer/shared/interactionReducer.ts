@@ -20,7 +20,7 @@ import {
   deriveInteractionState,
   type InteractionPhase,
   type InteractionState,
-} from './interactionState.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/interactionState';
 
 export type TransformKind = 'drag' | 'resize' | 'rotate';
 

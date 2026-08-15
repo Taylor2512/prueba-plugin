@@ -6,19 +6,19 @@ import {
   type Command,
 } from '@sisad-pdfme/common';
 import { message } from 'antd';
-import { round } from '../../../helper.js';
-import type { EffectiveCollaborationContext } from '../../../collaborationContext.js';
-import { evaluateSchemaMutationPermission } from './interactionGuards.js';
-import { duplicateSchemas } from './schemaClipboard.js';
-import type { GroupMeta } from '../../../../shared/schemaDesignerMeta.js';
+import { round } from '@sisad-pdfme/ui/helper';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import { evaluateSchemaMutationPermission } from '@sisad-pdfme/ui/components/Designer/shared/interactionGuards';
+import { duplicateSchemas } from '@sisad-pdfme/ui/components/Designer/shared/schemaClipboard';
+import type { GroupMeta } from '@sisad-pdfme/shared/schemaDesignerMeta';
 import {
   optionGroupDesignerHeightMM,
   optionGroupDesignerWidthMM,
   isOptionGroupType,
-} from '../../../../schemas/options/optionGroupLayout.js';
-import { asRecord } from '../../../../shared/objectGuards.js';
-import { resolveActiveSchemasFromElements } from './selectionIdentityResolver.js';
-import { resolveSchemaUid } from './schemaAssignmentService.js';
+} from '@sisad-pdfme/schemas/options/optionGroupLayout';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
+import { resolveActiveSchemasFromElements } from '@sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver';
+import { resolveSchemaUid } from '@sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService';
 
 type SchemaWithDesigner = SchemaForUI & {
   __designer?: Record<string, unknown>;

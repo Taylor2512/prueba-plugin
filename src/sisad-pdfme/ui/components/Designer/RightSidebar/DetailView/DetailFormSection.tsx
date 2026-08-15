@@ -8,9 +8,9 @@
 import React from 'react';
 import type { PropPanelSchema, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import FormRenderComponent, { useForm } from 'form-render';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
-import DetailSectionCard from './DetailSectionCard.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import DetailSectionCard from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard';
 
 /** Instancia de formulario de una sección. */
 export type SectionFormInstance = ReturnType<typeof useForm>;

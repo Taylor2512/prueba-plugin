@@ -1,4 +1,4 @@
-import { readFile } from '../utils.js';
+import { readFile } from '@sisad-pdfme/schemas/utils';
 
 export type ImageFileInputOptions = {
   onValue: (value: string) => void;

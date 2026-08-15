@@ -1,4 +1,4 @@
-import type { SisadPdfmePersistenceAdapter } from '../config/SisadPdfmeConfig.js';
+import type { SisadPdfmePersistenceAdapter } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 export type { SisadPdfmePersistenceAdapter };
 

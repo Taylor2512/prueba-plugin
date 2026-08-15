@@ -6,11 +6,11 @@
  * reutilizarse en tests, previews o documentación del inspector.
  */
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
-import { getSchemaStateLabel, getSchemaTypeLabel } from '../../shared/designerLabels.js';
-import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
-import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
-import { normalizeText } from '../../../../../shared/text.js';
+import type { SchemaDesignerConfig } from '@sisad-pdfme/ui/designerEngine';
+import { getSchemaStateLabel, getSchemaTypeLabel } from '@sisad-pdfme/ui/components/Designer/shared/designerLabels';
+import { resolveSchemaInteractionState } from '@sisad-pdfme/ui/components/Designer/shared/schemaInteractionState';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import { normalizeText } from '@sisad-pdfme/shared/text';
 
 /**
  * Resumen normalizado usado por `DetailHeaderCard`.

@@ -5,12 +5,12 @@
  * base es blank. En PDFs reales no dibuja padding porque el documento ya define
  * su propia superficie visual.
  */
-import { DESIGNER_CLASSNAME } from "../../../constants.js";
+import { DESIGNER_CLASSNAME } from "@sisad-pdfme/ui/constants";
 import React from 'react';
 import type * as CSS from 'csstype';
 import { ZOOM, BasePdf, isBlankPdf } from '@sisad-pdfme/common';
 import { theme } from 'antd';
-import { mergeClassNames } from '../shared/className.js';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 /**
  * Construye la franja visual de padding según índice:

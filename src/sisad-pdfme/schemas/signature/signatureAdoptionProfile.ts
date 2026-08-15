@@ -11,8 +11,8 @@
 import {
   DEFAULT_SISAD_SIGNATURE_STYLE_ID,
   isSisadSignatureStyleId,
-} from './signatureStyleVariants.js';
-import { normalizeSignerInitials, normalizeSignerName } from './signatureIdentity.js';
+} from '@sisad-pdfme/schemas/signature/signatureStyleVariants';
+import { normalizeSignerInitials, normalizeSignerName } from '@sisad-pdfme/schemas/signature/signatureIdentity';
 
 export const SISAD_SIGNATURE_PROFILE_VERSION = 1;
 

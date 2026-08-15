@@ -1,10 +1,10 @@
-import { DESIGNER_CLASSNAME } from '../../constants.ts';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import React, { useContext, useMemo } from 'react';
 import { Plugin, Schema } from '@sisad-pdfme/common';
-import { OptionsContext } from '../../contexts.js';
+import { OptionsContext } from '@sisad-pdfme/ui/contexts';
 import { theme } from 'antd';
 import DOMPurify from 'dompurify';
-import { mergeClassNames } from './shared/className.js';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 export type PluginIconColorMode = 'owner' | 'semantic' | 'original';
 

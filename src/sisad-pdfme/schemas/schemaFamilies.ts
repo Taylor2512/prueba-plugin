@@ -5,7 +5,7 @@ import type {
   PropPanelInspectorConfig,
   PropPanelInspectorSectionKey,
   SchemaInspectorSection,
-} from '../common/types.js';
+} from '@sisad-pdfme/common/types';
 
 export type SchemaFamily = 'text' | 'mediaVisual' | 'boolean' | 'shapeBarcode' | 'table';
 export type SchemaSemanticFamily =

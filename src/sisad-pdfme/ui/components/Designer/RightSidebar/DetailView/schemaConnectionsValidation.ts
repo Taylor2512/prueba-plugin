@@ -5,7 +5,7 @@
  * faltantes normalizadas para que la UI pueda mostrar estados o advertencias sin
  * duplicar reglas de validación.
  */
-import type { SchemaDesignerConfig, SchemaPersistenceConfig } from '../../../../designerEngine.js';
+import type { SchemaDesignerConfig, SchemaPersistenceConfig } from '@sisad-pdfme/ui/designerEngine';
 
 /**
  * Valida configuración de persistencia y devuelve claves faltantes.

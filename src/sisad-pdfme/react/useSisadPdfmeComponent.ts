@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
-import type { ComponentContext, ComponentId, SisadPdfmeComponentState } from '../config/componentRegistry.js';
-import { useSisadPdfmeConfigService } from './useSisadPdfmeConfigService.js';
+import type { ComponentContext, ComponentId, SisadPdfmeComponentState } from '@sisad-pdfme/config/componentRegistry';
+import { useSisadPdfmeConfigService } from '@sisad-pdfme/react/useSisadPdfmeConfigService';
 
 export const useSisadPdfmeComponent = (
   componentId: ComponentId,

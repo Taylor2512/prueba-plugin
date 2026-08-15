@@ -1,31 +1,31 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import type { SchemaForUI, Size } from '@sisad-pdfme/common';
-import type { SnapLine } from '../SnapLines.js';
+import type { SnapLine } from '@sisad-pdfme/ui/components/Designer/Canvas/SnapLines';
 
-import SelectionContextToolbar from './SelectionContextToolbar.js';
-import InlineMetricsOverlay from './InlineMetricsOverlay.js';
-import SnapFeedbackOverlay from './SnapFeedbackOverlay.js';
-import GroupOptionFloatingAction from './GroupOptionFloatingAction.js';
-import { useFloatingToolbarPosition } from './useFloatingToolbarPosition.js';
+import SelectionContextToolbar from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar';
+import InlineMetricsOverlay from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay';
+import SnapFeedbackOverlay from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay';
+import GroupOptionFloatingAction from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction';
+import { useFloatingToolbarPosition } from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition';
 
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
 import type {
   CanvasContextMenuExternalActions,
   SelectionToolbarMode,
-} from './canvasContextMenuActions.js';
-import type { InteractionState } from '../../shared/interactionState.js';
+} from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions';
+import type { InteractionState } from '@sisad-pdfme/ui/components/Designer/shared/interactionState';
 
 import {
   resolveActiveSchemasFromElements,
   resolveSelectionPageIndex,
-} from '../../shared/selectionIdentityResolver.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver';
 
-import CommentsOverlay from './CommentsOverlay.js';
-import ShortcutHelpPanel from '../../Shortcuts/ShortcutHelpPanel.js';
-import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
-import { buildRecipientNameMap } from '../../../../collaborationContext.js';
-import { OptionsContext } from '../../../../contexts.js';
-import { asRecord } from '../../../../../shared/objectGuards.js';
+import CommentsOverlay from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay';
+import ShortcutHelpPanel from '@sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import { buildRecipientNameMap } from '@sisad-pdfme/ui/collaborationContext';
+import { OptionsContext } from '@sisad-pdfme/ui/contexts';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 
 /**
  * Slot visual para renderizar snap lines.

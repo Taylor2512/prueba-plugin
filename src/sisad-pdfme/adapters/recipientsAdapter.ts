@@ -1,4 +1,4 @@
-import type { SisadPdfmeRecipientsAdapter } from '../config/SisadPdfmeConfig.js';
+import type { SisadPdfmeRecipientsAdapter } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
 export type {  SisadPdfmeRecipientsAdapter };
 

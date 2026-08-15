@@ -20,14 +20,14 @@
  * 10. select created schema, open DetailView if applicable
  */
 
-import { asRecord } from '../../../../shared/objectGuards.js';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 import {
   clientPointToPagePoint,
   getPageRectInViewport,
   pagePointToSchemaPoint,
   type DOMRectLike,
   type Point,
-} from './coordinateMath.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/coordinateMath';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 

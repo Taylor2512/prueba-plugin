@@ -6,8 +6,8 @@
  * 2. Field chrome: `applyFieldChrome` stamps class + data attributes + --schema-tone variable
  *    so CSS can drive all visual state without inline Object.assign(style).
  */
-import type { SchemaVisualFamily, SchemaVisualState, SisadSchemaBase } from './schemaTypes.js';
-import { resolveSchemaOwnerColorValue as resolveSchemaOwnerColorValueFromAppearance } from '../../collaboration/schemaOwnershipAppearance.js';
+import type { SchemaVisualFamily, SchemaVisualState, SisadSchemaBase } from '@sisad-pdfme/schemas/shared/schemaTypes';
+import { resolveSchemaOwnerColorValue as resolveSchemaOwnerColorValueFromAppearance } from '@sisad-pdfme/collaboration/schemaOwnershipAppearance';
 
 // ─── Designer option box constants ────────────────────────────────────────────
 // Used in JS indicator builders AND in CSS (same literal value).

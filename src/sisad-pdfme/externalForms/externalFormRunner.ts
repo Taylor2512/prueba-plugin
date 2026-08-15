@@ -11,8 +11,8 @@
  *   readonly  → Viewer de sisad-pdfme
  *   hidden    → no renderizado
  */
-import type { OfficialTemplateSnapshot, SnapshotAssignment, SchemaWithDesigner } from '../shared/snapshot.js';
-import { asRecord } from '../shared/objectGuards.js';
+import type { OfficialTemplateSnapshot, SnapshotAssignment, SchemaWithDesigner } from '@sisad-pdfme/shared/snapshot';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 
 // ── Estado del flujo ────────────────────────────────────────────────────────
 

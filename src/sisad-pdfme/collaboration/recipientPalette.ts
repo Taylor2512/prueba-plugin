@@ -1,4 +1,4 @@
-import { normalizeHexColor } from '../ui/components/Designer/shared/recipientColor.js';
+import { normalizeHexColor } from '@sisad-pdfme/ui/components/Designer/shared/recipientColor';
 
 /**
  * Default collaborator palette inherited from the lab. Preserved verbatim so

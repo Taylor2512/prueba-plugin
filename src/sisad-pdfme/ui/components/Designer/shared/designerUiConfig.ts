@@ -11,18 +11,18 @@
  * - Config  intacta: este módulo solo LEE las mismas options que ya
  *   viajan por OptionsContext.
  */
-import type { ResolvedSisadPdfmeConfig, SisadPdfmeVisibilityConfig } from '../../../../config/SisadPdfmeConfig.js';
-import { asRecord } from '../../../../shared/objectGuards.js';
-import { resolveVisibilityConfig, resolveReassignVisibilityState } from './visibilityConfig.js';
-import { configFromRuntimeOptions } from '../../../../config/configFromRuntimeOptions.js';
-import { resolveSisadPdfmeConfig } from '../../../../config/resolveSisadPdfmeConfig.js';
-import { resolveCapabilityState } from '../../../../config/capabilityGraph.js';
-import { capabilitiesOfKind } from '../../../../config/capabilityInventory.js';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeVisibilityConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
+import { resolveVisibilityConfig, resolveReassignVisibilityState } from '@sisad-pdfme/ui/components/Designer/shared/visibilityConfig';
+import { configFromRuntimeOptions } from '@sisad-pdfme/config/configFromRuntimeOptions';
+import { resolveSisadPdfmeConfig } from '@sisad-pdfme/config/resolveSisadPdfmeConfig';
+import { resolveCapabilityState } from '@sisad-pdfme/config/capabilityGraph';
+import { capabilitiesOfKind } from '@sisad-pdfme/config/capabilityInventory';
 import {
   resolveDesignerActionState,
   type DesignerActionContext,
   type DesignerActionState,
-} from './designerActionState.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/designerActionState';
 
 export type ResolvedDesignerUiMap = {
   visibility: SisadPdfmeVisibilityConfig | undefined;

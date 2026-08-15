@@ -23,10 +23,10 @@
  * El padre (DigitalAgreements) puede sobreescribir cualquier campo del config
  * antes de pasarlo al designer.
  */
-import { LocalSnapshotStoreImpl } from './localSnapshotStore.js';
-import { LocalFormStorage } from './localFormStorage.js';
-import type { SerializeOptions } from './snapshot.js';
-import type { SignaturePolicy } from './signatureRegistry.js';
+import { LocalSnapshotStoreImpl } from '@sisad-pdfme/shared/localSnapshotStore';
+import { LocalFormStorage } from '@sisad-pdfme/shared/localFormStorage';
+import type { SerializeOptions } from '@sisad-pdfme/shared/snapshot';
+import type { SignaturePolicy } from '@sisad-pdfme/shared/signatureRegistry';
 
 // ── Tipos ─────────────────────────────────────────────────────────────────────
 

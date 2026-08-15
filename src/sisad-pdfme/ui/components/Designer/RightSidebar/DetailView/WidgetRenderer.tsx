@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
 import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
-import { markInspectorInteractive } from './inspectorInteractionGuards.js';
+import { markInspectorInteractive } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 
 /**
  * Props del wrapper para widgets imperativos heredados de plugins.

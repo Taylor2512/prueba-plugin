@@ -1,6 +1,6 @@
-import { getPlugin } from './helper.js';
+import { getPlugin } from '@sisad-pdfme/schemas/date/helper';
 import { CalendarClock } from 'lucide-react';
-import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 
 const type = 'dateTime';
 

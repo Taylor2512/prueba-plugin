@@ -16,25 +16,25 @@ import React from 'react';
 import type { GlobalToken, PropPanelWidgetProps, SchemaForUI, UIOptions } from '@sisad-pdfme/common';
 import { Button, Divider, Tooltip } from 'antd';
 import { Pencil, Type } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import AlignWidget from './AlignWidget.js';
-import ButtonGroupWidget from './ButtonGroupWidget.js';
-import WidgetRenderer from './WidgetRenderer.js';
-import SchemaCollaborationWidget from './SchemaCollaborationWidget.js';
-import SchemaConnectionsWidget from './SchemaConnectionsWidget.js';
-import SchemaFieldCommentsWidget from './SchemaFieldCommentsWidget.js';
-import SchemaOptionsEditor from './SchemaOptionsEditor.js';
-import { getSchemaTypeInspectorPreset, INLINE_EDITABLE_TEXT_TYPES } from '../../../../../schemas/schemaFamilies.js';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import type { DesignerEngine, SchemaDesignerConfig } from '../../../../designerEngine.js';
-import type { SidebarProps } from '../../../../types.js';
-import { BooleanSwitchWidget } from './InspectorPrimitives.js';
-import { ColorPickerWidget } from './detailWidgets.js';
-import { asRecord } from '../../../../../shared/objectGuards.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import AlignWidget from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget';
+import ButtonGroupWidget from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget';
+import WidgetRenderer from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer';
+import SchemaCollaborationWidget from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget';
+import SchemaConnectionsWidget from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget';
+import SchemaFieldCommentsWidget from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget';
+import SchemaOptionsEditor from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor';
+import { getSchemaTypeInspectorPreset, INLINE_EDITABLE_TEXT_TYPES } from '@sisad-pdfme/schemas/schemaFamilies';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import type { DesignerEngine, SchemaDesignerConfig } from '@sisad-pdfme/ui/designerEngine';
+import type { SidebarProps } from '@sisad-pdfme/ui/types';
+import { BooleanSwitchWidget } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives';
+import { ColorPickerWidget } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 import {
   describeSchemaAccessDenyReason,
   type SchemaAccessState,
-} from '../../shared/accessPolicy.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/accessPolicy';
 
 /**
  * Deriva un `data-testid` estable desde el path del campo de form-render.

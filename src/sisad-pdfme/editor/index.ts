@@ -18,10 +18,10 @@
  * lógica de schemas ni reglas específicas de SISAD.
  */
 
-import Designer from '../ui/Designer.js';
-import Form from '../ui/Form.js';
-import Viewer from '../ui/Viewer.js';
-import { DesignerEngineBuilder } from '../ui/designerEngine.js';
+import Designer from '@sisad-pdfme/ui/Designer';
+import Form from '@sisad-pdfme/ui/Form';
+import Viewer from '@sisad-pdfme/ui/Viewer';
+import { DesignerEngineBuilder } from '@sisad-pdfme/ui/designerEngine';
 
 /**
  * Estilos base del runtime.
@@ -103,7 +103,7 @@ export { Designer, Form, Viewer, DesignerEngineBuilder };
  * Mantener este archivo como fachada pública.
  * Evitar que los hosts importen rutas internas profundas del engine.
  */
-export * from '../ui/designerEngine.js';
+export * from '@sisad-pdfme/ui/designerEngine';
 
 /**
  * API pública de colaboración.
@@ -121,7 +121,7 @@ export * from '../ui/designerEngine.js';
 export {
   applyCollaborationEvent,
   useCollaborationSync,
-} from '../ui/collaboration.js';
+} from '@sisad-pdfme/ui/collaboration';
 
 /**
  * Tipos públicos para integrar el runtime con hosts externos.
@@ -143,7 +143,7 @@ export type {
   DesignerRuntimeApi,
   SidebarProps,
   DesignerDocumentsBridge,
-} from '../ui/types.js';
+} from '@sisad-pdfme/ui/types';
 
 /**
  * Tipos públicos del sistema de eventos/extensiones del Designer.
@@ -165,7 +165,7 @@ export type {
   DesignerRuntimeEventHub,
   DesignerRuntimeEventListener,
   DesignerRuntimeExtensions,
-} from '../ui/components/Designer/shared/designerExtensions.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
 
 /**
  * Factory pública para crear un hub de eventos del Designer.
@@ -175,4 +175,4 @@ export type {
  */
 export {
   createDesignerRuntimeEventHub,
-} from '../ui/components/Designer/shared/designerExtensions.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';

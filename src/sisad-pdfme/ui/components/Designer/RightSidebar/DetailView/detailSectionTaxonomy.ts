@@ -10,9 +10,9 @@ import {
   resolveInspectorFamily,
   type InspectorFamily,
   type SchemaSemanticFamily,
-} from '../../../../../schemas/schemaFamilies.js';
-import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
-import { normalizeText as normalizeTextRaw } from '../../../../../shared/text.js';
+} from '@sisad-pdfme/schemas/schemaFamilies';
+import { asRecord, isRecord } from '@sisad-pdfme/shared/objectGuards';
+import { normalizeText as normalizeTextRaw } from '@sisad-pdfme/shared/text';
 
 /**
  * Claves de sección actuales del DetailView.

@@ -13,7 +13,7 @@
  */
 
 import type { PreviewProps } from '@sisad-pdfme/common';
-import { PagedPreviewUI } from './PagedPreviewUI';
+import { PagedPreviewUI } from '@sisad-pdfme/ui/PagedPreviewUI';
 
 /** Runtime de solo lectura para visualizar template + inputs. */
 class Viewer extends PagedPreviewUI {

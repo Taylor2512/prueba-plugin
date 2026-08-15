@@ -1,7 +1,7 @@
 import { Font, mm2pt, pt2mm } from '@sisad-pdfme/common';
 import type { Font as FontKitFont } from 'fontkit';
-import { splitTextToSize, getFontKitFont, widthOfTextAtSize } from '../text/helper.js';
-import type { Styles, TableInput, Settings, Section, StylesProps } from './types.js';
+import { splitTextToSize, getFontKitFont, widthOfTextAtSize } from '@sisad-pdfme/schemas/text/helper';
+import type { Styles, TableInput, Settings, Section, StylesProps } from '@sisad-pdfme/schemas/tables/types';
 
 type ContentSettings = { body: Row[]; head: Row[]; columns: Column[] };
 

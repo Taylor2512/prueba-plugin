@@ -1,8 +1,8 @@
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
-import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
-import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
-import { normalizeText } from '../../../../../shared/text.js';
+import { getSchemaTypeLabel } from '@sisad-pdfme/ui/components/Designer/shared/designerLabels';
+import { resolveSchemaInteractionState } from '@sisad-pdfme/ui/components/Designer/shared/schemaInteractionState';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import { normalizeText } from '@sisad-pdfme/shared/text';
 
 export type ListViewItemDescriptor = {
   primaryLabel: string;

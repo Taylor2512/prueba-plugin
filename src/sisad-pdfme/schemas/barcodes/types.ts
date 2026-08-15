@@ -1,5 +1,5 @@
 import { Schema } from '@sisad-pdfme/common';
-import { BARCODE_TYPES } from './constants.js';
+import { BARCODE_TYPES } from '@sisad-pdfme/schemas/barcodes/constants';
 
 export interface BarcodeSchema extends Schema {
   type: (typeof BARCODE_TYPES)[number];

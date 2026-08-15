@@ -162,4 +162,4 @@ export function resolveSchemaIdByIdentity(
       candidate.position?.y === schema.position?.y,
   )?.id;
 }
-import { isRecord } from '../../shared/objectGuards.js';
+import { isRecord } from '@sisad-pdfme/shared/objectGuards';

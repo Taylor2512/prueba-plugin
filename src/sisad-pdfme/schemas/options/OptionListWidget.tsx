@@ -1,6 +1,6 @@
 import React from 'react';
-import { OptionListEditor } from './optionPropPanel.js';
-import type { OptionItem } from './optionTypes.js';
+import { OptionListEditor } from '@sisad-pdfme/schemas/options/optionPropPanel';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
 
 type Props = {
   value: OptionItem[];

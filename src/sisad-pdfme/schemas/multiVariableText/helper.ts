@@ -1,6 +1,6 @@
-import { MultiVariableTextSchema } from './types.js';
+import { MultiVariableTextSchema } from '@sisad-pdfme/schemas/multiVariableText/types';
 
-import { normalizeLooseText } from '../../shared/text.js';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 const normalizeMultiVariableText = normalizeLooseText;
 

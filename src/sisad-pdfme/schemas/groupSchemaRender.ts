@@ -13,8 +13,8 @@
  */
 
 /** Hex → rgba with a given alpha (0–1). Handles both 6 and 3-char hex. */
-import { createOptionIndicatorElement } from './options/optionIndicator.js';
-import { isRecord } from '../shared/objectGuards.js';
+import { createOptionIndicatorElement } from '@sisad-pdfme/schemas/options/optionIndicator';
+import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 
 const hexAlpha = (hex: string, alpha: number): string => {
   const h = hex.replace('#', '');

@@ -8,15 +8,15 @@
 import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { Copy, Ellipsis, Trash2 } from 'lucide-react';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import type { InteractionState } from '../../shared/interactionState.js';
-import { mergeClassNames } from '../../shared/className.js';
-import CanvasContextMenu from './CanvasContextMenu.js';
-import type { CanvasContextMenuExternalActions } from './canvasContextMenuActions.js';
-import { resolveSelectionToolbarPosition } from './floatingSurfaceGeometry.js';
-import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
-import { OptionsContext } from '../../../../contexts.js';
-import { asRecord } from '../../../../../shared/objectGuards.js';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import type { InteractionState } from '@sisad-pdfme/ui/components/Designer/shared/interactionState';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import CanvasContextMenu from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu';
+import type { CanvasContextMenuExternalActions } from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions';
+import { resolveSelectionToolbarPosition } from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import { OptionsContext } from '@sisad-pdfme/ui/contexts';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 
 /**
  * Props del toolbar contextual de selección.

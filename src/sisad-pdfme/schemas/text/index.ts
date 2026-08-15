@@ -1,10 +1,10 @@
 import type { Plugin } from '@sisad-pdfme/common';
-import { renderTextPdf } from './pdfRender.js';
-import { propPanel } from './propPanel.js';
-import { renderTextUi } from './uiRender.js';
-import type { TextSchema } from './types.js';
+import { renderTextPdf } from '@sisad-pdfme/schemas/text/pdfRender';
+import { propPanel } from '@sisad-pdfme/schemas/text/propPanel';
+import { renderTextUi } from '@sisad-pdfme/schemas/text/uiRender';
+import type { TextSchema } from '@sisad-pdfme/schemas/text/types';
 import { TextCursorInput } from 'lucide-react';
-import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
+import { createSchemaPlugin, renderLucideIcon } from '@sisad-pdfme/schemas/schemaBuilder';
 
 const textSchema: Plugin<TextSchema> = createSchemaPlugin<TextSchema>({
   pdf: renderTextPdf,

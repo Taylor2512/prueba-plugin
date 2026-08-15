@@ -6,7 +6,7 @@
  * (`react-refresh/only-export-components`).
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { SisadPdfmeDesigner, SisadPdfmeForm, SisadPdfmeViewer } from '../react/index.js';
+import { SisadPdfmeDesigner, SisadPdfmeForm, SisadPdfmeViewer } from '@sisad-pdfme/react';
 import {
   resolveSisadPdfmeInstance,
   type SisadPdfmeInstanceMode,
@@ -15,16 +15,26 @@ import {
   type SisadPdfmeInstanceResolution,
   type SisadPdfmeInstanceRuntimeState,
   type SisadPdfmeInstanceStateInput,
-} from './resolveSisadPdfmeInstance.js';
+} from '@sisad-pdfme/integration/resolveSisadPdfmeInstance';
 import {
   defineSisadPdfmeInstance,
   type SisadPdfmeInstanceInput,
-} from './defineSisadPdfmeInstance.js';
+} from '@sisad-pdfme/integration/defineSisadPdfmeInstance';
 import type {
   SisadPdfmeAssignmentChangePayload,
   SisadPdfmeRecipient,
-} from '../recipients/index.js';
-import type { SisadPdfmeDocument } from '../config/index.js';
+} from '@sisad-pdfme/recipients';
+import type { SisadPdfmeDocument } from '@sisad-pdfme/config';
+import {
+  createExecutionScopeStore,
+  SHARED_SCOPE_USER,
+  type RuntimeScope,
+} from '@sisad-pdfme/runtime/executionScopeStore';
+import {
+  commitScopedInput,
+  deriveSchemaValueScopes,
+  projectScopedInputs,
+} from '@sisad-pdfme/runtime/scopedInputProjection';
 
 type SisadPdfmeSurfaceProps = Record<string, unknown>;
 
@@ -121,11 +131,11 @@ export { resolveSisadPdfmeInstance };
 export type {
   SisadPdfmeInstanceMode,
   SisadPdfmeInstanceResolution,
-} from './resolveSisadPdfmeInstance.js';
+} from '@sisad-pdfme/integration/resolveSisadPdfmeInstance';
 export type {
   SisadPdfmeInstanceInput,
   SisadPdfmeRegisteredInstance,
-} from './defineSisadPdfmeInstance.js';
+} from '@sisad-pdfme/integration/defineSisadPdfmeInstance';
 
 export const useSisadPdfmeInstance = (
   props: SisadPdfmeInstanceInput,
@@ -158,6 +168,76 @@ export const useSisadPdfmeInstance = (
     setRuntimeState({});
     runtimeStateRef.current = {};
   }, [registration.stateKey, runtimeStateKey]);
+
+  /**
+   * Aislamiento de valores por User × Document (RTP-510).
+   *
+   * El store pertenece a la instancia: no hay singleton de módulo, así que dos
+   * Forms en el mismo realm no pueden compartir celdas por accidente.
+   */
+  const scopeStoreRef = useRef(createExecutionScopeStore());
+
+  /**
+   * Inputs de partida, resueltos SIN el estado de runtime.
+   *
+   * La proyección necesita una base estable: si se partiera de
+   * `resolved.state.inputs.value` —que ya incorpora lo editado— cada cambio de
+   * documento heredaría lo escrito en el anterior, que es justo la
+   * contaminación que este scope existe para impedir.
+   */
+  const baseResolution = useMemo(
+    () => resolveSisadPdfmeInstance(resolvedProps, {}),
+    [resolvedProps],
+  );
+  const baseInputs = baseResolution.state.inputs.value;
+
+  const valueScopes = useMemo(
+    () => deriveSchemaValueScopes(resolved.state.template.value as { schemas?: unknown }),
+    [resolved.state.template.value],
+  );
+
+  const activeUserId = resolved.state.activeRecipientId.value;
+  const activeDocumentId = resolved.state.activeDocumentId.value;
+
+  const runtimeScope = useMemo<RuntimeScope>(
+    () => ({
+      runtimeSessionId: registration.stateKey,
+      userId: activeUserId ?? SHARED_SCOPE_USER,
+      documentId: activeDocumentId ?? '__default__',
+    }),
+    [activeDocumentId, activeUserId, registration.stateKey],
+  );
+
+  const inputsControlled = isFieldControlled(
+    registration.resolvedProps.definition,
+    registration.resolvedProps.resources,
+    'inputs',
+  );
+
+  /**
+   * Reproyecta al cambiar de User o de Document.
+   *
+   * Sin esto el array de inputs sobrevive al cambio de scope y el documento
+   * nuevo abre mostrando lo que se escribió en el anterior. Sólo aplica cuando
+   * el host no controla `inputs`: si los controla, él es la autoridad.
+   */
+  const scopeKey = `${runtimeScope.userId}::${runtimeScope.documentId}`;
+  useEffect(() => {
+    if (inputsControlled || resolved.surface !== 'form') return;
+    const projected = projectScopedInputs({
+      store: scopeStoreRef.current,
+      scope: runtimeScope,
+      baseInputs,
+      valueScopes,
+    });
+    const nextRuntimeState = { ...runtimeStateRef.current, inputs: projected };
+    runtimeStateRef.current = nextRuntimeState;
+    setRuntimeState(nextRuntimeState);
+    // Deliberadamente sólo `scopeKey`: reproyectar es la reacción a CAMBIAR de
+    // scope, no a cada render. Incluir `baseInputs`/`valueScopes` reescribiría
+    // los inputs en cada resolución y pisaría lo que el usuario acaba de teclear.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scopeKey]);
 
   const emitStateChange = useCallback(
     (
@@ -207,6 +287,16 @@ export const useSisadPdfmeInstance = (
 
   const handleInputChange = useCallback(
     (payload: { index: number; name: string; value: unknown }) => {
+      // La edición se escribe en la celda del scope activo ANTES de proyectar:
+      // el store es la autoridad multi-scope y el array de inputs sólo su vista
+      // para el User × Document que está en pantalla.
+      commitScopedInput({
+        store: scopeStoreRef.current,
+        scope: runtimeScope,
+        payload,
+        valueScopes,
+      });
+
       const currentInputs =
         runtimeStateRef.current.inputs !== undefined
           ? runtimeStateRef.current.inputs
@@ -230,7 +320,7 @@ export const useSisadPdfmeInstance = (
       });
       registration.resolvedProps.handlers?.onInputChange?.(payload);
     },
-    [emitStateChange, registration.resolvedProps, resolved.state],
+    [emitStateChange, registration.resolvedProps, resolved.state, runtimeScope, valueScopes],
   );
 
   const handleRecipientsChange = useCallback(

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from 'antd';
 import { ListTree, LayoutList, GalleryVerticalEnd } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../constants.js';
-import { mergeClassNames } from './className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 export type CatalogLayout = 'list' | 'tiles' | 'icons';
 

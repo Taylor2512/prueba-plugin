@@ -1,6 +1,6 @@
 import { PDFDocument } from 'pdf-lib';
 import { mm2pt } from '@sisad-pdfme/common';
-import type { ImageType } from './types.js';
+import type { ImageType } from '@sisad-pdfme/converter/types';
 
 /**
  * Opciones de conversión de imágenes a PDF.

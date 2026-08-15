@@ -1,10 +1,10 @@
-import type { TableSchema } from './types.js';
+import type { TableSchema } from '@sisad-pdfme/schemas/tables/types';
 import type { PDFRenderProps, Schema, BasePdf, CommonOptions } from '@sisad-pdfme/common';
-import { Cell, Table, Row, Column } from './classes.js';
-import { rectangle } from '../shapes/rectAndEllipse.js';
-import cell from './cell.js';
-import { getBodyWithRange } from './helper.js';
-import { createSingleTable } from './tableHelper.js';
+import { Cell, Table, Row, Column } from '@sisad-pdfme/schemas/tables/classes';
+import { rectangle } from '@sisad-pdfme/schemas/shapes/rectAndEllipse';
+import cell from '@sisad-pdfme/schemas/tables/cell';
+import { getBodyWithRange } from '@sisad-pdfme/schemas/tables/helper';
+import { createSingleTable } from '@sisad-pdfme/schemas/tables/tableHelper';
 
 // Define the CreateTableArgs interface locally since it's not exported from tableHelper.js
 interface CreateTableArgs {

@@ -1,5 +1,5 @@
-import { isRecord } from '../../../../shared/objectGuards.js';
-import { normalizeText } from '../../../../shared/text.js';
+import { isRecord } from '@sisad-pdfme/shared/objectGuards';
+import { normalizeText } from '@sisad-pdfme/shared/text';
 
 const DEFAULT_AUTO_PLACE_SCOPE = 'document';
 const DEFAULT_AUTO_PLACE_MATCH_MODE = 'contains';

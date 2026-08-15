@@ -12,11 +12,11 @@
  * los bloqueos del toolbar se resuelven como estado disabled para no perder el
  * affordance en densidades compactas.
  */
-import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
 import {
   describeDisabledReason,
   resolveDesignerActionState,
-} from '../../shared/designerActionState.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/designerActionState';
 
 export type ReassignActionStateInput = {
   assignmentEnabled: boolean;

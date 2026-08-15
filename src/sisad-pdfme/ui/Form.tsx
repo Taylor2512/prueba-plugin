@@ -22,16 +22,16 @@
  */
 
 import type { PreviewProps } from '@sisad-pdfme/common';
-import { PagedPreviewUI } from './PagedPreviewUI';
-import type { FormJsonEnvelope } from './designerEngine';
+import { PagedPreviewUI } from '@sisad-pdfme/ui/PagedPreviewUI';
+import type { FormJsonEnvelope } from '@sisad-pdfme/ui/designerEngine';
 import {
   applySchemaInteraction,
   createSchemaInteractionState,
-} from '../runtime/schemaInteractionState';
+} from '@sisad-pdfme/runtime/schemaInteractionState';
 import type {
   SchemaInteractionOrigin,
   SchemaInteractionState,
-} from '../runtime/schemaInteractionState';
+} from '@sisad-pdfme/runtime/schemaInteractionState';
 
 /** Procedencia de un cambio de input notificado por el runtime. */
 export type FormInputChangeOrigin = 'user' | 'host';

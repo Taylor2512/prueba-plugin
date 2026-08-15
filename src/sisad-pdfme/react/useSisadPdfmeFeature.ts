@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
-import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from '../config/featureRegistry.js';
-import { useSisadPdfmeConfigService } from './useSisadPdfmeConfigService.js';
+import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from '@sisad-pdfme/config/featureRegistry';
+import { useSisadPdfmeConfigService } from '@sisad-pdfme/react/useSisadPdfmeConfigService';
 
 export const useSisadPdfmeFeature = (
   featureId: FeatureId,

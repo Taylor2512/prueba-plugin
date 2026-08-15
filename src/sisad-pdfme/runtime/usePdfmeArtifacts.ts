@@ -15,7 +15,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   createObjectUrl as defaultCreateObjectUrl,
   revokeObjectUrls as defaultRevokeObjectUrls,
-} from '../browser/objectUrls.js';
+} from '@sisad-pdfme/browser/objectUrls';
 
 /**
  * State produced by the artifacts pipeline.

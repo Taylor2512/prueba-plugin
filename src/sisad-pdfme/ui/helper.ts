@@ -30,8 +30,8 @@ import {
   PluginRegistry,
 } from '@sisad-pdfme/common';
 import { pdf2size } from '@sisad-pdfme/converter';
-import { DEFAULT_MAX_ZOOM, RULER_HEIGHT, PAGE_GAP } from './constants.js';
-import { OptionsContext } from './contexts.js';
+import { DEFAULT_MAX_ZOOM, RULER_HEIGHT, PAGE_GAP } from '@sisad-pdfme/ui/constants';
+import { OptionsContext } from '@sisad-pdfme/ui/contexts';
 
 // Define a type for the hotkeys function with additional properties
 type HotkeysFunction = {

@@ -8,7 +8,7 @@
 
 import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { asRecord } from '../../../../../shared/objectGuards.js';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 import { MessageSquare } from 'lucide-react';
 
 /**

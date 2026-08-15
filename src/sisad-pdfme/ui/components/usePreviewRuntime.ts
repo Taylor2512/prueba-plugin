@@ -22,9 +22,9 @@
 import { useCallback, useContext, useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react';
 import { Template, SchemaForUI, Size, getDynamicTemplate } from '@sisad-pdfme/common';
 import { getDynamicHeightsForTable } from '@sisad-pdfme/schemas';
-import { useUIPreProcessor, useScrollPageCursor } from '../hooks.js';
-import { FontContext, OptionsContext } from '../contexts.js';
-import { template2SchemasList, getPagesScrollTopByIndex, useMaxZoom } from '../helper.js';
+import { useUIPreProcessor, useScrollPageCursor } from '@sisad-pdfme/ui/hooks';
+import { FontContext, OptionsContext } from '@sisad-pdfme/ui/contexts';
+import { template2SchemasList, getPagesScrollTopByIndex, useMaxZoom } from '@sisad-pdfme/ui/helper';
 import {
   createSchemaDataRuntimeAdapter,
   getSchemaDesignerConfig,
@@ -32,10 +32,10 @@ import {
   type FormJsonEnvelope,
   type SchemaDataFieldSnapshot,
   type SchemaDataSnapshot,
-} from '../designerEngine.js';
-import { emitDesignerRuntimeEvent } from './Designer/shared/designerExtensions.js';
-import usePaperRefRegistry from './shared/usePaperRefRegistry.js';
-import { isRecord } from '../../shared/objectGuards.js';
+} from '@sisad-pdfme/ui/designerEngine';
+import { emitDesignerRuntimeEvent } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
+import usePaperRefRegistry from '@sisad-pdfme/ui/components/shared/usePaperRefRegistry';
+import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 
 /**
  * Cache compartido para getDynamicTemplate.

@@ -6,9 +6,9 @@
  * es la frontera entre los plugins y la UI del inspector.
  */
 import type { PropPanelInspectorConfig, PropPanelSchema, SchemaForUI } from '@sisad-pdfme/common';
-import type { SchemaDesignerConfig } from '../../../../../ui/designerEngine.js';
-import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
-import { asRecord, isRecord } from '../../../../../shared/objectGuards.js';
+import type { SchemaDesignerConfig } from '@sisad-pdfme/ui/designerEngine';
+import type { SisadPdfmeVisibilityConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { asRecord, isRecord } from '@sisad-pdfme/shared/objectGuards';
 import {
   hasMeaningfulInspectorValue,
   DETAIL_SECTION_LABELS,
@@ -16,10 +16,10 @@ import {
   type DetailSectionKey,
   type PluginSectionKey,
   shouldRenderDetailSection,
-} from './detailSectionTaxonomy.js';
-import { contractSectionEnabled, resolveInspectorContract } from './inspectorContracts.js';
-import { shouldShowInspectorSection } from '../../shared/visibilityConfig.js';
-import { createSchemaConfigurationProfile } from '../../../../../config/schemaConfigurationProfile.js';
+} from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy';
+import { contractSectionEnabled, resolveInspectorContract } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts';
+import { shouldShowInspectorSection } from '@sisad-pdfme/ui/components/Designer/shared/visibilityConfig';
+import { createSchemaConfigurationProfile } from '@sisad-pdfme/config/schemaConfigurationProfile';
 
 /** Clave de sección usada por el DetailView. */
 export type DetailInspectorSectionKey = DetailSectionKey;

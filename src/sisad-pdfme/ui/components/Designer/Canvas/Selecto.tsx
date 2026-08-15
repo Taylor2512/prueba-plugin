@@ -11,12 +11,12 @@ import SelectoComponent, {
   OnDragStart as SelectoOnDragStart,
 } from 'react-selecto';
 import type { OnDragStart as GestoOnDragStart } from 'gesto';
-import { SELECTABLE_CLASSNAME } from '../../../constants.js';
+import { SELECTABLE_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import { theme } from 'antd';
-import { rectToPointArea } from '../shared/coordinateMath.js';
-import { resolveFirstClassSelector } from '../shared/className.js';
-import { installPassiveTouchListenerGuard } from '../shared/passiveTouchListeners.js';
-import { isDesignerInteractionExcluded } from '../shared/interactionExclusions.js';
+import { rectToPointArea } from '@sisad-pdfme/ui/components/Designer/shared/coordinateMath';
+import { resolveFirstClassSelector } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { installPassiveTouchListenerGuard } from '@sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners';
+import { isDesignerInteractionExcluded } from '@sisad-pdfme/ui/components/Designer/shared/interactionExclusions';
 
 installPassiveTouchListenerGuard();
 

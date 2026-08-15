@@ -1,13 +1,13 @@
 import type { PropPanel } from '@sisad-pdfme/common';
-import type { BarcodeSchema } from './types.js';
+import type { BarcodeSchema } from '@sisad-pdfme/schemas/barcodes/types';
 import {
   DEFAULT_BARCODE_COLOR,
   DEFAULT_BARCODE_BG_COLOR,
   DEFAULT_BARCODE_INCLUDETEXT,
-} from './constants.js';
-import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { hexColorFields } from '../propPanel/commonInspectorFields.js';
+} from '@sisad-pdfme/schemas/barcodes/constants';
+import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { hexColorFields } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 
 const defaultColors = {
   backgroundColor: DEFAULT_BARCODE_BG_COLOR,

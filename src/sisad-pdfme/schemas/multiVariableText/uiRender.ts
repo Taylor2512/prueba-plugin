@@ -1,13 +1,13 @@
 import { getDefaultFont, UIRenderProps } from '@sisad-pdfme/common';
-import { MultiVariableTextSchema } from './types.js';
+import { MultiVariableTextSchema } from '@sisad-pdfme/schemas/multiVariableText/types';
 import {
   renderTextUi as parentUiRender,
   buildStyledTextContainer,
   makeElementPlainTextContentEditable,
-} from '../text/uiRender.js';
-import { isEditable } from '../utils.js';
-import { getFontKitFont } from '../text/helper.js';
-import { parseVariablesInput, substituteVariables } from './helper.js';
+} from '@sisad-pdfme/schemas/text/uiRender';
+import { isEditable } from '@sisad-pdfme/schemas/utils';
+import { getFontKitFont } from '@sisad-pdfme/schemas/text/helper';
+import { parseVariablesInput, substituteVariables } from '@sisad-pdfme/schemas/multiVariableText/helper';
 
 export const renderMultiVariableTextUi = async (arg: UIRenderProps<MultiVariableTextSchema>) => {
   const { value, schema, rootElement, mode, onChange, ...rest } = arg;

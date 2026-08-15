@@ -25,14 +25,14 @@
 import {
   CommandBus,
   createCommandBus,
-} from '../ui/commands/commandBus.js';
+} from '@sisad-pdfme/ui/commands/commandBus';
 
 import {
   buildTopLevelCommentEntry,
   createCommentCommandEvent,
   createPageSnapshotCommand,
   createTemplateSnapshotCommand,
-} from '../ui/commands/designerCommands.js';
+} from '@sisad-pdfme/ui/commands/designerCommands';
 
 /**
  * Grupo completo de comandos públicos del diseñador.
@@ -181,7 +181,7 @@ export {
   createSelectionCommands,
   emitInlineEditRequest,
   setInlineEditRequestHandler,
-} from '../ui/components/Designer/shared/selectionCommands.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
 
 /**
  * Tipos públicos del sistema de comandos de selección.
@@ -211,4 +211,4 @@ export type {
   DistributeType,
   InlineEditTarget,
   InlineEditRequest,
-} from '../ui/components/Designer/shared/selectionCommands.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';

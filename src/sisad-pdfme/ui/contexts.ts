@@ -11,7 +11,7 @@
  */
 
 import { createContext } from 'react';
-import { i18n } from './i18n.js';
+import { i18n } from '@sisad-pdfme/ui/i18n';
 import { getDefaultFont, PluginRegistry, pluginRegistry, UIOptions } from '@sisad-pdfme/common';
 
 export const I18nContext = createContext(i18n);

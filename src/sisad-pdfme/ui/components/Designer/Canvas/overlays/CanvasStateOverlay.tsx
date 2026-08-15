@@ -18,10 +18,10 @@ import {
   type CanvasRenderState,
   getCanvasStateConfig,
   PDF_LOAD_ERROR_MESSAGES,
-} from '../../../../../canvas/canvasRenderState.js';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { deriveCanvasBlockReason, shouldDisplayBlockingMask } from './overlayState.js';
-import { mergeClassNames } from '../../shared/className.js';
+} from '@sisad-pdfme/canvas/canvasRenderState';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { deriveCanvasBlockReason, shouldDisplayBlockingMask } from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 /**
  * Props del overlay de estado del canvas.

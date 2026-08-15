@@ -8,14 +8,14 @@
 import React, { useContext } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { SchemaForUI } from '@sisad-pdfme/common';
-import { PluginsRegistry } from '../../../../contexts.js';
-import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
-import Item from './Item.js';
-import { useMountStatus } from '../../../../hooks.js';
-import PluginIcon from '../../PluginIcon.js';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { resolveListViewItemDescriptor } from './listViewItemResolver.js';
-import { mergeClassNames } from '../../shared/className.js';
+import { PluginsRegistry } from '@sisad-pdfme/ui/contexts';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import Item from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item';
+import { useMountStatus } from '@sisad-pdfme/ui/hooks';
+import PluginIcon from '@sisad-pdfme/ui/components/Designer/PluginIcon';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { resolveListViewItemDescriptor } from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/listViewItemResolver';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 
 /**

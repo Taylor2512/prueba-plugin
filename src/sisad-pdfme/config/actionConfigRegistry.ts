@@ -1,6 +1,6 @@
-import type { ResolvedSisadPdfmeConfig } from './SisadPdfmeConfig.js';
-import { featureRegistry } from './featureRegistry.js';
-import type { SisadPdfmeFeatureState } from './featureRegistry.js';
+import type { ResolvedSisadPdfmeConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { featureRegistry } from '@sisad-pdfme/config/featureRegistry';
+import type { SisadPdfmeFeatureState } from '@sisad-pdfme/config/featureRegistry';
 
 export type ActionId =
   | 'reassignrecipient'

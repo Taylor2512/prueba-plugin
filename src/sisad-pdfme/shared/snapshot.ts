@@ -11,8 +11,8 @@
  *   SnapshotRecipient.color tiene prioridad sobre __designer.recipientColor.
  *   Si divergen al cargar, SnapshotRecipient.color gana (fue editado después).
  */
-import type { SchemaDesignerMeta } from './schemaDesignerMeta.js';
-import { asRecord } from './objectGuards.js';
+import type { SchemaDesignerMeta } from '@sisad-pdfme/shared/schemaDesignerMeta';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 
 /** Versión actual del formato snapshot */
 export const SNAPSHOT_VERSION = '2.0.0';

@@ -2,7 +2,7 @@
  * Browser download helpers, safe for SSR/test environments.
  */
 
-import { createObjectUrl } from './objectUrls.js';
+import { createObjectUrl } from '@sisad-pdfme/browser/objectUrls';
 
 const hasDocument = (): boolean => typeof document !== 'undefined';
 

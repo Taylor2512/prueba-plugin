@@ -10,9 +10,9 @@ import {
   VERTICAL_ALIGN_TOP,
   VERTICAL_ALIGN_MIDDLE,
   VERTICAL_ALIGN_BOTTOM,
-} from '../text/constants.js';
-import { HEX_COLOR_PATTERN } from '../constants.js';
-import { hexColorFields, horizontalAlignmentOptions, typographyFields } from '../propPanel/commonInspectorFields.js';
+} from '@sisad-pdfme/schemas/text/constants';
+import { HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
+import { hexColorFields, horizontalAlignmentOptions, typographyFields } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 
 export const getDefaultCellStyles = () => ({
   fontName: undefined,

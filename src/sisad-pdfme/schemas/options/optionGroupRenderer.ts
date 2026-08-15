@@ -1,4 +1,4 @@
-import type { OptionItem } from './optionTypes.js';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
 import {
   buildGroupWrapper,
   buildGroupContainer,
@@ -8,8 +8,8 @@ import {
   applyOptionGroupBodyVariant,
   applyOptionGroupRowVariant,
   shouldShowOptionLabels,
-} from '../groupSchemaRender.js';
-import { createOptionIndicatorElement } from './optionIndicator.js';
+} from '@sisad-pdfme/schemas/groupSchemaRender';
+import { createOptionIndicatorElement } from '@sisad-pdfme/schemas/options/optionIndicator';
 
 type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
 

@@ -8,9 +8,9 @@
 import React from 'react';
 import { Button, Modal, Tag } from 'antd';
 import { Settings2 } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { markInspectorInteractive, stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { markInspectorInteractive, stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 
 /**
  * Tag de estado mostrado en el resumen compacto del panel.

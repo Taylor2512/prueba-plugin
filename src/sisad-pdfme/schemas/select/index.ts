@@ -1,15 +1,15 @@
 import type * as CSS from 'csstype';
-import { propPanel as parentPropPanel } from '../text/propPanel.js';
+import { propPanel as parentPropPanel } from '@sisad-pdfme/schemas/text/propPanel';
 import { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import text from '../text/index.js';
-import { TextSchema } from '../text/types.js';
+import text from '@sisad-pdfme/schemas/text';
+import { TextSchema } from '@sisad-pdfme/schemas/text/types';
 import { ChevronDown } from 'lucide-react';
-import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { basicsFields, helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
-import { normalizeStringOptions, resolveCompactSelection } from '../options/optionSelectionBehavior.js';
-import { markInspectorInteractive, stopInspectorPointerEvent } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
-import { normalizeLooseText } from '../../shared/text.js';
+import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { basicsFields, helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
+import { normalizeStringOptions, resolveCompactSelection } from '@sisad-pdfme/schemas/options/optionSelectionBehavior';
+import { markInspectorInteractive, stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 const selectIcon = renderLucideIcon(ChevronDown);
 

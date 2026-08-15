@@ -1,17 +1,17 @@
 import { cloneDeep } from '@sisad-pdfme/common';
 import type { Plugin, Schema } from '@sisad-pdfme/common';
-import text from '../text/index.js';
-import { createSchemaPlugin } from '../schemaBuilder.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import text from '@sisad-pdfme/schemas/text';
+import { createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
+import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
 import {
   basicsFields,
   helpFields,
   dataLabelFields,
   COMMON_PROPERTY_MAP,
-} from '../propPanel/commonInspectorFields.js';
+} from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
-import type { PropPanelInspectorSectionKey } from '../../common/types.js';
-import type { SchemaCapability } from '../schemaBuilder.js';
+import type { PropPanelInspectorSectionKey } from '@sisad-pdfme/common/types';
+import type { SchemaCapability } from '@sisad-pdfme/schemas/schemaBuilder';
 
 type SigningSchemaKind = 'signature' | 'initials' | 'dateSigned';
 

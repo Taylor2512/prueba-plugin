@@ -10,7 +10,7 @@
  * Mantener exports explícitos. Evitar export * masivo para no exponer APIs internas por accidente.
  */
 
-export { PDFME_VERSION } from './version.js';
+export { PDFME_VERSION } from '@sisad-pdfme/common/version';
 /** Reexporta contratos públicos usados por command bus, assignments y comentarios top-level. */
 export type {
   Command,
@@ -20,7 +20,7 @@ export type {
   SchemaAssignments as ContractSchemaAssignments,
   SchemaIdentity,
   TopLevelPdfCommentEntry,
-} from '../contracts/index.js';
+} from '@sisad-pdfme/contracts';
 /** Constantes de unidades, PDF base y fuente por defecto. */
 export {
   MM_TO_PT_RATIO,
@@ -30,7 +30,7 @@ export {
   CUSTOM_A4_PDF,
   ZOOM,
   DEFAULT_FONT_NAME,
-} from './constants.js';
+} from '@sisad-pdfme/common/constants';
 /** Helpers generales de validación, conversión, fuentes y templates. */
 export {
   cloneDeep,
@@ -53,7 +53,7 @@ export {
   isHexValid,
   getInputFromTemplate,
   isBlankPdf,
-} from './helper.js';
+} from '@sisad-pdfme/common/helper';
 /** Helpers de colaboración, comments y assignments. */
 export {
   buildSchemaAssignments,
@@ -71,7 +71,7 @@ export {
   SHARED_ASSIGNMENTS_BUCKET,
   upsertById,
   validateCollaborativeSchemas,
-} from './collaboration.js';
+} from '@sisad-pdfme/common/collaboration';
 /** Helpers de comentarios embebidos y top-level. */
 export {
   findSchemaByUid,
@@ -84,19 +84,19 @@ export {
   deleteCommentFromSchema,
   resolveCommentInSchema,
   filterCommentsByFileAndPage,
-} from './comments.js';
+} from '@sisad-pdfme/common/comments';
 /** Tipos de assignments colaborativos. */
 export type {
   SchemaAssignments,
   UserRecipientSchemaAssignments,
   UserRecipientAssignmentOptions,
-} from './collaboration.js';
+} from '@sisad-pdfme/common/collaboration';
 /** Motor de template dinámico para contenido con reflujo/paginación. */
-export { getDynamicTemplate } from './dynamicTemplate.js';
+export { getDynamicTemplate } from '@sisad-pdfme/common/dynamicTemplate';
 /** Motor de placeholders/expresiones seguras. */
-export { replacePlaceholders } from './expression.js';
+export { replacePlaceholders } from '@sisad-pdfme/common/expression';
 /** Registry utilitario para plugins. */
-export { pluginRegistry } from './pluginRegistry.js';
+export { pluginRegistry } from '@sisad-pdfme/common/pluginRegistry';
 /** Tipos principales públicos de @sisad-pdfme/common. */
 export type {
   ChangeSchemaItem,
@@ -141,4 +141,4 @@ export type {
   UIProps,
   PreviewProps,
   DesignerProps,
-} from './types.js';
+} from '@sisad-pdfme/common/types';

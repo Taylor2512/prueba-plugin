@@ -7,9 +7,9 @@
  */
 import { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { ZOOM, SchemaForUI, Size, getFallbackFontName } from '@sisad-pdfme/common';
-import { FontContext } from '../contexts.js';
-import { RULER_HEIGHT, PAGE_GAP } from '../constants.js';
-import { buildPageMetadataAttrs } from './shared/pageMetadata.js';
+import { FontContext } from '@sisad-pdfme/ui/contexts';
+import { RULER_HEIGHT, PAGE_GAP } from '@sisad-pdfme/ui/constants';
+import { buildPageMetadataAttrs } from '@sisad-pdfme/ui/components/shared/pageMetadata';
 
 /**
  * Imagen transparente usada como fallback cuando una página aún no tiene fondo.

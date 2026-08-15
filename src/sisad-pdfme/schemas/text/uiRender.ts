@@ -1,7 +1,7 @@
 import type * as CSS from 'csstype';
 import type { Font as FontKitFont } from 'fontkit';
 import { UIRenderProps, getDefaultFont } from '@sisad-pdfme/common';
-import type { TextSchema } from './types.js';
+import type { TextSchema } from '@sisad-pdfme/schemas/text/types';
 import {
   DEFAULT_FONT_SIZE,
   DEFAULT_ALIGNMENT,
@@ -13,14 +13,14 @@ import {
   DEFAULT_CHARACTER_SPACING,
   DEFAULT_FONT_COLOR,
   PLACEHOLDER_FONT_COLOR,
-} from './constants.js';
+} from '@sisad-pdfme/schemas/text/constants';
 import {
   calculateDynamicFontSize,
   getFontKitFont,
   getBrowserVerticalFontAdjustments,
   isFirefox,
-} from './helper.js';
-import { isEditable } from '../utils.js';
+} from '@sisad-pdfme/schemas/text/helper';
+import { isEditable } from '@sisad-pdfme/schemas/utils';
 
 const replaceUnsupportedChars = (text: string, fontKitFont: FontKitFont): string => {
   const charSupportCache: { [char: string]: boolean } = {};

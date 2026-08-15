@@ -7,10 +7,10 @@
  * permisos de edición por separado.
  */
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { resolveSchemaOwnerColor as resolveSchemaOwnerColorBase } from '../../../../collaboration/schemaOwnershipAppearance.js';
-import type { EffectiveCollaborationContext, ResolvedSchemaCollaborationState } from '../../../collaborationContext.js';
-import { resolveSchemaCollaborationState } from '../../../collaborationContext.js';
-import { normalizeText } from '../../../../shared/text.js';
+import { resolveSchemaOwnerColor as resolveSchemaOwnerColorBase } from '@sisad-pdfme/collaboration/schemaOwnershipAppearance';
+import type { EffectiveCollaborationContext, ResolvedSchemaCollaborationState } from '@sisad-pdfme/ui/collaborationContext';
+import { resolveSchemaCollaborationState } from '@sisad-pdfme/ui/collaborationContext';
+import { normalizeText } from '@sisad-pdfme/shared/text';
 
 type OwnerColorContext = Pick<
   EffectiveCollaborationContext,

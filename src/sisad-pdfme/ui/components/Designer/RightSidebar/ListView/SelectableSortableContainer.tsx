@@ -31,16 +31,16 @@ import {
 } from '@dnd-kit/sortable';
 
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import type { SidebarProps } from '../../../../types.js';
+import type { SidebarProps } from '@sisad-pdfme/ui/types';
 
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { PluginsRegistry } from '../../../../contexts.js';
-import PluginIcon from '../../PluginIcon.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import ListViewDragOverlay from './ListViewDragOverlay.js';
-import SelectableSortableItem from './SelectableSortableItem.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { PluginsRegistry } from '@sisad-pdfme/ui/contexts';
+import PluginIcon from '@sisad-pdfme/ui/components/Designer/PluginIcon';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { resolveSchemaInteractionState } from '@sisad-pdfme/ui/components/Designer/shared/schemaInteractionState';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import ListViewDragOverlay from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay';
+import SelectableSortableItem from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem';
 
 type DensityMode = 'compact' | 'comfortable' | 'minimal';
 

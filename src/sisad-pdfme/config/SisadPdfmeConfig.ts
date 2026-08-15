@@ -1,14 +1,14 @@
 import type React from 'react';
-import type { DesignerEngine } from '../ui/designerEngine.js';
-import type { DesignerRuntimeEventHub } from '../ui/components/Designer/shared/designerExtensions.js';
-import type { SisadPdfmeConfigService } from './SisadPdfmeConfigService.js';
+import type { DesignerEngine } from '@sisad-pdfme/ui/designerEngine';
+import type { DesignerRuntimeEventHub } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
+import type { SisadPdfmeConfigService } from '@sisad-pdfme/config/SisadPdfmeConfigService';
 import type {
   SisadPdfmeRecipient,
   SisadPdfmeRecipientRegistry,
   SisadPdfmeRecipientsConfig,
-} from '../recipients/recipientTypes.js';
-import type { SisadPdfmeConfigChange } from './SisadPdfmeConfigService.js';
-import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from './featureRegistry.js';
+} from '@sisad-pdfme/recipients/recipientTypes';
+import type { SisadPdfmeConfigChange } from '@sisad-pdfme/config/SisadPdfmeConfigService';
+import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from '@sisad-pdfme/config/featureRegistry';
 
 export type SisadPdfmeDocument = {
   id: string;
@@ -37,7 +37,8 @@ export type SisadPdfmeControllerCapabilityDomain =
   | 'recipients'
   | 'validation'
   | 'snapshot'
-  | 'save';
+  | 'save'
+  | 'interaction';
 
 export type SisadPdfmeControllerCapabilityState = {
   domain: SisadPdfmeControllerCapabilityDomain;
@@ -80,6 +81,32 @@ export type SisadPdfmeController = {
   setZoom(zoom: number): void;
   validate(): Promise<unknown | SisadPdfmeControllerCapabilityState>;
   save(): Promise<void>;
+  /**
+   * Estado de interacción por schema del runtime Form.
+   *
+   * `touched`/`dirty`/`valid`/`committed`/`completed` ya se calculaban dentro
+   * de `Form`, pero no había forma de leerlos desde fuera: sin esta superficie
+   * un host —o un gate de navegador— sólo podía inferirlos del DOM, que es
+   * justo lo que no prueba nada sobre el modelo.
+   *
+   * Devuelve `[]` en superficies que no son Form.
+   */
+  getSchemaInteractionStates(): SisadPdfmeSchemaInteractionSnapshot[];
+};
+
+/** Vista de sólo lectura del estado de interacción de un schema. */
+export type SisadPdfmeSchemaInteractionSnapshot = {
+  schemaUid: string;
+  schemaName: string;
+  schemaType: string;
+  pageIndex: number;
+  touched: boolean;
+  dirty: boolean;
+  valid: boolean;
+  committed: boolean;
+  completed: boolean;
+  interactionCount: number;
+  revision: number;
 };
 
 export type SisadPdfmeRecipientsAdapter<THostUser = unknown> = {

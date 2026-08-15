@@ -6,9 +6,9 @@
 import { cloneDeep } from '@sisad-pdfme/common';
 import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { PenLine } from 'lucide-react';
-import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
-import baseSignature from './index.js';
-import type { SignatureSchema } from './types.js';
+import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
+import baseSignature from '@sisad-pdfme/schemas/signature';
+import type { SignatureSchema } from '@sisad-pdfme/schemas/signature/types';
 
 const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
   {

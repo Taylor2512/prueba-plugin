@@ -1,5 +1,5 @@
-import type { SisadPdfmeVisibilityConfig } from '../../../../config/SisadPdfmeConfig.js';
-import { asRecord } from '../../../../shared/objectGuards.js';
+import type { SisadPdfmeVisibilityConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 
 export type ReassignVisibilityState = {
   assignmentEnabled: boolean;

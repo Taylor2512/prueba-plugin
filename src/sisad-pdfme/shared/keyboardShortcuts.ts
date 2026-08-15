@@ -7,7 +7,7 @@
  *
  * Plataforma: detectada en runtime — Meta en macOS, Ctrl en Windows/Linux.
  */
-import type { CommandType } from './commandTypes.js';
+import type { CommandType } from '@sisad-pdfme/shared/commandTypes';
 
 export type InternalAction =
   | 'internal:clear_selection'

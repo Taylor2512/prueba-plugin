@@ -1,6 +1,6 @@
 import type { Plugin, Schema } from '@sisad-pdfme/common';
-import { isRecord } from '../shared/objectGuards.js';
-import { createSvgStr } from './utils.js';
+import { isRecord } from '@sisad-pdfme/shared/objectGuards';
+import { createSvgStr } from '@sisad-pdfme/schemas/utils';
 
 export type SchemaCapability =
   | 'designer'

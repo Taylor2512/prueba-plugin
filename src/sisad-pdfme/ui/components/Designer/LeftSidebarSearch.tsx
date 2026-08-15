@@ -1,7 +1,7 @@
 import { Input } from 'antd';
 import { Search } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../constants.ts';
-import { mergeUniqueClassNames } from './shared/className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeUniqueClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 type LeftSidebarSearchProps = {
   value: string;

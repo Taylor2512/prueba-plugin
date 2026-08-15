@@ -7,15 +7,15 @@
  */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Layers, Search, Users, MoreHorizontal, PencilLine, Eraser } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
-import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import { mergeClassNames } from '../../shared/className.js';
-import { stopDesignerControlEvent } from '../../shared/interactionExclusions.js';
-import { useDesignerUiConfig } from '../../shared/useDesignerUiConfig.js';
-import { resolveReassignActionState } from './reassignActionState.js';
-import TypeFilterSelect from './TypeFilterSelect.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { SidebarSurfaceHeader } from '@sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
+import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { stopDesignerControlEvent } from '@sisad-pdfme/ui/components/Designer/shared/interactionExclusions';
+import { useDesignerUiConfig } from '@sisad-pdfme/ui/components/Designer/shared/useDesignerUiConfig';
+import { resolveReassignActionState } from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/reassignActionState';
+import TypeFilterSelect from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/TypeFilterSelect';
 
 
 /**

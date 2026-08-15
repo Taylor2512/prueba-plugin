@@ -20,7 +20,7 @@
  * Single-flight: dos peticiones idénticas simultáneas comparten una sola
  * llamada en vuelo en vez de duplicar tráfico.
  */
-import type { HttpClientAdapter } from '../http/httpClient.js';
+import type { HttpClientAdapter } from '@sisad-pdfme/integration/http/httpClient';
 
 export type DataScope = {
   runtimeSessionId?: string;

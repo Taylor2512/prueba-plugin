@@ -15,10 +15,10 @@
  */
 import React, { useEffect, useContext, useState } from 'react';
 import { DraggableSyntheticListeners } from '@dnd-kit/core';
-import { I18nContext } from '../../../../contexts.js';
+import { I18nContext } from '@sisad-pdfme/ui/contexts';
 import { GripVertical, CircleAlert, Lock, Eye, EyeOff, Trash2 } from 'lucide-react';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { mergeClassNames } from '../../shared/className.js';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 /**
  * Color palette used to visually distinguish schema families in the field list.

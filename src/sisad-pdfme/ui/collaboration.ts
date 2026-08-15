@@ -30,7 +30,7 @@ import type {
   SchemaCollaborativeState,
   SchemaComment,
   SchemaCommentAnchor,
-} from './designerEngine.js';
+} from '@sisad-pdfme/ui/designerEngine';
 
 /** Evento de sincronización colaborativa soportado por el diseñador. */
 export type CollaborationEvent =

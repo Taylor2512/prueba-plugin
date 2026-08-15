@@ -1,9 +1,9 @@
 import React from 'react';
 import type { PreviewProps } from '@sisad-pdfme/common';
-import { PreviewUI } from './class';
-import { DESTROYED_ERR_MSG } from './constants';
-import AppContextProvider from './components/AppContextProvider';
-import Preview from './components/Preview';
+import { PreviewUI } from '@sisad-pdfme/ui/class';
+import { DESTROYED_ERR_MSG } from '@sisad-pdfme/ui/constants';
+import AppContextProvider from '@sisad-pdfme/ui/components/AppContextProvider';
+import Preview from '@sisad-pdfme/ui/components/Preview';
 
 type PageInfo = { currentPage: number; totalPages: number };
 type RuntimePreviewProps = Omit<

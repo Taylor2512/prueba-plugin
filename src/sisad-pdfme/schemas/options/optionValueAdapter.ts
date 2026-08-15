@@ -1,6 +1,6 @@
-import type { OptionItem } from './optionTypes';
-import { matchOptionId } from './optionSelectionBehavior';
-import { buildDefaultOptionGroupOptions } from './optionModel.js';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
+import { matchOptionId } from '@sisad-pdfme/schemas/options/optionSelectionBehavior';
+import { buildDefaultOptionGroupOptions } from '@sisad-pdfme/schemas/options/optionModel';
 
 type CheckboxToGroupPatchSchema = {
   width?: number;

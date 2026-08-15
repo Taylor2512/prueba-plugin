@@ -1,8 +1,8 @@
-import type { ResolvedSisadPdfmeConfig } from './SisadPdfmeConfig.js';
-import { featureDependencies } from './featureDependencies.js';
-import { featureRegistry, type FeatureContext, type FeatureId, type SisadPdfmeFeatureState } from './featureRegistry.js';
-import { actionConfigRegistry, type ActionContext, type ActionId, type SisadPdfmeActionState } from './actionConfigRegistry.js';
-import { componentRegistry, type ComponentContext, type ComponentId, type SisadPdfmeComponentState } from './componentRegistry.js';
+import type { ResolvedSisadPdfmeConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { featureDependencies } from '@sisad-pdfme/config/featureDependencies';
+import { featureRegistry, type FeatureContext, type FeatureId, type SisadPdfmeFeatureState } from '@sisad-pdfme/config/featureRegistry';
+import { actionConfigRegistry, type ActionContext, type ActionId, type SisadPdfmeActionState } from '@sisad-pdfme/config/actionConfigRegistry';
+import { componentRegistry, type ComponentContext, type ComponentId, type SisadPdfmeComponentState } from '@sisad-pdfme/config/componentRegistry';
 
 export type SisadPdfmeConfigSnapshot = Pick<ResolvedSisadPdfmeConfig, 'config' | 'visibility'>;
 export type SisadPdfmeConfigSource = SisadPdfmeConfigSnapshot | ResolvedSisadPdfmeConfig;

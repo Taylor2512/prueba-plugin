@@ -5,9 +5,9 @@
  * cae a `OptionsContext` para compatibilidad .
  */
 import { useContext, useMemo } from 'react';
-import { OptionsContext } from '../../../contexts.js';
-import { SisadPdfmeContext } from '../../../../react/SisadPdfmeContext.js';
-import { buildDesignerUiMap, buildDesignerUiMapFromResolvedConfig, type ResolvedDesignerUiMap } from './designerUiConfig.js';
+import { OptionsContext } from '@sisad-pdfme/ui/contexts';
+import { SisadPdfmeContext } from '@sisad-pdfme/react/SisadPdfmeContext';
+import { buildDesignerUiMap, buildDesignerUiMapFromResolvedConfig, type ResolvedDesignerUiMap } from '@sisad-pdfme/ui/components/Designer/shared/designerUiConfig';
 
 export const useDesignerUiConfig = (): ResolvedDesignerUiMap => {
   const providerValue = useContext(SisadPdfmeContext);

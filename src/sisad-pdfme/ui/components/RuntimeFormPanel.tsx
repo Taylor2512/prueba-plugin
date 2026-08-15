@@ -6,7 +6,7 @@
  * que necesiten renderizar el llenado de formulario o la vista previa
  * de forma declarativa sin usar la clase imperativa Form/Viewer.
  */
-import Preview from './Preview.js';
+import Preview from '@sisad-pdfme/ui/components/Preview';
 
 /**
  * Panel de ejecución de formulario/visor runtime.

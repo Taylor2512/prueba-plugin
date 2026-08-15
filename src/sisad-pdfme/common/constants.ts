@@ -8,7 +8,7 @@
  * salvo que se regenere el asset completo y se valide Generator/Form/Viewer.
  */
 
-import { BlankPdf, CustomPdf } from './types';
+import { BlankPdf, CustomPdf } from '@sisad-pdfme/common/types';
 /** Relación de conversión de puntos PDF a píxeles CSS. */
 export const PT_TO_PX_RATIO = 1.333;
 export const PT_TO_MM_RATIO = 0.3528;

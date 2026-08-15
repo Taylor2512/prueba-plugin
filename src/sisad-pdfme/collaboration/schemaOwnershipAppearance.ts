@@ -1,7 +1,7 @@
 import { cloneDeep, normalizeRecipientIds } from '@sisad-pdfme/common';
 import type { SchemaForUI, Template } from '@sisad-pdfme/common';
-import { resolveCollaboratorById } from './appearance.js';
-import type { CollaboratorUser } from './recipientPalette.js';
+import { resolveCollaboratorById } from '@sisad-pdfme/collaboration/appearance';
+import type { CollaboratorUser } from '@sisad-pdfme/collaboration/recipientPalette';
 
 const normalizeOwnerId = (value: unknown): string =>
   typeof value === 'string' ? value.trim() : '';

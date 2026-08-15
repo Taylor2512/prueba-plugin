@@ -21,7 +21,7 @@
  *   un autosave;
  * - no usa `setTimeout` para el ciclo de vida.
  */
-import type { InstanceEventDispatcher } from './instanceEventDispatcher.js';
+import type { InstanceEventDispatcher } from '@sisad-pdfme/runtime/instanceEventDispatcher';
 
 export type SaveStatus = 'idle' | 'saving' | 'saved' | 'error';
 

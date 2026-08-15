@@ -11,14 +11,14 @@
  *
  * La taxonomía la resuelve `schemas/schemaRuntimeMetadata.ts`.
  */
-import type { SchemaDefinition } from '../schemas/schemaBuilder.js';
-import { resolveSchemaRuntimeMetadata } from '../schemas/schemaRuntimeMetadata.js';
+import type { SchemaDefinition } from '@sisad-pdfme/schemas/schemaBuilder';
+import { resolveSchemaRuntimeMetadata } from '@sisad-pdfme/schemas/schemaRuntimeMetadata';
 import type {
   SchemaCodecId,
   SchemaCompletionPolicy,
   SchemaDataBinding,
   SchemaInteractionKind,
-} from '../schemas/schemaRuntimeMetadata.js';
+} from '@sisad-pdfme/schemas/schemaRuntimeMetadata';
 
 export type { SchemaInteractionKind, SchemaCompletionPolicy, SchemaCodecId, SchemaDataBinding };
 

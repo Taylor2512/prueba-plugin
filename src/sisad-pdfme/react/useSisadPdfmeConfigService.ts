@@ -1,7 +1,7 @@
 import { useContext, useMemo } from 'react';
-import { createSisadPdfmeConfigService, type SisadPdfmeConfigService } from '../config/SisadPdfmeConfigService.js';
-import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '../config/SisadPdfmeConfig.js';
-import { SisadPdfmeContext } from './SisadPdfmeContext.js';
+import { createSisadPdfmeConfigService, type SisadPdfmeConfigService } from '@sisad-pdfme/config/SisadPdfmeConfigService';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { SisadPdfmeContext } from '@sisad-pdfme/react/SisadPdfmeContext';
 
 export type SisadPdfmeConfigInput = SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
 

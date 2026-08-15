@@ -1,11 +1,11 @@
 import type { UIRenderProps, Mode } from '@sisad-pdfme/common';
-import type { TableSchema, CellStyle, Styles } from './types.js';
+import type { TableSchema, CellStyle, Styles } from '@sisad-pdfme/schemas/tables/types';
 import { px2mm, ZOOM } from '@sisad-pdfme/common';
-import { createSingleTable } from './tableHelper.js';
-import { readableTextColor, resolveSchemaOwnerTone } from '../shared/fieldChrome.js';
-import { getBody, getBodyWithRange } from './helper.js';
-import cell from './cell.js';
-import { Row } from './classes.js';
+import { createSingleTable } from '@sisad-pdfme/schemas/tables/tableHelper';
+import { readableTextColor, resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
+import { getBody, getBodyWithRange } from '@sisad-pdfme/schemas/tables/helper';
+import cell from '@sisad-pdfme/schemas/tables/cell';
+import { Row } from '@sisad-pdfme/schemas/tables/classes';
 
 const buttonSize = 30;
 

@@ -1,6 +1,6 @@
 import type { Schema } from '@sisad-pdfme/common';
-import { normalizeText } from '../../shared/text.js';
-import { asRecord } from '../../shared/objectGuards.js';
+import { normalizeText } from '@sisad-pdfme/shared/text';
+import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 
 export type SignatureMode = 'draw' | 'image' | 'p12' | 'provider';
 export type SignatureProviderKey = string;

@@ -10,8 +10,8 @@
  * - consultar acciones, estrategias y secciones visibles del DetailView.
  */
 
-import { Plugins, Plugin, PluginRegistry } from './types.js';
-import { getSchemaTypeInspectorPreset } from '../schemas/schemaFamilies.js';
+import { Plugins, Plugin, PluginRegistry } from '@sisad-pdfme/common/types';
+import { getSchemaTypeInspectorPreset } from '@sisad-pdfme/schemas/schemaFamilies';
 
 /** Extrae configuración de inspector desde el propPanel del plugin. */
 const resolveInspectorConfig = (plugin?: Plugin) => plugin?.propPanel?.inspector;

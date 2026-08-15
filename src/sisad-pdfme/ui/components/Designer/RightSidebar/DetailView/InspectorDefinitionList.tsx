@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeClassNames } from '../../shared/className.js';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
 export type InspectorDefinitionItem = {
   label: string;

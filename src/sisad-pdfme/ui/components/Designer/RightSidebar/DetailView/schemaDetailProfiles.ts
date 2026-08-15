@@ -6,4 +6,4 @@ export {
   type DetailInspectorSection,
   type DetailInspectorSectionKey,
   type InspectorProfile,
-} from './detailSchemas.js';
+} from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas';

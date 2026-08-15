@@ -9,15 +9,15 @@ import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { Badge, Tag, Tooltip } from 'antd';
 import { ArrowLeft } from 'lucide-react';
-import { resolveSchemaTone } from '../../shared/schemaTone.js';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
-import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
-import type { InspectorTag } from './InspectorPrimitives.js';
-import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
-import { buildDetailHeaderSummary } from './detailHeaderUtils.js';
-import { mergeClassNames } from '../../shared/className.js';
-import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import { resolveSchemaTone } from '@sisad-pdfme/ui/components/Designer/shared/schemaTone';
+import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import type { SchemaDesignerConfig } from '@sisad-pdfme/ui/designerEngine';
+import { SidebarSurfaceHeader } from '@sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives';
+import type { InspectorTag } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives';
+import { useResponsiveDensity } from '@sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity';
+import { buildDetailHeaderSummary } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils';
+import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
 
 /**
  * Props del header compacto del DetailView.

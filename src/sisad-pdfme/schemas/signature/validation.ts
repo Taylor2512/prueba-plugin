@@ -1,5 +1,5 @@
-import { getSignatureProvider, validateSignatureProviderConfig, type SignatureProviderDefinition } from './providerRegistry.js';
-import { normalizeSignatureSchema, type SignatureSchema } from './types.js';
+import { getSignatureProvider, validateSignatureProviderConfig, type SignatureProviderDefinition } from '@sisad-pdfme/schemas/signature/providerRegistry';
+import { normalizeSignatureSchema, type SignatureSchema } from '@sisad-pdfme/schemas/signature/types';
 
 export type SignatureValidationResult = {
   isValid: boolean;

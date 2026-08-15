@@ -16,7 +16,7 @@ import {
   shouldIgnoreForSelecto,
   shouldSelectTarget,
   shouldTransformTarget,
-} from './interactionTargetResolver.js';
+} from '@sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver';
 
 /** Selecto may select this element (schema root only). */
 export const isSelectableCanvasTarget = (element: Element | null | undefined): boolean => {

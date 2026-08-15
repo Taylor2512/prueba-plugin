@@ -1,25 +1,25 @@
 import { cloneDeep } from '@sisad-pdfme/common';
-import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from './SisadPdfmeConfig.js';
+import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
 import {
   compileSisadPdfmeConfig,
   hashResolvedConfig,
   type CompiledSisadPdfmeConfig,
   type ResolvedConfigIdentity,
-} from './configCompiler.js';
-import { classifySisadPdfmeConfigChange, type SisadPdfmeConfigChangeImpact } from './configChangeImpact.js';
-import { planConfigChange, type ConfigChangeSet } from './configEffectPlan.js';
-import { migrateSisadPdfmeConfig, type SisadPdfmeConfigMigrationIssue } from './configMigration.js';
-import { validateSisadPdfmeConfig, type SisadPdfmeConfigIssue } from './configValidation.js';
+} from '@sisad-pdfme/config/configCompiler';
+import { classifySisadPdfmeConfigChange, type SisadPdfmeConfigChangeImpact } from '@sisad-pdfme/config/configChangeImpact';
+import { planConfigChange, type ConfigChangeSet } from '@sisad-pdfme/config/configEffectPlan';
+import { migrateSisadPdfmeConfig, type SisadPdfmeConfigMigrationIssue } from '@sisad-pdfme/config/configMigration';
+import { validateSisadPdfmeConfig, type SisadPdfmeConfigIssue } from '@sisad-pdfme/config/configValidation';
 import {
   createSisadPdfmeConfigSelectors,
   selectActionState,
   selectComponentState,
   selectFeatureState,
   type SisadPdfmeConfigSelectors,
-} from './configSelectors.js';
-import type { ActionContext, ActionId, SisadPdfmeActionState } from './actionConfigRegistry.js';
-import type { ComponentContext, ComponentId, SisadPdfmeComponentState } from './componentRegistry.js';
-import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from './featureRegistry.js';
+} from '@sisad-pdfme/config/configSelectors';
+import type { ActionContext, ActionId, SisadPdfmeActionState } from '@sisad-pdfme/config/actionConfigRegistry';
+import type { ComponentContext, ComponentId, SisadPdfmeComponentState } from '@sisad-pdfme/config/componentRegistry';
+import type { FeatureContext, FeatureId, SisadPdfmeFeatureState } from '@sisad-pdfme/config/featureRegistry';
 
 export type SisadPdfmeConfigChange = {
   previous: ResolvedSisadPdfmeConfig;

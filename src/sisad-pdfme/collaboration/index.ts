@@ -8,8 +8,8 @@ import {
   type SchemaForUI,
   type Template,
 } from '@sisad-pdfme/common';
-import { findSchemaInPages } from '../common/schemaPageTraversal.js';
-import { normalizeLooseText } from '../shared/text.js';
+import { findSchemaInPages } from '@sisad-pdfme/common/schemaPageTraversal';
+import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 /**
  * Estado colaborativo soportado por este módulo.
