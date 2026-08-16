@@ -1,4 +1,4 @@
-import type { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
+import type { Plugin, PropPanelWidgetProps, SchemaForUI, Schema } from '@sisad-pdfme/common';
 import { isEditable } from '@sisad-pdfme/schemas/utils';
 import { createSchemaPlugin, renderLucideIcon } from '@sisad-pdfme/schemas/schemaBuilder';
 import { SquareCheck } from 'lucide-react';
@@ -284,16 +284,35 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
           maxSelected: 'data',
         },
         widgets: { editCheckboxGroupOptions: CheckboxOptionsEditor },
-        defaultSchema: {
-          ...buildOptionGroupDefaultSchema({
-            type: 'checkboxGroup',
-            groupName: 'Grupo de casillas',
-            groupType: 'checkbox',
-            optionPrefix: 'Casilla',
-            selectionMode: 'multiple',
-            optionsCount: 2,
-          }),
-        } as CheckboxGroupSchema,
+        defaultSchema: ((): CheckboxGroupSchema => {
+          try {
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+            const canonical = normalizePluginDefaultSchema(undefined as any, 'checkboxGroup') as Partial<CheckboxGroupSchema>;
+            return {
+              ...(canonical as CheckboxGroupSchema),
+              ...buildOptionGroupDefaultSchema({
+                type: 'checkboxGroup',
+                groupName: 'Grupo de casillas',
+                groupType: 'checkbox',
+                optionPrefix: 'Casilla',
+                selectionMode: 'multiple',
+                optionsCount: 2,
+              }),
+            } as CheckboxGroupSchema;
+          } catch (e) {
+            return {
+              ...buildOptionGroupDefaultSchema({
+                type: 'checkboxGroup',
+                groupName: 'Grupo de casillas',
+                groupType: 'checkbox',
+                optionPrefix: 'Casilla',
+                selectionMode: 'multiple',
+                optionsCount: 2,
+              }),
+            } as CheckboxGroupSchema;
+          }
+        })(),
       }),
     },
     icon: renderLucideIcon(SquareCheck, { stroke: 'currentColor' }),

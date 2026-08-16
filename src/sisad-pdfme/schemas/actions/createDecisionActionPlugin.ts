@@ -238,21 +238,45 @@ export const createDecisionActionPlugin = ({
           },
           includeConnections: true,
         }),
-        defaultSchema: {
-          name: '',
-          type,
-          content: '',
-          position: { x: 0, y: 0 },
-          width: 40,
-          height: 12,
-          action: type,
-          label,
-          requiresReason: false,
-          confirmationMessage: '',
-          ...(auditEventName ? { auditEventName } : {}),
-          // Sin color materializado: se deriva del dueño en cada render.
-          fontSize: 11,
-        },
+        defaultSchema: ((): any => {
+          try {
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+            const canonical = normalizePluginDefaultSchema(undefined as any, type) as Record<string, unknown>;
+            return {
+              ...(canonical as Record<string, unknown>),
+              name: '',
+              type,
+              content: '',
+              position: { x: 0, y: 0 },
+              width: 40,
+              height: 12,
+              action: type,
+              label,
+              requiresReason: false,
+              confirmationMessage: '',
+              ...(auditEventName ? { auditEventName } : {}),
+              // Sin color materializado: se deriva del dueño en cada render.
+              fontSize: 11,
+            };
+          } catch (e) {
+            return {
+              name: '',
+              type,
+              content: '',
+              position: { x: 0, y: 0 },
+              width: 40,
+              height: 12,
+              action: type,
+              label,
+              requiresReason: false,
+              confirmationMessage: '',
+              ...(auditEventName ? { auditEventName } : {}),
+              // Sin color materializado: se deriva del dueño en cada render.
+              fontSize: 11,
+            };
+          }
+        })(),
       },
       icon: renderLucideIcon(icon, { stroke: defaultColor }),
     },

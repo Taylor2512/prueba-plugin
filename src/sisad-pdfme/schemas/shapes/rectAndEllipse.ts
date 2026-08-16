@@ -117,19 +117,43 @@ const shape: Plugin<ShapeSchema> = {
         radius: 'style',
       },
     }),
-    defaultSchema: {
-      name: '',
-      type: 'rectangle',
-      position: { x: 0, y: 0 },
-      width: 62.5,
-      height: 37.5,
-      rotate: 0,
-      opacity: 1,
-      borderWidth: 1,
-      color: '',
-      readOnly: true,
-      radius: 0,
-    },
+    defaultSchema: ((): ShapeSchema => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+        // Call normalizer with `undefined` plugin to obtain canonical defaults
+        // using only the type, avoiding references to `shape` before initialization.
+        const canonical = normalizePluginDefaultSchema(undefined as any, 'rectangle') as Partial<ShapeSchema>;
+        return {
+          ...(canonical as ShapeSchema),
+          name: '',
+          type: 'rectangle',
+          position: { x: 0, y: 0 },
+          width: 62.5,
+          height: 37.5,
+          rotate: 0,
+          opacity: 1,
+          borderWidth: 1,
+          color: '',
+          readOnly: true,
+          radius: 0,
+        } as ShapeSchema;
+      } catch (e) {
+        return {
+          name: '',
+          type: 'rectangle',
+          position: { x: 0, y: 0 },
+          width: 62.5,
+          height: 37.5,
+          rotate: 0,
+          opacity: 1,
+          borderWidth: 1,
+          color: '',
+          readOnly: true,
+          radius: 0,
+        } as ShapeSchema;
+      }
+    })(),
   },
 };
 

@@ -643,7 +643,13 @@ const DetailView = (props: DetailViewProps) => {
       const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
       return normalizePluginDefaultSchema(activePlugin as any, activeSchema.type);
     } catch (e) {
-      return isRecord(activePlugin?.propPanel?.defaultSchema) ? { ...activePlugin.propPanel.defaultSchema } : {};
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+        return normalizePluginDefaultSchema(activePlugin as any, activeSchema?.type) as any;
+      } catch (e) {
+        return isRecord(activePlugin?.propPanel?.defaultSchema) ? { ...activePlugin.propPanel.defaultSchema } : {};
+      }
     }
   }, [activePlugin, activeSchema.type]);
 

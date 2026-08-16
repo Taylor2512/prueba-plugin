@@ -174,22 +174,47 @@ const attachmentPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         },
         includeConnections: true,
       }),
-      defaultSchema: {
-        name: '',
-        type: 'attachment',
-        content: '',
-        position: { x: 0, y: 0 },
-        width: 60,
-        height: 20,
-        readOnly: false,
-        required: false,
-        allowedMimeTypes: '*',
-        maxFiles: 1,
-        maxSizeMb: 10,
-        allowReplace: true,
-        showFileName: true,
-        showUploadStatus: true,
-      },
+      defaultSchema: ((): Schema => {
+        try {
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
+          const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+          const canonical = normalizePluginDefaultSchema(undefined as any, 'attachment') as Partial<Schema>;
+          return {
+            ...(canonical as Schema),
+            name: '',
+            type: 'attachment',
+            content: '',
+            position: { x: 0, y: 0 },
+            width: 60,
+            height: 20,
+            readOnly: false,
+            required: false,
+            allowedMimeTypes: '*',
+            maxFiles: 1,
+            maxSizeMb: 10,
+            allowReplace: true,
+            showFileName: true,
+            showUploadStatus: true,
+          } as Schema;
+        } catch (e) {
+          return {
+            name: '',
+            type: 'attachment',
+            content: '',
+            position: { x: 0, y: 0 },
+            width: 60,
+            height: 20,
+            readOnly: false,
+            required: false,
+            allowedMimeTypes: '*',
+            maxFiles: 1,
+            maxSizeMb: 10,
+            allowReplace: true,
+            showFileName: true,
+            showUploadStatus: true,
+          } as Schema;
+        }
+      })(),
     },
     icon: renderLucideIcon(Paperclip, { stroke: '#374151' }),
   },

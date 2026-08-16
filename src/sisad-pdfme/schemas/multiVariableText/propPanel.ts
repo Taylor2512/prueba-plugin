@@ -123,16 +123,36 @@ export const propPanel: PropPanel<MultiVariableTextSchema> = {
     },
   }),
   widgets: { ...(parentPropPanel.widgets || {}), mapDynamicVariables },
-  defaultSchema: {
-    ...parentPropPanel.defaultSchema,
-    readOnly: false,
-    type: 'multiVariableText',
-    text: 'Add text here using {} for variables ',
-    width: 50,
-    height: 11,
-    content: '{}',
-    variables: [],
-  },
+  defaultSchema: ((): any => {
+    // Use the canonical normalizer to ensure a full SchemaForUI baseline
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+      const canonical = normalizePluginDefaultSchema(parentPropPanel as any, 'multiVariableText');
+      return {
+        ...(canonical as Record<string, unknown>),
+        readOnly: false,
+        type: 'multiVariableText',
+        text: 'Add text here using {} for variables ',
+        width: 50,
+        height: 11,
+        content: '{}',
+        variables: [],
+      } as Record<string, unknown>;
+    } catch (e) {
+      // Fallback to previous behavior when normalizer cannot be loaded
+      return {
+        ...(typeof parentPropPanel.defaultSchema === 'object' ? parentPropPanel.defaultSchema : {}),
+        readOnly: false,
+        type: 'multiVariableText',
+        text: 'Add text here using {} for variables ',
+        width: 50,
+        height: 11,
+        content: '{}',
+        variables: [],
+      } as Record<string, unknown>;
+    }
+  })(),
 };
 
 const updateVariablesFromText = (text: string, variables: Record<string, string>): boolean => {

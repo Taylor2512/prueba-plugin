@@ -101,14 +101,30 @@ export function createTextLikeSchemaPlugin(config: TextLikePresetConfig): Plugin
           propertyMap: { ...COMMON_PROPERTY_MAP, prefillSource: 'connections' },
           includeConnections: true,
         }),
-        defaultSchema: {
-          ...text.propPanel.defaultSchema,
-          name: '',
-          type,
-          content: config.defaultContent ?? '',
-          readOnly: false,
-          prefillSource: sourceField,
-        },
+        defaultSchema: ((): Schema => {
+          try {
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+            const canonical = normalizePluginDefaultSchema(text as any, type);
+            return {
+              ...(canonical as Schema),
+              name: '',
+              type,
+              content: config.defaultContent ?? '',
+              readOnly: false,
+              prefillSource: sourceField,
+            } as Schema;
+          } catch (e) {
+            return {
+              ...text.propPanel.defaultSchema,
+              name: '',
+              type,
+              content: config.defaultContent ?? '',
+              readOnly: false,
+              prefillSource: sourceField,
+            } as Schema;
+          }
+        })(),
       },
       icon: normalizedIcon,
     },

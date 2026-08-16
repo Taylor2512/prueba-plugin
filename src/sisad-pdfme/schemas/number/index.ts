@@ -163,22 +163,47 @@ const schema: Plugin<NumberSchema> = createSchemaPlugin<NumberSchema>(
         includeValidation: true,
         includeConnections: true,
       }),
-      defaultSchema: {
-        name: '',
-        type: 'number',
-        content: '',
-        position: { x: 0, y: 0 },
-        width: 45,
-        height: 7,
-        readOnly: false,
-        required: false,
-        // `0` significa "sin decimales" y hacía que cualquier coma se rechazara
-        // al confirmar, vaciando el campo al perder el foco.
-        decimals: 2,
-        format: 'free',
-        validationMessage: '',
-        placeholder: '',
-      },
+      defaultSchema: ((): Schema => {
+        try {
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
+          const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+          const canonical = normalizePluginDefaultSchema(undefined as any, 'number') as Partial<Schema>;
+          return {
+            ...(canonical as Schema),
+            name: '',
+            type: 'number',
+            content: '',
+            position: { x: 0, y: 0 },
+            width: 45,
+            height: 7,
+            readOnly: false,
+            required: false,
+            // `0` significa "sin decimales" y hacía que cualquier coma se rechazara
+            // al confirmar, vaciando el campo al perder el foco.
+            decimals: 2,
+            format: 'free',
+            validationMessage: '',
+            placeholder: '',
+          } as Schema;
+        } catch (e) {
+          return {
+            name: '',
+            type: 'number',
+            content: '',
+            position: { x: 0, y: 0 },
+            width: 45,
+            height: 7,
+            readOnly: false,
+            required: false,
+            // `0` significa "sin decimales" y hacía que cualquier coma se rechazara
+            // al confirmar, vaciando el campo al perder el foco.
+            decimals: 2,
+            format: 'free',
+            validationMessage: '',
+            placeholder: '',
+          } as Schema;
+        }
+      })(),
     },
   },
   {

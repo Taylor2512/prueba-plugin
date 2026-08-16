@@ -9,7 +9,6 @@ import { PenLine } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 import baseSignature from '@sisad-pdfme/schemas/signature';
 import { isRecord } from '@sisad-pdfme/shared/objectGuards';
-import { normalizePluginDefaultSchema } from '@sisad-pdfme/schemas/normalizers';
 import type { SignatureSchema } from '@sisad-pdfme/schemas/signature/types';
 
 const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
@@ -18,17 +17,32 @@ const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
     pdf: baseSignature.pdf,
     propPanel: {
       ...baseSignature.propPanel,
-      defaultSchema: {
-        // Use the canonical normalizer based on the signature plugin baseline
-        // then overlay the initials-specific overrides.
-        ...(normalizePluginDefaultSchema(baseSignature as unknown as Plugin<Schema>, 'initials') as SignatureSchema),
-        type: 'initials',
-        name: '',
-        width: 22,
-        height: 12,
-        placeholderText: 'Iniciales aquí',
-        signatureKind: 'initials',
-      } as Schema,
+      defaultSchema: ((): Schema => {
+        try {
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
+          const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+          const canonical = normalizePluginDefaultSchema(baseSignature as unknown as Plugin<Schema>, 'initials') as Partial<SignatureSchema>;
+          return {
+            ...(canonical as SignatureSchema),
+            type: 'initials',
+            name: '',
+            width: 22,
+            height: 12,
+            placeholderText: 'Iniciales aquí',
+            signatureKind: 'initials',
+          } as Schema;
+        } catch (e) {
+          return {
+            ...baseSignature.propPanel.defaultSchema,
+            type: 'initials',
+            name: '',
+            width: 22,
+            height: 12,
+            placeholderText: 'Iniciales aquí',
+            signatureKind: 'initials',
+          } as Schema;
+        }
+      })(),
     },
     icon: renderLucideIcon(PenLine, { stroke: '#1a56a0' }),
   },

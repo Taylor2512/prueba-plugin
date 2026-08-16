@@ -87,33 +87,71 @@ export const propPanel: PropPanel<TableSchema> = {
       columnStyles: 'style',
     },
   }),
-  defaultSchema: {
-    name: '',
-    type: 'table',
-    position: { x: 0, y: 0 },
-    width: 150,
-    height: 20,
-    content: JSON.stringify([
-      ['Alice', 'New York', 'Alice is a freelance web designer and developer'],
-      ['Bob', 'Paris', 'Bob is a freelance illustrator and graphic designer'],
-    ]),
-    showHead: true,
-    repeatHead: false,
-    head: ['Name', 'City', 'Description'],
-    headWidthPercentages: [30, 30, 40],
-    tableStyles: {
-      borderColor: '#000000',
-      borderWidth: 0.3,
-    },
-    headStyles: Object.assign(getDefaultCellStyles(), {
-      fontColor: '#ffffff',
-      backgroundColor: '#2980ba',
-      borderColor: '',
-      borderWidth: { top: 0, right: 0, bottom: 0, left: 0 },
-    }),
-    bodyStyles: Object.assign(getDefaultCellStyles(), {
-      alternateBackgroundColor: '#f5f5f5',
-    }),
-    columnStyles: {},
-  },
+  defaultSchema: ((): TableSchema => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+      const canonical = normalizePluginDefaultSchema(undefined as any, 'table') as Partial<TableSchema>;
+      return {
+        ...(canonical as TableSchema),
+        name: '',
+        type: 'table',
+        position: { x: 0, y: 0 },
+        width: 150,
+        height: 20,
+        content: JSON.stringify([
+          ['Alice', 'New York', 'Alice is a freelance web designer and developer'],
+          ['Bob', 'Paris', 'Bob is a freelance illustrator and graphic designer'],
+        ]),
+        showHead: true,
+        repeatHead: false,
+        head: ['Name', 'City', 'Description'],
+        headWidthPercentages: [30, 30, 40],
+        tableStyles: {
+          borderColor: '#000000',
+          borderWidth: 0.3,
+        },
+        headStyles: Object.assign(getDefaultCellStyles(), {
+          fontColor: '#ffffff',
+          backgroundColor: '#2980ba',
+          borderColor: '',
+          borderWidth: { top: 0, right: 0, bottom: 0, left: 0 },
+        }),
+        bodyStyles: Object.assign(getDefaultCellStyles(), {
+          alternateBackgroundColor: '#f5f5f5',
+        }),
+        columnStyles: {},
+      } as TableSchema;
+    } catch (e) {
+      return {
+        name: '',
+        type: 'table',
+        position: { x: 0, y: 0 },
+        width: 150,
+        height: 20,
+        content: JSON.stringify([
+          ['Alice', 'New York', 'Alice is a freelance web designer and developer'],
+          ['Bob', 'Paris', 'Bob is a freelance illustrator and graphic designer'],
+        ]),
+        showHead: true,
+        repeatHead: false,
+        head: ['Name', 'City', 'Description'],
+        headWidthPercentages: [30, 30, 40],
+        tableStyles: {
+          borderColor: '#000000',
+          borderWidth: 0.3,
+        },
+        headStyles: Object.assign(getDefaultCellStyles(), {
+          fontColor: '#ffffff',
+          backgroundColor: '#2980ba',
+          borderColor: '',
+          borderWidth: { top: 0, right: 0, bottom: 0, left: 0 },
+        }),
+        bodyStyles: Object.assign(getDefaultCellStyles(), {
+          alternateBackgroundColor: '#f5f5f5',
+        }),
+        columnStyles: {},
+      } as TableSchema;
+    }
+  })(),
 };

@@ -138,15 +138,33 @@ const cellSchema: Plugin<CellSchema> = {
       const fallbackFontName = getFallbackFontName(font);
       return getCellPropPanelSchema({ i18n, fontNames, fallbackFontName });
     },
-    defaultSchema: {
-      name: '',
-      type: 'cell',
-      content: 'Type Something...',
-      position: { x: 0, y: 0 },
-      width: 50,
-      height: 15,
-      ...getDefaultCellStyles(),
-    },
+    defaultSchema: ((): CellSchema => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+        const canonical = normalizePluginDefaultSchema(undefined as any, 'cell') as Partial<CellSchema>;
+        return {
+          ...(canonical as CellSchema),
+          name: '',
+          type: 'cell',
+          content: 'Type Something...',
+          position: { x: 0, y: 0 },
+          width: 50,
+          height: 15,
+          ...getDefaultCellStyles(),
+        } as CellSchema;
+      } catch (e) {
+        return {
+          name: '',
+          type: 'cell',
+          content: 'Type Something...',
+          position: { x: 0, y: 0 },
+          width: 50,
+          height: 15,
+          ...getDefaultCellStyles(),
+        } as CellSchema;
+      }
+    })(),
   },
 };
 export default cellSchema;

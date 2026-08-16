@@ -63,9 +63,18 @@ export function createSigningSchemaPlugin(config: SigningSchemaFactoryConfig): P
 
   const normalizedIcon: string =
     typeof icon === 'string' ? icon : (icon as SVGElement).outerHTML;
-  const baseDefaultSchema = text.propPanel.defaultSchema;
+  // Derive a canonical baseline and overlay factory-provided overrides.
+  let baseDefaultSchema: Record<string, unknown> = {};
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+    baseDefaultSchema = normalizePluginDefaultSchema(text as any, type);
+  } catch (e) {
+    baseDefaultSchema = cloneDeep(text.propPanel.defaultSchema) as Record<string, unknown>;
+  }
+
   const defaultSchema: Schema = {
-    ...baseDefaultSchema,
+    ...(baseDefaultSchema as Schema),
     name: '',
     type,
     content: '',

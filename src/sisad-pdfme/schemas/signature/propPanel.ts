@@ -676,51 +676,103 @@ export const propPanel: PropPanel<SignatureSchema> = {
       signatureMetadata: 'advanced',
     },
   }),
-  defaultSchema: {
-    name: '',
-    type: 'signature',
-    content: '',
-    position: { x: 0, y: 0 },
-    width: 46,
-    height: 18,
-    rotate: 0,
-    opacity: DEFAULT_OPACITY,
-    placeholderText: 'Firmar aqui',
-    required: false,
-    readOnly: false,
-    signatureMode: 'draw',
-    signatureProviderKey: undefined,
-    signatureProviderConfig: {},
-    signatureProviderStatus: 'pending',
-    signatureProviderDisplay: {
-      label: 'Proveedor externo',
-      badge: 'Pendiente',
-      tone: 'neutral',
-    },
-    signatureMetadata: {
-      signedAt: null,
-      digestAlgorithm: 'SHA-256',
-    },
-    signatureCapabilities: {
-      allowDraw: true,
-      allowUploadImage: true,
-      allowP12: true,
-      allowExternalProvider: true,
-      allowClear: true,
-      allowReplace: true,
-      allowPreview: true,
-    },
-    signatureDisplay: {
-      showSignerName: true,
-      showSignedAt: true,
-      showReason: false,
-      showLocation: false,
-      showCertificateInfo: false,
-      showVisualStamp: true,
-    },
-    // Sin colores de chrome por defecto: el placeholder los deriva del dueño del
-    // campo (`resolveSignaturePlaceholderColors`). Materializarlos aquí hacía que
-    // toda firma naciera con la paleta fija y nunca tomara el color de su
-    // destinatario. Siguen siendo editables desde el inspector.
-  },
+  defaultSchema: ((): SignatureSchema => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+      const canonical = normalizePluginDefaultSchema(undefined as any, 'signature') as Partial<SignatureSchema>;
+      return {
+        ...(canonical as SignatureSchema),
+        name: '',
+        type: 'signature',
+        content: '',
+        position: { x: 0, y: 0 },
+        width: 46,
+        height: 18,
+        rotate: 0,
+        opacity: DEFAULT_OPACITY,
+        placeholderText: 'Firmar aqui',
+        required: false,
+        readOnly: false,
+        signatureMode: 'draw',
+        signatureProviderKey: undefined,
+        signatureProviderConfig: {},
+        signatureProviderStatus: 'pending',
+        signatureProviderDisplay: {
+          label: 'Proveedor externo',
+          badge: 'Pendiente',
+          tone: 'neutral',
+        },
+        signatureMetadata: {
+          signedAt: null,
+          digestAlgorithm: 'SHA-256',
+        },
+        signatureCapabilities: {
+          allowDraw: true,
+          allowUploadImage: true,
+          allowP12: true,
+          allowExternalProvider: true,
+          allowClear: true,
+          allowReplace: true,
+          allowPreview: true,
+        },
+        signatureDisplay: {
+          showSignerName: true,
+          showSignedAt: true,
+          showReason: false,
+          showLocation: false,
+          showCertificateInfo: false,
+          showVisualStamp: true,
+        },
+      } as SignatureSchema;
+    } catch (e) {
+      return {
+        name: '',
+        type: 'signature',
+        content: '',
+        position: { x: 0, y: 0 },
+        width: 46,
+        height: 18,
+        rotate: 0,
+        opacity: DEFAULT_OPACITY,
+        placeholderText: 'Firmar aqui',
+        required: false,
+        readOnly: false,
+        signatureMode: 'draw',
+        signatureProviderKey: undefined,
+        signatureProviderConfig: {},
+        signatureProviderStatus: 'pending',
+        signatureProviderDisplay: {
+          label: 'Proveedor externo',
+          badge: 'Pendiente',
+          tone: 'neutral',
+        },
+        signatureMetadata: {
+          signedAt: null,
+          digestAlgorithm: 'SHA-256',
+        },
+        signatureCapabilities: {
+          allowDraw: true,
+          allowUploadImage: true,
+          allowP12: true,
+          allowExternalProvider: true,
+          allowClear: true,
+          allowReplace: true,
+          allowPreview: true,
+        },
+        signatureDisplay: {
+          showSignerName: true,
+          showSignedAt: true,
+          showReason: false,
+          showLocation: false,
+          showCertificateInfo: false,
+          showVisualStamp: true,
+        },
+      } as SignatureSchema;
+    }
+  })(),
+  // Sin colores de chrome por defecto: el placeholder los deriva del dueño del
+  // campo (`resolveSignaturePlaceholderColors`). Materializarlos aquí hacía que
+  // toda firma naciera con la paleta fija y nunca tomara el color de su
+  // destinatario. Siguen siendo editables desde el inspector.
 };

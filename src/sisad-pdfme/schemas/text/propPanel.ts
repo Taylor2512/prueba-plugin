@@ -147,27 +147,59 @@ export const propPanel: PropPanel<TextSchema> = {
     includeConnections: true,
   }),
   widgets: { UseDynamicFontSize },
-  defaultSchema: {
-    name: '',
-    type: 'text',
-    content: 'Type Something...',
-    position: { x: 0, y: 0 },
-    width: 45,
-    height: 7,
-    // If the value of "rotate" is set to undefined or not set at all, rotation will be disabled in the UI.
-    // Check this document: https://sisad-pdfme.com//docs/custom-schemas#learning-how-to-create-from-pdfmeschemas-code
-    rotate: 0,
-    alignment: DEFAULT_ALIGNMENT,
-    verticalAlignment: DEFAULT_VERTICAL_ALIGNMENT,
-    fontSize: DEFAULT_FONT_SIZE,
-    lineHeight: DEFAULT_LINE_HEIGHT,
-    characterSpacing: DEFAULT_CHARACTER_SPACING,
-    dynamicFontSize: undefined,
-    fontColor: DEFAULT_FONT_COLOR,
-    fontName: undefined,
-    backgroundColor: '',
-    opacity: DEFAULT_OPACITY,
-    strikethrough: false,
-    underline: false,
-  },
+  defaultSchema: ((): TextSchema => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+      const canonical = normalizePluginDefaultSchema(undefined as any, 'text') as Partial<TextSchema>;
+      return {
+        ...(canonical as TextSchema),
+        name: '',
+        type: 'text',
+        content: 'Type Something...',
+        position: { x: 0, y: 0 },
+        width: 45,
+        height: 7,
+        // If the value of "rotate" is set to undefined or not set at all, rotation will be disabled in the UI.
+        // Check this document: https://sisad-pdfme.com//docs/custom-schemas#learning-how-to-create-from-pdfmeschemas-code
+        rotate: 0,
+        alignment: DEFAULT_ALIGNMENT,
+        verticalAlignment: DEFAULT_VERTICAL_ALIGNMENT,
+        fontSize: DEFAULT_FONT_SIZE,
+        lineHeight: DEFAULT_LINE_HEIGHT,
+        characterSpacing: DEFAULT_CHARACTER_SPACING,
+        dynamicFontSize: undefined,
+        fontColor: DEFAULT_FONT_COLOR,
+        fontName: undefined,
+        backgroundColor: '',
+        opacity: DEFAULT_OPACITY,
+        strikethrough: false,
+        underline: false,
+      } as TextSchema;
+    } catch (e) {
+      return {
+        name: '',
+        type: 'text',
+        content: 'Type Something...',
+        position: { x: 0, y: 0 },
+        width: 45,
+        height: 7,
+        // If the value of "rotate" is set to undefined or not set at all, rotation will be disabled in the UI.
+        // Check this document: https://sisad-pdfme.com//docs/custom-schemas#learning-how-to-create-from-pdfmeschemas-code
+        rotate: 0,
+        alignment: DEFAULT_ALIGNMENT,
+        verticalAlignment: DEFAULT_VERTICAL_ALIGNMENT,
+        fontSize: DEFAULT_FONT_SIZE,
+        lineHeight: DEFAULT_LINE_HEIGHT,
+        characterSpacing: DEFAULT_CHARACTER_SPACING,
+        dynamicFontSize: undefined,
+        fontColor: DEFAULT_FONT_COLOR,
+        fontName: undefined,
+        backgroundColor: '',
+        opacity: DEFAULT_OPACITY,
+        strikethrough: false,
+        underline: false,
+      } as TextSchema;
+    }
+  })(),
 };

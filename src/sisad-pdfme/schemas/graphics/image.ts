@@ -229,18 +229,39 @@ const imageSchema: Plugin<ImageSchema> = {
       readOnly: basicsFields().readOnly,
     },
     inspector: createSchemaInspectorConfig('media'),
-    defaultSchema: {
-      name: '',
-      type: 'image',
-      content: defaultValue,
-      position: { x: 0, y: 0 },
-      width: 40,
-      height: 40,
-      // If the value of "rotate" is set to undefined or not set at all, rotation will be disabled in the UI.
-      // Check this document: https://sisad-pdfme.com//docs/custom-schemas#learning-how-to-create-from-pdfmeschemas-code
-      rotate: 0,
-      opacity: DEFAULT_OPACITY,
-    },
+    defaultSchema: ((): ImageSchema => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+        const canonical = normalizePluginDefaultSchema(undefined as any, 'image') as Partial<ImageSchema>;
+        return {
+          ...(canonical as ImageSchema),
+          name: '',
+          type: 'image',
+          content: defaultValue,
+          position: { x: 0, y: 0 },
+          width: 40,
+          height: 40,
+          // If the value of "rotate" is set to undefined or not set at all, rotation will be disabled in the UI.
+          // Check this document: https://sisad-pdfme.com//docs/custom-schemas#learning-how-to-create-from-pdfmeschemas-code
+          rotate: 0,
+          opacity: DEFAULT_OPACITY,
+        } as ImageSchema;
+      } catch (e) {
+        return {
+          name: '',
+          type: 'image',
+          content: defaultValue,
+          position: { x: 0, y: 0 },
+          width: 40,
+          height: 40,
+          // If the value of "rotate" is set to undefined or not set at all, rotation will be disabled in the UI.
+          // Check this document: https://sisad-pdfme.com//docs/custom-schemas#learning-how-to-create-from-pdfmeschemas-code
+          rotate: 0,
+          opacity: DEFAULT_OPACITY,
+        } as ImageSchema;
+      }
+    })(),
   },
   icon: createSvgStr(Image),
 };

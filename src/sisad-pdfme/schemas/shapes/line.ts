@@ -86,16 +86,35 @@ const lineSchema: Plugin<LineSchema> = {
         color: 'style',
       },
     }),
-    defaultSchema: {
-      name: '',
-      type: 'line',
-      position: { x: 0, y: 0 },
-      width: 50,
-      height: 0.5,
-      rotate: 0,
-      opacity: 1,
-      readOnly: true,
-    },
+    defaultSchema: ((): LineSchema => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+        const canonical = normalizePluginDefaultSchema(undefined as any, 'line') as Partial<LineSchema>;
+        return {
+          ...(canonical as LineSchema),
+          name: '',
+          type: 'line',
+          position: { x: 0, y: 0 },
+          width: 50,
+          height: 0.5,
+          rotate: 0,
+          opacity: 1,
+          readOnly: true,
+        } as LineSchema;
+      } catch (e) {
+        return {
+          name: '',
+          type: 'line',
+          position: { x: 0, y: 0 },
+          width: 50,
+          height: 0.5,
+          rotate: 0,
+          opacity: 1,
+          readOnly: true,
+        } as LineSchema;
+      }
+    })(),
   },
   icon: createSvgStr(Minus),
 };

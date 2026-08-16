@@ -156,14 +156,31 @@ const svgSchema: Plugin<SVGSchema> = {
   propPanel: {
     schema: {},
     inspector: createSchemaInspectorConfig('media'),
-    defaultSchema: {
-      name: '',
-      type: 'svg',
-      content: defaultValue,
-      position: { x: 0, y: 0 },
-      width: 40,
-      height: 50,
-    },
+    defaultSchema: ((): Schema => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+        const canonical = normalizePluginDefaultSchema(undefined as any, 'svg') as Partial<Schema>;
+        return {
+          ...(canonical as Schema),
+          name: '',
+          type: 'svg',
+          content: defaultValue,
+          position: { x: 0, y: 0 },
+          width: 40,
+          height: 50,
+        } as Schema;
+      } catch (e) {
+        return {
+          name: '',
+          type: 'svg',
+          content: defaultValue,
+          position: { x: 0, y: 0 },
+          width: 40,
+          height: 50,
+        } as Schema;
+      }
+    })(),
   },
   icon: createSvgStr(Route),
 };

@@ -192,17 +192,37 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       propertyMap: { ...COMMON_PROPERTY_MAP, color: 'style', groupId: 'data' },
       includeConnections: true,
     }),
-    defaultSchema: {
-      name: '',
-      type: 'checkbox',
-      content: 'false',
-      position: { x: 0, y: 0 },
-      width: 8,
-      height: 8,
-      groupId: 'MyGroup',
-      required: false,
-      readOnly: false,
-    },
+    defaultSchema: ((): Schema => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+        const canonical = normalizePluginDefaultSchema(undefined as any, 'checkbox') as Partial<Schema>;
+        return {
+          ...(canonical as Schema),
+          name: '',
+          type: 'checkbox',
+          content: 'false',
+          position: { x: 0, y: 0 },
+          width: 8,
+          height: 8,
+          groupId: 'MyGroup',
+          required: false,
+          readOnly: false,
+        } as Schema;
+      } catch (e) {
+        return {
+          name: '',
+          type: 'checkbox',
+          content: 'false',
+          position: { x: 0, y: 0 },
+          width: 8,
+          height: 8,
+          groupId: 'MyGroup',
+          required: false,
+          readOnly: false,
+        } as Schema;
+      }
+    })(),
   },
   icon: getCheckedIcon(),
 }, {
