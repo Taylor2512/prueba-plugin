@@ -22,7 +22,8 @@ context:
     - src/sisad-pdfme/**
   maxFiles: 8
   maxTokens: 12000
-status: BACKLOG
+status: READY
+evidence: reports/runtime-platform/evidence/AIARCH-008.copilot.md
 ---
 
 # AIARCH-008 — Implementar memory GC e invalidación
