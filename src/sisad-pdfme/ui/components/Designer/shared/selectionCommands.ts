@@ -16,6 +16,7 @@ import {
   optionGroupDesignerWidthMM,
   isOptionGroupType,
 } from '@sisad-pdfme/schemas/options/optionGroupLayout';
+import { normalizeOptionGroupOptions } from '@sisad-pdfme/schemas/options/optionModel';
 import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 import { resolveActiveSchemasFromElements } from '@sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver';
 import { resolveSchemaUid } from '@sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService';
@@ -590,12 +591,9 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     if (!schema) return;
     const type = String(schema.type || '');
     if (!isOptionGroupType(type)) return;
-    const raw = Array.isArray(schema.options) ? schema.options : [];
-    const current = raw.map((entry, index) =>
-      typeof entry === 'string'
-        ? { optionId: entry || `option_${index + 1}`, label: entry || `Opción ${index + 1}` }
-        : { optionId: entry.optionId || `option_${index + 1}`, label: entry.label || entry.optionId },
-    );
+    const isRadio = String(type).toLowerCase() === 'radiogroup';
+    const fallbackLabel = isRadio ? 'Opción' : 'Casilla';
+    const current = normalizeOptionGroupOptions(schema.options, fallbackLabel);
     const existing = new Set(current.map((o) => o.optionId));
     let n = current.length + 1;
     let optionId = `option_${n}`;
@@ -603,8 +601,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       n += 1;
       optionId = `option_${n}`;
     }
-    const isRadio = type === 'radioGroup';
-    const label = `${isRadio ? 'Opción' : 'Casilla'} ${current.length + 1}`;
+    const label = `${fallbackLabel} ${current.length + 1}`;
     const nextOptions = [...current, { optionId, label }];
     const groupType = type.toLowerCase() === 'radiogroup' ? 'radioGroup' : 'checkboxGroup';
     context.changeSchemas([
