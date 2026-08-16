@@ -4,9 +4,10 @@
     "task": "RTP-545",
     "mode": "write",
     "paths": [
-      "src/sisad-pdfme/schemas",
-      ".ai"
+      "src",
+      ".ai",
+      "reports"
     ],
-    "startedAt": "2026-08-16T16:10:03.078Z"
+    "startedAt": "2026-08-16T18:22:35.000Z"
   }
 }
