@@ -40,7 +40,7 @@ import {
   getOptionGroupLayoutConfig,
   type OptionGroupType,
 } from '@sisad-pdfme/schemas/options/optionGroupLayout';
-import { buildDefaultOptionGroupOptions, normalizeOptionText } from '@sisad-pdfme/schemas/options/optionModel';
+import { buildDefaultOptionGroupOptions, normalizeOptionText, normalizeOptionGroupOptions } from '@sisad-pdfme/schemas/options/optionModel';
 import { createOptionGroupRuntime } from '@sisad-pdfme/schemas/options/optionGroupRenderer';
 import type { GroupMeta } from '@sisad-pdfme/shared/schemaDesignerMeta';
 import { createOptionIndicatorElement } from '@sisad-pdfme/schemas/options/optionIndicator';
@@ -494,7 +494,7 @@ export const createDesignerOptionGroupEl = (
   fallbackLabelPrefix = 'Opción',
 ): HTMLDivElement => {
   const wrapper = createDesignerGroupStack(layout.boxGap);
-  const safeOptions = options.length ? options : buildDefaultOptionGroupOptions(fallbackLabelPrefix, 1);
+  const safeOptions = options && options.length ? normalizeOptionGroupOptions(options, fallbackLabelPrefix) : buildDefaultOptionGroupOptions(fallbackLabelPrefix, 1);
 
   for (const option of safeOptions) {
     const box = createDesignerOptionBox(option, layout, indicatorShape, selectedIds.has(option.optionId));
