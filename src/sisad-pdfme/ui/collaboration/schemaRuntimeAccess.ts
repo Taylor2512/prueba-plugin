@@ -728,39 +728,3 @@ export const resolveRuntimeSchemaAccess = (
     reason: noOwner ? 'no-owner' : state.isShared ? 'shared' : 'active-owner',
   };
 };
-
-/**
- * Cuenta schemas visibles, editables y bloqueados usando la misma regla
- * que deben usar los renderers.
- *
- * Esta función evita desalineaciones entre:
- *
- * - lo que se renderiza;
- * - lo que se cuenta en UI;
- * - lo que se muestra en badges;
- * - lo que se valida en tests.
- *
- * @param schemas Lista de schemas a evaluar.
- * @param mode Modo runtime donde se evaluará el acceso.
- * @param collaborationContext Contexto colaborativo actual.
- * @returns Contadores de schemas visibles, editables y bloqueados.
- */
-const countRuntimeAccess = (
-  schemas: SchemaForUI[],
-  mode: RuntimeMode,
-  collaborationContext?: CollabCtx,
-): { visible: number; editable: number; locked: number } => {
-  let visible = 0;
-  let editable = 0;
-  let locked = 0;
-
-  for (const schema of schemas) {
-    const access = resolveRuntimeSchemaAccess(schema, mode, collaborationContext);
-
-    if (access.visible) visible += 1;
-    if (access.editable) editable += 1;
-    if (access.reason === 'locked') locked += 1;
-  }
-
-  return { visible, editable, locked };
-};

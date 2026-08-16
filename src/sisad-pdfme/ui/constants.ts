@@ -24,8 +24,6 @@ export const LEFT_SIDEBAR_WIDTH = 45;
 
 export const RIGHT_SIDEBAR_WIDTH = 320;
 
-const BACKGROUND_COLOR = 'var(--color-bg-base)';
-
 export const DEFAULT_MAX_ZOOM = 2;
 
 export const DESIGNER_CLASSNAME = 'sisad-pdfme-designer-';

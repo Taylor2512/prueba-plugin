@@ -239,15 +239,3 @@ export class LockManager {
     return new Map(this.locks);
   }
 }
-
-/** Factory para crear un LockManager con configuración por defecto */
-function createLockManager(
-  currentUser: CurrentUserInfo,
-  options?: {
-    ttlConfig?: Partial<LockTTLConfig>;
-    onLockChange?: (schemaUid: string, lock: SchemaLock | null) => void;
-  },
-): LockManager {
-  const ttlConfig = { ...DEFAULT_LOCK_TTL, ...options?.ttlConfig };
-  return new LockManager(currentUser, ttlConfig, options?.onLockChange);
-}

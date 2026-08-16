@@ -99,37 +99,3 @@ export const computeFitZoom = (mode: ViewportFitMode, input: FitInput): number |
   const clamped = clampZoom(zoom, maxZoom, resolved === 'actual-size' ? 'manual' : 'fit');
   return Number.isFinite(clamped) ? clamped : null;
 };
-
-/**
- * ¿El ajuste cupo de verdad?
- *
- * Si el zoom quedó topado por los límites, la página sigue desbordando y la UI
- * debería decirlo en vez de anunciar un ajuste que no ocurrió.
- */
-const fitFitsWithinCanvas = (mode: ViewportFitMode, input: FitInput): boolean => {
-  const zoom = computeFitZoom(mode, input);
-  if (zoom === null) return false;
-
-  const resolved = resolveAutoFitMode(mode, input.viewportWidth);
-  const scale = zoom * input.baseScale;
-  const width = input.pageSize.width * input.unitScale * scale;
-  const height = input.pageSize.height * input.unitScale * scale;
-
-  const fitsWidth = width <= input.canvas.width + 0.5;
-  const fitsHeight = height <= input.canvas.height + 0.5;
-
-  if (resolved === 'fit-width') return fitsWidth;
-  if (resolved === 'fit-page') return fitsWidth && fitsHeight;
-  return true;
-};
-
-/**
- * Porcentaje mostrado en la UI.
- *
- * Siempre devuelve un valor válido: un indicador que dice `NaN%` o `0%` es peor
- * que uno que dice `100%`.
- */
-const formatZoomPercent = (zoom: number): string => {
-  const normalized = isPositiveFinite(zoom) ? zoom : 1;
-  return `${Math.round(normalized * 100)}%`;
-};

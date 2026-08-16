@@ -139,8 +139,3 @@ export function getCanvasStateConfig(state: CanvasRenderState): CanvasStateConfi
 export function isCanvasInteractive(state: CanvasRenderState): boolean {
   return !CANVAS_STATE_CONFIG[state.type].blocksInteraction;
 }
-
-/** Helper: determina si el canvas está en estado offline (pero funcional) */
-function isOfflineMode(state: CanvasRenderState): boolean {
-  return state.type === 'collaboration_disconnected';
-}
