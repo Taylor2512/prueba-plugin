@@ -43,5 +43,7 @@ Effective PASS tasks.
 - [RTP-520](../task-cards/runtime-platform/RTP-520.md) — `PASS`
 - [RTP-525](../task-cards/runtime-platform/RTP-525.md) — `PASS`
 - [RTP-530](../task-cards/runtime-platform/RTP-530.md) — `PASS`
+- [RTP-535](../task-cards/runtime-platform/RTP-535.md) — `PASS`
+- [RTP-540](../task-cards/runtime-platform/RTP-540.md) — `PASS`
 
 > Generated. Authority: task card + evidence + dependency DAG.

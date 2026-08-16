@@ -381,8 +381,8 @@ const applyTopLevelCommentEventToTemplate = (
   }
 
   const commentEvent = event as Extract<Parameters<typeof applyCollaborationEvent>[1], { type: 'comment.created' | 'comment.updated' }>;
-  const anchor = ensureAnchorId(commentEvent.anchor || commentEvent.comment.anchor || undefined) as TopLevelCommentEntry['anchor'];
-  const comment = ensureComment(commentEvent.comment || {} as any) as TopLevelCommentEntry['comment'];
+  const anchor = ensureAnchorId(commentEvent.anchor || commentEvent.comment?.anchor || undefined) as TopLevelCommentEntry['anchor'];
+  const comment = ensureComment(commentEvent.comment || commentEvent) as TopLevelCommentEntry['comment'];
   const topLevelEntry: TopLevelCommentEntry = {
     id: comment.id,
     anchor,

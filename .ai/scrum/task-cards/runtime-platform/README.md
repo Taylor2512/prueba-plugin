@@ -119,17 +119,17 @@ unit.
 - [RTP-010 — Fijar identidad SISAD-PDFME y nomenclatura policy](./RTP-010.md) — `BACKLOG`
 - [RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User](./RTP-015.md) — `BACKLOG`
 - [RTP-020 — Inventario registry-derived + generic runtime characterization harness](./RTP-020.md) — `BACKLOG`
-- [RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page](./RTP-022.md) — `BACKLOG`
+- [RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page](./RTP-022.md) — `PARTIAL`
 - [RTP-030 — Motor local-first de transacciones Form](./RTP-030.md) — `BACKLOG`
-- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](./RTP-040.md) — `BACKLOG`
-- [RTP-045 — Facade público: props declaradas vs. propagadas](./RTP-045.md) — `BACKLOG`
+- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](./RTP-040.md) — `PARTIAL`
+- [RTP-045 — Facade público: props declaradas vs. propagadas](./RTP-045.md) — `PARTIAL`
 - [RTP-050 — Eventos canónicos de input/runtime + adapters legacy](./RTP-050.md) — `BACKLOG`
 - [RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first](./RTP-055.md) — `BACKLOG`
 - [RTP-060 — Lifecycle, remount, focus, caret, IME y cleanup](./RTP-060.md) — `BACKLOG`
-- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](./RTP-070.md) — `BACKLOG`
-- [RTP-080 — SchemaValueCodec por familia](./RTP-080.md) — `BACKLOG`
-- [RTP-090 — Validation, touched, dirty, completion y access boundary](./RTP-090.md) — `BACKLOG`
-- [RTP-095 — Harness pairwise de interacción entre schemas](./RTP-095.md) — `BACKLOG`
+- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](./RTP-070.md) — `ARCHIVED`
+- [RTP-080 — SchemaValueCodec por familia](./RTP-080.md) — `ARCHIVED`
+- [RTP-090 — Validation, touched, dirty, completion y access boundary](./RTP-090.md) — `PARTIAL`
+- [RTP-095 — Harness pairwise de interacción entre schemas](./RTP-095.md) — `ARCHIVED`
 - [RTP-100 — Text-like, number, presets y multiVariableText](./RTP-100.md) — `BACKLOG`
 - [RTP-110 — Select/dropdown, checkbox, radioGroup, checkboxGroup](./RTP-110.md) — `BACKLOG`
 - [RTP-120 — Date, time, dateTime y dateSigned](./RTP-120.md) — `BACKLOG`
@@ -143,7 +143,7 @@ unit.
 - [RTP-200 — Snapshot, bundle, migration and semantic roundtrip](./RTP-200.md) — `BACKLOG`
 - [RTP-210 — Multi-document/multipage routing and active ID isolation](./RTP-210.md) — `BACKLOG`
 - [RTP-215 — Aislamiento User×Document×RuntimeSession](./RTP-215.md) — `BACKLOG`
-- [RTP-220 — Recipients, ownership, colors, locks and runtime access](./RTP-220.md) — `BACKLOG`
+- [RTP-220 — Recipients, ownership, colors, locks and runtime access](./RTP-220.md) — `PARTIAL`
 - [RTP-222 — Migrar registry/access/appearance a User con aliases](./RTP-222.md) — `BACKLOG`
 - [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](./RTP-225.md) — `BACKLOG`
 - [RTP-226 — Contrato DigitalAgreements Recipient -> User](./RTP-226.md) — `BACKLOG`
@@ -156,8 +156,8 @@ unit.
 - [RTP-280 — Performance/memory/leak campaign for large PDFs/schemas](./RTP-280.md) — `BACKLOG`
 - [RTP-290 — Security/privacy/artifact sanitization and secret boundaries](./RTP-290.md) — `BACKLOG`
 - [RTP-300 — Examples + docs as contract consumers, no demo-runtime duplication](./RTP-300.md) — `BACKLOG`
-- [RTP-305 — Quality gate registry-driven de comportamiento](./RTP-305.md) — `BACKLOG`
-- [RTP-310 — All-schema Playwright + integration/release gates](./RTP-310.md) — `BACKLOG`
+- [RTP-305 — Quality gate registry-driven de comportamiento](./RTP-305.md) — `ARCHIVED`
+- [RTP-310 — All-schema Playwright + integration/release gates](./RTP-310.md) — `ARCHIVED`
 - [RTP-315 — Concurrencia real de sesiones con BrowserContext aislados](./RTP-315.md) — `BACKLOG`
 - [RTP-320 — Consumer integration smoke and distribution contract](./RTP-320.md) — `BACKLOG`
 - [RTP-325 — Gate de compatibilidad antes de retirar Recipient aliases](./RTP-325.md) — `BACKLOG`
@@ -165,19 +165,19 @@ unit.
 - [RTP-340 — Brain/docs/index/evidence closeout and context regeneration](./RTP-340.md) — `BACKLOG`
 - [RTP-345 — Reconciliar Brain, contexto y paths persistentes](./RTP-345.md) — `BACKLOG`
 - [RTP-350 — Congelar baseline de execution runtime](./RTP-350.md) — `BACKLOG`
-- [RTP-355 — Crear autoridad canónica de interaction/completion](./RTP-355.md) — `BACKLOG`
-- [RTP-360 — Cerrar User assignment y value scope](./RTP-360.md) — `BACKLOG`
+- [RTP-355 — Crear autoridad canónica de interaction/completion](./RTP-355.md) — `PARTIAL`
+- [RTP-360 — Cerrar User assignment y value scope](./RTP-360.md) — `PARTIAL`
 - [RTP-365 — Cerrar RuntimeExecutionContext y aislamiento](./RTP-365.md) — `BACKLOG`
-- [RTP-370 — Implementar ExecutionPlan genérico de LAB](./RTP-370.md) — `BACKLOG`
-- [RTP-375 — Validar ejecución secuencial](./RTP-375.md) — `BACKLOG`
-- [RTP-380 — Validar ejecución paralela](./RTP-380.md) — `BACKLOG`
-- [RTP-385 — Cerrar mixed execution y conflictos shared](./RTP-385.md) — `BACKLOG`
-- [RTP-390 — Cerrar massive fan-out](./RTP-390.md) — `BACKLOG`
-- [RTP-395 — Definir execution result y PDF artifacts](./RTP-395.md) — `BACKLOG`
-- [RTP-400 — Implementar canonical PDF merge](./RTP-400.md) — `BACKLOG`
-- [RTP-405 — Cerrar append, multi-document y massive bundle](./RTP-405.md) — `BACKLOG`
-- [RTP-410 — Crear all-schema execution/completion harness](./RTP-410.md) — `BACKLOG`
-- [RTP-415 — Cerrar browser, performance, privacy y parity gates](./RTP-415.md) — `BACKLOG`
+- [RTP-370 — Implementar ExecutionPlan genérico de LAB](./RTP-370.md) — `PARTIAL`
+- [RTP-375 — Validar ejecución secuencial](./RTP-375.md) — `PARTIAL`
+- [RTP-380 — Validar ejecución paralela](./RTP-380.md) — `PARTIAL`
+- [RTP-385 — Cerrar mixed execution y conflictos shared](./RTP-385.md) — `PARTIAL`
+- [RTP-390 — Cerrar massive fan-out](./RTP-390.md) — `PARTIAL`
+- [RTP-395 — Definir execution result y PDF artifacts](./RTP-395.md) — `PARTIAL`
+- [RTP-400 — Implementar canonical PDF merge](./RTP-400.md) — `PARTIAL`
+- [RTP-405 — Cerrar append, multi-document y massive bundle](./RTP-405.md) — `ARCHIVED`
+- [RTP-410 — Crear all-schema execution/completion harness](./RTP-410.md) — `PARTIAL`
+- [RTP-415 — Cerrar browser, performance, privacy y parity gates](./RTP-415.md) — `ARCHIVED`
 - [RTP-420 — Release y closeout del runtime](./RTP-420.md) — `BACKLOG`
 - [RTP-425 — Reconciliar baseline de configuración y runtime](./RTP-425.md) — `PASS`
 - [RTP-430 — Inventariar capabilities ejecutables](./RTP-430.md) — `PASS`
@@ -197,11 +197,11 @@ unit.
 - [RTP-500 — Crear codec durable de ExecutionResult](./RTP-500.md) — `PASS`
 - [RTP-505 — Endurecer composición PDF](./RTP-505.md) — `PASS`
 - [RTP-510 — Conectar multi-user al Form real](./RTP-510.md) — `PASS`
-- [RTP-515 — Crear all-schema stress harness dinámico](./RTP-515.md) — `BACKLOG`
+- [RTP-515 — Crear all-schema stress harness dinámico](./RTP-515.md) — `PASS`
 - [RTP-520 — Auditar parity contra referencia DocuSign](./RTP-520.md) — `PASS`
 - [RTP-525 — Migrar compatibilidad Recipient hacia User](./RTP-525.md) — `PASS`
-- [RTP-530 — Retirar legacy y dead code de forma segura](./RTP-530.md) — `PARTIAL`
-- [RTP-535 — Reducir duplicación y aumentar genericidad](./RTP-535.md) — `BACKLOG`
+- [RTP-530 — Retirar legacy y dead code de forma segura](./RTP-530.md) — `PASS`
+- [RTP-535 — Reducir duplicación y aumentar genericidad](./RTP-535.md) — `PASS`
 - [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](./RTP-540.md) — `PASS`
 - [RTP-545 — Release autónomo y closeout](./RTP-545.md) — `PARTIAL`
 

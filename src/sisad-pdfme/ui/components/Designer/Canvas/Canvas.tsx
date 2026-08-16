@@ -99,7 +99,7 @@ import {
 } from '@sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver';
 import { applyPageMetadataDataset } from '@sisad-pdfme/ui/components/shared/pageMetadata';
 import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
-import { buildRecipientNameMap, buildRecipientColorMap } from '@sisad-pdfme/ui/collaborationContext';
+import { buildRecipientNameMap, buildRecipientColorMap, normalizeCollaborationRecipients } from '@sisad-pdfme/ui/collaborationContext';
 import CanvasOverlayManager from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager';
 import CanvasContextMenu from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu';
 import CanvasStateOverlay from '@sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay';
@@ -522,14 +522,27 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
 
   const safeCollaborationContext = useMemo<EffectiveCollaborationContext | undefined>(() => {
     if (!collaborationContext) return undefined;
-    const recipientOptions = collaborationContext.recipientOptions ?? [];
-    const recipientNameMap = collaborationContext.recipientNameMap ?? buildRecipientNameMap(recipientOptions as any);
-    const recipientColorMap = collaborationContext.recipientColorMap ?? buildRecipientColorMap(recipientOptions as any);
+    const rawRecipientOptions = collaborationContext.recipientOptions ?? [];
+    const recipientOptions = normalizeCollaborationRecipients(rawRecipientOptions);
+    const recipientNameMap = collaborationContext.recipientNameMap ?? buildRecipientNameMap(recipientOptions);
+    const recipientColorMap =
+      collaborationContext.recipientColorMap ??
+      buildRecipientColorMap(
+        recipientOptions.map((r) => ({
+          id: r.id,
+          label: r.name || r.tag || r.id,
+          color: r.color ?? undefined,
+          email: r.email ?? undefined,
+          company: r.company ?? undefined,
+          title: r.title ?? undefined,
+        })),
+      );
     return {
-      ...(collaborationContext as Partial<EffectiveCollaborationContext>),
+      ...collaborationContext,
+      recipientOptions,
       recipientNameMap,
       recipientColorMap,
-    } as unknown as EffectiveCollaborationContext;
+    } as EffectiveCollaborationContext;
   }, [collaborationContext]);
 
   /**

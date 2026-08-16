@@ -133,8 +133,9 @@ const invokeOptionalCallback = (
   // accept parameters (e.g., onMove expects direction/step/event).
   try {
     if (typeof callback === 'function') {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (callback as any)();
+      // Invoke with defensive check for known callback signatures
+      // onMove expects args; many callbacks are zero-arg — attempt zero-arg call.
+      (callback as (...args: unknown[]) => unknown)();
     }
   } catch {
     // swallow errors: consumers should provide safe handlers. This
@@ -223,7 +224,7 @@ const executeShortcutAction = (
     const command = current.selectionCommands?.[selectionCommand];
     // Some selection command functions may require arguments; invoke
     // defensively to avoid compile-time signature mismatches.
-    if (typeof command === 'function') (command as any)();
+    if (typeof command === 'function') (command as (...args: unknown[]) => unknown)();
     return true;
   }
   if (shortcut.id === 'delete') return Boolean(current.selectionCommands?.deleteSelection?.());

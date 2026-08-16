@@ -377,7 +377,7 @@ const createCommentUpsertLifecycleEvent = (
   type,
   schemaId: schema.id,
   comment: toSchemaComment(comment),
-  anchor: comment.anchor ? toSchemaCommentAnchor(comment.anchor, (comment as any)?.id) : undefined,
+  anchor: comment.anchor ? toSchemaCommentAnchor(comment.anchor, comment.id) : undefined,
   pageIndex,
   ...metadata,
 });
@@ -388,8 +388,8 @@ const collectCommentLifecycleEvents = (
   metadata: Pick<CollaborationEvent, 'actorId' | 'sessionId' | 'timestamp'>,
   pageIndex?: number,
 ): CollaborationEvent[] => {
-  const previousComments = Array.isArray(before.comments) ? toSchemaCommentsArray(before.comments as any[]) : [];
-  const nextComments = Array.isArray(after.comments) ? toSchemaCommentsArray(after.comments as any[]) : [];
+  const previousComments = Array.isArray(before.comments) ? toSchemaCommentsArray(before.comments as unknown[]) : [];
+  const nextComments = Array.isArray(after.comments) ? toSchemaCommentsArray(after.comments as unknown[]) : [];
   const previousById = new Map(previousComments.map((comment) => [comment.id, comment] as const));
   const nextById = new Map(nextComments.map((comment) => [comment.id, comment] as const));
   const events: CollaborationEvent[] = [];
@@ -590,8 +590,8 @@ export const applyCollaborationEvent = (
     for (let i = 0; i < nextSchemasList.length; i += 1) {
       const updated = updateSchemaOnPage(i, event.schemaId, (schema) => {
         if (isStaleEvent(schema, event.timestamp)) return schema;
-        const currentComments = Array.isArray(schema.comments) ? toSchemaCommentsArray(schema.comments as any[]) : [];
-        const currentAnchors = Array.isArray(schema.commentAnchors) ? toSchemaAnchorsArray(schema.commentAnchors as any[]) : [];
+        const currentComments = Array.isArray(schema.comments) ? toSchemaCommentsArray(schema.comments as unknown[]) : [];
+        const currentAnchors = Array.isArray(schema.commentAnchors) ? toSchemaAnchorsArray(schema.commentAnchors as unknown[]) : [];
         const { comments, anchors, commentsCount } = buildCommentCollectionsFromEvent(
           event,
           currentComments,
@@ -1194,7 +1194,7 @@ export const createYjsCollaborationProvider = ({
                 typeof event.schema.commentsCount === 'number'
                   ? event.schema.commentsCount
                   : Array.isArray(event.schema.comments)
-                    ? (event.schema.comments as any[]).length
+                    ? (event.schema.comments as unknown[]).length
                     : 0,
             });
           }
@@ -1310,7 +1310,7 @@ export const createYjsCollaborationProvider = ({
             typeof commentsCount === 'number'
               ? commentsCount
               : Array.isArray(comments)
-                ? (comments as any[]).length
+                ? (comments as unknown[]).length
                 : 0,
         });
       }

@@ -23,6 +23,7 @@
 - [ADR RTP-018 — One integrator in a shared working tree](./ADR-RTP-018-ONE-INTEGRATOR-SAME-WORKTREE.md)
 - [ADR RTP-019 — Evidence-driven task status](./ADR-RTP-019-EVIDENCE-DRIVEN-TASK-STATUS.md)
 - [ADR RTP-020 — Domain task folders](./ADR-RTP-020-DOMAIN-TASK-FOLDERS.md)
+- [ADR RTP-021 — Dos generaciones de task-cards en la misma campaña](./ADR-RTP-021-TWO-GENERATION-CARD-OVERLAP.md)
 - [ADR — Centralize repository tooling](./ADR-TOOLING-CENTRALIZATION.md)
 
 > Managed index. Update source documents, not this list.

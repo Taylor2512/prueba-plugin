@@ -188,9 +188,9 @@ export const createCommentCommandEvent = (
  * Construye una entrada top-level de comentario para snapshots globales.
  */
 export const buildTopLevelCommentEntry = (entry: TopLevelPdfCommentEntry): TopLevelPdfCommentEntry => ({
-  id: String(entry?.id || (entry as any)?.comment?.id || (entry as any)?.anchor?.id || ''),
-  anchor: ensureAnchorId((entry as any)?.anchor || (entry as any)?.comment?.anchor || {}) as TopLevelPdfCommentEntry['anchor'],
-  comment: ensureComment((entry as any)?.comment || entry) as unknown as TopLevelPdfCommentEntry['comment'],
+  id: String(entry?.id || entry.comment?.id || entry.anchor?.id || ''),
+  anchor: ensureAnchorId(entry.anchor || entry.comment?.anchor || {}) as TopLevelPdfCommentEntry['anchor'],
+  comment: ensureComment(entry.comment || entry) as TopLevelPdfCommentEntry['comment'],
 });
 
 /* ------------------------------------------------------------------ */
@@ -297,7 +297,10 @@ export const createPageStructureCommand = <T extends Record<string, unknown>>({
   meta = {},
 }: PageStructureCommandArgs<T>): { command: Command } | { rejection: PageStructureRejection } => {
   const result = applyPageStructure(pages, operation, pageIndex);
-  if (!result.ok) return { rejection: (result as any).reason };
+  if (!result.ok) {
+    const failure = result as Extract<PageStructureResult<T>, { ok: false }>;
+    return { rejection: failure.reason };
+  }
 
   const before = cloneDeep(pages);
   const after = cloneDeep(result.pages);

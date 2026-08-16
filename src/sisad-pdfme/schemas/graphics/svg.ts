@@ -103,13 +103,13 @@ const svgSchema: Plugin<SVGSchema> = {
     const pageHeight = page.getHeight();
     const { width, height, position } = convertForPdfLayoutProps({ schema, pageHeight });
     const { x, y } = position;
-    // pdf-lib typings may not expose drawSvg in this environment; call via
-    // any to support multiple versions at runtime while keeping type-checker
-    // happy.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if ((page as any).drawSvg) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (page as any).drawSvg(value, { x, y: y + height, width, height });
+    // pdf-lib typings may not expose `drawSvg` in this environment. Narrow to
+    // a minimal interface instead of using `any` so the intent is explicit.
+    const pageWithDraw = page as unknown as {
+      drawSvg?: (svg: string, opts?: { x: number; y: number; width: number; height: number }) => Promise<void> | void;
+    };
+    if (typeof pageWithDraw.drawSvg === 'function') {
+      await pageWithDraw.drawSvg(value, { x, y: y + height, width, height });
     }
   },
   propPanel: {

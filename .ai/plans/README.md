@@ -6,6 +6,8 @@
 - [Orden AIARCH](./AIARCH-EXECUTION-ORDER.md)
 - [Orden de ejecución — COREUX](./COREUX-EXECUTION-ORDER.md)
 - [Plan — AI structure cleanup](./PLAN_AI_STRUCTURE_CLEANUP.md)
+- [Plan de continuidad — Orden de ejecución, gates y aceptación](./PLAN_CONTINUIDAD_INTEGRACION_SIMPLE_EJECUCION.md)
+- [Plan de continuidad — Problemas funcionales y arquitectura objetivo](./PLAN_CONTINUIDAD_INTEGRACION_SIMPLE_PROBLEMAS.md)
 - [Plan de continuidad — Integración simple y portable de SISAD PDFME](./PLAN_CONTINUIDAD_INTEGRACION_SIMPLE_SISAD_PDFME.md)
 - [Plan maestro — SISAD PDFME Core UX, funcionalidades, eventos y efectos](./PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME.md)
 - [Plan Maestro — SISAD-PDFME Runtime Platform](./PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md)

@@ -1,14 +1,11 @@
 import { ensureAnchorId, ensureComment } from '@sisad-pdfme/common/collaboration';
-import type {
-  SchemaComment,
-  SchemaCommentAnchor,
-  SchemaCommentReply,
-} from '@sisad-pdfme/ui/designerEngine';
+import { normalizeText } from '@sisad-pdfme/shared/text';
+import type { SchemaComment, SchemaCommentAnchor } from '@sisad-pdfme/ui/designerEngine';
 
-const genId = (prefix = 'anchor') =>
+const genId = () =>
   typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
     ? crypto.randomUUID()
-    : `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    : `anchor-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
 export const toSchemaCommentAnchor = (
   anchor: unknown,
@@ -26,29 +23,33 @@ export const toSchemaCommentAnchor = (
   };
 };
 
-// Replies carry the same required `id`/`text` contract as comments, so they need
-// the same normalization instead of being passed through as `unknown[]`.
-export const toSchemaCommentReply = (reply: unknown): SchemaCommentReply => {
-  const r = (reply ?? {}) as Partial<SchemaCommentReply>;
-  return {
-    ...r,
-    id: String(r.id || genId('reply')),
-    text: typeof r.text === 'string' ? r.text : '',
-    resolved: Boolean(r.resolved),
-  };
-};
-
 export const toSchemaComment = (comment: unknown): SchemaComment => {
   const cRaw = ensureComment(comment as unknown);
   const c = (cRaw ?? {}) as Partial<SchemaComment>;
-  const id = String(c.id || genId('comment'));
+  const id = String(c.id || genId());
   const anchor = c.anchor ? toSchemaCommentAnchor(c.anchor, id) : undefined;
+  const normalizeNullableString = (value: unknown) => {
+    const n = normalizeText(value);
+    return n || null;
+  };
+
+  const replies = Array.isArray(c.replies) ? (c.replies as unknown[]).map((r) => ({
+    id: String((r as Record<string, unknown>)?.id || genId()),
+    text: String((r as Record<string, unknown>)?.text || ''),
+    authorId: (r as Record<string, unknown>)?.authorId as string | undefined,
+    authorName: (r as Record<string, unknown>)?.authorName as string | undefined,
+    authorColor: normalizeNullableString((r as Record<string, unknown>)?.authorColor),
+    timestamp: typeof (r as Record<string, unknown>)?.timestamp === 'number' ? (r as Record<string, unknown>)?.timestamp as number : undefined,
+    createdAt: typeof (r as Record<string, unknown>)?.createdAt === 'number' ? (r as Record<string, unknown>)?.createdAt as number : undefined,
+    resolved: Boolean((r as Record<string, unknown>)?.resolved),
+  })) : [];
+
   return {
     ...c,
     id,
     anchor,
-    text: typeof c.text === 'string' ? c.text : '',
-    replies: Array.isArray(c.replies) ? c.replies.map((r) => toSchemaCommentReply(r)) : [],
+    text: String(c.text || ''),
+    replies,
     resolved: Boolean(c.resolved),
   };
 };
@@ -56,7 +57,6 @@ export const toSchemaComment = (comment: unknown): SchemaComment => {
 export default {
   toSchemaCommentAnchor,
   toSchemaComment,
-  toSchemaCommentReply,
 };
 
 export const toSchemaCommentsArray = (comments?: unknown[]): SchemaComment[] =>

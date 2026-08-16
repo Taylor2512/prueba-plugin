@@ -298,22 +298,10 @@ export const BooleanSwitchWidget = ({
   />
 );
 
-// Export a minimal wrapper that matches the `FormSelect` contract used across
-// inspector widgets to simplify substitutions when a Select is needed. This
-// keeps the file focused on primitives without introducing Select logic here.
-export type MinimalSelectProps<T = string | number> = {
-  id?: string;
-  name?: string;
-  value?: T | undefined;
-  options?: Array<{ label: React.ReactNode; value: T }>;
-  onChange?: (next: T) => void;
-  placeholder?: string;
-};
-
-export const MinimalSelect = <T extends string | number = string>(_props: MinimalSelectProps<T>) => {
-  // Intentionally a no-op placeholder. Real selects must use `FormSelect`.
-  return null;
-};
+// `MinimalSelect` vivía aquí como placeholder no-op: un componente exportado que
+// devolvía `null` a propósito, con un comentario que remitía a `FormSelect`. Sin
+// consumidores, y peligroso si alguno hubiera aparecido —habría renderizado nada
+// en silencio—. `FormSelect` es la única autoridad de select del inspector.
 
 /** Props del estado vacío visual del inspector. */
 type InspectorEmptyStateProps = {

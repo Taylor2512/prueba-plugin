@@ -75,44 +75,71 @@ export type SisadPdfmePreviewRuntimeProps = {
  * duplicating logic. The adapters translate the common props object into
  * `PreviewProps` and return an instance compatible with `RuntimeInstanceLike`.
  */
-const adapterFor = (UIClass: any) =>
+const adapterFor = (UIClass: new (props: unknown) => unknown) =>
   class Adapter {
-    private inner: any;
-    constructor(props: any) {
+    private inner: unknown;
+    constructor(props: unknown) {
       // The UI classes expect `PreviewProps`/`DesignerProps` with domContainer
       // renamed to `domContainer` in schema; the hook provides `domContainer`.
-      this.inner = new UIClass({ ...props });
+      this.inner = new UIClass({ ...(props as Record<string, unknown>) });
     }
     destroy() {
-      if (typeof this.inner.destroy === 'function') return this.inner.destroy();
+      const inner = this.inner as Record<string, unknown> | null;
+      const fn = inner?.destroy;
+      if (typeof fn === 'function') return (fn as (...args: unknown[]) => unknown).call(inner);
+      return undefined;
     }
-    updateOptions(options: any) {
-      if (typeof this.inner.getOptions === 'function') {
-        // many classes expose runtime API; prefer calling public updater if exists
-        if (typeof this.inner.setOptions === 'function') return this.inner.setOptions(options);
+    updateOptions(options: unknown) {
+      const inner = this.inner as Record<string, unknown> | null;
+      if (!inner) return undefined;
+      const getOptions = inner.getOptions;
+      const setOptions = inner.setOptions;
+      const update = inner.updateOptions;
+      if (typeof getOptions === 'function') {
+        if (typeof setOptions === 'function') return (setOptions as (...args: unknown[]) => unknown).call(inner, options);
       }
-      if (typeof this.inner.updateOptions === 'function') return this.inner.updateOptions(options);
+      if (typeof update === 'function') return (update as (...args: unknown[]) => unknown).call(inner, options);
+      return undefined;
     }
-    updateTemplate(template: any) {
-      if (typeof this.inner.updateTemplate === 'function') return this.inner.updateTemplate(template);
+    updateTemplate(template: unknown) {
+      const inner = this.inner as Record<string, unknown> | null;
+      const fn = inner?.updateTemplate;
+      if (typeof fn === 'function') return (fn as (...args: unknown[]) => unknown).call(inner, template);
+      return undefined;
     }
-    setInputs(inputs: any) {
-      if (typeof this.inner.setInputs === 'function') return this.inner.setInputs(inputs);
+    setInputs(inputs: unknown) {
+      const inner = this.inner as Record<string, unknown> | null;
+      const fn = inner?.setInputs;
+      if (typeof fn === 'function') return (fn as (...args: unknown[]) => unknown).call(inner, inputs);
+      return undefined;
     }
     fitToWidth() {
-      return typeof this.inner.fitToWidth === 'function' ? this.inner.fitToWidth() : undefined;
+      const inner = this.inner as Record<string, unknown> | null;
+      const fn = inner?.fitToWidth;
+      return typeof fn === 'function' ? (fn as () => unknown).call(inner) : undefined;
     }
     fitToPage() {
-      return typeof this.inner.fitToPage === 'function' ? this.inner.fitToPage() : undefined;
+      const inner = this.inner as Record<string, unknown> | null;
+      const fn = inner?.fitToPage;
+      return typeof fn === 'function' ? (fn as () => unknown).call(inner) : undefined;
     }
-    onChangeTemplate(cb: any) {
-      if (typeof this.inner.onChangeTemplate === 'function') return this.inner.onChangeTemplate(cb);
+    onChangeTemplate(cb: (t: unknown) => void) {
+      const inner = this.inner as Record<string, unknown> | null;
+      const fn = inner?.onChangeTemplate;
+      if (typeof fn === 'function') return (fn as (h: (t: unknown) => unknown) => unknown).call(inner, cb);
+      return undefined;
     }
-    onChangeInput(cb: any) {
-      if (typeof this.inner.onChangeInput === 'function') return this.inner.onChangeInput(cb);
+    onChangeInput(cb: (p: unknown) => void) {
+      const inner = this.inner as Record<string, unknown> | null;
+      const fn = inner?.onChangeInput;
+      if (typeof fn === 'function') return (fn as (h: (p: unknown) => unknown) => unknown).call(inner, cb);
+      return undefined;
     }
-    onPageChange(cb: any) {
-      if (typeof this.inner.onPageChange === 'function') return this.inner.onPageChange(cb);
+    onPageChange(cb: (p: unknown) => void) {
+      const inner = this.inner as Record<string, unknown> | null;
+      const fn = inner?.onPageChange;
+      if (typeof fn === 'function') return (fn as (h: (p: unknown) => unknown) => unknown).call(inner, cb);
+      return undefined;
     }
   } as unknown as UsePdfmeRuntimeInstanceConfig['runtime']['Designer'];
 

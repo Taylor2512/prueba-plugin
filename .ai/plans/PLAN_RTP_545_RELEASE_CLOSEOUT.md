@@ -9,14 +9,17 @@ Pasos iniciales (slices)
 1) UI Select props (Slice A)
  - Archivos: `SchemaConnectionsWidget.tsx`, `SchemaCollaborationWidget.tsx`, `InspectorPrimitives.tsx`.
  - Cambios: añadir `name?: string` a los tipos `SelectProps` wrapper o crear `FormSelect` que acepte `name` y reutilizar en estos componentes.
+ - Status: COMPLETE (FormSelect exists and consumers forward `name`; duplicated owner selector consolidated in SchemaCollaborationWidget)
 
 2) normalizeOptionGroupOptions (Slice B)
  - Archivo: `SchemaOptionsEditor.tsx` y `schemas/options/*`.
  - Cambios: centralizar casteo `unknown[] as OptionItem[]` dentro de `normalizeOptionGroupOptions` y usarlo.
+ - Status: IN_PROGRESS (normalizer `normalizeOptionsFromSource` implemented; verify all callers use `normalizeOptionGroupOptions` and remove casts)
 
 3) Zod schema alignment (Slice C)
  - Archivos: `shared/schemaMigration.ts`, `schemas/*`.
  - Cambios: admitir `id?: string` en schemas de UI cuando safe y actualizar productores.
+ - Status: TODO (requires schema contract review; low-risk edits prioritized after tests)
 
 Evidencia/PR policy
 

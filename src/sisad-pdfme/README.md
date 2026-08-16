@@ -12,7 +12,6 @@
 - `comments/`
 - [common](./common/README.md)
 - `config/`
-- `context/`
 - `contracts/`
 - [converter](./converter/README.md)
 - `devtools/`

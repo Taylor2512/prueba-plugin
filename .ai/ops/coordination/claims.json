@@ -4,19 +4,8 @@
     "task": "RTP-545",
     "mode": "write",
     "paths": [
-      "src/sisad-pdfme/schemas/checkboxGroup/index.ts",
-      "src/sisad-pdfme/schemas/radioGroup/index.ts",
-      "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx"
+      ".ai/plans/PLAN_RTP_545_RELEASE_CLOSEOUT.md"
     ],
-    "startedAt": "2026-08-15T21:19:31.689Z"
-  },
-  "claude": {
-    "agent": "claude",
-    "task": "RTP-530",
-    "mode": "write",
-    "paths": [
-      "src/sisad-pdfme/common/assetFetch.ts,src/sisad-pdfme/common/helper.ts,src/sisad-pdfme/schemas/text/helper.ts,src/sisad-pdfme/schemas/text/pdfRender.ts,src/sisad-pdfme/runtime/usePdfmeArtifacts.ts,reports/runtime-platform/evidence"
-    ],
-    "startedAt": "2026-08-15T23:23:41.839Z"
+    "startedAt": "2026-08-16T01:45:32.435Z"
   }
 }

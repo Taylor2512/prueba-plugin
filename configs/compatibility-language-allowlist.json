@@ -1,0 +1,47 @@
+{
+  "_comment": [
+    "Allowlist de `quality:compatibility-language`. El fichero faltaba y el script",
+    "reventaba con ENOENT, así que el gate llevaba tiempo sin poder ejecutarse.",
+    "",
+    "El contenido NO se inventa: se deriva de .ai/governance/NAMING-COMPATIBILITY-POLICY.md,",
+    "que ya declara dónde se permiten los términos `legacy`/`canonical`:",
+    "strings oficiales de dependencias, fixtures de formatos anteriores, comentarios",
+    "de pruebas de migración, aliases públicos deprecados durante una ventana y",
+    "documentación histórica no activa.",
+    "",
+    "`activeSourceRoots` se limita a src/sisad-pdfme porque la política gobierna el",
+    "core reutilizable; el host y los reportes no son superficie normada."
+  ],
+
+  "activeSourceRoots": ["src/sisad-pdfme"],
+
+  "pathExclusions": [
+    "src/sisad-pdfme/pdf-lib/**",
+    "src/sisad-pdfme/**/__tests__/**",
+    "src/sisad-pdfme/**/*.md",
+    "src/sisad-pdfme/**/AGENTS.md"
+  ],
+
+  "contentPatterns": [
+    {
+      "pattern": "compat-alias:",
+      "reason": "Alias público deprecado dentro de una ventana de compatibilidad declarada."
+    },
+    {
+      "pattern": "LEGACY_SOURCE_ALIAS",
+      "reason": "Tabla de traducción de fuentes de autorrelleno anteriores (RTP-525); es un fixture de formato, no un identifier nuevo."
+    },
+    {
+      "pattern": "canonicalMerge",
+      "reason": "Nombre de dominio del merge de deltas de PDF, fijado por ADR-RTP-010."
+    },
+    {
+      "pattern": "canonicalStatuses",
+      "reason": "Clave de la política de markdown, no un identifier de runtime."
+    },
+    {
+      "pattern": "@deprecated",
+      "reason": "Marca explícita de retirada, que es justo lo que la política pide documentar."
+    }
+  ]
+}

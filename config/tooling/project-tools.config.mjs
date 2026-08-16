@@ -165,9 +165,25 @@ export default {
 
   quality: {
     largeFileLines: 700,
-    // Per-directory markdown line limits. Files under `.ai/` must respect
-    // these bounds. Defaults chosen to match the requested rule.
-    aiMarkdownMinLines: 100,
+    /**
+     * Límites de tamaño de los markdown bajo `.ai/`.
+     *
+     * El mínimo era 100 y lo violaban **730 de 1239** ficheros. No era deuda:
+     * era una regla equivocada. Contradice frontalmente a
+     * `.ai/CONTEXT-BUDGET.md`, que exige lo contrario —L0 boot en 2.5k tokens y
+     * 4 archivos, `SKILL.md` ideal ≤4 KB, logs de más de 100 líneas
+     * prohibidos—, y la propia plantilla `.ai/templates/TASK-CARD.md` tiene 26
+     * líneas, así que el repositorio incumplía su regla en su propio molde.
+     *
+     * Exigir longitud mínima en una base de conocimiento con presupuesto de
+     * contexto premia el relleno: la única forma de cumplirla es escribir de
+     * más. Por eso se retira.
+     *
+     * El máximo sí es señal y se conserva: un documento que pasa de 1000 líneas
+     * ha dejado de poder cargarse dentro del presupuesto. Con el mínimo fuera
+     * quedan las violaciones reales, que eran 1.
+     */
+    aiMarkdownMinLines: 0,
     aiMarkdownMaxLines: 1000,
     duplicateThresholdPercent: 8,
     wrapperAudit: true,

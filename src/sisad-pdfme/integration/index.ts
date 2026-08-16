@@ -247,6 +247,219 @@ export {
   generateUniqueSchemaName,
 } from '@sisad-pdfme/schemas';
 export { createSchemaController } from '@sisad-pdfme/integration/schemaController';
+
+/**
+ * Primitivas de runtime de la campaña Runtime Platform.
+ *
+ * Estaban construidas y probadas pero **no eran alcanzables**: ningún barrel
+ * público las exportaba, así que un host no podía importarlas y `knip
+ * --production` las declaraba inalcanzables desde los entrypoints.
+ *
+ * Su evidencia lo decía una y otra vez —«primitive completada, falta conectar a
+ * producción»—, y la conexión que faltaba es ésta: la superficie de integración.
+ * No se consumen internamente a propósito. Varias evidencias declaran que el
+ * scheduling y el lifecycle son responsabilidad del host/adaptador, así que el
+ * core las ofrece y no decide por él.
+ */
+export {
+  projectUserCompletion,
+  projectDocumentCompletion,
+  projectExecutionCompletion,
+} from '@sisad-pdfme/runtime/completionProjection';
+export type {
+  CompletionStatus,
+  CompletionSchemaRecord,
+  UserCompletionProjection,
+  DocumentCompletionProjection,
+  ExecutionCompletionProjection,
+} from '@sisad-pdfme/runtime/completionProjection';
+
+export {
+  validateExecutionPlan,
+  isExecutionStageComplete,
+  resolveRunnableStages,
+  fanOutExecutionUnits,
+} from '@sisad-pdfme/runtime/executionOrchestration';
+export type {
+  ExecutionIsolation,
+  ExecutionCompletionPolicy,
+  ExecutionUnit,
+  ExecutionStage,
+  ExecutionPlan,
+  ExecutionOrchestrationState,
+} from '@sisad-pdfme/runtime/executionOrchestration';
+
+export {
+  toArtifactReference,
+  ArtifactByteStore,
+  createArtifactByteStore,
+  createExecutionResult,
+  roundTripExecutionResult,
+} from '@sisad-pdfme/runtime/executionResult';
+export type {
+  ExecutionArtifactReference,
+  ExecutionResult,
+} from '@sisad-pdfme/runtime/executionResult';
+
+export { mergeCanonicalDeltas } from '@sisad-pdfme/runtime/canonicalMerge';
+export type {
+  CanonicalSchemaDelta,
+  CanonicalMergeConflict,
+  CanonicalMergeResult,
+} from '@sisad-pdfme/runtime/canonicalMerge';
+
+export {
+  composePdfResults,
+  PdfCompositionError,
+  PDF_COMPOSITION_MODES,
+  PDF_COMPOSITION_ORDERINGS,
+  DEFAULT_COMPOSITION_LIMITS,
+} from '@sisad-pdfme/runtime/pdfComposition';
+export type {
+  PdfExecutionArtifact,
+  PdfCompositionMode,
+  PdfCompositionOrdering,
+  PdfCompositionLimits,
+  PdfCompositionPlan,
+  PdfCompositionManifest,
+  PdfCompositionResult,
+} from '@sisad-pdfme/runtime/pdfComposition';
+
+export { createSaveLifecycle } from '@sisad-pdfme/runtime/saveLifecycle';
+export type {
+  SaveStatus,
+  SaveState,
+  SaveResult,
+  SaveLifecycleOptions,
+  SaveLifecycle,
+} from '@sisad-pdfme/runtime/saveLifecycle';
+
+export {
+  buildSchemaRuntimeManifest,
+  indexSchemaRuntimeManifest,
+} from '@sisad-pdfme/runtime/schemaManifest';
+export type { SchemaRuntimeManifest } from '@sisad-pdfme/runtime/schemaManifest';
+
+export {
+  resolveSchemaRuntimeMetadata,
+  SCHEMA_RUNTIME_FAMILIES,
+} from '@sisad-pdfme/schemas/schemaRuntimeMetadata';
+export type {
+  SchemaRuntimeMetadata,
+  SchemaInteractionKind,
+  SchemaCompletionPolicy,
+  SchemaCodecId,
+  SchemaDataBinding,
+} from '@sisad-pdfme/schemas/schemaRuntimeMetadata';
+
+export {
+  artifactStatusToExportEvent,
+  ARTIFACT_EVENT_NAMES,
+} from '@sisad-pdfme/runtime/artifactEvents';
+export type { ArtifactStatusEvent, ArtifactEvent } from '@sisad-pdfme/runtime/artifactEvents';
+
+export {
+  normalizeRuntimeSchemaAssignments,
+  migrateLegacySchemaAssignments,
+  getAssignedSchemaUids,
+} from '@sisad-pdfme/runtime/assignments';
+export type {
+  RuntimeSchemaAssignments,
+  LegacySchemaAssignments,
+  AssignmentMigrationOptions,
+} from '@sisad-pdfme/runtime/assignments';
+
+/**
+ * Fuentes de datos remotas. `DataSourceRuntime` resuelve carreras, aislamiento
+ * por scope y single-flight; sin exportarlo, el host no tenía forma de usarlo.
+ */
+export {
+  DataSourceRuntime,
+  createDataSourceRuntime,
+  dataCacheKey,
+} from '@sisad-pdfme/integration/data/dataSourceRuntime';
+export type {
+  DataScope,
+  DataQuery,
+  DataRequestStatus,
+  DataResult,
+  DataSourceExecutor,
+  DataSourceRuntimeOptions,
+} from '@sisad-pdfme/integration/data/dataSourceRuntime';
+
+export {
+  detectPointerKind,
+  resolveDataPointer,
+  resolveScalarPointer,
+  resolveCollectionPointer,
+} from '@sisad-pdfme/integration/data/dataPointer';
+export type {
+  DataPointerKind,
+  DataPointerResultKind,
+  DataPointerResult,
+} from '@sisad-pdfme/integration/data/dataPointer';
+
+export {
+  isOptionValue,
+  toOptionValue,
+  optionValuesEqual,
+  optionDisplayValue,
+  resolveSelectedOption,
+  DEFAULT_SELECTED_MISSING_POLICY,
+} from '@sisad-pdfme/integration/data/optionValue';
+export type {
+  OptionValue,
+  ResolvedOption,
+  SelectedMissingPolicy,
+  SelectedResolution,
+} from '@sisad-pdfme/integration/data/optionValue';
+
+export { getSchemaValueCodec, SCHEMA_CODEC_IDS } from '@sisad-pdfme/schemas/values/schemaValueCodec';
+export type { SchemaValueCodec } from '@sisad-pdfme/schemas/values/schemaValueCodec';
+
+/**
+ * Adopción de firma: identidad, estilo y método de adquisición.
+ *
+ * Mismo caso que las primitivas de runtime: el clúster
+ * `signatureAdoptionProfile → signatureStyleVariants → signatureIdentity` sólo
+ * se importaba a sí mismo. Es capability de producto —el host necesita
+ * resolver iniciales, estilo activo y flujo de adopción— y no había forma de
+ * alcanzarla.
+ */
+export {
+  normalizeSignerName,
+  deriveSignerInitials,
+  normalizeSignerInitials,
+  buildSignatureProfileKey,
+  MAX_SIGNER_INITIALS,
+} from '@sisad-pdfme/schemas/signature/signatureIdentity';
+
+export {
+  resolveSisadSignatureAdoption,
+  parseSisadSignatureAdoption,
+  readSisadSignatureAdoption,
+  writeSisadSignatureAdoption,
+  clearSisadSignatureAdoption,
+  resolveActiveSignatureStyleId,
+  SISAD_SIGNATURE_PROFILE_VERSION,
+} from '@sisad-pdfme/schemas/signature/signatureAdoptionProfile';
+export type { SisadSignatureAdoptionProfile } from '@sisad-pdfme/schemas/signature/signatureAdoptionProfile';
+
+export {
+  SISAD_SIGNATURE_STYLES,
+  DEFAULT_SISAD_SIGNATURE_STYLE_ID,
+  isSisadSignatureStyleId,
+  getSisadSignatureStyle,
+  isSisadAdoptionFlow,
+  resolveSignatureArtifactKind,
+} from '@sisad-pdfme/schemas/signature/signatureStyleVariants';
+export type {
+  SignatureArtifactKind,
+  SisadSignatureStyle,
+} from '@sisad-pdfme/schemas/signature/signatureStyleVariants';
+
+export { validateSignatureSchema } from '@sisad-pdfme/schemas/signature/validation';
+export type { SignatureValidationResult } from '@sisad-pdfme/schemas/signature/validation';
 import * as pdfjsLib from 'pdfjs-dist//build/pdf';
 import PDFJSWorkerUrl from 'pdfjs-dist//build/pdf.worker.min.js?url';
 import { getBuiltInFields as getBuiltInFieldsLocal } from '@sisad-pdfme/schemas';

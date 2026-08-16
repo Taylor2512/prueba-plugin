@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
 import { createSaveLifecycle } from "@sisad-pdfme/runtime/saveLifecycle";
+import { createInstanceEventDispatcher } from "@sisad-pdfme/runtime/instanceEventDispatcher";
 
 const deferred = () => {
   let resolve;
@@ -17,20 +18,13 @@ describe("createSaveLifecycle", () => {
     const persist = vi.fn().mockResolvedValue(undefined);
     const states = [];
     const events = [];
+    const dispatcher = createInstanceEventDispatcher({ instanceId: 'test' });
+    dispatcher.subscribe((e) => events.push([e.name, e.payload, undefined]));
+
     const lifecycle = createSaveLifecycle({
       persist,
       onStateChange: (state) => states.push(state),
-      dispatcher: {
-        // Minimal fake dispatcher implementing the InstanceEventDispatcher shape
-        emit: (name, payload, meta) => {
-          events.push([name, payload, meta]);
-          return { name, payload, meta } as any;
-        },
-        dispatch: (event, _hostCallbackPayload) => event as any,
-        subscribe: () => () => undefined,
-        listenerCount: () => 0,
-        clear: () => undefined,
-      },
+      dispatcher,
     });
 
     const result = await lifecycle.save({ id: "snapshot-1" });
