@@ -67,6 +67,12 @@ Composite, Strategy
 	Commit: `2fc72653`.
 	Gates: `npx tsc --noEmit` (ok), `npm run lint --silent` (ok), `node scripts/ai/architecture/reconcile-task-statuses.mjs . --apply` (no drift).
 
+## Closure
+
+- Status updated to `PASS` and evidence recorded in `reports/core-ux/evidence/COREUX-034.md`.
+
+**Closure rationale:** Editor unification slice meets acceptance criteria; canonical helpers in use; typecheck and lint pass; representative tests updated. See evidence file for commands and results.
+
 Confirmar rutas antes de editar. No crear un archivo nuevo si la responsabilidad
 ya existe bajo otro nombre.
 

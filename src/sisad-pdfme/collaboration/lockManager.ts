@@ -241,7 +241,7 @@ export class LockManager {
 }
 
 /** Factory para crear un LockManager con configuración por defecto */
-export function createLockManager(
+function createLockManager(
   currentUser: CurrentUserInfo,
   options?: {
     ttlConfig?: Partial<LockTTLConfig>;

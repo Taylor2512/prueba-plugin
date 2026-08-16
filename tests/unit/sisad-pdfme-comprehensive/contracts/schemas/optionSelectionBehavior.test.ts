@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { matchOptionId, resolveSingleOptionSelection, resolveMultiOptionSelection, toggleMultiOptionSelection, clampMultiOptionSelection, normalizeStringOptions, resolveCompactSelection } from '@sisad-pdfme/schemas/options/optionSelectionBehavior';
+import { ensureAtLeastOneOption } from '@sisad-pdfme/schemas/options/optionModel';
 const options=[{optionId:'a',label:'A',value:'value-a'},{optionId:'b',label:'B',value:'value-b'},{optionId:'c',label:'C',value:'value-c'}] as any[];
 describe('option behavior',()=>{
   it('match id',()=>expect(matchOptionId('b',options)).toBe('b'));
@@ -8,7 +9,7 @@ describe('option behavior',()=>{
   it('single direct',()=>expect(resolveSingleOptionSelection('c',options)).toBe('c'));
   it('single fallback',()=>expect(resolveSingleOptionSelection('x',options,'b')).toBe('b'));
   it('single first option fallback',()=>expect(resolveSingleOptionSelection('x',options,'z')).toBe('a'));
-  it('single empty options fallback',()=>expect(resolveSingleOptionSelection('x',[])).toBe('option_1'));
+  it('single empty options fallback',()=>expect(resolveSingleOptionSelection('x',[])).toBe(ensureAtLeastOneOption([])[0].optionId));
   it('multi filters unknown',()=>expect(resolveMultiOptionSelection(['a','x','c'],options)).toEqual(['a','c']));
   it('multi fallback filters unknown',()=>expect(resolveMultiOptionSelection([],options,['b','x'])).toEqual(['b']));
   it('toggle add',()=>expect(toggleMultiOptionSelection(['a'],'b',options)).toEqual(['a','b']));

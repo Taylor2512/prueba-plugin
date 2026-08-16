@@ -5,7 +5,7 @@
  *
  * Maneja dos modelos de almacenamiento:
  * - comentarios embebidos en schema.comments / schema.commentAnchors;
- * - comentarios top-level en template.pdfComments y alias de compatibilidad __commentAnchors.
+ * - comentarios top-level en template.pdfComments.
  *
  * Regla arquitectónica:
  * Este módulo solo manipula datos. No debe pintar CommentsRail ni depender de UI.
@@ -26,35 +26,19 @@ import {
 /** Identidad mínima del autor usada para comments y anchors. */
 type Identity = { authorId?: string | null; authorName?: string | null; authorColor?: string | null };
 
-/** Template extendido con almacenamiento principal y alias de compatibilidad de comentarios top-level. */
+/** Template con la colección canónica de comentarios top-level. */
 type TemplateWithComments = Template & {
   pdfComments?: TopLevelPdfCommentEntry[];
-  __commentAnchors?: Array<{ id: string; anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
 };
 
-/** Obtiene comentarios top-level desde pdfComments o desde el alias de compatibilidad __commentAnchors. */
+/** Obtiene comentarios top-level desde su colección canónica. */
 const getTopLevelEntries = (template: TemplateWithComments): TopLevelPdfCommentEntry[] => {
-  if (Array.isArray(template.pdfComments)) {
-    return template.pdfComments as TopLevelPdfCommentEntry[];
-  }
-  if (Array.isArray(template.__commentAnchors)) {
-    return template.__commentAnchors.map((entry) => ({
-      id: String(entry?.id || entry?.comment?.id || entry?.anchor?.id || ''),
-      anchor: ensureAnchorId(entry?.anchor || entry?.comment?.anchor || {}) as TopLevelPdfCommentEntry['anchor'],
-      comment: ensureComment(entry?.comment || {}) as unknown as PdfComment,
-    }));
-  }
-  return [];
+  return Array.isArray(template.pdfComments) ? template.pdfComments : [];
 };
 
-/** Sincroniza comentarios top-level en pdfComments y __commentAnchors para compatibilidad. */
+/** Normaliza comentarios top-level en su colección canónica. */
 const setTopLevelEntries = (template: TemplateWithComments, entries: TopLevelPdfCommentEntry[]) => {
   template.pdfComments = entries.map((entry) => ({
-    id: entry.id,
-    anchor: ensureAnchorId(entry.anchor || {}) as TopLevelPdfCommentEntry['anchor'],
-    comment: ensureComment(entry.comment || {}) as unknown as PdfComment,
-  }));
-  template.__commentAnchors = template.pdfComments.map((entry) => ({
     id: entry.id,
     anchor: ensureAnchorId(entry.anchor || {}) as TopLevelPdfCommentEntry['anchor'],
     comment: ensureComment(entry.comment || {}) as unknown as PdfComment,
@@ -209,7 +193,7 @@ export const upsertTopLevelComment = (
   return next;
 };
 
-/** Elimina un comentario top-level por id y mantiene sincronizados pdfComments/__commentAnchors. */
+/** Elimina un comentario top-level por id. */
 export const removeTopLevelComment = (template: Template, commentId: string): Template => {
   const next = cloneDeep(template) as TemplateWithComments;
   const currentEntries = getTopLevelEntries(next);
@@ -309,17 +293,4 @@ export const filterCommentsByFileAndPage = (template: Template, fileId?: string 
   });
 
   return results;
-};
-
-export default {
-  findSchemaByUid,
-  addAnchorToSchema,
-  addCommentToSchema,
-  addCommentWithAnchorToTemplate,
-  upsertTopLevelComment,
-  removeTopLevelComment,
-  updateCommentInSchema,
-  deleteCommentFromSchema,
-  resolveCommentInSchema,
-  filterCommentsByFileAndPage,
 };

@@ -745,7 +745,7 @@ export const resolveRuntimeSchemaAccess = (
  * @param collaborationContext Contexto colaborativo actual.
  * @returns Contadores de schemas visibles, editables y bloqueados.
  */
-export const countRuntimeAccess = (
+const countRuntimeAccess = (
   schemas: SchemaForUI[],
   mode: RuntimeMode,
   collaborationContext?: CollabCtx,

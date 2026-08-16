@@ -8,7 +8,7 @@ import { createRecipientsAdapter } from '@sisad-pdfme/adapters/recipientsAdapter
 import { createDocumentsAdapter } from '@sisad-pdfme/adapters/documentsAdapter';
 import { createPersistenceAdapter } from '@sisad-pdfme/adapters/persistenceAdapter';
 import { createSignatureProviderAdapter } from '@sisad-pdfme/adapters/signatureProviderAdapter';
-import { migrateSisadPdfmeConfig } from '@sisad-pdfme/config/configMigration';
+import { normalizeSisadPdfmeConfig } from '@sisad-pdfme/config/configNormalizer';
 import { defaultSisadPdfmeConfig, defaultSisadPdfmeVisibilityConfig } from '@sisad-pdfme/config/defaultSisadPdfmeConfig';
 import type {
   ResolvedSisadPdfmeConfig,
@@ -117,13 +117,13 @@ const resolveLayoutPresetOptions = (
 export const resolveSisadPdfmeConfig = (
   input: SisadPdfmeGlobalConfig = {},
 ): ResolvedSisadPdfmeConfig => {
-  const migratedInput = migrateSisadPdfmeConfig(input).config;
-  const baseConfig = deepMerge(defaultSisadPdfmeConfig as unknown as Record<string, unknown>, migratedInput as Record<string, unknown>) as ResolvedSisadPdfmeConfig['config'];
+  const normalizedInput = normalizeSisadPdfmeConfig(input).config;
+  const baseConfig = deepMerge(defaultSisadPdfmeConfig as unknown as Record<string, unknown>, normalizedInput as Record<string, unknown>) as ResolvedSisadPdfmeConfig['config'];
   const ui = normalizeUiConfig(input.ui);
   /**
-   * `migrateSisadPdfmeConfig` ya funde el alias deprecado `ui.visibility`
+   * el normalizador ya resuelve la precedencia de `ui.visibility`
    * dentro de `visibility` dando prioridad a la ruta canónica, así que
-   * `migratedInput.visibility` es la autoridad completa.
+   * `normalizedInput.visibility` es la autoridad completa.
    *
    * Antes se volvía a mezclar `ui.visibility` NORMALIZADA encima —es decir,
    * rellenada con TODOS los defaults—, de modo que cualquier `visibility`
@@ -132,7 +132,7 @@ export const resolveSisadPdfmeConfig = (
    */
   const mergedVisibility = deepMerge(
     defaultSisadPdfmeVisibilityConfig as unknown as Record<string, unknown>,
-    migratedInput.visibility as Record<string, unknown> | undefined,
+    normalizedInput.visibility as Record<string, unknown> | undefined,
   ) as ResolvedSisadPdfmeConfig['visibility'];
   const layoutOptions = resolveLayoutPresetOptions(ui, baseConfig);
   const hiddenCatalogTypes = Object.entries(mergedVisibility.schemas.catalog || {})

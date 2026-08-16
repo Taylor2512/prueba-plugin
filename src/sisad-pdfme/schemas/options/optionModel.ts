@@ -37,7 +37,7 @@ export const normalizeOptionId = (value: unknown, index: number): string => {
   return normalized || `option_${index + 1}`;
 };
 
-export const normalizeOptionsFromSource = (
+const normalizeOptionsFromSource = (
   source: Array<string | OptionItem> | undefined,
   options: NormalizeOptionGroupSourceOptions = {},
 ): OptionItem[] => {

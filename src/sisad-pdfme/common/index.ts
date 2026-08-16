@@ -17,7 +17,6 @@ export type {
   CommandExecutionContext,
   CommandObserverEvent,
   CommandObserverPayload,
-  SchemaAssignments as ContractSchemaAssignments,
   SchemaIdentity,
   TopLevelPdfCommentEntry,
 } from '@sisad-pdfme/contracts';

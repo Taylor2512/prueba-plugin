@@ -7,7 +7,7 @@
  * - validar idiomas, diccionario, modo de render, tamaños y colores;
  * - validar comments/anchors;
  * - validar Schema, Template, Options y Props públicas;
- * - permitir passthrough donde el runtime necesita compatibilidad con plugins/extensiones.
+ * - permitir passthrough donde el runtime necesita extensiones declaradas.
  *
  * Nota:
  * Este archivo es fuente de verdad runtime. Mantenerlo alineado con types.ts.
@@ -240,8 +240,6 @@ export const CustomPdf = z.union([z.string(), ArrayBufferSchema, Uint8ArraySchem
 /** Contrato de PDF base, custom o blank. */
 export const BasePdf = z.union([CustomPdf, BlankPdf]);
 
-// Keyed structure kept only for import compatibility with older payloads.
-export const SchemaPageArrayByKey = z.array(z.record(z.string(), Schema));
 export const SchemaPageArray = z.array(z.array(Schema));
 
 /** Contrato runtime del template completo. */

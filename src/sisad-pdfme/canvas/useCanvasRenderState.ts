@@ -107,7 +107,7 @@ export function useCanvasRenderState(input: CanvasRenderStateInput): CanvasRende
 /**
  * Pure (non-hook) version for use outside React components.
  */
-export function deriveCanvasRenderState(input: CanvasRenderStateInput): CanvasRenderState {
+function deriveCanvasRenderState(input: CanvasRenderStateInput): CanvasRenderState {
   const {
     schemaCount,
     pageCursor,

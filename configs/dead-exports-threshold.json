@@ -1,15 +1,15 @@
 {
-  "threshold": 590,
+  "threshold": 316,
   "baseline": {
-    "files": 140,
-    "unusedExports": 348,
-    "unusedTypes": 242,
-    "total": 590,
-    "possiblyDynamic": 25,
-    "staticCandidates": 323
+    "files": 113,
+    "unusedExports": 155,
+    "unusedTypes": 161,
+    "total": 316,
+    "possiblyDynamic": 12,
+    "staticCandidates": 143
   },
   "provenance": {
     "note": "Knip es evidencia, no autoridad de borrado. Este número solo puede bajar.",
-    "generatedAt": "2026-08-16T00:30:46.942Z"
+    "generatedAt": "2026-08-16T05:30:16.002Z"
   }
 }

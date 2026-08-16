@@ -5,7 +5,6 @@
 
 - [record](./record/README.md)
 - [tasks](./tasks/README.md)
-- [Plan — SISAD-PDFME runtime hardening V2](./PLAN.md)
 - [Boot — SISAD-PDFME runtime hardening](./PROMPT-BOOT.md)
 - [Master prompt — SISAD-PDFME runtime hardening V2](./PROMPT-MASTER.md)
 - [Task ledger — SISAD-PDFME RUNTIME HARDENING V2](./TASK-LEDGER.md)
@@ -23,7 +22,6 @@
 
 ### Notas
 
-- [Plan — SISAD-PDFME runtime hardening V2](./PLAN.md)
 - [Boot — SISAD-PDFME runtime hardening](./PROMPT-BOOT.md)
 - [Master prompt — SISAD-PDFME runtime hardening V2](./PROMPT-MASTER.md)
 - [Task ledger — SISAD-PDFME RUNTIME HARDENING V2](./TASK-LEDGER.md)

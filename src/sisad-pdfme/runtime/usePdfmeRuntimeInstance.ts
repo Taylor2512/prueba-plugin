@@ -56,7 +56,7 @@ type RuntimeInputsMirror = Record<string, unknown>[] | null;
  * Ante cualquier forma que no sepa comparar devuelve `false`, de modo que el
  * fallo empuje de más y nunca de menos.
  */
-export const inputsMatchRuntimeMirror = (
+const inputsMatchRuntimeMirror = (
   inputs: RuntimeInputsLike,
   mirror: RuntimeInputsMirror,
 ): boolean => {

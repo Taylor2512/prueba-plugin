@@ -509,7 +509,7 @@ export const ensureAnchorId = (anchor?: unknown): CommentAnchor & { id: string }
     timestamp: Number((anchor as Record<string, unknown>)?.timestamp) || undefined,
   });
 
-export const ensureAnchorsArray = (anchors?: unknown[]): Array<CommentAnchor & { id: string }> =>
+const ensureAnchorsArray = (anchors?: unknown[]): Array<CommentAnchor & { id: string }> =>
   Array.isArray(anchors) ? anchors.map((a) => ensureAnchorId(a)) : [];
 
 /**
@@ -544,7 +544,7 @@ export const ensureComment = (comment?: unknown): SchemaComment & { id: string }
   } as SchemaCommentDraft) as SchemaComment & { id: string };
 };
 
-export const ensureCommentsArray = (comments?: unknown[]): Array<SchemaComment & { id: string }> =>
+const ensureCommentsArray = (comments?: unknown[]): Array<SchemaComment & { id: string }> =>
   Array.isArray(comments) ? comments.map((c) => ensureComment(c)) : [];
 
 /**

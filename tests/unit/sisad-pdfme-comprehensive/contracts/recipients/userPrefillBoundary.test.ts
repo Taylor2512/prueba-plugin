@@ -1,13 +1,5 @@
 /**
- * Frontera User / Recipient en el autorrelleno (RTP-525).
- *
- * `User` es el concepto del core reusable; `Recipient` pertenece al host. La
- * regla es asimétrica a propósito: se ACEPTA `recipient.*` al leer —las
- * plantillas ya persistidas lo llevan dentro de su JSON— pero se EMITE siempre
- * `user.*` al escribir.
- *
- * Romper la lectura rompería documentos existentes; seguir emitiendo el alias
- * perpetuaría la fuga del vocabulario del host dentro del core.
+ * Frontera User en el autorrelleno (RTP-525).
  */
 import { describe, expect, it } from 'vitest';
 import type { SchemaForUI } from '@sisad-pdfme/common';
@@ -79,28 +71,7 @@ describe('espacio canónico', () => {
   });
 });
 
-describe('compatibilidad de lectura con plantillas legacy', () => {
-  it('acepta recipient.* y lo resuelve al canónico', () => {
-    const alias = {
-      'recipient.name': 'user.name',
-      'recipient.email': 'user.email',
-      'recipient.company': 'user.company',
-      'recipient.title': 'user.title',
-    } as const;
-    Object.entries(alias).forEach(([legacy, canonico]) => {
-      expect(normalizePrefillSource(legacy), legacy).toBe(canonico);
-      expect(resolvePrefillSource(schema({ prefillSource: legacy })), legacy).toBe(canonico);
-    });
-  });
-
-  it('una plantilla legacy se autorrellena igual que una nueva', () => {
-    const legacy = applyRecipientPrefill(schema({ prefillSource: 'recipient.email' }), usuario);
-    const nueva = applyRecipientPrefill(schema({ prefillSource: 'user.email' }), usuario);
-    expect(legacy.content).toBe('ada@example.test');
-    expect(legacy.content).toBe(nueva.content);
-    expect(legacy.readOnly).toBe(true);
-  });
-
+describe('resolución por tipo', () => {
   it('el fallback por tipo también es canónico', () => {
     expect(resolvePrefillSource(schema({ type: 'fullName' }))).toBe('user.name');
     expect(resolvePrefillSource(schema({ type: 'emailAddress' }))).toBe('user.email');

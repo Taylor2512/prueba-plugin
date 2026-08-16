@@ -46,7 +46,7 @@ export type SisadPdfmeDispatcherDiagnostic = {
  * histórico tienen `onX`. El resto vive únicamente en el canal interno.
  * `designer.error` y `save.failed` comparten `onError` a propósito.
  */
-export const EVENT_TO_HOST_CALLBACK: Partial<
+const EVENT_TO_HOST_CALLBACK: Partial<
   Record<SisadPdfmeEventName, HostCallbackName>
 > = {
   'designer.ready': 'onReady',
@@ -61,9 +61,6 @@ export const EVENT_TO_HOST_CALLBACK: Partial<
   'document.changed': 'onDocumentChange',
   'signature.requested': 'onSignatureRequest',
 };
-
-/** @deprecated Use EVENT_TO_HOST_CALLBACK. */
-export const _TO__CALLBACK = EVENT_TO_HOST_CALLBACK;
 
 /** Callbacks que el host entrega como props del wrapper. */
 export type SisadPdfmeHostCallbacks = Partial<
@@ -85,8 +82,6 @@ export type EmitContext = {
   source?: string;
   /** Datos ricos solo para el adapter `onX` del host; no viajan en el evento. */
   hostCallbackPayload?: Record<string, unknown>;
-  /** @deprecated Use hostCallbackPayload. */
-  Payload?: Record<string, unknown>;
 };
 
 export type InstanceEventDispatcher = {
@@ -185,7 +180,7 @@ export const createInstanceEventDispatcher = (
   return {
     emit(name, payload, context) {
       const event = createSisadPdfmeEvent(name, payload, { instanceId, ...context });
-      dispatch(event as SisadPdfmeAnyEvent, context?.hostCallbackPayload ?? context?.Payload);
+      dispatch(event as SisadPdfmeAnyEvent, context?.hostCallbackPayload);
       return event;
     },
     dispatch,

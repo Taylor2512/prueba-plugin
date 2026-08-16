@@ -23,14 +23,6 @@
  */
 
 /**
- * Contratos de assignments de schemas.
- *
- * `UserSchemaAssignments` representa el formato normalizado actual.
- * `SchemaAssignments` conserva compatibilidad con snapshots antiguos.
- */
-export type { SchemaAssignments, UserSchemaAssignments } from '@sisad-pdfme/contracts/assignments';
-
-/**
  * Contratos base del sistema de comandos.
  *
  * Incluye el comando reversible, su contexto de ejecución y los eventos

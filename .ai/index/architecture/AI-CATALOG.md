@@ -75,7 +75,6 @@
 - [SISAD-PDFME — AUTONOMOUS CONSOLIDATION TO PRODUCTION](../../architecture/SISAD-PRODUCTION-OBJECTIVE.md) — `.ai/architecture/SISAD-PRODUCTION-OBJECTIVE.md`
 - [archive](../../archive/README.md) — `.ai/archive/README.md`
 - [campaigns](../../archive/campaigns/README.md) — `.ai/archive/campaigns/README.md`
-- [Plan — SISAD-PDFME runtime hardening V2](../../archive/campaigns/runtime-hardening/PLAN.md) — `.ai/archive/campaigns/runtime-hardening/PLAN.md`
 - [Boot — SISAD-PDFME runtime hardening](../../archive/campaigns/runtime-hardening/PROMPT-BOOT.md) — `.ai/archive/campaigns/runtime-hardening/PROMPT-BOOT.md`
 - [Master prompt — SISAD-PDFME runtime hardening V2](../../archive/campaigns/runtime-hardening/PROMPT-MASTER.md) — `.ai/archive/campaigns/runtime-hardening/PROMPT-MASTER.md`
 - [runtime-hardening](../../archive/campaigns/runtime-hardening/README.md) — `.ai/archive/campaigns/runtime-hardening/README.md`

@@ -6,16 +6,6 @@
  * consume: traduce esa fuente al dato real del Usuario propietario del schema
  * y devuelve el parche a aplicar sobre el schema.
  *
- * ## Frontera User / Recipient (RTP-525)
- *
- * `User` es el concepto del core reusable. `Recipient` pertenece al host y
- * sólo sobrevive aquí como ALIAS de compatibilidad: las plantillas ya
- * persistidas llevan `prefillSource: 'recipient.email'` dentro de su JSON, así
- * que dejar de aceptarlo rompería documentos existentes.
- *
- * La regla es asimétrica a propósito: se ACEPTA `recipient.*` al leer, pero se
- * EMITE siempre `user.*` al escribir.
- *
  * Reglas:
  * - Solo se autorrellena cuando hay un valor real. Un campo sin fuente resuelta
  *   se deja editable y vacío; bloquear un campo vacío dejaría al destinatario
@@ -39,21 +29,6 @@ const PREFILL_SOURCE_FIELD = {
 } as const;
 
 export type UserPrefillSource = keyof typeof PREFILL_SOURCE_FIELD;
-
-/**
- * Alias legacy → canónico.
- *
- * Sólo se consulta al LEER. Nada en el core vuelve a escribir `recipient.*`.
- */
-const LEGACY_SOURCE_ALIAS: Record<string, UserPrefillSource> = {
-  'recipient.name': 'user.name',
-  'recipient.email': 'user.email',
-  'recipient.company': 'user.company',
-  'recipient.title': 'user.title',
-};
-
-/** Compatibilidad de tipo para consumidores previos al rename. */
-export type RecipientPrefillSource = UserPrefillSource;
 
 /** Tipos de schema que se autorrellenan aunque no declaren `prefillSource`. */
 const TYPE_FALLBACK_SOURCE: Record<string, UserPrefillSource> = {
@@ -82,9 +57,6 @@ export const resolvePrefillSource = (schema: PrefillableSchema | null): UserPref
   const declared = normalizeText(schema.prefillSource);
   if (declared) {
     if (declared in PREFILL_SOURCE_FIELD) return declared as UserPrefillSource;
-    // Plantilla anterior al rename: se acepta y se resuelve al canónico.
-    const alias = LEGACY_SOURCE_ALIAS[declared];
-    if (alias) return alias;
   }
   const type = normalizeText(schema.type).toLowerCase();
   return TYPE_FALLBACK_SOURCE[type] || null;
@@ -95,7 +67,7 @@ export const normalizePrefillSource = (value: unknown): UserPrefillSource | null
   const declared = normalizeText(value);
   if (!declared) return null;
   if (declared in PREFILL_SOURCE_FIELD) return declared as UserPrefillSource;
-  return LEGACY_SOURCE_ALIAS[declared] || null;
+  return null;
 };
 
 /**
@@ -160,6 +132,3 @@ export const resolveSchemaPrefillRecipient = (
   if (!ownerId) return activeRecipient;
   return recipientOptions.find((recipient) => recipient.id === ownerId) || activeRecipient;
 };
-
-/** Alias de compatibilidad para consumidores previos al rename (RTP-525). */
-export const resolveRecipientPrefillValue = resolveUserPrefillValue;

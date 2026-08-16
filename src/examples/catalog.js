@@ -79,8 +79,6 @@ const toCamelCase = (value) =>
 
 export const getSchemaRoute = (slug) => `${FAMILY_ROUTE_CONFIG.basePath}/${slug}`;
 
-export const PAGE_ROUTES = EXAMPLE_ROUTE_MAP;
-
 export const ROUTE_PATHS = Object.freeze(
   Object.fromEntries(Object.entries(EXAMPLE_ROUTE_MAP).map(([key, path]) => [toCamelCase(key), path])),
 );

@@ -35,7 +35,7 @@ export const DEFAULT_GRID_STEP_MM = 10;
 export const DEFAULT_GRID_SUBDIVISIONS = 2;
 
 /** Umbral de captura por defecto, en mm. */
-export const DEFAULT_GRID_SNAP_THRESHOLD_MM = 1;
+const DEFAULT_GRID_SNAP_THRESHOLD_MM = 1;
 
 export type PageSizeMm = { width: number; height: number };
 export type PointMm = { x: number; y: number };

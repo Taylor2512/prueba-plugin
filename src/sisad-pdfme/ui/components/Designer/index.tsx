@@ -4593,13 +4593,7 @@ const TemplateEditor = ({
             topLevelComments={
               ((visibleTemplate as unknown as {
                 pdfComments?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
-                __commentAnchors?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
-              }).pdfComments) ||
-              ((visibleTemplate as unknown as {
-                pdfComments?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
-                __commentAnchors?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
-              }).__commentAnchors) ||
-              []
+              }).pdfComments) || []
             }
             activeDocumentId={activeDocumentId}
             changeSchemas={changeSchemas}

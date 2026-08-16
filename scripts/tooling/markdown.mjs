@@ -34,7 +34,7 @@ export function firstHeading(text) {
   return match ? match[1].trim() : "";
 }
 
-export function normalizeMarkdownForHash(text, config) {
+function normalizeMarkdownForHash(text, config) {
   const { frontmatter, body } = splitFrontmatter(text);
   const volatile = config.markdown.volatileFrontmatterKeys;
 
@@ -61,7 +61,7 @@ export function normalizedContentHash(text, config) {
   return sha256Buffer(normalizeMarkdownForHash(text, config));
 }
 
-export function stripManagedNavigation(text, config) {
+function stripManagedNavigation(text, config) {
   const start = config.markdown.managedNavigationStart;
   const end = config.markdown.managedNavigationEnd;
 
@@ -136,7 +136,7 @@ function requireExists(file) {
   return fs.existsSync(file);
 }
 
-export function canonicalizeSegment(segment, config) {
+function canonicalizeSegment(segment, config) {
   const ext = path.extname(segment);
   let stem = ext ? segment.slice(0, -ext.length) : segment;
   const hiddenPrefix = stem.startsWith(".") && !stem.startsWith("..") ? "." : "";
@@ -200,11 +200,11 @@ export function words(text) {
     .filter(Boolean);
 }
 
-export function roughTokens(text) {
+function roughTokens(text) {
   return Math.ceil(text.length / 4);
 }
 
-export function normalizeMarkdownForSimilarity(text) {
+function normalizeMarkdownForSimilarity(text) {
   return splitFrontmatter(text).body
     .toLowerCase()
     .replace(/```[\s\S]*?```/g, " ")

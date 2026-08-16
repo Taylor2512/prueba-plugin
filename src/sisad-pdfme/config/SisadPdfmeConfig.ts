@@ -61,7 +61,7 @@ export type SisadPdfmeController = {
   explainConfiguration(): {
     raw: SisadPdfmeGlobalConfig;
     issues: unknown[];
-    migrationIssues: unknown[];
+    normalizationIssues: unknown[];
     selectors: unknown;
   };
   getSelectedSchemaIds(): string[];
@@ -311,7 +311,7 @@ export type SisadPdfmeGlobalConfig = {
    *
    *  marca rutas canónicas (los aliases `ui.visibility`, `ui.density`,
    * `ui.sidebars.*` y `collaboration.activeRecipientId` quedan deprecated y se
-   * migran con `migrateSisadPdfmeConfig`). Ausente = compatibilidad .
+   * normalizan mediante el normalizador de configuración. Ausente = valor por defecto.
    */
   configVersion?: 1 | 2;
   app?: {

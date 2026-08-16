@@ -22,7 +22,7 @@ const readOnlyField = (): PropPanelSchema => ({
   span: 12,
 });
 
-export const lockedField = (): PropPanelSchema => ({
+const lockedField = (): PropPanelSchema => ({
   title: 'Bloqueado',
   type: 'boolean',
   widget: 'switch',
@@ -44,21 +44,21 @@ export const basicsFields = (): Record<string, PropPanelSchema> => ({
 
 // ── Content ────────────────────────────────────────────────────────────────
 
-export const placeholderTextField = (label = 'Placeholder'): PropPanelSchema => ({
+const placeholderTextField = (label = 'Placeholder'): PropPanelSchema => ({
   title: label,
   type: 'string',
   widget: 'input',
   span: 24,
 });
 
-export const defaultValueField = (label = 'Valor por defecto'): PropPanelSchema => ({
+const defaultValueField = (label = 'Valor por defecto'): PropPanelSchema => ({
   title: label,
   type: 'string',
   widget: 'input',
   span: 24,
 });
 
-export const maxLengthField = (): PropPanelSchema => ({
+const maxLengthField = (): PropPanelSchema => ({
   title: 'Máximo caracteres',
   type: 'number',
   widget: 'inputNumber',
@@ -66,14 +66,14 @@ export const maxLengthField = (): PropPanelSchema => ({
   props: { min: 0, precision: 0 },
 });
 
-export const maskedField = (): PropPanelSchema => ({
+const maskedField = (): PropPanelSchema => ({
   title: 'Ocultar con asteriscos',
   type: 'boolean',
   widget: 'switch',
   span: 12,
 });
 
-export const fixedWidthField = (): PropPanelSchema => ({
+const fixedWidthField = (): PropPanelSchema => ({
   title: 'Anchura fija',
   type: 'boolean',
   widget: 'switch',
@@ -139,7 +139,7 @@ export const dataLabelFields = (): Record<string, PropPanelSchema> => ({
 
 // ── Validation ─────────────────────────────────────────────────────────────
 
-export const validationTypeField = (): PropPanelSchema => ({
+const validationTypeField = (): PropPanelSchema => ({
   title: 'Tipo de validación',
   type: 'string',
   widget: 'select',
@@ -305,7 +305,7 @@ const editableByRecipientField = (): PropPanelSchema => ({
 });
 
 /** Convenience: sender permissions block */
-export const permissionsFields = (): Record<string, PropPanelSchema> => ({
+const permissionsFields = (): Record<string, PropPanelSchema> => ({
   mandatory: mandatoryField(),
   editableBySender: editableBySenderField(),
   editableByRecipient: editableByRecipientField(),

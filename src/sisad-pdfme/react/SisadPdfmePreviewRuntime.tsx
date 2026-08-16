@@ -10,7 +10,7 @@ import type {
 import { useSisadPdfmeController } from '@sisad-pdfme/react/useSisadPdfmeController';
 import { usePdfmeRuntimeInstance } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
 import type { UsePdfmeRuntimeInstanceConfig } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
-import { migrateTemplate, checkTemplate } from '@sisad-pdfme/common/helper';
+import { checkTemplate } from '@sisad-pdfme/common/helper';
 import { createDefaultTemplate } from '@sisad-pdfme/templates/createDefaultTemplate';
 import Form from '@sisad-pdfme/ui/Form';
 import Viewer from '@sisad-pdfme/ui/Viewer';
@@ -176,11 +176,6 @@ export const SisadPdfmePreviewRuntime = ({
     try {
       if (!template || typeof template !== 'object') return createDefaultTemplate();
       const cloned = cloneDeep(template) as Template;
-      try {
-        migrateTemplate(cloned as Template);
-      } catch {
-        // swallow migration errors — we'll fall back to defaults below
-      }
       if (!cloned.schemas || !Array.isArray(cloned.schemas) || cloned.schemas.length === 0) {
         const def = createDefaultTemplate();
         cloned.schemas = def.schemas as Template['schemas'];

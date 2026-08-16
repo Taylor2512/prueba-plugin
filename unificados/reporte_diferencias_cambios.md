@@ -1679,7 +1679,7 @@ index 6c7a650..9d3e87d 100644
    const commitRadio = (nextOptions: OptionItem[], desiredSelected?: string) => {
 -    const safeOptions = nextOptions.length ? nextOptions : (buildDefaultOptionGroupOptions('Opción', 1) as OptionItem[]);
 +    const safeOptions = nextOptions.length ? nextOptions : buildDefaultOptionGroupOptions('Opción', 1);
-     const fallback = safeOptions[0]?.optionId || 'option_1';
+   const fallback = safeOptions[0]?.optionId || ensureAtLeastOneOption(safeOptions)[0].optionId;
      const nextSelected =
        desiredSelected && safeOptions.some((option) => option.optionId === desiredSelected)
 @@ -228,7 +228,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
@@ -12118,7 +12118,7 @@ index 5e6f716..6bcac7e 100644
  - **Lenguaje:** `typescript`
  - **Líneas:** `78`
 @@ -57141,9 +59065,9 @@ export const ensureAtLeastOneOption = (options: OptionItem[]) =>
-   options.length ? options : [{ optionId: 'option_1', label: 'Opción 1' }];
+   options.length ? options : ensureAtLeastOneOption(options);
  ```
  
 -<a id="file-0372"></a>

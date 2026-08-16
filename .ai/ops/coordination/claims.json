@@ -1,27 +1,22 @@
 {
   "copilot": {
     "agent": "copilot",
-    "task": "canonicalize-options",
+    "task": "RTP-545",
     "mode": "write",
     "paths": [
-      "src/sisad-pdfme/schemas/options/optionModel.ts",
-      "src/sisad-pdfme/schemas/radioGroup/index.ts",
-      "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx"
+      "src/sisad-pdfme/integration/index.ts",
+      "src/sisad-pdfme/runtime/completionProjection.ts",
+      "src/sisad-pdfme/runtime/executionOrchestration.ts",
+      "src/sisad-pdfme/runtime/executionResult.ts",
+      "src/sisad-pdfme/runtime/canonicalMerge.ts",
+      "src/sisad-pdfme/runtime/pdfComposition.ts",
+      "src/sisad-pdfme/runtime/saveLifecycle.ts",
+      "src/sisad-pdfme/runtime/schemaManifest.ts",
+      "src/sisad-pdfme/schemas/schemaRuntimeMetadata.ts",
+      "src/sisad-pdfme/runtime/artifactEvents.ts",
+      "src/sisad-pdfme/runtime/assignments.ts",
+      "src/sisad-pdfme/integration/data/dataSourceRuntime.ts"
     ],
-    "startedAt": "2026-08-16T04:01:11.145Z"
-  },
-  "codex": {
-    "agent": "codex",
-    "task": "remove-shared-compatibility-barrels",
-    "mode": "write",
-    "paths": [
-      "src/sisad-pdfme/shared/index.ts",
-      "src/sisad-pdfme/shared/schemaMigration.ts",
-      "tests/unit/sisad-pdfme-comprehensive/files/shared/index.ts.file.test.ts",
-      "tests/unit/sisad-pdfme-comprehensive/files/shared/schemaMigration.ts.file.test.ts",
-      "tests/unit/sisad-pdfme-comprehensive/manifest/source-files.json",
-      "tests/unit/sisad-pdfme-comprehensive/contracts/architecture/everySourceHasDedicatedTest.test.ts"
-    ],
-    "startedAt": "2026-08-16T04:02:14.516Z"
+    "startedAt": "2026-08-16T05:29:07.969Z"
   }
 }

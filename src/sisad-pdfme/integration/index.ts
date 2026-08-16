@@ -178,7 +178,7 @@ export {
   img2pdf as convertImagesToPdf,
   pdf2img as getPdfPageImages,
   pdf2size as getPdfPageSizes,
-} from '@sisad-pdfme/converter';
+} from '@sisad-pdfme/converter/index';
 export {
   buildRuntimeOptions,
   buildDesignerRuntimeOptions,
@@ -186,6 +186,46 @@ export {
   buildRuntimeViewerOptions,
   DEFAULT_RUNTIME_THEME_TOKEN,
 } from '@sisad-pdfme/runtime/options';
+export { createSchemaCapabilityResolver } from '@sisad-pdfme/config';
+export {
+  LockManager,
+  DEFAULT_LOCK_TTL,
+} from '@sisad-pdfme/collaboration/lockManager';
+export type {
+  SchemaLock,
+  LockTTLConfig,
+  LockResult,
+  CurrentUserInfo,
+} from '@sisad-pdfme/collaboration/lockManager';
+export { createSchemaLockGuard } from '@sisad-pdfme/collaboration/schemaLockGuard';
+export type {
+  SchemaUidResolver,
+  SchemaLockGuardOptions,
+} from '@sisad-pdfme/collaboration/schemaLockGuard';
+export {
+  lockSchema,
+  unlockSchema,
+  isSchemaLocked,
+  getSchemaOwner,
+  assignCollaborativeSchemaOwner,
+  setSchemaAuthorColor,
+  filterSchemasByCollaborationScope,
+  buildCollaborationPresenceState,
+} from '@sisad-pdfme/collaboration';
+export {
+  isOptionGroupSchema,
+  isCheckboxGroupSchema,
+  isRadioGroupSchema,
+  isSelectSchema,
+  isOptionBasedSchema,
+  isCheckboxSchema,
+  isActionSchema,
+  isSigningSchema,
+  isTextLikeSchema,
+  isRawOptionItem,
+  getSchemaOptions,
+  resolveSchemaIdByIdentity,
+} from '@sisad-pdfme/schemas';
 export {
   normalizeTemplatePagesForDocument,
   normalizeDocuments,
@@ -365,6 +405,88 @@ export {
 export type {
   RuntimeSchemaAssignments,
 } from '@sisad-pdfme/runtime/assignments';
+
+/** Capability pública para construir, proyectar y validar assignments. */
+export {
+  buildRecipientAssignments,
+  buildFileAssignments,
+  buildPageAssignments,
+  reconcileAssignments,
+  removeSchemaFromAssignments,
+  moveSchemaAssignment,
+  getAssignmentsForRecipient,
+  getAssignmentsForFile,
+  validateAssignmentsConsistency,
+} from '@sisad-pdfme/assignments';
+export type { SchemaAssignments } from '@sisad-pdfme/common';
+
+/** Capability pública de persistencia local y ejecución sin backend. */
+export {
+  createLocalModeConfig,
+  diagnoseLocalMode,
+  isLocalStorageAvailable,
+  isSessionStorageAvailable,
+} from '@sisad-pdfme/shared/localMode';
+export type {
+  CollaborationMode,
+  LocalModeConfig,
+  LocalModeOptions,
+  LocalModeDiagnostics,
+} from '@sisad-pdfme/shared/localMode';
+export { createLocalFormStorage, LocalFormStorage } from '@sisad-pdfme/shared/localFormStorage';
+export type { LocalFormStorageOptions } from '@sisad-pdfme/shared/localFormStorage';
+export {
+  LocalSnapshotStoreImpl,
+  localSnapshotStore,
+  LocalStorageQuotaError,
+  SnapshotNotFoundError,
+} from '@sisad-pdfme/shared/localSnapshotStore';
+export type { LocalSnapshotStoreOptions, SnapshotIndexEntry } from '@sisad-pdfme/shared/localSnapshotStore';
+export {
+  KEYBOARD_SHORTCUTS,
+  TOOLBAR_SINGLE,
+  TOOLBAR_MULTI,
+  isMacOS,
+  platformKey,
+  normalizeKeyCombo,
+  findShortcut,
+} from '@sisad-pdfme/shared/keyboardShortcuts';
+export type {
+  ShortcutAction,
+  ShortcutDefinition,
+  ToolbarAction,
+} from '@sisad-pdfme/shared/keyboardShortcuts';
+export { createDesignerEffectCoordinator } from '@sisad-pdfme/ui/components/Designer/shared/designerEffectCoordinator';
+export type {
+  DesignerEffectCoordinator,
+  DesignerEffectCoordinatorOptions,
+} from '@sisad-pdfme/ui/components/Designer/shared/designerEffectCoordinator';
+export {
+  interactionReducer,
+  canApplyInteractionEvent,
+  initialInteractionMachineState,
+} from '@sisad-pdfme/ui/components/Designer/shared/interactionReducer';
+export type {
+  TransformKind,
+  InteractionMachineState,
+  InteractionRejectionReason,
+  InteractionEvent,
+} from '@sisad-pdfme/ui/components/Designer/shared/interactionReducer';
+export { resolveSchemaDisplayInfo } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDisplayInfo';
+export type { SchemaDisplayInfo } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDisplayInfo';
+export {
+  OverlayManager,
+  createOverlayManager,
+  OVERLAY_Z_INDEX,
+  PORTAL_REQUIRED_OVERLAYS,
+  OVERLAY_DEFAULTS,
+} from '@sisad-pdfme/canvas/overlayManager';
+export type {
+  OverlayType,
+  OverlayZLevel,
+  CloseEvent,
+  OverlayDescriptor,
+} from '@sisad-pdfme/canvas/overlayManager';
 
 /**
  * Fuentes de datos remotas. `DataSourceRuntime` resuelve carreras, aislamiento

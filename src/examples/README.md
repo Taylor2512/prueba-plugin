@@ -15,7 +15,6 @@ paquete aporta los tipos descubiertos en tiempo de ejecución.
 | `runtime.js` | Fábrica de instancias y hooks compartidos del runtime. |
 | `pages.jsx` | Página universal de runtime, páginas de documentación y `buildRouteDefinitions()`. |
 | `ui.jsx` | Componentes Tailwind-only y `DynamicInfoPanel`. |
-| `hostBundle.js` | Superficie de integración host: construcción y export a bundle portable. |
 | `config/examplesManifest.json` | Rutas, paneles, handlers y descriptores de instancia. |
 | `config/examplesData.json` | Layout de página, sample values, recipients, familias y documentos demo. |
 | `config/sisad-pdfme.s.json` | Perfiles de configuración del runtime. |

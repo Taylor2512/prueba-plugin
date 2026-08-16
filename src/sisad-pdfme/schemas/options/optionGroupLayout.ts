@@ -11,7 +11,7 @@
  * so the bounding box covers ONLY the stacked option indicator squares.
  */
 
-export const PX_PER_MM = 96 / 25.4;
+const PX_PER_MM = 96 / 25.4;
 
 export type OptionGroupType = 'checkboxGroup' | 'radioGroup';
 

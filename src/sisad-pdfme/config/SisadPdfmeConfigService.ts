@@ -8,7 +8,7 @@ import {
 } from '@sisad-pdfme/config/configCompiler';
 import { classifySisadPdfmeConfigChange, type SisadPdfmeConfigChangeImpact } from '@sisad-pdfme/config/configChangeImpact';
 import { planConfigChange, type ConfigChangeSet } from '@sisad-pdfme/config/configEffectPlan';
-import { migrateSisadPdfmeConfig, type SisadPdfmeConfigMigrationIssue } from '@sisad-pdfme/config/configMigration';
+import { normalizeSisadPdfmeConfig, type SisadPdfmeConfigNormalizationIssue } from '@sisad-pdfme/config/configNormalizer';
 import { validateSisadPdfmeConfig, type SisadPdfmeConfigIssue } from '@sisad-pdfme/config/configValidation';
 import {
   createSisadPdfmeConfigSelectors,
@@ -32,7 +32,7 @@ export type SisadPdfmeConfigChange = {
    */
   changeSet: ConfigChangeSet;
   issues: SisadPdfmeConfigIssue[];
-  migrationIssues: SisadPdfmeConfigMigrationIssue[];
+  normalizationIssues: SisadPdfmeConfigNormalizationIssue[];
 };
 
 export type SisadPdfmeConfigServiceListener = (change: SisadPdfmeConfigChange) => void;
@@ -47,7 +47,7 @@ export interface SisadPdfmeConfigService {
    */
   getConfigIdentity(): ResolvedConfigIdentity;
   getIssues(): SisadPdfmeConfigIssue[];
-  getMigrationIssues(): SisadPdfmeConfigMigrationIssue[];
+  getNormalizationIssues(): SisadPdfmeConfigNormalizationIssue[];
   getSelectors(): SisadPdfmeConfigSelectors;
   selectFeatureState(featureId: FeatureId, context?: FeatureContext): SisadPdfmeFeatureState;
   selectActionState(actionId: ActionId, context?: ActionContext): SisadPdfmeActionState;
@@ -60,7 +60,7 @@ export interface SisadPdfmeConfigService {
   explain(): {
     raw: SisadPdfmeGlobalConfig;
     issues: SisadPdfmeConfigIssue[];
-    migrationIssues: SisadPdfmeConfigMigrationIssue[];
+    normalizationIssues: SisadPdfmeConfigNormalizationIssue[];
     selectors: SisadPdfmeConfigSelectors;
   };
 }
@@ -97,7 +97,7 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
   private raw: SisadPdfmeGlobalConfig;
   private resolved: CompiledSisadPdfmeConfig;
   private issues: SisadPdfmeConfigIssue[] = [];
-  private migrationIssues: SisadPdfmeConfigMigrationIssue[] = [];
+  private normalizationIssues: SisadPdfmeConfigNormalizationIssue[] = [];
   private listeners = new Set<SisadPdfmeConfigServiceListener>();
   private pendingRaw: SisadPdfmeGlobalConfig | null = null;
   private transactionDepth = 0;
@@ -114,7 +114,7 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
             revision: 1,
             hash: hashResolvedConfig(initial),
             issues: [] as SisadPdfmeConfigIssue[],
-            migrationIssues: [] as SisadPdfmeConfigMigrationIssue[],
+            normalizationIssues: [] as SisadPdfmeConfigNormalizationIssue[],
           });
       this.syncDiagnostics(true);
     } else {
@@ -141,8 +141,8 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
     return this.issues;
   }
 
-  getMigrationIssues(): SisadPdfmeConfigMigrationIssue[] {
-    return this.migrationIssues;
+  getNormalizationIssues(): SisadPdfmeConfigNormalizationIssue[] {
+    return this.normalizationIssues;
   }
 
   getSelectors(): SisadPdfmeConfigSelectors {
@@ -199,16 +199,16 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
     return {
       raw: this.raw,
       issues: this.issues,
-      migrationIssues: this.migrationIssues,
+      normalizationIssues: this.normalizationIssues,
       selectors: this.getSelectors(),
     };
   }
 
   private syncDiagnostics(preserveResolved = false) {
-    const migration = migrateSisadPdfmeConfig(this.raw);
-    this.migrationIssues = migration.issues;
+    const normalization = normalizeSisadPdfmeConfig(this.raw);
+    this.normalizationIssues = normalization.issues;
     this.issues = validateSisadPdfmeConfig(this.raw);
-    this.raw = migration.config;
+    this.raw = normalization.config;
     if (!preserveResolved) {
       this.resolved = compileSisadPdfmeConfig(this.raw, { previous: this.resolved ?? null });
     }
@@ -222,11 +222,11 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
 
     const previous = this.resolved;
     const normalizedNextRaw = cloneDeep(nextRaw || {});
-    const migration = migrateSisadPdfmeConfig(normalizedNextRaw);
-    const impact = classifySisadPdfmeConfigChange(this.raw, migration.config);
+    const normalization = normalizeSisadPdfmeConfig(normalizedNextRaw);
+    const impact = classifySisadPdfmeConfigChange(this.raw, normalization.config);
     // La revisión avanza sólo si el hash semántico cambia: reescribir la misma
     // configuración no consume revisión ni invalida vistas ajenas.
-    const nextResolved = compileSisadPdfmeConfig(migration.config, { previous });
+    const nextResolved = compileSisadPdfmeConfig(normalization.config, { previous });
 
     if (!impact.rebuildResources) {
       nextResolved.designerEngine = previous.designerEngine;
@@ -234,9 +234,9 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
       nextResolved.adapters = previous.adapters;
     }
 
-    this.raw = migration.config;
+    this.raw = normalization.config;
     this.resolved = nextResolved;
-    this.migrationIssues = migration.issues;
+    this.normalizationIssues = normalization.issues;
     this.issues = validateSisadPdfmeConfig(this.raw);
 
     const change = this.buildChange(previous, nextResolved, impact);
@@ -255,7 +255,7 @@ class SisadPdfmeConfigServiceImpl implements SisadPdfmeConfigService {
       impact,
       changeSet: planConfigChange({ previous, next }),
       issues: this.issues,
-      migrationIssues: this.migrationIssues,
+      normalizationIssues: this.normalizationIssues,
     };
   }
 

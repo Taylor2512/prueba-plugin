@@ -45,9 +45,8 @@ export const SIGNATURE_MODE_OPTIONS: Array<{ value: SignatureMode; label: string
   { value: 'provider', label: 'Proveedor externo' },
 ];
 
-export const SIGNATURE_TYPE_OPTIONS = SIGNATURE_MODE_OPTIONS;
 
-export const DEFAULT_SIGNATURE_CAPABILITIES: SignatureCapabilities = {
+const DEFAULT_SIGNATURE_CAPABILITIES: SignatureCapabilities = {
   allowDraw: true,
   allowUploadImage: true,
   allowP12: true,
@@ -57,7 +56,7 @@ export const DEFAULT_SIGNATURE_CAPABILITIES: SignatureCapabilities = {
   allowPreview: true,
 };
 
-export const DEFAULT_SIGNATURE_DISPLAY: SignatureDisplayConfig = {
+const DEFAULT_SIGNATURE_DISPLAY: SignatureDisplayConfig = {
   showSignerName: true,
   showSignedAt: true,
   showReason: false,

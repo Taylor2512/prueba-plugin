@@ -207,8 +207,8 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
 
   /** Persiste opciones de radioGroup y recalcula metadata visual del grupo. */
   const commitRadio = (nextOptions: OptionItem[], desiredSelected?: string) => {
-    const safeOptions = nextOptions.length ? nextOptions : buildDefaultOptionGroupOptions('Opción', 1);
-    const fallback = ensureAtLeastOneOption(safeOptions)[0].optionId;
+    const safeOptions = ensureAtLeastOneOption(nextOptions);
+    const fallback = safeOptions[0].optionId;
     const nextSelected =
       desiredSelected && safeOptions.some((option) => option.optionId === desiredSelected)
         ? desiredSelected

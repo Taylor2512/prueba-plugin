@@ -20,7 +20,7 @@ export function sha256File(file) {
   return sha256Buffer(fs.readFileSync(file));
 }
 
-export function readText(file) {
+function readText(file) {
   return fs.readFileSync(file, "utf8");
 }
 
@@ -32,7 +32,7 @@ export function readTextSafe(file) {
   }
 }
 
-export function writeText(file, text) {
+function writeText(file, text) {
   ensureDir(path.dirname(file));
   fs.writeFileSync(file, text.endsWith("\n") ? text : `${text}\n`, "utf8");
 }
@@ -107,7 +107,7 @@ export function parseArgs(argv) {
   };
 }
 
-export function isIgnored(abs, root, config) {
+function isIgnored(abs, root, config) {
   const rel = normalizeRelative(path.relative(root, abs));
   const segments = rel.split("/").filter(Boolean);
 
@@ -161,7 +161,7 @@ export function relative(root, abs) {
   return normalizeRelative(path.relative(root, abs));
 }
 
-export function isProtected(relativePath, config) {
+function isProtected(relativePath, config) {
   const rel = normalizeRelative(relativePath);
   return config.paths.protectedPaths.has(rel);
 }

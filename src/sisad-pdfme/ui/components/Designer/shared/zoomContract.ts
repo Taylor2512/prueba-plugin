@@ -15,7 +15,7 @@
 export type ViewportFitMode = 'fit-width' | 'fit-page' | 'actual-size' | 'manual' | 'auto';
 
 /** Suelo del zoom manual: por debajo el documento deja de ser utilizable. */
-export const MANUAL_MIN_ZOOM = 0.25;
+const MANUAL_MIN_ZOOM = 0.25;
 
 /**
  * Suelo del ajuste automático.
@@ -24,10 +24,10 @@ export const MANUAL_MIN_ZOOM = 0.25;
  * debe caber aunque implique una escala pequeña. Clamparlo al mínimo manual
  * produce exactamente el bug que documenta BASE-01.
  */
-export const FIT_MIN_ZOOM = 0.05;
+const FIT_MIN_ZOOM = 0.05;
 
 /** Ancho de viewport por debajo del cual `auto` prefiere ajustar a lo ancho. */
-export const AUTO_FIT_WIDTH_BREAKPOINT = 980;
+const AUTO_FIT_WIDTH_BREAKPOINT = 980;
 
 export type FitInput = {
   /** Tamaño de la página en unidades de template. */
@@ -47,7 +47,7 @@ export type FitInput = {
 const isPositiveFinite = (value: number): boolean => Number.isFinite(value) && value > 0;
 
 /** Resuelve `auto` al modo concreto que corresponde al viewport. */
-export const resolveAutoFitMode = (
+const resolveAutoFitMode = (
   mode: ViewportFitMode,
   viewportWidth: number,
 ): Exclude<ViewportFitMode, 'auto'> => {
@@ -56,7 +56,7 @@ export const resolveAutoFitMode = (
 };
 
 /** Limita el zoom al rango del modo. `manual` usa un suelo más alto que el ajuste. */
-export const clampZoom = (
+const clampZoom = (
   zoom: number,
   maxZoom: number,
   mode: 'manual' | 'fit' = 'manual',
@@ -106,7 +106,7 @@ export const computeFitZoom = (mode: ViewportFitMode, input: FitInput): number |
  * Si el zoom quedó topado por los límites, la página sigue desbordando y la UI
  * debería decirlo en vez de anunciar un ajuste que no ocurrió.
  */
-export const fitFitsWithinCanvas = (mode: ViewportFitMode, input: FitInput): boolean => {
+const fitFitsWithinCanvas = (mode: ViewportFitMode, input: FitInput): boolean => {
   const zoom = computeFitZoom(mode, input);
   if (zoom === null) return false;
 
@@ -129,7 +129,7 @@ export const fitFitsWithinCanvas = (mode: ViewportFitMode, input: FitInput): boo
  * Siempre devuelve un valor válido: un indicador que dice `NaN%` o `0%` es peor
  * que uno que dice `100%`.
  */
-export const formatZoomPercent = (zoom: number): string => {
+const formatZoomPercent = (zoom: number): string => {
   const normalized = isPositiveFinite(zoom) ? zoom : 1;
   return `${Math.round(normalized * 100)}%`;
 };

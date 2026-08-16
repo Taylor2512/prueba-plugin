@@ -13,7 +13,7 @@ export { defaultSisadPdfmeConfig } from '@sisad-pdfme/config/defaultSisadPdfmeCo
 export { createSisadPdfmeConfig } from '@sisad-pdfme/config/createSisadPdfmeConfig';
 export { resolveSisadPdfmeConfig } from '@sisad-pdfme/config/resolveSisadPdfmeConfig';
 export { createProfiledConfig, deepMergeProfileConfig } from '@sisad-pdfme/config/profiledConfig';
-export { migrateSisadPdfmeConfig } from '@sisad-pdfme/config/configMigration';
+export { normalizeSisadPdfmeConfig } from '@sisad-pdfme/config/configNormalizer';
 export { validateSisadPdfmeConfig } from '@sisad-pdfme/config/configValidation';
 export { classifySisadPdfmeConfigChange } from '@sisad-pdfme/config/configChangeImpact';
 export { createSisadPdfmeConfigSelectors } from '@sisad-pdfme/config/configSelectors';
@@ -29,6 +29,7 @@ export {
   CONTROLLER_DOMAINS,
 } from '@sisad-pdfme/config/capabilityInventory';
 export { createCapabilityGraph, resolveCapabilityState } from '@sisad-pdfme/config/capabilityGraph';
+export { createSchemaCapabilityResolver } from '@sisad-pdfme/config/schemaCapabilityResolver';
 export { compileSisadPdfmeConfig, hashResolvedConfig } from '@sisad-pdfme/config/configCompiler';
 export {
   planConfigChange,
@@ -48,6 +49,12 @@ export type {
   CapabilityResolutionContext,
   CapabilityState,
 } from '@sisad-pdfme/config/capabilityGraph';
+export type {
+  SchemaCapabilityContext,
+  SchemaCapabilityState,
+  SchemaCapabilitySnapshot,
+  SchemaCapabilityResolver,
+} from '@sisad-pdfme/config/schemaCapabilityResolver';
 export type {
   CompiledSisadPdfmeConfig,
   ResolvedConfigIdentity,
@@ -80,9 +87,9 @@ export type {
   SisadPdfmeProviderProps,
 } from '@sisad-pdfme/config/SisadPdfmeConfig';
 export type {
-  SisadPdfmeConfigMigrationIssue,
-  SisadPdfmeConfigMigrationResult,
-} from '@sisad-pdfme/config/configMigration';
+  SisadPdfmeConfigNormalizationIssue,
+  SisadPdfmeConfigNormalizationResult,
+} from '@sisad-pdfme/config/configNormalizer';
 export type { SisadPdfmeConfigIssue } from '@sisad-pdfme/config/configValidation';
 export type { SisadPdfmeConfigChangeImpact } from '@sisad-pdfme/config/configChangeImpact';
 export type {

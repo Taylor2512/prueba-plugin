@@ -21,7 +21,7 @@ import { createSisadPdfmeCustomEvent } from '@sisad-pdfme/contracts/events';
 import type { InstanceEventDispatcher } from '@sisad-pdfme/runtime/instanceEventDispatcher';
 
 /** Traducción de los `type` internos vigentes a nombres del catálogo. */
-export const RUNTIME_EVENT_TO_DOMAIN_EVENT: Record<string, SisadPdfmeEventName> = {
+const RUNTIME_EVENT_TO_DOMAIN_EVENT: Record<string, SisadPdfmeEventName> = {
   'designer.selection.changed': 'selection.changed',
   'designer.view.page.changed': 'page.changed',
   'runtime.view.page.changed': 'page.changed',
@@ -53,9 +53,6 @@ const asNumber = (value: unknown, fallback = 0): number =>
  * Devuelve `null` cuando el evento no trae datos suficientes: es preferible no
  * emitir a emitir un payload inventado.
  */
-/** @deprecated Use RUNTIME_EVENT_TO_DOMAIN_EVENT. */
-export const _TYPE_TO_ = RUNTIME_EVENT_TO_DOMAIN_EVENT;
-
 const toDomainEventPayload = (
   domainEventName: SisadPdfmeEventName,
   event: DesignerRuntimeEvent,

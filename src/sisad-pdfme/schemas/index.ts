@@ -383,6 +383,31 @@ export {
 
 export { createSchemaPlugin, renderLucideIcon as createLucideIcon, flattenSchemaPlugins, listSchemaDefinitions };
 export { createSchemaInspectorConfig, normalizeSchemaFamily, resolveSchemaFamily, getSchemaFamilyInspectorPreset, getSchemaTypeInspectorPreset };
+export {
+  isOptionGroupSchema,
+  isCheckboxGroupSchema,
+  isRadioGroupSchema,
+  isSelectSchema,
+  isOptionBasedSchema,
+  isCheckboxSchema,
+  isActionSchema,
+  isSigningSchema,
+  isTextLikeSchema,
+  isRawOptionItem,
+  getSchemaOptions,
+  resolveSchemaIdByIdentity,
+} from '@sisad-pdfme/schemas/shared/schemaGuards';
+export type {
+  MinimalSchema,
+  OptionGroupSchemaLike,
+  CheckboxGroupSchemaLike,
+  RadioGroupSchemaLike,
+  ActionKind,
+  SigningKind,
+  TextLikeKind,
+  RawOptionItem,
+  SchemaIdentityLike,
+} from '@sisad-pdfme/schemas/shared/schemaGuards';
 export type {
   SchemaDefinition,
   SchemaPluginWithMetadata,

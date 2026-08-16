@@ -42,11 +42,11 @@ const NUMERIC_RUN = /-?[\d.,]+/;
 const NUMERIC_DRAFT = /^-?(?:\d+(?:[.,]\d*)?|[.,]\d*)?$/;
 const NUMERIC_DRAFT_UNSIGNED = /^(?:\d+(?:[.,]\d*)?|[.,]\d*)?$/;
 
-export const allowsCurrencySymbol = (schema: NumberInputPolicy): boolean =>
+const allowsCurrencySymbol = (schema: NumberInputPolicy): boolean =>
   schema.format === 'currency';
 
 /** Sin configurar equivale a permitido: es el comportamiento previo del campo. */
-export const allowsNegative = (schema: NumberInputPolicy): boolean =>
+const allowsNegative = (schema: NumberInputPolicy): boolean =>
   schema.allowNegative !== false;
 
 export type CurrencySplit = { symbol: string; numeric: string };

@@ -24,7 +24,7 @@
  * mismo hash y, por tanto, conservan la misma revisión.
  */
 import { resolveSisadPdfmeConfig } from '@sisad-pdfme/config/resolveSisadPdfmeConfig';
-import { migrateSisadPdfmeConfig, type SisadPdfmeConfigMigrationIssue } from '@sisad-pdfme/config/configMigration';
+import { normalizeSisadPdfmeConfig, type SisadPdfmeConfigNormalizationIssue } from '@sisad-pdfme/config/configNormalizer';
 import { validateSisadPdfmeConfig, type SisadPdfmeConfigIssue } from '@sisad-pdfme/config/configValidation';
 import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
 
@@ -42,7 +42,7 @@ export type ResolvedConfigIdentity = {
 export type CompiledSisadPdfmeConfig = ResolvedSisadPdfmeConfig &
   ResolvedConfigIdentity & {
     issues: SisadPdfmeConfigIssue[];
-    migrationIssues: SisadPdfmeConfigMigrationIssue[];
+    normalizationIssues: SisadPdfmeConfigNormalizationIssue[];
   };
 
 const isPlainObject = (value: unknown): value is Record<string, unknown> =>
@@ -133,9 +133,9 @@ export const compileSisadPdfmeConfig = (
   input: SisadPdfmeGlobalConfig = {},
   options: CompileOptions = {},
 ): CompiledSisadPdfmeConfig => {
-  const migration = migrateSisadPdfmeConfig(input);
+  const normalization = normalizeSisadPdfmeConfig(input);
   const issues = validateSisadPdfmeConfig(input);
-  const resolved = resolveSisadPdfmeConfig(migration.config);
+  const resolved = resolveSisadPdfmeConfig(normalization.config);
 
   const hash = hashResolvedConfig(resolved);
   const previous = options.previous ?? null;
@@ -148,6 +148,6 @@ export const compileSisadPdfmeConfig = (
     revision,
     hash,
     issues,
-    migrationIssues: migration.issues,
+    normalizationIssues: normalization.issues,
   });
 };

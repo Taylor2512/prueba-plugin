@@ -1,14 +1,13 @@
 /**
  * @file helper.ts
  *
- * Helpers comunes para conversión de unidades, fuentes, PDF base64, migración versionada
+ * Helpers comunes para conversión de unidades, fuentes, PDF base64
  * y validación Zod de contratos públicos.
  *
  * Responsabilidades:
  * - convertir mm/pt/px;
  * - cargar PDF base en data URI;
  * - validar template/inputs/options/props;
- * - migrar schemas  keyed-object a arreglo por página;
  * - validar fuentes y fallback font.
  */
 
@@ -47,7 +46,7 @@ import { fetchAssetBlob, type AssetFetchOptions } from '@sisad-pdfme/common/asse
  * `structuredClone` es la vía rápida, pero lanza `DataCloneError` ante valores
  * no estructurables —y `SisadPdfmeGlobalConfig.events` acepta callbacks del
  * host por contrato—. Un `config` legal con handlers hacía fallar
- * `migrateSisadPdfmeConfig` y `SisadPdfmeConfigService.update` (RTP-435).
+ * el normalizador de configuración y `SisadPdfmeConfigService.update` (RTP-435).
  *
  * El fallback clona la estructura y pasa POR REFERENCIA lo que no es
  * clonable: una función es identidad del host, no dato a duplicar.
@@ -214,34 +213,8 @@ export const isHexValid = (hex: string): boolean => {
   return /^#(?:[A-Fa-f0-9]{3,4}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/i.test(hex);
 };
 
-/**
- * Migrate from  keyed object format to array format
- * @param template Template
- */
-export const migrateTemplate = (template: Template) => {
-  if (!template.schemas) {
-    return;
-  }
-
-  if (
-    Array.isArray(template.schemas) &&
-    template.schemas.length > 0 &&
-    !Array.isArray(template.schemas[0])
-  ) {
-    template.schemas = (template.schemas as unknown as Array<Record<string, Schema>>).map(
-      (page) =>
-        Object.entries(page).map(([key, value]) => ({
-          ...value,
-          name: key,
-        })),
-    );
-  }
-};
-
 /** Genera input inicial desde schemas no readOnly del template. */
 export const getInputFromTemplate = (template: Template): { [key: string]: string }[] => {
-  migrateTemplate(template);
-
   const input: { [key: string]: string } = {};
   template.schemas.forEach((page) => {
     page.forEach((schema) => {
@@ -333,7 +306,7 @@ Check this document: https://sisad-pdfme.com/docs/custom-fonts`,
   }
 };
 
-export const checkPlugins = (arg: { plugins: Plugins; template: Template }) => {
+const checkPlugins = (arg: { plugins: Plugins; template: Template }) => {
   const {
     plugins,
     template: { schemas },
@@ -400,20 +373,13 @@ export const checkPreviewProps = (data: unknown) => checkProps(data, PreviewProp
 export const checkDesignerProps = (data: unknown) => checkProps(data, DesignerPropsSchema);
 /** Valida props comunes UI. */
 export const checkUIProps = (data: unknown) => {
-  if (typeof data === 'object' && data !== null && 'template' in data) {
-    migrateTemplate(data.template as Template);
-  }
   checkProps(data, UIPropsSchema);
 };
-/** Valida y migra un Template antes de usarlo. */
+/** Valida un Template en su representación canónica. */
 export const checkTemplate = (template: unknown) => {
-  migrateTemplate(template as Template);
   checkProps(template, TemplateSchema);
 };
 /** Valida props de Generator. */
 export const checkGenerateProps = (data: unknown) => {
-  if (typeof data === 'object' && data !== null && 'template' in data) {
-    migrateTemplate(data.template as Template);
-  }
   checkProps(data, GeneratePropsSchema);
 };

@@ -1,5 +1,5 @@
 import type { SisadPdfmeGlobalConfig } from '@sisad-pdfme/config/SisadPdfmeConfig';
-import { migrateSisadPdfmeConfig } from '@sisad-pdfme/config/configMigration';
+import { normalizeSisadPdfmeConfig } from '@sisad-pdfme/config/configNormalizer';
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 export type SisadPdfmeConfigIssueSeverity = 'error' | 'warning';
@@ -32,7 +32,7 @@ const getStringId = (value: unknown): string =>
 export const validateSisadPdfmeConfig = (
   input: SisadPdfmeGlobalConfig = {},
 ): SisadPdfmeConfigIssue[] => {
-  const { config } = migrateSisadPdfmeConfig(input);
+  const { config } = normalizeSisadPdfmeConfig(input);
   const issues: SisadPdfmeConfigIssue[] = [];
 
   const signatures = config.signatures || {};
