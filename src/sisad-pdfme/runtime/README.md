@@ -12,7 +12,7 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 
 ## Regla de arquitectura
 
-Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
+Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio del host, manipulación de canvas, CSS, Moveable, Selecto ni detalles de workflows externos.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada

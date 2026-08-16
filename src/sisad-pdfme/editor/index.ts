@@ -39,8 +39,7 @@ import { DesignerEngineBuilder } from '@sisad-pdfme/ui/designerEngine';
  * interacción visual, overlays y estados del canvas.
  *
  * Regla:
- * No agregar aquí CSS específico del host, StepTwo, DigitalAgreements,
- * Uanataca, workflows o pantallas externas.
+ * No agregar aquí CSS específico del host, workflows o pantallas externas.
  */
 import '../ui/styles/tokens.css';
 import '../ui/styles/sisad-pdfme.css';

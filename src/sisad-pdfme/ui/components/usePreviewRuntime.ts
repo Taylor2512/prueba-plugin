@@ -14,7 +14,7 @@
  * Reglas arquitectónicas:
  *
  * - No debe importar componentes visuales específicos del host.
- * - No debe conocer reglas de negocio SISAD, Uanataca, workflow ni APIs concretas.
+ * - No debe conocer reglas de negocio del host, workflows ni APIs concretas.
  * - No debe modificar geometry/canvas del Designer; solo prepara schemas para Preview.
  * - El adapter de datos (`createSchemaDataRuntimeAdapter`) es la frontera con
  *   persistencia, prefill, requests e integraciones externas.

@@ -345,7 +345,7 @@ export const buildOptionGroupDefaultSchema = ({
 }: OptionGroupDefaultSchemaParams): OptionGroupDefaultSchema => {
   const dimensions = buildOptionGroupDesignerDimensions(getOptionGroupLayoutConfig(type), optionsCount);
   const defaultOptions = buildDefaultOptionGroupOptions(optionPrefix, optionsCount);
-  const safeSelectedId = selectedOptionId || defaultSelectedOptionId || defaultOptions[0]?.optionId || 'option_1';
+  const safeSelectedId = selectedOptionId || defaultSelectedOptionId || defaultOptions[0]?.optionId;
 
   return {
     id,

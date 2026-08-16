@@ -10,6 +10,7 @@ import {
   buildDefaultOptionGroupOptions,
   normalizeOptionGroupOptions,
   normalizeOptionId,
+  ensureAtLeastOneOption,
 } from '@sisad-pdfme/schemas/options/optionModel';
 import {
   clampMultiOptionSelection,
@@ -158,7 +159,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
     ? resolveSingleOptionSelection(
         schema.selectedOptionId || schema.content || schema.defaultSelectedOptionId,
         groupOptions,
-        groupOptions[0]?.optionId || 'option_1',
+        ensureAtLeastOneOption(groupOptions)[0].optionId,
       )
     : '';
 
@@ -207,7 +208,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
   /** Persiste opciones de radioGroup y recalcula metadata visual del grupo. */
   const commitRadio = (nextOptions: OptionItem[], desiredSelected?: string) => {
     const safeOptions = nextOptions.length ? nextOptions : buildDefaultOptionGroupOptions('Opción', 1);
-    const fallback = safeOptions[0]?.optionId || 'option_1';
+    const fallback = ensureAtLeastOneOption(safeOptions)[0].optionId;
     const nextSelected =
       desiredSelected && safeOptions.some((option) => option.optionId === desiredSelected)
         ? desiredSelected

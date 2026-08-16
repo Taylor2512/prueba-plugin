@@ -146,7 +146,7 @@ SnapshotAdapter
 schemas
 DetailView
 consumer host
-Uanataca
+un proveedor externo
 reglas de negocio SISAD
 ```
 

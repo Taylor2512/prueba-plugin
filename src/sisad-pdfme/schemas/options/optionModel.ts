@@ -75,4 +75,4 @@ export const normalizeOptionsFromSource = (
 };
 
 export const ensureAtLeastOneOption = (options: OptionItem[]) =>
-  options.length ? options : [{ optionId: 'option_1', label: 'Opción 1' }];
+  options.length ? options : buildDefaultOptionGroupOptions('Opción', 1);

@@ -433,8 +433,8 @@ class SnapshotAdapterImpl {
     }
 
     const normalizedPolicy = (signaturePolicyId || '').toLowerCase();
-    if (normalizedPolicy === 'electronica' || normalizedPolicy === 'p12') return 'p12';
-    if (normalizedPolicy === 'oneshot' || normalizedPolicy === 'provider') return 'provider';
+    if (normalizedPolicy === 'p12') return 'p12';
+    if (normalizedPolicy === 'provider') return 'provider';
     return 'draw';
   }
 

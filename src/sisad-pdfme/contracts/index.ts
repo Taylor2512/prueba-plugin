@@ -208,7 +208,7 @@ export type { ValidationResult, DesignerState } from '@sisad-pdfme/shared/snapsh
  * Contratos del registry de providers de firma.
  *
  * Esta capa desacopla los schemas de firma de proveedores concretos
- * como SISAD, Uanataca, OneShot u otros integradores externos.
+ * definidos por el host u otros integradores externos.
  */
 export type {
   SignatureProvider,

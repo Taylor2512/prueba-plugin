@@ -20,8 +20,8 @@
  *   - Sin checksums de PDF → backgrounds almacenados como base64
  *   - Pérdida de datos si se limpian cookies/localStorage del browser
  *
- * El padre (DigitalAgreements) puede sobreescribir cualquier campo del config
- * antes de pasarlo al designer.
+ * El host puede sobreescribir cualquier campo del config antes de pasarlo al
+ * designer.
  */
 import { LocalSnapshotStoreImpl } from '@sisad-pdfme/shared/localSnapshotStore';
 import { LocalFormStorage } from '@sisad-pdfme/shared/localFormStorage';
@@ -68,7 +68,7 @@ export interface LocalModeOptions {
  * Crea la configuración completa para modo sin backend.
  *
  * @example
- * // En DigitalAgreements o el componente raíz:
+ * // En el host o el componente raíz:
  * const localConfig = createLocalModeConfig({ templateId: 'my-template' });
  *
  * // Montar el designer:

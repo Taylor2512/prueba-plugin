@@ -3,7 +3,7 @@
  *
  * sisad-pdfme NO sabe qué providers existen.
  * El registry es un contenedor de plugins.
- * DigitalAgreements registra providers externos ANTES de montar el designer.
+ * El host registra providers externos ANTES de montar el designer.
  *
  * Sin import de React aquí — la interfaz usa un tipo opaco para el elemento
  * de captura para evitar dependencias de entorno en el módulo shared.

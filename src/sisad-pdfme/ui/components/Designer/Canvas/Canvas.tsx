@@ -15,7 +15,7 @@
  *
  * Regla arquitectónica:
  * Este archivo coordina interacciones del canvas, pero no debe contener reglas
- * de negocio del host, lógica Uanataca, lógica de StepOne/StepTwo ni hacks de
+ * de negocio del host, lógica de workflows ni hacks de
  * integración externos. Las operaciones deben pasar por comandos, bridge o
  * callbacks inyectados.
  */

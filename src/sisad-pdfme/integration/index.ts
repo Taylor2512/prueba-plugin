@@ -360,13 +360,10 @@ export type { ArtifactStatusEvent, ArtifactEvent } from '@sisad-pdfme/runtime/ar
 
 export {
   normalizeRuntimeSchemaAssignments,
-  migrateLegacySchemaAssignments,
   getAssignedSchemaUids,
 } from '@sisad-pdfme/runtime/assignments';
 export type {
   RuntimeSchemaAssignments,
-  LegacySchemaAssignments,
-  AssignmentMigrationOptions,
 } from '@sisad-pdfme/runtime/assignments';
 
 /**

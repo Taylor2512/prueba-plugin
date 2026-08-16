@@ -829,7 +829,7 @@
     "path": "src/sisad-pdfme/editor/index.ts",
     "language": "typescript",
     "lines": 178,
-    "kb": 5.1,
+    "kb": 5,
     "status": "completo",
     "domain": "editor",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/editor/index.ts.file.test.ts",
@@ -894,8 +894,8 @@
     "index": 82,
     "path": "src/sisad-pdfme/generator/preflight.ts",
     "language": "typescript",
-    "lines": 448,
-    "kb": 13,
+    "lines": 450,
+    "kb": 13.2,
     "status": "completo",
     "domain": "generator",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/generator/preflight.ts.file.test.ts",
@@ -1015,8 +1015,8 @@
     "index": 93,
     "path": "src/sisad-pdfme/integration/index.ts",
     "language": "typescript",
-    "lines": 454,
-    "kb": 12.8,
+    "lines": 495,
+    "kb": 14.2,
     "status": "completo",
     "domain": "integration",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/integration/index.ts.file.test.ts",
@@ -1114,8 +1114,8 @@
     "index": 102,
     "path": "src/sisad-pdfme/react/SisadPdfmePreviewRuntime.tsx",
     "language": "typescript-react",
-    "lines": 276,
-    "kb": 9.9,
+    "lines": 303,
+    "kb": 11.3,
     "status": "completo",
     "domain": "react",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/react/SisadPdfmePreviewRuntime.tsx.file.test.ts",
@@ -1345,8 +1345,8 @@
     "index": 123,
     "path": "src/sisad-pdfme/runtime/__tests__/saveLifecycle.test.ts",
     "language": "typescript",
-    "lines": 118,
-    "kb": 3.7,
+    "lines": 112,
+    "kb": 3.5,
     "status": "completo",
     "domain": "runtime",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/runtime/__tests__/saveLifecycle.test.ts.file.test.ts",
@@ -1367,8 +1367,8 @@
     "index": 125,
     "path": "src/sisad-pdfme/runtime/assignments.ts",
     "language": "typescript",
-    "lines": 80,
-    "kb": 2.7,
+    "lines": 44,
+    "kb": 1.4,
     "status": "completo",
     "domain": "runtime",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/runtime/assignments.ts.file.test.ts",
@@ -1720,7 +1720,7 @@
     "path": "src/sisad-pdfme/schemas/checkboxGroup/index.ts",
     "language": "typescript",
     "lines": 341,
-    "kb": 12.5,
+    "kb": 12.6,
     "status": "completo",
     "domain": "schemas",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/schemas/checkboxGroup/index.ts.file.test.ts",
@@ -1972,8 +1972,8 @@
     "index": 180,
     "path": "src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts",
     "language": "typescript",
-    "lines": 217,
-    "kb": 9.3,
+    "lines": 218,
+    "kb": 9.4,
     "status": "completo",
     "domain": "schemas",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/schemas/options/optionGroupEditorFactory.ts.file.test.ts",
@@ -1983,8 +1983,8 @@
     "index": 181,
     "path": "src/sisad-pdfme/schemas/options/optionGroupFactory.ts",
     "language": "typescript",
-    "lines": 581,
-    "kb": 18.4,
+    "lines": 582,
+    "kb": 18.5,
     "status": "completo",
     "domain": "schemas",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/schemas/options/optionGroupFactory.ts.file.test.ts",
@@ -2060,8 +2060,8 @@
     "index": 188,
     "path": "src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts",
     "language": "typescript",
-    "lines": 126,
-    "kb": 3.9,
+    "lines": 127,
+    "kb": 4,
     "status": "completo",
     "domain": "schemas",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/schemas/options/optionSelectionBehavior.ts.file.test.ts",
@@ -2104,7 +2104,7 @@
     "index": 192,
     "path": "src/sisad-pdfme/schemas/radioGroup/index.ts",
     "language": "typescript",
-    "lines": 278,
+    "lines": 276,
     "kb": 9.3,
     "status": "completo",
     "domain": "schemas",
@@ -2641,17 +2641,6 @@
   },
   {
     "index": 241,
-    "path": "src/sisad-pdfme/shared/index.ts",
-    "language": "typescript",
-    "lines": 138,
-    "kb": 3.7,
-    "status": "completo",
-    "domain": "shared",
-    "testPath": "tests/unit/sisad-pdfme-comprehensive/files/shared/index.ts.file.test.ts",
-    "cases": 4
-  },
-  {
-    "index": 242,
     "path": "src/sisad-pdfme/shared/interactionGuards.ts",
     "language": "typescript",
     "lines": 168,
@@ -2662,7 +2651,7 @@
     "cases": 4
   },
   {
-    "index": 243,
+    "index": 242,
     "path": "src/sisad-pdfme/shared/keyboardShortcuts.ts",
     "language": "typescript",
     "lines": 340,
@@ -2673,7 +2662,7 @@
     "cases": 4
   },
   {
-    "index": 244,
+    "index": 243,
     "path": "src/sisad-pdfme/shared/localFormStorage.ts",
     "language": "typescript",
     "lines": 218,
@@ -2684,7 +2673,7 @@
     "cases": 4
   },
   {
-    "index": 245,
+    "index": 244,
     "path": "src/sisad-pdfme/shared/localMode.ts",
     "language": "typescript",
     "lines": 188,
@@ -2695,7 +2684,7 @@
     "cases": 4
   },
   {
-    "index": 246,
+    "index": 245,
     "path": "src/sisad-pdfme/shared/localSnapshotStore.ts",
     "language": "typescript",
     "lines": 181,
@@ -2706,7 +2695,7 @@
     "cases": 4
   },
   {
-    "index": 247,
+    "index": 246,
     "path": "src/sisad-pdfme/shared/objectGuards.ts",
     "language": "typescript",
     "lines": 6,
@@ -2717,10 +2706,10 @@
     "cases": 4
   },
   {
-    "index": 248,
+    "index": 247,
     "path": "src/sisad-pdfme/shared/schemaDesignerMeta.ts",
     "language": "typescript",
-    "lines": 299,
+    "lines": 300,
     "kb": 9.3,
     "status": "completo",
     "domain": "shared",
@@ -2728,18 +2717,7 @@
     "cases": 4
   },
   {
-    "index": 249,
-    "path": "src/sisad-pdfme/shared/schemaMigration.ts",
-    "language": "typescript",
-    "lines": 152,
-    "kb": 5.1,
-    "status": "completo",
-    "domain": "shared",
-    "testPath": "tests/unit/sisad-pdfme-comprehensive/files/shared/schemaMigration.ts.file.test.ts",
-    "cases": 4
-  },
-  {
-    "index": 250,
+    "index": 248,
     "path": "src/sisad-pdfme/shared/signatureRegistry.ts",
     "language": "typescript",
     "lines": 167,
@@ -2750,7 +2728,7 @@
     "cases": 4
   },
   {
-    "index": 251,
+    "index": 249,
     "path": "src/sisad-pdfme/shared/snapshot.ts",
     "language": "typescript",
     "lines": 231,
@@ -2761,18 +2739,18 @@
     "cases": 4
   },
   {
-    "index": 252,
+    "index": 250,
     "path": "src/sisad-pdfme/shared/snapshotAdapter.ts",
     "language": "typescript",
     "lines": 641,
-    "kb": 25.2,
+    "kb": 25.1,
     "status": "completo",
     "domain": "shared",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/shared/snapshotAdapter.ts.file.test.ts",
     "cases": 4
   },
   {
-    "index": 253,
+    "index": 251,
     "path": "src/sisad-pdfme/shared/templateValidator.ts",
     "language": "typescript",
     "lines": 324,
@@ -2783,7 +2761,7 @@
     "cases": 4
   },
   {
-    "index": 254,
+    "index": 252,
     "path": "src/sisad-pdfme/shared/text.ts",
     "language": "typescript",
     "lines": 11,
@@ -2794,7 +2772,7 @@
     "cases": 4
   },
   {
-    "index": 255,
+    "index": 253,
     "path": "src/sisad-pdfme/shared/webStorage.ts",
     "language": "typescript",
     "lines": 49,
@@ -2805,7 +2783,7 @@
     "cases": 4
   },
   {
-    "index": 256,
+    "index": 254,
     "path": "src/sisad-pdfme/templates/createDefaultTemplate.ts",
     "language": "typescript",
     "lines": 38,
@@ -2816,7 +2794,7 @@
     "cases": 4
   },
   {
-    "index": 257,
+    "index": 255,
     "path": "src/sisad-pdfme/templates/createTemplateFromRecipe.ts",
     "language": "typescript",
     "lines": 155,
@@ -2827,7 +2805,7 @@
     "cases": 4
   },
   {
-    "index": 258,
+    "index": 256,
     "path": "src/sisad-pdfme/templates/index.ts",
     "language": "typescript",
     "lines": 7,
@@ -2838,7 +2816,7 @@
     "cases": 4
   },
   {
-    "index": 259,
+    "index": 257,
     "path": "src/sisad-pdfme/ui/Designer.tsx",
     "language": "typescript-react",
     "lines": 412,
@@ -2849,7 +2827,7 @@
     "cases": 4
   },
   {
-    "index": 260,
+    "index": 258,
     "path": "src/sisad-pdfme/ui/Form.tsx",
     "language": "typescript-react",
     "lines": 286,
@@ -2860,7 +2838,7 @@
     "cases": 4
   },
   {
-    "index": 261,
+    "index": 259,
     "path": "src/sisad-pdfme/ui/PagedPreviewUI.tsx",
     "language": "typescript-react",
     "lines": 59,
@@ -2871,7 +2849,7 @@
     "cases": 4
   },
   {
-    "index": 262,
+    "index": 260,
     "path": "src/sisad-pdfme/ui/Viewer.tsx",
     "language": "typescript-react",
     "lines": 31,
@@ -2882,7 +2860,7 @@
     "cases": 4
   },
   {
-    "index": 263,
+    "index": 261,
     "path": "src/sisad-pdfme/ui/class.ts",
     "language": "typescript",
     "lines": 325,
@@ -2893,7 +2871,7 @@
     "cases": 4
   },
   {
-    "index": 264,
+    "index": 262,
     "path": "src/sisad-pdfme/ui/collaboration.ts",
     "language": "typescript",
     "lines": 1522,
@@ -2904,7 +2882,7 @@
     "cases": 4
   },
   {
-    "index": 265,
+    "index": 263,
     "path": "src/sisad-pdfme/ui/collaboration/schemaRuntimeAccess.ts",
     "language": "typescript",
     "lines": 767,
@@ -2915,18 +2893,18 @@
     "cases": 4
   },
   {
-    "index": 266,
+    "index": 264,
     "path": "src/sisad-pdfme/ui/collaborationAdapters.ts",
     "language": "typescript",
     "lines": 67,
-    "kb": 2.3,
+    "kb": 2.6,
     "status": "completo",
     "domain": "ui",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/ui/collaborationAdapters.ts.file.test.ts",
     "cases": 4
   },
   {
-    "index": 267,
+    "index": 265,
     "path": "src/sisad-pdfme/ui/collaborationContext.ts",
     "language": "typescript",
     "lines": 301,
@@ -2937,7 +2915,7 @@
     "cases": 4
   },
   {
-    "index": 268,
+    "index": 266,
     "path": "src/sisad-pdfme/ui/commands/commandBus.ts",
     "language": "typescript",
     "lines": 238,
@@ -2948,10 +2926,10 @@
     "cases": 4
   },
   {
-    "index": 269,
+    "index": 267,
     "path": "src/sisad-pdfme/ui/commands/designerCommands.ts",
     "language": "typescript",
-    "lines": 316,
+    "lines": 319,
     "kb": 9.1,
     "status": "completo",
     "domain": "ui",
@@ -2959,7 +2937,7 @@
     "cases": 4
   },
   {
-    "index": 270,
+    "index": 268,
     "path": "src/sisad-pdfme/ui/commands/viewCommands.ts",
     "language": "typescript",
     "lines": 107,
@@ -2970,7 +2948,7 @@
     "cases": 4
   },
   {
-    "index": 271,
+    "index": 269,
     "path": "src/sisad-pdfme/ui/components/AppContextProvider.tsx",
     "language": "typescript-react",
     "lines": 117,
@@ -2981,7 +2959,7 @@
     "cases": 4
   },
   {
-    "index": 272,
+    "index": 270,
     "path": "src/sisad-pdfme/ui/components/CtlBar.tsx",
     "language": "typescript-react",
     "lines": 647,
@@ -2992,18 +2970,18 @@
     "cases": 4
   },
   {
-    "index": 273,
+    "index": 271,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx",
     "language": "typescript-react",
-    "lines": 2157,
-    "kb": 79.6,
+    "lines": 2170,
+    "kb": 79.9,
     "status": "completo",
     "domain": "ui",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/ui/components/Designer/Canvas/Canvas.tsx.file.test.ts",
     "cases": 4
   },
   {
-    "index": 274,
+    "index": 272,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx",
     "language": "typescript-react",
     "lines": 128,
@@ -3014,7 +2992,7 @@
     "cases": 4
   },
   {
-    "index": 275,
+    "index": 273,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx",
     "language": "typescript-react",
     "lines": 53,
@@ -3025,7 +3003,7 @@
     "cases": 4
   },
   {
-    "index": 276,
+    "index": 274,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx",
     "language": "typescript-react",
     "lines": 150,
@@ -3036,7 +3014,7 @@
     "cases": 4
   },
   {
-    "index": 277,
+    "index": 275,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx",
     "language": "typescript-react",
     "lines": 101,
@@ -3047,7 +3025,7 @@
     "cases": 4
   },
   {
-    "index": 278,
+    "index": 276,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx",
     "language": "typescript-react",
     "lines": 139,
@@ -3058,7 +3036,7 @@
     "cases": 4
   },
   {
-    "index": 279,
+    "index": 277,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx",
     "language": "typescript-react",
     "lines": 191,
@@ -3069,7 +3047,7 @@
     "cases": 4
   },
   {
-    "index": 280,
+    "index": 278,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/canvasViewCapabilities.ts",
     "language": "typescript",
     "lines": 121,
@@ -3080,7 +3058,7 @@
     "cases": 4
   },
   {
-    "index": 281,
+    "index": 279,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/gridGeometry.ts",
     "language": "typescript",
     "lines": 258,
@@ -3091,7 +3069,7 @@
     "cases": 4
   },
   {
-    "index": 282,
+    "index": 280,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx",
     "language": "typescript-react",
     "lines": 618,
@@ -3102,7 +3080,7 @@
     "cases": 4
   },
   {
-    "index": 283,
+    "index": 281,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx",
     "language": "typescript-react",
     "lines": 461,
@@ -3113,7 +3091,7 @@
     "cases": 4
   },
   {
-    "index": 284,
+    "index": 282,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx",
     "language": "typescript-react",
     "lines": 168,
@@ -3124,7 +3102,7 @@
     "cases": 4
   },
   {
-    "index": 285,
+    "index": 283,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx",
     "language": "typescript-react",
     "lines": 334,
@@ -3135,7 +3113,7 @@
     "cases": 4
   },
   {
-    "index": 286,
+    "index": 284,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx",
     "language": "typescript-react",
     "lines": 118,
@@ -3146,7 +3124,7 @@
     "cases": 4
   },
   {
-    "index": 287,
+    "index": 285,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx",
     "language": "typescript-react",
     "lines": 231,
@@ -3157,7 +3135,7 @@
     "cases": 4
   },
   {
-    "index": 288,
+    "index": 286,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx",
     "language": "typescript-react",
     "lines": 67,
@@ -3168,7 +3146,7 @@
     "cases": 4
   },
   {
-    "index": 289,
+    "index": 287,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx",
     "language": "typescript-react",
     "lines": 75,
@@ -3179,7 +3157,7 @@
     "cases": 4
   },
   {
-    "index": 290,
+    "index": 288,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx",
     "language": "typescript-react",
     "lines": 140,
@@ -3190,7 +3168,7 @@
     "cases": 4
   },
   {
-    "index": 291,
+    "index": 289,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx",
     "language": "typescript-react",
     "lines": 83,
@@ -3201,7 +3179,7 @@
     "cases": 4
   },
   {
-    "index": 292,
+    "index": 290,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx",
     "language": "typescript-react",
     "lines": 362,
@@ -3212,7 +3190,7 @@
     "cases": 4
   },
   {
-    "index": 293,
+    "index": 291,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx",
     "language": "typescript-react",
     "lines": 56,
@@ -3223,7 +3201,7 @@
     "cases": 4
   },
   {
-    "index": 294,
+    "index": 292,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx",
     "language": "typescript-react",
     "lines": 2142,
@@ -3234,7 +3212,7 @@
     "cases": 4
   },
   {
-    "index": 295,
+    "index": 293,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts",
     "language": "typescript",
     "lines": 121,
@@ -3245,7 +3223,7 @@
     "cases": 4
   },
   {
-    "index": 296,
+    "index": 294,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts",
     "language": "typescript",
     "lines": 63,
@@ -3256,7 +3234,7 @@
     "cases": 4
   },
   {
-    "index": 297,
+    "index": 295,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts",
     "language": "typescript",
     "lines": 181,
@@ -3267,7 +3245,7 @@
     "cases": 4
   },
   {
-    "index": 298,
+    "index": 296,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts",
     "language": "typescript",
     "lines": 228,
@@ -3278,7 +3256,7 @@
     "cases": 4
   },
   {
-    "index": 299,
+    "index": 297,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts",
     "language": "typescript",
     "lines": 70,
@@ -3289,7 +3267,7 @@
     "cases": 4
   },
   {
-    "index": 300,
+    "index": 298,
     "path": "src/sisad-pdfme/ui/components/Designer/Canvas/snapEngine.ts",
     "language": "typescript",
     "lines": 171,
@@ -3300,7 +3278,7 @@
     "cases": 4
   },
   {
-    "index": 301,
+    "index": 299,
     "path": "src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx",
     "language": "typescript-react",
     "lines": 167,
@@ -3311,7 +3289,7 @@
     "cases": 4
   },
   {
-    "index": 302,
+    "index": 300,
     "path": "src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx",
     "language": "typescript-react",
     "lines": 1965,
@@ -3322,7 +3300,7 @@
     "cases": 4
   },
   {
-    "index": 303,
+    "index": 301,
     "path": "src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx",
     "language": "typescript-react",
     "lines": 316,
@@ -3333,7 +3311,7 @@
     "cases": 4
   },
   {
-    "index": 304,
+    "index": 302,
     "path": "src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx",
     "language": "typescript-react",
     "lines": 95,
@@ -3344,7 +3322,7 @@
     "cases": 4
   },
   {
-    "index": 305,
+    "index": 303,
     "path": "src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx",
     "language": "typescript-react",
     "lines": 140,
@@ -3355,7 +3333,7 @@
     "cases": 4
   },
   {
-    "index": 306,
+    "index": 304,
     "path": "src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx",
     "language": "typescript-react",
     "lines": 43,
@@ -3366,7 +3344,7 @@
     "cases": 4
   },
   {
-    "index": 307,
+    "index": 305,
     "path": "src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx",
     "language": "typescript-react",
     "lines": 108,
@@ -3377,18 +3355,18 @@
     "cases": 4
   },
   {
-    "index": 308,
+    "index": 306,
     "path": "src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx",
     "language": "typescript-react",
-    "lines": 164,
-    "kb": 5.3,
+    "lines": 162,
+    "kb": 5.1,
     "status": "completo",
     "domain": "ui",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/ui/components/Designer/PluginIcon.tsx.file.test.ts",
     "cases": 4
   },
   {
-    "index": 309,
+    "index": 307,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx",
     "language": "typescript-react",
     "lines": 344,
@@ -3399,7 +3377,7 @@
     "cases": 4
   },
   {
-    "index": 310,
+    "index": 308,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx",
     "language": "typescript-react",
     "lines": 92,
@@ -3410,7 +3388,7 @@
     "cases": 4
   },
   {
-    "index": 311,
+    "index": 309,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx",
     "language": "typescript-react",
     "lines": 118,
@@ -3421,7 +3399,7 @@
     "cases": 4
   },
   {
-    "index": 312,
+    "index": 310,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx",
     "language": "typescript-react",
     "lines": 186,
@@ -3432,7 +3410,7 @@
     "cases": 4
   },
   {
-    "index": 313,
+    "index": 311,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx",
     "language": "typescript-react",
     "lines": 337,
@@ -3443,7 +3421,7 @@
     "cases": 4
   },
   {
-    "index": 314,
+    "index": 312,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx",
     "language": "typescript-react",
     "lines": 200,
@@ -3454,7 +3432,7 @@
     "cases": 4
   },
   {
-    "index": 315,
+    "index": 313,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx",
     "language": "typescript-react",
     "lines": 271,
@@ -3465,7 +3443,7 @@
     "cases": 4
   },
   {
-    "index": 316,
+    "index": 314,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx",
     "language": "typescript-react",
     "lines": 759,
@@ -3476,7 +3454,7 @@
     "cases": 4
   },
   {
-    "index": 317,
+    "index": 315,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx",
     "language": "typescript-react",
     "lines": 167,
@@ -3487,7 +3465,7 @@
     "cases": 4
   },
   {
-    "index": 318,
+    "index": 316,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/FormSelect.tsx",
     "language": "typescript-react",
     "lines": 67,
@@ -3498,7 +3476,7 @@
     "cases": 4
   },
   {
-    "index": 319,
+    "index": 317,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorBooleanSwitch.tsx",
     "language": "typescript-react",
     "lines": 142,
@@ -3509,7 +3487,7 @@
     "cases": 4
   },
   {
-    "index": 320,
+    "index": 318,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx",
     "language": "typescript-react",
     "lines": 329,
@@ -3520,7 +3498,18 @@
     "cases": 4
   },
   {
-    "index": 321,
+    "index": 319,
+    "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSelect.tsx",
+    "language": "typescript-react",
+    "lines": 46,
+    "kb": 1.4,
+    "status": "completo",
+    "domain": "ui",
+    "testPath": "tests/unit/sisad-pdfme-comprehensive/files/ui/components/Designer/RightSidebar/DetailView/InspectorSelect.tsx.file.test.ts",
+    "cases": 4
+  },
+  {
+    "index": 320,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx",
     "language": "typescript-react",
     "lines": 543,
@@ -3531,7 +3520,7 @@
     "cases": 4
   },
   {
-    "index": 322,
+    "index": 321,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx",
     "language": "typescript-react",
     "lines": 251,
@@ -3542,7 +3531,7 @@
     "cases": 4
   },
   {
-    "index": 323,
+    "index": 322,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx",
     "language": "typescript-react",
     "lines": 1078,
@@ -3553,7 +3542,7 @@
     "cases": 4
   },
   {
-    "index": 324,
+    "index": 323,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx",
     "language": "typescript-react",
     "lines": 447,
@@ -3564,18 +3553,18 @@
     "cases": 4
   },
   {
-    "index": 325,
+    "index": 324,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx",
     "language": "typescript-react",
-    "lines": 598,
-    "kb": 23.7,
+    "lines": 595,
+    "kb": 23.6,
     "status": "completo",
     "domain": "ui",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx.file.test.ts",
     "cases": 4
   },
   {
-    "index": 326,
+    "index": 325,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx",
     "language": "typescript-react",
     "lines": 102,
@@ -3586,7 +3575,7 @@
     "cases": 4
   },
   {
-    "index": 327,
+    "index": 326,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts",
     "language": "typescript",
     "lines": 172,
@@ -3597,7 +3586,7 @@
     "cases": 4
   },
   {
-    "index": 328,
+    "index": 327,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts",
     "language": "typescript",
     "lines": 658,
@@ -3608,7 +3597,7 @@
     "cases": 4
   },
   {
-    "index": 329,
+    "index": 328,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts",
     "language": "typescript",
     "lines": 621,
@@ -3619,7 +3608,7 @@
     "cases": 4
   },
   {
-    "index": 330,
+    "index": 329,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx",
     "language": "typescript-react",
     "lines": 287,
@@ -3630,7 +3619,7 @@
     "cases": 4
   },
   {
-    "index": 331,
+    "index": 330,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx",
     "language": "typescript-react",
     "lines": 162,
@@ -3641,7 +3630,7 @@
     "cases": 4
   },
   {
-    "index": 332,
+    "index": 331,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts",
     "language": "typescript",
     "lines": 390,
@@ -3652,7 +3641,7 @@
     "cases": 4
   },
   {
-    "index": 333,
+    "index": 332,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.ts",
     "language": "typescript",
     "lines": 47,
@@ -3663,7 +3652,7 @@
     "cases": 4
   },
   {
-    "index": 334,
+    "index": 333,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts",
     "language": "typescript",
     "lines": 28,
@@ -3674,7 +3663,7 @@
     "cases": 4
   },
   {
-    "index": 335,
+    "index": 334,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts",
     "language": "typescript",
     "lines": 103,
@@ -3685,7 +3674,7 @@
     "cases": 4
   },
   {
-    "index": 336,
+    "index": 335,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDetailProfiles.ts",
     "language": "typescript",
     "lines": 10,
@@ -3696,7 +3685,7 @@
     "cases": 4
   },
   {
-    "index": 337,
+    "index": 336,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDisplayInfo.ts",
     "language": "typescript",
     "lines": 24,
@@ -3707,7 +3696,7 @@
     "cases": 4
   },
   {
-    "index": 338,
+    "index": 337,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx",
     "language": "typescript-react",
     "lines": 371,
@@ -3718,7 +3707,7 @@
     "cases": 4
   },
   {
-    "index": 339,
+    "index": 338,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx",
     "language": "typescript-react",
     "lines": 474,
@@ -3729,7 +3718,7 @@
     "cases": 4
   },
   {
-    "index": 340,
+    "index": 339,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx",
     "language": "typescript-react",
     "lines": 444,
@@ -3740,7 +3729,7 @@
     "cases": 4
   },
   {
-    "index": 341,
+    "index": 340,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx",
     "language": "typescript-react",
     "lines": 87,
@@ -3751,7 +3740,7 @@
     "cases": 4
   },
   {
-    "index": 342,
+    "index": 341,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx",
     "language": "typescript-react",
     "lines": 79,
@@ -3762,7 +3751,7 @@
     "cases": 4
   },
   {
-    "index": 343,
+    "index": 342,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx",
     "language": "typescript-react",
     "lines": 364,
@@ -3773,7 +3762,7 @@
     "cases": 4
   },
   {
-    "index": 344,
+    "index": 343,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx",
     "language": "typescript-react",
     "lines": 447,
@@ -3784,7 +3773,7 @@
     "cases": 4
   },
   {
-    "index": 345,
+    "index": 344,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx",
     "language": "typescript-react",
     "lines": 145,
@@ -3795,7 +3784,7 @@
     "cases": 4
   },
   {
-    "index": 346,
+    "index": 345,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/TypeFilterSelect.tsx",
     "language": "typescript-react",
     "lines": 300,
@@ -3806,7 +3795,7 @@
     "cases": 4
   },
   {
-    "index": 347,
+    "index": 346,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/listViewItemResolver.ts",
     "language": "typescript",
     "lines": 70,
@@ -3817,7 +3806,7 @@
     "cases": 4
   },
   {
-    "index": 348,
+    "index": 347,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/reassignActionState.ts",
     "language": "typescript",
     "lines": 100,
@@ -3828,7 +3817,7 @@
     "cases": 4
   },
   {
-    "index": 349,
+    "index": 348,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx",
     "language": "typescript-react",
     "lines": 793,
@@ -3839,7 +3828,7 @@
     "cases": 4
   },
   {
-    "index": 350,
+    "index": 349,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts",
     "language": "typescript",
     "lines": 45,
@@ -3850,7 +3839,7 @@
     "cases": 4
   },
   {
-    "index": 351,
+    "index": 350,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx",
     "language": "typescript-react",
     "lines": 111,
@@ -3861,7 +3850,7 @@
     "cases": 4
   },
   {
-    "index": 352,
+    "index": 351,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SchemaAssignmentDialog.tsx",
     "language": "typescript-react",
     "lines": 358,
@@ -3872,7 +3861,7 @@
     "cases": 4
   },
   {
-    "index": 353,
+    "index": 352,
     "path": "src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx",
     "language": "typescript-react",
     "lines": 402,
@@ -3883,7 +3872,7 @@
     "cases": 4
   },
   {
-    "index": 354,
+    "index": 353,
     "path": "src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.tsx",
     "language": "typescript-react",
     "lines": 94,
@@ -3894,7 +3883,7 @@
     "cases": 4
   },
   {
-    "index": 355,
+    "index": 354,
     "path": "src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx",
     "language": "typescript-react",
     "lines": 172,
@@ -3905,7 +3894,7 @@
     "cases": 4
   },
   {
-    "index": 356,
+    "index": 355,
     "path": "src/sisad-pdfme/ui/components/Designer/index.tsx",
     "language": "typescript-react",
     "lines": 4651,
@@ -3916,7 +3905,7 @@
     "cases": 4
   },
   {
-    "index": 357,
+    "index": 356,
     "path": "src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts",
     "language": "typescript",
     "lines": 213,
@@ -3927,7 +3916,7 @@
     "cases": 4
   },
   {
-    "index": 358,
+    "index": 357,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle.tsx",
     "language": "typescript-react",
     "lines": 109,
@@ -3938,7 +3927,7 @@
     "cases": 4
   },
   {
-    "index": 359,
+    "index": 358,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/DesignerContextSummary.tsx",
     "language": "typescript-react",
     "lines": 98,
@@ -3949,7 +3938,7 @@
     "cases": 4
   },
   {
-    "index": 360,
+    "index": 359,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx",
     "language": "typescript-react",
     "lines": 102,
@@ -3960,7 +3949,7 @@
     "cases": 4
   },
   {
-    "index": 361,
+    "index": 360,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState.tsx",
     "language": "typescript-react",
     "lines": 81,
@@ -3971,7 +3960,7 @@
     "cases": 4
   },
   {
-    "index": 362,
+    "index": 361,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx",
     "language": "typescript-react",
     "lines": 103,
@@ -3982,7 +3971,7 @@
     "cases": 4
   },
   {
-    "index": 363,
+    "index": 362,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/accessPolicy.ts",
     "language": "typescript",
     "lines": 267,
@@ -3993,7 +3982,7 @@
     "cases": 4
   },
   {
-    "index": 364,
+    "index": 363,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts",
     "language": "typescript",
     "lines": 522,
@@ -4004,7 +3993,7 @@
     "cases": 4
   },
   {
-    "index": 365,
+    "index": 364,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts",
     "language": "typescript",
     "lines": 204,
@@ -4015,7 +4004,7 @@
     "cases": 4
   },
   {
-    "index": 366,
+    "index": 365,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/className.ts",
     "language": "typescript",
     "lines": 18,
@@ -4026,7 +4015,7 @@
     "cases": 4
   },
   {
-    "index": 367,
+    "index": 366,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts",
     "language": "typescript",
     "lines": 152,
@@ -4037,7 +4026,7 @@
     "cases": 4
   },
   {
-    "index": 368,
+    "index": 367,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/designerActionState.ts",
     "language": "typescript",
     "lines": 190,
@@ -4048,7 +4037,7 @@
     "cases": 4
   },
   {
-    "index": 369,
+    "index": 368,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts",
     "language": "typescript",
     "lines": 169,
@@ -4059,7 +4048,7 @@
     "cases": 4
   },
   {
-    "index": 370,
+    "index": 369,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/designerEffectCoordinator.ts",
     "language": "typescript",
     "lines": 153,
@@ -4070,7 +4059,7 @@
     "cases": 4
   },
   {
-    "index": 371,
+    "index": 370,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/designerExtensions.ts",
     "language": "typescript",
     "lines": 99,
@@ -4081,7 +4070,7 @@
     "cases": 4
   },
   {
-    "index": 372,
+    "index": 371,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/designerInteractionReset.ts",
     "language": "typescript",
     "lines": 86,
@@ -4092,7 +4081,7 @@
     "cases": 4
   },
   {
-    "index": 373,
+    "index": 372,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/designerLabels.ts",
     "language": "typescript",
     "lines": 114,
@@ -4103,7 +4092,7 @@
     "cases": 4
   },
   {
-    "index": 374,
+    "index": 373,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts",
     "language": "typescript",
     "lines": 186,
@@ -4114,7 +4103,7 @@
     "cases": 4
   },
   {
-    "index": 375,
+    "index": 374,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/interactionExclusions.ts",
     "language": "typescript",
     "lines": 51,
@@ -4125,7 +4114,7 @@
     "cases": 4
   },
   {
-    "index": 376,
+    "index": 375,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts",
     "language": "typescript",
     "lines": 260,
@@ -4136,7 +4125,7 @@
     "cases": 4
   },
   {
-    "index": 377,
+    "index": 376,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/interactionReducer.ts",
     "language": "typescript",
     "lines": 186,
@@ -4147,7 +4136,7 @@
     "cases": 4
   },
   {
-    "index": 378,
+    "index": 377,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts",
     "language": "typescript",
     "lines": 63,
@@ -4158,7 +4147,7 @@
     "cases": 4
   },
   {
-    "index": 379,
+    "index": 378,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy.ts",
     "language": "typescript",
     "lines": 47,
@@ -4169,7 +4158,7 @@
     "cases": 4
   },
   {
-    "index": 380,
+    "index": 379,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver.ts",
     "language": "typescript",
     "lines": 137,
@@ -4180,7 +4169,7 @@
     "cases": 4
   },
   {
-    "index": 381,
+    "index": 380,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts",
     "language": "typescript",
     "lines": 75,
@@ -4191,7 +4180,7 @@
     "cases": 4
   },
   {
-    "index": 382,
+    "index": 381,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts",
     "language": "typescript",
     "lines": 291,
@@ -4202,7 +4191,7 @@
     "cases": 4
   },
   {
-    "index": 383,
+    "index": 382,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts",
     "language": "typescript",
     "lines": 569,
@@ -4213,7 +4202,7 @@
     "cases": 4
   },
   {
-    "index": 384,
+    "index": 383,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts",
     "language": "typescript",
     "lines": 38,
@@ -4224,7 +4213,7 @@
     "cases": 4
   },
   {
-    "index": 385,
+    "index": 384,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts",
     "language": "typescript",
     "lines": 144,
@@ -4235,7 +4224,7 @@
     "cases": 4
   },
   {
-    "index": 386,
+    "index": 385,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts",
     "language": "typescript",
     "lines": 211,
@@ -4246,7 +4235,7 @@
     "cases": 4
   },
   {
-    "index": 387,
+    "index": 386,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts",
     "language": "typescript",
     "lines": 63,
@@ -4257,18 +4246,18 @@
     "cases": 4
   },
   {
-    "index": 388,
+    "index": 387,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts",
     "language": "typescript",
     "lines": 581,
-    "kb": 21.1,
+    "kb": 21.2,
     "status": "completo",
     "domain": "ui",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/ui/components/Designer/shared/schemaClipboard.ts.file.test.ts",
     "cases": 4
   },
   {
-    "index": 389,
+    "index": 388,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts",
     "language": "typescript",
     "lines": 102,
@@ -4279,7 +4268,7 @@
     "cases": 4
   },
   {
-    "index": 390,
+    "index": 389,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/schemaFamilies.ts",
     "language": "typescript",
     "lines": 44,
@@ -4290,7 +4279,7 @@
     "cases": 4
   },
   {
-    "index": 391,
+    "index": 390,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts",
     "language": "typescript",
     "lines": 116,
@@ -4301,7 +4290,7 @@
     "cases": 4
   },
   {
-    "index": 392,
+    "index": 391,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts",
     "language": "typescript",
     "lines": 266,
@@ -4312,7 +4301,7 @@
     "cases": 4
   },
   {
-    "index": 393,
+    "index": 392,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts",
     "language": "typescript",
     "lines": 32,
@@ -4323,7 +4312,7 @@
     "cases": 4
   },
   {
-    "index": 394,
+    "index": 393,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts",
     "language": "typescript",
     "lines": 50,
@@ -4334,7 +4323,7 @@
     "cases": 4
   },
   {
-    "index": 395,
+    "index": 394,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts",
     "language": "typescript",
     "lines": 35,
@@ -4345,18 +4334,18 @@
     "cases": 4
   },
   {
-    "index": 396,
+    "index": 395,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts",
     "language": "typescript",
-    "lines": 962,
-    "kb": 33.1,
+    "lines": 951,
+    "kb": 32.9,
     "status": "completo",
     "domain": "ui",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/ui/components/Designer/shared/selectionCommands.ts.file.test.ts",
     "cases": 4
   },
   {
-    "index": 397,
+    "index": 396,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts",
     "language": "typescript",
     "lines": 118,
@@ -4367,7 +4356,7 @@
     "cases": 4
   },
   {
-    "index": 398,
+    "index": 397,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts",
     "language": "typescript",
     "lines": 88,
@@ -4378,7 +4367,7 @@
     "cases": 4
   },
   {
-    "index": 399,
+    "index": 398,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts",
     "language": "typescript",
     "lines": 30,
@@ -4389,18 +4378,18 @@
     "cases": 4
   },
   {
-    "index": 400,
+    "index": 399,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts",
     "language": "typescript",
-    "lines": 324,
-    "kb": 10.8,
+    "lines": 325,
+    "kb": 11,
     "status": "completo",
     "domain": "ui",
     "testPath": "tests/unit/sisad-pdfme-comprehensive/files/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts.file.test.ts",
     "cases": 4
   },
   {
-    "index": 401,
+    "index": 400,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/useDesignerUiConfig.ts",
     "language": "typescript",
     "lines": 23,
@@ -4411,7 +4400,7 @@
     "cases": 4
   },
   {
-    "index": 402,
+    "index": 401,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts",
     "language": "typescript",
     "lines": 82,
@@ -4422,7 +4411,7 @@
     "cases": 4
   },
   {
-    "index": 403,
+    "index": 402,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/useSidebarCollapse.ts",
     "language": "typescript",
     "lines": 134,
@@ -4433,7 +4422,7 @@
     "cases": 4
   },
   {
-    "index": 404,
+    "index": 403,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/visibilityConfig.ts",
     "language": "typescript",
     "lines": 46,
@@ -4444,7 +4433,7 @@
     "cases": 4
   },
   {
-    "index": 405,
+    "index": 404,
     "path": "src/sisad-pdfme/ui/components/Designer/shared/zoomContract.ts",
     "language": "typescript",
     "lines": 136,
@@ -4455,7 +4444,7 @@
     "cases": 4
   },
   {
-    "index": 406,
+    "index": 405,
     "path": "src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts",
     "language": "typescript",
     "lines": 157,
@@ -4466,7 +4455,7 @@
     "cases": 4
   },
   {
-    "index": 407,
+    "index": 406,
     "path": "src/sisad-pdfme/ui/components/ErrorScreen.tsx",
     "language": "typescript-react",
     "lines": 41,
@@ -4477,7 +4466,7 @@
     "cases": 4
   },
   {
-    "index": 408,
+    "index": 407,
     "path": "src/sisad-pdfme/ui/components/Paper.tsx",
     "language": "typescript-react",
     "lines": 272,
@@ -4488,7 +4477,7 @@
     "cases": 4
   },
   {
-    "index": 409,
+    "index": 408,
     "path": "src/sisad-pdfme/ui/components/Preview.tsx",
     "language": "typescript-react",
     "lines": 253,
@@ -4499,7 +4488,7 @@
     "cases": 4
   },
   {
-    "index": 410,
+    "index": 409,
     "path": "src/sisad-pdfme/ui/components/Renderer.tsx",
     "language": "typescript-react",
     "lines": 509,
@@ -4510,7 +4499,7 @@
     "cases": 4
   },
   {
-    "index": 411,
+    "index": 410,
     "path": "src/sisad-pdfme/ui/components/Root.tsx",
     "language": "typescript-react",
     "lines": 62,
@@ -4521,7 +4510,7 @@
     "cases": 4
   },
   {
-    "index": 412,
+    "index": 411,
     "path": "src/sisad-pdfme/ui/components/RuntimeFormPanel.tsx",
     "language": "typescript-react",
     "lines": 19,
@@ -4532,7 +4521,7 @@
     "cases": 4
   },
   {
-    "index": 413,
+    "index": 412,
     "path": "src/sisad-pdfme/ui/components/Spinner.tsx",
     "language": "typescript-react",
     "lines": 32,
@@ -4543,7 +4532,7 @@
     "cases": 4
   },
   {
-    "index": 414,
+    "index": 413,
     "path": "src/sisad-pdfme/ui/components/StaticSchema.tsx",
     "language": "typescript-react",
     "lines": 74,
@@ -4554,7 +4543,7 @@
     "cases": 4
   },
   {
-    "index": 415,
+    "index": 414,
     "path": "src/sisad-pdfme/ui/components/UnitPager.tsx",
     "language": "typescript-react",
     "lines": 125,
@@ -4565,7 +4554,7 @@
     "cases": 4
   },
   {
-    "index": 416,
+    "index": 415,
     "path": "src/sisad-pdfme/ui/components/shared/DesignerTooltip.tsx",
     "language": "typescript-react",
     "lines": 153,
@@ -4576,7 +4565,7 @@
     "cases": 4
   },
   {
-    "index": 417,
+    "index": 416,
     "path": "src/sisad-pdfme/ui/components/shared/pageMetadata.ts",
     "language": "typescript",
     "lines": 53,
@@ -4587,7 +4576,7 @@
     "cases": 4
   },
   {
-    "index": 418,
+    "index": 417,
     "path": "src/sisad-pdfme/ui/components/shared/usePaperRefRegistry.ts",
     "language": "typescript",
     "lines": 21,
@@ -4598,7 +4587,7 @@
     "cases": 4
   },
   {
-    "index": 419,
+    "index": 418,
     "path": "src/sisad-pdfme/ui/components/usePreviewRuntime.ts",
     "language": "typescript",
     "lines": 825,
@@ -4609,7 +4598,7 @@
     "cases": 4
   },
   {
-    "index": 420,
+    "index": 419,
     "path": "src/sisad-pdfme/ui/constants.ts",
     "language": "typescript",
     "lines": 34,
@@ -4620,7 +4609,7 @@
     "cases": 4
   },
   {
-    "index": 421,
+    "index": 420,
     "path": "src/sisad-pdfme/ui/contexts.ts",
     "language": "typescript",
     "lines": 27,
@@ -4631,7 +4620,7 @@
     "cases": 4
   },
   {
-    "index": 422,
+    "index": 421,
     "path": "src/sisad-pdfme/ui/designerEngine.ts",
     "language": "typescript",
     "lines": 1418,
@@ -4642,7 +4631,7 @@
     "cases": 4
   },
   {
-    "index": 423,
+    "index": 422,
     "path": "src/sisad-pdfme/ui/helper.ts",
     "language": "typescript",
     "lines": 630,
@@ -4653,7 +4642,7 @@
     "cases": 4
   },
   {
-    "index": 424,
+    "index": 423,
     "path": "src/sisad-pdfme/ui/hooks.ts",
     "language": "typescript",
     "lines": 508,
@@ -4664,7 +4653,7 @@
     "cases": 4
   },
   {
-    "index": 425,
+    "index": 424,
     "path": "src/sisad-pdfme/ui/i18n.ts",
     "language": "typescript",
     "lines": 927,
@@ -4675,7 +4664,7 @@
     "cases": 4
   },
   {
-    "index": 426,
+    "index": 425,
     "path": "src/sisad-pdfme/ui/index.ts",
     "language": "typescript",
     "lines": 48,
@@ -4686,7 +4675,7 @@
     "cases": 4
   },
   {
-    "index": 427,
+    "index": 426,
     "path": "src/sisad-pdfme/ui/recipientPrefill.ts",
     "language": "typescript",
     "lines": 166,
@@ -4697,7 +4686,7 @@
     "cases": 4
   },
   {
-    "index": 428,
+    "index": 427,
     "path": "src/sisad-pdfme/ui/runtimeStyles.ts",
     "language": "typescript",
     "lines": 25,
@@ -4708,7 +4697,7 @@
     "cases": 4
   },
   {
-    "index": 429,
+    "index": 428,
     "path": "src/sisad-pdfme/ui/theme.ts",
     "language": "typescript",
     "lines": 76,
@@ -4719,7 +4708,7 @@
     "cases": 4
   },
   {
-    "index": 430,
+    "index": 429,
     "path": "src/sisad-pdfme/ui/types.ts",
     "language": "typescript",
     "lines": 169,
@@ -4730,7 +4719,7 @@
     "cases": 4
   },
   {
-    "index": 431,
+    "index": 430,
     "path": "src/sisad-pdfme/ui/types/customSchemaRegistry.ts",
     "language": "typescript",
     "lines": 33,

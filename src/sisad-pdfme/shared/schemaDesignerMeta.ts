@@ -9,9 +9,9 @@
  *   - schemaUid, createdAt     → sisad-pdfme (inmutable tras creación)
  *   - recipientId/Name/Color   → sisad-pdfme via schema.assign_recipient
  *   - assignment, signature    → sisad-pdfme
- *   - ownership                → DigitalAgreements (política inyectada)
- *   - integration              → DigitalAgreements (opaco para el runtime)
- *   - templateVersion          → DigitalAgreements (al guardar)
+ *   - ownership                → host (política inyectada)
+ *   - integration              → host (opaco para el runtime)
+ *   - templateVersion          → host (al guardar)
  *   - version, updatedAt       → sisad-pdfme (auto en cada mutación)
  */
 /**
@@ -91,7 +91,7 @@ export interface SchemaDesignerMeta {
   /** Scope de asignación del schema */
   assignment?: DesignerAssignment;
 
-  /** Política de ownership — escrita por DigitalAgreements, leída por guards */
+  /** Política de ownership — escrita por el host, leída por guards */
   ownership?: DesignerOwnership;
 
   /** Configuración de firma — no hardcodea el provider, usa clave opaca */
@@ -107,8 +107,8 @@ export interface SchemaDesignerMeta {
 
   /**
    * Datos de integración con proveedor externo.
-   * Completamente opacos para sisad-pdfme — DigitalAgreements los interpreta.
-   * Ejemplo: { provider: 'oneshot', envelopeId: 'env-123', tabId: 'tab-456' }
+   * Completamente opacos para sisad-pdfme — el host los interpreta.
+   * Ejemplo: { provider: 'external-provider', externalRef: 'opaque-ref' }
    */
   integration?: DesignerIntegrationBinding;
 

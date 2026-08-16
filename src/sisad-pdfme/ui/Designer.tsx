@@ -9,7 +9,7 @@
  * - Mantiene sincronizados callbacks del host: save, change template y page change.
  *
  * Límites del módulo:
- * - No debe contener reglas de negocio SISAD, Uanataca, StepTwo ni APIs externas.
+ * - No debe contener reglas de negocio del host, workflows ni APIs externas.
  * - No debe manipular directamente Moveable, Selecto ni geometría interna del canvas.
  * - No debe crear snapshots paralelos; solo mantiene el `template` runtime.
  *

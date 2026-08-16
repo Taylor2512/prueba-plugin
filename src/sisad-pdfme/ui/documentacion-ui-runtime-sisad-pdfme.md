@@ -137,7 +137,7 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 - Define defaultTheme y sisadTheme.
 
 ### Riesgos / notas
-- No confundir theme runtime con CSS específico de StepTwo/host.
+- No confundir theme runtime con CSS específico del host.
 
 ## types.ts — Tipos públicos y bridges
 ### Responsabilidades

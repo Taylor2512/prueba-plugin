@@ -108,7 +108,7 @@ export interface ProviderConfig {
   defaultProvider: string;
   allowedProviders: string[];
   /**
-   * Opaco — DigitalAgreements lo interpreta.
+   * Opaco — el host lo interpreta.
    * No contiene credenciales — solo configuración de tenant.
    */
   tenantConfig?: Record<string, unknown>;

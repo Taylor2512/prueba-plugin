@@ -8,6 +8,7 @@ import {
   buildDefaultOptionGroupOptions,
   normalizeOptionId,
   normalizeOptionGroupOptions,
+  ensureAtLeastOneOption,
   normalizeOptionText,
 } from '@sisad-pdfme/schemas/options/optionModel';
 
@@ -62,7 +63,7 @@ const resolveRadioGroupSelectedOptionId = (
   return resolveSingleOptionSelection(
     schema.selectedOptionId || schema.content || schema.defaultSelectedOptionId,
     options,
-    options[0]?.optionId || 'option_1',
+    ensureAtLeastOneOption(options)[0].optionId,
   );
 };
 
@@ -119,7 +120,7 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
       ? nextSelected
       : currentOptions.some((option) => option.optionId === currentSelected)
         ? currentSelected
-      : currentOptions[0]?.optionId || 'option_1';
+      : ensureAtLeastOneOption(currentOptions)[0].optionId;
 
     commit({
       options: currentOptions,
@@ -250,9 +251,6 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
             optionPrefix: 'Opción',
             selectionMode: 'single',
             optionsCount: 2,
-            content: 'option_1',
-            selectedOptionId: 'option_1',
-            defaultSelectedOptionId: 'option_1',
                 }),
         },
       }),

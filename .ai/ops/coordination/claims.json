@@ -4,21 +4,24 @@
     "task": "canonicalize-options",
     "mode": "write",
     "paths": [
-      "src/sisad-pdfme/generator/preflight.ts",
-      "src/sisad-pdfme/schemas/options/optionValueAdapter.ts",
-      "src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts",
-      "src/sisad-pdfme/schemas/options/optionGroupFactory.ts",
-      ".ai/scrum/task-cards/core-ux/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md"
+      "src/sisad-pdfme/schemas/options/optionModel.ts",
+      "src/sisad-pdfme/schemas/radioGroup/index.ts",
+      "src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx"
     ],
-    "startedAt": "2026-08-16T03:56:21.409Z"
+    "startedAt": "2026-08-16T04:01:11.145Z"
   },
   "codex": {
     "agent": "codex",
-    "task": "orphan-inventory-canonization",
+    "task": "remove-shared-compatibility-barrels",
     "mode": "write",
     "paths": [
-      "reports/architecture/orphan-inventory.json"
+      "src/sisad-pdfme/shared/index.ts",
+      "src/sisad-pdfme/shared/schemaMigration.ts",
+      "tests/unit/sisad-pdfme-comprehensive/files/shared/index.ts.file.test.ts",
+      "tests/unit/sisad-pdfme-comprehensive/files/shared/schemaMigration.ts.file.test.ts",
+      "tests/unit/sisad-pdfme-comprehensive/manifest/source-files.json",
+      "tests/unit/sisad-pdfme-comprehensive/contracts/architecture/everySourceHasDedicatedTest.test.ts"
     ],
-    "startedAt": "2026-08-16T03:58:16.061Z"
+    "startedAt": "2026-08-16T04:02:14.516Z"
   }
 }
