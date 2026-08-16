@@ -10,6 +10,7 @@ import { createUniqueSchemaVariableName } from '@sisad-pdfme/ui/components/Desig
 import { filterSchemasByCollisionScope } from '@sisad-pdfme/ui/components/Designer/shared/schemaCollision';
 import { asRecord, isRecord } from '@sisad-pdfme/shared/objectGuards';
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
+import { normalizeOptionText } from '@sisad-pdfme/schemas/options/optionModel';
 import { isOptionGroupType } from '@sisad-pdfme/schemas/options/optionGroupLayout';
 import { normalizeOptionGroupOptions } from '@sisad-pdfme/schemas/options/optionModel';
 import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
