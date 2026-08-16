@@ -1,19 +1,15 @@
 {
   "copilot": {
     "agent": "copilot",
-    "task": "update-ai-status",
+    "task": "slice-B-normalizers",
     "mode": "write",
     "paths": [
-      ".ai/scrum/task-cards/runtime-platform/RTP-040.md",
-      ".ai/scrum/task-cards/runtime-platform/RTP-045.md",
-      ".ai/scrum/task-cards/runtime-platform/RTP-090.md",
-      ".ai/scrum/task-cards/runtime-platform/RTP-375.md",
-      ".ai/scrum/task-cards/runtime-platform/RTP-385.md",
-      ".ai/scrum/task-cards/runtime-platform/RTP-390.md",
-      ".ai/scrum/task-cards/runtime-platform/RTP-395.md",
-      ".ai/scrum/task-cards/runtime-platform/RTP-400.md",
-      ".ai/scrum/task-cards/runtime-platform/RTP-410.md"
+      "src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts",
+      "src/sisad-pdfme/schemas/options/optionGroupFactory.ts",
+      "src/sisad-pdfme/schemas/options/optionGroupRenderer.ts",
+      "src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts",
+      "src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts"
     ],
-    "startedAt": "2026-08-16T03:33:18.938Z"
+    "startedAt": "2026-08-16T03:34:00.190Z"
   }
 }
