@@ -263,7 +263,6 @@ export function RuntimePage({ config, currentPath }) {
       template,
       values,
       collaborativeConfig,
-      runtimeConfig,
       routeDocuments,
       state.activeRecipientId,
       state.activeDocumentId,

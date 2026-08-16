@@ -276,7 +276,7 @@ export const SisadPdfmePreviewRuntime = ({
       runtimeInputs,
       signatureSessionKey,
       signatureSigner,
-      template,
+      safeTemplate,
     ],
   );
 
