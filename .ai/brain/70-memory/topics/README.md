@@ -6,8 +6,8 @@
 - [Consolidation objective memory](./consolidation-objective.md)
 - [Dynamic capabilities memory](./dynamic-capabilities.md)
 - [Execution orchestration memory](./execution-orchestration.md)
+- [Portable host runtime](./portable-host-runtime.md)
 - [Memory topic — Runtime Platform](./runtime-platform.md)
-- [Memory topic — SISAD-PDFME × consumer host runtime](./portable-host-runtime.md)
 - [Memory — tooling architecture](./tooling-architecture.md)
 
 > Managed index. Update source documents, not this list.

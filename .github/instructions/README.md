@@ -6,6 +6,7 @@
 - [ai-docs.instructions](./ai-docs.instructions.md)
 - [ai.instructions](./ai.instructions.md)
 - [canvas.instructions](./canvas.instructions.md)
+- [portable-host.instructions](./portable-host.instructions.md)
 - [quality.instructions](./quality.instructions.md)
 - [schemas.instructions](./schemas.instructions.md)
 - [sisad-core.instructions](./sisad-core.instructions.md)

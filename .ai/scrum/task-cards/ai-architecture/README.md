@@ -3,21 +3,21 @@
 <!-- sisad-architecture-hub:start -->
 ## Navigation
 
-- [AIARCH-001 — Auditar y congelar baseline](./AIARCH-001-auditar-y-congelar-baseline.md) — `BACKLOG`
-- [AIARCH-002 — Corregir fuente de estado y arranque](./AIARCH-002-corregir-fuente-de-estado-y-arranque.md) — `BACKLOG`
-- [AIARCH-003 — Adoptar adapters raíz](./AIARCH-003-adoptar-adapters-raiz.md) — `BACKLOG`
-- [AIARCH-004 — Implementar router por Context Manifest](./AIARCH-004-implementar-router-por-context-manifest.md) — `BACKLOG`
-- [AIARCH-005 — Aplicar presupuesto L0–L4](./AIARCH-005-aplicar-presupuesto-l0l4.md) — `BACKLOG`
-- [AIARCH-007 — Migrar memoria a índice y topics](./AIARCH-007-migrar-memoria-a-indice-y-topics.md) — `BACKLOG`
-- [AIARCH-008 — Implementar memory GC e invalidación](./AIARCH-008-implementar-memory-gc-e-invalidacion.md) — `BACKLOG`
-- [AIARCH-009 — Adoptar IDs de trazabilidad](./AIARCH-009-adoptar-ids-de-trazabilidad.md) — `BACKLOG`
-- [AIARCH-010 — Generar method registry desde código](./AIARCH-010-generar-method-registry-desde-codigo.md) — `BACKLOG`
-- [AIARCH-011 — Consolidar casos y behavior catalog](./AIARCH-011-consolidar-casos-y-behavior-catalog.md) — `BACKLOG`
-- [AIARCH-012 — Consolidar event/effect catalogs](./AIARCH-012-consolidar-event-effect-catalogs.md) — `BACKLOG`
-- [AIARCH-013 — Construir trace matrix y coverage gate](./AIARCH-013-construir-trace-matrix-y-coverage-gate.md) — `BACKLOG`
-- [AIARCH-014 — Depurar skill registry y aliases](./AIARCH-014-depurar-skill-registry-y-aliases.md) — `BACKLOG`
-- [AIARCH-015 — Añadir skills de contexto y trazabilidad](./AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md) — `BACKLOG`
-- [AIARCH-016 — Consolidar agent registry](./AIARCH-016-consolidar-agent-registry.md) — `BACKLOG`
+- [AIARCH-001 — Auditar y congelar baseline](./AIARCH-001-auditar-y-congelar-baseline.md) — `READY`
+- [AIARCH-002 — Corregir fuente de estado y arranque](./AIARCH-002-corregir-fuente-de-estado-y-arranque.md) — `READY`
+- [AIARCH-003 — Adoptar adapters raíz](./AIARCH-003-adoptar-adapters-raiz.md) — `READY`
+- [AIARCH-004 — Implementar router por Context Manifest](./AIARCH-004-implementar-router-por-context-manifest.md) — `READY`
+- [AIARCH-005 — Aplicar presupuesto L0–L4](./AIARCH-005-aplicar-presupuesto-l0l4.md) — `READY`
+- [AIARCH-007 — Migrar memoria a índice y topics](./AIARCH-007-migrar-memoria-a-indice-y-topics.md) — `READY`
+- [AIARCH-008 — Implementar memory GC e invalidación](./AIARCH-008-implementar-memory-gc-e-invalidacion.md) — `READY`
+- [AIARCH-009 — Adoptar IDs de trazabilidad](./AIARCH-009-adoptar-ids-de-trazabilidad.md) — `READY`
+- [AIARCH-010 — Generar method registry desde código](./AIARCH-010-generar-method-registry-desde-codigo.md) — `READY`
+- [AIARCH-011 — Consolidar casos y behavior catalog](./AIARCH-011-consolidar-casos-y-behavior-catalog.md) — `READY`
+- [AIARCH-012 — Consolidar event/effect catalogs](./AIARCH-012-consolidar-event-effect-catalogs.md) — `READY`
+- [AIARCH-013 — Construir trace matrix y coverage gate](./AIARCH-013-construir-trace-matrix-y-coverage-gate.md) — `READY`
+- [AIARCH-014 — Depurar skill registry y aliases](./AIARCH-014-depurar-skill-registry-y-aliases.md) — `READY`
+- [AIARCH-015 — Añadir skills de contexto y trazabilidad](./AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md) — `READY`
+- [AIARCH-016 — Consolidar agent registry](./AIARCH-016-consolidar-agent-registry.md) — `READY`
 - [AIARCH-017 — Aplicar política de subagentes y coste](./AIARCH-017-aplicar-politica-de-subagentes-y-coste.md) — `BACKLOG`
 - [AIARCH-018 — Actualizar adapter de Claude](./AIARCH-018-actualizar-adapter-de-claude.md) — `BACKLOG`
 - [AIARCH-019 — Actualizar adapter de Codex](./AIARCH-019-actualizar-adapter-de-codex.md) — `BACKLOG`

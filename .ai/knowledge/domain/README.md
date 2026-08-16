@@ -17,6 +17,7 @@
 - [Form / Viewer / PDF Parity](./FORM-VIEWER-PDF-PARITY.md)
 - [Left Sidebar Behavior](./LEFT-SIDEBAR-BEHAVIOR.md)
 - [Owner Color Contract](./OWNER-COLOR-CONTRACT.md)
+- [Portable host use cases](./PORTABLE-HOST-USE-CASES.md)
 - [Schema Behavior Matrix](./SCHEMA-BEHAVIOR-MATRIX.md)
 - [User / Recipient Use Cases](./USER-RECIPIENT-USE-CASES.md)
 

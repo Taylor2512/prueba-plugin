@@ -6,6 +6,8 @@
 - [Active](./ACTIVE.md)
 - [Blocked / Partial](./BLOCKED.md)
 - [Completed](./COMPLETED.md)
+- [Portable Runtime state](./PORTABLE-RUNTIME.md)
+- [Current priorities](./PRIORITIES.md)
 - [Runtime Platform state](./RUNTIME-PLATFORM.md)
 
 > Managed index. Update source documents, not this list.

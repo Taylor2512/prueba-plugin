@@ -114,26 +114,26 @@ unit.
 ## Navigation
 
 - [RTP-000 — Live source truth, Git/hash drift y baseline](./RTP-000.md) — `READY`
-- [RTP-005 — Canonicalizar infraestructura Playwright/Vitest y test authority](./RTP-005.md) — `BACKLOG`
-- [RTP-008 — Reconciliar source, evidence y ledger antes de continuar](./RTP-008.md) — `BACKLOG`
+- [RTP-005 — Canonicalizar infraestructura Playwright/Vitest y test authority](./RTP-005.md) — `READY`
+- [RTP-008 — Reconciliar source, evidence y ledger antes de continuar](./RTP-008.md) — `READY`
 - [RTP-010 — Fijar identidad SISAD-PDFME y nomenclatura policy](./RTP-010.md) — `BACKLOG`
-- [RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User](./RTP-015.md) — `BACKLOG`
-- [RTP-020 — Inventario registry-derived + generic runtime characterization harness](./RTP-020.md) — `BACKLOG`
+- [RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User](./RTP-015.md) — `READY`
+- [RTP-020 — Inventario registry-derived + generic runtime characterization harness](./RTP-020.md) — `READY`
 - [RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page](./RTP-022.md) — `PARTIAL`
-- [RTP-030 — Motor local-first de transacciones Form](./RTP-030.md) — `BACKLOG`
-- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](./RTP-040.md) — `PARTIAL`
+- [RTP-030 — Motor local-first de transacciones Form](./RTP-030.md) — `READY`
+- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](./RTP-040.md) — `READY`
 - [RTP-045 — Facade público: props declaradas vs. propagadas](./RTP-045.md) — `PARTIAL`
-- [RTP-050 — Eventos canónicos de input/runtime + adapters legacy](./RTP-050.md) — `BACKLOG`
-- [RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first](./RTP-055.md) — `BACKLOG`
-- [RTP-060 — Lifecycle, remount, focus, caret, IME y cleanup](./RTP-060.md) — `BACKLOG`
-- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](./RTP-070.md) — `ARCHIVED`
-- [RTP-080 — SchemaValueCodec por familia](./RTP-080.md) — `ARCHIVED`
-- [RTP-090 — Validation, touched, dirty, completion y access boundary](./RTP-090.md) — `PARTIAL`
-- [RTP-095 — Harness pairwise de interacción entre schemas](./RTP-095.md) — `ARCHIVED`
-- [RTP-100 — Text-like, number, presets y multiVariableText](./RTP-100.md) — `BACKLOG`
-- [RTP-110 — Select/dropdown, checkbox, radioGroup, checkboxGroup](./RTP-110.md) — `BACKLOG`
-- [RTP-120 — Date, time, dateTime y dateSigned](./RTP-120.md) — `BACKLOG`
-- [RTP-130 — Signature, initials, draw/image/P12/provider](./RTP-130.md) — `BACKLOG`
+- [RTP-050 — Eventos canónicos de input/runtime + adapters legacy](./RTP-050.md) — `READY`
+- [RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first](./RTP-055.md) — `READY`
+- [RTP-060 — Lifecycle, remount, focus, caret, IME y cleanup](./RTP-060.md) — `READY`
+- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](./RTP-070.md) — `READY`
+- [RTP-080 — SchemaValueCodec por familia](./RTP-080.md) — `READY`
+- [RTP-090 — Validation, touched, dirty, completion y access boundary](./RTP-090.md) — `READY`
+- [RTP-095 — Harness pairwise de interacción entre schemas](./RTP-095.md) — `READY`
+- [RTP-100 — Text-like, number, presets y multiVariableText](./RTP-100.md) — `READY`
+- [RTP-110 — Select/dropdown, checkbox, radioGroup, checkboxGroup](./RTP-110.md) — `READY`
+- [RTP-120 — Date, time, dateTime y dateSigned](./RTP-120.md) — `READY`
+- [RTP-130 — Signature, initials, draw/image/P12/provider](./RTP-130.md) — `READY`
 - [RTP-140 — Attachment, note, approve y decline artifacts/actions](./RTP-140.md) — `BACKLOG`
 - [RTP-150 — Image/SVG/table/shapes/barcodes visual/complex schemas](./RTP-150.md) — `BACKLOG`
 - [RTP-160 — Custom plugin runtime contract and auto-discovery harness](./RTP-160.md) — `BACKLOG`
@@ -169,14 +169,14 @@ unit.
 - [RTP-360 — Cerrar User assignment y value scope](./RTP-360.md) — `PARTIAL`
 - [RTP-365 — Cerrar RuntimeExecutionContext y aislamiento](./RTP-365.md) — `BACKLOG`
 - [RTP-370 — Implementar ExecutionPlan genérico de LAB](./RTP-370.md) — `PARTIAL`
-- [RTP-375 — Validar ejecución secuencial](./RTP-375.md) — `PARTIAL`
+- [RTP-375 — Validar ejecución secuencial](./RTP-375.md) — `READY`
 - [RTP-380 — Validar ejecución paralela](./RTP-380.md) — `PARTIAL`
-- [RTP-385 — Cerrar mixed execution y conflictos shared](./RTP-385.md) — `PARTIAL`
-- [RTP-390 — Cerrar massive fan-out](./RTP-390.md) — `PARTIAL`
-- [RTP-395 — Definir execution result y PDF artifacts](./RTP-395.md) — `PARTIAL`
-- [RTP-400 — Implementar canonical PDF merge](./RTP-400.md) — `PARTIAL`
+- [RTP-385 — Cerrar mixed execution y conflictos shared](./RTP-385.md) — `READY`
+- [RTP-390 — Cerrar massive fan-out](./RTP-390.md) — `READY`
+- [RTP-395 — Definir execution result y PDF artifacts](./RTP-395.md) — `READY`
+- [RTP-400 — Implementar canonical PDF merge](./RTP-400.md) — `READY`
 - [RTP-405 — Cerrar append, multi-document y massive bundle](./RTP-405.md) — `ARCHIVED`
-- [RTP-410 — Crear all-schema execution/completion harness](./RTP-410.md) — `PARTIAL`
+- [RTP-410 — Crear all-schema execution/completion harness](./RTP-410.md) — `READY`
 - [RTP-415 — Cerrar browser, performance, privacy y parity gates](./RTP-415.md) — `ARCHIVED`
 - [RTP-420 — Release y closeout del runtime](./RTP-420.md) — `BACKLOG`
 - [RTP-425 — Reconciliar baseline de configuración y runtime](./RTP-425.md) — `PASS`

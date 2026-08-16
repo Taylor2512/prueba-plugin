@@ -15,3 +15,14 @@ Consumer-specific product names, routes, backend DTOs, workflow names and busine
 do not belong in this repository.
 
 A concrete consumer keeps its own integration documentation and maps to these contracts.
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Designer consumer contract](./DESIGNER-CONSUMER-CONTRACT.md)
+- [Host execution -> SISAD-PDFME Form](./HOST-EXECUTION-CONTEXT.md)
+- [Host participant -> SISAD-PDFME User](./HOST-PARTICIPANT-TO-USER.md)
+- [Portable host integration](./PORTABLE-HOST-INTEGRATION.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

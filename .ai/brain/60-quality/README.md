@@ -11,6 +11,7 @@
 - [Legacy cleanup gates](./LEGACY-CLEANUP-GATES.md)
 - [PDF composition gates](./PDF-COMPOSITION-GATES.md)
 - [Performance budgets to establish](./PERFORMANCE-BUDGETS-TO-MEASURE.md)
+- [Portable host release gates](./PORTABLE-HOST-RELEASE-GATES.md)
 - [Production closeout gates](./PRODUCTION-CLOSEOUT-GATES.md)
 - [Runtime Platform gates](./RUNTIME-PLATFORM-GATES.md)
 - [Runtime regression matrix](./RUNTIME-REGRESSION-MATRIX.md)

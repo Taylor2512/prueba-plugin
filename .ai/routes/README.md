@@ -19,6 +19,7 @@
 - [Route — Catálogo y drag/drop](./left-sidebar.md)
 - [Route — PDF composition](./pdf-composition.md)
 - [Route — Documentos y snapshot](./persistence.md)
+- [Route — portable integration](./portable-integration.md)
 - [Route — Provider sync](./provider-adapters.md)
 - [Route — Pruebas y calidad](./quality.md)
 - [Route — Usuarios, ownership y color](./recipients-ownership.md)

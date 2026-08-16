@@ -1,12 +1,19 @@
 {
   "copilot": {
     "agent": "copilot",
-    "task": "AIARCH-009",
+    "task": "update-ai-status",
     "mode": "write",
     "paths": [
-      ".ai/scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md",
-      "reports/runtime-platform/evidence/AIARCH-009.copilot.md"
+      ".ai/scrum/task-cards/runtime-platform/RTP-040.md",
+      ".ai/scrum/task-cards/runtime-platform/RTP-045.md",
+      ".ai/scrum/task-cards/runtime-platform/RTP-090.md",
+      ".ai/scrum/task-cards/runtime-platform/RTP-375.md",
+      ".ai/scrum/task-cards/runtime-platform/RTP-385.md",
+      ".ai/scrum/task-cards/runtime-platform/RTP-390.md",
+      ".ai/scrum/task-cards/runtime-platform/RTP-395.md",
+      ".ai/scrum/task-cards/runtime-platform/RTP-400.md",
+      ".ai/scrum/task-cards/runtime-platform/RTP-410.md"
     ],
-    "startedAt": "2026-08-16T03:11:22.088Z"
+    "startedAt": "2026-08-16T03:33:18.938Z"
   }
 }

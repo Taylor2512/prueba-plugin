@@ -4,7 +4,7 @@
 ## Navigation
 
 - [topics](./topics/README.md)
-- [Current — Runtime Platform](./CURRENT.md)
+- [Current — SISAD-PDFME](./CURRENT.md)
 - [Handoff seed](./HANDOFF.md)
 
 > Managed index. Update source documents, not this list.
