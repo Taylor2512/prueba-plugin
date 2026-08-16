@@ -4,9 +4,8 @@
     "task": "RTP-545",
     "mode": "write",
     "paths": [
-      "reports/runtime-platform/evidence/RTP-545.md",
-      ".ai/scrum/task-cards/runtime-platform/RTP-545.md"
+      "reports/runtime-platform/evidence/RTP-545.copilot.md"
     ],
-    "startedAt": "2026-08-16T02:23:28.866Z"
+    "startedAt": "2026-08-16T02:52:50.734Z"
   }
 }
