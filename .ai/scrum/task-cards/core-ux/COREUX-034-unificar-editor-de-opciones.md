@@ -63,6 +63,10 @@ Composite, Strategy
  - Replaced checkbox-to-group conversion defaults to use `buildDefaultOptionGroupOptions`.
  - Confirmed `npx tsc --noEmit`, `npm run lint --silent`, and reconcile script pass for modified files.
 
+- Completed canonicalization across `radioGroup`, `optionGroupFactory`, `optionValueAdapter` and the `SchemaOptionsEditor`.
+	Commit: `2fc72653`.
+	Gates: `npx tsc --noEmit` (ok), `npm run lint --silent` (ok), `node scripts/ai/architecture/reconcile-task-statuses.mjs . --apply` (no drift).
+
 Confirmar rutas antes de editar. No crear un archivo nuevo si la responsabilidad
 ya existe bajo otro nombre.
 
