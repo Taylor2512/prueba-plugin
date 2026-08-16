@@ -34,9 +34,9 @@ findWithLabelByType(type: string): [string, Plugin | undefined] {
         if (!plugin || typeof plugin !== 'object') continue;
         if (!plugin.propPanel || typeof plugin.propPanel !== 'object') continue;
 
-        const defaultSchema = plugin.propPanel.defaultSchema as Record<string, unknown>;
+        const defaultSchema = plugin.propPanel.defaultSchema as { type?: unknown } | undefined;
 
-        if (defaultSchema && 'type' in defaultSchema && defaultSchema.type === type) {
+        if (defaultSchema && typeof defaultSchema.type === 'string' && defaultSchema.type === type) {
           return [label, plugin];
         }
       }

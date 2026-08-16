@@ -21,6 +21,10 @@ export default defineConfig({
      */
     alias: [
       {
+        find: /^@sisad-pdfme$/,
+        replacement: path.resolve(__dirname, 'src/sisad-pdfme/index.ts'),
+      },
+      {
         find: /^@sisad-pdfme\/converter$/,
         replacement: path.resolve(__dirname, 'src/sisad-pdfme/converter/index.browser.ts'),
       },

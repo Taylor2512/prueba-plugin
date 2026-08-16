@@ -1,7 +1,7 @@
 # Guide — debug dynamic configuration
 
 Trace:
-raw config -> migrated -> normalized -> resolved -> capability -> surface -> action.
+raw canonical config -> validated -> normalized -> resolved -> capability -> surface -> action.
 
 Capture revision/hash at every step.
 

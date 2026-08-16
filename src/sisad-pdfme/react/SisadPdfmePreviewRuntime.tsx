@@ -1,5 +1,5 @@
 import { getInputFromTemplate, cloneDeep } from '@sisad-pdfme/common';
-import type { Template } from '@sisad-pdfme/common/types';
+import type { Template, Plugins } from '@sisad-pdfme/common/types';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import React, { useEffect, useMemo, useRef } from 'react';
 import type {
@@ -9,9 +9,12 @@ import type {
 } from '@sisad-pdfme/config/SisadPdfmeConfig';
 import { useSisadPdfmeController } from '@sisad-pdfme/react/useSisadPdfmeController';
 import { usePdfmeRuntimeInstance } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
-import type { UsePdfmeRuntimeInstanceConfig } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
+import type {
+  RuntimeConstructorProps,
+  RuntimeInstanceLike,
+  UsePdfmeRuntimeInstanceConfig,
+} from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
 import { checkTemplate } from '@sisad-pdfme/common/helper';
-import { createDefaultTemplate } from '@sisad-pdfme/templates/createDefaultTemplate';
 import Form from '@sisad-pdfme/ui/Form';
 import Viewer from '@sisad-pdfme/ui/Viewer';
 import Designer from '@sisad-pdfme/ui/Designer';
@@ -46,7 +49,7 @@ export type SisadPdfmePreviewRuntimeProps = {
   /** Aísla el perfil de firma adoptado por solicitud + destinatario. */
   signatureSessionKey?: string | null;
   signatureProviders?: unknown[];
-  plugins?: Record<string, unknown> | null;
+  plugins?: Plugins | null;
   onInputChange?: (payload: {
     index: number;
     name: string;
@@ -68,84 +71,34 @@ export type SisadPdfmePreviewRuntimeProps = {
 };
 
 /**
- * Thin constructor adapters: adapt existing UI classes that accept `PreviewProps`
- * to the `RuntimeConstructorLike` expected by `usePdfmeRuntimeInstance`.
- *
- * Reuse existing classes (`Designer`, `Form`, `Viewer`) rather than
- * duplicating logic. The adapters translate the common props object into
- * `PreviewProps` and return an instance compatible with `RuntimeInstanceLike`.
+ * Use the UI runtime constructors directly. Their public constructors already
+ * match the `UsePdfmeRuntimeInstanceConfig` contract (domContainer, template,
+ * plugins, options, inputs) and expose the lifecycle methods required by the
+ * runtime adapter. Avoid reflection-based adapters and prefer structural
+ * typing — this enforces PRT-010 and removes unsafe `any`/unknown hacks.
  */
-const adapterFor = (UIClass: new (props: unknown) => unknown) =>
-  class Adapter {
-    private inner: unknown;
-    constructor(props: unknown) {
-      // The UI classes expect `PreviewProps`/`DesignerProps` with domContainer
-      // renamed to `domContainer` in schema; the hook provides `domContainer`.
-      this.inner = new UIClass({ ...(props as Record<string, unknown>) });
-    }
-    destroy() {
-      const inner = this.inner as Record<string, unknown> | null;
-      const fn = inner?.destroy;
-      if (typeof fn === 'function') return (fn as (...args: unknown[]) => unknown).call(inner);
-      return undefined;
-    }
-    updateOptions(options: unknown) {
-      const inner = this.inner as Record<string, unknown> | null;
-      if (!inner) return undefined;
-      const getOptions = inner.getOptions;
-      const setOptions = inner.setOptions;
-      const update = inner.updateOptions;
-      if (typeof getOptions === 'function') {
-        if (typeof setOptions === 'function') return (setOptions as (...args: unknown[]) => unknown).call(inner, options);
-      }
-      if (typeof update === 'function') return (update as (...args: unknown[]) => unknown).call(inner, options);
-      return undefined;
-    }
-    updateTemplate(template: unknown) {
-      const inner = this.inner as Record<string, unknown> | null;
-      const fn = inner?.updateTemplate;
-      if (typeof fn === 'function') return (fn as (...args: unknown[]) => unknown).call(inner, template);
-      return undefined;
-    }
-    setInputs(inputs: unknown) {
-      const inner = this.inner as Record<string, unknown> | null;
-      const fn = inner?.setInputs;
-      if (typeof fn === 'function') return (fn as (...args: unknown[]) => unknown).call(inner, inputs);
-      return undefined;
-    }
-    fitToWidth() {
-      const inner = this.inner as Record<string, unknown> | null;
-      const fn = inner?.fitToWidth;
-      return typeof fn === 'function' ? (fn as () => unknown).call(inner) : undefined;
-    }
-    fitToPage() {
-      const inner = this.inner as Record<string, unknown> | null;
-      const fn = inner?.fitToPage;
-      return typeof fn === 'function' ? (fn as () => unknown).call(inner) : undefined;
-    }
-    onChangeTemplate(cb: (t: unknown) => void) {
-      const inner = this.inner as Record<string, unknown> | null;
-      const fn = inner?.onChangeTemplate;
-      if (typeof fn === 'function') return (fn as (h: (t: unknown) => unknown) => unknown).call(inner, cb);
-      return undefined;
-    }
-    onChangeInput(cb: (p: unknown) => void) {
-      const inner = this.inner as Record<string, unknown> | null;
-      const fn = inner?.onChangeInput;
-      if (typeof fn === 'function') return (fn as (h: (p: unknown) => unknown) => unknown).call(inner, cb);
-      return undefined;
-    }
-    onPageChange(cb: (p: unknown) => void) {
-      const inner = this.inner as Record<string, unknown> | null;
-      const fn = inner?.onPageChange;
-      if (typeof fn === 'function') return (fn as (h: (p: unknown) => unknown) => unknown).call(inner, cb);
-      return undefined;
-    }
-  } as unknown as UsePdfmeRuntimeInstanceConfig['runtime']['Designer'];
+class DesignerRuntimeAdapter extends Designer implements RuntimeInstanceLike {
+  constructor(props: RuntimeConstructorProps) {
+    super(props);
+  }
+}
 
-const runtimeByMode = {
-  form: { Designer: adapterFor(Designer), Form: adapterFor(Form), Viewer: adapterFor(Viewer) },
-  viewer: { Designer: adapterFor(Designer), Form: adapterFor(Form), Viewer: adapterFor(Viewer) },
+class FormRuntimeAdapter extends Form implements RuntimeInstanceLike {
+  constructor(props: RuntimeConstructorProps) {
+    super({ ...props, inputs: props.inputs ?? [] });
+  }
+}
+
+class ViewerRuntimeAdapter extends Viewer implements RuntimeInstanceLike {
+  constructor(props: RuntimeConstructorProps) {
+    super({ ...props, inputs: props.inputs ?? [] });
+  }
+}
+
+const runtimeByMode: UsePdfmeRuntimeInstanceConfig['runtime'] = {
+  Designer: DesignerRuntimeAdapter,
+  Form: FormRuntimeAdapter,
+  Viewer: ViewerRuntimeAdapter,
 };
 
 export const SisadPdfmePreviewRuntime = ({
@@ -172,31 +125,25 @@ export const SisadPdfmePreviewRuntime = ({
       recipients,
       activeRecipientId,
     });
+  // Fail-closed: invalid templates must surface explicit runtime errors.
+  // Do not silently fall back to defaults (PRT-020).
   const safeTemplate = useMemo<Template>(() => {
-    try {
-      if (!template || typeof template !== 'object') return createDefaultTemplate();
-      const cloned = cloneDeep(template) as Template;
-      if (!cloned.schemas || !Array.isArray(cloned.schemas) || cloned.schemas.length === 0) {
-        const def = createDefaultTemplate();
-        cloned.schemas = def.schemas as Template['schemas'];
-        cloned.basePdf = cloned.basePdf ?? def.basePdf;
-      }
-      return cloned as Template;
-    } catch {
-      return createDefaultTemplate();
+    if (!template || typeof template !== 'object') {
+      throw new Error('Invalid template: expected object');
     }
+    const cloned = cloneDeep(template) as Template;
+    if (!cloned.schemas || !Array.isArray(cloned.schemas) || cloned.schemas.length === 0) {
+      throw new Error('Invalid template: missing schemas');
+    }
+    // Validate the canonical template and propagate the error to the host.
+    checkTemplate(cloned);
+    return cloned as Template;
   }, [template]);
 
   const runtimeInputs = useMemo(() => {
     if (Array.isArray(inputs)) return inputs;
-    // Ensure safeTemplate conforms to Template before passing to helper
-    try {
-      // checkTemplate will migrate and throw on invalid shape; fall back to defaults on error
-      checkTemplate(safeTemplate);
-      return getInputFromTemplate(safeTemplate);
-    } catch {
-      return getInputFromTemplate(createDefaultTemplate());
-    }
+    // safeTemplate is already validated (fail-closed). Extract inputs deterministically.
+    return getInputFromTemplate(safeTemplate);
   }, [inputs, safeTemplate]);
 
   /**
@@ -251,13 +198,13 @@ export const SisadPdfmePreviewRuntime = ({
             }
           : {}),
       },
-      plugins: {
+      plugins: ({
         ...flatSchemaPlugins,
         ...(plugins || {}),
-      },
+      } as unknown) as Plugins,
       // runtimeByMode contains UI classes that accept `PreviewProps`.
       // The hook expects constructors matching `RuntimeConstructorLike`.
-      runtime: runtimeByMode[mode] as UsePdfmeRuntimeInstanceConfig['runtime'],
+      runtime: runtimeByMode,
       ...(mode === 'form' ? { onInputChange } : {}),
     }),
     [
@@ -276,9 +223,7 @@ export const SisadPdfmePreviewRuntime = ({
   );
 
   const { instanceRef } = usePdfmeRuntimeInstance(runtimeConfig);
-  const controller = useSisadPdfmeController(
-    instanceRef as React.MutableRefObject<Record<string, unknown> | null>,
-  );
+  const controller = useSisadPdfmeController(instanceRef);
 
   useEffect(() => {
     onControllerReady?.(controller);

@@ -270,7 +270,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
     },
 
     propPanel: {
-      ...createOptionGroupPropPanelConfig({
+      ...createOptionGroupPropPanelConfig<CheckboxGroupSchema>({
         optionsTitle: 'Casillas',
         optionsWidget: 'editCheckboxGroupOptions',
         groupNameTitle: 'Nombre del grupo',
@@ -292,8 +292,8 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
             optionPrefix: 'Casilla',
             selectionMode: 'multiple',
             optionsCount: 2,
-                }),
-        },
+          }),
+        } as CheckboxGroupSchema,
       }),
     },
     icon: renderLucideIcon(SquareCheck, { stroke: 'currentColor' }),

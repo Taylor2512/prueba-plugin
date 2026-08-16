@@ -4,6 +4,7 @@ import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '@sisa
 import { toRadians } from 'pdf-lib';
 import { Circle, Square } from 'lucide-react';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 import { resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
 import { hexColorFields } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 
@@ -135,7 +136,7 @@ const shape: Plugin<ShapeSchema> = {
 const getPropPanelSchema = (type: 'rectangle' | 'ellipse') => ({
   ...shape.propPanel,
   defaultSchema: {
-    ...(shape.propPanel.defaultSchema as ShapeSchema),
+    ...shape.propPanel.defaultSchema,
     type,
   },
 });

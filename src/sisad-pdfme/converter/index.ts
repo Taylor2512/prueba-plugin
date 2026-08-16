@@ -9,7 +9,7 @@ export { pdf2img, pdf2size, img2pdf } from '@sisad-pdfme/converter/index.browser
 
 /**
  * Alias semánticos más legibles para consumidores externos.
- * Mantienen compatibilidad con nombres más descriptivos:
+ * Mantienen nombres descriptivos:
  * - pdfToImages
  * - pdfToPageSizes
  * - imagesToPdf

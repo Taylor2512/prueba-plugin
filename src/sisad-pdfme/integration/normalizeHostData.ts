@@ -1,4 +1,5 @@
 import { cloneDeep, getInputFromTemplate, type Template } from '@sisad-pdfme/common';
+import { checkTemplate } from '@sisad-pdfme/common/helper';
 import {
   createDocumentsAdapter,
   createRecipientsAdapter,
@@ -57,7 +58,21 @@ export const normalizeHostData = ({
   const recipientAdapter = adapters?.recipients ?? createRecipientsAdapter();
   const documentAdapter = adapters?.documents ?? createDocumentsAdapter();
   const signatureProviderAdapter = adapters?.signatures ?? createSignatureProviderAdapter();
-  const normalizedTemplate = cloneDeep(template ?? createDefaultTemplate());
+  const normalizedTemplate = (() => {
+    // If the host didn't provide a template at all, we create a minimal
+    // default for downstream code that expects a Template. But if the host
+    // provided a template, it must be a valid canonical template — do not
+    // silently replace an invalid template with a default one (PRT-020).
+    if (template === undefined || template === null) {
+      return cloneDeep(createDefaultTemplate());
+    }
+    if (typeof template !== 'object' || Array.isArray(template)) {
+      throw new Error('Invalid template provided: expected an object');
+    }
+    const cloned = cloneDeep(template) as Template;
+    checkTemplate(cloned);
+    return cloned;
+  })();
   const normalizedRecipients = Array.isArray(recipients)
     ? recipientAdapter.toRecipients(recipients)
     : [];

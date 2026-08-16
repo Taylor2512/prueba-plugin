@@ -234,7 +234,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
     },
 
     propPanel: {
-      ...createOptionGroupPropPanelConfig({
+      ...createOptionGroupPropPanelConfig<RadioGroupSchema>({
         optionsTitle: 'Opciones',
         optionsWidget: 'editRadioGroupOptions',
         groupNameTitle: 'Nombre del grupo',
@@ -251,8 +251,8 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
             optionPrefix: 'Opción',
             selectionMode: 'single',
             optionsCount: 2,
-                }),
-        },
+          }),
+        } as RadioGroupSchema,
       }),
     },
 

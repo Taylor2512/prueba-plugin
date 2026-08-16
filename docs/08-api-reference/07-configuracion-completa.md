@@ -9,7 +9,7 @@ Este documento describe las rutas observadas en `SisadPdfmeGlobalConfig`, sus va
 | Implementado | consumido por la implementación actual |
 | Parcial | existe lógica, pero no cubre todo el contrato |
 | Declarativo | tipado/default, sin consumidor directo confirmado |
-| Legacy | alias migrado; no usar en integración nueva |
+| No soportado | ruta histórica fuera del contrato actual; debe rechazarse |
 
 ---
 
@@ -17,7 +17,7 @@ Este documento describe las rutas observadas en `SisadPdfmeGlobalConfig`, sus va
 
 ```ts
 type SisadPdfmeGlobalConfig = {
-  configVersion?: 1 | 2;
+  configVersion?: 2;
   app?: AppConfig;
   runtime?: RuntimeConfig;
   theme?: ThemeConfig;
@@ -43,9 +43,9 @@ type SisadPdfmeGlobalConfig = {
 
 | Ruta | Tipo | Default | Estado | Uso |
 |---|---|---:|---|---|
-| `configVersion` | `1 \| 2` | `2` tras migración | Implementado | controla migración legacy |
+| `configVersion` | `2` | `2` | Implementado | versión del contrato actual |
 
-La migración actual normaliza a versión 2.
+La normalización actual sólo acepta la representación de versión 2.
 
 ---
 
@@ -250,7 +250,7 @@ collaboration.activeRecipientId
 | Flag | Tipo | Default | Estado | Descripción |
 |---|---|---:|---|---|
 | `enabled` | boolean | false | Implementado |
-| `activeRecipientId` | string/null | null | Legacy | migrado a recipients.activeRecipientId |
+| `activeRecipientId` | string/null | null | No soportado | usar `recipients.activeRecipientId` |
 | `isGlobalView` | boolean | false | Implementado |
 | `canEditStructure` | boolean | true | Implementado | afecta assignment/mutaciones |
 | `ownerColorStrategy` | recipient/schema/theme | recipient | Declarativo/parcial |
@@ -647,7 +647,7 @@ La ruta `ui` debe usarse para presentación:
 |---|---:|---|
 | visualPreset | classic-designer | Implementado/parcial |
 | layoutPreset | three-panel | Implementado/parcial |
-| density | comfortable | Legacy/duplicado |
+| density | comfortable | Declarativo/parcial; la ruta canónica es `theme.density` |
 | gap | .5rem | Implementado/parcial |
 | padding | .5rem | Implementado/parcial |
 | baseWidth | 100% | Implementado/parcial |
@@ -694,21 +694,21 @@ No apuntar desde el host a clases internas no públicas.
 
 ---
 
-# 28. Migración legacy
+# 28. Rutas no soportadas
 
-Aliases migrados:
+Las rutas históricas no forman parte del contrato actual y no se migran en
+runtime. El host debe enviar únicamente la representación canónica:
 
 ```txt
-ui.visibility                          → visibility
-ui.density                             → theme.density
-ui.sidebars.left.defaultOpen           → sidebars.left.defaultOpen
-ui.sidebars.left.catalogLayout         → sidebars.left.catalogLayout
-ui.sidebars.right.defaultOpen          → sidebars.right.defaultOpen
-ui.sidebars.right.defaultPanel         → sidebars.right.defaultPanel
-collaboration.activeRecipientId        → recipients.activeRecipientId
+visibility
+theme.density
+sidebars.left
+sidebars.right
+recipients.activeRecipientId
 ```
 
-Aunque la config canónica debería ganar, no enviar simultáneamente ambas rutas. La implementación aún contiene compatibilidad y merges legacy.
+Una entrada histórica inválida debe producir un error explícito; no se convierte
+silenciosamente en defaults.
 
 ---
 
@@ -740,11 +740,10 @@ documents.mode=single y preserveDocumentSchemaRouting=false
 ```txt
 1. defaults
 2. preset
-3. legacy migrado
-4. config canónica del host
-5. overrides del runtime
-6. permisos/contexto
-7. estado de interacción
+3. config canónica del host
+4. overrides del runtime
+5. permisos/contexto
+6. estado de interacción
 ```
 
 No construyas una segunda precedencia en el host.

@@ -360,7 +360,7 @@ export const filterSchemasByAuthorView = (
  * - anchor;
  * - replies.
  *
- * También permite overrides para preservar compatibilidad con snapshots
+ * También permite overrides para preservar datos de snapshots
  * o estructuras .
  */
 export const createSchemaComment = (

@@ -19,6 +19,12 @@ export {
   downloadUrl,
   downloadJson,
 } from '@sisad-pdfme/integration';
+export {
+  createPortableSisadPdfmeInstanceBundle,
+  inlineSisadPdfmeInstanceAssets,
+  isInlinedSisadPdfmeInstanceBundle,
+  SISAD_PDFME_BUNDLE_ASSET_ENCODING,
+} from '@sisad-pdfme/integration/instanceBundleAssets';
 
 export type {
   SisadPdfmeInstanceInput,
@@ -50,3 +56,7 @@ export type {
   SisadPdfmeRecipient,
   SisadPdfmeSignatureProvider,
 } from '@sisad-pdfme/integration';
+export type {
+  SisadPdfmeInlinedInstanceBundle,
+  SisadPdfmeInstanceBundleAssetOptions,
+} from '@sisad-pdfme/integration/instanceBundleAssets';

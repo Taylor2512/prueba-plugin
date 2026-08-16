@@ -2,32 +2,17 @@
  * FASE 7 — Snapshot Adapter
  *
  * Serializa/deserializa el estado del designer hacia/desde OfficialTemplateSnapshot.
- * Migra snapshots anteriores al contrato actual (pdfme ~4.x sin campo version).
- *
- * Estrategia de migración:
- *   - Detección: ausencia de 'version' o version < "2.0.0"
- *   - Ejecución: en import time (no lazy)
- *   - Pérdida aceptable: historial Yjs, estado de locks, metadatos por schema individuales
- *   - Pérdida inaceptable: schemas, recipients, assignments, firma
+ * Serializa únicamente la representación actual del snapshot.
  */
 import type {
   OfficialTemplateSnapshot,
   SnapshotDocument,
-  SnapshotPage,
-  SnapshotRecipient,
-  SnapshotAssignment,
   SnapshotConnectivity,
   SnapshotFileConnectivity,
   SnapshotSchemaConnectivity,
-  SnapshotContributor,
-  SignatureConfig,
   SerializeOptions,
-  SchemaWithDesigner,
 } from '@sisad-pdfme/shared/snapshot';
-import {
-  SNAPSHOT_VERSION,
-  isPreSnapshot,
-} from '@sisad-pdfme/shared/snapshot';
+import { SNAPSHOT_VERSION } from '@sisad-pdfme/shared/snapshot';
 import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 import { cloneDeep } from '@sisad-pdfme/common';
@@ -206,96 +191,17 @@ class SnapshotAdapterImpl {
     };
   }
 
-  /**
-   * Migra un snapshot de cualquier versión anterior a .
-   * Siempre retorna un OfficialTemplateSnapshot válido en .
-   * Ejecutar en import time.
-   */
-  migrate(raw: unknown): OfficialTemplateSnapshot {
-    if (!isPreSnapshot(raw)) {
-      // Ya es  (o superior) — retornar tal cual
-      return raw as OfficialTemplateSnapshot;
+  /** Valida y devuelve sólo snapshots de la representación actual. */
+  assertCurrent(raw: unknown): OfficialTemplateSnapshot {
+    const result = this.validate(raw);
+    if (!result.valid) {
+      throw new Error(`Invalid current snapshot: ${result.errors.join('; ')}`);
     }
+    return raw as OfficialTemplateSnapshot;
 
-    // Pre- pdfme ~4.x: { schemas: SchemaPageArray[][], basePdf?: string, ... }
-    const sourceSnapshot = asRecord(raw) || {};
-    const now = new Date().toISOString();
-    const sourceSchemas = this._extractSchemas(sourceSnapshot);
-    const sourceRecipients = this._extractRecipients(sourceSnapshot);
-    const uploadedDocuments =
-      Array.isArray(sourceSnapshot.uploadedDocuments) && sourceSnapshot.uploadedDocuments.length > 0
-        ? (sourceSnapshot.uploadedDocuments as SnapshotDocument[])
-        : undefined;
-    const sourceSignaturePolicyId = this._resolveSignaturePolicyId(sourceSnapshot);
-    const sourceSignatureMode = this._resolveSignatureMode(sourceSnapshot, sourceSignaturePolicyId);
-    const sourceConnectivity = this._resolveConnectivity(sourceSnapshot);
-
-    const documents: SnapshotDocument[] = [
-      {
-        documentId: this._generateId(),
-        name: typeof sourceSnapshot.name === 'string' ? sourceSnapshot.name : 'Documento importado',
-        order: 0,
-        pages: sourceSchemas.map((pageSchemas, index) => ({
-          pageNumber: index + 1,
-          schemas: pageSchemas.map((schema) =>
-            this._migrateSchema(schema, index + 1, 'doc-0'),
-          ),
-          background: this._migrateBackground(sourceSnapshot, index),
-        })),
-      },
-    ];
-
-    return {
-      version: SNAPSHOT_VERSION,
-      templateSchemaVersion:
-        typeof sourceSnapshot.templateSchemaVersion === 'string'
-          ? sourceSnapshot.templateSchemaVersion
-          : SNAPSHOT_VERSION,
-      templateId: typeof sourceSnapshot.templateId === 'string' ? sourceSnapshot.templateId : this._generateId(),
-      createdAt: now,
-      updatedAt: now,
-      metadata: {
-        name: typeof sourceSnapshot.name === 'string' ? sourceSnapshot.name : 'Template migrado',
-        createdByUserId: 'migration',
-        description: 'Migrado automáticamente desde formato pdfme ',
-      },
-      activeDocumentId:
-        typeof sourceSnapshot.activeDocumentId === 'string' && sourceSnapshot.activeDocumentId.trim()
-          ? sourceSnapshot.activeDocumentId.trim()
-          : documents[0]?.documentId ?? null,
-      documents,
-      uploadedDocuments: uploadedDocuments ?? documents,
-      recipients: sourceRecipients,
-      assignments: this._extractAssignments(sourceSchemas),
-      connectivity: normalizeSnapshotConnectivity(sourceConnectivity),
-      inputs: Array.isArray(sourceSnapshot.inputs) ? (sourceSnapshot.inputs as Array<Record<string, unknown>>) : undefined,
-      contributors: Array.isArray(sourceSnapshot.contributors)
-        ? (sourceSnapshot.contributors as SnapshotContributor[])
-        : undefined,
-      history: Array.isArray(sourceSnapshot.history) ? (sourceSnapshot.history as Array<Record<string, unknown>>) : undefined,
-      signatureConfig: {
-        defaultMode: sourceSignatureMode,
-        allowedModes: ['draw', 'image', 'p12', 'provider'],
-      },
-      signaturePolicyId: sourceSignaturePolicyId,
-      signatureMode: sourceSignatureMode,
-      signatureProviderKey:
-        typeof sourceSnapshot.signatureProviderKey === 'string'
-          ? sourceSnapshot.signatureProviderKey
-          : typeof sourceSnapshot.signatureProvider === 'string'
-            ? sourceSnapshot.signatureProvider
-            : null,
-      providerConfig: {
-        defaultProvider: sourceSignatureMode === 'provider' ? 'provider' : 'draw',
-        allowedProviders: ['draw', 'image', 'p12', 'provider'],
-      },
-      delivery: asRecord(sourceSnapshot.delivery) || undefined,
-      message: asRecord(sourceSnapshot.message) || undefined,
-      security: asRecord(sourceSnapshot.security) || undefined,
-    };
   }
 
-  /** Valida que un snapshot sea compatible con el sistema */
+  /** Valida la representación actual del snapshot. */
   validate(snapshot: unknown): ValidationResult {
     const errors: string[] = [];
 
@@ -331,174 +237,6 @@ class SnapshotAdapterImpl {
     }
 
     return { valid: errors.length === 0, errors };
-  }
-
-  // ── Privados de migración ──────────────────────────────────────────────
-
-  private _extractSchemas(sourceSnapshot: unknown): unknown[][] {
-    const record = asRecord(sourceSnapshot) || {};
-    // pdfme : { schemas: [[...], [...]] } o { schemas: { '0': [...] } }
-    const schemas = record.schemas;
-    if (Array.isArray(schemas)) return schemas as unknown[][];
-    if (schemas && typeof schemas === 'object' && !Array.isArray(schemas)) {
-      return Object.values(schemas as Record<string, unknown[]>);
-    }
-    return [[]];
-  }
-
-  private _extractRecipients(sourceSnapshot: unknown): SnapshotRecipient[] {
-    const record = asRecord(sourceSnapshot) || {};
-    // pdfme  no tiene recipients nativos — retornar vacío
-    const recipients = record.recipients;
-    if (Array.isArray(recipients)) {
-      return recipients as SnapshotRecipient[];
-    }
-    return [];
-  }
-
-  private _extractAssignments(Pages: unknown[][]): SnapshotAssignment[] {
-    const assignments: SnapshotAssignment[] = [];
-    for (const page of Pages) {
-      for (const schema of page) {
-        const schemaRecord = asRecord(schema);
-        if (!schemaRecord) continue;
-        const uid = typeof schemaRecord.schemaUid === 'string'
-          ? schemaRecord.schemaUid
-          : typeof schemaRecord.id === 'string'
-            ? schemaRecord.id
-            : typeof schemaRecord.name === 'string'
-              ? schemaRecord.name
-              : '';
-        if (!uid) continue;
-        const recipientId =
-          typeof schemaRecord.ownerRecipientId === 'string'
-            ? schemaRecord.ownerRecipientId
-            : typeof schemaRecord.recipientId === 'string'
-              ? schemaRecord.recipientId
-              : '';
-        if (recipientId) {
-          assignments.push({
-            schemaUid: uid,
-            recipientId,
-            scope: 'recipient',
-          });
-        }
-      }
-    }
-    return assignments;
-  }
-
-  private _resolveConnectivity(sourceSnapshot: Record<string, unknown>): SnapshotConnectivity | undefined {
-    const sourceMapping = asRecord(sourceSnapshot.connectivityMapping);
-    const connectivity = asRecord(sourceSnapshot.connectivity);
-    const byFile = asRecord(connectivity?.byFile);
-    const bySchema = asRecord(connectivity?.bySchema);
-    const byRecipient = asRecord(connectivity?.byRecipient);
-
-    if (!sourceMapping && !byFile && !bySchema && !byRecipient) return undefined;
-
-    return normalizeSnapshotConnectivity({
-      byFile: byFile || sourceMapping || undefined,
-      bySchema: bySchema || undefined,
-      byRecipient: byRecipient || undefined,
-      sourceMapping: sourceMapping || undefined,
-    } as unknown as SnapshotConnectivity);
-  }
-
-  private _resolveSignaturePolicyId(sourceSnapshot: Record<string, unknown>): string | null {
-    const policy = typeof sourceSnapshot.signaturePolicyId === 'string'
-      ? sourceSnapshot.signaturePolicyId.trim()
-      : typeof sourceSnapshot.singType === 'string'
-        ? sourceSnapshot.singType.trim()
-        : typeof sourceSnapshot.signaturePolicy === 'string'
-          ? sourceSnapshot.signaturePolicy.trim()
-          : '';
-
-    return policy || null;
-  }
-
-  private _resolveSignatureMode(
-    sourceSnapshot: Record<string, unknown>,
-    signaturePolicyId: string | null,
-  ): SignatureConfig['defaultMode'] {
-    const rawMode = typeof sourceSnapshot.signatureMode === 'string'
-      ? sourceSnapshot.signatureMode.trim()
-      : typeof sourceSnapshot.signatureType === 'string'
-        ? sourceSnapshot.signatureType.trim()
-        : '';
-
-    const normalizedMode = rawMode.toLowerCase();
-    if (normalizedMode === 'draw' || normalizedMode === 'image' || normalizedMode === 'p12' || normalizedMode === 'provider') {
-      return normalizedMode;
-    }
-
-    const normalizedPolicy = (signaturePolicyId || '').toLowerCase();
-    if (normalizedPolicy === 'p12') return 'p12';
-    if (normalizedPolicy === 'provider') return 'provider';
-    return 'draw';
-  }
-
-  private _migrateSchema(
-    schema: unknown,
-    pageNumber: number,
-    documentId: string,
-  ): SchemaWithDesigner {
-    const s = asRecord(schema) || {};
-    const existingMeta = asRecord(s.__designer);
-
-    return {
-      ...s,
-      __designer: {
-        ...existingMeta,
-        schemaUid:
-          (typeof existingMeta?.schemaUid === 'string' && existingMeta.schemaUid) ||
-          (typeof s.schemaUid === 'string' && s.schemaUid) ||
-          (typeof s.id === 'string' && s.id) ||
-          this._generateId(),
-        templateVersion: SNAPSHOT_VERSION,
-        documentId,
-        pageNumber,
-        recipientId:
-          (typeof existingMeta?.recipientId === 'string' && existingMeta.recipientId) ||
-          (typeof s.ownerRecipientId === 'string' && s.ownerRecipientId) ||
-          (typeof s.recipientId === 'string' && s.recipientId) ||
-          undefined,
-        recipientName:
-          (typeof existingMeta?.recipientName === 'string' && existingMeta.recipientName) ||
-          (typeof s.ownerRecipientName === 'string' && s.ownerRecipientName) ||
-          undefined,
-        recipientColor:
-          (typeof existingMeta?.recipientColor === 'string' && existingMeta.recipientColor) ||
-          (typeof s.userColor === 'string' && s.userColor) ||
-          (typeof s.ownerColor === 'string' && s.ownerColor) ||
-          undefined,
-        assignment: {
-          scope: (s.ownerRecipientId || s.recipientId) ? 'recipient' : 'global',
-        },
-        ownership: {
-          readonly: Boolean(s.readonly || s.locked),
-        },
-        version: 0,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      },
-    };
-  }
-
-  private _migrateBackground(
-    sourceSnapshot: unknown,
-    _pageIndex: number,
-  ): SnapshotPage['background'] {
-    const record = asRecord(sourceSnapshot) || {};
-    const basePdf = record.basePdf;
-    if (!basePdf) return { type: 'none' };
-    if (typeof basePdf === 'string') {
-      if (basePdf.startsWith('data:')) {
-        return { type: 'base64', data: basePdf, mimeType: 'application/pdf' };
-      }
-      return { type: 'url', url: basePdf };
-    }
-    return { type: 'none' };
   }
 
   private _convertBackgroundsToBase64(documents: SnapshotDocument[]): SnapshotDocument[] {

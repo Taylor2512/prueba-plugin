@@ -173,7 +173,7 @@ export interface DesignerRuntime {
 /**
  * Contrato  del campo __designer.
  * Organiza los metadatos en sub-objetos semánticos en vez del objeto plano .
- * Backward compatible: el campo plano `SchemaDesignerMeta` sigue funcionando.
+ * El campo plano se conserva como representación de lectura del estado actual.
  */
 export interface DesignerConfig {
   _v: 3;
@@ -216,7 +216,7 @@ export function createDesignerConfig(params: {
   };
 }
 
-// ──  flat contract () — kept for backward compatibility ───────────────
+// ──  flat contract () ──────────────────────────────────────────────────
 
 /** Genera un __designer inicial para un schema nuevo */
 export function createSchemaDesignerMeta(params: {

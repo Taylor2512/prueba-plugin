@@ -438,3 +438,12 @@ export {
   hex2RgbColor,
   hex2PrintingColor,
 } from '@sisad-pdfme/schemas/utils';
+
+/**
+ * Fallo de renderizado del schema `svg`.
+ *
+ * Es superficie pública porque el renderer falla en voz alta: un host que
+ * genere PDF con plantillas de origen desconocido necesita distinguir un SVG
+ * no soportado de cualquier otro error de generación.
+ */
+export { SvgRenderError } from '@sisad-pdfme/schemas/graphics/svgRenderPlan';

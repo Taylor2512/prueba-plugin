@@ -39,6 +39,7 @@ import {
   DEFAULT_FONT_VALUE,
 } from '@sisad-pdfme/common/constants';
 import { fetchAssetBlob, type AssetFetchOptions } from '@sisad-pdfme/common/assetFetch';
+import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 
 /**
  * Clonado profundo usado como política común de inmutabilidad.
@@ -313,9 +314,12 @@ const checkPlugins = (arg: { plugins: Plugins; template: Template }) => {
   } = arg;
   const allSchemaTypes = uniq(schemas.map((p) => p.map((v) => v.type)).flat());
 
-  const pluginsSchemaTypes = Object.values(plugins).map((p) =>
-    p ? (p.propPanel.defaultSchema as Schema).type : undefined,
-  );
+  const pluginsSchemaTypes = Object.values(plugins).map((p) => {
+    const ds = p?.propPanel?.defaultSchema;
+    if (!ds || !isRecord(ds)) return undefined;
+    const maybeType = ds.type as unknown;
+    return typeof maybeType === 'string' ? (maybeType as string) : undefined;
+  });
 
   if (allSchemaTypes.some((s) => !pluginsSchemaTypes.includes(s))) {
     throw Error(

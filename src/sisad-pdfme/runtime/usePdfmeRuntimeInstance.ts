@@ -13,6 +13,7 @@
  */
 import { useEffect, useRef } from 'react';
 import { cloneDeep } from '@sisad-pdfme/common';
+import type { Plugins, Template, UIOptions, PreviewProps } from '@sisad-pdfme/common/types';
 
 /**
  * Stable JSON signature of the template's meaningful fields.
@@ -20,14 +21,11 @@ import { cloneDeep } from '@sisad-pdfme/common';
  * Used to dedupe template updates and avoid echo loops between the Designer
  * and the React host state.
  */
-export type RuntimeTemplateLike = {
-  basePdf?: unknown;
-  schemas?: unknown[];
-};
+export type RuntimeTemplateLike = Template;
 
-type RuntimeOptionsLike = Record<string, unknown>;
-type RuntimeInputsLike = unknown;
-type RuntimePluginsLike = Record<string, unknown>;
+type RuntimeOptionsLike = UIOptions;
+type RuntimeInputsLike = PreviewProps['inputs'];
+type RuntimePluginsLike = Plugins;
 
 /** Procedencia de un cambio de input emitido por el runtime Form. */
 export type RuntimeInputOrigin = 'user' | 'host';
@@ -110,7 +108,7 @@ export type RuntimeInstanceLike = {
   destroy: () => void;
   updateOptions: (options: RuntimeOptionsLike) => void;
   updateTemplate: (template: RuntimeTemplateLike) => void;
-  setInputs: (inputs: RuntimeInputsLike) => void;
+  setInputs?: (inputs: RuntimeInputsLike) => void;
   fitToWidth?: () => void;
   fitToPage?: () => void;
   onChangeTemplate?: (handler: (template: RuntimeTemplateLike) => void) => void;
@@ -118,13 +116,15 @@ export type RuntimeInstanceLike = {
   onPageChange?: (handler: (pageInfo: unknown) => void) => void;
 };
 
-type RuntimeConstructorLike = new (props: {
+export type RuntimeConstructorProps = {
   domContainer: HTMLElement;
-  template: RuntimeTemplateLike;
-  plugins: RuntimePluginsLike;
+  template: Template;
+  plugins: PreviewProps['plugins'];
   options: RuntimeOptionsLike;
   inputs?: RuntimeInputsLike;
-}) => RuntimeInstanceLike;
+};
+
+export type RuntimeConstructorLike = new (props: RuntimeConstructorProps) => RuntimeInstanceLike;
 
 export const getTemplateSignature = (template: RuntimeTemplateLike | null | undefined): string => {
   try {

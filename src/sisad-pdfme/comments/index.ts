@@ -54,7 +54,7 @@ type AnchorUpdateInput = Partial<
  * 5. entry.anchor.schemaUid
  *
  * El índice `[key: string]: unknown` permite conservar metadata adicional
- * sin romper compatibilidad con snapshots o versiones futuras.
+ * sin acoplarse a snapshots o versiones futuras.
  */
 interface PdfCommentEntry {
   id?: string;

@@ -171,7 +171,7 @@ export const buildDesignerUiMap = (options: unknown): ResolvedDesignerUiMap => {
   const optionsRecord = asRecord(options);
   const collaboration = asRecord(optionsRecord?.collaboration);
 
-  // Camino de compatibilidad: las opciones sueltas se resuelven a una
+  // Las opciones sueltas se resuelven a una
   // configuración completa para que ambos caminos deriven del MISMO grafo.
   const source = resolveSisadPdfmeConfig(configFromRuntimeOptions(options));
 

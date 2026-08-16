@@ -1222,12 +1222,10 @@
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_MARKDOWN_ARCHITECTURE_REPAIR.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_PORTABLE_HOST_HARDENING.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md","fragment":null}
-{"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_CONSOLIDATE_TO_PRODUCTION.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_DYNAMIC_CAPABILITIES.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_EXECUTION_ORCHESTRATION.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_FORM.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_GRID_GEOMETRY.md","fragment":null}
-{"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_LEGACY_CLEANUP.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_MULTIUSER_QA.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_PDF_COMPOSITION.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_RELEASE.md","fragment":null}
@@ -1273,12 +1271,10 @@
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_COPILOT_REVIEWER.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_MARKDOWN_ARCHITECTURE_REPAIR.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md","fragment":null}
-{"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_CONSOLIDATE_TO_PRODUCTION.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_DYNAMIC_CAPABILITIES.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_EXECUTION_ORCHESTRATION.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_FORM.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_GRID_GEOMETRY.md","fragment":null}
-{"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_LEGACY_CLEANUP.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_MULTIUSER_QA.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_PDF_COMPOSITION.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_RELEASE.md","fragment":null}
@@ -1324,12 +1320,10 @@
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_COPILOT_REVIEWER.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_MARKDOWN_ARCHITECTURE_REPAIR.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_AUTONOMOUS_START.md","fragment":null}
-{"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_CONSOLIDATE_TO_PRODUCTION.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_DYNAMIC_CAPABILITIES.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_EXECUTION_ORCHESTRATION.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_FORM.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_GRID_GEOMETRY.md","fragment":null}
-{"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_LEGACY_CLEANUP.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_MULTIUSER_QA.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_PDF_COMPOSITION.md","fragment":null}
 {"from":".ai/prompts/README.md","to":".ai/prompts/PROMPT_SISAD_PDFME_RELEASE.md","fragment":null}
@@ -1828,6 +1822,9 @@
 {"from":".ai/scrum/task-cards/portable-runtime/README.md","to":".ai/scrum/task-cards/portable-runtime/PRT-100.md","fragment":null}
 {"from":".ai/scrum/task-cards/portable-runtime/README.md","to":".ai/scrum/task-cards/portable-runtime/PRT-110.md","fragment":null}
 {"from":".ai/scrum/task-cards/portable-runtime/README.md","to":".ai/scrum/task-cards/portable-runtime/PRT-120.md","fragment":null}
+{"from":".ai/scrum/task-cards/portable-runtime/README.md","to":".ai/scrum/task-cards/portable-runtime/PRT-130.md","fragment":null}
+{"from":".ai/scrum/task-cards/portable-runtime/README.md","to":".ai/scrum/task-cards/portable-runtime/PRT-140.md","fragment":null}
+{"from":".ai/scrum/task-cards/portable-runtime/README.md","to":".ai/scrum/task-cards/portable-runtime/PRT-150.md","fragment":null}
 {"from":".ai/scrum/task-cards/runtime-platform/README.md","to":".ai/scrum/task-cards/runtime-platform/RTP-000.md","fragment":null}
 {"from":".ai/scrum/task-cards/runtime-platform/README.md","to":".ai/scrum/task-cards/runtime-platform/RTP-005.md","fragment":null}
 {"from":".ai/scrum/task-cards/runtime-platform/README.md","to":".ai/scrum/task-cards/runtime-platform/RTP-008.md","fragment":null}
@@ -3169,7 +3166,6 @@
 {"from":"docs/README.md","to":"docs/12-troubleshooting/README.md","fragment":null}
 {"from":"docs/README.md","to":"docs/13-ejemplos/README.md","fragment":null}
 {"from":"docs/README.md","to":"docs/14-seguridad/README.md","fragment":null}
-{"from":"docs/README.md","to":"docs/AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md","fragment":null}
 {"from":"docs/tooling/README.md","to":"docs/tooling/ARCHITECTURE-IMPORT.md","fragment":null}
 {"from":"docs/tooling/README.md","to":"docs/tooling/ARCHITECTURE-PATH-RECONCILIATION.md","fragment":null}
 {"from":"docs/tooling/README.md","to":"docs/tooling/COMMANDS.md","fragment":null}

@@ -12,7 +12,6 @@
  *   Si divergen al cargar, SnapshotRecipient.color gana (fue editado después).
  */
 import type { SchemaDesignerMeta } from '@sisad-pdfme/shared/schemaDesignerMeta';
-import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 
 /** Versión actual del formato snapshot */
 export const SNAPSHOT_VERSION = '2.0.0';
@@ -174,32 +173,6 @@ export interface SerializeOptions {
    *   - 'base64': portátil, para exportación offline
    */
   backgroundMode: 'url' | 'base64';
-}
-
-/** Helper: detecta si un objeto crudo es un snapshot pre- (pdfme ~4.x) */
-export function isPreSnapshot(raw: unknown): boolean {
-  if (!raw || typeof raw !== 'object') return false;
-  const obj = asRecord(raw);
-  if (!obj) return false;
-  // Sin campo version → pre- pdfme 4.x
-  if (!obj.version) return true;
-  // version < "2.0.0" → pre-
-  if (typeof obj.version === 'string') {
-    return compareVersions(obj.version, SNAPSHOT_VERSION) < 0;
-  }
-  return false;
-}
-
-/** Comparación semver simplificada (major.minor.patch). Ignora sufijos pre-release (e.g. "-beta"). */
-function compareVersions(a: string, b: string): number {
-  const strip = (v: string) => (v.split('-')[0] ?? v);
-  const partsA = strip(a).split('.').map(Number);
-  const partsB = strip(b).split('.').map(Number);
-  for (let i = 0; i < 3; i++) {
-    const diff = (partsA[i] ?? 0) - (partsB[i] ?? 0);
-    if (diff !== 0) return diff;
-  }
-  return 0;
 }
 
 /** Helpers para construir snapshots en tests */

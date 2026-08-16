@@ -309,11 +309,9 @@ export type SisadPdfmeGlobalConfig = {
   /**
    * Versión del esquema de configuración.
    *
-   *  marca rutas canónicas (los aliases `ui.visibility`, `ui.density`,
-   * `ui.sidebars.*` y `collaboration.activeRecipientId` quedan deprecated y se
-   * normalizan mediante el normalizador de configuración. Ausente = valor por defecto.
+   *  identifica la versión de la configuración canónica. Ausente = valor por defecto.
    */
-  configVersion?: 1 | 2;
+  configVersion?: 2;
   app?: {
     id?: string;
     name?: string;

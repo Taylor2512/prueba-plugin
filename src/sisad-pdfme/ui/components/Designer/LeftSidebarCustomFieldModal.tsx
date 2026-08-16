@@ -28,11 +28,8 @@ export type CustomFieldDef = {
   autoPlaceText: string;
   options: string;
 };
-// Historically `options` was a string in persisted drafts; runtime expects an
-// array. Ensure callers can rely on the hook returning a string[] by normalizing
-// defaults in the hook that consumes CustomFieldDef. Keep the modal contract
-// backward compatible here by accepting `options` as `string` and parsing it
-// where needed.
+// The modal stores the editor text; the schema factory parses it into its
+// canonical option representation when the draft is committed.
 
 const CUSTOM_FIELD_TYPE_OPTIONS = [
   { value: 'text', label: 'Texto' },

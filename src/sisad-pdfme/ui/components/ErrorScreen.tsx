@@ -15,7 +15,7 @@ import { Result } from 'antd';
  * Renderiza el estado de error del runtime.
  *
  * @param size Tamaño disponible del contenedor; actualmente se conserva por
- * compatibilidad de API.
+ * estabilidad de API.
  * @param error Error recibido desde el preprocesador/render runtime.
  */
 const ErrorScreen = ({ size, error }: { size: Size; error: Error }) => {

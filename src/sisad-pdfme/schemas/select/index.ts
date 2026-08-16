@@ -3,6 +3,7 @@ import { propPanel as parentPropPanel } from '@sisad-pdfme/schemas/text/propPane
 import { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
 import text from '@sisad-pdfme/schemas/text';
 import { TextSchema } from '@sisad-pdfme/schemas/text/types';
+import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 import { ChevronDown } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
@@ -12,6 +13,56 @@ import { markInspectorInteractive, stopInspectorPointerEvent } from '@sisad-pdfm
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 
 const selectIcon = renderLucideIcon(ChevronDown);
+
+/**
+ * Ancho del hueco derecho del campo.
+ *
+ * Es a la vez el ancho del chevron y el `padding-right` que el contenedor
+ * reserva: separarlos deja el icono encima del texto o el hueco vacío.
+ */
+const CHEVRON_SLOT_PX = 22;
+
+/**
+ * Añade el chevron decorativo del desplegable.
+ *
+ * Se dibuja en las tres superficies de UI para que el campo se lea siempre
+ * como desplegable. Nunca es interactivo: los clics atraviesan hasta el
+ * `<select>` nativo que Form monta debajo.
+ */
+const appendSelectChevron = (rootElement: HTMLElement) => {
+  const selectButton = document.createElement('button');
+  selectButton.type = 'button';
+  selectButton.className = 'sisad-pdfme-select-chevron';
+  selectButton.innerHTML = selectIcon;
+  const selectButtonStyle: CSS.Properties = {
+    position: 'absolute',
+    zIndex: '1',
+    right: '4px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    padding: '0',
+    margin: '0',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'transparent',
+    border: 'none',
+    height: `${CHEVRON_SLOT_PX}px`,
+    width: `${CHEVRON_SLOT_PX}px`,
+    color: 'var(--schema-tone, #475569)',
+  };
+  Object.assign(selectButton.style, selectButtonStyle);
+  selectButton.querySelectorAll('svg').forEach((svg) => {
+    Object.assign((svg as SVGSVGElement).style, {
+      width: '12px',
+      height: '12px',
+      display: 'block',
+    });
+  });
+
+  rootElement.appendChild(selectButton);
+};
 
 interface Select extends TextSchema {
   options: string[];
@@ -177,58 +228,24 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
       border: '0',
       boxShadow: 'none',
       margin: '0',
-      padding: mode === 'form' ? '0 22px 0 0' : '0',
+      padding: mode === 'form' ? `0 ${CHEVRON_SLOT_PX}px 0 0` : '0',
       display: 'block',
       width: '100%',
       height: mode === 'form' ? 'auto' : '100%',
       minHeight: mode === 'form' ? '22px' : '0',
     });
 
-    // Chevron is decorative (pointer-events:none). Shown in every UI mode so the
-    // field always reads as a dropdown; the native <select> overlay (interactive)
-    // MUST only mount in form mode — in designer it would capture pointer events
-    // and block drag/selection/Moveable. Do not compare to 'pdf' literal;
-    // treat any non-form mode as viewer-like for chevron visibility.
-    const shouldShowChevron = mode !== 'form';
+    // El chevron es decorativo (`pointer-events: none`) y se dibuja en las tres
+    // superficies de UI para que el campo se lea siempre como desplegable —
+    // incluido Form, que es donde el usuario lo despliega y donde el contenedor
+    // reserva el hueco derecho de `buttonWidth`.
+    //
+    // El overlay interactivo (`<select>` nativo) sí es exclusivo de Form: en
+    // Designer capturaría los eventos de puntero y bloquearía arrastre,
+    // selección y Moveable.
     const shouldMountNativeSelect = mode === 'form' && !schema.readOnly;
 
-    if (shouldShowChevron) {
-      const buttonWidth = 22;
-      const selectButton = document.createElement('button');
-      selectButton.type = 'button';
-      selectButton.className = 'sisad-pdfme-select-chevron';
-      selectButton.innerHTML = selectIcon;
-      const selectButtonStyle: CSS.Properties = {
-        // Chevron sits INSIDE the field on the right, vertically centered,
-        // decorative only (clicks pass through to the native <select> overlay).
-        position: 'absolute',
-        zIndex: '1',
-        right: '4px',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        padding: '0',
-        margin: '0',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'transparent',
-        border: 'none',
-        height: `${buttonWidth}px`,
-        width: `${buttonWidth}px`,
-        color: 'var(--schema-tone, #475569)',
-      };
-      Object.assign(selectButton.style, selectButtonStyle);
-      selectButton.querySelectorAll('svg').forEach((svg) => {
-        Object.assign((svg as SVGSVGElement).style, {
-          width: '12px',
-          height: '12px',
-          display: 'block',
-        });
-      });
-
-      rootElement.appendChild(selectButton);
-    }
+    appendSelectChevron(rootElement);
 
     if (shouldMountNativeSelect) {
       const selectElement = document.createElement('select');
@@ -320,7 +337,7 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
       };
     },
     defaultSchema: {
-      ...(text.propPanel.defaultSchema as TextSchema),
+      ...text.propPanel.defaultSchema,
       type: 'select',
       content: '',
       options: ['option1', 'option2'],

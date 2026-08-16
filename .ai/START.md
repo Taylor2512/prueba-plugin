@@ -62,9 +62,10 @@ inyectados por el host.
 <!-- SISAD-PDFME-CONSOLIDATION:.ai/START.md:START -->
 ## Consolidation entry
 
-Primary production-completion prompt:
+Primary production-completion authority:
 
-`.ai/prompts/PROMPT_SISAD_PDFME_CONSOLIDATE_TO_PRODUCTION.md`
+`.ai/brain/30-decisions/ADR-PREPRODUCTION-CANONIZATION.md` plus the active
+task-cards and executed evidence.
 
 When three providers are active, read `.ai/architecture/SAME-REPO-MULTI-AGENT.md` before any write.
 <!-- SISAD-PDFME-CONSOLIDATION:.ai/START.md:END -->

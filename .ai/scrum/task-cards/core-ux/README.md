@@ -36,7 +36,7 @@
 - [COREUX-031 — Optimizar geometría, alineación y precisión visual](./COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md) — `BACKLOG`
 - [COREUX-032 — Consolidar Datos y conexiones](./COREUX-032-consolidar-datos-y-conexiones.md) — `BACKLOG`
 - [COREUX-033 — Consolidar Asignación, bloqueo y auditoría](./COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md) — `BACKLOG`
-- [COREUX-034 — Unificar editor de opciones](./COREUX-034-unificar-editor-de-opciones.md) — `BACKLOG`
+- [COREUX-034 — Unificar editor de opciones](./COREUX-034-unificar-editor-de-opciones.md) — `PARTIAL`
 - [COREUX-035 — Hacer inspector de firma dependiente del modo](./COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md) — `BACKLOG`
 - [COREUX-036 — Centralizar defaults de creación de schemas](./COREUX-036-centralizar-defaults-de-creacion-de-schemas.md) — `BACKLOG`
 - [COREUX-037 — Cerrar contrato de campos text-like, number y date/time](./COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md) — `BACKLOG`

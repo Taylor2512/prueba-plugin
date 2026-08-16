@@ -1,7 +1,7 @@
 /**
  * detailSectionTaxonomy - taxonomía estable de secciones del DetailView.
  *
- * Mapea nombres de compatibilidad a secciones actuales, define orden/labels y
+ * Mapea nombres de entrada a secciones actuales, define orden/labels y
  * decide si una sección debe renderizarse según tipo de schema, familia
  * semántica, campos, widgets y señales de contenido real.
  */
@@ -31,7 +31,7 @@ export type DetailSectionKey =
   | 'advanced';
 
 /**
- * Claves heredadas aceptadas para compatibilidad con plugins existentes.
+ * Claves de entrada aceptadas por plugins existentes.
  */
 export type PluginSectionKey =
   | 'general'

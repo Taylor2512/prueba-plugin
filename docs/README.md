@@ -54,5 +54,4 @@ Todo eso vive en .ai/`.
 
 ### Notas
 
-- [Auditoría de refactorización dinámica de `src/sisad-pdfme/schemas`](./AUDITORIA_REFACTORIZACION_DINAMICA_SCHEMAS_SISAD_PDFME.md)
 <!-- project-tools:navigation:end -->

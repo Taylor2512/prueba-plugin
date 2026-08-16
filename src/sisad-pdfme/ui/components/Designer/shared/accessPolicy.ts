@@ -77,7 +77,7 @@ export type SchemaAccessState = {
 };
 
 /**
- * Alias de compatibilidad para el contrato previo del canvas.
+ * Tipo de lectura de metadatos de bloqueo del schema.
  */
 type SchemaWithLock = Schema & {
   lockedByActorId?: string | null;
@@ -259,7 +259,7 @@ export function canRunSchemaCommand(commandId: string, access: SchemaAccessState
 }
 
 /**
- * Compatibilidad para callers que solo necesitan saber si el schema puede transformarse.
+ * Indica si el schema puede transformarse.
  */
 export function isTransformable(access: Pick<SchemaAccessState, 'isMovable' | 'isResizable' | 'isLockedByOther'>) {
   return !access.isLockedByOther && (access.isMovable || access.isResizable);

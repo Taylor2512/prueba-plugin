@@ -175,10 +175,7 @@ export const resolveSisadPdfmeConfig = (
     .withSignatureDefaultProviderKey(baseConfig.signatures.defaultMode === 'provider' ? baseConfig.signatures.providers?.[0]?.key || null : null)
     .withCollaboration({
       enabled: Boolean(baseConfig.collaboration.enabled),
-      // `recipients.activeRecipientId` es la fuente preferida; `collaboration`
-      // se mantiene como compatibilidad para configs previas al registry.
-      activeRecipientId:
-        baseConfig.recipients.activeRecipientId ?? baseConfig.collaboration.activeRecipientId ?? null,
+      activeRecipientId: baseConfig.recipients.activeRecipientId ?? null,
       isGlobalView: baseConfig.collaboration.isGlobalView === true,
       canEditStructure: baseConfig.collaboration.canEditStructure,
     })

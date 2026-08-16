@@ -1,13 +1,20 @@
 import { Plugin, Schema } from '@sisad-pdfme/common';
 import {
   convertForPdfLayoutProps,
+  hex2PrintingColor,
   isEditable,
   addAlphaToHex,
   createErrorElm,
   createSvgStr,
 } from '@sisad-pdfme/schemas/utils';
+import { concatTransformationMatrix, popGraphicsState, pushGraphicsState, toRadians } from 'pdf-lib';
 import { Route } from 'lucide-react';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import {
+  buildPivotRotationMatrix,
+  multiplySvgMatrix,
+} from '@sisad-pdfme/schemas/graphics/svgGeometry';
+import { planSvgDraw } from '@sisad-pdfme/schemas/graphics/svgRenderPlan';
 
 const isValidSVG = (svgString: string): boolean => {
   try {
@@ -90,26 +97,60 @@ const svgSchema: Plugin<SVGSchema> = {
       }
       container.innerHTML = value;
       const svgElement = container.childNodes[0];
-      if (svgElement instanceof SVGElement) {
-        svgElement.setAttribute('width', '100%');
-        svgElement.setAttribute('height', '100%');
-        rootElement.appendChild(container);
+      if (!(svgElement instanceof SVGElement)) {
+        rootElement.appendChild(createErrorElm());
+        return;
       }
+      svgElement.setAttribute('width', '100%');
+      svgElement.setAttribute('height', '100%');
+      rootElement.appendChild(container);
     }
   },
-  pdf: async (arg) => {
-    const { page, schema, value } = arg;
-    if (!value || !isValidSVG(value)) return;
+  /**
+   * Dibuja el SVG en la página.
+   *
+   * pdf-lib no sabe pintar un documento SVG: sólo `drawSvgPath`, que recibe un
+   * único path en coordenadas SVG crudas. `planSvgDraw` resuelve el viewBox,
+   * los `transform` anidados y la herencia de pintura, y devuelve un trazo por
+   * forma con su matriz ya adaptada a ese contrato.
+   *
+   * Un SVG que el renderer no sabe dibujar lanza: dejarlo pasar produciría un
+   * documento sin el gráfico y sin ninguna señal de que faltó.
+   */
+  pdf: (arg) => {
+    const { page, schema, value, options } = arg;
+    if (!value) return;
+
     const pageHeight = page.getHeight();
-    const { width, height, position } = convertForPdfLayoutProps({ schema, pageHeight });
+    const { width, height, position, rotate, opacity } = convertForPdfLayoutProps({
+      schema,
+      pageHeight,
+    });
     const { x, y } = position;
-    // pdf-lib typings may not expose `drawSvg` in this environment. Narrow to
-    // a minimal interface instead of using `any` so the intent is explicit.
-    const pageWithDraw = page as unknown as {
-      drawSvg?: (svg: string, opts?: { x: number; y: number; width: number; height: number }) => Promise<void> | void;
-    };
-    if (typeof pageWithDraw.drawSvg === 'function') {
-      await pageWithDraw.drawSvg(value, { x, y: y + height, width, height });
+
+    const radians = toRadians(rotate);
+    const rotation = radians === 0 ? null : buildPivotRotationMatrix(radians, x, y);
+    const boxOpacity = opacity ?? 1;
+
+    for (const draw of planSvgDraw(value, { x, y, width, height })) {
+      const matrix = rotation ? multiplySvgMatrix(rotation, draw.matrix) : draw.matrix;
+      page.pushOperators(pushGraphicsState(), concatTransformationMatrix(...matrix));
+      page.drawSvgPath(draw.pathData, {
+        x: 0,
+        y: 0,
+        scale: 1,
+        ...(draw.fill
+          ? { color: hex2PrintingColor(draw.fill, options.colorType), opacity: draw.fillOpacity * boxOpacity }
+          : {}),
+        ...(draw.stroke
+          ? {
+              borderColor: hex2PrintingColor(draw.stroke, options.colorType),
+              borderWidth: draw.strokeWidth,
+              borderOpacity: draw.strokeOpacity * boxOpacity,
+            }
+          : {}),
+      });
+      page.pushOperators(popGraphicsState());
     }
   },
   propPanel: {

@@ -3,6 +3,7 @@ import { getInputFromTemplate } from '@sisad-pdfme/common/helper';
 import { normalizeHostData } from '@sisad-pdfme/integration/normalizeHostData';
 
 const template = {
+  basePdf: 'data:application/pdf;base64,',
   schemas: [[
     {
       name: 'firstName',

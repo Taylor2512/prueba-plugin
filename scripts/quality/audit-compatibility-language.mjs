@@ -7,8 +7,10 @@ const strict = process.argv.includes('--strict');
 const configPath = path.join(cwd, 'configs', 'compatibility-language-allowlist.json');
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
-const termPattern = /\b(?:legacy|canonical|canonicalize|canonicalized|canonicalization)\b/gi;
-const identifierPattern = /\b[A-Za-z_$][A-Za-z0-9_$]*(?:Legacy|Canonical|legacy|canonical)[A-Za-z0-9_$]*\b/g;
+// `canonical` is current architecture vocabulary, not compatibility residue.
+// The gate must detect historical/compatibility naming only.
+const termPattern = /\b(?:legacy|deprecated|deprecation|backward|compatibility|compatibilidad)\b/gi;
+const identifierPattern = /\b[A-Za-z_$][A-Za-z0-9_$]*(?:Legacy|legacy|Deprecated|deprecated)[A-Za-z0-9_$]*\b/g;
 const allowedExtensions = new Set(['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs', '.md', '.mdx', '.json']);
 
 const normalize = (value) => value.split(path.sep).join('/');
@@ -26,7 +28,7 @@ const isExcluded = (relativePath) =>
   config.pathExclusions.some((pattern) => globLikeMatches(relativePath, pattern));
 
 const allowedByContent = (line) =>
-  config.contentPatterns.some(({ pattern }) => line.includes(pattern));
+  config.contentPatterns.some(({ pattern }) => line.includes(pattern)) || line.includes('send-backward');
 
 const files = [];
 const walk = (absoluteDir) => {

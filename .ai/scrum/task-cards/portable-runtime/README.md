@@ -24,6 +24,9 @@ Canonical queue:
 - [PRT-100 — Deterministic snapshot, Viewer and PDF roundtrip](./PRT-100.md) — `BACKLOG`
 - [PRT-110 — Performance, accessibility and visual gates](./PRT-110.md) — `BACKLOG`
 - [PRT-120 — Portable release closeout](./PRT-120.md) — `BACKLOG`
+- [PRT-130 — Render SVG schemas into the PDF](./PRT-130.md) — `PASS`
+- [PRT-140 — Select chevron parity across Designer, Form and Viewer](./PRT-140.md) — `PASS`
+- [PRT-150 — Migrate the one unique capability of the deleted host bundle](./PRT-150.md) — `PARTIAL`
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->

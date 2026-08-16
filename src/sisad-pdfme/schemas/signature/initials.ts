@@ -8,6 +8,7 @@ import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { PenLine } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 import baseSignature from '@sisad-pdfme/schemas/signature';
+import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 import type { SignatureSchema } from '@sisad-pdfme/schemas/signature/types';
 
 const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
@@ -17,7 +18,9 @@ const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
     propPanel: {
       ...baseSignature.propPanel,
       defaultSchema: {
-        ...cloneDeep(baseSignature.propPanel.defaultSchema as SignatureSchema),
+        ...(isRecord(baseSignature.propPanel.defaultSchema)
+          ? (cloneDeep(baseSignature.propPanel.defaultSchema) as SignatureSchema)
+          : {}),
         type: 'initials',
         name: '',
         width: 22,
@@ -26,7 +29,7 @@ const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         signatureKind: 'initials',
         // Sin paleta propia: el azul claro fijo hacía que las iniciales fueran
         // el único campo que no adoptaba el color de su destinatario.
-      } as unknown as Schema,
+      } as Schema,
     },
     icon: renderLucideIcon(PenLine, { stroke: '#1a56a0' }),
   },

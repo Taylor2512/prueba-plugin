@@ -107,7 +107,7 @@ export type RightSidebarProps = SidebarProps & {
   /** Muestra tabs internas de documentos/comentarios/campos. */
   showDocumentsAsTab?: boolean;
 
-  /** Modo de acceso documental reservado para compatibilidad con hosts. */
+/** Modo de acceso documental reservado para integración con hosts. */
   documentsAccessMode?: 'always' | 'tab';
 
   /** Notifica cambios de vista efectivos al host. */

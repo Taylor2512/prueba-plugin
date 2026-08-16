@@ -175,14 +175,12 @@ export type {
  * Utilidades base del snapshot oficial.
  *
  * `SNAPSHOT_VERSION` define la versión vigente del contrato.
- * `isPreSnapshot` detecta formatos anteriores.
  * `makeEmptySnapshot` crea un snapshot vacío válido.
  */
-export { SNAPSHOT_VERSION, isPreSnapshot, makeEmptySnapshot } from '@sisad-pdfme/shared/snapshot';
+export { SNAPSHOT_VERSION, makeEmptySnapshot } from '@sisad-pdfme/shared/snapshot';
 
 /**
- * Adaptador oficial para serializar, hidratar, validar y migrar entre
- * estado del diseñador, template y snapshot.
+ * Adaptador oficial para serializar, hidratar y validar el snapshot actual.
  */
 export { snapshotAdapter } from '@sisad-pdfme/shared/snapshotAdapter';
 

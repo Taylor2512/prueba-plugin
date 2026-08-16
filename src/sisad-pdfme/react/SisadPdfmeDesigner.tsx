@@ -61,8 +61,7 @@ type DesignerProps = {
    * Flujo único de eventos canónicos de la instancia.
    *
    * Recibe todo lo que pasa por el dispatcher: lo emitido por el wrapper y lo
-   * traducido desde el hub interno del Designer. Es la vía tipada; los `onX`
-   * históricos se mantienen como adapter de compatibilidad.
+   * traducido desde el hub interno del Designer. Es la vía tipada para el host.
    */
   onEvent?: (event: SisadPdfmeAnyEvent) => void;
   /** Clases adicionales del host. Se suman al contrato base de dimensiones. */

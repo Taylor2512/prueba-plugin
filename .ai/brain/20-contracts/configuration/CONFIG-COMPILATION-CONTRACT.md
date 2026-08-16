@@ -4,14 +4,17 @@ La configuración JSON pasa por una única pipeline:
 
 ```text
 raw JSON
- -> migrate
  -> validate
  -> normalize
  -> apply profile/defaults
  -> resolve capability graph
  -> freeze
- -> ResolvedConfig
+-> ResolvedConfig
 ```
+
+La configuración aceptada es la representación canónica actual. Los aliases
+históricos no se migran en runtime; deben eliminarse de fixtures y consumers
+antes de publicar.
 
 `ResolvedConfig` incluye:
 

@@ -24,7 +24,8 @@ The host resolves `credentialRef` into runtime transport configuration.
 - resolved credentials are not serialized into snapshots;
 - credentials are never forwarded to an arbitrary origin without explicit host policy.
 
-## Compatibility
+## Rejected input
 
-Legacy literal fields may be read only through a narrow migration/compatibility adapter
-until removed. They are not the canonical product API.
+Literal secret fields are not accepted by the current contract, including when
+wrapped in a migration or compatibility adapter. Hosts must provide `none`,
+`inherit`, or `credentialRef` and resolve references at the boundary.

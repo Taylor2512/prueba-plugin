@@ -525,7 +525,8 @@ const Draggable = (props: {
 }) => {
   const { plugin, onDragStateChange } = props;
   const options = useContext(OptionsContext);
-  const baseSchema = cloneDeep(props.schemaFactory?.() || props.schema || plugin.propPanel.defaultSchema);
+  const rawBase = props.schemaFactory?.() || props.schema || plugin.propPanel.defaultSchema;
+  const baseSchema: Schema = cloneDeep(rawBase) as Schema;
   if (options.font) {
     const fontName = getFallbackFontName(options.font);
     setFontNameRecursively(baseSchema, fontName);

@@ -33,6 +33,7 @@ import {
   COMMON_PROPERTY_MAP,
   hexColorField,
 } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
+import type { Schema } from '@sisad-pdfme/common/types';
 import {
   type OptionGroupLayoutConfig,
   computeOptionGroupDesignerHeightMM,
@@ -176,7 +177,7 @@ export type OptionGroupDefaultSchema = {
     }
 );
 
-export type OptionGroupPropPanelConfig = {
+export type OptionGroupPropPanelConfig<TSchema extends Schema = Schema> = {
   optionsTitle: string;
   optionsWidget: string;
   groupNameTitle: string;
@@ -187,7 +188,7 @@ export type OptionGroupPropPanelConfig = {
   maxSelectedTitle?: string;
   propertyMap?: Record<string, string>;
   widgets: Record<string, unknown>;
-  defaultSchema: Record<string, unknown>;
+  defaultSchema: TSchema;
 };
 
 const resolveOptionGroupKey = (schema: OptionGroupDesignerSchema): string =>
@@ -382,7 +383,7 @@ export const buildOptionGroupDefaultSchema = ({
   };
 };
 
-export const createOptionGroupPropPanelConfig = (config: OptionGroupPropPanelConfig) => ({
+export const createOptionGroupPropPanelConfig = <TSchema extends Schema>(config: OptionGroupPropPanelConfig<TSchema>) => ({
   schema: ({ i18n }: { i18n: (key: string) => string }) => ({
     ...basicsFields(),
     color: hexColorField({

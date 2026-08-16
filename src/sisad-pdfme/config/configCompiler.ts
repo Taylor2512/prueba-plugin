@@ -5,7 +5,6 @@
  *
  * ```text
  * raw JSON
- *   -> migrate      (alias deprecados a rutas canónicas)
  *   -> validate     (issues, sin abortar)
  *   -> normalize    (defaults + expansión de perfil)
  *   -> identidad    (revision monotónica + hash semántico)

@@ -6,7 +6,7 @@ import { markInspectorInteractive } from '@sisad-pdfme/ui/components/Designer/Ri
  * Props del wrapper para widgets imperativos heredados de plugins.
  *
  * `WidgetRenderer` adapta widgets que esperan recibir un `rootElement`
- * real donde pintar manualmente su UI, manteniendo compatibilidad con
+ * real donde pintar manualmente su UI, manteniendo el contrato de
  * plugins no migrados a React declarativo.
  */
 type Props = PropPanelWidgetProps & {

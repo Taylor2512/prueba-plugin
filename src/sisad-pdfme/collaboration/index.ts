@@ -32,7 +32,7 @@ type CollaborationState = Template | SchemaForUI[][];
  * trabajando y qué schemas tiene seleccionados.
  *
  * El índice `[key: string]: unknown` permite conservar metadata adicional
- * sin romper compatibilidad con estados futuros.
+ * sin acoplarse a estados futuros.
  */
 type PresenceEntry = {
   userId?: string;

@@ -30,5 +30,6 @@ Audit identity is separate:
 - `lastModifiedByUserId`
 - `lockedByUserId`
 
-Legacy `ownerRecipientId`, `ownerRecipientIds` and `recipientId` may be read by migrations,
-but new core state should not write them once the compatibility gate is complete.
+Historical `ownerRecipientId`, `ownerRecipientIds` and `recipientId` shapes are
+not part of the current core contract. Inputs using them are rejected; current
+state uses the canonical assignment representation only.

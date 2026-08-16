@@ -12,7 +12,7 @@ const isResolvedSisadPdfmeConfig = (value: unknown): value is ResolvedSisadPdfme
  * Hook de acceso al servicio canónico de configuración.
  *
  * Si hay Provider, reutiliza su instancia; fuera de Provider crea una instancia
- * local memoizada para mantener compatibilidad con usos directos del wrapper.
+ * local memoizada para el uso directo de la superficie.
  */
 export const useSisadPdfmeConfigService = (
   config?: SisadPdfmeConfigInput,

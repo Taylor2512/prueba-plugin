@@ -248,26 +248,11 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
   }),
 };
 
-const _TO_: Record<string, SchemaFamily | string> = {
-  textual: 'text',
-  media: 'mediaVisual',
-  signature: 'text',
-  choice: 'boolean',
-  shape: 'shapeBarcode',
-  barcode: 'shapeBarcode',
-  table: 'table',
-};
-
 export const normalizeSchemaFamily = (family: string | SchemaFamily): SchemaFamily => {
   const key = String(family || '').trim();
-  const v = key in _TO_ ? _TO_[key] : family;
-  // Ensure we always return a valid SchemaFamily. If the mapping returns a
-  // plain string (legacy), fall back to resolveSchemaFamily which knows how
-  // to canonicalize by type. This keeps callers safe until all call-sites
-  // migrate to SchemaFamily values.
-  return (['text', 'mediaVisual', 'boolean', 'shapeBarcode', 'table'].includes(String(v))
-    ? (v as SchemaFamily)
-    : resolveSchemaFamily(String(v)));
+  return (['text', 'mediaVisual', 'boolean', 'shapeBarcode', 'table'].includes(key)
+    ? (key as SchemaFamily)
+    : resolveSchemaFamily(key));
 };
 
 export const resolveSchemaFamily = (schemaType: string): SchemaFamily => {

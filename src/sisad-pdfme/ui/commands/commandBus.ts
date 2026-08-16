@@ -30,7 +30,7 @@ export type CommandMeta = {
   schemaUids?: string[];
   /** Single schema uid for command that targets one schema. */
   schemaUid?: string;
-  /** User id for audit timelines (alias of actorId for compatibility). */
+  /** User id for audit timelines. */
   userId?: string;
   /** Version of the template when command was generated. */
   templateVersion?: string;

@@ -24,7 +24,7 @@ export type CommentAnchor = {
    * Identificador estable del schema asociado.
    *
    * En SISAD PDFME se recomienda usar `schemaUid` como identidad técnica
-   * principal para comentarios, assignments, snapshot y compatibilidad
+   * principal para comentarios, assignments y snapshot
    * multidocumento.
    */
   schemaUid?: string | null;
@@ -49,7 +49,7 @@ export type CommentAnchor = {
   /**
    * Alias  o alternativo del campo asociado.
    *
-   * Se mantiene para compatibilidad con estructuras anteriores donde
+   * Se conserva para representar estructuras donde
    * el comentario se vinculaba mediante fieldId en vez de schemaUid.
    */
   fieldId?: string | null;
@@ -179,7 +179,7 @@ export type PdfComment = {
   /**
    * Alias  o alternativo del campo asociado.
    *
-   * Se mantiene para compatibilidad con flujos anteriores.
+   * Se conserva para flujos existentes.
    */
   fieldId?: string | null;
 
@@ -250,7 +250,7 @@ export type PdfComment = {
  * - permite comentarios globales del documento;
  * - facilita filtrar por fileId/pageNumber/schemaUid;
  * - evita depender exclusivamente de schemas embebidos;
- * - mejora compatibilidad con multidocumento y paneles de comentarios.
+ * - mejora la integración con multidocumento y paneles de comentarios.
  */
 export type TopLevelPdfCommentEntry = {
   /**

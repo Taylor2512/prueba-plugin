@@ -32,13 +32,6 @@ export type CreateOptionGroupOptionsEditorConfig<TOption extends OptionGroupEdit
   indicatorSize?: number;
 };
 
-// Backwards-compatible: allow indicatorShape to exist on OptionGroupEditorConfig
-// for callers that pass a combined config object.
-// Legacy callers sometimes passed `indicatorShape` directly on the config
-// object. We handle that case at runtime by casting `config as any` where
-// necessary (see above). No extra types are required for that backward
-// compatibility shim.
-
 const normalizeOptionGroupEditorText = normalizeOptionText;
 
 const joinClassNames = (...parts: Array<string | false | null | undefined>): string =>
@@ -84,15 +77,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
         config.rowClassName,
         'grid items-center gap-1.5 rounded-lg border border-slate-200/80 bg-white/90 px-1.5 py-1 shadow-sm transition-colors hover:border-slate-300',
       );
-      // Support legacy callers that may pass indicatorShape on the config
-      // object directly (loose typing). Prefer the explicit indicator via
-      // CreateOptionGroupOptionsEditorConfig, but fall back to a safe check.
-      const legacyConfig = config as Partial<Record<'indicatorShape', OptionIndicatorShape>>;
-      const indicatorShape = legacyConfig.indicatorShape ?? undefined;
-      row.style.gridTemplateColumns =
-        indicatorShape === 'circle'
-          ? '18px minmax(0, 1fr) 26px'
-          : '16px minmax(0, 1fr) 26px';
+      row.style.gridTemplateColumns = '16px minmax(0, 1fr) 26px';
       row.setAttribute('data-testid', 'option-row');
       markInspectorInteractive(row);
 

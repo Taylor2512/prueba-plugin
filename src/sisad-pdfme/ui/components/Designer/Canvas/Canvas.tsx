@@ -11,7 +11,7 @@
  * - edición inline de texto/nombre;
  * - creación de comentarios libres;
  * - estados no listos del canvas: loading, error, página vacía y desconexión;
- * - compatibilidad multidocumento/multipágina.
+ * - soporte multidocumento/multipágina.
  *
  * Regla arquitectónica:
  * Este archivo coordina interacciones del canvas, pero no debe contener reglas
@@ -141,14 +141,14 @@ const normalizeRotate = (angle: number) => ((angle % 360) + 360) % 360;
 const parseRotateFromTransform = (transform: string) =>
   normalizeRotate(Number(transform.replace('rotate(', '').replace('deg)', '')));
 /**
- * Construye cambios de posición compatibles con `changeSchemas`.
+ * Construye cambios de posición para `changeSchemas`.
  */
 const buildPositionChanges = (schemaId: string, top: string, left: string) => [
   { key: 'position.y', value: fmt(top), schemaId },
   { key: 'position.x', value: fmt(left), schemaId },
 ];
 /**
- * Construye cambios de tamaño y posición compatibles con `changeSchemas`.
+ * Construye cambios de tamaño y posición para `changeSchemas`.
  */
 const buildSizeAndPositionChanges = (schemaId: string, width: string, height: string, top: string, left: string) => [
   { key: 'width', value: fmt(width), schemaId },
@@ -1364,10 +1364,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
 
     // Create a type-safe array of default schemas
     const defaultSchemas: Array<{ type?: string; rotate?: unknown }> = [];
-
     pluginsRegistry.entries().forEach(([, plugin]) => {
-      if (plugin.propPanel.defaultSchema) {
-        defaultSchemas.push(plugin.propPanel.defaultSchema as { type?: string; rotate?: unknown });
+      const ds = plugin.propPanel?.defaultSchema;
+      if (ds && typeof ds === 'object' && !Array.isArray(ds)) {
+        defaultSchemas.push(ds as { type?: string; rotate?: unknown });
       }
     });
 

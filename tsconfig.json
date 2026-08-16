@@ -24,6 +24,9 @@
       "@/*": [
         "./src/*"
       ],
+      "@sisad-pdfme": [
+        "./src/sisad-pdfme/index.ts"
+      ],
       "@sisad-pdfme/*": [
         "./src/sisad-pdfme/*"
       ],

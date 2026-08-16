@@ -167,7 +167,7 @@ export type { SchemaDesignerMeta } from '@sisad-pdfme/shared/schemaDesignerMeta'
  * Reexporta helpers oficiales para gestionar metadata de diseñador.
  *
  * Estos helpers deben usarse al crear, duplicar o pegar schemas para preservar
- * identidad, trazabilidad, owner y compatibilidad con snapshots.
+ * identidad, trazabilidad, owner y persistencia en snapshots.
  */
 export {
   /**

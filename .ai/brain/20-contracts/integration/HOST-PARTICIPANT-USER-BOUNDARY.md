@@ -61,7 +61,9 @@ Core must not require host concepts such as:
 - backend identifiers unrelated to document interaction;
 - host API DTOs.
 
-## Legacy terminology
+## Identity terminology
 
-Existing `Recipient*`, `activeRecipientId`, `ownerRecipientId` symbols are migration debt.
-They may remain as compatibility aliases while canonical internals move to `User*`.
+The core exposes one current identity vocabulary. Do not add aliases or bridges
+solely to preserve historical `Recipient*` or `activeRecipientId` names. Host
+translation, when genuinely required by an external boundary, belongs in the
+host adapter and must not leak an alternate model into core state.

@@ -2701,7 +2701,10 @@ const TemplateEditor = ({
 
       // Plugins may declare a minimal `defaultSchema`. Normalize required
       // fields before adding so SchemaForUI invariants (e.g., `id`) hold.
-      const rawDefault = found[1].propPanel.defaultSchema as Partial<Schema>;
+      const rawDefaultCandidate = found[1].propPanel.defaultSchema;
+      const rawDefault = typeof rawDefaultCandidate === 'object' && rawDefaultCandidate !== null
+        ? (rawDefaultCandidate as Partial<Schema>)
+        : ({} as Partial<Schema>);
       const defaultSchema: Schema = {
         ...rawDefault,
         id: rawDefault.id || generateSchemaUid(),

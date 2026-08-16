@@ -20,9 +20,7 @@ export const SisadPdfmeProvider = ({ children, config }: SisadPdfmeProviderProps
     const recipientRegistry = createRecipientRegistry({
       config: resolved.config.recipients,
       activeRecipientId:
-        resolved.config.recipients.activeRecipientId ??
-        resolved.config.collaboration.activeRecipientId ??
-        null,
+        resolved.config.recipients.activeRecipientId ?? null,
     });
     return { config: resolved, configService, recipientRegistry };
   }, [config]);
