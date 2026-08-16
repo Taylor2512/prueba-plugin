@@ -1,6 +1,7 @@
 ---
 id: AIARCH-002
-status: BACKLOG
+status: READY
+evidence: reports/runtime-platform/evidence/AIARCH-002.copilot.md
 ---
 
 /
