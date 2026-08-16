@@ -183,7 +183,7 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
       return next.length ? next : buildDefaultOptionGroupOptions('Casilla', 2);
     },
     createAddedOptions: (options, label) => {
-      const clean = label || `Casilla ${options.length + 1}`;
+      const clean = normalizeOptionText(label) || `Casilla ${options.length + 1}`;
       return [...options, { optionId: normalizeOptionId(clean, options.length), label: clean }];
     },
     onCommitOptions: commitOptions,

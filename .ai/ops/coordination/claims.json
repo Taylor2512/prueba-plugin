@@ -4,12 +4,10 @@
     "task": "slice-B-normalizers",
     "mode": "write",
     "paths": [
-      "src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts",
-      "src/sisad-pdfme/schemas/options/optionGroupFactory.ts",
-      "src/sisad-pdfme/schemas/options/optionGroupRenderer.ts",
-      "src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts",
-      "src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts"
+      "src/sisad-pdfme/schemas/options/optionModel.ts",
+      "src/sisad-pdfme/schemas/radioGroup/index.ts",
+      "src/sisad-pdfme/schemas/checkboxGroup/index.ts"
     ],
-    "startedAt": "2026-08-16T03:34:00.190Z"
+    "startedAt": "2026-08-16T03:43:07.928Z"
   }
 }
