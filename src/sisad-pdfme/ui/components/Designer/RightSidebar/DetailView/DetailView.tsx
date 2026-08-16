@@ -635,10 +635,17 @@ const DetailView = (props: DetailViewProps) => {
     return plugin;
   }, [activeSchema.type, pluginsRegistry]);
 
-  const defaultSchema: Record<string, unknown> = useMemo(
-    () => (isRecord(activePlugin?.propPanel?.defaultSchema) ? { ...activePlugin.propPanel.defaultSchema } : {}),
-    [activePlugin],
-  );
+  const defaultSchema: Record<string, unknown> = useMemo(() => {
+    // Ensure the inspector always receives a full SchemaForUI baseline.
+    try {
+      // Import at runtime to avoid top-level cycles.
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+      return normalizePluginDefaultSchema(activePlugin as any, activeSchema.type);
+    } catch (e) {
+      return isRecord(activePlugin?.propPanel?.defaultSchema) ? { ...activePlugin.propPanel.defaultSchema } : {};
+    }
+  }, [activePlugin, activeSchema.type]);
 
   const pluginProps = useMemo(() => {
     if (typeof activePlugin.propPanel.schema === 'function') {

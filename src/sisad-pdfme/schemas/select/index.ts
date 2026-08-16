@@ -1,9 +1,11 @@
 import type * as CSS from 'csstype';
 import { propPanel as parentPropPanel } from '@sisad-pdfme/schemas/text/propPanel';
-import { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
+import { Plugin, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import text from '@sisad-pdfme/schemas/text';
 import { TextSchema } from '@sisad-pdfme/schemas/text/types';
 import { isRecord } from '@sisad-pdfme/shared/objectGuards';
+import { normalizePluginDefaultSchema } from '@sisad-pdfme/schemas/normalizers';
+import type { SchemaForUI } from '@sisad-pdfme/common';
 import { ChevronDown } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
@@ -336,12 +338,14 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
         },
       };
     },
-    defaultSchema: {
-      ...text.propPanel.defaultSchema,
-      type: 'select',
-      content: '',
-      options: ['option1', 'option2'],
-    },
+    defaultSchema: ((): Select => {
+      const canonical = normalizePluginDefaultSchema(text as unknown as Plugin<SchemaForUI>, 'select');
+      return {
+        ...(canonical as unknown as Select),
+        content: '',
+        options: ['option1', 'option2'],
+      } as Select;
+    })(),
   },
   icon: selectIcon,
 }, {

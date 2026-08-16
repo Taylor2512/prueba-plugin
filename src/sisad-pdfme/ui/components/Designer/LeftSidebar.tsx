@@ -525,8 +525,22 @@ const Draggable = (props: {
 }) => {
   const { plugin, onDragStateChange } = props;
   const options = useContext(OptionsContext);
-  const rawBase = props.schemaFactory?.() || props.schema || plugin.propPanel.defaultSchema;
+  const rawBase = useMemo(() => {
+    // Normalize plugin default schema to a full SchemaForUI before cloning.
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
+      return normalizePluginDefaultSchema(
+        plugin as any,
+        (props.schemaFactory?.() as any)?.type || props.schema?.type || undefined,
+      );
+    } catch (e) {
+      return props.schemaFactory?.() || props.schema || plugin.propPanel.defaultSchema;
+    }
+  }, [props.schemaFactory, props.schema, plugin]);
   const baseSchema: Schema = cloneDeep(rawBase) as Schema;
+  // Ensure draggable prototypes are fully normalized so downstream consumers
+  // (drag + drop, serializer) receive a Schema with required invariants.
   if (options.font) {
     const fontName = getFallbackFontName(options.font);
     setFontNameRecursively(baseSchema, fontName);
