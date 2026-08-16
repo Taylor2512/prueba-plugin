@@ -86,8 +86,9 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       );
       // Support legacy callers that may pass indicatorShape on the config
       // object directly (loose typing). Prefer the explicit indicator via
-      // CreateOptionGroupOptionsEditorConfig, but fall back to any.
-      const indicatorShape = (config as any).indicatorShape ?? undefined;
+      // CreateOptionGroupOptionsEditorConfig, but fall back to a safe check.
+      const legacyConfig = config as Partial<Record<'indicatorShape', OptionIndicatorShape>>;
+      const indicatorShape = legacyConfig.indicatorShape ?? undefined;
       row.style.gridTemplateColumns =
         indicatorShape === 'circle'
           ? '18px minmax(0, 1fr) 26px'
