@@ -11,6 +11,8 @@ import { filterSchemasByCollisionScope } from '@sisad-pdfme/ui/components/Design
 import { asRecord, isRecord } from '@sisad-pdfme/shared/objectGuards';
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 import { isOptionGroupType } from '@sisad-pdfme/schemas/options/optionGroupLayout';
+import { normalizeOptionGroupOptions } from '@sisad-pdfme/schemas/options/optionModel';
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
 
 /**
  * Controls how recipient assignment and collaboration metadata are handled
@@ -188,17 +190,14 @@ const remapGroupedSchemaIdentity = (
   const schemaType = normalizeClipboardText(record.type).toLowerCase();
   if (!isOptionGroupType(schemaType)) return;
 
-  const rawOptions = Array.isArray(record.options) ? record.options : [];
+  const normalizedSource = normalizeOptionGroupOptions(
+    record.options as unknown as Array<string | OptionItem>,
+    schemaType === 'radiogroup' ? 'Opción' : 'Casilla',
+  );
   const optionIdMap = new Map<string, string>();
-  const normalizedOptions = rawOptions.map((entry, index) => {
-    const previousId =
-      typeof entry === 'string'
-        ? normalizeClipboardText(entry) || `option_${index + 1}`
-        : normalizeClipboardText(entry.optionId) || `option_${index + 1}`;
-    const label =
-      typeof entry === 'string'
-        ? normalizeClipboardText(entry) || `Opción ${index + 1}`
-        : normalizeClipboardText(entry.label) || previousId;
+  const normalizedOptions = normalizedSource.map((entry, index) => {
+    const previousId = entry.optionId || `option_${index + 1}`;
+    const label = entry.label || previousId;
     const nextId = `option_${index + 1}_${createId().slice(0, 6)}`;
     optionIdMap.set(previousId, nextId);
     return { optionId: nextId, label };
