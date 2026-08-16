@@ -1,11 +1,12 @@
 {
   "copilot": {
     "agent": "copilot",
-    "task": "RTP-545",
+    "task": "AIARCH-009",
     "mode": "write",
     "paths": [
-      "reports/runtime-platform/evidence/RTP-545.copilot.md"
+      ".ai/scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md",
+      "reports/runtime-platform/evidence/AIARCH-009.copilot.md"
     ],
-    "startedAt": "2026-08-16T02:52:50.734Z"
+    "startedAt": "2026-08-16T03:11:22.088Z"
   }
 }

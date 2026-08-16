@@ -2,4 +2,4 @@
 
 No global replace. Introducir API canónica, aliases deprecated, adapters y snapshot
 migrations. Aplicar ratchet “no new recipient-centric core usage”. Retirar aliases sólo
-cuando standalone, embedded SISAD-WEB y ExternalForms pasan contract gates.
+cuando standalone, embedded consumer application y ExternalForms pasan contract gates.

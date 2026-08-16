@@ -117,19 +117,19 @@
 - [Current — Runtime Platform (reconciliación sugerida)](../../archive/memory/CURRENT-reconciliation-proposal.md) — `.ai/archive/memory/CURRENT-reconciliation-proposal.md`
 - [memory](../../archive/memory/README.md) — `.ai/archive/memory/README.md`
 - [migrations](../../archive/migrations/README.md) — `.ai/archive/migrations/README.md`
-- [.ai](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/README.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/README.md`
-- [Arquitectura de producto](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/ARCHITECTURE.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/ARCHITECTURE.md`
-- [Glosario](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/GLOSSARY.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/GLOSSARY.md`
-- [00-product](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/README.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/README.md`
-- [Source truth](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md`
-- [Access / assignment](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md`
-- [Config/runtime boundary](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md`
-- [Form transaction contract](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md`
-- [20-contracts](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/README.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/README.md`
-- [Schema value codec](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md`
-- [Snapshot/versioning](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md`
-- [brain](../../archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/README.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/.ai/brain/README.md`
-- [digital-agreements-runtime-brain-targets](../../archive/migrations/digital-agreements-runtime-brain-targets/README.md) — `.ai/archive/migrations/digital-agreements-runtime-brain-targets/README.md`
+- [.ai](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/README.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/README.md`
+- [Arquitectura de producto](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/00-product/ARCHITECTURE.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/00-product/ARCHITECTURE.md`
+- [Glosario](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/00-product/GLOSSARY.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/00-product/GLOSSARY.md`
+- [00-product](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/00-product/README.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/00-product/README.md`
+- [Source truth](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/00-product/SOURCE-TRUTH.md`
+- [Access / assignment](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/ACCESS-OWNERSHIP-CONTRACT.md`
+- [Config/runtime boundary](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/CONFIG-RUNTIME-BOUNDARY.md`
+- [Form transaction contract](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/FORM-TRANSACTION-CONTRACT.md`
+- [20-contracts](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/README.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/README.md`
+- [Schema value codec](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/SCHEMA-VALUE-CODEC.md`
+- [Snapshot/versioning](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/20-contracts/SNAPSHOT-VERSIONING-CONTRACT.md`
+- [brain](../../archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/README.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/.ai/brain/README.md`
+- [consumer-host-runtime-brain-targets](../../archive/migrations/consumer-host-runtime-brain-targets/README.md) — `.ai/archive/migrations/consumer-host-runtime-brain-targets/README.md`
 - [scrum](../../archive/scrum/README.md) — `.ai/archive/scrum/README.md`
 - [Ledger — Runtime Platform](../../archive/scrum/RUNTIME-PLATFORM-LEDGER.md) — `.ai/archive/scrum/RUNTIME-PLATFORM-LEDGER.md`
 - [task-cards](../../archive/task-cards/README.md) — `.ai/archive/task-cards/README.md`
@@ -305,10 +305,10 @@
 - [SIGNATURE-RUNTIME](../../brain/40-runtime/SIGNATURE-RUNTIME.md) — `.ai/brain/40-runtime/SIGNATURE-RUNTIME.md`
 - [SNAPSHOT-ROUNDTRIP](../../brain/40-runtime/SNAPSHOT-ROUNDTRIP.md) — `.ai/brain/40-runtime/SNAPSHOT-ROUNDTRIP.md`
 - [VIEWER-RUNTIME](../../brain/40-runtime/VIEWER-RUNTIME.md) — `.ai/brain/40-runtime/VIEWER-RUNTIME.md`
-- [DigitalAgreements Recipient -> SISAD-PDFME User](../../brain/45-integrations/DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md) — `.ai/brain/45-integrations/DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md`
-- [ExternalForms -> SISAD-PDFME User execution](../../brain/45-integrations/EXTERNAL-FORMS-USER-EXECUTION.md) — `.ai/brain/45-integrations/EXTERNAL-FORMS-USER-EXECUTION.md`
+- [consumer host Recipient -> SISAD-PDFME User](../../brain/45-integrations/HOST-PARTICIPANT-TO-USER.md) — `.ai/brain/45-integrations/HOST-PARTICIPANT-TO-USER.md`
+- [ExternalForms -> SISAD-PDFME User execution](../../brain/45-integrations/HOST-EXECUTION-CONTEXT.md) — `.ai/brain/45-integrations/HOST-EXECUTION-CONTEXT.md`
 - [45-integrations](../../brain/45-integrations/README.md) — `.ai/brain/45-integrations/README.md`
-- [DigitalAgreements Designer consumer contract](../../brain/45-integrations/SISAD-PDFME-DESIGNER-CONSUMER.md) — `.ai/brain/45-integrations/SISAD-PDFME-DESIGNER-CONSUMER.md`
+- [consumer host Designer consumer contract](../../brain/45-integrations/DESIGNER-CONSUMER-CONTRACT.md) — `.ai/brain/45-integrations/DESIGNER-CONSUMER-CONTRACT.md`
 - [Add/harden schema](../../brain/50-guides/ADD-OR-HARDEN-SCHEMA.md) — `.ai/brain/50-guides/ADD-OR-HARDEN-SCHEMA.md`
 - [Guide — autonomous campaign execution](../../brain/50-guides/AUTONOMOUS-CAMPAIGN-EXECUTION.md) — `.ai/brain/50-guides/AUTONOMOUS-CAMPAIGN-EXECUTION.md`
 - [Consumer integration](../../brain/50-guides/CONSUMER-INTEGRATION.md) — `.ai/brain/50-guides/CONSUMER-INTEGRATION.md`
@@ -353,7 +353,7 @@
 - [Dynamic capabilities memory](../../brain/70-memory/topics/dynamic-capabilities.md) — `.ai/brain/70-memory/topics/dynamic-capabilities.md`
 - [Execution orchestration memory](../../brain/70-memory/topics/execution-orchestration.md) — `.ai/brain/70-memory/topics/execution-orchestration.md`
 - [Memory topic — Runtime Platform](../../brain/70-memory/topics/runtime-platform.md) — `.ai/brain/70-memory/topics/runtime-platform.md`
-- [Memory topic — SISAD-PDFME × DigitalAgreements runtime](../../brain/70-memory/topics/sisad-pdfme-digital-agreements-runtime.md) — `.ai/brain/70-memory/topics/sisad-pdfme-digital-agreements-runtime.md`
+- [Memory topic — SISAD-PDFME × consumer host runtime](../../brain/70-memory/topics/portable-host-runtime.md) — `.ai/brain/70-memory/topics/portable-host-runtime.md`
 - [Memory — tooling architecture](../../brain/70-memory/topics/tooling-architecture.md) — `.ai/brain/70-memory/topics/tooling-architecture.md`
 - [Active work](../../brain/80-work/ACTIVE.md) — `.ai/brain/80-work/ACTIVE.md`
 - [80-work](../../brain/80-work/README.md) — `.ai/brain/80-work/README.md`
@@ -456,7 +456,7 @@
 - [runtime](../../memory/topics/runtime.md) — `.ai/memory/topics/runtime.md`
 - [schemas](../../memory/topics/schemas.md) — `.ai/memory/topics/schemas.md`
 - [migrations](../../migrations/README.md) — `.ai/migrations/README.md`
-- [Hash-checked Brain migration](../../migrations/sisad-pdfme-digital-agreements-runtime/README.md) — `.ai/migrations/sisad-pdfme-digital-agreements-runtime/README.md`
+- [Hash-checked Brain migration](../../migrations/sisad-pdfme-consumer-host-runtime/README.md) — `.ai/migrations/sisad-pdfme-consumer-host-runtime/README.md`
 - [ops](../../ops/README.md) — `.ai/ops/README.md`
 - [Same-repo coordination](../../ops/coordination/README.md) — `.ai/ops/coordination/README.md`
 - [Orden AIARCH](../../plans/AIARCH-EXECUTION-ORDER.md) — `.ai/plans/AIARCH-EXECUTION-ORDER.md`
@@ -730,7 +730,7 @@
 - [RTP-220 — Recipients, ownership, colors, locks and runtime access](../../scrum/task-cards/runtime-platform/RTP-220.md) — `.ai/scrum/task-cards/runtime-platform/RTP-220.md`
 - [RTP-222 — Migrar registry/access/appearance a User con aliases](../../scrum/task-cards/runtime-platform/RTP-222.md) — `.ai/scrum/task-cards/runtime-platform/RTP-222.md`
 - [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](../../scrum/task-cards/runtime-platform/RTP-225.md) — `.ai/scrum/task-cards/runtime-platform/RTP-225.md`
-- [RTP-226 — Contrato DigitalAgreements Recipient -> User](../../scrum/task-cards/runtime-platform/RTP-226.md) — `.ai/scrum/task-cards/runtime-platform/RTP-226.md`
+- [RTP-226 — Contrato consumer host Recipient -> User](../../scrum/task-cards/runtime-platform/RTP-226.md) — `.ai/scrum/task-cards/runtime-platform/RTP-226.md`
 - [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](../../scrum/task-cards/runtime-platform/RTP-227.md) — `.ai/scrum/task-cards/runtime-platform/RTP-227.md`
 - [RTP-230 — Comments, collaboration and conflict-safe state](../../scrum/task-cards/runtime-platform/RTP-230.md) — `.ai/scrum/task-cards/runtime-platform/RTP-230.md`
 - [RTP-240 — Persistence/save/autosave one-write lifecycle](../../scrum/task-cards/runtime-platform/RTP-240.md) — `.ai/scrum/task-cards/runtime-platform/RTP-240.md`

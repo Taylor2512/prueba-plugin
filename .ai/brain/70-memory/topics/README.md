@@ -7,7 +7,7 @@
 - [Dynamic capabilities memory](./dynamic-capabilities.md)
 - [Execution orchestration memory](./execution-orchestration.md)
 - [Memory topic — Runtime Platform](./runtime-platform.md)
-- [Memory topic — SISAD-PDFME × DigitalAgreements runtime](./sisad-pdfme-digital-agreements-runtime.md)
+- [Memory topic — SISAD-PDFME × consumer host runtime](./portable-host-runtime.md)
 - [Memory — tooling architecture](./tooling-architecture.md)
 
 > Managed index. Update source documents, not this list.
@@ -22,7 +22,7 @@
 - [Dynamic capabilities memory](./dynamic-capabilities.md)
 - [Execution orchestration memory](./execution-orchestration.md)
 - [Memory topic — Runtime Platform](./runtime-platform.md)
-- [Memory topic — SISAD-PDFME × DigitalAgreements runtime](./sisad-pdfme-digital-agreements-runtime.md)
+- [Memory topic — SISAD-PDFME × consumer host runtime](./portable-host-runtime.md)
 - [Memory — tooling architecture](./tooling-architecture.md)
 <!-- project-tools:navigation:end -->
 
@@ -33,7 +33,7 @@
 - [Dynamic capabilities memory](./dynamic-capabilities.md)
 - [Execution orchestration memory](./execution-orchestration.md)
 - [Memory topic — Runtime Platform](./runtime-platform.md)
-- [Memory topic — SISAD-PDFME × DigitalAgreements runtime](./sisad-pdfme-digital-agreements-runtime.md)
+- [Memory topic — SISAD-PDFME × consumer host runtime](./portable-host-runtime.md)
 - [Memory — tooling architecture](./tooling-architecture.md)
 
 > Generated navigation. Source content outside this block remains manual.

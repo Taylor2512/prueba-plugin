@@ -1,24 +1,28 @@
 # Active work
 
-<!-- task-state-sync:start -->
-## Generated current runtime attention
+<!-- portable-priority-sync:start -->
+## Generated current attention
 
-- RTP-510: PARTIAL
-- RTP-515: BACKLOG
-- RTP-520: PARTIAL
-- RTP-525: PARTIAL
-- RTP-530: BLOCKED
-- RTP-535: BACKLOG
-- RTP-540: PARTIAL
-- RTP-545: BLOCKED
+- PRT-000: READY (P0)
+- PRT-010: BLOCKED (P0)
+- PRT-020: BLOCKED (P0)
+- PRT-030: BLOCKED (P0)
+- PRT-040: BLOCKED (P0)
+- PRT-050: BLOCKED (P0)
+- PRT-060: BLOCKED (P0)
+- PRT-070: BLOCKED (P0)
+- PRT-080: BLOCKED (P0)
+- PRT-090: BLOCKED (P0)
+- PRT-100: BLOCKED (P0)
+- PRT-120: BLOCKED (P0)
 
-> Current window only; older RTP cards are excluded from operational routing.
-<!-- task-state-sync:end -->
+Canonical queue: [`../../scrum/views/PRIORITIES.md`](../../scrum/views/PRIORITIES.md).
+<!-- portable-priority-sync:end -->
 
-Canonical generated work view:
-[`.ai/scrum/views/ACTIVE.md`](../../scrum/views/ACTIVE.md).
+Canonical queue:
+[`.ai/scrum/views/PRIORITIES.md`](../../scrum/views/PRIORITIES.md).
 
-Runtime current context:
+Runtime context:
 [`../70-memory/CURRENT.md`](../70-memory/CURRENT.md).
 
-This file is a routing pointer, not a second task ledger.
+This file is a routing pointer, not a second ledger.

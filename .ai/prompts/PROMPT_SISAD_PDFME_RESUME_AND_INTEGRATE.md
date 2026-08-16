@@ -121,7 +121,7 @@ Los IDs de task existentes no son nombres de revisión y deben conservarse.
 
 Trabaja sólo sobre SISAD-PDFME reusable.
 
-No introduzcas reglas de DigitalAgreements, Request, routing empresarial, backend específico,
+No introduzcas reglas de consumer host, Request, routing empresarial, backend específico,
 Redux específico ni DTOs de un consumidor.
 
 Conceptos core permitidos:

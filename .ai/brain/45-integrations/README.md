@@ -1,31 +1,17 @@
-# 45-integrations
+# Portable integrations
 
-<!-- sisad-architecture-hub:start -->
+This directory describes **generic consumer contracts** only.
+
 ## Navigation
 
-- [DigitalAgreements Recipient -> SISAD-PDFME User](./DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md)
-- [ExternalForms -> SISAD-PDFME User execution](./EXTERNAL-FORMS-USER-EXECUTION.md)
-- [DigitalAgreements Designer consumer contract](./SISAD-PDFME-DESIGNER-CONSUMER.md)
+- [Portable host integration](./PORTABLE-HOST-INTEGRATION.md)
+- [Host participant to User](./HOST-PARTICIPANT-TO-USER.md)
+- [Host execution context](./HOST-EXECUTION-CONTEXT.md)
+- [Designer consumer contract](./DESIGNER-CONSUMER-CONTRACT.md)
 
-> Managed index. Update source documents, not this list.
-<!-- sisad-architecture-hub:end -->
+## Boundary
 
-<!-- project-tools:navigation:start -->
-## Navegación generada
+Consumer-specific product names, routes, backend DTOs, workflow names and business policies
+do not belong in this repository.
 
-### Notas
-
-- [DigitalAgreements Recipient -> SISAD-PDFME User](./DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md)
-- [ExternalForms -> SISAD-PDFME User execution](./EXTERNAL-FORMS-USER-EXECUTION.md)
-- [DigitalAgreements Designer consumer contract](./SISAD-PDFME-DESIGNER-CONSUMER.md)
-<!-- project-tools:navigation:end -->
-
-<!-- ai-structure:navigation:start -->
-## Navigation
-
-- [DigitalAgreements Recipient -> SISAD-PDFME User](./DIGITAL-AGREEMENTS-RECIPIENT-TO-USER.md)
-- [ExternalForms -> SISAD-PDFME User execution](./EXTERNAL-FORMS-USER-EXECUTION.md)
-- [DigitalAgreements Designer consumer contract](./SISAD-PDFME-DESIGNER-CONSUMER.md)
-
-> Generated navigation. Source content outside this block remains manual.
-<!-- ai-structure:navigation:end -->
+A concrete consumer keeps its own integration documentation and maps to these contracts.

@@ -40,7 +40,7 @@ Authority: source/evidence > ledger > card > plan. RTP-000 is the only initial R
 - [RTP-220 — Recipients, ownership, colors, locks and runtime access](./RTP-220.md)
 - [RTP-222 — Migrar registry/access/appearance a User con aliases](./RTP-222.md)
 - [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](./RTP-225.md)
-- [RTP-226 — Contrato DigitalAgreements Recipient -> User](./RTP-226.md)
+- [RTP-226 — Contrato consumer host Recipient -> User](./RTP-226.md)
 - [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](./RTP-227.md)
 - [RTP-230 — Comments, collaboration and conflict-safe state](./RTP-230.md)
 - [RTP-240 — Persistence/save/autosave one-write lifecycle](./RTP-240.md)
@@ -146,7 +146,7 @@ unit.
 - [RTP-220 — Recipients, ownership, colors, locks and runtime access](./RTP-220.md) — `PARTIAL`
 - [RTP-222 — Migrar registry/access/appearance a User con aliases](./RTP-222.md) — `BACKLOG`
 - [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](./RTP-225.md) — `BACKLOG`
-- [RTP-226 — Contrato DigitalAgreements Recipient -> User](./RTP-226.md) — `BACKLOG`
+- [RTP-226 — Contrato consumer host Recipient -> User](./RTP-226.md) — `BACKLOG`
 - [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](./RTP-227.md) — `BACKLOG`
 - [RTP-230 — Comments, collaboration and conflict-safe state](./RTP-230.md) — `BACKLOG`
 - [RTP-240 — Persistence/save/autosave one-write lifecycle](./RTP-240.md) — `BACKLOG`
@@ -244,7 +244,7 @@ unit.
 - [RTP-220 — Recipients, ownership, colors, locks and runtime access](./RTP-220.md)
 - [RTP-222 — Migrar registry/access/appearance a User con aliases](./RTP-222.md)
 - [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](./RTP-225.md)
-- [RTP-226 — Contrato DigitalAgreements Recipient -> User](./RTP-226.md)
+- [RTP-226 — Contrato consumer host Recipient -> User](./RTP-226.md)
 - [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](./RTP-227.md)
 - [RTP-230 — Comments, collaboration and conflict-safe state](./RTP-230.md)
 - [RTP-240 — Persistence/save/autosave one-write lifecycle](./RTP-240.md)

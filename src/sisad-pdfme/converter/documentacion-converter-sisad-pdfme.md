@@ -145,7 +145,7 @@ Selecto
 SnapshotAdapter
 schemas
 DetailView
-DigitalAgreements
+consumer host
 Uanataca
 reglas de negocio SISAD
 ```

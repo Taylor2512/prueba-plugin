@@ -1,32 +1,26 @@
-# Current — Runtime Platform
+# Current — SISAD-PDFME
 
-<!-- task-state-sync:start -->
-## Generated current runtime window
+<!-- portable-priority-sync:start -->
+## Generated current priority window
 
-- range: RTP-425..RTP-545
-- PASS: 17/25
-- next attention: RTP-510 — PARTIAL
+- Runtime Platform RTP-425..545: **24/25 PASS**.
+- Runtime unresolved: **none**.
+- Portable Runtime next attention: **PRT-000 — READY**.
 
-- RTP-510: PARTIAL
-- RTP-520: PARTIAL (open: RTP-515)
-- RTP-525: PARTIAL (open: RTP-510)
-- RTP-530: BLOCKED (open: RTP-525)
-- RTP-540: PARTIAL (open: RTP-515, RTP-535)
-- RTP-545: BLOCKED (open: RTP-540, RTP-520)
+Canonical queue: [`../../scrum/views/PRIORITIES.md`](../../scrum/views/PRIORITIES.md).
 
-> Generated from task cards + evidence + DAG. Older RTP cards remain historical context, not current queue.
-<!-- task-state-sync:end -->
+> Historical prose below does not override live task-card frontmatter.
+<!-- portable-priority-sync:end -->
 
-- Campaign: SISAD-PDFME-RUNTIME-PLATFORM.
-- Critical fact: provided packs were generated 2026-08-11, so live-source reconciliation is mandatory.
-- Product identity: SISAD-PDFME, inspired historically by pdfme.
-- Do not start family fixes before characterization/runtime protocol.
+## Durable focus
 
-<!-- SISAD-PDFME-CONSOLIDATION:.ai/brain/70-memory/CURRENT.md:START -->
-## Consolidation guard
+SISAD-PDFME is standalone and consumer-agnostic.
 
-The current critical objective is not "more infrastructure"; it is evidence that the real Form
-honors User assignment/access and that all-schema behavior remains isolated.
+The active hardening objective is correctness and portability, not adding host-specific
+workflow features.
 
-RTP-510 cannot be inferred PASS from unit tests.
-<!-- SISAD-PDFME-CONSOLIDATION:.ai/brain/70-memory/CURRENT.md:END -->
+See:
+
+- `../00-product/PRODUCT-BOUNDARY.md`
+- `../../scrum/views/PRIORITIES.md`
+- `../../plans/PLAN_PORTABLE_HOST_HARDENING.md`

@@ -57,7 +57,7 @@
 | UC-053 | Datos asíncronos | Hidratar recipients/documents/config sin perder edición local. | Integration |
 | UC-054 | Generator | Generar PDF con preflight desde la instancia. | Artifacts |
 | UC-055 | Converter | PDF→size, PDF→images e images→PDF mediante API pública. | Artifacts |
-| UC-056 | DigitalAgreements | Consumir definición declarativa sin internals y conservar snapshot. | Integration |
+| UC-056 | consumer host | Consumir definición declarativa sin internals y conservar snapshot. | Integration |
 | UC-057 | ExternalForms | Consumir el mismo template/snapshot en Form y Viewer. | Integration |
 | UC-058 | Responsive | Designer ocupa viewport y sidebars se adaptan sin cambiar geometría. | UX |
 | UC-059 | Touch y accesibilidad | Targets, foco, Escape, reduced motion y teclado móvil. | UX |

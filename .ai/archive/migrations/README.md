@@ -3,7 +3,7 @@
 <!-- ai-structure:navigation:start -->
 ## Navigation
 
-- [digital-agreements-runtime-brain-targets](./digital-agreements-runtime-brain-targets/README.md)
+- [consumer-host-runtime-brain-targets](./consumer-host-runtime-brain-targets/README.md)
 
 > Generated navigation. Source content outside this block remains manual.
 <!-- ai-structure:navigation:end -->
@@ -13,5 +13,5 @@
 
 ### Secciones
 
-- [digital-agreements-runtime-brain-targets](./digital-agreements-runtime-brain-targets/README.md)
+- [consumer-host-runtime-brain-targets](./consumer-host-runtime-brain-targets/README.md)
 <!-- project-tools:navigation:end -->

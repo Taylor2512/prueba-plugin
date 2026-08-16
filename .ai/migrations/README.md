@@ -3,7 +3,7 @@
 <!-- ai-structure:navigation:start -->
 ## Navigation
 
-- [sisad-pdfme-digital-agreements-runtime](./sisad-pdfme-digital-agreements-runtime/README.md)
+- [sisad-pdfme-consumer-host-runtime](./sisad-pdfme-consumer-host-runtime/README.md)
 
 > Generated navigation. Source content outside this block remains manual.
 <!-- ai-structure:navigation:end -->
@@ -13,5 +13,5 @@
 
 ### Secciones
 
-- [Hash-checked Brain migration](./sisad-pdfme-digital-agreements-runtime/README.md)
+- [Hash-checked Brain migration](./sisad-pdfme-consumer-host-runtime/README.md)
 <!-- project-tools:navigation:end -->

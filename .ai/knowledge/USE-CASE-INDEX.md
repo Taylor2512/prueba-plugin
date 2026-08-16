@@ -205,7 +205,7 @@ Total consolidado: **211**. El JSON es la fuente machine-readable.
 | DECL-UC-053 | DECL | Integration | Datos asíncronos |
 | DECL-UC-054 | DECL | Artifacts | Generator |
 | DECL-UC-055 | DECL | Artifacts | Converter |
-| DECL-UC-056 | DECL | Integration | DigitalAgreements |
+| DECL-UC-056 | DECL | Integration | consumer host |
 | DECL-UC-057 | DECL | Integration | ExternalForms |
 | DECL-UC-058 | DECL | UX | Responsive |
 | DECL-UC-059 | DECL | UX | Touch y accesibilidad |
