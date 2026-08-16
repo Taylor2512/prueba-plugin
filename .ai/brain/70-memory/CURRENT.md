@@ -23,4 +23,4 @@ See:
 
 - `../00-product/PRODUCT-BOUNDARY.md`
 - `../../scrum/views/PRIORITIES.md`
-- `../../plans/PLAN_PORTABLE_HOST_HARDENING.md`
+- `../../scrum/views/PRIORITIES.md` y la task-card Portable Runtime activa

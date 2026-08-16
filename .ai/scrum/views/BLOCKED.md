@@ -2,6 +2,8 @@
 
 Blocked or dependency-incomplete work.
 
+- [COREUX-034](../task-cards/core-ux/COREUX-034-unificar-editor-de-opciones.md) — `PARTIAL`
+- [PRT-000](../task-cards/portable-runtime/PRT-000.md) — `PARTIAL`
 - [RTP-022](../task-cards/runtime-platform/RTP-022.md) — `PARTIAL`
 - [RTP-040](../task-cards/runtime-platform/RTP-040.md) — `PARTIAL`
 - [RTP-045](../task-cards/runtime-platform/RTP-045.md) — `PARTIAL`

@@ -13,7 +13,8 @@ and one CLI:
 Common filesystem, Markdown, naming, indexing and import behavior lives under
 `scripts/tooling/`.
 
-Legacy command paths may remain temporarily as thin compatibility wrappers only.
+No compatibility wrapper is retained for a historical command path. Migrate
+current callers to the canonical CLI and delete the old path.
 
 ## Consequence
 

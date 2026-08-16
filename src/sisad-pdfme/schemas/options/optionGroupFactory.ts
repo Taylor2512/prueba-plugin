@@ -344,7 +344,8 @@ export const buildOptionGroupDefaultSchema = ({
   name = '',
 }: OptionGroupDefaultSchemaParams): OptionGroupDefaultSchema => {
   const dimensions = buildOptionGroupDesignerDimensions(getOptionGroupLayoutConfig(type), optionsCount);
-  const safeSelectedId = selectedOptionId || defaultSelectedOptionId || 'option_1';
+  const defaultOptions = buildDefaultOptionGroupOptions(optionPrefix, optionsCount);
+  const safeSelectedId = selectedOptionId || defaultSelectedOptionId || defaultOptions[0]?.optionId || 'option_1';
 
   return {
     id,
@@ -359,7 +360,7 @@ export const buildOptionGroupDefaultSchema = ({
     lockedAsGroup: true,
     orientation: 'vertical',
     spacing: getOptionGroupLayoutConfig(type).boxGap,
-    options: buildDefaultOptionGroupOptions(optionPrefix, optionsCount),
+    options: defaultOptions,
     ...(selectionMode === 'single'
       ? {
           selectedOptionId: safeSelectedId,

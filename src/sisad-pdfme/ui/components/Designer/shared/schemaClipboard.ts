@@ -11,7 +11,7 @@ import { filterSchemasByCollisionScope } from '@sisad-pdfme/ui/components/Design
 import { asRecord, isRecord } from '@sisad-pdfme/shared/objectGuards';
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 import { isOptionGroupType } from '@sisad-pdfme/schemas/options/optionGroupLayout';
-import { normalizeOptionGroupOptions } from '@sisad-pdfme/schemas/options/optionModel';
+import { normalizeOptionGroupOptions, normalizeOptionId } from '@sisad-pdfme/schemas/options/optionModel';
 import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
 
 /**
@@ -198,7 +198,8 @@ const remapGroupedSchemaIdentity = (
   const normalizedOptions = normalizedSource.map((entry, index) => {
     const previousId = entry.optionId || `option_${index + 1}`;
     const label = entry.label || previousId;
-    const nextId = `option_${index + 1}_${createId().slice(0, 6)}`;
+    const baseId = normalizeOptionId(label, index);
+    const nextId = `${baseId}_${createId().slice(0, 6)}`;
     optionIdMap.set(previousId, nextId);
     return { optionId: nextId, label };
   });

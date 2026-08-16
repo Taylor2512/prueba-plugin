@@ -42,7 +42,6 @@ const payload = [
   ".ai/brain/30-decisions/ADR-TOOLING-CENTRALIZATION.md",
   ".ai/brain/50-guides/PROJECT-TOOLS.md",
   ".ai/brain/70-memory/topics/tooling-architecture.md",
-  ".ai/plans/PLAN_TOOLING_ARCHITECTURE_CLEANUP.md",
   ".ai/prompts/TOOLING-ARCHITECTURE-START.md",
   ".ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md",
   ".ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md",

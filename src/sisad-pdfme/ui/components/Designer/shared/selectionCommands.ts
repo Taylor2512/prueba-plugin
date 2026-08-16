@@ -16,7 +16,7 @@ import {
   optionGroupDesignerWidthMM,
   isOptionGroupType,
 } from '@sisad-pdfme/schemas/options/optionGroupLayout';
-import { normalizeOptionGroupOptions } from '@sisad-pdfme/schemas/options/optionModel';
+import { normalizeOptionGroupOptions, normalizeOptionId, buildDefaultOptionGroupOptions } from '@sisad-pdfme/schemas/options/optionModel';
 import { asRecord } from '@sisad-pdfme/shared/objectGuards';
 import { resolveActiveSchemasFromElements } from '@sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver';
 import { resolveSchemaUid } from '@sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService';
@@ -594,14 +594,9 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     const isRadio = String(type).toLowerCase() === 'radiogroup';
     const fallbackLabel = isRadio ? 'Opción' : 'Casilla';
     const current = normalizeOptionGroupOptions(schema.options, fallbackLabel);
-    const existing = new Set(current.map((o) => o.optionId));
-    let n = current.length + 1;
-    let optionId = `option_${n}`;
-    while (existing.has(optionId)) {
-      n += 1;
-      optionId = `option_${n}`;
-    }
+    // Reuse canonical id normalization to avoid ad-hoc `option_N` generation and collisions.
     const label = `${fallbackLabel} ${current.length + 1}`;
+    const optionId = normalizeOptionId(label, current.length);
     const nextOptions = [...current, { optionId, label }];
     const groupType = type.toLowerCase() === 'radiogroup' ? 'radioGroup' : 'checkboxGroup';
     context.changeSchemas([
@@ -627,14 +622,11 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       { key: 'width', value: Math.max(55, Number(schema.width) || 0), schemaId: schema.id },
       {
         key: 'options',
-        value: [
-          { optionId: 'option_1', label: 'Casilla 1' },
-          { optionId: 'option_2', label: 'Casilla 2' },
-        ],
+        value: buildDefaultOptionGroupOptions('Casilla', 2),
         schemaId: schema.id,
       },
-      { key: 'content', value: wasChecked ? 'option_1' : '', schemaId: schema.id },
-      { key: 'selectedOptionIds', value: wasChecked ? ['option_1'] : [], schemaId: schema.id },
+      { key: 'content', value: wasChecked ? buildDefaultOptionGroupOptions('Casilla', 2)[0].optionId : '', schemaId: schema.id },
+      { key: 'selectedOptionIds', value: wasChecked ? [buildDefaultOptionGroupOptions('Casilla', 2)[0].optionId] : [], schemaId: schema.id },
       { key: '__designer.group.groupId', value: 'Grupo_Casillas', schemaId: schema.id },
       { key: '__designer.group.groupType', value: 'checkbox', schemaId: schema.id },
       { key: '__designer.group.groupName', value: 'Grupo de casillas', schemaId: schema.id },

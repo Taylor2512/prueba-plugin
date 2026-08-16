@@ -1,5 +1,5 @@
 # Core UX, eventos y efectos
 
-Plan canónico: `.ai/plans/PLAN_MAESTRO_CORE_UX_FUNCIONALIDADES_EVENTOS_SISAD_PDFME.md`.
+La ejecución canónica vive en las task-cards Core UX y sus contratos actuales.
 
 Contrato central: `Intent → Policy → Command → Mutation → Event → Effect`.

@@ -3,7 +3,6 @@
 <!-- ai-structure:navigation:start -->
 ## Navigation
 
-- [consumer-host-runtime-brain-targets](./consumer-host-runtime-brain-targets/README.md)
 
 > Generated navigation. Source content outside this block remains manual.
 <!-- ai-structure:navigation:end -->
@@ -13,5 +12,4 @@
 
 ### Secciones
 
-- [consumer-host-runtime-brain-targets](./consumer-host-runtime-brain-targets/README.md)
 <!-- project-tools:navigation:end -->

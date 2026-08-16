@@ -35,13 +35,14 @@ Use generic product language:
 - artifact;
 - host / consumer.
 
-`Recipient` may remain only where public compatibility requires it. New core authorities
-must use `User`.
+`User` is the only core identity. Host adapters may translate an external
+recipient-shaped input at the boundary, but the reusable core does not retain
+Recipient compatibility semantics.
 
 ## Nomenclature
 
 New product code uses `SisadPdfme*` / `SISAD-PDFME`.
-Historical names remain temporarily only where removing them would break compatibility and
-must be retired through evidence-backed migration tasks.
+Historical names are removed when the current source, fixtures, tests and docs
+have been migrated. See [pre-production canonization](../30-decisions/ADR-PREPRODUCTION-CANONIZATION.md).
 
 See [Product boundary](./PRODUCT-BOUNDARY.md).

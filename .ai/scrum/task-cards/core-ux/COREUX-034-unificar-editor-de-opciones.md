@@ -1,6 +1,6 @@
 ---
 id: COREUX-034
-status: BACKLOG
+status: PARTIAL
 ---
 
 # COREUX-034 — Unificar editor de opciones
@@ -51,6 +51,17 @@ Composite, Strategy
 - `src/sisad-pdfme/schemas/options/optionModel.ts`
 - `src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts`
 - `tests/unit/sisad-pdfme/schemas/options/**`
+
+## Recent progress
+
+- Adopted canonical option id/text normalizers in the inspector editor and selection commands:
+	- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx`
+	- `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts`
+- Executed typecheck and linter; no regressions detected.
+- Architecture reconciliation run: no drift.
+ - Patched generator preflight and option model consumers to remove ad-hoc `option_{n}` fallbacks.
+ - Replaced checkbox-to-group conversion defaults to use `buildDefaultOptionGroupOptions`.
+ - Confirmed `npx tsc --noEmit`, `npm run lint --silent`, and reconcile script pass for modified files.
 
 Confirmar rutas antes de editar. No crear un archivo nuevo si la responsabilidad
 ya existe bajo otro nombre.

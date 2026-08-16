@@ -6,7 +6,6 @@ const root = path.resolve(process.argv[2] || process.cwd());
 
 const required = [
   '.ai/knowledge/EXECUTION-ORCHESTRATION-INDEX.md',
-  '.ai/plans/PLAN_SISAD_PDFME_EXECUTION_ORCHESTRATION.md',
   '.ai/brain/20-contracts/execution/EXECUTION-CONTEXT-CONTRACT.md',
   '.ai/brain/20-contracts/execution/EXECUTION-PLAN-CONTRACT.md',
   '.ai/brain/20-contracts/runtime/SCHEMA-COMPLETION-CONTRACT.md',

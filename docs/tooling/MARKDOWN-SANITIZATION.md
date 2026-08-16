@@ -9,7 +9,7 @@ Correcto:
 ```text
 .ai/brain/20-contracts/RUNTIME-STATE.md
 .ai/brain/30-decisions/ADR-RUNTIME-OWNERSHIP.md
-.ai/plans/FORM-RUNTIME.md
+.ai/scrum/task-cards/runtime-platform/
 ```
 
 Incorrecto:

@@ -11,7 +11,7 @@ Canonical queue:
 <!-- sisad-architecture-hub:start -->
 ## Navigation
 
-- [PRT-000 — Establish consumer-agnostic boundary baseline](./PRT-000.md) — `READY`
+- [PRT-000 — Establish consumer-agnostic boundary baseline](./PRT-000.md) — `PARTIAL`
 - [PRT-010 — Type runtime constructor adapters](./PRT-010.md) — `BACKLOG`
 - [PRT-020 — Fail closed on invalid production templates](./PRT-020.md) — `BACKLOG`
 - [PRT-030 — Prove structural-sharing and collaboration isolation](./PRT-030.md) — `BACKLOG`

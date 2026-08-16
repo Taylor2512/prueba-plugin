@@ -1,5 +1,5 @@
 import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
-import { normalizeOptionText } from '@sisad-pdfme/schemas/options/optionModel';
+import { normalizeOptionText, ensureAtLeastOneOption } from '@sisad-pdfme/schemas/options/optionModel';
 
 const normalizeOptionIds = (ids: unknown, validIds: Set<string>): string[] => {
   if (!Array.isArray(ids)) return [];
@@ -38,8 +38,9 @@ export const resolveSingleOptionSelection = (
   const matched = matchOptionId(schemaSelected, options);
   if (matched) return matched;
 
-  const validIds = new Set(options.map((option) => option.optionId));
-  return fallback && validIds.has(fallback) ? fallback : options[0]?.optionId || 'option_1';
+  const safeOptions = ensureAtLeastOneOption(options);
+  const validIds = new Set(safeOptions.map((option) => option.optionId));
+  return fallback && validIds.has(fallback) ? fallback : safeOptions[0].optionId;
 };
 
 export const resolveMultiOptionSelection = (

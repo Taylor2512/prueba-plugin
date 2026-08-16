@@ -266,10 +266,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
     }
 
     const nextOption: OptionItem = {
-      optionId:
-        kind === 'checkbox'
-          ? normalizeOptionId(label, groupOptions.length)
-          : `option_${groupOptions.length + 1}`,
+      optionId: normalizeOptionId(label, groupOptions.length),
       label,
     };
     const nextOptions = [...groupOptions, nextOption];

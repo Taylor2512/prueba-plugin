@@ -5,5 +5,5 @@ converge runtime schema access into one canonical policy/projection.
 
 Preview/Form/Designer/completion cannot independently reinterpret assignment/editability.
 
-The migration may keep a deprecated adapter temporarily, but only one implementation owns the
-semantics.
+No deprecated adapter is retained for hypothetical compatibility. Una única implementación
+posee la semántica y los consumidores internos migran antes de eliminar duplicados.

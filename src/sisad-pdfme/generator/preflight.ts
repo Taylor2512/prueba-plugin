@@ -12,6 +12,7 @@ import {
   getSchemaNumberValue,
   getSchemaOptionSelection,
 } from '@sisad-pdfme/schemas/values/schemaValueAdapter.js';
+import { normalizeOptionText, normalizeOptionId } from '@sisad-pdfme/schemas/options/optionModel';
 
 export type PdfPreflightIssueSeverity = 'info' | 'warning' | 'error';
 
@@ -190,9 +191,10 @@ const inspectOptionGroup = (
   const options = Array.isArray((schema as { options?: Array<string | { optionId?: string; label?: string }> }).options)
     ? ((schema as { options?: Array<string | { optionId?: string; label?: string }> }).options || []).map((option, index) => {
         if (typeof option === 'string') {
-          return normalizePreflightText(option);
+          return normalizeOptionText(option);
         }
-        return normalizePreflightText(option.optionId) || `option_${index + 1}`;
+        // Prefer an explicit optionId; fall back to a canonical id derived from the label
+        return normalizeOptionText(option.optionId) || normalizeOptionId(option.label ?? option.optionId ?? '', index);
       }).filter(Boolean)
     : [];
 

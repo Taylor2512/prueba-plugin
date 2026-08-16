@@ -18,7 +18,6 @@
 - [Source index — devtools](./devtools.md)
 - [Source index — documents](./documents.md)
 - [Source index — editor](./editor.md)
-- [Source index — externalForms](./externalForms.md)
 - [Source index — generator](./generator.md)
 - [Source index — integration](./integration.md)
 - [Source index — react](./react.md)

@@ -33,11 +33,11 @@ aportan contratos de lectura cuando exista una dependencia demostrada.
 <!-- autonomous-runtime:router:start -->
 ## Runtime capability routes
 
-- dynamic JSON / capability graph -> `.ai/plans/PLAN_SISAD_PDFME_DYNAMIC_CAPABILITIES.md`
-- grid / snap / guides -> `.ai/plans/PLAN_SISAD_PDFME_GRID_GEOMETRY.md`
-- schema manifest / codec -> `.ai/plans/PLAN_SISAD_PDFME_SCHEMA_REGISTRY.md`
-- legacy / dead code / dedup -> `.ai/plans/PLAN_SISAD_PDFME_LEGACY_CLEANUP.md`
-- autonomous completion -> `.ai/plans/PLAN_SISAD_PDFME_AUTONOMOUS_COMPLETION.md`
+- dynamic JSON / capability graph -> `sisad-dynamic-capabilities` skill + capability contracts
+- grid / snap / guides -> `sisad-grid-geometry` skill + grid contract
+- schema manifest / codec -> schema task-card + schema runtime contracts
+- legacy / dead code / dedup -> `sisad-safe-legacy-retirement` skill + active task-card
+- autonomous completion -> active queue + `sisad-autonomous-runtime` skill
 <!-- autonomous-runtime:router:end -->
 
 <!-- SISAD-PDFME-CONSOLIDATION:.ai/ROUTER.md:START -->

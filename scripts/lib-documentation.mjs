@@ -20,7 +20,6 @@ export const ROOT_RELOCATIONS = new Map([
 export const EXPLICIT_RENAMES = new Map([
   ['.ai/migrations/V8-TO-V9.md', '.ai/migrations/AI-ARCHITECTURE-MIGRATION.md'],
   ['.ai/migrations/DA-PDFME-V4-2-TO-V4-3-HAIKU.md', '.ai/migrations/DA-PDFME-MIGRATION-HAIKU.md'],
-  ['.ai/plans/PLAN_DA_PDFME_V4_3_HAIKU.md', '.ai/plans/PLAN_DA_PDFME_HAIKU.md'],
   ['.ai/prompts/haiku/PROMPT_ARRANQUE_HAIKU_DA_PDFME_V4_3.md', '.ai/prompts/haiku/PROMPT_ARRANQUE_HAIKU_DA_PDFME.md'],
   ['docs/03-estilos/01-tailwind.md', 'docs/03-estilos/01-tailwind.md'],
   ['.ai/brain/30-decisions/ADR-011-PROCESS-CENTRIC-MEMORY.md', '.ai/brain/30-decisions/ADR-011-PROCESS-CENTRIC-MEMORY.md'],

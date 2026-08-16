@@ -12,7 +12,7 @@ tratarlo como un wrapper/fork a parchear. Usa sus contratos actuales como autori
 
 1. `git status --short`, branch y HEAD.
 2. Lee `.ai/brain/00-product/PRODUCT-IDENTITY.md`.
-3. Lee `.ai/plans/PLAN_MAESTRO_SISAD_PDFME_RUNTIME_PLATFORM.md`.
+3. Lee `.ai/scrum/views/PRIORITIES.md` y sólo la task-card activa.
 4. Lee solo la task activa; comienza en `RTP-000`.
 5. Source vivo > context pack.
 

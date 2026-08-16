@@ -1,5 +1,6 @@
 # ADR RTP-006 — Canonical User assignment index
 
-**Decision target:** después de characterization, la estructura reusable preferida es
+**Decision:** la estructura reusable es
 `userId -> documentId -> pageNumber -> schemaUid[]`; metadata de auditoría vive separada.
-Snapshot migrations preservan formatos anteriores explícitamente.
+Los snapshots nuevos sólo usan la representación actual. Los migradores de formatos
+pre-producción se eliminan después de migrar fixtures y tests.

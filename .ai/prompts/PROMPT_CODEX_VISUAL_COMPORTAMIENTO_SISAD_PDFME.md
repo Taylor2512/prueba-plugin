@@ -5,9 +5,8 @@ Tailwind, accesibilidad, sistemas de diseño y editores PDF.
 
 ## Objetivo
 
-Ejecutar el plan:
-
-`.ai/plans/PLAN_MAESTRO_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md`
+Ejecutar la task-card VISUX activa, sus contratos actuales y la evidencia
+correspondiente. Los planes históricos no son autoridad.
 
 La UI debe corregirse sin filtrar lógica visual al host y sin crear fuentes
 paralelas.

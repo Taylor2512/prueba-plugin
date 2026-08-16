@@ -1,13 +1,24 @@
 {
   "copilot": {
     "agent": "copilot",
-    "task": "slice-B-normalizers",
+    "task": "canonicalize-options",
     "mode": "write",
     "paths": [
-      "src/sisad-pdfme/schemas/options/optionModel.ts",
-      "src/sisad-pdfme/schemas/radioGroup/index.ts",
-      "src/sisad-pdfme/schemas/checkboxGroup/index.ts"
+      "src/sisad-pdfme/generator/preflight.ts",
+      "src/sisad-pdfme/schemas/options/optionValueAdapter.ts",
+      "src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts",
+      "src/sisad-pdfme/schemas/options/optionGroupFactory.ts",
+      ".ai/scrum/task-cards/core-ux/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md"
     ],
-    "startedAt": "2026-08-16T03:43:07.928Z"
+    "startedAt": "2026-08-16T03:56:21.409Z"
+  },
+  "codex": {
+    "agent": "codex",
+    "task": "orphan-inventory-canonization",
+    "mode": "write",
+    "paths": [
+      "reports/architecture/orphan-inventory.json"
+    ],
+    "startedAt": "2026-08-16T03:58:16.061Z"
   }
 }

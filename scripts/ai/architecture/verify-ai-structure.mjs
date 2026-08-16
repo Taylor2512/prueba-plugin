@@ -13,10 +13,6 @@ for(const o of graph.orphans) errors.push(`ACTIVE_ORPHAN ${o}`);
 for(const g of exact) errors.push(`EXACT_DUPLICATE ${g.join(" = ")}`);
 
 const forbidden=[
-  ".ai/scrum/governance/MERGE-POLICY.md",".ai/scrum/governance/MERGE-POLICY.md",".ai/scrum/governance/VISUAL-UX-POLICY.md",
-  ".ai/scrum/views/ACTIVE.md",".ai/scrum/views/COMPLETED.md",".ai/scrum/views/BACKLOG.md",
-  ".ai/scrum/views/BACKLOG.md",".ai/scrum/views/VISUAL-UX.md",
-  ".ai/scrum/views/VISUAL-UX.md",".ai/scrum/views/RUNTIME-PLATFORM.md",
   ".ai/contracts"
 ];
 for(const rel of forbidden)if(fs.existsSync(path.join(root,rel)))errors.push(`LEGACY_PATH_PRESENT ${rel}`);

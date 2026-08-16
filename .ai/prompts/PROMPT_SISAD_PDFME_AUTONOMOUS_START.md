@@ -480,7 +480,7 @@ Antes de closeout, el autonomous loop debe cubrir también la arquitectura defin
 - `.ai/brain/20-contracts/integration/DATA-BINDING-CONTRACT.md`
 - `.ai/brain/20-contracts/integration/INTEGRATION-RUNTIME-CONTRACT.md`
 - `.ai/brain/20-contracts/integration/FONT-REGISTRY-CONTRACT.md`
-- `.ai/plans/PLAN_SISAD_PDFME_PORTABLE_INTEGRATION_RUNTIME.md`
+- `.ai/scrum/views/PRIORITIES.md` y las task-cards de Portable Runtime
 
 PokeAPI es exclusivamente example/fixture.
 

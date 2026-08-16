@@ -18,15 +18,15 @@
 - [AIARCH-014 — Depurar skill registry y aliases](./AIARCH-014-depurar-skill-registry-y-aliases.md) — `READY`
 - [AIARCH-015 — Añadir skills de contexto y trazabilidad](./AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md) — `READY`
 - [AIARCH-016 — Consolidar agent registry](./AIARCH-016-consolidar-agent-registry.md) — `READY`
-- [AIARCH-017 — Aplicar política de subagentes y coste](./AIARCH-017-aplicar-politica-de-subagentes-y-coste.md) — `BACKLOG`
-- [AIARCH-018 — Actualizar adapter de Claude](./AIARCH-018-actualizar-adapter-de-claude.md) — `BACKLOG`
-- [AIARCH-019 — Actualizar adapter de Codex](./AIARCH-019-actualizar-adapter-de-codex.md) — `BACKLOG`
-- [AIARCH-020 — Actualizar adapter de Copilot](./AIARCH-020-actualizar-adapter-de-copilot.md) — `BACKLOG`
-- [AIARCH-021 — Implementar provider drift gate](./AIARCH-021-implementar-provider-drift-gate.md) — `BACKLOG`
-- [AIARCH-022 — Migrar task-card a esquema](./AIARCH-022-migrar-task-card-a-esquema.md) — `BACKLOG`
-- [AIARCH-023 — Consolidar Scrum, claims y vistas](./AIARCH-023-consolidar-scrum-claims-y-vistas.md) — `BACKLOG`
-- [AIARCH-024 — Crear evidence store y log distillation](./AIARCH-024-crear-evidence-store-y-log-distillation.md) — `BACKLOG`
-- [AIARCH-025 — Crear validadores mecánicos](./AIARCH-025-crear-validadores-mecanicos.md) — `BACKLOG`
+- [AIARCH-017 — Aplicar política de subagentes y coste](./AIARCH-017-aplicar-politica-de-subagentes-y-coste.md) — `READY`
+- [AIARCH-018 — Actualizar adapter de Claude](./AIARCH-018-actualizar-adapter-de-claude.md) — `READY`
+- [AIARCH-019 — Actualizar adapter de Codex](./AIARCH-019-actualizar-adapter-de-codex.md) — `READY`
+- [AIARCH-020 — Actualizar adapter de Copilot](./AIARCH-020-actualizar-adapter-de-copilot.md) — `READY`
+- [AIARCH-021 — Implementar provider drift gate](./AIARCH-021-implementar-provider-drift-gate.md) — `READY`
+- [AIARCH-022 — Migrar task-card a esquema](./AIARCH-022-migrar-task-card-a-esquema.md) — `READY`
+- [AIARCH-023 — Consolidar Scrum, claims y vistas](./AIARCH-023-consolidar-scrum-claims-y-vistas.md) — `READY`
+- [AIARCH-024 — Crear evidence store y log distillation](./AIARCH-024-crear-evidence-store-y-log-distillation.md) — `READY`
+- [AIARCH-025 — Crear validadores mecánicos](./AIARCH-025-crear-validadores-mecanicos.md) — `READY`
 - [AIARCH-026 — Crear evals por proveedor y caso de uso](./AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md) — `BACKLOG`
 - [AIARCH-027 — Migrar planes COREUX/DECL/RESTORE](./AIARCH-027-migrar-planes-coreux-decl-restore.md) — `BACKLOG`
 - [AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos](./AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md) — `BACKLOG`

@@ -3,26 +3,26 @@
 | Task | Effective | Open dependencies |
 |---|---|---|
 | [RTP-000](../task-cards/runtime-platform/RTP-000.md) | **READY** | - |
-| [RTP-005](../task-cards/runtime-platform/RTP-005.md) | **BACKLOG** | RTP-000 |
-| [RTP-008](../task-cards/runtime-platform/RTP-008.md) | **BACKLOG** | RTP-005 |
+| [RTP-005](../task-cards/runtime-platform/RTP-005.md) | **READY** | RTP-000 |
+| [RTP-008](../task-cards/runtime-platform/RTP-008.md) | **READY** | RTP-005 |
 | [RTP-010](../task-cards/runtime-platform/RTP-010.md) | **BACKLOG** | RTP-000 |
-| [RTP-015](../task-cards/runtime-platform/RTP-015.md) | **BACKLOG** | RTP-008, RTP-010 |
-| [RTP-020](../task-cards/runtime-platform/RTP-020.md) | **BACKLOG** | RTP-005 |
+| [RTP-015](../task-cards/runtime-platform/RTP-015.md) | **READY** | RTP-008, RTP-010 |
+| [RTP-020](../task-cards/runtime-platform/RTP-020.md) | **READY** | RTP-005 |
 | [RTP-022](../task-cards/runtime-platform/RTP-022.md) | **PARTIAL** | RTP-015 |
-| [RTP-030](../task-cards/runtime-platform/RTP-030.md) | **BACKLOG** | RTP-020 |
+| [RTP-030](../task-cards/runtime-platform/RTP-030.md) | **READY** | RTP-020 |
 | [RTP-040](../task-cards/runtime-platform/RTP-040.md) | **PARTIAL** | RTP-030 |
 | [RTP-045](../task-cards/runtime-platform/RTP-045.md) | **PARTIAL** | RTP-040 |
-| [RTP-050](../task-cards/runtime-platform/RTP-050.md) | **BACKLOG** | RTP-040 |
-| [RTP-055](../task-cards/runtime-platform/RTP-055.md) | **BACKLOG** | RTP-040, RTP-050 |
-| [RTP-060](../task-cards/runtime-platform/RTP-060.md) | **BACKLOG** | RTP-050 |
-| [RTP-070](../task-cards/runtime-platform/RTP-070.md) | **ARCHIVED** | RTP-060 |
-| [RTP-080](../task-cards/runtime-platform/RTP-080.md) | **ARCHIVED** | RTP-070 |
+| [RTP-050](../task-cards/runtime-platform/RTP-050.md) | **READY** | RTP-040, RTP-045 |
+| [RTP-055](../task-cards/runtime-platform/RTP-055.md) | **READY** | RTP-040, RTP-050 |
+| [RTP-060](../task-cards/runtime-platform/RTP-060.md) | **READY** | RTP-050 |
+| [RTP-070](../task-cards/runtime-platform/RTP-070.md) | **READY** | - |
+| [RTP-080](../task-cards/runtime-platform/RTP-080.md) | **READY** | - |
 | [RTP-090](../task-cards/runtime-platform/RTP-090.md) | **PARTIAL** | RTP-080 |
-| [RTP-095](../task-cards/runtime-platform/RTP-095.md) | **ARCHIVED** | RTP-080, RTP-090 |
-| [RTP-100](../task-cards/runtime-platform/RTP-100.md) | **BACKLOG** | RTP-090 |
-| [RTP-110](../task-cards/runtime-platform/RTP-110.md) | **BACKLOG** | RTP-090 |
-| [RTP-120](../task-cards/runtime-platform/RTP-120.md) | **BACKLOG** | RTP-090 |
-| [RTP-130](../task-cards/runtime-platform/RTP-130.md) | **BACKLOG** | RTP-090 |
+| [RTP-095](../task-cards/runtime-platform/RTP-095.md) | **READY** | RTP-080 |
+| [RTP-100](../task-cards/runtime-platform/RTP-100.md) | **READY** | RTP-090 |
+| [RTP-110](../task-cards/runtime-platform/RTP-110.md) | **READY** | RTP-090 |
+| [RTP-120](../task-cards/runtime-platform/RTP-120.md) | **READY** | RTP-100 |
+| [RTP-130](../task-cards/runtime-platform/RTP-130.md) | **READY** | RTP-110 |
 | [RTP-140](../task-cards/runtime-platform/RTP-140.md) | **BACKLOG** | RTP-090 |
 | [RTP-150](../task-cards/runtime-platform/RTP-150.md) | **BACKLOG** | RTP-090 |
 | [RTP-160](../task-cards/runtime-platform/RTP-160.md) | **BACKLOG** | RTP-070, RTP-080 |

@@ -125,6 +125,13 @@
         ".agents/skills/sisad-user-runtime/SKILL.md",
         ".claude/skills/sisad-user-runtime/SKILL.md"
       ]
+    },
+    {
+      "hash": "ff738587bc1d1680d6c2958e85a89ac3287d2e15f71bc7acd0599a8149708283",
+      "paths": [
+        ".ai/archive/migrations/README.md",
+        ".ai/migrations/README.md"
+      ]
     }
   ],
   "near": []

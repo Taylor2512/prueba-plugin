@@ -20,7 +20,17 @@
 - [AIARCH-014.copilot](./AIARCH-014.copilot.md)
 - [AIARCH-015.copilot](./AIARCH-015.copilot.md)
 - [AIARCH-016.copilot](./AIARCH-016.copilot.md)
+- [AIARCH-017.copilot](./AIARCH-017.copilot.md)
+- [AIARCH-018.copilot](./AIARCH-018.copilot.md)
+- [AIARCH-019.copilot](./AIARCH-019.copilot.md)
+- [AIARCH-020.copilot](./AIARCH-020.copilot.md)
+- [AIARCH-021.copilot](./AIARCH-021.copilot.md)
+- [AIARCH-022.copilot](./AIARCH-022.copilot.md)
+- [AIARCH-023.copilot](./AIARCH-023.copilot.md)
+- [AIARCH-024.copilot](./AIARCH-024.copilot.md)
+- [AIARCH-025.copilot](./AIARCH-025.copilot.md)
 - [Evidence — P0 selective sibling rollback / draft loss](./P0-selective-sibling-rollback.md)
+- [PRT-000 — Boundary baseline evidence](./PRT-000.md) — `PARTIAL`
 - [RTP-005.copilot](./RTP-005.copilot.md)
 - [RTP-008.copilot](./RTP-008.copilot.md)
 - [RTP-015.copilot](./RTP-015.copilot.md)
@@ -28,7 +38,7 @@
 - [RTP-022 — Evidence (partial)](./RTP-022.copilot.md) — `PARTIAL`
 - [RTP-022 — runtime assignments](./RTP-022.md) — `PARTIAL`
 - [RTP-030.copilot](./RTP-030.copilot.md)
-- [RTP-040 — Evidence (partial)](./RTP-040.copilot.md) — `PARTIAL`
+- [RTP-040 — Evidence (partial)](./RTP-040.copilot.md) — `PASS`
 - [Evidence — RTP-040](./RTP-040.md) — `PASS`
 - [Evidence — RTP-045](./RTP-045.md) — `PASS`
 - [RTP-050.copilot](./RTP-050.copilot.md)
@@ -36,7 +46,7 @@
 - [RTP-060.copilot](./RTP-060.copilot.md)
 - [RTP-070.copilot](./RTP-070.copilot.md)
 - [RTP-080.copilot](./RTP-080.copilot.md)
-- [RTP-090 — Evidence (partial)](./RTP-090.copilot.md) — `PARTIAL`
+- [RTP-090 — Evidence (partial)](./RTP-090.copilot.md) — `PASS`
 - [RTP-090 — completion projections](./RTP-090.md) — `PASS`
 - [RTP-095.copilot](./RTP-095.copilot.md)
 - [RTP-100.copilot](./RTP-100.copilot.md)
@@ -51,19 +61,19 @@
 - [RTP-360 — SisadPdfmeUser y schema access](./RTP-360.md) — `PARTIAL`
 - [RTP-370 — Evidence (partial)](./RTP-370.copilot.md) — `PARTIAL`
 - [RTP-370 — ExecutionPlan](./RTP-370.md) — `PARTIAL`
-- [RTP-375 — Evidence (partial)](./RTP-375.copilot.md) — `PARTIAL`
+- [RTP-375 — Evidence (partial)](./RTP-375.copilot.md) — `PASS`
 - [RTP-375 — sequential execution](./RTP-375.md) — `PASS`
 - [RTP-380 — Evidence (partial)](./RTP-380.copilot.md) — `PARTIAL`
 - [RTP-380 — parallel isolation](./RTP-380.md) — `PARTIAL`
-- [RTP-385 — Evidence (partial)](./RTP-385.copilot.md) — `PARTIAL`
+- [RTP-385 — Evidence (partial)](./RTP-385.copilot.md) — `PASS`
 - [RTP-385 — mixed execution](./RTP-385.md) — `PASS`
-- [RTP-390 — Evidence (partial)](./RTP-390.copilot.md) — `PARTIAL`
+- [RTP-390 — Evidence (partial)](./RTP-390.copilot.md) — `PASS`
 - [RTP-390 — massive fan-out](./RTP-390.md) — `PASS`
-- [RTP-395 — Evidence (partial)](./RTP-395.copilot.md) — `PARTIAL`
+- [RTP-395 — Evidence (partial)](./RTP-395.copilot.md) — `PASS`
 - [RTP-395 — execution result/artifacts](./RTP-395.md) — `PASS`
-- [RTP-400 — Evidence (partial)](./RTP-400.copilot.md) — `PARTIAL`
+- [RTP-400 — Evidence (partial)](./RTP-400.copilot.md) — `PASS`
 - [RTP-400 — PDF composition](./RTP-400.md) — `PASS`
-- [RTP-410 — Evidence (partial)](./RTP-410.copilot.md) — `PARTIAL`
+- [RTP-410 — Evidence (partial)](./RTP-410.copilot.md) — `PASS`
 - [RTP-410 — schema manifest](./RTP-410.md) — `PASS`
 - [RTP-425 — Reconciliación de baseline source/evidence/config](./RTP-425.md) — `PASS`
 - [RTP-430 — Inventario completo de capabilities](./RTP-430.md) — `PASS`

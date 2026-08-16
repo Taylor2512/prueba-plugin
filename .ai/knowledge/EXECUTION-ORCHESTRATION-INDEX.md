@@ -17,8 +17,5 @@
 - `.ai/brain/40-runtime/EXECUTION-SHAPES.md`
 - `.ai/brain/40-runtime/PDF-COMPOSITION.md`
 
-## Plan
-- `.ai/plans/PLAN_SISAD_PDFME_EXECUTION_ORCHESTRATION.md`
-
 ## Tasks
 - `.ai/scrum/task-cards/runtime-platform/RTP-345.md` through `RTP-420.md`

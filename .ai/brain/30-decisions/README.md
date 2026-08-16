@@ -3,6 +3,7 @@
 <!-- sisad-architecture-hub:start -->
 ## Navigation
 
+- [ADR — Pre-production canonization](./ADR-PREPRODUCTION-CANONIZATION.md)
 - [ADR RTP-001 — Product identity](./ADR-RTP-001-SISAD-PDFME-PRODUCT-IDENTITY.md)
 - [ADR RTP-002 — Local-first Form](./ADR-RTP-002-LOCAL-FIRST-FORM.md)
 - [ADR RTP-003 — Manifest incremental](./ADR-RTP-003-MANIFEST-INCREMENTAL.md)
