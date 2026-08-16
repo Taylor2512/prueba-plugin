@@ -1,7 +1,7 @@
 import { clearSchemaRoot } from '@sisad-pdfme/schemas/shared/schemaDom';
 import { createOptionIndicatorElement, type OptionIndicatorShape } from '@sisad-pdfme/schemas/options/optionIndicator';
 import { markInspectorInteractive, stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
-import { normalizeLooseText } from '@sisad-pdfme/shared/text';
+import { normalizeOptionText } from '@sisad-pdfme/schemas/options/optionModel';
 
 export type OptionGroupEditorItem = {
   optionId: string;
@@ -39,7 +39,7 @@ export type CreateOptionGroupOptionsEditorConfig<TOption extends OptionGroupEdit
 // necessary (see above). No extra types are required for that backward
 // compatibility shim.
 
-const normalizeOptionGroupEditorText = normalizeLooseText;
+const normalizeOptionGroupEditorText = normalizeOptionText;
 
 const joinClassNames = (...parts: Array<string | false | null | undefined>): string =>
   parts.filter(Boolean).join(' ');
