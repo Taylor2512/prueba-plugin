@@ -22,7 +22,8 @@ context:
     - src/sisad-pdfme/**
   maxFiles: 8
   maxTokens: 12000
-status: BACKLOG
+status: READY
+evidence: reports/runtime-platform/evidence/AIARCH-015.copilot.md
 ---
 
 # AIARCH-015 — Añadir skills de contexto y trazabilidad
