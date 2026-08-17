@@ -527,16 +527,37 @@ const handleTypeChange = (
 
   // Apply default schema properties if available
   if (plugin?.propPanel.defaultSchema) {
-    const defaultSchema = plugin.propPanel.defaultSchema;
-    const schemaRecord = schema as Record<string, unknown>;
-
-    // Use a type-safe approach to copy properties
-    for (const key of Object.keys(defaultSchema)) {
-      // Only add properties that don't already exist in the schema
-      if (!Object.prototype.hasOwnProperty.call(schema, key)) {
-        const propertyValue = defaultSchema[key];
-        if (propertyValue !== undefined) {
-          schemaRecord[key] = propertyValue;
+    // Use canonical normalizer to obtain a fully-formed SchemaForUI then
+    // copy missing keys into the target. This avoids ad-hoc '{}' fallbacks
+    // and ensures consumers always receive required fields (id/position/etc).
+    // Use centralized runtime helper to attempt canonical normalization first
+    // and fall back to the declared defaultSchema when unavailable.
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { getCanonicalDefault } = require('@sisad-pdfme/schemas/runtime-normalizer');
+      const canonical: Record<string, unknown> | null = getCanonicalDefault(
+        plugin,
+        String(schema.type || plugin.propPanel.defaultSchema.type || schema.name),
+      );
+      const schemaRecord = schema as Record<string, unknown>;
+      const source = canonical ?? (plugin.propPanel.defaultSchema as Record<string, unknown>);
+      for (const key of Object.keys(source)) {
+        if (!Object.prototype.hasOwnProperty.call(schema, key)) {
+          const propertyValue = source[key];
+          if (propertyValue !== undefined) {
+            schemaRecord[key] = propertyValue;
+          }
+        }
+      }
+    } catch {
+      const defaultSchema = plugin.propPanel.defaultSchema as Record<string, unknown>;
+      const schemaRecord = schema as Record<string, unknown>;
+      for (const key of Object.keys(defaultSchema)) {
+        if (!Object.prototype.hasOwnProperty.call(schema, key)) {
+          const propertyValue = defaultSchema[key];
+          if (propertyValue !== undefined) {
+            schemaRecord[key] = propertyValue;
+          }
         }
       }
     }

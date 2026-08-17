@@ -339,18 +339,18 @@ const normalizeFieldEntry = (field: FieldLike): NormalizedField => {
 
 const fieldNames = (fields: FieldLike[] = []): NormalizedField[] => fields.map(normalizeFieldEntry).filter((field) => field.key && !field.hidden);
 
-const getInspectorSchemaValue = (schema: SchemaForUI, key: string) => {
+const getInspectorSchemaValue = (schema: unknown, key: string) => {
   const record = asRecord(schema);
   return record ? record[key] : undefined;
 };
 
-const hasDefinedSchemaValue = (schema: SchemaForUI, key: string) => {
+const hasDefinedSchemaValue = (schema: unknown, key: string) => {
   const value = getInspectorSchemaValue(schema, key);
   return value !== undefined && value !== null && value !== '';
 };
 
-const hasAnyValue = (schema: SchemaForUI, keys: string[]) => keys.some((key) => hasDefinedSchemaValue(schema, key));
-const hasMeaningfulSchemaValue = (schema: SchemaForUI, keys: string[]) =>
+const hasAnyValue = (schema: unknown, keys: string[]) => keys.some((key) => hasDefinedSchemaValue(schema, key));
+const hasMeaningfulSchemaValue = (schema: unknown, keys: string[]) =>
   keys.some((key) => hasMeaningfulInspectorValue(getInspectorSchemaValue(schema, key)));
 
 const hasWidget = (fields: FieldLike[], widgetNames: string[]) => fieldNames(fields).some((field) => widgetNames.includes(field.widget));

@@ -4,6 +4,7 @@ import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '@sisa
 import { toRadians } from 'pdf-lib';
 import { Circle, Square } from 'lucide-react';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 import { resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
 import { hexColorFields } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
@@ -117,19 +118,23 @@ const shape: Plugin<ShapeSchema> = {
         radius: 'style',
       },
     }),
-    defaultSchema: {
-      name: '',
-      type: 'rectangle',
-      position: { x: 0, y: 0 },
-      width: 62.5,
-      height: 37.5,
-      rotate: 0,
-      opacity: 1,
-      borderWidth: 1,
-      color: '',
-      readOnly: true,
-      radius: 0,
-    },
+    defaultSchema: ((): ShapeSchema => {
+      const canonical = getCanonicalDefault(undefined as any, 'rectangle') as Partial<ShapeSchema> | null;
+      return {
+        ...(canonical || {}),
+        name: '',
+        type: 'rectangle',
+        position: { x: 0, y: 0 },
+        width: 62.5,
+        height: 37.5,
+        rotate: 0,
+        opacity: 1,
+        borderWidth: 1,
+        color: '',
+        readOnly: true,
+        radius: 0,
+      } as ShapeSchema;
+    })(),
   },
 };
 

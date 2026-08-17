@@ -65,6 +65,7 @@ import {
   validationMessageField,
   COMMON_PROPERTY_MAP,
 } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 interface AirDatepickerInstance {
   selectedDates: Date[];
@@ -478,28 +479,32 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
         includeValidation: true,
         includeConnections: true,
       }),
-      defaultSchema: {
-        name: '',
-        format: defaultFormat,
-        type,
-        content: '',
-        defaultValueStrategy: 'none',
-        required: false,
-        readOnly: false,
-        validationMessage: '',
-        position: { x: 0, y: 0 },
-        width: 50,
-        height: 10,
-        rotate: 0,
-        alignment: DEFAULT_ALIGNMENT,
-        fontSize: DEFAULT_FONT_SIZE,
-        characterSpacing: DEFAULT_CHARACTER_SPACING,
-        fontColor: DEFAULT_FONT_COLOR,
-        fontName: undefined,
-        backgroundColor: '',
-        locale: undefined,
-        opacity: DEFAULT_OPACITY,
-      } as DateSchema,
+      defaultSchema: ((): DateSchema => {
+        const canonical = getCanonicalDefault(undefined as any, type) as Partial<DateSchema> | null;
+        return {
+          ...(canonical || {}),
+          name: '',
+          format: defaultFormat,
+          type,
+          content: '',
+          defaultValueStrategy: 'none',
+          required: false,
+          readOnly: false,
+          validationMessage: '',
+          position: { x: 0, y: 0 },
+          width: 50,
+          height: 10,
+          rotate: 0,
+          alignment: DEFAULT_ALIGNMENT,
+          fontSize: DEFAULT_FONT_SIZE,
+          characterSpacing: DEFAULT_CHARACTER_SPACING,
+          fontColor: DEFAULT_FONT_COLOR,
+          fontName: undefined,
+          backgroundColor: '',
+          locale: undefined,
+          opacity: DEFAULT_OPACITY,
+        } as DateSchema;
+      })(),
     },
     icon,
   };

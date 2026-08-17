@@ -90,6 +90,16 @@ export type {
   SisadPdfmeInstanceStateInput,
   SisadPdfmeInstanceResources,
 } from '@sisad-pdfme/integration/resolveSisadPdfmeInstance';
+export {
+  createPortableSisadPdfmeInstanceBundle,
+  inlineSisadPdfmeInstanceAssets,
+  isInlinedSisadPdfmeInstanceBundle,
+  SISAD_PDFME_BUNDLE_ASSET_ENCODING,
+} from '@sisad-pdfme/integration/instanceBundleAssets';
+export type {
+  SisadPdfmeInlinedInstanceBundle,
+  SisadPdfmeInstanceBundleAssetOptions,
+} from '@sisad-pdfme/integration/instanceBundleAssets';
 import {
   SisadPdfmeProvider,
   SisadPdfmeDesigner,

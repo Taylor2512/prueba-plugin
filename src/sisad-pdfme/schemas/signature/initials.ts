@@ -8,6 +8,7 @@ import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { PenLine } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 import baseSignature from '@sisad-pdfme/schemas/signature';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 import type { SignatureSchema } from '@sisad-pdfme/schemas/signature/types';
 
@@ -17,19 +18,18 @@ const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
     pdf: baseSignature.pdf,
     propPanel: {
       ...baseSignature.propPanel,
-      defaultSchema: {
-        ...(isRecord(baseSignature.propPanel.defaultSchema)
-          ? (cloneDeep(baseSignature.propPanel.defaultSchema) as SignatureSchema)
-          : {}),
-        type: 'initials',
-        name: '',
-        width: 22,
-        height: 12,
-        placeholderText: 'Iniciales aquí',
-        signatureKind: 'initials',
-        // Sin paleta propia: el azul claro fijo hacía que las iniciales fueran
-        // el único campo que no adoptaba el color de su destinatario.
-      } as Schema,
+      defaultSchema: ((): Schema => {
+        const canonical = getCanonicalDefault(baseSignature as unknown as Plugin<Schema>, 'initials') as Partial<SignatureSchema> | null;
+        return {
+          ...(canonical || (typeof baseSignature.propPanel.defaultSchema === 'object' ? baseSignature.propPanel.defaultSchema : {})),
+          type: 'initials',
+          name: '',
+          width: 22,
+          height: 12,
+          placeholderText: 'Iniciales aquí',
+          signatureKind: 'initials',
+        } as Schema;
+      })(),
     },
     icon: renderLucideIcon(PenLine, { stroke: '#1a56a0' }),
   },

@@ -12,6 +12,7 @@ import { renderSchemaWithChrome } from '@sisad-pdfme/schemas/shared/renderSchema
 import { createActionButtonEl } from '@sisad-pdfme/schemas/shared/schemaDom';
 import { readableTextColor } from '@sisad-pdfme/schemas/shared/fieldChrome';
 import type { ActionSchemaBase } from '@sisad-pdfme/schemas/shared/schemaTypes';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 type DecisionActionSchema = ActionSchemaBase<{
   requiresReason?: boolean;
@@ -238,21 +239,25 @@ export const createDecisionActionPlugin = ({
           },
           includeConnections: true,
         }),
-        defaultSchema: {
-          name: '',
-          type,
-          content: '',
-          position: { x: 0, y: 0 },
-          width: 40,
-          height: 12,
-          action: type,
-          label,
-          requiresReason: false,
-          confirmationMessage: '',
-          ...(auditEventName ? { auditEventName } : {}),
-          // Sin color materializado: se deriva del dueño en cada render.
-          fontSize: 11,
-        },
+        defaultSchema: ((): any => {
+          const canonical = getCanonicalDefault(undefined as any, type) as Record<string, unknown> | null;
+          return {
+            ...(canonical || {}),
+            name: '',
+            type,
+            content: '',
+            position: { x: 0, y: 0 },
+            width: 40,
+            height: 12,
+            action: type,
+            label,
+            requiresReason: false,
+            confirmationMessage: '',
+            ...(auditEventName ? { auditEventName } : {}),
+            // Sin color materializado: se deriva del dueño en cada render.
+            fontSize: 11,
+          };
+        })(),
       },
       icon: renderLucideIcon(icon, { stroke: defaultColor }),
     },

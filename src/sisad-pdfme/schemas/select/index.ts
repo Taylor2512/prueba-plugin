@@ -1,9 +1,10 @@
 import type * as CSS from 'csstype';
 import { propPanel as parentPropPanel } from '@sisad-pdfme/schemas/text/propPanel';
-import { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
+import { Plugin, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import text from '@sisad-pdfme/schemas/text';
 import { TextSchema } from '@sisad-pdfme/schemas/text/types';
 import { isRecord } from '@sisad-pdfme/shared/objectGuards';
+import type { SchemaForUI } from '@sisad-pdfme/common';
 import { ChevronDown } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
@@ -11,6 +12,7 @@ import { basicsFields, helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '
 import { normalizeStringOptions, resolveCompactSelection } from '@sisad-pdfme/schemas/options/optionSelectionBehavior';
 import { markInspectorInteractive, stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 const selectIcon = renderLucideIcon(ChevronDown);
 
@@ -336,12 +338,19 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
         },
       };
     },
-    defaultSchema: {
-      ...text.propPanel.defaultSchema,
-      type: 'select',
-      content: '',
-      options: ['option1', 'option2'],
-    },
+    defaultSchema: ((): Select => {
+      const canonical = getCanonicalDefault(text as unknown as Plugin<SchemaForUI>, 'select') as Partial<Select> | null;
+      return {
+        ...(canonical || {}),
+        name: '',
+        type: 'select',
+        content: '',
+        options: ['option1', 'option2'],
+        position: { x: 0, y: 0 },
+        width: 45,
+        height: 7,
+      } as Select;
+    })(),
   },
   icon: selectIcon,
 }, {

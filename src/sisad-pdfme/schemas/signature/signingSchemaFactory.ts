@@ -3,6 +3,7 @@ import type { Plugin, Schema } from '@sisad-pdfme/common';
 import text from '@sisad-pdfme/schemas/text';
 import { createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 import {
   basicsFields,
   helpFields,
@@ -63,9 +64,13 @@ export function createSigningSchemaPlugin(config: SigningSchemaFactoryConfig): P
 
   const normalizedIcon: string =
     typeof icon === 'string' ? icon : (icon as SVGElement).outerHTML;
-  const baseDefaultSchema = text.propPanel.defaultSchema;
+  // Derive a canonical baseline and overlay factory-provided overrides.
+  const baseDefaultSchema: Record<string, unknown> =
+    (getCanonicalDefault(text as any, type) as Record<string, unknown> | null) ||
+    (cloneDeep(text.propPanel.defaultSchema) as Record<string, unknown>);
+
   const defaultSchema: Schema = {
-    ...baseDefaultSchema,
+    ...(baseDefaultSchema as Schema),
     name: '',
     type,
     content: '',

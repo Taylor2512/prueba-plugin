@@ -4,6 +4,7 @@ import type { TextSchema } from '@sisad-pdfme/schemas/text/types';
 import text from '@sisad-pdfme/schemas/text';
 import { createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 import { attachNumberInputGuard } from '@sisad-pdfme/schemas/number/inputGuard';
 import {
   isAcceptableNumberInput,
@@ -163,22 +164,26 @@ const schema: Plugin<NumberSchema> = createSchemaPlugin<NumberSchema>(
         includeValidation: true,
         includeConnections: true,
       }),
-      defaultSchema: {
-        name: '',
-        type: 'number',
-        content: '',
-        position: { x: 0, y: 0 },
-        width: 45,
-        height: 7,
-        readOnly: false,
-        required: false,
-        // `0` significa "sin decimales" y hacía que cualquier coma se rechazara
-        // al confirmar, vaciando el campo al perder el foco.
-        decimals: 2,
-        format: 'free',
-        validationMessage: '',
-        placeholder: '',
-      },
+      defaultSchema: ((): Schema => {
+        const canonical = getCanonicalDefault(undefined as any, 'number') as Partial<Schema> | null;
+        return {
+          ...(canonical || {}),
+          name: '',
+          type: 'number',
+          content: '',
+          position: { x: 0, y: 0 },
+          width: 45,
+          height: 7,
+          readOnly: false,
+          required: false,
+          // `0` significa "sin decimales" y hacía que cualquier coma se rechazara
+          // al confirmar, vaciando el campo al perder el foco.
+          decimals: 2,
+          format: 'free',
+          validationMessage: '',
+          placeholder: '',
+        } as Schema;
+      })(),
     },
   },
   {

@@ -1,4 +1,4 @@
-import type { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
+import type { Plugin, PropPanelWidgetProps, SchemaForUI, Schema } from '@sisad-pdfme/common';
 import { isEditable } from '@sisad-pdfme/schemas/utils';
 import { createSchemaPlugin, renderLucideIcon } from '@sisad-pdfme/schemas/schemaBuilder';
 import { SquareCheck } from 'lucide-react';
@@ -27,6 +27,7 @@ import {
   normalizeOptionGroupOptions,
   normalizeOptionText,
 } from '@sisad-pdfme/schemas/options/optionModel';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 import { renderOptionGroupPdf } from '@sisad-pdfme/schemas/options/optionGroupPdfRender';
 import { markInspectorInteractive } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 
@@ -284,16 +285,20 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
           maxSelected: 'data',
         },
         widgets: { editCheckboxGroupOptions: CheckboxOptionsEditor },
-        defaultSchema: {
-          ...buildOptionGroupDefaultSchema({
-            type: 'checkboxGroup',
-            groupName: 'Grupo de casillas',
-            groupType: 'checkbox',
-            optionPrefix: 'Casilla',
-            selectionMode: 'multiple',
-            optionsCount: 2,
-          }),
-        } as CheckboxGroupSchema,
+        defaultSchema: ((): CheckboxGroupSchema => {
+          const canonical = getCanonicalDefault(undefined as any, 'checkboxGroup') as Partial<CheckboxGroupSchema> | null;
+          return {
+            ...(canonical || {}),
+            ...buildOptionGroupDefaultSchema({
+              type: 'checkboxGroup',
+              groupName: 'Grupo de casillas',
+              groupType: 'checkbox',
+              optionPrefix: 'Casilla',
+              selectionMode: 'multiple',
+              optionsCount: 2,
+            }),
+          } as CheckboxGroupSchema;
+        })(),
       }),
     },
     icon: renderLucideIcon(SquareCheck, { stroke: 'currentColor' }),

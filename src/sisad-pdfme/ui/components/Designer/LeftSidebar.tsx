@@ -36,6 +36,7 @@ import { SidebarCollapseHandle } from '@sisad-pdfme/ui/components/Designer/share
 import { useSidebarCollapse, resolveShortcutHint } from '@sisad-pdfme/ui/components/Designer/shared/useSidebarCollapse';
 import { SisadPdfmeContext } from '@sisad-pdfme/react/SisadPdfmeContext';
 import { useSisadPdfmeConfig } from '@sisad-pdfme/react/useSisadPdfmeConfig';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 const schemaTypeCategoryMap: Record<string, string> = {
   text: 'Texto',
@@ -523,10 +524,19 @@ const Draggable = (props: {
     isDragging: boolean;
   }) => React.ReactNode;
 }) => {
-  const { plugin, onDragStateChange } = props;
+  const { plugin, onDragStateChange, schemaFactory, schema } = props;
   const options = useContext(OptionsContext);
-  const rawBase = props.schemaFactory?.() || props.schema || plugin.propPanel.defaultSchema;
+  const rawBase = useMemo(() => {
+    // Normalize plugin default schema to a full SchemaForUI before cloning.
+    const canonical = getCanonicalDefault(
+      plugin,
+      (schemaFactory?.() as Schema | null)?.type || schema?.type || undefined,
+    );
+    return canonical ?? (schemaFactory?.() || schema || plugin.propPanel.defaultSchema);
+  }, [schemaFactory, schema, plugin]);
   const baseSchema: Schema = cloneDeep(rawBase) as Schema;
+  // Ensure draggable prototypes are fully normalized so downstream consumers
+  // (drag + drop, serializer) receive a Schema with required invariants.
   if (options.font) {
     const fontName = getFallbackFontName(options.font);
     setFontNameRecursively(baseSchema, fontName);

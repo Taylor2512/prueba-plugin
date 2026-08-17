@@ -16,6 +16,7 @@ import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies
 import { basicsFields } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 import { applyCenteredImageFileInputStyle, createImageFileInput } from '@sisad-pdfme/schemas/shared/imageFileInput';
 import { mixHexColor, resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 const getImageCacheKey = (schema: Schema, input: string) => `${schema.type}${input}`;
 const fullSize = { width: '100%', height: '100%' };
@@ -229,18 +230,22 @@ const imageSchema: Plugin<ImageSchema> = {
       readOnly: basicsFields().readOnly,
     },
     inspector: createSchemaInspectorConfig('media'),
-    defaultSchema: {
-      name: '',
-      type: 'image',
-      content: defaultValue,
-      position: { x: 0, y: 0 },
-      width: 40,
-      height: 40,
-      // If the value of "rotate" is set to undefined or not set at all, rotation will be disabled in the UI.
-      // Check this document: https://sisad-pdfme.com//docs/custom-schemas#learning-how-to-create-from-pdfmeschemas-code
-      rotate: 0,
-      opacity: DEFAULT_OPACITY,
-    },
+    defaultSchema: ((): ImageSchema => {
+      const canonical = getCanonicalDefault(undefined as any, 'image') as Partial<ImageSchema> | null;
+      return {
+        ...(canonical || {}),
+        name: '',
+        type: 'image',
+        content: defaultValue,
+        position: { x: 0, y: 0 },
+        width: 40,
+        height: 40,
+        // If the value of "rotate" is set to undefined or not set at all, rotation will be disabled in the UI.
+        // Check this document: https://sisad-pdfme.com//docs/custom-schemas#learning-how-to-create-from-pdfmeschemas-code
+        rotate: 0,
+        opacity: DEFAULT_OPACITY,
+      } as ImageSchema;
+    })(),
   },
   icon: createSvgStr(Image),
 };

@@ -5,6 +5,7 @@ import line from '@sisad-pdfme/schemas/shapes/line';
 import { rectangle } from '@sisad-pdfme/schemas/shapes/rectAndEllipse';
 import type { CellSchema } from '@sisad-pdfme/schemas/tables/types';
 import { getCellPropPanelSchema, getDefaultCellStyles } from '@sisad-pdfme/schemas/tables/helper';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 const linePdfRender = line.pdf;
 const rectanglePdfRender = rectangle.pdf;
 
@@ -138,15 +139,19 @@ const cellSchema: Plugin<CellSchema> = {
       const fallbackFontName = getFallbackFontName(font);
       return getCellPropPanelSchema({ i18n, fontNames, fallbackFontName });
     },
-    defaultSchema: {
-      name: '',
-      type: 'cell',
-      content: 'Type Something...',
-      position: { x: 0, y: 0 },
-      width: 50,
-      height: 15,
-      ...getDefaultCellStyles(),
-    },
+    defaultSchema: ((): CellSchema => {
+      const canonical = getCanonicalDefault(undefined as any, 'cell') as Partial<CellSchema> | null;
+      return {
+        ...(canonical || {}),
+        name: '',
+        type: 'cell',
+        content: 'Type Something...',
+        position: { x: 0, y: 0 },
+        width: 50,
+        height: 15,
+        ...getDefaultCellStyles(),
+      } as CellSchema;
+    })(),
   },
 };
 export default cellSchema;

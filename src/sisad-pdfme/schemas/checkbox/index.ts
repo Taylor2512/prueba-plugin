@@ -15,6 +15,7 @@ import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies
 import { buildAddOptionButton } from '@sisad-pdfme/schemas/groupSchemaRender';
 import { renderOptionIndicatorSvg, createOptionIndicatorElement } from '@sisad-pdfme/schemas/options/optionIndicator';
 import { buildCheckboxToGroupPatch } from '@sisad-pdfme/schemas/options/optionValueAdapter';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 const getCheckedIcon = (stroke = 'currentColor') => renderLucideIcon(SquareCheck, { stroke });
 
@@ -192,17 +193,21 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       propertyMap: { ...COMMON_PROPERTY_MAP, color: 'style', groupId: 'data' },
       includeConnections: true,
     }),
-    defaultSchema: {
-      name: '',
-      type: 'checkbox',
-      content: 'false',
-      position: { x: 0, y: 0 },
-      width: 8,
-      height: 8,
-      groupId: 'MyGroup',
-      required: false,
-      readOnly: false,
-    },
+    defaultSchema: ((): Schema => {
+      const canonical = getCanonicalDefault(undefined as any, 'checkbox') as Partial<Schema> | null;
+      return {
+        ...(canonical || {}),
+        name: '',
+        type: 'checkbox',
+        content: 'false',
+        position: { x: 0, y: 0 },
+        width: 8,
+        height: 8,
+        groupId: 'MyGroup',
+        required: false,
+        readOnly: false,
+      } as Schema;
+    })(),
   },
   icon: getCheckedIcon(),
 }, {

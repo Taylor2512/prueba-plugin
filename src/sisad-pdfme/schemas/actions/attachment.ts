@@ -16,6 +16,7 @@ import { createAttachmentContainerEl, drawActionFieldChrome } from '@sisad-pdfme
 import type { AttachmentSchema } from '@sisad-pdfme/schemas/actions/actionSchemaFactory';
 import { clearSchemaRoot, setSchemaRootAttributes } from '@sisad-pdfme/schemas/shared/schemaDom';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 const MIME_TYPE_OPTIONS = [
   { label: 'Cualquier archivo', value: '*' },
@@ -174,22 +175,26 @@ const attachmentPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         },
         includeConnections: true,
       }),
-      defaultSchema: {
-        name: '',
-        type: 'attachment',
-        content: '',
-        position: { x: 0, y: 0 },
-        width: 60,
-        height: 20,
-        readOnly: false,
-        required: false,
-        allowedMimeTypes: '*',
-        maxFiles: 1,
-        maxSizeMb: 10,
-        allowReplace: true,
-        showFileName: true,
-        showUploadStatus: true,
-      },
+      defaultSchema: ((): Schema => {
+        const canonical = getCanonicalDefault(undefined as any, 'attachment') as Partial<Schema> | null;
+        return {
+          ...(canonical || {}),
+          name: '',
+          type: 'attachment',
+          content: '',
+          position: { x: 0, y: 0 },
+          width: 60,
+          height: 20,
+          readOnly: false,
+          required: false,
+          allowedMimeTypes: '*',
+          maxFiles: 1,
+          maxSizeMb: 10,
+          allowReplace: true,
+          showFileName: true,
+          showUploadStatus: true,
+        } as Schema;
+      })(),
     },
     icon: renderLucideIcon(Paperclip, { stroke: '#374151' }),
   },
