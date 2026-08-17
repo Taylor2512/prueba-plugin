@@ -1,0 +1,68 @@
+{
+  "previousScripts": {
+    "test:quality:audit": null,
+    "test:quality:audit:strict": null,
+    "test:quality:use-cases": null,
+    "test:quality:plan": null,
+    "test:quality:apply": null,
+    "test:quality:legacy": null,
+    "test:quality:legacy:apply": null,
+    "test:quality:verify": null,
+    "test:quality:verify:strict": null,
+    "test:quality:verify:full": null
+  },
+  "installedScripts": {
+    "test:quality:audit": "node scripts/testing/test-quality/audit.mjs .",
+    "test:quality:audit:strict": "node scripts/testing/test-quality/audit.mjs . --strict",
+    "test:quality:use-cases": "node scripts/testing/test-quality/use-case-coverage.mjs .",
+    "test:quality:plan": "node scripts/testing/test-quality/apply.mjs .",
+    "test:quality:apply": "node scripts/testing/test-quality/apply.mjs . --apply",
+    "test:quality:legacy": "node scripts/testing/test-quality/legacy.mjs .",
+    "test:quality:legacy:apply": "node scripts/testing/test-quality/legacy.mjs . --apply",
+    "test:quality:verify": "node scripts/testing/test-quality/verify.mjs .",
+    "test:quality:verify:strict": "node scripts/testing/test-quality/verify.mjs . --strict",
+    "test:quality:verify:full": "node scripts/testing/test-quality/verify.mjs . --full"
+  },
+  "installedFiles": [
+    {
+      "path": "scripts/testing/test-quality/core.mjs",
+      "hash": "74759151ccad3ba01013fcb93eccaf4a3c75ddc97f36b0bf94293713fb1e17c0"
+    },
+    {
+      "path": "scripts/testing/test-quality/audit.mjs",
+      "hash": "d765fa71270435868bbeb80c87d8b95c36b1f7c4cc2790b313773673dc9ec525"
+    },
+    {
+      "path": "scripts/testing/test-quality/use-case-coverage.mjs",
+      "hash": "3d6f70de15d635ce17129dace42611d0ffc5b4ed9f8bfd621c78db94f089f627"
+    },
+    {
+      "path": "scripts/testing/test-quality/apply.mjs",
+      "hash": "4d80b4b5a14ce64f1fb64f0370fbc6481e5513e503bf7cf3e77f613c62f113a9"
+    },
+    {
+      "path": "scripts/testing/test-quality/legacy.mjs",
+      "hash": "59bc47fb4d7deb74845c75618d1726c793bc79ada65cbfb6b8319979fca875f7"
+    },
+    {
+      "path": "scripts/testing/test-quality/verify.mjs",
+      "hash": "26a3eba4bd9b94745543e9385762b820002b2d1344c0302060b87226def26393"
+    },
+    {
+      "path": "scripts/testing/test-quality-overlays/tests/number-input.spec.ts",
+      "hash": "3753b0a3680d5409c680db35b384091a8724c8be3e7f682249fea6d942437824"
+    },
+    {
+      "path": "scripts/testing/test-quality-overlays/tests/unit/sisad-pdfme-comprehensive/contracts/schemas/numberInputPolicy.behavior.test.ts",
+      "hash": "76a51711a35569c393e3d5e9d4d22e5f8b7eb483ac5e43c2eac5a8e5e9f0862e"
+    },
+    {
+      "path": "scripts/testing/test-quality-overlays/scripts/testing/count-sisad-pdfme-tests.mjs",
+      "hash": "9bef2d9962e42a18d7496d57f7810b363cd0ade1cfa42bee588578c40c82d698"
+    },
+    {
+      "path": "config/tooling/test-quality.config.json",
+      "hash": "f701db3f6a8ec5befb93acdc44004d399b8c4fd565e62d6e11c0c9a46bdec68c"
+    }
+  ]
+}

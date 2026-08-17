@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 /**
  * Entrada del schema `number` en el Form.
@@ -14,31 +14,16 @@ import { expect, test, type Page } from '@playwright/test';
 const NUMBER = '#text-number-1';
 const TEXT = '#text-text-0';
 
-const blur = (page: Page) =>
-  page.evaluate(() => (document.activeElement instanceof HTMLElement ? document.activeElement.blur() : undefined));
-
 const clear = async (page: Page, selector: string) => {
   const loc = page.locator(selector);
-  await loc.click();
-  // Robustly clear contenteditable or input/textarea values
-  await loc.evaluate((el: any) => {
-    try {
-      if (el.isContentEditable) el.innerText = '';
-      else if (typeof el.value !== 'undefined') el.value = '';
-      else el.textContent = '';
-    } catch (e) {
-      // ignore
-    }
-    // clear any selection
-    const sel = document.getSelection && document.getSelection();
-    if (sel && sel.removeAllRanges) sel.removeAllRanges();
-  });
+  await loc.fill('');
 };
 
 /** Escribe sin salir del campo: deja ver el draft antes de que se confirme. */
 const typeInto = async (page: Page, selector: string, value: string) => {
+  const loc = page.locator(selector);
   await clear(page, selector);
-  await page.keyboard.type(value);
+  await loc.pressSequentially(value);
 };
 
 test.beforeEach(async ({ page }) => {
@@ -60,13 +45,13 @@ test('acepta la coma decimal y la canonicaliza al confirmar', async ({ page }) =
   await typeInto(page, NUMBER, '12,50');
   await expect(page.locator(NUMBER)).toHaveText('12,50');
 
-  await blur(page);
+  await page.locator(NUMBER).blur();
   await expect(page.locator(NUMBER)).toHaveText('12.5');
 });
 
 test('acepta el punto decimal igual que la coma', async ({ page }) => {
   await typeInto(page, NUMBER, '0.25');
-  await blur(page);
+  await page.locator(NUMBER).blur();
   await expect(page.locator(NUMBER)).toHaveText('0.25');
 });
 
@@ -77,7 +62,7 @@ test('admite un único separador decimal', async ({ page }) => {
 
 test('permite el signo negativo', async ({ page }) => {
   await typeInto(page, NUMBER, '-7');
-  await blur(page);
+  await page.locator(NUMBER).blur();
   await expect(page.locator(NUMBER)).toHaveText('-7');
 });
 
@@ -88,21 +73,21 @@ test('no admite símbolos de moneda mientras el formato sea libre', async ({ pag
 
 test('el cero sigue siendo un valor válido', async ({ page }) => {
   await typeInto(page, NUMBER, '0');
-  await blur(page);
+  await page.locator(NUMBER).blur();
   await expect(page.locator(NUMBER)).toHaveText('0');
 });
 
 test('el filtro no afecta a los campos de texto vecinos', async ({ page }) => {
   await typeInto(page, TEXT, 'texto libre');
-  await blur(page);
+  await page.locator(TEXT).blur();
   await expect(page.locator(TEXT)).toHaveText('texto libre');
 });
 
 test('borrar sigue funcionando con el filtro activo', async ({ page }) => {
   await typeInto(page, NUMBER, '123');
-  await page.keyboard.press('Backspace');
+  await page.locator(NUMBER).press('Backspace');
   await expect(page.locator(NUMBER)).toHaveText('12');
 
-  await blur(page);
+  await page.locator(NUMBER).blur();
   await expect(page.locator(NUMBER)).toHaveText('12');
 });
