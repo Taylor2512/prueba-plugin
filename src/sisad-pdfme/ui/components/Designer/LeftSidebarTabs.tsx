@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { I18nContext } from '@sisad-pdfme/ui/contexts';
 import { mergeUniqueClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import type { Dict } from '@sisad-pdfme/common';
 
 export type LeftSidebarTab = 'standard' | 'custom' | 'prefill';
 export type SidebarTabOption = { id: LeftSidebarTab; label: string; badge?: number };
 
-const TAB_LABELS: Record<LeftSidebarTab, { full: string; rail: string }> = {
-  standard: { full: 'Estándar', rail: 'Base' },
-  custom: { full: 'Custom', rail: 'Custom' },
-  prefill: { full: 'Prefill', rail: 'Auto' },
+/**
+ * Keys de `Dict` por pestaña.
+ *
+ * Este componente tenía su propio mapa de etiquetas fijas que además mezclaba
+ * idiomas (`Estándar` junto a `Custom`/`Prefill`) y pisaba la etiqueta que le
+ * pasaba `LeftSidebar`. Ahora sólo declara QUÉ key resolver; el texto sale del
+ * diccionario del idioma activo.
+ *
+ * `full` es la etiqueta completa y `short` la del rail/densidad reducida, donde
+ * la completa no cabe.
+ */
+const TAB_LABEL_KEYS: Record<LeftSidebarTab, { full: keyof Dict; short: keyof Dict }> = {
+  standard: { full: 'catalog.tabs.standard', short: 'catalog.tabsShort.standard' },
+  custom: { full: 'catalog.tabs.custom', short: 'catalog.tabsShort.custom' },
+  prefill: { full: 'catalog.tabs.prefill', short: 'catalog.tabsShort.prefill' },
 };
 
 type LeftSidebarTabsProps = {
@@ -26,7 +39,13 @@ const LeftSidebarTabs = ({
   renderTabIcon,
   density = 'comfortable',
 }: LeftSidebarTabsProps) => {
+  const translate = useContext(I18nContext);
   const useRailLabel = density !== 'comfortable';
+  const labelFor = (tab: SidebarTabOption) =>
+    translate(TAB_LABEL_KEYS[tab.id][useRailLabel ? 'short' : 'full']);
+  // Nombre accesible: siempre la etiqueta completa, aunque en pantalla se pinte
+  // la variante corta.
+  const accessibleNameFor = (tab: SidebarTabOption) => translate(TAB_LABEL_KEYS[tab.id].full);
 
   return (
   <ul
@@ -36,16 +55,19 @@ const LeftSidebarTabs = ({
     )}
     role="tablist"
     aria-orientation="horizontal"
-    aria-label="Tipos de campo">
+    aria-label={translate('catalog.tabsAriaLabel')}>
     {tabs.map((tab) => (
       <li key={tab.id} role="none" className="min-w-0">
         <button
           type="button"
-          id={tab.label.toLowerCase().replace(/\s+/g, '-')}
+          // El id del DOM se deriva del identificador de la pestaña, NO de su
+          // etiqueta: si dependiera del texto visible, cambiar de idioma
+          // cambiaría el id y rompería selectores y referencias ARIA.
+          id={`${DESIGNER_CLASSNAME}left-sidebar-tab-${tab.id}`}
           role="tab"
           aria-selected={activeTab === tab.id}
-          aria-label={tab.label}
-          title={tab.label}
+          aria-label={accessibleNameFor(tab)}
+          title={accessibleNameFor(tab)}
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-tab-btn`,
             'group relative inline-flex min-h-[1.8rem] w-full min-w-0 flex-col items-center justify-center gap-[0.06rem] rounded-[0.7rem] border border-transparent bg-transparent px-1 py-[0.18rem] text-slate-500 cursor-pointer transition-[background,color,border-color,box-shadow,transform] duration-150 hover:border-slate-200 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:ring-offset-1 focus-visible:ring-offset-slate-50',
@@ -69,7 +91,7 @@ const LeftSidebarTabs = ({
             }
           >
             <span className="truncate">
-              {useRailLabel ? TAB_LABELS[tab.id].rail : TAB_LABELS[tab.id].full}
+              {labelFor(tab)}
             </span>
             {/* Un contador en cero solo roba ancho a la etiqueta. */}
             {typeof tab.badge === 'number' && tab.badge > 0 && density !== 'minimal' ? (

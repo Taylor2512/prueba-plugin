@@ -8,6 +8,7 @@
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SchemaDesignerConfig } from '@sisad-pdfme/ui/designerEngine';
 import { getSchemaStateLabel, getSchemaTypeLabel } from '@sisad-pdfme/ui/components/Designer/shared/designerLabels';
+import { defaultTranslate, type Translate } from '@sisad-pdfme/ui/i18n';
 import { resolveSchemaInteractionState } from '@sisad-pdfme/ui/components/Designer/shared/schemaInteractionState';
 import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
 import { normalizeText } from '@sisad-pdfme/shared/text';
@@ -39,6 +40,7 @@ type HeaderSummary = {
 export const buildMetaTooltip = (
   activeSchema: SchemaForUI,
   schemaConfig: SchemaDesignerConfig | null | undefined,
+  translate: Translate = defaultTranslate,
 ): string => {
   const lines: string[] = [];
   const uid =
@@ -51,7 +53,7 @@ export const buildMetaTooltip = (
   if (createdBy) lines.push(`Creado por: ${createdBy}`);
   if (modifiedBy) lines.push(`Modificado: ${modifiedBy}`);
   if (activeSchema.ownerRecipientId) lines.push(`Propietario: ${activeSchema.ownerRecipientId}`);
-  if (activeSchema.state) lines.push(`Estado: ${getSchemaStateLabel(activeSchema.state)}`);
+  if (activeSchema.state) lines.push(`Estado: ${getSchemaStateLabel(translate, activeSchema.state)}`);
   if (activeSchema.ownerMode) lines.push(`Modo de propiedad: ${activeSchema.ownerMode}`);
   if (schemaConfig?.persistence?.enabled) lines.push('Persistencia activa');
   if (schemaConfig?.api?.enabled) lines.push('API activa');
@@ -74,6 +76,7 @@ export const buildDetailHeaderSummary = (
     EffectiveCollaborationContext,
     'recipientOptions' | 'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor' | 'canEditStructure'
   > | null,
+  translate: Translate = defaultTranslate,
 ): HeaderSummary => {
   const ownerColorContext = collaborationContext
     ? {
@@ -98,8 +101,9 @@ export const buildDetailHeaderSummary = (
   const interactionState = resolveSchemaInteractionState(activeSchema, {
     collaborationContext: ownerColorContext,
   });
-  const schemaName = typeof activeSchema.name === 'string' ? activeSchema.name : 'Campo';
-  const schemaType = getSchemaTypeLabel(activeSchema.type || 'schema');
+  const schemaName =
+    typeof activeSchema.name === 'string' ? activeSchema.name : translate('catalog.defaultFieldLabel');
+  const schemaType = getSchemaTypeLabel(translate, activeSchema.type || 'schema');
   const schemaHidden = (activeSchema as SchemaForUI & { hidden?: boolean }).hidden === true;
   const ownerLabel =
     typeof activeSchema.ownerRecipientName === 'string' && activeSchema.ownerRecipientName.trim()
@@ -158,7 +162,7 @@ export const buildDetailHeaderSummary = (
 
   return {
     tags,
-    overflowTooltip: buildMetaTooltip(activeSchema, schemaConfig),
+    overflowTooltip: buildMetaTooltip(activeSchema, schemaConfig, translate),
     positionLabel: `${posX},${posY}`,
     contextLabel: contextParts.join(' · '),
     statusLabel,

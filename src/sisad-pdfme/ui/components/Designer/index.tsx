@@ -57,6 +57,7 @@ import {
   type SchemaAccessContext,
 } from '@sisad-pdfme/ui/components/Designer/shared/accessPolicy';
 import { I18nContext, OptionsContext, PluginsRegistry } from '@sisad-pdfme/ui/contexts';
+import { applyLocalizedSchemaDefaults } from '@sisad-pdfme/schemas/localizedDefaults';
 import {
   schemasList2template,
   uuid,
@@ -2439,7 +2440,14 @@ const TemplateEditor = ({
   );
 
   const addSchema = useCallback(
-    (defaultSchema: Schema, targetPageIndex = pageCursor, preservePosition = false) => {
+    (rawDefaultSchema: Schema, targetPageIndex = pageCursor, preservePosition = false) => {
+      // Único punto donde nace un schema: aquí se materializa su contenido
+      // inicial localizado. A partir de este momento el contenido es dato del
+      // documento y ningún cambio de idioma vuelve a tocarlo.
+      const defaultSchema = applyLocalizedSchemaDefaults(
+        rawDefaultSchema as unknown as Record<string, unknown>,
+        i18n,
+      ) as unknown as Schema;
       const [paddingTop, paddingRight, paddingBottom, paddingLeft] = isBlankPdf(activeBasePdf)
         ? activeBasePdf.padding
         : [0, 0, 0, 0];

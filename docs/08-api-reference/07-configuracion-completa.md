@@ -55,7 +55,7 @@ La normalización actual sólo acepta la representación de versión 2.
 |---|---|---:|---|---|
 | `app.id` | string | valor interno | Parcial | identificador del montaje/aplicación |
 | `app.name` | string | valor interno | Parcial | nombre descriptivo |
-| `app.locale` | string | `es` | Implementado/parcial | locale base |
+| `app.locale` | string | `es` (`DEFAULT_LANG`) | Implementado | idioma base de la UI. Se valida con `resolveLang` y se convierte en `options.lang`; un locale no soportado cae en `DEFAULT_LANG`. Ver [Localización](../02-conceptos/08-localizacion.md) |
 | `app.environment` | string | entorno | Parcial | development/test/production |
 
 Ejemplo:

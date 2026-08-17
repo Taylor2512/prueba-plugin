@@ -21,6 +21,7 @@
 import { createRoot, Root } from 'react-dom/client';
 import { DESTROYED_ERR_MSG, DEFAULT_LANG } from '@sisad-pdfme/ui/constants';
 import { debounce } from '@sisad-pdfme/ui/helper';
+import { resolveLang } from '@sisad-pdfme/ui/i18n';
 import {
   cloneDeep,
   Template,
@@ -150,8 +151,11 @@ export abstract class BaseUIClass {
     }
 
     const { lang, font } = options;
+    // Precedencia: idioma explícito del host > DEFAULT_LANG. `resolveLang` es la
+    // única autoridad del fallback, así que un idioma no soportado no deja el
+    // runtime sin diccionario.
     if (lang) {
-      this.lang = lang;
+      this.lang = resolveLang(lang);
     }
     if (font) {
       this.font = font;
@@ -199,8 +203,11 @@ export abstract class BaseUIClass {
     checkUIOptions(options);
     const { lang, font } = options || {};
 
+    // Cambio de idioma en runtime: sólo se reemplaza el idioma activo. El
+    // template, los inputs y el resto del estado quedan intactos y el re-render
+    // se limita a repropagar el diccionario por los context providers.
     if (lang) {
-      this.lang = lang;
+      this.lang = resolveLang(lang);
     }
     if (font) {
       this.font = font;

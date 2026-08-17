@@ -116,10 +116,11 @@ const ListView = (
   const schemaTypes = useMemo(() => {
     const types = Array.from(new Set(viewSchemas.map((s) => s.type)));
     return [
-      { value: 'all', label: 'Todos los tipos' },
-      ...types.map((t) => ({ value: t, label: getSchemaTypeLabel(t) })),
+      { value: 'all', label: i18n('listView.allTypes') },
+      // `value` conserva el `schema.type` técnico; sólo `label` se localiza.
+      ...types.map((t) => ({ value: t, label: getSchemaTypeLabel(i18n, t) })),
     ];
-  }, [viewSchemas]);
+  }, [viewSchemas, i18n]);
 
   /**
    * Applies text search and type filtering to the collaboration-visible schemas.

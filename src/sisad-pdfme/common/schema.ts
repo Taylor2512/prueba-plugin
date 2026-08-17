@@ -112,6 +112,112 @@ export const Dict = z.object({
   'schemas.select.optionPlaceholder': z.string(),
 
   'schemas.radioGroup.groupName': z.string(),
+
+  // -----------------schema catalog presentation-----------------
+  // IDENTITY != PRESENTATION.
+  // `schema.type` y la category key son contratos técnicos estables; estas keys
+  // sólo resuelven la etiqueta visible del catálogo/inspector para el idioma activo.
+  // Añadir una key aquí obliga a cubrirla en TODOS los diccionarios de `ui/i18n.ts`.
+  'schemaTypes.text': z.string(),
+  'schemaTypes.multiVariableText': z.string(),
+  'schemaTypes.image': z.string(),
+  'schemaTypes.svg': z.string(),
+  'schemaTypes.signature': z.string(),
+  'schemaTypes.initials': z.string(),
+  'schemaTypes.dateSigned': z.string(),
+  'schemaTypes.fullName': z.string(),
+  'schemaTypes.emailAddress': z.string(),
+  'schemaTypes.company': z.string(),
+  'schemaTypes.title': z.string(),
+  'schemaTypes.table': z.string(),
+  'schemaTypes.line': z.string(),
+  'schemaTypes.rectangle': z.string(),
+  'schemaTypes.ellipse': z.string(),
+  'schemaTypes.dateTime': z.string(),
+  'schemaTypes.date': z.string(),
+  'schemaTypes.time': z.string(),
+  'schemaTypes.number': z.string(),
+  'schemaTypes.select': z.string(),
+  'schemaTypes.radioGroup': z.string(),
+  'schemaTypes.checkbox': z.string(),
+  'schemaTypes.checkboxGroup': z.string(),
+  'schemaTypes.attachment': z.string(),
+  'schemaTypes.note': z.string(),
+  'schemaTypes.approve': z.string(),
+  'schemaTypes.decline': z.string(),
+
+  // Nombres de estándares de código de barras: son nombres propios y no se traducen,
+  // pero siguen necesitando una etiqueta de presentación distinta del identificador.
+  'schemaTypes.qrcode': z.string(),
+  'schemaTypes.japanpost': z.string(),
+  'schemaTypes.ean13': z.string(),
+  'schemaTypes.ean8': z.string(),
+  'schemaTypes.code39': z.string(),
+  'schemaTypes.code128': z.string(),
+  'schemaTypes.nw7': z.string(),
+  'schemaTypes.itf14': z.string(),
+  'schemaTypes.upca': z.string(),
+  'schemaTypes.upce': z.string(),
+  'schemaTypes.gs1datamatrix': z.string(),
+  'schemaTypes.pdf417': z.string(),
+
+  // Categorías del catálogo. La category key sigue siendo el identificador de
+  // agrupación/orden; sólo su etiqueta visible es localizable.
+  'schemaCategories.General': z.string(),
+  'schemaCategories.Texto': z.string(),
+  'schemaCategories.Firmas': z.string(),
+  'schemaCategories.Imagen y medios': z.string(),
+  'schemaCategories.Selecciones': z.string(),
+  'schemaCategories.Fecha y Hora': z.string(),
+  'schemaCategories.QR y Códigos': z.string(),
+  'schemaCategories.Estructura': z.string(),
+  'schemaCategories.Destinatario': z.string(),
+  'schemaCategories.Acciones': z.string(),
+
+  // Etiquetas de presentación resueltas por `shared/designerLabels`.
+  'catalog.defaultFieldLabel': z.string(),
+  'schemaStates.pending': z.string(),
+  'schemaStates.draft': z.string(),
+  'schemaStates.ready': z.string(),
+  'schemaStates.completed': z.string(),
+  'schemaStates.merged': z.string(),
+  'schemaStates.locked': z.string(),
+  'schemaStates.review': z.string(),
+  'schemaStates.rejected': z.string(),
+  'schemaStates.error': z.string(),
+  'signatureModes.image': z.string(),
+  'signatureModes.drawn': z.string(),
+  'signatureModes.p12': z.string(),
+  'signatureModes.provider': z.string(),
+  'signature.providerView': z.string(),
+  'recipientRoles.owner': z.string(),
+  'recipientRoles.recipient': z.string(),
+  'listView.shared': z.string(),
+  // Prefijo compuesto con el nombre del propietario: `${assignedTo} ${nombre}`.
+  'listView.assignedTo': z.string(),
+  'listView.pageAbbrev': z.string(),
+  'listView.allTypes': z.string(),
+  'catalog.recentGroup': z.string(),
+  // Prefijo del accessible name del toggle: `${toggleCategory} ${categoría}`.
+  'catalog.toggleCategory': z.string(),
+  'catalog.noResults': z.string(),
+  'catalog.noResultsDescription': z.string(),
+  'catalog.tabsAriaLabel': z.string(),
+  'catalog.tabs.standard': z.string(),
+  'catalog.tabs.custom': z.string(),
+  'catalog.tabs.prefill': z.string(),
+  // Variantes cortas para el rail/densidad reducida, donde la etiqueta completa
+  // no cabe y se truncaba.
+  'catalog.tabsShort.standard': z.string(),
+  'catalog.tabsShort.custom': z.string(),
+  'catalog.tabsShort.prefill': z.string(),
+  // Prefijo del accessible name del rail: `${openTab} ${etiqueta}`.
+  'catalog.openTab': z.string(),
+
+  // Contenido inicial localizado para multiVariableText.
+  // Se materializa UNA VEZ al crear el schema y luego es dato del documento:
+  // cambiar el idioma de la UI nunca debe reescribirlo.
+  'schemas.mvt.defaultContent': z.string(),
 });
 /** Modo de render UI: viewer, form o designer. */
 export const Mode = z.enum(['viewer', 'form', 'designer']);
@@ -327,7 +433,13 @@ export const UIProps = CommonProps.extend({
   options: UIOptions.optional(),
 });
 
-export const PreviewProps = UIProps.extend({ inputs: Inputs }).strict();
+export const PreviewProps = UIProps.extend({
+  inputs: Inputs,
+  // Form exposes an export action through the shared PreviewProps contract.
+  // Keep it in the runtime schema as well as in `common/types.ts`; otherwise
+  // the strict validator rejects the callback before the preview can mount.
+  onExport: z.custom<(...args: unknown[]) => unknown>((value) => typeof value === 'function').optional(),
+}).strict();
 
 /** Props públicas del Designer. */
 export const DesignerProps = UIProps.extend({}).strict();

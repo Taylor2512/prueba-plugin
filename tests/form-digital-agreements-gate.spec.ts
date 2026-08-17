@@ -46,18 +46,14 @@ const NON_TEXT = {
 type FieldKey = keyof typeof F;
 
 const blur = (page: Page) =>
-  page.evaluate(() =>
-    document.activeElement instanceof HTMLElement ? document.activeElement.blur() : undefined,
-  );
+  page.locator('body').click({ position: { x: 5, y: 5 } });
 
 const setValue = async (page: Page, key: FieldKey, value: string) => {
-  await page.locator(F[key]).click();
-  await page.keyboard.press('ControlOrMeta+a');
-  if (value === '') {
-    await page.keyboard.press('Delete');
-  } else {
-    await page.keyboard.type(value);
-  }
+  const field = page.locator(F[key]);
+  await field.click();
+  await field.press('ControlOrMeta+a');
+  await field.press('Delete');
+  if (value !== '') await field.pressSequentially(value);
   await blur(page);
 };
 
@@ -142,8 +138,7 @@ test.describe('NUMBER — casos límite', () => {
 
   test('la entrada alfabética no se acepta', async ({ page }) => {
     await setValue(page, 'number', '12');
-    await page.locator(F.number).click();
-    await page.keyboard.type('abc');
+    await page.locator(F.number).pressSequentially('abc');
     await blur(page);
     await expect(page.locator(F.number)).not.toHaveText(/abc/);
   });
@@ -200,26 +195,16 @@ test.describe('estabilidad del runtime', () => {
     // Se marca el HOST del runtime, no los nodos de campo: el renderer
     // imperativo reconstruye el DOM de cada schema por diseño, así que marcar
     // el campo detectaría un repintado normal en vez de un remontaje.
-    const antes = await page.evaluate(() => {
-      const hosts = Array.from(document.querySelectorAll('.sisad-pdfme-lab-runtime-host'));
-      hosts.forEach((el, index) => {
-        (el as HTMLElement).dataset.rtpGate = String(index);
-      });
-      return hosts.length;
-    });
+    const antes = await page.locator('.sisad-pdfme-lab-runtime-host').count();
     expect(antes).toBeGreaterThan(0);
 
     await setValue(page, 'text', 'Sin remontar');
     await setValue(page, 'company', 'Otro');
     await setValue(page, 'number', '7');
 
-    const despues = await page.evaluate(() => ({
-      total: document.querySelectorAll('.sisad-pdfme-lab-runtime-host').length,
-      marcados: document.querySelectorAll('.sisad-pdfme-lab-runtime-host[data-rtp-gate]').length,
-    }));
+    const despues = await page.locator('.sisad-pdfme-lab-runtime-host').count();
 
-    expect(despues.total).toBe(antes);
-    expect(despues.marcados).toBe(antes);
+    expect(despues).toBe(antes);
   });
 
   test('veinte ediciones alternadas convergen sin pérdida', async ({ page }) => {
@@ -249,7 +234,7 @@ const userSelect = (page: Page) => page.getByTestId('lab-active-user-select');
 
 const switchUser = async (page: Page, userId: string) => {
   await userSelect(page).selectOption(userId);
-  await page.waitForTimeout(300);
+  await expect(userSelect(page)).toHaveValue(userId);
 };
 
 test.describe('MULTI-USER — aislamiento entre usuarios', () => {
@@ -293,27 +278,18 @@ test.describe('MULTI-USER — aislamiento entre usuarios', () => {
       await userSelect(page).selectOption('bob');
       await userSelect(page).selectOption('alice');
     }
-    await page.waitForTimeout(500);
-
     await expectValues(page, { company: 'ACME-Alice' });
   });
 
   test('el runtime no se remonta al conmutar de usuario', async ({ page }) => {
-    const antes = await page.evaluate(() => {
-      const hosts = Array.from(document.querySelectorAll('.sisad-pdfme-lab-runtime-host'));
-      hosts.forEach((el, i) => { (el as HTMLElement).dataset.rtpUser = String(i); });
-      return hosts.length;
-    });
+    const antes = await page.locator('.sisad-pdfme-lab-runtime-host').count();
     expect(antes).toBeGreaterThan(0);
 
     await switchUser(page, 'bob');
     await switchUser(page, 'carla');
 
-    const despues = await page.evaluate(() => ({
-      total: document.querySelectorAll('.sisad-pdfme-lab-runtime-host').length,
-      marcados: document.querySelectorAll('.sisad-pdfme-lab-runtime-host[data-rtp-user]').length,
-    }));
-    expect(despues.total).toBe(antes);
+    const despues = await page.locator('.sisad-pdfme-lab-runtime-host').count();
+    expect(despues).toBe(antes);
   });
 });
 

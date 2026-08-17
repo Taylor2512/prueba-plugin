@@ -3,6 +3,7 @@ import type {
   SisadPdfmeUiClassNamesConfig,
   SisadPdfmeVisibilityConfig,
 } from '@sisad-pdfme/config/SisadPdfmeConfig';
+import { DEFAULT_LANG } from '@sisad-pdfme/ui/constants';
 
 export const defaultSisadPdfmeVisibilityConfig: Required<SisadPdfmeVisibilityConfig> = {
   shell: {
@@ -111,7 +112,8 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
   };
 } = {
   app: {
-    locale: 'es',
+    // Deriva del único default de idioma del runtime; no fijar un literal aquí.
+    locale: DEFAULT_LANG,
   },
   runtime: {
     mode: 'designer',

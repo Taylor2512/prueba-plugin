@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { I18nContext } from '@sisad-pdfme/ui/contexts';
 import { mergeUniqueClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 import { SidebarEmptyState } from '@sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState';
 
 type LeftSidebarGroupItem = React.ReactNode;
 
 type LeftSidebarGroupProps = {
+  /**
+   * Identificador de agrupación y orden. NO se traduce: alimenta la key de React,
+   * el estado de colapso y los atributos `data-*` que consumen los tests.
+   */
   category: string;
+
+  /**
+   * Etiqueta visible de la categoría. Si se omite se muestra `category`, que es
+   * lo correcto para categorías aportadas por el host.
+   */
+  categoryLabel?: string;
   items: LeftSidebarGroupItem[];
   count?: number;
   layout?: 'list' | 'tiles' | 'icons';
@@ -19,6 +30,7 @@ type LeftSidebarGroupProps = {
 
 export const LeftSidebarGroup = ({
   category,
+  categoryLabel,
   items,
   count,
   layout = 'list',
@@ -27,6 +39,8 @@ export const LeftSidebarGroup = ({
   collapsible = true,
   onToggle,
 }: LeftSidebarGroupProps) => {
+  const translate = useContext(I18nContext);
+  const visibleCategory = categoryLabel || category;
   const isMini = density === 'minimal';
   const isCompact = density === 'compact' || density === 'minimal';
   const itemsClassName = mergeUniqueClassNames(
@@ -59,7 +73,7 @@ export const LeftSidebarGroup = ({
             isMini ? 'text-[9px]' : isCompact ? 'text-[10px]' : 'text-[11px]'
           )}
         >
-          {category}
+          {visibleCategory}
         </span>
       </div>
       <span
@@ -94,7 +108,7 @@ export const LeftSidebarGroup = ({
           className={titleClassName}
           data-collapsed={collapsed ? 'true' : 'false'}
           aria-expanded={!collapsed}
-          aria-label={`Alternar categoría ${category}`}
+          aria-label={`${translate('catalog.toggleCategory')} ${visibleCategory}`}
           onClick={onToggle}
         >
           {titleContent}
@@ -129,11 +143,14 @@ type LeftSidebarEmptyStateProps = {
 /**
  * Empty state unified with RightSidebar.
  */
-export const LeftSidebarEmptyState = ({ description, density = 'comfortable' }: LeftSidebarEmptyStateProps) => (
-  <SidebarEmptyState
-    title="Sin resultados"
-    description={description || 'No hay campos disponibles según los filtros aplicados.'}
-    density={density}
-    className="mx-2 mb-4"
-  />
-);
+export const LeftSidebarEmptyState = ({ description, density = 'comfortable' }: LeftSidebarEmptyStateProps) => {
+  const translate = useContext(I18nContext);
+  return (
+    <SidebarEmptyState
+      title={translate('catalog.noResults')}
+      description={description || translate('catalog.noResultsDescription')}
+      density={density}
+      className="mx-2 mb-4"
+    />
+  );
+};

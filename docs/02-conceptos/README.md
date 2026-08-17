@@ -7,6 +7,7 @@
 - [05-assignments.md](./05-assignments.md)
 - [06-runtime-modes.md](./06-runtime-modes.md)
 - [07-snapshot.md](./07-snapshot.md)
+- [08-localizacion.md](./08-localizacion.md)
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada

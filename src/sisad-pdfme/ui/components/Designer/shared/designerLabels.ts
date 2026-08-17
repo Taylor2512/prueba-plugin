@@ -1,73 +1,26 @@
+/**
+ * designerLabels — resolver de etiquetas de PRESENTACIÓN del Designer.
+ *
+ * Rol arquitectónico:
+ * - Traduce identificadores técnicos (`schema.type`, `state`, modo de firma, rol)
+ *   a la etiqueta visible del idioma activo.
+ * - Es el único resolver de display metadata del Designer: no crear mapas de
+ *   etiquetas paralelos en componentes.
+ *
+ * Contrato clave — IDENTITY != PRESENTATION:
+ * - Los identificadores que entran (`fullName`, `emailAddress`, `pending`, `p12`, …)
+ *   son contratos técnicos estables: se leen, nunca se reescriben ni se traducen
+ *   dentro del template, snapshots o API pública.
+ * - Estas funciones sólo eligen cómo se muestran.
+ *
+ * Autoridad de idioma:
+ * - Todas reciben `translate`, la función publicada por `I18nContext`, que ya
+ *   resuelve `options.labels` > idioma explícito > `DEFAULT_LANG`. Este módulo no
+ *   guarda diccionarios propios ni ramifica por idioma.
+ */
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
-
-const DEFAULT_LABEL = 'Campo';
-
-const TYPE_LABELS: Record<string, string> = {
-  text: 'Texto',
-  number: 'Número',
-  multivariabletext: 'Texto dinámico',
-  signature: 'Firma',
-  image: 'Imagen',
-  svg: 'SVG',
-  checkbox: 'Casilla',
-  checkboxgroup: 'Grupo de Casillas',
-  radiogroup: 'Opción',
-  select: 'Lista Desplegable',
-  dropdown: 'Lista Desplegable',
-  date: 'Fecha',
-  datetime: 'Fecha Y Hora',
-  time: 'Hora',
-  qrcode: 'Código QR',
-  ean13: 'Código de barras',
-  ean8: 'Código de barras',
-  code39: 'Código de barras',
-  code128: 'Código de barras',
-  itf14: 'Código de barras',
-  upca: 'Código de barras',
-  upce: 'Código de barras',
-  gs1datamatrix: 'DataMatrix',
-  pdf417: 'PDF417',
-  japanpost: 'Japan Post',
-  nw7: 'NW7',
-  line: 'Línea',
-  rectangle: 'Rectángulo',
-  ellipse: 'Óvalo',
-  table: 'Tabla',
-  // Tipos de flujos de firma/routing: se localizan aquí para que el filtro de
-  // tipos y las filas no mezclen español e inglés (Attachment/Approve/…).
-  attachment: 'Adjunto',
-  approve: 'Aprobar',
-  approval: 'Aprobar',
-  decline: 'Rechazar',
-  reject: 'Rechazar',
-  note: 'Nota',
-  title: 'Título',
-  email: 'Correo electrónico',
-  emailaddress: 'Correo electrónico',
-  initials: 'Iniciales',
-  datesigned: 'Fecha de firma',
-};
-
-const STATE_LABELS: Record<string, string> = {
-  pending: 'Pendiente',
-  draft: 'Borrador',
-  ok: 'Listo',
-  ready: 'Listo',
-  success: 'Completado',
-  completed: 'Completado',
-  merged: 'Fusionado',
-  locked: 'Bloqueado',
-  review: 'Requiere revisión',
-  rejected: 'Rechazado',
-  error: 'Error',
-};
-
-const SIGNATURE_MODE_LABELS: Record<string, string> = {
-  image: 'Firma por imagen',
-  drawn: 'Firma dibujada',
-  p12: 'Certificado P12',
-  provider: 'Proveedor externo',
-};
+import { resolveSchemaTypeLabel, type Translate } from '@sisad-pdfme/ui/i18n';
+import type { Dict } from '@sisad-pdfme/common';
 
 const normalizeKey = (value: unknown) => normalizeLooseText(value).toLowerCase();
 
@@ -78,36 +31,150 @@ const titleCaseFallback = (value: string) =>
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ');
 
-export const getSchemaTypeLabel = (type: unknown): string => {
+/**
+ * `schema.type` puede llegar en cualquier casing desde templates antiguos o
+ * desde el host, pero las keys de `Dict` usan el casing canónico del tipo.
+ * Este mapa normaliza sólo la BÚSQUEDA de la etiqueta; el `type` del schema no
+ * se toca nunca.
+ */
+const CANONICAL_TYPE_BY_NORMALIZED: Record<string, string> = {
+  text: 'text',
+  multivariabletext: 'multiVariableText',
+  image: 'image',
+  svg: 'svg',
+  signature: 'signature',
+  initials: 'initials',
+  datesigned: 'dateSigned',
+  fullname: 'fullName',
+  emailaddress: 'emailAddress',
+  email: 'emailAddress',
+  company: 'company',
+  title: 'title',
+  table: 'table',
+  line: 'line',
+  rectangle: 'rectangle',
+  ellipse: 'ellipse',
+  datetime: 'dateTime',
+  date: 'date',
+  time: 'time',
+  number: 'number',
+  select: 'select',
+  dropdown: 'select',
+  radiogroup: 'radioGroup',
+  checkbox: 'checkbox',
+  checkboxgroup: 'checkboxGroup',
+  attachment: 'attachment',
+  note: 'note',
+  approve: 'approve',
+  approval: 'approve',
+  decline: 'decline',
+  reject: 'decline',
+  qrcode: 'qrcode',
+  japanpost: 'japanpost',
+  ean13: 'ean13',
+  ean8: 'ean8',
+  code39: 'code39',
+  code128: 'code128',
+  nw7: 'nw7',
+  itf14: 'itf14',
+  upca: 'upca',
+  upce: 'upce',
+  gs1datamatrix: 'gs1datamatrix',
+  pdf417: 'pdf417',
+};
+
+/**
+ * Etiqueta visible de un `schema.type`.
+ *
+ * Los tipos built-in salen del diccionario activo; un tipo desconocido (plugin
+ * del host) cae en un title-case de su identificador para no mostrar `undefined`
+ * ni un valor vacío.
+ */
+export const getSchemaTypeLabel = (translate: Translate, type: unknown): string => {
   const key = normalizeKey(type);
-  if (!key) return DEFAULT_LABEL;
-  return TYPE_LABELS[key] || titleCaseFallback(key);
-};
-
-export const getSchemaStateLabel = (state: unknown): string => {
-  const key = normalizeKey(state);
-  if (!key) return DEFAULT_LABEL;
-  return STATE_LABELS[key] || titleCaseFallback(key);
-};
-
-export const getSignatureModeLabel = (mode: unknown): string => {
-  const key = normalizeKey(mode);
-  if (!key) return 'Firma';
-  return SIGNATURE_MODE_LABELS[key] || titleCaseFallback(key);
-};
-
-export const getProviderViewLabel = (): string => 'Vista de firma externa';
-
-export const getFriendlyRecipientRoleLabel = (value: unknown): string => {
-  const key = normalizeKey(value);
-  if (!key) return '';
-  if (key === 'owner') return 'Propietario';
-  if (key === 'recipient') return 'Destinatario';
+  if (!key) return translate('catalog.defaultFieldLabel');
+  const canonicalType = CANONICAL_TYPE_BY_NORMALIZED[key];
+  if (canonicalType) return resolveSchemaTypeLabel(translate, canonicalType);
   return titleCaseFallback(key);
 };
 
-export const getCatalogLabel = (label: unknown, type: unknown, source?: 'builtin' | 'custom'): string => {
+/**
+ * Traduce una key de un grupo `<prefijo>.<valor>` de `Dict`.
+ *
+ * Devuelve `null` cuando el valor no pertenece al grupo, para que el llamador
+ * decida su propio fallback.
+ */
+const translateEnumLabel = (
+  translate: Translate,
+  prefix: string,
+  value: string,
+  allowed: readonly string[],
+): string | null => {
+  if (!allowed.includes(value)) return null;
+  const translated = String(translate(`${prefix}.${value}` as keyof Dict) || '').trim();
+  return translated || null;
+};
+
+const SCHEMA_STATES = [
+  'pending',
+  'draft',
+  'ready',
+  'completed',
+  'merged',
+  'locked',
+  'review',
+  'rejected',
+  'error',
+] as const;
+
+/** Alias históricos de estado que comparten etiqueta con un estado canónico. */
+const STATE_ALIASES: Record<string, string> = {
+  ok: 'ready',
+  success: 'completed',
+};
+
+/** Etiqueta visible del estado de un schema. */
+export const getSchemaStateLabel = (translate: Translate, state: unknown): string => {
+  const key = normalizeKey(state);
+  if (!key) return translate('catalog.defaultFieldLabel');
+  const canonical = STATE_ALIASES[key] || key;
+  return translateEnumLabel(translate, 'schemaStates', canonical, SCHEMA_STATES) || titleCaseFallback(key);
+};
+
+const SIGNATURE_MODES = ['image', 'drawn', 'p12', 'provider'] as const;
+
+/** Etiqueta visible del método de adquisición de firma. */
+export const getSignatureModeLabel = (translate: Translate, mode: unknown): string => {
+  const key = normalizeKey(mode);
+  if (!key) return resolveSchemaTypeLabel(translate, 'signature');
+  return translateEnumLabel(translate, 'signatureModes', key, SIGNATURE_MODES) || titleCaseFallback(key);
+};
+
+/** Título de la vista de firma delegada a un proveedor externo. */
+export const getProviderViewLabel = (translate: Translate): string => translate('signature.providerView');
+
+const RECIPIENT_ROLES = ['owner', 'recipient'] as const;
+
+/** Etiqueta visible del rol de un destinatario. */
+export const getFriendlyRecipientRoleLabel = (translate: Translate, value: unknown): string => {
+  const key = normalizeKey(value);
+  if (!key) return '';
+  return translateEnumLabel(translate, 'recipientRoles', key, RECIPIENT_ROLES) || titleCaseFallback(key);
+};
+
+/**
+ * Etiqueta visible de una entrada del catálogo.
+ *
+ * Para entradas custom del host se conserva su etiqueta tal cual la declaró; para
+ * built-ins manda el diccionario del idioma activo.
+ */
+export const getCatalogLabel = (
+  translate: Translate,
+  label: unknown,
+  type: unknown,
+  source?: 'builtin' | 'custom',
+): string => {
   const normalizedLabel = typeof label === 'string' ? label.trim() : '';
   if (source === 'custom' && normalizedLabel) return normalizedLabel;
-  return getSchemaTypeLabel(type) || normalizedLabel || DEFAULT_LABEL;
+  return getSchemaTypeLabel(translate, type) || normalizedLabel || translate('catalog.defaultFieldLabel');
 };

@@ -5,7 +5,8 @@ import { useDraggable } from '@dnd-kit/core';
 import { DESIGNER_CLASSNAME, LEFT_SIDEBAR_WIDTH } from '@sisad-pdfme/ui/constants';
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
 import { setFontNameRecursively } from '@sisad-pdfme/ui/helper';
-import { OptionsContext, PluginsRegistry } from '@sisad-pdfme/ui/contexts';
+import { OptionsContext, PluginsRegistry, I18nContext } from '@sisad-pdfme/ui/contexts';
+import { resolveSchemaCategoryLabel, resolveSchemaTypeLabel, type Translate } from '@sisad-pdfme/ui/i18n';
 import PluginIcon from '@sisad-pdfme/ui/components/Designer/PluginIcon';
 import { SidebarFrame } from '@sisad-pdfme/ui/components/Designer/RightSidebar/layout';
 import type { DesignerComponentBridge, DesignerSidebarPresentation } from '@sisad-pdfme/ui/types';
@@ -299,6 +300,11 @@ type SidebarButtonsProps = {
   resolvePlugin: (pluginType: string) => Plugin<Schema> | null | undefined;
   onOpenCreate: () => void;
   onToggleCategory: (category: string) => void;
+  /**
+   * Traducción del idioma activo, inyectada desde el sidebar en lugar de leerse
+   * de contexto aquí para mantener este componente sin hooks.
+   */
+  translate: Translate;
 };
 
 const SidebarButtons = ({
@@ -318,12 +324,14 @@ const SidebarButtons = ({
   resolvePlugin,
   onOpenCreate,
   onToggleCategory,
+  translate,
 }: SidebarButtonsProps) => (
   <>
     {activeTab !== 'custom' && quickFilter === 'all' && !normalizedSearch && recentCatalogItems.length > 0 ? (
       <LeftSidebarGroup
         key="__recent"
-        category="Recientes"
+        category="__recent"
+        categoryLabel={translate('catalog.recentGroup')}
         count={recentCatalogItems.length}
         layout={resolvedLayout}
         density={sidebarDensityMode}
@@ -338,6 +346,7 @@ const SidebarButtons = ({
         <LeftSidebarGroup
           key={category}
           category={category}
+          categoryLabel={resolveSchemaCategoryLabel(translate, category)}
           count={items.length}
           layout={resolvedLayout}
           density={sidebarDensityMode}
@@ -728,6 +737,7 @@ const LeftSidebar = ({
   onWidthChange,
 }: LeftSidebarProps) => {
   const pluginsRegistry = useContext(PluginsRegistry);
+  const translate = useContext(I18nContext);
   const providerValue = useContext(SisadPdfmeContext);
   const resolvedConfig = useSisadPdfmeConfig();
   const options = useContext(OptionsContext) as Record<string, unknown>;
@@ -931,6 +941,10 @@ const LeftSidebar = ({
         }
 
         const searchCorpus = [
+          // Se busca por etiqueta visible del idioma activo Y por identificador
+          // técnico: "Nombre completo" y "fullName" deben encontrar el mismo campo.
+          resolveSchemaTypeLabel(translate, type, String(label || '')),
+          resolveSchemaCategoryLabel(translate, category),
           String(label || ''),
           type,
           category,
@@ -1013,6 +1027,9 @@ const LeftSidebar = ({
     parsedQuery,
     searchTerms,
     hiddenCatalogTypes,
+    // El corpus de búsqueda incluye etiquetas localizadas: cambiar de idioma
+    // debe recalcular el agrupado.
+    translate,
   ]);
 
   const recentCatalogItems = useMemo(() => {
@@ -1264,7 +1281,7 @@ const LeftSidebar = ({
     const { label, plugin, pluginType, category } = item;
     const draggableId = item.key;
     const recipientToneKey = activeRecipientTone || 'no-tone';
-    const displayLabel = getCatalogLabel(label, pluginType, item.source);
+    const displayLabel = getCatalogLabel(translate, label, pluginType, item.source);
     const isSelectionCategory = category === 'Selecciones';
     const isCustom = item.source === 'custom';
     const baseButtonClass = mergeClassNames(
@@ -1658,9 +1675,11 @@ const LeftSidebar = ({
 
   const sidebarTabs: SidebarTabOption[] = showCatalogViewSwitcher
     ? [
-        { id: 'standard', label: 'Estándar', badge: tabCounts.standard },
-        { id: 'custom', label: 'Personalizados', badge: tabCounts.custom },
-        { id: 'prefill', label: 'Prerrellenado', badge: tabCounts.prefill },
+        // `label` es la etiqueta completa localizada; `LeftSidebarTabs` elige la
+        // variante corta cuando la densidad lo exige.
+        { id: 'standard', label: translate('catalog.tabs.standard'), badge: tabCounts.standard },
+        { id: 'custom', label: translate('catalog.tabs.custom'), badge: tabCounts.custom },
+        { id: 'prefill', label: translate('catalog.tabs.prefill'), badge: tabCounts.prefill },
       ]
     : [];
 
@@ -1862,7 +1881,7 @@ const LeftSidebar = ({
             key: tab.id,
             icon: renderTabIcon(tab.id),
             label: tab.label,
-            ariaLabel: `Abrir ${tab.label}`,
+            ariaLabel: `${translate('catalog.openTab')} ${tab.label}`,
             active: activeTab === tab.id,
             onClick: () => {
               setActiveTab(tab.id);
@@ -1904,6 +1923,7 @@ const LeftSidebar = ({
               resolvePlugin={(pluginType) => pluginsRegistry.findByType(pluginType)}
               onOpenCreate={() => setCustomModalOpen(true)}
               onToggleCategory={toggleCategory}
+              translate={translate}
             />
           </SidebarShell>
         </SidebarFrame>
@@ -1938,6 +1958,7 @@ const LeftSidebar = ({
               resolvePlugin={(pluginType) => pluginsRegistry.findByType(pluginType)}
               onOpenCreate={() => setCustomModalOpen(true)}
               onToggleCategory={toggleCategory}
+              translate={translate}
             />
           </SidebarShell>
         </div>

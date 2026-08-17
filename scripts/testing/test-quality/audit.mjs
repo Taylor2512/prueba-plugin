@@ -13,7 +13,7 @@ for(const file of files){
  if(titles.length&&!/\bexpect\s*\(/.test(text))add('HIGH','test-file-without-expect',rel,`${titles.length} logical test(s), no expect()`);
  if(/\bwaitForTimeout\s*\(/.test(text))add('MEDIUM','fixed-wait',rel,'waitForTimeout detected');
  if(isBrowserSpec(file)){
-   if(/\b(?:innerText|textContent|innerHTML|value)\s*=/.test(text)&&/\b(?:evaluate|evaluateAll)\s*\(/.test(text))add('CRITICAL','direct-dom-mutation-browser',rel,'DOM value mutated inside evaluate()');
+   if(/\b(?:innerText|textContent|innerHTML|value)\s*=(?!=)/.test(text)&&/\b(?:evaluate|evaluateAll)\s*\(/.test(text))add('CRITICAL','direct-dom-mutation-browser',rel,'DOM value mutated inside evaluate()');
    if(/\bpage\.keyboard\.(?:type|insertText|press)\s*\(/.test(text))add('MEDIUM','global-page-keyboard',rel,'Prefer locator-scoped input when target identity matters');
    if(/:\s*any\b|as\s+any\b/.test(text))add('LOW','explicit-any-browser-test',rel,'Explicit any in browser spec');
  }

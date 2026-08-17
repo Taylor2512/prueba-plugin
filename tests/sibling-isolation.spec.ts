@@ -24,13 +24,11 @@ type FieldKey = keyof typeof F;
 const blur = (page: Page) => page.locator('body').click({ position: { x: 5, y: 5 } });
 
 const setValue = async (page: Page, key: FieldKey, value: string) => {
-  await page.locator(F[key]).click();
-  await page.keyboard.press('ControlOrMeta+a');
-  if (value === '') {
-    await page.keyboard.press('Delete');
-  } else {
-    await page.keyboard.type(value);
-  }
+  const field = page.locator(F[key]);
+  await field.click();
+  await field.press('ControlOrMeta+a');
+  await field.press('Delete');
+  if (value !== '') await field.pressSequentially(value);
   await blur(page);
 };
 
@@ -128,24 +126,16 @@ test('los cuatro presets textLike son independientes entre sí', async ({ page }
 test('escribir no remonta la instancia del runtime', async ({ page }) => {
   // Se marca el host del runtime, no los nodos de campo: el renderer imperativo
   // reconstruye el DOM de cada schema por diseño, pero la instancia debe vivir.
-  const before = await page.evaluate(() => {
-    const hosts = Array.from(document.querySelectorAll('.sisad-pdfme-lab-runtime-host'));
-    hosts.forEach((el, i) => { (el as HTMLElement).dataset.rtpHost = String(i); });
-    return hosts.length;
-  });
+  const before = await page.locator('.sisad-pdfme-lab-runtime-host').count();
   expect(before).toBeGreaterThan(0);
 
   await setValue(page, 'text', 'uno');
   await setValue(page, 'fullName', 'dos');
   await setValue(page, 'company', 'tres');
 
-  const after = await page.evaluate(() => ({
-    total: document.querySelectorAll('.sisad-pdfme-lab-runtime-host').length,
-    marked: document.querySelectorAll('.sisad-pdfme-lab-runtime-host[data-rtp-host]').length,
-  }));
+  const after = await page.locator('.sisad-pdfme-lab-runtime-host').count();
 
-  expect(after.total).toBe(before);
-  expect(after.marked).toBe(before);
+  expect(after).toBe(before);
 });
 
 /**

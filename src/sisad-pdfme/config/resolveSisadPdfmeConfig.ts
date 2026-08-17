@@ -1,5 +1,6 @@
 import { createDesignerRuntimeEventHub } from '@sisad-pdfme/ui/components/Designer/shared/designerExtensions';
 import { DesignerEngineBuilder } from '@sisad-pdfme/ui/designerEngine';
+import { resolveLang } from '@sisad-pdfme/ui/i18n';
 import { buildRuntimeOptions } from '@sisad-pdfme/runtime/options';
 // Adapters compartidos: fuente única (TASK-LAB-026/TASK-ARCH-004). El resolver
 // tenía copias locales divergentes; la de documentos perdía `template` y
@@ -272,7 +273,10 @@ export const resolveSisadPdfmeConfig = (
     config: resolvedConfig,
     visibility: mergedVisibility,
     runtimeOptions: buildRuntimeOptions({
-      lang: resolvedConfig.app.locale || 'es',
+      // `app.locale` es un `string` libre del host: `resolveLang` es la única
+      // autoridad que lo valida contra `Lang` y cae en `DEFAULT_LANG` si no es
+      // resoluble. No declarar aquí un default propio.
+      lang: resolveLang(resolvedConfig.app.locale),
       runtimeOptions: {
         ...layoutOptions,
         themePreset: layoutOptions.themePreset,

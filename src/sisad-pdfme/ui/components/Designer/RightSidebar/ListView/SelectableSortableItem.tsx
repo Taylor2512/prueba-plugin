@@ -8,7 +8,8 @@
 import React, { useContext } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { SchemaForUI } from '@sisad-pdfme/common';
-import { PluginsRegistry } from '@sisad-pdfme/ui/contexts';
+import { PluginsRegistry, I18nContext } from '@sisad-pdfme/ui/contexts';
+import type { Translate } from '@sisad-pdfme/ui/i18n';
 import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
 import Item from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item';
 import { useMountStatus } from '@sisad-pdfme/ui/hooks';
@@ -24,13 +25,13 @@ import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/clas
  * A custom `label` takes precedence over the technical schema name; fallback is
  * the generic "Campo" label.
  */
-const resolveDisplayLabel = (schema: SchemaForUI) => {
+const resolveDisplayLabel = (schema: SchemaForUI, translate: Translate) => {
   const readableLabel =
     typeof (schema as SchemaForUI & { label?: string }).label === 'string' &&
     String((schema as SchemaForUI & { label?: string }).label).trim()
       ? String((schema as SchemaForUI & { label?: string }).label).trim()
       : '';
-  return readableLabel || String(schema.name || '').trim() || 'Campo';
+  return readableLabel || String(schema.name || '').trim() || translate('catalog.defaultFieldLabel');
 };
 
 
@@ -71,6 +72,7 @@ const SelectableSortableItem = ({
   collaborationContext,
 }: Props) => {
   const pluginsRegistry = useContext(PluginsRegistry);
+  const translate = useContext(I18nContext);
   const { setNodeRef, listeners, isDragging, isSorting, transform, transition } = useSortable({
     id: schema.id,
   });
@@ -82,12 +84,13 @@ const SelectableSortableItem = ({
     [pluginsRegistry, schema.type],
   );
   const itemDescriptor = React.useMemo(
-    () => resolveListViewItemDescriptor(schema, collaborationContext),
-    [collaborationContext, schema],
+    () => resolveListViewItemDescriptor(schema, collaborationContext, translate),
+    [collaborationContext, schema, translate],
   );
   const collaborationColor = itemDescriptor.ownerColor || undefined;
-  const primaryLabel = itemDescriptor.primaryLabel || resolveDisplayLabel(schema);
-  const technicalName = itemDescriptor.secondaryLabel || String(schema.name || '').trim() || 'Campo';
+  const primaryLabel = itemDescriptor.primaryLabel || resolveDisplayLabel(schema, translate);
+  const technicalName =
+    itemDescriptor.secondaryLabel || String(schema.name || '').trim() || translate('catalog.defaultFieldLabel');
   const schemaTypeLabel = itemDescriptor.typeLabel;
   const collaborationBadges = itemDescriptor.badges;
 

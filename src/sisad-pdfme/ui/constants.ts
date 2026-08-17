@@ -10,7 +10,16 @@
  * - Cambios en PAGE_GAP, sidebar widths o class prefixes pueden afectar tests visuales.
  */
 
-export const DEFAULT_LANG = 'en';
+import type { Lang } from '@sisad-pdfme/common';
+
+/**
+ * Idioma por defecto del runtime UI y ÚNICA autoridad del fallback de idioma.
+ *
+ * Ninguna otra capa debe declarar su propio default (`?? 'en'`, `|| 'es'`, …):
+ * si necesitas resolver un idioma posiblemente inválido usa `resolveLang` de
+ * `@sisad-pdfme/ui/i18n`, que ya cae aquí.
+ */
+export const DEFAULT_LANG: Lang = 'es';
 
 export const DESTROYED_ERR_MSG = '[@sisad-pdfme/ui] this instance is already destroyed';
 

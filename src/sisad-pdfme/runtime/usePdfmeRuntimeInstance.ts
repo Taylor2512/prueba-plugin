@@ -122,6 +122,7 @@ export type RuntimeConstructorProps = {
   plugins: PreviewProps['plugins'];
   options: RuntimeOptionsLike;
   inputs?: RuntimeInputsLike;
+  onExport?: PreviewProps['onExport'];
 };
 
 export type RuntimeConstructorLike = new (props: RuntimeConstructorProps) => RuntimeInstanceLike;
@@ -200,6 +201,7 @@ export type UsePdfmeRuntimeInstanceConfig = {
   inputsRevision?: number;
   options: RuntimeOptionsLike;
   plugins: RuntimePluginsLike;
+  onExport?: PreviewProps['onExport'];
   /** Designer/Form/Viewer classes (injected to avoid a hard dependency + ease testing). */
   runtime: PdfmeRuntimeConstructors;
   /** Transforms a designer-emitted template before propagating (e.g. collaboration decoration). */
@@ -293,6 +295,7 @@ export function usePdfmeRuntimeInstance(
       template: cloneDeep(cfg.template),
       plugins: cfg.plugins,
       options: cfg.options,
+      ...(cfg.mode === 'form' && cfg.onExport ? { onExport: cfg.onExport } : {}),
     };
 
     let instance: RuntimeInstanceLike | null = null;

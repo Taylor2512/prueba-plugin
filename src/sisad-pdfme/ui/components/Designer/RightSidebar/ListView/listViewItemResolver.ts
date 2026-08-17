@@ -1,5 +1,6 @@
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { getSchemaTypeLabel } from '@sisad-pdfme/ui/components/Designer/shared/designerLabels';
+import { defaultTranslate, type Translate } from '@sisad-pdfme/ui/i18n';
 import { resolveSchemaInteractionState } from '@sisad-pdfme/ui/components/Designer/shared/schemaInteractionState';
 import type { EffectiveCollaborationContext } from '@sisad-pdfme/ui/collaborationContext';
 import { normalizeText } from '@sisad-pdfme/shared/text';
@@ -19,20 +20,21 @@ export type ListViewItemDescriptor = {
 export const resolveListViewItemDescriptor = (
   schema: SchemaForUI,
   collaborationContext?: EffectiveCollaborationContext,
+  translate: Translate = defaultTranslate,
 ): ListViewItemDescriptor => {
   const interactionState = resolveSchemaInteractionState(schema, collaborationContext ? { collaborationContext } : undefined);
   const primaryLabel =
     normalizeText((schema as SchemaForUI & { label?: string }).label) ||
     normalizeText(schema.name) ||
-    'Campo';
+    translate('catalog.defaultFieldLabel');
   const secondaryLabel = normalizeText(schema.name) && normalizeText(schema.name) !== primaryLabel ? normalizeText(schema.name) : '';
-  const typeLabel = getSchemaTypeLabel(schema.type);
+  const typeLabel = getSchemaTypeLabel(translate, schema.type);
   const documentLabel =
     normalizeText((schema as SchemaForUI & { documentId?: string }).documentId) ||
     normalizeText((schema as SchemaForUI & { fileId?: string }).fileId) ||
     normalizeText((schema as SchemaForUI & { fileTemplateId?: string }).fileTemplateId);
   const pageNumber = typeof schema.pageNumber === 'number' && Number.isFinite(schema.pageNumber) ? Math.trunc(schema.pageNumber) : 0;
-  const pageLabel = pageNumber > 0 ? `Pág. ${pageNumber}` : '';
+  const pageLabel = pageNumber > 0 ? `${translate('listView.pageAbbrev')} ${pageNumber}` : '';
   const badges: Array<{ label: string; color?: string }> = [];
 
   if (interactionState.visibleBadge) {
@@ -42,9 +44,13 @@ export const resolveListViewItemDescriptor = (
   // assigned to the active recipient, the accent strip is enough and the row
   // does not need a second "assigned to you" chip.
   if (interactionState.owner.isShared) {
-    badges.push({ label: 'Compartido', color: interactionState.owner.color || undefined });
+    badges.push({ label: translate('listView.shared'), color: interactionState.owner.color || undefined });
   } else if (!interactionState.owner.isActive && interactionState.owner.name) {
-    badges.push({ label: `Asignado a ${interactionState.owner.name}`, color: interactionState.owner.color || undefined });
+    // El nombre del propietario es dato del host: se compone, no se traduce.
+    badges.push({
+      label: `${translate('listView.assignedTo')} ${interactionState.owner.name}`,
+      color: interactionState.owner.color || undefined,
+    });
   }
 
   const explicitOwnerColor =

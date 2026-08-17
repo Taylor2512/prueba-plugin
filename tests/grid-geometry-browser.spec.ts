@@ -28,10 +28,10 @@ const px = (value: string) => Number.parseFloat(value.replace('px', ''));
 
 type GridVars = { step: number; major: number; offsetX: number; offsetY: number };
 
-const readGridVars = (page: Page): Promise<GridVars[]> =>
-  page.evaluate(() =>
-    Array.from(document.querySelectorAll('[data-canvas-page="true"]')).map((node) => {
-      const style = getComputedStyle(node as HTMLElement);
+const readGridVars = async (page: Page): Promise<GridVars[]> => {
+  return page.locator('[data-canvas-page="true"]').evaluateAll((nodes) =>
+    nodes.map((node) => {
+      const style = getComputedStyle(node);
       return {
         step: style.getPropertyValue('--sisad-grid-step').trim(),
         major: style.getPropertyValue('--sisad-grid-major-step').trim(),
@@ -39,14 +39,13 @@ const readGridVars = (page: Page): Promise<GridVars[]> =>
         offsetY: style.getPropertyValue('--sisad-grid-offset-y').trim(),
       };
     }),
-  ).then((raw) =>
-    raw.map((entry) => ({
-      step: px(entry.step),
-      major: px(entry.major),
-      offsetX: px(entry.offsetX),
-      offsetY: px(entry.offsetY),
-    })),
-  );
+  ).then((raw) => raw.map((entry) => ({
+    step: px(entry.step),
+    major: px(entry.major),
+    offsetX: px(entry.offsetX),
+    offsetY: px(entry.offsetY),
+  })));
+};
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/designer/multi-user');
@@ -101,12 +100,10 @@ test.describe('invariancia frente al zoom', () => {
     const base = await readGridVars(page);
 
     for (const zoom of ZOOMS) {
-      // Se altera el zoom del propio navegador: si la geometría dependiera de
-      // píxeles de pantalla en vez de milímetros de página, cambiaría aquí.
-      await page.evaluate((factor) => {
-        (document.documentElement.style as unknown as Record<string, string>).zoom = String(factor / 100);
-      }, zoom);
-      await page.waitForTimeout(150);
+      // Cambia el viewport para ejercer la geometría publicada en distintos
+      // tamaños de presentación sin mutar directamente el DOM.
+      await page.setViewportSize({ width: Math.round(1280 * zoom / 100), height: 800 });
+      await page.locator('[data-canvas-page="true"]').first().waitFor();
 
       const actual = await readGridVars(page);
       expect(actual.length, `zoom ${zoom}%`).toBe(base.length);
@@ -117,23 +114,17 @@ test.describe('invariancia frente al zoom', () => {
       });
     }
 
-    await page.evaluate(() => {
-      (document.documentElement.style as unknown as Record<string, string>).zoom = '1';
-    });
+    await page.setViewportSize({ width: 1280, height: 800 });
   });
 
   test('la relación mayor/menor se conserva en todos los zooms', async ({ page }) => {
     for (const zoom of ZOOMS) {
-      await page.evaluate((factor) => {
-        (document.documentElement.style as unknown as Record<string, string>).zoom = String(factor / 100);
-      }, zoom);
-      await page.waitForTimeout(120);
+      await page.setViewportSize({ width: Math.round(1280 * zoom / 100), height: 800 });
+      await page.locator('[data-canvas-page="true"]').first().waitFor();
       const [first] = await readGridVars(page);
       expect(first.major / first.step, `zoom ${zoom}%`).toBeCloseTo(2, 6);
     }
-    await page.evaluate(() => {
-      (document.documentElement.style as unknown as Record<string, string>).zoom = '1';
-    });
+    await page.setViewportSize({ width: 1280, height: 800 });
   });
 });
 
@@ -141,29 +132,27 @@ test.describe('capabilities de vista independientes', () => {
   test('la rejilla arranca oculta pero su geometría ya está publicada', async ({ page }) => {
     // Default de presentación: apagada. La geometría se escribe igualmente,
     // de modo que encenderla no exige recalcular nada.
-    const visible = await page.evaluate(() =>
-      Array.from(document.querySelectorAll('[data-canvas-page="true"]')).map(
-        (node) => (node as HTMLElement).dataset.gridVisible,
+    const pages = page.locator('[data-canvas-page="true"]');
+    const visible = await Promise.all(
+      Array.from({ length: await pages.count() }, (_, index) =>
+        pages.nth(index).getAttribute('data-grid-visible'),
       ),
     );
-    expect(visible.every((value) => value === 'false' || value === 'true')).toBe(true);
+    expect(visible.every((visibility) => visibility === 'false' || visibility === 'true')).toBe(true);
 
     const [first] = await readGridVars(page);
     expect(first.step).toBeGreaterThan(0);
   });
 
   test('el canvas expone un atributo por capability de vista', async ({ page }) => {
-    const attrs = await page.evaluate(() => {
-      const canvas = document.querySelector('.sisad-pdfme-designer-canvas') as HTMLElement | null;
-      if (!canvas) return {};
-      return {
-        guides: canvas.dataset.guidesVisible,
-        rulers: canvas.dataset.rulersVisible,
-        objectSnap: canvas.dataset.objectSnapEnabled,
-        gridSnap: canvas.dataset.gridSnapEnabled,
-        snapLines: canvas.dataset.snapsVisible,
-      };
-    });
+    const canvas = page.locator('.sisad-pdfme-designer-canvas');
+    const attrs = {
+      guides: await canvas.getAttribute('data-guides-visible'),
+      rulers: await canvas.getAttribute('data-rulers-visible'),
+      objectSnap: await canvas.getAttribute('data-object-snap-enabled'),
+      gridSnap: await canvas.getAttribute('data-grid-snap-enabled'),
+      snapLines: await canvas.getAttribute('data-snaps-visible'),
+    };
     // Cada capability tiene su propio atributo: no se derivan unas de otras.
     Object.entries(attrs).forEach(([name, value]) => {
       expect(['true', 'false'], `${name}=${value}`).toContain(value);

@@ -417,7 +417,7 @@ const CtlBar = (props: CtlBarProps) => {
   if (removePage && pageNum > 1 && pageCursor !== 0) pageMenuChildren.push({ key: 'remove-page', label: i18n('removePage') });
 
   const documentMenuChildren: NonNullable<MenuProps['items']> = [];
-  if (onExport) documentMenuChildren.push({ key: 'export-pdf', label: 'Exportar' });
+  if (onExport) documentMenuChildren.push({ key: 'export-pdf', label: 'Descargar PDF' });
 
   const moreMenuItems: MenuProps['items'] = [];
   if (viewMenuChildren.length > 0) {

@@ -271,6 +271,15 @@ export type GeneratorOptions = z.infer<typeof GeneratorOptions>;
 export type GenerateProps = z.infer<typeof GenerateProps> & { plugins?: Plugins };
 export type UIOptions = z.infer<typeof UIOptions> & { theme?: ThemeConfig };
 export type UIProps = z.infer<typeof UIProps> & { plugins?: Plugins };
-export type PreviewProps = z.infer<typeof PreviewProps> & { plugins?: Plugins };
+export type PreviewProps = z.infer<typeof PreviewProps> & {
+  plugins?: Plugins;
+  /** Captures the runtime's canonical state when the Form export action fires. */
+  onExport?: (context: {
+    template: Template;
+    inputs: unknown[];
+    plugins: Plugins;
+    options: UIOptions;
+  }) => void | Promise<void>;
+};
 export type DesignerProps = z.infer<typeof DesignerProps> & { plugins?: Plugins };
 export type SchemaPageArray = z.infer<typeof SchemaPageArray>;

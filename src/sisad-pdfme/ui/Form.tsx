@@ -22,6 +22,7 @@
  */
 
 import type { PreviewProps } from '@sisad-pdfme/common';
+import { cloneDeep } from '@sisad-pdfme/common';
 import { PagedPreviewUI } from '@sisad-pdfme/ui/PagedPreviewUI';
 import type { FormJsonEnvelope } from '@sisad-pdfme/ui/designerEngine';
 import {
@@ -100,6 +101,7 @@ export const collectChangedInputs = (
 
 /** Runtime interactivo para llenar campos del template. */
 class Form extends PagedPreviewUI {
+  private onExportCallback?: PreviewProps['onExport'];
   private onChangeInputCallback?: (arg: FormInputChange) => void;
   private onChangeInputsCallback?: (arg: { index: number; values: Record<string, string> }) => void;
   private onChangeFormJsonCallback?: (json: FormJsonEnvelope | null) => void;
@@ -110,6 +112,7 @@ class Form extends PagedPreviewUI {
 
   constructor(props: PreviewProps) {
     super(props);
+    this.onExportCallback = props.onExport;
     this.initialInputValues = this.getInputs().map((input) => ({ ...input }));
     this.initializeInteractionStates();
   }
@@ -268,6 +271,18 @@ class Form extends PagedPreviewUI {
       onFormJsonChange: (json: FormJsonEnvelope | null) => {
         this.lastFormJson = json;
         this.onChangeFormJsonCallback?.(json);
+      },
+      onExport: () => {
+        const exportCallback = this.onExportCallback;
+        if (!exportCallback) return;
+        void exportCallback({
+          // Capture by value before the async generator starts. The live Form
+          // remains editable while PDF #1 is being rendered.
+          template: cloneDeep(this.getTemplate()),
+          inputs: cloneDeep(this.getInputs()),
+          plugins: this.getPluginsRegistry() as unknown as PreviewProps['plugins'],
+          options: cloneDeep(this.getOptions()),
+        });
       },
       onChangeInput: (arg: { index: number; value: string; name: string }) => {
         const { index, value, name } = arg;

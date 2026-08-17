@@ -36,6 +36,7 @@ import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SelectionCommandSet } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
 import { INLINE_EDITABLE_TEXT_TYPES } from '@sisad-pdfme/schemas/schemaFamilies';
 import { getSchemaTypeLabel } from '@sisad-pdfme/ui/components/Designer/shared/designerLabels';
+import { defaultTranslate, type Translate } from '@sisad-pdfme/ui/i18n';
 import { isOptionGroupType } from '@sisad-pdfme/schemas/options/optionGroupLayout';
 
 import {
@@ -656,6 +657,7 @@ const toolbarAction = (
 const buildSelectionSummaryChips = (
   activeSchemas: SchemaForUI[],
   selectionCount: number,
+  translate: Translate = defaultTranslate,
 ) => {
   const primarySchema = activeSchemas[0];
   const summaryChips: string[] = [];
@@ -665,7 +667,7 @@ const buildSelectionSummaryChips = (
     summaryChips.push('Selección múltiple');
   } else {
     const name = typeof primarySchema?.name === 'string' ? primarySchema.name.trim() : '';
-    const type = getSchemaTypeLabel(primarySchema?.type);
+    const type = getSchemaTypeLabel(translate, primarySchema?.type);
 
     if (name) summaryChips.push(name);
     if (type) summaryChips.push(type);
@@ -1208,6 +1210,11 @@ export const buildSelectionToolbarModel = (args: {
    * Contexto colaborativo parcial.
    */
   collaborationContext?: BuildContextMenuGroupsArgs['collaborationContext'];
+
+  /**
+   * Traducción del idioma activo. Sin ella las etiquetas caen en `DEFAULT_LANG`.
+   */
+  translate?: Translate;
 }): SelectionToolbarModel => {
   const {
     commands,
@@ -1216,6 +1223,7 @@ export const buildSelectionToolbarModel = (args: {
     interactionPhase,
     mode = selectionCount > 1 ? 'expanded' : 'compact',
     collaborationContext,
+    translate = defaultTranslate,
   } = args;
 
   const canEditStructure = commands?.canEditStructure !== false;
@@ -1234,7 +1242,7 @@ export const buildSelectionToolbarModel = (args: {
       (schema) => (schema as SchemaForUI & { hidden?: boolean }).hidden === true,
     );
 
-  const summaryChips = buildSelectionSummaryChips(activeSchemas, selectionCount);
+  const summaryChips = buildSelectionSummaryChips(activeSchemas, selectionCount, translate);
   const stateChips =
     mode === 'micro'
       ? []

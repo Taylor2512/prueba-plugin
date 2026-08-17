@@ -4,6 +4,7 @@ import { MultiVariableTextSchema } from '@sisad-pdfme/schemas/multiVariableText/
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
 import { parseVariablesInput } from '@sisad-pdfme/schemas/multiVariableText/helper';
 import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
+import { I18N_DEFAULTS_KEY } from '@sisad-pdfme/schemas/localizedDefaults';
 
 const mapDynamicVariables = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n, options } = props;
@@ -130,7 +131,13 @@ export const propPanel: PropPanel<MultiVariableTextSchema> = {
       ...(canonical || (typeof parentPropPanel.defaultSchema === 'object' ? parentPropPanel.defaultSchema : {})),
       readOnly: false,
       type: 'multiVariableText',
-      text: 'Add text here using {} for variables ',
+      // El contenido inicial NO puede fijarse aquí en un idioma concreto: este
+      // objeto se evalúa al importar el módulo, antes de que exista idioma
+      // activo, y el literal terminaba visible en interfaces de otro idioma.
+      // `__i18nDefaults` lo resuelve al CREAR el schema; los schemas ya
+      // existentes conservan su texto.
+      text: '',
+      [I18N_DEFAULTS_KEY]: { text: 'schemas.mvt.defaultContent' },
       width: 50,
       height: 11,
       content: '{}',

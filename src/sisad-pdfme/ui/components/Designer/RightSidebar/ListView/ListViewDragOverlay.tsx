@@ -6,13 +6,14 @@
  * rendered into `document.body` so it is not clipped by sidebar overflow.
  */
 import { DESIGNER_CLASSNAME } from "@sisad-pdfme/ui/constants";
-import { ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import { DragOverlay } from '@dnd-kit/core';
 import { SchemaForUI } from '@sisad-pdfme/common';
 import Item from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item';
 import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 import { resolveListViewItemDescriptor } from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/listViewItemResolver';
+import { I18nContext } from '@sisad-pdfme/ui/contexts';
 
 
 /**
@@ -34,11 +35,14 @@ type Props = {
  * @returns A body-level portal containing the overlay, or null when no drag is active.
  */
 const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon, densityMode = 'compact' }: Props) => {
+  // Antes de los early returns: el orden de hooks no puede depender del drag activo.
+  const translate = useContext(I18nContext);
+
   if (typeof document === 'undefined' || !activeId) return null;
 
   const activeSchema = schemas.find((schema) => schema.id === activeId);
   if (!activeSchema) return null;
-  const activeDescriptor = resolveListViewItemDescriptor(activeSchema);
+  const activeDescriptor = resolveListViewItemDescriptor(activeSchema, undefined, translate);
   // Cuando se arrastran varios campos, no se apilan tarjetas (cubrirían el
   // destino): la fila activa se muestra al ancho real y el resto se resume en
   // un chip "+N".

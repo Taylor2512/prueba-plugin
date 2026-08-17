@@ -1,7 +1,7 @@
 import { getInputFromTemplate, cloneDeep } from '@sisad-pdfme/common';
 import type { Template, Plugins } from '@sisad-pdfme/common/types';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import type {
   ResolvedSisadPdfmeConfig,
   SisadPdfmeController,
@@ -21,6 +21,9 @@ import Designer from '@sisad-pdfme/ui/Designer';
 import { useSisadPdfmeRecipientRuntime } from '@sisad-pdfme/react/useSisadPdfmeRecipientRuntime';
 import { mergeHostSurfaceClassName } from '@sisad-pdfme/react/hostSurface';
 import { mergeSignatureProviders } from '@sisad-pdfme/react/signatureProviderMerge';
+import { generatePdf } from '@sisad-pdfme/generator';
+import { createObjectUrl, revokeObjectUrls } from '@sisad-pdfme/browser/objectUrls';
+import { downloadUrl } from '@sisad-pdfme/browser/downloads';
 
 type PreviewMode = 'form' | 'viewer';
 
@@ -176,6 +179,35 @@ export const SisadPdfmePreviewRuntime = ({
     [resolvedConfig.designerEngine, signatureProviders],
   );
 
+  const exportBusyRef = useRef(false);
+  const exportUrlRef = useRef('');
+  const handleExport = useCallback(async (context: Parameters<NonNullable<import('@sisad-pdfme/common').PreviewProps['onExport']>>[0]) => {
+    if (exportBusyRef.current) return;
+    exportBusyRef.current = true;
+    try {
+      const bytes = await generatePdf({
+        template: context.template,
+        inputs: context.inputs,
+        options: context.options,
+        plugins: context.plugins,
+      });
+      if (exportUrlRef.current) revokeObjectUrls([exportUrlRef.current]);
+      const url = createObjectUrl(bytes, 'application/pdf');
+      if (!url) return;
+      exportUrlRef.current = url;
+      const baseName = String((context.template as { basePdf?: unknown }).basePdf || 'document')
+        .replace(/[\\/:*?"<>|]+/g, '_')
+        .trim() || 'document';
+      downloadUrl(url, `${baseName.endsWith('.pdf') ? baseName : `${baseName}.pdf`}`);
+    } finally {
+      exportBusyRef.current = false;
+    }
+  }, []);
+
+  useEffect(() => () => {
+    if (exportUrlRef.current) revokeObjectUrls([exportUrlRef.current]);
+  }, []);
+
   const runtimeConfig = useMemo<UsePdfmeRuntimeInstanceConfig>(
     () => ({
       containerRef,
@@ -202,6 +234,7 @@ export const SisadPdfmePreviewRuntime = ({
         ...flatSchemaPlugins,
         ...(plugins || {}),
       } as unknown) as Plugins,
+      onExport: mode === 'form' ? handleExport : undefined,
       // runtimeByMode contains UI classes that accept `PreviewProps`.
       // The hook expects constructors matching `RuntimeConstructorLike`.
       runtime: runtimeByMode,
@@ -219,6 +252,7 @@ export const SisadPdfmePreviewRuntime = ({
       signatureSessionKey,
       signatureSigner,
       safeTemplate,
+      handleExport,
     ],
   );
 

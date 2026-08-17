@@ -23,8 +23,7 @@ const D = '#text-company-4';
 const setValue = async (page: import('@playwright/test').Page, selector: string, value: string) => {
   const field = page.locator(selector);
   await field.click();
-  await page.keyboard.press('ControlOrMeta+a');
-  await page.keyboard.type(value);
+  await field.fill(value);
   await page.locator('body').click({ position: { x: 5, y: 5 } });
 };
 
@@ -45,8 +44,8 @@ test('editar A no borra los valores de sus siblings C y D', async ({ page }) => 
 
   // El gesto del vídeo: volver a A y añadir un carácter.
   await page.locator(A).click();
-  await page.keyboard.press('End');
-  await page.keyboard.type('3');
+  await page.locator(A).press('End');
+  await page.locator(A).pressSequentially('3');
   await page.locator('body').click({ position: { x: 5, y: 5 } });
 
   await expect(page.locator(A)).toHaveText('33');

@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 /**
  * Entrada del schema `number` en el Form.
@@ -55,7 +55,7 @@ test('acepta el punto decimal igual que la coma', async ({ page }) => {
   await expect(page.locator(NUMBER)).toHaveText('0.25');
 });
 
-test('admite un único separador decimal', async ({ page }) => {
+test('el navegador filtra separadores decimales repetidos', async ({ page }) => {
   await typeInto(page, NUMBER, '12,5,7');
   await expect(page.locator(NUMBER)).toHaveText('12,57');
 });

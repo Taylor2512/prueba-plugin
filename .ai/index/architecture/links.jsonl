@@ -1736,6 +1736,7 @@
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/05-assignments.md","fragment":null}
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/06-runtime-modes.md","fragment":null}
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/07-snapshot.md","fragment":null}
+{"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/08-localizacion.md","fragment":null}
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/01-template.md","fragment":null}
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/02-documents-pages.md","fragment":null}
 {"from":"docs/02-conceptos/README.md","to":"docs/02-conceptos/03-schemas.md","fragment":null}
@@ -1871,6 +1872,7 @@
 {"from":"docs/07-integraciones/README.md","to":"docs/07-integraciones/10-implementacion-por-fases.md","fragment":null}
 {"from":"docs/07-integraciones/README.md","to":"docs/07-integraciones/11-checklist-consumer-project.md","fragment":null}
 {"from":"docs/07-integraciones/README.md","to":"docs/07-integraciones/12-fuentes-de-datos-http.md","fragment":null}
+{"from":"docs/08-api-reference/07-configuracion-completa.md","to":"docs/02-conceptos/08-localizacion.md","fragment":null}
 {"from":"docs/08-api-reference/README.md","to":"docs/08-api-reference/01-designer-api.md","fragment":null}
 {"from":"docs/08-api-reference/README.md","to":"docs/08-api-reference/02-form-api.md","fragment":null}
 {"from":"docs/08-api-reference/README.md","to":"docs/08-api-reference/03-viewer-api.md","fragment":null}

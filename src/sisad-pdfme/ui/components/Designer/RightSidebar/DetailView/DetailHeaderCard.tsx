@@ -11,6 +11,7 @@ import { Badge, Tag, Tooltip } from 'antd';
 import { ArrowLeft } from 'lucide-react';
 import { resolveSchemaTone } from '@sisad-pdfme/ui/components/Designer/shared/schemaTone';
 import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
+import { I18nContext } from '@sisad-pdfme/ui/contexts';
 import type { SchemaDesignerConfig } from '@sisad-pdfme/ui/designerEngine';
 import { SidebarSurfaceHeader } from '@sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives';
 import type { InspectorTag } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives';
@@ -81,7 +82,8 @@ const DetailHeaderCard = ({
     initialWidth: 320,
   });
   const tone = resolveSchemaTone(activeSchema, '#7c3aed');
-  const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig, collaborationContext);
+  const translate = React.useContext(I18nContext);
+  const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig, collaborationContext, translate);
   // Recipient color takes precedence over schema tone for the leading badge
   const leadingColor = headerSummary.recipientColor || tone;
   const effectiveTags = tags || headerSummary.tags;

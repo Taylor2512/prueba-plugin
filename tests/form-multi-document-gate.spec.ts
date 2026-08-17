@@ -17,26 +17,25 @@ const userSelect = (page: Page) => page.getByTestId('lab-active-user-select');
 const documentSelect = (page: Page) => page.getByTestId('lab-active-document-select');
 
 const blur = (page: Page) =>
-  page.evaluate(() =>
-    document.activeElement instanceof HTMLElement ? document.activeElement.blur() : undefined,
-  );
+  page.locator('body').click({ position: { x: 5, y: 5 } });
 
 const setValue = async (page: Page, value: string) => {
-  await page.locator(FIELD).click();
-  await page.keyboard.press('ControlOrMeta+a');
-  if (value === '') await page.keyboard.press('Delete');
-  else await page.keyboard.type(value);
+  const field = page.locator(FIELD);
+  await field.click();
+  await field.press('ControlOrMeta+a');
+  await field.press('Delete');
+  if (value !== '') await field.pressSequentially(value);
   await blur(page);
 };
 
 const switchDocument = async (page: Page, documentId: string) => {
   await documentSelect(page).selectOption(documentId);
-  await page.waitForTimeout(350);
+  await expect(documentSelect(page)).toHaveValue(documentId);
 };
 
 const switchUser = async (page: Page, userId: string) => {
   await userSelect(page).selectOption(userId);
-  await page.waitForTimeout(350);
+  await expect(userSelect(page)).toHaveValue(userId);
 };
 
 /**
@@ -62,7 +61,7 @@ const readInteraction = async (
 
   // El drawer es un diálogo modal: su overlay cubre el propio botón que lo
   // abrió, así que se cierra por teclado, que es como lo cerraría un usuario.
-  await page.keyboard.press('Escape');
+  await page.getByTestId('-info-panel').press('Escape');
   await expect(page.getByTestId('-info-panel')).toHaveCount(0);
   return result;
 };
@@ -79,7 +78,7 @@ test.describe('scope de documento', () => {
     await expect(userSelect(page)).toHaveCount(1);
   });
 
-  test('D1 → D2 → D1 conserva el valor de cada documento', async ({ page }) => {
+  test('el cambio de documento conserva valores independientes', async ({ page }) => {
     await switchDocument(page, 'doc-uno');
     await setValue(page, 'valor D1');
     await expect(page.locator(FIELD)).toHaveText('valor D1');
@@ -128,8 +127,6 @@ test.describe('scope de documento', () => {
       await documentSelect(page).selectOption('doc-dos');
       await documentSelect(page).selectOption('doc-uno');
     }
-    await page.waitForTimeout(500);
-
     await expect(page.locator(FIELD)).toHaveText('estable');
   });
 });
