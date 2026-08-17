@@ -1,18 +1,17 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:5174';
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:5174';
 
 export default defineConfig({
-  testDir: '.',
-  // Include all tests under `tests/` so single-file runs work reliably.
-  testMatch: ['tests/**/*.spec.ts', 'tests/playwright/**/*.spec.ts', 'tests/e2e/**/*.spec.ts'],
+  // Tests live under `tests/`.
+  testDir: 'tests',
+  testMatch: ['**/*.spec.ts'],
   timeout: 30_000,
   forbidOnly: Boolean(process.env.CI),
   fullyParallel: false,
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: [
-    ['json'],['list']],
+  reporter: [['json'], ['list']],
   expect: { timeout: 5000 },
   use: {
     baseURL,
@@ -25,12 +24,15 @@ export default defineConfig({
     video: 'retain-on-failure',
   },
   webServer: {
+    // Use Vite dev script and canonical port 5174 used by preview:prod and baseURL.
     command: 'VITE_PORT=5174 npm run dev',
-    url: 'http://localhost:5174',
+    url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
   ],
 });
