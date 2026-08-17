@@ -92,7 +92,17 @@
     "ai:structure:audit": "node scripts/ai/architecture/ai-structure-maintenance.mjs audit .",
     "ai:structure:plan": "node scripts/ai/architecture/ai-structure-maintenance.mjs plan .",
     "ai:structure:apply": "node scripts/ai/architecture/ai-structure-maintenance.mjs apply .",
-    "ai:structure:verify": "node scripts/ai/architecture/ai-structure-maintenance.mjs verify ."
+    "ai:structure:verify": "node scripts/ai/architecture/ai-structure-maintenance.mjs verify .",
+    "maintenance:audit": "node scripts/maintenance/project-maintenance.mjs audit .",
+    "maintenance:scrum:plan": "node scripts/maintenance/project-maintenance.mjs scrum-plan .",
+    "maintenance:scrum:apply": "node scripts/maintenance/project-maintenance.mjs scrum-apply . --apply",
+    "maintenance:clean": "node scripts/maintenance/project-maintenance.mjs clean .",
+    "maintenance:clean:apply": "node scripts/maintenance/project-maintenance.mjs clean . --apply",
+    "maintenance:names": "node scripts/maintenance/project-maintenance.mjs names .",
+    "maintenance:names:apply": "node scripts/maintenance/project-maintenance.mjs names . --apply",
+    "maintenance:names:tracked": "node scripts/maintenance/project-maintenance.mjs names . --apply --apply-tracked-names",
+    "maintenance:verify": "node scripts/maintenance/project-maintenance.mjs verify .",
+    "maintenance:verify:full": "node scripts/maintenance/project-maintenance.mjs verify . --full"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",

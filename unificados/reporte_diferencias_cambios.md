@@ -21825,36 +21825,36 @@ index 4dde480..ac69fa0 100644
 -
 -| ID | Prioridad | Título | Enlace |
 -|---|---|---|---|
--| AIARCH-001 | P0 | Auditar y congelar baseline | [task](./task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md) |
--| AIARCH-002 | P0 | Corregir fuente de estado y arranque | [task](task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md) |
--| AIARCH-003 | P0 | Adoptar adapters raíz | [task](./task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md) |
--| AIARCH-004 | P0 | Implementar router por Context Manifest | [task](task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md) |
--| AIARCH-005 | P0 | Aplicar presupuesto L0–L4 | [task](task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md) |
+-| AIARCH-001 | P0 | Auditar y congelar baseline | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-002 | P0 | Corregir fuente de estado y arranque | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-003 | P0 | Adoptar adapters raíz | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-004 | P0 | Implementar router por Context Manifest | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-005 | P0 | Aplicar presupuesto L0–L4 | `task` (retired; Git/evidence is provenance) |
 -| AIARCH-006 | P0 | Crear generador de context packets | NO MATERIALIZADA EN EL WORKTREE ACTUAL |
--| AIARCH-007 | P0 | Migrar memoria a índice y topics | [task](task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md) |
--| AIARCH-008 | P1 | Implementar memory GC e invalidación | [task](task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md) |
--| AIARCH-009 | P0 | Adoptar IDs de trazabilidad | [task](task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md) |
--| AIARCH-010 | P0 | Generar method registry desde código | [task](task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md) |
--| AIARCH-011 | P0 | Consolidar casos y behavior catalog | [task](task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md) |
--| AIARCH-012 | P0 | Consolidar event/effect catalogs | [task](task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md) |
--| AIARCH-013 | P0 | Construir trace matrix y coverage gate | [task](task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md) |
--| AIARCH-014 | P0 | Depurar skill registry y aliases | [task](task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md) |
--| AIARCH-015 | P0 | Añadir skills de contexto y trazabilidad | [task](task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md) |
--| AIARCH-016 | P0 | Consolidar agent registry | [task](task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md) |
--| AIARCH-017 | P0 | Aplicar política de subagentes y coste | [task](task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md) |
--| AIARCH-018 | P0 | Actualizar adapter de Claude | [task](task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md) |
--| AIARCH-019 | P0 | Actualizar adapter de Codex | [task](task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md) |
--| AIARCH-020 | P0 | Actualizar adapter de Copilot | [task](task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md) |
--| AIARCH-021 | P0 | Implementar provider drift gate | [task](task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md) |
--| AIARCH-022 | P0 | Migrar task-card a esquema | [task](./task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md) |
--| AIARCH-023 | P0 | Consolidar Scrum, claims y vistas | [task](task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md) |
--| AIARCH-024 | P0 | Crear evidence store y log distillation | [task](task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md) |
--| AIARCH-025 | P0 | Crear validadores mecánicos | [task](./task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md) |
--| AIARCH-026 | P1 | Crear evals por proveedor y caso de uso | [task](task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md) |
--| AIARCH-027 | P0 | Migrar planes COREUX/DECL/RESTORE | [task](task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md) |
--| AIARCH-028 | P0 | Eliminar duplicación Markdown y archivos obsoletos | [task](task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md) |
--| AIARCH-029 | P0 | Integrar scripts en package/CI | [task](task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md) |
--| AIARCH-030 | P0 | Rollout, documentación y retrospectiva | [task](./task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md) |
+-| AIARCH-007 | P0 | Migrar memoria a índice y topics | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-008 | P1 | Implementar memory GC e invalidación | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-009 | P0 | Adoptar IDs de trazabilidad | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-010 | P0 | Generar method registry desde código | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-011 | P0 | Consolidar casos y behavior catalog | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-012 | P0 | Consolidar event/effect catalogs | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-013 | P0 | Construir trace matrix y coverage gate | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-014 | P0 | Depurar skill registry y aliases | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-015 | P0 | Añadir skills de contexto y trazabilidad | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-016 | P0 | Consolidar agent registry | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-017 | P0 | Aplicar política de subagentes y coste | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-018 | P0 | Actualizar adapter de Claude | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-019 | P0 | Actualizar adapter de Codex | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-020 | P0 | Actualizar adapter de Copilot | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-021 | P0 | Implementar provider drift gate | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-022 | P0 | Migrar task-card a esquema | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-023 | P0 | Consolidar Scrum, claims y vistas | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-024 | P0 | Crear evidence store y log distillation | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-025 | P0 | Crear validadores mecánicos | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-026 | P1 | Crear evals por proveedor y caso de uso | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-027 | P0 | Migrar planes COREUX/DECL/RESTORE | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-028 | P0 | Eliminar duplicación Markdown y archivos obsoletos | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-029 | P0 | Integrar scripts en package/CI | `task` (retired; Git/evidence is provenance) |
+-| AIARCH-030 | P0 | Rollout, documentación y retrospectiva | `task` (retired; Git/evidence is provenance) |
 -```
 -
 -<a id="file-0357"></a>
@@ -30888,189 +30888,189 @@ index 4dde480..ac69fa0 100644
 +- [Scrum governance](../../scrum/governance/README.md) — `.ai/scrum/governance/README.md`
 +- [State authority](../../scrum/governance/STATE-AUTHORITY.md) — `.ai/scrum/governance/STATE-AUTHORITY.md`
 +- [Visual UX execution policy](../../scrum/governance/VISUAL-UX-POLICY.md) — `.ai/scrum/governance/VISUAL-UX-POLICY.md`
-+- [AIARCH-006 — Crear generador de context packets](../../scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md) — `.ai/scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md`
++- `AIARCH-006 — Crear generador de context packets` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md`
 +- [task-cards](../../scrum/task-cards/README.md) — `.ai/scrum/task-cards/README.md`
-+- [AIARCH-001 — Auditar y congelar baseline](../../scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md`
-+- [AIARCH-002 — Corregir fuente de estado y arranque](../../scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md`
-+- [AIARCH-003 — Adoptar adapters raíz](../../scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md`
-+- [AIARCH-004 — Implementar router por Context Manifest](../../scrum/task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md`
-+- [AIARCH-005 — Aplicar presupuesto L0–L4](../../scrum/task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md`
-+- [AIARCH-007 — Migrar memoria a índice y topics](../../scrum/task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md`
-+- [AIARCH-008 — Implementar memory GC e invalidación](../../scrum/task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md`
-+- [AIARCH-009 — Adoptar IDs de trazabilidad](../../scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md`
-+- [AIARCH-010 — Generar method registry desde código](../../scrum/task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md`
-+- [AIARCH-011 — Consolidar casos y behavior catalog](../../scrum/task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md`
-+- [AIARCH-012 — Consolidar event/effect catalogs](../../scrum/task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md`
-+- [AIARCH-013 — Construir trace matrix y coverage gate](../../scrum/task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md`
-+- [AIARCH-014 — Depurar skill registry y aliases](../../scrum/task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md`
-+- [AIARCH-015 — Añadir skills de contexto y trazabilidad](../../scrum/task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md`
-+- [AIARCH-016 — Consolidar agent registry](../../scrum/task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md`
-+- [AIARCH-017 — Aplicar política de subagentes y coste](../../scrum/task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md`
-+- [AIARCH-018 — Actualizar adapter de Claude](../../scrum/task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md`
-+- [AIARCH-019 — Actualizar adapter de Codex](../../scrum/task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md`
-+- [AIARCH-020 — Actualizar adapter de Copilot](../../scrum/task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md`
-+- [AIARCH-021 — Implementar provider drift gate](../../scrum/task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md`
-+- [AIARCH-022 — Migrar task-card a esquema](../../scrum/task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md`
-+- [AIARCH-023 — Consolidar Scrum, claims y vistas](../../scrum/task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md`
-+- [AIARCH-024 — Crear evidence store y log distillation](../../scrum/task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md`
-+- [AIARCH-025 — Crear validadores mecánicos](../../scrum/task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md`
-+- [AIARCH-026 — Crear evals por proveedor y caso de uso](../../scrum/task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md`
-+- [AIARCH-027 — Migrar planes COREUX/DECL/RESTORE](../../scrum/task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md`
-+- [AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos](../../scrum/task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md`
-+- [AIARCH-029 — Integrar scripts en package/CI](../../scrum/task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md`
-+- [AIARCH-030 — Rollout, documentación y retrospectiva](../../scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md`
++- `AIARCH-001 — Auditar y congelar baseline` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md`
++- `AIARCH-002 — Corregir fuente de estado y arranque` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md`
++- `AIARCH-003 — Adoptar adapters raíz` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md`
++- `AIARCH-004 — Implementar router por Context Manifest` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md`
++- `AIARCH-005 — Aplicar presupuesto L0–L4` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md`
++- `AIARCH-007 — Migrar memoria a índice y topics` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md`
++- `AIARCH-008 — Implementar memory GC e invalidación` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md`
++- `AIARCH-009 — Adoptar IDs de trazabilidad` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md`
++- `AIARCH-010 — Generar method registry desde código` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md`
++- `AIARCH-011 — Consolidar casos y behavior catalog` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md`
++- `AIARCH-012 — Consolidar event/effect catalogs` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md`
++- `AIARCH-013 — Construir trace matrix y coverage gate` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md`
++- `AIARCH-014 — Depurar skill registry y aliases` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md`
++- `AIARCH-015 — Añadir skills de contexto y trazabilidad` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md`
++- `AIARCH-016 — Consolidar agent registry` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md`
++- `AIARCH-017 — Aplicar política de subagentes y coste` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md`
++- `AIARCH-018 — Actualizar adapter de Claude` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md`
++- `AIARCH-019 — Actualizar adapter de Codex` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md`
++- `AIARCH-020 — Actualizar adapter de Copilot` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md`
++- `AIARCH-021 — Implementar provider drift gate` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md`
++- `AIARCH-022 — Migrar task-card a esquema` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md`
++- `AIARCH-023 — Consolidar Scrum, claims y vistas` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md`
++- `AIARCH-024 — Crear evidence store y log distillation` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md`
++- `AIARCH-025 — Crear validadores mecánicos` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md`
++- `AIARCH-026 — Crear evals por proveedor y caso de uso` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md`
++- `AIARCH-027 — Migrar planes COREUX/DECL/RESTORE` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md`
++- `AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md`
++- `AIARCH-029 — Integrar scripts en package/CI` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md`
++- `AIARCH-030 — Rollout, documentación y retrospectiva` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md`
 +- [ai-architecture](../../scrum/task-cards/ai-architecture/README.md) — `.ai/scrum/task-cards/ai-architecture/README.md`
-+- [AI8-004 — Implantar query y context pack](../../scrum/task-cards/backlog/AI8-004-implantar-query-y-context-pack.md) — `.ai/scrum/task-cards/backlog/AI8-004-implantar-query-y-context-pack.md`
++- `AI8-004 — Implantar query y context pack` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/backlog/AI8-004-implantar-query-y-context-pack.md`
 +- [backlog](../../scrum/task-cards/backlog/README.md) — `.ai/scrum/task-cards/backlog/README.md`
-+- [COREUX-001 — Congelar baseline visual y responsive](../../scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md) — `.ai/scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md`
-+- [COREUX-002 — Inventariar capacidades y funcionalidades ejecutables](../../scrum/task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md) — `.ai/scrum/task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md`
-+- [COREUX-003 — Auditar cobertura real de eventos y efectos](../../scrum/task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md) — `.ai/scrum/task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md`
++- `COREUX-001 — Congelar baseline visual y responsive` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md`
++- `COREUX-002 — Inventariar capacidades y funcionalidades ejecutables` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md`
++- `COREUX-003 — Auditar cobertura real de eventos y efectos` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md`
 +- [COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual](../../scrum/task-cards/core-ux/COREUX-004-mapear-fuentes-de-verdad-y-duplicid
 +
 +/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 21438 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 +
 +latform/RTP-215.md`
-+- [RTP-220 — Recipients, ownership, colors, locks and runtime access](../../scrum/task-cards/runtime-platform/RTP-220.md) — `.ai/scrum/task-cards/runtime-platform/RTP-220.md`
-+- [RTP-222 — Migrar registry/access/appearance a User con aliases](../../scrum/task-cards/runtime-platform/RTP-222.md) — `.ai/scrum/task-cards/runtime-platform/RTP-222.md`
-+- [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](../../scrum/task-cards/runtime-platform/RTP-225.md) — `.ai/scrum/task-cards/runtime-platform/RTP-225.md`
-+- [RTP-226 — Contrato DigitalAgreements Recipient -> User](../../scrum/task-cards/runtime-platform/RTP-226.md) — `.ai/scrum/task-cards/runtime-platform/RTP-226.md`
-+- [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](../../scrum/task-cards/runtime-platform/RTP-227.md) — `.ai/scrum/task-cards/runtime-platform/RTP-227.md`
-+- [RTP-230 — Comments, collaboration and conflict-safe state](../../scrum/task-cards/runtime-platform/RTP-230.md) — `.ai/scrum/task-cards/runtime-platform/RTP-230.md`
-+- [RTP-240 — Persistence/save/autosave one-write lifecycle](../../scrum/task-cards/runtime-platform/RTP-240.md) — `.ai/scrum/task-cards/runtime-platform/RTP-240.md`
-+- [RTP-250 — Declarative config profiles and capability resolution](../../scrum/task-cards/runtime-platform/RTP-250.md) — `.ai/scrum/task-cards/runtime-platform/RTP-250.md`
-+- [RTP-260 — Controller/public API/action-state parity](../../scrum/task-cards/runtime-platform/RTP-260.md) — `.ai/scrum/task-cards/runtime-platform/RTP-260.md`
-+- [RTP-270 — Keyboard, accessibility, pointer/touch/pen and responsive runtime](../../scrum/task-cards/runtime-platform/RTP-270.md) — `.ai/scrum/task-cards/runtime-platform/RTP-270.md`
-+- [RTP-280 — Performance/memory/leak campaign for large PDFs/schemas](../../scrum/task-cards/runtime-platform/RTP-280.md) — `.ai/scrum/task-cards/runtime-platform/RTP-280.md`
-+- [RTP-290 — Security/privacy/artifact sanitization and secret boundaries](../../scrum/task-cards/runtime-platform/RTP-290.md) — `.ai/scrum/task-cards/runtime-platform/RTP-290.md`
-+- [RTP-300 — Examples + docs as contract consumers, no demo-runtime duplication](../../scrum/task-cards/runtime-platform/RTP-300.md) — `.ai/scrum/task-cards/runtime-platform/RTP-300.md`
-+- [RTP-305 — Quality gate registry-driven de comportamiento](../../scrum/task-cards/runtime-platform/RTP-305.md) — `.ai/scrum/task-cards/runtime-platform/RTP-305.md`
-+- [RTP-310 — All-schema Playwright + integration/release gates](../../scrum/task-cards/runtime-platform/RTP-310.md) — `.ai/scrum/task-cards/runtime-platform/RTP-310.md`
-+- [RTP-315 — Concurrencia real de sesiones con BrowserContext aislados](../../scrum/task-cards/runtime-platform/RTP-315.md) — `.ai/scrum/task-cards/runtime-platform/RTP-315.md`
-+- [RTP-320 — Consumer integration smoke and distribution contract](../../scrum/task-cards/runtime-platform/RTP-320.md) — `.ai/scrum/task-cards/runtime-platform/RTP-320.md`
-+- [RTP-325 — Gate de compatibilidad antes de retirar Recipient aliases](../../scrum/task-cards/runtime-platform/RTP-325.md) — `.ai/scrum/task-cards/runtime-platform/RTP-325.md`
-+- [RTP-330 — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad](../../scrum/task-cards/runtime-platform/RTP-330.md) — `.ai/scrum/task-cards/runtime-platform/RTP-330.md`
-+- [RTP-340 — Brain/docs/index/evidence closeout and context regeneration](../../scrum/task-cards/runtime-platform/RTP-340.md) — `.ai/scrum/task-cards/runtime-platform/RTP-340.md`
-+- [RTP-345 — Reconciliar Brain, contexto y paths persistentes](../../scrum/task-cards/runtime-platform/RTP-345.md) — `.ai/scrum/task-cards/runtime-platform/RTP-345.md`
-+- [RTP-350 — Congelar baseline de execution runtime](../../scrum/task-cards/runtime-platform/RTP-350.md) — `.ai/scrum/task-cards/runtime-platform/RTP-350.md`
-+- [RTP-355 — Crear autoridad canónica de interaction/completion](../../scrum/task-cards/runtime-platform/RTP-355.md) — `.ai/scrum/task-cards/runtime-platform/RTP-355.md`
-+- [RTP-360 — Cerrar User assignment y value scope](../../scrum/task-cards/runtime-platform/RTP-360.md) — `.ai/scrum/task-cards/runtime-platform/RTP-360.md`
-+- [RTP-365 — Cerrar RuntimeExecutionContext y aislamiento](../../scrum/task-cards/runtime-platform/RTP-365.md) — `.ai/scrum/task-cards/runtime-platform/RTP-365.md`
-+- [RTP-370 — Implementar ExecutionPlan genérico de LAB](../../scrum/task-cards/runtime-platform/RTP-370.md) — `.ai/scrum/task-cards/runtime-platform/RTP-370.md`
-+- [RTP-375 — Validar ejecución secuencial](../../scrum/task-cards/runtime-platform/RTP-375.md) — `.ai/scrum/task-cards/runtime-platform/RTP-375.md`
-+- [RTP-380 — Validar ejecución paralela](../../scrum/task-cards/runtime-platform/RTP-380.md) — `.ai/scrum/task-cards/runtime-platform/RTP-380.md`
-+- [RTP-385 — Cerrar mixed execution y conflictos shared](../../scrum/task-cards/runtime-platform/RTP-385.md) — `.ai/scrum/task-cards/runtime-platform/RTP-385.md`
-+- [RTP-390 — Cerrar massive fan-out](../../scrum/task-cards/runtime-platform/RTP-390.md) — `.ai/scrum/task-cards/runtime-platform/RTP-390.md`
-+- [RTP-395 — Definir execution result y PDF artifacts](../../scrum/task-cards/runtime-platform/RTP-395.md) — `.ai/scrum/task-cards/runtime-platform/RTP-395.md`
-+- [RTP-400 — Implementar canonical PDF merge](../../scrum/task-cards/runtime-platform/RTP-400.md) — `.ai/scrum/task-cards/runtime-platform/RTP-400.md`
-+- [RTP-405 — Cerrar append, multi-document y massive bundle](../../scrum/task-cards/runtime-platform/RTP-405.md) — `.ai/scrum/task-cards/runtime-platform/RTP-405.md`
-+- [RTP-410 — Crear all-schema execution/completion harness](../../scrum/task-cards/runtime-platform/RTP-410.md) — `.ai/scrum/task-cards/runtime-platform/RTP-410.md`
-+- [RTP-415 — Cerrar browser, performance, privacy y parity gates](../../scrum/task-cards/runtime-platform/RTP-415.md) — `.ai/scrum/task-cards/runtime-platform/RTP-415.md`
-+- [RTP-420 — Release y closeout del runtime](../../scrum/task-cards/runtime-platform/RTP-420.md) — `.ai/scrum/task-cards/runtime-platform/RTP-420.md`
-+- [RTP-425 — Reconciliar baseline de configuración y runtime](../../scrum/task-cards/runtime-platform/RTP-425.md) — `.ai/scrum/task-cards/runtime-platform/RTP-425.md`
-+- [RTP-430 — Inventariar capabilities ejecutables](../../scrum/task-cards/runtime-platform/RTP-430.md) — `.ai/scrum/task-cards/runtime-platform/RTP-430.md`
-+- [RTP-435 — Compilar configuración a snapshot inmutable](../../scrum/task-cards/runtime-platform/RTP-435.md) — `.ai/scrum/task-cards/runtime-platform/RTP-435.md`
-+- [RTP-440 — Hacer fail-closed el CapabilityGraph](../../scrum/task-cards/runtime-platform/RTP-440.md) — `.ai/scrum/task-cards/runtime-platform/RTP-440.md`
-+- [RTP-445 — Crear impact graph y effect plan dinámico](../../scrum/task-cards/runtime-platform/RTP-445.md) — `.ai/scrum/task-cards/runtime-platform/RTP-445.md`
-+- [RTP-450 — Crear GridGeometry canónica](../../scrum/task-cards/runtime-platform/RTP-450.md) — `.ai/scrum/task-cards/runtime-platform/RTP-450.md`
-+- [RTP-455 — Cerrar grid, snap, guides y rulers](../../scrum/task-cards/runtime-platform/RTP-455.md) — `.ai/scrum/task-cards/runtime-platform/RTP-455.md`
-+- [RTP-460 — Converger registries del Designer](../../scrum/task-cards/runtime-platform/RTP-460.md) — `.ai/scrum/task-cards/runtime-platform/RTP-460.md`
-+- [RTP-465 — Eliminar direct config readers y reglas duplicadas](../../scrum/task-cards/runtime-platform/RTP-465.md) — `.ai/scrum/task-cards/runtime-platform/RTP-465.md`
-+- [RTP-470 — Converger capabilities de Runtime](../../scrum/task-cards/runtime-platform/RTP-470.md) — `.ai/scrum/task-cards/runtime-platform/RTP-470.md`
-+- [RTP-475 — Hacer plugin-owned el schema manifest](../../scrum/task-cards/runtime-platform/RTP-475.md) — `.ai/scrum/task-cards/runtime-platform/RTP-475.md`
-+- [RTP-480 — Enriquecer codecs, validation y completion](../../scrum/task-cards/runtime-platform/RTP-480.md) — `.ai/scrum/task-cards/runtime-platform/RTP-480.md`
-+- [RTP-485 — Cerrar optimistic concurrency de execution scopes](../../scrum/task-cards/runtime-platform/RTP-485.md) — `.ai/scrum/task-cards/runtime-platform/RTP-485.md`
-+- [RTP-490 — Endurecer completion projections](../../scrum/task-cards/runtime-platform/RTP-490.md) — `.ai/scrum/task-cards/runtime-platform/RTP-490.md`
-+- [RTP-495 — Bloquear canonical merge conflictivo](../../scrum/task-cards/runtime-platform/RTP-495.md) — `.ai/scrum/task-cards/runtime-platform/RTP-495.md`
-+- [RTP-500 — Crear codec durable de ExecutionResult](../../scrum/task-cards/runtime-platform/RTP-500.md) — `.ai/scrum/task-cards/runtime-platform/RTP-500.md`
-+- [RTP-505 — Endurecer composición PDF](../../scrum/task-cards/runtime-platform/RTP-505.md) — `.ai/scrum/task-cards/runtime-platform/RTP-505.md`
-+- [RTP-510 — Conectar multi-user al Form real](../../scrum/task-cards/runtime-platform/RTP-510.md) — `.ai/scrum/task-cards/runtime-platform/RTP-510.md`
-+- [RTP-515 — Crear all-schema stress harness dinámico](../../scrum/task-cards/runtime-platform/RTP-515.md) — `.ai/scrum/task-cards/runtime-platform/RTP-515.md`
-+- [RTP-520 — Auditar parity contra referencia DocuSign](../../scrum/task-cards/runtime-platform/RTP-520.md) — `.ai/scrum/task-cards/runtime-platform/RTP-520.md`
-+- [RTP-525 — Migrar compatibilidad Recipient hacia User](../../scrum/task-cards/runtime-platform/RTP-525.md) — `.ai/scrum/task-cards/runtime-platform/RTP-525.md`
-+- [RTP-530 — Retirar legacy y dead code de forma segura](../../scrum/task-cards/runtime-platform/RTP-530.md) — `.ai/scrum/task-cards/runtime-platform/RTP-530.md`
-+- [RTP-535 — Reducir duplicación y aumentar genericidad](../../scrum/task-cards/runtime-platform/RTP-535.md) — `.ai/scrum/task-cards/runtime-platform/RTP-535.md`
-+- [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](../../scrum/task-cards/runtime-platform/RTP-540.md) — `.ai/scrum/task-cards/runtime-platform/RTP-540.md`
-+- [RTP-545 — Release autónomo y closeout](../../scrum/task-cards/runtime-platform/RTP-545.md) — `.ai/scrum/task-cards/runtime-platform/RTP-545.md`
-+- [MDA-001 — Auditar arquitectura Markdown y congelar baseline](../../scrum/task-cards/tooling-architecture/MDA-001.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-001.md`
-+- [MDA-010 — Reconciliar autoridad de estados y vistas](../../scrum/task-cards/tooling-architecture/MDA-010.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-010.md`
-+- [MDA-020 — Organizar task cards por dominio](../../scrum/task-cards/tooling-architecture/MDA-020.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-020.md`
-+- [MDA-030 — Archivar campañas legacy y retirar residuos transitorios](../../scrum/task-cards/tooling-architecture/MDA-030.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-030.md`
-+- [MDA-040 — Generar hubs README y reparar enlaces](../../scrum/task-cards/tooling-architecture/MDA-040.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-040.md`
-+- [MDA-050 — Consolidar routes, skills y adapters de proveedor](../../scrum/task-cards/tooling-architecture/MDA-050.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-050.md`
-+- [MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog](../../scrum/task-cards/tooling-architecture/MDA-060.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-060.md`
-+- [MDA-070 — Normalizar documentación pública y numeración](../../scrum/task-cards/tooling-architecture/MDA-070.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-070.md`
-+- [MDA-080 — Cerrar gates de arquitectura documental](../../scrum/task-cards/tooling-architecture/MDA-080.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-080.md`
-+- [MDA-090 — Consolidar topología Scrum](../../scrum/task-cards/tooling-architecture/MDA-090.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-090.md`
-+- [MDA-100 — Consolidar Brain e inventarios](../../scrum/task-cards/tooling-architecture/MDA-100.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-100.md`
-+- [MDA-110 — Cerrar huérfanos y grafo Markdown](../../scrum/task-cards/tooling-architecture/MDA-110.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-110.md`
-+- [MDA-120 — Reducir duplicidad semántica](../../scrum/task-cards/tooling-architecture/MDA-120.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-120.md`
-+- [MDA-130 — Cerrar saneamiento de arquitectura IA](../../scrum/task-cards/tooling-architecture/MDA-130.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-130.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-220.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-222.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-225.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-226.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-227.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-230.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-240.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-250.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-260.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-270.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-280.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-290.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-300.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-305.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-310.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-315.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-320.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-325.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-330.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-340.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-345.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-350.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-355.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-360.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-365.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-370.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-375.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-380.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-385.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-390.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-395.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-400.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-405.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-410.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-415.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-420.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-425.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-430.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-435.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-440.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-445.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-450.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-455.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-460.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-465.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-470.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-475.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-480.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-485.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-490.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-495.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-500.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-505.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-510.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-515.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-520.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-525.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-530.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-535.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-540.md`
++- [PRT-000](../portable-runtime/PRT-000.md) — `.ai/scrum/task-cards/runtime-platform/RTP-545.md`
++- `MDA-001 — Auditar arquitectura Markdown y congelar baseline` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-001.md`
++- `MDA-010 — Reconciliar autoridad de estados y vistas` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-010.md`
++- `MDA-020 — Organizar task cards por dominio` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-020.md`
++- `MDA-030 — Archivar campañas legacy y retirar residuos transitorios` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-030.md`
++- `MDA-040 — Generar hubs README y reparar enlaces` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-040.md`
++- `MDA-050 — Consolidar routes, skills y adapters de proveedor` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-050.md`
++- `MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-060.md`
++- `MDA-070 — Normalizar documentación pública y numeración` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-070.md`
++- `MDA-080 — Cerrar gates de arquitectura documental` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-080.md`
++- `MDA-090 — Consolidar topología Scrum` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-090.md`
++- `MDA-100 — Consolidar Brain e inventarios` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-100.md`
++- `MDA-110 — Cerrar huérfanos y grafo Markdown` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-110.md`
++- `MDA-120 — Reducir duplicidad semántica` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-120.md`
++- `MDA-130 — Cerrar saneamiento de arquitectura IA` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-130.md`
 +- [tooling-architecture](../../scrum/task-cards/tooling-architecture/README.md) — `.ai/scrum/task-cards/tooling-architecture/README.md`
-+- [Eliminar duplicidad entre tools/ai-quality y arquitectura IA](../../scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md`
-+- [Baseline de scripts/tools y consumers](../../scrum/task-cards/tooling-architecture/TOOL-BASELINE.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md`
-+- [TOOL-CAPABILITY-AUDIT](../../scrum/task-cards/tooling-architecture/TOOL-CAPABILITY-AUDIT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CAPABILITY-AUDIT.md`
-+- [Centralizar configuración de tooling](../../scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md`
-+- [Gates finales y limpieza](../../scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md`
-+- [Migrar consumers y retirar wrappers redundantes](../../scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md`
-+- [Dedup semántico del runtime](../../scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md`
-+- [TOOL-GRID-GEOMETRY-AUDIT](../../scrum/task-cards/tooling-architecture/TOOL-GRID-GEOMETRY-AUDIT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-GRID-GEOMETRY-AUDIT.md`
-+- [Corregir importer non-Markdown](../../scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md`
-+- [Validar import ZIP/folder no destructivo](../../scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md`
-+- [Preflight y conflict-safe install-project-tools](../../scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md`
-+- [TOOL-LEGACY-RETIREMENT](../../scrum/task-cards/tooling-architecture/TOOL-LEGACY-RETIREMENT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-LEGACY-RETIREMENT.md`
-+- [Actualizar manuales/package scripts/Brain](../../scrum/task-cards/tooling-architecture/TOOL-MANUALS.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md`
-+- [Consolidar sanitización/index/topology/links](../../scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md`
-+- [Separar path reconciliation de identifier migration](../../scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md`
-+- [TOOL — provider model routing](../../scrum/task-cards/tooling-architecture/TOOL-PROVIDER-MODEL-ROUTING.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-PROVIDER-MODEL-ROUTING.md`
-+- [TOOL-RUNTIME-AUTOPILOT](../../scrum/task-cards/tooling-architecture/TOOL-RUNTIME-AUTOPILOT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-RUNTIME-AUTOPILOT.md`
-+- [TOOL — same repo coordination](../../scrum/task-cards/tooling-architecture/TOOL-SAME-REPO-COORDINATION.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-SAME-REPO-COORDINATION.md`
-+- [Portabilidad de scripts npm y memoria build](../../scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md`
-+- [Eliminar paths de arquitectura versionados](../../scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md`
-+- [Mejorar calidad del test map SISAD-PDFME](../../scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md`
-+- [Hacer install-tests transaccional](../../scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md`
++- `Eliminar duplicidad entre tools/ai-quality y arquitectura IA` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md`
++- `Baseline de scripts/tools y consumers` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md`
++- `TOOL-CAPABILITY-AUDIT` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CAPABILITY-AUDIT.md`
++- `Centralizar configuración de tooling` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md`
++- `Gates finales y limpieza` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md`
++- `Migrar consumers y retirar wrappers redundantes` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md`
++- `Dedup semántico del runtime` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md`
++- `TOOL-GRID-GEOMETRY-AUDIT` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-GRID-GEOMETRY-AUDIT.md`
++- `Corregir importer non-Markdown` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md`
++- `Validar import ZIP/folder no destructivo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md`
++- `Preflight y conflict-safe install-project-tools` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md`
++- `TOOL-LEGACY-RETIREMENT` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-LEGACY-RETIREMENT.md`
++- `Actualizar manuales/package scripts/Brain` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md`
++- `Consolidar sanitización/index/topology/links` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md`
++- `Separar path reconciliation de identifier migration` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md`
++- `TOOL — provider model routing` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-PROVIDER-MODEL-ROUTING.md`
++- `TOOL-RUNTIME-AUTOPILOT` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-RUNTIME-AUTOPILOT.md`
++- `TOOL — same repo coordination` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-SAME-REPO-COORDINATION.md`
++- `Portabilidad de scripts npm y memoria build` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md`
++- `Eliminar paths de arquitectura versionados` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md`
++- `Mejorar calidad del test map SISAD-PDFME` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md`
++- `Hacer install-tests transaccional` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md`
 +- [visual-ux](../../scrum/task-cards/visual-ux/README.md) — `.ai/scrum/task-cards/visual-ux/README.md`
-+- [VISUX-001 — Congelar baseline visual y estados reproducibles](../../scrum/task-cards/visual-ux/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md) — `.ai/scrum/task-cards/visual-ux/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md`
-+- [VISUX-002 — Inventariar componentes visuales, scroll owners y fuentes de estado](../../scrum/task-cards/visual-ux/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md) — `.ai/scrum/task-cards/visual-ux/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md`
-+- [VISUX-003 — Auditar tokens, contraste, densidad y lenguaje visual](../../scrum/task-cards/visual-ux/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md) — `.ai/scrum/task-cards/visual-ux/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md`
-+- [VISUX-004 — Unificar auditoría de acciones, acceso y motivos de deshabilitación](../../scrum/task-cards/visual-ux/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md) — `.ai/scrum/task-cards/visual-ux/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md`
-+- [VISUX-005 — Crear un estado responsive único del workspace](../../scrum/task-cards/visual-ux/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md) — `.ai/scrum/task-cards/visual-ux/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md`
-+- [VISUX-006 — Unificar rails y colapso de ambos sidebars](../../scrum/task-cards/visual-ux/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md) — `.ai/scrum/task-cards/visual-ux/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md`
-+- [VISUX-007 — Preservar ancla visual, zoom y scroll al cambiar layout](../../scrum/task-cards/visual-ux/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md) — `.ai/scrum/task-cards/visual-ux/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md`
-+- [VISUX-008 — Corregir header de guardar, navegación de páginas y estado de selección](../../scrum/task-cards/visual-ux/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md) — `.ai/scrum/task-cards/visual-ux/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md`
-+- [VISUX-009 — Cerrar contrato de zoom, fit, undo y redo](../../scrum/task-cards/visual-ux/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md`
-+- [VISUX-010 — Reemplazar tooltips nativos y cerrar foco de controles](../../scrum/task-cards/visual-ux/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md) — `.ai/scrum/task-cards/visual-ux/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md`
-+- [VISUX-011 — Unificar toolbar contextual y menú Más](../../scrum/task-cards/visual-ux/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md) — `.ai/scrum/task-cards/visual-ux/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md`
-+- [VISUX-012 — Hacer overlays collision-aware y coordinar stack visual](../../scrum/task-cards/visual-ux/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md) — `.ai/scrum/task-cards/visual-ux/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md`
-+- [VISUX-013 — Compactar shell, tabs y colapso del LeftSidebar](../../scrum/task-cards/visual-ux/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md) — `.ai/scrum/task-cards/visual-ux/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md`
-+- [VISUX-014 — Cerrar búsqueda, filtros y selector de layout del catálogo](../../scrum/task-cards/visual-ux/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md`
-+- [VISUX-015 — Compactar grupos, cards, favoritos y owner tone del catálogo](../../scrum/task-cards/visual-ux/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md`
-+- [VISUX-016 — Cerrar custom fields, auto fields y catálogo de recipients](../../scrum/task-cards/visual-ux/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md) — `.ai/scrum/task-cards/visual-ux/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md`
-+- [VISUX-017 — Cerrar drag preview, drop setup y feedback de colocación](../../scrum/task-cards/visual-ux/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md) — `.ai/scrum/task-cards/visual-ux/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md`
-+- [VISUX-018 — Hacer responsive la navegación del RightSidebar](../../scrum/task-cards/visual-ux/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md) — `.ai/scrum/task-cards/visual-ux/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md`
-+- [VISUX-019 — Formalizar panel registry, header contextual y scroll owner](../../scrum/task-cards/visual-ux/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md) — `.ai/scrum/task-cards/visual-ux/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md`
-+- [VISUX-020 — Compactar ListView y separar identidad, estados y acciones](../../scrum/task-cards/visual-ux/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md) — `.ai/scrum/task-cards/visual-ux/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md`
-+- [VISUX-021 — Cerrar selección, reorder, localizar y menú por fila](../../scrum/task-cards/visual-ux/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md) — `.ai/scrum/task-cards/visual-ux/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md`
-+- [VISUX-022 — Corregir disponibilidad y lifecycle de Reasignar responsable](../../scrum/task-cards/visual-ux/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md) — `.ai/scrum/task-cards/visual-ux/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md`
-+- [VISUX-023 — Corregir header e identidad del DetailView](../../scrum/task-cards/visual-ux/VISUX-023-corregir-header-e-identidad-del-detailview.md) — `.ai/scrum/task-cards/visual-ux/VISUX-023-corregir-header-e-identidad-del-detailview.md`
-+- [VISUX-024 — Reorganizar taxonomía, disclosure y widgets del DetailView](../../scrum/task-cards/visual-ux/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md) — `.ai/scrum/task-cards/visual-ux/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md`
-+- [VISUX-025 — Cerrar alcance y lifecycle del CommentsRail](../../scrum/task-cards/visual-ux/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md) — `.ai/scrum/task-cards/visual-ux/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md`
-+- [VISUX-026 — Separar documento, página y acciones del DocumentsRail](../../scrum/task-cards/visual-ux/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md) — `.ai/scrum/task-cards/visual-ux/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md`
-+- [VISUX-027 — Unificar estados empty, loading, error y disabled del RightSidebar](../../scrum/task-cards/visual-ux/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md) — `.ai/scrum/task-cards/visual-ux/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md`
-+- [VISUX-028 — Unificar field chrome, owner tone y estados visuales](../../scrum/task-cards/visual-ux/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md) — `.ai/scrum/task-cards/visual-ux/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md`
-+- [VISUX-029 — Cerrar perfiles text-like, number y date/time](../../scrum/task-cards/visual-ux/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md) — `.ai/scrum/task-cards/visual-ux/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md`
-+- [VISUX-030 — Cerrar select, checkbox, radio y option groups](../../scrum/task-cards/visual-ux/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md) — `.ai/scrum/task-cards/visual-ux/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md`
-+- [VISUX-031 — Hacer el inspector de firma dependiente del modo](../../scrum/task-cards/visual-ux/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md`
-+- [VISUX-032 — Cerrar action schemas: attachment, note, approve y decline](../../scrum/task-cards/visual-ux/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md) — `.ai/scrum/task-cards/visual-ux/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md`
-+- [VISUX-033 — Cerrar media, barcode, table y shapes](../../scrum/task-cards/visual-ux/VISUX-033-cerrar-media-barcode-table-y-shapes.md) — `.ai/scrum/task-cards/visual-ux/VISUX-033-cerrar-media-barcode-table-y-shapes.md`
-+- [VISUX-034 — Normalizar i18n, labels técnicos y modo avanzado](../../scrum/task-cards/visual-ux/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md) — `.ai/scrum/task-cards/visual-ux/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md`
-+- [VISUX-035 — Probar paridad propiedad→runtimes→PDF→snapshot](../../scrum/task-cards/visual-ux/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md) — `.ai/scrum/task-cards/visual-ux/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md`
-+- [VISUX-036 — Cerrar selección y edición de grupos de opciones](../../scrum/task-cards/visual-ux/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md) — `.ai/scrum/task-cards/visual-ux/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md`
-+- [VISUX-037 — Unificar asignación, reserva de edición, readonly y posición fija](../../scrum/task-cards/visual-ux/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md) — `.ai/scrum/task-cards/visual-ux/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md`
-+- [VISUX-038 — Cerrar routing multidocumento y navegación por página](../../scrum/task-cards/visual-ux/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md) — `.ai/scrum/task-cards/visual-ux/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md`
-+- [VISUX-039 — Cerrar paridad visual de Designer, Form y Viewer](../../scrum/task-cards/visual-ux/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md) — `.ai/scrum/task-cards/visual-ux/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md`
-+- [VISUX-040 — Cerrar responsive, touch, teclado y accesibilidad integral](../../scrum/task-cards/visual-ux/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md) — `.ai/scrum/task-cards/visual-ux/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md`
-+- [VISUX-041 — Estabilizar rendimiento y evitar remounts presentacionales](../../scrum/task-cards/visual-ux/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md) — `.ai/scrum/task-cards/visual-ux/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md`
-+- [VISUX-042 — Crear suite visual, gates, documentación y release](../../scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md) — `.ai/scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md`
++- `VISUX-001 — Congelar baseline visual y estados reproducibles` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md`
++- `VISUX-002 — Inventariar componentes visuales, scroll owners y fuentes de estado` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md`
++- `VISUX-003 — Auditar tokens, contraste, densidad y lenguaje visual` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md`
++- `VISUX-004 — Unificar auditoría de acciones, acceso y motivos de deshabilitación` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md`
++- `VISUX-005 — Crear un estado responsive único del workspace` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md`
++- `VISUX-006 — Unificar rails y colapso de ambos sidebars` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md`
++- `VISUX-007 — Preservar ancla visual, zoom y scroll al cambiar layout` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md`
++- `VISUX-008 — Corregir header de guardar, navegación de páginas y estado de selección` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md`
++- `VISUX-009 — Cerrar contrato de zoom, fit, undo y redo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md`
++- `VISUX-010 — Reemplazar tooltips nativos y cerrar foco de controles` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md`
++- `VISUX-011 — Unificar toolbar contextual y menú Más` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md`
++- `VISUX-012 — Hacer overlays collision-aware y coordinar stack visual` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md`
++- `VISUX-013 — Compactar shell, tabs y colapso del LeftSidebar` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md`
++- `VISUX-014 — Cerrar búsqueda, filtros y selector de layout del catálogo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md`
++- `VISUX-015 — Compactar grupos, cards, favoritos y owner tone del catálogo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md`
++- `VISUX-016 — Cerrar custom fields, auto fields y catálogo de recipients` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md`
++- `VISUX-017 — Cerrar drag preview, drop setup y feedback de colocación` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md`
++- `VISUX-018 — Hacer responsive la navegación del RightSidebar` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md`
++- `VISUX-019 — Formalizar panel registry, header contextual y scroll owner` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md`
++- `VISUX-020 — Compactar ListView y separar identidad, estados y acciones` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md`
++- `VISUX-021 — Cerrar selección, reorder, localizar y menú por fila` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md`
++- `VISUX-022 — Corregir disponibilidad y lifecycle de Reasignar responsable` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md`
++- `VISUX-023 — Corregir header e identidad del DetailView` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-023-corregir-header-e-identidad-del-detailview.md`
++- `VISUX-024 — Reorganizar taxonomía, disclosure y widgets del DetailView` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md`
++- `VISUX-025 — Cerrar alcance y lifecycle del CommentsRail` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md`
++- `VISUX-026 — Separar documento, página y acciones del DocumentsRail` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md`
++- `VISUX-027 — Unificar estados empty, loading, error y disabled del RightSidebar` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md`
++- `VISUX-028 — Unificar field chrome, owner tone y estados visuales` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md`
++- `VISUX-029 — Cerrar perfiles text-like, number y date/time` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md`
++- `VISUX-030 — Cerrar select, checkbox, radio y option groups` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md`
++- `VISUX-031 — Hacer el inspector de firma dependiente del modo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md`
++- `VISUX-032 — Cerrar action schemas: attachment, note, approve y decline` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md`
++- `VISUX-033 — Cerrar media, barcode, table y shapes` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-033-cerrar-media-barcode-table-y-shapes.md`
++- `VISUX-034 — Normalizar i18n, labels técnicos y modo avanzado` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md`
++- [PRT-080](../portable-runtime/PRT-080.md) — `.ai/scrum/task-cards/visual-ux/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md`
++- `VISUX-036 — Cerrar selección y edición de grupos de opciones` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md`
++- [PRT-040](../portable-runtime/PRT-040.md) — `.ai/scrum/task-cards/visual-ux/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md`
++- [PRT-070](../portable-runtime/PRT-070.md) — `.ai/scrum/task-cards/visual-ux/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md`
++- [PRT-080](../portable-runtime/PRT-080.md) — `.ai/scrum/task-cards/visual-ux/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md`
++- [PRT-110](../portable-runtime/PRT-110.md) — `.ai/scrum/task-cards/visual-ux/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md`
++- [PRT-110](../portable-runtime/PRT-110.md) — `.ai/scrum/task-cards/visual-ux/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md`
++- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md`
 +- [Active](../../scrum/views/ACTIVE.md) — `.ai/scrum/views/ACTIVE.md`
 +- [Blocked / Partial](../../scrum/views/BLOCKED.md) — `.ai/scrum/views/BLOCKED.md`
 +- [Completed](../../scrum/views/COMPLETED.md) — `.ai/scrum/views/COMPLETED.md`
@@ -33991,7 +33991,7 @@ index 4dde480..ac69fa0 100644
 +- [runtime-platform](./runtime-platform/README.md)
 +- [tooling-architecture](./tooling-architecture/README.md)
 +- [visual-ux](./visual-ux/README.md)
-+- [AIARCH-006 — Crear generador de context packets](./AIARCH-006-crear-generador-de-context-packets.md) — `BACKLOG`
++- `AIARCH-006 — Crear generador de context packets` (retired; Git/evidence is provenance) — `BACKLOG`
 +
 +> Managed index. Update source documents, not this list.
 +<!-- sisad-architecture-hub:end -->
@@ -34012,7 +34012,7 @@ index 4dde480..ac69fa0 100644
 +
 +### Notas
 +
-+- [AIARCH-006 — Crear generador de context packets](./AIARCH-006-crear-generador-de-context-packets.md)
++- `AIARCH-006 — Crear generador de context packets` (retired; Git/evidence is provenance)
 +<!-- project-tools:navigation:end -->
 +
 +<!-- ai-structure:navigation:start -->
@@ -34028,7 +34028,7 @@ index 4dde480..ac69fa0 100644
 +- [runtime-platform](./runtime-platform/README.md)
 +- [tooling-architecture](./tooling-architecture/README.md)
 +- [visual-ux](./visual-ux/README.md)
-+- [AIARCH-006 — Crear generador de context packets](./AIARCH-006-crear-generador-de-context-packets.md)
++- `AIARCH-006 — Crear generador de context packets` (retired; Git/evidence is provenance)
 +
 +> Generated navigation. Source content outside this block remains manual.
 +<!-- ai-structure:navigation:end -->
@@ -34065,8 +34065,8 @@ index 4dde480..ac69fa0 100644
 -10. fan-out 10/50/100.
 +Work in progress/review.
 +
-+- [RTP-000](../task-cards/runtime-platform/RTP-000.md) — `READY`
-+- [TOOL-BASELINE](../task-cards/tooling-architecture/TOOL-BASELINE.md) — `READY`
++- [PRT-120](../portable-runtime/PRT-120.md) — `READY`
++- `TOOL-BASELINE` (retired; Git/evidence is provenance) — `READY`
 +
 +> Generated. Authority: task card + evidence + dependency DAG.
  ```
@@ -34102,12 +34102,12 @@ index 4dde480..ac69fa0 100644
 -- cleanup/memory.
 +Blocked or dependency-incomplete work.
 +
-+- [RTP-510](../task-cards/runtime-platform/RTP-510.md) — `BLOCKED`
-+- [RTP-520](../task-cards/runtime-platform/RTP-520.md) — `PARTIAL`
-+- [RTP-525](../task-cards/runtime-platform/RTP-525.md) — `PARTIAL`
-+- [RTP-530](../task-cards/runtime-platform/RTP-530.md) — `BLOCKED`
-+- [RTP-540](../task-cards/runtime-platform/RTP-540.md) — `PARTIAL`
-+- [RTP-545](../task-cards/runtime-platform/RTP-545.md) — `BLOCKED`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BLOCKED`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BLOCKED`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
++- [PRT-000](../portable-runtime/PRT-000.md) — `BLOCKED`
 +
 +> Generated. Authority: task card + evidence + dependency DAG.
  ```
@@ -34138,42 +34138,42 @@ index 4dde480..ac69fa0 100644
 -- runtime access propagation;
 -- access authority;
 -- multi-user Form product changes.
-+- [COREUX-001](../task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md) — `PASS`
-+- [COREUX-002](../task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md) — `PASS`
-+- [COREUX-003](../task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md) — `PASS`
-+- [COREUX-004](../task-cards/core-ux/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md) — `PASS`
-+- [COREUX-005](../task-cards/core-ux/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md) — `PASS`
-+- [COREUX-006](../task-cards/core-ux/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md) — `PASS`
-+- [COREUX-007](../task-cards/core-ux/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md) — `PASS`
-+- [COREUX-008](../task-cards/core-ux/COREUX-008-expandir-maquina-de-estados-de-interaccion.md) — `PASS`
-+- [COREUX-009](../task-cards/core-ux/COREUX-009-crear-coordinador-de-efectos-del-designer.md) — `PASS`
-+- [COREUX-010](../task-cards/core-ux/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md) — `PASS`
-+- [COREUX-011](../task-cards/core-ux/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md) — `PASS`
-+- [COREUX-012](../task-cards/core-ux/COREUX-012-conectar-commandbus-eventos-e-historial.md) — `PASS`
-+- [COREUX-013](../task-cards/core-ux/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md) — `PASS`
-+- [COREUX-014](../task-cards/core-ux/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md) — `PASS`
-+- [COREUX-015](../task-cards/core-ux/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md) — `PASS`
-+- [COREUX-016](../task-cards/core-ux/COREUX-016-completar-comandos-de-pagina.md) — `PASS`
-+- [COREUX-017](../task-cards/core-ux/COREUX-017-unificar-zoom-fit-page-y-fit-width.md) — `PASS`
-+- [COREUX-018](../task-cards/core-ux/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md) — `PASS`
-+- [COREUX-019](../task-cards/core-ux/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md) — `PASS`
-+- [RTP-425](../task-cards/runtime-platform/RTP-425.md) — `PASS`
-+- [RTP-430](../task-cards/runtime-platform/RTP-430.md) — `PASS`
-+- [RTP-435](../task-cards/runtime-platform/RTP-435.md) — `PASS`
-+- [RTP-440](../task-cards/runtime-platform/RTP-440.md) — `PASS`
-+- [RTP-445](../task-cards/runtime-platform/RTP-445.md) — `PASS`
-+- [RTP-450](../task-cards/runtime-platform/RTP-450.md) — `PASS`
-+- [RTP-455](../task-cards/runtime-platform/RTP-455.md) — `PASS`
-+- [RTP-460](../task-cards/runtime-platform/RTP-460.md) — `PASS`
-+- [RTP-465](../task-cards/runtime-platform/RTP-465.md) — `PASS`
-+- [RTP-470](../task-cards/runtime-platform/RTP-470.md) — `PASS`
-+- [RTP-475](../task-cards/runtime-platform/RTP-475.md) — `PASS`
-+- [RTP-480](../task-cards/runtime-platform/RTP-480.md) — `PASS`
-+- [RTP-485](../task-cards/runtime-platform/RTP-485.md) — `PASS`
-+- [RTP-490](../task-cards/runtime-platform/RTP-490.md) — `PASS`
-+- [RTP-495](../task-cards/runtime-platform/RTP-495.md) — `PASS`
-+- [RTP-500](../task-cards/runtime-platform/RTP-500.md) — `PASS`
-+- [RTP-505](../task-cards/runtime-platform/RTP-505.md) — `PASS`
++- `COREUX-001` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-002` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-003` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-004` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-005` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-006` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-007` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-008` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-009` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-010` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-011` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-012` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-013` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-014` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-015` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-016` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-017` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-018` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-019` (retired; Git/evidence is provenance) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
  
 -Avoid:
 -- editing tests currently claimed by Codex;
@@ -34290,97 +34290,97 @@ index 4dde480..ac69fa0 100644
 -cuando standalone, embedded SISAD-WEB y ExternalForms pasan contract gates.
 +| Task | Effective | Open dependencies |
 +|---|---|---|
-+| [RTP-000](../task-cards/runtime-platform/RTP-000.md) | **READY** | - |
-+| [RTP-005](../task-cards/runtime-platform/RTP-005.md) | **BACKLOG** | RTP-000 |
-+| [RTP-008](../task-cards/runtime-platform/RTP-008.md) | **BACKLOG** | RTP-005 |
-+| [RTP-010](../task-cards/runtime-platform/RTP-010.md) | **BACKLOG** | RTP-000 |
-+| [RTP-015](../task-cards/runtime-platform/RTP-015.md) | **BACKLOG** | RTP-008, RTP-010 |
-+| [RTP-020](../task-cards/runtime-platform/RTP-020.md) | **BACKLOG** | RTP-005 |
-+| [RTP-022](../task-cards/runtime-platform/RTP-022.md) | **BACKLOG** | RTP-015 |
-+| [RTP-030](../task-cards/runtime-platform/RTP-030.md) | **BACKLOG** | RTP-020 |
-+| [RTP-040](../task-cards/runtime-platform/RTP-040.md) | **BACKLOG** | RTP-030 |
-+| [RTP-045](../task-cards/runtime-platform/RTP-045.md) | **BACKLOG** | RTP-040 |
-+| [RTP-050](../task-cards/runtime-platform/RTP-050.md) | **BACKLOG** | RTP-040 |
-+| [RTP-055](../task-cards/runtime-platform/RTP-055.md) | **BACKLOG** | RTP-040, RTP-050 |
-+| [RTP-060](../task-cards/runtime-platform/RTP-060.md) | **BACKLOG** | RTP-050 |
-+| [RTP-070](../task-cards/runtime-platform/RTP-070.md) | **BACKLOG** | RTP-060 |
-+| [RTP-080](../task-cards/runtime-platform/RTP-080.md) | **BACKLOG** | RTP-070 |
-+| [RTP-090](../task-cards/runtime-platform/RTP-090.md) | **BACKLOG** | RTP-080 |
-+| [RTP-095](../task-cards/runtime-platform/RTP-095.md) | **BACKLOG** | RTP-080, RTP-090 |
-+| [RTP-100](../task-cards/runtime-platform/RTP-100.md) | **BACKLOG** | RTP-090 |
-+| [RTP-110](../task-cards/runtime-platform/RTP-110.md) | **BACKLOG** | RTP-090 |
-+| [RTP-120](../task-cards/runtime-platform/RTP-120.md) | **BACKLOG** | RTP-090 |
-+| [RTP-130](../task-cards/runtime-platform/RTP-130.md) | **BACKLOG** | RTP-090 |
-+| [RTP-140](../task-cards/runtime-platform/RTP-140.md) | **BACKLOG** | RTP-090 |
-+| [RTP-150](../task-cards/runtime-platform/RTP-150.md) | **BACKLOG** | RTP-090 |
-+| [RTP-160](../task-cards/runtime-platform/RTP-160.md) | **BACKLOG** | RTP-070, RTP-080 |
-+| [RTP-170](../task-cards/runtime-platform/RTP-170.md) | **BACKLOG** | RTP-100, RTP-110, RTP-120, RTP-130, RTP-140, RTP-150 |
-+| [RTP-180](../task-cards/runtime-platform/RTP-180.md) | **BACKLOG** | RTP-170 |
-+| [RTP-190](../task-cards/runtime-platform/RTP-190.md) | **BACKLOG** | RTP-005 |
-+| [RTP-200](../task-cards/runtime-platform/RTP-200.md) | **BACKLOG** | RTP-170, RTP-180 |
-+| [RTP-210](../task-cards/runtime-platform/RTP-210.md) | **BACKLOG** | RTP-200 |
-+| [RTP-215](../task-cards/runtime-platform/RTP-215.md) | **BACKLOG** | RTP-210, RTP-015, RTP-055 |
-+| [RTP-220](../task-cards/runtime-platform/RTP-220.md) | **BACKLOG** | RTP-090, RTP-210 |
-+| [RTP-222](../task-cards/runtime-platform/RTP-222.md) | **BACKLOG** | RTP-015, RTP-022, RTP-220 |
-+| [RTP-225](../task-cards/runtime-platform/RTP-225.md) | **BACKLOG** | RTP-220 |
-+| [RTP-226](../task-cards/runtime-platform/RTP-226.md) | **BACKLOG** | RTP-222, RTP-320 |
-+| [RTP-227](../task-cards/runtime-platform/RTP-227.md) | **BACKLOG** | RTP-215, RTP-222 |
-+| [RTP-230](../task-cards/runtime-platform/RTP-230.md) | **BACKLOG** | RTP-220 |
-+| [RTP-240](../task-cards/runtime-platform/RTP-240.md) | **BACKLOG** | RTP-040, RTP-200 |
-+| [RTP-250](../task-cards/runtime-platform/RTP-250.md) | **BACKLOG** | RTP-070, RTP-220 |
-+| [RTP-260](../task-cards/runtime-platform/RTP-260.md) | **BACKLOG** | RTP-250 |
-+| [RTP-270](../task-cards/runtime-platform/RTP-270.md) | **BACKLOG** | RTP-170, RTP-220 |
-+| [RTP-280](../task-cards/runtime-platform/RTP-280.md) | **BACKLOG** | RTP-060, RTP-190, RTP-210 |
-+| [RTP-290](../task-cards/runtime-platform/RTP-290.md) | **BACKLOG** | RTP-130, RTP-140, RTP-240 |
-+| [RTP-300](../task-cards/runtime-platform/RTP-300.md) | **BACKLOG** | RTP-250, RTP-260 |
-+| [RTP-305](../task-cards/runtime-platform/RTP-305.md) | **BACKLOG** | RTP-095, RTP-160 |
-+| [RTP-310](../task-cards/runtime-platform/RTP-310.md) | **BACKLOG** | RTP-270, RTP-280, RTP-290, RTP-300 |
-+| [RTP-315](../task-cards/runtime-platform/RTP-315.md) | **BACKLOG** | RTP-210, RTP-220, RTP-310 |
-+| [RTP-320](../task-cards/runtime-platform/RTP-320.md) | **BACKLOG** | RTP-310 |
-+| [RTP-325](../task-cards/runtime-platform/RTP-325.md) | **BACKLOG** | RTP-226, RTP-227, RTP-310, RTP-320 |
-+| [RTP-330](../task-cards/runtime-platform/RTP-330.md) | **BACKLOG** | RTP-320 |
-+| [RTP-340](../task-cards/runtime-platform/RTP-340.md) | **BACKLOG** | RTP-330 |
-+| [RTP-345](../task-cards/runtime-platform/RTP-345.md) | **BACKLOG** | - |
-+| [RTP-350](../task-cards/runtime-platform/RTP-350.md) | **BACKLOG** | RTP-345 |
-+| [RTP-355](../task-cards/runtime-platform/RTP-355.md) | **BACKLOG** | RTP-350 |
-+| [RTP-360](../task-cards/runtime-platform/RTP-360.md) | **BACKLOG** | RTP-355 |
-+| [RTP-365](../task-cards/runtime-platform/RTP-365.md) | **BACKLOG** | RTP-360 |
-+| [RTP-370](../task-cards/runtime-platform/RTP-370.md) | **BACKLOG** | RTP-365 |
-+| [RTP-375](../task-cards/runtime-platform/RTP-375.md) | **BACKLOG** | RTP-370 |
-+| [RTP-380](../task-cards/runtime-platform/RTP-380.md) | **BACKLOG** | RTP-370 |
-+| [RTP-385](../task-cards/runtime-platform/RTP-385.md) | **BACKLOG** | RTP-375, RTP-380 |
-+| [RTP-390](../task-cards/runtime-platform/RTP-390.md) | **BACKLOG** | RTP-380 |
-+| [RTP-395](../task-cards/runtime-platform/RTP-395.md) | **BACKLOG** | RTP-365 |
-+| [RTP-400](../task-cards/runtime-platform/RTP-400.md) | **BACKLOG** | RTP-385, RTP-395 |
-+| [RTP-405](../task-cards/runtime-platform/RTP-405.md) | **BACKLOG** | RTP-390, RTP-400 |
-+| [RTP-410](../task-cards/runtime-platform/RTP-410.md) | **BACKLOG** | RTP-355, RTP-365 |
-+| [RTP-415](../task-cards/runtime-platform/RTP-415.md) | **BACKLOG** | RTP-405, RTP-410 |
-+| [RTP-420](../task-cards/runtime-platform/RTP-420.md) | **BACKLOG** | RTP-415 |
-+| [RTP-425](../task-cards/runtime-platform/RTP-425.md) | **PASS** | - |
-+| [RTP-430](../task-cards/runtime-platform/RTP-430.md) | **PASS** | - |
-+| [RTP-435](../task-cards/runtime-platform/RTP-435.md) | **PASS** | - |
-+| [RTP-440](../task-cards/runtime-platform/RTP-440.md) | **PASS** | - |
-+| [RTP-445](../task-cards/runtime-platform/RTP-445.md) | **PASS** | - |
-+| [RTP-450](../task-cards/runtime-platform/RTP-450.md) | **PASS** | - |
-+| [RTP-455](../task-cards/runtime-platform/RTP-455.md) | **PASS** | - |
-+| [RTP-460](../task-cards/runtime-platform/RTP-460.md) | **PASS** | - |
-+| [RTP-465](../task-cards/runtime-platform/RTP-465.md) | **PASS** | - |
-+| [RTP-470](../task-cards/runtime-platform/RTP-470.md) | **PASS** | - |
-+| [RTP-475](../task-cards/runtime-platform/RTP-475.md) | **PASS** | - |
-+| [RTP-480](../task-cards/runtime-platform/RTP-480.md) | **PASS** | - |
-+| [RTP-485](../task-cards/runtime-platform/RTP-485.md) | **PASS** | - |
-+| [RTP-490](../task-cards/runtime-platform/RTP-490.md) | **PASS** | - |
-+| [RTP-495](../task-cards/runtime-platform/RTP-495.md) | **PASS** | - |
-+| [RTP-500](../task-cards/runtime-platform/RTP-500.md) | **PASS** | - |
-+| [RTP-505](../task-cards/runtime-platform/RTP-505.md) | **PASS** | - |
-+| [RTP-510](../task-cards/runtime-platform/RTP-510.md) | **BLOCKED** | - |
-+| [RTP-515](../task-cards/runtime-platform/RTP-515.md) | **BACKLOG** | RTP-510 |
-+| [RTP-520](../task-cards/runtime-platform/RTP-520.md) | **PARTIAL** | RTP-515 |
-+| [RTP-525](../task-cards/runtime-platform/RTP-525.md) | **PARTIAL** | RTP-510 |
-+| [RTP-530](../task-cards/runtime-platform/RTP-530.md) | **BLOCKED** | RTP-525 |
-+| [RTP-535](../task-cards/runtime-platform/RTP-535.md) | **BACKLOG** | RTP-530 |
-+| [RTP-540](../task-cards/runtime-platform/RTP-540.md) | **PARTIAL** | RTP-515, RTP-535 |
-+| [RTP-545](../task-cards/runtime-platform/RTP-545.md) | **BLOCKED** | RTP-540, RTP-520 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **READY** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-000 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-005 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-000 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-008, RTP-010 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-005 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-015 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-020 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-030 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-040 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-040 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-040, RTP-050 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-050 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-060 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-070 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-080 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-080, RTP-090 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-070, RTP-080 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-100, RTP-110, RTP-120, RTP-130, RTP-140, RTP-150 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-170 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-005 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-170, RTP-180 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-200 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-210, RTP-015, RTP-055 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090, RTP-210 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-015, RTP-022, RTP-220 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-220 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-222, RTP-320 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-215, RTP-222 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-220 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-040, RTP-200 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-070, RTP-220 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-250 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-170, RTP-220 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-060, RTP-190, RTP-210 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-130, RTP-140, RTP-240 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-250, RTP-260 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-095, RTP-160 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-270, RTP-280, RTP-290, RTP-300 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-210, RTP-220, RTP-310 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-310 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-226, RTP-227, RTP-310, RTP-320 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-320 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-330 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-345 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-350 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-355 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-360 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-365 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-370 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-370 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-375, RTP-380 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-380 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-365 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-385, RTP-395 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-390, RTP-400 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-355, RTP-365 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-405, RTP-410 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-415 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BLOCKED** | - |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-510 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PARTIAL** | RTP-515 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PARTIAL** | RTP-510 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BLOCKED** | RTP-525 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-530 |
++| [PRT-120](../portable-runtime/PRT-120.md) | **PARTIAL** | RTP-515, RTP-535 |
++| [PRT-000](../portable-runtime/PRT-000.md) | **BLOCKED** | RTP-540, RTP-520 |
 +
 +> Generated from evidence-aware reconciliation.
  ```
@@ -37473,7 +37473,7 @@ index 4dde480..ac69fa0 100644
 -- [runtime-platform](./runtime-platform/README.md)
 -- [tooling-architecture](./tooling-architecture/README.md)
 -- [visual-ux](./visual-ux/README.md)
--- [AIARCH-006 — Crear generador de context packets](./AIARCH-006-crear-generador-de-context-packets.md) — `BACKLOG`
+-- `AIARCH-006 — Crear generador de context packets` (retired; Git/evidence is provenance) — `BACKLOG`
 -
 -> Managed index. Update source documents, not this list.
 -<!-- sisad-architecture-hub:end -->
@@ -37493,7 +37493,7 @@ index 4dde480..ac69fa0 100644
 -
 -### Notas
 -
--- [AIARCH-006 — Crear generador de context packets](./AIARCH-006-crear-generador-de-context-packets.md)
+-- `AIARCH-006 — Crear generador de context packets` (retired; Git/evidence is provenance)
 -<!-- project-tools:navigation:end -->
 -```
 -
@@ -37512,8 +37512,8 @@ index 4dde480..ac69fa0 100644
 -
 -Work in progress/review.
 -
--- [RTP-000](../task-cards/runtime-platform/RTP-000.md) — `READY`
--- [TOOL-BASELINE](../task-cards/tooling-architecture/TOOL-BASELINE.md) — `READY`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `READY`
+-- `TOOL-BASELINE` (retired; Git/evidence is provenance) — `READY`
 -
 -> Generated. Authority: task card + evidence + dependency DAG.
 -```
@@ -37533,12 +37533,12 @@ index 4dde480..ac69fa0 100644
 -
 -Blocked or dependency-incomplete work.
 -
--- [RTP-510](../task-cards/runtime-platform/RTP-510.md) — `BLOCKED`
--- [RTP-520](../task-cards/runtime-platform/RTP-520.md) — `PARTIAL`
--- [RTP-525](../task-cards/runtime-platform/RTP-525.md) — `PARTIAL`
--- [RTP-530](../task-cards/runtime-platform/RTP-530.md) — `BLOCKED`
--- [RTP-540](../task-cards/runtime-platform/RTP-540.md) — `PARTIAL`
--- [RTP-545](../task-cards/runtime-platform/RTP-545.md) — `BLOCKED`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BLOCKED`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BLOCKED`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
+-- [PRT-000](../portable-runtime/PRT-000.md) — `BLOCKED`
 -
 -> Generated. Authority: task card + evidence + dependency DAG.
 -```
@@ -37558,42 +37558,42 @@ index 4dde480..ac69fa0 100644
 -
 -Effective PASS tasks.
 -
--- [COREUX-001](../task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md) — `PASS`
--- [COREUX-002](../task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md) — `PASS`
--- [COREUX-003](../task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md) — `PASS`
--- [COREUX-004](../task-cards/core-ux/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md) — `PASS`
--- [COREUX-005](../task-cards/core-ux/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md) — `PASS`
--- [COREUX-006](../task-cards/core-ux/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md) — `PASS`
--- [COREUX-007](../task-cards/core-ux/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md) — `PASS`
--- [COREUX-008](../task-cards/core-ux/COREUX-008-expandir-maquina-de-estados-de-interaccion.md) — `PASS`
--- [COREUX-009](../task-cards/core-ux/COREUX-009-crear-coordinador-de-efectos-del-designer.md) — `PASS`
--- [COREUX-010](../task-cards/core-ux/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md) — `PASS`
--- [COREUX-011](../task-cards/core-ux/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md) — `PASS`
--- [COREUX-012](../task-cards/core-ux/COREUX-012-conectar-commandbus-eventos-e-historial.md) — `PASS`
--- [COREUX-013](../task-cards/core-ux/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md) — `PASS`
--- [COREUX-014](../task-cards/core-ux/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md) — `PASS`
--- [COREUX-015](../task-cards/core-ux/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md) — `PASS`
--- [COREUX-016](../task-cards/core-ux/COREUX-016-completar-comandos-de-pagina.md) — `PASS`
--- [COREUX-017](../task-cards/core-ux/COREUX-017-unificar-zoom-fit-page-y-fit-width.md) — `PASS`
--- [COREUX-018](../task-cards/core-ux/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md) — `PASS`
--- [COREUX-019](../task-cards/core-ux/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md) — `PASS`
--- [RTP-425](../task-cards/runtime-platform/RTP-425.md) — `PASS`
--- [RTP-430](../task-cards/runtime-platform/RTP-430.md) — `PASS`
--- [RTP-435](../task-cards/runtime-platform/RTP-435.md) — `PASS`
--- [RTP-440](../task-cards/runtime-platform/RTP-440.md) — `PASS`
--- [RTP-445](../task-cards/runtime-platform/RTP-445.md) — `PASS`
--- [RTP-450](../task-cards/runtime-platform/RTP-450.md) — `PASS`
--- [RTP-455](../task-cards/runtime-platform/RTP-455.md) — `PASS`
--- [RTP-460](../task-cards/runtime-platform/RTP-460.md) — `PASS`
--- [RTP-465](../task-cards/runtime-platform/RTP-465.md) — `PASS`
--- [RTP-470](../task-cards/runtime-platform/RTP-470.md) — `PASS`
--- [RTP-475](../task-cards/runtime-platform/RTP-475.md) — `PASS`
--- [RTP-480](../task-cards/runtime-platform/RTP-480.md) — `PASS`
--- [RTP-485](../task-cards/runtime-platform/RTP-485.md) — `PASS`
--- [RTP-490](../task-cards/runtime-platform/RTP-490.md) — `PASS`
--- [RTP-495](../task-cards/runtime-platform/RTP-495.md) — `PASS`
--- [RTP-500](../task-cards/runtime-platform/RTP-500.md) — `PASS`
--- [RTP-505](../task-cards/runtime-platform/RTP-505.md) — `PASS`
+-- `COREUX-001` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-002` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-003` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-004` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-005` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-006` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-007` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-008` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-009` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-010` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-011` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-012` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-013` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-014` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-015` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-016` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-017` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-018` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-019` (retired; Git/evidence is provenance) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
 -
 -> Generated. Authority: task card + evidence + dependency DAG.
 -```
@@ -37649,97 +37649,97 @@ index 4dde480..ac69fa0 100644
 -
 -| Task | Effective | Open dependencies |
 -|---|---|---|
--| [RTP-000](../task-cards/runtime-platform/RTP-000.md) | **READY** | - |
--| [RTP-005](../task-cards/runtime-platform/RTP-005.md) | **BACKLOG** | RTP-000 |
--| [RTP-008](../task-cards/runtime-platform/RTP-008.md) | **BACKLOG** | RTP-005 |
--| [RTP-010](../task-cards/runtime-platform/RTP-010.md) | **BACKLOG** | RTP-000 |
--| [RTP-015](../task-cards/runtime-platform/RTP-015.md) | **BACKLOG** | RTP-008, RTP-010 |
--| [RTP-020](../task-cards/runtime-platform/RTP-020.md) | **BACKLOG** | RTP-005 |
--| [RTP-022](../task-cards/runtime-platform/RTP-022.md) | **BACKLOG** | RTP-015 |
--| [RTP-030](../task-cards/runtime-platform/RTP-030.md) | **BACKLOG** | RTP-020 |
--| [RTP-040](../task-cards/runtime-platform/RTP-040.md) | **BACKLOG** | RTP-030 |
--| [RTP-045](../task-cards/runtime-platform/RTP-045.md) | **BACKLOG** | RTP-040 |
--| [RTP-050](../task-cards/runtime-platform/RTP-050.md) | **BACKLOG** | RTP-040 |
--| [RTP-055](../task-cards/runtime-platform/RTP-055.md) | **BACKLOG** | RTP-040, RTP-050 |
--| [RTP-060](../task-cards/runtime-platform/RTP-060.md) | **BACKLOG** | RTP-050 |
--| [RTP-070](../task-cards/runtime-platform/RTP-070.md) | **BACKLOG** | RTP-060 |
--| [RTP-080](../task-cards/runtime-platform/RTP-080.md) | **BACKLOG** | RTP-070 |
--| [RTP-090](../task-cards/runtime-platform/RTP-090.md) | **BACKLOG** | RTP-080 |
--| [RTP-095](../task-cards/runtime-platform/RTP-095.md) | **BACKLOG** | RTP-080, RTP-090 |
--| [RTP-100](../task-cards/runtime-platform/RTP-100.md) | **BACKLOG** | RTP-090 |
--| [RTP-110](../task-cards/runtime-platform/RTP-110.md) | **BACKLOG** | RTP-090 |
--| [RTP-120](../task-cards/runtime-platform/RTP-120.md) | **BACKLOG** | RTP-090 |
--| [RTP-130](../task-cards/runtime-platform/RTP-130.md) | **BACKLOG** | RTP-090 |
--| [RTP-140](../task-cards/runtime-platform/RTP-140.md) | **BACKLOG** | RTP-090 |
--| [RTP-150](../task-cards/runtime-platform/RTP-150.md) | **BACKLOG** | RTP-090 |
--| [RTP-160](../task-cards/runtime-platform/RTP-160.md) | **BACKLOG** | RTP-070, RTP-080 |
--| [RTP-170](../task-cards/runtime-platform/RTP-170.md) | **BACKLOG** | RTP-100, RTP-110, RTP-120, RTP-130, RTP-140, RTP-150 |
--| [RTP-180](../task-cards/runtime-platform/RTP-180.md) | **BACKLOG** | RTP-170 |
--| [RTP-190](../task-cards/runtime-platform/RTP-190.md) | **BACKLOG** | RTP-005 |
--| [RTP-200](../task-cards/runtime-platform/RTP-200.md) | **BACKLOG** | RTP-170, RTP-180 |
--| [RTP-210](../task-cards/runtime-platform/RTP-210.md) | **BACKLOG** | RTP-200 |
--| [RTP-215](../task-cards/runtime-platform/RTP-215.md) | **BACKLOG** | RTP-210, RTP-015, RTP-055 |
--| [RTP-220](../task-cards/runtime-platform/RTP-220.md) | **BACKLOG** | RTP-090, RTP-210 |
--| [RTP-222](../task-cards/runtime-platform/RTP-222.md) | **BACKLOG** | RTP-015, RTP-022, RTP-220 |
--| [RTP-225](../task-cards/runtime-platform/RTP-225.md) | **BACKLOG** | RTP-220 |
--| [RTP-226](../task-cards/runtime-platform/RTP-226.md) | **BACKLOG** | RTP-222, RTP-320 |
--| [RTP-227](../task-cards/runtime-platform/RTP-227.md) | **BACKLOG** | RTP-215, RTP-222 |
--| [RTP-230](../task-cards/runtime-platform/RTP-230.md) | **BACKLOG** | RTP-220 |
--| [RTP-240](../task-cards/runtime-platform/RTP-240.md) | **BACKLOG** | RTP-040, RTP-200 |
--| [RTP-250](../task-cards/runtime-platform/RTP-250.md) | **BACKLOG** | RTP-070, RTP-220 |
--| [RTP-260](../task-cards/runtime-platform/RTP-260.md) | **BACKLOG** | RTP-250 |
--| [RTP-270](../task-cards/runtime-platform/RTP-270.md) | **BACKLOG** | RTP-170, RTP-220 |
--| [RTP-280](../task-cards/runtime-platform/RTP-280.md) | **BACKLOG** | RTP-060, RTP-190, RTP-210 |
--| [RTP-290](../task-cards/runtime-platform/RTP-290.md) | **BACKLOG** | RTP-130, RTP-140, RTP-240 |
--| [RTP-300](../task-cards/runtime-platform/RTP-300.md) | **BACKLOG** | RTP-250, RTP-260 |
--| [RTP-305](../task-cards/runtime-platform/RTP-305.md) | **BACKLOG** | RTP-095, RTP-160 |
--| [RTP-310](../task-cards/runtime-platform/RTP-310.md) | **BACKLOG** | RTP-270, RTP-280, RTP-290, RTP-300 |
--| [RTP-315](../task-cards/runtime-platform/RTP-315.md) | **BACKLOG** | RTP-210, RTP-220, RTP-310 |
--| [RTP-320](../task-cards/runtime-platform/RTP-320.md) | **BACKLOG** | RTP-310 |
--| [RTP-325](../task-cards/runtime-platform/RTP-325.md) | **BACKLOG** | RTP-226, RTP-227, RTP-310, RTP-320 |
--| [RTP-330](../task-cards/runtime-platform/RTP-330.md) | **BACKLOG** | RTP-320 |
--| [RTP-340](../task-cards/runtime-platform/RTP-340.md) | **BACKLOG** | RTP-330 |
--| [RTP-345](../task-cards/runtime-platform/RTP-345.md) | **BACKLOG** | - |
--| [RTP-350](../task-cards/runtime-platform/RTP-350.md) | **BACKLOG** | RTP-345 |
--| [RTP-355](../task-cards/runtime-platform/RTP-355.md) | **BACKLOG** | RTP-350 |
--| [RTP-360](../task-cards/runtime-platform/RTP-360.md) | **BACKLOG** | RTP-355 |
--| [RTP-365](../task-cards/runtime-platform/RTP-365.md) | **BACKLOG** | RTP-360 |
--| [RTP-370](../task-cards/runtime-platform/RTP-370.md) | **BACKLOG** | RTP-365 |
--| [RTP-375](../task-cards/runtime-platform/RTP-375.md) | **BACKLOG** | RTP-370 |
--| [RTP-380](../task-cards/runtime-platform/RTP-380.md) | **BACKLOG** | RTP-370 |
--| [RTP-385](../task-cards/runtime-platform/RTP-385.md) | **BACKLOG** | RTP-375, RTP-380 |
--| [RTP-390](../task-cards/runtime-platform/RTP-390.md) | **BACKLOG** | RTP-380 |
--| [RTP-395](../task-cards/runtime-platform/RTP-395.md) | **BACKLOG** | RTP-365 |
--| [RTP-400](../task-cards/runtime-platform/RTP-400.md) | **BACKLOG** | RTP-385, RTP-395 |
--| [RTP-405](../task-cards/runtime-platform/RTP-405.md) | **BACKLOG** | RTP-390, RTP-400 |
--| [RTP-410](../task-cards/runtime-platform/RTP-410.md) | **BACKLOG** | RTP-355, RTP-365 |
--| [RTP-415](../task-cards/runtime-platform/RTP-415.md) | **BACKLOG** | RTP-405, RTP-410 |
--| [RTP-420](../task-cards/runtime-platform/RTP-420.md) | **BACKLOG** | RTP-415 |
--| [RTP-425](../task-cards/runtime-platform/RTP-425.md) | **PASS** | - |
--| [RTP-430](../task-cards/runtime-platform/RTP-430.md) | **PASS** | - |
--| [RTP-435](../task-cards/runtime-platform/RTP-435.md) | **PASS** | - |
--| [RTP-440](../task-cards/runtime-platform/RTP-440.md) | **PASS** | - |
--| [RTP-445](../task-cards/runtime-platform/RTP-445.md) | **PASS** | - |
--| [RTP-450](../task-cards/runtime-platform/RTP-450.md) | **PASS** | - |
--| [RTP-455](../task-cards/runtime-platform/RTP-455.md) | **PASS** | - |
--| [RTP-460](../task-cards/runtime-platform/RTP-460.md) | **PASS** | - |
--| [RTP-465](../task-cards/runtime-platform/RTP-465.md) | **PASS** | - |
--| [RTP-470](../task-cards/runtime-platform/RTP-470.md) | **PASS** | - |
--| [RTP-475](../task-cards/runtime-platform/RTP-475.md) | **PASS** | - |
--| [RTP-480](../task-cards/runtime-platform/RTP-480.md) | **PASS** | - |
--| [RTP-485](../task-cards/runtime-platform/RTP-485.md) | **PASS** | - |
--| [RTP-490](../task-cards/runtime-platform/RTP-490.md) | **PASS** | - |
--| [RTP-495](../task-cards/runtime-platform/RTP-495.md) | **PASS** | - |
--| [RTP-500](../task-cards/runtime-platform/RTP-500.md) | **PASS** | - |
--| [RTP-505](../task-cards/runtime-platform/RTP-505.md) | **PASS** | - |
--| [RTP-510](../task-cards/runtime-platform/RTP-510.md) | **BLOCKED** | - |
--| [RTP-515](../task-cards/runtime-platform/RTP-515.md) | **BACKLOG** | RTP-510 |
--| [RTP-520](../task-cards/runtime-platform/RTP-520.md) | **PARTIAL** | RTP-515 |
--| [RTP-525](../task-cards/runtime-platform/RTP-525.md) | **PARTIAL** | RTP-510 |
--| [RTP-530](../task-cards/runtime-platform/RTP-530.md) | **BLOCKED** | RTP-525 |
--| [RTP-535](../task-cards/runtime-platform/RTP-535.md) | **BACKLOG** | RTP-530 |
--| [RTP-540](../task-cards/runtime-platform/RTP-540.md) | **PARTIAL** | RTP-515, RTP-535 |
--| [RTP-545](../task-cards/runtime-platform/RTP-545.md) | **BLOCKED** | RTP-540, RTP-520 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **READY** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-000 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-005 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-000 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-008, RTP-010 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-005 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-015 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-020 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-030 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-040 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-040 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-040, RTP-050 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-050 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-060 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-070 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-080 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-080, RTP-090 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-070, RTP-080 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-100, RTP-110, RTP-120, RTP-130, RTP-140, RTP-150 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-170 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-005 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-170, RTP-180 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-200 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-210, RTP-015, RTP-055 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-090, RTP-210 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-015, RTP-022, RTP-220 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-220 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-222, RTP-320 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-215, RTP-222 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-220 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-040, RTP-200 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-070, RTP-220 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-250 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-170, RTP-220 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-060, RTP-190, RTP-210 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-130, RTP-140, RTP-240 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-250, RTP-260 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-095, RTP-160 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-270, RTP-280, RTP-290, RTP-300 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-210, RTP-220, RTP-310 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-310 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-226, RTP-227, RTP-310, RTP-320 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-320 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-330 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-345 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-350 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-355 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-360 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-365 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-370 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-370 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-375, RTP-380 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-380 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-365 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-385, RTP-395 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-390, RTP-400 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-355, RTP-365 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-405, RTP-410 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-415 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PASS** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BLOCKED** | - |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-510 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PARTIAL** | RTP-515 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PARTIAL** | RTP-510 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BLOCKED** | RTP-525 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **BACKLOG** | RTP-530 |
+-| [PRT-120](../portable-runtime/PRT-120.md) | **PARTIAL** | RTP-515, RTP-535 |
+-| [PRT-000](../portable-runtime/PRT-000.md) | **BLOCKED** | RTP-540, RTP-520 |
 -
 -> Generated from evidence-aware reconciliation.
 -```
@@ -39088,44 +39088,44 @@ index 4dde480..ac69fa0 100644
 -
 -- [details](./details/README.md)
 -- [Evidence — P0 selective sibling rollback / draft loss](./P0-selective-sibling-rollback.md)
--- [RTP-022 — runtime assignments](./RTP-022.md)
--- [Evidence — RTP-040](./RTP-040.md)
--- [Evidence — RTP-045](./RTP-045.md)
--- [RTP-090 — completion projections](./RTP-090.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
 -- [Evidence parcial — RTP-220 (regla de roles readonly)](./RTP-220-parcial-roles-readonly.md)
--- [RTP-355 — interaction/completion](./RTP-355.md)
--- [RTP-360 — SisadPdfmeUser y schema access](./RTP-360.md)
--- [RTP-370 — ExecutionPlan](./RTP-370.md)
--- [RTP-375 — sequential execution](./RTP-375.md)
--- [RTP-380 — parallel isolation](./RTP-380.md)
--- [RTP-385 — mixed execution](./RTP-385.md)
--- [RTP-390 — massive fan-out](./RTP-390.md)
--- [RTP-395 — execution result/artifacts](./RTP-395.md)
--- [RTP-400 — PDF composition](./RTP-400.md)
--- [RTP-410 — schema manifest](./RTP-410.md)
--- [RTP-425 — Reconciliación de baseline source/evidence/config](./RTP-425.md) — `PASS`
--- [RTP-430 — Inventario completo de capabilities](./RTP-430.md) — `PASS`
--- [RTP-435 — Config compiler + ResolvedConfig inmutable](./RTP-435.md) — `PASS`
--- [RTP-440 — CapabilityGraph fail-closed](./RTP-440.md) — `PASS`
--- [RTP-445 — ConfigChangeSet / plan de efectos por capability](./RTP-445.md) — `PASS`
--- [RTP-450 — GridGeometry canónica en espacio de página](./RTP-450.md) — `PASS`
--- [RTP-455 — Paridad grid / snap / guides / rulers / object-snap](./RTP-455.md) — `PASS`
--- [RTP-460 — Convergencia feature / action / component / controller del Designer](./RTP-460.md) — `PASS`
--- [RTP-465 — Retirada de lectores directos de configuración y reglas de superficie duplicadas](./RTP-465.md) — `PASS`
--- [RTP-470 — Convergencia de capabilities de Runtime + recursos portables de integración](./RTP-470.md) — `PASS`
--- [RTP-475 — Schema manifest plugin-owned + metadata de binding](./RTP-475.md) — `PASS`
--- [RTP-480 — Codecs, validación y completitud + valores remotos](./RTP-480.md) — `PASS`
--- [RTP-485 — Concurrencia optimista y scope lógico compartido](./RTP-485.md) — `PASS`
--- [RTP-490 — Proyecciones de completitud tri-estado](./RTP-490.md) — `PASS`
--- [RTP-495 — Merge canónico con bloqueo por conflicto](./RTP-495.md) — `PASS`
--- [RTP-500 — Separación de bytes de artefacto y estado durable](./RTP-500.md) — `PASS`
--- [RTP-505 — Composición PDF acotada y segura](./RTP-505.md) — `PASS`
--- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md) — `PARTIAL`
--- [RTP-520 — Auditoría de paridad frente al comparador](./RTP-520.md) — `PASS`
--- [RTP-525 — Frontera User / Recipient en el autorrelleno](./RTP-525.md) — `PASS`
--- [RTP-530 — Retirada segura de legacy y dead code](./RTP-530.md) — `BLOCKED`
--- [RTP-540 — Gate de rejilla en navegador real](./RTP-540.md) — `PASS`
--- [RTP-545 — Release autónomo y closeout](./RTP-545.md) — `BLOCKED`
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BLOCKED`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-000](../portable-runtime/PRT-000.md) — `BLOCKED`
 -- [Evidence — SPRT-000 live baseline](./SPRT-000.md)
 -- [Evidence — SPRT-010 tooling install/import safety](./SPRT-010.md)
 -- [Evidence — SPRT-020 dedup and stable document names](./SPRT-020.md)
@@ -39144,44 +39144,44 @@ index 4dde480..ac69fa0 100644
 -### Notas
 -
 -- [Evidence — P0 selective sibling rollback / draft loss](./P0-selective-sibling-rollback.md)
--- [RTP-022 — runtime assignments](./RTP-022.md)
--- [Evidence — RTP-040](./RTP-040.md)
--- [Evidence — RTP-045](./RTP-045.md)
--- [RTP-090 — completion projections](./RTP-090.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
 -- [Evidence parcial — RTP-220 (regla de roles readonly)](./RTP-220-parcial-roles-readonly.md)
--- [RTP-355 — interaction/completion](./RTP-355.md)
--- [RTP-360 — SisadPdfmeUser y schema access](./RTP-360.md)
--- [RTP-370 — ExecutionPlan](./RTP-370.md)
--- [RTP-375 — sequential execution](./RTP-375.md)
--- [RTP-380 — parallel isolation](./RTP-380.md)
--- [RTP-385 — mixed execution](./RTP-385.md)
--- [RTP-390 — massive fan-out](./RTP-390.md)
--- [RTP-395 — execution result/artifacts](./RTP-395.md)
--- [RTP-400 — PDF composition](./RTP-400.md)
--- [RTP-410 — schema manifest](./RTP-410.md)
--- [RTP-425 — Reconciliación de baseline source/evidence/config](./RTP-425.md)
--- [RTP-430 — Inventario completo de capabilities](./RTP-430.md)
--- [RTP-435 — Config compiler + ResolvedConfig inmutable](./RTP-435.md)
--- [RTP-440 — CapabilityGraph fail-closed](./RTP-440.md)
--- [RTP-445 — ConfigChangeSet / plan de efectos por capability](./RTP-445.md)
--- [RTP-450 — GridGeometry canónica en espacio de página](./RTP-450.md)
--- [RTP-455 — Paridad grid / snap / guides / rulers / object-snap](./RTP-455.md)
--- [RTP-460 — Convergencia feature / action / component / controller del Designer](./RTP-460.md)
--- [RTP-465 — Retirada de lectores directos de configuración y reglas de superficie duplicadas](./RTP-465.md)
--- [RTP-470 — Convergencia de capabilities de Runtime + recursos portables de integración](./RTP-470.md)
--- [RTP-475 — Schema manifest plugin-owned + metadata de binding](./RTP-475.md)
--- [RTP-480 — Codecs, validación y completitud + valores remotos](./RTP-480.md)
--- [RTP-485 — Concurrencia optimista y scope lógico compartido](./RTP-485.md)
--- [RTP-490 — Proyecciones de completitud tri-estado](./RTP-490.md)
--- [RTP-495 — Merge canónico con bloqueo por conflicto](./RTP-495.md)
--- [RTP-500 — Separación de bytes de artefacto y estado durable](./RTP-500.md)
--- [RTP-505 — Composición PDF acotada y segura](./RTP-505.md)
--- [RTP-510 — Runtime de datos multi-usuario: carreras, caché y aislamiento](./RTP-510.md)
--- [RTP-520 — Auditoría de paridad frente al comparador](./RTP-520.md)
--- [RTP-525 — Frontera User / Recipient en el autorrelleno](./RTP-525.md)
--- [RTP-530 — Retirada segura de legacy y dead code](./RTP-530.md)
--- [RTP-540 — Gate de rejilla en navegador real](./RTP-540.md)
--- [RTP-545 — Release autónomo y closeout](./RTP-545.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-000](../portable-runtime/PRT-000.md)
 -- [Evidence — SPRT-000 live baseline](./SPRT-000.md)
 -- [Evidence — SPRT-010 tooling install/import safety](./SPRT-010.md)
 -- [Evidence — SPRT-020 dedup and stable document names](./SPRT-020.md)
@@ -40384,44 +40384,44 @@ index 4dde480..ac69fa0 100644
 -## Resultados
 +- [details](./details/README.md)
 +- [Evidence — P0 selective sibling rollback / draft loss](./P0-selective-sibling-rollback.md)
-+- [RTP-022 — runtime assignments](./RTP-022.md)
-+- [Evidence — RTP-040](./RTP-040.md)
-+- [Evidence — RTP-045](./RTP-045.md)
-+- [RTP-090 — completion projections](./RTP-090.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
 +- [Evidence parcial — RTP-220 (regla de roles readonly)](./RTP-220-parcial-roles-readonly.md)
-+- [RTP-355 — interaction/completion](./RTP-355.md)
-+- [RTP-360 — SisadPdfmeUser y schema access](./RTP-360.md)
-+- [RTP-370 — ExecutionPlan](./RTP-370.md)
-+- [RTP-375 — sequential execution](./RTP-375.md)
-+- [RTP-380 — parallel isolation](./RTP-380.md)
-+- [RTP-385 — mixed execution](./RTP-385.md)
-+- [RTP-390 — massive fan-out](./RTP-390.md)
-+- [RTP-395 — execution result/artifacts](./RTP-395.md)
-+- [RTP-400 — PDF composition](./RTP-400.md)
-+- [RTP-410 — schema manifest](./RTP-410.md)
-+- [RTP-425 — Reconciliación de baseline source/evidence/config](./RTP-425.md) — `PASS`
-+- [RTP-430 — Inventario completo de capabilities](./RTP-430.md) — `PASS`
-+- [RTP-435 — Config compiler + ResolvedConfig inmutable](./RTP-435.md) — `PASS`
-+- [RTP-440 — CapabilityGraph fail-closed](./RTP-440.md) — `PASS`
-+- [RTP-445 — ConfigChangeSet / plan de efectos por capability](./RTP-445.md) — `PASS`
-+- [RTP-450 — GridGeometry canónica en espacio de página](./RTP-450.md) — `PASS`
-+- [RTP-455 — Paridad grid / snap / guides / rulers / object-snap](./RTP-455.md) — `PASS`
-+- [RTP-460 — Convergencia feature / action / component / controller del Designer](./RTP-460.md) — `PASS`
-+- [RTP-465 — Retirada de lectores directos de configuración y reglas de superficie duplicadas](./RTP-465.md) — `PASS`
-+- [RTP-470 — Convergencia de capabilities de Runtime + recursos portables de integración](./RTP-470.md) — `PASS`
-+- [RTP-475 — Schema manifest plugin-owned + metadata de binding](./RTP-475.md) — `PASS`
-+- [RTP-480 — Codecs, validación y completitud + valores remotos](./RTP-480.md) — `PASS`
-+- [RTP-485 — Concurrencia optimista y scope lógico compartido](./RTP-485.md) — `PASS`
-+- [RTP-490 — Proyecciones de completitud tri-estado](./RTP-490.md) — `PASS`
-+- [RTP-495 — Merge canónico con bloqueo por conflicto](./RTP-495.md) — `PASS`
-+- [RTP-500 — Separación de bytes de artefacto y estado durable](./RTP-500.md) — `PASS`
-+- [RTP-505 — Composición PDF acotada y segura](./RTP-505.md) — `PASS`
-+- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md) — `PARTIAL`
-+- [RTP-520 — Auditoría de paridad frente al comparador](./RTP-520.md) — `PASS`
-+- [RTP-525 — Frontera User / Recipient en el autorrelleno](./RTP-525.md) — `PASS`
-+- [RTP-530 — Retirada segura de legacy y dead code](./RTP-530.md) — `BLOCKED`
-+- [RTP-540 — Gate de rejilla en navegador real](./RTP-540.md) — `PASS`
-+- [RTP-545 — Release autónomo y closeout](./RTP-545.md) — `BLOCKED`
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BLOCKED`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-000](../portable-runtime/PRT-000.md) — `BLOCKED`
 +- [Evidence — SPRT-000 live baseline](./SPRT-000.md)
 +- [Evidence — SPRT-010 tooling install/import safety](./SPRT-010.md)
 +- [Evidence — SPRT-020 dedup and stable document names](./SPRT-020.md)
@@ -40449,44 +40449,44 @@ index 4dde480..ac69fa0 100644
  
 -El hash es de 32 bits. Suficiente para detectar cambios en una sesión; no es una garantía criptográfica y no debe usarse como identidad persistida entre procesos.
 +- [Evidence — P0 selective sibling rollback / draft loss](./P0-selective-sibling-rollback.md)
-+- [RTP-022 — runtime assignments](./RTP-022.md)
-+- [Evidence — RTP-040](./RTP-040.md)
-+- [Evidence — RTP-045](./RTP-045.md)
-+- [RTP-090 — completion projections](./RTP-090.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
 +- [Evidence parcial — RTP-220 (regla de roles readonly)](./RTP-220-parcial-roles-readonly.md)
-+- [RTP-355 — interaction/completion](./RTP-355.md)
-+- [RTP-360 — SisadPdfmeUser y schema access](./RTP-360.md)
-+- [RTP-370 — ExecutionPlan](./RTP-370.md)
-+- [RTP-375 — sequential execution](./RTP-375.md)
-+- [RTP-380 — parallel isolation](./RTP-380.md)
-+- [RTP-385 — mixed execution](./RTP-385.md)
-+- [RTP-390 — massive fan-out](./RTP-390.md)
-+- [RTP-395 — execution result/artifacts](./RTP-395.md)
-+- [RTP-400 — PDF composition](./RTP-400.md)
-+- [RTP-410 — schema manifest](./RTP-410.md)
-+- [RTP-425 — Reconciliación de baseline source/evidence/config](./RTP-425.md)
-+- [RTP-430 — Inventario completo de capabilities](./RTP-430.md)
-+- [RTP-435 — Config compiler + ResolvedConfig inmutable](./RTP-435.md)
-+- [RTP-440 — CapabilityGraph fail-closed](./RTP-440.md)
-+- [RTP-445 — ConfigChangeSet / plan de efectos por capability](./RTP-445.md)
-+- [RTP-450 — GridGeometry canónica en espacio de página](./RTP-450.md)
-+- [RTP-455 — Paridad grid / snap / guides / rulers / object-snap](./RTP-455.md)
-+- [RTP-460 — Convergencia feature / action / component / controller del Designer](./RTP-460.md)
-+- [RTP-465 — Retirada de lectores directos de configuración y reglas de superficie duplicadas](./RTP-465.md)
-+- [RTP-470 — Convergencia de capabilities de Runtime + recursos portables de integración](./RTP-470.md)
-+- [RTP-475 — Schema manifest plugin-owned + metadata de binding](./RTP-475.md)
-+- [RTP-480 — Codecs, validación y completitud + valores remotos](./RTP-480.md)
-+- [RTP-485 — Concurrencia optimista y scope lógico compartido](./RTP-485.md)
-+- [RTP-490 — Proyecciones de completitud tri-estado](./RTP-490.md)
-+- [RTP-495 — Merge canónico con bloqueo por conflicto](./RTP-495.md)
-+- [RTP-500 — Separación de bytes de artefacto y estado durable](./RTP-500.md)
-+- [RTP-505 — Composición PDF acotada y segura](./RTP-505.md)
-+- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md)
-+- [RTP-520 — Auditoría de paridad frente al comparador](./RTP-520.md)
-+- [RTP-525 — Frontera User / Recipient en el autorrelleno](./RTP-525.md)
-+- [RTP-530 — Retirada segura de legacy y dead code](./RTP-530.md)
-+- [RTP-540 — Gate de rejilla en navegador real](./RTP-540.md)
-+- [RTP-545 — Release autónomo y closeout](./RTP-545.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-000](../portable-runtime/PRT-000.md)
 +- [Evidence — SPRT-000 live baseline](./SPRT-000.md)
 +- [Evidence — SPRT-010 tooling install/import safety](./SPRT-010.md)
 +- [Evidence — SPRT-020 dedup and stable document names](./SPRT-020.md)
@@ -52309,35 +52309,35 @@ index 4dde480..ac69fa0 100644
 -## Navigation
 +El agente principal funciona como coordinator continuo.
  
--- [AIARCH-001 — Auditar y congelar baseline](./AIARCH-001-auditar-y-congelar-baseline.md) — `BACKLOG`
--- [AIARCH-002 — Corregir fuente de estado y arranque](./AIARCH-002-corregir-fuente-de-estado-y-arranque.md) — `BACKLOG`
--- [AIARCH-003 — Adoptar adapters raíz](./AIARCH-003-adoptar-adapters-raiz.md) — `BACKLOG`
--- [AIARCH-004 — Implementar router por Context Manifest](./AIARCH-004-implementar-router-por-context-manifest.md) — `BACKLOG`
--- [AIARCH-005 — Aplicar presupuesto L0–L4](./AIARCH-005-aplicar-presupuesto-l0l4.md) — `BACKLOG`
--- [AIARCH-007 — Migrar memoria a índice y topics](./AIARCH-007-migrar-memoria-a-indice-y-topics.md) — `BACKLOG`
--- [AIARCH-008 — Implementar memory GC e invalidación](./AIARCH-008-implementar-memory-gc-e-invalidacion.md) — `BACKLOG`
--- [AIARCH-009 — Adoptar IDs de trazabilidad](./AIARCH-009-adoptar-ids-de-trazabilidad.md) — `BACKLOG`
--- [AIARCH-010 — Generar method registry desde código](./AIARCH-010-generar-method-registry-desde-codigo.md) — `BACKLOG`
--- [AIARCH-011 — Consolidar casos y behavior catalog](./AIARCH-011-consolidar-casos-y-behavior-catalog.md) — `BACKLOG`
--- [AIARCH-012 — Consolidar event/effect catalogs](./AIARCH-012-consolidar-event-effect-catalogs.md) — `BACKLOG`
--- [AIARCH-013 — Construir trace matrix y coverage gate](./AIARCH-013-construir-trace-matrix-y-coverage-gate.md) — `BACKLOG`
--- [AIARCH-014 — Depurar skill registry y aliases](./AIARCH-014-depurar-skill-registry-y-aliases.md) — `BACKLOG`
--- [AIARCH-015 — Añadir skills de contexto y trazabilidad](./AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md) — `BACKLOG`
--- [AIARCH-016 — Consolidar agent registry](./AIARCH-016-consolidar-agent-registry.md) — `BACKLOG`
--- [AIARCH-017 — Aplicar política de subagentes y coste](./AIARCH-017-aplicar-politica-de-subagentes-y-coste.md) — `BACKLOG`
--- [AIARCH-018 — Actualizar adapter de Claude](./AIARCH-018-actualizar-adapter-de-claude.md) — `BACKLOG`
--- [AIARCH-019 — Actualizar adapter de Codex](./AIARCH-019-actualizar-adapter-de-codex.md) — `BACKLOG`
--- [AIARCH-020 — Actualizar adapter de Copilot](./AIARCH-020-actualizar-adapter-de-copilot.md) — `BACKLOG`
--- [AIARCH-021 — Implementar provider drift gate](./AIARCH-021-implementar-provider-drift-gate.md) — `BACKLOG`
--- [AIARCH-022 — Migrar task-card a esquema](./AIARCH-022-migrar-task-card-a-esquema.md) — `BACKLOG`
--- [AIARCH-023 — Consolidar Scrum, claims y vistas](./AIARCH-023-consolidar-scrum-claims-y-vistas.md) — `BACKLOG`
--- [AIARCH-024 — Crear evidence store y log distillation](./AIARCH-024-crear-evidence-store-y-log-distillation.md) — `BACKLOG`
--- [AIARCH-025 — Crear validadores mecánicos](./AIARCH-025-crear-validadores-mecanicos.md) — `BACKLOG`
--- [AIARCH-026 — Crear evals por proveedor y caso de uso](./AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md) — `BACKLOG`
--- [AIARCH-027 — Migrar planes COREUX/DECL/RESTORE](./AIARCH-027-migrar-planes-coreux-decl-restore.md) — `BACKLOG`
--- [AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos](./AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md) — `BACKLOG`
--- [AIARCH-029 — Integrar scripts en package/CI](./AIARCH-029-integrar-scripts-en-package-ci.md) — `BACKLOG`
--- [AIARCH-030 — Rollout, documentación y retrospectiva](./AIARCH-030-rollout-documentacion-y-retrospectiva.md) — `BACKLOG`
+-- `AIARCH-001 — Auditar y congelar baseline` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-002 — Corregir fuente de estado y arranque` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-003 — Adoptar adapters raíz` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-004 — Implementar router por Context Manifest` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-005 — Aplicar presupuesto L0–L4` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-007 — Migrar memoria a índice y topics` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-008 — Implementar memory GC e invalidación` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-009 — Adoptar IDs de trazabilidad` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-010 — Generar method registry desde código` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-011 — Consolidar casos y behavior catalog` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-012 — Consolidar event/effect catalogs` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-013 — Construir trace matrix y coverage gate` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-014 — Depurar skill registry y aliases` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-015 — Añadir skills de contexto y trazabilidad` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-016 — Consolidar agent registry` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-017 — Aplicar política de subagentes y coste` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-018 — Actualizar adapter de Claude` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-019 — Actualizar adapter de Codex` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-020 — Actualizar adapter de Copilot` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-021 — Implementar provider drift gate` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-022 — Migrar task-card a esquema` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-023 — Consolidar Scrum, claims y vistas` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-024 — Crear evidence store y log distillation` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-025 — Crear validadores mecánicos` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-026 — Crear evals por proveedor y caso de uso` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-027 — Migrar planes COREUX/DECL/RESTORE` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-029 — Integrar scripts en package/CI` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `AIARCH-030 — Rollout, documentación y retrospectiva` (retired; Git/evidence is provenance) — `BACKLOG`
 +## Loop
  
 -> Managed index. Update source documents, not this list.
@@ -52361,35 +52361,35 @@ index 4dde480..ac69fa0 100644
 -### Notas
 +## Decision policy
  
--- [AIARCH-001 — Auditar y congelar baseline](./AIARCH-001-auditar-y-congelar-baseline.md)
--- [AIARCH-002 — Corregir fuente de estado y arranque](./AIARCH-002-corregir-fuente-de-estado-y-arranque.md)
--- [AIARCH-003 — Adoptar adapters raíz](./AIARCH-003-adoptar-adapters-raiz.md)
--- [AIARCH-004 — Implementar router por Context Manifest](./AIARCH-004-implementar-router-por-context-manifest.md)
--- [AIARCH-005 — Aplicar presupuesto L0–L4](./AIARCH-005-aplicar-presupuesto-l0l4.md)
--- [AIARCH-007 — Migrar memoria a índice y topics](./AIARCH-007-migrar-memoria-a-indice-y-topics.md)
--- [AIARCH-008 — Implementar memory GC e invalidación](./AIARCH-008-implementar-memory-gc-e-invalidacion.md)
--- [AIARCH-009 — Adoptar IDs de trazabilidad](./AIARCH-009-adoptar-ids-de-trazabilidad.md)
--- [AIARCH-010 — Generar method registry desde código](./AIARCH-010-generar-method-registry-desde-codigo.md)
--- [AIARCH-011 — Consolidar casos y behavior catalog](./AIARCH-011-consolidar-casos-y-behavior-catalog.md)
--- [AIARCH-012 — Consolidar event/effect catalogs](./AIARCH-012-consolidar-event-effect-catalogs.md)
--- [AIARCH-013 — Construir trace matrix y coverage gate](./AIARCH-013-construir-trace-matrix-y-coverage-gate.md)
--- [AIARCH-014 — Depurar skill registry y aliases](./AIARCH-014-depurar-skill-registry-y-aliases.md)
--- [AIARCH-015 — Añadir skills de contexto y trazabilidad](./AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md)
--- [AIARCH-016 — Consolidar agent registry](./AIARCH-016-consolidar-agent-registry.md)
--- [AIARCH-017 — Aplicar política de subagentes y coste](./AIARCH-017-aplicar-politica-de-subagentes-y-coste.md)
--- [AIARCH-018 — Actualizar adapter de Claude](./AIARCH-018-actualizar-adapter-de-claude.md)
--- [AIARCH-019 — Actualizar adapter de Codex](./AIARCH-019-actualizar-adapter-de-codex.md)
--- [AIARCH-020 — Actualizar adapter de Copilot](./AIARCH-020-actualizar-adapter-de-copilot.md)
--- [AIARCH-021 — Implementar provider drift gate](./AIARCH-021-implementar-provider-drift-gate.md)
--- [AIARCH-022 — Migrar task-card a esquema](./AIARCH-022-migrar-task-card-a-esquema.md)
--- [AIARCH-023 — Consolidar Scrum, claims y vistas](./AIARCH-023-consolidar-scrum-claims-y-vistas.md)
--- [AIARCH-024 — Crear evidence store y log distillation](./AIARCH-024-crear-evidence-store-y-log-distillation.md)
--- [AIARCH-025 — Crear validadores mecánicos](./AIARCH-025-crear-validadores-mecanicos.md)
--- [AIARCH-026 — Crear evals por proveedor y caso de uso](./AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md)
--- [AIARCH-027 — Migrar planes COREUX/DECL/RESTORE](./AIARCH-027-migrar-planes-coreux-decl-restore.md)
--- [AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos](./AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md)
--- [AIARCH-029 — Integrar scripts en package/CI](./AIARCH-029-integrar-scripts-en-package-ci.md)
--- [AIARCH-030 — Rollout, documentación y retrospectiva](./AIARCH-030-rollout-documentacion-y-retrospectiva.md)
+-- `AIARCH-001 — Auditar y congelar baseline` (retired; Git/evidence is provenance)
+-- `AIARCH-002 — Corregir fuente de estado y arranque` (retired; Git/evidence is provenance)
+-- `AIARCH-003 — Adoptar adapters raíz` (retired; Git/evidence is provenance)
+-- `AIARCH-004 — Implementar router por Context Manifest` (retired; Git/evidence is provenance)
+-- `AIARCH-005 — Aplicar presupuesto L0–L4` (retired; Git/evidence is provenance)
+-- `AIARCH-007 — Migrar memoria a índice y topics` (retired; Git/evidence is provenance)
+-- `AIARCH-008 — Implementar memory GC e invalidación` (retired; Git/evidence is provenance)
+-- `AIARCH-009 — Adoptar IDs de trazabilidad` (retired; Git/evidence is provenance)
+-- `AIARCH-010 — Generar method registry desde código` (retired; Git/evidence is provenance)
+-- `AIARCH-011 — Consolidar casos y behavior catalog` (retired; Git/evidence is provenance)
+-- `AIARCH-012 — Consolidar event/effect catalogs` (retired; Git/evidence is provenance)
+-- `AIARCH-013 — Construir trace matrix y coverage gate` (retired; Git/evidence is provenance)
+-- `AIARCH-014 — Depurar skill registry y aliases` (retired; Git/evidence is provenance)
+-- `AIARCH-015 — Añadir skills de contexto y trazabilidad` (retired; Git/evidence is provenance)
+-- `AIARCH-016 — Consolidar agent registry` (retired; Git/evidence is provenance)
+-- `AIARCH-017 — Aplicar política de subagentes y coste` (retired; Git/evidence is provenance)
+-- `AIARCH-018 — Actualizar adapter de Claude` (retired; Git/evidence is provenance)
+-- `AIARCH-019 — Actualizar adapter de Codex` (retired; Git/evidence is provenance)
+-- `AIARCH-020 — Actualizar adapter de Copilot` (retired; Git/evidence is provenance)
+-- `AIARCH-021 — Implementar provider drift gate` (retired; Git/evidence is provenance)
+-- `AIARCH-022 — Migrar task-card a esquema` (retired; Git/evidence is provenance)
+-- `AIARCH-023 — Consolidar Scrum, claims y vistas` (retired; Git/evidence is provenance)
+-- `AIARCH-024 — Crear evidence store y log distillation` (retired; Git/evidence is provenance)
+-- `AIARCH-025 — Crear validadores mecánicos` (retired; Git/evidence is provenance)
+-- `AIARCH-026 — Crear evals por proveedor y caso de uso` (retired; Git/evidence is provenance)
+-- `AIARCH-027 — Migrar planes COREUX/DECL/RESTORE` (retired; Git/evidence is provenance)
+-- `AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos` (retired; Git/evidence is provenance)
+-- `AIARCH-029 — Integrar scripts en package/CI` (retired; Git/evidence is provenance)
+-- `AIARCH-030 — Rollout, documentación y retrospectiva` (retired; Git/evidence is provenance)
 -<!-- project-tools:navigation:end -->
 +Cuando hay varias soluciones válidas:
 +1. contrato existente;
@@ -61047,35 +61047,35 @@ index 4dde480..ac69fa0 100644
 -6. máximo 2 búsquedas amplias;
 -7. escribir hipótesis y test focal;
 -8. registrar claim.
-+- [AIARCH-001 — Auditar y congelar baseline](./AIARCH-001-auditar-y-congelar-baseline.md) — `BACKLOG`
-+- [AIARCH-002 — Corregir fuente de estado y arranque](./AIARCH-002-corregir-fuente-de-estado-y-arranque.md) — `BACKLOG`
-+- [AIARCH-003 — Adoptar adapters raíz](./AIARCH-003-adoptar-adapters-raiz.md) — `BACKLOG`
-+- [AIARCH-004 — Implementar router por Context Manifest](./AIARCH-004-implementar-router-por-context-manifest.md) — `BACKLOG`
-+- [AIARCH-005 — Aplicar presupuesto L0–L4](./AIARCH-005-aplicar-presupuesto-l0l4.md) — `BACKLOG`
-+- [AIARCH-007 — Migrar memoria a índice y topics](./AIARCH-007-migrar-memoria-a-indice-y-topics.md) — `BACKLOG`
-+- [AIARCH-008 — Implementar memory GC e invalidación](./AIARCH-008-implementar-memory-gc-e-invalidacion.md) — `BACKLOG`
-+- [AIARCH-009 — Adoptar IDs de trazabilidad](./AIARCH-009-adoptar-ids-de-trazabilidad.md) — `BACKLOG`
-+- [AIARCH-010 — Generar method registry desde código](./AIARCH-010-generar-method-registry-desde-codigo.md) — `BACKLOG`
-+- [AIARCH-011 — Consolidar casos y behavior catalog](./AIARCH-011-consolidar-casos-y-behavior-catalog.md) — `BACKLOG`
-+- [AIARCH-012 — Consolidar event/effect catalogs](./AIARCH-012-consolidar-event-effect-catalogs.md) — `BACKLOG`
-+- [AIARCH-013 — Construir trace matrix y coverage gate](./AIARCH-013-construir-trace-matrix-y-coverage-gate.md) — `BACKLOG`
-+- [AIARCH-014 — Depurar skill registry y aliases](./AIARCH-014-depurar-skill-registry-y-aliases.md) — `BACKLOG`
-+- [AIARCH-015 — Añadir skills de contexto y trazabilidad](./AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md) — `BACKLOG`
-+- [AIARCH-016 — Consolidar agent registry](./AIARCH-016-consolidar-agent-registry.md) — `BACKLOG`
-+- [AIARCH-017 — Aplicar política de subagentes y coste](./AIARCH-017-aplicar-politica-de-subagentes-y-coste.md) — `BACKLOG`
-+- [AIARCH-018 — Actualizar adapter de Claude](./AIARCH-018-actualizar-adapter-de-claude.md) — `BACKLOG`
-+- [AIARCH-019 — Actualizar adapter de Codex](./AIARCH-019-actualizar-adapter-de-codex.md) — `BACKLOG`
-+- [AIARCH-020 — Actualizar adapter de Copilot](./AIARCH-020-actualizar-adapter-de-copilot.md) — `BACKLOG`
-+- [AIARCH-021 — Implementar provider drift gate](./AIARCH-021-implementar-provider-drift-gate.md) — `BACKLOG`
-+- [AIARCH-022 — Migrar task-card a esquema](./AIARCH-022-migrar-task-card-a-esquema.md) — `BACKLOG`
-+- [AIARCH-023 — Consolidar Scrum, claims y vistas](./AIARCH-023-consolidar-scrum-claims-y-vistas.md) — `BACKLOG`
-+- [AIARCH-024 — Crear evidence store y log distillation](./AIARCH-024-crear-evidence-store-y-log-distillation.md) — `BACKLOG`
-+- [AIARCH-025 — Crear validadores mecánicos](./AIARCH-025-crear-validadores-mecanicos.md) — `BACKLOG`
-+- [AIARCH-026 — Crear evals por proveedor y caso de uso](./AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md) — `BACKLOG`
-+- [AIARCH-027 — Migrar planes COREUX/DECL/RESTORE](./AIARCH-027-migrar-planes-coreux-decl-restore.md) — `BACKLOG`
-+- [AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos](./AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md) — `BACKLOG`
-+- [AIARCH-029 — Integrar scripts en package/CI](./AIARCH-029-integrar-scripts-en-package-ci.md) — `BACKLOG`
-+- [AIARCH-030 — Rollout, documentación y retrospectiva](./AIARCH-030-rollout-documentacion-y-retrospectiva.md) — `BACKLOG`
++- `AIARCH-001 — Auditar y congelar baseline` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-002 — Corregir fuente de estado y arranque` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-003 — Adoptar adapters raíz` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-004 — Implementar router por Context Manifest` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-005 — Aplicar presupuesto L0–L4` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-007 — Migrar memoria a índice y topics` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-008 — Implementar memory GC e invalidación` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-009 — Adoptar IDs de trazabilidad` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-010 — Generar method registry desde código` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-011 — Consolidar casos y behavior catalog` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-012 — Consolidar event/effect catalogs` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-013 — Construir trace matrix y coverage gate` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-014 — Depurar skill registry y aliases` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-015 — Añadir skills de contexto y trazabilidad` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-016 — Consolidar agent registry` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-017 — Aplicar política de subagentes y coste` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-018 — Actualizar adapter de Claude` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-019 — Actualizar adapter de Codex` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-020 — Actualizar adapter de Copilot` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-021 — Implementar provider drift gate` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-022 — Migrar task-card a esquema` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-023 — Consolidar Scrum, claims y vistas` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-024 — Crear evidence store y log distillation` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-025 — Crear validadores mecánicos` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-026 — Crear evals por proveedor y caso de uso` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-027 — Migrar planes COREUX/DECL/RESTORE` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-029 — Integrar scripts en package/CI` (retired; Git/evidence is provenance) — `BACKLOG`
++- `AIARCH-030 — Rollout, documentación y retrospectiva` (retired; Git/evidence is provenance) — `BACKLOG`
  
 -## Pasos
 +> Managed index. Update source documents, not this list.
@@ -61098,35 +61098,35 @@ index 4dde480..ac69fa0 100644
 -- [ ] 2+ con selección: visible.
 -- [ ] Sin permiso: disabled con reason.
 -- [ ] No se altera lock/readOnly.
-+- [AIARCH-001 — Auditar y congelar baseline](./AIARCH-001-auditar-y-congelar-baseline.md)
-+- [AIARCH-002 — Corregir fuente de estado y arranque](./AIARCH-002-corregir-fuente-de-estado-y-arranque.md)
-+- [AIARCH-003 — Adoptar adapters raíz](./AIARCH-003-adoptar-adapters-raiz.md)
-+- [AIARCH-004 — Implementar router por Context Manifest](./AIARCH-004-implementar-router-por-context-manifest.md)
-+- [AIARCH-005 — Aplicar presupuesto L0–L4](./AIARCH-005-aplicar-presupuesto-l0l4.md)
-+- [AIARCH-007 — Migrar memoria a índice y topics](./AIARCH-007-migrar-memoria-a-indice-y-topics.md)
-+- [AIARCH-008 — Implementar memory GC e invalidación](./AIARCH-008-implementar-memory-gc-e-invalidacion.md)
-+- [AIARCH-009 — Adoptar IDs de trazabilidad](./AIARCH-009-adoptar-ids-de-trazabilidad.md)
-+- [AIARCH-010 — Generar method registry desde código](./AIARCH-010-generar-method-registry-desde-codigo.md)
-+- [AIARCH-011 — Consolidar casos y behavior catalog](./AIARCH-011-consolidar-casos-y-behavior-catalog.md)
-+- [AIARCH-012 — Consolidar event/effect catalogs](./AIARCH-012-consolidar-event-effect-catalogs.md)
-+- [AIARCH-013 — Construir trace matrix y coverage gate](./AIARCH-013-construir-trace-matrix-y-coverage-gate.md)
-+- [AIARCH-014 — Depurar skill registry y aliases](./AIARCH-014-depurar-skill-registry-y-aliases.md)
-+- [AIARCH-015 — Añadir skills de contexto y trazabilidad](./AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md)
-+- [AIARCH-016 — Consolidar agent registry](./AIARCH-016-consolidar-agent-registry.md)
-+- [AIARCH-017 — Aplicar política de subagentes y coste](./AIARCH-017-aplicar-politica-de-subagentes-y-coste.md)
-+- [AIARCH-018 — Actualizar adapter de Claude](./AIARCH-018-actualizar-adapter-de-claude.md)
-+- [AIARCH-019 — Actualizar adapter de Codex](./AIARCH-019-actualizar-adapter-de-codex.md)
-+- [AIARCH-020 — Actualizar adapter de Copilot](./AIARCH-020-actualizar-adapter-de-copilot.md)
-+- [AIARCH-021 — Implementar provider drift gate](./AIARCH-021-implementar-provider-drift-gate.md)
-+- [AIARCH-022 — Migrar task-card a esquema](./AIARCH-022-migrar-task-card-a-esquema.md)
-+- [AIARCH-023 — Consolidar Scrum, claims y vistas](./AIARCH-023-consolidar-scrum-claims-y-vistas.md)
-+- [AIARCH-024 — Crear evidence store y log distillation](./AIARCH-024-crear-evidence-store-y-log-distillation.md)
-+- [AIARCH-025 — Crear validadores mecánicos](./AIARCH-025-crear-validadores-mecanicos.md)
-+- [AIARCH-026 — Crear evals por proveedor y caso de uso](./AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md)
-+- [AIARCH-027 — Migrar planes COREUX/DECL/RESTORE](./AIARCH-027-migrar-planes-coreux-decl-restore.md)
-+- [AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos](./AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md)
-+- [AIARCH-029 — Integrar scripts en package/CI](./AIARCH-029-integrar-scripts-en-package-ci.md)
-+- [AIARCH-030 — Rollout, documentación y retrospectiva](./AIARCH-030-rollout-documentacion-y-retrospectiva.md)
++- `AIARCH-001 — Auditar y congelar baseline` (retired; Git/evidence is provenance)
++- `AIARCH-002 — Corregir fuente de estado y arranque` (retired; Git/evidence is provenance)
++- `AIARCH-003 — Adoptar adapters raíz` (retired; Git/evidence is provenance)
++- `AIARCH-004 — Implementar router por Context Manifest` (retired; Git/evidence is provenance)
++- `AIARCH-005 — Aplicar presupuesto L0–L4` (retired; Git/evidence is provenance)
++- `AIARCH-007 — Migrar memoria a índice y topics` (retired; Git/evidence is provenance)
++- `AIARCH-008 — Implementar memory GC e invalidación` (retired; Git/evidence is provenance)
++- `AIARCH-009 — Adoptar IDs de trazabilidad` (retired; Git/evidence is provenance)
++- `AIARCH-010 — Generar method registry desde código` (retired; Git/evidence is provenance)
++- `AIARCH-011 — Consolidar casos y behavior catalog` (retired; Git/evidence is provenance)
++- `AIARCH-012 — Consolidar event/effect catalogs` (retired; Git/evidence is provenance)
++- `AIARCH-013 — Construir trace matrix y coverage gate` (retired; Git/evidence is provenance)
++- `AIARCH-014 — Depurar skill registry y aliases` (retired; Git/evidence is provenance)
++- `AIARCH-015 — Añadir skills de contexto y trazabilidad` (retired; Git/evidence is provenance)
++- `AIARCH-016 — Consolidar agent registry` (retired; Git/evidence is provenance)
++- `AIARCH-017 — Aplicar política de subagentes y coste` (retired; Git/evidence is provenance)
++- `AIARCH-018 — Actualizar adapter de Claude` (retired; Git/evidence is provenance)
++- `AIARCH-019 — Actualizar adapter de Codex` (retired; Git/evidence is provenance)
++- `AIARCH-020 — Actualizar adapter de Copilot` (retired; Git/evidence is provenance)
++- `AIARCH-021 — Implementar provider drift gate` (retired; Git/evidence is provenance)
++- `AIARCH-022 — Migrar task-card a esquema` (retired; Git/evidence is provenance)
++- `AIARCH-023 — Consolidar Scrum, claims y vistas` (retired; Git/evidence is provenance)
++- `AIARCH-024 — Crear evidence store y log distillation` (retired; Git/evidence is provenance)
++- `AIARCH-025 — Crear validadores mecánicos` (retired; Git/evidence is provenance)
++- `AIARCH-026 — Crear evals por proveedor y caso de uso` (retired; Git/evidence is provenance)
++- `AIARCH-027 — Migrar planes COREUX/DECL/RESTORE` (retired; Git/evidence is provenance)
++- `AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos` (retired; Git/evidence is provenance)
++- `AIARCH-029 — Integrar scripts en package/CI` (retired; Git/evidence is provenance)
++- `AIARCH-030 — Rollout, documentación y retrospectiva` (retired; Git/evidence is provenance)
 +<!-- project-tools:navigation:end -->
  
 -## Gates focales
@@ -61140,35 +61140,35 @@ index 4dde480..ac69fa0 100644
 -npm run quality:duplicate-functions
 -npx vitest run <tests-focales>
 -``​`
-+- [AIARCH-001 — Auditar y congelar baseline](./AIARCH-001-auditar-y-congelar-baseline.md)
-+- [AIARCH-002 — Corregir fuente de estado y arranque](./AIARCH-002-corregir-fuente-de-estado-y-arranque.md)
-+- [AIARCH-003 — Adoptar adapters raíz](./AIARCH-003-adoptar-adapters-raiz.md)
-+- [AIARCH-004 — Implementar router por Context Manifest](./AIARCH-004-implementar-router-por-context-manifest.md)
-+- [AIARCH-005 — Aplicar presupuesto L0–L4](./AIARCH-005-aplicar-presupuesto-l0l4.md)
-+- [AIARCH-007 — Migrar memoria a índice y topics](./AIARCH-007-migrar-memoria-a-indice-y-topics.md)
-+- [AIARCH-008 — Implementar memory GC e invalidación](./AIARCH-008-implementar-memory-gc-e-invalidacion.md)
-+- [AIARCH-009 — Adoptar IDs de trazabilidad](./AIARCH-009-adoptar-ids-de-trazabilidad.md)
-+- [AIARCH-010 — Generar method registry desde código](./AIARCH-010-generar-method-registry-desde-codigo.md)
-+- [AIARCH-011 — Consolidar casos y behavior catalog](./AIARCH-011-consolidar-casos-y-behavior-catalog.md)
-+- [AIARCH-012 — Consolidar event/effect catalogs](./AIARCH-012-consolidar-event-effect-catalogs.md)
-+- [AIARCH-013 — Construir trace matrix y coverage gate](./AIARCH-013-construir-trace-matrix-y-coverage-gate.md)
-+- [AIARCH-014 — Depurar skill registry y aliases](./AIARCH-014-depurar-skill-registry-y-aliases.md)
-+- [AIARCH-015 — Añadir skills de contexto y trazabilidad](./AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md)
-+- [AIARCH-016 — Consolidar agent registry](./AIARCH-016-consolidar-agent-registry.md)
-+- [AIARCH-017 — Aplicar política de subagentes y coste](./AIARCH-017-aplicar-politica-de-subagentes-y-coste.md)
-+- [AIARCH-018 — Actualizar adapter de Claude](./AIARCH-018-actualizar-adapter-de-claude.md)
-+- [AIARCH-019 — Actualizar adapter de Codex](./AIARCH-019-actualizar-adapter-de-codex.md)
-+- [AIARCH-020 — Actualizar adapter de Copilot](./AIARCH-020-actualizar-adapter-de-copilot.md)
-+- [AIARCH-021 — Implementar provider drift gate](./AIARCH-021-implementar-provider-drift-gate.md)
-+- [AIARCH-022 — Migrar task-card a esquema](./AIARCH-022-migrar-task-card-a-esquema.md)
-+- [AIARCH-023 — Consolidar Scrum, claims y vistas](./AIARCH-023-consolidar-scrum-claims-y-vistas.md)
-+- [AIARCH-024 — Crear evidence store y log distillation](./AIARCH-024-crear-evidence-store-y-log-distillation.md)
-+- [AIARCH-025 — Crear validadores mecánicos](./AIARCH-025-crear-validadores-mecanicos.md)
-+- [AIARCH-026 — Crear evals por proveedor y caso de uso](./AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md)
-+- [AIARCH-027 — Migrar planes COREUX/DECL/RESTORE](./AIARCH-027-migrar-planes-coreux-decl-restore.md)
-+- [AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos](./AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md)
-+- [AIARCH-029 — Integrar scripts en package/CI](./AIARCH-029-integrar-scripts-en-package-ci.md)
-+- [AIARCH-030 — Rollout, documentación y retrospectiva](./AIARCH-030-rollout-documentacion-y-retrospectiva.md)
++- `AIARCH-001 — Auditar y congelar baseline` (retired; Git/evidence is provenance)
++- `AIARCH-002 — Corregir fuente de estado y arranque` (retired; Git/evidence is provenance)
++- `AIARCH-003 — Adoptar adapters raíz` (retired; Git/evidence is provenance)
++- `AIARCH-004 — Implementar router por Context Manifest` (retired; Git/evidence is provenance)
++- `AIARCH-005 — Aplicar presupuesto L0–L4` (retired; Git/evidence is provenance)
++- `AIARCH-007 — Migrar memoria a índice y topics` (retired; Git/evidence is provenance)
++- `AIARCH-008 — Implementar memory GC e invalidación` (retired; Git/evidence is provenance)
++- `AIARCH-009 — Adoptar IDs de trazabilidad` (retired; Git/evidence is provenance)
++- `AIARCH-010 — Generar method registry desde código` (retired; Git/evidence is provenance)
++- `AIARCH-011 — Consolidar casos y behavior catalog` (retired; Git/evidence is provenance)
++- `AIARCH-012 — Consolidar event/effect catalogs` (retired; Git/evidence is provenance)
++- `AIARCH-013 — Construir trace matrix y coverage gate` (retired; Git/evidence is provenance)
++- `AIARCH-014 — Depurar skill registry y aliases` (retired; Git/evidence is provenance)
++- `AIARCH-015 — Añadir skills de contexto y trazabilidad` (retired; Git/evidence is provenance)
++- `AIARCH-016 — Consolidar agent registry` (retired; Git/evidence is provenance)
++- `AIARCH-017 — Aplicar política de subagentes y coste` (retired; Git/evidence is provenance)
++- `AIARCH-018 — Actualizar adapter de Claude` (retired; Git/evidence is provenance)
++- `AIARCH-019 — Actualizar adapter de Codex` (retired; Git/evidence is provenance)
++- `AIARCH-020 — Actualizar adapter de Copilot` (retired; Git/evidence is provenance)
++- `AIARCH-021 — Implementar provider drift gate` (retired; Git/evidence is provenance)
++- `AIARCH-022 — Migrar task-card a esquema` (retired; Git/evidence is provenance)
++- `AIARCH-023 — Consolidar Scrum, claims y vistas` (retired; Git/evidence is provenance)
++- `AIARCH-024 — Crear evidence store y log distillation` (retired; Git/evidence is provenance)
++- `AIARCH-025 — Crear validadores mecánicos` (retired; Git/evidence is provenance)
++- `AIARCH-026 — Crear evals por proveedor y caso de uso` (retired; Git/evidence is provenance)
++- `AIARCH-027 — Migrar planes COREUX/DECL/RESTORE` (retired; Git/evidence is provenance)
++- `AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos` (retired; Git/evidence is provenance)
++- `AIARCH-029 — Integrar scripts en package/CI` (retired; Git/evidence is provenance)
++- `AIARCH-030 — Rollout, documentación y retrospectiva` (retired; Git/evidence is provenance)
  
 -Agregar Playwright solo cuando cambie comportamiento visible.
 +> Generated navigation. Source content outside this block remains manual.
@@ -61208,7 +61208,7 @@ index 4dde480..ac69fa0 100644
 +## Navigation
  
 -## Rollback
-+- [AI8-004 — Implantar query y context pack](./AI8-004-implantar-query-y-context-pack.md)
++- `AI8-004 — Implantar query y context pack` (retired; Git/evidence is provenance)
  
 -Commit atómico. Preservar:
 +> Generated navigation. Source content outside this block remains manual.
@@ -61251,7 +61251,7 @@ index 4dde480..ac69fa0 100644
 -rollback
 -siguiente acción
 -``​`
-+- [AI8-004 — Implantar query y context pack](./AI8-004-implantar-query-y-context-pack.md)
++- `AI8-004 — Implantar query y context pack` (retired; Git/evidence is provenance)
 +<!-- project-tools:navigation:end -->
  ```
  
@@ -64694,62 +64694,62 @@ index 4dde480..ac69fa0 100644
 -<!-- sisad-architecture-hub:start -->
 -## Navigation
 -
--- [COREUX-001 — Congelar baseline visual y responsive](./COREUX-001-congelar-baseline-visual-y-responsive.md) — `PASS`
--- [COREUX-002 — Inventariar capacidades y funcionalidades ejecutables](./COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md) — `PASS`
--- [COREUX-003 — Auditar cobertura real de eventos y efectos](./COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md) — `PASS`
--- [COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual](./COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md) — `PASS`
--- [COREUX-005 — Crear catálogo tipado y versionado de eventos](./COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md) — `PASS`
--- [COREUX-006 — Implementar dispatcher único y adapter legacy onX](./COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md) — `PASS`
--- [COREUX-007 — Instrumentar eventos del Designer y toolbar](./COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md) — `PASS`
--- [COREUX-008 — Expandir máquina de estados de interacción](./COREUX-008-expandir-maquina-de-estados-de-interaccion.md) — `PASS`
--- [COREUX-009 — Crear coordinador de efectos del Designer](./COREUX-009-crear-coordinador-de-efectos-del-designer.md) — `PASS`
--- [COREUX-010 — Completar modelo canónico de acceso a schemas](./COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md) — `PASS`
--- [COREUX-011 — Unificar ActionConfigRegistry y designerActionState](./COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md) — `PASS`
--- [COREUX-012 — Conectar CommandBus, eventos e historial](./COREUX-012-conectar-commandbus-eventos-e-historial.md) — `PASS`
--- [COREUX-013 — Corregir layout, safe area y contraste de CtlBar](./COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md) — `PASS`
--- [COREUX-014 — Reemplazar tooltips nativos por primitive controlada](./COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md) — `PASS`
--- [COREUX-015 — Convertir toggles de vista en comandos configurables](./COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md) — `PASS`
--- [COREUX-016 — Completar comandos de página](./COREUX-016-completar-comandos-de-pagina.md) — `PASS`
--- [COREUX-017 — Unificar zoom, fit page y fit width](./COREUX-017-unificar-zoom-fit-page-y-fit-width.md) — `PASS`
--- [COREUX-018 — Cerrar lifecycle de Guardar y autosave](./COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md) — `PASS`
--- [COREUX-019 — Cerrar lifecycle de exportación y artifacts](./COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md) — `PASS`
--- [COREUX-020 — Crear estado responsive único de superficies](./COREUX-020-crear-estado-responsive-unico-de-superficies.md) — `BACKLOG`
--- [COREUX-021 — Unificar rails y colapso de ambos sidebars](./COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md) — `BACKLOG`
--- [COREUX-022 — Preservar ancla visual del viewport al cambiar layout](./COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md) — `BACKLOG`
--- [COREUX-023 — Consolidar catálogo izquierdo y layouts](./COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md) — `BACKLOG`
--- [COREUX-024 — Formalizar contrato del RightSidebar](./COREUX-024-formalizar-contrato-del-rightsidebar.md) — `BACKLOG`
--- [COREUX-025 — Completar ListView compacto y menú por fila](./COREUX-025-completar-listview-compacto-y-menu-por-fila.md) — `BACKLOG`
--- [COREUX-026 — Corregir regla y lifecycle de Reasignar responsable](./COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md) — `BACKLOG`
--- [COREUX-027 — Completar DocumentsRail y DocumentController](./COREUX-027-completar-documentsrail-y-documentcontroller.md) — `BACKLOG`
--- [COREUX-028 — Completar CommentsRail y lifecycle de comentarios](./COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md) — `BACKLOG`
--- [COREUX-029 — Cerrar perfiles del inspector por familia](./COREUX-029-cerrar-perfiles-del-inspector-por-familia.md) — `BACKLOG`
--- [COREUX-030 — Formalizar contrato de widgets del DetailView](./COREUX-030-formalizar-contrato-de-widgets-del-detailview.md) — `BACKLOG`
--- [COREUX-031 — Optimizar geometría, alineación y precisión visual](./COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md) — `BACKLOG`
--- [COREUX-032 — Consolidar Datos y conexiones](./COREUX-032-consolidar-datos-y-conexiones.md) — `BACKLOG`
--- [COREUX-033 — Consolidar Asignación, bloqueo y auditoría](./COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md) — `BACKLOG`
--- [COREUX-034 — Unificar editor de opciones](./COREUX-034-unificar-editor-de-opciones.md) — `BACKLOG`
--- [COREUX-035 — Hacer inspector de firma dependiente del modo](./COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md) — `BACKLOG`
--- [COREUX-036 — Centralizar defaults de creación de schemas](./COREUX-036-centralizar-defaults-de-creacion-de-schemas.md) — `BACKLOG`
--- [COREUX-037 — Cerrar contrato de campos text-like, number y date/time](./COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md) — `BACKLOG`
--- [COREUX-038 — Cerrar contrato de choice fields](./COREUX-038-cerrar-contrato-de-choice-fields.md) — `BACKLOG`
--- [COREUX-039 — Cerrar contrato runtime de firma, initials y dateSigned](./COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md) — `BACKLOG`
--- [COREUX-040 — Cerrar contratos de action y visual schemas](./COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md) — `BACKLOG`
--- [COREUX-041 — Unificar owner tone y field chrome](./COREUX-041-unificar-owner-tone-y-field-chrome.md) — `BACKLOG`
--- [COREUX-042 — Consolidar selección y shortcuts multiplataforma](./COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md) — `BACKLOG`
--- [COREUX-043 — Cerrar drag/drop, placement y no-overlap](./COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md) — `BACKLOG`
--- [COREUX-044 — Alinear Moveable con access, interaction y events](./COREUX-044-alinear-moveable-con-access-interaction-y-events.md) — `BACKLOG`
--- [COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit](./COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md) — `BACKLOG`
--- [COREUX-046 — Cerrar routing multidocumento y navegación](./COREUX-046-cerrar-routing-multidocumento-y-navegacion.md) — `BACKLOG`
--- [COREUX-047 — Completar snapshot e historial versionado](./COREUX-047-completar-snapshot-e-historial-versionado.md) — `BACKLOG`
--- [COREUX-048 — Cerrar paridad del controller y capacidades](./COREUX-048-cerrar-paridad-del-controller-y-capacidades.md) — `BACKLOG`
--- [COREUX-049 — Cerrar paridad Designer, Form y Viewer](./COREUX-049-cerrar-paridad-designer-form-y-viewer.md) — `BACKLOG`
--- [COREUX-050 — Unificar validación, generator, converter y persistence](./COREUX-050-unificar-validacion-generator-converter-y-persistence.md) — `BACKLOG`
--- [COREUX-051 — Cerrar responsive, touch y accesibilidad](./COREUX-051-cerrar-responsive-touch-y-accesibilidad.md) — `BACKLOG`
--- [COREUX-052 — Estabilizar rendimiento y evitar remounts](./COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md) — `BACKLOG`
--- [COREUX-053 — Crear suite contractual de eventos y efectos](./COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md) — `BACKLOG`
--- [COREUX-054 — Crear Playwright y regresión visual integral](./COREUX-054-crear-playwright-y-regresion-visual-integral.md) — `BACKLOG`
--- [COREUX-055 — Añadir gates de frontera, duplicidad y drift](./COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md) — `BACKLOG`
--- [COREUX-056 — Documentar configuración, eventos, efectos y release](./COREUX-056-documentar-configuracion-eventos-efectos-y-release.md) — `BACKLOG`
+-- `COREUX-001 — Congelar baseline visual y responsive` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-002 — Inventariar capacidades y funcionalidades ejecutables` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-003 — Auditar cobertura real de eventos y efectos` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-005 — Crear catálogo tipado y versionado de eventos` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-006 — Implementar dispatcher único y adapter legacy onX` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-007 — Instrumentar eventos del Designer y toolbar` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-008 — Expandir máquina de estados de interacción` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-009 — Crear coordinador de efectos del Designer` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-010 — Completar modelo canónico de acceso a schemas` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-011 — Unificar ActionConfigRegistry y designerActionState` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-012 — Conectar CommandBus, eventos e historial` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-013 — Corregir layout, safe area y contraste de CtlBar` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-014 — Reemplazar tooltips nativos por primitive controlada` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-015 — Convertir toggles de vista en comandos configurables` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-016 — Completar comandos de página` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-017 — Unificar zoom, fit page y fit width` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-018 — Cerrar lifecycle de Guardar y autosave` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-019 — Cerrar lifecycle de exportación y artifacts` (retired; Git/evidence is provenance) — `PASS`
+-- `COREUX-020 — Crear estado responsive único de superficies` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-021 — Unificar rails y colapso de ambos sidebars` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-022 — Preservar ancla visual del viewport al cambiar layout` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-023 — Consolidar catálogo izquierdo y layouts` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-024 — Formalizar contrato del RightSidebar` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-025 — Completar ListView compacto y menú por fila` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-026 — Corregir regla y lifecycle de Reasignar responsable` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-027 — Completar DocumentsRail y DocumentController` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-028 — Completar CommentsRail y lifecycle de comentarios` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-029 — Cerrar perfiles del inspector por familia` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-030 — Formalizar contrato de widgets del DetailView` (retired; Git/evidence is provenance) — `BACKLOG`
+-- [PRT-110](../portable-runtime/PRT-110.md) — `BACKLOG`
+-- [PRT-060](../portable-runtime/PRT-060.md) — `BACKLOG`
+-- [PRT-040](../portable-runtime/PRT-040.md) — `BACKLOG`
+-- `COREUX-034 — Unificar editor de opciones` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-035 — Hacer inspector de firma dependiente del modo` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-036 — Centralizar defaults de creación de schemas` (retired; Git/evidence is provenance) — `BACKLOG`
+-- [PRT-080](../portable-runtime/PRT-080.md) — `BACKLOG`
+-- `COREUX-038 — Cerrar contrato de choice fields` (retired; Git/evidence is provenance) — `BACKLOG`
+-- [PRT-090](../portable-runtime/PRT-090.md) — `BACKLOG`
+-- [PRT-080](../portable-runtime/PRT-080.md) — `BACKLOG`
+-- `COREUX-041 — Unificar owner tone y field chrome` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-042 — Consolidar selección y shortcuts multiplataforma` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `COREUX-043 — Cerrar drag/drop, placement y no-overlap` (retired; Git/evidence is provenance) — `BACKLOG`
+-- [PRT-040](../portable-runtime/PRT-040.md) — `BACKLOG`
+-- `COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit` (retired; Git/evidence is provenance) — `BACKLOG`
+-- [PRT-070](../portable-runtime/PRT-070.md) — `BACKLOG`
+-- [PRT-100](../portable-runtime/PRT-100.md) — `BACKLOG`
+-- [PRT-060](../portable-runtime/PRT-060.md) — `BACKLOG`
+-- [PRT-080](../portable-runtime/PRT-080.md) — `BACKLOG`
+-- [PRT-100](../portable-runtime/PRT-100.md) — `BACKLOG`
+-- [PRT-110](../portable-runtime/PRT-110.md) — `BACKLOG`
+-- [PRT-110](../portable-runtime/PRT-110.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-110](../portable-runtime/PRT-110.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
 -
 -> Managed index. Update source documents, not this list.
 -<!-- sisad-architecture-hub:end -->
@@ -64759,62 +64759,62 @@ index 4dde480..ac69fa0 100644
 -
 -### Notas
 -
--- [COREUX-001 — Congelar baseline visual y responsive](./COREUX-001-congelar-baseline-visual-y-responsive.md)
--- [COREUX-002 — Inventariar capacidades y funcionalidades ejecutables](./COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md)
--- [COREUX-003 — Auditar cobertura real de eventos y efectos](./COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md)
--- [COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual](./COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md)
--- [COREUX-005 — Crear catálogo tipado y versionado de eventos](./COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md)
--- [COREUX-006 — Implementar dispatcher único y adapter legacy onX](./COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md)
--- [COREUX-007 — Instrumentar eventos del Designer y toolbar](./COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md)
--- [COREUX-008 — Expandir máquina de estados de interacción](./COREUX-008-expandir-maquina-de-estados-de-interaccion.md)
--- [COREUX-009 — Crear coordinador de efectos del Designer](./COREUX-009-crear-coordinador-de-efectos-del-designer.md)
--- [COREUX-010 — Completar modelo canónico de acceso a schemas](./COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md)
--- [COREUX-011 — Unificar ActionConfigRegistry y designerActionState](./COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md)
--- [COREUX-012 — Conectar CommandBus, eventos e historial](./COREUX-012-conectar-commandbus-eventos-e-historial.md)
--- [COREUX-013 — Corregir layout, safe area y contraste de CtlBar](./COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md)
--- [COREUX-014 — Reemplazar tooltips nativos por primitive controlada](./COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md)
--- [COREUX-015 — Convertir toggles de vista en comandos configurables](./COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md)
--- [COREUX-016 — Completar comandos de página](./COREUX-016-completar-comandos-de-pagina.md)
--- [COREUX-017 — Unificar zoom, fit page y fit width](./COREUX-017-unificar-zoom-fit-page-y-fit-width.md)
--- [COREUX-018 — Cerrar lifecycle de Guardar y autosave](./COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md)
--- [COREUX-019 — Cerrar lifecycle de exportación y artifacts](./COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md)
--- [COREUX-020 — Crear estado responsive único de superficies](./COREUX-020-crear-estado-responsive-unico-de-superficies.md)
--- [COREUX-021 — Unificar rails y colapso de ambos sidebars](./COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md)
--- [COREUX-022 — Preservar ancla visual del viewport al cambiar layout](./COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md)
--- [COREUX-023 — Consolidar catálogo izquierdo y layouts](./COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md)
--- [COREUX-024 — Formalizar contrato del RightSidebar](./COREUX-024-formalizar-contrato-del-rightsidebar.md)
--- [COREUX-025 — Completar ListView compacto y menú por fila](./COREUX-025-completar-listview-compacto-y-menu-por-fila.md)
--- [COREUX-026 — Corregir regla y lifecycle de Reasignar responsable](./COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md)
--- [COREUX-027 — Completar DocumentsRail y DocumentController](./COREUX-027-completar-documentsrail-y-documentcontroller.md)
--- [COREUX-028 — Completar CommentsRail y lifecycle de comentarios](./COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md)
--- [COREUX-029 — Cerrar perfiles del inspector por familia](./COREUX-029-cerrar-perfiles-del-inspector-por-familia.md)
--- [COREUX-030 — Formalizar contrato de widgets del DetailView](./COREUX-030-formalizar-contrato-de-widgets-del-detailview.md)
--- [COREUX-031 — Optimizar geometría, alineación y precisión visual](./COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md)
--- [COREUX-032 — Consolidar Datos y conexiones](./COREUX-032-consolidar-datos-y-conexiones.md)
--- [COREUX-033 — Consolidar Asignación, bloqueo y auditoría](./COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md)
--- [COREUX-034 — Unificar editor de opciones](./COREUX-034-unificar-editor-de-opciones.md)
--- [COREUX-035 — Hacer inspector de firma dependiente del modo](./COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md)
--- [COREUX-036 — Centralizar defaults de creación de schemas](./COREUX-036-centralizar-defaults-de-creacion-de-schemas.md)
--- [COREUX-037 — Cerrar contrato de campos text-like, number y date/time](./COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md)
--- [COREUX-038 — Cerrar contrato de choice fields](./COREUX-038-cerrar-contrato-de-choice-fields.md)
--- [COREUX-039 — Cerrar contrato runtime de firma, initials y dateSigned](./COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md)
--- [COREUX-040 — Cerrar contratos de action y visual schemas](./COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md)
--- [COREUX-041 — Unificar owner tone y field chrome](./COREUX-041-unificar-owner-tone-y-field-chrome.md)
--- [COREUX-042 — Consolidar selección y shortcuts multiplataforma](./COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md)
--- [COREUX-043 — Cerrar drag/drop, placement y no-overlap](./COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md)
--- [COREUX-044 — Alinear Moveable con access, interaction y events](./COREUX-044-alinear-moveable-con-access-interaction-y-events.md)
--- [COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit](./COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md)
--- [COREUX-046 — Cerrar routing multidocumento y navegación](./COREUX-046-cerrar-routing-multidocumento-y-navegacion.md)
--- [COREUX-047 — Completar snapshot e historial versionado](./COREUX-047-completar-snapshot-e-historial-versionado.md)
--- [COREUX-048 — Cerrar paridad del controller y capacidades](./COREUX-048-cerrar-paridad-del-controller-y-capacidades.md)
--- [COREUX-049 — Cerrar paridad Designer, Form y Viewer](./COREUX-049-cerrar-paridad-designer-form-y-viewer.md)
--- [COREUX-050 — Unificar validación, generator, converter y persistence](./COREUX-050-unificar-validacion-generator-converter-y-persistence.md)
--- [COREUX-051 — Cerrar responsive, touch y accesibilidad](./COREUX-051-cerrar-responsive-touch-y-accesibilidad.md)
--- [COREUX-052 — Estabilizar rendimiento y evitar remounts](./COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md)
--- [COREUX-053 — Crear suite contractual de eventos y efectos](./COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md)
--- [COREUX-054 — Crear Playwright y regresión visual integral](./COREUX-054-crear-playwright-y-regresion-visual-integral.md)
--- [COREUX-055 — Añadir gates de frontera, duplicidad y drift](./COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md)
--- [COREUX-056 — Documentar configuración, eventos, efectos y release](./COREUX-056-documentar-configuracion-eventos-efectos-y-release.md)
+-- `COREUX-001 — Congelar baseline visual y responsive` (retired; Git/evidence is provenance)
+-- `COREUX-002 — Inventariar capacidades y funcionalidades ejecutables` (retired; Git/evidence is provenance)
+-- `COREUX-003 — Auditar cobertura real de eventos y efectos` (retired; Git/evidence is provenance)
+-- `COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual` (retired; Git/evidence is provenance)
+-- `COREUX-005 — Crear catálogo tipado y versionado de eventos` (retired; Git/evidence is provenance)
+-- `COREUX-006 — Implementar dispatcher único y adapter legacy onX` (retired; Git/evidence is provenance)
+-- `COREUX-007 — Instrumentar eventos del Designer y toolbar` (retired; Git/evidence is provenance)
+-- `COREUX-008 — Expandir máquina de estados de interacción` (retired; Git/evidence is provenance)
+-- `COREUX-009 — Crear coordinador de efectos del Designer` (retired; Git/evidence is provenance)
+-- `COREUX-010 — Completar modelo canónico de acceso a schemas` (retired; Git/evidence is provenance)
+-- `COREUX-011 — Unificar ActionConfigRegistry y designerActionState` (retired; Git/evidence is provenance)
+-- `COREUX-012 — Conectar CommandBus, eventos e historial` (retired; Git/evidence is provenance)
+-- `COREUX-013 — Corregir layout, safe area y contraste de CtlBar` (retired; Git/evidence is provenance)
+-- `COREUX-014 — Reemplazar tooltips nativos por primitive controlada` (retired; Git/evidence is provenance)
+-- `COREUX-015 — Convertir toggles de vista en comandos configurables` (retired; Git/evidence is provenance)
+-- `COREUX-016 — Completar comandos de página` (retired; Git/evidence is provenance)
+-- `COREUX-017 — Unificar zoom, fit page y fit width` (retired; Git/evidence is provenance)
+-- `COREUX-018 — Cerrar lifecycle de Guardar y autosave` (retired; Git/evidence is provenance)
+-- `COREUX-019 — Cerrar lifecycle de exportación y artifacts` (retired; Git/evidence is provenance)
+-- `COREUX-020 — Crear estado responsive único de superficies` (retired; Git/evidence is provenance)
+-- `COREUX-021 — Unificar rails y colapso de ambos sidebars` (retired; Git/evidence is provenance)
+-- `COREUX-022 — Preservar ancla visual del viewport al cambiar layout` (retired; Git/evidence is provenance)
+-- `COREUX-023 — Consolidar catálogo izquierdo y layouts` (retired; Git/evidence is provenance)
+-- `COREUX-024 — Formalizar contrato del RightSidebar` (retired; Git/evidence is provenance)
+-- `COREUX-025 — Completar ListView compacto y menú por fila` (retired; Git/evidence is provenance)
+-- `COREUX-026 — Corregir regla y lifecycle de Reasignar responsable` (retired; Git/evidence is provenance)
+-- `COREUX-027 — Completar DocumentsRail y DocumentController` (retired; Git/evidence is provenance)
+-- `COREUX-028 — Completar CommentsRail y lifecycle de comentarios` (retired; Git/evidence is provenance)
+-- `COREUX-029 — Cerrar perfiles del inspector por familia` (retired; Git/evidence is provenance)
+-- `COREUX-030 — Formalizar contrato de widgets del DetailView` (retired; Git/evidence is provenance)
+-- [PRT-110](../portable-runtime/PRT-110.md)
+-- [PRT-060](../portable-runtime/PRT-060.md)
+-- [PRT-040](../portable-runtime/PRT-040.md)
+-- `COREUX-034 — Unificar editor de opciones` (retired; Git/evidence is provenance)
+-- `COREUX-035 — Hacer inspector de firma dependiente del modo` (retired; Git/evidence is provenance)
+-- `COREUX-036 — Centralizar defaults de creación de schemas` (retired; Git/evidence is provenance)
+-- [PRT-080](../portable-runtime/PRT-080.md)
+-- `COREUX-038 — Cerrar contrato de choice fields` (retired; Git/evidence is provenance)
+-- [PRT-090](../portable-runtime/PRT-090.md)
+-- [PRT-080](../portable-runtime/PRT-080.md)
+-- `COREUX-041 — Unificar owner tone y field chrome` (retired; Git/evidence is provenance)
+-- `COREUX-042 — Consolidar selección y shortcuts multiplataforma` (retired; Git/evidence is provenance)
+-- `COREUX-043 — Cerrar drag/drop, placement y no-overlap` (retired; Git/evidence is provenance)
+-- [PRT-040](../portable-runtime/PRT-040.md)
+-- `COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit` (retired; Git/evidence is provenance)
+-- [PRT-070](../portable-runtime/PRT-070.md)
+-- [PRT-100](../portable-runtime/PRT-100.md)
+-- [PRT-060](../portable-runtime/PRT-060.md)
+-- [PRT-080](../portable-runtime/PRT-080.md)
+-- [PRT-100](../portable-runtime/PRT-100.md)
+-- [PRT-110](../portable-runtime/PRT-110.md)
+-- [PRT-110](../portable-runtime/PRT-110.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-110](../portable-runtime/PRT-110.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
 -<!-- project-tools:navigation:end -->
 -```
 -
@@ -65859,18 +65859,18 @@ index 4dde480..ac69fa0 100644
 +- [ ] No confunde readOnly y lock.
 +- [ ] Reason visible y accesible.
  
--- [NAME-001 — Inventariar y clasificar ocurrencias](./name-001-inventariar-y-clasificar-ocurrencias.md) — `BACKLOG`
--- [NAME-002 — Crear política y gate preventivo](./name-002-crear-pol-tica-y-gate-preventivo.md) — `BACKLOG`
--- [NAME-003 — Renombrar vocabulario del inspector](./name-003-renombrar-vocabulario-del-inspector.md) — `BACKLOG`
--- [NAME-004 — Sanear migración de Config a](./name-004-sanear-migraci-n-de-config-a.md) — `BACKLOG`
--- [NAME-005 — Renombrar eventos y callbacks del host](./name-005-renombrar-eventos-y-callbacks-del-host.md) — `BACKLOG`
--- [NAME-006 — Versionar snapshots y metadata](./name-006-versionar-snapshots-y-metadata.md) — `BACKLOG`
--- [NAME-007 — Renombrar provider de colaboración](./name-007-renombrar-provider-de-colaboraci-n.md) — `BACKLOG`
--- [NAME-008 — Sanear almacenamiento de comentarios](./name-008-sanear-almacenamiento-de-comentarios.md) — `BACKLOG`
--- [NAME-009 — Sanear firma y familias de schema](./name-009-sanear-firma-y-familias-de-schema.md) — `BACKLOG`
--- [NAME-010 — Renombrar documentación y arquitectura IA](./name-010-renombrar-documentaci-n-y-arquitectura-ia.md) — `BACKLOG`
--- [NAME-011 — Administrar aliases públicos deprecados](./name-011-administrar-aliases-p-blicos-deprecados.md) — `BACKLOG`
--- [NAME-012 — Retirar compatibilidad obsoleta](./name-012-retirar-compatibilidad-obsoleta.md) — `BACKLOG`
+-- `NAME-001 — Inventariar y clasificar ocurrencias` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-002 — Crear política y gate preventivo` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-003 — Renombrar vocabulario del inspector` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-004 — Sanear migración de Config a` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-005 — Renombrar eventos y callbacks del host` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-006 — Versionar snapshots y metadata` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-007 — Renombrar provider de colaboración` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-008 — Sanear almacenamiento de comentarios` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-009 — Sanear firma y familias de schema` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-010 — Renombrar documentación y arquitectura IA` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-011 — Administrar aliases públicos deprecados` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `NAME-012 — Retirar compatibilidad obsoleta` (retired; Git/evidence is provenance) — `BACKLOG`
 +## Gates focales
  
 -> Managed index. Update source documents, not this list.
@@ -65890,18 +65890,18 @@ index 4dde480..ac69fa0 100644
 -### Notas
 +## Presupuesto
  
--- [NAME-001 — Inventariar y clasificar ocurrencias](./name-001-inventariar-y-clasificar-ocurrencias.md)
--- [NAME-002 — Crear política y gate preventivo](./name-002-crear-pol-tica-y-gate-preventivo.md)
--- [NAME-003 — Renombrar vocabulario del inspector](./name-003-renombrar-vocabulario-del-inspector.md)
--- [NAME-004 — Sanear migración de Config a](./name-004-sanear-migraci-n-de-config-a.md)
--- [NAME-005 — Renombrar eventos y callbacks del host](./name-005-renombrar-eventos-y-callbacks-del-host.md)
--- [NAME-006 — Versionar snapshots y metadata](./name-006-versionar-snapshots-y-metadata.md)
--- [NAME-007 — Renombrar provider de colaboración](./name-007-renombrar-provider-de-colaboraci-n.md)
--- [NAME-008 — Sanear almacenamiento de comentarios](./name-008-sanear-almacenamiento-de-comentarios.md)
--- [NAME-009 — Sanear firma y familias de schema](./name-009-sanear-firma-y-familias-de-schema.md)
--- [NAME-010 — Renombrar documentación y arquitectura IA](./name-010-renombrar-documentaci-n-y-arquitectura-ia.md)
--- [NAME-011 — Administrar aliases públicos deprecados](./name-011-administrar-aliases-p-blicos-deprecados.md)
--- [NAME-012 — Retirar compatibilidad obsoleta](./name-012-retirar-compatibilidad-obsoleta.md)
+-- `NAME-001 — Inventariar y clasificar ocurrencias` (retired; Git/evidence is provenance)
+-- `NAME-002 — Crear política y gate preventivo` (retired; Git/evidence is provenance)
+-- `NAME-003 — Renombrar vocabulario del inspector` (retired; Git/evidence is provenance)
+-- `NAME-004 — Sanear migración de Config a` (retired; Git/evidence is provenance)
+-- `NAME-005 — Renombrar eventos y callbacks del host` (retired; Git/evidence is provenance)
+-- `NAME-006 — Versionar snapshots y metadata` (retired; Git/evidence is provenance)
+-- `NAME-007 — Renombrar provider de colaboración` (retired; Git/evidence is provenance)
+-- `NAME-008 — Sanear almacenamiento de comentarios` (retired; Git/evidence is provenance)
+-- `NAME-009 — Sanear firma y familias de schema` (retired; Git/evidence is provenance)
+-- `NAME-010 — Renombrar documentación y arquitectura IA` (retired; Git/evidence is provenance)
+-- `NAME-011 — Administrar aliases públicos deprecados` (retired; Git/evidence is provenance)
+-- `NAME-012 — Retirar compatibilidad obsoleta` (retired; Git/evidence is provenance)
 -<!-- project-tools:navigation:end -->
 -```
 +- Máximo 5 archivos productivos.
@@ -66134,10 +66134,10 @@ index 4dde480..ac69fa0 100644
 +- Un writer; máximo dos readers read-only.
 +- No afirmar gates no ejecutados.
  
--- [Auditar API pública](./PORTDOC-001-auditar-api-publica.md) — `BACKLOG`
--- [Actualizar ejemplos](./PORTDOC-002-actualizar-ejemplos.md) — `BACKLOG`
--- [Crear consumer test](./PORTDOC-003-consumer-test.md) — `BACKLOG`
--- [Gate de drift documental](./PORTDOC-004-gate-drift-documental.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
 +## Caracterización previa
  
 -> Managed index. Update source documents, not this list.
@@ -66162,10 +66162,10 @@ index 4dde480..ac69fa0 100644
 +4. Validar labels/values.
 +5. Emitir patch único.
  
--- [Auditar API pública](./PORTDOC-001-auditar-api-publica.md)
--- [Actualizar ejemplos](./PORTDOC-002-actualizar-ejemplos.md)
--- [Crear consumer test](./PORTDOC-003-consumer-test.md)
--- [Gate de drift documental](./PORTDOC-004-gate-drift-documental.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
 -<!-- project-tools:navigation:end -->
 -```
 +## Criterios de aceptación
@@ -66211,97 +66211,97 @@ index 4dde480..ac69fa0 100644
 -### Notas
 +## Condición de parada
  
--- [RTP-000 — Live source truth, Git/hash drift y baseline](./RTP-000.md)
--- [RTP-005 — Canonicalizar infraestructura Playwright/Vitest y test authority](./RTP-005.md)
--- [RTP-008 — Reconciliar source, evidence y ledger antes de continuar](./RTP-008.md)
--- [RTP-010 — Fijar identidad SISAD-PDFME y nomenclatura policy](./RTP-010.md)
--- [RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User](./RTP-015.md)
--- [RTP-020 — Inventario registry-derived + generic runtime characterization harness](./RTP-020.md)
--- [RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page](./RTP-022.md)
--- [RTP-030 — Motor local-first de transacciones Form](./RTP-030.md)
--- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](./RTP-040.md)
--- [RTP-045 — Facade público: props declaradas vs. propagadas](./RTP-045.md)
--- [RTP-050 — Eventos canónicos de input/runtime + adapters legacy](./RTP-050.md)
--- [RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first](./RTP-055.md)
--- [RTP-060 — Lifecycle, remount, focus, caret, IME y cleanup](./RTP-060.md)
--- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](./RTP-070.md)
--- [RTP-080 — SchemaValueCodec por familia](./RTP-080.md)
--- [RTP-090 — Validation, touched, dirty, completion y access boundary](./RTP-090.md)
--- [RTP-095 — Harness pairwise de interacción entre schemas](./RTP-095.md)
--- [RTP-100 — Text-like, number, presets y multiVariableText](./RTP-100.md)
--- [RTP-110 — Select/dropdown, checkbox, radioGroup, checkboxGroup](./RTP-110.md)
--- [RTP-120 — Date, time, dateTime y dateSigned](./RTP-120.md)
--- [RTP-130 — Signature, initials, draw/image/P12/provider](./RTP-130.md)
--- [RTP-140 — Attachment, note, approve y decline artifacts/actions](./RTP-140.md)
--- [RTP-150 — Image/SVG/table/shapes/barcodes visual/complex schemas](./RTP-150.md)
--- [RTP-160 — Custom plugin runtime contract and auto-discovery harness](./RTP-160.md)
--- [RTP-170 — Viewer zero-mutation and parity](./RTP-170.md)
--- [RTP-180 — Generator/preflight parity and structured values](./RTP-180.md)
--- [RTP-190 — PDF.js converter loading/render/cancel/cleanup/concurrency](./RTP-190.md)
--- [RTP-200 — Snapshot, bundle, migration and semantic roundtrip](./RTP-200.md)
--- [RTP-210 — Multi-document/multipage routing and active ID isolation](./RTP-210.md)
--- [RTP-215 — Aislamiento User×Document×RuntimeSession](./RTP-215.md)
--- [RTP-220 — Recipients, ownership, colors, locks and runtime access](./RTP-220.md)
--- [RTP-222 — Migrar registry/access/appearance a User con aliases](./RTP-222.md)
--- [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](./RTP-225.md)
--- [RTP-226 — Contrato DigitalAgreements Recipient -> User](./RTP-226.md)
--- [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](./RTP-227.md)
--- [RTP-230 — Comments, collaboration and conflict-safe state](./RTP-230.md)
--- [RTP-240 — Persistence/save/autosave one-write lifecycle](./RTP-240.md)
--- [RTP-250 — Declarative config profiles and capability resolution](./RTP-250.md)
--- [RTP-260 — Controller/public API/action-state parity](./RTP-260.md)
--- [RTP-270 — Keyboard, accessibility, pointer/touch/pen and responsive runtime](./RTP-270.md)
--- [RTP-280 — Performance/memory/leak campaign for large PDFs/schemas](./RTP-280.md)
--- [RTP-290 — Security/privacy/artifact sanitization and secret boundaries](./RTP-290.md)
--- [RTP-300 — Examples + docs as contract consumers, no demo-runtime duplication](./RTP-300.md)
--- [RTP-305 — Quality gate registry-driven de comportamiento](./RTP-305.md)
--- [RTP-310 — All-schema Playwright + integration/release gates](./RTP-310.md)
--- [RTP-315 — Concurrencia real de sesiones con BrowserContext aislados](./RTP-315.md)
--- [RTP-320 — Consumer integration smoke and distribution contract](./RTP-320.md)
--- [RTP-325 — Gate de compatibilidad antes de retirar Recipient aliases](./RTP-325.md)
--- [RTP-330 — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad](./RTP-330.md)
--- [RTP-340 — Brain/docs/index/evidence closeout and context regeneration](./RTP-340.md)
--- [RTP-345 — Reconciliar Brain, contexto y paths persistentes](./RTP-345.md)
--- [RTP-350 — Congelar baseline de execution runtime](./RTP-350.md)
--- [RTP-355 — Crear autoridad canónica de interaction/completion](./RTP-355.md)
--- [RTP-360 — Cerrar User assignment y value scope](./RTP-360.md)
--- [RTP-365 — Cerrar RuntimeExecutionContext y aislamiento](./RTP-365.md)
--- [RTP-370 — Implementar ExecutionPlan genérico de LAB](./RTP-370.md)
--- [RTP-375 — Validar ejecución secuencial](./RTP-375.md)
--- [RTP-380 — Validar ejecución paralela](./RTP-380.md)
--- [RTP-385 — Cerrar mixed execution y conflictos shared](./RTP-385.md)
--- [RTP-390 — Cerrar massive fan-out](./RTP-390.md)
--- [RTP-395 — Definir execution result y PDF artifacts](./RTP-395.md)
--- [RTP-400 — Implementar canonical PDF merge](./RTP-400.md)
--- [RTP-405 — Cerrar append, multi-document y massive bundle](./RTP-405.md)
--- [RTP-410 — Crear all-schema execution/completion harness](./RTP-410.md)
--- [RTP-415 — Cerrar browser, performance, privacy y parity gates](./RTP-415.md)
--- [RTP-420 — Release y closeout del runtime](./RTP-420.md)
--- [RTP-425 — Reconciliar baseline de configuración y runtime](./RTP-425.md)
--- [RTP-430 — Inventariar capabilities ejecutables](./RTP-430.md)
--- [RTP-435 — Compilar configuración a snapshot inmutable](./RTP-435.md)
--- [RTP-440 — Hacer fail-closed el CapabilityGraph](./RTP-440.md)
--- [RTP-445 — Crear impact graph y effect plan dinámico](./RTP-445.md)
--- [RTP-450 — Crear GridGeometry canónica](./RTP-450.md)
--- [RTP-455 — Cerrar grid, snap, guides y rulers](./RTP-455.md)
--- [RTP-460 — Converger registries del Designer](./RTP-460.md)
--- [RTP-465 — Eliminar direct config readers y reglas duplicadas](./RTP-465.md)
--- [RTP-470 — Converger capabilities de Runtime](./RTP-470.md)
--- [RTP-475 — Hacer plugin-owned el schema manifest](./RTP-475.md)
--- [RTP-480 — Enriquecer codecs, validation y completion](./RTP-480.md)
--- [RTP-485 — Cerrar optimistic concurrency de execution scopes](./RTP-485.md)
--- [RTP-490 — Endurecer completion projections](./RTP-490.md)
--- [RTP-495 — Bloquear canonical merge conflictivo](./RTP-495.md)
--- [RTP-500 — Crear codec durable de ExecutionResult](./RTP-500.md)
--- [RTP-505 — Endurecer composición PDF](./RTP-505.md)
--- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md)
--- [RTP-515 — Crear all-schema stress harness dinámico](./RTP-515.md)
--- [RTP-520 — Auditar parity contra referencia DocuSign](./RTP-520.md)
--- [RTP-525 — Migrar compatibilidad Recipient hacia User](./RTP-525.md)
--- [RTP-530 — Retirar legacy y dead code de forma segura](./RTP-530.md)
--- [RTP-535 — Reducir duplicación y aumentar genericidad](./RTP-535.md)
--- [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](./RTP-540.md)
--- [RTP-545 — Release autónomo y closeout](./RTP-545.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-000](../portable-runtime/PRT-000.md)
 -<!-- project-tools:navigation:end -->
 +Detenerse y entregar handoff si:
  
@@ -66342,97 +66342,97 @@ index 4dde480..ac69fa0 100644
 +snapshotVersion
 +``​`
  
--- [RTP-000 — Live source truth, Git/hash drift y baseline](./RTP-000.md) — `READY`
--- [RTP-005 — Canonicalizar infraestructura Playwright/Vitest y test authority](./RTP-005.md) — `BACKLOG`
--- [RTP-008 — Reconciliar source, evidence y ledger antes de continuar](./RTP-008.md) — `BACKLOG`
--- [RTP-010 — Fijar identidad SISAD-PDFME y nomenclatura policy](./RTP-010.md) — `BACKLOG`
--- [RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User](./RTP-015.md) — `BACKLOG`
--- [RTP-020 — Inventario registry-derived + generic runtime characterization harness](./RTP-020.md) — `BACKLOG`
--- [RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page](./RTP-022.md) — `BACKLOG`
--- [RTP-030 — Motor local-first de transacciones Form](./RTP-030.md) — `BACKLOG`
--- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](./RTP-040.md) — `BACKLOG`
--- [RTP-045 — Facade público: props declaradas vs. propagadas](./RTP-045.md) — `BACKLOG`
--- [RTP-050 — Eventos canónicos de input/runtime + adapters legacy](./RTP-050.md) — `BACKLOG`
--- [RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first](./RTP-055.md) — `BACKLOG`
--- [RTP-060 — Lifecycle, remount, focus, caret, IME y cleanup](./RTP-060.md) — `BACKLOG`
--- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](./RTP-070.md) — `BACKLOG`
--- [RTP-080 — SchemaValueCodec por familia](./RTP-080.md) — `BACKLOG`
--- [RTP-090 — Validation, touched, dirty, completion y access boundary](./RTP-090.md) — `BACKLOG`
--- [RTP-095 — Harness pairwise de interacción entre schemas](./RTP-095.md) — `BACKLOG`
--- [RTP-100 — Text-like, number, presets y multiVariableText](./RTP-100.md) — `BACKLOG`
--- [RTP-110 — Select/dropdown, checkbox, radioGroup, checkboxGroup](./RTP-110.md) — `BACKLOG`
--- [RTP-120 — Date, time, dateTime y dateSigned](./RTP-120.md) — `BACKLOG`
--- [RTP-130 — Signature, initials, draw/image/P12/provider](./RTP-130.md) — `BACKLOG`
--- [RTP-140 — Attachment, note, approve y decline artifacts/actions](./RTP-140.md) — `BACKLOG`
--- [RTP-150 — Image/SVG/table/shapes/barcodes visual/complex schemas](./RTP-150.md) — `BACKLOG`
--- [RTP-160 — Custom plugin runtime contract and auto-discovery harness](./RTP-160.md) — `BACKLOG`
--- [RTP-170 — Viewer zero-mutation and parity](./RTP-170.md) — `BACKLOG`
--- [RTP-180 — Generator/preflight parity and structured values](./RTP-180.md) — `BACKLOG`
--- [RTP-190 — PDF.js converter loading/render/cancel/cleanup/concurrency](./RTP-190.md) — `BACKLOG`
--- [RTP-200 — Snapshot, bundle, migration and semantic roundtrip](./RTP-200.md) — `BACKLOG`
--- [RTP-210 — Multi-document/multipage routing and active ID isolation](./RTP-210.md) — `BACKLOG`
--- [RTP-215 — Aislamiento User×Document×RuntimeSession](./RTP-215.md) — `BACKLOG`
--- [RTP-220 — Recipients, ownership, colors, locks and runtime access](./RTP-220.md) — `BACKLOG`
--- [RTP-222 — Migrar registry/access/appearance a User con aliases](./RTP-222.md) — `BACKLOG`
--- [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](./RTP-225.md) — `BACKLOG`
--- [RTP-226 — Contrato DigitalAgreements Recipient -> User](./RTP-226.md) — `BACKLOG`
--- [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](./RTP-227.md) — `BACKLOG`
--- [RTP-230 — Comments, collaboration and conflict-safe state](./RTP-230.md) — `BACKLOG`
--- [RTP-240 — Persistence/save/autosave one-write lifecycle](./RTP-240.md) — `BACKLOG`
--- [RTP-250 — Declarative config profiles and capability resolution](./RTP-250.md) — `BACKLOG`
--- [RTP-260 — Controller/public API/action-state parity](./RTP-260.md) — `BACKLOG`
--- [RTP-270 — Keyboard, accessibility, pointer/touch/pen and responsive runtime](./RTP-270.md) — `BACKLOG`
--- [RTP-280 — Performance/memory/leak campaign for large PDFs/schemas](./RTP-280.md) — `BACKLOG`
--- [RTP-290 — Security/privacy/artifact sanitization and secret boundaries](./RTP-290.md) — `BACKLOG`
--- [RTP-300 — Examples + docs as contract consumers, no demo-runtime duplication](./RTP-300.md) — `BACKLOG`
--- [RTP-305 — Quality gate registry-driven de comportamiento](./RTP-305.md) — `BACKLOG`
--- [RTP-310 — All-schema Playwright + integration/release gates](./RTP-310.md) — `BACKLOG`
--- [RTP-315 — Concurrencia real de sesiones con BrowserContext aislados](./RTP-315.md) — `BACKLOG`
--- [RTP-320 — Consumer integration smoke and distribution contract](./RTP-320.md) — `BACKLOG`
--- [RTP-325 — Gate de compatibilidad antes de retirar Recipient aliases](./RTP-325.md) — `BACKLOG`
--- [RTP-330 — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad](./RTP-330.md) — `BACKLOG`
--- [RTP-340 — Brain/docs/index/evidence closeout and context regeneration](./RTP-340.md) — `BACKLOG`
--- [RTP-345 — Reconciliar Brain, contexto y paths persistentes](./RTP-345.md) — `BACKLOG`
--- [RTP-350 — Congelar baseline de execution runtime](./RTP-350.md) — `BACKLOG`
--- [RTP-355 — Crear autoridad canónica de interaction/completion](./RTP-355.md) — `BACKLOG`
--- [RTP-360 — Cerrar User assignment y value scope](./RTP-360.md) — `BACKLOG`
--- [RTP-365 — Cerrar RuntimeExecutionContext y aislamiento](./RTP-365.md) — `BACKLOG`
--- [RTP-370 — Implementar ExecutionPlan genérico de LAB](./RTP-370.md) — `BACKLOG`
--- [RTP-375 — Validar ejecución secuencial](./RTP-375.md) — `BACKLOG`
--- [RTP-380 — Validar ejecución paralela](./RTP-380.md) — `BACKLOG`
--- [RTP-385 — Cerrar mixed execution y conflictos shared](./RTP-385.md) — `BACKLOG`
--- [RTP-390 — Cerrar massive fan-out](./RTP-390.md) — `BACKLOG`
--- [RTP-395 — Definir execution result y PDF artifacts](./RTP-395.md) — `BACKLOG`
--- [RTP-400 — Implementar canonical PDF merge](./RTP-400.md) — `BACKLOG`
--- [RTP-405 — Cerrar append, multi-document y massive bundle](./RTP-405.md) — `BACKLOG`
--- [RTP-410 — Crear all-schema execution/completion harness](./RTP-410.md) — `BACKLOG`
--- [RTP-415 — Cerrar browser, performance, privacy y parity gates](./RTP-415.md) — `BACKLOG`
--- [RTP-420 — Release y closeout del runtime](./RTP-420.md) — `BACKLOG`
--- [RTP-425 — Reconciliar baseline de configuración y runtime](./RTP-425.md) — `PASS`
--- [RTP-430 — Inventariar capabilities ejecutables](./RTP-430.md) — `PASS`
--- [RTP-435 — Compilar configuración a snapshot inmutable](./RTP-435.md) — `PASS`
--- [RTP-440 — Hacer fail-closed el CapabilityGraph](./RTP-440.md) — `PASS`
--- [RTP-445 — Crear impact graph y effect plan dinámico](./RTP-445.md) — `PASS`
--- [RTP-450 — Crear GridGeometry canónica](./RTP-450.md) — `PASS`
--- [RTP-455 — Cerrar grid, snap, guides y rulers](./RTP-455.md) — `PASS`
--- [RTP-460 — Converger registries del Designer](./RTP-460.md) — `PASS`
--- [RTP-465 — Eliminar direct config readers y reglas duplicadas](./RTP-465.md) — `PASS`
--- [RTP-470 — Converger capabilities de Runtime](./RTP-470.md) — `PASS`
--- [RTP-475 — Hacer plugin-owned el schema manifest](./RTP-475.md) — `PASS`
--- [RTP-480 — Enriquecer codecs, validation y completion](./RTP-480.md) — `PASS`
--- [RTP-485 — Cerrar optimistic concurrency de execution scopes](./RTP-485.md) — `PASS`
--- [RTP-490 — Endurecer completion projections](./RTP-490.md) — `PASS`
--- [RTP-495 — Bloquear canonical merge conflictivo](./RTP-495.md) — `PASS`
--- [RTP-500 — Crear codec durable de ExecutionResult](./RTP-500.md) — `PASS`
--- [RTP-505 — Endurecer composición PDF](./RTP-505.md) — `PASS`
--- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md)
--- [RTP-515 — Crear all-schema stress harness dinámico](./RTP-515.md) — `BACKLOG`
--- [RTP-520 — Auditar parity contra referencia DocuSign](./RTP-520.md) — `PARTIAL`
--- [RTP-525 — Migrar compatibilidad Recipient hacia User](./RTP-525.md) — `PARTIAL`
--- [RTP-530 — Retirar legacy y dead code de forma segura](./RTP-530.md) — `BLOCKED`
--- [RTP-535 — Reducir duplicación y aumentar genericidad](./RTP-535.md) — `BACKLOG`
--- [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](./RTP-540.md) — `PARTIAL`
--- [RTP-545 — Release autónomo y closeout](./RTP-545.md) — `BLOCKED`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `READY`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
+-- [PRT-120](../portable-runtime/PRT-120.md)
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BLOCKED`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
+-- [PRT-000](../portable-runtime/PRT-000.md) — `BLOCKED`
 +## Handoff
  
 -> Managed index. Update source documents, not this list.
@@ -73619,62 +73619,62 @@ index 4dde480..ac69fa0 100644
 +## Navigation
  
 -## Product boundary
-+- [COREUX-001 — Congelar baseline visual y responsive](./COREUX-001-congelar-baseline-visual-y-responsive.md) — `PASS`
-+- [COREUX-002 — Inventariar capacidades y funcionalidades ejecutables](./COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md) — `PASS`
-+- [COREUX-003 — Auditar cobertura real de eventos y efectos](./COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md) — `PASS`
-+- [COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual](./COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md) — `PASS`
-+- [COREUX-005 — Crear catálogo tipado y versionado de eventos](./COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md) — `PASS`
-+- [COREUX-006 — Implementar dispatcher único y adapter legacy onX](./COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md) — `PASS`
-+- [COREUX-007 — Instrumentar eventos del Designer y toolbar](./COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md) — `PASS`
-+- [COREUX-008 — Expandir máquina de estados de interacción](./COREUX-008-expandir-maquina-de-estados-de-interaccion.md) — `PASS`
-+- [COREUX-009 — Crear coordinador de efectos del Designer](./COREUX-009-crear-coordinador-de-efectos-del-designer.md) — `PASS`
-+- [COREUX-010 — Completar modelo canónico de acceso a schemas](./COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md) — `PASS`
-+- [COREUX-011 — Unificar ActionConfigRegistry y designerActionState](./COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md) — `PASS`
-+- [COREUX-012 — Conectar CommandBus, eventos e historial](./COREUX-012-conectar-commandbus-eventos-e-historial.md) — `PASS`
-+- [COREUX-013 — Corregir layout, safe area y contraste de CtlBar](./COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md) — `PASS`
-+- [COREUX-014 — Reemplazar tooltips nativos por primitive controlada](./COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md) — `PASS`
-+- [COREUX-015 — Convertir toggles de vista en comandos configurables](./COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md) — `PASS`
-+- [COREUX-016 — Completar comandos de página](./COREUX-016-completar-comandos-de-pagina.md) — `PASS`
-+- [COREUX-017 — Unificar zoom, fit page y fit width](./COREUX-017-unificar-zoom-fit-page-y-fit-width.md) — `PASS`
-+- [COREUX-018 — Cerrar lifecycle de Guardar y autosave](./COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md) — `PASS`
-+- [COREUX-019 — Cerrar lifecycle de exportación y artifacts](./COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md) — `PASS`
-+- [COREUX-020 — Crear estado responsive único de superficies](./COREUX-020-crear-estado-responsive-unico-de-superficies.md) — `BACKLOG`
-+- [COREUX-021 — Unificar rails y colapso de ambos sidebars](./COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md) — `BACKLOG`
-+- [COREUX-022 — Preservar ancla visual del viewport al cambiar layout](./COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md) — `BACKLOG`
-+- [COREUX-023 — Consolidar catálogo izquierdo y layouts](./COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md) — `BACKLOG`
-+- [COREUX-024 — Formalizar contrato del RightSidebar](./COREUX-024-formalizar-contrato-del-rightsidebar.md) — `BACKLOG`
-+- [COREUX-025 — Completar ListView compacto y menú por fila](./COREUX-025-completar-listview-compacto-y-menu-por-fila.md) — `BACKLOG`
-+- [COREUX-026 — Corregir regla y lifecycle de Reasignar responsable](./COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md) — `BACKLOG`
-+- [COREUX-027 — Completar DocumentsRail y DocumentController](./COREUX-027-completar-documentsrail-y-documentcontroller.md) — `BACKLOG`
-+- [COREUX-028 — Completar CommentsRail y lifecycle de comentarios](./COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md) — `BACKLOG`
-+- [COREUX-029 — Cerrar perfiles del inspector por familia](./COREUX-029-cerrar-perfiles-del-inspector-por-familia.md) — `BACKLOG`
-+- [COREUX-030 — Formalizar contrato de widgets del DetailView](./COREUX-030-formalizar-contrato-de-widgets-del-detailview.md) — `BACKLOG`
-+- [COREUX-031 — Optimizar geometría, alineación y precisión visual](./COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md) — `BACKLOG`
-+- [COREUX-032 — Consolidar Datos y conexiones](./COREUX-032-consolidar-datos-y-conexiones.md) — `BACKLOG`
-+- [COREUX-033 — Consolidar Asignación, bloqueo y auditoría](./COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md) — `BACKLOG`
-+- [COREUX-034 — Unificar editor de opciones](./COREUX-034-unificar-editor-de-opciones.md) — `BACKLOG`
-+- [COREUX-035 — Hacer inspector de firma dependiente del modo](./COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md) — `BACKLOG`
-+- [COREUX-036 — Centralizar defaults de creación de schemas](./COREUX-036-centralizar-defaults-de-creacion-de-schemas.md) — `BACKLOG`
-+- [COREUX-037 — Cerrar contrato de campos text-like, number y date/time](./COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md) — `BACKLOG`
-+- [COREUX-038 — Cerrar contrato de choice fields](./COREUX-038-cerrar-contrato-de-choice-fields.md) — `BACKLOG`
-+- [COREUX-039 — Cerrar contrato runtime de firma, initials y dateSigned](./COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md) — `BACKLOG`
-+- [COREUX-040 — Cerrar contratos de action y visual schemas](./COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md) — `BACKLOG`
-+- [COREUX-041 — Unificar owner tone y field chrome](./COREUX-041-unificar-owner-tone-y-field-chrome.md) — `BACKLOG`
-+- [COREUX-042 — Consolidar selección y shortcuts multiplataforma](./COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md) — `BACKLOG`
-+- [COREUX-043 — Cerrar drag/drop, placement y no-overlap](./COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md) — `BACKLOG`
-+- [COREUX-044 — Alinear Moveable con access, interaction y events](./COREUX-044-alinear-moveable-con-access-interaction-y-events.md) — `BACKLOG`
-+- [COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit](./COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md) — `BACKLOG`
-+- [COREUX-046 — Cerrar routing multidocumento y navegación](./COREUX-046-cerrar-routing-multidocumento-y-navegacion.md) — `BACKLOG`
-+- [COREUX-047 — Completar snapshot e historial versionado](./COREUX-047-completar-snapshot-e-historial-versionado.md) — `BACKLOG`
-+- [COREUX-048 — Cerrar paridad del controller y capacidades](./COREUX-048-cerrar-paridad-del-controller-y-capacidades.md) — `BACKLOG`
-+- [COREUX-049 — Cerrar paridad Designer, Form y Viewer](./COREUX-049-cerrar-paridad-designer-form-y-viewer.md) — `BACKLOG`
-+- [COREUX-050 — Unificar validación, generator, converter y persistence](./COREUX-050-unificar-validacion-generator-converter-y-persistence.md) — `BACKLOG`
-+- [COREUX-051 — Cerrar responsive, touch y accesibilidad](./COREUX-051-cerrar-responsive-touch-y-accesibilidad.md) — `BACKLOG`
-+- [COREUX-052 — Estabilizar rendimiento y evitar remounts](./COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md) — `BACKLOG`
-+- [COREUX-053 — Crear suite contractual de eventos y efectos](./COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md) — `BACKLOG`
-+- [COREUX-054 — Crear Playwright y regresión visual integral](./COREUX-054-crear-playwright-y-regresion-visual-integral.md) — `BACKLOG`
-+- [COREUX-055 — Añadir gates de frontera, duplicidad y drift](./COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md) — `BACKLOG`
-+- [COREUX-056 — Documentar configuración, eventos, efectos y release](./COREUX-056-documentar-configuracion-eventos-efectos-y-release.md) — `BACKLOG`
++- `COREUX-001 — Congelar baseline visual y responsive` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-002 — Inventariar capacidades y funcionalidades ejecutables` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-003 — Auditar cobertura real de eventos y efectos` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-005 — Crear catálogo tipado y versionado de eventos` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-006 — Implementar dispatcher único y adapter legacy onX` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-007 — Instrumentar eventos del Designer y toolbar` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-008 — Expandir máquina de estados de interacción` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-009 — Crear coordinador de efectos del Designer` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-010 — Completar modelo canónico de acceso a schemas` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-011 — Unificar ActionConfigRegistry y designerActionState` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-012 — Conectar CommandBus, eventos e historial` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-013 — Corregir layout, safe area y contraste de CtlBar` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-014 — Reemplazar tooltips nativos por primitive controlada` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-015 — Convertir toggles de vista en comandos configurables` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-016 — Completar comandos de página` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-017 — Unificar zoom, fit page y fit width` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-018 — Cerrar lifecycle de Guardar y autosave` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-019 — Cerrar lifecycle de exportación y artifacts` (retired; Git/evidence is provenance) — `PASS`
++- `COREUX-020 — Crear estado responsive único de superficies` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-021 — Unificar rails y colapso de ambos sidebars` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-022 — Preservar ancla visual del viewport al cambiar layout` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-023 — Consolidar catálogo izquierdo y layouts` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-024 — Formalizar contrato del RightSidebar` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-025 — Completar ListView compacto y menú por fila` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-026 — Corregir regla y lifecycle de Reasignar responsable` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-027 — Completar DocumentsRail y DocumentController` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-028 — Completar CommentsRail y lifecycle de comentarios` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-029 — Cerrar perfiles del inspector por familia` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-030 — Formalizar contrato de widgets del DetailView` (retired; Git/evidence is provenance) — `BACKLOG`
++- [PRT-110](../portable-runtime/PRT-110.md) — `BACKLOG`
++- [PRT-060](../portable-runtime/PRT-060.md) — `BACKLOG`
++- [PRT-040](../portable-runtime/PRT-040.md) — `BACKLOG`
++- `COREUX-034 — Unificar editor de opciones` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-035 — Hacer inspector de firma dependiente del modo` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-036 — Centralizar defaults de creación de schemas` (retired; Git/evidence is provenance) — `BACKLOG`
++- [PRT-080](../portable-runtime/PRT-080.md) — `BACKLOG`
++- `COREUX-038 — Cerrar contrato de choice fields` (retired; Git/evidence is provenance) — `BACKLOG`
++- [PRT-090](../portable-runtime/PRT-090.md) — `BACKLOG`
++- [PRT-080](../portable-runtime/PRT-080.md) — `BACKLOG`
++- `COREUX-041 — Unificar owner tone y field chrome` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-042 — Consolidar selección y shortcuts multiplataforma` (retired; Git/evidence is provenance) — `BACKLOG`
++- `COREUX-043 — Cerrar drag/drop, placement y no-overlap` (retired; Git/evidence is provenance) — `BACKLOG`
++- [PRT-040](../portable-runtime/PRT-040.md) — `BACKLOG`
++- `COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit` (retired; Git/evidence is provenance) — `BACKLOG`
++- [PRT-070](../portable-runtime/PRT-070.md) — `BACKLOG`
++- [PRT-100](../portable-runtime/PRT-100.md) — `BACKLOG`
++- [PRT-060](../portable-runtime/PRT-060.md) — `BACKLOG`
++- [PRT-080](../portable-runtime/PRT-080.md) — `BACKLOG`
++- [PRT-100](../portable-runtime/PRT-100.md) — `BACKLOG`
++- [PRT-110](../portable-runtime/PRT-110.md) — `BACKLOG`
++- [PRT-110](../portable-runtime/PRT-110.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-110](../portable-runtime/PRT-110.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
  
 -SISAD-PDFME standalone/reusable. No reglas, DTOs, lifecycle ni nombres de producto
 -de un host concreto en el core o Brain canónico.
@@ -73696,62 +73696,62 @@ index 4dde480..ac69fa0 100644
 +### Notas
  
 -## Mandatory gates
-+- [COREUX-001 — Congelar baseline visual y responsive](./COREUX-001-congelar-baseline-visual-y-responsive.md)
-+- [COREUX-002 — Inventariar capacidades y funcionalidades ejecutables](./COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md)
-+- [COREUX-003 — Auditar cobertura real de eventos y efectos](./COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md)
-+- [COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual](./COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md)
-+- [COREUX-005 — Crear catálogo tipado y versionado de eventos](./COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md)
-+- [COREUX-006 — Implementar dispatcher único y adapter legacy onX](./COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md)
-+- [COREUX-007 — Instrumentar eventos del Designer y toolbar](./COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md)
-+- [COREUX-008 — Expandir máquina de estados de interacción](./COREUX-008-expandir-maquina-de-estados-de-interaccion.md)
-+- [COREUX-009 — Crear coordinador de efectos del Designer](./COREUX-009-crear-coordinador-de-efectos-del-designer.md)
-+- [COREUX-010 — Completar modelo canónico de acceso a schemas](./COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md)
-+- [COREUX-011 — Unificar ActionConfigRegistry y designerActionState](./COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md)
-+- [COREUX-012 — Conectar CommandBus, eventos e historial](./COREUX-012-conectar-commandbus-eventos-e-historial.md)
-+- [COREUX-013 — Corregir layout, safe area y contraste de CtlBar](./COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md)
-+- [COREUX-014 — Reemplazar tooltips nativos por primitive controlada](./COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md)
-+- [COREUX-015 — Convertir toggles de vista en comandos configurables](./COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md)
-+- [COREUX-016 — Completar comandos de página](./COREUX-016-completar-comandos-de-pagina.md)
-+- [COREUX-017 — Unificar zoom, fit page y fit width](./COREUX-017-unificar-zoom-fit-page-y-fit-width.md)
-+- [COREUX-018 — Cerrar lifecycle de Guardar y autosave](./COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md)
-+- [COREUX-019 — Cerrar lifecycle de exportación y artifacts](./COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md)
-+- [COREUX-020 — Crear estado responsive único de superficies](./COREUX-020-crear-estado-responsive-unico-de-superficies.md)
-+- [COREUX-021 — Unificar rails y colapso de ambos sidebars](./COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md)
-+- [COREUX-022 — Preservar ancla visual del viewport al cambiar layout](./COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md)
-+- [COREUX-023 — Consolidar catálogo izquierdo y layouts](./COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md)
-+- [COREUX-024 — Formalizar contrato del RightSidebar](./COREUX-024-formalizar-contrato-del-rightsidebar.md)
-+- [COREUX-025 — Completar ListView compacto y menú por fila](./COREUX-025-completar-listview-compacto-y-menu-por-fila.md)
-+- [COREUX-026 — Corregir regla y lifecycle de Reasignar responsable](./COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md)
-+- [COREUX-027 — Completar DocumentsRail y DocumentController](./COREUX-027-completar-documentsrail-y-documentcontroller.md)
-+- [COREUX-028 — Completar CommentsRail y lifecycle de comentarios](./COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md)
-+- [COREUX-029 — Cerrar perfiles del inspector por familia](./COREUX-029-cerrar-perfiles-del-inspector-por-familia.md)
-+- [COREUX-030 — Formalizar contrato de widgets del DetailView](./COREUX-030-formalizar-contrato-de-widgets-del-detailview.md)
-+- [COREUX-031 — Optimizar geometría, alineación y precisión visual](./COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md)
-+- [COREUX-032 — Consolidar Datos y conexiones](./COREUX-032-consolidar-datos-y-conexiones.md)
-+- [COREUX-033 — Consolidar Asignación, bloqueo y auditoría](./COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md)
-+- [COREUX-034 — Unificar editor de opciones](./COREUX-034-unificar-editor-de-opciones.md)
-+- [COREUX-035 — Hacer inspector de firma dependiente del modo](./COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md)
-+- [COREUX-036 — Centralizar defaults de creación de schemas](./COREUX-036-centralizar-defaults-de-creacion-de-schemas.md)
-+- [COREUX-037 — Cerrar contrato de campos text-like, number y date/time](./COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md)
-+- [COREUX-038 — Cerrar contrato de choice fields](./COREUX-038-cerrar-contrato-de-choice-fields.md)
-+- [COREUX-039 — Cerrar contrato runtime de firma, initials y dateSigned](./COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md)
-+- [COREUX-040 — Cerrar contratos de action y visual schemas](./COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md)
-+- [COREUX-041 — Unificar owner tone y field chrome](./COREUX-041-unificar-owner-tone-y-field-chrome.md)
-+- [COREUX-042 — Consolidar selección y shortcuts multiplataforma](./COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md)
-+- [COREUX-043 — Cerrar drag/drop, placement y no-overlap](./COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md)
-+- [COREUX-044 — Alinear Moveable con access, interaction y events](./COREUX-044-alinear-moveable-con-access-interaction-y-events.md)
-+- [COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit](./COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md)
-+- [COREUX-046 — Cerrar routing multidocumento y navegación](./COREUX-046-cerrar-routing-multidocumento-y-navegacion.md)
-+- [COREUX-047 — Completar snapshot e historial versionado](./COREUX-047-completar-snapshot-e-historial-versionado.md)
-+- [COREUX-048 — Cerrar paridad del controller y capacidades](./COREUX-048-cerrar-paridad-del-controller-y-capacidades.md)
-+- [COREUX-049 — Cerrar paridad Designer, Form y Viewer](./COREUX-049-cerrar-paridad-designer-form-y-viewer.md)
-+- [COREUX-050 — Unificar validación, generator, converter y persistence](./COREUX-050-unificar-validacion-generator-converter-y-persistence.md)
-+- [COREUX-051 — Cerrar responsive, touch y accesibilidad](./COREUX-051-cerrar-responsive-touch-y-accesibilidad.md)
-+- [COREUX-052 — Estabilizar rendimiento y evitar remounts](./COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md)
-+- [COREUX-053 — Crear suite contractual de eventos y efectos](./COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md)
-+- [COREUX-054 — Crear Playwright y regresión visual integral](./COREUX-054-crear-playwright-y-regresion-visual-integral.md)
-+- [COREUX-055 — Añadir gates de frontera, duplicidad y drift](./COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md)
-+- [COREUX-056 — Documentar configuración, eventos, efectos y release](./COREUX-056-documentar-configuracion-eventos-efectos-y-release.md)
++- `COREUX-001 — Congelar baseline visual y responsive` (retired; Git/evidence is provenance)
++- `COREUX-002 — Inventariar capacidades y funcionalidades ejecutables` (retired; Git/evidence is provenance)
++- `COREUX-003 — Auditar cobertura real de eventos y efectos` (retired; Git/evidence is provenance)
++- `COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual` (retired; Git/evidence is provenance)
++- `COREUX-005 — Crear catálogo tipado y versionado de eventos` (retired; Git/evidence is provenance)
++- `COREUX-006 — Implementar dispatcher único y adapter legacy onX` (retired; Git/evidence is provenance)
++- `COREUX-007 — Instrumentar eventos del Designer y toolbar` (retired; Git/evidence is provenance)
++- `COREUX-008 — Expandir máquina de estados de interacción` (retired; Git/evidence is provenance)
++- `COREUX-009 — Crear coordinador de efectos del Designer` (retired; Git/evidence is provenance)
++- `COREUX-010 — Completar modelo canónico de acceso a schemas` (retired; Git/evidence is provenance)
++- `COREUX-011 — Unificar ActionConfigRegistry y designerActionState` (retired; Git/evidence is provenance)
++- `COREUX-012 — Conectar CommandBus, eventos e historial` (retired; Git/evidence is provenance)
++- `COREUX-013 — Corregir layout, safe area y contraste de CtlBar` (retired; Git/evidence is provenance)
++- `COREUX-014 — Reemplazar tooltips nativos por primitive controlada` (retired; Git/evidence is provenance)
++- `COREUX-015 — Convertir toggles de vista en comandos configurables` (retired; Git/evidence is provenance)
++- `COREUX-016 — Completar comandos de página` (retired; Git/evidence is provenance)
++- `COREUX-017 — Unificar zoom, fit page y fit width` (retired; Git/evidence is provenance)
++- `COREUX-018 — Cerrar lifecycle de Guardar y autosave` (retired; Git/evidence is provenance)
++- `COREUX-019 — Cerrar lifecycle de exportación y artifacts` (retired; Git/evidence is provenance)
++- `COREUX-020 — Crear estado responsive único de superficies` (retired; Git/evidence is provenance)
++- `COREUX-021 — Unificar rails y colapso de ambos sidebars` (retired; Git/evidence is provenance)
++- `COREUX-022 — Preservar ancla visual del viewport al cambiar layout` (retired; Git/evidence is provenance)
++- `COREUX-023 — Consolidar catálogo izquierdo y layouts` (retired; Git/evidence is provenance)
++- `COREUX-024 — Formalizar contrato del RightSidebar` (retired; Git/evidence is provenance)
++- `COREUX-025 — Completar ListView compacto y menú por fila` (retired; Git/evidence is provenance)
++- `COREUX-026 — Corregir regla y lifecycle de Reasignar responsable` (retired; Git/evidence is provenance)
++- `COREUX-027 — Completar DocumentsRail y DocumentController` (retired; Git/evidence is provenance)
++- `COREUX-028 — Completar CommentsRail y lifecycle de comentarios` (retired; Git/evidence is provenance)
++- `COREUX-029 — Cerrar perfiles del inspector por familia` (retired; Git/evidence is provenance)
++- `COREUX-030 — Formalizar contrato de widgets del DetailView` (retired; Git/evidence is provenance)
++- [PRT-110](../portable-runtime/PRT-110.md)
++- [PRT-060](../portable-runtime/PRT-060.md)
++- [PRT-040](../portable-runtime/PRT-040.md)
++- `COREUX-034 — Unificar editor de opciones` (retired; Git/evidence is provenance)
++- `COREUX-035 — Hacer inspector de firma dependiente del modo` (retired; Git/evidence is provenance)
++- `COREUX-036 — Centralizar defaults de creación de schemas` (retired; Git/evidence is provenance)
++- [PRT-080](../portable-runtime/PRT-080.md)
++- `COREUX-038 — Cerrar contrato de choice fields` (retired; Git/evidence is provenance)
++- [PRT-090](../portable-runtime/PRT-090.md)
++- [PRT-080](../portable-runtime/PRT-080.md)
++- `COREUX-041 — Unificar owner tone y field chrome` (retired; Git/evidence is provenance)
++- `COREUX-042 — Consolidar selección y shortcuts multiplataforma` (retired; Git/evidence is provenance)
++- `COREUX-043 — Cerrar drag/drop, placement y no-overlap` (retired; Git/evidence is provenance)
++- [PRT-040](../portable-runtime/PRT-040.md)
++- `COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit` (retired; Git/evidence is provenance)
++- [PRT-070](../portable-runtime/PRT-070.md)
++- [PRT-100](../portable-runtime/PRT-100.md)
++- [PRT-060](../portable-runtime/PRT-060.md)
++- [PRT-080](../portable-runtime/PRT-080.md)
++- [PRT-100](../portable-runtime/PRT-100.md)
++- [PRT-110](../portable-runtime/PRT-110.md)
++- [PRT-110](../portable-runtime/PRT-110.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-110](../portable-runtime/PRT-110.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
 +<!-- project-tools:navigation:end -->
  
 -- [ ] registry coverage
@@ -73761,62 +73761,62 @@ index 4dde480..ac69fa0 100644
 +## Navigation
  
 -## Safety
-+- [COREUX-001 — Congelar baseline visual y responsive](./COREUX-001-congelar-baseline-visual-y-responsive.md)
-+- [COREUX-002 — Inventariar capacidades y funcionalidades ejecutables](./COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md)
-+- [COREUX-003 — Auditar cobertura real de eventos y efectos](./COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md)
-+- [COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual](./COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md)
-+- [COREUX-005 — Crear catálogo tipado y versionado de eventos](./COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md)
-+- [COREUX-006 — Implementar dispatcher único y adapter legacy onX](./COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md)
-+- [COREUX-007 — Instrumentar eventos del Designer y toolbar](./COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md)
-+- [COREUX-008 — Expandir máquina de estados de interacción](./COREUX-008-expandir-maquina-de-estados-de-interaccion.md)
-+- [COREUX-009 — Crear coordinador de efectos del Designer](./COREUX-009-crear-coordinador-de-efectos-del-designer.md)
-+- [COREUX-010 — Completar modelo canónico de acceso a schemas](./COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md)
-+- [COREUX-011 — Unificar ActionConfigRegistry y designerActionState](./COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md)
-+- [COREUX-012 — Conectar CommandBus, eventos e historial](./COREUX-012-conectar-commandbus-eventos-e-historial.md)
-+- [COREUX-013 — Corregir layout, safe area y contraste de CtlBar](./COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md)
-+- [COREUX-014 — Reemplazar tooltips nativos por primitive controlada](./COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md)
-+- [COREUX-015 — Convertir toggles de vista en comandos configurables](./COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md)
-+- [COREUX-016 — Completar comandos de página](./COREUX-016-completar-comandos-de-pagina.md)
-+- [COREUX-017 — Unificar zoom, fit page y fit width](./COREUX-017-unificar-zoom-fit-page-y-fit-width.md)
-+- [COREUX-018 — Cerrar lifecycle de Guardar y autosave](./COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md)
-+- [COREUX-019 — Cerrar lifecycle de exportación y artifacts](./COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md)
-+- [COREUX-020 — Crear estado responsive único de superficies](./COREUX-020-crear-estado-responsive-unico-de-superficies.md)
-+- [COREUX-021 — Unificar rails y colapso de ambos sidebars](./COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md)
-+- [COREUX-022 — Preservar ancla visual del viewport al cambiar layout](./COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md)
-+- [COREUX-023 — Consolidar catálogo izquierdo y layouts](./COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md)
-+- [COREUX-024 — Formalizar contrato del RightSidebar](./COREUX-024-formalizar-contrato-del-rightsidebar.md)
-+- [COREUX-025 — Completar ListView compacto y menú por fila](./COREUX-025-completar-listview-compacto-y-menu-por-fila.md)
-+- [COREUX-026 — Corregir regla y lifecycle de Reasignar responsable](./COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md)
-+- [COREUX-027 — Completar DocumentsRail y DocumentController](./COREUX-027-completar-documentsrail-y-documentcontroller.md)
-+- [COREUX-028 — Completar CommentsRail y lifecycle de comentarios](./COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md)
-+- [COREUX-029 — Cerrar perfiles del inspector por familia](./COREUX-029-cerrar-perfiles-del-inspector-por-familia.md)
-+- [COREUX-030 — Formalizar contrato de widgets del DetailView](./COREUX-030-formalizar-contrato-de-widgets-del-detailview.md)
-+- [COREUX-031 — Optimizar geometría, alineación y precisión visual](./COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md)
-+- [COREUX-032 — Consolidar Datos y conexiones](./COREUX-032-consolidar-datos-y-conexiones.md)
-+- [COREUX-033 — Consolidar Asignación, bloqueo y auditoría](./COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md)
-+- [COREUX-034 — Unificar editor de opciones](./COREUX-034-unificar-editor-de-opciones.md)
-+- [COREUX-035 — Hacer inspector de firma dependiente del modo](./COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md)
-+- [COREUX-036 — Centralizar defaults de creación de schemas](./COREUX-036-centralizar-defaults-de-creacion-de-schemas.md)
-+- [COREUX-037 — Cerrar contrato de campos text-like, number y date/time](./COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md)
-+- [COREUX-038 — Cerrar contrato de choice fields](./COREUX-038-cerrar-contrato-de-choice-fields.md)
-+- [COREUX-039 — Cerrar contrato runtime de firma, initials y dateSigned](./COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md)
-+- [COREUX-040 — Cerrar contratos de action y visual schemas](./COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md)
-+- [COREUX-041 — Unificar owner tone y field chrome](./COREUX-041-unificar-owner-tone-y-field-chrome.md)
-+- [COREUX-042 — Consolidar selección y shortcuts multiplataforma](./COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md)
-+- [COREUX-043 — Cerrar drag/drop, placement y no-overlap](./COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md)
-+- [COREUX-044 — Alinear Moveable con access, interaction y events](./COREUX-044-alinear-moveable-con-access-interaction-y-events.md)
-+- [COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit](./COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md)
-+- [COREUX-046 — Cerrar routing multidocumento y navegación](./COREUX-046-cerrar-routing-multidocumento-y-navegacion.md)
-+- [COREUX-047 — Completar snapshot e historial versionado](./COREUX-047-completar-snapshot-e-historial-versionado.md)
-+- [COREUX-048 — Cerrar paridad del controller y capacidades](./COREUX-048-cerrar-paridad-del-controller-y-capacidades.md)
-+- [COREUX-049 — Cerrar paridad Designer, Form y Viewer](./COREUX-049-cerrar-paridad-designer-form-y-viewer.md)
-+- [COREUX-050 — Unificar validación, generator, converter y persistence](./COREUX-050-unificar-validacion-generator-converter-y-persistence.md)
-+- [COREUX-051 — Cerrar responsive, touch y accesibilidad](./COREUX-051-cerrar-responsive-touch-y-accesibilidad.md)
-+- [COREUX-052 — Estabilizar rendimiento y evitar remounts](./COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md)
-+- [COREUX-053 — Crear suite contractual de eventos y efectos](./COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md)
-+- [COREUX-054 — Crear Playwright y regresión visual integral](./COREUX-054-crear-playwright-y-regresion-visual-integral.md)
-+- [COREUX-055 — Añadir gates de frontera, duplicidad y drift](./COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md)
-+- [COREUX-056 — Documentar configuración, eventos, efectos y release](./COREUX-056-documentar-configuracion-eventos-efectos-y-release.md)
++- `COREUX-001 — Congelar baseline visual y responsive` (retired; Git/evidence is provenance)
++- `COREUX-002 — Inventariar capacidades y funcionalidades ejecutables` (retired; Git/evidence is provenance)
++- `COREUX-003 — Auditar cobertura real de eventos y efectos` (retired; Git/evidence is provenance)
++- `COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual` (retired; Git/evidence is provenance)
++- `COREUX-005 — Crear catálogo tipado y versionado de eventos` (retired; Git/evidence is provenance)
++- `COREUX-006 — Implementar dispatcher único y adapter legacy onX` (retired; Git/evidence is provenance)
++- `COREUX-007 — Instrumentar eventos del Designer y toolbar` (retired; Git/evidence is provenance)
++- `COREUX-008 — Expandir máquina de estados de interacción` (retired; Git/evidence is provenance)
++- `COREUX-009 — Crear coordinador de efectos del Designer` (retired; Git/evidence is provenance)
++- `COREUX-010 — Completar modelo canónico de acceso a schemas` (retired; Git/evidence is provenance)
++- `COREUX-011 — Unificar ActionConfigRegistry y designerActionState` (retired; Git/evidence is provenance)
++- `COREUX-012 — Conectar CommandBus, eventos e historial` (retired; Git/evidence is provenance)
++- `COREUX-013 — Corregir layout, safe area y contraste de CtlBar` (retired; Git/evidence is provenance)
++- `COREUX-014 — Reemplazar tooltips nativos por primitive controlada` (retired; Git/evidence is provenance)
++- `COREUX-015 — Convertir toggles de vista en comandos configurables` (retired; Git/evidence is provenance)
++- `COREUX-016 — Completar comandos de página` (retired; Git/evidence is provenance)
++- `COREUX-017 — Unificar zoom, fit page y fit width` (retired; Git/evidence is provenance)
++- `COREUX-018 — Cerrar lifecycle de Guardar y autosave` (retired; Git/evidence is provenance)
++- `COREUX-019 — Cerrar lifecycle de exportación y artifacts` (retired; Git/evidence is provenance)
++- `COREUX-020 — Crear estado responsive único de superficies` (retired; Git/evidence is provenance)
++- `COREUX-021 — Unificar rails y colapso de ambos sidebars` (retired; Git/evidence is provenance)
++- `COREUX-022 — Preservar ancla visual del viewport al cambiar layout` (retired; Git/evidence is provenance)
++- `COREUX-023 — Consolidar catálogo izquierdo y layouts` (retired; Git/evidence is provenance)
++- `COREUX-024 — Formalizar contrato del RightSidebar` (retired; Git/evidence is provenance)
++- `COREUX-025 — Completar ListView compacto y menú por fila` (retired; Git/evidence is provenance)
++- `COREUX-026 — Corregir regla y lifecycle de Reasignar responsable` (retired; Git/evidence is provenance)
++- `COREUX-027 — Completar DocumentsRail y DocumentController` (retired; Git/evidence is provenance)
++- `COREUX-028 — Completar CommentsRail y lifecycle de comentarios` (retired; Git/evidence is provenance)
++- `COREUX-029 — Cerrar perfiles del inspector por familia` (retired; Git/evidence is provenance)
++- `COREUX-030 — Formalizar contrato de widgets del DetailView` (retired; Git/evidence is provenance)
++- [PRT-110](../portable-runtime/PRT-110.md)
++- [PRT-060](../portable-runtime/PRT-060.md)
++- [PRT-040](../portable-runtime/PRT-040.md)
++- `COREUX-034 — Unificar editor de opciones` (retired; Git/evidence is provenance)
++- `COREUX-035 — Hacer inspector de firma dependiente del modo` (retired; Git/evidence is provenance)
++- `COREUX-036 — Centralizar defaults de creación de schemas` (retired; Git/evidence is provenance)
++- [PRT-080](../portable-runtime/PRT-080.md)
++- `COREUX-038 — Cerrar contrato de choice fields` (retired; Git/evidence is provenance)
++- [PRT-090](../portable-runtime/PRT-090.md)
++- [PRT-080](../portable-runtime/PRT-080.md)
++- `COREUX-041 — Unificar owner tone y field chrome` (retired; Git/evidence is provenance)
++- `COREUX-042 — Consolidar selección y shortcuts multiplataforma` (retired; Git/evidence is provenance)
++- `COREUX-043 — Cerrar drag/drop, placement y no-overlap` (retired; Git/evidence is provenance)
++- [PRT-040](../portable-runtime/PRT-040.md)
++- `COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit` (retired; Git/evidence is provenance)
++- [PRT-070](../portable-runtime/PRT-070.md)
++- [PRT-100](../portable-runtime/PRT-100.md)
++- [PRT-060](../portable-runtime/PRT-060.md)
++- [PRT-080](../portable-runtime/PRT-080.md)
++- [PRT-100](../portable-runtime/PRT-100.md)
++- [PRT-110](../portable-runtime/PRT-110.md)
++- [PRT-110](../portable-runtime/PRT-110.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-110](../portable-runtime/PRT-110.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
  
 -No reset/clean/stash blanket/mass rename/recursive copy. One writer por files.
 -No crear archivos o carpetas con sufijos de revisión ni fecha.
@@ -75062,18 +75062,18 @@ index 4dde480..ac69fa0 100644
 +## Navigation
  
 -## Objective
-+- [NAME-001 — Inventariar y clasificar ocurrencias](./name-001-inventariar-y-clasificar-ocurrencias.md) — `BACKLOG`
-+- [NAME-002 — Crear política y gate preventivo](./name-002-crear-pol-tica-y-gate-preventivo.md) — `BACKLOG`
-+- [NAME-003 — Renombrar vocabulario del inspector](./name-003-renombrar-vocabulario-del-inspector.md) — `BACKLOG`
-+- [NAME-004 — Sanear migración de Config a](./name-004-sanear-migraci-n-de-config-a.md) — `BACKLOG`
-+- [NAME-005 — Renombrar eventos y callbacks del host](./name-005-renombrar-eventos-y-callbacks-del-host.md) — `BACKLOG`
-+- [NAME-006 — Versionar snapshots y metadata](./name-006-versionar-snapshots-y-metadata.md) — `BACKLOG`
-+- [NAME-007 — Renombrar provider de colaboración](./name-007-renombrar-provider-de-colaboraci-n.md) — `BACKLOG`
-+- [NAME-008 — Sanear almacenamiento de comentarios](./name-008-sanear-almacenamiento-de-comentarios.md) — `BACKLOG`
-+- [NAME-009 — Sanear firma y familias de schema](./name-009-sanear-firma-y-familias-de-schema.md) — `BACKLOG`
-+- [NAME-010 — Renombrar documentación y arquitectura IA](./name-010-renombrar-documentaci-n-y-arquitectura-ia.md) — `BACKLOG`
-+- [NAME-011 — Administrar aliases públicos deprecados](./name-011-administrar-aliases-p-blicos-deprecados.md) — `BACKLOG`
-+- [NAME-012 — Retirar compatibilidad obsoleta](./name-012-retirar-compatibilidad-obsoleta.md) — `BACKLOG`
++- `NAME-001 — Inventariar y clasificar ocurrencias` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-002 — Crear política y gate preventivo` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-003 — Renombrar vocabulario del inspector` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-004 — Sanear migración de Config a` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-005 — Renombrar eventos y callbacks del host` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-006 — Versionar snapshots y metadata` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-007 — Renombrar provider de colaboración` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-008 — Sanear almacenamiento de comentarios` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-009 — Sanear firma y familias de schema` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-010 — Renombrar documentación y arquitectura IA` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-011 — Administrar aliases públicos deprecados` (retired; Git/evidence is provenance) — `BACKLOG`
++- `NAME-012 — Retirar compatibilidad obsoleta` (retired; Git/evidence is provenance) — `BACKLOG`
  
 -Cerrar normalize/read/write/equals/empty/validate/completion por schema family y generated tests.
 +> Managed index. Update source documents, not this list.
@@ -75088,18 +75088,18 @@ index 4dde480..ac69fa0 100644
 +### Notas
  
 -## Product boundary
-+- [NAME-001 — Inventariar y clasificar ocurrencias](./name-001-inventariar-y-clasificar-ocurrencias.md)
-+- [NAME-002 — Crear política y gate preventivo](./name-002-crear-pol-tica-y-gate-preventivo.md)
-+- [NAME-003 — Renombrar vocabulario del inspector](./name-003-renombrar-vocabulario-del-inspector.md)
-+- [NAME-004 — Sanear migración de Config a](./name-004-sanear-migraci-n-de-config-a.md)
-+- [NAME-005 — Renombrar eventos y callbacks del host](./name-005-renombrar-eventos-y-callbacks-del-host.md)
-+- [NAME-006 — Versionar snapshots y metadata](./name-006-versionar-snapshots-y-metadata.md)
-+- [NAME-007 — Renombrar provider de colaboración](./name-007-renombrar-provider-de-colaboraci-n.md)
-+- [NAME-008 — Sanear almacenamiento de comentarios](./name-008-sanear-almacenamiento-de-comentarios.md)
-+- [NAME-009 — Sanear firma y familias de schema](./name-009-sanear-firma-y-familias-de-schema.md)
-+- [NAME-010 — Renombrar documentación y arquitectura IA](./name-010-renombrar-documentaci-n-y-arquitectura-ia.md)
-+- [NAME-011 — Administrar aliases públicos deprecados](./name-011-administrar-aliases-p-blicos-deprecados.md)
-+- [NAME-012 — Retirar compatibilidad obsoleta](./name-012-retirar-compatibilidad-obsoleta.md)
++- `NAME-001 — Inventariar y clasificar ocurrencias` (retired; Git/evidence is provenance)
++- `NAME-002 — Crear política y gate preventivo` (retired; Git/evidence is provenance)
++- `NAME-003 — Renombrar vocabulario del inspector` (retired; Git/evidence is provenance)
++- `NAME-004 — Sanear migración de Config a` (retired; Git/evidence is provenance)
++- `NAME-005 — Renombrar eventos y callbacks del host` (retired; Git/evidence is provenance)
++- `NAME-006 — Versionar snapshots y metadata` (retired; Git/evidence is provenance)
++- `NAME-007 — Renombrar provider de colaboración` (retired; Git/evidence is provenance)
++- `NAME-008 — Sanear almacenamiento de comentarios` (retired; Git/evidence is provenance)
++- `NAME-009 — Sanear firma y familias de schema` (retired; Git/evidence is provenance)
++- `NAME-010 — Renombrar documentación y arquitectura IA` (retired; Git/evidence is provenance)
++- `NAME-011 — Administrar aliases públicos deprecados` (retired; Git/evidence is provenance)
++- `NAME-012 — Retirar compatibilidad obsoleta` (retired; Git/evidence is provenance)
 +<!-- project-tools:navigation:end -->
  
 -SISAD-PDFME reusable. No business semantics de consumidores concretos.
@@ -75107,18 +75107,18 @@ index 4dde480..ac69fa0 100644
 +## Navigation
  
 -## Required process
-+- [NAME-001 — Inventariar y clasificar ocurrencias](./name-001-inventariar-y-clasificar-ocurrencias.md)
-+- [NAME-002 — Crear política y gate preventivo](./name-002-crear-pol-tica-y-gate-preventivo.md)
-+- [NAME-003 — Renombrar vocabulario del inspector](./name-003-renombrar-vocabulario-del-inspector.md)
-+- [NAME-004 — Sanear migración de Config a](./name-004-sanear-migraci-n-de-config-a.md)
-+- [NAME-005 — Renombrar eventos y callbacks del host](./name-005-renombrar-eventos-y-callbacks-del-host.md)
-+- [NAME-006 — Versionar snapshots y metadata](./name-006-versionar-snapshots-y-metadata.md)
-+- [NAME-007 — Renombrar provider de colaboración](./name-007-renombrar-provider-de-colaboraci-n.md)
-+- [NAME-008 — Sanear almacenamiento de comentarios](./name-008-sanear-almacenamiento-de-comentarios.md)
-+- [NAME-009 — Sanear firma y familias de schema](./name-009-sanear-firma-y-familias-de-schema.md)
-+- [NAME-010 — Renombrar documentación y arquitectura IA](./name-010-renombrar-documentaci-n-y-arquitectura-ia.md)
-+- [NAME-011 — Administrar aliases públicos deprecados](./name-011-administrar-aliases-p-blicos-deprecados.md)
-+- [NAME-012 — Retirar compatibilidad obsoleta](./name-012-retirar-compatibilidad-obsoleta.md)
++- `NAME-001 — Inventariar y clasificar ocurrencias` (retired; Git/evidence is provenance)
++- `NAME-002 — Crear política y gate preventivo` (retired; Git/evidence is provenance)
++- `NAME-003 — Renombrar vocabulario del inspector` (retired; Git/evidence is provenance)
++- `NAME-004 — Sanear migración de Config a` (retired; Git/evidence is provenance)
++- `NAME-005 — Renombrar eventos y callbacks del host` (retired; Git/evidence is provenance)
++- `NAME-006 — Versionar snapshots y metadata` (retired; Git/evidence is provenance)
++- `NAME-007 — Renombrar provider de colaboración` (retired; Git/evidence is provenance)
++- `NAME-008 — Sanear almacenamiento de comentarios` (retired; Git/evidence is provenance)
++- `NAME-009 — Sanear firma y familias de schema` (retired; Git/evidence is provenance)
++- `NAME-010 — Renombrar documentación y arquitectura IA` (retired; Git/evidence is provenance)
++- `NAME-011 — Administrar aliases públicos deprecados` (retired; Git/evidence is provenance)
++- `NAME-012 — Retirar compatibilidad obsoleta` (retired; Git/evidence is provenance)
  
 -1. reconcile live source/evidence;
 -2. characterize first divergence;
@@ -75340,10 +75340,10 @@ index 4dde480..ac69fa0 100644
 +## Navigation
  
 -## Acceptance
-+- [Auditar API pública](./PORTDOC-001-auditar-api-publica.md) — `BACKLOG`
-+- [Actualizar ejemplos](./PORTDOC-002-actualizar-ejemplos.md) — `BACKLOG`
-+- [Crear consumer test](./PORTDOC-003-consumer-test.md) — `BACKLOG`
-+- [Gate de drift documental](./PORTDOC-004-gate-drift-documental.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
  
 -- [ ] User projection
 -- [ ] Document projection
@@ -75359,19 +75359,19 @@ index 4dde480..ac69fa0 100644
 -No destructive Git. No mass rename. One writer. No revision/date naming in persistent paths.
 +### Notas
 +
-+- [Auditar API pública](./PORTDOC-001-auditar-api-publica.md)
-+- [Actualizar ejemplos](./PORTDOC-002-actualizar-ejemplos.md)
-+- [Crear consumer test](./PORTDOC-003-consumer-test.md)
-+- [Gate de drift documental](./PORTDOC-004-gate-drift-documental.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
 +<!-- project-tools:navigation:end -->
 +
 +<!-- ai-structure:navigation:start -->
 +## Navigation
 +
-+- [Auditar API pública](./PORTDOC-001-auditar-api-publica.md)
-+- [Actualizar ejemplos](./PORTDOC-002-actualizar-ejemplos.md)
-+- [Crear consumer test](./PORTDOC-003-consumer-test.md)
-+- [Gate de drift documental](./PORTDOC-004-gate-drift-documental.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
 +
 +> Generated navigation. Source content outside this block remains manual.
 +<!-- ai-structure:navigation:end -->
@@ -75419,97 +75419,97 @@ index 4dde480..ac69fa0 100644
 +### Notas
  
 -## Execution policy
-+- [RTP-000 — Live source truth, Git/hash drift y baseline](./RTP-000.md)
-+- [RTP-005 — Canonicalizar infraestructura Playwright/Vitest y test authority](./RTP-005.md)
-+- [RTP-008 — Reconciliar source, evidence y ledger antes de continuar](./RTP-008.md)
-+- [RTP-010 — Fijar identidad SISAD-PDFME y nomenclatura policy](./RTP-010.md)
-+- [RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User](./RTP-015.md)
-+- [RTP-020 — Inventario registry-derived + generic runtime characterization harness](./RTP-020.md)
-+- [RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page](./RTP-022.md)
-+- [RTP-030 — Motor local-first de transacciones Form](./RTP-030.md)
-+- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](./RTP-040.md)
-+- [RTP-045 — Facade público: props declaradas vs. propagadas](./RTP-045.md)
-+- [RTP-050 — Eventos canónicos de input/runtime + adapters legacy](./RTP-050.md)
-+- [RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first](./RTP-055.md)
-+- [RTP-060 — Lifecycle, remount, focus, caret, IME y cleanup](./RTP-060.md)
-+- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](./RTP-070.md)
-+- [RTP-080 — SchemaValueCodec por familia](./RTP-080.md)
-+- [RTP-090 — Validation, touched, dirty, completion y access boundary](./RTP-090.md)
-+- [RTP-095 — Harness pairwise de interacción entre schemas](./RTP-095.md)
-+- [RTP-100 — Text-like, number, presets y multiVariableText](./RTP-100.md)
-+- [RTP-110 — Select/dropdown, checkbox, radioGroup, checkboxGroup](./RTP-110.md)
-+- [RTP-120 — Date, time, dateTime y dateSigned](./RTP-120.md)
-+- [RTP-130 — Signature, initials, draw/image/P12/provider](./RTP-130.md)
-+- [RTP-140 — Attachment, note, approve y decline artifacts/actions](./RTP-140.md)
-+- [RTP-150 — Image/SVG/table/shapes/barcodes visual/complex schemas](./RTP-150.md)
-+- [RTP-160 — Custom plugin runtime contract and auto-discovery harness](./RTP-160.md)
-+- [RTP-170 — Viewer zero-mutation and parity](./RTP-170.md)
-+- [RTP-180 — Generator/preflight parity and structured values](./RTP-180.md)
-+- [RTP-190 — PDF.js converter loading/render/cancel/cleanup/concurrency](./RTP-190.md)
-+- [RTP-200 — Snapshot, bundle, migration and semantic roundtrip](./RTP-200.md)
-+- [RTP-210 — Multi-document/multipage routing and active ID isolation](./RTP-210.md)
-+- [RTP-215 — Aislamiento User×Document×RuntimeSession](./RTP-215.md)
-+- [RTP-220 — Recipients, ownership, colors, locks and runtime access](./RTP-220.md)
-+- [RTP-222 — Migrar registry/access/appearance a User con aliases](./RTP-222.md)
-+- [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](./RTP-225.md)
-+- [RTP-226 — Contrato DigitalAgreements Recipient -> User](./RTP-226.md)
-+- [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](./RTP-227.md)
-+- [RTP-230 — Comments, collaboration and conflict-safe state](./RTP-230.md)
-+- [RTP-240 — Persistence/save/autosave one-write lifecycle](./RTP-240.md)
-+- [RTP-250 — Declarative config profiles and capability resolution](./RTP-250.md)
-+- [RTP-260 — Controller/public API/action-state parity](./RTP-260.md)
-+- [RTP-270 — Keyboard, accessibility, pointer/touch/pen and responsive runtime](./RTP-270.md)
-+- [RTP-280 — Performance/memory/leak campaign for large PDFs/schemas](./RTP-280.md)
-+- [RTP-290 — Security/privacy/artifact sanitization and secret boundaries](./RTP-290.md)
-+- [RTP-300 — Examples + docs as contract consumers, no demo-runtime duplication](./RTP-300.md)
-+- [RTP-305 — Quality gate registry-driven de comportamiento](./RTP-305.md)
-+- [RTP-310 — All-schema Playwright + integration/release gates](./RTP-310.md)
-+- [RTP-315 — Concurrencia real de sesiones con BrowserContext aislados](./RTP-315.md)
-+- [RTP-320 — Consumer integration smoke and distribution contract](./RTP-320.md)
-+- [RTP-325 — Gate de compatibilidad antes de retirar Recipient aliases](./RTP-325.md)
-+- [RTP-330 — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad](./RTP-330.md)
-+- [RTP-340 — Brain/docs/index/evidence closeout and context regeneration](./RTP-340.md)
-+- [RTP-345 — Reconciliar Brain, contexto y paths persistentes](./RTP-345.md)
-+- [RTP-350 — Congelar baseline de execution runtime](./RTP-350.md)
-+- [RTP-355 — Crear autoridad canónica de interaction/completion](./RTP-355.md)
-+- [RTP-360 — Cerrar User assignment y value scope](./RTP-360.md)
-+- [RTP-365 — Cerrar RuntimeExecutionContext y aislamiento](./RTP-365.md)
-+- [RTP-370 — Implementar ExecutionPlan genérico de LAB](./RTP-370.md)
-+- [RTP-375 — Validar ejecución secuencial](./RTP-375.md)
-+- [RTP-380 — Validar ejecución paralela](./RTP-380.md)
-+- [RTP-385 — Cerrar mixed execution y conflictos shared](./RTP-385.md)
-+- [RTP-390 — Cerrar massive fan-out](./RTP-390.md)
-+- [RTP-395 — Definir execution result y PDF artifacts](./RTP-395.md)
-+- [RTP-400 — Implementar canonical PDF merge](./RTP-400.md)
-+- [RTP-405 — Cerrar append, multi-document y massive bundle](./RTP-405.md)
-+- [RTP-410 — Crear all-schema execution/completion harness](./RTP-410.md)
-+- [RTP-415 — Cerrar browser, performance, privacy y parity gates](./RTP-415.md)
-+- [RTP-420 — Release y closeout del runtime](./RTP-420.md)
-+- [RTP-425 — Reconciliar baseline de configuración y runtime](./RTP-425.md)
-+- [RTP-430 — Inventariar capabilities ejecutables](./RTP-430.md)
-+- [RTP-435 — Compilar configuración a snapshot inmutable](./RTP-435.md)
-+- [RTP-440 — Hacer fail-closed el CapabilityGraph](./RTP-440.md)
-+- [RTP-445 — Crear impact graph y effect plan dinámico](./RTP-445.md)
-+- [RTP-450 — Crear GridGeometry canónica](./RTP-450.md)
-+- [RTP-455 — Cerrar grid, snap, guides y rulers](./RTP-455.md)
-+- [RTP-460 — Converger registries del Designer](./RTP-460.md)
-+- [RTP-465 — Eliminar direct config readers y reglas duplicadas](./RTP-465.md)
-+- [RTP-470 — Converger capabilities de Runtime](./RTP-470.md)
-+- [RTP-475 — Hacer plugin-owned el schema manifest](./RTP-475.md)
-+- [RTP-480 — Enriquecer codecs, validation y completion](./RTP-480.md)
-+- [RTP-485 — Cerrar optimistic concurrency de execution scopes](./RTP-485.md)
-+- [RTP-490 — Endurecer completion projections](./RTP-490.md)
-+- [RTP-495 — Bloquear canonical merge conflictivo](./RTP-495.md)
-+- [RTP-500 — Crear codec durable de ExecutionResult](./RTP-500.md)
-+- [RTP-505 — Endurecer composición PDF](./RTP-505.md)
-+- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md)
-+- [RTP-515 — Crear all-schema stress harness dinámico](./RTP-515.md)
-+- [RTP-520 — Auditar parity contra referencia DocuSign](./RTP-520.md)
-+- [RTP-525 — Migrar compatibilidad Recipient hacia User](./RTP-525.md)
-+- [RTP-530 — Retirar legacy y dead code de forma segura](./RTP-530.md)
-+- [RTP-535 — Reducir duplicación y aumentar genericidad](./RTP-535.md)
-+- [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](./RTP-540.md)
-+- [RTP-545 — Release autónomo y closeout](./RTP-545.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-000](../portable-runtime/PRT-000.md)
 +<!-- project-tools:navigation:end -->
  
 -El coordinator ejecuta esta card cuando sus dependencies estén cerradas.
@@ -75537,97 +75537,97 @@ index 4dde480..ac69fa0 100644
 -5. write `reports/runtime-platform/evidence/RTP-495.md`;
 -6. update status only with evidence;
 -7. continue queue automatically.
-+- [RTP-000 — Live source truth, Git/hash drift y baseline](./RTP-000.md) — `READY`
-+- [RTP-005 — Canonicalizar infraestructura Playwright/Vitest y test authority](./RTP-005.md) — `BACKLOG`
-+- [RTP-008 — Reconciliar source, evidence y ledger antes de continuar](./RTP-008.md) — `BACKLOG`
-+- [RTP-010 — Fijar identidad SISAD-PDFME y nomenclatura policy](./RTP-010.md) — `BACKLOG`
-+- [RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User](./RTP-015.md) — `BACKLOG`
-+- [RTP-020 — Inventario registry-derived + generic runtime characterization harness](./RTP-020.md) — `BACKLOG`
-+- [RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page](./RTP-022.md) — `BACKLOG`
-+- [RTP-030 — Motor local-first de transacciones Form](./RTP-030.md) — `BACKLOG`
-+- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](./RTP-040.md) — `BACKLOG`
-+- [RTP-045 — Facade público: props declaradas vs. propagadas](./RTP-045.md) — `BACKLOG`
-+- [RTP-050 — Eventos canónicos de input/runtime + adapters legacy](./RTP-050.md) — `BACKLOG`
-+- [RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first](./RTP-055.md) — `BACKLOG`
-+- [RTP-060 — Lifecycle, remount, focus, caret, IME y cleanup](./RTP-060.md) — `BACKLOG`
-+- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](./RTP-070.md) — `BACKLOG`
-+- [RTP-080 — SchemaValueCodec por familia](./RTP-080.md) — `BACKLOG`
-+- [RTP-090 — Validation, touched, dirty, completion y access boundary](./RTP-090.md) — `BACKLOG`
-+- [RTP-095 — Harness pairwise de interacción entre schemas](./RTP-095.md) — `BACKLOG`
-+- [RTP-100 — Text-like, number, presets y multiVariableText](./RTP-100.md) — `BACKLOG`
-+- [RTP-110 — Select/dropdown, checkbox, radioGroup, checkboxGroup](./RTP-110.md) — `BACKLOG`
-+- [RTP-120 — Date, time, dateTime y dateSigned](./RTP-120.md) — `BACKLOG`
-+- [RTP-130 — Signature, initials, draw/image/P12/provider](./RTP-130.md) — `BACKLOG`
-+- [RTP-140 — Attachment, note, approve y decline artifacts/actions](./RTP-140.md) — `BACKLOG`
-+- [RTP-150 — Image/SVG/table/shapes/barcodes visual/complex schemas](./RTP-150.md) — `BACKLOG`
-+- [RTP-160 — Custom plugin runtime contract and auto-discovery harness](./RTP-160.md) — `BACKLOG`
-+- [RTP-170 — Viewer zero-mutation and parity](./RTP-170.md) — `BACKLOG`
-+- [RTP-180 — Generator/preflight parity and structured values](./RTP-180.md) — `BACKLOG`
-+- [RTP-190 — PDF.js converter loading/render/cancel/cleanup/concurrency](./RTP-190.md) — `BACKLOG`
-+- [RTP-200 — Snapshot, bundle, migration and semantic roundtrip](./RTP-200.md) — `BACKLOG`
-+- [RTP-210 — Multi-document/multipage routing and active ID isolation](./RTP-210.md) — `BACKLOG`
-+- [RTP-215 — Aislamiento User×Document×RuntimeSession](./RTP-215.md) — `BACKLOG`
-+- [RTP-220 — Recipients, ownership, colors, locks and runtime access](./RTP-220.md) — `BACKLOG`
-+- [RTP-222 — Migrar registry/access/appearance a User con aliases](./RTP-222.md) — `BACKLOG`
-+- [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](./RTP-225.md) — `BACKLOG`
-+- [RTP-226 — Contrato DigitalAgreements Recipient -> User](./RTP-226.md) — `BACKLOG`
-+- [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](./RTP-227.md) — `BACKLOG`
-+- [RTP-230 — Comments, collaboration and conflict-safe state](./RTP-230.md) — `BACKLOG`
-+- [RTP-240 — Persistence/save/autosave one-write lifecycle](./RTP-240.md) — `BACKLOG`
-+- [RTP-250 — Declarative config profiles and capability resolution](./RTP-250.md) — `BACKLOG`
-+- [RTP-260 — Controller/public API/action-state parity](./RTP-260.md) — `BACKLOG`
-+- [RTP-270 — Keyboard, accessibility, pointer/touch/pen and responsive runtime](./RTP-270.md) — `BACKLOG`
-+- [RTP-280 — Performance/memory/leak campaign for large PDFs/schemas](./RTP-280.md) — `BACKLOG`
-+- [RTP-290 — Security/privacy/artifact sanitization and secret boundaries](./RTP-290.md) — `BACKLOG`
-+- [RTP-300 — Examples + docs as contract consumers, no demo-runtime duplication](./RTP-300.md) — `BACKLOG`
-+- [RTP-305 — Quality gate registry-driven de comportamiento](./RTP-305.md) — `BACKLOG`
-+- [RTP-310 — All-schema Playwright + integration/release gates](./RTP-310.md) — `BACKLOG`
-+- [RTP-315 — Concurrencia real de sesiones con BrowserContext aislados](./RTP-315.md) — `BACKLOG`
-+- [RTP-320 — Consumer integration smoke and distribution contract](./RTP-320.md) — `BACKLOG`
-+- [RTP-325 — Gate de compatibilidad antes de retirar Recipient aliases](./RTP-325.md) — `BACKLOG`
-+- [RTP-330 — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad](./RTP-330.md) — `BACKLOG`
-+- [RTP-340 — Brain/docs/index/evidence closeout and context regeneration](./RTP-340.md) — `BACKLOG`
-+- [RTP-345 — Reconciliar Brain, contexto y paths persistentes](./RTP-345.md) — `BACKLOG`
-+- [RTP-350 — Congelar baseline de execution runtime](./RTP-350.md) — `BACKLOG`
-+- [RTP-355 — Crear autoridad canónica de interaction/completion](./RTP-355.md) — `BACKLOG`
-+- [RTP-360 — Cerrar User assignment y value scope](./RTP-360.md) — `BACKLOG`
-+- [RTP-365 — Cerrar RuntimeExecutionContext y aislamiento](./RTP-365.md) — `BACKLOG`
-+- [RTP-370 — Implementar ExecutionPlan genérico de LAB](./RTP-370.md) — `BACKLOG`
-+- [RTP-375 — Validar ejecución secuencial](./RTP-375.md) — `BACKLOG`
-+- [RTP-380 — Validar ejecución paralela](./RTP-380.md) — `BACKLOG`
-+- [RTP-385 — Cerrar mixed execution y conflictos shared](./RTP-385.md) — `BACKLOG`
-+- [RTP-390 — Cerrar massive fan-out](./RTP-390.md) — `BACKLOG`
-+- [RTP-395 — Definir execution result y PDF artifacts](./RTP-395.md) — `BACKLOG`
-+- [RTP-400 — Implementar canonical PDF merge](./RTP-400.md) — `BACKLOG`
-+- [RTP-405 — Cerrar append, multi-document y massive bundle](./RTP-405.md) — `BACKLOG`
-+- [RTP-410 — Crear all-schema execution/completion harness](./RTP-410.md) — `BACKLOG`
-+- [RTP-415 — Cerrar browser, performance, privacy y parity gates](./RTP-415.md) — `BACKLOG`
-+- [RTP-420 — Release y closeout del runtime](./RTP-420.md) — `BACKLOG`
-+- [RTP-425 — Reconciliar baseline de configuración y runtime](./RTP-425.md) — `PASS`
-+- [RTP-430 — Inventariar capabilities ejecutables](./RTP-430.md) — `PASS`
-+- [RTP-435 — Compilar configuración a snapshot inmutable](./RTP-435.md) — `PASS`
-+- [RTP-440 — Hacer fail-closed el CapabilityGraph](./RTP-440.md) — `PASS`
-+- [RTP-445 — Crear impact graph y effect plan dinámico](./RTP-445.md) — `PASS`
-+- [RTP-450 — Crear GridGeometry canónica](./RTP-450.md) — `PASS`
-+- [RTP-455 — Cerrar grid, snap, guides y rulers](./RTP-455.md) — `PASS`
-+- [RTP-460 — Converger registries del Designer](./RTP-460.md) — `PASS`
-+- [RTP-465 — Eliminar direct config readers y reglas duplicadas](./RTP-465.md) — `PASS`
-+- [RTP-470 — Converger capabilities de Runtime](./RTP-470.md) — `PASS`
-+- [RTP-475 — Hacer plugin-owned el schema manifest](./RTP-475.md) — `PASS`
-+- [RTP-480 — Enriquecer codecs, validation y completion](./RTP-480.md) — `PASS`
-+- [RTP-485 — Cerrar optimistic concurrency de execution scopes](./RTP-485.md) — `PASS`
-+- [RTP-490 — Endurecer completion projections](./RTP-490.md) — `PASS`
-+- [RTP-495 — Bloquear canonical merge conflictivo](./RTP-495.md) — `PASS`
-+- [RTP-500 — Crear codec durable de ExecutionResult](./RTP-500.md) — `PASS`
-+- [RTP-505 — Endurecer composición PDF](./RTP-505.md) — `PASS`
-+- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md)
-+- [RTP-515 — Crear all-schema stress harness dinámico](./RTP-515.md) — `BACKLOG`
-+- [RTP-520 — Auditar parity contra referencia DocuSign](./RTP-520.md) — `PARTIAL`
-+- [RTP-525 — Migrar compatibilidad Recipient hacia User](./RTP-525.md) — `PARTIAL`
-+- [RTP-530 — Retirar legacy y dead code de forma segura](./RTP-530.md) — `BLOCKED`
-+- [RTP-535 — Reducir duplicación y aumentar genericidad](./RTP-535.md) — `BACKLOG`
-+- [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](./RTP-540.md) — `PARTIAL`
-+- [RTP-545 — Release autónomo y closeout](./RTP-545.md) — `BLOCKED`
++- [PRT-120](../portable-runtime/PRT-120.md) — `READY`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PASS`
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BLOCKED`
++- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
++- [PRT-120](../portable-runtime/PRT-120.md) — `PARTIAL`
++- [PRT-000](../portable-runtime/PRT-000.md) — `BLOCKED`
  
 -## Acceptance
 +> Managed index. Update source documents, not this list.
@@ -75640,97 +75640,97 @@ index 4dde480..ac69fa0 100644
 +## Navigation
  
 -## Safety
-+- [RTP-000 — Live source truth, Git/hash drift y baseline](./RTP-000.md)
-+- [RTP-005 — Canonicalizar infraestructura Playwright/Vitest y test authority](./RTP-005.md)
-+- [RTP-008 — Reconciliar source, evidence y ledger antes de continuar](./RTP-008.md)
-+- [RTP-010 — Fijar identidad SISAD-PDFME y nomenclatura policy](./RTP-010.md)
-+- [RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User](./RTP-015.md)
-+- [RTP-020 — Inventario registry-derived + generic runtime characterization harness](./RTP-020.md)
-+- [RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page](./RTP-022.md)
-+- [RTP-030 — Motor local-first de transacciones Form](./RTP-030.md)
-+- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](./RTP-040.md)
-+- [RTP-045 — Facade público: props declaradas vs. propagadas](./RTP-045.md)
-+- [RTP-050 — Eventos canónicos de input/runtime + adapters legacy](./RTP-050.md)
-+- [RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first](./RTP-055.md)
-+- [RTP-060 — Lifecycle, remount, focus, caret, IME y cleanup](./RTP-060.md)
-+- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](./RTP-070.md)
-+- [RTP-080 — SchemaValueCodec por familia](./RTP-080.md)
-+- [RTP-090 — Validation, touched, dirty, completion y access boundary](./RTP-090.md)
-+- [RTP-095 — Harness pairwise de interacción entre schemas](./RTP-095.md)
-+- [RTP-100 — Text-like, number, presets y multiVariableText](./RTP-100.md)
-+- [RTP-110 — Select/dropdown, checkbox, radioGroup, checkboxGroup](./RTP-110.md)
-+- [RTP-120 — Date, time, dateTime y dateSigned](./RTP-120.md)
-+- [RTP-130 — Signature, initials, draw/image/P12/provider](./RTP-130.md)
-+- [RTP-140 — Attachment, note, approve y decline artifacts/actions](./RTP-140.md)
-+- [RTP-150 — Image/SVG/table/shapes/barcodes visual/complex schemas](./RTP-150.md)
-+- [RTP-160 — Custom plugin runtime contract and auto-discovery harness](./RTP-160.md)
-+- [RTP-170 — Viewer zero-mutation and parity](./RTP-170.md)
-+- [RTP-180 — Generator/preflight parity and structured values](./RTP-180.md)
-+- [RTP-190 — PDF.js converter loading/render/cancel/cleanup/concurrency](./RTP-190.md)
-+- [RTP-200 — Snapshot, bundle, migration and semantic roundtrip](./RTP-200.md)
-+- [RTP-210 — Multi-document/multipage routing and active ID isolation](./RTP-210.md)
-+- [RTP-215 — Aislamiento User×Document×RuntimeSession](./RTP-215.md)
-+- [RTP-220 — Recipients, ownership, colors, locks and runtime access](./RTP-220.md)
-+- [RTP-222 — Migrar registry/access/appearance a User con aliases](./RTP-222.md)
-+- [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](./RTP-225.md)
-+- [RTP-226 — Contrato DigitalAgreements Recipient -> User](./RTP-226.md)
-+- [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](./RTP-227.md)
-+- [RTP-230 — Comments, collaboration and conflict-safe state](./RTP-230.md)
-+- [RTP-240 — Persistence/save/autosave one-write lifecycle](./RTP-240.md)
-+- [RTP-250 — Declarative config profiles and capability resolution](./RTP-250.md)
-+- [RTP-260 — Controller/public API/action-state parity](./RTP-260.md)
-+- [RTP-270 — Keyboard, accessibility, pointer/touch/pen and responsive runtime](./RTP-270.md)
-+- [RTP-280 — Performance/memory/leak campaign for large PDFs/schemas](./RTP-280.md)
-+- [RTP-290 — Security/privacy/artifact sanitization and secret boundaries](./RTP-290.md)
-+- [RTP-300 — Examples + docs as contract consumers, no demo-runtime duplication](./RTP-300.md)
-+- [RTP-305 — Quality gate registry-driven de comportamiento](./RTP-305.md)
-+- [RTP-310 — All-schema Playwright + integration/release gates](./RTP-310.md)
-+- [RTP-315 — Concurrencia real de sesiones con BrowserContext aislados](./RTP-315.md)
-+- [RTP-320 — Consumer integration smoke and distribution contract](./RTP-320.md)
-+- [RTP-325 — Gate de compatibilidad antes de retirar Recipient aliases](./RTP-325.md)
-+- [RTP-330 — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad](./RTP-330.md)
-+- [RTP-340 — Brain/docs/index/evidence closeout and context regeneration](./RTP-340.md)
-+- [RTP-345 — Reconciliar Brain, contexto y paths persistentes](./RTP-345.md)
-+- [RTP-350 — Congelar baseline de execution runtime](./RTP-350.md)
-+- [RTP-355 — Crear autoridad canónica de interaction/completion](./RTP-355.md)
-+- [RTP-360 — Cerrar User assignment y value scope](./RTP-360.md)
-+- [RTP-365 — Cerrar RuntimeExecutionContext y aislamiento](./RTP-365.md)
-+- [RTP-370 — Implementar ExecutionPlan genérico de LAB](./RTP-370.md)
-+- [RTP-375 — Validar ejecución secuencial](./RTP-375.md)
-+- [RTP-380 — Validar ejecución paralela](./RTP-380.md)
-+- [RTP-385 — Cerrar mixed execution y conflictos shared](./RTP-385.md)
-+- [RTP-390 — Cerrar massive fan-out](./RTP-390.md)
-+- [RTP-395 — Definir execution result y PDF artifacts](./RTP-395.md)
-+- [RTP-400 — Implementar canonical PDF merge](./RTP-400.md)
-+- [RTP-405 — Cerrar append, multi-document y massive bundle](./RTP-405.md)
-+- [RTP-410 — Crear all-schema execution/completion harness](./RTP-410.md)
-+- [RTP-415 — Cerrar browser, performance, privacy y parity gates](./RTP-415.md)
-+- [RTP-420 — Release y closeout del runtime](./RTP-420.md)
-+- [RTP-425 — Reconciliar baseline de configuración y runtime](./RTP-425.md)
-+- [RTP-430 — Inventariar capabilities ejecutables](./RTP-430.md)
-+- [RTP-435 — Compilar configuración a snapshot inmutable](./RTP-435.md)
-+- [RTP-440 — Hacer fail-closed el CapabilityGraph](./RTP-440.md)
-+- [RTP-445 — Crear impact graph y effect plan dinámico](./RTP-445.md)
-+- [RTP-450 — Crear GridGeometry canónica](./RTP-450.md)
-+- [RTP-455 — Cerrar grid, snap, guides y rulers](./RTP-455.md)
-+- [RTP-460 — Converger registries del Designer](./RTP-460.md)
-+- [RTP-465 — Eliminar direct config readers y reglas duplicadas](./RTP-465.md)
-+- [RTP-470 — Converger capabilities de Runtime](./RTP-470.md)
-+- [RTP-475 — Hacer plugin-owned el schema manifest](./RTP-475.md)
-+- [RTP-480 — Enriquecer codecs, validation y completion](./RTP-480.md)
-+- [RTP-485 — Cerrar optimistic concurrency de execution scopes](./RTP-485.md)
-+- [RTP-490 — Endurecer completion projections](./RTP-490.md)
-+- [RTP-495 — Bloquear canonical merge conflictivo](./RTP-495.md)
-+- [RTP-500 — Crear codec durable de ExecutionResult](./RTP-500.md)
-+- [RTP-505 — Endurecer composición PDF](./RTP-505.md)
-+- [RTP-510 — Conectar multi-user al Form real](./RTP-510.md)
-+- [RTP-515 — Crear all-schema stress harness dinámico](./RTP-515.md)
-+- [RTP-520 — Auditar parity contra referencia DocuSign](./RTP-520.md)
-+- [RTP-525 — Migrar compatibilidad Recipient hacia User](./RTP-525.md)
-+- [RTP-530 — Retirar legacy y dead code de forma segura](./RTP-530.md)
-+- [RTP-535 — Reducir duplicación y aumentar genericidad](./RTP-535.md)
-+- [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](./RTP-540.md)
-+- [RTP-545 — Release autónomo y closeout](./RTP-545.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-120](../portable-runtime/PRT-120.md)
++- [PRT-000](../portable-runtime/PRT-000.md)
  
 -No destructive Git. No mass rename. One writer. No revision/date naming in persistent paths.
 +> Generated navigation. Source content outside this block remains manual.
@@ -77562,37 +77562,37 @@ index 4dde480..ac69fa0 100644
 -## Navigation
 +## Acceptance
  
--- [MDA-001 — Auditar arquitectura Markdown y congelar baseline](./MDA-001.md) — `BACKLOG`
--- [MDA-010 — Reconciliar autoridad de estados y vistas](./MDA-010.md) — `BACKLOG`
--- [MDA-020 — Organizar task cards por dominio](./MDA-020.md) — `BACKLOG`
--- [MDA-030 — Archivar campañas legacy y retirar residuos transitorios](./MDA-030.md) — `BACKLOG`
--- [MDA-040 — Generar hubs README y reparar enlaces](./MDA-040.md) — `BACKLOG`
--- [MDA-050 — Consolidar routes, skills y adapters de proveedor](./MDA-050.md) — `BACKLOG`
--- [MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog](./MDA-060.md) — `BACKLOG`
--- [MDA-070 — Normalizar documentación pública y numeración](./MDA-070.md) — `BACKLOG`
--- [MDA-080 — Cerrar gates de arquitectura documental](./MDA-080.md) — `BACKLOG`
--- [Eliminar duplicidad entre tools/ai-quality y arquitectura IA](./TOOL-AI-DEDUP.md) — `BACKLOG`
--- [Baseline de scripts/tools y consumers](./TOOL-BASELINE.md) — `READY`
--- [TOOL-CAPABILITY-AUDIT](./TOOL-CAPABILITY-AUDIT.md) — `BACKLOG`
--- [Centralizar configuración de tooling](./TOOL-CENTRAL-CONFIG.md) — `BACKLOG`
--- [Gates finales y limpieza](./TOOL-CLOSEOUT.md) — `BACKLOG`
--- [Migrar consumers y retirar wrappers redundantes](./TOOL-COMPATIBILITY.md) — `BACKLOG`
--- [Dedup semántico del runtime](./TOOL-DEDUP-RUNTIME-SEMANTIC.md) — `BACKLOG`
--- [TOOL-GRID-GEOMETRY-AUDIT](./TOOL-GRID-GEOMETRY-AUDIT.md) — `BACKLOG`
--- [Corregir importer non-Markdown](./TOOL-IMPORT-NONMARKDOWN.md) — `BACKLOG`
--- [Validar import ZIP/folder no destructivo](./TOOL-IMPORTER.md) — `BACKLOG`
--- [Preflight y conflict-safe install-project-tools](./TOOL-INSTALL-SAFETY.md) — `BACKLOG`
--- [TOOL-LEGACY-RETIREMENT](./TOOL-LEGACY-RETIREMENT.md) — `BACKLOG`
--- [Actualizar manuales/package scripts/Brain](./TOOL-MANUALS.md) — `BACKLOG`
--- [Consolidar sanitización/index/topology/links](./TOOL-MARKDOWN-ENGINE.md) — `BACKLOG`
--- [Separar path reconciliation de identifier migration](./TOOL-PATH-SEMANTIC-SAFETY.md) — `BACKLOG`
--- [TOOL — provider model routing](./TOOL-PROVIDER-MODEL-ROUTING.md) — `BACKLOG`
--- [TOOL-RUNTIME-AUTOPILOT](./TOOL-RUNTIME-AUTOPILOT.md) — `BACKLOG`
--- [TOOL — same repo coordination](./TOOL-SAME-REPO-COORDINATION.md) — `BACKLOG`
--- [Portabilidad de scripts npm y memoria build](./TOOL-SCRIPT-PORTABILITY.md) — `BACKLOG`
--- [Eliminar paths de arquitectura versionados](./TOOL-STABLE-NAMES.md) — `BACKLOG`
--- [Mejorar calidad del test map SISAD-PDFME](./TOOL-TEST-COVERAGE-QUALITY.md) — `BACKLOG`
--- [Hacer install-tests transaccional](./TOOL-TEST-INSTALL-PREFLIGHT.md) — `BACKLOG`
+-- `MDA-001 — Auditar arquitectura Markdown y congelar baseline` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `MDA-010 — Reconciliar autoridad de estados y vistas` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `MDA-020 — Organizar task cards por dominio` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `MDA-030 — Archivar campañas legacy y retirar residuos transitorios` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `MDA-040 — Generar hubs README y reparar enlaces` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `MDA-050 — Consolidar routes, skills y adapters de proveedor` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `MDA-070 — Normalizar documentación pública y numeración` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `MDA-080 — Cerrar gates de arquitectura documental` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Eliminar duplicidad entre tools/ai-quality y arquitectura IA` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Baseline de scripts/tools y consumers` (retired; Git/evidence is provenance) — `READY`
+-- `TOOL-CAPABILITY-AUDIT` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Centralizar configuración de tooling` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Gates finales y limpieza` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Migrar consumers y retirar wrappers redundantes` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Dedup semántico del runtime` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `TOOL-GRID-GEOMETRY-AUDIT` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Corregir importer non-Markdown` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Validar import ZIP/folder no destructivo` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Preflight y conflict-safe install-project-tools` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `TOOL-LEGACY-RETIREMENT` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Actualizar manuales/package scripts/Brain` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Consolidar sanitización/index/topology/links` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Separar path reconciliation de identifier migration` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `TOOL — provider model routing` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `TOOL-RUNTIME-AUTOPILOT` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `TOOL — same repo coordination` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Portabilidad de scripts npm y memoria build` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Eliminar paths de arquitectura versionados` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Mejorar calidad del test map SISAD-PDFME` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `Hacer install-tests transaccional` (retired; Git/evidence is provenance) — `BACKLOG`
 +- Typing/clear/prefill/IME/number semantics/sibling isolation.
 +- no reglas de negocio de un host dentro del reusable;
 +- no deep imports nuevos de internals desde consumidores;
@@ -77614,37 +77614,37 @@ index 4dde480..ac69fa0 100644
 -### Notas
 +## Forbidden
  
--- [MDA-001 — Auditar arquitectura Markdown y congelar baseline](./MDA-001.md)
--- [MDA-010 — Reconciliar autoridad de estados y vistas](./MDA-010.md)
--- [MDA-020 — Organizar task cards por dominio](./MDA-020.md)
--- [MDA-030 — Archivar campañas legacy y retirar residuos transitorios](./MDA-030.md)
--- [MDA-040 — Generar hubs README y reparar enlaces](./MDA-040.md)
--- [MDA-050 — Consolidar routes, skills y adapters de proveedor](./MDA-050.md)
--- [MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog](./MDA-060.md)
--- [MDA-070 — Normalizar documentación pública y numeración](./MDA-070.md)
--- [MDA-080 — Cerrar gates de arquitectura documental](./MDA-080.md)
--- [Eliminar duplicidad entre tools/ai-quality y arquitectura IA](./TOOL-AI-DEDUP.md)
--- [Baseline de scripts/tools y consumers](./TOOL-BASELINE.md)
--- [TOOL-CAPABILITY-AUDIT](./TOOL-CAPABILITY-AUDIT.md)
--- [Centralizar configuración de tooling](./TOOL-CENTRAL-CONFIG.md)
--- [Gates finales y limpieza](./TOOL-CLOSEOUT.md)
--- [Migrar consumers y retirar wrappers redundantes](./TOOL-COMPATIBILITY.md)
--- [Dedup semántico del runtime](./TOOL-DEDUP-RUNTIME-SEMANTIC.md)
--- [TOOL-GRID-GEOMETRY-AUDIT](./TOOL-GRID-GEOMETRY-AUDIT.md)
--- [Corregir importer non-Markdown](./TOOL-IMPORT-NONMARKDOWN.md)
--- [Validar import ZIP/folder no destructivo](./TOOL-IMPORTER.md)
--- [Preflight y conflict-safe install-project-tools](./TOOL-INSTALL-SAFETY.md)
--- [TOOL-LEGACY-RETIREMENT](./TOOL-LEGACY-RETIREMENT.md)
--- [Actualizar manuales/package scripts/Brain](./TOOL-MANUALS.md)
--- [Consolidar sanitización/index/topology/links](./TOOL-MARKDOWN-ENGINE.md)
--- [Separar path reconciliation de identifier migration](./TOOL-PATH-SEMANTIC-SAFETY.md)
--- [TOOL — provider model routing](./TOOL-PROVIDER-MODEL-ROUTING.md)
--- [TOOL-RUNTIME-AUTOPILOT](./TOOL-RUNTIME-AUTOPILOT.md)
--- [TOOL — same repo coordination](./TOOL-SAME-REPO-COORDINATION.md)
--- [Portabilidad de scripts npm y memoria build](./TOOL-SCRIPT-PORTABILITY.md)
--- [Eliminar paths de arquitectura versionados](./TOOL-STABLE-NAMES.md)
--- [Mejorar calidad del test map SISAD-PDFME](./TOOL-TEST-COVERAGE-QUALITY.md)
--- [Hacer install-tests transaccional](./TOOL-TEST-INSTALL-PREFLIGHT.md)
+-- `MDA-001 — Auditar arquitectura Markdown y congelar baseline` (retired; Git/evidence is provenance)
+-- `MDA-010 — Reconciliar autoridad de estados y vistas` (retired; Git/evidence is provenance)
+-- `MDA-020 — Organizar task cards por dominio` (retired; Git/evidence is provenance)
+-- `MDA-030 — Archivar campañas legacy y retirar residuos transitorios` (retired; Git/evidence is provenance)
+-- `MDA-040 — Generar hubs README y reparar enlaces` (retired; Git/evidence is provenance)
+-- `MDA-050 — Consolidar routes, skills y adapters de proveedor` (retired; Git/evidence is provenance)
+-- `MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog` (retired; Git/evidence is provenance)
+-- `MDA-070 — Normalizar documentación pública y numeración` (retired; Git/evidence is provenance)
+-- `MDA-080 — Cerrar gates de arquitectura documental` (retired; Git/evidence is provenance)
+-- `Eliminar duplicidad entre tools/ai-quality y arquitectura IA` (retired; Git/evidence is provenance)
+-- `Baseline de scripts/tools y consumers` (retired; Git/evidence is provenance)
+-- `TOOL-CAPABILITY-AUDIT` (retired; Git/evidence is provenance)
+-- `Centralizar configuración de tooling` (retired; Git/evidence is provenance)
+-- `Gates finales y limpieza` (retired; Git/evidence is provenance)
+-- `Migrar consumers y retirar wrappers redundantes` (retired; Git/evidence is provenance)
+-- `Dedup semántico del runtime` (retired; Git/evidence is provenance)
+-- `TOOL-GRID-GEOMETRY-AUDIT` (retired; Git/evidence is provenance)
+-- `Corregir importer non-Markdown` (retired; Git/evidence is provenance)
+-- `Validar import ZIP/folder no destructivo` (retired; Git/evidence is provenance)
+-- `Preflight y conflict-safe install-project-tools` (retired; Git/evidence is provenance)
+-- `TOOL-LEGACY-RETIREMENT` (retired; Git/evidence is provenance)
+-- `Actualizar manuales/package scripts/Brain` (retired; Git/evidence is provenance)
+-- `Consolidar sanitización/index/topology/links` (retired; Git/evidence is provenance)
+-- `Separar path reconciliation de identifier migration` (retired; Git/evidence is provenance)
+-- `TOOL — provider model routing` (retired; Git/evidence is provenance)
+-- `TOOL-RUNTIME-AUTOPILOT` (retired; Git/evidence is provenance)
+-- `TOOL — same repo coordination` (retired; Git/evidence is provenance)
+-- `Portabilidad de scripts npm y memoria build` (retired; Git/evidence is provenance)
+-- `Eliminar paths de arquitectura versionados` (retired; Git/evidence is provenance)
+-- `Mejorar calidad del test map SISAD-PDFME` (retired; Git/evidence is provenance)
+-- `Hacer install-tests transaccional` (retired; Git/evidence is provenance)
 -<!-- project-tools:navigation:end -->
 +`reset --hard`, `clean`, force push, cambios masivos de nomenclatura fuera de RTP-330,
 +listas hardcodeadas por schema cuando registry/manifest puede resolverlo, editar packs
@@ -78801,48 +78801,48 @@ index 4dde480..ac69fa0 100644
 -## Navigation
 +## Required work
  
--- [VISUX-001 — Congelar baseline visual y estados reproducibles](./VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md) — `BACKLOG`
--- [VISUX-002 — Inventariar componentes visuales, scroll owners y fuentes de estado](./VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md) — `BACKLOG`
--- [VISUX-003 — Auditar tokens, contraste, densidad y lenguaje visual](./VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md) — `BACKLOG`
--- [VISUX-004 — Unificar auditoría de acciones, acceso y motivos de deshabilitación](./VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md) — `BACKLOG`
--- [VISUX-005 — Crear un estado responsive único del workspace](./VISUX-005-crear-un-estado-responsive-unico-del-workspace.md) — `BACKLOG`
--- [VISUX-006 — Unificar rails y colapso de ambos sidebars](./VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md) — `BACKLOG`
--- [VISUX-007 — Preservar ancla visual, zoom y scroll al cambiar layout](./VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md) — `BACKLOG`
--- [VISUX-008 — Corregir header de guardar, navegación de páginas y estado de selección](./VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md) — `BACKLOG`
--- [VISUX-009 — Cerrar contrato de zoom, fit, undo y redo](./VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md) — `BACKLOG`
--- [VISUX-010 — Reemplazar tooltips nativos y cerrar foco de controles](./VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md) — `BACKLOG`
--- [VISUX-011 — Unificar toolbar contextual y menú Más](./VISUX-011-unificar-toolbar-contextual-y-menu-mas.md) — `BACKLOG`
--- [VISUX-012 — Hacer overlays collision-aware y coordinar stack visual](./VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md) — `BACKLOG`
--- [VISUX-013 — Compactar shell, tabs y colapso del LeftSidebar](./VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md) — `BACKLOG`
--- [VISUX-014 — Cerrar búsqueda, filtros y selector de layout del catálogo](./VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md) — `BACKLOG`
--- [VISUX-015 — Compactar grupos, cards, favoritos y owner tone del catálogo](./VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md) — `BACKLOG`
--- [VISUX-016 — Cerrar custom fields, auto fields y catálogo de recipients](./VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md) — `BACKLOG`
--- [VISUX-017 — Cerrar drag preview, drop setup y feedback de colocación](./VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md) — `BACKLOG`
--- [VISUX-018 — Hacer responsive la navegación del RightSidebar](./VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md) — `BACKLOG`
--- [VISUX-019 — Formalizar panel registry, header contextual y scroll owner](./VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md) — `BACKLOG`
--- [VISUX-020 — Compactar ListView y separar identidad, estados y acciones](./VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md) — `BACKLOG`
--- [VISUX-021 — Cerrar selección, reorder, localizar y menú por fila](./VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md) — `BACKLOG`
--- [VISUX-022 — Corregir disponibilidad y lifecycle de Reasignar responsable](./VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md) — `BACKLOG`
--- [VISUX-023 — Corregir header e identidad del DetailView](./VISUX-023-corregir-header-e-identidad-del-detailview.md) — `BACKLOG`
--- [VISUX-024 — Reorganizar taxonomía, disclosure y widgets del DetailView](./VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md) — `BACKLOG`
--- [VISUX-025 — Cerrar alcance y lifecycle del CommentsRail](./VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md) — `BACKLOG`
--- [VISUX-026 — Separar documento, página y acciones del DocumentsRail](./VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md) — `BACKLOG`
--- [VISUX-027 — Unificar estados empty, loading, error y disabled del RightSidebar](./VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md) — `BACKLOG`
--- [VISUX-028 — Unificar field chrome, owner tone y estados visuales](./VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md) — `BACKLOG`
--- [VISUX-029 — Cerrar perfiles text-like, number y date/time](./VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md) — `BACKLOG`
--- [VISUX-030 — Cerrar select, checkbox, radio y option groups](./VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md) — `BACKLOG`
--- [VISUX-031 — Hacer el inspector de firma dependiente del modo](./VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md) — `BACKLOG`
--- [VISUX-032 — Cerrar action schemas: attachment, note, approve y decline](./VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md) — `BACKLOG`
--- [VISUX-033 — Cerrar media, barcode, table y shapes](./VISUX-033-cerrar-media-barcode-table-y-shapes.md) — `BACKLOG`
--- [VISUX-034 — Normalizar i18n, labels técnicos y modo avanzado](./VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md) — `BACKLOG`
--- [VISUX-035 — Probar paridad propiedad→runtimes→PDF→snapshot](./VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md) — `BACKLOG`
--- [VISUX-036 — Cerrar selección y edición de grupos de opciones](./VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md) — `BACKLOG`
--- [VISUX-037 — Unificar asignación, reserva de edición, readonly y posición fija](./VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md) — `BACKLOG`
--- [VISUX-038 — Cerrar routing multidocumento y navegación por página](./VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md) — `BACKLOG`
--- [VISUX-039 — Cerrar paridad visual de Designer, Form y Viewer](./VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md) — `BACKLOG`
--- [VISUX-040 — Cerrar responsive, touch, teclado y accesibilidad integral](./VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md) — `BACKLOG`
--- [VISUX-041 — Estabilizar rendimiento y evitar remounts presentacionales](./VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md) — `BACKLOG`
--- [VISUX-042 — Crear suite visual, gates, documentación y release](./VISUX-042-crear-suite-visual-gates-documentacion-y-release.md) — `BACKLOG`
+-- `VISUX-001 — Congelar baseline visual y estados reproducibles` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-002 — Inventariar componentes visuales, scroll owners y fuentes de estado` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-003 — Auditar tokens, contraste, densidad y lenguaje visual` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-004 — Unificar auditoría de acciones, acceso y motivos de deshabilitación` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-005 — Crear un estado responsive único del workspace` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-006 — Unificar rails y colapso de ambos sidebars` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-007 — Preservar ancla visual, zoom y scroll al cambiar layout` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-008 — Corregir header de guardar, navegación de páginas y estado de selección` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-009 — Cerrar contrato de zoom, fit, undo y redo` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-010 — Reemplazar tooltips nativos y cerrar foco de controles` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-011 — Unificar toolbar contextual y menú Más` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-012 — Hacer overlays collision-aware y coordinar stack visual` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-013 — Compactar shell, tabs y colapso del LeftSidebar` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-014 — Cerrar búsqueda, filtros y selector de layout del catálogo` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-015 — Compactar grupos, cards, favoritos y owner tone del catálogo` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-016 — Cerrar custom fields, auto fields y catálogo de recipients` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-017 — Cerrar drag preview, drop setup y feedback de colocación` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-018 — Hacer responsive la navegación del RightSidebar` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-019 — Formalizar panel registry, header contextual y scroll owner` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-020 — Compactar ListView y separar identidad, estados y acciones` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-021 — Cerrar selección, reorder, localizar y menú por fila` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-022 — Corregir disponibilidad y lifecycle de Reasignar responsable` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-023 — Corregir header e identidad del DetailView` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-024 — Reorganizar taxonomía, disclosure y widgets del DetailView` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-025 — Cerrar alcance y lifecycle del CommentsRail` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-026 — Separar documento, página y acciones del DocumentsRail` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-027 — Unificar estados empty, loading, error y disabled del RightSidebar` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-028 — Unificar field chrome, owner tone y estados visuales` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-029 — Cerrar perfiles text-like, number y date/time` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-030 — Cerrar select, checkbox, radio y option groups` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-031 — Hacer el inspector de firma dependiente del modo` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-032 — Cerrar action schemas: attachment, note, approve y decline` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-033 — Cerrar media, barcode, table y shapes` (retired; Git/evidence is provenance) — `BACKLOG`
+-- `VISUX-034 — Normalizar i18n, labels técnicos y modo avanzado` (retired; Git/evidence is provenance) — `BACKLOG`
+-- [PRT-080](../portable-runtime/PRT-080.md) — `BACKLOG`
+-- `VISUX-036 — Cerrar selección y edición de grupos de opciones` (retired; Git/evidence is provenance) — `BACKLOG`
+-- [PRT-040](../portable-runtime/PRT-040.md) — `BACKLOG`
+-- [PRT-070](../portable-runtime/PRT-070.md) — `BACKLOG`
+-- [PRT-080](../portable-runtime/PRT-080.md) — `BACKLOG`
+-- [PRT-110](../portable-runtime/PRT-110.md) — `BACKLOG`
+-- [PRT-110](../portable-runtime/PRT-110.md) — `BACKLOG`
+-- [PRT-120](../portable-runtime/PRT-120.md) — `BACKLOG`
 +1. confirmar HEAD/status y que las premisas siguen vivas;
 +2. escribir characterization/repro antes de un cambio de riesgo;
 +3. cambiar la mínima autoridad correcta, no parchear cada consumidor;
@@ -78865,48 +78865,48 @@ index 4dde480..ac69fa0 100644
 -### Notas
 +## Stop conditions
  
--- [VISUX-001 — Congelar baseline visual y estados reproducibles](./VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md)
--- [VISUX-002 — Inventariar componentes visuales, scroll owners y fuentes de estado](./VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md)
--- [VISUX-003 — Auditar tokens, contraste, densidad y lenguaje visual](./VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md)
--- [VISUX-004 — Unificar auditoría de acciones, acceso y motivos de deshabilitación](./VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md)
--- [VISUX-005 — Crear un estado responsive único del workspace](./VISUX-005-crear-un-estado-responsive-unico-del-workspace.md)
--- [VISUX-006 — Unificar rails y colapso de ambos sidebars](./VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md)
--- [VISUX-007 — Preservar ancla visual, zoom y scroll al cambiar layout](./VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md)
--- [VISUX-008 — Corregir header de guardar, navegación de páginas y estado de selección](./VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md)
--- [VISUX-009 — Cerrar contrato de zoom, fit, undo y redo](./VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md)
--- [VISUX-010 — Reemplazar tooltips nativos y cerrar foco de controles](./VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md)
--- [VISUX-011 — Unificar toolbar contextual y menú Más](./VISUX-011-unificar-toolbar-contextual-y-menu-mas.md)
--- [VISUX-012 — Hacer overlays collision-aware y coordinar stack visual](./VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md)
--- [VISUX-013 — Compactar shell, tabs y colapso del LeftSidebar](./VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md)
--- [VISUX-014 — Cerrar búsqueda, filtros y selector de layout del catálogo](./VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md)
--- [VISUX-015 — Compactar grupos, cards, favoritos y owner tone del catálogo](./VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md)
--- [VISUX-016 — Cerrar custom fields, auto fields y catálogo de recipients](./VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md)
--- [VISUX-017 — Cerrar drag preview, drop setup y feedback de colocación](./VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md)
--- [VISUX-018 — Hacer responsive la navegación del RightSidebar](./VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md)
--- [VISUX-019 — Formalizar panel registry, header contextual y scroll owner](./VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md)
--- [VISUX-020 — Compactar ListView y separar identidad, estados y acciones](./VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md)
--- [VISUX-021 — Cerrar selección, reorder, localizar y menú por fila](./VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md)
--- [VISUX-022 — Corregir disponibilidad y lifecycle de Reasignar responsable](./VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md)
--- [VISUX-023 — Corregir header e identidad del DetailView](./VISUX-023-corregir-header-e-identidad-del-detailview.md)
--- [VISUX-024 — Reorganizar taxonomía, disclosure y widgets del DetailView](./VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md)
--- [VISUX-025 — Cerrar alcance y lifecycle del CommentsRail](./VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md)
--- [VISUX-026 — Separar documento, página y acciones del DocumentsRail](./VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md)
--- [VISUX-027 — Unificar estados empty, loading, error y disabled del RightSidebar](./VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md)
--- [VISUX-028 — Unificar field chrome, owner tone y estados visuales](./VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md)
--- [VISUX-029 — Cerrar perfiles text-like, number y date/time](./VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md)
--- [VISUX-030 — Cerrar select, checkbox, radio y option groups](./VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md)
--- [VISUX-031 — Hacer el inspector de firma dependiente del modo](./VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md)
--- [VISUX-032 — Cerrar action schemas: attachment, note, approve y decline](./VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md)
--- [VISUX-033 — Cerrar media, barcode, table y shapes](./VISUX-033-cerrar-media-barcode-table-y-shapes.md)
--- [VISUX-034 — Normalizar i18n, labels técnicos y modo avanzado](./VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md)
--- [VISUX-035 — Probar paridad propiedad→runtimes→PDF→snapshot](./VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md)
--- [VISUX-036 — Cerrar selección y edición de grupos de opciones](./VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md)
--- [VISUX-037 — Unificar asignación, reserva de edición, readonly y posición fija](./VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md)
--- [VISUX-038 — Cerrar routing multidocumento y navegación por página](./VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md)
--- [VISUX-039 — Cerrar paridad visual de Designer, Form y Viewer](./VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md)
--- [VISUX-040 — Cerrar responsive, touch, teclado y accesibilidad integral](./VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md)
--- [VISUX-041 — Estabilizar rendimiento y evitar remounts presentacionales](./VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md)
--- [VISUX-042 — Crear suite visual, gates, documentación y release](./VISUX-042-crear-suite-visual-gates-documentacion-y-release.md)
+-- `VISUX-001 — Congelar baseline visual y estados reproducibles` (retired; Git/evidence is provenance)
+-- `VISUX-002 — Inventariar componentes visuales, scroll owners y fuentes de estado` (retired; Git/evidence is provenance)
+-- `VISUX-003 — Auditar tokens, contraste, densidad y lenguaje visual` (retired; Git/evidence is provenance)
+-- `VISUX-004 — Unificar auditoría de acciones, acceso y motivos de deshabilitación` (retired; Git/evidence is provenance)
+-- `VISUX-005 — Crear un estado responsive único del workspace` (retired; Git/evidence is provenance)
+-- `VISUX-006 — Unificar rails y colapso de ambos sidebars` (retired; Git/evidence is provenance)
+-- `VISUX-007 — Preservar ancla visual, zoom y scroll al cambiar layout` (retired; Git/evidence is provenance)
+-- `VISUX-008 — Corregir header de guardar, navegación de páginas y estado de selección` (retired; Git/evidence is provenance)
+-- `VISUX-009 — Cerrar contrato de zoom, fit, undo y redo` (retired; Git/evidence is provenance)
+-- `VISUX-010 — Reemplazar tooltips nativos y cerrar foco de controles` (retired; Git/evidence is provenance)
+-- `VISUX-011 — Unificar toolbar contextual y menú Más` (retired; Git/evidence is provenance)
+-- `VISUX-012 — Hacer overlays collision-aware y coordinar stack visual` (retired; Git/evidence is provenance)
+-- `VISUX-013 — Compactar shell, tabs y colapso del LeftSidebar` (retired; Git/evidence is provenance)
+-- `VISUX-014 — Cerrar búsqueda, filtros y selector de layout del catálogo` (retired; Git/evidence is provenance)
+-- `VISUX-015 — Compactar grupos, cards, favoritos y owner tone del catálogo` (retired; Git/evidence is provenance)
+-- `VISUX-016 — Cerrar custom fields, auto fields y catálogo de recipients` (retired; Git/evidence is provenance)
+-- `VISUX-017 — Cerrar drag preview, drop setup y feedback de colocación` (retired; Git/evidence is provenance)
+-- `VISUX-018 — Hacer responsive la navegación del RightSidebar` (retired; Git/evidence is provenance)
+-- `VISUX-019 — Formalizar panel registry, header contextual y scroll owner` (retired; Git/evidence is provenance)
+-- `VISUX-020 — Compactar ListView y separar identidad, estados y acciones` (retired; Git/evidence is provenance)
+-- `VISUX-021 — Cerrar selección, reorder, localizar y menú por fila` (retired; Git/evidence is provenance)
+-- `VISUX-022 — Corregir disponibilidad y lifecycle de Reasignar responsable` (retired; Git/evidence is provenance)
+-- `VISUX-023 — Corregir header e identidad del DetailView` (retired; Git/evidence is provenance)
+-- `VISUX-024 — Reorganizar taxonomía, disclosure y widgets del DetailView` (retired; Git/evidence is provenance)
+-- `VISUX-025 — Cerrar alcance y lifecycle del CommentsRail` (retired; Git/evidence is provenance)
+-- `VISUX-026 — Separar documento, página y acciones del DocumentsRail` (retired; Git/evidence is provenance)
+-- `VISUX-027 — Unificar estados empty, loading, error y disabled del RightSidebar` (retired; Git/evidence is provenance)
+-- `VISUX-028 — Unificar field chrome, owner tone y estados visuales` (retired; Git/evidence is provenance)
+-- `VISUX-029 — Cerrar perfiles text-like, number y date/time` (retired; Git/evidence is provenance)
+-- `VISUX-030 — Cerrar select, checkbox, radio y option groups` (retired; Git/evidence is provenance)
+-- `VISUX-031 — Hacer el inspector de firma dependiente del modo` (retired; Git/evidence is provenance)
+-- `VISUX-032 — Cerrar action schemas: attachment, note, approve y decline` (retired; Git/evidence is provenance)
+-- `VISUX-033 — Cerrar media, barcode, table y shapes` (retired; Git/evidence is provenance)
+-- `VISUX-034 — Normalizar i18n, labels técnicos y modo avanzado` (retired; Git/evidence is provenance)
+-- [PRT-080](../portable-runtime/PRT-080.md)
+-- `VISUX-036 — Cerrar selección y edición de grupos de opciones` (retired; Git/evidence is provenance)
+-- [PRT-040](../portable-runtime/PRT-040.md)
+-- [PRT-070](../portable-runtime/PRT-070.md)
+-- [PRT-080](../portable-runtime/PRT-080.md)
+-- [PRT-110](../portable-runtime/PRT-110.md)
+-- [PRT-110](../portable-runtime/PRT-110.md)
+-- [PRT-120](../portable-runtime/PRT-120.md)
 -<!-- project-tools:navigation:end -->
 +- source pack y worktree no pueden reconciliarse;
 +- requiere contrato de producto no definido;
@@ -88447,37 +88447,37 @@ index 4dde480..ac69fa0 100644
 +## Navigation
  
 -Agregar Playwright cuando cambie layout, foco, scroll o comportamiento visible.
-+- [MDA-001 — Auditar arquitectura Markdown y congelar baseline](./MDA-001.md) — `BACKLOG`
-+- [MDA-010 — Reconciliar autoridad de estados y vistas](./MDA-010.md) — `BACKLOG`
-+- [MDA-020 — Organizar task cards por dominio](./MDA-020.md) — `BACKLOG`
-+- [MDA-030 — Archivar campañas legacy y retirar residuos transitorios](./MDA-030.md) — `BACKLOG`
-+- [MDA-040 — Generar hubs README y reparar enlaces](./MDA-040.md) — `BACKLOG`
-+- [MDA-050 — Consolidar routes, skills y adapters de proveedor](./MDA-050.md) — `BACKLOG`
-+- [MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog](./MDA-060.md) — `BACKLOG`
-+- [MDA-070 — Normalizar documentación pública y numeración](./MDA-070.md) — `BACKLOG`
-+- [MDA-080 — Cerrar gates de arquitectura documental](./MDA-080.md) — `BACKLOG`
-+- [Eliminar duplicidad entre tools/ai-quality y arquitectura IA](./TOOL-AI-DEDUP.md) — `BACKLOG`
-+- [Baseline de scripts/tools y consumers](./TOOL-BASELINE.md) — `READY`
-+- [TOOL-CAPABILITY-AUDIT](./TOOL-CAPABILITY-AUDIT.md) — `BACKLOG`
-+- [Centralizar configuración de tooling](./TOOL-CENTRAL-CONFIG.md) — `BACKLOG`
-+- [Gates finales y limpieza](./TOOL-CLOSEOUT.md) — `BACKLOG`
-+- [Migrar consumers y retirar wrappers redundantes](./TOOL-COMPATIBILITY.md) — `BACKLOG`
-+- [Dedup semántico del runtime](./TOOL-DEDUP-RUNTIME-SEMANTIC.md) — `BACKLOG`
-+- [TOOL-GRID-GEOMETRY-AUDIT](./TOOL-GRID-GEOMETRY-AUDIT.md) — `BACKLOG`
-+- [Corregir importer non-Markdown](./TOOL-IMPORT-NONMARKDOWN.md) — `BACKLOG`
-+- [Validar import ZIP/folder no destructivo](./TOOL-IMPORTER.md) — `BACKLOG`
-+- [Preflight y conflict-safe install-project-tools](./TOOL-INSTALL-SAFETY.md) — `BACKLOG`
-+- [TOOL-LEGACY-RETIREMENT](./TOOL-LEGACY-RETIREMENT.md) — `BACKLOG`
-+- [Actualizar manuales/package scripts/Brain](./TOOL-MANUALS.md) — `BACKLOG`
-+- [Consolidar sanitización/index/topology/links](./TOOL-MARKDOWN-ENGINE.md) — `BACKLOG`
-+- [Separar path reconciliation de identifier migration](./TOOL-PATH-SEMANTIC-SAFETY.md) — `BACKLOG`
-+- [TOOL — provider model routing](./TOOL-PROVIDER-MODEL-ROUTING.md) — `BACKLOG`
-+- [TOOL-RUNTIME-AUTOPILOT](./TOOL-RUNTIME-AUTOPILOT.md) — `BACKLOG`
-+- [TOOL — same repo coordination](./TOOL-SAME-REPO-COORDINATION.md) — `BACKLOG`
-+- [Portabilidad de scripts npm y memoria build](./TOOL-SCRIPT-PORTABILITY.md) — `BACKLOG`
-+- [Eliminar paths de arquitectura versionados](./TOOL-STABLE-NAMES.md) — `BACKLOG`
-+- [Mejorar calidad del test map SISAD-PDFME](./TOOL-TEST-COVERAGE-QUALITY.md) — `BACKLOG`
-+- [Hacer install-tests transaccional](./TOOL-TEST-INSTALL-PREFLIGHT.md) — `BACKLOG`
++- `MDA-001 — Auditar arquitectura Markdown y congelar baseline` (retired; Git/evidence is provenance) — `BACKLOG`
++- `MDA-010 — Reconciliar autoridad de estados y vistas` (retired; Git/evidence is provenance) — `BACKLOG`
++- `MDA-020 — Organizar task cards por dominio` (retired; Git/evidence is provenance) — `BACKLOG`
++- `MDA-030 — Archivar campañas legacy y retirar residuos transitorios` (retired; Git/evidence is provenance) — `BACKLOG`
++- `MDA-040 — Generar hubs README y reparar enlaces` (retired; Git/evidence is provenance) — `BACKLOG`
++- `MDA-050 — Consolidar routes, skills y adapters de proveedor` (retired; Git/evidence is provenance) — `BACKLOG`
++- `MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog` (retired; Git/evidence is provenance) — `BACKLOG`
++- `MDA-070 — Normalizar documentación pública y numeración` (retired; Git/evidence is provenance) — `BACKLOG`
++- `MDA-080 — Cerrar gates de arquitectura documental` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Eliminar duplicidad entre tools/ai-quality y arquitectura IA` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Baseline de scripts/tools y consumers` (retired; Git/evidence is provenance) — `READY`
++- `TOOL-CAPABILITY-AUDIT` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Centralizar configuración de tooling` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Gates finales y limpieza` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Migrar consumers y retirar wrappers redundantes` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Dedup semántico del runtime` (retired; Git/evidence is provenance) — `BACKLOG`
++- `TOOL-GRID-GEOMETRY-AUDIT` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Corregir importer non-Markdown` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Validar import ZIP/folder no destructivo` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Preflight y conflict-safe install-project-tools` (retired; Git/evidence is provenance) — `BACKLOG`
++- `TOOL-LEGACY-RETIREMENT` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Actualizar manuales/package scripts/Brain` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Consolidar sanitización/index/topology/links` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Separar path reconciliation de identifier migration` (retired; Git/evidence is provenance) — `BACKLOG`
++- `TOOL — provider model routing` (retired; Git/evidence is provenance) — `BACKLOG`
++- `TOOL-RUNTIME-AUTOPILOT` (retired; Git/evidence is provenance) — `BACKLOG`
++- `TOOL — same repo coordination` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Portabilidad de scripts npm y memoria build` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Eliminar paths de arquitectura versionados` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Mejorar calidad del test map SISAD-PDFME` (retired; Git/evidence is provenance) — `BACKLOG`
++- `Hacer install-tests transaccional` (retired; Git/evidence is provenance) — `BACKLOG`
  
 -## Stop condition
 +> Managed index. Update source documents, not this list.
@@ -88497,42 +88497,42 @@ index 4dde480..ac69fa0 100644
 +### Notas
  
 -## Rollback
-+- [MDA-001 — Auditar arquitectura Markdown y congelar baseline](./MDA-001.md)
-+- [MDA-010 — Reconciliar autoridad de estados y vistas](./MDA-010.md)
-+- [MDA-020 — Organizar task cards por dominio](./MDA-020.md)
-+- [MDA-030 — Archivar campañas legacy y retirar residuos transitorios](./MDA-030.md)
-+- [MDA-040 — Generar hubs README y reparar enlaces](./MDA-040.md)
-+- [MDA-050 — Consolidar routes, skills y adapters de proveedor](./MDA-050.md)
-+- [MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog](./MDA-060.md)
-+- [MDA-070 — Normalizar documentación pública y numeración](./MDA-070.md)
-+- [MDA-080 — Cerrar gates de arquitectura documental](./MDA-080.md)
-+- [MDA-090 — Consolidar topología Scrum](./MDA-090.md)
-+- [MDA-100 — Consolidar Brain e inventarios](./MDA-100.md)
-+- [MDA-110 — Cerrar huérfanos y grafo Markdown](./MDA-110.md)
-+- [MDA-120 — Reducir duplicidad semántica](./MDA-120.md)
-+- [MDA-130 — Cerrar saneamiento de arquitectura IA](./MDA-130.md)
-+- [Eliminar duplicidad entre tools/ai-quality y arquitectura IA](./TOOL-AI-DEDUP.md)
-+- [Baseline de scripts/tools y consumers](./TOOL-BASELINE.md)
-+- [TOOL-CAPABILITY-AUDIT](./TOOL-CAPABILITY-AUDIT.md)
-+- [Centralizar configuración de tooling](./TOOL-CENTRAL-CONFIG.md)
-+- [Gates finales y limpieza](./TOOL-CLOSEOUT.md)
-+- [Migrar consumers y retirar wrappers redundantes](./TOOL-COMPATIBILITY.md)
-+- [Dedup semántico del runtime](./TOOL-DEDUP-RUNTIME-SEMANTIC.md)
-+- [TOOL-GRID-GEOMETRY-AUDIT](./TOOL-GRID-GEOMETRY-AUDIT.md)
-+- [Corregir importer non-Markdown](./TOOL-IMPORT-NONMARKDOWN.md)
-+- [Validar import ZIP/folder no destructivo](./TOOL-IMPORTER.md)
-+- [Preflight y conflict-safe install-project-tools](./TOOL-INSTALL-SAFETY.md)
-+- [TOOL-LEGACY-RETIREMENT](./TOOL-LEGACY-RETIREMENT.md)
-+- [Actualizar manuales/package scripts/Brain](./TOOL-MANUALS.md)
-+- [Consolidar sanitización/index/topology/links](./TOOL-MARKDOWN-ENGINE.md)
-+- [Separar path reconciliation de identifier migration](./TOOL-PATH-SEMANTIC-SAFETY.md)
-+- [TOOL — provider model routing](./TOOL-PROVIDER-MODEL-ROUTING.md)
-+- [TOOL-RUNTIME-AUTOPILOT](./TOOL-RUNTIME-AUTOPILOT.md)
-+- [TOOL — same repo coordination](./TOOL-SAME-REPO-COORDINATION.md)
-+- [Portabilidad de scripts npm y memoria build](./TOOL-SCRIPT-PORTABILITY.md)
-+- [Eliminar paths de arquitectura versionados](./TOOL-STABLE-NAMES.md)
-+- [Mejorar calidad del test map SISAD-PDFME](./TOOL-TEST-COVERAGE-QUALITY.md)
-+- [Hacer install-tests transaccional](./TOOL-TEST-INSTALL-PREFLIGHT.md)
++- `MDA-001 — Auditar arquitectura Markdown y congelar baseline` (retired; Git/evidence is provenance)
++- `MDA-010 — Reconciliar autoridad de estados y vistas` (retired; Git/evidence is provenance)
++- `MDA-020 — Organizar task cards por dominio` (retired; Git/evidence is provenance)
++- `MDA-030 — Archivar campañas legacy y retirar residuos transitorios` (retired; Git/evidence is provenance)
++- `MDA-040 — Generar hubs README y reparar enlaces` (retired; Git/evidence is provenance)
++- `MDA-050 — Consolidar routes, skills y adapters de proveedor` (retired; Git/evidence is provenance)
++- `MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog` (retired; Git/evidence is provenance)
++- `MDA-070 — Normalizar documentación pública y numeración` (retired; Git/evidence is provenance)
++- `MDA-080 — Cerrar gates de arquitectura documental` (retired; Git/evidence is provenance)
++- `MDA-090 — Consolidar topología Scrum` (retired; Git/evidence is provenance)
++- `MDA-100 — Consolidar Brain e inventarios` (retired; Git/evidence is provenance)
++- `MDA-110 — Cerrar huérfanos y grafo Markdown` (retired; Git/evidence is provenance)
++- `MDA-120 — Reducir duplicidad semántica` (retired; Git/evidence is provenance)
++- `MDA-130 — Cerrar saneamiento de arquitectura IA` (retired; Git/evidence is provenance)
++- `Eliminar duplicidad entre tools/ai-quality y arquitectura IA` (retired; Git/evidence is provenance)
++- `Baseline de scripts/tools y consumers` (retired; Git/evidence is provenance)
++- `TOOL-CAPABILITY-AUDIT` (retired; Git/evidence is provenance)
++- `Centralizar configuración de tooling` (retired; Git/evidence is provenance)
++- `Gates finales y limpieza` (retired; Git/evidence is provenance)
++- `Migrar consumers y retirar wrappers redundantes` (retired; Git/evidence is provenance)
++- `Dedup semántico del runtime` (retired; Git/evidence is provenance)
++- `TOOL-GRID-GEOMETRY-AUDIT` (retired; Git/evidence is provenance)
++- `Corregir importer non-Markdown` (retired; Git/evidence is provenance)
++- `Validar import ZIP/folder no destructivo` (retired; Git/evidence is provenance)
++- `Preflight y conflict-safe install-project-tools` (retired; Git/evidence is provenance)
++- `TOOL-LEGACY-RETIREMENT` (retired; Git/evidence is provenance)
++- `Actualizar manuales/package scripts/Brain` (retired; Git/evidence is provenance)
++- `Consolidar sanitización/index/topology/links` (retired; Git/evidence is provenance)
++- `Separar path reconciliation de identifier migration` (retired; Git/evidence is provenance)
++- `TOOL — provider model routing` (retired; Git/evidence is provenance)
++- `TOOL-RUNTIME-AUTOPILOT` (retired; Git/evidence is provenance)
++- `TOOL — same repo coordination` (retired; Git/evidence is provenance)
++- `Portabilidad de scripts npm y memoria build` (retired; Git/evidence is provenance)
++- `Eliminar paths de arquitectura versionados` (retired; Git/evidence is provenance)
++- `Mejorar calidad del test map SISAD-PDFME` (retired; Git/evidence is provenance)
++- `Hacer install-tests transaccional` (retired; Git/evidence is provenance)
 +<!-- project-tools:navigation:end -->
  
 -Commit atómico. Revertir únicamente la task y conservar evidencia de
@@ -88541,42 +88541,42 @@ index 4dde480..ac69fa0 100644
 +## Navigation
  
 -## Handoff
-+- [MDA-001 — Auditar arquitectura Markdown y congelar baseline](./MDA-001.md)
-+- [MDA-010 — Reconciliar autoridad de estados y vistas](./MDA-010.md)
-+- [MDA-020 — Organizar task cards por dominio](./MDA-020.md)
-+- [MDA-030 — Archivar campañas legacy y retirar residuos transitorios](./MDA-030.md)
-+- [MDA-040 — Generar hubs README y reparar enlaces](./MDA-040.md)
-+- [MDA-050 — Consolidar routes, skills y adapters de proveedor](./MDA-050.md)
-+- [MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog](./MDA-060.md)
-+- [MDA-070 — Normalizar documentación pública y numeración](./MDA-070.md)
-+- [MDA-080 — Cerrar gates de arquitectura documental](./MDA-080.md)
-+- [MDA-090 — Consolidar topología Scrum](./MDA-090.md)
-+- [MDA-100 — Consolidar Brain e inventarios](./MDA-100.md)
-+- [MDA-110 — Cerrar huérfanos y grafo Markdown](./MDA-110.md)
-+- [MDA-120 — Reducir duplicidad semántica](./MDA-120.md)
-+- [MDA-130 — Cerrar saneamiento de arquitectura IA](./MDA-130.md)
-+- [Eliminar duplicidad entre tools/ai-quality y arquitectura IA](./TOOL-AI-DEDUP.md)
-+- [Baseline de scripts/tools y consumers](./TOOL-BASELINE.md)
-+- [TOOL-CAPABILITY-AUDIT](./TOOL-CAPABILITY-AUDIT.md)
-+- [Centralizar configuración de tooling](./TOOL-CENTRAL-CONFIG.md)
-+- [Gates finales y limpieza](./TOOL-CLOSEOUT.md)
-+- [Migrar consumers y retirar wrappers redundantes](./TOOL-COMPATIBILITY.md)
-+- [Dedup semántico del runtime](./TOOL-DEDUP-RUNTIME-SEMANTIC.md)
-+- [TOOL-GRID-GEOMETRY-AUDIT](./TOOL-GRID-GEOMETRY-AUDIT.md)
-+- [Corregir importer non-Markdown](./TOOL-IMPORT-NONMARKDOWN.md)
-+- [Validar import ZIP/folder no destructivo](./TOOL-IMPORTER.md)
-+- [Preflight y conflict-safe install-project-tools](./TOOL-INSTALL-SAFETY.md)
-+- [TOOL-LEGACY-RETIREMENT](./TOOL-LEGACY-RETIREMENT.md)
-+- [Actualizar manuales/package scripts/Brain](./TOOL-MANUALS.md)
-+- [Consolidar sanitización/index/topology/links](./TOOL-MARKDOWN-ENGINE.md)
-+- [Separar path reconciliation de identifier migration](./TOOL-PATH-SEMANTIC-SAFETY.md)
-+- [TOOL — provider model routing](./TOOL-PROVIDER-MODEL-ROUTING.md)
-+- [TOOL-RUNTIME-AUTOPILOT](./TOOL-RUNTIME-AUTOPILOT.md)
-+- [TOOL — same repo coordination](./TOOL-SAME-REPO-COORDINATION.md)
-+- [Portabilidad de scripts npm y memoria build](./TOOL-SCRIPT-PORTABILITY.md)
-+- [Eliminar paths de arquitectura versionados](./TOOL-STABLE-NAMES.md)
-+- [Mejorar calidad del test map SISAD-PDFME](./TOOL-TEST-COVERAGE-QUALITY.md)
-+- [Hacer install-tests transaccional](./TOOL-TEST-INSTALL-PREFLIGHT.md)
++- `MDA-001 — Auditar arquitectura Markdown y congelar baseline` (retired; Git/evidence is provenance)
++- `MDA-010 — Reconciliar autoridad de estados y vistas` (retired; Git/evidence is provenance)
++- `MDA-020 — Organizar task cards por dominio` (retired; Git/evidence is provenance)
++- `MDA-030 — Archivar campañas legacy y retirar residuos transitorios` (retired; Git/evidence is provenance)
++- `MDA-040 — Generar hubs README y reparar enlaces` (retired; Git/evidence is provenance)
++- `MDA-050 — Consolidar routes, skills y adapters de proveedor` (retired; Git/evidence is provenance)
++- `MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog` (retired; Git/evidence is provenance)
++- `MDA-070 — Normalizar documentación pública y numeración` (retired; Git/evidence is provenance)
++- `MDA-080 — Cerrar gates de arquitectura documental` (retired; Git/evidence is provenance)
++- `MDA-090 — Consolidar topología Scrum` (retired; Git/evidence is provenance)
++- `MDA-100 — Consolidar Brain e inventarios` (retired; Git/evidence is provenance)
++- `MDA-110 — Cerrar huérfanos y grafo Markdown` (retired; Git/evidence is provenance)
++- `MDA-120 — Reducir duplicidad semántica` (retired; Git/evidence is provenance)
++- `MDA-130 — Cerrar saneamiento de arquitectura IA` (retired; Git/evidence is provenance)
++- `Eliminar duplicidad entre tools/ai-quality y arquitectura IA` (retired; Git/evidence is provenance)
++- `Baseline de scripts/tools y consumers` (retired; Git/evidence is provenance)
++- `TOOL-CAPABILITY-AUDIT` (retired; Git/evidence is provenance)
++- `Centralizar configuración de tooling` (retired; Git/evidence is provenance)
++- `Gates finales y limpieza` (retired; Git/evidence is provenance)
++- `Migrar consumers y retirar wrappers redundantes` (retired; Git/evidence is provenance)
++- `Dedup semántico del runtime` (retired; Git/evidence is provenance)
++- `TOOL-GRID-GEOMETRY-AUDIT` (retired; Git/evidence is provenance)
++- `Corregir importer non-Markdown` (retired; Git/evidence is provenance)
++- `Validar import ZIP/folder no destructivo` (retired; Git/evidence is provenance)
++- `Preflight y conflict-safe install-project-tools` (retired; Git/evidence is provenance)
++- `TOOL-LEGACY-RETIREMENT` (retired; Git/evidence is provenance)
++- `Actualizar manuales/package scripts/Brain` (retired; Git/evidence is provenance)
++- `Consolidar sanitización/index/topology/links` (retired; Git/evidence is provenance)
++- `Separar path reconciliation de identifier migration` (retired; Git/evidence is provenance)
++- `TOOL — provider model routing` (retired; Git/evidence is provenance)
++- `TOOL-RUNTIME-AUTOPILOT` (retired; Git/evidence is provenance)
++- `TOOL — same repo coordination` (retired; Git/evidence is provenance)
++- `Portabilidad de scripts npm y memoria build` (retired; Git/evidence is provenance)
++- `Eliminar paths de arquitectura versionados` (retired; Git/evidence is provenance)
++- `Mejorar calidad del test map SISAD-PDFME` (retired; Git/evidence is provenance)
++- `Hacer install-tests transaccional` (retired; Git/evidence is provenance)
  
 -``​`text
 -task:

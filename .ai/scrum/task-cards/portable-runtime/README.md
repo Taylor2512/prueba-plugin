@@ -26,7 +26,7 @@ Canonical queue:
 - [PRT-120 — Portable release closeout](./PRT-120.md) — `BACKLOG`
 - [PRT-130 — Render SVG schemas into the PDF](./PRT-130.md) — `PASS`
 - [PRT-140 — Select chevron parity across Designer, Form and Viewer](./PRT-140.md) — `PASS`
-- [PRT-150 — Migrate the one unique capability of the deleted host bundle](./PRT-150.md) — `PARTIAL`
+- [PRT-150 — Migrate the one unique capability of the deleted host bundle](./PRT-150.md) — `PASS`
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->

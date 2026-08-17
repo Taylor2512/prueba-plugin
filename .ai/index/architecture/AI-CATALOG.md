@@ -539,287 +539,287 @@
 - [Scrum governance](../../scrum/governance/README.md) — `.ai/scrum/governance/README.md`
 - [State authority](../../scrum/governance/STATE-AUTHORITY.md) — `.ai/scrum/governance/STATE-AUTHORITY.md`
 - [Visual UX execution policy](../../scrum/governance/VISUAL-UX-POLICY.md) — `.ai/scrum/governance/VISUAL-UX-POLICY.md`
-- [AIARCH-006 — Crear generador de context packets](../../scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md) — `.ai/scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md`
+- `AIARCH-006 — Crear generador de context packets` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/AIARCH-006-crear-generador-de-context-packets.md`
 - [task-cards](../../scrum/task-cards/README.md) — `.ai/scrum/task-cards/README.md`
-- [AIARCH-001 — Auditar y congelar baseline](../../scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md`
-- [AIARCH-002 — Corregir fuente de estado y arranque](../../scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md`
-- [AIARCH-003 — Adoptar adapters raíz](../../scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md`
-- [AIARCH-004 — Implementar router por Context Manifest](../../scrum/task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md`
-- [AIARCH-005 — Aplicar presupuesto L0–L4](../../scrum/task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md`
-- [AIARCH-007 — Migrar memoria a índice y topics](../../scrum/task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md`
-- [AIARCH-008 — Implementar memory GC e invalidación](../../scrum/task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md`
-- [AIARCH-009 — Adoptar IDs de trazabilidad](../../scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md`
-- [AIARCH-010 — Generar method registry desde código](../../scrum/task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md`
-- [AIARCH-011 — Consolidar casos y behavior catalog](../../scrum/task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md`
-- [AIARCH-012 — Consolidar event/effect catalogs](../../scrum/task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md`
-- [AIARCH-013 — Construir trace matrix y coverage gate](../../scrum/task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md`
-- [AIARCH-014 — Depurar skill registry y aliases](../../scrum/task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md`
-- [AIARCH-015 — Añadir skills de contexto y trazabilidad](../../scrum/task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md`
-- [AIARCH-016 — Consolidar agent registry](../../scrum/task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md`
-- [AIARCH-017 — Aplicar política de subagentes y coste](../../scrum/task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md`
-- [AIARCH-018 — Actualizar adapter de Claude](../../scrum/task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md`
-- [AIARCH-019 — Actualizar adapter de Codex](../../scrum/task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md`
-- [AIARCH-020 — Actualizar adapter de Copilot](../../scrum/task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md`
-- [AIARCH-021 — Implementar provider drift gate](../../scrum/task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md`
-- [AIARCH-022 — Migrar task-card a esquema](../../scrum/task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md`
-- [AIARCH-023 — Consolidar Scrum, claims y vistas](../../scrum/task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md`
-- [AIARCH-024 — Crear evidence store y log distillation](../../scrum/task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md`
-- [AIARCH-025 — Crear validadores mecánicos](../../scrum/task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md`
-- [AIARCH-026 — Crear evals por proveedor y caso de uso](../../scrum/task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md`
-- [AIARCH-027 — Migrar planes COREUX/DECL/RESTORE](../../scrum/task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md`
-- [AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos](../../scrum/task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md`
-- [AIARCH-029 — Integrar scripts en package/CI](../../scrum/task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md`
-- [AIARCH-030 — Rollout, documentación y retrospectiva](../../scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md) — `.ai/scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md`
+- `AIARCH-001 — Auditar y congelar baseline` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-001-auditar-y-congelar-baseline.md`
+- `AIARCH-002 — Corregir fuente de estado y arranque` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-002-corregir-fuente-de-estado-y-arranque.md`
+- `AIARCH-003 — Adoptar adapters raíz` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-003-adoptar-adapters-raiz.md`
+- `AIARCH-004 — Implementar router por Context Manifest` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-004-implementar-router-por-context-manifest.md`
+- `AIARCH-005 — Aplicar presupuesto L0–L4` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-005-aplicar-presupuesto-l0l4.md`
+- `AIARCH-007 — Migrar memoria a índice y topics` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-007-migrar-memoria-a-indice-y-topics.md`
+- `AIARCH-008 — Implementar memory GC e invalidación` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-008-implementar-memory-gc-e-invalidacion.md`
+- `AIARCH-009 — Adoptar IDs de trazabilidad` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-009-adoptar-ids-de-trazabilidad.md`
+- `AIARCH-010 — Generar method registry desde código` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-010-generar-method-registry-desde-codigo.md`
+- `AIARCH-011 — Consolidar casos y behavior catalog` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-011-consolidar-casos-y-behavior-catalog.md`
+- `AIARCH-012 — Consolidar event/effect catalogs` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-012-consolidar-event-effect-catalogs.md`
+- `AIARCH-013 — Construir trace matrix y coverage gate` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-013-construir-trace-matrix-y-coverage-gate.md`
+- `AIARCH-014 — Depurar skill registry y aliases` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-014-depurar-skill-registry-y-aliases.md`
+- `AIARCH-015 — Añadir skills de contexto y trazabilidad` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-015-anadir-skills-de-contexto-y-trazabilidad.md`
+- `AIARCH-016 — Consolidar agent registry` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-016-consolidar-agent-registry.md`
+- `AIARCH-017 — Aplicar política de subagentes y coste` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-017-aplicar-politica-de-subagentes-y-coste.md`
+- `AIARCH-018 — Actualizar adapter de Claude` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-018-actualizar-adapter-de-claude.md`
+- `AIARCH-019 — Actualizar adapter de Codex` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-019-actualizar-adapter-de-codex.md`
+- `AIARCH-020 — Actualizar adapter de Copilot` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-020-actualizar-adapter-de-copilot.md`
+- `AIARCH-021 — Implementar provider drift gate` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-021-implementar-provider-drift-gate.md`
+- `AIARCH-022 — Migrar task-card a esquema` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-022-migrar-task-card-a-esquema.md`
+- `AIARCH-023 — Consolidar Scrum, claims y vistas` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-023-consolidar-scrum-claims-y-vistas.md`
+- `AIARCH-024 — Crear evidence store y log distillation` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-024-crear-evidence-store-y-log-distillation.md`
+- `AIARCH-025 — Crear validadores mecánicos` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-025-crear-validadores-mecanicos.md`
+- `AIARCH-026 — Crear evals por proveedor y caso de uso` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-026-crear-evals-por-proveedor-y-caso-de-uso.md`
+- `AIARCH-027 — Migrar planes COREUX/DECL/RESTORE` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-027-migrar-planes-coreux-decl-restore.md`
+- `AIARCH-028 — Eliminar duplicación Markdown y archivos obsoletos` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-028-eliminar-duplicacion-markdown-y-archivos-obsoletos.md`
+- `AIARCH-029 — Integrar scripts en package/CI` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-029-integrar-scripts-en-package-ci.md`
+- `AIARCH-030 — Rollout, documentación y retrospectiva` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/ai-architecture/AIARCH-030-rollout-documentacion-y-retrospectiva.md`
 - [ai-architecture](../../scrum/task-cards/ai-architecture/README.md) — `.ai/scrum/task-cards/ai-architecture/README.md`
-- [AI8-004 — Implantar query y context pack](../../scrum/task-cards/backlog/AI8-004-implantar-query-y-context-pack.md) — `.ai/scrum/task-cards/backlog/AI8-004-implantar-query-y-context-pack.md`
+- `AI8-004 — Implantar query y context pack` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/backlog/AI8-004-implantar-query-y-context-pack.md`
 - [backlog](../../scrum/task-cards/backlog/README.md) — `.ai/scrum/task-cards/backlog/README.md`
-- [COREUX-001 — Congelar baseline visual y responsive](../../scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md) — `.ai/scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md`
-- [COREUX-002 — Inventariar capacidades y funcionalidades ejecutables](../../scrum/task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md) — `.ai/scrum/task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md`
-- [COREUX-003 — Auditar cobertura real de eventos y efectos](../../scrum/task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md) — `.ai/scrum/task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md`
-- [COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual](../../scrum/task-cards/core-ux/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md) — `.ai/scrum/task-cards/core-ux/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md`
-- [COREUX-005 — Crear catálogo tipado y versionado de eventos](../../scrum/task-cards/core-ux/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md) — `.ai/scrum/task-cards/core-ux/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md`
-- [COREUX-006 — Implementar dispatcher único y adapter legacy onX](../../scrum/task-cards/core-ux/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md) — `.ai/scrum/task-cards/core-ux/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md`
-- [COREUX-007 — Instrumentar eventos del Designer y toolbar](../../scrum/task-cards/core-ux/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md) — `.ai/scrum/task-cards/core-ux/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md`
-- [COREUX-008 — Expandir máquina de estados de interacción](../../scrum/task-cards/core-ux/COREUX-008-expandir-maquina-de-estados-de-interaccion.md) — `.ai/scrum/task-cards/core-ux/COREUX-008-expandir-maquina-de-estados-de-interaccion.md`
-- [COREUX-009 — Crear coordinador de efectos del Designer](../../scrum/task-cards/core-ux/COREUX-009-crear-coordinador-de-efectos-del-designer.md) — `.ai/scrum/task-cards/core-ux/COREUX-009-crear-coordinador-de-efectos-del-designer.md`
-- [COREUX-010 — Completar modelo canónico de acceso a schemas](../../scrum/task-cards/core-ux/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md) — `.ai/scrum/task-cards/core-ux/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md`
-- [COREUX-011 — Unificar ActionConfigRegistry y designerActionState](../../scrum/task-cards/core-ux/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md) — `.ai/scrum/task-cards/core-ux/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md`
-- [COREUX-012 — Conectar CommandBus, eventos e historial](../../scrum/task-cards/core-ux/COREUX-012-conectar-commandbus-eventos-e-historial.md) — `.ai/scrum/task-cards/core-ux/COREUX-012-conectar-commandbus-eventos-e-historial.md`
-- [COREUX-013 — Corregir layout, safe area y contraste de CtlBar](../../scrum/task-cards/core-ux/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md) — `.ai/scrum/task-cards/core-ux/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md`
-- [COREUX-014 — Reemplazar tooltips nativos por primitive controlada](../../scrum/task-cards/core-ux/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md) — `.ai/scrum/task-cards/core-ux/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md`
-- [COREUX-015 — Convertir toggles de vista en comandos configurables](../../scrum/task-cards/core-ux/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md) — `.ai/scrum/task-cards/core-ux/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md`
-- [COREUX-016 — Completar comandos de página](../../scrum/task-cards/core-ux/COREUX-016-completar-comandos-de-pagina.md) — `.ai/scrum/task-cards/core-ux/COREUX-016-completar-comandos-de-pagina.md`
-- [COREUX-017 — Unificar zoom, fit page y fit width](../../scrum/task-cards/core-ux/COREUX-017-unificar-zoom-fit-page-y-fit-width.md) — `.ai/scrum/task-cards/core-ux/COREUX-017-unificar-zoom-fit-page-y-fit-width.md`
-- [COREUX-018 — Cerrar lifecycle de Guardar y autosave](../../scrum/task-cards/core-ux/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md) — `.ai/scrum/task-cards/core-ux/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md`
-- [COREUX-019 — Cerrar lifecycle de exportación y artifacts](../../scrum/task-cards/core-ux/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md) — `.ai/scrum/task-cards/core-ux/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md`
-- [COREUX-020 — Crear estado responsive único de superficies](../../scrum/task-cards/core-ux/COREUX-020-crear-estado-responsive-unico-de-superficies.md) — `.ai/scrum/task-cards/core-ux/COREUX-020-crear-estado-responsive-unico-de-superficies.md`
-- [COREUX-021 — Unificar rails y colapso de ambos sidebars](../../scrum/task-cards/core-ux/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md) — `.ai/scrum/task-cards/core-ux/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md`
-- [COREUX-022 — Preservar ancla visual del viewport al cambiar layout](../../scrum/task-cards/core-ux/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md) — `.ai/scrum/task-cards/core-ux/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md`
-- [COREUX-023 — Consolidar catálogo izquierdo y layouts](../../scrum/task-cards/core-ux/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md) — `.ai/scrum/task-cards/core-ux/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md`
-- [COREUX-024 — Formalizar contrato del RightSidebar](../../scrum/task-cards/core-ux/COREUX-024-formalizar-contrato-del-rightsidebar.md) — `.ai/scrum/task-cards/core-ux/COREUX-024-formalizar-contrato-del-rightsidebar.md`
-- [COREUX-025 — Completar ListView compacto y menú por fila](../../scrum/task-cards/core-ux/COREUX-025-completar-listview-compacto-y-menu-por-fila.md) — `.ai/scrum/task-cards/core-ux/COREUX-025-completar-listview-compacto-y-menu-por-fila.md`
-- [COREUX-026 — Corregir regla y lifecycle de Reasignar responsable](../../scrum/task-cards/core-ux/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md) — `.ai/scrum/task-cards/core-ux/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md`
-- [COREUX-027 — Completar DocumentsRail y DocumentController](../../scrum/task-cards/core-ux/COREUX-027-completar-documentsrail-y-documentcontroller.md) — `.ai/scrum/task-cards/core-ux/COREUX-027-completar-documentsrail-y-documentcontroller.md`
-- [COREUX-028 — Completar CommentsRail y lifecycle de comentarios](../../scrum/task-cards/core-ux/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md) — `.ai/scrum/task-cards/core-ux/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md`
-- [COREUX-029 — Cerrar perfiles del inspector por familia](../../scrum/task-cards/core-ux/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md) — `.ai/scrum/task-cards/core-ux/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md`
-- [COREUX-030 — Formalizar contrato de widgets del DetailView](../../scrum/task-cards/core-ux/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md) — `.ai/scrum/task-cards/core-ux/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md`
-- [COREUX-031 — Optimizar geometría, alineación y precisión visual](../../scrum/task-cards/core-ux/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md) — `.ai/scrum/task-cards/core-ux/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md`
-- [COREUX-032 — Consolidar Datos y conexiones](../../scrum/task-cards/core-ux/COREUX-032-consolidar-datos-y-conexiones.md) — `.ai/scrum/task-cards/core-ux/COREUX-032-consolidar-datos-y-conexiones.md`
-- [COREUX-033 — Consolidar Asignación, bloqueo y auditoría](../../scrum/task-cards/core-ux/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md) — `.ai/scrum/task-cards/core-ux/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md`
-- [COREUX-034 — Unificar editor de opciones](../../scrum/task-cards/core-ux/COREUX-034-unificar-editor-de-opciones.md) — `.ai/scrum/task-cards/core-ux/COREUX-034-unificar-editor-de-opciones.md`
-- [COREUX-035 — Hacer inspector de firma dependiente del modo](../../scrum/task-cards/core-ux/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md) — `.ai/scrum/task-cards/core-ux/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md`
-- [COREUX-036 — Centralizar defaults de creación de schemas](../../scrum/task-cards/core-ux/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md) — `.ai/scrum/task-cards/core-ux/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md`
-- [COREUX-037 — Cerrar contrato de campos text-like, number y date/time](../../scrum/task-cards/core-ux/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md) — `.ai/scrum/task-cards/core-ux/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md`
-- [COREUX-038 — Cerrar contrato de choice fields](../../scrum/task-cards/core-ux/COREUX-038-cerrar-contrato-de-choice-fields.md) — `.ai/scrum/task-cards/core-ux/COREUX-038-cerrar-contrato-de-choice-fields.md`
-- [COREUX-039 — Cerrar contrato runtime de firma, initials y dateSigned](../../scrum/task-cards/core-ux/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md) — `.ai/scrum/task-cards/core-ux/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md`
-- [COREUX-040 — Cerrar contratos de action y visual schemas](../../scrum/task-cards/core-ux/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md) — `.ai/scrum/task-cards/core-ux/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md`
-- [COREUX-041 — Unificar owner tone y field chrome](../../scrum/task-cards/core-ux/COREUX-041-unificar-owner-tone-y-field-chrome.md) — `.ai/scrum/task-cards/core-ux/COREUX-041-unificar-owner-tone-y-field-chrome.md`
-- [COREUX-042 — Consolidar selección y shortcuts multiplataforma](../../scrum/task-cards/core-ux/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md) — `.ai/scrum/task-cards/core-ux/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md`
-- [COREUX-043 — Cerrar drag/drop, placement y no-overlap](../../scrum/task-cards/core-ux/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md) — `.ai/scrum/task-cards/core-ux/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md`
-- [COREUX-044 — Alinear Moveable con access, interaction y events](../../scrum/task-cards/core-ux/COREUX-044-alinear-moveable-con-access-interaction-y-events.md) — `.ai/scrum/task-cards/core-ux/COREUX-044-alinear-moveable-con-access-interaction-y-events.md`
-- [COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit](../../scrum/task-cards/core-ux/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md) — `.ai/scrum/task-cards/core-ux/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md`
-- [COREUX-046 — Cerrar routing multidocumento y navegación](../../scrum/task-cards/core-ux/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md) — `.ai/scrum/task-cards/core-ux/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md`
-- [COREUX-047 — Completar snapshot e historial versionado](../../scrum/task-cards/core-ux/COREUX-047-completar-snapshot-e-historial-versionado.md) — `.ai/scrum/task-cards/core-ux/COREUX-047-completar-snapshot-e-historial-versionado.md`
-- [COREUX-048 — Cerrar paridad del controller y capacidades](../../scrum/task-cards/core-ux/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md) — `.ai/scrum/task-cards/core-ux/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md`
-- [COREUX-049 — Cerrar paridad Designer, Form y Viewer](../../scrum/task-cards/core-ux/COREUX-049-cerrar-paridad-designer-form-y-viewer.md) — `.ai/scrum/task-cards/core-ux/COREUX-049-cerrar-paridad-designer-form-y-viewer.md`
-- [COREUX-050 — Unificar validación, generator, converter y persistence](../../scrum/task-cards/core-ux/COREUX-050-unificar-validacion-generator-converter-y-persistence.md) — `.ai/scrum/task-cards/core-ux/COREUX-050-unificar-validacion-generator-converter-y-persistence.md`
-- [COREUX-051 — Cerrar responsive, touch y accesibilidad](../../scrum/task-cards/core-ux/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md) — `.ai/scrum/task-cards/core-ux/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md`
-- [COREUX-052 — Estabilizar rendimiento y evitar remounts](../../scrum/task-cards/core-ux/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md) — `.ai/scrum/task-cards/core-ux/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md`
-- [COREUX-053 — Crear suite contractual de eventos y efectos](../../scrum/task-cards/core-ux/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md) — `.ai/scrum/task-cards/core-ux/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md`
-- [COREUX-054 — Crear Playwright y regresión visual integral](../../scrum/task-cards/core-ux/COREUX-054-crear-playwright-y-regresion-visual-integral.md) — `.ai/scrum/task-cards/core-ux/COREUX-054-crear-playwright-y-regresion-visual-integral.md`
-- [COREUX-055 — Añadir gates de frontera, duplicidad y drift](../../scrum/task-cards/core-ux/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md) — `.ai/scrum/task-cards/core-ux/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md`
-- [COREUX-056 — Documentar configuración, eventos, efectos y release](../../scrum/task-cards/core-ux/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md) — `.ai/scrum/task-cards/core-ux/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md`
+- `COREUX-001 — Congelar baseline visual y responsive` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-001-congelar-baseline-visual-y-responsive.md`
+- `COREUX-002 — Inventariar capacidades y funcionalidades ejecutables` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-002-inventariar-capacidades-y-funcionalidades-ejecutables.md`
+- `COREUX-003 — Auditar cobertura real de eventos y efectos` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-003-auditar-cobertura-real-de-eventos-y-efectos.md`
+- `COREUX-004 — Mapear fuentes de verdad y duplicidad conceptual` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-004-mapear-fuentes-de-verdad-y-duplicidad-conceptual.md`
+- `COREUX-005 — Crear catálogo tipado y versionado de eventos` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-005-crear-catalogo-tipado-y-versionado-de-eventos.md`
+- `COREUX-006 — Implementar dispatcher único y adapter legacy onX` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-006-implementar-dispatcher-unico-y-adapter-legacy-onx.md`
+- `COREUX-007 — Instrumentar eventos del Designer y toolbar` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-007-instrumentar-eventos-del-designer-y-toolbar.md`
+- `COREUX-008 — Expandir máquina de estados de interacción` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-008-expandir-maquina-de-estados-de-interaccion.md`
+- `COREUX-009 — Crear coordinador de efectos del Designer` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-009-crear-coordinador-de-efectos-del-designer.md`
+- `COREUX-010 — Completar modelo canónico de acceso a schemas` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-010-completar-modelo-canonico-de-acceso-a-schemas.md`
+- `COREUX-011 — Unificar ActionConfigRegistry y designerActionState` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-011-unificar-actionconfigregistry-y-designeractionstate.md`
+- `COREUX-012 — Conectar CommandBus, eventos e historial` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-012-conectar-commandbus-eventos-e-historial.md`
+- `COREUX-013 — Corregir layout, safe area y contraste de CtlBar` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-013-corregir-layout-safe-area-y-contraste-de-ctlbar.md`
+- `COREUX-014 — Reemplazar tooltips nativos por primitive controlada` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-014-reemplazar-tooltips-nativos-por-primitive-controlada.md`
+- `COREUX-015 — Convertir toggles de vista en comandos configurables` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-015-convertir-toggles-de-vista-en-comandos-configurables.md`
+- `COREUX-016 — Completar comandos de página` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-016-completar-comandos-de-pagina.md`
+- `COREUX-017 — Unificar zoom, fit page y fit width` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-017-unificar-zoom-fit-page-y-fit-width.md`
+- `COREUX-018 — Cerrar lifecycle de Guardar y autosave` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-018-cerrar-lifecycle-de-guardar-y-autosave.md`
+- `COREUX-019 — Cerrar lifecycle de exportación y artifacts` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-019-cerrar-lifecycle-de-exportacion-y-artifacts.md`
+- `COREUX-020 — Crear estado responsive único de superficies` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-020-crear-estado-responsive-unico-de-superficies.md`
+- `COREUX-021 — Unificar rails y colapso de ambos sidebars` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-021-unificar-rails-y-colapso-de-ambos-sidebars.md`
+- `COREUX-022 — Preservar ancla visual del viewport al cambiar layout` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-022-preservar-ancla-visual-del-viewport-al-cambiar-layout.md`
+- `COREUX-023 — Consolidar catálogo izquierdo y layouts` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-023-consolidar-catalogo-izquierdo-y-layouts.md`
+- `COREUX-024 — Formalizar contrato del RightSidebar` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-024-formalizar-contrato-del-rightsidebar.md`
+- `COREUX-025 — Completar ListView compacto y menú por fila` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-025-completar-listview-compacto-y-menu-por-fila.md`
+- `COREUX-026 — Corregir regla y lifecycle de Reasignar responsable` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-026-corregir-regla-y-lifecycle-de-reasignar-responsable.md`
+- `COREUX-027 — Completar DocumentsRail y DocumentController` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-027-completar-documentsrail-y-documentcontroller.md`
+- `COREUX-028 — Completar CommentsRail y lifecycle de comentarios` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-028-completar-commentsrail-y-lifecycle-de-comentarios.md`
+- `COREUX-029 — Cerrar perfiles del inspector por familia` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-029-cerrar-perfiles-del-inspector-por-familia.md`
+- `COREUX-030 — Formalizar contrato de widgets del DetailView` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-030-formalizar-contrato-de-widgets-del-detailview.md`
+- [PRT-110](../portable-runtime/PRT-110.md) — `.ai/scrum/task-cards/core-ux/COREUX-031-optimizar-geometria-alineacion-y-precision-visual.md`
+- [PRT-060](../portable-runtime/PRT-060.md) — `.ai/scrum/task-cards/core-ux/COREUX-032-consolidar-datos-y-conexiones.md`
+- [PRT-040](../portable-runtime/PRT-040.md) — `.ai/scrum/task-cards/core-ux/COREUX-033-consolidar-asignacion-bloqueo-y-auditoria.md`
+- `COREUX-034 — Unificar editor de opciones` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-034-unificar-editor-de-opciones.md`
+- `COREUX-035 — Hacer inspector de firma dependiente del modo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-035-hacer-inspector-de-firma-dependiente-del-modo.md`
+- `COREUX-036 — Centralizar defaults de creación de schemas` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-036-centralizar-defaults-de-creacion-de-schemas.md`
+- [PRT-080](../portable-runtime/PRT-080.md) — `.ai/scrum/task-cards/core-ux/COREUX-037-cerrar-contrato-de-campos-text-like-number-y-date-time.md`
+- `COREUX-038 — Cerrar contrato de choice fields` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-038-cerrar-contrato-de-choice-fields.md`
+- [PRT-090](../portable-runtime/PRT-090.md) — `.ai/scrum/task-cards/core-ux/COREUX-039-cerrar-contrato-runtime-de-firma-initials-y-datesigned.md`
+- [PRT-080](../portable-runtime/PRT-080.md) — `.ai/scrum/task-cards/core-ux/COREUX-040-cerrar-contratos-de-action-y-visual-schemas.md`
+- `COREUX-041 — Unificar owner tone y field chrome` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-041-unificar-owner-tone-y-field-chrome.md`
+- `COREUX-042 — Consolidar selección y shortcuts multiplataforma` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-042-consolidar-seleccion-y-shortcuts-multiplataforma.md`
+- `COREUX-043 — Cerrar drag/drop, placement y no-overlap` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-043-cerrar-drag-drop-placement-y-no-overlap.md`
+- [PRT-040](../portable-runtime/PRT-040.md) — `.ai/scrum/task-cards/core-ux/COREUX-044-alinear-moveable-con-access-interaction-y-events.md`
+- `COREUX-045 — Cerrar clipboard, duplicate, group, order e inline edit` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/core-ux/COREUX-045-cerrar-clipboard-duplicate-group-order-e-inline-edit.md`
+- [PRT-070](../portable-runtime/PRT-070.md) — `.ai/scrum/task-cards/core-ux/COREUX-046-cerrar-routing-multidocumento-y-navegacion.md`
+- [PRT-100](../portable-runtime/PRT-100.md) — `.ai/scrum/task-cards/core-ux/COREUX-047-completar-snapshot-e-historial-versionado.md`
+- [PRT-060](../portable-runtime/PRT-060.md) — `.ai/scrum/task-cards/core-ux/COREUX-048-cerrar-paridad-del-controller-y-capacidades.md`
+- [PRT-080](../portable-runtime/PRT-080.md) — `.ai/scrum/task-cards/core-ux/COREUX-049-cerrar-paridad-designer-form-y-viewer.md`
+- [PRT-100](../portable-runtime/PRT-100.md) — `.ai/scrum/task-cards/core-ux/COREUX-050-unificar-validacion-generator-converter-y-persistence.md`
+- [PRT-110](../portable-runtime/PRT-110.md) — `.ai/scrum/task-cards/core-ux/COREUX-051-cerrar-responsive-touch-y-accesibilidad.md`
+- [PRT-110](../portable-runtime/PRT-110.md) — `.ai/scrum/task-cards/core-ux/COREUX-052-estabilizar-rendimiento-y-evitar-remounts.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/core-ux/COREUX-053-crear-suite-contractual-de-eventos-y-efectos.md`
+- [PRT-110](../portable-runtime/PRT-110.md) — `.ai/scrum/task-cards/core-ux/COREUX-054-crear-playwright-y-regresion-visual-integral.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/core-ux/COREUX-055-anadir-gates-de-frontera-duplicidad-y-drift.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/core-ux/COREUX-056-documentar-configuracion-eventos-efectos-y-release.md`
 - [core-ux](../../scrum/task-cards/core-ux/README.md) — `.ai/scrum/task-cards/core-ux/README.md`
 - [naming](../../scrum/task-cards/naming/README.md) — `.ai/scrum/task-cards/naming/README.md`
-- [NAME-001 — Inventariar y clasificar ocurrencias](../../scrum/task-cards/naming/name-001-inventariar-y-clasificar-ocurrencias.md) — `.ai/scrum/task-cards/naming/name-001-inventariar-y-clasificar-ocurrencias.md`
-- [NAME-002 — Crear política y gate preventivo](../../scrum/task-cards/naming/name-002-crear-pol-tica-y-gate-preventivo.md) — `.ai/scrum/task-cards/naming/name-002-crear-pol-tica-y-gate-preventivo.md`
-- [NAME-003 — Renombrar vocabulario del inspector](../../scrum/task-cards/naming/name-003-renombrar-vocabulario-del-inspector.md) — `.ai/scrum/task-cards/naming/name-003-renombrar-vocabulario-del-inspector.md`
-- [NAME-004 — Sanear migración de Config a](../../scrum/task-cards/naming/name-004-sanear-migraci-n-de-config-a.md) — `.ai/scrum/task-cards/naming/name-004-sanear-migraci-n-de-config-a.md`
-- [NAME-005 — Renombrar eventos y callbacks del host](../../scrum/task-cards/naming/name-005-renombrar-eventos-y-callbacks-del-host.md) — `.ai/scrum/task-cards/naming/name-005-renombrar-eventos-y-callbacks-del-host.md`
-- [NAME-006 — Versionar snapshots y metadata](../../scrum/task-cards/naming/name-006-versionar-snapshots-y-metadata.md) — `.ai/scrum/task-cards/naming/name-006-versionar-snapshots-y-metadata.md`
-- [NAME-007 — Renombrar provider de colaboración](../../scrum/task-cards/naming/name-007-renombrar-provider-de-colaboraci-n.md) — `.ai/scrum/task-cards/naming/name-007-renombrar-provider-de-colaboraci-n.md`
-- [NAME-008 — Sanear almacenamiento de comentarios](../../scrum/task-cards/naming/name-008-sanear-almacenamiento-de-comentarios.md) — `.ai/scrum/task-cards/naming/name-008-sanear-almacenamiento-de-comentarios.md`
-- [NAME-009 — Sanear firma y familias de schema](../../scrum/task-cards/naming/name-009-sanear-firma-y-familias-de-schema.md) — `.ai/scrum/task-cards/naming/name-009-sanear-firma-y-familias-de-schema.md`
-- [NAME-010 — Renombrar documentación y arquitectura IA](../../scrum/task-cards/naming/name-010-renombrar-documentaci-n-y-arquitectura-ia.md) — `.ai/scrum/task-cards/naming/name-010-renombrar-documentaci-n-y-arquitectura-ia.md`
-- [NAME-011 — Administrar aliases públicos deprecados](../../scrum/task-cards/naming/name-011-administrar-aliases-p-blicos-deprecados.md) — `.ai/scrum/task-cards/naming/name-011-administrar-aliases-p-blicos-deprecados.md`
-- [NAME-012 — Retirar compatibilidad obsoleta](../../scrum/task-cards/naming/name-012-retirar-compatibilidad-obsoleta.md) — `.ai/scrum/task-cards/naming/name-012-retirar-compatibilidad-obsoleta.md`
-- [Auditar API pública](../../scrum/task-cards/portability/PORTDOC-001-auditar-api-publica.md) — `.ai/scrum/task-cards/portability/PORTDOC-001-auditar-api-publica.md`
-- [Actualizar ejemplos](../../scrum/task-cards/portability/PORTDOC-002-actualizar-ejemplos.md) — `.ai/scrum/task-cards/portability/PORTDOC-002-actualizar-ejemplos.md`
-- [Crear consumer test](../../scrum/task-cards/portability/PORTDOC-003-consumer-test.md) — `.ai/scrum/task-cards/portability/PORTDOC-003-consumer-test.md`
-- [Gate de drift documental](../../scrum/task-cards/portability/PORTDOC-004-gate-drift-documental.md) — `.ai/scrum/task-cards/portability/PORTDOC-004-gate-drift-documental.md`
+- `NAME-001 — Inventariar y clasificar ocurrencias` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-001-inventariar-y-clasificar-ocurrencias.md`
+- `NAME-002 — Crear política y gate preventivo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-002-crear-pol-tica-y-gate-preventivo.md`
+- `NAME-003 — Renombrar vocabulario del inspector` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-003-renombrar-vocabulario-del-inspector.md`
+- `NAME-004 — Sanear migración de Config a` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-004-sanear-migraci-n-de-config-a.md`
+- `NAME-005 — Renombrar eventos y callbacks del host` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-005-renombrar-eventos-y-callbacks-del-host.md`
+- `NAME-006 — Versionar snapshots y metadata` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-006-versionar-snapshots-y-metadata.md`
+- `NAME-007 — Renombrar provider de colaboración` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-007-renombrar-provider-de-colaboraci-n.md`
+- `NAME-008 — Sanear almacenamiento de comentarios` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-008-sanear-almacenamiento-de-comentarios.md`
+- `NAME-009 — Sanear firma y familias de schema` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-009-sanear-firma-y-familias-de-schema.md`
+- `NAME-010 — Renombrar documentación y arquitectura IA` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-010-renombrar-documentaci-n-y-arquitectura-ia.md`
+- `NAME-011 — Administrar aliases públicos deprecados` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-011-administrar-aliases-p-blicos-deprecados.md`
+- `NAME-012 — Retirar compatibilidad obsoleta` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/naming/name-012-retirar-compatibilidad-obsoleta.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/portability/PORTDOC-001-auditar-api-publica.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/portability/PORTDOC-002-actualizar-ejemplos.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/portability/PORTDOC-003-consumer-test.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/portability/PORTDOC-004-gate-drift-documental.md`
 - [portability](../../scrum/task-cards/portability/README.md) — `.ai/scrum/task-cards/portability/README.md`
 - [Runtime Platform task cards](../../scrum/task-cards/runtime-platform/README.md) — `.ai/scrum/task-cards/runtime-platform/README.md`
-- [RTP-000 — Live source truth, Git/hash drift y baseline](../../scrum/task-cards/runtime-platform/RTP-000.md) — `.ai/scrum/task-cards/runtime-platform/RTP-000.md`
-- [RTP-005 — Canonicalizar infraestructura Playwright/Vitest y test authority](../../scrum/task-cards/runtime-platform/RTP-005.md) — `.ai/scrum/task-cards/runtime-platform/RTP-005.md`
-- [RTP-008 — Reconciliar source, evidence y ledger antes de continuar](../../scrum/task-cards/runtime-platform/RTP-008.md) — `.ai/scrum/task-cards/runtime-platform/RTP-008.md`
-- [RTP-010 — Fijar identidad SISAD-PDFME y nomenclatura policy](../../scrum/task-cards/runtime-platform/RTP-010.md) — `.ai/scrum/task-cards/runtime-platform/RTP-010.md`
-- [RTP-015 — Boundary canónico Host Recipient -> SISAD-PDFME User](../../scrum/task-cards/runtime-platform/RTP-015.md) — `.ai/scrum/task-cards/runtime-platform/RTP-015.md`
-- [RTP-020 — Inventario registry-derived + generic runtime characterization harness](../../scrum/task-cards/runtime-platform/RTP-020.md) — `.ai/scrum/task-cards/runtime-platform/RTP-020.md`
-- [RTP-022 — Unificar SchemaAssignments y migrar a User→Document→Page](../../scrum/task-cards/runtime-platform/RTP-022.md) — `.ai/scrum/task-cards/runtime-platform/RTP-022.md`
-- [RTP-030 — Motor local-first de transacciones Form](../../scrum/task-cards/runtime-platform/RTP-030.md) — `.ai/scrum/task-cards/runtime-platform/RTP-030.md`
-- [RTP-040 — Origin/revision y controlled/uncontrolled reconciliation](../../scrum/task-cards/runtime-platform/RTP-040.md) — `.ai/scrum/task-cards/runtime-platform/RTP-040.md`
-- [RTP-045 — Facade público: props declaradas vs. propagadas](../../scrum/task-cards/runtime-platform/RTP-045.md) — `.ai/scrum/task-cards/runtime-platform/RTP-045.md`
-- [RTP-050 — Eventos canónicos de input/runtime + adapters legacy](../../scrum/task-cards/runtime-platform/RTP-050.md) — `.ai/scrum/task-cards/runtime-platform/RTP-050.md`
-- [RTP-055 — Formalizar SchemaInputTransaction sobre Form local-first](../../scrum/task-cards/runtime-platform/RTP-055.md) — `.ai/scrum/task-cards/runtime-platform/RTP-055.md`
-- [RTP-060 — Lifecycle, remount, focus, caret, IME y cleanup](../../scrum/task-cards/runtime-platform/RTP-060.md) — `.ai/scrum/task-cards/runtime-platform/RTP-060.md`
-- [RTP-070 — SchemaRuntimeManifest incremental sobre registry existente](../../scrum/task-cards/runtime-platform/RTP-070.md) — `.ai/scrum/task-cards/runtime-platform/RTP-070.md`
-- [RTP-080 — SchemaValueCodec por familia](../../scrum/task-cards/runtime-platform/RTP-080.md) — `.ai/scrum/task-cards/runtime-platform/RTP-080.md`
-- [RTP-090 — Validation, touched, dirty, completion y access boundary](../../scrum/task-cards/runtime-platform/RTP-090.md) — `.ai/scrum/task-cards/runtime-platform/RTP-090.md`
-- [RTP-095 — Harness pairwise de interacción entre schemas](../../scrum/task-cards/runtime-platform/RTP-095.md) — `.ai/scrum/task-cards/runtime-platform/RTP-095.md`
-- [RTP-100 — Text-like, number, presets y multiVariableText](../../scrum/task-cards/runtime-platform/RTP-100.md) — `.ai/scrum/task-cards/runtime-platform/RTP-100.md`
-- [RTP-110 — Select/dropdown, checkbox, radioGroup, checkboxGroup](../../scrum/task-cards/runtime-platform/RTP-110.md) — `.ai/scrum/task-cards/runtime-platform/RTP-110.md`
-- [RTP-120 — Date, time, dateTime y dateSigned](../../scrum/task-cards/runtime-platform/RTP-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-120.md`
-- [RTP-130 — Signature, initials, draw/image/P12/provider](../../scrum/task-cards/runtime-platform/RTP-130.md) — `.ai/scrum/task-cards/runtime-platform/RTP-130.md`
-- [RTP-140 — Attachment, note, approve y decline artifacts/actions](../../scrum/task-cards/runtime-platform/RTP-140.md) — `.ai/scrum/task-cards/runtime-platform/RTP-140.md`
-- [RTP-150 — Image/SVG/table/shapes/barcodes visual/complex schemas](../../scrum/task-cards/runtime-platform/RTP-150.md) — `.ai/scrum/task-cards/runtime-platform/RTP-150.md`
-- [RTP-160 — Custom plugin runtime contract and auto-discovery harness](../../scrum/task-cards/runtime-platform/RTP-160.md) — `.ai/scrum/task-cards/runtime-platform/RTP-160.md`
-- [RTP-170 — Viewer zero-mutation and parity](../../scrum/task-cards/runtime-platform/RTP-170.md) — `.ai/scrum/task-cards/runtime-platform/RTP-170.md`
-- [RTP-180 — Generator/preflight parity and structured values](../../scrum/task-cards/runtime-platform/RTP-180.md) — `.ai/scrum/task-cards/runtime-platform/RTP-180.md`
-- [RTP-190 — PDF.js converter loading/render/cancel/cleanup/concurrency](../../scrum/task-cards/runtime-platform/RTP-190.md) — `.ai/scrum/task-cards/runtime-platform/RTP-190.md`
-- [RTP-200 — Snapshot, bundle, migration and semantic roundtrip](../../scrum/task-cards/runtime-platform/RTP-200.md) — `.ai/scrum/task-cards/runtime-platform/RTP-200.md`
-- [RTP-210 — Multi-document/multipage routing and active ID isolation](../../scrum/task-cards/runtime-platform/RTP-210.md) — `.ai/scrum/task-cards/runtime-platform/RTP-210.md`
-- [RTP-215 — Aislamiento User×Document×RuntimeSession](../../scrum/task-cards/runtime-platform/RTP-215.md) — `.ai/scrum/task-cards/runtime-platform/RTP-215.md`
-- [RTP-220 — Recipients, ownership, colors, locks and runtime access](../../scrum/task-cards/runtime-platform/RTP-220.md) — `.ai/scrum/task-cards/runtime-platform/RTP-220.md`
-- [RTP-222 — Migrar registry/access/appearance a User con aliases](../../scrum/task-cards/runtime-platform/RTP-222.md) — `.ai/scrum/task-cards/runtime-platform/RTP-222.md`
-- [RTP-225 — N ejecuciones aisladas sin asumir fan-out masivo](../../scrum/task-cards/runtime-platform/RTP-225.md) — `.ai/scrum/task-cards/runtime-platform/RTP-225.md`
-- [RTP-226 — Contrato consumer host Recipient -> User](../../scrum/task-cards/runtime-platform/RTP-226.md) — `.ai/scrum/task-cards/runtime-platform/RTP-226.md`
-- [RTP-227 — Contrato ExternalForms Recipient execution -> User Form](../../scrum/task-cards/runtime-platform/RTP-227.md) — `.ai/scrum/task-cards/runtime-platform/RTP-227.md`
-- [RTP-230 — Comments, collaboration and conflict-safe state](../../scrum/task-cards/runtime-platform/RTP-230.md) — `.ai/scrum/task-cards/runtime-platform/RTP-230.md`
-- [RTP-240 — Persistence/save/autosave one-write lifecycle](../../scrum/task-cards/runtime-platform/RTP-240.md) — `.ai/scrum/task-cards/runtime-platform/RTP-240.md`
-- [RTP-250 — Declarative config profiles and capability resolution](../../scrum/task-cards/runtime-platform/RTP-250.md) — `.ai/scrum/task-cards/runtime-platform/RTP-250.md`
-- [RTP-260 — Controller/public API/action-state parity](../../scrum/task-cards/runtime-platform/RTP-260.md) — `.ai/scrum/task-cards/runtime-platform/RTP-260.md`
-- [RTP-270 — Keyboard, accessibility, pointer/touch/pen and responsive runtime](../../scrum/task-cards/runtime-platform/RTP-270.md) — `.ai/scrum/task-cards/runtime-platform/RTP-270.md`
-- [RTP-280 — Performance/memory/leak campaign for large PDFs/schemas](../../scrum/task-cards/runtime-platform/RTP-280.md) — `.ai/scrum/task-cards/runtime-platform/RTP-280.md`
-- [RTP-290 — Security/privacy/artifact sanitization and secret boundaries](../../scrum/task-cards/runtime-platform/RTP-290.md) — `.ai/scrum/task-cards/runtime-platform/RTP-290.md`
-- [RTP-300 — Examples + docs as contract consumers, no demo-runtime duplication](../../scrum/task-cards/runtime-platform/RTP-300.md) — `.ai/scrum/task-cards/runtime-platform/RTP-300.md`
-- [RTP-305 — Quality gate registry-driven de comportamiento](../../scrum/task-cards/runtime-platform/RTP-305.md) — `.ai/scrum/task-cards/runtime-platform/RTP-305.md`
-- [RTP-310 — All-schema Playwright + integration/release gates](../../scrum/task-cards/runtime-platform/RTP-310.md) — `.ai/scrum/task-cards/runtime-platform/RTP-310.md`
-- [RTP-315 — Concurrencia real de sesiones con BrowserContext aislados](../../scrum/task-cards/runtime-platform/RTP-315.md) — `.ai/scrum/task-cards/runtime-platform/RTP-315.md`
-- [RTP-320 — Consumer integration smoke and distribution contract](../../scrum/task-cards/runtime-platform/RTP-320.md) — `.ai/scrum/task-cards/runtime-platform/RTP-320.md`
-- [RTP-325 — Gate de compatibilidad antes de retirar Recipient aliases](../../scrum/task-cards/runtime-platform/RTP-325.md) — `.ai/scrum/task-cards/runtime-platform/RTP-325.md`
-- [RTP-330 — Modernizar nomenclatura legacy Pdfme* sin romper compatibilidad](../../scrum/task-cards/runtime-platform/RTP-330.md) — `.ai/scrum/task-cards/runtime-platform/RTP-330.md`
-- [RTP-340 — Brain/docs/index/evidence closeout and context regeneration](../../scrum/task-cards/runtime-platform/RTP-340.md) — `.ai/scrum/task-cards/runtime-platform/RTP-340.md`
-- [RTP-345 — Reconciliar Brain, contexto y paths persistentes](../../scrum/task-cards/runtime-platform/RTP-345.md) — `.ai/scrum/task-cards/runtime-platform/RTP-345.md`
-- [RTP-350 — Congelar baseline de execution runtime](../../scrum/task-cards/runtime-platform/RTP-350.md) — `.ai/scrum/task-cards/runtime-platform/RTP-350.md`
-- [RTP-355 — Crear autoridad canónica de interaction/completion](../../scrum/task-cards/runtime-platform/RTP-355.md) — `.ai/scrum/task-cards/runtime-platform/RTP-355.md`
-- [RTP-360 — Cerrar User assignment y value scope](../../scrum/task-cards/runtime-platform/RTP-360.md) — `.ai/scrum/task-cards/runtime-platform/RTP-360.md`
-- [RTP-365 — Cerrar RuntimeExecutionContext y aislamiento](../../scrum/task-cards/runtime-platform/RTP-365.md) — `.ai/scrum/task-cards/runtime-platform/RTP-365.md`
-- [RTP-370 — Implementar ExecutionPlan genérico de LAB](../../scrum/task-cards/runtime-platform/RTP-370.md) — `.ai/scrum/task-cards/runtime-platform/RTP-370.md`
-- [RTP-375 — Validar ejecución secuencial](../../scrum/task-cards/runtime-platform/RTP-375.md) — `.ai/scrum/task-cards/runtime-platform/RTP-375.md`
-- [RTP-380 — Validar ejecución paralela](../../scrum/task-cards/runtime-platform/RTP-380.md) — `.ai/scrum/task-cards/runtime-platform/RTP-380.md`
-- [RTP-385 — Cerrar mixed execution y conflictos shared](../../scrum/task-cards/runtime-platform/RTP-385.md) — `.ai/scrum/task-cards/runtime-platform/RTP-385.md`
-- [RTP-390 — Cerrar massive fan-out](../../scrum/task-cards/runtime-platform/RTP-390.md) — `.ai/scrum/task-cards/runtime-platform/RTP-390.md`
-- [RTP-395 — Definir execution result y PDF artifacts](../../scrum/task-cards/runtime-platform/RTP-395.md) — `.ai/scrum/task-cards/runtime-platform/RTP-395.md`
-- [RTP-400 — Implementar canonical PDF merge](../../scrum/task-cards/runtime-platform/RTP-400.md) — `.ai/scrum/task-cards/runtime-platform/RTP-400.md`
-- [RTP-405 — Cerrar append, multi-document y massive bundle](../../scrum/task-cards/runtime-platform/RTP-405.md) — `.ai/scrum/task-cards/runtime-platform/RTP-405.md`
-- [RTP-410 — Crear all-schema execution/completion harness](../../scrum/task-cards/runtime-platform/RTP-410.md) — `.ai/scrum/task-cards/runtime-platform/RTP-410.md`
-- [RTP-415 — Cerrar browser, performance, privacy y parity gates](../../scrum/task-cards/runtime-platform/RTP-415.md) — `.ai/scrum/task-cards/runtime-platform/RTP-415.md`
-- [RTP-420 — Release y closeout del runtime](../../scrum/task-cards/runtime-platform/RTP-420.md) — `.ai/scrum/task-cards/runtime-platform/RTP-420.md`
-- [RTP-425 — Reconciliar baseline de configuración y runtime](../../scrum/task-cards/runtime-platform/RTP-425.md) — `.ai/scrum/task-cards/runtime-platform/RTP-425.md`
-- [RTP-430 — Inventariar capabilities ejecutables](../../scrum/task-cards/runtime-platform/RTP-430.md) — `.ai/scrum/task-cards/runtime-platform/RTP-430.md`
-- [RTP-435 — Compilar configuración a snapshot inmutable](../../scrum/task-cards/runtime-platform/RTP-435.md) — `.ai/scrum/task-cards/runtime-platform/RTP-435.md`
-- [RTP-440 — Hacer fail-closed el CapabilityGraph](../../scrum/task-cards/runtime-platform/RTP-440.md) — `.ai/scrum/task-cards/runtime-platform/RTP-440.md`
-- [RTP-445 — Crear impact graph y effect plan dinámico](../../scrum/task-cards/runtime-platform/RTP-445.md) — `.ai/scrum/task-cards/runtime-platform/RTP-445.md`
-- [RTP-450 — Crear GridGeometry canónica](../../scrum/task-cards/runtime-platform/RTP-450.md) — `.ai/scrum/task-cards/runtime-platform/RTP-450.md`
-- [RTP-455 — Cerrar grid, snap, guides y rulers](../../scrum/task-cards/runtime-platform/RTP-455.md) — `.ai/scrum/task-cards/runtime-platform/RTP-455.md`
-- [RTP-460 — Converger registries del Designer](../../scrum/task-cards/runtime-platform/RTP-460.md) — `.ai/scrum/task-cards/runtime-platform/RTP-460.md`
-- [RTP-465 — Eliminar direct config readers y reglas duplicadas](../../scrum/task-cards/runtime-platform/RTP-465.md) — `.ai/scrum/task-cards/runtime-platform/RTP-465.md`
-- [RTP-470 — Converger capabilities de Runtime](../../scrum/task-cards/runtime-platform/RTP-470.md) — `.ai/scrum/task-cards/runtime-platform/RTP-470.md`
-- [RTP-475 — Hacer plugin-owned el schema manifest](../../scrum/task-cards/runtime-platform/RTP-475.md) — `.ai/scrum/task-cards/runtime-platform/RTP-475.md`
-- [RTP-480 — Enriquecer codecs, validation y completion](../../scrum/task-cards/runtime-platform/RTP-480.md) — `.ai/scrum/task-cards/runtime-platform/RTP-480.md`
-- [RTP-485 — Cerrar optimistic concurrency de execution scopes](../../scrum/task-cards/runtime-platform/RTP-485.md) — `.ai/scrum/task-cards/runtime-platform/RTP-485.md`
-- [RTP-490 — Endurecer completion projections](../../scrum/task-cards/runtime-platform/RTP-490.md) — `.ai/scrum/task-cards/runtime-platform/RTP-490.md`
-- [RTP-495 — Bloquear canonical merge conflictivo](../../scrum/task-cards/runtime-platform/RTP-495.md) — `.ai/scrum/task-cards/runtime-platform/RTP-495.md`
-- [RTP-500 — Crear codec durable de ExecutionResult](../../scrum/task-cards/runtime-platform/RTP-500.md) — `.ai/scrum/task-cards/runtime-platform/RTP-500.md`
-- [RTP-505 — Endurecer composición PDF](../../scrum/task-cards/runtime-platform/RTP-505.md) — `.ai/scrum/task-cards/runtime-platform/RTP-505.md`
-- [RTP-510 — Conectar multi-user al Form real](../../scrum/task-cards/runtime-platform/RTP-510.md) — `.ai/scrum/task-cards/runtime-platform/RTP-510.md`
-- [RTP-515 — Crear all-schema stress harness dinámico](../../scrum/task-cards/runtime-platform/RTP-515.md) — `.ai/scrum/task-cards/runtime-platform/RTP-515.md`
-- [RTP-520 — Auditar parity contra referencia DocuSign](../../scrum/task-cards/runtime-platform/RTP-520.md) — `.ai/scrum/task-cards/runtime-platform/RTP-520.md`
-- [RTP-525 — Migrar compatibilidad Recipient hacia User](../../scrum/task-cards/runtime-platform/RTP-525.md) — `.ai/scrum/task-cards/runtime-platform/RTP-525.md`
-- [RTP-530 — Retirar legacy y dead code de forma segura](../../scrum/task-cards/runtime-platform/RTP-530.md) — `.ai/scrum/task-cards/runtime-platform/RTP-530.md`
-- [RTP-535 — Reducir duplicación y aumentar genericidad](../../scrum/task-cards/runtime-platform/RTP-535.md) — `.ai/scrum/task-cards/runtime-platform/RTP-535.md`
-- [RTP-540 — Cerrar performance, a11y, privacy y browser concurrency](../../scrum/task-cards/runtime-platform/RTP-540.md) — `.ai/scrum/task-cards/runtime-platform/RTP-540.md`
-- [RTP-545 — Release autónomo y closeout](../../scrum/task-cards/runtime-platform/RTP-545.md) — `.ai/scrum/task-cards/runtime-platform/RTP-545.md`
-- [MDA-001 — Auditar arquitectura Markdown y congelar baseline](../../scrum/task-cards/tooling-architecture/MDA-001.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-001.md`
-- [MDA-010 — Reconciliar autoridad de estados y vistas](../../scrum/task-cards/tooling-architecture/MDA-010.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-010.md`
-- [MDA-020 — Organizar task cards por dominio](../../scrum/task-cards/tooling-architecture/MDA-020.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-020.md`
-- [MDA-030 — Archivar campañas legacy y retirar residuos transitorios](../../scrum/task-cards/tooling-architecture/MDA-030.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-030.md`
-- [MDA-040 — Generar hubs README y reparar enlaces](../../scrum/task-cards/tooling-architecture/MDA-040.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-040.md`
-- [MDA-050 — Consolidar routes, skills y adapters de proveedor](../../scrum/task-cards/tooling-architecture/MDA-050.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-050.md`
-- [MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog](../../scrum/task-cards/tooling-architecture/MDA-060.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-060.md`
-- [MDA-070 — Normalizar documentación pública y numeración](../../scrum/task-cards/tooling-architecture/MDA-070.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-070.md`
-- [MDA-080 — Cerrar gates de arquitectura documental](../../scrum/task-cards/tooling-architecture/MDA-080.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-080.md`
-- [MDA-090 — Consolidar topología Scrum](../../scrum/task-cards/tooling-architecture/MDA-090.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-090.md`
-- [MDA-100 — Consolidar Brain e inventarios](../../scrum/task-cards/tooling-architecture/MDA-100.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-100.md`
-- [MDA-110 — Cerrar huérfanos y grafo Markdown](../../scrum/task-cards/tooling-architecture/MDA-110.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-110.md`
-- [MDA-120 — Reducir duplicidad semántica](../../scrum/task-cards/tooling-architecture/MDA-120.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-120.md`
-- [MDA-130 — Cerrar saneamiento de arquitectura IA](../../scrum/task-cards/tooling-architecture/MDA-130.md) — `.ai/scrum/task-cards/tooling-architecture/MDA-130.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-000.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-005.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-008.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-010.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-015.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-020.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-022.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-030.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-040.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-045.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-050.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-055.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-060.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-070.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-080.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-090.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-095.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-100.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-110.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-120.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-130.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-140.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-150.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-160.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-170.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-180.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-190.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-200.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-210.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-215.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-220.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-222.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-225.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-226.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-227.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-230.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-240.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-250.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-260.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-270.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-280.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-290.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-300.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-305.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-310.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-315.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-320.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-325.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-330.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-340.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-345.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-350.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-355.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-360.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-365.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-370.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-375.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-380.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-385.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-390.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-395.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-400.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-405.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-410.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-415.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-420.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-425.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-430.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-435.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-440.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-445.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-450.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-455.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-460.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-465.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-470.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-475.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-480.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-485.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-490.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-495.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-500.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-505.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-510.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-515.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-520.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-525.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-530.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-535.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/runtime-platform/RTP-540.md`
+- [PRT-000](../portable-runtime/PRT-000.md) — `.ai/scrum/task-cards/runtime-platform/RTP-545.md`
+- `MDA-001 — Auditar arquitectura Markdown y congelar baseline` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-001.md`
+- `MDA-010 — Reconciliar autoridad de estados y vistas` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-010.md`
+- `MDA-020 — Organizar task cards por dominio` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-020.md`
+- `MDA-030 — Archivar campañas legacy y retirar residuos transitorios` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-030.md`
+- `MDA-040 — Generar hubs README y reparar enlaces` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-040.md`
+- `MDA-050 — Consolidar routes, skills y adapters de proveedor` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-050.md`
+- `MDA-060 — Sincronizar CURRENT HANDOFF ACTIVE ledger y backlog` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-060.md`
+- `MDA-070 — Normalizar documentación pública y numeración` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-070.md`
+- `MDA-080 — Cerrar gates de arquitectura documental` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-080.md`
+- `MDA-090 — Consolidar topología Scrum` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-090.md`
+- `MDA-100 — Consolidar Brain e inventarios` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-100.md`
+- `MDA-110 — Cerrar huérfanos y grafo Markdown` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-110.md`
+- `MDA-120 — Reducir duplicidad semántica` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-120.md`
+- `MDA-130 — Cerrar saneamiento de arquitectura IA` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/MDA-130.md`
 - [tooling-architecture](../../scrum/task-cards/tooling-architecture/README.md) — `.ai/scrum/task-cards/tooling-architecture/README.md`
-- [Eliminar duplicidad entre tools/ai-quality y arquitectura IA](../../scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md`
-- [Baseline de scripts/tools y consumers](../../scrum/task-cards/tooling-architecture/TOOL-BASELINE.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md`
-- [TOOL-CAPABILITY-AUDIT](../../scrum/task-cards/tooling-architecture/TOOL-CAPABILITY-AUDIT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CAPABILITY-AUDIT.md`
-- [Centralizar configuración de tooling](../../scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md`
-- [Gates finales y limpieza](../../scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md`
-- [Migrar consumers y retirar wrappers redundantes](../../scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md`
-- [Dedup semántico del runtime](../../scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md`
-- [TOOL-GRID-GEOMETRY-AUDIT](../../scrum/task-cards/tooling-architecture/TOOL-GRID-GEOMETRY-AUDIT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-GRID-GEOMETRY-AUDIT.md`
-- [Corregir importer non-Markdown](../../scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md`
-- [Validar import ZIP/folder no destructivo](../../scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md`
-- [Preflight y conflict-safe install-project-tools](../../scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md`
-- [TOOL-LEGACY-RETIREMENT](../../scrum/task-cards/tooling-architecture/TOOL-LEGACY-RETIREMENT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-LEGACY-RETIREMENT.md`
-- [Actualizar manuales/package scripts/Brain](../../scrum/task-cards/tooling-architecture/TOOL-MANUALS.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md`
-- [Consolidar sanitización/index/topology/links](../../scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md`
-- [Separar path reconciliation de identifier migration](../../scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md`
-- [TOOL — provider model routing](../../scrum/task-cards/tooling-architecture/TOOL-PROVIDER-MODEL-ROUTING.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-PROVIDER-MODEL-ROUTING.md`
-- [TOOL-RUNTIME-AUTOPILOT](../../scrum/task-cards/tooling-architecture/TOOL-RUNTIME-AUTOPILOT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-RUNTIME-AUTOPILOT.md`
-- [TOOL — same repo coordination](../../scrum/task-cards/tooling-architecture/TOOL-SAME-REPO-COORDINATION.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-SAME-REPO-COORDINATION.md`
-- [Portabilidad de scripts npm y memoria build](../../scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md`
-- [Eliminar paths de arquitectura versionados](../../scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md`
-- [Mejorar calidad del test map SISAD-PDFME](../../scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md`
-- [Hacer install-tests transaccional](../../scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md) — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md`
+- `Eliminar duplicidad entre tools/ai-quality y arquitectura IA` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md`
+- `Baseline de scripts/tools y consumers` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md`
+- `TOOL-CAPABILITY-AUDIT` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CAPABILITY-AUDIT.md`
+- `Centralizar configuración de tooling` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md`
+- `Gates finales y limpieza` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md`
+- `Migrar consumers y retirar wrappers redundantes` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md`
+- `Dedup semántico del runtime` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-DEDUP-RUNTIME-SEMANTIC.md`
+- `TOOL-GRID-GEOMETRY-AUDIT` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-GRID-GEOMETRY-AUDIT.md`
+- `Corregir importer non-Markdown` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORT-NONMARKDOWN.md`
+- `Validar import ZIP/folder no destructivo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md`
+- `Preflight y conflict-safe install-project-tools` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-INSTALL-SAFETY.md`
+- `TOOL-LEGACY-RETIREMENT` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-LEGACY-RETIREMENT.md`
+- `Actualizar manuales/package scripts/Brain` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md`
+- `Consolidar sanitización/index/topology/links` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md`
+- `Separar path reconciliation de identifier migration` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-PATH-SEMANTIC-SAFETY.md`
+- `TOOL — provider model routing` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-PROVIDER-MODEL-ROUTING.md`
+- `TOOL-RUNTIME-AUTOPILOT` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-RUNTIME-AUTOPILOT.md`
+- `TOOL — same repo coordination` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-SAME-REPO-COORDINATION.md`
+- `Portabilidad de scripts npm y memoria build` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-SCRIPT-PORTABILITY.md`
+- `Eliminar paths de arquitectura versionados` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md`
+- `Mejorar calidad del test map SISAD-PDFME` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-COVERAGE-QUALITY.md`
+- `Hacer install-tests transaccional` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/tooling-architecture/TOOL-TEST-INSTALL-PREFLIGHT.md`
 - [visual-ux](../../scrum/task-cards/visual-ux/README.md) — `.ai/scrum/task-cards/visual-ux/README.md`
-- [VISUX-001 — Congelar baseline visual y estados reproducibles](../../scrum/task-cards/visual-ux/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md) — `.ai/scrum/task-cards/visual-ux/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md`
-- [VISUX-002 — Inventariar componentes visuales, scroll owners y fuentes de estado](../../scrum/task-cards/visual-ux/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md) — `.ai/scrum/task-cards/visual-ux/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md`
-- [VISUX-003 — Auditar tokens, contraste, densidad y lenguaje visual](../../scrum/task-cards/visual-ux/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md) — `.ai/scrum/task-cards/visual-ux/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md`
-- [VISUX-004 — Unificar auditoría de acciones, acceso y motivos de deshabilitación](../../scrum/task-cards/visual-ux/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md) — `.ai/scrum/task-cards/visual-ux/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md`
-- [VISUX-005 — Crear un estado responsive único del workspace](../../scrum/task-cards/visual-ux/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md) — `.ai/scrum/task-cards/visual-ux/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md`
-- [VISUX-006 — Unificar rails y colapso de ambos sidebars](../../scrum/task-cards/visual-ux/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md) — `.ai/scrum/task-cards/visual-ux/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md`
-- [VISUX-007 — Preservar ancla visual, zoom y scroll al cambiar layout](../../scrum/task-cards/visual-ux/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md) — `.ai/scrum/task-cards/visual-ux/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md`
-- [VISUX-008 — Corregir header de guardar, navegación de páginas y estado de selección](../../scrum/task-cards/visual-ux/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md) — `.ai/scrum/task-cards/visual-ux/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md`
-- [VISUX-009 — Cerrar contrato de zoom, fit, undo y redo](../../scrum/task-cards/visual-ux/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md`
-- [VISUX-010 — Reemplazar tooltips nativos y cerrar foco de controles](../../scrum/task-cards/visual-ux/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md) — `.ai/scrum/task-cards/visual-ux/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md`
-- [VISUX-011 — Unificar toolbar contextual y menú Más](../../scrum/task-cards/visual-ux/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md) — `.ai/scrum/task-cards/visual-ux/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md`
-- [VISUX-012 — Hacer overlays collision-aware y coordinar stack visual](../../scrum/task-cards/visual-ux/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md) — `.ai/scrum/task-cards/visual-ux/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md`
-- [VISUX-013 — Compactar shell, tabs y colapso del LeftSidebar](../../scrum/task-cards/visual-ux/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md) — `.ai/scrum/task-cards/visual-ux/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md`
-- [VISUX-014 — Cerrar búsqueda, filtros y selector de layout del catálogo](../../scrum/task-cards/visual-ux/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md`
-- [VISUX-015 — Compactar grupos, cards, favoritos y owner tone del catálogo](../../scrum/task-cards/visual-ux/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md`
-- [VISUX-016 — Cerrar custom fields, auto fields y catálogo de recipients](../../scrum/task-cards/visual-ux/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md) — `.ai/scrum/task-cards/visual-ux/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md`
-- [VISUX-017 — Cerrar drag preview, drop setup y feedback de colocación](../../scrum/task-cards/visual-ux/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md) — `.ai/scrum/task-cards/visual-ux/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md`
-- [VISUX-018 — Hacer responsive la navegación del RightSidebar](../../scrum/task-cards/visual-ux/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md) — `.ai/scrum/task-cards/visual-ux/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md`
-- [VISUX-019 — Formalizar panel registry, header contextual y scroll owner](../../scrum/task-cards/visual-ux/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md) — `.ai/scrum/task-cards/visual-ux/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md`
-- [VISUX-020 — Compactar ListView y separar identidad, estados y acciones](../../scrum/task-cards/visual-ux/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md) — `.ai/scrum/task-cards/visual-ux/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md`
-- [VISUX-021 — Cerrar selección, reorder, localizar y menú por fila](../../scrum/task-cards/visual-ux/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md) — `.ai/scrum/task-cards/visual-ux/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md`
-- [VISUX-022 — Corregir disponibilidad y lifecycle de Reasignar responsable](../../scrum/task-cards/visual-ux/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md) — `.ai/scrum/task-cards/visual-ux/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md`
-- [VISUX-023 — Corregir header e identidad del DetailView](../../scrum/task-cards/visual-ux/VISUX-023-corregir-header-e-identidad-del-detailview.md) — `.ai/scrum/task-cards/visual-ux/VISUX-023-corregir-header-e-identidad-del-detailview.md`
-- [VISUX-024 — Reorganizar taxonomía, disclosure y widgets del DetailView](../../scrum/task-cards/visual-ux/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md) — `.ai/scrum/task-cards/visual-ux/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md`
-- [VISUX-025 — Cerrar alcance y lifecycle del CommentsRail](../../scrum/task-cards/visual-ux/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md) — `.ai/scrum/task-cards/visual-ux/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md`
-- [VISUX-026 — Separar documento, página y acciones del DocumentsRail](../../scrum/task-cards/visual-ux/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md) — `.ai/scrum/task-cards/visual-ux/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md`
-- [VISUX-027 — Unificar estados empty, loading, error y disabled del RightSidebar](../../scrum/task-cards/visual-ux/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md) — `.ai/scrum/task-cards/visual-ux/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md`
-- [VISUX-028 — Unificar field chrome, owner tone y estados visuales](../../scrum/task-cards/visual-ux/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md) — `.ai/scrum/task-cards/visual-ux/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md`
-- [VISUX-029 — Cerrar perfiles text-like, number y date/time](../../scrum/task-cards/visual-ux/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md) — `.ai/scrum/task-cards/visual-ux/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md`
-- [VISUX-030 — Cerrar select, checkbox, radio y option groups](../../scrum/task-cards/visual-ux/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md) — `.ai/scrum/task-cards/visual-ux/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md`
-- [VISUX-031 — Hacer el inspector de firma dependiente del modo](../../scrum/task-cards/visual-ux/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md) — `.ai/scrum/task-cards/visual-ux/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md`
-- [VISUX-032 — Cerrar action schemas: attachment, note, approve y decline](../../scrum/task-cards/visual-ux/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md) — `.ai/scrum/task-cards/visual-ux/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md`
-- [VISUX-033 — Cerrar media, barcode, table y shapes](../../scrum/task-cards/visual-ux/VISUX-033-cerrar-media-barcode-table-y-shapes.md) — `.ai/scrum/task-cards/visual-ux/VISUX-033-cerrar-media-barcode-table-y-shapes.md`
-- [VISUX-034 — Normalizar i18n, labels técnicos y modo avanzado](../../scrum/task-cards/visual-ux/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md) — `.ai/scrum/task-cards/visual-ux/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md`
-- [VISUX-035 — Probar paridad propiedad→runtimes→PDF→snapshot](../../scrum/task-cards/visual-ux/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md) — `.ai/scrum/task-cards/visual-ux/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md`
-- [VISUX-036 — Cerrar selección y edición de grupos de opciones](../../scrum/task-cards/visual-ux/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md) — `.ai/scrum/task-cards/visual-ux/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md`
-- [VISUX-037 — Unificar asignación, reserva de edición, readonly y posición fija](../../scrum/task-cards/visual-ux/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md) — `.ai/scrum/task-cards/visual-ux/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md`
-- [VISUX-038 — Cerrar routing multidocumento y navegación por página](../../scrum/task-cards/visual-ux/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md) — `.ai/scrum/task-cards/visual-ux/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md`
-- [VISUX-039 — Cerrar paridad visual de Designer, Form y Viewer](../../scrum/task-cards/visual-ux/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md) — `.ai/scrum/task-cards/visual-ux/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md`
-- [VISUX-040 — Cerrar responsive, touch, teclado y accesibilidad integral](../../scrum/task-cards/visual-ux/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md) — `.ai/scrum/task-cards/visual-ux/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md`
-- [VISUX-041 — Estabilizar rendimiento y evitar remounts presentacionales](../../scrum/task-cards/visual-ux/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md) — `.ai/scrum/task-cards/visual-ux/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md`
-- [VISUX-042 — Crear suite visual, gates, documentación y release](../../scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md) — `.ai/scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md`
+- `VISUX-001 — Congelar baseline visual y estados reproducibles` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-001-congelar-baseline-visual-y-estados-reproducibles.md`
+- `VISUX-002 — Inventariar componentes visuales, scroll owners y fuentes de estado` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-002-inventariar-componentes-visuales-scroll-owners-y-fuentes-de-estado.md`
+- `VISUX-003 — Auditar tokens, contraste, densidad y lenguaje visual` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-003-auditar-tokens-contraste-densidad-y-lenguaje-visual.md`
+- `VISUX-004 — Unificar auditoría de acciones, acceso y motivos de deshabilitación` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-004-unificar-auditoria-de-acciones-acceso-y-motivos-de-deshabilitacion.md`
+- `VISUX-005 — Crear un estado responsive único del workspace` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-005-crear-un-estado-responsive-unico-del-workspace.md`
+- `VISUX-006 — Unificar rails y colapso de ambos sidebars` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-006-unificar-rails-y-colapso-de-ambos-sidebars.md`
+- `VISUX-007 — Preservar ancla visual, zoom y scroll al cambiar layout` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-007-preservar-ancla-visual-zoom-y-scroll-al-cambiar-layout.md`
+- `VISUX-008 — Corregir header de guardar, navegación de páginas y estado de selección` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-008-corregir-header-de-guardar-navegacion-de-paginas-y-estado-de-seleccion.md`
+- `VISUX-009 — Cerrar contrato de zoom, fit, undo y redo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-009-cerrar-contrato-de-zoom-fit-undo-y-redo.md`
+- `VISUX-010 — Reemplazar tooltips nativos y cerrar foco de controles` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-010-reemplazar-tooltips-nativos-y-cerrar-foco-de-controles.md`
+- `VISUX-011 — Unificar toolbar contextual y menú Más` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-011-unificar-toolbar-contextual-y-menu-mas.md`
+- `VISUX-012 — Hacer overlays collision-aware y coordinar stack visual` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-012-hacer-overlays-collision-aware-y-coordinar-stack-visual.md`
+- `VISUX-013 — Compactar shell, tabs y colapso del LeftSidebar` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-013-compactar-shell-tabs-y-colapso-del-leftsidebar.md`
+- `VISUX-014 — Cerrar búsqueda, filtros y selector de layout del catálogo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-014-cerrar-busqueda-filtros-y-selector-de-layout-del-catalogo.md`
+- `VISUX-015 — Compactar grupos, cards, favoritos y owner tone del catálogo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-015-compactar-grupos-cards-favoritos-y-owner-tone-del-catalogo.md`
+- `VISUX-016 — Cerrar custom fields, auto fields y catálogo de recipients` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-016-cerrar-custom-fields-auto-fields-y-catalogo-de-recipients.md`
+- `VISUX-017 — Cerrar drag preview, drop setup y feedback de colocación` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-017-cerrar-drag-preview-drop-setup-y-feedback-de-colocacion.md`
+- `VISUX-018 — Hacer responsive la navegación del RightSidebar` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-018-hacer-responsive-la-navegacion-del-rightsidebar.md`
+- `VISUX-019 — Formalizar panel registry, header contextual y scroll owner` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-019-formalizar-panel-registry-header-contextual-y-scroll-owner.md`
+- `VISUX-020 — Compactar ListView y separar identidad, estados y acciones` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-020-compactar-listview-y-separar-identidad-estados-y-acciones.md`
+- `VISUX-021 — Cerrar selección, reorder, localizar y menú por fila` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-021-cerrar-seleccion-reorder-localizar-y-menu-por-fila.md`
+- `VISUX-022 — Corregir disponibilidad y lifecycle de Reasignar responsable` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-022-corregir-disponibilidad-y-lifecycle-de-reasignar-responsable.md`
+- `VISUX-023 — Corregir header e identidad del DetailView` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-023-corregir-header-e-identidad-del-detailview.md`
+- `VISUX-024 — Reorganizar taxonomía, disclosure y widgets del DetailView` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-024-reorganizar-taxonomia-disclosure-y-widgets-del-detailview.md`
+- `VISUX-025 — Cerrar alcance y lifecycle del CommentsRail` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-025-cerrar-alcance-y-lifecycle-del-commentsrail.md`
+- `VISUX-026 — Separar documento, página y acciones del DocumentsRail` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-026-separar-documento-pagina-y-acciones-del-documentsrail.md`
+- `VISUX-027 — Unificar estados empty, loading, error y disabled del RightSidebar` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-027-unificar-estados-empty-loading-error-y-disabled-del-rightsidebar.md`
+- `VISUX-028 — Unificar field chrome, owner tone y estados visuales` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-028-unificar-field-chrome-owner-tone-y-estados-visuales.md`
+- `VISUX-029 — Cerrar perfiles text-like, number y date/time` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-029-cerrar-perfiles-text-like-number-y-date-time.md`
+- `VISUX-030 — Cerrar select, checkbox, radio y option groups` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-030-cerrar-select-checkbox-radio-y-option-groups.md`
+- `VISUX-031 — Hacer el inspector de firma dependiente del modo` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-031-hacer-el-inspector-de-firma-dependiente-del-modo.md`
+- `VISUX-032 — Cerrar action schemas: attachment, note, approve y decline` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-032-cerrar-action-schemas-attachment-note-approve-y-decline.md`
+- `VISUX-033 — Cerrar media, barcode, table y shapes` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-033-cerrar-media-barcode-table-y-shapes.md`
+- `VISUX-034 — Normalizar i18n, labels técnicos y modo avanzado` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-034-normalizar-i18n-labels-tecnicos-y-modo-avanzado.md`
+- [PRT-080](../portable-runtime/PRT-080.md) — `.ai/scrum/task-cards/visual-ux/VISUX-035-probar-paridad-propiedadruntimespdfsnapshot.md`
+- `VISUX-036 — Cerrar selección y edición de grupos de opciones` (retired; Git/evidence is provenance) — `.ai/scrum/task-cards/visual-ux/VISUX-036-cerrar-seleccion-y-edicion-de-grupos-de-opciones.md`
+- [PRT-040](../portable-runtime/PRT-040.md) — `.ai/scrum/task-cards/visual-ux/VISUX-037-unificar-asignacion-reserva-de-edicion-readonly-y-posicion-fija.md`
+- [PRT-070](../portable-runtime/PRT-070.md) — `.ai/scrum/task-cards/visual-ux/VISUX-038-cerrar-routing-multidocumento-y-navegacion-por-pagina.md`
+- [PRT-080](../portable-runtime/PRT-080.md) — `.ai/scrum/task-cards/visual-ux/VISUX-039-cerrar-paridad-visual-de-designer-form-y-viewer.md`
+- [PRT-110](../portable-runtime/PRT-110.md) — `.ai/scrum/task-cards/visual-ux/VISUX-040-cerrar-responsive-touch-teclado-y-accesibilidad-integral.md`
+- [PRT-110](../portable-runtime/PRT-110.md) — `.ai/scrum/task-cards/visual-ux/VISUX-041-estabilizar-rendimiento-y-evitar-remounts-presentacionales.md`
+- [PRT-120](../portable-runtime/PRT-120.md) — `.ai/scrum/task-cards/visual-ux/VISUX-042-crear-suite-visual-gates-documentacion-y-release.md`
 - [Active](../../scrum/views/ACTIVE.md) — `.ai/scrum/views/ACTIVE.md`
 - [Blocked / Partial](../../scrum/views/BLOCKED.md) — `.ai/scrum/views/BLOCKED.md`
 - [Completed](../../scrum/views/COMPLETED.md) — `.ai/scrum/views/COMPLETED.md`

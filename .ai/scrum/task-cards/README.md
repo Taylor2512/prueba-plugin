@@ -4,17 +4,9 @@
 ## Navigation
 
 - `active/`
-- [ai-architecture](./ai-architecture/README.md)
-- [backlog](./backlog/README.md)
-- [core-ux](./core-ux/README.md)
-- [naming](./naming/README.md)
-- [portability](./portability/README.md)
 - [portable-runtime](./portable-runtime/README.md)
 - `ready/`
-- [runtime-platform](./runtime-platform/README.md)
-- [tooling-architecture](./tooling-architecture/README.md)
 - [visual-ux](./visual-ux/README.md)
-- [AIARCH-006 — Crear generador de context packets](./AIARCH-006-crear-generador-de-context-packets.md) — `READY`
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->
@@ -35,7 +27,7 @@
 
 ### Notas
 
-- [AIARCH-006 — Crear generador de context packets](./AIARCH-006-crear-generador-de-context-packets.md)
+- `AIARCH-006 — Crear generador de context packets` (retired; Git/evidence is provenance)
 <!-- project-tools:navigation:end -->
 
 <!-- ai-structure:navigation:start -->
@@ -51,7 +43,7 @@
 - [runtime-platform](./runtime-platform/README.md)
 - [tooling-architecture](./tooling-architecture/README.md)
 - [visual-ux](./visual-ux/README.md)
-- [AIARCH-006 — Crear generador de context packets](./AIARCH-006-crear-generador-de-context-packets.md)
+- `AIARCH-006 — Crear generador de context packets` (retired; Git/evidence is provenance)
 
 > Generated navigation. Source content outside this block remains manual.
 <!-- ai-structure:navigation:end -->

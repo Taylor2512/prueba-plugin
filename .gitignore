@@ -105,3 +105,20 @@ testsprite_tests/tmp/
 testsprite_tests/local-run-results.json
 testsprite_tests/LOCAL-RUN-RESULTS.md
 # testsprite-cleanup:end
+
+# sisad-maintenance-residue:start
+.DS_Store
+._*
+*.bak
+*.orig
+*.rej
+*.swp
+*.swo
+*~
+coverage/
+playwright-report/
+test-results/
+testsprite_tests/tmp/
+testsprite_tests/local-run-results.json
+testsprite_tests/LOCAL-RUN-RESULTS.md
+# sisad-maintenance-residue:end
