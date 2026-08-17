@@ -11,6 +11,7 @@ import { createNoteContainerEl, drawActionFieldChrome } from '@sisad-pdfme/schem
 import type { NoteSchema } from '@sisad-pdfme/schemas/actions/actionSchemaFactory';
 import { clearSchemaRoot, setSchemaRootAttributes } from '@sisad-pdfme/schemas/shared/schemaDom';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 const notePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
   {
@@ -87,37 +88,20 @@ const notePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         includeConnections: true,
       }),
       defaultSchema: ((): Schema => {
-        try {
-          // eslint-disable-next-line @typescript-eslint/no-var-requires
-          const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
-          const canonical = normalizePluginDefaultSchema(undefined as any, 'note') as Partial<Schema>;
-          return {
-            ...(canonical as Schema),
-            name: '',
-            type: 'note',
-            content: '',
-            position: { x: 0, y: 0 },
-            width: 80,
-            height: 15,
-            readOnly: true,
-            visibleToRecipients: true,
-            // Sin paleta ámbar materializada: el contenedor la deriva del dueño.
-            fontSize: 10,
-          } as Schema;
-        } catch (e) {
-          return {
-            name: '',
-            type: 'note',
-            content: '',
-            position: { x: 0, y: 0 },
-            width: 80,
-            height: 15,
-            readOnly: true,
-            visibleToRecipients: true,
-            // Sin paleta ámbar materializada: el contenedor la deriva del dueño.
-            fontSize: 10,
-          } as Schema;
-        }
+        const canonical = getCanonicalDefault(undefined as any, 'note') as Partial<Schema> | null;
+        return {
+          ...(canonical || {}),
+          name: '',
+          type: 'note',
+          content: '',
+          position: { x: 0, y: 0 },
+          width: 80,
+          height: 15,
+          readOnly: true,
+          visibleToRecipients: true,
+          // Sin paleta ámbar materializada: el contenedor la deriva del dueño.
+          fontSize: 10,
+        } as Schema;
       })(),
     },
     icon: renderLucideIcon(StickyNote, { stroke: '#ca8a04' }),

@@ -8,6 +8,7 @@ import {
 import { HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
 import { Minus } from 'lucide-react';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 import { resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
 
 const DEFAULT_LINE_COLOR = '#000000';
@@ -87,33 +88,18 @@ const lineSchema: Plugin<LineSchema> = {
       },
     }),
     defaultSchema: ((): LineSchema => {
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
-        const canonical = normalizePluginDefaultSchema(undefined as any, 'line') as Partial<LineSchema>;
-        return {
-          ...(canonical as LineSchema),
-          name: '',
-          type: 'line',
-          position: { x: 0, y: 0 },
-          width: 50,
-          height: 0.5,
-          rotate: 0,
-          opacity: 1,
-          readOnly: true,
-        } as LineSchema;
-      } catch (e) {
-        return {
-          name: '',
-          type: 'line',
-          position: { x: 0, y: 0 },
-          width: 50,
-          height: 0.5,
-          rotate: 0,
-          opacity: 1,
-          readOnly: true,
-        } as LineSchema;
-      }
+      const canonical = getCanonicalDefault(undefined as any, 'line') as Partial<LineSchema> | null;
+      return {
+        ...(canonical || {}),
+        name: '',
+        type: 'line',
+        position: { x: 0, y: 0 },
+        width: 50,
+        height: 0.5,
+        rotate: 0,
+        opacity: 1,
+        readOnly: true,
+      } as LineSchema;
     })(),
   },
   icon: createSvgStr(Minus),

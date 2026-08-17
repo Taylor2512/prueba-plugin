@@ -15,6 +15,7 @@ import {
   multiplySvgMatrix,
 } from '@sisad-pdfme/schemas/graphics/svgGeometry';
 import { planSvgDraw } from '@sisad-pdfme/schemas/graphics/svgRenderPlan';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 const isValidSVG = (svgString: string): boolean => {
   try {
@@ -157,29 +158,16 @@ const svgSchema: Plugin<SVGSchema> = {
     schema: {},
     inspector: createSchemaInspectorConfig('media'),
     defaultSchema: ((): Schema => {
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
-        const canonical = normalizePluginDefaultSchema(undefined as any, 'svg') as Partial<Schema>;
-        return {
-          ...(canonical as Schema),
-          name: '',
-          type: 'svg',
-          content: defaultValue,
-          position: { x: 0, y: 0 },
-          width: 40,
-          height: 50,
-        } as Schema;
-      } catch (e) {
-        return {
-          name: '',
-          type: 'svg',
-          content: defaultValue,
-          position: { x: 0, y: 0 },
-          width: 40,
-          height: 50,
-        } as Schema;
-      }
+      const canonical = getCanonicalDefault(undefined as any, 'svg') as Partial<Schema> | null;
+      return {
+        ...(canonical || {}),
+        name: '',
+        type: 'svg',
+        content: defaultValue,
+        position: { x: 0, y: 0 },
+        width: 40,
+        height: 50,
+      } as Schema;
     })(),
   },
   icon: createSvgStr(Route),

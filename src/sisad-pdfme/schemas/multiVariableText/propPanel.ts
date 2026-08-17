@@ -3,6 +3,7 @@ import { PropPanel, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import { MultiVariableTextSchema } from '@sisad-pdfme/schemas/multiVariableText/types';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
 import { parseVariablesInput } from '@sisad-pdfme/schemas/multiVariableText/helper';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 const mapDynamicVariables = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n, options } = props;
@@ -124,34 +125,17 @@ export const propPanel: PropPanel<MultiVariableTextSchema> = {
   }),
   widgets: { ...(parentPropPanel.widgets || {}), mapDynamicVariables },
   defaultSchema: ((): any => {
-    // Use the canonical normalizer to ensure a full SchemaForUI baseline
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
-      const canonical = normalizePluginDefaultSchema(parentPropPanel as any, 'multiVariableText');
-      return {
-        ...(canonical as Record<string, unknown>),
-        readOnly: false,
-        type: 'multiVariableText',
-        text: 'Add text here using {} for variables ',
-        width: 50,
-        height: 11,
-        content: '{}',
-        variables: [],
-      } as Record<string, unknown>;
-    } catch (e) {
-      // Fallback to previous behavior when normalizer cannot be loaded
-      return {
-        ...(typeof parentPropPanel.defaultSchema === 'object' ? parentPropPanel.defaultSchema : {}),
-        readOnly: false,
-        type: 'multiVariableText',
-        text: 'Add text here using {} for variables ',
-        width: 50,
-        height: 11,
-        content: '{}',
-        variables: [],
-      } as Record<string, unknown>;
-    }
+    const canonical = getCanonicalDefault(parentPropPanel as any, 'multiVariableText') as Record<string, unknown> | null;
+    return {
+      ...(canonical || (typeof parentPropPanel.defaultSchema === 'object' ? parentPropPanel.defaultSchema : {})),
+      readOnly: false,
+      type: 'multiVariableText',
+      text: 'Add text here using {} for variables ',
+      width: 50,
+      height: 11,
+      content: '{}',
+      variables: [],
+    } as Record<string, unknown>;
   })(),
 };
 

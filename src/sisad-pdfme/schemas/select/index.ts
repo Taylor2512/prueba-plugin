@@ -4,7 +4,6 @@ import { Plugin, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import text from '@sisad-pdfme/schemas/text';
 import { TextSchema } from '@sisad-pdfme/schemas/text/types';
 import { isRecord } from '@sisad-pdfme/shared/objectGuards';
-import { normalizePluginDefaultSchema } from '@sisad-pdfme/schemas/normalizers';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { ChevronDown } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
@@ -13,6 +12,7 @@ import { basicsFields, helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '
 import { normalizeStringOptions, resolveCompactSelection } from '@sisad-pdfme/schemas/options/optionSelectionBehavior';
 import { markInspectorInteractive, stopInspectorPointerEvent } from '@sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards';
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 const selectIcon = renderLucideIcon(ChevronDown);
 
@@ -339,11 +339,16 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
       };
     },
     defaultSchema: ((): Select => {
-      const canonical = normalizePluginDefaultSchema(text as unknown as Plugin<SchemaForUI>, 'select');
+      const canonical = getCanonicalDefault(text as unknown as Plugin<SchemaForUI>, 'select') as Partial<Select> | null;
       return {
-        ...(canonical as unknown as Select),
+        ...(canonical || {}),
+        name: '',
+        type: 'select',
         content: '',
         options: ['option1', 'option2'],
+        position: { x: 0, y: 0 },
+        width: 45,
+        height: 7,
       } as Select;
     })(),
   },

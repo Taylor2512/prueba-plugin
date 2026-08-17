@@ -1,13 +1,14 @@
 {
-  "copilot": {
-    "agent": "copilot",
-    "task": "RTP-545",
+  "codex": {
+    "agent": "codex",
+    "task": "RTP-545-CLOSEOUT",
     "mode": "write",
     "paths": [
-      "src",
-      ".ai",
-      "reports"
+      "src/sisad-pdfme/integration/index.ts",
+      ".ai/scrum/task-cards/runtime-platform/RTP-545.md",
+      "reports/runtime-platform/evidence/RTP-545.md",
+      "reports/architecture/public-api-inventory.json"
     ],
-    "startedAt": "2026-08-16T18:22:35.000Z"
+    "startedAt": "2026-08-17T02:33:14.891Z"
   }
 }

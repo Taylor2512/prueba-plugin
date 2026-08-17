@@ -530,22 +530,26 @@ const handleTypeChange = (
     // Use canonical normalizer to obtain a fully-formed SchemaForUI then
     // copy missing keys into the target. This avoids ad-hoc '{}' fallbacks
     // and ensures consumers always receive required fields (id/position/etc).
+    // Use centralized runtime helper to attempt canonical normalization first
+    // and fall back to the declared defaultSchema when unavailable.
     try {
-      // Import locally to avoid module cycles at top-level.
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
-      const canonical: Record<string, unknown> = normalizePluginDefaultSchema(plugin as any, String(schema.type || plugin.propPanel.defaultSchema.type || schema.name));
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { getCanonicalDefault } = require('@sisad-pdfme/schemas/runtime-normalizer');
+      const canonical: Record<string, unknown> | null = getCanonicalDefault(
+        plugin,
+        String(schema.type || plugin.propPanel.defaultSchema.type || schema.name),
+      );
       const schemaRecord = schema as Record<string, unknown>;
-      for (const key of Object.keys(canonical)) {
+      const source = canonical ?? (plugin.propPanel.defaultSchema as Record<string, unknown>);
+      for (const key of Object.keys(source)) {
         if (!Object.prototype.hasOwnProperty.call(schema, key)) {
-          const propertyValue = canonical[key];
+          const propertyValue = source[key];
           if (propertyValue !== undefined) {
             schemaRecord[key] = propertyValue;
           }
         }
       }
-    } catch (e) {
-      // Keep previous fallback behavior if the normalizer cannot be loaded.
+    } catch {
       const defaultSchema = plugin.propPanel.defaultSchema as Record<string, unknown>;
       const schemaRecord = schema as Record<string, unknown>;
       for (const key of Object.keys(defaultSchema)) {

@@ -16,6 +16,7 @@ import { createAttachmentContainerEl, drawActionFieldChrome } from '@sisad-pdfme
 import type { AttachmentSchema } from '@sisad-pdfme/schemas/actions/actionSchemaFactory';
 import { clearSchemaRoot, setSchemaRootAttributes } from '@sisad-pdfme/schemas/shared/schemaDom';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 
 const MIME_TYPE_OPTIONS = [
   { label: 'Cualquier archivo', value: '*' },
@@ -175,45 +176,24 @@ const attachmentPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         includeConnections: true,
       }),
       defaultSchema: ((): Schema => {
-        try {
-          // eslint-disable-next-line @typescript-eslint/no-var-requires
-          const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
-          const canonical = normalizePluginDefaultSchema(undefined as any, 'attachment') as Partial<Schema>;
-          return {
-            ...(canonical as Schema),
-            name: '',
-            type: 'attachment',
-            content: '',
-            position: { x: 0, y: 0 },
-            width: 60,
-            height: 20,
-            readOnly: false,
-            required: false,
-            allowedMimeTypes: '*',
-            maxFiles: 1,
-            maxSizeMb: 10,
-            allowReplace: true,
-            showFileName: true,
-            showUploadStatus: true,
-          } as Schema;
-        } catch (e) {
-          return {
-            name: '',
-            type: 'attachment',
-            content: '',
-            position: { x: 0, y: 0 },
-            width: 60,
-            height: 20,
-            readOnly: false,
-            required: false,
-            allowedMimeTypes: '*',
-            maxFiles: 1,
-            maxSizeMb: 10,
-            allowReplace: true,
-            showFileName: true,
-            showUploadStatus: true,
-          } as Schema;
-        }
+        const canonical = getCanonicalDefault(undefined as any, 'attachment') as Partial<Schema> | null;
+        return {
+          ...(canonical || {}),
+          name: '',
+          type: 'attachment',
+          content: '',
+          position: { x: 0, y: 0 },
+          width: 60,
+          height: 20,
+          readOnly: false,
+          required: false,
+          allowedMimeTypes: '*',
+          maxFiles: 1,
+          maxSizeMb: 10,
+          allowReplace: true,
+          showFileName: true,
+          showUploadStatus: true,
+        } as Schema;
       })(),
     },
     icon: renderLucideIcon(Paperclip, { stroke: '#374151' }),

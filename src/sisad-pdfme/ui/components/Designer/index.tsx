@@ -10,6 +10,7 @@ import {
   filterCommentsByFileAndPage,
   removeTopLevelComment,
   Schema,
+  Plugin,
   SchemaForUI,
   ChangeSchemas,
   DesignerProps,
@@ -2702,21 +2703,21 @@ const TemplateEditor = ({
       // Plugins may declare a minimal `defaultSchema`. Normalize required
       // fields before adding so SchemaForUI invariants (e.g., `id`) hold.
       try {
-        // runtime require to avoid potential module cycles
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
-        const canonical = normalizePluginDefaultSchema(found[1] as any, normalizedType);
+        // Use the runtime helper to centralize require/normalizer logic.
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const { getCanonicalDefault } = require('@sisad-pdfme/schemas/runtime-normalizer');
+        const canonical = getCanonicalDefault(found[1] as Plugin<Schema>, normalizedType) as SchemaForUI | null;
         const safe = {
-          ...(canonical as Schema),
-          id: canonical.id || generateSchemaUid(),
-          name: canonical.name || '',
-          position: canonical.position || { x: 0, y: 0 },
-          width: canonical.width || 45,
-          height: canonical.height || 10,
-          type: canonical.type || normalizedType,
+          ...(canonical || {}),
+          id: canonical?.id || generateSchemaUid(),
+          name: canonical?.name || '',
+          position: canonical?.position || { x: 0, y: 0 },
+          width: canonical?.width || 45,
+          height: canonical?.height || 10,
+          type: canonical?.type || normalizedType,
         } as Schema;
         addSchemaAtCenter(safe);
-      } catch (e) {
+      } catch {
         const rawDefaultCandidate = found[1].propPanel.defaultSchema;
         const rawDefault = typeof rawDefaultCandidate === 'object' && rawDefaultCandidate !== null
           ? (rawDefaultCandidate as Partial<Schema>)
@@ -2729,7 +2730,7 @@ const TemplateEditor = ({
           width: rawDefault.width || 45,
           height: rawDefault.height || 10,
           type: rawDefault.type || normalizedType,
-        } as Schema;
+        };
         addSchemaAtCenter(defaultSchema);
       }
     },

@@ -15,6 +15,7 @@ import {
 import text from '@sisad-pdfme/schemas/text';
 import { createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
+import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
 import { HEX_COLOR_PATTERN } from '@sisad-pdfme/schemas/constants';
 import {
   basicsFields,
@@ -102,28 +103,15 @@ export function createTextLikeSchemaPlugin(config: TextLikePresetConfig): Plugin
           includeConnections: true,
         }),
         defaultSchema: ((): Schema => {
-          try {
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
-            const canonical = normalizePluginDefaultSchema(text as any, type);
-            return {
-              ...(canonical as Schema),
-              name: '',
-              type,
-              content: config.defaultContent ?? '',
-              readOnly: false,
-              prefillSource: sourceField,
-            } as Schema;
-          } catch (e) {
-            return {
-              ...text.propPanel.defaultSchema,
-              name: '',
-              type,
-              content: config.defaultContent ?? '',
-              readOnly: false,
-              prefillSource: sourceField,
-            } as Schema;
-          }
+          const canonical = getCanonicalDefault(text as any, type) as Schema | null;
+          return {
+            ...(canonical || {}),
+            name: '',
+            type,
+            content: config.defaultContent ?? '',
+            readOnly: false,
+            prefillSource: sourceField,
+          } as Schema;
         })(),
       },
       icon: normalizedIcon,

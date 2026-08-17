@@ -1,6 +1,9 @@
 import { vi } from 'vitest';
 
-vi.mock('@sisad-pdfme/integration', () => ({}));
+vi.mock('@sisad-pdfme/integration', async () => {
+  const bundle = await import('@sisad-pdfme/integration/instanceBundleAssets');
+  return bundle;
+});
 
 import {
   createPortableSisadPdfmeInstanceBundle,
