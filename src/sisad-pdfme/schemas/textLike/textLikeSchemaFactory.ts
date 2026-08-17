@@ -111,6 +111,13 @@ export function createTextLikeSchemaPlugin(config: TextLikePresetConfig): Plugin
             content: config.defaultContent ?? '',
             readOnly: false,
             prefillSource: sourceField,
+            // Ensure geometry defaults are present even when canonical normalization
+            // is unavailable (avoids cycles during module init). These mirror the
+            // defaults used by `text.propPanel.defaultSchema`.
+            position: (canonical && canonical.position) || { x: 0, y: 0 },
+            width: (canonical && typeof canonical.width === 'number') ? canonical.width : 45,
+            height: (canonical && typeof canonical.height === 'number') ? canonical.height : 7,
+            rotate: (canonical && typeof canonical.rotate === 'number') ? canonical.rotate : 0,
           } as Schema;
         })(),
       },
