@@ -16,46 +16,9 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { DraggableSyntheticListeners } from '@dnd-kit/core';
 import { I18nContext } from '@sisad-pdfme/ui/contexts';
-import { GripVertical, CircleAlert, Lock, Eye, EyeOff, Trash2 } from 'lucide-react';
+import { GripVertical, CircleAlert, Lock, Unlock, Eye, EyeOff, Trash2 } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
-
-/**
- * Color palette used to visually distinguish schema families in the field list.
- *
- * These colors are only visual accents. They do not determine ownership,
- * permissions or collaboration state.
- */
-const SCHEMA_TYPE_COLORS: Record<string, string> = {
-  text: '#4F8EF7',
-  number: '#F59E0B',
-  multiVariableText: '#7B61FF',
-  image: '#00C2A8',
-  svg: '#00C2A8',
-  table: '#FF8C42',
-  line: '#A0A0A0',
-  rectangle: '#FFD166',
-  ellipse: '#EF476F',
-  checkbox: '#06D6A0',
-  radioGroup: '#06D6A0',
-  select: '#118AB2',
-  date: '#9B5DE5',
-  dateTime: '#9B5DE5',
-  time: '#9B5DE5',
-  qrcode: '#073B4C',
-  ean13: '#073B4C',
-  code39: '#073B4C',
-  code128: '#073B4C',
-};
-
-/**
- * Resolves the accent color associated with a schema type.
- *
- * @param type Schema type from the plugin/runtime.
- * @returns Hex color used as fallback visual accent.
- */
-const getTypeColor = (type?: string) => (type ? (SCHEMA_TYPE_COLORS[type] ?? '#888') : '#888');
-
 
 // Define prop types for Item component
 
@@ -87,12 +50,16 @@ interface Props {
   required?: boolean;
   /** Whether the item is read-only */
   readOnly?: boolean;
+  /** Whether the item's canvas position is locked (distinct from readOnly). */
+  positionLocked?: boolean;
   /** Whether the item is hidden on canvas */
   hidden?: boolean;
   /** Called when visibility icon is toggled */
   onToggleVisibility?: () => void;
   /** Called when delete is requested from the item row */
   onDelete?: () => void;
+  /** Toggles the schema content read-only flag without selecting the row. */
+  onToggleReadOnly?: () => void;
   /** Whether the item is being dragged as an overlay */
   dragOverlay?: boolean;
   /** Click handler for the item */
@@ -192,6 +159,7 @@ const ItemActions = ({
   hidden,
   onToggleVisibility,
   onDelete,
+  onToggleReadOnly,
   isHovered,
   label,
 }: {
@@ -200,11 +168,28 @@ const ItemActions = ({
   hidden?: boolean;
   onToggleVisibility?: () => void;
   onDelete?: () => void;
+  onToggleReadOnly?: () => void;
   isHovered?: boolean;
   label?: string;
 }) => (
     <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-actions', 'relative z-20 ml-auto flex shrink-0 items-center gap-1 pl-1')}>
-      {readOnly ? (
+      {onToggleReadOnly ? (
+        <button
+          type="button"
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); onToggleReadOnly(); }}
+          aria-label={readOnly ? 'Permitir edición del campo' : 'Activar solo lectura del campo'}
+          aria-pressed={readOnly === true}
+          title={readOnly ? 'Permitir edición' : 'Solo lectura'}
+          data-testid="right-sidebar-field-readonly-toggle"
+          data-readonly={readOnly ? 'true' : 'false'}
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'list-view-item-lock-toggle',
+            'pointer-events-auto inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/60',
+          )}
+        >
+          {readOnly ? <Lock size={13} aria-hidden="true" /> : <Unlock size={13} aria-hidden="true" />}
+        </button>
+      ) : readOnly ? (
         <span data-testid="right-sidebar-field-badge" data-badge="readonly" className="pointer-events-auto inline-flex">
           <Lock size={13} className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-lock', 'text-slate-500')} />
         </span>
@@ -277,9 +262,11 @@ const Item = React.memo(
       typeLabel,
       required,
       readOnly,
+      positionLocked,
       hidden,
       onToggleVisibility,
       onDelete,
+      onToggleReadOnly,
       style,
       className,
       dragOverlay,
@@ -322,7 +309,6 @@ const Item = React.memo(
     }, [dragOverlay]);
 
     const { x, y, scaleX, scaleY } = transform || { x: 0, y: 0, scaleX: 1, scaleY: 1 };
-    const typeAccent = getTypeColor(schemaType);
     const normalizedValue =
       typeof value === 'string' || typeof value === 'number' ? String(value) : undefined;
     const secondaryValue = typeof title === 'string' && title.trim() && title !== normalizedValue ? title.trim() : '';
@@ -358,7 +344,6 @@ const Item = React.memo(
       transition,
       ...style,
       outline: 'none',
-      '--type-accent': typeAccent,
       // Owner accent stays subtle; selection is expressed by ring/background so
       // the row never reads like it is selected just because it has a recipient.
       ...(accentColor ? { '--schema-owner-color': accentColor } : null),
@@ -383,7 +368,8 @@ const Item = React.memo(
         data-selected={selected ? 'true' : 'false'}
         data-hovered={hovered ? 'true' : 'false'}
         data-hidden={hidden ? 'true' : 'false'}
-        data-locked={readOnly ? 'true' : 'false'}
+        data-readonly={readOnly ? 'true' : 'false'}
+        data-position-locked={positionLocked ? 'true' : 'false'}
         data-testid="right-sidebar-field-item"
         data-schema-type={schemaType}
         data-schema-owner-color={accentColor || undefined}
@@ -493,6 +479,7 @@ const Item = React.memo(
             hidden={hidden}
             onToggleVisibility={onToggleVisibility}
             onDelete={onDelete}
+            onToggleReadOnly={onToggleReadOnly}
             isHovered={isHovered}
             label={valueTooltip}
           />
