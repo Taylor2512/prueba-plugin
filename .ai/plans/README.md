@@ -14,4 +14,20 @@ their history; they are not runtime or architecture authorities.
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
+
+### Notas
+
+- [Plan — Designer quality hardening, exportación y controles de edición](./DESIGNER-QUALITY-HARDENING-PLAN.md)
+- [Matriz funcional — Designer, exportación y controles de edición](./DESIGNER-SCREENSHOT-FUNCTIONAL-GAP-MATRIX.md)
+- [Plan activo — Designer UX hardening](./DESIGNER-UX-HARDENING.md)
 <!-- project-tools:navigation:end -->
+
+<!-- sisad-architecture-hub:start -->
+## Navigation
+
+- [Plan — Designer quality hardening, exportación y controles de edición](./DESIGNER-QUALITY-HARDENING-PLAN.md)
+- [Matriz funcional — Designer, exportación y controles de edición](./DESIGNER-SCREENSHOT-FUNCTIONAL-GAP-MATRIX.md)
+- [Plan activo — Designer UX hardening](./DESIGNER-UX-HARDENING.md)
+
+> Managed index. Update source documents, not this list.
+<!-- sisad-architecture-hub:end -->

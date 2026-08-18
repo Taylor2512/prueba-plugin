@@ -18,6 +18,7 @@
 - [Same-repo collision gates](./SAME-REPO-COLLISION-GATES.md)
 - [Schema completion matrix](./SCHEMA-COMPLETION-MATRIX.md)
 - [Schema runtime coverage matrix](./SCHEMA-RUNTIME-COVERAGE-MATRIX.md)
+- [Serena quality gates](./SERENA-QUALITY-GATES.md)
 - [SISAD-PDFME release gate](./SISAD-PDFME-RELEASE-GATE.md)
 
 > Managed index. Update source documents, not this list.

@@ -34,6 +34,7 @@
 - [Assignments](./05-assignments.md)
 - [Runtime modes](./06-runtime-modes.md)
 - [Snapshot](./07-snapshot.md)
+- [Localización (i18n)](./08-localizacion.md)
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->

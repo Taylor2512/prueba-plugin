@@ -14,10 +14,21 @@ Queued work derived from task cards and evidence.
 - [PRT-100](../task-cards/portable-runtime/PRT-100.md) — `BACKLOG`
 - [PRT-110](../task-cards/portable-runtime/PRT-110.md) — `BACKLOG`
 - [PRT-120](../task-cards/portable-runtime/PRT-120.md) — `BACKLOG`
-- [UX-LEFT-SIDEBAR](../task-cards/visual-ux/UX-LEFT-SIDEBAR.md) — `BACKLOG`
-- [UX-RIGHT-SIDEBAR](../task-cards/visual-ux/UX-RIGHT-SIDEBAR.md) — `BACKLOG`
+- [QH-003](../task-cards/quality-hardening/QH-003.md) — `BACKLOG`
+- [QH-004](../task-cards/quality-hardening/QH-004.md) — `BACKLOG`
+- [QH-005](../task-cards/quality-hardening/QH-005.md) — `BACKLOG`
+- [QH-006](../task-cards/quality-hardening/QH-006.md) — `BACKLOG`
+- [QH-007](../task-cards/quality-hardening/QH-007.md) — `BACKLOG`
+- [QH-010](../task-cards/quality-hardening/QH-010.md) — `BACKLOG`
+- [QH-014](../task-cards/quality-hardening/QH-014.md) — `BACKLOG`
+- [QH-015](../task-cards/quality-hardening/QH-015.md) — `BACKLOG`
+- [QH-016](../task-cards/quality-hardening/QH-016.md) — `BACKLOG`
+- [QH-017](../task-cards/quality-hardening/QH-017.md) — `BACKLOG`
+- [QH-018](../task-cards/quality-hardening/QH-018.md) — `BACKLOG`
+- [QH-019](../task-cards/quality-hardening/QH-019.md) — `BACKLOG`
+- [QH-020](../task-cards/quality-hardening/QH-020.md) — `BACKLOG`
+- [QH-021](../task-cards/quality-hardening/QH-021.md) — `BACKLOG`
 - [UX-SCHEMAS](../task-cards/visual-ux/UX-SCHEMAS.md) — `BACKLOG`
 - [UX-VISUAL-SYSTEM](../task-cards/visual-ux/UX-VISUAL-SYSTEM.md) — `BACKLOG`
-- [UX-WORKSPACE](../task-cards/visual-ux/UX-WORKSPACE.md) — `BACKLOG`
 
 > Generated. Authority: task card + evidence + dependency DAG.

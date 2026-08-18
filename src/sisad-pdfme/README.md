@@ -16,7 +16,6 @@
 - [converter](./converter/README.md)
 - `devtools/`
 - `documents/`
-- `editor/`
 - `externalForms/`
 - `generator/`
 - `integration/`

@@ -1,5 +1,13 @@
 # Active work
 
+<!-- task-state-sync:start -->
+## Generated current runtime attention
+
+- none
+
+> Current window only; older RTP cards are excluded from operational routing.
+<!-- task-state-sync:end -->
+
 <!-- portable-priority-sync:start -->
 ## Generated current attention
 

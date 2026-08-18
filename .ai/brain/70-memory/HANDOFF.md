@@ -106,6 +106,27 @@ invitando a escribirlas. El modelo correcto es `mode: 'inherit'` más una
 referencia que el host resuelve. Retira capacidad visible del inspector, así
 que necesita su propia task.
 
+## Nueva campaña de calidad del Designer (capturas 2026-08-18)
+
+Se incorporó la campaña `DESIGNER-QUALITY-HARDENING` con la matriz
+[`../../plans/DESIGNER-SCREENSHOT-FUNCTIONAL-GAP-MATRIX.md`](../../plans/DESIGNER-SCREENSHOT-FUNCTIONAL-GAP-MATRIX.md)
+y las cards QH-011–QH-021. Los hallazgos visuales más importantes son:
+
+- `[object Object].pdf` exige un resolver común de nombres en Designer,
+  Preview y runtime React (QH-011).
+- `colorType: grayscale` ya está cableado en los flujos principales, pero el
+  gate aún debe demostrar crominancia cero en todos los renderers/plugins y
+  decidir explícitamente el tratamiento de imágenes raster (QH-012).
+- El candado de fila `Solo lectura`, `Bloquear posición` y `Liberar edición`
+  son estados diferentes; deben compartir policy/commands sin confluir en un
+  booleano (QH-013/QH-014).
+- El catálogo de atajos y el menú `Más` deben ser proyecciones del registry,
+  con foco, scroll, disabled reason y paridad del shortcut `L` (QH-015/QH-016).
+
+No marcar gates verdes por inspección visual: cada card necesita mutation/event,
+snapshot y prueba reproducible. Los estados de esta campaña son planificación
+operativa y no sustituyen la cola runtime RTP/PRT.
+
 <!-- SISAD-PDFME-CONSOLIDATION:.ai/brain/70-memory/HANDOFF.md:START -->
 ## Three-agent handoff rule
 

@@ -5,6 +5,7 @@
 
 - `active/`
 - [portable-runtime](./portable-runtime/README.md)
+- [quality-hardening](./quality-hardening/README.md)
 - `ready/`
 - [visual-ux](./visual-ux/README.md)
 
@@ -17,5 +18,6 @@
 ### Secciones
 
 - [Portable Runtime campaign](./portable-runtime/README.md)
+- [Quality hardening](./quality-hardening/README.md)
 - [visual-ux](./visual-ux/README.md)
 <!-- project-tools:navigation:end -->

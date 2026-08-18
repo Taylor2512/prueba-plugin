@@ -12,6 +12,7 @@
 - [operations](./operations/README.md)
 - [runtime](./runtime/README.md)
 - [signing](./signing/README.md)
+- [Serena semantic navigation contract](./SERENA-SEMANTIC-NAVIGATION.md)
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->

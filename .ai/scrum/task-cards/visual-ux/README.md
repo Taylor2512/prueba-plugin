@@ -3,11 +3,11 @@
 <!-- sisad-architecture-hub:start -->
 ## Navigation
 
-- [UX-LEFT-SIDEBAR — Catálogo y drag/drop](./UX-LEFT-SIDEBAR.md) — `BACKLOG`
-- [UX-RIGHT-SIDEBAR — Navegación, ListView, DetailView, comments y documents](./UX-RIGHT-SIDEBAR.md) — `BACKLOG`
+- [UX-LEFT-SIDEBAR — Catálogo y drag/drop](./UX-LEFT-SIDEBAR.md) — `DONE`
+- [UX-RIGHT-SIDEBAR — Navegación, ListView, DetailView, comments y documents](./UX-RIGHT-SIDEBAR.md) — `DONE`
 - [UX-SCHEMAS — Inspector y experiencia visual por capability](./UX-SCHEMAS.md) — `BACKLOG`
 - [UX-VISUAL-SYSTEM — Tokens, field chrome, i18n y lenguaje visual](./UX-VISUAL-SYSTEM.md) — `BACKLOG`
-- [UX-WORKSPACE — Responsive shell, viewport, toolbar y overlays](./UX-WORKSPACE.md) — `BACKLOG`
+- [UX-WORKSPACE — Responsive shell, viewport, toolbar y overlays](./UX-WORKSPACE.md) — `DONE`
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->
