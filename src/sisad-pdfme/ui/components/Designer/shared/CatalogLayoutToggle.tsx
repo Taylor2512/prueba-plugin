@@ -14,7 +14,7 @@ export interface CatalogLayoutToggleProps {
   showLabels?: boolean;
 }
 
-const CATALOG_VIEW_OPTIONS: Array<{ 
+export const CATALOG_VIEW_OPTIONS: Array<{
   layout: CatalogLayout; 
   icon: React.ReactNode; 
   label: string; 

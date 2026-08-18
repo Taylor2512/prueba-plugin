@@ -11,6 +11,7 @@
 import {
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -57,6 +58,13 @@ type SelectableSortableContainerProps = Pick<
   activeSchemaIds: string[];
   densityMode?: DensityMode;
   selectionCommands?: SelectionCommandSet;
+  /**
+   * Modo de multiselección: autoridad única en `RightSidebar`, que también lo
+   * usa para suprimir el salto automático a Detalle mientras está activo. El
+   * contenedor sólo lo LEE y pide cambios; no guarda una copia propia.
+   */
+  multiSelectMode?: boolean;
+  onMultiSelectModeChange?: (_next: boolean) => void;
 };
 
 const DENSITY_CLASSES: Record<
@@ -96,6 +104,8 @@ const SelectableSortableContainer = ({
   onChangeHoveringSchemaId,
   collaborationContext,
   selectionCommands,
+  multiSelectMode = false,
+  onMultiSelectModeChange,
 }: SelectableSortableContainerProps) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [rangeAnchorId, setRangeAnchorId] = useState<string | null>(null);
@@ -125,6 +135,23 @@ const SelectableSortableContainer = ({
   );
 
   const selectedIdSet = useMemo(() => new Set(activeSchemaIds), [activeSchemaIds]);
+
+  /**
+   * Sale del modo de multiselección cuando la selección queda vacía.
+   *
+   * Escape NO se maneja aquí: el atajo global de Designer
+   * (`useInitEvents`/`useDesignerKeyboardShortcuts`) ya escucha Escape en
+   * todo el documento para vaciar la selección. Un segundo listener local
+   * competiría por el mismo evento; en vez de eso, Designer conoce
+   * `multiSelectMode` y su callback de `clearSelection` sale del modo en
+   * lugar de vaciar la selección mientras está activo (ver
+   * `Designer/index.tsx`, `onClearSelection`).
+   */
+  useEffect(() => {
+    if (multiSelectMode && activeSchemaIds.length === 0) {
+      onMultiSelectModeChange?.(false);
+    }
+  }, [activeSchemaIds.length, multiSelectMode, onMultiSelectModeChange]);
 
   const selectedSchemas = useMemo(
     () => visibleSchemas.filter((schema) => selectedIdSet.has(schema.id)),
@@ -171,9 +198,18 @@ const SelectableSortableContainer = ({
   const handleSelectionRequested = useCallback(
     (
       id: string,
-      intent: { isRange: boolean; isToggle: boolean },
+      rawIntent: { isRange: boolean; isToggle: boolean },
     ) => {
       if (!visibleSchemaIdSet.has(id)) return;
+
+      // Mientras el modo de multiselección está activo, un click SIN modificador
+      // alterna membresía igual que uno con Ctrl/Cmd: es el contrato de "clicks
+      // alternan y permanecen en Campos". Shift conserva su propio significado
+      // (extender el rango), así que no se toca `isRange`.
+      const intent =
+        multiSelectMode && !rawIntent.isRange
+          ? { ...rawIntent, isToggle: true }
+          : rawIntent;
 
       const anchorId =
         rangeAnchorId && visibleSchemaIdSet.has(rangeAnchorId)
@@ -222,6 +258,7 @@ const SelectableSortableContainer = ({
       }
     },
     [
+      multiSelectMode,
       onEdit,
       rangeAnchorId,
       selectionCommands,
@@ -270,6 +307,28 @@ const SelectableSortableContainer = ({
   const resetDragState = useCallback(() => {
     setActiveId(null);
   }, []);
+
+  /**
+   * Entrada de multiselección: pulsación larga o su equivalente de teclado.
+   *
+   * SIEMPRE alterna, nunca reemplaza: mantener pulsado en la primera fila la
+   * suma a la selección existente, no la sustituye por ella sola. Si el host
+   * no expone `selectSchemasByIds` (superficie sin comandos), se degrada a
+   * `onEdit`, que sólo puede reemplazar — la entrada a multi mode no aplica en
+   * ese caso porque no hay forma de alternar sin la autoridad de comandos.
+   */
+  const handleLongPressSelect = useCallback(
+    (id: string) => {
+      if (!visibleSchemaIdSet.has(id)) return;
+      if (!selectionCommands?.selectSchemasByIds) {
+        onEdit(id);
+        return;
+      }
+      onMultiSelectModeChange?.(true);
+      selectionCommands.selectSchemasByIds([id], { mode: 'toggle', origin: 'field-list' });
+    },
+    [onEdit, onMultiSelectModeChange, selectionCommands, visibleSchemaIdSet],
+  );
 
   return (
     <DndContext
@@ -351,6 +410,7 @@ const SelectableSortableContainer = ({
         )}
         data-density={densityMode}
         data-dragging={activeId ? 'true' : 'false'}
+        data-multi-select-mode={multiSelectMode ? 'true' : 'false'}
       >
         <div
           className={mergeClassNames(
@@ -385,6 +445,8 @@ const SelectableSortableContainer = ({
                       schema.name && duplicateNameSet.has(schema.name),
                     )}
                     onSelect={handleSelectionRequested}
+                    onLongPressSelect={handleLongPressSelect}
+                    multiSelectMode={multiSelectMode}
                     onMouseEnter={() =>
                       onChangeHoveringSchemaId(schema.id)
                     }

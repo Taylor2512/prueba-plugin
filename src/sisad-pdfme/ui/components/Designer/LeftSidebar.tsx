@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Schema, Plugin, BasePdf, getFallbackFontName, cloneDeep } from '@sisad-pdfme/common';
-import { Button } from 'antd';
+import { Button, Dropdown } from 'antd';
+import { ChevronDown } from 'lucide-react';
 import { useDraggable } from '@dnd-kit/core';
 import { DESIGNER_CLASSNAME, LEFT_SIDEBAR_WIDTH } from '@sisad-pdfme/ui/constants';
 import { normalizeLooseText } from '@sisad-pdfme/shared/text';
@@ -30,7 +31,7 @@ import { normalizeHexColor } from '@sisad-pdfme/ui/components/Designer/shared/re
 import { buildAutoPlaceDescriptor } from '@sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace';
 import { useResponsiveDensity, type DensityMode } from '@sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity';
 import { SidebarRail } from '@sisad-pdfme/ui/components/Designer/shared/SidebarRail';
-import { CatalogLayoutToggle, type CatalogLayout } from '@sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle';
+import { CatalogLayoutToggle, CATALOG_VIEW_OPTIONS as CATALOG_LAYOUT_OPTIONS, type CatalogLayout } from '@sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle';
 import { getCatalogLabel } from '@sisad-pdfme/ui/components/Designer/shared/designerLabels';
 import { lockDesignerSidebarScroll, unlockDesignerSidebarScroll } from '@sisad-pdfme/ui/components/Designer/shared/interactionGuards';
 import { SidebarCollapseHandle } from '@sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle';
@@ -1219,6 +1220,39 @@ const LeftSidebar = ({
   });
   const sidebarDensityMode = toSidebarDensity(responsiveDensityMode);
 
+  /**
+   * Datos del disparador único de filtro y del catálogo de modos de vista.
+   *
+   * `useMemo` porque alimentan el menú del Dropdown, que compara referencias
+   * de `items` para decidir si vuelve a renderizar sus opciones.
+   */
+  const opcionesDeFiltro = useMemo(
+    () => [
+      { key: 'all' as const, etiquetaCorta: 'Todos', etiquetaLarga: 'Todos' },
+      {
+        key: 'favorites' as const,
+        etiquetaCorta: `★ ${favoritePlugins.size}`,
+        etiquetaLarga: `Favoritos (${favoritePlugins.size})`,
+      },
+      {
+        key: 'recent' as const,
+        etiquetaCorta: `⟳ ${recentPlugins.length}`,
+        etiquetaLarga: `Recientes (${recentPlugins.length})`,
+      },
+    ],
+    [favoritePlugins.size, recentPlugins.length],
+  );
+  const filtroActivo = opcionesDeFiltro.find((opcion) => opcion.key === quickFilter) ?? opcionesDeFiltro[0];
+
+  /**
+   * Umbral de ensanche para mostrar los tres modos de visualización en línea.
+   *
+   * Por debajo, se repliegan tras el disparador `Vista`: es la densidad
+   * `mini` del contrato (`filtro + Vista con disclosure`).
+   */
+  const mostrarModosExpandidos = sidebarDensityMode !== 'minimal' && sidebarLiveWidth >= 220;
+  const layoutActivo = CATALOG_LAYOUT_OPTIONS.find((opcion) => opcion.layout === resolvedLayout) ?? CATALOG_LAYOUT_OPTIONS[0];
+
   useEffect(() => {
     if (sidebarLiveWidth <= 0) return;
     onWidthChange?.(sidebarLiveWidth);
@@ -1458,6 +1492,7 @@ const LeftSidebar = ({
                 draggableActive || isDragging ? 'opacity-0 pointer-events-none' : '',
               )}
               data-active={isFavorite ? 'true' : 'false'}
+              data-testid="left-sidebar-favorite-toggle"
               onPointerDown={(e) => e.stopPropagation()}
               onMouseDown={(e) => e.stopPropagation()}
               onClick={(e) => {
@@ -1733,65 +1768,114 @@ const LeftSidebar = ({
           </Button>
         </div>
       ) : null}
-      <div className={mergeClassNames(
-        DESIGNER_CLASSNAME + 'left-sidebar-chip-row',
-        'flex flex-wrap items-center gap-1.5 rounded-full border border-slate-200/70 bg-white/85 px-1.5 py-1 shadow-sm',
-        sidebarDensityMode === 'minimal' ? 'gap-1 px-1 py-0.5' : ''
-      )}>
-        <Button
-          className={mergeClassNames(
-            DESIGNER_CLASSNAME + 'left-sidebar-filter-btn',
-            'rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
-            quickFilter === 'all' ? 'border-sky-200 bg-sky-50 text-sky-700' : '',
-          )}
-          size={sidebarDensityMode === 'minimal' ? 'small' : 'small'}
-          style={sidebarDensityMode === 'minimal' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
-          data-testid="left-sidebar-filter-all"
-          type={quickFilter === 'all' ? 'primary' : 'default'}
-          onClick={() => setQuickFilter('all')}
+      {/*
+        * Controles del catálogo en UNA fila.
+        *
+        * Antes eran tres botones de filtro más los tres modos de
+        * visualización en una fila que envolvía: a la anchura habitual del
+        * panel (~168 px) ocupaba 104 px repartidos en tres líneas y empujaba
+        * el catálogo casi 300 px hacia abajo. El filtro pasa a ser un único
+        * disparador que muestra el filtro activo y su recuento, y los modos
+        * de visualización se repliegan tras `Vista` cuando el panel es
+        * estrecho. No hay estado nuevo: `quickFilter`, favoritos, recientes y
+        * `resolvedLayout` siguen siendo los de `useLeftSidebarCatalogState`.
+        */}
+      <div
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'left-sidebar-chip-row',
+          'flex min-w-0 flex-nowrap items-center gap-1 rounded-full border border-slate-200/70 bg-white/85 px-1.5 py-1 shadow-sm',
+          sidebarDensityMode === 'minimal' ? 'gap-0.5 px-1 py-0.5' : '',
+        )}
+        data-testid="left-sidebar-catalog-controls"
+        data-quick-filter={quickFilter}
+        data-view-presentation={mostrarModosExpandidos ? 'inline' : 'disclosure'}
+      >
+        <Dropdown
+          trigger={['click']}
+          menu={{
+            selectable: true,
+            selectedKeys: [quickFilter],
+            items: opcionesDeFiltro.map((opcion) => ({
+              key: opcion.key,
+              label: (
+                <span data-testid={`left-sidebar-filter-${opcion.key}`} data-quick-filter={opcion.key}>
+                  {opcion.etiquetaLarga}
+                </span>
+              ),
+            })),
+            onClick: ({ key }) => setQuickFilter(key as CatalogQuickFilter),
+          }}
         >
-          {sidebarDensityMode === 'minimal' ? 'Todo' : 'Todos'}
-        </Button>
-        <Button
-          className={mergeClassNames(
-            DESIGNER_CLASSNAME + 'left-sidebar-filter-btn',
-            'rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
-            quickFilter === 'favorites' ? 'border-sky-200 bg-sky-50 text-sky-700' : '',
-          )}
-          size={sidebarDensityMode === 'minimal' ? 'small' : 'small'}
-          style={sidebarDensityMode === 'minimal' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
-          data-testid="left-sidebar-filter-favorites"
-          type={quickFilter === 'favorites' ? 'primary' : 'default'}
-          onClick={() => setQuickFilter('favorites')}
-        >
-          {sidebarDensityMode === 'minimal' ? `★ ${favoritePlugins.size}` : `Favoritos (${favoritePlugins.size})`}
-        </Button>
-        <Button
-          className={mergeClassNames(
-            DESIGNER_CLASSNAME + 'left-sidebar-filter-btn',
-            'rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
-            quickFilter === 'recent' ? 'border-sky-200 bg-sky-50 text-sky-700' : '',
-          )}
-          size={sidebarDensityMode === 'minimal' ? 'small' : 'small'}
-          style={sidebarDensityMode === 'minimal' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
-          data-testid="left-sidebar-filter-recent"
-          type={quickFilter === 'recent' ? 'primary' : 'default'}
-          onClick={() => setQuickFilter('recent')}
-        >
-          {sidebarDensityMode === 'minimal' ? `⟳ ${recentPlugins.length}` : `Recientes (${recentPlugins.length})`}
-        </Button>
-        {showCatalogViewSwitcher && (
+          <Button
+            className={mergeClassNames(
+              DESIGNER_CLASSNAME + 'left-sidebar-filter-btn',
+              'min-w-0 flex-1 justify-between rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
+              quickFilter !== 'all' ? 'border-sky-200 bg-sky-50 text-sky-700' : '',
+            )}
+            size="small"
+            data-testid="left-sidebar-filter"
+            data-quick-filter={quickFilter}
+            type={quickFilter === 'all' ? 'default' : 'primary'}
+            aria-label={`Filtro del catálogo: ${filtroActivo.etiquetaLarga}`}
+            aria-haspopup="menu"
+          >
+            <span className="inline-flex min-w-0 items-center gap-1">
+              <span className="truncate">{filtroActivo.etiquetaCorta}</span>
+              <ChevronDown size={11} aria-hidden="true" />
+            </span>
+          </Button>
+        </Dropdown>
+        {showCatalogViewSwitcher && mostrarModosExpandidos ? (
           <CatalogLayoutToggle
             layout={resolvedLayout}
             density={sidebarDensityMode}
-            showLabels={sidebarDensityMode === 'comfortable' && sidebarLiveWidth >= 280}
+            showLabels={sidebarDensityMode === 'comfortable' && sidebarLiveWidth >= 360}
             onChange={(layout) => {
               setUserLayout(layout);
               onCatalogLayoutChange?.(layout);
             }}
-            className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-view-toggle`, 'ml-auto')}
+            className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-view-toggle`, 'shrink-0')}
           />
-        )}
+        ) : null}
+        {showCatalogViewSwitcher && !mostrarModosExpandidos ? (
+          <Dropdown
+            trigger={['click']}
+            menu={{
+              selectable: true,
+              selectedKeys: [resolvedLayout],
+              items: CATALOG_LAYOUT_OPTIONS.map((opcion) => ({
+                key: opcion.layout,
+                label: (
+                  <span data-catalog-layout={opcion.layout} data-testid={`left-sidebar-view-${opcion.layout}`}>
+                    {opcion.label}
+                  </span>
+                ),
+              })),
+              onClick: ({ key }) => {
+                const layout = key as CatalogLayout;
+                setUserLayout(layout);
+                onCatalogLayoutChange?.(layout);
+              },
+            }}
+          >
+            <Button
+              className={mergeClassNames(
+                DESIGNER_CLASSNAME + 'left-sidebar-view-btn',
+                'shrink-0 rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
+              )}
+              size="small"
+              data-testid="left-sidebar-view"
+              data-catalog-layout={resolvedLayout}
+              aria-label={`Modo de visualización: ${layoutActivo.label}`}
+              aria-haspopup="menu"
+            >
+              <span className="inline-flex items-center gap-1">
+                <span aria-hidden="true">{layoutActivo.icon}</span>
+                <ChevronDown size={11} aria-hidden="true" />
+              </span>
+            </Button>
+          </Dropdown>
+        ) : null}
       </div>
       {SHOW_ADVANCED_CATALOG_CONTROLS ? (
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>

@@ -1751,7 +1751,24 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
          */
         <SelectoSlot
           container={rootRef.current}
-          rootContainer={rootRef.current}
+          /*
+           * Sin `rootContainer` a propósito.
+           *
+           * Con `rootContainer`, Selecto dibuja el rectángulo con
+           * `position: absolute` y lo traslada con una distancia calculada en
+           * coordenadas de viewport. `rootRef` es el contenedor de scroll del
+           * canvas, y un contenedor con scroll resuelve `absolute` contra su
+           * contenido desplazado: el rectángulo aparecía desplazado justo el
+           * `scrollTop` del canvas mientras el hit-test —que usa
+           * `getBoundingClientRect` vía `elementRectToViewportRect`— seguía en
+           * viewport. Dibujo y semántica vivían en espacios distintos.
+           *
+           * Omitirlo hace que Selecto use `position: fixed`, es decir el mismo
+           * espacio de viewport que ya usa `getElementRect`. La paridad deja de
+           * depender de compensar nada: es la misma coordenada. `boundContainer`
+           * sigue acotando la región al canvas, así que el rectángulo no puede
+           * desbordarlo aunque ya no lo recorte el `overflow`.
+           */
           dragContainer={rootRef.current}
           boundContainer={rootRef.current}
           checkInput

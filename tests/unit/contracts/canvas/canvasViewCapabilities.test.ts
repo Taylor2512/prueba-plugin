@@ -126,6 +126,18 @@ describe('propagación desde la configuración resuelta', () => {
     });
   });
 
+  it('la rama canvas de la configuración declara TODAS las capabilities de vista', () => {
+    const resolved = resolveSisadPdfmeConfig({});
+    const canvas = resolved.config.canvas as Record<string, unknown>;
+    // `Designer` deriva sus toggles de esta rama. Si a la configuración le
+    // falta una capability, la reenvía como `undefined` y el canvas la
+    // interpreta como apagada sin que nadie pueda encenderla.
+    CANVAS_VIEW_CAPABILITIES.forEach((capability) => {
+      expect(canvas, capability).toHaveProperty(capability);
+      expect(typeof canvas[capability], `${capability} debe ser booleano`).toBe('boolean');
+    });
+  });
+
   it('el default histórico se conserva: rejilla apagada, object snap encendido', () => {
     const resolved = resolveSisadPdfmeConfig({});
     const snapshot = resolveCanvasViewCapabilities({

@@ -58,6 +58,9 @@ const HARD_IGNORE_DIR_PATTERNS = [
   'image/**', '**/image/**',
   'images/**', '**/images/**',
   'screenshots/**', '**/screenshots/**',
+  '.env/**', '**/.env/**',
+  '**/.DS_Store', '**/.DS_Store/**',
+  'venv/**', '**/venv/**', '**/.venv/**', '**/virtualenv/**', '**/.virtualenv/**',
   "**/vendor/**", "**/vendor/**", "**/packages/**", "**/packages-lock.json", "**/yarn.lock", "**/pnpm-lock.yaml", "**/bun.lockb"
 ];
 

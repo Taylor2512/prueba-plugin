@@ -17,6 +17,7 @@ import PluginIcon from '@sisad-pdfme/ui/components/Designer/PluginIcon';
 import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import { resolveListViewItemDescriptor } from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/listViewItemResolver';
 import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
+import { useLongPressRecognizer } from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/longPressSelection';
 
 
 /**
@@ -48,6 +49,15 @@ interface Props {
     _id: string,
     _intent: { isRange: boolean; isToggle: boolean },
   ) => void;
+  /**
+   * Pulsación prolongada (o su equivalente de teclado, Espacio) sobre esta
+   * fila. El contenedor decide qué significa: entrar a multiselección y
+   * alternar membresía, vía `selectionCommands`/estado canónico — nunca un
+   * store paralelo de ids seleccionados.
+   */
+  onLongPressSelect: (_id: string) => void;
+  /** Modo de multiselección activo del contenedor; sólo para reflejo visual. */
+  multiSelectMode?: boolean;
   onDelete?: () => void;
   schema: SchemaForUI;
   onMouseEnter: () => void;
@@ -65,6 +75,8 @@ const SelectableSortableItem = ({
   isNameDuplicate,
   style,
   onSelect,
+  onLongPressSelect,
+  multiSelectMode,
   onDelete,
   schema,
   onMouseEnter,
@@ -78,6 +90,10 @@ const SelectableSortableItem = ({
   });
   const mounted = useMountStatus();
   const mountedWhileDragging = isDragging && !mounted;
+
+  const longPress = useLongPressRecognizer({
+    onLongPress: () => onLongPressSelect(schema.id),
+  });
 
   const [pluginLabel, thisPlugin] = React.useMemo(
     () => pluginsRegistry.findWithLabelByType(schema.type),
@@ -106,12 +122,22 @@ const SelectableSortableItem = ({
       ref={setNodeRef}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onClick={(event) =>
+      onClick={(event) => {
+        // El long-press ya resolvió este gesto (alternar membresía); el click
+        // sintético que el navegador dispara tras soltar no debe repetirlo con
+        // la semántica de un click corto (reemplazar selección).
+        if (longPress.consumeLongPress()) return;
         onSelect(schema.id, {
           isRange: event.shiftKey,
           isToggle: event.metaKey || event.ctrlKey,
-        })
-      }
+        });
+      }}
+      onRowPointerDown={longPress.onPointerDown}
+      onRowPointerMove={longPress.onPointerMove}
+      onRowPointerUp={longPress.onPointerUp}
+      onRowPointerCancel={longPress.onPointerCancel}
+      onToggleSelectionKey={() => onLongPressSelect(schema.id)}
+      multiSelectMode={multiSelectMode}
       value={primaryLabel}
       schemaType={schema.type}
       title={technicalName}

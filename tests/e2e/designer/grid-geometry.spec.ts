@@ -160,3 +160,123 @@ test.describe('capabilities de vista independientes', () => {
     expect(Object.keys(attrs).length).toBe(5);
   });
 });
+
+
+/**
+ * Abre el menú global y conmuta una entrada de la sección Vista.
+ *
+ * Es el gesto real del usuario: sin él sólo se comprobaría la geometría
+ * publicada, que ya estaba bien, y no la presentación efectiva, que era lo
+ * que fallaba.
+ */
+const conmutarVista = async (page: Page, etiqueta: string): Promise<void> => {
+  await page.locator('[aria-label="Más acciones"]').first().click();
+  const entrada = page.locator(`.ant-dropdown-menu-item:has-text("${etiqueta}")`).first();
+  await expect(entrada, `el menú Vista debe ofrecer ${etiqueta}`).toBeVisible();
+  await entrada.click();
+  await expect(entrada).toBeHidden();
+};
+
+/** Lectura de la presentación efectiva de la rejilla sobre la primera página. */
+const leerPresentacion = (page: Page) =>
+  page.locator(selectores.paginaCanvas).first().evaluate((node) => {
+    const propia = getComputedStyle(node);
+    const capa = getComputedStyle(node, '::before');
+    return {
+      gridVisible: node.getAttribute('data-grid-visible'),
+      /** Fondo del papel: la imagen de la página base, que no debe perderse. */
+      fondoPapel: propia.backgroundImage,
+      /** Capa de rejilla: debe pintar gradientes con el paso publicado. */
+      capaImagen: capa.backgroundImage,
+      capaTamano: capa.backgroundSize,
+      capaContenido: capa.content,
+    };
+  });
+
+test.describe('presentación efectiva de la rejilla', () => {
+  test('activar Cuadrícula pinta la rejilla sobre la página', async ({ page }) => {
+    const inicial = await leerPresentacion(page);
+    expect(inicial.gridVisible, 'el default de presentación es apagada').toBe('false');
+    expect(inicial.capaImagen).not.toContain('linear-gradient');
+
+    await conmutarVista(page, 'Cuadrícula');
+
+    const activa = await leerPresentacion(page);
+    expect(activa.gridVisible).toBe('true');
+    // El defecto era exactamente éste: el estado cambiaba y no se pintaba nada,
+    // porque `Paper` escribe su `background-image` en estilo inline y el estilo
+    // inline gana a la hoja de estilos. La rejilla vive en su propia capa.
+    expect(activa.capaImagen, 'la rejilla debe pintarse como gradientes').toContain('linear-gradient');
+    // La imagen de la página base sigue intacta: la rejilla no la sustituye.
+    expect(activa.fondoPapel).toBe(inicial.fondoPapel);
+  });
+
+  test('la capa de rejilla usa el paso publicado por gridGeometry', async ({ page }) => {
+    await conmutarVista(page, 'Cuadrícula');
+    const [vars] = await readGridVars(page);
+    const { capaTamano } = await leerPresentacion(page);
+    // `background-size` compone menor, menor, mayor, mayor.
+    const medidas = capaTamano.split(',').map((entrada) => px(entrada.trim().split(/\s+/)[0]));
+    expect(medidas).toHaveLength(4);
+    expect(medidas[0]).toBeCloseTo(vars.step, 3);
+    expect(medidas[2]).toBeCloseTo(vars.major, 3);
+    // El valor histórico roto era un paso constante de 24px.
+    expect(medidas[0]).not.toBe(24);
+  });
+
+  test('desactivar Cuadrícula retira el patrón sin tocar la página', async ({ page }) => {
+    await conmutarVista(page, 'Cuadrícula');
+    expect((await leerPresentacion(page)).capaImagen).toContain('linear-gradient');
+
+    await conmutarVista(page, 'Cuadrícula');
+    const apagada = await leerPresentacion(page);
+    expect(apagada.gridVisible).toBe('false');
+    expect(apagada.capaImagen).not.toContain('linear-gradient');
+    expect(apagada.fondoPapel).toContain('url(');
+  });
+
+  test('todas las páginas montadas reciben el mismo estado de rejilla', async ({ page }) => {
+    await conmutarVista(page, 'Cuadrícula');
+    const estados = await page.locator(selectores.paginaCanvas).evaluateAll((nodes) =>
+      nodes.map((node) => ({
+        visible: node.getAttribute('data-grid-visible'),
+        capa: getComputedStyle(node, '::before').backgroundImage.includes('linear-gradient'),
+      })),
+    );
+    expect(estados.length).toBeGreaterThan(0);
+    estados.forEach((estado, index) => {
+      expect(estado.visible, `página ${index}`).toBe('true');
+      expect(estado.capa, `página ${index} debe pintar la rejilla`).toBe(true);
+    });
+  });
+});
+
+test.describe('paridad configuración ↔ capabilities del canvas', () => {
+  /**
+   * Las capabilities que la configuración resuelve como activas deben llegar
+   * al canvas. `Designer` reconstruía los toggles a mano y dejaba fuera
+   * `rulers`, `snapToGrid`, `objectSnap`, `guideCreation` y `guideSnap`, así
+   * que tres capabilities encendidas por defecto llegaban apagadas.
+   */
+  test('las capabilities activas por configuración llegan al canvas', async ({ page }) => {
+    const canvas = page.locator(selectores.canvasDesigner);
+    // Defaults de `defaultSisadPdfmeConfig.canvas`, verificados en unitario.
+    await expect(canvas).toHaveAttribute('data-object-snap-enabled', 'true');
+    await expect(canvas).toHaveAttribute('data-guide-creation-enabled', 'true');
+    await expect(canvas).toHaveAttribute('data-guide-snap-enabled', 'true');
+    await expect(canvas).toHaveAttribute('data-guides-visible', 'true');
+    await expect(canvas).toHaveAttribute('data-snaps-visible', 'true');
+    // Y las apagadas por defecto siguen apagadas.
+    await expect(canvas).toHaveAttribute('data-grid-visible', 'false');
+    await expect(canvas).toHaveAttribute('data-rulers-visible', 'false');
+    await expect(canvas).toHaveAttribute('data-grid-snap-enabled', 'false');
+  });
+
+  test('ver la rejilla no enciende el ajuste a la rejilla', async ({ page }) => {
+    await conmutarVista(page, 'Cuadrícula');
+    const canvas = page.locator(selectores.canvasDesigner);
+    await expect(canvas).toHaveAttribute('data-grid-visible', 'true');
+    await expect(canvas, 'grid y snapToGrid son capabilities independientes')
+      .toHaveAttribute('data-grid-snap-enabled', 'false');
+  });
+});

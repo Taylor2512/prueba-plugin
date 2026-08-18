@@ -104,8 +104,27 @@
    El paso NO se declara aquí. `--sisad-grid-step`, `--sisad-grid-major-step`
    y los offsets los escribe Canvas desde `gridGeometry`, que trabaja en mm de
    página. Un paso constante en px no significaba ninguna medida real del
-   documento y no seguía al zoom. */
-.sisad-pdfme-designer-canvas [data-canvas-page='true'][data-grid-visible='true'] {
+   documento y no seguía al zoom.
+
+   La rejilla vive en su PROPIA capa (`::before`), no en el `background-image`
+   de la página. `Paper` escribe la imagen de la página base como estilo
+   inline, y el estilo inline gana a la hoja de estilos: mientras la rejilla
+   compitió por esa misma propiedad, `data-grid-visible='true'` encendía el
+   estado y no pintaba nada. Una capa aparte también impide el efecto
+   contrario —que la rejilla sustituya la imagen del documento—.
+
+   La capa hereda las variables del papel, así que la autoridad de geometría
+   sigue siendo única: Canvas escribe, la hoja de estilos pinta. */
+.sisad-pdfme-designer-canvas [data-canvas-page='true'][data-grid-visible='true']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Decorativa: nunca intercepta el puntero de selección ni de arrastre. */
+  pointer-events: none;
+  /* Sobre el fondo del papel y bajo los schemas, que son hijos posicionados
+     posteriores en orden de árbol y pintan por encima de esta capa. */
+  z-index: 0;
+  border-radius: inherit;
   --sisad-grid-line: rgba(148, 163, 184, 0.16);
   --sisad-grid-line-strong: rgba(148, 163, 184, 0.24);
   background-image:

@@ -391,6 +391,16 @@ interface UseInitEventsParams {
   commandBus?: CommandBus;
   onEdit: (targets: HTMLElement[]) => void;
   onEditEnd: () => void;
+  /**
+   * Handler del atajo Escape (`clearSelection`) cuando difiere de `onEditEnd`.
+   *
+   * `onEditEnd` también se dispara desde rutas que no son el atajo de teclado
+   * (p. ej. iniciar un drag), así que no puede gatearse sin afectarlas. Este
+   * override es SOLO para el shortcut: por defecto es `onEditEnd`, igual que
+   * siempre; RightSidebar lo sustituye cuando el modo de multiselección debe
+   * absorber el primer Escape en vez de vaciar la selección.
+   */
+  onClearSelectionShortcut?: () => void;
   selectionCommands?: SelectionCommandSet;
   collaborationContext?: Pick<
     SchemaCreationContext,
@@ -416,6 +426,7 @@ export const useInitEvents = ({
   commandBus,
   onEdit,
   onEditEnd,
+  onClearSelectionShortcut,
   selectionCommands,
   collaborationContext,
   onZoomIn,
@@ -476,7 +487,7 @@ export const useInitEvents = ({
     onOpenDetail: () => selectionCommands?.openProperties?.(),
     onAddComment: addCommentShortcut,
     onSelectAllVisible: selectAllVisible,
-    onClearSelection: onEditEnd,
+    onClearSelection: onClearSelectionShortcut ?? onEditEnd,
     onZoomIn,
     onZoomOut,
     onFitPage,

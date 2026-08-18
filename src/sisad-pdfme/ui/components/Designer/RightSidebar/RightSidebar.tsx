@@ -104,6 +104,19 @@ export type RightSidebarProps = SidebarProps & {
   /** Cuando hay un único schema seleccionado, enfoca automáticamente detalle. */
   autoFocusDetail?: boolean;
 
+  /**
+   * Modo de multiselección de ListView (long-press / Espacio).
+   *
+   * Controlado por `Designer/index.tsx`: es el mismo componente que ya
+   * centraliza `isModalOpen`/`isInlineEditing` para el atajo global de
+   * teclado, así que también es el único lugar donde el Escape que limpia
+   * la selección puede saber que debe limitarse a salir del modo en vez de
+   * vaciarla. `RightSidebar` sólo lo lee y lo usa para suprimir el salto
+   * automático a Detalle.
+   */
+  multiSelectMode?: boolean;
+  onMultiSelectModeChange?: (_next: boolean) => void;
+
   /** Muestra tabs internas de documentos/comentarios/campos. */
   showDocumentsAsTab?: boolean;
 
@@ -232,6 +245,16 @@ const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', Sidebar
 const Sidebar = (props: RightSidebarProps) => {
   const { sidebarOpen, activeElements, schemas } = props;
   const { autoFocusDetail, onViewModeChange } = props;
+  /**
+   * Modo de multiselección: prop controlada, NO estado propio.
+   *
+   * La autoridad vive en `Designer/index.tsx` porque el Escape global que
+   * limpia la selección también se decide ahí (`useInitEvents`); si el modo
+   * viviera aquí, ese Escape no podría distinguir "salir del modo" de
+   * "vaciar la selección" y las dos rutas competirían por el mismo evento.
+   */
+  const multiSelectMode = Boolean(props.multiSelectMode);
+  const effectiveAutoFocusDetail = autoFocusDetail && !multiSelectMode;
   const designerUiConfig = useDesignerUiConfig();
   const visibility = designerUiConfig.visibility;
   const rightSidebarVisibility = visibility?.sidebars?.right;
@@ -352,11 +375,11 @@ const Sidebar = (props: RightSidebarProps) => {
     selectionSignature: string;
   }>({ mode: 'fields', selectionSignature: '' });
   const selectionDefaultMode =
-    autoFocusDetail && activeSchemaCount === 1 && visibleModes.includes('detail')
+    effectiveAutoFocusDetail && activeSchemaCount === 1 && visibleModes.includes('detail')
       ? 'detail'
       : fallbackViewMode;
   const internalViewMode =
-    !autoFocusDetail || internalViewIntent.selectionSignature === selectionSignature
+    !effectiveAutoFocusDetail || internalViewIntent.selectionSignature === selectionSignature
       ? internalViewIntent.mode
       : selectionDefaultMode;
   const resolvedViewMode: 'fields' | 'detail' | 'docs' | 'comments' = useMemo(() => {
@@ -409,17 +432,17 @@ const Sidebar = (props: RightSidebarProps) => {
     }
 
     const nextMode =
-      autoFocusDetail && activeSchemaCount === 1 && visibleModes.includes('detail')
+      effectiveAutoFocusDetail && activeSchemaCount === 1 && visibleModes.includes('detail')
         ? 'detail'
         : resolvedViewMode === 'detail'
           ? fallbackViewMode
           : resolvedViewMode;
     lastSelectionRef.current = { signature: selectionSignature, mode: nextMode };
 
-    if (autoFocusDetail && previous.mode !== nextMode) onViewModeChange?.(nextMode);
+    if (effectiveAutoFocusDetail && previous.mode !== nextMode) onViewModeChange?.(nextMode);
   }, [
     activeSchemaCount,
-    autoFocusDetail,
+    effectiveAutoFocusDetail,
     fallbackViewMode,
     onViewModeChange,
     resolvedViewMode,
@@ -540,6 +563,8 @@ const Sidebar = (props: RightSidebarProps) => {
       activeSchemaIds={activeSchemaIds}
       className={mergeClassNames(toDesignerCustomClassName(props.classNames?.listView))}
       useDefaultStyles={props.useDefaultStyles}
+      multiSelectMode={multiSelectMode}
+      onMultiSelectModeChange={props.onMultiSelectModeChange}
     />
   );
   const commentsNode = (

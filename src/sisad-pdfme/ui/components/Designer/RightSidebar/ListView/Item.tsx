@@ -97,6 +97,24 @@ interface Props {
   dragOverlay?: boolean;
   /** Click handler for the item */
   onClick?: (_event: React.MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * Pulsación prolongada (mouse/touch/pen) sobre el hit-target de la fila.
+   *
+   * Se reenvían sin procesar al reconocedor de `longPressSelection`; `Item` no
+   * conoce el umbral de tiempo ni la tolerancia de movimiento, sólo entrega el
+   * gesto puntero a puntero.
+   */
+  onRowPointerDown?: (_event: React.PointerEvent<HTMLButtonElement>) => void;
+  onRowPointerMove?: (_event: React.PointerEvent<HTMLButtonElement>) => void;
+  onRowPointerUp?: (_event: React.PointerEvent<HTMLButtonElement>) => void;
+  onRowPointerCancel?: (_event: React.PointerEvent<HTMLButtonElement>) => void;
+  /**
+   * Equivalente accesible del long-press: Espacio alterna membresía y entra a
+   * multiselección igual que mantener pulsado, sin depender de un puntero.
+   */
+  onToggleSelectionKey?: () => void;
+  /** Refleja el modo de multiselección activo del contenedor (ARIA/CSS). */
+  multiSelectMode?: boolean;
   /** Mouse enter handler */
   onMouseEnter?: () => void;
   /** Mouse leave handler */
@@ -266,6 +284,12 @@ const Item = React.memo(
       className,
       dragOverlay,
       onClick,
+      onRowPointerDown,
+      onRowPointerMove,
+      onRowPointerUp,
+      onRowPointerCancel,
+      onToggleSelectionKey,
+      multiSelectMode,
       onMouseEnter,
       onMouseLeave,
       dragging,
@@ -363,6 +387,7 @@ const Item = React.memo(
         data-testid="right-sidebar-field-item"
         data-schema-type={schemaType}
         data-schema-owner-color={accentColor || undefined}
+        data-multi-select-mode={multiSelectMode ? 'true' : 'false'}
         role="option"
         aria-selected={selected}
         onMouseEnter={() => {
@@ -382,10 +407,21 @@ const Item = React.memo(
           )}
           aria-label={valueTooltip}
           onClick={onClick}
+          onPointerDown={onRowPointerDown}
+          onPointerMove={onRowPointerMove}
+          onPointerUp={onRowPointerUp}
+          onPointerCancel={onRowPointerCancel}
           onKeyDown={(event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
+            // Enter reproduce el click corto (reemplazar selección, abrir
+            // Detalle si corresponde). Espacio reproduce el long-press
+            // (alternar membresía, entrar a multiselección): es el
+            // equivalente de teclado obligatorio, no un atajo adicional.
+            if (event.key === 'Enter') {
               event.preventDefault();
               onClick?.(event as unknown as React.MouseEvent<HTMLButtonElement>);
+            } else if (event.key === ' ') {
+              event.preventDefault();
+              onToggleSelectionKey?.();
             }
           }}
         />

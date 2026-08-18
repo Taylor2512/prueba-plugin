@@ -31,6 +31,7 @@ import RightSidebarDefault from '@sisad-pdfme/ui/components/Designer/RightSideba
 import LeftSidebarDefault from '@sisad-pdfme/ui/components/Designer/LeftSidebar';
 import Canvas from '@sisad-pdfme/ui/components/Designer/Canvas/Canvas';
 import type { CanvasFeatureToggles } from '@sisad-pdfme/ui/components/Designer/Canvas/Canvas';
+import { CANVAS_VIEW_CAPABILITIES } from '@sisad-pdfme/ui/components/Designer/Canvas/canvasViewCapabilities';
 import { createSelectionCommands } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
 import {
   resolveActiveSchemasFromElements,
@@ -714,6 +715,17 @@ const TemplateEditor = ({
 
   const [hoveringSchemaId, setHoveringSchemaId] = useState<string | null>(null);
   const [activeElements, setActiveElements] = useState<HTMLElement[]>([]);
+  /**
+   * Modo de multiselección de RightSidebar/ListView (long-press o Espacio).
+   *
+   * Vive aquí, no en `RightSidebar`, porque el atajo global de Escape
+   * (`useInitEvents` → `useDesignerKeyboardShortcuts`) también se decide en
+   * este componente: mientras el modo está activo, Escape debe salir de él
+   * en vez de vaciar la selección, y sólo la autoridad que conoce ambas
+   * cosas puede arbitrar esa prioridad sin un segundo listener compitiendo
+   * por el mismo evento.
+   */
+  const [multiSelectMode, setMultiSelectMode] = useState(false);
   const activeElementIds = useMemo(
     () => {
       const ids: string[] = [];
@@ -767,56 +779,44 @@ const TemplateEditor = ({
     normalizeViewportMode(options.viewportMode ?? options.initialViewportMode),
   );
   const [canvasFeatureOverrides, setCanvasFeatureOverrides] = useState<Partial<CanvasFeatureToggles>>({});
-  const canvasFeatureToggles = useMemo<CanvasFeatureToggles>(
-    () => ({
-      selecto:
-        canvasFeatureOverrides.selecto ??
-        resolvedConfig.config.canvas.selecto ??
-        designerEngine.canvas?.featureToggles?.selecto ??
-        true,
-      snapLines:
-        canvasFeatureOverrides.snapLines ??
-        resolvedConfig.config.canvas.snapLines ??
-        designerEngine.canvas?.featureToggles?.snapLines ??
-        true,
-      grid: canvasFeatureOverrides.grid ?? designerEngine.canvas?.featureToggles?.grid ?? true,
-      guides:
-        canvasFeatureOverrides.guides ??
-        resolvedConfig.config.canvas.guides ??
-        designerEngine.canvas?.featureToggles?.guides ??
-        true,
-      padding: canvasFeatureOverrides.padding ?? designerEngine.canvas?.featureToggles?.padding ?? true,
-      mask: canvasFeatureOverrides.mask ?? designerEngine.canvas?.featureToggles?.mask ?? true,
-      moveable:
-        canvasFeatureOverrides.moveable ??
-        resolvedConfig.config.canvas.moveable ??
-        designerEngine.canvas?.featureToggles?.moveable ??
-        true,
-      deleteButton: canvasFeatureOverrides.deleteButton ?? designerEngine.canvas?.featureToggles?.deleteButton ?? true,
-    }),
-    [
-      canvasFeatureOverrides.deleteButton,
-      canvasFeatureOverrides.grid,
-      canvasFeatureOverrides.guides,
-      canvasFeatureOverrides.mask,
-      canvasFeatureOverrides.moveable,
-      canvasFeatureOverrides.padding,
-      canvasFeatureOverrides.selecto,
-      canvasFeatureOverrides.snapLines,
-      resolvedConfig.config.canvas.guides,
-      resolvedConfig.config.canvas.moveable,
-      resolvedConfig.config.canvas.selecto,
-      resolvedConfig.config.canvas.snapLines,
-      designerEngine.canvas?.featureToggles?.deleteButton,
-      designerEngine.canvas?.featureToggles?.grid,
-      designerEngine.canvas?.featureToggles?.guides,
-      designerEngine.canvas?.featureToggles?.mask,
-      designerEngine.canvas?.featureToggles?.moveable,
-      designerEngine.canvas?.featureToggles?.padding,
-      designerEngine.canvas?.featureToggles?.selecto,
-      designerEngine.canvas?.featureToggles?.snapLines,
-    ],
-  );
+  /**
+   * Estado efectivo de los toggles del canvas: sesión → configuración → engine.
+   *
+   * Antes se enumeraban ocho claves a mano y cinco se perdían por el camino
+   * (`rulers`, `snapToGrid`, `objectSnap`, `guideCreation`, `guideSnap`). Como
+   * `resolveCanvasViewCapabilities` interpreta `undefined` como apagado, tres
+   * capabilities que la configuración enciende por defecto —object snap,
+   * creación de guías y ajuste a guías— llegaban al canvas apagadas y no había
+   * manera de encenderlas desde ninguna superficie.
+   *
+   * Recorrer `CANVAS_VIEW_CAPABILITIES` en lugar de listarlas impide que se
+   * vuelva a olvidar una: añadir una capability al catálogo la propaga sola.
+   */
+  const canvasFeatureToggles = useMemo<CanvasFeatureToggles>(() => {
+    const engineToggles = (designerEngine.canvas?.featureToggles || {}) as CanvasFeatureToggles;
+    const configCanvas = resolvedConfig.config.canvas as Partial<CanvasFeatureToggles>;
+    const overrides = canvasFeatureOverrides;
+
+    const viewToggles = CANVAS_VIEW_CAPABILITIES.reduce<CanvasFeatureToggles>((accumulator, key) => {
+      // Sin `?? true`: para las capabilities de vista la configuración resuelta
+      // siempre aporta un booleano, y un default encendido aquí contradiría el
+      // default de presentación declarado en `defaultSisadPdfmeConfig.canvas`.
+      accumulator[key] = overrides[key] ?? configCanvas[key] ?? engineToggles[key];
+      return accumulator;
+    }, {});
+
+    return {
+      ...viewToggles,
+      // `selecto`, `moveable`, `padding`, `mask` y `deleteButton` no son
+      // capabilities de vista: no tienen rama en `visibility` y conservan su
+      // default histórico encendido.
+      selecto: overrides.selecto ?? configCanvas.selecto ?? engineToggles.selecto ?? true,
+      moveable: overrides.moveable ?? configCanvas.moveable ?? engineToggles.moveable ?? true,
+      padding: overrides.padding ?? engineToggles.padding ?? true,
+      mask: overrides.mask ?? engineToggles.mask ?? true,
+      deleteButton: overrides.deleteButton ?? engineToggles.deleteButton ?? true,
+    };
+  }, [canvasFeatureOverrides, designerEngine.canvas?.featureToggles, resolvedConfig.config.canvas]);
   const [isSchemaDragging, setIsSchemaDragging] = useState(false);
   const [isDraggingOverCanvas, setIsDraggingOverCanvas] = useState(false);
   const [isDraggingOverPage, setIsDraggingOverPage] = useState(false);
@@ -1958,6 +1958,16 @@ const TemplateEditor = ({
     commandBus: commandBusRef.current,
     onEdit,
     onEditEnd,
+    onClearSelectionShortcut: () => {
+      // Mientras el modo de multiselección está activo, el primer Escape lo
+      // cierra en vez de vaciar la selección; el usuario puede volver a
+      // pulsar Escape (ya fuera del modo) para limpiarla si quiere.
+      if (multiSelectMode) {
+        setMultiSelectMode(false);
+        return;
+      }
+      onEditEnd();
+    },
     selectionCommands,
     collaborationContext,
     onZoomIn: () => {
@@ -3777,15 +3787,17 @@ const TemplateEditor = ({
     updatePage(nextSchemasList, pageCursor + 1);
   }
 
+  /**
+   * Conmuta un toggle del canvas partiendo del valor EFECTIVO.
+   *
+   * Antes recalculaba el valor actual con una precedencia propia
+   * (`prev[key] ?? engine[key] ?? true`) que ignoraba la configuración, así que
+   * podía discrepar del estado que el propio menú estaba mostrando.
+   */
   const handleToggleCanvasFeature = useCallback((key: keyof CanvasFeatureToggles) => {
-    setCanvasFeatureOverrides((prev) => {
-      const currentValue = prev[key] ?? designerEngine.canvas?.featureToggles?.[key] ?? true;
-      return {
-        ...prev,
-        [key]: !currentValue,
-      };
-    });
-  }, [designerEngine.canvas?.featureToggles]);
+    const currentValue = canvasFeatureToggles[key] === true;
+    setCanvasFeatureOverrides((prev) => ({ ...prev, [key]: !currentValue }));
+  }, [canvasFeatureToggles]);
 
   const handleUploadPdfClick = useCallback(() => {
     pdfUploadInputRef.current?.click();
@@ -4300,6 +4312,8 @@ const TemplateEditor = ({
       comments={commentsBridge}
       showDocumentsRail={pageItems.length > 0 || documentItems.length > 0}
       autoFocusDetail={true}
+      multiSelectMode={multiSelectMode}
+      onMultiSelectModeChange={setMultiSelectMode}
       viewMode={rightSidebarViewMode}
       onViewModeChange={(mode) => setRightSidebarViewMode(mode)}
       contextHeader={rightSidebarContextHeader}

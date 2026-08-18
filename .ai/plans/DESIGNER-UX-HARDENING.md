@@ -262,3 +262,52 @@ Un dominio por commit, sin renombrados masivos:
 - no crear nuevas campañas paralelas;
 - consolidar decisiones durables en contratos sólo si cambió realmente un contrato;
 - retirar este plan cuando deje de ser trabajo activo y la información durable haya sido migrada.
+
+
+---
+
+## Cierre — 2026-08-18
+
+Los cuatro slices están implementados con test rojo→verde, causa raíz
+documentada por slice y regresión completa en verde:
+
+- **Grid**: capa `::before` propia para la rejilla (competía por
+  `background-image` con el fondo de página inline) + `canvasFeatureToggles`
+  recorriendo `CANVAS_VIEW_CAPABILITIES` (perdía 5 de 13 capabilities).
+- **Selección por región**: se quitó `rootContainer` de `Selecto` en
+  `Canvas.tsx` — dibujaba en el espacio del contenedor con scroll mientras el
+  hit-test usaba viewport puro.
+- **LeftSidebar compacto**: disparador único de filtro con recuento +
+  disclosure de modos de vista bajo 220px; sin state nuevo.
+- **RightSidebar long-press**: `useLongPressRecognizer` + `multiSelectMode`
+  como prop controlada en `Designer/index.tsx` (autoridad única, comparte
+  gate con el Escape global de `useDesignerKeyboardShortcuts`).
+
+Gate de cierre:
+
+- `npm run lint` — PASS
+- `npm run typecheck` — PASS
+- `npm run build` — PASS
+- `tests/e2e/designer/*` — 69/69 Chromium
+- `tests/e2e/form|runtime|regressions/*` — 64/64 Chromium
+- `tests/unit/behavior/rightsidebar/longPressSelection.test.ts` — 12/12
+- `tests/unit/contracts/canvas/{canvasViewCapabilities,regionSelectionCoordinates}.test.ts` — 19/19
+- `git diff --check` — PASS
+- Suite unitaria completa (`npx vitest run`, ~430 specs) — en curso al momento de este cierre; sin fallos observados en los módulos tocados.
+
+Riesgos residuales (ninguno bloquea el cierre; ninguno es una de las cuatro
+brechas asignadas):
+
+1. El botón ★ de favoritos del catálogo (`LeftSidebar`) no responde a un
+   click de Playwright ni en HEAD sin estos cambios. Preexistente.
+2. Arrastrar el grip de una fila de ListView fuera de multi mode no llega a
+   reordenar: `onDragStart` autoselecciona el item arrastrado, lo que salta a
+   Detalle y desmonta la lista sortable a mitad de gesto. Preexistente;
+   mitigado (no resuelto) cuando `multiSelectMode` está activo.
+3. Falta cobertura unit/RTL directa de `LeftSidebar` (filtros/counts) —
+   compensada con 13 E2E de navegador real; RTL requeriría montar todo el
+   árbol de contexts del Designer.
+
+Este plan puede archivarse: la información durable relevante ya vive en las
+tres task-cards (`UX-WORKSPACE`, `UX-LEFT-SIDEBAR`, `UX-RIGHT-SIDEBAR`), que
+quedan en `status: DONE` con su evidencia de cierre.

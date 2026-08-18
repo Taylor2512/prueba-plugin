@@ -63,6 +63,9 @@ const ListView = (
     className?: string;
     useDefaultStyles?: boolean;
     selectionCommands?: SelectionCommandSet;
+    /** Autoridad del modo multiselección: vive en `RightSidebar`. */
+    multiSelectMode?: boolean;
+    onMultiSelectModeChange?: (_next: boolean) => void;
   },
 ) => {
   const {
@@ -75,6 +78,8 @@ const ListView = (
     activeSchemaIds,
     collaborationContext,
     selectionCommands,
+    multiSelectMode,
+    onMultiSelectModeChange,
   } = props;
   const i18n = useContext(I18nContext);
   const { message } = AntdApp.useApp();
@@ -399,6 +404,8 @@ const ListView = (
             activeSchemaIds={activeSchemaIds}
             collaborationContext={collaborationContext}
             selectionCommands={selectionCommands}
+            multiSelectMode={multiSelectMode}
+            onMultiSelectModeChange={onMultiSelectModeChange}
           />
         ) : null}
         {showEmptyState ? (
