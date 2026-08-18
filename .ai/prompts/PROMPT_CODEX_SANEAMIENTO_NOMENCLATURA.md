@@ -417,8 +417,8 @@ event fan-out
 ```bash
 npm run lint
 npm run build
-npm run quality:dead-code:ci
-npm run quality:duplicates:strict
+npm run quality -- dead-code:ci
+npm run quality -- duplicates:strict
 npm run quality:architecture
 
 npx vitest run tests/unit/sisad-pdfme/config

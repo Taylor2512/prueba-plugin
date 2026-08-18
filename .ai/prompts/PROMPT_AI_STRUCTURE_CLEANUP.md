@@ -9,8 +9,8 @@ git status --short
 git branch --show-current
 git rev-parse HEAD
 node scripts/ai/same-repo-coordinator.mjs status .
-npm run ai:structure:audit
-npm run ai:structure:plan
+npm run architecture -- structure:audit
+npm run architecture -- structure:plan
 ```
 
 Inspect `reports/architecture/AI-STRUCTURE-PLAN.md`.
@@ -18,8 +18,8 @@ Inspect `reports/architecture/AI-STRUCTURE-PLAN.md`.
 If there are no conflicts:
 
 ```bash
-npm run ai:structure:apply
-npm run ai:structure:verify
+npm run architecture -- structure:apply
+npm run architecture -- structure:verify
 ```
 
 Then inspect:

@@ -21,7 +21,18 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   fullyParallel: false,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : undefined,
+
+  /**
+   * Un solo worker, también en local.
+   *
+   * Toda la suite ataca un único servidor de Vite en modo desarrollo y montar
+   * el Designer es caro. Con los workers por defecto (mitad de los núcleos)
+   * varias instancias competían por ese servidor y el `beforeEach` agotaba los
+   * 30 s: 10 de 18 specs de Designer fallaban por contención y pasaban al
+   * ejecutarse aislados. Subir el timeout habría escondido el problema en vez
+   * de resolverlo.
+   */
+  workers: 1,
 
   reporter: [
     ['list'],

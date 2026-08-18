@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "testRoot": "tests",
+  "sourceRoot": "src/sisad-pdfme",
+  "reportRoot": "reports/testing",
+  "claimsFile": ".ai/ops/coordination/claims.json",
+
+  "generated": {
+    "fileTestsDir": "tests/unit/files",
+    "manifest": "tests/support/manifest/source-files.json",
+    "oneToOneContract": "tests/unit/contracts/architecture/everySourceHasDedicatedTest.test.ts",
+    "sourceContractHelper": "tests/support/assertions/sourceContract.ts"
+  },
+
+  "layers": {
+    "unit": { "runner": "vitest", "root": "tests/unit" },
+    "integration": { "runner": "vitest", "root": "tests/integration" },
+    "e2e": { "runner": "playwright", "root": "tests/e2e" }
+  },
+
+  "canonicalUseCaseFiles": [
+    ".ai/knowledge/USE-CASE-INDEX.md",
+    "docs/10-testing-qa/06-matriz-regresion-restauracion-funcional.md"
+  ],
+
+  "useCaseSources": [
+    "PRD-SISAD-PDFME-TESTSPRITE.md",
+    ".ai/knowledge/USE-CASE-INDEX.md",
+    ".ai/knowledge/domain/COREUX-USE-CASES.md",
+    ".ai/knowledge/domain/DECLARATIVE-USE-CASES.md",
+    ".ai/knowledge/domain/SCHEMA-BEHAVIOR-MATRIX.md",
+    ".ai/knowledge/domain/USER-RECIPIENT-USE-CASES.md",
+    ".ai/brain/60-quality/RUNTIME-REGRESSION-MATRIX.md",
+    ".ai/brain/60-quality/SCHEMA-RUNTIME-COVERAGE-MATRIX.md",
+    "docs/10-testing-qa/02-regression-matrix.md",
+    "docs/testing/SISAD-PDFME-COMPREHENSIVE-UNIT-TESTS.md"
+  ],
+
+  "discoveryRoots": [
+    ".ai/knowledge",
+    ".ai/brain/60-quality",
+    "docs/10-testing-qa"
+  ],
+
+  "routes": {
+    "designer": "/designer/multi-user",
+    "form": "/runtime/form",
+    "formDigitalAgreements": "/runtime/form/digital-agreements",
+    "formMultiUser": "/runtime/form/multi-user",
+    "formMultiDocument": "/runtime/form/multi-document",
+    "viewer": "/runtime/viewer"
+  },
+
+  "priorityCases": [
+    "INT-006", "INT-007", "INT-008", "INT-015",
+    "RUN-002", "RUN-004", "RUN-005", "RUN-007", "RUN-012",
+    "DOC-002", "DOC-015",
+    "SCH-004", "SCH-005", "SCH-006", "SCH-007", "SCH-008", "SCH-009", "SCH-010", "SCH-011",
+    "UC-09", "UC-10", "UC-17", "UC-19", "UC-21", "UC-23", "UC-28", "UC-34", "UC-35"
+  ]
+}

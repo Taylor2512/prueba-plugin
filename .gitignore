@@ -122,3 +122,10 @@ testsprite_tests/tmp/
 testsprite_tests/local-run-results.json
 testsprite_tests/LOCAL-RUN-RESULTS.md
 # sisad-maintenance-residue:end
+
+# Entornos virtuales de Python
+.venv/
+venv/
+
+# FrameRef cache directory
+/.frameref

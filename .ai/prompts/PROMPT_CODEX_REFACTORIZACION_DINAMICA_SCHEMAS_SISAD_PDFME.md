@@ -197,9 +197,9 @@ Ejecuta primero tests focales. Luego:
 ```bash
 npm run lint
 npm run build
-npm run quality:direct-config-readers
-npm run quality:source-language-boundary
-npm run quality:duplicates:owned
+npm run quality -- direct-config-readers
+npm run quality -- source-language-boundary
+npm run quality -- duplicates:owned
 npm test -- --run
 ```
 

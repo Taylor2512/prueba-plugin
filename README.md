@@ -33,6 +33,7 @@ npm run docs:sanitize
 No ejecutar `docs:sanitize:apply` hasta revisar las colisiones.
 
 <!-- project-tools:navigation:start -->
+
 ## Navegación generada
 
 ### Secciones
@@ -47,4 +48,5 @@ No ejecutar `docs:sanitize:apply` hasta revisar las colisiones.
 - [AGENTS.md — SISAD-PDFME](./AGENTS.md)
 - [Claude Code — adaptador](./CLAUDE.md)
 - [Codex — adaptador](./CODEX.md)
+
 <!-- project-tools:navigation:end -->

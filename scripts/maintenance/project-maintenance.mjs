@@ -484,17 +484,17 @@ function applyNames() {
 function verify() {
   const checks = [
     ["git diff --check", "git", ["diff", "--check"]],
-    ["architecture:status", "npm", ["run", "architecture:status", "--silent"]],
-    ["architecture:verify", "npm", ["run", "architecture:verify", "--silent"]],
-    ["ai:structure:verify", "npm", ["run", "ai:structure:verify", "--silent"]],
-    ["docs:broken-links", "npm", ["run", "docs:broken-links", "--silent"]],
-    ["dead-code production", "npm", ["run", "quality:dead-code:production", "--silent"]],
-    ["dead-export ratchet", "npm", ["run", "quality:dead-exports:ratchet", "--silent"]],
+    ["architecture:status", "npm", ["run", "architecture", "--silent", "--", "status"]],
+    ["architecture:verify", "npm", ["run", "architecture", "--silent", "--", "verify"]],
+    ["ai:structure:verify", "npm", ["run", "architecture", "--silent", "--", "structure:verify"]],
+    ["docs:broken-links", "npm", ["run", "docs", "--silent", "--", "validate", ".", "--check=links"]],
+    ["dead-code production", "npm", ["run", "quality", "--silent", "--", "dead-code:production"]],
+    ["dead-export ratchet", "npm", ["run", "quality", "--silent", "--", "dead-exports:ratchet"]],
     ["typecheck", "npx", ["tsc", "--noEmit"]],
     ["lint", "npm", ["run", "lint", "--silent"]],
   ];
   if (full) {
-    checks.push(["tests", "npm", ["test", "--", "--run"]]);
+    checks.push(["tests", "npm", ["test"]]);
     checks.push(["build", "npm", ["run", "build"]]);
   }
   const results = [];

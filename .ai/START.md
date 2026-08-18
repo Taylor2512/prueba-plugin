@@ -76,10 +76,10 @@ When three providers are active, read `.ai/architecture/SAME-REPO-MULTI-AGENT.md
 Canonical maintenance commands:
 
 ```bash
-npm run architecture:audit
-npm run architecture:repair
-npm run architecture:repair:apply
-npm run architecture:verify
+npm run architecture -- audit
+npm run architecture -- plan
+npm run architecture -- apply
+npm run architecture -- verify
 ```
 
 Task execution state is evidence + dependency driven. Views are generated.
@@ -90,7 +90,7 @@ Task execution state is evidence + dependency driven. Views are generated.
 
 For `.ai/**` cleanup use:
 
-`npm run ai:structure:audit` → `npm run ai:structure:plan` → `npm run ai:structure:apply` → `npm run ai:structure:verify`.
+`npm run architecture -- structure:audit` → `npm run architecture -- structure:plan` → `npm run architecture -- structure:apply` → `npm run architecture -- structure:verify`.
 
 Do not recreate manual Scrum ledgers/views removed by the cleanup.
 <!-- AI-STRUCTURE-CLEANUP:END -->

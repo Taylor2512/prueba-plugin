@@ -4,6 +4,17 @@ model_auto_compact_token_limit_scope = "body_after_prefix"
 [features]
 multi_agent = true
 shell_snapshot = true
-
-# La memoria canónica permanece en .ai/memory.
 memories = false
+
+[shell_environment_policy]
+inherit = "core"
+
+[shell_environment_policy.set]
+SISAD_AI_ARCH_VERSION = "8"
+
+[mcp_servers.TestSprite]
+command = "npx"
+args = ["@testsprite/testsprite-mcp@latest"]
+
+[mcp_servers.TestSprite.env]
+API_KEY = "sk-user-vfPR0rdem3TUzOxFHLvaeZbbGWvebOY_o_rhRRWjhpmffqy6I6wVPDdJ-kqaS_JD8T3HyZQoHe5k9uYALMHbbGEby21Y5UQBRuAeEjD2oy1tKAEMhZuMHyWcjLD3tysSCv4"

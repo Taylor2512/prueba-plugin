@@ -1,4 +1,4 @@
-# SISAD-PDFME — suite unitaria integral
+# SISAD-PDFME — arquitectura canónica de tests
 
 Baseline del pack actual: **403 source files / 86,008 líneas**.
 
@@ -50,15 +50,20 @@ para Canvas/drag/drop/Moveable/Selecto/touch/IME/visual/PDF real.
 
 ## Ejecución
 ```bash
-npm run test:sisad-pdfme:map
-npm run test:sisad-pdfme:count
-npm run test:sisad-pdfme:files
-npm run test:sisad-pdfme:contracts
-npm run test:sisad-pdfme
+npm test
+npm test -- unit
+npm test -- contracts
+npm test -- files
+npm test -- audit
+npm test -- coverage
 ```
 
 Tras renames/add/remove:
 ```bash
-npm run test:sisad-pdfme:generate
-npm run test:sisad-pdfme:map
+npm test -- source-tests --apply
+npm test -- source-tests
 ```
+
+Los source-contracts viven en `tests/unit/files/`, los contratos transversales
+en `tests/unit/contracts/` y el comportamiento en `tests/unit/behavior/`.
+Ningún source-contract cuenta por sí solo como evidencia funcional.

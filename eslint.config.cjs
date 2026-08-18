@@ -42,6 +42,12 @@ module.exports = [
   {
     ignores: [
       'node_modules/**',
+      // Entornos virtuales de Python: traen JS vendorizado que producía ~9.3k
+      // errores y dejaba `npm run lint` inservible como gate.
+      '.venv/**',
+      '**/.venv/**',
+      'venv/**',
+      '**/site-packages/**',
       'dist/**',
       '**/dist/**',
       '**/dist/**',

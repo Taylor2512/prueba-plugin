@@ -6,12 +6,12 @@ Focal first. Final release minimum:
 npm run lint
 npm run build
 npx vitest run
-npm run quality:template-contracts
-npm run quality:direct-config-readers
-npm run quality:source-language-boundary
-npm run quality:dead-code:ci
-npm run quality:duplicates:ci
-npm run quality:wrapper-components
+npm run quality -- template-contracts
+npm run quality -- direct-config-readers
+npm run quality -- source-language-boundary
+npm run quality -- dead-code:ci
+npm run quality -- duplicates:ci
+npm run quality -- wrapper-components
 npx playwright test --project=chromium
 ```
 

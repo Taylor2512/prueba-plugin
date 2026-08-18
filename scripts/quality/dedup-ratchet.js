@@ -21,7 +21,7 @@ const reportPath = readStringArg(args, "report", "reports/jscpd/jscpd-report.jso
 const thresholdPath = readStringArg(args, "threshold-file", "configs/dedup-threshold.json");
 
 if (!fs.existsSync(reportPath)) {
-  console.error(`No existe el reporte ${reportPath}. Ejecuta primero npm run quality:duplicates:owned:report.`);
+  console.error(`No existe el reporte ${reportPath}. Ejecuta primero npm run quality -- duplicates:owned.`);
   process.exit(1);
 }
 
@@ -62,5 +62,5 @@ if (current > limit) {
 
 const next = nextThreshold(current);
 if (next < limit) {
-  console.log(`Listo para apretar el ratchet: ${limit} % -> ${next} % (npm run quality:duplicates:ratchet:update).`);
+  console.log(`Listo para apretar el ratchet: ${limit} % -> ${next} % (npm run quality -- duplicates:ratchet:update).`);
 }

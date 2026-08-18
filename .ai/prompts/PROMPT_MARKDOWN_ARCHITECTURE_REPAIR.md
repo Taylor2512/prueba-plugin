@@ -8,7 +8,7 @@ Start:
 git status --short
 git rev-parse HEAD
 node scripts/ai/same-repo-coordinator.mjs status .
-npm run architecture:audit
+npm run architecture -- audit
 ```
 
 Same repo/same branch/no worktrees.
@@ -19,14 +19,14 @@ disjoint work.
 Then:
 
 ```bash
-npm run architecture:repair
+npm run architecture -- plan
 ```
 
 Inspect conflicts. If none:
 
 ```bash
-npm run architecture:repair:apply
-npm run architecture:verify
+npm run architecture -- apply
+npm run architecture -- verify
 ```
 
 Rules:
