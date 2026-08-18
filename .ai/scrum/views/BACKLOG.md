@@ -28,6 +28,7 @@ Queued work derived from task cards and evidence.
 - [QH-019](../task-cards/quality-hardening/QH-019.md) — `BACKLOG`
 - [QH-020](../task-cards/quality-hardening/QH-020.md) — `BACKLOG`
 - [QH-021](../task-cards/quality-hardening/QH-021.md) — `BACKLOG`
+- [TRC campaign view](./TEMPLATE-RUNTIME-CONTRACT.md) — `READY/BACKLOG`
 - [UX-SCHEMAS](../task-cards/visual-ux/UX-SCHEMAS.md) — `BACKLOG`
 - [UX-VISUAL-SYSTEM](../task-cards/visual-ux/UX-VISUAL-SYSTEM.md) — `BACKLOG`
 
