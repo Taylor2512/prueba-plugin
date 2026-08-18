@@ -36,9 +36,27 @@ const vigilarConsola = (page: Page) => {
   return criticos;
 };
 
-/** Nodos del canvas de un tipo de grupo, ya filtrados por identidad publicada. */
+/**
+ * Nodos del canvas de un tipo de grupo, ya filtrados por identidad publicada.
+ *
+ * Deliberadamente NO es el mismo locator que `todosLosGrupos`: la diferencia
+ * entre ambos es justo la que distingue "el drop no se confirmó" de "el schema
+ * nació sin identidad", y colapsarlos hacía indistinguibles dos bugs opuestos.
+ */
 const gruposEnCanvas = (canvas: Locator, tipo: TipoGrupo): Locator =>
   canvas.locator(`[data-schema-type="${tipo}"][data-schema-id]`);
+
+/** Todos los nodos del tipo, TENGAN O NO identidad publicada. */
+const todosLosGrupos = (canvas: Locator, tipo: TipoGrupo): Locator =>
+  canvas.locator(`[data-schema-type="${tipo}"]`);
+
+/** Conjunto de `data-schema-id` presentes ahora mismo para ese tipo. */
+const idsDeGrupos = async (canvas: Locator, tipo: TipoGrupo): Promise<Set<string>> => {
+  const ids = await gruposEnCanvas(canvas, tipo).evaluateAll((nodos) =>
+    nodos.map((nodo) => nodo.getAttribute('data-schema-id') || ''),
+  );
+  return new Set(ids.filter(Boolean));
+};
 
 const contarOpciones = (page: Page, schemaId: string): Promise<number> =>
   page.locator(`[data-schema-id="${schemaId}"] [data-option-id]`).count();
@@ -55,7 +73,24 @@ const seleccionarGrupo = async (page: Page, schemaId: string): Promise<void> => 
   await expect(nodo).toHaveAttribute('data-schema-active', 'true');
 };
 
-/** Inserta un grupo desde el catálogo y devuelve su `data-schema-id`. */
+/**
+ * Inserta un grupo desde el catálogo y devuelve su `data-schema-id`.
+ *
+ * El diagnóstico distingue tres estados que antes se confundían en un único
+ * "no insertó nada":
+ *
+ * - `DROP_NOT_COMMITTED`: no apareció ningún nodo nuevo del tipo. El gesto de
+ *   arrastre no llegó a confirmarse (drop inválido, sesión perdida, sin sitio).
+ * - `SCHEMA_CREATED_WITHOUT_IDENTITY`: apareció el nodo pero sin
+ *   `data-schema-id`. El schema nació sin identidad — el modo de fallo real que
+ *   tenían `checkboxGroup`/`radioGroup` al declarar `id: undefined` en su
+ *   plantilla y perder el uuid en el spread de `addSchema`.
+ * - éxito: exactamente un nodo nuevo Y exactamente un id nuevo.
+ *
+ * La autoridad es el CONJUNTO de ids, no `.last()`: con identidades duplicadas
+ * `.last()` devuelve un nodo que ya existía y el test afirmaría sobre el schema
+ * equivocado en lugar de detectar la duplicación.
+ */
 const arrastrarGrupo = async (
   page: Page,
   canvas: Locator,
@@ -63,18 +98,41 @@ const arrastrarGrupo = async (
   offsetX = 0,
   offsetY = 0,
 ): Promise<string> => {
-  const items = gruposEnCanvas(canvas, tipo);
-  const antes = await items.count();
+  const conIdentidad = gruposEnCanvas(canvas, tipo);
+  const todos = todosLosGrupos(canvas, tipo);
+  const idsAntes = await idsDeGrupos(canvas, tipo);
+  const totalAntes = await todos.count();
+
   const origen = page.locator(`button[data-schema-type="${tipo}"][aria-roledescription="draggable"]`).first();
   await expect(origen, `el catálogo debe exponer ${tipo}`).toBeVisible();
   await arrastrarAlCentro(page, origen, canvas, offsetX, offsetY);
-  await expect
-    .poll(() => items.count(), { message: `arrastrar ${tipo} debe insertar un schema con identidad` })
-    .toBe(antes + 1);
 
-  const schemaId = await items.last().getAttribute('data-schema-id');
-  expect(schemaId, `${tipo} arrastrado debe publicar data-schema-id`).toBeTruthy();
-  return schemaId as string;
+  // Se espera por el nodo, no por la identidad: así el fallo puede clasificarse
+  // en vez de agotar el timeout sin decir cuál de los dos estados ocurrió.
+  await expect
+    .poll(() => todos.count(), {
+      message: `DROP_NOT_COMMITTED: arrastrar ${tipo} no insertó ningún nodo en el canvas`,
+    })
+    .toBe(totalAntes + 1);
+
+  await expect
+    .poll(() => conIdentidad.count(), {
+      message:
+        `SCHEMA_CREATED_WITHOUT_IDENTITY: ${tipo} se insertó en el canvas pero sin data-schema-id`,
+    })
+    .toBe(idsAntes.size + 1);
+
+  const idsDespues = await idsDeGrupos(canvas, tipo);
+  const nuevos = [...idsDespues].filter((id) => !idsAntes.has(id));
+  expect(
+    nuevos,
+    `arrastrar ${tipo} debe producir exactamente una identidad nueva (duplicada o ausente si no)`,
+  ).toHaveLength(1);
+
+  const schemaId = nuevos[0];
+  const uid = await page.locator(`[data-schema-id="${schemaId}"]`).getAttribute('data-schema-uid');
+  expect(uid, `${tipo} arrastrado debe publicar un data-schema-uid no vacío`).toBeTruthy();
+  return schemaId;
 };
 
 /**

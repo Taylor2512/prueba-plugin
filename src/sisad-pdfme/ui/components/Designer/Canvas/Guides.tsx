@@ -29,6 +29,29 @@ const guideStyle = (
 });
 
 /**
+ * Presentación del DOM interno de scena-guides.
+ *
+ * `@scena/react-guides` cuelga nuestra `className` del propio
+ * `.scena-guides-manager`, así que todo lo que la hoja de estilos alcanzaba
+ * como descendiente de la regla —o de la página del canvas, donde este
+ * componente sólo lo monta `Canvas`— se expresa aquí como variante arbitraria
+ * sobre el mismo nodo.
+ *
+ * `scena-guides-text` y `scena-guides-number` se conservan por paridad con la
+ * regla original; la versión instalada del paquete no emite esas clases.
+ */
+const GUIDES_RULER_CLASSES = [
+  'backdrop-blur-[0.0125rem]',
+  '[&_.scena-guides-text]:text-[0.625rem]',
+  '[&_.scena-guides-text]:opacity-[0.82]',
+  '[&_.scena-guides-number]:text-[0.625rem]',
+  '[&_.scena-guides-number]:opacity-[0.82]',
+  '[&_.scena-guides-guide.scena-guides-adder]:opacity-[0.72]',
+  '[&_.scena-guides-guide.scena-guides-adder]:bg-[var(--color-info-55)]',
+  '[&_.scena-guides-guide-origin]:bg-transparent',
+].join(' ');
+
+/**
  * Paleta visual configurable de reglas.
  */
 export type GuidesPalette = {
@@ -95,6 +118,7 @@ const Guides = ({
           DESIGNER_CLASSNAME + 'guides-ruler-horizontal',
           className,
           'pointer-events-none overflow-hidden border-b border-solid border-slate-200/80 bg-slate-50',
+          GUIDES_RULER_CLASSES,
         )}
         style={guideStyle(0, RULER_HEIGHT, RULER_HEIGHT, paperSize.width)}
         zoom={ZOOM}
@@ -111,6 +135,7 @@ const Guides = ({
           DESIGNER_CLASSNAME + 'guides-ruler-vertical',
           className,
           'pointer-events-none overflow-hidden border-r border-solid border-slate-200/80 bg-slate-50',
+          GUIDES_RULER_CLASSES,
         )}
         style={guideStyle(RULER_HEIGHT, 0, paperSize.height, RULER_HEIGHT)}
         zoom={ZOOM}

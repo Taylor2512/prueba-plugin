@@ -45,6 +45,17 @@ interface Props {
 const LINE_COLOR = '#1890ff';
 const CENTER_COLOR = '#ff4d4f';
 
+/**
+ * Presentación de la línea de snap, incluido el realce de la guía de centro.
+ *
+ * El `drag-shadow` de centro vivía en `sisad-pdfme.css` como
+ * `.sisad-pdfme-designer-snap-line[data-is-center='true']`; el estado lo sigue
+ * escribiendo este mismo componente en `data-is-center`, así que la variante
+ * `data-[…]` reproduce la regla sin hoja de estilos aparte.
+ */
+const SNAP_LINE_CENTER_CLASSES =
+  'pointer-events-none border-solid data-[is-center=true]:[filter:drop-shadow(0_0_2px_var(--color-danger-32))]';
+
 const snapToDevicePixel = (value: number) => {
   const ratio = typeof window !== 'undefined' && Number.isFinite(window.devicePixelRatio)
     ? window.devicePixelRatio || 1
@@ -71,7 +82,7 @@ const SnapLines = ({
   const rootClassName = mergeClassNames(
     `${DESIGNER_CLASSNAME}snap-lines`,
     hasCustomClass && `${DESIGNER_CLASSNAME}custom-${className?.trim()}`,
-    'pointer-events-none absolute inset-0',
+    'pointer-events-none absolute inset-0 z-[6]',
   );
 
   return (
@@ -89,7 +100,7 @@ const SnapLines = ({
                 className={mergeClassNames(
                   `${DESIGNER_CLASSNAME}snap-line`,
                   `${DESIGNER_CLASSNAME}snap-line-horizontal`,
-                  'pointer-events-none border-solid',
+                  SNAP_LINE_CENTER_CLASSES,
                 )}
                 data-is-center={isCenter(line) ? 'true' : 'false'}
                 style={{
@@ -139,7 +150,7 @@ const SnapLines = ({
               className={mergeClassNames(
                 `${DESIGNER_CLASSNAME}snap-line`,
                 `${DESIGNER_CLASSNAME}snap-line-vertical`,
-                'pointer-events-none border-solid',
+                SNAP_LINE_CENTER_CLASSES,
               )}
               data-is-center={isCenter(line) ? 'true' : 'false'}
               style={{

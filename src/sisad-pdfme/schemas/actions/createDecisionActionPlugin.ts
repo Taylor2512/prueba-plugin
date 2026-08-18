@@ -13,6 +13,7 @@ import { createActionButtonEl } from '@sisad-pdfme/schemas/shared/schemaDom';
 import { readableTextColor } from '@sisad-pdfme/schemas/shared/fieldChrome';
 import type { ActionSchemaBase } from '@sisad-pdfme/schemas/shared/schemaTypes';
 import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
+import { hex2PrintingColor } from '@sisad-pdfme/schemas/utils';
 
 type DecisionActionSchema = ActionSchemaBase<{
   requiresReason?: boolean;
@@ -149,12 +150,16 @@ export const createDecisionActionPlugin = ({
           },
         });
       },
-      pdf: async ({ schema, pdfLib, page }) => {
+      pdf: async ({ schema, pdfLib, page, options }) => {
         const decisionSchema = schema as DecisionActionSchema & {
           position: { x: number; y: number };
         };
         const { position, width, height } = decisionSchema;
-        const color = pdfLib.rgb(...pdfColor);
+        // El color de la acción es constante del plugin, pero DEBE respetar el
+        // modo de color de la exportación: construirlo con `pdfLib.rgb` sin
+        // pasar por el conversor reintroducía crominancia en un PDF declarado
+        // monocromático, que es justo lo que la exportación promete eliminar.
+        const color = hex2PrintingColor(pdfLib.rgb(...pdfColor), options?.colorType);
 
         page.drawRectangle({
           x: position.x,

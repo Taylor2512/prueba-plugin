@@ -130,6 +130,22 @@ type ZoomProps = {
   forceStepperButtons?: boolean;
 };
 
+/**
+ * Reduced motion en el chrome del diseñador.
+ *
+ * Las transiciones de los botones vienen de Ant Design, no de nuestras clases,
+ * así que la utilidad `motion-reduce` de cada botón no las alcanza: hay que
+ * neutralizarlas desde el cluster y sobre todo su subárbol. El `!` es necesario
+ * por la especificidad de antd; no cruza ningún límite porque apunta a
+ * superficie propia.
+ */
+const CONTROL_BAR_REDUCED_MOTION_CLASS_NAME = [
+  'motion-reduce:!duration-0',
+  'motion-reduce:![animation-duration:0s]',
+  'motion-reduce:[&_*]:!duration-0',
+  'motion-reduce:[&_*]:![animation-duration:0s]',
+].join(' ');
+
 const CONTROL_BAR_ICON_BUTTON_CLASS_NAME = mergeClassNames(
   UI_CLASSNAME + 'control-bar-icon-btn',
   'inline-flex items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-slate-800 motion-reduce:transition-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 hover:!bg-transparent hover:!border-transparent hover:!text-slate-950 disabled:cursor-not-allowed disabled:opacity-100 disabled:text-slate-500',
@@ -478,7 +494,7 @@ const CtlBar = (props: CtlBarProps) => {
       )} data-density={toolbarDensity} data-layout="canvas-chrome">
       
 
-      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-center', 'absolute left-1/2 top-[0.5rem] inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--top-center', CONTROL_BAR_REDUCED_MOTION_CLASS_NAME, 'absolute left-1/2 top-[0.5rem] inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-10 items-center gap-1 rounded-[10px] border border-slate-200 bg-white p-1 shadow-[0_4px_14px_rgba(15,23,42,0.08)]')}>
           {showPageNavButtons ? (
             <Button
@@ -527,6 +543,7 @@ const CtlBar = (props: CtlBarProps) => {
         className={mergeClassNames(
           UI_CLASSNAME + 'control-bar-cluster',
           UI_CLASSNAME + 'control-bar-cluster--top-right',
+          CONTROL_BAR_REDUCED_MOTION_CLASS_NAME,
           'absolute top-[0.5rem] inline-flex items-center gap-1 pointer-events-auto',
           sidebarOpen
             ? 'right-[calc(var(--sisad-pdfme-rs-width)_+_1.375rem)]'
@@ -580,7 +597,7 @@ const CtlBar = (props: CtlBarProps) => {
         </div>
       </div>
 
-      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--bottom-right', 'absolute bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', UI_CLASSNAME + 'control-bar-cluster--bottom-right', CONTROL_BAR_REDUCED_MOTION_CLASS_NAME, 'absolute bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
         <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex h-10 items-center gap-1 rounded-[10px] border border-slate-200 bg-white p-1 shadow-[0_4px_14px_rgba(15,23,42,0.08)]')}>
           {undoAction.visible ? (
             <Button

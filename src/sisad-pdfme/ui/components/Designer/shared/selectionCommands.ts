@@ -129,6 +129,8 @@ export type SelectionCommandSet = {
   toggleHidden?: () => void;
   toggleRequired: () => void;
   toggleReadOnly: () => void;
+  /** Alterna `schema.locked` (bloqueo de posición), distinto de `readOnly`. */
+  toggleObjectLock: () => void;
   bringForward: () => void;
   sendBackward: () => void;
   alignSelection: (type: AlignType) => void;
@@ -576,6 +578,29 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     context.changeSchemas(ops);
   };
 
+  /**
+   * Alterna el bloqueo de POSICIÓN del schema (`schema.locked`).
+   *
+   * Es un estado distinto de `readOnly`: `locked` impide mover/redimensionar/
+   * borrar según policy, mientras `readOnly` impide editar el contenido. El
+   * menú de contexto rotulaba "Bloquear posición" pero ejecutaba
+   * `toggleReadOnly`, así que bloquear la posición marcaba el campo como sólo
+   * lectura y dejaba la posición libre — los dos estados que
+   * `resolveRuntimeSchemaAccess` ya distingue compartían una única mutación.
+   *
+   * La policy sigue siendo la autoridad de permisos: aquí sólo se emite la
+   * mutación del campo que esa policy lee (`boolField(schema, 'locked')`).
+   */
+  const toggleObjectLock = () => {
+    if (!hasSelection || !guardStructureEdit()) return;
+    const ops = createSelectionOps(
+      getActiveSchemas(context),
+      'locked',
+      (schema) => (schema as SchemaForUI & { locked?: boolean }).locked !== true,
+    );
+    context.changeSchemas(ops);
+  };
+
   const toggleHidden = () => {
     if (!hasSelection || !guardStructureEdit()) return;
     const ops = createSelectionOps(getActiveSchemas(context), 'hidden', (schema) => (schema as SchemaForUI & { hidden?: boolean }).hidden !== true);
@@ -933,6 +958,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     toggleHidden,
     toggleRequired,
     toggleReadOnly,
+    toggleObjectLock,
     bringForward,
     sendBackward,
     alignSelection,

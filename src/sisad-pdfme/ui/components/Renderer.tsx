@@ -86,6 +86,26 @@ type DesignerStyleAwareSchema = SchemaForUI & {
  */
 const FILL_STYLE: React.CSSProperties = { height: '100%', width: '100%' };
 
+/**
+ * Interacción del schema seleccionable, dirigida por su propio dataset.
+ *
+ * Sin estas reglas el contenido interno del schema roba el puntero a moveable
+ * mientras está activo, salvo los controles marcados como interactivos. Los
+ * añadidores de opción sólo existen con el schema activo.
+ *
+ * El estado lo escribe este mismo componente (`data-schema-active`,
+ * `data-schema-editing`), así que las variantes viven junto al nodo que las
+ * declara en lugar de en una hoja de estilos aparte. El `!` de las últimas tres
+ * reproduce el `!important` que necesitan frente a la presentación del plugin.
+ */
+const SCHEMA_INTERACTION_CLASSES = [
+  '[&[data-schema-active=true]:not([data-schema-editing=true])>*]:pointer-events-none',
+  '[&[data-schema-active=true]:not([data-schema-editing=true])_[data-schema-interactive-control]]:pointer-events-auto',
+  '[&[data-schema-active=false]_[data-checkbox-group-add-option]]:!hidden',
+  '[&[data-schema-active=false]_[data-radio-group-add-option]]:!hidden',
+  '[&[data-schema-active=false]_[data-checkbox-convert-to-group]]:!hidden',
+].join(' ');
+
 const getSchemaRenderSignature = (schema: SchemaForUI, mode: UIRenderProps<Schema>['mode']) => {
   if (mode !== 'form') return JSON.stringify(schema);
 
@@ -315,6 +335,7 @@ const Wrapper = ({
   const wrapperClassName = [
     UI_CLASSNAME + 'custom-selectable',
     selectable ? SELECTABLE_CLASSNAME : '',
+    SCHEMA_INTERACTION_CLASSES,
     schemaClassName,
   ]
     .filter(Boolean)

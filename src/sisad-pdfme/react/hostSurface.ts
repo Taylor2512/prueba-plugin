@@ -6,9 +6,9 @@
  * alturas propias. Por eso aquí no hay `100vh`, `position: fixed` ni
  * `max-width`: esas decisiones pertenecen al host.
  *
- * El nodo interno del runtime (`.sisad-pdfme-lab-runtime-host`) ya declara
- * `width/height: 100%` y `min-*: 0`; estas clases cierran la cadena de tamaño
- * entre el contenedor del host y ese nodo.
+ * El nodo interno del runtime (`.sisad-pdfme-lab-runtime-host`) ya lleva sus
+ * propias utilidades `h-full w-full min-w-0 min-h-0 overflow-hidden`; estas
+ * clases cierran la cadena de tamaño entre el contenedor del host y ese nodo.
  */
 
 /** Clases base aplicadas siempre al contenedor público del runtime. */

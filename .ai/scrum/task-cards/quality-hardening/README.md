@@ -29,8 +29,8 @@ Plan maestro: [`DESIGNER-QUALITY-HARDENING-PLAN.md`](../../../plans/DESIGNER-QUA
 <!-- sisad-architecture-hub:start -->
 ## Navigation
 
-- [QH-001 — Separar creación e identidad en drag de option groups](./QH-001.md) — `READY`
-- [QH-002 — Repetibilidad de los fallos de grupos](./QH-002.md) — `READY`
+- [QH-001 — Separar creación e identidad en drag de option groups](./QH-001.md) — `PASS`
+- [QH-002 — Repetibilidad de los fallos de grupos](./QH-002.md) — `PASS`
 - [QH-003 — Placement determinista y aislamiento de fixtures](./QH-003.md) — `BACKLOG`
 - [QH-004 — Contrato semántico común para option groups](./QH-004.md) — `BACKLOG`
 - [QH-005 — Aislamiento de instancias y alcance de optionId](./QH-005.md) — `BACKLOG`
@@ -39,9 +39,9 @@ Plan maestro: [`DESIGNER-QUALITY-HARDENING-PLAN.md`](../../../plans/DESIGNER-QUA
 - [QH-008 — Drag de RightSidebar separado de selección](./QH-008.md) — `DONE`
 - [QH-009 — Auditoría Tailwind y CSS técnico](./QH-009.md) — `DONE`
 - [QH-010 — Gate final y cierre de evidencia](./QH-010.md) — `BACKLOG`
-- [QH-011 — Nombre determinista del artefacto PDF y template](./QH-011.md) — `READY`
-- [QH-012 — Gate de PDF completamente monocromático](./QH-012.md) — `READY`
-- [QH-013 — Contrato único para candado, solo lectura y lock colaborativo](./QH-013.md) — `READY`
+- [QH-011 — Nombre determinista del artefacto PDF y template](./QH-011.md) — `PASS`
+- [QH-012 — Gate de PDF completamente monocromático](./QH-012.md) — `PARTIAL`
+- [QH-013 — Contrato único para candado, solo lectura y lock colaborativo](./QH-013.md) — `PARTIAL`
 - [QH-014 — Flujo E2E de candado hasta Preview/Viewer/Form](./QH-014.md) — `BACKLOG`
 - [QH-015 — Registry y accesibilidad del panel de atajos](./QH-015.md) — `BACKLOG`
 - [QH-016 — Paridad del menú contextual `Más`](./QH-016.md) — `BACKLOG`

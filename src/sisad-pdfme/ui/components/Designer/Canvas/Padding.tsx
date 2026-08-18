@@ -85,7 +85,13 @@ const Padding = ({ basePdf, className, style, color, opacity = 0.25 }: PaddingPr
         padding.map((p, i) => (
           <div
             key={String(i)}
-            className={mergeClassNames(resolvedClassName, 'pointer-events-none absolute')}
+            className={mergeClassNames(
+              resolvedClassName,
+              // `z-[1]` y `mix-blend-multiply` venían de `sisad-pdfme.css`. El
+              // resto de aquella regla (`background`, `opacity`) era inerte:
+              // ambas llegan como estilo inline, que gana a la hoja de estilos.
+              'pointer-events-none absolute z-[1] mix-blend-multiply',
+            )}
             style={{
               ...getPaddingStyle(i, p, resolvedColor),
               opacity,

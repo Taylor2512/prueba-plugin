@@ -18,6 +18,56 @@ const TRANSPARENT_PNG =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+pR6QAAAAASUVORK5CYII=';
 
 /**
+ * Presentación de la página cuando la monta el canvas del diseñador.
+ *
+ * `data-canvas-page` lo escribe Canvas por dataset sobre el ref de la página,
+ * así que estas utilidades sólo se activan en el diseñador: en Preview, Form y
+ * Viewer el atributo no existe y la página conserva su comportamiento.
+ *
+ * `isolate` crea el contexto de apilamiento que mantiene la capa de rejilla y
+ * los schemas dentro de la página; `overflow-hidden` recorta el contenido al
+ * papel.
+ */
+const CANVAS_PAGE_CLASSES = 'data-[canvas-page=true]:overflow-hidden data-[canvas-page=true]:isolate';
+
+/**
+ * Rejilla de página, en su PROPIA capa (`::before`).
+ *
+ * Se pinta sobre la PÁGINA, no sobre el contenedor del canvas: sólo así el
+ * patrón nace en el origen del papel y sigue siendo correcto en multipágina.
+ *
+ * El paso NO se declara aquí. `--sisad-grid-step`, `--sisad-grid-major-step` y
+ * los offsets los escribe Canvas desde `gridGeometry`, que trabaja en mm de
+ * página; la capa hereda esas variables del papel. Un paso constante en px no
+ * significaba ninguna medida real del documento y no seguía al zoom.
+ *
+ * La capa es independiente porque `PaperPage` escribe la imagen de la página
+ * base como estilo inline y el estilo inline gana a la hoja de estilos:
+ * mientras la rejilla compitió por esa misma propiedad, `data-grid-visible`
+ * encendía el estado y no pintaba nada. Una capa aparte también impide el
+ * efecto contrario —que la rejilla sustituya la imagen del documento—.
+ *
+ * Todas las utilidades van condicionadas por `data-grid-visible=true`, incluida
+ * la geometría: si el pseudo-elemento declarara imagen sin `content`,
+ * `getComputedStyle(node, '::before')` seguiría reportando los gradientes con
+ * la rejilla apagada.
+ */
+const CANVAS_GRID_LAYER_CLASSES = [
+  "data-[grid-visible=true]:before:content-['']",
+  'data-[grid-visible=true]:before:absolute',
+  'data-[grid-visible=true]:before:inset-0',
+  // Decorativa: nunca intercepta el puntero de selección ni de arrastre.
+  'data-[grid-visible=true]:before:pointer-events-none',
+  // Sobre el fondo del papel y bajo los schemas, que son hijos posicionados
+  // posteriores en orden de árbol y pintan por encima de esta capa.
+  'data-[grid-visible=true]:before:z-0',
+  'data-[grid-visible=true]:before:rounded-[inherit]',
+  'data-[grid-visible=true]:before:[background-image:linear-gradient(to_right,rgba(148,163,184,0.16)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.16)_1px,transparent_1px),linear-gradient(to_right,rgba(148,163,184,0.24)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.24)_1px,transparent_1px)]',
+  'data-[grid-visible=true]:before:[background-size:var(--sisad-grid-step)_var(--sisad-grid-step),var(--sisad-grid-step)_var(--sisad-grid-step),var(--sisad-grid-major-step)_var(--sisad-grid-major-step),var(--sisad-grid-major-step)_var(--sisad-grid-major-step)]',
+  'data-[grid-visible=true]:before:[background-position:var(--sisad-grid-offset-x)_var(--sisad-grid-offset-y),var(--sisad-grid-offset-x)_var(--sisad-grid-offset-y),var(--sisad-grid-offset-x)_var(--sisad-grid-offset-y),var(--sisad-grid-offset-x)_var(--sisad-grid-offset-y)]',
+].join(' ');
+
+/**
  * Bloque calculado de página en coordenadas de canvas.
  */
 type PageBlock = {
@@ -74,7 +124,7 @@ const PaperPage = ({
   <div
     key={String(paperIndex) + JSON.stringify(block.paperSize)}
     data-paper-page="true"
-    className="sisad-pdfme-paper-page absolute left-0 box-border rounded-[0.35rem] border border-[rgba(148,163,184,0.28)] bg-white bg-no-repeat bg-left-top shadow-[0_14px_32px_rgba(15,23,42,0.08),0_2px_8px_rgba(15,23,42,0.06)]"
+    className={`sisad-pdfme-paper-page absolute left-0 box-border rounded-[0.35rem] border border-[rgba(148,163,184,0.28)] bg-white bg-no-repeat bg-left-top shadow-[0_14px_32px_rgba(15,23,42,0.08),0_2px_8px_rgba(15,23,42,0.06)] ${CANVAS_PAGE_CLASSES} ${CANVAS_GRID_LAYER_CLASSES}`}
     {...buildPageMetadataAttrs({ documentId, pageIndex: paperIndex, pageNumber: paperIndex + 1 })}
     tabIndex={-1}
     ref={(e) => registerPaperRef(paperIndex, e)}

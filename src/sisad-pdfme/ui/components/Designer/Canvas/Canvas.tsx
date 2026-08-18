@@ -1721,6 +1721,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
           // que el borde izquierdo quede fuera de alcance al desbordar por zoom.
           'box-border relative flex h-full min-h-0 min-w-0 flex-1 w-full max-w-full items-start justify-center overflow-auto overscroll-contain [scrollbar-gutter:stable_both-edges] pt-14 px-4 pb-4',
           'bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.08),transparent_22%),linear-gradient(180deg,rgba(248,250,252,0.96),rgba(241,245,249,0.98))]',
+          // Sesión de vista: `feature.guides` sólo dice si el host permite las
+          // guías; `data-guides-visible` es el estado efectivo que resuelve
+          // `viewCapabilities`. Apagarlas en sesión oculta las reglas montadas
+          // sin desmontar `Guides`, que es lo que hacía la hoja de estilos.
+          '[&[data-guides-visible=false]_[data-canvas-page=true]_.scena-guides-manager]:hidden',
         ])
         .filter(Boolean)
         .join(' ')}

@@ -158,10 +158,47 @@ const hex2CmykColor = (hexString: string | undefined) => {
   return undefined;
 };
 
+/**
+ * Neutraliza la crominancia de un color YA construido como objeto pdf-lib.
+ *
+ * Sin esto, un color que llega como objeto —`rgb()`/`cmyk()` producido por un
+ * plugin en vez de un hex— salía intacto del conversor y reintroducía color en
+ * una exportación declarada monocromática. Era la única vía por la que un
+ * renderer podía saltarse el contrato sin que ningún test lo notara.
+ *
+ * Se conserva la familia de color de entrada (RGB sigue siendo RGB) porque el
+ * contrato vigente del proyecto expresa el gris como luminancia neutra en RGB;
+ * lo que cambia es que `red === green === blue`.
+ */
+const neutralizeColorObject = (color: Color): Color => {
+  if (color.type === 'RGB') {
+    // Rec. 709: misma fórmula que `hex2GrayscaleColor`, una sola definición
+    // de "gris" en todo el proyecto.
+    const luminance = 0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue;
+    return rgb(luminance, luminance, luminance);
+  }
+
+  if (color.type === 'CMYK') {
+    // CMYK ya separa cromía de negro: se colapsa a su componente acromática.
+    const luminance =
+      1 - Math.min(1, Math.max(0, (color.cyan + color.magenta + color.yellow) / 3 + color.key));
+    return rgb(luminance, luminance, luminance);
+  }
+
+  // `Grayscale` ya es acromático por construcción.
+  return color;
+};
+
 export const hex2PrintingColor = (color?: string | Color, colorType?: ColorType) => {
-  // if color is already CMYK, RGB or Grayscale, does not required to convert
-  if (typeof color === 'object') return color;
   const normalizedType = colorType?.toLowerCase();
+
+  if (typeof color === 'object') {
+    // Un objeto ya construido NO puede saltarse una exportación monocromática.
+    if (normalizedType === 'grayscale') return neutralizeColorObject(color);
+    // Para el resto de modos el color ya viene en su espacio final.
+    return color;
+  }
+
   if (normalizedType === 'cmyk') return hex2CmykColor(color);
   if (normalizedType === 'grayscale') return hex2GrayscaleColor(color);
   return hex2RgbColor(color);

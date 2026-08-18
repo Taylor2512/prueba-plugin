@@ -15,6 +15,7 @@ import type {
   UsePdfmeRuntimeInstanceConfig,
 } from '@sisad-pdfme/runtime/usePdfmeRuntimeInstance';
 import { checkTemplate } from '@sisad-pdfme/common/helper';
+import { resolveDocumentPdfFileName } from '@sisad-pdfme/common/documentFileName';
 import Form from '@sisad-pdfme/ui/Form';
 import Viewer from '@sisad-pdfme/ui/Viewer';
 import Designer from '@sisad-pdfme/ui/Designer';
@@ -195,10 +196,11 @@ export const SisadPdfmePreviewRuntime = ({
       const url = createObjectUrl(bytes, 'application/pdf');
       if (!url) return;
       exportUrlRef.current = url;
-      const baseName = String((context.template as { basePdf?: unknown }).basePdf || 'document')
-        .replace(/[\\/:*?"<>|]+/g, '_')
-        .trim() || 'document';
-      downloadUrl(url, `${baseName.endsWith('.pdf') ? baseName : `${baseName}.pdf`}`);
+      // `basePdf` puede ser objeto: `String(...)` daba `[object Object].pdf`.
+      downloadUrl(
+        url,
+        resolveDocumentPdfFileName((context.template as { basePdf?: unknown }).basePdf),
+      );
     } finally {
       exportBusyRef.current = false;
     }

@@ -36,6 +36,10 @@ import LeftSidebarDefault from '@sisad-pdfme/ui/components/Designer/LeftSidebar'
 import Canvas from '@sisad-pdfme/ui/components/Designer/Canvas/Canvas';
 import type { CanvasFeatureToggles } from '@sisad-pdfme/ui/components/Designer/Canvas/Canvas';
 import { CANVAS_VIEW_CAPABILITIES } from '@sisad-pdfme/ui/components/Designer/Canvas/canvasViewCapabilities';
+import {
+  resolveDocumentPdfFileName,
+  resolveTemplateJsonFileName,
+} from '@sisad-pdfme/common/documentFileName';
 import { createSelectionCommands } from '@sisad-pdfme/ui/components/Designer/shared/selectionCommands';
 import {
   resolveActiveSchemasFromElements,
@@ -2911,14 +2915,12 @@ const TemplateEditor = ({
 
   const exportTemplateExternal = useCallback(() => {
     const exportPayload = JSON.stringify(visibleTemplate, null, 2);
-    const safeName = String(getBasePdfDisplayName(visibleTemplate.basePdf) || 'sisad-pdfme-template')
-      .replace(/[\\/:*?"<>|]+/g, '_')
-      .trim() || 'sisad-pdfme-template';
+    const fileName = resolveTemplateJsonFileName(visibleTemplate.basePdf);
     const blob = new Blob([exportPayload], { type: 'application/json' });
     const downloadUrl = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = downloadUrl;
-    link.download = `${safeName}.json`;
+    link.download = fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -2927,7 +2929,7 @@ const TemplateEditor = ({
       type: 'designer.action.export.template',
       source: 'designer',
       component: 'Designer',
-      details: { fileName: `${safeName}.json` },
+      details: { fileName },
     });
   }, [emitDesignerEvent, visibleTemplate]);
 
@@ -2939,15 +2941,14 @@ const TemplateEditor = ({
       options: { ...options, colorType: 'grayscale' },
       plugins: { ...flatSchemaPlugins, ...plugins },
     });
-    const safeName = String(getBasePdfDisplayName(visibleTemplate.basePdf) || 'sisad-pdfme-document')
-      .replace(/[\\/:*?"<>|]+/g, '_').trim() || 'sisad-pdfme-document';
-    const url = downloadPdf(pdf, safeName);
+    const fileName = resolveDocumentPdfFileName(visibleTemplate.basePdf);
+    const url = downloadPdf(pdf, fileName);
     if (url) window.setTimeout(() => URL.revokeObjectURL(url), 0);
     emitDesignerEvent({
       type: 'designer.action.download.pdf',
       source: 'designer',
       component: 'Designer',
-      details: { fileName: `${safeName}.pdf` },
+      details: { fileName },
     });
   }, [emitDesignerEvent, options, pluginsRegistry, visibleTemplate]);
 

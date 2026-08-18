@@ -864,7 +864,7 @@ const buildSelectionToolbarStateChips = (
  */
 const getSelectionStyleActions = (
   commands?: SelectionCommandSet,
-  activeReadOnly = false,
+  activeObjectLocked = false,
   canEditStructure = true,
 ) => [
   toolbarAction(
@@ -889,14 +889,16 @@ const getSelectionStyleActions = (
         : 'Todavía no está conectado el portapapeles de estilos',
     },
   ),
+  // Rotula "posición", así que muta `locked`. Antes ejecutaba `toggleReadOnly`
+  // y el mismo control decía una cosa y hacía otra.
   toolbarAction(
-    'readonly',
-    activeReadOnly ? 'Desbloquear posición' : 'Bloquear posición',
+    'object-lock',
+    activeObjectLocked ? 'Desbloquear posición' : 'Bloquear posición',
     <Lock size={14} />,
-    commands?.toggleReadOnly,
+    commands?.toggleObjectLock,
     {
-      active: activeReadOnly,
-      disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly),
+      active: activeObjectLocked,
+      disabled: !canEditStructure || !hasAction(commands?.toggleObjectLock),
       disabledReason: !canEditStructure
         ? 'El rol actual solo permite revisar y comentar'
         : undefined,
@@ -1234,6 +1236,11 @@ export const buildSelectionToolbarModel = (args: {
   const kind = resolveSelectionToolbarKind(activeSchemas);
   const allReadOnly =
     activeSchemas.length > 0 && activeSchemas.every((schema) => schema.readOnly);
+  // Bloqueo de POSICIÓN: campo propio, agregado igual que el resto para que la
+  // selección múltiple no muestre un estado activo si no lo están todos.
+  const allObjectLocked =
+    activeSchemas.length > 0 &&
+    activeSchemas.every((schema) => (schema as SchemaForUI & { locked?: boolean }).locked === true);
   const allRequired =
     activeSchemas.length > 0 && activeSchemas.every((schema) => schema.required);
   const allHidden =
@@ -1502,7 +1509,7 @@ export const buildSelectionToolbarModel = (args: {
           {
             id: 'style',
             label: 'Estilo',
-            items: getSelectionStyleActions(commands, allReadOnly, canEditStructure),
+            items: getSelectionStyleActions(commands, allObjectLocked, canEditStructure),
           },
           hasFieldSelection
             ? {
@@ -1665,9 +1672,29 @@ export const buildCanvasContextMenuGroups = (
     id: `${scope}-protection`,
     label: 'Protección',
     items: compactItems([
+      // Dos entradas separadas porque son DOS estados distintos, y la tarjeta
+      // QH-013 exige que ninguno comparta booleano ni etiqueta con el otro:
+      //
+      //   `locked`   → impide mover/redimensionar/borrar (posición)
+      //   `readOnly` → impide editar el contenido
+      //
+      // Antes existía una sola entrada rotulada "Bloquear posición" cableada a
+      // `toggleReadOnly`: decía posición y mutaba contenido, y `readOnly` no
+      // tenía ningún control propio.
       commandItem(
         scope === 'multi' ? 'lock-multi' : 'lock',
-        resolveToggleLabel(activeReadOnly, 'Desbloquear posición', 'Bloquear posición'),
+        resolveToggleLabel(Boolean(accessState?.isObjectLocked), 'Desbloquear posición', 'Bloquear posición'),
+        <Lock size={14} />,
+        commands?.toggleObjectLock,
+        {
+          active: Boolean(accessState?.isObjectLocked),
+          disabled: !canEditStructure || Boolean(accessState?.isLockedByOther),
+          disabledReason: lockedByOtherReason ?? roleReason,
+        },
+      ),
+      commandItem(
+        scope === 'multi' ? 'readonly-multi' : 'readonly',
+        resolveToggleLabel(activeReadOnly, 'Permitir edición', 'Solo lectura'),
         <Lock size={14} />,
         commands?.toggleReadOnly,
         {

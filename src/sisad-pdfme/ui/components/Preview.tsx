@@ -10,6 +10,10 @@ import { SchemaForUI, PreviewProps, Size, replacePlaceholders } from '@sisad-pdf
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import { generatePdfWithPreflight } from '@sisad-pdfme/generator';
 import { downloadPdf } from '@sisad-pdfme/browser/downloads';
+import {
+  resolveDocumentPdfFileName,
+  resolveTemplateJsonFileName,
+} from '@sisad-pdfme/common/documentFileName';
 import { theme } from 'antd';
 import UnitPager from '@sisad-pdfme/ui/components/UnitPager';
 import Root from '@sisad-pdfme/ui/components/Root';
@@ -81,14 +85,13 @@ const Preview = ({
       : undefined;
   const handleExportTemplate = () => {
     const exportPayload = JSON.stringify(template, null, 2);
-    const safeName = String(template.basePdf || 'sisad-pdfme-preview-template')
-      .replace(/[\\/:*?"<>|]+/g, '_')
-      .trim() || 'sisad-pdfme-preview-template';
+    // `basePdf` puede ser objeto: `String(...)` daba `[object Object].json`.
+    const fileName = resolveTemplateJsonFileName(template.basePdf);
     const blob = new Blob([exportPayload], { type: 'application/json' });
     const downloadUrl = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = downloadUrl;
-    link.download = `${safeName}.json`;
+    link.download = fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -102,9 +105,7 @@ const Preview = ({
       options: { ...previewOptions, colorType: 'grayscale' },
       plugins: { ...flatSchemaPlugins, ...(plugins || {}) },
     });
-    const safeName = String(template.basePdf || 'sisad-pdfme-document')
-      .replace(/[\\/:*?"<>|]+/g, '_').trim() || 'sisad-pdfme-document';
-    const url = downloadPdf(pdf, safeName);
+    const url = downloadPdf(pdf, resolveDocumentPdfFileName(template.basePdf));
     if (url) window.setTimeout(() => URL.revokeObjectURL(url), 0);
   };
 

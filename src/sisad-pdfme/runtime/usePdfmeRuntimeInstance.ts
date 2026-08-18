@@ -284,7 +284,10 @@ export function usePdfmeRuntimeInstance(
      * only this inner node, not the whole React container.
      */
     const host = document.createElement('div');
-    host.className = 'sisad-pdfme-lab-runtime-host';
+    // La clase identifica al nodo (tests, hostSurface); el dimensionado va en
+    // utilidades Tailwind sobre este mismo nodo desde que `sisad-pdfme.css`
+    // dejó de declararlo.
+    host.className = 'sisad-pdfme-lab-runtime-host h-full w-full min-w-0 min-h-0 overflow-hidden';
     host.dataset.runtimeMode = cfg.mode;
     if (cfg.uxMode) host.dataset.uxMode = cfg.uxMode;
     container.replaceChildren(host);
