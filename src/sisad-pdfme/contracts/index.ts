@@ -179,6 +179,36 @@ export type {
  */
 export { SNAPSHOT_VERSION, makeEmptySnapshot } from '@sisad-pdfme/shared/snapshot';
 
+/** Canonical portable workspace definition and JSON-safe validator. */
+export type {
+  SisadPdfmeJsonPrimitive,
+  SisadPdfmeJsonValue,
+  SisadPdfmeConfigurationRef,
+  SisadPdfmeUser,
+  SisadPdfmeDocument,
+  SisadPdfmeAssignment,
+  SisadPdfmeRuntimeSnapshot,
+  SisadPdfmeWorkspaceUser,
+  SisadPdfmeWorkspaceDocument,
+  SisadPdfmeWorkspaceAssignment,
+  SisadPdfmeWorkspace,
+  SisadPdfmeWorkspaceIssueCode,
+  SisadPdfmeWorkspaceIssue,
+  SisadPdfmeWorkspaceValidation,
+  SisadPdfmeUserIssueCode,
+  SisadPdfmeUserIssue,
+  SisadPdfmeUserValidation,
+} from '@sisad-pdfme/contracts/workspace';
+export {
+  normalizeSisadPdfmeWorkspaceUsers,
+  normalizeUsers,
+  indexSisadPdfmeUsers,
+  indexUsers,
+  validateSisadPdfmeUsers,
+  validateUsers,
+  validateSisadPdfmeWorkspace,
+} from '@sisad-pdfme/contracts/workspace';
+
 /**
  * Adaptador oficial para serializar, hidratar y validar el snapshot actual.
  */

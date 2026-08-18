@@ -1812,6 +1812,55 @@ const TemplateEditor = ({
     () => pageSizes[pageCursor] ?? { width: 0, height: 0 },
     [pageCursor, pageSizes],
   );
+
+  type SchemaMatcher = 'id' | 'name' | 'identity' | 'prefill-source';
+
+  const findSchemaLocation = useCallback(
+    (schemaIdOrName: string, matcher: SchemaMatcher = 'id') => {
+      const target = String(schemaIdOrName || '').trim();
+      if (!target) return null;
+
+      for (let pageIndex = 0; pageIndex < schemasList.length; pageIndex++) {
+        const schemaIndex = schemasList[pageIndex].findIndex((schema) => {
+          if (matcher === 'id') return schema.id === target;
+          if (matcher === 'name') return schema.name === target;
+          const cfg = getSchemaDesignerConfig(schema, designerEngine);
+          if (matcher === 'identity') return cfg?.identity?.key === target;
+          return cfg?.prefill?.sourceKey === target;
+        });
+        if (schemaIndex >= 0) return { pageIndex, schemaIndex };
+      }
+      return null;
+    },
+    [designerEngine, schemasList],
+  );
+
+  const onReleaseSelectionLock = useCallback((ids: string[]) => {
+    ids.forEach((schemaId) => {
+      const location = findSchemaLocation(schemaId, 'id');
+      collaborationSync.releaseLock(schemaId, location?.pageIndex);
+      handleCollaborationEvent({
+        type: 'unlock',
+        schemaId,
+        pageIndex: location?.pageIndex,
+        actorId: collaborationContext.actorId || designerEngine.collaboration?.actorId,
+        sessionId: designerEngine.collaboration?.sessionId || activeDocumentId || 'local',
+        timestamp: Date.now(),
+      });
+      void commandBusRef.current.execute({
+        id: `schema.unlocked:${schemaId}`,
+        label: 'Unlock field',
+        meta: { undoable: false },
+        execute: ({ emit }) => {
+          emit({ type: 'schema.unlocked', schemaId, pageIndex: location?.pageIndex });
+        },
+        undo: ({ emit }) => {
+          emit({ type: 'schema.locked', schemaId, pageIndex: location?.pageIndex });
+        },
+      });
+    });
+  }, [activeDocumentId, collaborationContext.actorId, collaborationSync, designerEngine.collaboration, findSchemaLocation, handleCollaborationEvent]);
+
   const requestInlineEdit = useCallback((request: { schemaId: string; target: 'content' | 'name' }) => {
     (canvasRef.current as (HTMLDivElement & {
       openInlineEdit?: (inlineEditRequest: { schemaId: string; target: 'content' | 'name' }) => void;
@@ -1911,7 +1960,7 @@ const TemplateEditor = ({
     () =>
       // Excepción a react-hooks/refs: los comandos guardan la ref y solo leen
       // `.current` al ejecutarse desde un handler, nunca durante el render.
-      
+
       createSelectionCommands({
         activeElements,
         schemasList,
@@ -1927,6 +1976,7 @@ const TemplateEditor = ({
         onPasteSelection: handlePasteSelection,
         onCutSelection: handleCutSelection,
         onClearSelection: () => setActiveElements([]),
+        onReleaseSelectionLock,
         onSelectSchemasByIds: selectSchemasByIds,
         executeCommand: (command) => {
           void commandBusRef.current.execute(command);
@@ -1947,9 +1997,11 @@ const TemplateEditor = ({
       handleCopySelection,
       handlePasteSelection,
       handleCutSelection,
+      onReleaseSelectionLock,
       selectSchemasByIds,
     ],
   );
+
 
   // Excepción a react-hooks/refs: `commandBusRef` se crea en el primer render y
   // nunca se reasigna; el hook solo despacha comandos desde efectos y handlers.
@@ -2977,28 +3029,6 @@ const TemplateEditor = ({
       }, 0);
     },
     [onEdit, schemasList, setPageCursorWithScroll],
-  );
-
-  type SchemaMatcher = 'id' | 'name' | 'identity' | 'prefill-source';
-
-  const findSchemaLocation = useCallback(
-    (schemaIdOrName: string, matcher: SchemaMatcher = 'id') => {
-      const target = String(schemaIdOrName || '').trim();
-      if (!target) return null;
-
-      for (let pageIndex = 0; pageIndex < schemasList.length; pageIndex++) {
-        const schemaIndex = schemasList[pageIndex].findIndex((schema) => {
-          if (matcher === 'id') return schema.id === target;
-          if (matcher === 'name') return schema.name === target;
-          const cfg = getSchemaDesignerConfig(schema, designerEngine);
-          if (matcher === 'identity') return cfg?.identity?.key === target;
-          return cfg?.prefill?.sourceKey === target;
-        });
-        if (schemaIndex >= 0) return { pageIndex, schemaIndex };
-      }
-      return null;
-    },
-    [designerEngine, schemasList],
   );
 
   useEffect(() => {

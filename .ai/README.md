@@ -18,6 +18,7 @@
 - [playbooks](./playbooks/README.md)
 - [prompts](./prompts/README.md)
 - [providers](./providers/README.md)
+- [reports](./reports/README.md)
 - [research](./research/README.md)
 - [routes](./routes/README.md)
 - `scripts/`
@@ -61,6 +62,7 @@
 - [playbooks](./playbooks/README.md)
 - [prompts](./prompts/README.md)
 - [providers](./providers/README.md)
+- [reports](./reports/README.md)
 - [research](./research/README.md)
 - [routes](./routes/README.md)
 - [scrum](./scrum/README.md)

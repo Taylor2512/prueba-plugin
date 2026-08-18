@@ -126,6 +126,7 @@ export type SelectionCommandSet = {
   cutSelection?: () => void;
   selectAllVisible?: () => void;
   clearSelection?: () => void;
+  releaseSelectionLock?: () => void;
   toggleHidden?: () => void;
   toggleRequired: () => void;
   toggleReadOnly: () => void;
@@ -171,6 +172,7 @@ export type SelectionCommandsContext = {
   onCutSelection?: () => void;
   onSelectAllVisible?: () => void;
   onClearSelection?: () => void;
+  onReleaseSelectionLock?: (ids: string[]) => void;
   onSelectSchemasByIds?: (ids: string[], options?: SelectSchemasOptions) => void;
   collaborationContext?: Pick<
     EffectiveCollaborationContext,
@@ -578,6 +580,13 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     context.changeSchemas(ops);
   };
 
+  const releaseSelectionLock = () => {
+    if (!hasSelection || !guardStructureEdit()) return;
+    const ids = getActiveIds(context.activeElements);
+    if (!ids.length) return;
+    context.onReleaseSelectionLock?.(ids);
+  };
+
   /**
    * Alterna el bloqueo de POSICIÓN del schema (`schema.locked`).
    *
@@ -955,6 +964,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     cutSelection: context.onCutSelection,
     selectAllVisible: context.onSelectAllVisible,
     clearSelection: context.onClearSelection,
+    releaseSelectionLock,
     toggleHidden,
     toggleRequired,
     toggleReadOnly,

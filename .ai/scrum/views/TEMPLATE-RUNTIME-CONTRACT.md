@@ -2,6 +2,23 @@
 
 Campaign to harden the portable contract end-to-end without creating parallel authorities.
 
+## Execution Views
+
+- [TRC Ready Plan (2 Weeks)](./TRC-READY-2W.md)
+- [TRC Day-by-Day (2 Weeks)](./TRC-DAY-BY-DAY-2W.md)
+- [TRC Agent Routing](./TRC-AGENT-ROUTING.md)
+- [TRC Closeout Checklist](./TRC-CLOSEOUT-CHECKLIST.md)
+
+## Execution Prompts
+
+- [TRC Start](../../prompts/TRC-START.md)
+- [TRC Reconcile](../../prompts/TRC-RECONCILE.prompt.md)
+- [TRC Implement](../../prompts/TRC-IMPLEMENT.prompt.md)
+- [TRC 2W Execution](../../prompts/TRC-2W-EXECUTION.prompt.md)
+- [TRC Daily Execution](../../prompts/TRC-DAILY-EXECUTION.prompt.md)
+- [TRC Agent Handoff](../../prompts/TRC-AGENT-HANDOFF.prompt.md)
+- [TRC Closeout](../../prompts/TRC-CLOSEOUT.prompt.md)
+
 ## Rules
 
 - Reconcile before implement: each TRC card must check whether an existing QH/PRT/RTP card already covers the same contract.
@@ -30,24 +47,24 @@ Campaign to harden the portable contract end-to-end without creating parallel au
 
 | Task | Priority | Initial status | Notes |
 |---|---|---|---|
-| TRC-001 | P0 | READY | Reconcile QH state and evidence before new implementation. |
-| TRC-002 | P0 | READY | Define canonical SisadPdfmeWorkspace contract. |
-| TRC-003 | P0 | READY | Canonical portable Template JSON contract. |
-| TRC-004 | P0 | BACKLOG | Separate schema technical identity from visible name. |
-| TRC-005 | P0 | BACKLOG | Registry-driven schema serialization policy. |
-| TRC-006 | P0 | READY | Canonical Users registry contract. |
-| TRC-007 | P0 | READY | normalizeUsers/indexUsers/validateUsers authority. |
-| TRC-008 | P0 | READY | Canonical Assignment registry contract. |
+| TRC-001 | P0 | PASS | Reconcile QH state and evidence before new implementation. |
+| TRC-002 | P0 | PARTIAL | Define canonical SisadPdfmeWorkspace contract. |
+| TRC-003 | P0 | PARTIAL | Canonical portable Template JSON contract. |
+| TRC-004 | P0 | PARTIAL | Separate schema technical identity from visible name. |
+| TRC-005 | P0 | PARTIAL | Registry-driven schema serialization policy. |
+| TRC-006 | P0 | PARTIAL | Canonical Users registry contract. |
+| TRC-007 | P0 | PARTIAL | normalizeUsers/indexUsers/validateUsers authority. |
+| TRC-008 | P0 | PARTIAL | Canonical Assignment registry contract. |
 | TRC-009 | P0 | BACKLOG | readOnly propagation to Form/Viewer/Snapshot. |
 | TRC-010 | P0 | BACKLOG | positionLocked persistence matrix. |
 | TRC-011 | P0 | BACKLOG | Explicit collaboration lock runtime model. |
-| TRC-012 | P0 | BACKLOG | Canonical Document registry contract. |
+| TRC-012 | P0 | PARTIAL | Canonical Document registry contract. |
 | TRC-013 | P1 | BACKLOG | Flattening portable schemas authority from Schema[][]. |
-| TRC-014 | P0 | BACKLOG | InputConfig vs ResolvedConfig contract. |
-| TRC-015 | P0 | BACKLOG | Complete SisadPdfmeGlobalConfig namespaces. |
-| TRC-016 | P0 | BACKLOG | Config precedence explicit contract. |
-| TRC-017 | P0 | BACKLOG | Template JSON preflight validator with structured issues. |
-| TRC-018 | P0 | BACKLOG | Fail-closed import and versioned migration pipeline. |
+| TRC-014 | P0 | PARTIAL | InputConfig vs ResolvedConfig contract. |
+| TRC-015 | P0 | PARTIAL | Complete SisadPdfmeGlobalConfig namespaces. |
+| TRC-016 | P0 | PARTIAL | Config precedence explicit contract. |
+| TRC-017 | P0 | PARTIAL | Template JSON preflight validator with structured issues. |
+| TRC-018 | P0 | PARTIAL | Fail-closed import and versioned migration pipeline. |
 | TRC-019 | P1 | BACKLOG | Deterministic canonical export. |
 | TRC-020 | P0 | BACKLOG | Formal separation Template vs Snapshot vs Runtime. |
 | TRC-021 | P0 | BACKLOG | Exhaustive snapshot semantic round-trip. |

@@ -47,6 +47,15 @@ export type PdfPreflightReport = {
   ok: boolean;
 };
 
+/** Raster images are not converted by the current PDF image plugin. */
+export const isRasterMonochromeUnsupported = (
+  schemaType: unknown,
+  colorType: unknown,
+  rawValue: unknown,
+): boolean => String(colorType ?? '').toLowerCase() === 'grayscale'
+  && String(schemaType ?? '').toLowerCase() === 'image'
+  && String(rawValue ?? '').trim().length > 0;
+
 const normalizePreflightText = (value: unknown): string => String(value ?? '').trim();
 
 const getPluginsRegistry = (plugins: GenerateProps['plugins']) =>
@@ -322,6 +331,7 @@ const inspectSchema = (
   schemas: Schema[][],
   issues: PdfPreflightIssue[],
   registry: ReturnType<typeof pluginRegistry>,
+  colorType?: string,
 ) => {
   const schemaIssues: PdfPreflightIssue[] = [];
   const schemaType = normalizePreflightText(schema.type).toLowerCase();
@@ -342,6 +352,19 @@ const inspectSchema = (
 
   const rawValue = getSchemaRawValue(schema, input, pageIndex, totalPages, schemas);
   const renderedBeforeChecks = rawValue.length > 0;
+
+  if (isRasterMonochromeUnsupported(schemaType, colorType, rawValue)) {
+    addIssue(schemaIssues, {
+      documentIndex,
+      pageIndex,
+      schemaName: schema.name,
+      schemaType: schema.type,
+      severity: 'error',
+      code: 'raster-color-unsupported',
+      message: 'La exportación grayscale no puede garantizar una imagen raster monocromática; conviértela antes de exportar.',
+      details: { colorType, renderer: 'image' },
+    });
+  }
 
   if (schema.required && !rawValue && schema.type !== 'checkbox') {
     addIssue(schemaIssues, {
@@ -417,6 +440,7 @@ export const createPdfPreflightReport = async (props: GenerateProps): Promise<Pd
           pageSchemas,
           pageIssues,
           registry,
+          props.options?.colorType,
         );
         if (rendered) {
           renderedCount += 1;

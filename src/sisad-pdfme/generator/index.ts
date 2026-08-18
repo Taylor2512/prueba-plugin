@@ -11,6 +11,7 @@ export type {
   PdfPreflightPageReport,
   PdfPreflightReport,
 } from '@sisad-pdfme/generator/preflight';
+export { isRasterMonochromeUnsupported } from '@sisad-pdfme/generator/preflight';
 export const generatePdf = generate;
 
 export const buildDynamicTemplate = getDynamicTemplate;

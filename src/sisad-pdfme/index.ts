@@ -56,6 +56,57 @@ export type {
   SisadPdfmeRecipient,
   SisadPdfmeSignatureProvider,
 } from '@sisad-pdfme/integration';
+
+export type {
+  SisadPdfmeJsonPrimitive,
+  SisadPdfmeJsonValue,
+  SisadPdfmeConfigurationRef,
+  SisadPdfmeUser,
+  SisadPdfmeDocument as SisadPdfmeWorkspaceDocumentContract,
+  SisadPdfmeAssignment,
+  SisadPdfmeRuntimeSnapshot,
+  SisadPdfmeWorkspaceUser,
+  SisadPdfmeWorkspaceDocument,
+  SisadPdfmeWorkspaceAssignment,
+  SisadPdfmeWorkspace,
+  SisadPdfmeWorkspaceIssueCode,
+  SisadPdfmeWorkspaceIssue,
+  SisadPdfmeWorkspaceValidation,
+  SisadPdfmeUserIssueCode,
+  SisadPdfmeUserIssue,
+  SisadPdfmeUserValidation,
+} from '@sisad-pdfme/contracts/workspace';
+export {
+  normalizeSisadPdfmeWorkspaceUsers,
+  normalizeUsers,
+  indexSisadPdfmeUsers,
+  indexUsers,
+  validateSisadPdfmeUsers,
+  validateUsers,
+  validateSisadPdfmeWorkspace,
+} from '@sisad-pdfme/contracts/workspace';
+export {
+  PORTABLE_TEMPLATE_SCHEMA_VERSION,
+  PORTABLE_TEMPLATE_FORMAT,
+  normalizePortableTemplate,
+  validateSisadPdfmeTemplate,
+  hydratePortableTemplate,
+  serializePortableTemplate,
+  parsePortableTemplate,
+  ingestPortableTemplate,
+} from '@sisad-pdfme/shared/portableTemplate';
+export type {
+  PortableTemplateJson,
+  PortableTemplateIssueCode,
+  PortableTemplateIssue,
+  PortableTemplateValidation,
+  PortableTemplateOutcome,
+  PortableTemplateParseResult,
+  PortableTemplatePipelineStage,
+  PortableTemplatePipelineStep,
+  HydratedPortableTemplate,
+  PortableTemplateIngestResult,
+} from '@sisad-pdfme/shared/portableTemplate';
 export type {
   SisadPdfmeInlinedInstanceBundle,
   SisadPdfmeInstanceBundleAssetOptions,

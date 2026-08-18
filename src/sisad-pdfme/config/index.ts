@@ -32,6 +32,11 @@ export { createCapabilityGraph, resolveCapabilityState } from '@sisad-pdfme/conf
 export { createSchemaCapabilityResolver } from '@sisad-pdfme/config/schemaCapabilityResolver';
 export { compileSisadPdfmeConfig, hashResolvedConfig } from '@sisad-pdfme/config/configCompiler';
 export {
+  CONFIG_PRECEDENCE,
+  resolveConfigValue,
+  resolveConfigRecord,
+} from '@sisad-pdfme/config/configPrecedence';
+export {
   planConfigChange,
   disabledCapabilities,
   enabledCapabilities,
@@ -59,6 +64,11 @@ export type {
   CompiledSisadPdfmeConfig,
   ResolvedConfigIdentity,
 } from '@sisad-pdfme/config/configCompiler';
+export type {
+  ConfigPrecedenceLayer,
+  ConfigPrecedenceLayers,
+  ResolvedConfigValue,
+} from '@sisad-pdfme/config/configPrecedence';
 export type {
   CapabilityFlag,
   CapabilityTransition,

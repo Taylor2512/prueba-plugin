@@ -54,6 +54,15 @@
 - [Prompt de arranque — tooling architecture cleanup](./TOOLING-ARCHITECTURE-START.md)
 - [TRACE](./TRACE.md)
 - [TRACEABILITY.prompt.md](./TRACEABILITY.prompt.md)
+- [TRC-2W-EXECUTION.prompt.md](./TRC-2W-EXECUTION.prompt.md)
+- [TRC-AGENT-HANDOFF.prompt.md](./TRC-AGENT-HANDOFF.prompt.md)
+- [TRC-CLOSEOUT.prompt.md](./TRC-CLOSEOUT.prompt.md)
+- [TRC-DAILY-EXECUTION.prompt.md](./TRC-DAILY-EXECUTION.prompt.md)
+- [TRC-FIRST5-CODEX.prompt.md](./TRC-FIRST5-CODEX.prompt.md)
+- [TRC-IMPLEMENT.prompt.md](./TRC-IMPLEMENT.prompt.md)
+- [TRC-RECONCILE.prompt.md](./TRC-RECONCILE.prompt.md)
+- [START — Template Runtime Contract (TRC)](./TRC-START.md)
+- [TRC-STATUS-RECONCILIATION.prompt.md](./TRC-STATUS-RECONCILIATION.prompt.md)
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->
@@ -114,6 +123,15 @@
 - [Prompt de arranque — tooling architecture cleanup](./TOOLING-ARCHITECTURE-START.md)
 - [TRACE](./TRACE.md)
 - [TRACEABILITY.prompt.md](./TRACEABILITY.prompt.md)
+- [TRC-2W-EXECUTION.prompt.md](./TRC-2W-EXECUTION.prompt.md)
+- [TRC-AGENT-HANDOFF.prompt.md](./TRC-AGENT-HANDOFF.prompt.md)
+- [TRC-CLOSEOUT.prompt.md](./TRC-CLOSEOUT.prompt.md)
+- [TRC-DAILY-EXECUTION.prompt.md](./TRC-DAILY-EXECUTION.prompt.md)
+- [TRC-FIRST5-CODEX.prompt.md](./TRC-FIRST5-CODEX.prompt.md)
+- [TRC-IMPLEMENT.prompt.md](./TRC-IMPLEMENT.prompt.md)
+- [TRC-RECONCILE.prompt.md](./TRC-RECONCILE.prompt.md)
+- [START — Template Runtime Contract (TRC)](./TRC-START.md)
+- [TRC-STATUS-RECONCILIATION.prompt.md](./TRC-STATUS-RECONCILIATION.prompt.md)
 <!-- project-tools:navigation:end -->
 
 <!-- ai-structure:navigation:start -->

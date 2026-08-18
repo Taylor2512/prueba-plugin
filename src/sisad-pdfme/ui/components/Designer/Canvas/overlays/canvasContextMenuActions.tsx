@@ -1714,13 +1714,13 @@ export const buildCanvasContextMenuGroups = (
         scope === 'multi' ? 'collaboration-lock-multi' : 'collaboration-lock',
         contextMenuLockLabel,
         <Lock size={14} />,
-        accessState?.isLockedByMe ? commands?.clearSelection : undefined,
+        accessState?.isLockedByMe ? commands?.releaseSelectionLock : undefined,
         {
           active: Boolean(accessState?.isLockedByMe),
           disabled:
             !canEditStructure ||
             Boolean(accessState?.isLockedByOther) ||
-            !hasAction(commands?.clearSelection),
+            !hasAction(commands?.releaseSelectionLock),
           disabledReason:
             lockedByOtherReason ??
             (accessState?.isLockedByMe

@@ -20,15 +20,10 @@ Queued work derived from task cards and evidence.
 - [QH-006](../task-cards/quality-hardening/QH-006.md) — `BACKLOG`
 - [QH-007](../task-cards/quality-hardening/QH-007.md) — `BACKLOG`
 - [QH-010](../task-cards/quality-hardening/QH-010.md) — `BACKLOG`
-- [QH-014](../task-cards/quality-hardening/QH-014.md) — `BACKLOG`
-- [QH-015](../task-cards/quality-hardening/QH-015.md) — `BACKLOG`
 - [QH-016](../task-cards/quality-hardening/QH-016.md) — `BACKLOG`
-- [QH-017](../task-cards/quality-hardening/QH-017.md) — `BACKLOG`
 - [QH-018](../task-cards/quality-hardening/QH-018.md) — `BACKLOG`
-- [QH-019](../task-cards/quality-hardening/QH-019.md) — `BACKLOG`
 - [QH-020](../task-cards/quality-hardening/QH-020.md) — `BACKLOG`
 - [QH-021](../task-cards/quality-hardening/QH-021.md) — `BACKLOG`
-- [TRC campaign view](./TEMPLATE-RUNTIME-CONTRACT.md) — `READY/BACKLOG`
 - [UX-SCHEMAS](../task-cards/visual-ux/UX-SCHEMAS.md) — `BACKLOG`
 - [UX-VISUAL-SYSTEM](../task-cards/visual-ux/UX-VISUAL-SYSTEM.md) — `BACKLOG`
 

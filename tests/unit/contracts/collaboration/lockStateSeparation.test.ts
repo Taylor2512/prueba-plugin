@@ -118,4 +118,34 @@ describe('QH-013 — separación de readOnly y locked', () => {
     comandos.toggleReadOnly();
     expect(changeSchemas).not.toHaveBeenCalled();
   });
+
+  it('la liberación del lock colaborativo usa el release del lock y no la limpieza de selección', () => {
+    const schema = crearSchema();
+    const onReleaseSelectionLock = vi.fn();
+    const contexto = {
+      ...crearContexto(schema).contexto,
+      onReleaseSelectionLock,
+    };
+    const comandos = createSelectionCommands(contexto as never);
+
+    comandos.releaseSelectionLock?.();
+
+    expect(onReleaseSelectionLock).toHaveBeenCalledTimes(1);
+    expect(onReleaseSelectionLock).toHaveBeenCalledWith([schema.id]);
+  });
+
+  it('no libera locks sin selección ni permiso estructural', () => {
+    const onReleaseSelectionLock = vi.fn();
+    const { contexto } = crearContexto(crearSchema());
+    const comandos = createSelectionCommands({
+      ...contexto,
+      activeElements: [],
+      onReleaseSelectionLock,
+      collaborationContext: { canEditStructure: false },
+    } as never);
+
+    comandos.releaseSelectionLock?.();
+
+    expect(onReleaseSelectionLock).not.toHaveBeenCalled();
+  });
 });

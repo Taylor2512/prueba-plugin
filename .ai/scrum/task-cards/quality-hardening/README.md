@@ -42,12 +42,12 @@ Plan maestro: [`DESIGNER-QUALITY-HARDENING-PLAN.md`](../../../plans/DESIGNER-QUA
 - [QH-011 — Nombre determinista del artefacto PDF y template](./QH-011.md) — `PASS`
 - [QH-012 — Gate de PDF completamente monocromático](./QH-012.md) — `PARTIAL`
 - [QH-013 — Contrato único para candado, solo lectura y lock colaborativo](./QH-013.md) — `PARTIAL`
-- [QH-014 — Flujo E2E de candado hasta Preview/Viewer/Form](./QH-014.md) — `BACKLOG`
-- [QH-015 — Registry y accesibilidad del panel de atajos](./QH-015.md) — `BACKLOG`
+- [QH-014 — Flujo E2E de candado hasta Preview/Viewer/Form](./QH-014.md) — `PARTIAL`
+- [QH-015 — Registry y accesibilidad del panel de atajos](./QH-015.md) — `PARTIAL`
 - [QH-016 — Paridad del menú contextual `Más`](./QH-016.md) — `BACKLOG`
-- [QH-017 — Contrato de filas del RightSidebar](./QH-017.md) — `BACKLOG`
+- [QH-017 — Contrato de filas del RightSidebar](./QH-017.md) — `PARTIAL`
 - [QH-018 — Option groups: diagnóstico y contrato de instancia](./QH-018.md) — `BACKLOG`
-- [QH-019 — Edición de siblings, contenteditable y tipos de entrada](./QH-019.md) — `BACKLOG`
+- [QH-019 — Edición de siblings, contenteditable y tipos de entrada](./QH-019.md) — `PARTIAL`
 - [QH-020 — Regresión visual y responsive de Designer](./QH-020.md) — `BACKLOG`
 - [QH-021 — Limpieza de compatibilidad, documentación y observabilidad](./QH-021.md) — `BACKLOG`
 

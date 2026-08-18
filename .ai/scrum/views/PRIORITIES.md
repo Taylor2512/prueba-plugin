@@ -44,3 +44,11 @@
 ## Rule
 
 Do not reopen superseded Runtime Platform 000..420 cards merely because they remain in historical storage.
+
+## TRC execution pack
+
+- [TRC campaign](./TEMPLATE-RUNTIME-CONTRACT.md)
+- [TRC ready plan (2 weeks)](./TRC-READY-2W.md)
+- [TRC day-by-day plan](./TRC-DAY-BY-DAY-2W.md)
+- [TRC agent routing](./TRC-AGENT-ROUTING.md)
+- [TRC closeout checklist](./TRC-CLOSEOUT-CHECKLIST.md)
