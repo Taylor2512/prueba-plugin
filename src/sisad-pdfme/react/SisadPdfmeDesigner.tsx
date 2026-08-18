@@ -40,6 +40,19 @@ import type {
 /** Identificador de instancia para correlacionar eventos del mismo montaje. */
 let instanceSequence = 0;
 
+/**
+ * Valores vacíos ESTABLES para los props opcionales de tipo lista.
+ *
+ * Un default de parámetro (`documents = []`) crea un array nuevo en cada
+ * render. Como `documents` y `signatureProviders` son dependencias de los
+ * `useMemo` que construyen `runtimeConfig`, ese default invalidaba la memo en
+ * cada render del host y empujaba `updateOptions`/`updateTemplate` a la
+ * instancia montada aunque nada hubiera cambiado. La identidad estable es
+ * parte del contrato de la instancia, no una micro-optimización.
+ */
+const SIN_DOCUMENTOS: readonly unknown[] = Object.freeze([]);
+const SIN_PROVEEDORES_DE_FIRMA: readonly unknown[] = Object.freeze([]);
+
 type DesignerProps = {
   config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
   template: unknown;
@@ -73,11 +86,11 @@ type DesignerProps = {
 export const SisadPdfmeDesigner = ({
   config,
   template,
-  documents = [],
+  documents = SIN_DOCUMENTOS as unknown[],
   recipients,
   activeRecipientId,
   activeDocumentId,
-  signatureProviders = [],
+  signatureProviders = SIN_PROVEEDORES_DE_FIRMA as unknown[],
   plugins,
   onTemplateChange,
   onSave,

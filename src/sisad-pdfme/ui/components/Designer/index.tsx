@@ -2483,9 +2483,18 @@ const TemplateEditor = ({
       );
 
       let s = {
-        id: uuid(),
         readOnly: false, // Default for new schemas
         ...defaultSchema,
+        /**
+         * La identidad se fija DESPUÉS del spread.
+         *
+         * Antes iba antes, así que una plantilla de plugin que declarase
+         * `id` —aunque fuera con valor `undefined`— ganaba el spread y el
+         * schema nacía sin identidad. `createDefaultSchema` ya resuelve la
+         * identidad después de su propio spread por la misma razón: aquí
+         * queda alineado y ningún plugin puede volver a borrarla.
+         */
+        id: defaultSchema.id || uuid(),
         width: safeWidth,
         height: safeHeight,
         name: newSchemaName(i18n('field')),

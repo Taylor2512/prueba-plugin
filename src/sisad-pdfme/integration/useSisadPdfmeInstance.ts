@@ -141,7 +141,33 @@ export const useSisadPdfmeInstance = (
   props: SisadPdfmeInstanceInput,
 ): SisadPdfmeInstanceResolution & { Component: React.ComponentType<SisadPdfmeSurfaceProps> } =>
 {
-  const registration = useMemo(() => buildRegisteredInstance(props), [props]);
+  /**
+   * La memo depende de las ENTRADAS, no del objeto de props.
+   *
+   * React construye un objeto de props nuevo cada vez que el padre se
+   * re-renderiza, así que `[props]` no memoizaba nada: `registration` →
+   * `resolvedProps` → `resolved` se recalculaban siempre y la superficie
+   * recibía un `template` con identidad nueva en cada render del host, lo que
+   * empujaba un `updateTemplate` completo a la instancia ya montada. Estas
+   * cinco entradas son exactamente lo que lee `buildRegisteredInstance`.
+   */
+  const entradas = props as Partial<{
+    instance: unknown;
+    instanceKey: string | number;
+    definition: unknown;
+    resources: unknown;
+    handlers: unknown;
+  }>;
+  const registration = useMemo(
+    () => buildRegisteredInstance(props),
+    [
+      entradas.instance,
+      entradas.instanceKey,
+      entradas.definition,
+      entradas.resources,
+      entradas.handlers,
+    ],
+  );
   const resolvedProps = useMemo(
     () => ({
       ...registration.resolvedProps,

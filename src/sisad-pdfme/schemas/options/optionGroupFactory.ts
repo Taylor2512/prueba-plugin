@@ -143,15 +143,15 @@ export type OptionGroupDefaultSchemaParams = {
 };
 
 export type OptionGroupDefaultSchema = {
-  id: string;
+  id?: string;
   name: string;
   type: OptionGroupType;
   content: string;
   position: { x: number; y: number };
   width: number;
   height: number;
-  groupId: string;
-  group: string;
+  groupId?: string;
+  group?: string;
   groupName: string;
   lockedAsGroup: true;
   orientation: 'vertical';
@@ -160,7 +160,7 @@ export type OptionGroupDefaultSchema = {
   color?: string;
   __designer: {
     group: {
-      groupId: string;
+      groupId?: string;
       groupType: 'checkbox' | 'radio';
       groupName: string;
       lockedAsGroup: true;
@@ -348,15 +348,26 @@ export const buildOptionGroupDefaultSchema = ({
   const defaultOptions = buildDefaultOptionGroupOptions(optionPrefix, optionsCount);
   const safeSelectedId = selectedOptionId || defaultSelectedOptionId || defaultOptions[0]?.optionId;
 
+  /**
+   * La identidad ausente se OMITE; nunca se declara como `undefined`.
+   *
+   * `Designer.addSchema` construye el schema nuevo como
+   * `{ id: uuid(), ...defaultSchema }`. Una clave propia `id: undefined` en la
+   * plantilla del plugin gana el spread y borra el uuid recién generado, así
+   * que el grupo nacía sin `id` ni `schemaUid`: sin `data-schema-id` la
+   * selección no lo resuelve, `getActiveIds` lo descarta y `addGroupOption` /
+   * el editor de opciones dejan de operar. Sólo checkboxGroup y radioGroup
+   * declaraban estas claves, y sólo ellos perdían sus capacidades al
+   * arrastrarse desde el catálogo.
+   */
   return {
-    id,
     name,
     type,
     content: content ?? (selectionMode === 'single' ? safeSelectedId : ''),
     position: { x: 0, y: 0 },
     ...dimensions,
-    groupId,
-    group: groupId,
+    ...(id ? { id } : {}),
+    ...(groupId ? { groupId, group: groupId } : {}),
     groupName,
     lockedAsGroup: true,
     orientation: 'vertical',
@@ -374,7 +385,7 @@ export const buildOptionGroupDefaultSchema = ({
     ...(color ? { color } : {}),
     __designer: {
       group: {
-        groupId,
+        ...(groupId ? { groupId } : {}),
         groupType,
         groupName,
         lockedAsGroup: true,
