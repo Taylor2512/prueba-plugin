@@ -110,6 +110,16 @@ export const hex2RgbColor = (hexString: string | undefined) => {
   return undefined;
 };
 
+const hex2GrayscaleColor = (hexString: string | undefined) => {
+  if (!hexString) return undefined;
+  const isValid = isHexValid(hexString);
+  if (!isValid) throw new Error(`Invalid hex color value ${hexString}`);
+  const [r, g, b] = hex2rgb(hexString);
+  // Rec. 709 luminance keeps contrast while removing chroma from the PDF.
+  const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+  return rgb(luminance, luminance, luminance);
+};
+
 const hex2CmykColor = (hexString: string | undefined) => {
   if (hexString) {
     const isValid = isHexValid(hexString);
@@ -151,7 +161,10 @@ const hex2CmykColor = (hexString: string | undefined) => {
 export const hex2PrintingColor = (color?: string | Color, colorType?: ColorType) => {
   // if color is already CMYK, RGB or Grayscale, does not required to convert
   if (typeof color === 'object') return color;
-  return colorType?.toLowerCase() === 'cmyk' ? hex2CmykColor(color) : hex2RgbColor(color);
+  const normalizedType = colorType?.toLowerCase();
+  if (normalizedType === 'cmyk') return hex2CmykColor(color);
+  if (normalizedType === 'grayscale') return hex2GrayscaleColor(color);
+  return hex2RgbColor(color);
 };
 
 export const readFile = (input: File | FileList | null): Promise<string | ArrayBuffer> =>

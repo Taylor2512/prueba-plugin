@@ -255,7 +255,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
     },
 
     pdf: async (arg) => {
-      const { page, schema } = arg;
+      const { page, schema, options } = arg;
       const cbSchema = schema as CheckboxGroupSchema;
       const resolvedOptions = normalizeCheckboxGroupOptions(cbSchema);
       if (!resolvedOptions.length) return;
@@ -267,6 +267,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
         indicatorShape: 'square',
         selectedOptionIds: Array.from(resolveSelectedIds(cbSchema)),
         color: cbSchema.color,
+        colorType: options.colorType,
       });
     },
 

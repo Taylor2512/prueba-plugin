@@ -7,6 +7,9 @@
  */
 import { useContext } from 'react';
 import { SchemaForUI, PreviewProps, Size, replacePlaceholders } from '@sisad-pdfme/common';
+import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
+import { generatePdfWithPreflight } from '@sisad-pdfme/generator';
+import { downloadPdf } from '@sisad-pdfme/browser/downloads';
 import { theme } from 'antd';
 import UnitPager from '@sisad-pdfme/ui/components/UnitPager';
 import Root from '@sisad-pdfme/ui/components/Root';
@@ -38,6 +41,7 @@ const Preview = ({
   onChangeInputs,
   onFormJsonChange,
   onPageChange,
+  plugins,
 }: Omit<PreviewProps, 'domContainer'> & {
   onChangeInput?: (_args: { index: number; value: string; name: string }) => void;
   onChangeInputs?: (_args: { index: number; values: Record<string, string> }) => void;
@@ -89,6 +93,19 @@ const Preview = ({
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(downloadUrl);
+  };
+
+  const handleDownloadPdf = async () => {
+    const { pdf } = await generatePdfWithPreflight({
+      template,
+      inputs,
+      options: { ...previewOptions, colorType: 'grayscale' },
+      plugins: { ...flatSchemaPlugins, ...(plugins || {}) },
+    });
+    const safeName = String(template.basePdf || 'sisad-pdfme-document')
+      .replace(/[\\/:*?"<>|]+/g, '_').trim() || 'sisad-pdfme-document';
+    const url = downloadPdf(pdf, safeName);
+    if (url) window.setTimeout(() => URL.revokeObjectURL(url), 0);
   };
 
   const {
@@ -146,7 +163,8 @@ const Preview = ({
         }}
         zoomLevel={zoomLevel}
         setZoomLevel={setZoomLevel}
-        onExport={handleExportTemplate}
+        onDownloadPdf={handleDownloadPdf}
+        onExportTemplate={handleExportTemplate}
       />
       <UnitPager
         size={size}

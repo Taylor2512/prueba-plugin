@@ -38,3 +38,12 @@ export function downloadJson(data: unknown, filename: string): string {
   return url;
 }
 
+/** Downloads already-generated PDF bytes and returns the object URL used. */
+export function downloadPdf(bytes: ArrayBuffer | Uint8Array, filename: string): string {
+  const blobPart: ArrayBuffer = bytes instanceof Uint8Array
+    ? bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer
+    : bytes;
+  const url = createObjectUrl(blobPart, 'application/pdf');
+  if (url) downloadUrl(url, filename.endsWith('.pdf') ? filename : `${filename}.pdf`);
+  return url;
+}

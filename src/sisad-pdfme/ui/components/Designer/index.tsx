@@ -2,6 +2,7 @@ import React, { useRef, useState, useContext, useCallback, useEffect, useMemo } 
 import { createPortal } from 'react-dom';
 import {
   cloneDeep,
+  getInputFromTemplate,
   ZOOM,
   Template,
   findSchemaByUid,
@@ -26,6 +27,9 @@ import { App as AntdApp } from 'antd';
 import { generateSchemaUid } from '@sisad-pdfme/shared/schemaDesignerMeta';
 import { DndContext } from '@dnd-kit/core';
 import { pdf2size } from '@sisad-pdfme/converter';
+import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
+import { generatePdfWithPreflight } from '@sisad-pdfme/generator';
+import { downloadPdf } from '@sisad-pdfme/browser/downloads';
 import PluginIcon from '@sisad-pdfme/ui/components/Designer/PluginIcon';
 import RightSidebarDefault from '@sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar';
 import LeftSidebarDefault from '@sisad-pdfme/ui/components/Designer/LeftSidebar';
@@ -2927,6 +2931,26 @@ const TemplateEditor = ({
     });
   }, [emitDesignerEvent, visibleTemplate]);
 
+  const downloadPdfExternal = useCallback(async () => {
+    const plugins = Object.fromEntries(pluginsRegistry.entries());
+    const { pdf } = await generatePdfWithPreflight({
+      template: cloneDeep(visibleTemplate),
+      inputs: getInputFromTemplate(visibleTemplate),
+      options: { ...options, colorType: 'grayscale' },
+      plugins: { ...flatSchemaPlugins, ...plugins },
+    });
+    const safeName = String(getBasePdfDisplayName(visibleTemplate.basePdf) || 'sisad-pdfme-document')
+      .replace(/[\\/:*?"<>|]+/g, '_').trim() || 'sisad-pdfme-document';
+    const url = downloadPdf(pdf, safeName);
+    if (url) window.setTimeout(() => URL.revokeObjectURL(url), 0);
+    emitDesignerEvent({
+      type: 'designer.action.download.pdf',
+      source: 'designer',
+      component: 'Designer',
+      details: { fileName: `${safeName}.pdf` },
+    });
+  }, [emitDesignerEvent, options, pluginsRegistry, visibleTemplate]);
+
   const focusFieldExternal = useCallback(
     (fieldName: string) => {
       if (!fieldName) return;
@@ -4606,7 +4630,8 @@ const TemplateEditor = ({
             documentStatus={isIdle ? 'Listo' : 'Editando'}
             onSave={handleSaveTemplate}
             saveStatus={saveStatus}
-            onExport={exportTemplateExternal}
+            onDownloadPdf={downloadPdfExternal}
+            onExportTemplate={exportTemplateExternal}
             sidebarOpen={sidebarOpen}
             featureToggles={{
               grid: canvasFeatureToggles.grid,

@@ -57,14 +57,15 @@ const resolvePanelState = (
   config: Pick<ResolvedSisadPdfmeConfig, 'config' | 'visibility'>,
   visible: boolean,
   source: string,
+  enabled = true,
 ) =>
   createComponentState(id, componentId, [source], {
     visible,
-    enabled: visible,
-    available: visible,
-    active: visible,
-    executable: visible,
-    reason: visible ? undefined : 'hidden-by-config',
+    enabled,
+    available: enabled,
+    active: enabled && visible,
+    executable: enabled && visible,
+    reason: !enabled ? 'disabled-by-config' : visible ? undefined : 'hidden-by-config',
   });
 
 export const componentRegistry: Record<ComponentId, ComponentDefinition> = {
@@ -76,8 +77,9 @@ export const componentRegistry: Record<ComponentId, ComponentDefinition> = {
         'left-sidebar',
         'LeftSidebar',
         config,
-        config.config.sidebars?.left?.enabled !== false && config.visibility.sidebars?.left?.visible !== false,
+        config.visibility.sidebars?.left?.visible !== false,
         'sidebars.left.enabled',
+        config.config.sidebars?.left?.enabled !== false,
       ),
   },
   'right-sidebar': {
@@ -88,8 +90,9 @@ export const componentRegistry: Record<ComponentId, ComponentDefinition> = {
         'right-sidebar',
         'RightSidebar',
         config,
-        config.config.sidebars?.right?.enabled !== false && config.visibility.sidebars?.right?.visible !== false,
+        config.visibility.sidebars?.right?.visible !== false,
         'sidebars.right.enabled',
+        config.config.sidebars?.right?.enabled !== false,
       ),
   },
   'canvas-toolbar': {
@@ -100,8 +103,9 @@ export const componentRegistry: Record<ComponentId, ComponentDefinition> = {
         'canvas-toolbar',
         'CanvasToolbar',
         config,
-        config.config.canvas.enabled !== false && config.visibility.canvas?.toolbar !== false,
+        config.visibility.canvas?.toolbar !== false,
         'canvas.enabled',
+        config.config.canvas.enabled !== false,
       ),
   },
   'canvas-context-menu': {
@@ -112,8 +116,9 @@ export const componentRegistry: Record<ComponentId, ComponentDefinition> = {
         'canvas-context-menu',
         'CanvasContextMenu',
         config,
-        config.config.canvas.enabled !== false && config.visibility.canvas?.contextMenu !== false,
+        config.visibility.canvas?.contextMenu !== false,
         'canvas.enabled',
+        config.config.canvas.enabled !== false,
       ),
   },
   inspector: {

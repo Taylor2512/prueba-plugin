@@ -83,4 +83,15 @@ describe('config capability resolution', () => {
     expect(withoutClipboard.executable).toBe(false);
     expect(withoutClipboard.reason).toBe('clipboard-empty');
   });
+
+  it('separa disponibilidad, visibilidad y estado activo del canvas', () => {
+    const disabled = resolveSisadPdfmeConfig({ canvas: { enabled: false } });
+    const state = selectComponentState(disabled, 'canvas-toolbar');
+    expect(state.available).toBe(false);
+    expect(state.enabled).toBe(false);
+    expect(state.visible).toBe(true);
+    expect(state.active).toBe(false);
+    expect(state.executable).toBe(false);
+    expect(state.reason).toBe('disabled-by-config');
+  });
 });

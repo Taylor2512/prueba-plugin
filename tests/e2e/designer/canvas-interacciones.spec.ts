@@ -91,4 +91,21 @@ test.describe('Designer — selección, movimiento, undo/redo y zoom', () => {
     if (identity.document) await expect(schema).toHaveAttribute('data-document-id', identity.document);
     if (identity.page) await expect(schema).toHaveAttribute('data-page-number', identity.page);
   });
+
+  test('CMD-013 — Descargar PDF entrega bytes PDF y no el template JSON', async ({ page }) => {
+    await page.getByTestId('designer-more-actions').click();
+    const downloadPromise = page.waitForEvent('download', { timeout: 30_000 });
+    await page.getByRole('menuitem', { name: 'Descargar PDF' }).click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toMatch(/\.pdf$/i);
+    const stream = await download.createReadStream();
+    expect(stream).not.toBeNull();
+    if (!stream) return;
+    const chunks: Buffer[] = [];
+    for await (const chunk of stream) chunks.push(Buffer.from(chunk));
+    const bytes = Buffer.concat(chunks);
+    expect(bytes.subarray(0, 5).toString('ascii')).toBe('%PDF-');
+    expect(bytes.subarray(0, 1).toString('ascii')).not.toBe('{');
+    expect(bytes.subarray(0, 1).toString('ascii')).not.toBe('[');
+  });
 });

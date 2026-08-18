@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 
 import { validateBarcodeInput } from '@sisad-pdfme/schemas/barcodes/helper';
 import { splitTextToSize } from '@sisad-pdfme/schemas/text/helper';
+import { hex2PrintingColor } from '@sisad-pdfme/schemas/utils';
 
 const font = {
   unitsPerEm: 1000,
@@ -53,5 +54,14 @@ describe('text control-character splitting', () => {
   it('conserva tab, Unicode y emoji como contenido de texto', () => {
     expect(split('uno\tdos')).toEqual(['uno\tdos\n']);
     expect(split('áéí 日本語 😀')).toEqual(['áéí 日本語 😀\n']);
+  });
+});
+
+describe('monochrome PDF export', () => {
+  it('elimina la cromaticidad convirtiendo RGB a luminancia neutra', () => {
+    const color = hex2PrintingColor('#1677ff', 'grayscale');
+    expect(color).toMatchObject({ type: 'RGB' });
+    expect(color?.red).toBe(color?.green);
+    expect(color?.green).toBe(color?.blue);
   });
 });

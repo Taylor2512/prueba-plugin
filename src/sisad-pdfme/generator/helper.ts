@@ -1,4 +1,4 @@
-import * as fontkit from 'fontkit';
+import fontkit from '@pdf-lib/fontkit';
 import {
   Schema,
   Plugins,

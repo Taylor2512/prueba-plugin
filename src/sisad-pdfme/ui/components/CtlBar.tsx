@@ -228,7 +228,8 @@ type CtlBarProps = {
   onSave?: () => void;
   /** Estado de persistencia global mostrado junto a Guardar. */
   saveStatus?: SaveStatus;
-  onExport?: () => void;
+  onDownloadPdf?: () => void;
+  onExportTemplate?: () => void;
   featureToggles?: {
     grid?: boolean;
     guides?: boolean;
@@ -276,7 +277,8 @@ const CtlBar = (props: CtlBarProps) => {
     onOpenShortcuts,
     onSave,
     saveStatus,
-    onExport,
+    onDownloadPdf,
+    onExportTemplate,
     featureToggles,
     onToggleFeature,
     interactionPhase,
@@ -417,7 +419,8 @@ const CtlBar = (props: CtlBarProps) => {
   if (removePage && pageNum > 1 && pageCursor !== 0) pageMenuChildren.push({ key: 'remove-page', label: i18n('removePage') });
 
   const documentMenuChildren: NonNullable<MenuProps['items']> = [];
-  if (onExport) documentMenuChildren.push({ key: 'export-pdf', label: 'Descargar PDF' });
+  if (onDownloadPdf) documentMenuChildren.push({ key: 'download-pdf', label: 'Descargar PDF' });
+  if (onExportTemplate) documentMenuChildren.push({ key: 'export-template', label: 'Exportar template' });
 
   const moreMenuItems: MenuProps['items'] = [];
   if (viewMenuChildren.length > 0) {
@@ -456,7 +459,8 @@ const CtlBar = (props: CtlBarProps) => {
     if (key === 'add-page') addPageAfter?.();
     if (key === 'duplicate-page') duplicatePageAfter?.();
     if (key === 'remove-page') removePage?.();
-    if (key === 'export-pdf') onExport?.();
+    if (key === 'download-pdf') onDownloadPdf?.();
+    if (key === 'export-template') onExportTemplate?.();
   };
 
   return (

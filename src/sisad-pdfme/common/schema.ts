@@ -223,7 +223,7 @@ export const Dict = z.object({
 export const Mode = z.enum(['viewer', 'form', 'designer']);
 
 /** Tipo de color usado por render PDF cuando aplica. */
-export const ColorType = z.enum(['rgb', 'cmyk']).optional();
+export const ColorType = z.enum(['rgb', 'cmyk', 'grayscale']).optional();
 
 /** Tamaño rectangular genérico. */
 export const Size = z.object({ height: z.number(), width: z.number() });

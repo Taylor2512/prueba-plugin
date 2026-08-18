@@ -217,7 +217,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
     },
 
     pdf: async (arg) => {
-      const { page, schema } = arg;
+      const { page, schema, options } = arg;
       const radioSchema = schema as RadioGroupSchema;
       const resolvedOptions = normalizeRadioGroupOptions(radioSchema);
 
@@ -230,6 +230,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         indicatorShape: 'circle',
         selectedOptionId: resolveRadioGroupSelectedOptionId(radioSchema, resolvedOptions),
         color: radioSchema.color,
+        colorType: options.colorType,
       });
     },
 

@@ -1,4 +1,4 @@
-import * as fontkit from 'fontkit';
+import fontkit from '@pdf-lib/fontkit';
 import type { Font as FontKitFont } from 'fontkit';
 import {
   b64toUint8Array,

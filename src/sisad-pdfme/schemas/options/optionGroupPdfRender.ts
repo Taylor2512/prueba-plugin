@@ -1,4 +1,4 @@
-import type { PDFRenderProps, Schema } from '@sisad-pdfme/common';
+import type { ColorType, PDFRenderProps, Schema } from '@sisad-pdfme/common';
 import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
 import { convertForPdfLayoutProps, hex2PrintingColor } from '@sisad-pdfme/schemas/utils';
 
@@ -11,6 +11,7 @@ export type OptionGroupPdfParams = {
   selectedOptionId?: string | null;
   selectedOptionIds?: string[];
   color?: string;
+  colorType?: ColorType;
 };
 
 // Simple PDF renderer for option groups (draws small radio circles or checkbox squares)
@@ -23,12 +24,13 @@ export const renderOptionGroupPdf = ({
   selectedOptionId,
   selectedOptionIds,
   color = '#1677ff',
+  colorType,
 }: OptionGroupPdfParams) => {
   const pageHeight = page.getHeight();
   const {
     position: { x: left, y: top },
   } = convertForPdfLayoutProps({ schema, pageHeight, applyRotateTranslate: false });
-  const printingColor = hex2PrintingColor(color);
+  const printingColor = hex2PrintingColor(color, colorType);
   const selectedSet = new Set(Array.isArray(selectedOptionIds) ? selectedOptionIds : []);
 
   const BOX_SIZE = 8; // small marker in PDF units
@@ -67,9 +69,8 @@ export const renderOptionGroupPdf = ({
       });
     }
 
-    page.drawText(String(opt.label || opt.optionId), { x: labelX, y: cursorY + 1, size: 10, color: hex2PrintingColor('#000000') });
+    page.drawText(String(opt.label || opt.optionId), { x: labelX, y: cursorY + 1, size: 10, color: hex2PrintingColor('#000000', colorType) });
 
     cursorY += BOX_SIZE + GAP;
   });
 };
-
