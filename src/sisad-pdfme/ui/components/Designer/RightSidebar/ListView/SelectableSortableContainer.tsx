@@ -337,13 +337,11 @@ const SelectableSortableContainer = ({
       onDragStart={({ active }) => {
         const nextActiveId = String(active.id);
         setActiveId(nextActiveId);
-
-        if (!isItemSelected(nextActiveId)) {
-          handleSelectionRequested(nextActiveId, {
-            isRange: false,
-            isToggle: false,
-          });
-        }
+        // Drag intent is independent from navigation/selection intent. Selecting
+        // here unmounted the list when auto-focus moved to DetailView, interrupting
+        // the reorder gesture. An unselected row can be reordered without changing
+        // the canvas selection; multi-drag still uses the selection that existed
+        // before the gesture.
       }}
       onDragEnd={({ active, over }) => {
         const draggedId = String(active.id);

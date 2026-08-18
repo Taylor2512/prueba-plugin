@@ -1,4 +1,5 @@
 import type { Font as FontKitFont } from 'fontkit';
+import type { RGB } from 'pdf-lib';
 import { describe, expect, it } from 'vitest';
 
 import { validateBarcodeInput } from '@sisad-pdfme/schemas/barcodes/helper';
@@ -59,7 +60,7 @@ describe('text control-character splitting', () => {
 
 describe('monochrome PDF export', () => {
   it('elimina la cromaticidad convirtiendo RGB a luminancia neutra', () => {
-    const color = hex2PrintingColor('#1677ff', 'grayscale');
+    const color = hex2PrintingColor('#1677ff', 'grayscale') as RGB;
     expect(color).toMatchObject({ type: 'RGB' });
     expect(color?.red).toBe(color?.green);
     expect(color?.green).toBe(color?.blue);
