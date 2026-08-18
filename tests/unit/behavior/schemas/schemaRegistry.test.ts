@@ -6,6 +6,7 @@ import {
   createDefaultSchema,
   getSchemaFamily,
   getSchemaPluginByType,
+  getSchemaSerializationPolicy,
   generateUniqueSchemaName,
 } from '../../../../src/sisad-pdfme/schemas';
 
@@ -32,6 +33,21 @@ describe('Registro canónico de schemas', () => {
     }
 
     expect(Object.keys(flatSchemaPlugins).length).toBeGreaterThanOrEqual(types.size);
+  });
+
+  test('TRC-005 — cada plugin expone política de serialización registry-driven', () => {
+    for (const definition of builtInSchemaDefinitions) {
+      const policy = getSchemaSerializationPolicy(definition.type);
+      expect(typeof policy.serialize).toBe('function');
+      expect(typeof policy.deserialize).toBe('function');
+      expect(typeof policy.validate).toBe('function');
+      expect(typeof policy.migrate).toBe('function');
+      const schema = createDefaultSchema(definition.type, { schemaUid: `roundtrip-${definition.type}` });
+      const serialized = policy.serialize(schema);
+      expect(serialized.schemaUid).toBe(schema.schemaUid);
+      expect(policy.validate(serialized)).toBe(true);
+      expect(policy.deserialize(serialized).type).toBe(schema.type);
+    }
   });
 
   // @caso INS-012

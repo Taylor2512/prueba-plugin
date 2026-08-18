@@ -135,7 +135,7 @@ describe('portable Template JSON contract', () => {
       template: { id: 't1', name: 'Contrato' },
       documents: [{ id: 'd1', name: 'Doc', order: 0 }],
       users: [{ id: 'u1', displayName: 'Alice' }],
-      schemas: [{ schemaUid: 's1', type: 'text', pageIndex: 0, documentId: 'd1' }],
+      schemas: [{ schemaUid: 's1', type: 'text', name: 'field', displayLabel: 'Field', pageIndex: 0, documentId: 'd1', position: { x: 0, y: 0 }, width: 45, height: 10, rotation: 0, readOnly: false, positionLocked: false, hidden: false, required: false }],
       assignments: [{ id: 'a1', schemaUid: 's1', userIds: ['u1'] }],
       settings: {},
     });
@@ -150,6 +150,31 @@ describe('portable Template JSON contract', () => {
       'validate:ok',
       'hydrate:ok',
     ]);
+  });
+
+  it('enforces the complete field matrix and duplicate-name scope', () => {
+    const valid = {
+      schemaUid: 's1', type: 'text', name: 'field', displayLabel: 'Field', documentId: 'd1', pageIndex: 0,
+      position: { x: 0, y: 0 }, width: 45, height: 10, rotation: 0,
+      readOnly: false, positionLocked: false, hidden: false, required: false,
+    };
+    const validation = validateSisadPdfmeTemplate({
+      format: PORTABLE_TEMPLATE_FORMAT,
+      schemaVersion: PORTABLE_TEMPLATE_SCHEMA_VERSION,
+      template: { id: 't1', name: 'Contrato' },
+      documents: [{ id: 'd1', name: 'Doc', order: 0 }], users: [],
+      schemas: [valid, { ...valid, schemaUid: 's2', position: { ...valid.position } }], assignments: [], settings: {},
+    });
+    expect(validation.valid).toBe(false);
+    expect(validation.issues.map((issue) => issue.code)).toContain('DUPLICATE_SCHEMA_NAME');
+
+    const malformed = validateSisadPdfmeTemplate({
+      format: PORTABLE_TEMPLATE_FORMAT, schemaVersion: PORTABLE_TEMPLATE_SCHEMA_VERSION,
+      template: { id: 't1', name: 'Contrato' }, documents: [{ id: 'd1', name: 'Doc', order: 0 }], users: [],
+      schemas: [{ ...valid, schemaUid: 's3', position: { x: -1, y: 0 }, required: 'yes' }], assignments: [], settings: {},
+    });
+    expect(malformed.valid).toBe(false);
+    expect(malformed.issues.map((issue) => issue.code)).toContain('INVALID_ENTITY_SHAPE');
   });
 
   it('marks hydrate skipped for unsupported or malformed ingest payload', () => {

@@ -1,6 +1,6 @@
 /** Canonical, portable Template JSON contract (schemaVersion in content). */
 
-import { getSchemaPluginByType } from '@sisad-pdfme/schemas';
+import { getSchemaPluginByType, getSchemaSerializationPolicy } from '@sisad-pdfme/schemas';
 
 export const PORTABLE_TEMPLATE_SCHEMA_VERSION = 1;
 
@@ -33,7 +33,8 @@ export type PortableTemplateIssueCode =
   | 'INVALID_ENTITY_SHAPE'
   | 'DUPLICATE_ID'
   | 'UNSUPPORTED_SCHEMA_TYPE'
-  | 'ORPHAN_REFERENCE';
+  | 'ORPHAN_REFERENCE'
+  | 'DUPLICATE_SCHEMA_NAME';
 
 export type PortableTemplateIssue = {
   code: PortableTemplateIssueCode;
@@ -125,6 +126,18 @@ const flattenLegacySchemas = (schemas: unknown): Array<Record<string, unknown>> 
             ? schema.schemaUid
             : `legacy-${pageIndex}-${schemaIndex}`,
         pageIndex,
+        name: typeof schema.name === 'string' && schema.name.trim() ? schema.name : `legacy-${pageIndex}-${schemaIndex}`,
+        displayLabel: typeof schema.displayLabel === 'string' && schema.displayLabel.trim()
+          ? schema.displayLabel
+          : (typeof schema.name === 'string' && schema.name.trim() ? schema.name : `legacy-${pageIndex}-${schemaIndex}`),
+        position: isObject(schema.position) ? schema.position : { x: 0, y: 0 },
+        width: typeof schema.width === 'number' ? schema.width : 1,
+        height: typeof schema.height === 'number' ? schema.height : 1,
+        rotation: typeof schema.rotation === 'number' ? schema.rotation : 0,
+        readOnly: schema.readOnly === true,
+        positionLocked: schema.positionLocked === true || schema.locked === true,
+        hidden: schema.hidden === true,
+        required: schema.required === true,
         ...schema,
       });
     });
@@ -243,6 +256,7 @@ export const validateSisadPdfmeTemplate = (value: unknown): PortableTemplateVali
   );
   const schemas = Array.isArray(template.schemas) ? template.schemas : [];
   const seenSchemaUids = new Set<string>();
+  const seenSchemaNames = new Set<string>();
   const schemaUids = new Set(
     schemas
       .map((schema) => (isObject(schema) && typeof schema.schemaUid === 'string' ? schema.schemaUid.trim() : ''))
@@ -299,6 +313,49 @@ export const validateSisadPdfmeTemplate = (value: unknown): PortableTemplateVali
         path: `$.schemas[${index}].type`,
         message: `Unsupported schema type "${schema.type}".`,
       });
+    } else if (!getSchemaSerializationPolicy(schema.type).validate(schema)) {
+      issues.push({
+        code: 'INVALID_ENTITY_SHAPE',
+        severity: 'error',
+        path: `$.schemas[${index}]`,
+        message: `Schema type "${schema.type}" failed its registry serialization policy.`,
+      });
+    }
+    const schemaPath = `$.schemas[${index}]`;
+    if (typeof schema.name !== 'string' || !schema.name.trim()) {
+      issues.push({ code: 'MISSING_REQUIRED_FIELD', severity: 'error', path: `${schemaPath}.name`, message: 'Schema requires a non-empty name.' });
+    }
+    if (typeof schema.displayLabel !== 'string' || !schema.displayLabel.trim()) {
+      issues.push({ code: 'MISSING_REQUIRED_FIELD', severity: 'error', path: `${schemaPath}.displayLabel`, message: 'Schema requires a non-empty displayLabel.' });
+    }
+    const documentScope = typeof schema.documentId === 'string' ? schema.documentId.trim() : '';
+    const pageScope = typeof schema.pageIndex === 'number' ? schema.pageIndex : 0;
+    if (typeof schema.name === 'string' && schema.name.trim()) {
+      const nameKey = `${documentScope}::${pageScope}::${schema.name.trim()}`;
+      if (seenSchemaNames.has(nameKey)) {
+        issues.push({ code: 'DUPLICATE_SCHEMA_NAME', severity: 'error', path: `${schemaPath}.name`, message: `Duplicate schema name "${schema.name.trim()}" in the same document/page scope.` });
+      }
+      seenSchemaNames.add(nameKey);
+    }
+    const position = schema.position;
+    if (!isObject(position) || typeof position.x !== 'number' || !Number.isFinite(position.x) || typeof position.y !== 'number' || !Number.isFinite(position.y) || position.x < 0 || position.y < 0) {
+      issues.push({ code: 'INVALID_ENTITY_SHAPE', severity: 'error', path: `${schemaPath}.position`, message: 'Schema position requires finite non-negative x and y.' });
+    }
+    const width = schema.width ?? (isObject(schema.size) ? schema.size.width : undefined);
+    const height = schema.height ?? (isObject(schema.size) ? schema.size.height : undefined);
+    if (typeof width !== 'number' || !Number.isFinite(width) || width <= 0) {
+      issues.push({ code: 'INVALID_ENTITY_SHAPE', severity: 'error', path: `${schemaPath}.width`, message: 'Schema width must be a positive finite number.' });
+    }
+    if (typeof height !== 'number' || !Number.isFinite(height) || height <= 0) {
+      issues.push({ code: 'INVALID_ENTITY_SHAPE', severity: 'error', path: `${schemaPath}.height`, message: 'Schema height must be a positive finite number.' });
+    }
+    if (typeof schema.rotation !== 'number' || !Number.isFinite(schema.rotation)) {
+      issues.push({ code: 'INVALID_ENTITY_SHAPE', severity: 'error', path: `${schemaPath}.rotation`, message: 'Schema rotation must be finite.' });
+    }
+    for (const flag of ['readOnly', 'positionLocked', 'hidden', 'required'] as const) {
+      if (typeof schema[flag] !== 'boolean') {
+        issues.push({ code: 'INVALID_ENTITY_SHAPE', severity: 'error', path: `${schemaPath}.${flag}`, message: `Schema ${flag} must be boolean.` });
+      }
     }
     if (schema.pageIndex !== undefined && (typeof schema.pageIndex !== 'number' || !Number.isInteger(schema.pageIndex) || schema.pageIndex < 0)) {
       issues.push({
@@ -440,7 +497,13 @@ export const hydratePortableTemplate = (template: PortableTemplateJson): Hydrate
 export const serializePortableTemplate = (value: unknown): string => {
   const result = normalizePortableTemplate(value);
   if (!result.valid || !result.template) throw new TypeError(result.issues.join('; '));
-  return JSON.stringify(result.template, null, 2);
+  const serialized = {
+    ...result.template,
+    schemas: result.template.schemas.map((schema) =>
+      getSchemaSerializationPolicy(String(schema.type)).serialize(schema as never),
+    ),
+  };
+  return JSON.stringify(serialized, null, 2);
 };
 
 export const parsePortableTemplate = (payload: string): PortableTemplateParseResult => {

@@ -1713,8 +1713,8 @@
     "index": 172,
     "path": "src/sisad-pdfme/schemas/index.ts",
     "language": "typescript",
-    "lines": 450,
-    "kb": 14.5,
+    "lines": 469,
+    "kb": 15.4,
     "domain": "schemas",
     "testPath": "tests/unit/files/schemas/index.ts.file.test.ts",
     "cases": 4
@@ -1973,8 +1973,8 @@
     "index": 198,
     "path": "src/sisad-pdfme/schemas/schemaBuilder.ts",
     "language": "typescript",
-    "lines": 196,
-    "kb": 6.7,
+    "lines": 204,
+    "kb": 7.1,
     "domain": "schemas",
     "testPath": "tests/unit/files/schemas/schemaBuilder.ts.file.test.ts",
     "cases": 4
@@ -2513,8 +2513,8 @@
     "index": 252,
     "path": "src/sisad-pdfme/shared/portableTemplate.ts",
     "language": "typescript",
-    "lines": 521,
-    "kb": 16.6,
+    "lines": 584,
+    "kb": 20.7,
     "domain": "shared",
     "testPath": "tests/unit/files/shared/portableTemplate.ts.file.test.ts",
     "cases": 4

@@ -21,8 +21,16 @@ export type SchemaDefinition = {
   capabilities?: SchemaCapability[];
 };
 
+export type SchemaSerializationPolicy<T extends Schema = Schema> = {
+  serialize: (schema: T) => Record<string, unknown>;
+  deserialize: (value: Record<string, unknown>) => T;
+  validate: (value: Record<string, unknown>) => boolean;
+  migrate: (value: Record<string, unknown>) => Record<string, unknown>;
+};
+
 export type SchemaPluginWithMetadata<T extends Schema = Schema> = Plugin<T> & {
   designer: SchemaDefinition;
+  serialization?: SchemaSerializationPolicy<T>;
 };
 
 export type AnySchemaPlugin = Plugin<Schema>;

@@ -31,7 +31,7 @@ import {
   createSchemaPlugin,
   renderLucideIcon,
 } from '@sisad-pdfme/schemas/schemaBuilder';
-import type { SchemaPluginMap, SchemaPluginWithMetadata } from '@sisad-pdfme/schemas/schemaBuilder';
+import type { SchemaPluginMap, SchemaPluginWithMetadata, SchemaSerializationPolicy } from '@sisad-pdfme/schemas/schemaBuilder';
 import {
   createSchemaInspectorConfig,
   getSchemaFamilyInspectorPreset,
@@ -173,6 +173,25 @@ export const registerPlugins = (plugins: Record<string, Plugin<Schema>> = {}) =>
 
 export const getSchemaPluginByType = (type: string) =>
   getAllRegisteredSchemaPlugins()[normalizeSchemaType(type)];
+
+const defaultSchemaSerializationPolicy: SchemaSerializationPolicy = {
+  serialize: (schema) => ({ ...schema } as Record<string, unknown>),
+  deserialize: (value) => ({ ...value } as Schema),
+  validate: (value) => Boolean(value && typeof value === 'object' && typeof (value as Record<string, unknown>).type === 'string'),
+  migrate: (value) => ({ ...value }),
+};
+
+/** Registry-owned serialization hooks; plugins may override the defaults in their manifest. */
+export const getSchemaSerializationPolicy = (type: string): SchemaSerializationPolicy => {
+  const plugin = getSchemaPluginByType(type) as SchemaPluginWithMetadata | undefined;
+  return plugin?.serialization || defaultSchemaSerializationPolicy;
+};
+
+export const listSchemaSerializationPolicies = () =>
+  Object.keys(getAllRegisteredSchemaPlugins()).reduce<Record<string, SchemaSerializationPolicy>>((acc, type) => {
+    acc[type] = getSchemaSerializationPolicy(type);
+    return acc;
+  }, {});
 
 export const getBuiltInFields = () => builtInSchemaDefinitions.map((definition) => ({ ...definition }));
 
