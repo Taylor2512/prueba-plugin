@@ -19,3 +19,30 @@ VISUX-005,006,007,011,012 y COREUX-020,021,022,042,043.
 - overlays con stacking/collision policy única;
 - touch/keyboard sin duplicar comportamiento;
 - no remount por cambios puramente presentacionales.
+
+<!-- designer-ux-hardening:start -->
+## Refinamiento activo — selección regional y cuadrícula
+
+### Selección regional
+
+- Tratar `DesignerCoordinateService` como autoridad de conversión; no compensar zoom/scroll en múltiples componentes.
+- El rect visual de Selecto y el hit-test deben representar exactamente el mismo espacio.
+- Scope de página/documento se fija al inicio del gesto según el contrato actual.
+- No capturar option internals, overlays, inputs ni handles como schemas independientes.
+
+**DoD**
+- unitarios de conversión zoom/scroll/paper offset/reverse drag;
+- Playwright con bounding boxes + IDs seleccionados en 50/75/100/125/150/200 %;
+- sidebars, scroll, multipágina y access policy cubiertos.
+
+### Cuadrícula
+
+- Mantener grid en espacio de página/mm.
+- Cada paper activo debe recibir estado efectivo y variables CSS requeridas.
+- `grid` y `snapToGrid` permanecen capacidades independientes.
+
+**DoD**
+- unitarios de capabilities/geometry;
+- Playwright verifica `data-grid-visible`, CSS vars y `background-image` real en paper;
+- toggle, zoom, padding, multipágina y grid/snap independientes.
+<!-- designer-ux-hardening:end -->
