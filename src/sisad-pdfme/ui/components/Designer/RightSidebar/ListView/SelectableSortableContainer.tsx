@@ -372,9 +372,9 @@ const SelectableSortableContainer = ({
                 data-testid="right-sidebar-field-list"
                 aria-label="Lista de campos del documento"
               >
-                {visibleSchemas.map((schema) => (
+                {visibleSchemas.map((schema, index) => (
                   <SelectableSortableItem
-                    key={schema.id}
+                    key={`${schema.id || 'schema'}-${index}`}
                     schema={schema}
                     densityMode={densityMode}
                     isSelected={

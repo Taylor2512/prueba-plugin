@@ -536,12 +536,15 @@ const Draggable = (props: {
   const { plugin, onDragStateChange, schemaFactory, schema } = props;
   const options = useContext(OptionsContext);
   const rawBase = useMemo(() => {
-    // Normalize plugin default schema to a full SchemaForUI before cloning.
-    const canonical = getCanonicalDefault(
-      plugin,
-      (schemaFactory?.() as Schema | null)?.type || schema?.type || undefined,
-    );
-    return canonical ?? (schemaFactory?.() || schema || plugin.propPanel.defaultSchema);
+    // Normalize the plugin default first, but keep the concrete schema supplied
+    // by custom fields/catalog overrides. The latter contains data such as
+    // options, group metadata and selected values that must travel in the DnD
+    // payload; using only the plugin default silently discarded those fields.
+    const sourceSchema = schemaFactory?.() || schema || plugin.propPanel.defaultSchema;
+    const canonical = getCanonicalDefault(plugin, sourceSchema?.type || undefined);
+    return canonical
+      ? ({ ...canonical, ...cloneDeep(sourceSchema) } as Schema)
+      : cloneDeep(sourceSchema);
   }, [schemaFactory, schema, plugin]);
   const baseSchema: Schema = cloneDeep(rawBase) as Schema;
   // Ensure draggable prototypes are fully normalized so downstream consumers

@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-08-15T22:39:43.944Z`
+- **Fecha generación:** `2026-08-17T19:09:25.178Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
-- **Archivos candidatos incluidos:** `5`
+- **Archivos candidatos incluidos:** `13`
 - **Límite por archivo:** `80 KB`
 - **Límite total de contenido:** `1200 KB`
 
@@ -24,6 +24,14 @@
 
 ```text
 prueba-plugin
+├── .venv
+│   └── lib
+│       └── python3.14
+│           └── site-packages
+│               └── playwright
+│                   └── driver
+│                       └── package
+│                           └── …
 └── src
     ├── sisad-pdfme
     │   └── ui
@@ -32,7 +40,6 @@ prueba-plugin
     │           └── tokens.css
     ├── style.css
     └── styles
-        ├── sisad-tailwind-bridge.css
         └── tailwind.css
 ```
 
@@ -42,18 +49,27 @@ prueba-plugin
 |---:|---|---|---:|---:|---|
 | 1 | `src/styles/tailwind.css` | css | 3 | 0.1 | completo |
 | 2 | `src/style.css` | css | 30 | 0.9 | completo |
-| 3 | `src/styles/sisad-tailwind-bridge.css` | css | 0 | 0.0 | completo |
-| 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 242 | 8.5 | completo |
-| 5 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 85 | 3.5 | completo |
+| 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 242 | 8.5 | completo |
+| 4 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 85 | 3.5 | completo |
+| 5 | `.venv/lib/python3.14/site-packages/playwright/driver/package/lib/vite/htmlReport/report.css` | css | 2 | 97.0 | omitido minificado |
+| 6 | `.venv/lib/python3.14/site-packages/playwright/driver/package/lib/vite/traceViewer/codeMirrorModule.-QdMvsKi.css` | css | 2 | 6.1 | omitido minificado |
+| 7 | `.venv/lib/python3.14/site-packages/playwright/driver/package/lib/vite/traceViewer/defaultSettingsView.BLFoOugd.css` | css | 2 | 102.8 | omitido minificado |
+| 8 | `.venv/lib/python3.14/site-packages/playwright/driver/package/lib/vite/traceViewer/index.B_TqY17P.css` | css | 2 | 2.0 | omitido minificado |
+| 9 | `.venv/lib/python3.14/site-packages/playwright/driver/package/lib/vite/traceViewer/uiMode.C7UW1sC9.css` | css | 2 | 53.1 | omitido minificado |
+| 10 | `.venv/lib/python3.14/site-packages/playwright/driver/package/lib/vite/traceViewer/xtermModule.kHJ-D0s7.css` | css | 2 | 2.8 | omitido minificado |
+| 11 | `.venv/lib/python3.14/site-packages/playwright/driver/package/lib/vite/dashboard/assets/index-DhC616m4.css` | css | 2 | 128.8 | omitido minificado |
+| 12 | `.venv/lib/python3.14/site-packages/playwright/driver/package/lib/vite/recorder/assets/codeMirrorModule--QdMvsKi.css` | css | 2 | 6.1 | omitido minificado |
+| 13 | `.venv/lib/python3.14/site-packages/playwright/driver/package/lib/vite/recorder/assets/index-l_lX622x.css` | css | 2 | 83.4 | omitido minificado |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 2455
-- **directorio ignorado: dependencia/build/salida generada:** 8
+- **extensión no incluida:** 3208
+- **directorio ignorado: dependencia/build/salida generada:** 10
+- **minificado detectado por contenido:** 9
 
 ## Totales
 
-- **KB originales candidatos:** `13.0`
+- **KB originales candidatos:** `495.2`
 - **KB incluidos en contenido:** `13.0`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
@@ -125,21 +141,7 @@ body {
 
 <a id="file-0003"></a>
 
-### 0003 — `src/styles/sisad-tailwind-bridge.css`
-
-- **Lenguaje:** `css`
-- **Líneas:** `0`
-- **Tamaño original:** `0.0 KB`
-- **SHA1 corto:** `da39a3ee5e`
-- **Estado:** `completo`
-
-```css
-
-```
-
-<a id="file-0004"></a>
-
-### 0004 — `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+### 0003 — `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `242`
@@ -393,9 +395,9 @@ body {
 }
 ```
 
-<a id="file-0005"></a>
+<a id="file-0004"></a>
 
-### 0005 — `src/sisad-pdfme/ui/styles/tokens.css`
+### 0004 — `src/sisad-pdfme/ui/styles/tokens.css`
 
 - **Lenguaje:** `css`
 - **Líneas:** `85`

@@ -21,7 +21,7 @@ import {
   type SchemaCommentReply,
 } from '@sisad-pdfme/common';
 import { ensureAnchorId, ensureComment } from '@sisad-pdfme/common/collaboration';
-import { message } from 'antd';
+import { App as AntdApp } from 'antd';
 
 import { generateSchemaUid } from '@sisad-pdfme/shared/schemaDesignerMeta';
 import { DndContext } from '@dnd-kit/core';
@@ -517,6 +517,7 @@ const TemplateEditor = ({
   onChangeTemplate: (t: Template, context?: TemplateChangeContext) => void;
   onPageCursorChange: (newPageCursor: number, totalPages: number) => void; // NOSONAR
 }) => { // NOSONAR
+  const { message } = AntdApp.useApp();
   const commandBusRef = useRef(new CommandBus());
   const canvasRef = useRef<HTMLDivElement>(null);
   const { paperRefs, registerPaperRef } = usePaperRefRegistry();

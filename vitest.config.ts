@@ -28,11 +28,17 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: './tests/unit/setupTests.ts',
+    setupFiles: './tests/support/setupTests.ts',
+    /**
+     * Sólo capas de vitest. Los E2E viven bajo `tests/e2e/**` con extensión
+     * `.spec.ts` y los ejecuta Playwright; `tests/support/**` son helpers y
+     * `tests/tooling/**` son scripts de node que corren con `node` directo.
+     */
     include: [
       'tests/unit/**/*.test.{ts,tsx,js,jsx}',
       'tests/integration/**/*.test.{ts,tsx,js,jsx}',
     ],
+    exclude: ['**/node_modules/**', 'tests/e2e/**', 'tests/support/**', 'tests/tooling/**'],
     server: {
       deps: {
         inline: ['antd', 'rc-util'],

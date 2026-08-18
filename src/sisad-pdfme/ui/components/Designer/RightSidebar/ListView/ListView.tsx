@@ -18,7 +18,7 @@ import React, { useContext, useState, useMemo, useCallback, useRef, useEffect } 
 import type { SidebarProps } from '@sisad-pdfme/ui/types';
 import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
 import { I18nContext } from '@sisad-pdfme/ui/contexts';
-import { Input, message } from 'antd';
+import { App as AntdApp, Input } from 'antd';
 import SelectableSortableContainer from '@sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer';
 import { SidebarBody, SidebarFooter, SidebarFrame, SidebarHeader } from '@sisad-pdfme/ui/components/Designer/RightSidebar/layout';
 import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
@@ -77,6 +77,7 @@ const ListView = (
     selectionCommands,
   } = props;
   const i18n = useContext(I18nContext);
+  const { message } = AntdApp.useApp();
   const runtimeEvents = props.extensions?.events;
   const rootRef = useRef<HTMLDivElement | null>(null);
   const { mode: densityMode, width: panelWidth } = useResponsiveDensity(rootRef, {

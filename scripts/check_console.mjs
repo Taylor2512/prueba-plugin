@@ -1,5 +1,7 @@
-import playwright from 'playwright';
-const { chromium } = playwright;
+// `@playwright/test` reexporta los lanzadores de navegador, así que el
+// repositorio declara una sola versión del runtime de Playwright en vez de dos
+// rangos que podían divergir (`@playwright/test@^1.62` vs `playwright@^1.58`).
+import { chromium } from '@playwright/test';
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();

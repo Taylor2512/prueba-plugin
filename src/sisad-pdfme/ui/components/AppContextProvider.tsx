@@ -8,7 +8,7 @@
  * - mantener al árbol React desacoplado de la configuración externa.
  */
 import React, { useCallback, useMemo } from 'react';
-import { ConfigProvider as ThemeConfigProvider } from 'antd';
+import { App as AntdApp, ConfigProvider as ThemeConfigProvider } from 'antd';
 import { I18nContext, FontContext, PluginsRegistry, OptionsContext } from '@sisad-pdfme/ui/contexts';
 import { i18n, getDict } from '@sisad-pdfme/ui/i18n';
 import { defaultTheme, sisadTheme } from '@sisad-pdfme/ui/theme';
@@ -102,13 +102,15 @@ const AppContextProvider = ({ children, lang, font, plugins, options }: Props) =
 
   return (
     <ThemeConfigProvider theme={theme}>
-      <I18nContext.Provider value={translate}>
-        <FontContext.Provider value={font}>
-          <PluginsRegistry.Provider value={plugins}>
-            <OptionsContext.Provider value={options}>{children}</OptionsContext.Provider>
-          </PluginsRegistry.Provider>
-        </FontContext.Provider>
-      </I18nContext.Provider>
+      <AntdApp>
+        <I18nContext.Provider value={translate}>
+          <FontContext.Provider value={font}>
+            <PluginsRegistry.Provider value={plugins}>
+              <OptionsContext.Provider value={options}>{children}</OptionsContext.Provider>
+            </PluginsRegistry.Provider>
+          </FontContext.Provider>
+        </I18nContext.Provider>
+      </AntdApp>
     </ThemeConfigProvider>
   );
 };
