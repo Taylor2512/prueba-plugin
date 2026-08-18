@@ -65,6 +65,7 @@ type SelectableSortableContainerProps = Pick<
    */
   multiSelectMode?: boolean;
   onMultiSelectModeChange?: (_next: boolean) => void;
+  onToggleReadOnly?: (_schemaId: string) => void;
 };
 
 const DENSITY_CLASSES: Record<
@@ -106,6 +107,7 @@ const SelectableSortableContainer = ({
   selectionCommands,
   multiSelectMode = false,
   onMultiSelectModeChange,
+  onToggleReadOnly,
 }: SelectableSortableContainerProps) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [rangeAnchorId, setRangeAnchorId] = useState<string | null>(null);
@@ -458,6 +460,11 @@ const SelectableSortableContainer = ({
                               [schema.id],
                               { origin: 'field-list' },
                             )
+                    }
+                    onToggleReadOnly={
+                      selectionCommands?.canEditStructure === false
+                        ? undefined
+                        : () => onToggleReadOnly?.(schema.id)
                     }
                   />
                 ))}

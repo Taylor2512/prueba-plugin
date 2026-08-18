@@ -109,6 +109,7 @@ const selectionCommands: Partial<Record<string, keyof SelectionCommandSet>> = {
   cut: 'cutSelection',
   paste: 'pasteSelection',
   duplicate: 'duplicateSelection',
+  toggleLock: 'toggleObjectLock',
 };
 
 const insertTypes: Record<string, string> = {

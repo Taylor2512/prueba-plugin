@@ -109,12 +109,15 @@ const ShortcutHelpPanel = ({
         header: 'border-b border-slate-200/80 px-5 py-4',
         body: 'bg-slate-50/70 p-0',
       }}
+      data-testid="designer-shortcuts-dialog"
+      aria-label={typeof title === 'string' ? title : 'Atajos del diseñador'}
       destroyOnHidden
       afterClose={() => setQuery('')}
     >
-      <div className={mergeClassNames('sisad-pdfme-shortcuts-panel-body', 'space-y-4 rounded-b-2xl bg-slate-50/70 p-4')}>
+      <div className={mergeClassNames('sisad-pdfme-shortcuts-panel-body', 'max-h-[min(70vh,44rem)] overflow-y-auto overscroll-contain space-y-4 rounded-b-2xl bg-slate-50/70 p-4')}>
         <Input
           ref={inputRef}
+          data-testid="designer-shortcuts-search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder={searchPlaceholder}

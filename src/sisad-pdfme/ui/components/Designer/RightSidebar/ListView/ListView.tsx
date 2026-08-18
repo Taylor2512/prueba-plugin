@@ -296,6 +296,18 @@ const ListView = (
     [changeSchemas, closeAssignmentDialog, collaborationContext, emitRuntimeEvent, recipientOptions, selectionCommands, selectedSchemas],
   );
 
+  const handleToggleReadOnly = useCallback((schemaId: string) => {
+    const schema = schemas.find((candidate) => candidate.id === schemaId);
+    if (!schema || selectionCommands?.canEditStructure === false) return;
+    changeSchemas([
+      {
+        key: 'readOnly',
+        schemaId,
+        value: schema.readOnly !== true,
+      },
+    ]);
+  }, [changeSchemas, schemas, selectionCommands?.canEditStructure]);
+
 
   /**
    * Commits one field name per line to the filtered collaboration-visible list.
@@ -406,6 +418,7 @@ const ListView = (
             selectionCommands={selectionCommands}
             multiSelectMode={multiSelectMode}
             onMultiSelectModeChange={onMultiSelectModeChange}
+            onToggleReadOnly={handleToggleReadOnly}
           />
         ) : null}
         {showEmptyState ? (

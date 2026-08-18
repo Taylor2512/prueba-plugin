@@ -1,1 +1,11 @@
-{}
+{
+  "copilot": {
+    "agent": "copilot",
+    "task": "remove-getTypeColor",
+    "mode": "write",
+    "paths": [
+      "src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx"
+    ],
+    "startedAt": "2026-08-18T17:58:22.409Z"
+  }
+}

@@ -34,7 +34,7 @@ export const DESIGNER_ACTION_ALIASES = {
   'zoom-out': 'zoomOut',
   'fit-to-page': 'fitPage',
   'open-properties': 'openDetail',
-  'lock-position': 'toggleReadOnly',
+  'lock-position': 'toggleObjectLock',
 } as const;
 
 export type DesignerActionAliasId = keyof typeof DESIGNER_ACTION_ALIASES;
@@ -226,7 +226,7 @@ const CORE_ACTIONS: SchemaActionDefinition[] = [
     isEnabled: (ctx) => ctx.canEditStructure,
   },
   {
-    id: 'toggleReadOnly',
+    id: 'toggleObjectLock',
     label: 'Bloquear posición',
     section: 'state',
     priority: 'secondary',

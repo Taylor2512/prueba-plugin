@@ -10,6 +10,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { SchemaForUI } from '../../../../src/sisad-pdfme/common';
 import { createSelectionCommands } from '../../../../src/sisad-pdfme/ui/components/Designer/shared/selectionCommands';
+import { DESIGNER_ACTION_ALIASES } from '../../../../src/sisad-pdfme/ui/components/Designer/shared/actionRegistry';
+import { DESIGNER_SHORTCUTS } from '../../../../src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts';
 
 const crearSchema = (overrides: Partial<SchemaForUI> = {}): SchemaForUI =>
   ({
@@ -49,6 +51,15 @@ const crearContexto = (schema: SchemaForUI) => {
 };
 
 describe('QH-013 — separación de readOnly y locked', () => {
+  it('el alias visible de Bloquear posición apunta al command de posición', () => {
+    expect(DESIGNER_ACTION_ALIASES['lock-position']).toBe('toggleObjectLock');
+  });
+
+  it('el shortcut L está registrado como toggleLock', () => {
+    const shortcut = DESIGNER_SHORTCUTS.find((entry) => entry.id === 'toggleLock');
+    expect(shortcut?.keys).toContain('l');
+  });
+
   it('toggleObjectLock muta `locked`, nunca `readOnly`', () => {
     const schema = crearSchema();
     const { contexto, changeSchemas } = crearContexto(schema);

@@ -59,6 +59,7 @@ interface Props {
   /** Modo de multiselección activo del contenedor; sólo para reflejo visual. */
   multiSelectMode?: boolean;
   onDelete?: () => void;
+  onToggleReadOnly?: () => void;
   schema: SchemaForUI;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -78,6 +79,7 @@ const SelectableSortableItem = ({
   onLongPressSelect,
   multiSelectMode,
   onDelete,
+  onToggleReadOnly,
   schema,
   onMouseEnter,
   onMouseLeave,
@@ -145,6 +147,7 @@ const SelectableSortableItem = ({
       status={status}
       required={itemDescriptor.isRequired}
       readOnly={itemDescriptor.isReadOnly}
+      positionLocked={(schema as SchemaForUI & { locked?: boolean }).locked === true}
       dragging={isDragging}
       sorting={isSorting}
       transition={transition}
@@ -153,6 +156,7 @@ const SelectableSortableItem = ({
       hovered={isHovering}
       densityMode={densityMode}
       onDelete={onDelete}
+      onToggleReadOnly={onToggleReadOnly}
       style={style}
       fadeIn={mountedWhileDragging}
       listeners={listeners}
