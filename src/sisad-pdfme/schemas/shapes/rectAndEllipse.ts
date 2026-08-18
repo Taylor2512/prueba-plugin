@@ -5,7 +5,6 @@ import { toRadians } from 'pdf-lib';
 import { Circle, Square } from 'lucide-react';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
 import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
-import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 import { resolveSchemaOwnerTone } from '@sisad-pdfme/schemas/shared/fieldChrome';
 import { hexColorFields } from '@sisad-pdfme/schemas/propPanel/commonInspectorFields';
 
@@ -119,7 +118,7 @@ const shape: Plugin<ShapeSchema> = {
       },
     }),
     defaultSchema: ((): ShapeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'rectangle') as Partial<ShapeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'rectangle') as Partial<ShapeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',

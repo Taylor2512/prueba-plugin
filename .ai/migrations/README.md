@@ -9,7 +9,4 @@
 
 <!-- project-tools:navigation:start -->
 ## Navegación generada
-
-### Secciones
-
 <!-- project-tools:navigation:end -->

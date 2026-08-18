@@ -88,7 +88,7 @@ const lineSchema: Plugin<LineSchema> = {
       },
     }),
     defaultSchema: ((): LineSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'line') as Partial<LineSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'line') as Partial<LineSchema> | null;
       return {
         ...(canonical || {}),
         name: '',

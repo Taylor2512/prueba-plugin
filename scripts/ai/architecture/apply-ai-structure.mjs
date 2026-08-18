@@ -18,12 +18,6 @@ const reportDir=path.join(root,"reports/architecture");fs.mkdirSync(reportDir,{r
 const changes=[], replacements={...policy.knownReplacements,...policy.brainContractMoves,...policy.legacyContractMoves,...policy.moveIfPresent};
 
 function record(action, data){changes.push({action,...data});}
-function loadInstalled(rel){
-  const p=path.join(root,rel);
-  if(!fs.existsSync(p)) throw new Error(`MISSING_INSTALLED_TEMPLATE ${rel}`);
-  return read(p);
-}
-
 // 1. Canonical Scrum governance is installed by setup; ensure it remains.
 for (const rel of [
   ".ai/scrum/governance/README.md",

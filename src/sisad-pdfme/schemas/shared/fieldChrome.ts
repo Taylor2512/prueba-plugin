@@ -17,8 +17,6 @@ import { resolveSchemaOwnerColorValue as resolveSchemaOwnerColorValueFromAppeara
  * resuelto. No es la paleta por defecto: con dueño, la caja usa su tono.
  */
 export const DESIGNER_OPTION_BOX_BORDER = '#65d8de';
-const DESIGNER_OPTION_BOX_BG = 'rgba(161, 239, 242, 0.58)';
-
 // ─── Designer compact box element ────────────────────────────────────────────
 
 /**

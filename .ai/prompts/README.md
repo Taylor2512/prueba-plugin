@@ -84,6 +84,7 @@
 - [Prompt maestro para Codex — corrección visual y comportamiento SISAD PDFME](./PROMPT_CODEX_VISUAL_COMPORTAMIENTO_SISAD_PDFME.md)
 - [GitHub Copilot — reviewer / UX / disjoint writer](./PROMPT_COPILOT_REVIEWER.md)
 - [SISAD-PDFME — autonomous Markdown architecture repair](./PROMPT_MARKDOWN_ARCHITECTURE_REPAIR.md)
+- [Prompt — Portable host hardening](./PROMPT_PORTABLE_HOST_HARDENING.md)
 - [SISAD-PDFME — AUTONOMOUS RUNTIME COMPLETION](./PROMPT_SISAD_PDFME_AUTONOMOUS_START.md)
 - [Prompt — dynamic capabilities](./PROMPT_SISAD_PDFME_DYNAMIC_CAPABILITIES.md)
 - [Prompt — SISAD-PDFME execution orchestration](./PROMPT_SISAD_PDFME_EXECUTION_ORCHESTRATION.md)

@@ -10,6 +10,7 @@
 
 ### Notas
 
+- [Arquitectura de tests](./01-arquitectura-de-tests.md)
 - [Checklist manual](./01-manual-checklist.md)
 - [Regression Matrix](./02-regression-matrix.md)
 - [Playwright](./03-playwright.md)

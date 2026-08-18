@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { matchOptionId, resolveSingleOptionSelection, resolveMultiOptionSelection, toggleMultiOptionSelection, clampMultiOptionSelection, normalizeStringOptions, resolveCompactSelection } from '@sisad-pdfme/schemas/options/optionSelectionBehavior';
 import { ensureAtLeastOneOption } from '@sisad-pdfme/schemas/options/optionModel';
-const options=[{optionId:'a',label:'A',value:'value-a'},{optionId:'b',label:'B',value:'value-b'},{optionId:'c',label:'C',value:'value-c'}] as any[];
+import type { OptionItem } from '@sisad-pdfme/schemas/options/optionTypes';
+const options: OptionItem[]=[{optionId:'a',label:'A',value:'value-a'},{optionId:'b',label:'B',value:'value-b'},{optionId:'c',label:'C',value:'value-c'}];
 describe('option behavior',()=>{
   it('match id',()=>expect(matchOptionId('b',options)).toBe('b'));
   it('match value',()=>expect(matchOptionId('value-b',options)).toBe('b'));

@@ -13,7 +13,7 @@ import { createEnvironmentConverters } from '@sisad-pdfme/converter/createEnviro
  * - mantiene la misma API pública que el entry browser.
  */
 let createCanvas: (width: number, height: number) => unknown;
-const require = createRequire(import.meta.url);
+const loadOptionalNodeModule = createRequire(import.meta.url);
 
 try {
   /**
@@ -21,11 +21,7 @@ try {
    * Si no existe, `pdf2img` fallará al intentar crear canvas,
    * pero `pdf2size` todavía puede funcionar porque solo lee páginas.
    */
-  // Excepción a no-require-imports: la carga tiene que ser síncrona y poder
-  // fallar sin abortar el módulo. `import` estático rompería el entry cuando
-  // `canvas` no está instalado, e `import()` dinámico es asíncrono.
-  
-  ({ createCanvas } = require('canvas'));
+  ({ createCanvas } = loadOptionalNodeModule('canvas'));
 } catch (error) {
   if (error && typeof error === 'object' && 'code' in error && error.code !== 'MODULE_NOT_FOUND') {
     throw error;

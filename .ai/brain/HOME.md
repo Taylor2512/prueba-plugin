@@ -33,12 +33,12 @@ Do not load the whole Brain. Source + tests + evidence outrank documentation.
 - [20-contracts](./20-contracts/README.md)
 - [30-decisions](./30-decisions/README.md)
 - [40-runtime](./40-runtime/README.md)
-- [45-integrations](./45-integrations/README.md)
 - [50-guides](./50-guides/README.md)
 - [60-quality](./60-quality/README.md)
 - [70-memory](./70-memory/README.md)
 - [80-work](./80-work/README.md)
 - [90-reference](./90-reference/README.md)
+- [Portable integrations](./45-integrations/README.md)
 
 ### Notas
 

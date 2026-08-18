@@ -165,7 +165,7 @@ const schema: Plugin<NumberSchema> = createSchemaPlugin<NumberSchema>(
         includeConnections: true,
       }),
       defaultSchema: ((): Schema => {
-        const canonical = getCanonicalDefault(undefined as any, 'number') as Partial<Schema> | null;
+        const canonical = getCanonicalDefault(undefined, 'number') as Partial<Schema> | null;
         return {
           ...(canonical || {}),
           name: '',

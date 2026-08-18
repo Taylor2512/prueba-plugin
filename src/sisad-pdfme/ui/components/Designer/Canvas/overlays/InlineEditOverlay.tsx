@@ -48,8 +48,13 @@ const editorCommitStrategies = {
  * Mantiene un draft local y delega persistencia/cancelación mediante callbacks
  * para no acoplar el overlay al store ni al modelo de schemas.
  */
-const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEditOverlayProps) => {
-  const [draft, setDraft] = useState(session?.value ?? '');
+const InlineEditSessionEditor = ({
+  session,
+  canvasSize,
+  onCommit,
+  onCancel,
+}: Omit<InlineEditOverlayProps, 'session'> & { session: InlineEditSession }) => {
+  const [draft, setDraft] = useState(session.value);
   const inputRef = useRef<InputRef | null>(null);
   const sessionLabel = session?.target === 'name' ? 'Editar nombre' : 'Editar texto';
   const sessionHint =
@@ -59,17 +64,9 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
   const inputPlaceholder = session?.target === 'name' ? 'Nombre del campo' : 'Escribe el contenido';
 
 /**
- * Sincroniza el draft cuando cambia la sesión activa.
- */
-  useEffect(() => {
-    setDraft(session?.value ?? '');
-  }, [session?.schemaId, session?.target, session?.value]);
-
-/**
  * Enfoca y selecciona el input al abrir la sesión de edición.
  */
   useEffect(() => {
-    if (!session) return;
     const raf = requestAnimationFrame(() => {
       inputRef.current?.focus();
       if ('select' in (inputRef.current || {})) {
@@ -81,7 +78,7 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
       }
     });
     return () => cancelAnimationFrame(raf);
-  }, [session]);
+  }, []);
 
 /**
  * Confirma el valor actual del draft.
@@ -128,8 +125,6 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
     placeholder: inputPlaceholder,
     className: 'sisad-pdfme-ui-inline-edit-overlay-input rounded-xl border-slate-200 shadow-sm',
   };
-
-  if (!session) return null;
 
   const canvasRoot = globalThis.document?.querySelector('.sisad-pdfme-designer-canvas') as HTMLElement | null;
   const canvasRect = canvasRoot?.getBoundingClientRect();
@@ -223,6 +218,20 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
         </div>
       </div>
     </div>
+  );
+};
+
+const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEditOverlayProps) => {
+  if (!session) return null;
+
+  return (
+    <InlineEditSessionEditor
+      key={`${session.schemaId}:${session.target}`}
+      session={session}
+      canvasSize={canvasSize}
+      onCommit={onCommit}
+      onCancel={onCancel}
+    />
   );
 };
 

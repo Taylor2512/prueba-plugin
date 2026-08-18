@@ -21,6 +21,7 @@
 - [Assignments](./05-assignments.md)
 - [Runtime modes](./06-runtime-modes.md)
 - [Snapshot](./07-snapshot.md)
+- [Localización (i18n)](./08-localizacion.md)
 <!-- project-tools:navigation:end -->
 
 <!-- sisad-architecture-hub:start -->

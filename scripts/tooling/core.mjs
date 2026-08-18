@@ -20,21 +20,12 @@ export function sha256File(file) {
   return sha256Buffer(fs.readFileSync(file));
 }
 
-function readText(file) {
-  return fs.readFileSync(file, "utf8");
-}
-
 export function readTextSafe(file) {
   try {
     return fs.readFileSync(file, "utf8");
   } catch {
     return "";
   }
-}
-
-function writeText(file, text) {
-  ensureDir(path.dirname(file));
-  fs.writeFileSync(file, text.endsWith("\n") ? text : `${text}\n`, "utf8");
 }
 
 export function copyRecursive(source, target) {
@@ -159,11 +150,6 @@ export function walkFiles(root, {
 
 export function relative(root, abs) {
   return normalizeRelative(path.relative(root, abs));
-}
-
-function isProtected(relativePath, config) {
-  const rel = normalizeRelative(relativePath);
-  return config.paths.protectedPaths.has(rel);
 }
 
 export function externalBackupRoot(repoRoot, suffix) {

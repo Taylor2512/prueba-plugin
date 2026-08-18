@@ -25,7 +25,6 @@ import {
   getDict,
   resolveLang,
   resolveSchemaCategoryLabel,
-  resolveSchemaTypeLabel,
   type Translate,
 } from '../../../../src/sisad-pdfme/ui/i18n';
 import {

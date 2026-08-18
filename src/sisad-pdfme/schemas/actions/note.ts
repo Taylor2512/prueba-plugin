@@ -88,7 +88,7 @@ const notePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         includeConnections: true,
       }),
       defaultSchema: ((): Schema => {
-        const canonical = getCanonicalDefault(undefined as any, 'note') as Partial<Schema> | null;
+        const canonical = getCanonicalDefault(undefined, 'note') as Partial<Schema> | null;
         return {
           ...(canonical || {}),
           name: '',

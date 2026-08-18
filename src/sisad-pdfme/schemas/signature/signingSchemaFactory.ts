@@ -66,7 +66,7 @@ export function createSigningSchemaPlugin(config: SigningSchemaFactoryConfig): P
     typeof icon === 'string' ? icon : (icon as SVGElement).outerHTML;
   // Derive a canonical baseline and overlay factory-provided overrides.
   const baseDefaultSchema: Record<string, unknown> =
-    (getCanonicalDefault(text as any, type) as Record<string, unknown> | null) ||
+    (getCanonicalDefault(text, type) as Record<string, unknown> | null) ||
     (cloneDeep(text.propPanel.defaultSchema) as Record<string, unknown>);
 
   const defaultSchema: Schema = {

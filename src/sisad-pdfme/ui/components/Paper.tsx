@@ -5,7 +5,7 @@
  * calcula bloques de página, fondos, tamaños y metadatos DOM para cada paper,
  * manteniendo una última versión estable para evitar parpadeos durante cargas.
  */
-import { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useContext, useMemo, useState } from 'react';
 import { ZOOM, SchemaForUI, Size, getFallbackFontName } from '@sisad-pdfme/common';
 import { FontContext } from '@sisad-pdfme/ui/contexts';
 import { RULER_HEIGHT, PAGE_GAP } from '@sisad-pdfme/ui/constants';
@@ -206,12 +206,10 @@ const Paper = (props: {
     };
   }, [backgrounds, fallbackBackgrounds, initialTop, normalizedSchemasList, pageSizes]);
 
-  const [lastStableState, setLastStableState] = useState<StablePaperState | null>(null);
-
-  useEffect(() => {
-    if (!currentState) return;
-    setLastStableState((prev) => (prev?.key === currentState.key ? prev : currentState));
-  }, [currentState]);
+  const [lastStableState, setLastStableState] = useState<StablePaperState | null>(currentState);
+  if (currentState && lastStableState?.key !== currentState.key) {
+    setLastStableState(currentState);
+  }
 
   const stableState = currentState || lastStableState;
   if (!stableState) {

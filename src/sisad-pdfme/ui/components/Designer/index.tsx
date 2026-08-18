@@ -2986,6 +2986,7 @@ const TemplateEditor = ({
       void commandBusRef.current.execute({
         id: `schema.unlocked:${schemaId}`,
         label: 'Unlock field',
+        meta: { undoable: false },
         execute: ({ emit }) => {
           emit({ type: 'schema.unlocked', schemaId, pageIndex: location?.pageIndex });
         },
@@ -3018,6 +3019,7 @@ const TemplateEditor = ({
       void commandBusRef.current.execute({
         id: `schema.locked:${schemaId}`,
         label: 'Lock field',
+        meta: { undoable: false },
         execute: ({ emit }) => {
           emit({ type: 'schema.locked', schemaId, pageIndex: location?.pageIndex });
         },
@@ -3870,6 +3872,7 @@ const TemplateEditor = ({
     [
       emitActiveDocumentChange,
       materializeLoadedSchemasOwnership,
+      message,
       persistActiveDocumentSnapshot,
       pushTemplateUpdate,
       onEditEnd,

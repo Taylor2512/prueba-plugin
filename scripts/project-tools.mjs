@@ -3,12 +3,11 @@ import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { fileURLToPath } from "node:url";
-import { parseArgs, writeJson } from "./tooling/core.mjs";
+import { parseArgs } from "./tooling/core.mjs";
 import {
   applyReadmeNavigation,
   applySanitize,
   buildMarkdownIndex,
-  sanitizePlan,
   scanArchitecture,
   validateArchitecture,
 } from "./tooling/architecture.mjs";

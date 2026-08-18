@@ -36,6 +36,7 @@
 
 ### Notas
 
+- [ADR — Pre-production canonization](./ADR-PREPRODUCTION-CANONIZATION.md)
 - [ADR RTP-001 — Product identity](./ADR-RTP-001-SISAD-PDFME-PRODUCT-IDENTITY.md)
 - [ADR RTP-002 — Local-first Form](./ADR-RTP-002-LOCAL-FIRST-FORM.md)
 - [ADR RTP-003 — Manifest incremental](./ADR-RTP-003-MANIFEST-INCREMENTAL.md)
@@ -56,6 +57,8 @@
 - [ADR RTP-018 — One integrator in a shared working tree](./ADR-RTP-018-ONE-INTEGRATOR-SAME-WORKTREE.md)
 - [ADR RTP-019 — Evidence-driven task status](./ADR-RTP-019-EVIDENCE-DRIVEN-TASK-STATUS.md)
 - [ADR RTP-020 — Domain task folders](./ADR-RTP-020-DOMAIN-TASK-FOLDERS.md)
+- [ADR RTP-021 — Dos generaciones de task-cards en la misma campaña](./ADR-RTP-021-TWO-GENERATION-CARD-OVERLAP.md)
+- [ADR-RTP-022 — Consumer-agnostic core](./ADR-RTP-022-CONSUMER-AGNOSTIC-CORE.md)
 - [ADR — Centralize repository tooling](./ADR-TOOLING-CENTRALIZATION.md)
 <!-- project-tools:navigation:end -->
 

@@ -13,7 +13,7 @@ export function getCanonicalDefault(
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { normalizePluginDefaultSchema } = require('@sisad-pdfme/schemas/normalizers');
-    return normalizePluginDefaultSchema(plugin as any, type, context);
+    return normalizePluginDefaultSchema(plugin, type, context);
   } catch (e) {
     return null;
   }

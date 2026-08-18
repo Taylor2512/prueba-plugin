@@ -176,7 +176,7 @@ const attachmentPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         includeConnections: true,
       }),
       defaultSchema: ((): Schema => {
-        const canonical = getCanonicalDefault(undefined as any, 'attachment') as Partial<Schema> | null;
+        const canonical = getCanonicalDefault(undefined, 'attachment') as Partial<Schema> | null;
         return {
           ...(canonical || {}),
           name: '',

@@ -14,13 +14,15 @@ export const normalizePluginDefaultSchema = (
   type?: string,
   context: Parameters<typeof createDefaultSchema>[1] = {},
 ): SchemaForUI => {
-  const t = String(type || (plugin?.propPanel?.defaultSchema as any)?.type || 'text').trim();
+  const declaredDefault = plugin?.propPanel?.defaultSchema;
+  const declaredType = isRecord(declaredDefault) ? declaredDefault.type : undefined;
+  const t = String(type || declaredType || 'text').trim();
   // Start from the canonical defaults (fills id/schemaUid/name/position)
   const canonical = createDefaultSchema(t, context);
 
   // If the plugin provides a defaultSchema and it's an object, shallow-merge
   // it on top of the canonical defaults so plugin-provided fields override.
-  const declared = isRecord(plugin?.propPanel?.defaultSchema) ? (plugin!.propPanel!.defaultSchema as Record<string, unknown>) : {};
+  const declared = isRecord(declaredDefault) ? declaredDefault : {};
 
   return cloneDeep({ ...(canonical as SchemaForUI), ...(declared as Schema) }) as SchemaForUI;
 };

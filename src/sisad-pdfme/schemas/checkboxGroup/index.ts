@@ -1,4 +1,4 @@
-import type { Plugin, PropPanelWidgetProps, SchemaForUI, Schema } from '@sisad-pdfme/common';
+import type { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
 import { isEditable } from '@sisad-pdfme/schemas/utils';
 import { createSchemaPlugin, renderLucideIcon } from '@sisad-pdfme/schemas/schemaBuilder';
 import { SquareCheck } from 'lucide-react';
@@ -286,7 +286,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
         },
         widgets: { editCheckboxGroupOptions: CheckboxOptionsEditor },
         defaultSchema: ((): CheckboxGroupSchema => {
-          const canonical = getCanonicalDefault(undefined as any, 'checkboxGroup') as Partial<CheckboxGroupSchema> | null;
+          const canonical = getCanonicalDefault(undefined, 'checkboxGroup') as Partial<CheckboxGroupSchema> | null;
           return {
             ...(canonical || {}),
             ...buildOptionGroupDefaultSchema({

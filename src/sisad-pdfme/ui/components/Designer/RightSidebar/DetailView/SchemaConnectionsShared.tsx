@@ -5,7 +5,7 @@
  * encabezados de sección. Se usa para formularios de persistencia, API, headers,
  * params y otras configuraciones de integración.
  */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Button, Input } from 'antd';
 import { Plus, Trash2 } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '@sisad-pdfme/ui/constants';
@@ -117,7 +117,7 @@ const toRecord = (pairs: Pair[]): Record<string, string> =>
 /**
  * Editor compacto de pares clave/valor para headers, params o mappings.
  */
-export const PairEditor = ({
+const PairEditorSession = ({
   title,
   description,
   values,
@@ -133,18 +133,10 @@ export const PairEditor = ({
   placeholderValue: string;
 }) => {
   const [rows, setRows] = useState<Pair[]>(() => toPairs(values));
-  const [latestRows, setLatestRows] = useState<Pair[]>(() => toPairs(values));
-
-  useEffect(() => {
-    const nextRows = toPairs(values);
-    setRows(nextRows);
-    setLatestRows(nextRows);
-  }, [values]);
 
   const commit = useCallback(
     (nextRows: Pair[]) => {
       setRows(nextRows);
-      setLatestRows(nextRows);
       onChange(toRecord(nextRows));
     },
     [onChange],
@@ -153,7 +145,6 @@ export const PairEditor = ({
   const updateRow = (index: number, key: 'key' | 'value', value: string) => {
     setRows((prev) => {
       const nextRows = prev.map((row, rowIndex) => (rowIndex === index ? { ...row, [key]: value } : row));
-      setLatestRows(nextRows);
       return nextRows;
     });
   };
@@ -169,7 +160,7 @@ export const PairEditor = ({
           size="small"
           type="text"
           icon={<Plus size={14} />}
-          onClick={() => commit([...(latestRows || []), { id: `pair-${Date.now()}-${latestRows.length}`, key: '', value: '' }])}
+          onClick={() => commit([...rows, { id: `pair-${Date.now()}-${rows.length}`, key: '', value: '' }])}
           className="inline-flex h-6 appearance-none items-center justify-center rounded-lg border border-slate-200/80 bg-white px-2 text-[0.68rem] font-semibold text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-slate-300 hover:bg-slate-50"
         >
           Añadir
@@ -189,7 +180,7 @@ export const PairEditor = ({
               placeholder={placeholderKey}
               className="h-8 rounded-md text-[0.6875rem]"
               onChange={(event) => updateRow(index, 'key', event.target.value)}
-              onBlur={() => commit(latestRows)}
+              onBlur={() => commit(rows)}
             />
             <Input
               size="small"
@@ -199,7 +190,7 @@ export const PairEditor = ({
               placeholder={placeholderValue}
               className="h-8 rounded-md border border-slate-200/80 bg-white text-[0.6875rem] shadow-none"
               onChange={(event) => updateRow(index, 'value', event.target.value)}
-              onBlur={() => commit(latestRows)}
+              onBlur={() => commit(rows)}
             />
             <Button
               size="small"
@@ -208,7 +199,7 @@ export const PairEditor = ({
               icon={<Trash2 size={13} />}
               className="inline-flex h-6 w-6 appearance-none items-center justify-center rounded-lg border border-slate-200/80 bg-white p-0 text-red-500 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition hover:border-red-200 hover:bg-red-50"
               onClick={() => {
-                const next = latestRows.filter((_, rowIndex) => rowIndex !== index);
+                const next = rows.filter((_, rowIndex) => rowIndex !== index);
                 commit(next);
               }}
             />
@@ -217,6 +208,11 @@ export const PairEditor = ({
       </div>
     </div>
   );
+};
+
+export const PairEditor = (props: Parameters<typeof PairEditorSession>[0]) => {
+  const valuesKey = JSON.stringify(Object.entries(props.values ?? {}));
+  return <PairEditorSession key={valuesKey} {...props} />;
 };
 
 /**

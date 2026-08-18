@@ -313,7 +313,6 @@ const Sidebar = (props: RightSidebarProps) => {
   }, [activeElements, schemas]);
 
   const activeSchemaCount = activeSchemas.length;
-  const [internalViewMode, setInternalViewMode] = useState<'fields' | 'detail' | 'docs' | 'comments'>('fields');
   const requestedViewMode = props.viewMode || 'auto';
   const showDocumentsRail =
     props.showDocumentsRail !== false &&
@@ -347,6 +346,19 @@ const Sidebar = (props: RightSidebarProps) => {
   }), [rightSidebarPanelsVisibility, showCommentsRail, showDocumentsRail]);
   const hasVisibleModes = visibleModes.length > 0;
   const fallbackViewMode = visibleModes[0] || 'fields';
+  const selectionSignature = activeSchemaIds.join('|');
+  const [internalViewIntent, setInternalViewIntent] = useState<{
+    mode: 'fields' | 'detail' | 'docs' | 'comments';
+    selectionSignature: string;
+  }>({ mode: 'fields', selectionSignature: '' });
+  const selectionDefaultMode =
+    autoFocusDetail && activeSchemaCount === 1 && visibleModes.includes('detail')
+      ? 'detail'
+      : fallbackViewMode;
+  const internalViewMode =
+    !autoFocusDetail || internalViewIntent.selectionSignature === selectionSignature
+      ? internalViewIntent.mode
+      : selectionDefaultMode;
   const resolvedViewMode: 'fields' | 'detail' | 'docs' | 'comments' = useMemo(() => {
     const requested = requestedViewMode !== 'auto' ? requestedViewMode : internalViewMode;
     return visibleModes.includes(requested) ? requested : fallbackViewMode;
@@ -377,25 +389,10 @@ const Sidebar = (props: RightSidebarProps) => {
     [sidebarDensityMode],
   );
 
-  /**
-   * Firma estable de la selección activa.
-   *
-   * Permite distinguir un cambio real de selección de un simple re-render, para
-   * que el auto-focus de detalle solo se dispare cuando el usuario selecciona.
-   */
-  const selectionSignature = useMemo(
-    () => activeSchemaIds.join('|'),
-    [activeSchemaIds],
-  );
-  const lastSelectionSignatureRef = useRef<string | null>(null);
-
-  /** Normaliza el modo interno cuando el modo activo deja de estar disponible. */
-  useEffect(() => {
-    if (requestedViewMode !== 'auto') return;
-    if (visibleModes.includes(internalViewMode)) return;
-    setInternalViewMode(fallbackViewMode);
-    onViewModeChange?.(fallbackViewMode);
-  }, [fallbackViewMode, internalViewMode, onViewModeChange, requestedViewMode, visibleModes]);
+  const lastSelectionRef = useRef<{
+    signature: string | null;
+    mode: 'fields' | 'detail' | 'docs' | 'comments';
+  }>({ signature: null, mode: 'fields' });
 
   /**
    * Enfoca el panel de detalle en cuanto cambia la selección a un único schema.
@@ -405,21 +402,21 @@ const Sidebar = (props: RightSidebarProps) => {
    * inmediatamente después de seleccionar en el canvas.
    */
   useEffect(() => {
-    if (lastSelectionSignatureRef.current === selectionSignature) return;
-    lastSelectionSignatureRef.current = selectionSignature;
-    if (!autoFocusDetail) return;
-
-    if (activeSchemaCount === 1 && visibleModes.includes('detail')) {
-      if (resolvedViewMode === 'detail') return;
-      setInternalViewMode('detail');
-      onViewModeChange?.('detail');
+    const previous = lastSelectionRef.current;
+    if (previous.signature === selectionSignature) {
+      previous.mode = resolvedViewMode;
       return;
     }
 
-    if (resolvedViewMode === 'detail') {
-      setInternalViewMode(fallbackViewMode);
-      onViewModeChange?.(fallbackViewMode);
-    }
+    const nextMode =
+      autoFocusDetail && activeSchemaCount === 1 && visibleModes.includes('detail')
+        ? 'detail'
+        : resolvedViewMode === 'detail'
+          ? fallbackViewMode
+          : resolvedViewMode;
+    lastSelectionRef.current = { signature: selectionSignature, mode: nextMode };
+
+    if (autoFocusDetail && previous.mode !== nextMode) onViewModeChange?.(nextMode);
   }, [
     activeSchemaCount,
     autoFocusDetail,
@@ -484,7 +481,7 @@ const Sidebar = (props: RightSidebarProps) => {
   const handleModeChange = (mode: 'fields' | 'detail' | 'docs' | 'comments') => {
     if (!visibleModes.includes(mode)) return;
     if (requestedViewMode === 'auto') {
-      setInternalViewMode(mode);
+      setInternalViewIntent({ mode, selectionSignature });
     }
     props.setSidebarOpen?.(true);
     onViewModeChange?.(mode);

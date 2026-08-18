@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { loadConfig, parseArgs } from './core/filesystem.mjs';
 import { run } from './core/git.mjs';
 import { audit } from './audit.mjs';

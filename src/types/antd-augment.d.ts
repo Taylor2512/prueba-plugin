@@ -1,5 +1,6 @@
 import 'antd';
 import * as React from 'react';
+import type { BaseOptionType, DefaultOptionType } from 'antd/es/select';
 
 /**
  * Local augmentations for `antd` types used in this repository.
@@ -21,7 +22,10 @@ declare module 'antd' {
    * Allow an optional `name` prop on `Select` components used by the
    * inspector and form-like widgets in the codebase.
    */
-  interface SelectProps<T = any> {
+  interface SelectProps<
+    ValueType = unknown,
+    OptionType extends BaseOptionType | DefaultOptionType = DefaultOptionType,
+  > {
     name?: string;
   }
 

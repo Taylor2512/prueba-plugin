@@ -51,7 +51,4 @@ Todo eso vive en .ai/`.
 - [Índice](./12-troubleshooting/README.md)
 - [Índice](./13-ejemplos/README.md)
 - [Índice](./14-seguridad/README.md)
-
-### Notas
-
 <!-- project-tools:navigation:end -->

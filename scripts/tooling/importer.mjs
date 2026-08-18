@@ -9,10 +9,8 @@ import {
   ensureDir,
   externalBackupRoot,
   normalizeRelative,
-  readTextSafe,
   relative,
   sha256File,
-  timestamp,
   walkFiles,
 } from "./core.mjs";
 import { canonicalizeArchitecturePath } from "./markdown.mjs";

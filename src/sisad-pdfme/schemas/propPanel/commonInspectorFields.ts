@@ -22,20 +22,6 @@ const readOnlyField = (): PropPanelSchema => ({
   span: 12,
 });
 
-const lockedField = (): PropPanelSchema => ({
-  title: 'Bloqueado',
-  type: 'boolean',
-  widget: 'switch',
-  span: 12,
-});
-
-const restrictChangesField = (): PropPanelSchema => ({
-  title: 'Restringir cambios',
-  type: 'boolean',
-  widget: 'switch',
-  span: 12,
-});
-
 /** Convenience: required + readOnly together */
 export const basicsFields = (): Record<string, PropPanelSchema> => ({
   required: requiredField(),
@@ -43,42 +29,6 @@ export const basicsFields = (): Record<string, PropPanelSchema> => ({
 });
 
 // ── Content ────────────────────────────────────────────────────────────────
-
-const placeholderTextField = (label = 'Placeholder'): PropPanelSchema => ({
-  title: label,
-  type: 'string',
-  widget: 'input',
-  span: 24,
-});
-
-const defaultValueField = (label = 'Valor por defecto'): PropPanelSchema => ({
-  title: label,
-  type: 'string',
-  widget: 'input',
-  span: 24,
-});
-
-const maxLengthField = (): PropPanelSchema => ({
-  title: 'Máximo caracteres',
-  type: 'number',
-  widget: 'inputNumber',
-  span: 12,
-  props: { min: 0, precision: 0 },
-});
-
-const maskedField = (): PropPanelSchema => ({
-  title: 'Ocultar con asteriscos',
-  type: 'boolean',
-  widget: 'switch',
-  span: 12,
-});
-
-const fixedWidthField = (): PropPanelSchema => ({
-  title: 'Anchura fija',
-  type: 'boolean',
-  widget: 'switch',
-  span: 12,
-});
 
 // ── Help / tooltip ─────────────────────────────────────────────────────────
 
@@ -282,35 +232,6 @@ export const numberFormatFields = (): Record<string, PropPanelSchema> => ({
 });
 
 // ── Permissions ────────────────────────────────────────────────────────────
-
-const mandatoryField = (): PropPanelSchema => ({
-  title: 'Obligatorio',
-  type: 'boolean',
-  widget: 'switch',
-  span: 12,
-});
-
-const editableBySenderField = (): PropPanelSchema => ({
-  title: 'Editable por remitente',
-  type: 'boolean',
-  widget: 'switch',
-  span: 12,
-});
-
-const editableByRecipientField = (): PropPanelSchema => ({
-  title: 'Editable por destinatario',
-  type: 'boolean',
-  widget: 'switch',
-  span: 12,
-});
-
-/** Convenience: sender permissions block */
-const permissionsFields = (): Record<string, PropPanelSchema> => ({
-  mandatory: mandatoryField(),
-  editableBySender: editableBySenderField(),
-  editableByRecipient: editableByRecipientField(),
-  restrictChanges: restrictChangesField(),
-});
 
 /**
  * Section-to-property mapping for `buildInspectorSections` propertyMap.

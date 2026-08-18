@@ -4,7 +4,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   backupPath,
-  copyRecursive,
   ensureDir,
   externalBackupRoot,
   parseArgs,
@@ -43,15 +42,6 @@ const payload = [
   ".ai/brain/50-guides/PROJECT-TOOLS.md",
   ".ai/brain/70-memory/topics/tooling-architecture.md",
   ".ai/prompts/TOOLING-ARCHITECTURE-START.md",
-  ".ai/scrum/task-cards/tooling-architecture/TOOL-BASELINE.md",
-  ".ai/scrum/task-cards/tooling-architecture/TOOL-CENTRAL-CONFIG.md",
-  ".ai/scrum/task-cards/tooling-architecture/TOOL-MARKDOWN-ENGINE.md",
-  ".ai/scrum/task-cards/tooling-architecture/TOOL-STABLE-NAMES.md",
-  ".ai/scrum/task-cards/tooling-architecture/TOOL-IMPORTER.md",
-  ".ai/scrum/task-cards/tooling-architecture/TOOL-AI-DEDUP.md",
-  ".ai/scrum/task-cards/tooling-architecture/TOOL-COMPATIBILITY.md",
-  ".ai/scrum/task-cards/tooling-architecture/TOOL-MANUALS.md",
-  ".ai/scrum/task-cards/tooling-architecture/TOOL-CLOSEOUT.md",
   "tests/tooling/project-tools.test.mjs",
   "scripts/normalize-documentation.mjs",
   "scripts/build-markdown-topology.mjs",

@@ -45,6 +45,7 @@
 
 ### Secciones
 
+- [Plans](./plans/README.md)
 - [SISAD-PDFME Brain — HOME](./brain/HOME.md)
 - [Skill registry](./skills/README.md)
 - [agents](./agents/README.md)
@@ -57,7 +58,6 @@
 - [memory](./memory/README.md)
 - [migrations](./migrations/README.md)
 - [ops](./ops/README.md)
-- [plans](./plans/README.md)
 - [playbooks](./playbooks/README.md)
 - [prompts](./prompts/README.md)
 - [providers](./providers/README.md)

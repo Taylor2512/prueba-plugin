@@ -1,6 +1,7 @@
 import { propPanel as parentPropPanel } from '@sisad-pdfme/schemas/text/propPanel';
 import { PropPanel, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import { MultiVariableTextSchema } from '@sisad-pdfme/schemas/multiVariableText/types';
+import type { TextSchema } from '@sisad-pdfme/schemas/text/types';
 import { createSchemaInspectorConfig } from '@sisad-pdfme/schemas/schemaFamilies';
 import { parseVariablesInput } from '@sisad-pdfme/schemas/multiVariableText/helper';
 import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
@@ -125,10 +126,14 @@ export const propPanel: PropPanel<MultiVariableTextSchema> = {
     },
   }),
   widgets: { ...(parentPropPanel.widgets || {}), mapDynamicVariables },
-  defaultSchema: ((): any => {
-    const canonical = getCanonicalDefault(parentPropPanel as any, 'multiVariableText') as Record<string, unknown> | null;
+  defaultSchema: ((): MultiVariableTextSchema => {
+    const canonical = getCanonicalDefault(undefined, 'multiVariableText') as Record<string, unknown> | null;
+    const base: TextSchema = {
+      ...parentPropPanel.defaultSchema,
+      ...(canonical || {}),
+    };
     return {
-      ...(canonical || (typeof parentPropPanel.defaultSchema === 'object' ? parentPropPanel.defaultSchema : {})),
+      ...base,
       readOnly: false,
       type: 'multiVariableText',
       // El contenido inicial NO puede fijarse aquí en un idioma concreto: este
@@ -142,7 +147,7 @@ export const propPanel: PropPanel<MultiVariableTextSchema> = {
       height: 11,
       content: '{}',
       variables: [],
-    } as Record<string, unknown>;
+    };
   })(),
 };
 

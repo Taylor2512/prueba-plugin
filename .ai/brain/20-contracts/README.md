@@ -30,6 +30,10 @@
 - [operations](./operations/README.md)
 - [runtime](./runtime/README.md)
 - [signing](./signing/README.md)
+
+### Notas
+
+- [Serena semantic navigation contract](./SERENA-SEMANTIC-NAVIGATION.md)
 <!-- project-tools:navigation:end -->
 
 <!-- ai-structure:navigation:start -->

@@ -6,7 +6,6 @@
  */
 import {
   DEFAULT_FONT_NAME,
-  cloneDeep,
   getFallbackFontName,
   type Plugin,
   type PropPanel,
@@ -103,7 +102,7 @@ export function createTextLikeSchemaPlugin(config: TextLikePresetConfig): Plugin
           includeConnections: true,
         }),
         defaultSchema: ((): Schema => {
-          const canonical = getCanonicalDefault(text as any, type) as Schema | null;
+          const canonical = getCanonicalDefault(text, type) as Schema | null;
           return {
             ...(canonical || {}),
             name: '',

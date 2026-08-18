@@ -19,7 +19,7 @@
 
 ### Notas
 
-- [Current — Runtime Platform](./CURRENT.md)
+- [Current — SISAD-PDFME](./CURRENT.md)
 - [Handoff seed](./HANDOFF.md)
 <!-- project-tools:navigation:end -->
 

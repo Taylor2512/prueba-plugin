@@ -30,3 +30,26 @@ Canonical queue:
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Notas
+
+- [PRT-000 — Establish consumer-agnostic boundary baseline](./PRT-000.md)
+- [PRT-010 — Type runtime constructor adapters](./PRT-010.md)
+- [PRT-020 — Fail closed on invalid production templates](./PRT-020.md)
+- [PRT-030 — Prove structural-sharing and collaboration isolation](./PRT-030.md)
+- [PRT-040 — Converge to one schema access authority](./PRT-040.md)
+- [PRT-050 — Adopt host credential references](./PRT-050.md)
+- [PRT-060 — Create generic consumer contract smoke](./PRT-060.md)
+- [PRT-070 — BrowserContext multi-user and multi-document isolation](./PRT-070.md)
+- [PRT-080 — Registry-derived all-schema cross-surface matrix](./PRT-080.md)
+- [PRT-090 — Signature, initials and artifact isolation](./PRT-090.md)
+- [PRT-100 — Deterministic snapshot, Viewer and PDF roundtrip](./PRT-100.md)
+- [PRT-110 — Performance, accessibility and visual gates](./PRT-110.md)
+- [PRT-120 — Portable release closeout](./PRT-120.md)
+- [PRT-130 — Render SVG schemas into the PDF](./PRT-130.md)
+- [PRT-140 — Select chevron parity across Designer, Form and Viewer](./PRT-140.md)
+- [PRT-150 — Migrate the one unique capability of the deleted host bundle](./PRT-150.md)
+<!-- project-tools:navigation:end -->

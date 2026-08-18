@@ -12,7 +12,7 @@ describe('number adapter',()=>{
   it('Infinity',()=>expect(getSchemaNumberValue({content:Infinity})).toBeUndefined());
 });
 describe('boolean adapter',()=>{
-  it('null schema',()=>expect(getSchemaBooleanValue(null as any)).toBe(false));
+  it('null schema',()=>expect(getSchemaBooleanValue(null)).toBe(false));
   it('checked true wins',()=>expect(getSchemaBooleanValue({checked:true,content:'false'})).toBe(true));
   it('checked false wins',()=>expect(getSchemaBooleanValue({checked:false,content:'true'})).toBe(false));
   it('true string',()=>expect(getSchemaBooleanValue({content:'true'})).toBe(true));

@@ -5,7 +5,6 @@ import {
   backupPath,
   ensureDir,
   externalBackupRoot,
-  normalizeRelative,
   readTextSafe,
   relative,
   removeRecursive,
@@ -23,7 +22,6 @@ import {
   relativeMarkdownLink,
   resolveMarkdownLink,
   shingles,
-  splitFrontmatter,
   upsertManagedNavigation,
   words,
 } from "./markdown.mjs";

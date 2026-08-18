@@ -236,7 +236,6 @@ export const useSisadPdfmeInstance = (
     // Deliberadamente sólo `scopeKey`: reproyectar es la reacción a CAMBIAR de
     // scope, no a cada render. Incluir `baseInputs`/`valueScopes` reescribiría
     // los inputs en cada resolución y pisaría lo que el usuario acaba de teclear.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scopeKey]);
 
   const emitStateChange = useCallback(

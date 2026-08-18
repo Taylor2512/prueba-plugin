@@ -17,8 +17,6 @@ const TEXT_EXTENSIONS = new Set([
   ".mjs", ".cjs", ".js", ".jsx", ".ts", ".tsx",
 ]);
 
-const toPosix = (value) => value.split(path.sep).join("/");
-
 function loadAliases(root, config) {
   const rel = config.paths.aliasMap || "config/tooling/architecture-path-aliases.json";
   const file = path.resolve(root, rel);

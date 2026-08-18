@@ -43,11 +43,7 @@ for (const file of files) {
   const replacements = new Map();
   let m;
   while ((m = regex.exec(txt)) !== null) {
-    const full = m[0];
-    const prefix = m[1];
-    const quote = m[2];
     const rel = m[3];
-    const sourceStart = m.index + prefix.length + 1; // not strictly needed
 
     // resolve
     const targetAbs = path.resolve(dir, rel);

@@ -15,7 +15,6 @@
  * Este archivo no debe importar React, CSS, canvas, sidebars ni lógica visual.
  */
 
-import { cloneDeep } from '@sisad-pdfme/common/helper';
 
 import type {
   CommentScope,
@@ -509,9 +508,6 @@ export const ensureAnchorId = (anchor?: unknown): CommentAnchor & { id: string }
     timestamp: Number((anchor as Record<string, unknown>)?.timestamp) || undefined,
   });
 
-const ensureAnchorsArray = (anchors?: unknown[]): Array<CommentAnchor & { id: string }> =>
-  Array.isArray(anchors) ? anchors.map((a) => ensureAnchorId(a)) : [];
-
 /**
  * Normaliza un comentario parcial en un `SchemaComment` garantizando `id`,
  * anchor (normalizado) y replies (con id).
@@ -543,9 +539,6 @@ export const ensureComment = (comment?: unknown): SchemaComment & { id: string }
     replies,
   } as SchemaCommentDraft) as SchemaComment & { id: string };
 };
-
-const ensureCommentsArray = (comments?: unknown[]): Array<SchemaComment & { id: string }> =>
-  Array.isArray(comments) ? comments.map((c) => ensureComment(c)) : [];
 
 /**
  * Inserta o actualiza un item dentro de un array usando su id.

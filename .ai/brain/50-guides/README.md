@@ -45,6 +45,7 @@
 - [Guide — resume interrupted agent](./RESUME-INTERRUPTED-AGENT.md)
 - [Guide — safe dead-code removal](./SAFE-DEAD-CODE-REMOVAL.md)
 - [Guide — schema family release](./SCHEMA-FAMILY-RELEASE.md)
+- [Serena agent workflow](./SERENA-AGENT-WORKFLOW.md)
 - [Guide — test execution shapes](./TEST-EXECUTION-SHAPES.md)
 - [Guide — test PDF composition](./TEST-PDF-COMPOSITION.md)
 - [Guide — Claude + Codex + Copilot in one repo](./THREE-AGENT-SAME-REPO.md)

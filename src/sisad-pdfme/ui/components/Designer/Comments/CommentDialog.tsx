@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { mergeClassNames } from '@sisad-pdfme/ui/components/Designer/shared/className';
 
@@ -70,13 +70,12 @@ type CommentDialogProps = {
  * 4. Cancelar ejecuta `onClose`.
  * 5. Guardar limpia espacios y solo ejecuta `onSave` si hay contenido.
  */
-const CommentDialog = ({
-  open,
+const CommentDialogSession = ({
   initialText = '',
   onClose,
   onSave,
   title = 'Agregar comentario',
-}: CommentDialogProps) => {
+}: Omit<CommentDialogProps, 'open'>) => {
   /**
    * Texto editable del comentario.
    *
@@ -84,24 +83,6 @@ const CommentDialog = ({
    * hasta que el usuario confirme.
    */
   const [text, setText] = useState(initialText || '');
-
-  /**
-   * Sincroniza el texto local cada vez que se abre el diálogo.
-   *
-   * Esto permite reutilizar el modal para:
-   *
-   * - crear comentario nuevo;
-   * - editar comentario existente;
-   * - reabrir con otro valor inicial.
-   */
-  useEffect(() => {
-    if (open) setText(initialText || '');
-  }, [open, initialText]);
-
-  /**
-   * Evita renderizar el modal cuando está cerrado.
-   */
-  if (!open) return null;
 
   return (
     <div
@@ -161,6 +142,18 @@ const CommentDialog = ({
         </div>
       </div>
     </div>
+  );
+};
+
+const CommentDialog = ({ open, initialText = '', ...sessionProps }: CommentDialogProps) => {
+  if (!open) return null;
+
+  return (
+    <CommentDialogSession
+      key={initialText}
+      initialText={initialText}
+      {...sessionProps}
+    />
   );
 };
 

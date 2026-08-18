@@ -62,7 +62,6 @@ const COMANDOS = {
   'example-style-boundary': [node('scripts/quality/check_style-boundary.mjs')],
   'template-contracts': [node('scripts/quality/validate-form-template-runtime-references.mjs')],
   'inspect-signing-har': [node('scripts/quality/inspect-signing-har.js')],
-  'validation-samples': [node('scripts/validate-samples.mjs')],
 };
 
 /** Agregados: sólo composiciones de lo anterior, sin lógica propia. */

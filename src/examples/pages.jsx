@@ -6,7 +6,7 @@
  * `buildRouteDefinitions()`: agregar un ejemplo es agregar una entrada al
  * manifest, no un archivo nuevo.
  */
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { SisadPdfmeInstance } from '@/sisad-pdfme';
 import {

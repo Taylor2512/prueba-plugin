@@ -11,3 +11,7 @@ Authority is stored in:
 
 Historical plans were removed during pre-production canonization. Git retains
 their history; they are not runtime or architecture authorities.
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+<!-- project-tools:navigation:end -->

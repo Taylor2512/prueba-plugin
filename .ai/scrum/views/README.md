@@ -23,6 +23,8 @@
 - [Backlog](./BACKLOG.md)
 - [Blocked / Partial](./BLOCKED.md)
 - [Completed](./COMPLETED.md)
+- [Portable Runtime state](./PORTABLE-RUNTIME.md)
+- [Current priorities](./PRIORITIES.md)
 - [Runtime Platform state](./RUNTIME-PLATFORM.md)
 <!-- project-tools:navigation:end -->
 

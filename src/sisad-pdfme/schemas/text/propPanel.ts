@@ -149,7 +149,7 @@ export const propPanel: PropPanel<TextSchema> = {
   }),
   widgets: { UseDynamicFontSize },
   defaultSchema: ((): TextSchema => {
-    const canonical = getCanonicalDefault(undefined as any, 'text') as Partial<TextSchema> | null;
+    const canonical = getCanonicalDefault(undefined, 'text') as Partial<TextSchema> | null;
     return {
       ...(canonical || {}),
       name: '',

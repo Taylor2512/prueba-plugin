@@ -3,7 +3,6 @@ import { propPanel as parentPropPanel } from '@sisad-pdfme/schemas/text/propPane
 import { Plugin, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import text from '@sisad-pdfme/schemas/text';
 import { TextSchema } from '@sisad-pdfme/schemas/text/types';
-import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { ChevronDown } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';

@@ -158,7 +158,7 @@ const svgSchema: Plugin<SVGSchema> = {
     schema: {},
     inspector: createSchemaInspectorConfig('media'),
     defaultSchema: ((): Schema => {
-      const canonical = getCanonicalDefault(undefined as any, 'svg') as Partial<Schema> | null;
+      const canonical = getCanonicalDefault(undefined, 'svg') as Partial<Schema> | null;
       return {
         ...(canonical || {}),
         name: '',

@@ -6,7 +6,8 @@ import {
 } from "./ai-structure-core.mjs";
 
 const root=path.resolve(process.argv[2]||".");
-const policy=loadPolicy(root), errors=[],warnings=[];
+loadPolicy(root);
+const errors=[],warnings=[];
 const graph=scanGraph(root), exact=duplicateAudit(root);
 for(const b of graph.broken) errors.push(`BROKEN_LINK ${b.source} -> ${b.href}`);
 for(const o of graph.orphans) errors.push(`ACTIVE_ORPHAN ${o}`);

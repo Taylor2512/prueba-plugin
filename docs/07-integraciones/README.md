@@ -29,6 +29,7 @@ la propiedad del canvas, schemas, selección, sidebars, inspector y runtime.
 - [Integración React](./01-react.md)
 - [Frontera entre host y core](./02-host-app.md)
 - [Signature providers](./03-signature-providers.md)
+- [Configuración global](./05-global-config.md)
 - [Adapters del host](./06-host-adapters.md)
 - [`pdfcomponent` como host de referencia](./07-pdfcomponent-lab-as-host-reference.md)
 - [SISAD PDFME — Manual maestro de implementación en otros proyectos](./08-manual-portabilidad-sisad-pdfme.md)

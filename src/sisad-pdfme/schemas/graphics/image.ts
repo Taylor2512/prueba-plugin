@@ -231,7 +231,7 @@ const imageSchema: Plugin<ImageSchema> = {
     },
     inspector: createSchemaInspectorConfig('media'),
     defaultSchema: ((): ImageSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'image') as Partial<ImageSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'image') as Partial<ImageSchema> | null;
       return {
         ...(canonical || {}),
         name: '',

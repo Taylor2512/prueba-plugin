@@ -38,7 +38,7 @@ ciclo normal del repositorio.
 
 - [Importación segura de una arquitectura](./ARCHITECTURE-IMPORT.md)
 - [Reconciliación de paths de arquitectura](./ARCHITECTURE-PATH-RECONCILIATION.md)
-- [Manual de comandos de arquitectura/documentación](./COMMANDS.md)
+- [Manual de comandos](./COMMANDS.md)
 - [Sanitización Markdown](./MARKDOWN-SANITIZATION.md)
 <!-- project-tools:navigation:end -->
 

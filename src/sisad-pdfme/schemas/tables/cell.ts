@@ -140,7 +140,7 @@ const cellSchema: Plugin<CellSchema> = {
       return getCellPropPanelSchema({ i18n, fontNames, fallbackFontName });
     },
     defaultSchema: ((): CellSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'cell') as Partial<CellSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'cell') as Partial<CellSchema> | null;
       return {
         ...(canonical || {}),
         name: '',

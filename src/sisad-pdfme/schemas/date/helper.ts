@@ -480,7 +480,7 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
         includeConnections: true,
       }),
       defaultSchema: ((): DateSchema => {
-        const canonical = getCanonicalDefault(undefined as any, type) as Partial<DateSchema> | null;
+        const canonical = getCanonicalDefault(undefined, type) as Partial<DateSchema> | null;
         return {
           ...(canonical || {}),
           name: '',

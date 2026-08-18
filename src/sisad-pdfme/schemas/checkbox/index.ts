@@ -194,7 +194,7 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       includeConnections: true,
     }),
     defaultSchema: ((): Schema => {
-      const canonical = getCanonicalDefault(undefined as any, 'checkbox') as Partial<Schema> | null;
+      const canonical = getCanonicalDefault(undefined, 'checkbox') as Partial<Schema> | null;
       return {
         ...(canonical || {}),
         name: '',

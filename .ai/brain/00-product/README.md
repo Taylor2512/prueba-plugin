@@ -20,6 +20,7 @@
 
 - [Arquitectura de producto](./ARCHITECTURE.md)
 - [Glosario](./GLOSSARY.md)
+- [Product boundary — SISAD-PDFME](./PRODUCT-BOUNDARY.md)
 - [Product Identity — SISAD-PDFME](./PRODUCT-IDENTITY.md)
 - [Source truth](./SOURCE-TRUTH.md)
 - [Stack runtime relevante](./STACK.md)

@@ -22,7 +22,7 @@ const default40x20 = { width: 40, height: 20 };
 const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'qrcode') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'qrcode') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -39,7 +39,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'japanpost') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'japanpost') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -58,7 +58,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'ean13') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'ean13') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -77,7 +77,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'ean8') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'ean8') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -95,7 +95,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'code39') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'code39') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -112,7 +112,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'code128') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'code128') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -130,7 +130,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'nw7') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'nw7') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -148,7 +148,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'itf14') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'itf14') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -167,7 +167,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'upca') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'upca') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -186,7 +186,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'upce') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'upce') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -204,7 +204,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'gs1datamatrix') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'gs1datamatrix') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',
@@ -221,7 +221,7 @@ const barcodeDefaults: { defaultSchema: BarcodeSchema }[] = [
   },
   {
     defaultSchema: ((): BarcodeSchema => {
-      const canonical = getCanonicalDefault(undefined as any, 'pdf417') as Partial<BarcodeSchema> | null;
+      const canonical = getCanonicalDefault(undefined, 'pdf417') as Partial<BarcodeSchema> | null;
       return {
         ...(canonical || {}),
         name: '',

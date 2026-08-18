@@ -28,14 +28,14 @@ const MM_TO_PX = 3.7795275591;
 /**
  * Renderiza una animación breve en el punto donde se confirmó el drop.
  */
-const SchemaDropCommitFlash = ({
+const SchemaDropCommitFlashSession = ({
   paperRect,
   xMm,
   yMm,
   zoom,
   ownerColor,
   icon,
-}: SchemaDropCommitFlashProps) => {
+}: Omit<SchemaDropCommitFlashProps, 'paperRect'> & { paperRect: { left: number; top: number } }) => {
   const [entering, setEntering] = useState(false);
   const [exiting, setExiting] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -74,20 +74,11 @@ const SchemaDropCommitFlash = ({
       timersRef.current = { enterFrame: null, exitTimer: null };
     };
 
-    clearScheduledAnimation();
-
-    setEntering(false);
-    setExiting(false);
-
-    if (!paperRect) return undefined;
-
     const scheduleExit = () => {
       timersRef.current.exitTimer = window.setTimeout(() => setExiting(true), 110);
     };
 
-    if (prefersReducedMotion) {
-      setEntering(true);
-    } else {
+    if (!prefersReducedMotion) {
       const scheduledEnterFrame = window.requestAnimationFrame(() => setEntering(true));
       timersRef.current.enterFrame = scheduledEnterFrame;
     }
@@ -96,7 +87,6 @@ const SchemaDropCommitFlash = ({
     return clearScheduledAnimation;
   }, [paperRect, prefersReducedMotion]);
 
-  if (!paperRect) return null;
   const scale = Number.isFinite(zoom) && zoom > 0 ? zoom : 1;
   const left = paperRect.left + xMm * MM_TO_PX * scale;
   const top = paperRect.top + yMm * MM_TO_PX * scale;
@@ -134,6 +124,14 @@ const SchemaDropCommitFlash = ({
       </div>
     </div>
   );
+};
+
+const SchemaDropCommitFlash = (props: SchemaDropCommitFlashProps) => {
+  if (!props.paperRect) return null;
+
+  const { paperRect } = props;
+  const animationKey = [paperRect.left, paperRect.top, props.xMm, props.yMm, props.zoom].join(':');
+  return <SchemaDropCommitFlashSession key={animationKey} {...props} paperRect={paperRect} />;
 };
 
 export default SchemaDropCommitFlash;

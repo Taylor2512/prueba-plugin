@@ -3,13 +3,11 @@
  * Shares all rendering, propPanel and provider registry with signature.
  * Only differences: smaller default size, different placeholder text, signatureKind.
  */
-import { cloneDeep } from '@sisad-pdfme/common';
 import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { PenLine } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '@sisad-pdfme/schemas/schemaBuilder';
 import baseSignature from '@sisad-pdfme/schemas/signature';
 import { getCanonicalDefault } from '@sisad-pdfme/schemas/runtime-normalizer';
-import { isRecord } from '@sisad-pdfme/shared/objectGuards';
 import type { SignatureSchema } from '@sisad-pdfme/schemas/signature/types';
 
 const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(

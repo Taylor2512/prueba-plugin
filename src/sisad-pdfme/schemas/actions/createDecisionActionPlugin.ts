@@ -239,8 +239,8 @@ export const createDecisionActionPlugin = ({
           },
           includeConnections: true,
         }),
-        defaultSchema: ((): any => {
-          const canonical = getCanonicalDefault(undefined as any, type) as Record<string, unknown> | null;
+        defaultSchema: ((): Schema => {
+          const canonical = getCanonicalDefault(undefined, type) as Record<string, unknown> | null;
           return {
             ...(canonical || {}),
             name: '',
@@ -256,7 +256,7 @@ export const createDecisionActionPlugin = ({
             ...(auditEventName ? { auditEventName } : {}),
             // Sin color materializado: se deriva del dueño en cada render.
             fontSize: 11,
-          };
+          } as Schema;
         })(),
       },
       icon: renderLucideIcon(icon, { stroke: defaultColor }),

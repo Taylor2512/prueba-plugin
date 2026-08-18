@@ -1,17 +1,1 @@
-{
-  "codex": {
-    "agent": "codex",
-    "task": "QUALITY-LINT-CLEANUP",
-    "mode": "write",
-    "paths": [
-      "scripts",
-      "src/sisad-pdfme",
-      "tests",
-      "src/App.jsx",
-      "src/examples",
-      "src/main.jsx",
-      "config/tooling/project-tools.config.mjs"
-    ],
-    "startedAt": "2026-08-18T03:21:00.412Z"
-  }
-}
+{}

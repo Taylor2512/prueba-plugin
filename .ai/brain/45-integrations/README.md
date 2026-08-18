@@ -26,3 +26,14 @@ A concrete consumer keeps its own integration documentation and maps to these co
 
 > Managed index. Update source documents, not this list.
 <!-- sisad-architecture-hub:end -->
+
+<!-- project-tools:navigation:start -->
+## Navegación generada
+
+### Notas
+
+- [Designer consumer contract](./DESIGNER-CONSUMER-CONTRACT.md)
+- [Host execution -> SISAD-PDFME Form](./HOST-EXECUTION-CONTEXT.md)
+- [Host participant -> SISAD-PDFME User](./HOST-PARTICIPANT-TO-USER.md)
+- [Portable host integration](./PORTABLE-HOST-INTEGRATION.md)
+<!-- project-tools:navigation:end -->

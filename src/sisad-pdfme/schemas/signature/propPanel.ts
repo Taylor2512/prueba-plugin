@@ -678,7 +678,7 @@ export const propPanel: PropPanel<SignatureSchema> = {
     },
   }),
   defaultSchema: ((): SignatureSchema => {
-    const canonical = getCanonicalDefault(undefined as any, 'signature') as Partial<SignatureSchema> | null;
+    const canonical = getCanonicalDefault(undefined, 'signature') as Partial<SignatureSchema> | null;
     return {
       ...(canonical || {}),
       name: '',

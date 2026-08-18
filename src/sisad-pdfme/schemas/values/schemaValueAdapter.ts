@@ -24,7 +24,7 @@ export const getSchemaNumberValue = (schema: SchemaRecord): number | undefined =
  * `Boolean(value)` daba `true` para `[]` y `{}` — formas que aquí significan
  * "sin selección", no "marcado".
  */
-export const getSchemaBooleanValue = (schema: SchemaRecord): boolean => {
+export const getSchemaBooleanValue = (schema: SchemaRecord | null): boolean => {
   if (schema == null) return false;
   if (typeof schema.checked === 'boolean') return schema.checked;
   const c = schema.content;
@@ -51,4 +51,3 @@ export const getSchemaOptionSelection = (schema: SchemaRecord): { single?: strin
 
   return { single };
 };
-

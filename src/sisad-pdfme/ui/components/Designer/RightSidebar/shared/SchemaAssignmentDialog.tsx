@@ -113,18 +113,18 @@ const SchemaAssignmentDialog = ({
   /** Lifecycle único: TODO cierre (Cancelar/X/Escape/mask/Confirmar/unmount) pasa por aquí. */
   const requestClose = useCallback(
     (reason: SchemaAssignmentCloseReason) => {
+      setQuery('');
+      setNextRecipientId(null);
       logLifecycle('close', reason);
       onClose?.({ reason });
     },
     [logLifecycle, onClose],
   );
 
-  // Reinicia el estado local cada vez que se abre para no arrastrar selecciones.
+  // Sincroniza referencias/DOM; el draft se reinicia desde eventos de cierre.
   useEffect(() => {
     openRef.current = open;
     if (open) {
-      setQuery('');
-      setNextRecipientId(null);
       markInspectorInteractive(bodyRef.current);
       logLifecycle('open');
     }
@@ -210,6 +210,8 @@ const SchemaAssignmentDialog = ({
       maskClosable
       afterOpenChange={(visible) => {
         if (!visible) {
+          setQuery('');
+          setNextRecipientId(null);
           // keepSelection implícito: el reset transitorio NUNCA toca activeElements.
           resetDesignerTransientInteractionState();
           logLifecycle('after-close');

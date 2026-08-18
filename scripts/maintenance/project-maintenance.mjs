@@ -149,21 +149,6 @@ function taskCardInventory() {
     });
 }
 
-function refsTo(rel, allFiles = null) {
-  const files = allFiles || walk(".");
-  const target = slash(rel);
-  const base = path.basename(target);
-  const hits = [];
-  for (const file of files) {
-    if (file === target) continue;
-    if (!/\.(md|mdx|json|ya?ml|toml|mjs|cjs|js|jsx|ts|tsx)$/.test(file)) continue;
-    let body;
-    try { body = read(file); } catch { continue; }
-    if (body.includes(target) || body.includes(base)) hits.push(file);
-  }
-  return hits;
-}
-
 function auditScrum() {
   const policy = loadPolicy();
   const dirty = parsePorcelain();
@@ -305,7 +290,6 @@ function junkInventory() {
 }
 
 function markdownReplaceLinkToRetired(body, card, target) {
-  const escapedPath = card.path.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const fileName = path.basename(card.path).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const linkRx = new RegExp(`\\[([^\\]]+)\\]\\((?:\\.\\.?\\/)*[^)\\n]*${fileName}\\)`, "g");
   if (target && /^PRT-\d+/.test(target)) {

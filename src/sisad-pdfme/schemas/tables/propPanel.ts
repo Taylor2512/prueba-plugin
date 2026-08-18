@@ -89,7 +89,7 @@ export const propPanel: PropPanel<TableSchema> = {
     },
   }),
   defaultSchema: ((): TableSchema => {
-    const canonical = getCanonicalDefault(undefined as any, 'table') as Partial<TableSchema> | null;
+    const canonical = getCanonicalDefault(undefined, 'table') as Partial<TableSchema> | null;
     return {
       ...(canonical || {}),
       name: '',

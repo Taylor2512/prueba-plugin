@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
-import {
-  slash, walk, loadPolicy, scanGraph, duplicateAudit, markdownFiles, normalizeMarkdown
-} from "./ai-structure-core.mjs";
+import { slash, loadPolicy, scanGraph, duplicateAudit, markdownFiles } from "./ai-structure-core.mjs";
 
 const root = path.resolve(process.argv[2] || ".");
 const policy = loadPolicy(root);

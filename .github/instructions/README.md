@@ -23,6 +23,7 @@
 - [ai-docs.instructions.md](./ai-docs.instructions.md)
 - [ai.instructions.md](./ai.instructions.md)
 - [canvas.instructions.md](./canvas.instructions.md)
+- [portable-host.instructions.md](./portable-host.instructions.md)
 - [quality.instructions.md](./quality.instructions.md)
 - [schemas.instructions.md](./schemas.instructions.md)
 - [sisad-core.instructions.md](./sisad-core.instructions.md)

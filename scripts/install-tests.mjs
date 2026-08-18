@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseArgs, sha256File, copyRecursive, ensureDir } from "./tooling/core.mjs";
+import { parseArgs, sha256File, copyRecursive } from "./tooling/core.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot = path.resolve(here, "..");
