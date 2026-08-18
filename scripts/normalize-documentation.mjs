@@ -1,5 +1,5 @@
 import path from "node:path";
-import { runCli } from "project-tools.mjs";
+import { runCli } from "./project-tools.mjs";
 
 const root = process.argv[2] && !process.argv[2].startsWith("--")
   ? process.argv[2]

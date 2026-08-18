@@ -6,9 +6,9 @@
 |---|---|---|
 | defaults completos | `createSisadPdfmeConfig()` sin args resuelve una config usable | `tests/unit/sisad-pdfme/config/visibility.test.ts`, `tests/unit/sisad-pdfme/config/public-api.test.ts` |
 | merge profundo sin mutación | los cambios de config no rompen los snapshots de entrada | `tests/unit/sisad-pdfme/config/SisadPdfmeConfigService.test.ts` |
-| arrays reemplazados, no concatenados | la resolución conserva la semántica esperada de listas | `tests/unit/sisad-pdfme-comprehensive/files/config/configSelectors.ts.file.test.ts`, `tests/unit/sisad-pdfme-comprehensive/contracts/config/configCompiler.test.ts` |
-| configuración actual estricta | la compilación usa únicamente el contrato vigente | `tests/unit/sisad-pdfme-comprehensive/contracts/config/configCompiler.test.ts`, `tests/unit/sisad-pdfme-comprehensive/files/config/configNormalizer.ts.file.test.ts` |
-| rutas históricas rechazadas | no se convierten aliases antiguos en defaults | `tests/unit/sisad-pdfme-comprehensive/files/config/configNormalizer.ts.file.test.ts` |
+| arrays reemplazados, no concatenados | la resolución conserva la semántica esperada de listas | `tests/unit/files/config/configSelectors.ts.file.test.ts`, `tests/unit/contracts/config/configCompiler.test.ts` |
+| configuración actual estricta | la compilación usa únicamente el contrato vigente | `tests/unit/contracts/config/configCompiler.test.ts`, `tests/unit/files/config/configNormalizer.ts.file.test.ts` |
+| rutas históricas rechazadas | no se convierten aliases antiguos en defaults | `tests/unit/files/config/configNormalizer.ts.file.test.ts` |
 | combinaciones inválidas | la validación rechaza estados imposibles | `tests/unit/sisad-pdfme/config/configValidation.test.ts`, `tests/unit/sisad-pdfme/config/signatures.test.ts` |
 | feature dependencies | features y acciones derivadas respetan dependencias | `tests/unit/sisad-pdfme/config/featureRegistry.test.ts`, `tests/unit/sisad-pdfme/config/actionConfigRegistry.test.ts`, `tests/unit/sisad-pdfme/config/componentRegistry.test.ts` |
 | action state con razón | las acciones ocultas o deshabilitadas explican el motivo | `tests/unit/sisad-pdfme/ui/actions/designerActionState.test.ts`, `tests/unit/sisad-pdfme/config/designerUiMap.test.ts` |

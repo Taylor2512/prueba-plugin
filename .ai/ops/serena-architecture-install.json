@@ -1,0 +1,47 @@
+{
+  "repo": "/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin",
+  "backupRoot": "/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin.serena-architecture-backup",
+  "originals": [],
+  "installed": [
+    {
+      "path": "eslint.config.cjs",
+      "hash": "1047846131541508dd845546c1d9350dcb7d6d793691b8cda19a7aee520f38da",
+      "created": false
+    },
+    {
+      "path": ".ai/brain/20-contracts/SERENA-SEMANTIC-NAVIGATION.md",
+      "hash": "9c6443235770269eb1444d303443ef28b4c13d6c1e954aaf30d5e37826ec2805",
+      "created": false
+    },
+    {
+      "path": ".ai/brain/50-guides/SERENA-AGENT-WORKFLOW.md",
+      "hash": "5a7471756ac4501edaf4103db604bdcd19cd6560a636b2462d8448ded5a994d2",
+      "created": false
+    },
+    {
+      "path": ".ai/brain/60-quality/SERENA-QUALITY-GATES.md",
+      "hash": "ba079f278fae264540502fb5e854c709588381dd63b8ed7f55b266f407a3fa68",
+      "created": false
+    },
+    {
+      "path": "scripts/ai/serena/serena-audit.mjs",
+      "hash": "d806ba6fb9d5160031aa1dd65347c51e1af5af34cd51fdd4c591936f35db0990",
+      "created": false
+    },
+    {
+      "path": "scripts/ai/serena/lint-classify.mjs",
+      "hash": "9292f4dbcbd9f58e9a4607f3ee480251c003d9b0de0f83edcf0f3f9c2a5b23a4",
+      "created": false
+    },
+    {
+      "path": "package.json",
+      "hash": "f1cd400532148f086cd26780be025a93b53b8d5cd55af74bc96377ee1b88e444",
+      "created": false
+    },
+    {
+      "path": ".serena/project.yml",
+      "hash": "5d2767d926a9957b22bcec76db8b4cb04827272c8a253a810d27733fe405ea87",
+      "created": false
+    }
+  ]
+}

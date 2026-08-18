@@ -1,4 +1,5 @@
 import * as pdfjsLib from 'pdfjs-dist//build/pdf';
+import { createRequire } from 'node:module';
 import PDFJSWorker from 'pdfjs-dist//build/pdf.worker.js';
 import { createEnvironmentConverters } from '@sisad-pdfme/converter/createEnvironmentConverters';
 
@@ -12,6 +13,7 @@ import { createEnvironmentConverters } from '@sisad-pdfme/converter/createEnviro
  * - mantiene la misma API pública que el entry browser.
  */
 let createCanvas: (width: number, height: number) => unknown;
+const require = createRequire(import.meta.url);
 
 try {
   /**
@@ -24,8 +26,10 @@ try {
   // `canvas` no está instalado, e `import()` dinámico es asíncrono.
   
   ({ createCanvas } = require('canvas'));
-} catch {
-  // canvas module not available
+} catch (error) {
+  if (error && typeof error === 'object' && 'code' in error && error.code !== 'MODULE_NOT_FOUND') {
+    throw error;
+  }
 }
 
 /** Configura el worker de PDF.js para el entorno Node. */

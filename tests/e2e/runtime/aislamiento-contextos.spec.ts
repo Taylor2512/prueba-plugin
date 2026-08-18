@@ -8,9 +8,6 @@ import {
 } from '../../support/playwright';
 
 test.describe('Runtime — aislamiento multiusuario y multidocumento', () => {
-  // @caso DOC-002
-  // @caso UC-09
-  // @caso UC-10
   /**
    * Contrato de identidad de los schemas montados en el Form.
    *

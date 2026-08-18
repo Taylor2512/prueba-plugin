@@ -44,7 +44,8 @@ const withMutex = (fn) => {
       fs.mkdirSync(mutexDir);
       acquired = true;
       break;
-    } catch {
+    } catch (error) {
+      if (error?.code !== 'EEXIST') throw error;
       const until = Date.now() + 20;
       while (Date.now() < until) {}
     }

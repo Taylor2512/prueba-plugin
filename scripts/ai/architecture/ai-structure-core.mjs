@@ -175,7 +175,10 @@ export function mergeAliasMap(root, moves) {
   const file = path.join(root, "config/tooling/architecture-path-aliases.json");
   let data = { aliases: [] };
   if (fs.existsSync(file)) {
-    try { data = JSON.parse(read(file)); } catch {}
+    try { data = JSON.parse(read(file)); } catch (error) {
+      if (error instanceof SyntaxError) data = { aliases: [] };
+      else throw error;
+    }
   }
   const map = new Map((data.aliases || []).map((x) => [x.from, x.to]));
   for (const [from, to] of Object.entries(moves)) {

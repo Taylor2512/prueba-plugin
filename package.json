@@ -13,7 +13,7 @@
     "preview:prod": "vite preview --host 0.0.0.0 --port 5173",
     "watch": "npm run build && concurrently -k \"npm:build:watch\" \"npm:preview:prod\"",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "test": "node scripts/testing/index.mjs",
     "test:unit": "node scripts/testing/index.mjs unit",
@@ -54,6 +54,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@playwright/test": "^1.62.1",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
@@ -72,6 +73,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^17.3.0",
     "jscpd": "^5.0.12",
     "jsdom": "^22.1.0",
     "knip": "^6.29.0",

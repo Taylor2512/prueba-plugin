@@ -34,6 +34,13 @@ test.describe('Designer — arrastre real de schemas', () => {
   // @caso SCH-001
   // @caso SCH-002
   test('INT-006 — arrastrar schemas representativos crea identidad, documento y página estables', async ({ page }) => {
+    // Siete gestos de arrastre reales con su polling de inserción. En Chromium
+    // entra en los 30 s por defecto; en Firefox no, y no por un fallo: con
+    // `--timeout=150000` el spec completo pasa en ~49 s. `test.slow()` triplica
+    // el presupuesto para este caso concreto en vez de relajar el timeout
+    // global, que taparía fallos reales en el resto de la suite.
+    test.slow();
+
     const target = await paginaCanvas(page, 0);
     const requested = ['text', 'number', 'checkbox', 'select', 'rectangle', 'ellipse', 'line'];
 

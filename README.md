@@ -26,8 +26,8 @@ Luego:
 
 ```bash
 cd "/Users/desarrollo1/Documents/proyectos de Taylor/frontend/prueba-plugin"
-npm run tools:doctor
-npm run docs:sanitize
+npm run docs -- doctor .
+npm run docs -- sanitize .
 ```
 
 No ejecutar `docs:sanitize:apply` hasta revisar las colisiones.

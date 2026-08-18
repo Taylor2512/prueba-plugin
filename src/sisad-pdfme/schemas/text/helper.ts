@@ -364,7 +364,11 @@ export const splitTextToSize = (arg: {
     boxWidthInPt,
   };
   let lines: string[] = [];
-  value.split(/\r\n|\r|\n|\f|\u000B/g).forEach((line: string) => {
+  value.split(/[\r\n\f]/g).flatMap((line: string) =>
+    line.includes(String.fromCharCode(0x0b))
+      ? line.split(String.fromCharCode(0x0b))
+      : [line],
+  ).forEach((line: string) => {
     lines = lines.concat(getSplittedLinesBySegmenter(line, fontWidthCalcValues));
   });
   return lines;

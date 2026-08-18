@@ -195,7 +195,7 @@ No se admite ocultar keys faltantes con `as any`, `Record<string, any>`,
 optional chaining indiscriminado ni fallback a un literal en otro idioma.
 
 La paridad se verifica en
-`tests/unit/sisad-pdfme-comprehensive/contracts/common/localization.test.ts`,
+`tests/unit/contracts/common/localization.test.ts`,
 que valida cada diccionario contra el propio Zod `Dict`.
 
 ## Accesibilidad

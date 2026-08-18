@@ -102,7 +102,7 @@ export default {
       /(^|[-_.\s])version[-_.\s]?\d+(?:[._-]\d+)*(?=$|[-_.\s])/gi,
     ],
     copyTokenPatterns: [
-      /(?:\s|\-|_|\.)(?:copy|copia|old|backup|final)(?:[-_.\s]*\d+)?$/gi,
+      /(?:\s|-|_|\.)(?:copy|copia|old|backup|final)(?:[-_.\s]*\d+)?$/gi,
       /\(\d+\)$/g,
     ],
     revisionDatePatterns: [

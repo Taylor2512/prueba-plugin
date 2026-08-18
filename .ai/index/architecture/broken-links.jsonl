@@ -49,3 +49,7 @@
 {"from":"reports/runtime-platform/evidence/README.md","target":"../portable-runtime/PRT-120.md"}
 {"from":"reports/runtime-platform/evidence/README.md","target":"../portable-runtime/PRT-120.md"}
 {"from":"reports/runtime-platform/evidence/README.md","target":"../portable-runtime/PRT-000.md"}
+{"from":"reports/testing/DEFECTOS-PRODUCTO.md","target":"tests/e2e/designer/canvas-interacciones.spec.ts"}
+{"from":"reports/testing/DEFECTOS-PRODUCTO.md","target":"tests/e2e/runtime/aislamiento-contextos.spec.ts"}
+{"from":"reports/testing/DEFECTOS-PRODUCTO.md","target":"tests/e2e/runtime/ownership-multiusuario.spec.ts"}
+{"from":"reports/testing/DEFECTOS-PRODUCTO.md","target":"src/examples/ui.jsx"}

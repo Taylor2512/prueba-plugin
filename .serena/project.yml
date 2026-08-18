@@ -38,33 +38,29 @@ project_name: "prueba-plugin"
 language_servers:
 - typescript
 
-# the encoding used by text files in the project
-# For a list of possible encodings, see https://docs.python.org/3.11/library/codecs.html#standard-encodings
 encoding: "utf-8"
 
 # whether to use project's .gitignore files to ignore files
 ignore_all_files_in_gitignore: true
 
-# list of additional paths to ignore in this project.
-# Same syntax as gitignore, so you can use * and **.
-# Important: quote patterns that start with `*`, otherwise YAML treats them as aliases.
-# Example:
-#   ignored_paths:
-#     - "examples/**"
-#     - ".worktrees/**"
-#     - "**/bin/**"
-#     - "**/obj/**"
-# Note: global ignored_paths from serena_config.yml are also applied additively.
 ignored_paths:
-- "node_modules/**"
-- "dist/**"
-- "coverage/**"
-- "playwright-report/**"
-- "test-results/**"
+- node_modules/**
+- .venv/**
+- venv/**
+- '**/site-packages/**'
+- dist/**
+- build/**
+- .vite/**
+- coverage/**
+- playwright-report/**
+- test-results/**
+- reports/testing/playwright/**
+- .playwright-cli/**
+- unificados/**
+- testsprite_tests/tmp/**
+- '**/*.min.js'
+- '**/*.map'
 
-# whether the project is in read-only mode
-# If set to true, all editing tools will be disabled and attempts to use them will result in an error
-# Added on 2025-04-18
 read_only: false
 
 # list of mode names that are to be activated by default, overriding the setting in the global configuration.
@@ -158,15 +154,20 @@ ls_additional_workspace_folders: []
 
 # initial prompt for the project. It will always be given to the LLM upon activating the project
 # (contrary to the memories, which are loaded on demand).
-initial_prompt: ''
+initial_prompt: |
+  SISAD-PDFME usa Serena como capa principal de navegación semántica del source.
+  Antes de leer archivos completos, prioriza get_symbols_overview, find_symbol,
+  find_referencing_symbols y find_implementations cuando corresponda.
+  Usa filesystem/grep como fallback para texto no semántico o si el LSP no resuelve.
+  Antes de cambiar, renombrar o eliminar un símbolo público, identifica referencias,
+  implementaciones, fachada pública y tests cercanos.
+  AGENTS.md y .ai/** contienen conocimiento durable; Serena memories son operativas.
+  Respeta .ai/ops/coordination/claims.json y un único escritor por conjunto de paths.
+  No uses Git destructivo ni sobrescribas cambios ajenos.
+  SISAD-PDFME debe permanecer standalone y host-agnostic.
+  No introduzcas versiones, fechas o timestamps en nombres persistentes.
+  Usa los comandos canónicos del package.json y ejecuta diagnostics/tests tras cambios.
 
-# optional shell command to run before the language backend (LSP or JetBrains) is initialised.
-# the command runs in the project root directory and is only executed if the project is trusted
-# (see trusted_project_path_patterns in the global configuration).
-# serena waits for the command to exit: a non-zero exit code is logged as an error but does not
-# abort activation. a per-project timeout (activation_command_timeout, default 180s) is the safety
-# backstop for non-terminating commands; on expiry the process is killed and activation continues.
-# example: activation_command: "npx nx run-many -t build"
 activation_command:
 
 # maximum time in seconds to wait for activation_command to complete before killing it (default 180s).

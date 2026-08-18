@@ -27,7 +27,7 @@ RTP-095 es el caso más claro. Su `Required work` dice literalmente:
 ```
 
 Es, punto por punto, lo que entrega el harness de RTP-515
-(`tests/unit/sisad-pdfme-comprehensive/helpers/allSchemaStressHarness.ts`).
+(`tests/unit/helpers/allSchemaStressHarness.ts`).
 
 ## Decisión
 

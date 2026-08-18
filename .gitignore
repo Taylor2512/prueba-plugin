@@ -129,3 +129,6 @@ venv/
 
 # FrameRef cache directory
 /.frameref
+
+# Artefactos de ejecución de tests
+reports/testing/playwright/

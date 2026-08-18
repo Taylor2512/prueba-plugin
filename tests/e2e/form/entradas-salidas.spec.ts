@@ -5,6 +5,7 @@ import {
   desenfocar,
   escribirCampo,
   leerCampo,
+  leerInteraccion,
   NO_TEXTUALES,
 } from '../../support/playwright';
 
@@ -44,6 +45,15 @@ test.describe('Form — entradas y salidas canónicas', () => {
     await expect(editado).toHaveText('ENTRADA-CANONICA-TEXTO');
     expect(await leerCampo(vecino)).toBe(vecinoAntes);
 
+    // El modelo debe reflejar la interacción, no sólo el DOM del campo.
+    const estado = await leerInteraccion(page, 'text', [
+      'data-touched',
+      'data-dirty',
+      'data-interaction-count',
+    ]);
+    expect(estado['data-touched']).toBe('true');
+    expect(estado['data-dirty']).toBe('true');
+    expect(Number(estado['data-interaction-count'])).toBeGreaterThan(0);
   });
 
   // @caso SCH-005

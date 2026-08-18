@@ -145,7 +145,7 @@ safeWrite(root,".ai/brain/90-reference/ARCHITECTURE-MAP.md",[
 
 const src=path.join(root,"src/sisad-pdfme");
 const hot=fs.existsSync(src)?walk(src).filter((p)=>/\.(?:ts|tsx|js|jsx)$/.test(p)).map((p)=>{
-  let lines=0;try{lines=read(p).split(/\r?\n/).length}catch{}return{p,lines};
+  let lines=0;try{lines=read(p).split(/\r?\n/).length}catch(error){if (!error || error.code !== 'EACCES') throw error;}return{p,lines};
 }).sort((a,b)=>b.lines-a.lines).slice(0,60):[];
 safeWrite(root,".ai/index/architecture/RUNTIME-HOTSPOTS.md",[
 "# Runtime hotspots","","> Generated from live source; do not edit manually.","",

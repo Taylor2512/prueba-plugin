@@ -27,7 +27,7 @@ Un rename no debe borrar contenido divergente.
 }
 ```
 
-`npm run docs:paths`:
+`npm run docs -- paths .`:
 
 - detecta source/target actuales;
 - marca moves seguros;
@@ -35,7 +35,7 @@ Un rename no debe borrar contenido divergente.
 - conserva aliases ya aplicados para reescribir referencias;
 - no toca el repo.
 
-`npm run docs:paths:apply`:
+`npm run docs -- paths . --apply`:
 
 - crea backup externo;
 - mueve únicamente aliases seguros;
@@ -48,9 +48,9 @@ Un rename no debe borrar contenido divergente.
 Después de apply:
 
 ```bash
-npm run docs:scan
-npm run docs:index
-npm run docs:validate
+npm run docs -- scan .
+npm run docs -- index .
+npm run docs -- validate .
 git diff --check
 git status --short
 ```
