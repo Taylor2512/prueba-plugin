@@ -82,7 +82,7 @@ const createHydrationValues = (schema: SchemaForUI): Record<string, unknown> => 
       ? (normalizeSignatureSchema(schema as SignatureSchema) as SchemaForUI)
       : schema;
   const values: Record<string, unknown> = { ...normalizedSchema };
-  values.editable = !Boolean(values.readOnly);
+  values.editable = !values.readOnly;
   return values;
 };
 

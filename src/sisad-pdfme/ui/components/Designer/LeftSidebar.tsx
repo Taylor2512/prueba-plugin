@@ -1626,7 +1626,7 @@ const LeftSidebar = ({
     (category: string) => {
       setCollapsedCategories((prev) => {
         const next: Record<string, boolean> = { ...prev };
-        next[category] = !Boolean(prev[category]);
+        next[category] = !prev[category];
         return next;
       });
     },

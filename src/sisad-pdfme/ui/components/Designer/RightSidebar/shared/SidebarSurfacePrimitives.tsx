@@ -249,7 +249,7 @@ export const SidebarSurfaceHeader = ({
                     compact ? 'h-4 px-[0.26rem] text-[0.56rem]' : 'h-5 px-1.5 text-[10px]',
                   );
 
-                  const key = badge.key ?? badge.tooltip ?? String(badge.label) ?? index;
+                  const key = badge.key ?? badge.tooltip ?? String(badge.label);
 
                   return (
                     <span key={key} title={badge.tooltip} className={badgeClassName}>

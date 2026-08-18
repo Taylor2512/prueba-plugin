@@ -205,11 +205,6 @@ const MICRO_TOOLBAR_SIZE = { width: 288, height: 160 };
 const COMPACT_TOOLBAR_SIZE = { width: 384, height: 224 };
 
 /**
- * Tamaño estimado para toolbar en modo expandido.
- */
-const EXPANDED_TOOLBAR_SIZE = { width: 512, height: 360 };
-
-/**
  * Orquestador de overlays del canvas.
  *
  * Responsabilidades:
@@ -265,9 +260,8 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
    * - selección múltiple: compact;
    * - selección única: micro.
    */
-  const [toolbarMode, setToolbarMode] = useState<SelectionToolbarMode>(
-    interactionState.selectionCount > 1 ? 'compact' : 'micro',
-  );
+  const toolbarMode: SelectionToolbarMode =
+    interactionState.selectionCount > 1 ? 'compact' : 'micro';
 
   /**
    * Controla la visibilidad del panel de ayuda de atajos.
@@ -280,12 +274,6 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
    * La intención es regresar automáticamente a un modo razonable cuando
    * el usuario cambia de selección única a múltiple o viceversa.
    */
-  useEffect(() => {
-    const nextMode = interactionState.selectionCount > 1 ? 'compact' : 'micro';
-
-    setToolbarMode((prev) => (prev === nextMode ? prev : nextMode));
-  }, [interactionState.selectionCount]);
-
   /**
    * Escucha un evento global para abrir el panel de ayuda de atajos.
    *
@@ -314,11 +302,7 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
    * Este tamaño alimenta el cálculo de posición flotante.
    */
   const toolbarSize =
-    toolbarMode === 'expanded'
-      ? EXPANDED_TOOLBAR_SIZE
-      : toolbarMode === 'compact'
-        ? COMPACT_TOOLBAR_SIZE
-        : MICRO_TOOLBAR_SIZE;
+    toolbarMode === 'compact' ? COMPACT_TOOLBAR_SIZE : MICRO_TOOLBAR_SIZE;
 
   /**
    * Posición calculada del toolbar flotante tomando en cuenta:

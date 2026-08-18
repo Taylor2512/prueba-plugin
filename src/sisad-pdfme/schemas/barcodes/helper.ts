@@ -54,14 +54,14 @@ export const validateBarcodeInput = (type: BarcodeTypes, input: string) => {
   if (type === 'code39') {
     // For Code39: Valid characters are digits (0-9), uppercase alphabets (A-Z),
     // symbols (-, ., $, /, +, %), and space.
-    const regexp = /^(\d|[A-Z]|\-|\.|\$|\/|\+|\%|\s)+$/;
+    const regexp = /^(\d|[A-Z]|-|\.|\$|\/|\+|%|\s)+$/;
     return regexp.test(input);
   }
   if (type === 'code128') {
     // For Code128: Valid characters are all except Kanji, Hiragana, and Katakana.
     // https://qiita.com/graminume/items/2ac8dd9c32277fa9da64
     return !input.match(
-      /([\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]|[Ａ-Ｚａ-ｚ０-９！＂＃＄％＆＇（）＊＋，－．／：；＜＝＞？＠［＼］＾＿｀｛｜｝〜　])+/,
+      /([\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]|[Ａ-Ｚａ-ｚ０-９！＂＃＄％＆＇（）＊＋，－．／：；＜＝＞？＠［＼］＾＿｀｛｜｝〜\u3000])+/,
     );
   }
   if (type === 'nw7') {

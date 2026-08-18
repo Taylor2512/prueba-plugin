@@ -258,7 +258,6 @@ const CommentsOverlay = ({
   useLayoutEffect(() => {
     const overlay = containerRef.current;
     if (!overlay) {
-      setAnchorPositions([]);
       return;
     }
 

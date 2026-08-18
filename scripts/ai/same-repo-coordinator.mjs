@@ -47,7 +47,7 @@ const withMutex = (fn) => {
     } catch (error) {
       if (error?.code !== 'EEXIST') throw error;
       const until = Date.now() + 20;
-      while (Date.now() < until) {}
+      while (Date.now() < until) { /* wait briefly for the lease holder */ }
     }
   }
   if (!acquired) throw new Error('Could not acquire coordination mutex');

@@ -1,6 +1,8 @@
 model_reasoning_effort = "low"
 model_auto_compact_token_limit_scope = "body_after_prefix"
 
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
 [features]
 multi_agent = true
 shell_snapshot = true
